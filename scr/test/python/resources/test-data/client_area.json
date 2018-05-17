@@ -1,0 +1,11 @@
+{
+  "CRMHomePage": {
+    "drop_down_filter": "//span[@class='filter-option pull-left']",
+    "select_test_filter": "//span[contains(text(), '%s')]",
+    "email_field": "//input[@id='tks_email1']",
+    "search_button": "//input[@value='Search']",
+    "client_name": "//a[@title='%s']",
+    "client_status": "//span[@class ='clientStatusFTD']",
+    "help_desk_module": "//a[contains(text(), 'Help Desk')]"
+  }
+}
