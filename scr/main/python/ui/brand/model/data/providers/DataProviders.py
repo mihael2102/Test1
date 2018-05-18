@@ -9,18 +9,18 @@ class DataProviders(object):
 
     def get_data_first_client(self, value):
         connection_file = open(
-            'D:/MyWork/Develop/panda-project/scr/test/python/resources/test-data/client-information.json')
+            'scr/test/python/resources/test-data/client-information.json')
         conn_string = json.load(connection_file)
         return conn_string[TestDataConstants.CLIENT_ONE][value]
 
     def get_xpath_data(self, value):
         connection_file = open(
-            'D:/MyWork/Develop/panda-project/scr/test/python/resources/client_area.json')
+            'scr/test/python/resources/client_area.json')
         conn_string = json.load(connection_file)
         return conn_string[XpathDataConstants.CRM_HOME_PAGE][value]
 
     def get_data_client_information_update(self, value):
         connection_file = open(
-            'D:/MyWork/Develop/panda-project/scr/test/python/resources/test-data/client-information-update.json')
+            'scr/test/python/resources/test-data/client-information-update.json')
         conn_string = json.load(connection_file)
         return conn_string[CAClientUpdate.CLIENT_UPDATE][value]
