@@ -7,19 +7,17 @@ from scr.test.python.ui.avtomation.implemetation.Test_Demo import TestDemo
 
 direct = os.getcwd()
 
+loader = TestLoader()
+suite = TestSuite((
+    loader.loadTestsFromTestCase(TestDemo)
+))
 
-class MyTestSuite(unittest.TestCase):
-    loader = TestLoader()
-    suite = TestSuite((
-        loader.loadTestsFromTestCase(TestDemo)
-    ))
+outfile = open(direct + "\Regression.html", "w")
+runner_report = HTMLTestRunner(
+    stream=outfile,
+    title='Test Report',
+    description='Regression Tests'
+)
 
-    outfile = open(direct + "\Regression.html", "w")
-    runner_report = HTMLTestRunner(
-        stream=outfile,
-        title='Test Report',
-        description='Regression Tests'
-    )
-
-    runner_report.run(suite)
-    # #run test parallel using concurrent_suite
+runner_report.run(suite)
+# #run test parallel using concurrent_suite
