@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from scr.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from scr.main.python.ui.brand.model.forms.login.BrandLoginForm import BrandLoginForm
 from scr.main.python.ui.brand.model.forms.signup.BrandSignUpForm import BrandSignUpForm
-from scr.main.python.utils.screen.ScreenShot import ScreenShot
+from scr.main.python.utils.screenshot.ScreenShot import ScreenShot
 
 
 class BrandHomePage(BrandBasePage):

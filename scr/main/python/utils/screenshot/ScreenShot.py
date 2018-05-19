@@ -5,5 +5,5 @@ class ScreenShot(object):
         self.driver = driver
 
     def PerfomScreenShot(self, path):
-        directory = "D:/glo-panda-fx/glo-project/screen_shots"
+        directory = "D:/automation-newforexqa/screen_errors"
         self.driver.get_screenshot_as_file(directory + path)

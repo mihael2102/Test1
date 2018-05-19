@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 
 from scr.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from scr.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPageBrand
-from scr.main.python.utils.screen.ScreenShot import ScreenShot
+from scr.main.python.utils.screenshot.ScreenShot import ScreenShot
 
 
 class BrandSignUpForm(BrandBasePage):
