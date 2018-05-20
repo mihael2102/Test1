@@ -1,10 +1,9 @@
 from unittest import TestLoader, TestSuite
 
 import os
-
-from scr.main.python.ui.core.reporter.HTMLTestRunner import HTMLTestRunner
-from scr.test.python.ui.avtomation.implemetation.Test_Demo import TestDemo
-from scr.test.python.ui.avtomation.implemetation.ca_crm.Test_SignUp import SignUp
+from src.main.python.ui.core.reporter.HTMLTestRunner import HTMLTestRunner
+from src.test.python.ui.avtomation.implemetation.Test_Demo import TestDemo
+from src.test.python.ui.avtomation.implemetation.ca_crm.Test_SignUp import SignUp
 
 direct = os.getcwd()
 
