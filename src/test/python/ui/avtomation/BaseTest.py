@@ -8,7 +8,7 @@ class BaseTest(unittest.TestCase):
 
     def setUp(self):
         Config.data = DataProviders()
-        selenium_grid_url = "http://192.168.0.97:5579/wd/hub/"
+        selenium_grid_url = "http://192.168.13.12:5579/wd/hub/"
         options = webdriver.ChromeOptions()
         options.add_argument("--lang=de")
         options.add_argument("--window-size=1920,1080")
