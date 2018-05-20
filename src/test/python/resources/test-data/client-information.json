@@ -1,8 +1,8 @@
 {
   "client_1": {
     "country": "Germany",
-    "first_name": "EvgenQa",
-    "email": "evgeniy+testing1@pandats.com",
+    "first_name": "TestQa",
+    "email": "evgeniy+testing2@pandats.com",
     "last_name": "Li",
     "area_code": "44444",
     "phone": "55555555",
@@ -11,7 +11,7 @@
     "promo_code": "777777",
     "day": "31",
     "month": "December",
-    "year": "1943",
+    "year": "1988",
     "zip": "44444444",
     "citizen_ship": "Yemeni",
     "city": "Paris",
