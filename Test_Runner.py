@@ -11,8 +11,6 @@ direct = os.getcwd()
 if __name__ == "__main__":
     loader = TestLoader()
     suite = TestSuite((
-        loader.loadTestsFromTestCase(Deposit),
-        loader.loadTestsFromTestCase(TransferFunds),
         loader.loadTestsFromTestCase(DownloadDocuments),
     ))
 
