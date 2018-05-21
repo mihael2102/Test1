@@ -1,6 +1,8 @@
 from src.main.python.ui.brand.model.client_area_modules.service_desk.CaServiceDesk import CaServiceDesk
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.results.actual_result.SupportTicketActualResult import SupportTicketActualResult
+from src.main.python.ui.results.expected_result.SupportTicketExpectedResult import SupportTicketExpectedResult
 from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
@@ -31,6 +33,8 @@ class CreateSupportTicket(BaseTest):
         ticket_status_ca = brand_service_desk.get_ticket_status()
         ca_id = brand_service_desk.get_ca_id()
 
+        SupportTicketActualResult().print_actual_result(subject_ca, category_tittle_ca, ticket_status_ca, ca_id)
+
         crm_login_page = CRMLoginPage()
         crm_help_desk = crm_login_page \
             .open_second_tab_page(Config.url_crm) \
@@ -46,7 +50,8 @@ class CreateSupportTicket(BaseTest):
         ticket_status_crm = crm_help_desk.get_ticket_status_text()
         subject_crm = crm_help_desk.get_subject_tittle()
 
+        SupportTicketExpectedResult().print_expected_result(subject_crm,category_tittle_crm, ticket_status_crm)
+
         assert subject_ca == subject_crm
         assert category_tittle_ca == category_tittle_crm
         assert ticket_status_ca == ticket_status_crm
-

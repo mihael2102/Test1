@@ -35,8 +35,9 @@ class ChangePasswordFromCA(BaseTest):
 
         assert invalid_login_message == CaStatusConstants.INVALID_LOGIN_MESSAGE
 
-        CAChangePasswordActualResult().print_change_password_actual_result(Config.data.get_data_first_client(TestDataConstants.PASSWORD),
-                                                                         invalid_login_message)
+        CAChangePasswordActualResult().print_change_password_actual_result(
+            Config.data.get_data_first_client(TestDataConstants.PASSWORD),
+            invalid_login_message)
 
         BrandLoginForm().set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                                     Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD)) \
@@ -44,15 +45,17 @@ class ChangePasswordFromCA(BaseTest):
             .open_drop_down_menu() \
             .select_module(CaStatusConstants.ACCOUNT_DETAILS)
 
-        CAChangePasswordActualResult().print_change_password_actual_result(Config.data.get_data_first_client(TestDataConstants.PASSWORD),
-                                                                         Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD))
+        CAChangePasswordActualResult().print_change_password_actual_result(
+            Config.data.get_data_first_client(TestDataConstants.PASSWORD),
+            Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD))
 
         password_changed = CaAccountDetails().open_change_password_tab() \
             .perform_change_password(Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD)
-                                     ,Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+                                     , Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .get_password_changed()
 
         assert password_changed == CaStatusConstants.PASSWORD_SUCCESSFUL_CHANGED
 
-        CAChangePasswordActualResult().print_change_password_again_actual_result(Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD),
-                                                                               Config.data.get_data_first_client(TestDataConstants.PASSWORD))
+        CAChangePasswordActualResult().print_change_password_again_actual_result(
+            Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD),
+            Config.data.get_data_first_client(TestDataConstants.PASSWORD))
