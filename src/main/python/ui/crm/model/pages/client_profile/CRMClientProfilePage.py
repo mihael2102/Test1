@@ -88,7 +88,7 @@ class CRMClientProfilePage(CRMBasePage):
 
     def get_total_amount_text(self, amount, initial_amount):
         total_amount = Decimal(amount) + Decimal(initial_amount)
-        Logging().reportDebugStep(self, "Return the total amount text " + total_amount)
+        Logging().reportDebugStep(self, "Return the total amount text " + str(total_amount))
         return str(total_amount)
 
     '''
