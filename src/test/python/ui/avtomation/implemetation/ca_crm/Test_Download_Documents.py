@@ -3,6 +3,8 @@ from src.main.python.ui.brand.model.client_area_modules.verification_center.CaVe
     CaVerificationCenter
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.results.actual_result.DownloadDocumentsActualResult import DownloadDocumentsActualResult
+from src.main.python.ui.results.expected_result.DownloadDocumentsExpectedResult import DownloadDocumentsExpectedResult
 from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
@@ -19,6 +21,8 @@ class DownloadDocuments(BaseTest):
 
         status_document_ca = CaVerificationCenter().perform_front_upload().get_document_status()
 
+        DownloadDocumentsActualResult().print_actual_result(status_document_ca)
+
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
@@ -32,5 +36,7 @@ class DownloadDocuments(BaseTest):
             .open_document_tab() \
             .open_document_number() \
             .get_document_status()
+
+        DownloadDocumentsExpectedResult.print_actual_result(status_document_crm)
 
         assert status_document_ca == status_document_crm

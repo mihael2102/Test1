@@ -1,6 +1,4 @@
-from src.main.python.ui.brand.model.client_area_modules.ca_constats.CaStatusConstants import CaStatusConstants
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
-from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.ui.results.actual_result.TransferFundsActualResult import TransferFundsActualResult
 from src.main.python.ui.results.expected_result.TransferFundsExpectedResult import TransferFundsExpectedResult

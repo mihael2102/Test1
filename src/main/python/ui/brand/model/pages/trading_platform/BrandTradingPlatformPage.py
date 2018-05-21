@@ -49,5 +49,5 @@ class BrandTradingPlatformPageBrand(BrandBasePage):
     def select_module(self, module):
         super().select_module(module)
         select_module = "Select the drop menu: " + module + " module"
-        Logging().reportDebugStep(self, select_module)
+        Logging().reportDebugStep(self, "Select the module in drop down " + select_module)
         return CAModules()
