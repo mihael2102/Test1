@@ -2,6 +2,8 @@ from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManag
 from src.main.python.ui.crm.model.mt4.deposit.MT4Deposit import MT4Deposit
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.results.actual_result.DepositActualResult import DepositActualResult
+from src.main.python.ui.results.expected_result.DepositExpectedResult import DepositExpectedResult
 from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.ui.avtomation.utils.preconditions.deposit.BrandDepositPrecondition import BrandDepositPrecondition
 from src.test.python.utils.TestDataConstants import TestDataConstants
@@ -33,14 +35,18 @@ class Deposit(BaseTest):
             .perform_scroll_up() \
             .open_mt4_actions(TestDataConstants.DEPOSIT)
 
-        amount = MT4Deposit() \
+        amount_crm = MT4Deposit() \
             .make_deposit(account_number, TestDataConstants.AMOUNT) \
             .refresh_page() \
             .click_trading_accounts_tab() \
             .get_amount_text(total_amount_crm)
 
+        DepositActualResult().print_actual_result(amount_crm, account_number)
+
         amount_from_ca = CaManageAccounts() \
             .switch_first_tab_page() \
-            .get_amount_element(account_number, amount)
+            .get_amount_element(account_number, amount_crm)
 
-        assert amount == amount_from_ca
+        DepositExpectedResult().print_actual_result(amount_from_ca, account_number)
+
+        assert amount_crm == amount_from_ca

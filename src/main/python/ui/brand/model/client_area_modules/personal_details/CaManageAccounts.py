@@ -1,7 +1,8 @@
 from selenium.webdriver.common.by import By
 
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
-from src.main.python.ui.brand.model.client_area_modules.personal_details.tabs.new_accounts_tab.CaNewAccountsTab import CaNewAccountsTab
+from src.main.python.ui.brand.model.client_area_modules.personal_details.tabs.new_accounts_tab.CaNewAccountsTab import \
+    CaNewAccountsTab
 from src.main.python.ui.brand.model.client_area_modules.personal_details.tabs.transfer_funds_tab.CaTransferBetweenTab import \
     CaTransferBetweenTab
 from src.main.python.utils.logs.Loging import Logging
@@ -44,7 +45,12 @@ class CaManageAccounts(BrandBasePage):
         self.driver.refresh()
         return CaManageAccounts()
 
+    '''
+        Return amount_element
+    '''
+
     def get_amount_element(self, account, amount):
+        Logging().reportDebugStep(self, "Returns the amount element")
         return super().get_amount_element(account, amount)
 
     '''
@@ -64,6 +70,5 @@ class CaManageAccounts(BrandBasePage):
     '''
 
     def get_amount_by_account_text(self, account):
+        Logging().reportDebugStep(self, "Returns the amount by account")
         return super().get_amount_by_account_text(account)
-
-
