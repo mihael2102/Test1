@@ -4,5 +4,5 @@ class AddDemoAccountsExpectedResult(object):
 
     def print_expected_result(self, account_id_crm, cad_currency_crm, balance_crm):
         print(
-            '\n' + "Actual result: " + "I opened the " + account_id_crm + " account with   "
+            '\n' + "Expected result: " + "I opened the " + account_id_crm + " account with   "
             + cad_currency_crm + " currency and " + balance_crm + " balance" + " from CRM" + '\n')

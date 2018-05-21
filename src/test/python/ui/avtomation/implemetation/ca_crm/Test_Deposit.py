@@ -47,6 +47,6 @@ class Deposit(BaseTest):
             .switch_first_tab_page() \
             .get_amount_element(account_number, amount_crm)
 
-        DepositExpectedResult().print_actual_result(amount_from_ca, account_number)
+        DepositExpectedResult().print_expected_result(amount_from_ca, account_number)
 
         assert amount_crm == amount_from_ca
