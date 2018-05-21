@@ -11,7 +11,7 @@ class BaseTest(unittest.TestCase):
         selenium_grid_url = "http://10.0.0.94:4478/wd/hub"
         options = webdriver.ChromeOptions()
         options.add_argument("--lang=de")
-        options.add_argument("--window-size=1920,1080")
+        options.add_argument("--start-maximized")
         Config.browser = webdriver.Remote(desired_capabilities=options.to_capabilities(),
                                           command_executor=selenium_grid_url)
 
