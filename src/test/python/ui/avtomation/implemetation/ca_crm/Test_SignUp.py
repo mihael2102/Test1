@@ -21,6 +21,6 @@ class SignUp(BaseTest):
             .find_client(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                          Config.data.get_data_first_client(TestDataConstants.FIRST_NAME))
 
-        SignUpActualResult.print_actual_result(crm_client_profile.get_client_status())
+        SignUpActualResult().print_actual_result(crm_client_profile.get_client_status())
 
         assert crm_client_profile.get_client_status() == "Live"
