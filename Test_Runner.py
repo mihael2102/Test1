@@ -3,6 +3,7 @@ from unittest import TestLoader, TestSuite
 import os
 from src.main.python.ui.core.reporter.HTMLTestRunner import HTMLTestRunner
 from src.test.python.ui.avtomation.implemetation.ca_crm.Test_Deposit import Deposit
+from src.test.python.ui.avtomation.implemetation.ca_crm.Test_Download_Documents import DownloadDocuments
 from src.test.python.ui.avtomation.implemetation.ca_crm.Test_Make_Transfer_Funds import TransferFunds
 
 direct = os.getcwd()
@@ -12,6 +13,7 @@ if __name__ == "__main__":
     suite = TestSuite((
         loader.loadTestsFromTestCase(Deposit),
         loader.loadTestsFromTestCase(TransferFunds),
+        loader.loadTestsFromTestCase(DownloadDocuments),
     ))
 
     outfile = open(direct + "\Regression.html", "w")
