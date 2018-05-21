@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
-from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPageBrand
+from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPage
 from src.main.python.utils.screenshot.ScreenShot import ScreenShot
 
 
@@ -62,4 +62,4 @@ class BrandSignUpForm(BrandBasePage):
         screen = ScreenShot(self.driver)
         self.submitLocator.click()
         screen.PerfomScreenShot(screen_path + "ForexTradingPlatformPage.png")
-        return BrandTradingPlatformPageBrand()
+        return BrandTradingPlatformPage()

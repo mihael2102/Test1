@@ -2,7 +2,7 @@ from src.main.python.ui.brand.model.client_area_modules.account_details.CaAccoun
 from src.main.python.ui.brand.model.client_area_modules.ca_constats.CaStatusConstants import CaStatusConstants
 from src.main.python.ui.brand.model.forms.login.BrandLoginForm import BrandLoginForm
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
-from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPageBrand
+from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPage
 from src.main.python.ui.results.actual_result.CAChangePasswordActualResult import CAChangePasswordActualResult
 from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
@@ -24,7 +24,7 @@ class ChangePasswordFromCA(BaseTest):
             .refreshing_wait() \
             .close_client_area_pop_up() \
 
-        BrandTradingPlatformPageBrand().open_drop_down_menu() \
+        BrandTradingPlatformPage().open_drop_down_menu() \
             .select_module(CaStatusConstants.SIGN_OUT)
 
         invalid_login_message = BrandHomePage().login() \

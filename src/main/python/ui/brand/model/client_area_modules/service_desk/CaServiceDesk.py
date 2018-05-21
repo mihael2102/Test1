@@ -81,8 +81,6 @@ class CaServiceDesk(BrandBasePage):
 
     def get_subject_id_text(self):
         subject_text = super().wait_load_element("//div[@class='subtitle-pandats'][1]")
-        print("--------------subject-------")
-
         new_sub = re.sub('Subject: ', "", subject_text.text)
 
         return new_sub
@@ -93,8 +91,6 @@ class CaServiceDesk(BrandBasePage):
 
     def get_category_tittle(self):
         category_tittle = super().wait_load_element("//div[@class='italic-pandats'][1]")
-        print("--------------category-------")
-
         new_sub = re.sub('Category: ', "", category_tittle.text)
 
         return new_sub
@@ -105,11 +101,9 @@ class CaServiceDesk(BrandBasePage):
 
     def get_ticket_status(self):
         status_text = super().wait_load_element("//td[@class='td-20-pandats'][1]")
-        print("--------------Status-------")
         return status_text.text
 
     def get_ca_id(self):
         ca_id = super().wait_load_element("//td[@class='td-30-pandats']//div[1]")
         new_ca_id = re.sub('#', "", ca_id.text)
-        print("--------------CA_Id-------")
         return new_ca_id

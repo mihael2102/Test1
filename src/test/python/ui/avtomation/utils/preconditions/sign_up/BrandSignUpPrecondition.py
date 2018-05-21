@@ -3,7 +3,7 @@ from src.main.python.ui.brand.model.forms.financial_transaction.BrandFinancialIn
 from src.main.python.ui.brand.model.forms.trading_experience.BrandTradingExperienceForm import \
     BrandTradingExperienceForm
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
-from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPageBrand
+from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPage
 from src.main.python.utils.config import Config
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
@@ -31,7 +31,7 @@ class BrandSignUpPrecondition(object):
         self.fill_trading_experience()
 
     def fill_personal_profile(self):
-        BrandTradingPlatformPageBrand() \
+        BrandTradingPlatformPage() \
             .open_demo_drop_down(TestDataConstants.ADD_ACCOUNT) \
             .set_first_name(Config.data.get_data_first_client(TestDataConstants.FIRST_NAME)) \
             .set_last_name(Config.data.get_data_first_client(TestDataConstants.LAST_NAME)) \

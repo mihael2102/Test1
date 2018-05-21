@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.ui.brand.model.forms.login.BrandForgotPassword import BrandForgotPassword
-from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPageBrand
+from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPage
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -31,7 +31,7 @@ class BrandLoginForm(BrandBasePage):
                                                            "login-button-pandats']")
         self.loginButtonLocator.click()
         Logging().reportDebugStep(self, "Click the login" + '\n')
-        return BrandTradingPlatformPageBrand()
+        return BrandTradingPlatformPage()
 
     def click_login_button_with_invalid_password(self):
         self.loginButtonLocator = self.driver.find_element(By.XPATH,

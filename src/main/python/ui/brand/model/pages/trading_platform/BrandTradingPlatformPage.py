@@ -10,7 +10,7 @@ from src.main.python.ui.brand.model.forms.create_personal_profile.BrandCreatePer
 from src.main.python.utils.logs.Loging import Logging
 
 
-class BrandTradingPlatformPageBrand(BrandBasePage):
+class BrandTradingPlatformPage(BrandBasePage):
 
     def __init__(self):
         super().__init__()
@@ -39,7 +39,7 @@ class BrandTradingPlatformPageBrand(BrandBasePage):
     def open_drop_down_menu(self):
         super().open_drop_down_menu()
         Logging().reportDebugStep(self, "Open the drop down menu")
-        return BrandTradingPlatformPageBrand()
+        return BrandTradingPlatformPage()
 
     ''' 
         Select the module 
