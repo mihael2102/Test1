@@ -19,7 +19,7 @@ class CaWithdrawHistory(BrandBasePage):
     def get_status_request(self):
         sleep(2)
         status_request = super().wait_load_element("//td[@class='td-20-pandats'][2]")
-        Logging().reportDebugStep(self, "Returns the status request  " + status_request)
+        Logging().reportDebugStep(self, "Returns the status request  " + status_request.text)
         return status_request.text
 
     '''

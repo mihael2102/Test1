@@ -37,6 +37,6 @@ class DownloadDocuments(BaseTest):
             .open_document_number() \
             .get_document_status()
 
-        DownloadDocumentsExpectedResult.print_actual_result(status_document_crm)
+        DownloadDocumentsExpectedResult().print_actual_result(status_document_crm)
 
         assert status_document_ca == status_document_crm
