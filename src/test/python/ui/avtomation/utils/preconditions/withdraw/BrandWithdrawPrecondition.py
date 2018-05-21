@@ -1,11 +1,11 @@
-from ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
-from ui.brand.model.pages.home.BrandHomePage import BrandHomePage
-from ui.crm.model.mt4.deposit.Deposit import Deposit
-from ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
-from ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from utils.TestDataConstants import TestDataConstants
-from utils.config import Config
-
+from src.main.python.ui.brand.model.client_area_modules.ca_constats.CaStatusConstants import CaStatusConstants
+from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
+from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
+from src.main.python.ui.crm.model.mt4.deposit.MT4Deposit import MT4Deposit
+from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
+from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.test.python.ui.avtomation.implemetation.ca_crm.Test_Deposit import Config
+from src.test.python.utils.TestDataConstants import TestDataConstants
 
 class BrandWithdrawPrecondition(object):
 
@@ -18,7 +18,7 @@ class BrandWithdrawPrecondition(object):
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
-            .select_module(TestDataConstants.MANAGE_ACCOUNTS)
+            .select_module(CaStatusConstants.MANAGE_ACCOUNTS)
 
         CaManageAccounts().open_new_account_button() \
             .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_USD)) \
@@ -43,7 +43,7 @@ class BrandWithdrawPrecondition(object):
             .perform_scroll_up() \
             .open_mt4_actions(TestDataConstants.DEPOSIT)
 
-        Deposit()\
+        MT4Deposit()\
             .make_deposit(account_number, TestDataConstants.AMOUNT) \
             .refresh_page()
 
