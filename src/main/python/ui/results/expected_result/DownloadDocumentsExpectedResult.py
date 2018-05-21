@@ -5,5 +5,5 @@ class DownloadDocumentsExpectedResult(object):
 
     def print_actual_result(self, status_document_crm):
         print(
-            '\n' + "Expected result: " + "The status of documents is  " +
+            '\n' + "Expected result: " + "The status of documents is  "
             + status_document_crm + " status in CRM" + '\n')
