@@ -185,7 +185,7 @@ class CRMClientProfilePage(CRMBasePage):
 
     def get_client_status(self):
         client_status = super().wait_load_element("//span[@class ='clientStatusFTD']")
-        Logging().reportDebugStep(self, "Return the client status " + client_status.text)
+        Logging().reportDebugStep(self, "Return the client status: " + client_status.text)
         return client_status.text
 
     '''
@@ -216,7 +216,7 @@ class CRMClientProfilePage(CRMBasePage):
     def get_initial_amount(self):
         initial_amount = super().wait_load_element("//tr[@class='lvtColData'][1]//td[3]")
         total_amount = re.sub('[ ]', '', initial_amount.text)
-        Logging().reportDebugStep(self, "Return the total amount text " + total_amount)
+        Logging().reportDebugStep(self, "Return the total amount text: " + total_amount)
         return total_amount
 
     '''
@@ -226,7 +226,7 @@ class CRMClientProfilePage(CRMBasePage):
     def get_date_birthday(self):
         date = self.driver.find_element(By.XPATH, "//td[contains(text(),'Date Of Birth')]//following-sibling::td[1]")
         parser_data = re.sub('[-]', '', date.text)
-        Logging().reportDebugStep(self, "Returns the date birthday  " + parser_data)
+        Logging().reportDebugStep(self, "Returns the date birthday:  " + parser_data)
         return parser_data
 
     '''
@@ -235,8 +235,18 @@ class CRMClientProfilePage(CRMBasePage):
 
     def get_first_name(self):
         first_name = self.driver.find_element(By.XPATH, "//td[contains(text(),'First Name')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the first name  " + first_name.text)
+        Logging().reportDebugStep(self, "Returns the first name: " + first_name.text)
         return first_name.text
+
+    '''
+         Returns the phone 
+    '''
+
+    def get_phone_text(self):
+        phone = self.driver.find_element(By.XPATH, "//td[contains(text(),'Phone')]//following-sibling::td[1]")
+        parser_phone_text = re.sub('[+," "]', '', phone.text)
+        Logging().reportDebugStep(self, "Returns the first name: " + parser_phone_text)
+        return parser_phone_text
 
     '''
         Returns the last_name
@@ -244,7 +254,7 @@ class CRMClientProfilePage(CRMBasePage):
 
     def get_last_name(self):
         last_name = self.driver.find_element(By.XPATH, "//td[contains(text(),'Last Name')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the last name  " + last_name.text)
+        Logging().reportDebugStep(self, "Returns the last name:  " + last_name.text)
         return last_name.text
 
     '''
@@ -252,26 +262,47 @@ class CRMClientProfilePage(CRMBasePage):
     '''
 
     def get_citizenship_text(self):
-        citizenship_text = self.driver.find_element(By.XPATH,
-                                                    "//td[contains(text(),'Citizenship')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the citizenship " + citizenship_text)
-        return citizenship_text
-
-    '''
-         Returns the city
-    '''
-
-    def get_city_text(self):
-        self.driver.execute_script("scroll(0, 300);")
-        city_text = self.driver.find_element(By.XPATH, "//td[contains(text(),'Address')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the city " + city_text.text)
-        return city_text.text
+        citizenship = self.driver.find_element(By.XPATH,
+                                               "//td[contains(text(),'Citizenship')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the citizenship " + citizenship.text)
+        return citizenship.text
 
     '''
         Returns the address 
     '''
 
     def get_address_text(self):
-        city_text = self.driver.find_element(By.XPATH, "//td[contains(text(),'Address')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the city " + city_text.text)
-        return city_text.text
+        self.driver.execute_script("scroll(0, 300);")
+        address = self.driver.find_element(By.XPATH, "//td[contains(text(),'Address')]//following-sibling::td[1]")
+        print("--------------------------")
+        print(address.text)
+        parser_address_text = re.sub('[" "]', '', address.text)
+        Logging().reportDebugStep(self, "Returns the address :" + parser_address_text)
+        return parser_address_text
+
+    '''
+        Returns the city
+    '''
+
+    def get_city_text(self):
+        city = self.driver.find_element(By.XPATH, "//td[contains(text(),'City')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the city: " + city.text)
+        return city.text
+
+    '''
+        Returns the code
+    '''
+
+    def get_code_text(self):
+        code = self.driver.find_element(By.XPATH, "//td[contains(text(),'Code')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the code: " + code.text)
+        return code.text
+
+    '''
+        Returns the country
+    '''
+
+    def get_country_text(self):
+        country = self.driver.find_element(By.XPATH, "//td[contains(text(),'Country')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the country: " + country.text)
+        return country.text

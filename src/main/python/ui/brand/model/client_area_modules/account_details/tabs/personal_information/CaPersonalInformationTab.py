@@ -88,7 +88,7 @@ class CaPersonalInformationTab(BrandBasePage):
     def select_country(self, country):
         drop_down_country = self.driver.find_element(By.XPATH, "//custom-select[@name='country']")
         drop_down_country.click()
-        sleep(1)
+        sleep(2)
         select_country = self.driver.find_element(By.XPATH,
                                                   "//custom-select[@name='country']//following-sibling::*[contains(text(),'%s')]" % country)
 
@@ -101,7 +101,7 @@ class CaPersonalInformationTab(BrandBasePage):
     def select_citizenship(self, citizenship):
         drop_down_citizenship = self.driver.find_element(By.XPATH, "//custom-select[@name='citizenship']")
         drop_down_citizenship.click()
-        sleep(1)
+        sleep(2)
         select_citizenship = self.driver.find_element(By.XPATH,
                                                       "//custom-select[@name='citizenship']//"
                                                       "following-sibling::*[contains(text(),'%s')]" % citizenship)

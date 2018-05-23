@@ -1,6 +1,6 @@
 {
   "client_update": {
-    "first_name": "TestQA",
+    "first_name": "QA",
     "last_name": "LiQA",
     "day": "26",
     "month": "September",
@@ -9,7 +9,7 @@
     "citizenship": "Spanish",
     "city": "Kharkiv",
     "zip_code": "7777",
-    "address": "Spanish address",
+    "address": "SpanishAddress",
     "phone": "777777"
   }
 }
