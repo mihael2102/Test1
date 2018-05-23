@@ -10,5 +10,5 @@ class CAClientUpdate(object):
     ZIPCODE = "zip_code"
     ADDRESS = "address"
     PHONE = "phone"
-    CLIENT_UPDATE = "client_update"
+    CLIENT_UPDATE_CA = "client_update_ca"
 

@@ -2,6 +2,7 @@ from src.main.python.ui.brand.model.client_area_modules.account_details.CaAccoun
 from src.main.python.ui.brand.model.client_area_modules.ca_constats.CAClientUpdate import CAClientUpdate
 from src.main.python.ui.brand.model.client_area_modules.ca_constats.CaStatusConstants import CaStatusConstants
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
+from src.main.python.ui.crm.model.pages.client_profile.CRMClientUpdate import CRMClientUpdate
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
@@ -19,17 +20,17 @@ class Test_Personal_Details_Update(BaseTest):
 
         personal_information = CaAccountDetails().open_personal_information_tab() \
             .perform_change_personal_information(
-            Config.data.get_data_client_information_update(CAClientUpdate.FIRST_NAME),
-            Config.data.get_data_client_information_update(CAClientUpdate.LAST_NAME),
-            Config.data.get_data_client_information_update(CAClientUpdate.DAY),
-            Config.data.get_data_client_information_update(CAClientUpdate.MONTH),
-            Config.data.get_data_client_information_update(CAClientUpdate.YEAR),
-            Config.data.get_data_client_information_update(CAClientUpdate.COUNTRY),
-            Config.data.get_data_client_information_update(CAClientUpdate.CITIZENSHIP),
-            Config.data.get_data_client_information_update(CAClientUpdate.CITY),
-            Config.data.get_data_client_information_update(CAClientUpdate.ZIPCODE),
-            Config.data.get_data_client_information_update(CAClientUpdate.ADDRESS),
-            Config.data.get_data_client_information_update(CAClientUpdate.PHONE)) \
+            Config.data.get_data_client_information_update_ca(CAClientUpdate.FIRST_NAME),
+            Config.data.get_data_client_information_update_ca(CAClientUpdate.LAST_NAME),
+            Config.data.get_data_client_information_update_ca(CAClientUpdate.DAY),
+            Config.data.get_data_client_information_update_ca(CAClientUpdate.MONTH),
+            Config.data.get_data_client_information_update_ca(CAClientUpdate.YEAR),
+            Config.data.get_data_client_information_update_ca(CAClientUpdate.COUNTRY),
+            Config.data.get_data_client_information_update_ca(CAClientUpdate.CITIZENSHIP),
+            Config.data.get_data_client_information_update_ca(CAClientUpdate.CITY),
+            Config.data.get_data_client_information_update_ca(CAClientUpdate.ZIPCODE),
+            Config.data.get_data_client_information_update_ca(CAClientUpdate.ADDRESS),
+            Config.data.get_data_client_information_update_ca(CAClientUpdate.PHONE)) \
             .perform_save_changed()
 
         date_birthday_ca = personal_information.get_date_birthday()
@@ -40,7 +41,7 @@ class Test_Personal_Details_Update(BaseTest):
                        Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
             .find_client(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                         Config.data.get_data_client_information_update(CAClientUpdate.FIRST_NAME))
+                         Config.data.get_data_client_information_update_ca(CAClientUpdate.FIRST_NAME))
 
         first_name_crm = crm_client_profile.get_first_name()
         last_name_crm = crm_client_profile.get_last_name()
@@ -52,14 +53,28 @@ class Test_Personal_Details_Update(BaseTest):
         code_crm = crm_client_profile.get_code_text()
         country_crm = crm_client_profile.get_country_text()
 
-        assert Config.data.get_data_client_information_update(CAClientUpdate.FIRST_NAME) == first_name_crm
-        assert Config.data.get_data_client_information_update(CAClientUpdate.LAST_NAME) == last_name_crm
-        assert Config.data.get_data_client_information_update(CAClientUpdate.PHONE) == phone_crm
+        assert Config.data.get_data_client_information_update_ca(CAClientUpdate.FIRST_NAME) == first_name_crm
+        assert Config.data.get_data_client_information_update_ca(CAClientUpdate.LAST_NAME) == last_name_crm
+        assert Config.data.get_data_client_information_update_ca(CAClientUpdate.PHONE) == phone_crm
         assert date_birthday_ca == date_birthday_crm
-        assert Config.data.get_data_client_information_update(CAClientUpdate.CITIZENSHIP) == citizenship_crm
-        assert Config.data.get_data_client_information_update(CAClientUpdate.ADDRESS) == address_crm
-        assert Config.data.get_data_client_information_update(CAClientUpdate.CITY) == city_crm
-        assert Config.data.get_data_client_information_update(CAClientUpdate.ZIPCODE) == code_crm
-        assert Config.data.get_data_client_information_update(CAClientUpdate.COUNTRY) == country_crm
+        assert Config.data.get_data_client_information_update_ca(CAClientUpdate.CITIZENSHIP) == citizenship_crm
+        assert Config.data.get_data_client_information_update_ca(CAClientUpdate.ADDRESS) == address_crm
+        assert Config.data.get_data_client_information_update_ca(CAClientUpdate.CITY) == city_crm
+        assert Config.data.get_data_client_information_update_ca(CAClientUpdate.ZIPCODE) == code_crm
+        assert Config.data.get_data_client_information_update_ca(CAClientUpdate.COUNTRY) == country_crm
 
+    def test_perform_client_update_from_CRM(self):
+        crm_client_profile = CRMLoginPage() \
+            .open_second_tab_page(Config.url_crm) \
+            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
+            .find_client(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
+                         Config.data.get_data_client_information_update_ca(CAClientUpdate.FIRST_NAME))
 
+        crm_client_profile \
+            .edit_client_profile_by_pencil(
+            Config.data.get_data_client_information_update_crm(CRMClientUpdate.FIRST_NAME_ELEMENT),
+            Config.data.get_data_client_information_update_crm(CRMClientUpdate.EDIT_FIRST_NAME_FIELD),
+            Config.data.get_data_client_information_update_crm(CRMClientUpdate.FIRST_NAME_UPDATE),
+            Config.data.get_data_client_information_update_crm(CRMClientUpdate.SAVE_BUTTON))

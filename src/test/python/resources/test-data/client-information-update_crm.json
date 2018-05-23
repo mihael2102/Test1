@@ -1,0 +1,8 @@
+{
+  "client_update_crm": {
+    "first_name_element": "First Name",
+    "edit_first_name_field": "firstname",
+    "first_name_update": "TestQa",
+    "save_button_first_name": "editarea_First Name"
+  }
+}

@@ -2,6 +2,7 @@ import re
 from _decimal import Decimal
 from time import sleep
 
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
@@ -306,3 +307,6 @@ class CRMClientProfilePage(CRMBasePage):
         country = self.driver.find_element(By.XPATH, "//td[contains(text(),'Country')]//following-sibling::td[1]")
         Logging().reportDebugStep(self, "Returns the country: " + country.text)
         return country.text
+
+    def edit_client_profile_by_pencil(self, first_name_update, first_name_element, edited_field, save_button_element):
+        super().edit_client_profile_by_pencil(first_name_update, first_name_element, edited_field, save_button_element)
