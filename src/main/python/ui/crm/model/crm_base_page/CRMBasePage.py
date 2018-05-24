@@ -44,16 +44,4 @@ class CRMBasePage(object):
     def wait_until_element_present(self, element, total_amount_crm):
         return WaitingUtils().wait_until_element_present_crm(element, total_amount_crm, self.driver)
 
-    def edit_client_profile_by_pencil(self, first_name_update, first_name_element, edited_field, save_button_element):
-        first_name_field_element = self.driver.find_element(By.XPATH,
-                                                            "//td[contains(text(),'%s')]//following-sibling::td[1]" % first_name_element)
-        self.wait_load_element(first_name_field_element)
-        element_to_move_pencil = self.driver.find_element(By.XPATH, "//span[@class='glyphicons pencil cntrl']")
-        hoverer = ActionChains(self.driver).move_to_element(first_name_field_element).click(element_to_move_pencil)
-        hoverer.perform()
-        edited_field_element = self.driver.find_element(By.XPATH, "//input[@name='%s']" % edited_field)
-        edited_field_element.clear()
-        edited_field_element.send_keys(first_name_update)
-        save_button = self.driver.find_element(By.XPATH, "//div[@id='%s']//span[1]" % save_button_element)
-        hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
-        hoverer.perform()
+

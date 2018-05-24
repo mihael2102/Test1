@@ -16,9 +16,9 @@ class DataProviders(object):
 
     def get_xpath_data(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/client_area.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/crm.json')
         conn_string = json.load(connection_file)
-        return conn_string[XpathDataConstants.CRM_HOME_PAGE][value]
+        return conn_string[XpathDataConstants.CRM_CLIENTS_MODULE][value]
 
     def get_data_client_information_update_ca(self, value):
         connection_file = open(

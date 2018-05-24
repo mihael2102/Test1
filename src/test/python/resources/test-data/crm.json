@@ -1,0 +1,5 @@
+{
+  "CRMClientsModule": {
+    "crm_id": "//tr[@class='lvtColData']//div[@class='link_field']"
+  }
+}

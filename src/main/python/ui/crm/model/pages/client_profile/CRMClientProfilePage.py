@@ -4,6 +4,8 @@ from time import sleep
 
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.wait import WebDriverWait
 
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
@@ -12,6 +14,7 @@ from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import D
 from src.main.python.ui.crm.model.pages.trading_accounts_information.CRMTradingAccountsInformationPage import \
     CRMTradingAccountsInformationPage
 from src.main.python.utils.logs.Loging import Logging
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class CRMClientProfilePage(CRMBasePage):
@@ -275,11 +278,13 @@ class CRMClientProfilePage(CRMBasePage):
     def get_address_text(self):
         self.driver.execute_script("scroll(0, 300);")
         address = self.driver.find_element(By.XPATH, "//td[contains(text(),'Address')]//following-sibling::td[1]")
-        print("--------------------------")
-        print(address.text)
         parser_address_text = re.sub('[" "]', '', address.text)
         Logging().reportDebugStep(self, "Returns the address :" + parser_address_text)
         return parser_address_text
+
+    def perform_scroll(self, parameter):
+        self.driver.execute_script("scroll(0, '%s');" % parameter)
+        return CRMClientProfilePage()
 
     '''
         Returns the city
@@ -308,5 +313,74 @@ class CRMClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the country: " + country.text)
         return country.text
 
-    def edit_client_profile_by_pencil(self, first_name_update, first_name_element, edited_field, save_button_element):
-        super().edit_client_profile_by_pencil(first_name_update, first_name_element, edited_field, save_button_element)
+    def edit_client_profile_by_pencil(self, parameter_update, element, edited_field, save_button_element):
+        self.driver.refresh()
+        element_field = super().wait_load_element(
+            "//td[contains(text(),'%s')]//following-sibling::td[1]" % element)
+
+        element_to_move_pencil = self.driver.find_element(By.XPATH, "//span[@class='glyphicons pencil cntrl']")
+        hoverer = ActionChains(self.driver).move_to_element(element_field).click(element_to_move_pencil)
+        hoverer.perform()
+        edited_field_element = self.driver.find_element(By.XPATH, "//input[@name='%s']" % edited_field)
+        edited_field_element.clear()
+        edited_field_element.send_keys(parameter_update)
+        save_button = self.driver.find_element(By.XPATH, "//div[@id='%s']//span[1]" % save_button_element)
+        hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
+        hoverer.perform()
+        return CRMClientProfilePage()
+
+    def edit_citizen_ship_by_pencil(self, parameter_update):
+        self.driver.refresh()
+        element_field = super().wait_load_element(
+            "//td[contains(text(),'Citizen')]//following-sibling::td[1]")
+
+        element_to_move_pencil = self.driver.find_element(By.XPATH, "//span[@class='glyphicons pencil cntrl']")
+        hoverer = ActionChains(self.driver).move_to_element(element_field).click(element_to_move_pencil)
+        hoverer.perform()
+
+        edit_field = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@name='citizenships']")))
+
+        select = Select(edit_field)
+        select.select_by_visible_text(parameter_update)
+
+        save_button = self.driver.find_element(By.XPATH, "//div[@id='editarea_Citizenship']//span[1]")
+        hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
+        hoverer.perform()
+        return CRMClientProfilePage()
+
+    def edit_address_by_pencil(self,parameter_update):
+        self.driver.refresh()
+        element_field = super().wait_load_element(
+            "//td[contains(text(),'Address')]//following-sibling::td[1]")
+
+        element_to_move_pencil = self.driver.find_element(By.XPATH, "//span[@class='glyphicons pencil cntrl']")
+        hoverer = ActionChains(self.driver).move_to_element(element_field).click(element_to_move_pencil)
+        hoverer.perform()
+        edited_field_element = self.driver.find_element(By.XPATH, "//textarea[@name='address']")
+        edited_field_element.clear()
+        edited_field_element.send_keys(parameter_update)
+        save_button = self.driver.find_element(By.XPATH, "//div[@id='editarea_Address']//span[1]")
+        hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
+        hoverer.perform()
+        return CRMClientProfilePage()
+
+    def edit_country_by_pencil(self, parameter_update):
+        self.driver.refresh()
+        element_field = super().wait_load_element(
+            "//td[contains(text(),'Country')]//following-sibling::td[1]")
+
+        element_to_move_pencil = self.driver.find_element(By.XPATH, "//span[@class='glyphicons pencil cntrl']")
+        hoverer = ActionChains(self.driver).move_to_element(element_field).click(element_to_move_pencil)
+        hoverer.perform()
+
+        edit_field = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@name='countries']")))
+
+        select = Select(edit_field)
+        select.select_by_visible_text(parameter_update)
+
+        save_button = self.driver.find_element(By.XPATH, "//div[@id='editarea_Country']//span[1]")
+        hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
+        hoverer.perform()
+        return CRMClientProfilePage()

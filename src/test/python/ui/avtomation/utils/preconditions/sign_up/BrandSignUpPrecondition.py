@@ -42,7 +42,7 @@ class BrandSignUpPrecondition(object):
             .select_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_USD)) \
             .select_citizenship(Config.data.get_data_first_client(TestDataConstants.CITIZEN_SHIP)) \
             .set_city(Config.data.get_data_first_client(TestDataConstants.CITY)) \
-            .set_post_code(Config.data.get_data_first_client(TestDataConstants.POSTCODE)) \
+            .set_post_code(Config.data.get_data_first_client(TestDataConstants.POST_CODE)) \
             .set_address(Config.data.get_data_first_client(TestDataConstants.ADDRESS)) \
             .set_phone(Config.data.get_data_first_client(TestDataConstants.PHONE)) \
             .enter_next_button()

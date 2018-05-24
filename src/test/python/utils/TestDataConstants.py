@@ -1,4 +1,5 @@
 class TestDataConstants(object):
+
     AMOUNT = "10.00"
     AMOUNT_WITHDRAW = "10"
     DESCRIPTION = "Open a new ticket"
@@ -35,7 +36,7 @@ class TestDataConstants(object):
     PHONE = "phone"
     PASSWORD = "password"
     NEW_PASSWORD = "new_password"
-    POSTCODE = "postcode"
+    POST_CODE = "post_code"
     CONFIRMATION_PASSWORD = "confirm_password"
     PROMO_CODE = "promo_code"
     ADD_ACCOUNT = "Add account"

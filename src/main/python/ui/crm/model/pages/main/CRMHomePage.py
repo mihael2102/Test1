@@ -5,7 +5,8 @@ from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.help_desk.CRMHelpDesk import CRMHelpDesk
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
-
+from src.test.python.utils.XpathDataConstants import XpathDataConstants
+from src.main.python.utils.config import Config
 
 class CRMHomePage(CRMBasePage):
 
@@ -39,7 +40,7 @@ class CRMHomePage(CRMBasePage):
          :return Client Profile Page instance
     '''
 
-    def find_client(self, email, user_name):
+    def find_client(self, email):
         sleep(2)
         email_field = self.driver.find_element(By.XPATH, "//input[@id='tks_email1']")
 
@@ -49,8 +50,8 @@ class CRMHomePage(CRMBasePage):
         search_button.click()
         Logging().reportDebugStep(self, "Click the search button ")
         sleep(2)
-        client_name = self.driver.find_element(By.XPATH, "//a[@title='%s']" % user_name)
-        client_name.click()
+        client_id = self.driver.find_element(By.XPATH, Config.data.get_xpath_data(XpathDataConstants.CRM_ID))
+        client_id.click()
         Logging().reportDebugStep(self, "Clicking on user's name by email : ")
         return CRMClientProfilePage()
 

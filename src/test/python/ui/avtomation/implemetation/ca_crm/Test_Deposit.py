@@ -18,8 +18,7 @@ class Deposit(BaseTest):
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
                        Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                         Config.data.get_data_first_client(TestDataConstants.FIRST_NAME))
+            .find_client(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
 
         account_number = crm_client_profile \
             .perform_scroll_down() \

@@ -148,3 +148,32 @@ class CaPersonalInformationTab(BrandBasePage):
     def get_date_birthday(self):
         date = date_parser + ParserDate().get_month_number(month_parser) + year_parser
         return date
+
+    def get_first_name(self):
+        first_name_field = self.driver.find_element(By.XPATH,
+                                                    "//div[@class='form-group-pandats']//input[@name='firstName']")
+        return first_name_field.text
+
+    def get_last_name(self):
+        last_name_field = self.driver.find_element(By.XPATH, "//input[@name = 'lastName']")
+        return last_name_field.text
+
+    def get_date_of_birthday(self):
+        date = self.driver.find_element(By.XPATH, "//custom-select[@name= 'day']")
+        month = self.driver.find_element(By.XPATH, "//custom-select[@name= 'month']")
+        year = self.driver.find_element(By.XPATH, "//custom-select[@name= 'year']")
+        date = date.text + ParserDate().get_month_number(month.text) + year.text
+        return date
+
+    def get_country_text(self):
+        country = self.driver.find_element(By.XPATH, "//custom-select[@name='country']")
+        return country.text
+
+    def get_citizen_ship_text(self):
+        citizen = self.driver.find_element(By.XPATH, "//custom-select[@name='citizenship']")
+        return citizen.text
+
+
+    def get_citizen_ship_text(self):
+        citizen = self.driver.find_element(By.XPATH, "//custom-select[@name='citizenship']")
+        return citizen.text
