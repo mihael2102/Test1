@@ -8,10 +8,11 @@ from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class Test_Personal_Details_Update(BaseTest):
+class Personal_Details_Update(BaseTest):
 
     def test_perform_client_update_from_CA(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \
+        BrandHomePage().open_first_tab_page(Config.url_new_forex) \
+            .login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
@@ -40,8 +41,7 @@ class Test_Personal_Details_Update(BaseTest):
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
                        Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                         Config.data.get_data_client_information_update_ca(CAClientUpdate.FIRST_NAME))
+            .find_client(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
 
         first_name_crm = crm_client_profile.get_first_name()
         last_name_crm = crm_client_profile.get_last_name()
@@ -64,8 +64,7 @@ class Test_Personal_Details_Update(BaseTest):
         assert Config.data.get_data_client_information_update_ca(CAClientUpdate.COUNTRY) == country_crm
 
     def test_perform_client_update_from_CRM(self):
-        crm_client_profile = CRMLoginPage() \
-            .open_first_tab_page(Config.url_crm) \
+        crm_client_profile = CRMLoginPage().open_first_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
                        Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
@@ -73,8 +72,7 @@ class Test_Personal_Details_Update(BaseTest):
 
         date_birthday_crm = crm_client_profile.get_date_birthday()
 
-        crm_client_profile \
-            .edit_client_profile_by_pencil(
+        crm_client_profile.edit_client_profile_by_pencil(
             Config.data.get_data_first_client(TestDataConstants.FIRST_NAME),
             Config.data.get_data_client_information_update_crm(CRMClientUpdate.FIRST_NAME_ELEMENT),
             Config.data.get_data_client_information_update_crm(CRMClientUpdate.EDIT_FIRST_NAME_FIELD),

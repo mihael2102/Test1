@@ -7,7 +7,7 @@ from src.test.python.ui.avtomation.implemetation.ca_crm.Test_Add_Demo_Accounts i
 from src.test.python.ui.avtomation.implemetation.ca_crm.Test_Add_New_Live_Accounts import AddNewLiveAccount
 from src.test.python.ui.avtomation.implemetation.ca_crm.Test_Download_Documents import DownloadDocuments
 from src.test.python.ui.avtomation.implemetation.ca_crm.Test_Make_Transfer_Funds import TransferFunds
-from src.test.python.ui.avtomation.implemetation.ca_crm.Test_Make_Withdraw import Withdraw
+from src.test.python.ui.avtomation.implemetation.ca_crm.Test_Make_Withdraw_CA import CAWithdraw
 from src.test.python.ui.avtomation.implemetation.ca_crm.Test_SignUp import SignUp
 from src.test.python.ui.avtomation.implemetation.ca_crm.Test_Support_Ticket import CreateSupportTicket
 
@@ -22,7 +22,7 @@ if __name__ == "__main__":
         loader.loadTestsFromTestCase(TransferFunds),
         loader.loadTestsFromTestCase(DownloadDocuments),
         loader.loadTestsFromTestCase(CreateSupportTicket),
-        loader.loadTestsFromTestCase(Withdraw),
+        loader.loadTestsFromTestCase(CAWithdraw),
         loader.loadTestsFromTestCase(ChangePasswordFromCA),
     ))
 

@@ -3,7 +3,7 @@ from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class TestForgotPassword(BaseTest):
+class ForgotPassword(BaseTest):
 
     def test_perform_forgot_password(self):
         BrandHomePage().open_first_tab_page(Config.url_new_forex) \

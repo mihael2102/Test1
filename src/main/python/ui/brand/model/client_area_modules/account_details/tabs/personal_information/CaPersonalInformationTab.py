@@ -29,11 +29,11 @@ class CaPersonalInformationTab(BrandBasePage):
         self.select_day(day)
         self.select_month(month)
         self.select_year(year)
+        self.select_citizenship(citizenship)
         self.select_country(country)
         self.set_city(city)
         self.set_zip_code(zip_code)
         self.set_address(address)
-        self.select_citizenship(citizenship)
         self.set_phone(phone)
         return CaPersonalInformationTab()
 

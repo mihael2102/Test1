@@ -8,9 +8,9 @@ from src.test.python.ui.avtomation.utils.preconditions.withdraw.BrandWithdrawPre
     BrandWithdrawPrecondition
 
 
-class Withdraw(BaseTest):
+class CAWithdraw(BaseTest):
 
-    def test_make_withdraw(self):
+    def test_make_withdraw_ca(self):
         BrandWithdrawPrecondition() \
             .add_live_account() \
             .make_deposit()
