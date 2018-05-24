@@ -8,7 +8,7 @@ from src.test.python.ui.avtomation.utils.preconditions.transfer_funds.BrandTrans
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class TransferFunds(BaseTest):
+class CATransferFunds(BaseTest):
 
     def test_make_transfer_funds(self):
         BrandTransferFundsPrecondition() \

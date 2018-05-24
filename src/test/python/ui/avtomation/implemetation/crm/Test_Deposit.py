@@ -9,7 +9,7 @@ from src.test.python.ui.avtomation.utils.preconditions.deposit.BrandDepositPreco
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class Deposit(BaseTest):
+class CRMDeposit(BaseTest):
 
     def test_make_deposit(self):
         BrandDepositPrecondition().add_live_account()

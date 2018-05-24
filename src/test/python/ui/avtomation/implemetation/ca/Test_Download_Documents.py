@@ -9,7 +9,7 @@ from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class DownloadDocuments(BaseTest):
+class CADownloadDocuments(BaseTest):
 
     def test_make_dowload_documents(self):
         BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \
