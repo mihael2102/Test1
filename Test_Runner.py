@@ -22,8 +22,7 @@ if __name__ == "__main__":
         loader.loadTestsFromTestCase(TransferFundsTestCA),
         loader.loadTestsFromTestCase(DownloadDocumentsTestCA),
         loader.loadTestsFromTestCase(CreateSupportTicketTestCa),
-        loader.loadTestsFromTestCase(WithdrawTestCA),
-        loader.loadTestsFromTestCase(ChangePasswordTestCA),
+        loader.loadTestsFromTestCase(WithdrawTestCA)
     ))
 
     outfile = open(direct + "\Regression.html", "w")
