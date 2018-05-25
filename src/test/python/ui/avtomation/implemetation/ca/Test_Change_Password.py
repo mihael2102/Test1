@@ -1,5 +1,5 @@
 from src.main.python.ui.brand.model.client_area_modules.account_details.CaAccountDetails import CaAccountDetails
-from src.main.python.ui.brand.model.client_area_modules.ca_constats.CaStatusConstants import CaStatusConstants
+from src.main.python.ui.brand.model.client_area_modules.constats.CaStatusConstants import CaStatusConstants
 from src.main.python.ui.brand.model.forms.login.BrandLoginForm import BrandLoginForm
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPage
@@ -8,7 +8,7 @@ from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class CAChangePasswordFrom(BaseTest):
+class ChangePasswordTestCA(BaseTest):
 
     def test_change_password_from_ca(self):
         BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \

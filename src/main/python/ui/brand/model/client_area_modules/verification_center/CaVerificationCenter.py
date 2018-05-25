@@ -19,7 +19,7 @@ class CaVerificationCenter(BrandBasePage):
     '''
 
     def perform_front_upload(self):
-        front_upload_picture = super().wait_load_element("//label[@for='upload_photo_id_front']")
+        front_upload_picture = super().wait_load_element_present("//label[@for='upload_photo_id_front']")
         front_upload_picture.click()
         sleep(2)
         autoit.control_set_text("Open", "Edit1",
@@ -33,7 +33,7 @@ class CaVerificationCenter(BrandBasePage):
     '''
 
     def get_document_status(self):
-        front_upload_picture = super().wait_load_element("//div[@class='document-wrapper-pandats']//span")
+        front_upload_picture = super().wait_load_element_present("//div[@class='document-wrapper-pandats']//span")
         re_front_upload_picture = re.sub('Front ', '', front_upload_picture.text)
         Logging().reportDebugStep(self,
                                   "Return the document status: the  document status is :" + re_front_upload_picture)

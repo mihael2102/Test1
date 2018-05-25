@@ -26,7 +26,7 @@ class CaWithdrawSecondStepRequest(BrandBasePage):
         return CaWithdrawSecondStepRequest()
 
     def set_card_number_field(self, card_number):
-        super().wait_load_element("//input[@name='number']")
+        super().wait_load_element_present("//input[@name='number']")
         card_number_field = self.driver.find_element(By.XPATH,
                                                      "//input[@name='number']")
         card_number_field.clear()
@@ -65,7 +65,7 @@ class CaWithdrawSecondStepRequest(BrandBasePage):
         select_reason = self.driver.find_element(By.XPATH, "//custom-select[@name='withdrawalReasonsList']//"
                                                            "following-sibling::span[contains(text(),'%s')]" % reason)
         select_reason.click()
-        Logging().reportDebugStep(self, "Select the withdraw reason")
+        Logging().reportDebugStep(self, "Select the withdraw_ca reason")
         return CaWithdrawSecondStepRequest()
 
     def submit_button(self):
@@ -80,5 +80,5 @@ class CaWithdrawSecondStepRequest(BrandBasePage):
         withdraw_history_button = WebDriverWait(self.driver, 15).until(
             EC.element_to_be_clickable((By.XPATH, "//div[@class='section-top-menu-pandats']//li[2]")))
         withdraw_history_button.click()
-        Logging().reportDebugStep(self, "Click the withdraw history tabs")
+        Logging().reportDebugStep(self, "Click the withdraw_ca history tabs")
         return CaWithdrawHistory()

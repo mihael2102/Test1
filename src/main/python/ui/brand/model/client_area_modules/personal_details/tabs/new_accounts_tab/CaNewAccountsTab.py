@@ -36,7 +36,7 @@ class CaNewAccountsTab(BrandBasePage):
     '''
 
     def get_account_id_text(self):
-        new_account = super().wait_load_element(
+        new_account = super().wait_load_element_present(
             "//div[@class='tbody-wrap-pandats']//tr[last()]//td[@class='td-10-pandats'][1]")
         self.driver.execute_script("arguments[0].scrollIntoView();", new_account)
 
@@ -48,7 +48,7 @@ class CaNewAccountsTab(BrandBasePage):
     '''
 
     def get_account_currency_text(self):
-        new_account = super().wait_load_element(
+        new_account = super().wait_load_element_present(
             "//div[@class='tbody-wrap-pandats']//tr[last()]//td[@class='td-20-pandats'][1]")
         self.driver.execute_script("arguments[0].scrollIntoView();", new_account)
         Logging().reportDebugStep(self, "Getting the account currency text")
@@ -73,7 +73,7 @@ class CaNewAccountsTab(BrandBasePage):
     '''
 
     def create_account_button(self):
-        create_account_button = super().wait_load_element(
+        create_account_button = super().wait_load_element_present(
             "//button[@class='forex-button-pandats']")
         create_account_button.click()
         Logging().reportDebugStep(self, "Create account button")
@@ -84,7 +84,7 @@ class CaNewAccountsTab(BrandBasePage):
     '''
 
     def get_deposit_balance(self):
-        balance = super().wait_load_element(
+        balance = super().wait_load_element_present(
             "//div[@class='tbody-wrap-pandats']//tr[last()]//td[@class='td-20-pandats'][3]")
 
         balance_text = balance.text

@@ -1,17 +1,17 @@
-from src.main.python.ui.brand.model.client_area_modules.ca_constats.CaStatusConstants import CaStatusConstants
+from src.main.python.ui.brand.model.client_area_modules.constats.CaStatusConstants import CaStatusConstants
 from src.main.python.ui.brand.model.client_area_modules.withdraw_module.tabs.CaWithdrawHistory import CaWithdrawHistory
 from src.main.python.ui.brand.model.ca_modules.CAModules import CAModules
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.ui.results.actual_result.WithdrawActualResult import WithdrawActualResult
 from src.test.python.ui.avtomation.BaseTest import *
-from src.test.python.ui.avtomation.utils.preconditions.withdraw.BrandWithdrawPrecondition import \
-    BrandWithdrawPrecondition
+from src.test.python.ui.avtomation.utils.preconditions.withdraw_ca.CAWithdrawPrecondition import \
+    CAWithdrawPrecondition
 
 
-class CAWithdraw(BaseTest):
+class WithdrawTestCA(BaseTest):
 
     def test_make_withdraw_ca(self):
-        BrandWithdrawPrecondition() \
+        CAWithdrawPrecondition() \
             .add_live_account() \
             .make_deposit()
 

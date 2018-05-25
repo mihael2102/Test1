@@ -1,4 +1,4 @@
-from src.main.python.ui.brand.model.client_area_modules.ca_constats.CaStatusConstants import CaStatusConstants
+from src.main.python.ui.brand.model.client_area_modules.constats.CaStatusConstants import CaStatusConstants
 from src.main.python.ui.brand.model.client_area_modules.verification_center.CaVerificationCenter import \
     CaVerificationCenter
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
@@ -9,7 +9,7 @@ from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class CADownloadDocuments(BaseTest):
+class DownloadDocumentsTestCA(BaseTest):
 
     def test_make_dowload_documents(self):
         BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \
@@ -28,7 +28,7 @@ class CADownloadDocuments(BaseTest):
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
                        Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
 
         status_document_crm = crm_client_profile \
             .perform_scroll_down() \

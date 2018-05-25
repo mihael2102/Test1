@@ -1,13 +1,15 @@
-from src.main.python.ui.brand.model.client_area_modules.ca_constats.CaStatusConstants import CaStatusConstants
+from src.main.python.ui.brand.model.client_area_modules.constats.CaStatusConstants import CaStatusConstants
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
+from src.main.python.ui.crm.model.constants.CRMConstats import CRMConstats
 from src.main.python.ui.crm.model.mt4.deposit.MT4Deposit import MT4Deposit
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.test.python.ui.avtomation.implemetation.crm.Test_Deposit import Config
 from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.test.python.ui.avtomation.implemetation.crm.Test_Make_Deposit import Config
 
-class BrandWithdrawPrecondition(object):
+
+class CRMWithdrawPrecondition(object):
 
     def __init__(self) -> None:
         super().__init__()
@@ -21,9 +23,9 @@ class BrandWithdrawPrecondition(object):
             .select_module(CaStatusConstants.MANAGE_ACCOUNTS)
 
         CaManageAccounts().open_new_account_button() \
-            .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_USD)) \
+            .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_CAD)) \
             .create_account_button()
-        return BrandWithdrawPrecondition()
+        return CRMWithdrawPrecondition()
 
     def make_deposit(self):
         crm_client_profile = CRMLoginPage() \
@@ -31,7 +33,7 @@ class BrandWithdrawPrecondition(object):
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
                        Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
 
         account_number = crm_client_profile \
             .perform_scroll_down() \
@@ -40,13 +42,13 @@ class BrandWithdrawPrecondition(object):
 
         CRMClientProfilePage() \
             .perform_scroll_up() \
-            .open_mt4_actions(TestDataConstants.DEPOSIT)
+            .open_mt4_actions(CRMConstats.DEPOSIT)
 
-        MT4Deposit()\
-            .make_deposit(account_number, TestDataConstants.AMOUNT) \
+        MT4Deposit() \
+            .make_deposit(account_number, TestDataConstants.AMOUNT_SECOND) \
             .refresh_page()
 
-        CRMClientProfilePage()\
-            .click_trading_accounts_tab()\
-            .get_amount_text(TestDataConstants.AMOUNT)
-        return BrandWithdrawPrecondition()
+        CRMClientProfilePage() \
+            .click_trading_accounts_tab() \
+            .get_amount_text(TestDataConstants.AMOUNT_SECOND)
+        return CRMWithdrawPrecondition()

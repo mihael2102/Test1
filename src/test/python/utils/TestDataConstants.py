@@ -1,6 +1,6 @@
 class TestDataConstants(object):
-
     AMOUNT = "10.00"
+    AMOUNT_SECOND = "30.00"
     AMOUNT_WITHDRAW = "10"
     DESCRIPTION = "Open a new ticket"
     CATEGORY_FIRST = "Login Problem"
@@ -10,7 +10,6 @@ class TestDataConstants(object):
     INITIAL_DEPOSIT_SECOND = "initial_deposit2"
     INITIAL_DEPOSIT_THIRD = "initial_deposit3"
     INITIAL_DEPOSIT_FOURTH = "initial_deposit4"
-    DEPOSIT = "6"
     PERSONAL_DETAILS = "Personal Details"
     FILTER = "test_filter"
     USER_NAME = "user_name"

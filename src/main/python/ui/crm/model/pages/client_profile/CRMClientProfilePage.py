@@ -39,8 +39,7 @@ class CRMClientProfilePage(CRMBasePage):
      '''
 
     def click_trading_accounts_tab(self):
-        sleep(2)
-        trading_account_tab = super().wait_load_element("//li//a[contains(text(),'Trading Accounts')][1]")
+        trading_account_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'Trading Accounts')][1]")
         trading_account_tab.click()
         Logging().reportDebugStep(self, "Open the trading account tab ")
         return CRMClientProfilePage()
@@ -61,10 +60,10 @@ class CRMClientProfilePage(CRMBasePage):
     '''
 
     def open_trading_accounts_tab(self):
-        trading_tab = super().wait_load_element("//a[@id='show_Accounts_TradingAccounts']")
+        trading_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_TradingAccounts']")
         trading_tab.click()
         Logging().reportDebugStep(self, "Open the trading account tab ")
-        sleep(3)
+
         return CRMClientProfilePage()
 
     '''
@@ -83,7 +82,7 @@ class CRMClientProfilePage(CRMBasePage):
     '''
 
     def get_amount_text(self, total_amount_crm):
-        Logging().reportDebugStep(self, "Return the amount text " + total_amount_crm)
+        Logging().reportDebugStep(self, "Returns the amount you placed on the deposit page \n" + total_amount_crm)
         return super().wait_until_element_present("//tr[@class='lvtColData'][1]//td[3]", total_amount_crm)
 
     '''
@@ -92,7 +91,16 @@ class CRMClientProfilePage(CRMBasePage):
 
     def get_total_amount_text(self, amount, initial_amount):
         total_amount = Decimal(amount) + Decimal(initial_amount)
-        Logging().reportDebugStep(self, "Return the total amount text " + str(total_amount))
+        Logging().reportDebugStep(self, "Returns the total amount text " + str(total_amount))
+        return str(total_amount)
+
+    '''
+           :returns client total amount withdraw from Trading Accounts tabs 
+    '''
+
+    def get_total_amount_withdraw_text(self, amount, initial_amount):
+        total_amount = Decimal(amount) - Decimal(initial_amount)
+        Logging().reportDebugStep(self, "Returns the total amount text " + str(total_amount))
         return str(total_amount)
 
     '''
@@ -115,7 +123,7 @@ class CRMClientProfilePage(CRMBasePage):
 
     def get_client_account(self):
         account_number = super().wait_load_element("//tr[@class='lvtColData'][1]//td[1]")
-        Logging().reportDebugStep(self, "Return the client_account  text " + account_number.text)
+        Logging().reportDebugStep(self, "Returns the client_account  text " + account_number.text)
         return account_number.text
 
     '''
@@ -157,7 +165,7 @@ class CRMClientProfilePage(CRMBasePage):
 
     def get_document_status_text(self):
         document_status = super().wait_load_element("//span[@class ='clientStatusFTD']")
-        Logging().reportDebugStep(self, "Return the document status text " + document_status.text)
+        Logging().reportDebugStep(self, "Returns the document status text " + document_status.text)
         return document_status.text
 
     '''
@@ -189,7 +197,7 @@ class CRMClientProfilePage(CRMBasePage):
 
     def get_client_status(self):
         client_status = super().wait_load_element("//span[@class ='clientStatusFTD']")
-        Logging().reportDebugStep(self, "Return the client status: " + client_status.text)
+        Logging().reportDebugStep(self, "Returns the client status: " + client_status.text)
         return client_status.text
 
     '''
@@ -199,7 +207,6 @@ class CRMClientProfilePage(CRMBasePage):
     def open_mt4_actions(self, module):
         mt4_button = super().wait_load_element("//div[@class='mt4_act_box']")
         mt4_button.click()
-        sleep(2)
         Logging().reportDebugStep(self, "Open mt4 actions ")
         MT4DropDown().mt4_actions(module)
 
@@ -219,7 +226,7 @@ class CRMClientProfilePage(CRMBasePage):
 
     def get_initial_amount(self):
         initial_amount = super().wait_load_element("//tr[@class='lvtColData'][1]//td[3]")
-        total_amount = re.sub('[ ]', '', initial_amount.text)
+        total_amount = re.sub('[$£CA€ [ ]', '', initial_amount.text)
         Logging().reportDebugStep(self, "Return the total amount text: " + total_amount)
         return total_amount
 
@@ -349,7 +356,7 @@ class CRMClientProfilePage(CRMBasePage):
         hoverer.perform()
         return CRMClientProfilePage()
 
-    def edit_address_by_pencil(self,parameter_update):
+    def edit_address_by_pencil(self, parameter_update):
         self.driver.refresh()
         element_field = super().wait_load_element(
             "//td[contains(text(),'Address')]//following-sibling::td[1]")

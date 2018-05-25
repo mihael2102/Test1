@@ -7,7 +7,7 @@ class EditionTicketInfoPage(BrandBasePage):
         super().__init__()
 
     def get_subject_status_text(self):
-        subject_text = super().wait_load_element("//textarea[@name='subject']")
+        subject_text = super().wait_load_element_present("//textarea[@name='subject']")
         return subject_text.text
 
     ''' 
@@ -15,7 +15,7 @@ class EditionTicketInfoPage(BrandBasePage):
     '''
 
     def get_category_status_text(self):
-        account = super().wait_load_element("//select[@name='ticket_statuses']")
+        account = super().wait_load_element_present("//select[@name='ticket_statuses']")
         return account.text
 
     ''' 
@@ -23,5 +23,5 @@ class EditionTicketInfoPage(BrandBasePage):
     '''
 
     def get_ticket_status_text(self):
-        account = super().wait_load_element("//td[@colspan='3']//textarea[@name='description']")
+        account = super().wait_load_element_present("//td[@colspan='3']//textarea[@name='description']")
         return account.text

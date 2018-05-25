@@ -7,7 +7,7 @@ class BrandTradingExperienceForm(BrandBasePage):
 
     def __init__(self):
         super().__init__()
-        super().wait_load_element("//custom-select[@name='tradingFrequency']")
+        super().wait_load_element_present("//custom-select[@name='tradingFrequency']")
 
     def select_trading_frequency(self, trading_frequency):
         drop_down_trading_frequency = self.driver.find_element(By.XPATH, "//custom-select[@name='tradingFrequency']")

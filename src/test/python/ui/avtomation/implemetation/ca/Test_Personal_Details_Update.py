@@ -1,6 +1,6 @@
 from src.main.python.ui.brand.model.client_area_modules.account_details.CaAccountDetails import CaAccountDetails
-from src.main.python.ui.brand.model.client_area_modules.ca_constats.CAClientUpdate import CAClientUpdate
-from src.main.python.ui.brand.model.client_area_modules.ca_constats.CaStatusConstants import CaStatusConstants
+from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
+from src.main.python.ui.brand.model.client_area_modules.constats.CaStatusConstants import CaStatusConstants
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientUpdate import CRMClientUpdate
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -8,7 +8,7 @@ from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class Personal_Details_Update(BaseTest):
+class PersonalDetailsUpdateTestCA(BaseTest):
 
     def test_perform_client_update_from_CA(self):
         BrandHomePage().open_first_tab_page(Config.url_new_forex) \
@@ -41,7 +41,7 @@ class Personal_Details_Update(BaseTest):
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
                        Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
 
         first_name_crm = crm_client_profile.get_first_name()
         last_name_crm = crm_client_profile.get_last_name()
@@ -68,7 +68,7 @@ class Personal_Details_Update(BaseTest):
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
                        Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
 
         date_birthday_crm = crm_client_profile.get_date_birthday()
 

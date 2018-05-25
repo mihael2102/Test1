@@ -8,6 +8,7 @@ from src.main.python.utils.logs.Loging import Logging
 from src.test.python.utils.XpathDataConstants import XpathDataConstants
 from src.main.python.utils.config import Config
 
+
 class CRMHomePage(CRMBasePage):
 
     def __init__(self):
@@ -21,7 +22,6 @@ class CRMHomePage(CRMBasePage):
 
     def select_filter(self, test_filter):
         drop_down_filter = super().wait_load_element("//span[@class='filter-option pull-left']")
-
         drop_down_filter.click()
         Logging().reportDebugStep(self, "Click the  drop down filter ")
         field_found = self.driver.find_element(By.XPATH, "//input[@class='input-block-level form-control']")
@@ -40,17 +40,16 @@ class CRMHomePage(CRMBasePage):
          :return Client Profile Page instance
     '''
 
-    def find_client(self, email):
+    def find_client_by_email(self, email):
         sleep(2)
-        email_field = self.driver.find_element(By.XPATH, "//input[@id='tks_email1']")
-
+        email_field = super().wait_load_element("//input[@id='tks_email1']")
         email_field.send_keys(email)
         Logging().reportDebugStep(self, "Setting  the user's email in the email field  is : " + email)
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
         Logging().reportDebugStep(self, "Click the search button ")
         sleep(2)
-        client_id = self.driver.find_element(By.XPATH, Config.data.get_xpath_data(XpathDataConstants.CRM_ID))
+        client_id = super().wait_element_to_be_clickable(Config.data.get_xpath_data(XpathDataConstants.CRM_ID))
         client_id.click()
         Logging().reportDebugStep(self, "Clicking on user's name by email : ")
         return CRMClientProfilePage()

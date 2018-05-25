@@ -7,7 +7,7 @@ from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class CACreateSupportTicket(BaseTest):
+class CreateSupportTicketTestCa(BaseTest):
 
     def test_create_ticket(self):
         BrandHomePage().open_first_tab_page(Config.url_new_forex) \

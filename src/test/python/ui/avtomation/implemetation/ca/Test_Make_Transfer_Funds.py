@@ -3,15 +3,15 @@ from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage impo
 from src.main.python.ui.results.actual_result.TransferFundsActualResult import TransferFundsActualResult
 from src.main.python.ui.results.expected_result.TransferFundsExpectedResult import TransferFundsExpectedResult
 from src.test.python.ui.avtomation.BaseTest import *
-from src.test.python.ui.avtomation.utils.preconditions.transfer_funds.BrandTransferFundsPrecondition import \
-    BrandTransferFundsPrecondition
+from src.test.python.ui.avtomation.utils.preconditions.transfer_funds.CATransferFundsPrecondition import \
+    CATransferFundsPrecondition
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class CATransferFunds(BaseTest):
+class TransferFundsTestCA(BaseTest):
 
     def test_make_transfer_funds(self):
-        BrandTransferFundsPrecondition() \
+        CATransferFundsPrecondition() \
             .add_two_eur_currencies() \
             .make_deposit()
 

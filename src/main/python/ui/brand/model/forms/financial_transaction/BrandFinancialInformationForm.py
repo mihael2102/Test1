@@ -54,7 +54,7 @@ class BrandFinancialInformationForm(BrandBasePage):
         return BrandFinancialInformationForm()
 
     def enter_next_button(self):
-        super().wait_load_element("//custom-select[@name='annualIncome']")
+        super().wait_load_element_present("//custom-select[@name='annualIncome']")
         next_button = self.driver.find_element(By.XPATH, "//button[@class='forex-button-pandats']")
         next_button.click()
         return BrandTradingExperienceForm()

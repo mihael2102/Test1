@@ -19,7 +19,7 @@ class CaManageAccounts(BrandBasePage):
     '''
 
     def open_new_account_button(self):
-        new_account = super().wait_load_element(
+        new_account = super().wait_load_element_present(
             "//button[@class='forex-button-pandats']//following-sibling::*[contains(text(),'Open New Account')]")
         new_account.click()
         Logging().reportDebugStep(self, "Open a new account")
@@ -59,7 +59,7 @@ class CaManageAccounts(BrandBasePage):
     '''
 
     def open_transfer_between_accounts_button(self):
-        transfer_between_button = super().wait_load_element(
+        transfer_between_button = super().wait_load_element_present(
             "//button[contains(text(),'Transfer Between Accounts')]")
         transfer_between_button.click()
         Logging().reportDebugStep(self, "Open a Transfer Between Accounts button")

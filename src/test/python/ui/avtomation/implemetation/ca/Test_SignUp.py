@@ -5,7 +5,7 @@ from src.test.python.ui.avtomation.utils.preconditions.sign_up.BrandSignUpPrecon
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class SignUp(BaseTest):
+class SignUpTest(BaseTest):
 
     def test_check_sign_up(self):
         BrandSignUpPrecondition() \
@@ -18,7 +18,7 @@ class SignUp(BaseTest):
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
                        Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
 
         SignUpActualResult().print_actual_result(crm_client_profile.get_client_status())
 

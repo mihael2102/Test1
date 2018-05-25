@@ -43,10 +43,10 @@ class BrandLoginForm(BrandBasePage):
 
     def get_invalid_login_message(self):
         sleep(2)
-        message_locator = super().wait_load_element("//div[@class='toast-content-pandats']")
+        message_locator = super().wait_load_element_present("//div[@class='toast-content-pandats']")
         return message_locator.text
 
     def open_forgot_password_link(self):
-        forgot_password_link = super().wait_load_element("//a[contains(text(),'Forgot password')]")
+        forgot_password_link = super().wait_load_element_present("//a[contains(text(),'Forgot password')]")
         forgot_password_link.click()
         return BrandForgotPassword()

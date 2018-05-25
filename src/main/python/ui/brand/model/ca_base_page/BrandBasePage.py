@@ -21,10 +21,14 @@ class BrandBasePage(object):
         self.driver.get(url)
         Config.window_before = self.driver.window_handles[0]
 
-    def wait_load_element(self, element):
+    def wait_load_element_present(self, element):
         return WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH, element)))
 
+    def wait_element_to_be_clickable(self, element):
+        return WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, element)))
+    
     def get_amount_element(self, account, amount):
         return WaitingUtils().wait_until_element_present_ca(account, amount, self.driver)
 
@@ -38,7 +42,7 @@ class BrandBasePage(object):
         self.driver.back()
 
     def open_drop_down_menu(self):
-        self.wait_load_element("//div[@class='button-pandats']")
+        self.wait_load_element_present("//div[@class='button-pandats']")
         drop_down_panda = self.driver.find_element(By.XPATH, "//div[@class='button-pandats']")
         drop_down_panda.click()
 
@@ -53,13 +57,13 @@ class BrandBasePage(object):
         element_module.click()
 
     def open_deposit_page(self):
-        self.wait_load_element("//div[@class='button-pandats']")
+        self.wait_load_element_present("//div[@class='button-pandats']")
 
     def wait_until_element_present(self, element):
         return WaitingUtils().wait_until_element_present_crm(element, self.driver)
 
     def close_client_area_pop_up(self):
-        close_pop_up_icon = self.wait_load_element("//a[@class='close-popup-pandats']")
+        close_pop_up_icon = self.wait_load_element_present("//a[@class='close-popup-pandats']")
         close_pop_up_icon.click()
 
     def refreshing_wait(self):

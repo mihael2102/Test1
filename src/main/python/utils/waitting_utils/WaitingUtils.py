@@ -39,7 +39,8 @@ class WaitingUtils(object):
             try:
                 sleep(2)
                 amount_present = driver.find_element(By.XPATH, element)
-                amount_reg = re.sub('[ ]', '', amount_present.text)
+                amount_reg = re.sub('[$£CA€ [ ]', '', amount_present.text)
+                Logging().reportDebugStep(self, "Returns the amount \n" + amount_reg)
                 if amount_reg == total_amount_crm:
                     return amount_reg
                 else:
@@ -49,16 +50,16 @@ class WaitingUtils(object):
                 driver.refresh()
         fail("There is no such element after the page reloads")
 
-    def get_amount_by_account_text(self, account,driver):
+    def get_amount_by_account_text(self, account, driver):
         sleep(3)
         account_present = driver.find_element(By.XPATH,
-                                                   "//div[@class='tbody-wrap-pandats']//td[contains(text(),'%s')]" % account)
+                                              "//div[@class='tbody-wrap-pandats']//td[contains(text(),'%s')]" % account)
 
         driver.execute_script("arguments[0].scrollIntoView();", account_present)
         account_id = account_present.text
 
         amount = driver.find_element(By.XPATH,
-                                          "//td[contains(text(),'%s')]//following-sibling::*[3]" % account_id)
+                                     "//td[contains(text(),'%s')]//following-sibling::*[3]" % account_id)
         amount_without_symbol = re.sub('[$£CA€]', '', amount.text)
 
         Logging().reportDebugStep(self, "Getting the amount id text")

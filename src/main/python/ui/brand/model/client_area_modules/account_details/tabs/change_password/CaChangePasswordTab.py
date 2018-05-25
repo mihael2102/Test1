@@ -8,7 +8,7 @@ class CaChangePasswordTab(BrandBasePage):
         super().__init__()
 
     def perform_change_password(self, old_password, new_password):
-        old_password_field = super().wait_load_element("//input[@name='oldPassword']")
+        old_password_field = super().wait_load_element_present("//input[@name='oldPassword']")
         old_password_field.send_keys(old_password)
         new_password_field = self.driver.find_element(By.XPATH, "//input[@name='password']")
         new_password_field.send_keys(new_password)

@@ -18,12 +18,12 @@ class CaWithdrawHistory(BrandBasePage):
 
     def get_status_request(self):
         sleep(2)
-        status_request = super().wait_load_element("//td[@class='td-20-pandats'][2]")
+        status_request = super().wait_load_element_present("//td[@class='td-20-pandats'][2]")
         Logging().reportDebugStep(self, "Returns the status request  " + status_request.text)
         return status_request.text
 
     '''
-        Select account from withdraw pop-up
+        Select account from withdraw_ca pop-up
     '''
 
     def select_account(self, account):
@@ -41,13 +41,13 @@ class CaWithdrawHistory(BrandBasePage):
         return CaWithdrawHistory()
 
     '''
-        Click the cancel request from withdraw history
+        Click the cancel request from withdraw_ca history
     '''
 
     def click_cancel(self):
-        cancel_button = super().wait_load_element("//button[contains(text(),'Cancel')]")
+        cancel_button = super().wait_load_element_present("//button[contains(text(),'Cancel')]")
         cancel_button.click()
-        submit_cancel_button = super().wait_load_element("//button[contains(text(),'yes')]")
+        submit_cancel_button = super().wait_load_element_present("//button[contains(text(),'yes')]")
         submit_cancel_button.click()
         Logging().reportDebugStep(self, "The account was canceled  ")
         return CaWithdrawHistory()
