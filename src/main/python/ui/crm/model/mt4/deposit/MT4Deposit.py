@@ -11,26 +11,54 @@ class MT4Deposit(CRMBasePage):
     def __init__(self) -> None:
         super().__init__()
 
-    def make_deposit(self, account_number, amount):
-        self.select_payment_method()
-        self.select_status()
+    '''
+        Make deposit from CRM   
+        :parameter account number,the account of client 
+        :parameter amount, the amount of establishing a deposit
+        :parameter payment method, the method set in the drop down
+        :parameter deposit status the status set in the drop down
+        :parameter description deposit the description set in the field 
+        returns  Client Profile instance    
+    '''
+
+    def make_deposit(self, account_number, amount, payment_method, deposit_status, description_deposit):
+        self.select_payment_method(payment_method)
+        self.select_status(deposit_status)
         self.select_account(account_number)
         self.set_amount(amount)
-        self.set_description()
+        self.set_description(description_deposit)
         self.create_deposit()
         return CRMClientProfilePage()
 
-    def select_payment_method(self):
+    '''
+        Select a payment method from drop down
+         :parameter payment method the method of deposit  in the drop down
+        :returns MT4 Deposit instance
+    '''
+
+    def select_payment_method(self, payment_method):
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//select[@name='payment_method']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='payment_method']"))
-        select.select_by_visible_text("Credit card")
+        select.select_by_visible_text(payment_method)
         return MT4Deposit()
 
-    def select_status(self):
+    '''
+        Select a status  from drop down
+         :parameter deposit status the status of the deposit e.g Approve,Pending....
+        :returns MT4 Deposit instance
+    '''
+
+    def select_status(self, deposit_status):
         select = Select(self.driver.find_element(By.XPATH, "//select[@id='transaction_status_id']"))
-        select.select_by_visible_text("Approved")
+        select.select_by_visible_text(deposit_status)
         return MT4Deposit()
+
+    '''
+        Select an account from drop down
+        :parameter account the account of the  client
+        :returns MT4 Deposit instance
+    '''
 
     def select_account(self, account):
         drop_down = self.driver.find_element(By.XPATH, "//select[@name='loginserver']")
@@ -42,17 +70,34 @@ class MT4Deposit(CRMBasePage):
         select_account.click()
         return MT4Deposit()
 
+    '''
+        Set the amount in the field for deposit
+        :parameter account the account of the client
+        :returns MT4 Deposit instance
+    '''
+
     def set_amount(self, amount):
         amount_filed = self.driver.find_element(By.XPATH, "//input[@id='amount']")
         amount_filed.clear()
         amount_filed.send_keys(amount)
         return MT4Deposit()
 
-    def set_description(self):
+    '''
+        Set the description in the field 
+        :parameter account the account of the  client
+        :returns MT4 Deposit instance
+    '''
+
+    def set_description(self, description_deposit):
         amount_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_comment']")
         amount_filed.clear()
-        amount_filed.send_keys("Test")
+        amount_filed.send_keys(description_deposit)
         return MT4Deposit()
+
+    '''
+        Create deposit button,confirmation of deposit
+        :returns MT4 Deposit instance
+    '''
 
     def create_deposit(self):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")

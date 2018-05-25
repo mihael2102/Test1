@@ -1,6 +1,6 @@
 from src.main.python.ui.brand.model.client_area_modules.account_details.CaAccountDetails import CaAccountDetails
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
-from src.main.python.ui.brand.model.client_area_modules.constats.CaStatusConstants import CaStatusConstants
+from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientUpdate import CRMClientUpdate
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -17,7 +17,7 @@ class PersonalDetailsUpdateTestCA(BaseTest):
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
-            .select_module(CaStatusConstants.ACCOUNT_DETAILS)
+            .select_module(CaConstants.ACCOUNT_DETAILS)
 
         personal_information = CaAccountDetails().open_personal_information_tab() \
             .perform_change_personal_information(
@@ -109,7 +109,7 @@ class PersonalDetailsUpdateTestCA(BaseTest):
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
-            .select_module(CaStatusConstants.ACCOUNT_DETAILS)
+            .select_module(CaConstants.ACCOUNT_DETAILS)
 
         account_info_ca = CaAccountDetails().open_personal_information_tab()
 

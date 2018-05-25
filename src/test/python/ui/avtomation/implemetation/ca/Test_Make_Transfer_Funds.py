@@ -1,3 +1,4 @@
+from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.ui.results.actual_result.TransferFundsActualResult import TransferFundsActualResult
@@ -22,17 +23,17 @@ class TransferFundsTestCA(BaseTest):
             .open_transfer_between_accounts_button() \
             .choose_transfer_from_account(first_transfer_account) \
             .choose_transfer_to_account(second_transfer_account) \
-            .set_amount(second_transfer_account,TestDataConstants.AMOUNT) \
+            .set_amount(second_transfer_account, CaConstants.AMOUNT) \
             .confirm_check_box() \
             .make_transfer_button()\
             .refreshing_wait()
 
-        TransferFundsActualResult().print_actual_result(first_transfer_account, TestDataConstants.AMOUNT,
+        TransferFundsActualResult().print_actual_result(first_transfer_account, CaConstants.AMOUNT,
                                                         second_transfer_account)
 
         amount_first_transfer_account_ca = CaManageAccounts().get_amount_by_account_text(first_transfer_account)
 
-        TransferFundsExpectedResult().print_expected_result(first_transfer_account, TestDataConstants.AMOUNT,
+        TransferFundsExpectedResult().print_expected_result(first_transfer_account, CaConstants.AMOUNT,
                                                             second_transfer_account)
 
-        assert TestDataConstants.AMOUNT == amount_first_transfer_account_ca
+        assert CaConstants.AMOUNT == amount_first_transfer_account_ca

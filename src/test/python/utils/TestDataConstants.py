@@ -1,7 +1,4 @@
 class TestDataConstants(object):
-    AMOUNT = "10.00"
-    AMOUNT_SECOND = "30.00"
-    AMOUNT_WITHDRAW = "10"
     DESCRIPTION = "Open a new ticket"
     CATEGORY_FIRST = "Login Problem"
     SUBJECT = "QA"

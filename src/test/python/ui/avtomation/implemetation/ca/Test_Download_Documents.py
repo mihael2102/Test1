@@ -1,4 +1,4 @@
-from src.main.python.ui.brand.model.client_area_modules.constats.CaStatusConstants import CaStatusConstants
+from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.verification_center.CaVerificationCenter import \
     CaVerificationCenter
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
@@ -17,7 +17,7 @@ class DownloadDocumentsTestCA(BaseTest):
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
-            .select_module(CaStatusConstants.VERIFICATION_CENTER)
+            .select_module(CaConstants.VERIFICATION_CENTER)
 
         status_document_ca = CaVerificationCenter().perform_front_upload().get_document_status()
 

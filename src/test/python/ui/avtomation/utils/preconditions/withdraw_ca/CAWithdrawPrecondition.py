@@ -1,12 +1,13 @@
-from src.main.python.ui.brand.model.client_area_modules.constats.CaStatusConstants import CaStatusConstants
+from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
-from src.main.python.ui.crm.model.constants.CRMConstats import CRMConstats
+from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.deposit.MT4Deposit import MT4Deposit
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.avtomation.implemetation.crm.Test_Make_Deposit import Config
 from src.test.python.utils.TestDataConstants import TestDataConstants
+
 
 class CAWithdrawPrecondition(object):
 
@@ -19,7 +20,7 @@ class CAWithdrawPrecondition(object):
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
-            .select_module(CaStatusConstants.MANAGE_ACCOUNTS)
+            .select_module(CaConstants.MANAGE_ACCOUNTS)
 
         CaManageAccounts().open_new_account_button() \
             .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_USD)) \
@@ -41,13 +42,14 @@ class CAWithdrawPrecondition(object):
 
         CRMClientProfilePage() \
             .perform_scroll_up() \
-            .open_mt4_actions(CRMConstats.DEPOSIT)
+            .open_mt4_actions(CRMConstants.DEPOSIT)
 
-        MT4Deposit()\
-            .make_deposit(account_number, TestDataConstants.AMOUNT) \
+        MT4Deposit() \
+            .make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT, CRMConstants.PAYMENT_METHOD_DEPOSIT,
+                          CRMConstants.STATUS_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT) \
             .refresh_page()
 
-        CRMClientProfilePage()\
-            .click_trading_accounts_tab()\
-            .get_amount_text(TestDataConstants.AMOUNT)
+        CRMClientProfilePage() \
+            .click_trading_accounts_tab() \
+            .get_amount_text(CRMConstants.AMOUNT_DEPOSIT)
         return CAWithdrawPrecondition()

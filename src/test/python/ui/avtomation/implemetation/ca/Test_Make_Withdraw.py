@@ -1,4 +1,4 @@
-from src.main.python.ui.brand.model.client_area_modules.constats.CaStatusConstants import CaStatusConstants
+from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.withdraw_module.tabs.CaWithdrawHistory import CaWithdrawHistory
 from src.main.python.ui.brand.model.ca_modules.CAModules import CAModules
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
@@ -27,7 +27,7 @@ class WithdrawTestCA(BaseTest):
             .get_status_request()
 
         WithdrawActualResult().print_first_actual_result(withdraw_status, account_number)
-        assert withdraw_status == CaStatusConstants().PENDING
+        assert withdraw_status == CaConstants().PENDING
 
         withdraw_cancel_request = CaWithdrawHistory() \
             .click_cancel() \
@@ -35,4 +35,4 @@ class WithdrawTestCA(BaseTest):
 
         WithdrawActualResult().print_second_actual_result(withdraw_cancel_request, account_number)
 
-        assert withdraw_cancel_request == CaStatusConstants().CANCEL_BY_CUSTOMER
+        assert withdraw_cancel_request == CaConstants().CANCEL_BY_CUSTOMER

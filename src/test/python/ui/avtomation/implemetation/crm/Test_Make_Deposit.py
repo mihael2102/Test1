@@ -1,5 +1,5 @@
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
-from src.main.python.ui.crm.model.constants.CRMConstats import CRMConstats
+from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.deposit.MT4Deposit import MT4Deposit
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -29,14 +29,15 @@ class DepositTestCRM(BaseTest):
         amount_initial = CRMClientProfilePage().get_initial_amount()
 
         total_amount_crm = CRMClientProfilePage() \
-            .get_total_amount_text(amount_initial, TestDataConstants.AMOUNT)
+            .get_total_amount_text(amount_initial, CRMConstants.AMOUNT_DEPOSIT)
 
         CRMClientProfilePage() \
             .perform_scroll_up() \
-            .open_mt4_actions(CRMConstats.DEPOSIT)
+            .open_mt4_actions(CRMConstants.DEPOSIT)
 
         amount_crm = MT4Deposit() \
-            .make_deposit(account_number, TestDataConstants.AMOUNT) \
+            .make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT, CRMConstants.PAYMENT_METHOD_DEPOSIT, CRMConstants.STATUS_DEPOSIT,
+                          CRMConstants.DESCRIPTION_DEPOSIT) \
             .refresh_page() \
             .click_trading_accounts_tab() \
             .get_amount_text(total_amount_crm)
