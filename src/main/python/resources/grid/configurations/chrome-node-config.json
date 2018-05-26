@@ -10,10 +10,10 @@
 
   "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
   "maxSession": 5,
-  "port": 5579,
+  "port": 5578,
   "register": true,
   "registerCycle": 5000,
-  "hub": "http://10.0.0.94:4478/grid/register/",
+  "hub": "http://localhost:4478/grid/register/",
   "nodeStatusCheckTimeout": 5000,
   "nodePolling": 5000,
   "role": "node",
