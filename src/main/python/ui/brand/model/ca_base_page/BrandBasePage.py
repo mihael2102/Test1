@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 from src.main.python.utils.config import Config
 
@@ -28,7 +27,7 @@ class BrandBasePage(object):
     def wait_element_to_be_clickable(self, element):
         return WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, element)))
-    
+
     def get_amount_element(self, account, amount):
         return WaitingUtils().wait_until_element_present_ca(account, amount, self.driver)
 

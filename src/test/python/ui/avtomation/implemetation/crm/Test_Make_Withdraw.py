@@ -1,6 +1,6 @@
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.mt4.withdraw.MT4Withdraw import MT4Withdraw
+from src.main.python.ui.crm.model.mt4.withdraw.MT4WithdrawModule import MT4WithdrawModule
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.ui.results.expected_result.DepositExpectedResult import DepositExpectedResult
 from src.test.python.ui.avtomation.BaseTest import *
@@ -25,7 +25,7 @@ class WithdrawTestCRM(BaseTest):
         crm_client_profile.perform_scroll_up() \
             .open_mt4_actions(CRMConstants.WITHDRAW)
 
-        amount_withdraw_crm = MT4Withdraw().make_withdraw(
+        amount_withdraw_crm = MT4WithdrawModule().make_withdraw(
             account, CRMConstants.AMOUNT_WITHDRAW, CRMConstants.PAYMENT_METHOD_WITHDRAW, CRMConstants.STATUS_WITHDRAW,
             CRMConstants.DESCRIPTION_WITHDRAW) \
             .refresh_page() \

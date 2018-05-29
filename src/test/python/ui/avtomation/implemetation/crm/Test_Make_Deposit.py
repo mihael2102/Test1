@@ -1,6 +1,6 @@
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.mt4.deposit.MT4Deposit import MT4Deposit
+from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.results.actual_result.DepositActualResult import DepositActualResult
@@ -35,7 +35,7 @@ class DepositTestCRM(BaseTest):
             .perform_scroll_up() \
             .open_mt4_actions(CRMConstants.DEPOSIT)
 
-        amount_crm = MT4Deposit() \
+        amount_crm = MT4DepositModule() \
             .make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT, CRMConstants.PAYMENT_METHOD_DEPOSIT,
                           CRMConstants.STATUS_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT) \
             .refresh_page() \

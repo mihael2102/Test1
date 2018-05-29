@@ -2,7 +2,6 @@ from unittest import TestLoader, TestSuite
 
 import os
 from src.main.python.ui.core.reporter.HTMLTestRunner import HTMLTestRunner
-from src.test.python.ui.avtomation.implemetation.ca.Test_Change_Password import ChangePasswordTestCA
 from src.test.python.ui.avtomation.implemetation.ca.Test_Add_Demo_Accounts import AddDemoAccountsTestCA
 from src.test.python.ui.avtomation.implemetation.ca.Test_Add_New_Live_Accounts import AddNewLiveAccountTestCA
 from src.test.python.ui.avtomation.implemetation.ca.Test_Download_Documents import DownloadDocumentsTestCA
