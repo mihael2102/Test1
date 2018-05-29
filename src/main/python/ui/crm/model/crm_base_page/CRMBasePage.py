@@ -47,3 +47,6 @@ class CRMBasePage(object):
     def wait_element_to_be_clickable(self, element):
         return WebDriverWait(self.driver, 15).until(
             EC.element_to_be_clickable((By.XPATH, element)))
+
+    def perform_scroll(self, parameter):
+        self.driver.execute_script("scroll(0, '%s');" % parameter)

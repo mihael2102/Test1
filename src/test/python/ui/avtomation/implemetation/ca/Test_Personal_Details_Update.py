@@ -2,7 +2,7 @@ from src.main.python.ui.brand.model.client_area_modules.account_details.CaAccoun
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
-from src.main.python.ui.crm.model.pages.client_profile.CRMClientUpdate import CRMClientUpdate
+from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfileUpdate import CRMClientProfileUpdate
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
@@ -72,37 +72,18 @@ class PersonalDetailsUpdateTestCA(BaseTest):
 
         date_birthday_crm = crm_client_profile.get_date_birthday()
 
-        crm_client_profile.edit_client_profile_by_pencil(
-            Config.data.get_data_first_client(TestDataConstants.FIRST_NAME),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.FIRST_NAME_ELEMENT),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.EDIT_FIRST_NAME_FIELD),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.SAVE_FIRST_NAME_BUTTON)) \
-            .edit_client_profile_by_pencil(
-            Config.data.get_data_first_client(TestDataConstants.LAST_NAME),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.LAST_NAME_ELEMENT),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.EDIT_LAST_NAME_FIELD),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.SAVE_LAST_NAME_BUTTON)) \
-            .edit_client_profile_by_pencil(
-            Config.data.get_data_first_client(TestDataConstants.PHONE),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.PHONE_ELEMENT),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.EDIT_PHONE_FIELD),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.SAVE_PHONE_BUTTON)) \
-            .edit_citizen_ship_by_pencil(
-            Config.data.get_data_first_client(TestDataConstants.CITIZEN_SHIP)) \
+        client_profile_edit = CRMClientProfileUpdate()
+
+        client_profile_edit.edit_first_name_by_pencil(
+            Config.data.get_data_first_client(TestDataConstants.FIRST_NAME)) \
+            .edit_last_name_by_pencil(Config.data.get_data_first_client(TestDataConstants.LAST_NAME)) \
+            .edit_phone_by_pencil(Config.data.get_data_first_client(TestDataConstants.PHONE)) \
+            .edit_citizen_ship_by_pencil(Config.data.get_data_first_client(TestDataConstants.CITIZEN_SHIP)) \
             .perform_scroll(300) \
             .edit_address_by_pencil(Config.data.get_data_first_client(TestDataConstants.ADDRESS)) \
-            .edit_client_profile_by_pencil(
-            Config.data.get_data_first_client(TestDataConstants.POST_CODE),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.POST_CODE_ELEMENT),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.EDIT_POST_CODE_FIELD),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.SAVE_POST_CODE_BUTTON)) \
-            .edit_client_profile_by_pencil(
-            Config.data.get_data_first_client(TestDataConstants.CITY),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.CITY_ELEMENT),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.EDIT_CITY_FIELD),
-            Config.data.get_data_client_information_update_crm(CRMClientUpdate.SAVE_CITY_BUTTON)) \
-            .edit_country_by_pencil(
-            Config.data.get_data_first_client(TestDataConstants.FIRST_COUNTRY))
+            .edit_post_code_by_pencil(Config.data.get_data_first_client(TestDataConstants.POST_CODE)) \
+            .edit_city_by_pencil(Config.data.get_data_first_client(TestDataConstants.CITY)) \
+            .edit_country_by_pencil(Config.data.get_data_first_client(TestDataConstants.FIRST_COUNTRY))
 
         BrandHomePage().open_second_tab_page(Config.url_new_forex).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),

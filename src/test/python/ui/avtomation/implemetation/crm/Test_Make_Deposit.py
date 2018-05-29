@@ -36,8 +36,8 @@ class DepositTestCRM(BaseTest):
             .open_mt4_actions(CRMConstants.DEPOSIT)
 
         amount_crm = MT4Deposit() \
-            .make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT, CRMConstants.PAYMENT_METHOD_DEPOSIT, CRMConstants.STATUS_DEPOSIT,
-                          CRMConstants.DESCRIPTION_DEPOSIT) \
+            .make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT, CRMConstants.PAYMENT_METHOD_DEPOSIT,
+                          CRMConstants.STATUS_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT) \
             .refresh_page() \
             .click_trading_accounts_tab() \
             .get_amount_text(total_amount_crm)

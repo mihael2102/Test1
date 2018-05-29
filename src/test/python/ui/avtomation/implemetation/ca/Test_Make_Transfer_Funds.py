@@ -6,8 +6,6 @@ from src.main.python.ui.results.expected_result.TransferFundsExpectedResult impo
 from src.test.python.ui.avtomation.BaseTest import *
 from src.test.python.ui.avtomation.utils.preconditions.transfer_funds.CATransferFundsPrecondition import \
     CATransferFundsPrecondition
-from src.test.python.utils.TestDataConstants import TestDataConstants
-
 
 class TransferFundsTestCA(BaseTest):
 
