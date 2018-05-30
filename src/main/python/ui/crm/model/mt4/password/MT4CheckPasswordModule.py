@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 
 
@@ -59,5 +58,3 @@ class MT4CheckPasswordModule(CRMBasePage):
     def click_ok(self):
         super().click_ok()
         return MT4CheckPasswordModule()
-
-

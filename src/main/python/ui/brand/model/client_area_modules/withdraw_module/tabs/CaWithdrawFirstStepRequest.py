@@ -1,12 +1,9 @@
 from time import sleep
-
 from selenium.webdriver.common.by import By
-
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.withdraw_module.tabs.CaWithdrawSecondStepRequest import \
     CaWithdrawSecondStepRequest
-from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
 class CaWithdrawFirstStepRequest(BrandBasePage):

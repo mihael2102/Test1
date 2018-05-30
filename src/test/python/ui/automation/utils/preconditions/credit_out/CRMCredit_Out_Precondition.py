@@ -26,5 +26,4 @@ class CRMCreditOutPrecondition(object):
         return CRMCreditInPrecondition()
 
     def make_credit_in(self):
-
         return CRMCreditInPrecondition()

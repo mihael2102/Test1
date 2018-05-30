@@ -1,8 +1,6 @@
 import re
 from time import sleep
-
 import autoit
-
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.utils.logs.Loging import Logging
 
@@ -36,5 +34,5 @@ class CaVerificationCenter(BrandBasePage):
         front_upload_picture = super().wait_load_element_present("//div[@class='document-wrapper-pandats']//span")
         re_front_upload_picture = re.sub('Front ', '', front_upload_picture.text)
         Logging().reportDebugStep(self,
-                                  "Return the document status: the  document status is :" + re_front_upload_picture)
+                                  "Returns the document status: the  document status is :" + re_front_upload_picture)
         return re_front_upload_picture

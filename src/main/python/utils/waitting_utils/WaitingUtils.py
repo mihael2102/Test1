@@ -1,6 +1,5 @@
 import re
 from time import sleep
-
 from pytest import fail
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
 from selenium.webdriver.common.by import By

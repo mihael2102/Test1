@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
+from src.main.python.utils.logs.Loging import Logging
 
 
 class MT4CreditInModule(CRMBasePage):
@@ -38,6 +38,7 @@ class MT4CreditInModule(CRMBasePage):
         select_account = self.driver.find_element(By.XPATH, "//select[@name='loginserver']//"
                                                             "following-sibling::*[contains(text(),'%s')]" % account)
         select_account.click()
+        Logging().reportDebugStep(self, "The account of deposit in module was selected:  " + account)
         return MT4CreditInModule()
 
     '''
@@ -50,6 +51,7 @@ class MT4CreditInModule(CRMBasePage):
         amount_filed = self.driver.find_element(By.XPATH, "//input[@id='amount']")
         amount_filed.clear()
         amount_filed.send_keys(amount)
+        Logging().reportDebugStep(self, "The amount of credit in module was set:  " + amount)
         return MT4CreditInModule()
 
     '''
@@ -63,6 +65,7 @@ class MT4CreditInModule(CRMBasePage):
         date_drop_down.clear()
         date_drop_down.send_keys(date)
         date_drop_down.send_keys(Keys.ENTER)
+        Logging().reportDebugStep(self, "The expire date of credit in module was set:  " + date)
         return MT4CreditInModule()
 
     '''
@@ -71,13 +74,21 @@ class MT4CreditInModule(CRMBasePage):
         :returns MT4 Deposit instance
      '''
 
-    def set_description(self, description_deposit):
+    def set_description(self, description_credit_in):
         amount_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_comment']")
         amount_filed.clear()
-        amount_filed.send_keys(description_deposit)
+        amount_filed.send_keys(description_credit_in)
+        Logging().reportDebugStep(self, "The  description of credit in module was set in the description field:  " +
+                                  description_credit_in)
         return MT4CreditInModule()
+
+    '''
+        Perform  credit in button 
+        :returns MT4 Deposit instance
+    '''
 
     def perform_create_credit_in(self):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
         create_button.click()
+        Logging().reportDebugStep(self, "Perform the create credit in  of credit in module was clicked")
         return CRMClientProfilePage()

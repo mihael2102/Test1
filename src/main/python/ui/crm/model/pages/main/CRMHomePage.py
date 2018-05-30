@@ -1,6 +1,5 @@
 from time import sleep
 from selenium.webdriver.common.by import By
-
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.help_desk.CRMHelpDesk import CRMHelpDesk
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage

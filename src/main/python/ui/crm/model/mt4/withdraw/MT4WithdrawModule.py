@@ -2,9 +2,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
-
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
+from src.main.python.utils.logs.Loging import Logging
 
 
 class MT4WithdrawModule(CRMBasePage):
@@ -27,7 +27,7 @@ class MT4WithdrawModule(CRMBasePage):
         self.select_account(account_number)
         self.set_amount(amount)
         self.set_description(description_withdraw)
-        self.create_deposit_button()
+        self.create_withdraw_button()
         return CRMClientProfilePage()
 
     '''
@@ -41,6 +41,7 @@ class MT4WithdrawModule(CRMBasePage):
             EC.element_to_be_clickable((By.XPATH, "//select[@name='payment_method']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='payment_method']"))
         select.select_by_visible_text(payment_method)
+        Logging().reportDebugStep(self, "The payment method of withdraw module was selected: " + payment_method)
         return MT4WithdrawModule()
 
     '''
@@ -52,6 +53,7 @@ class MT4WithdrawModule(CRMBasePage):
     def select_status(self, withdraw_status):
         select = Select(self.driver.find_element(By.XPATH, "//select[@id='transaction_status_id']"))
         select.select_by_visible_text(withdraw_status)
+        Logging().reportDebugStep(self, "The status of withdraw module was selected:  " + withdraw_status)
         return MT4WithdrawModule()
 
     '''
@@ -68,11 +70,12 @@ class MT4WithdrawModule(CRMBasePage):
         select_account = self.driver.find_element(By.XPATH, "//select[@name='loginserver']//"
                                                             "following-sibling::*[contains(text(),'%s')]" % account)
         select_account.click()
+        Logging().reportDebugStep(self, "The account of withdraw module was selected:  " + account)
         return MT4WithdrawModule()
 
     '''
        Set the amount in the field for deposit
-       :parameter account the account of the  client
+       :parameter account the live account of the  client
        :returns MT4 Withdraw instance
     '''
 
@@ -80,6 +83,7 @@ class MT4WithdrawModule(CRMBasePage):
         amount_filed = self.driver.find_element(By.XPATH, "//input[@id='amount']")
         amount_filed.clear()
         amount_filed.send_keys(amount)
+        Logging().reportDebugStep(self, "The amount of withdraw module was set:  " + amount)
         return MT4WithdrawModule()
 
     '''
@@ -92,6 +96,8 @@ class MT4WithdrawModule(CRMBasePage):
         amount_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_comment']")
         amount_filed.clear()
         amount_filed.send_keys(description_withdraw)
+        Logging().reportDebugStep(self,
+                                  "The  description of withdraw module was set in the description field:  " + description_withdraw)
         return MT4WithdrawModule()
 
     '''
@@ -99,7 +105,8 @@ class MT4WithdrawModule(CRMBasePage):
         :returns MT4 Withdraw instance
     '''
 
-    def create_deposit_button(self):
+    def create_withdraw_button(self):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
         create_button.click()
+        Logging().reportDebugStep(self, "The create withdraw button of withdraw module was clicked")
         return CRMClientProfilePage()

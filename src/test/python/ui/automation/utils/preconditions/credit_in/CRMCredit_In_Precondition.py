@@ -40,7 +40,7 @@ class CRMCreditInPrecondition(object):
             .open_trading_accounts_tab() \
             .get_client_account()
 
-        v.perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN)
+        crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN)
 
         MT4CreditInModule() \
             .make_credit_in(account_number, CRMConstants.AMOUNT_CREDIT_IN,

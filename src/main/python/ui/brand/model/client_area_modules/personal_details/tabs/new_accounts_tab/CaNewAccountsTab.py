@@ -1,6 +1,5 @@
 import re
 from time import sleep
-
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.utils.logs.Loging import Logging
@@ -12,10 +11,10 @@ class CaNewAccountsTab(BrandBasePage):
         super().__init__()
 
     '''
-           Select currency from drop down
-           :parameter currency
-           return Manage Accounts Module  instance    
-   '''
+       Select currency from drop down
+       :parameter currency
+       return Manage Accounts Module  instance    
+    '''
 
     def select_account_currency(self, currency):
         drop_down_currency = self.driver.find_element(By.XPATH, "//custom-select[@name='currency']")
@@ -32,7 +31,7 @@ class CaNewAccountsTab(BrandBasePage):
         return CaNewAccountsTab()
 
     '''
-         Return account id number   
+        Returns the account id number   
     '''
 
     def get_account_id_text(self):
@@ -44,7 +43,7 @@ class CaNewAccountsTab(BrandBasePage):
         return new_account.text
 
     '''
-        Return the account currency text    
+        Returns the account currency text    
     '''
 
     def get_account_currency_text(self):
@@ -68,8 +67,8 @@ class CaNewAccountsTab(BrandBasePage):
         return CaNewAccountsTab()
 
     '''
-          Open the create_account_button 
-          :return Manage Accounts Module instance    
+        Open the create account button 
+        :return Manage Accounts Module instance    
     '''
 
     def create_account_button(self):
@@ -80,7 +79,7 @@ class CaNewAccountsTab(BrandBasePage):
         return CaNewAccountsTab()
 
     '''
-        Return the deposit balance number      
+        Returns the balance of deposit       
     '''
 
     def get_deposit_balance(self):

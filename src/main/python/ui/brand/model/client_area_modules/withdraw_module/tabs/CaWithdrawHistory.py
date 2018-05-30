@@ -1,9 +1,7 @@
 from time import sleep
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.utils.logs.Loging import Logging
 
@@ -23,7 +21,7 @@ class CaWithdrawHistory(BrandBasePage):
         return status_request.text
 
     '''
-        Select account from withdraw_ca pop-up
+        Select an account from withdraw pop-up history
     '''
 
     def select_account(self, account):
@@ -41,7 +39,7 @@ class CaWithdrawHistory(BrandBasePage):
         return CaWithdrawHistory()
 
     '''
-        Click the cancel request from withdraw_ca history
+        Click the cancel request from withdraw pop-up history
     '''
 
     def click_cancel(self):

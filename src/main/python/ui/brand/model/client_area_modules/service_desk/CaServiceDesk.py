@@ -1,9 +1,7 @@
-import random
 import re
-
 from selenium.webdriver.common.by import By
-
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
+from src.main.python.utils.logs.Loging import Logging
 
 
 class CaServiceDesk(BrandBasePage):
@@ -18,6 +16,7 @@ class CaServiceDesk(BrandBasePage):
     def open_tickets_tab(self):
         create_ticket_button = self.driver.find_element(By.XPATH, "//span[contains(text(),'Open Tickets')]")
         create_ticket_button.click()
+        Logging().reportDebugStep(self, "Ticket tab is opened")
         return CaServiceDesk()
 
     ''' 
@@ -28,6 +27,7 @@ class CaServiceDesk(BrandBasePage):
     def create_new_ticket(self):
         create_ticket_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create New Ticket')]")
         create_ticket_button.click()
+        Logging().reportDebugStep(self, "The new ticket was created")
         return CaServiceDesk()
 
     ''' 
@@ -39,6 +39,7 @@ class CaServiceDesk(BrandBasePage):
         subject_field = self.driver.find_element(By.XPATH, "//input[@name='subject']")
         subject_field.clear()
         subject_field.send_keys(subject)
+        Logging().reportDebugStep(self, "Subject is set: " + subject)
         return CaServiceDesk()
 
     ''' 
@@ -52,6 +53,7 @@ class CaServiceDesk(BrandBasePage):
         select_category = self.driver.find_element(By.XPATH, "//custom-select[@name='category']//"
                                                              "following-sibling::*[contains(text(),'%s')]" % category)
         select_category.click()
+        Logging().reportDebugStep(self, "The category was selected : " + category)
         return CaServiceDesk()
 
     ''' 
@@ -63,6 +65,7 @@ class CaServiceDesk(BrandBasePage):
         description_field = self.driver.find_element(By.XPATH, "//textarea[@name='description']")
         description_field.clear()
         description_field.send_keys(description)
+        Logging().reportDebugStep(self, "Description  was set in the field : : " + description)
         return CaServiceDesk()
 
     ''' 
@@ -73,6 +76,7 @@ class CaServiceDesk(BrandBasePage):
     def open_new_ticket_button(self):
         open_new_ticket_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Open new ticket')]")
         open_new_ticket_button.click()
+        Logging().reportDebugStep(self, "The open ticket button was clicked")
         return CaServiceDesk()
 
     ''' 
@@ -82,7 +86,7 @@ class CaServiceDesk(BrandBasePage):
     def get_subject_id_text(self):
         subject_text = super().wait_load_element_present("//div[@class='subtitle-pandats'][1]")
         new_sub = re.sub('Subject: ', "", subject_text.text)
-
+        Logging().reportDebugStep(self, "The subject text was received: " + new_sub)
         return new_sub
 
     ''' 
@@ -92,7 +96,7 @@ class CaServiceDesk(BrandBasePage):
     def get_category_tittle(self):
         category_tittle = super().wait_load_element_present("//div[@class='italic-pandats'][1]")
         new_sub = re.sub('Category: ', "", category_tittle.text)
-
+        Logging().reportDebugStep(self, "The category text was received: " + new_sub)
         return new_sub
 
     ''' 
@@ -101,9 +105,11 @@ class CaServiceDesk(BrandBasePage):
 
     def get_ticket_status(self):
         status_text = super().wait_load_element_present("//td[@class='td-20-pandats'][1]")
+        Logging().reportDebugStep(self, "The ticket status text was received: " + status_text.text)
         return status_text.text
 
     def get_ca_id(self):
         ca_id = super().wait_load_element_present("//td[@class='td-30-pandats']//div[1]")
         new_ca_id = re.sub('#', "", ca_id.text)
+        Logging().reportDebugStep(self, "The ca id text was received: " + new_ca_id)
         return new_ca_id

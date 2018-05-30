@@ -6,7 +6,6 @@ class Logging(object):
     logger = None
 
     def reportDebugStep(self, class_name, message):
-
         if None == self.logger:
             self.logger = logging.getLogger("Logger")
             self.logger.setLevel(logging.DEBUG)

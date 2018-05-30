@@ -1,12 +1,7 @@
 import re
 from _decimal import Decimal
 from time import sleep
-
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
-from selenium.webdriver.support.wait import WebDriverWait
-
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
@@ -14,7 +9,6 @@ from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import D
 from src.main.python.ui.crm.model.pages.trading_accounts_information.CRMTradingAccountsInformationPage import \
     CRMTradingAccountsInformationPage
 from src.main.python.utils.logs.Loging import Logging
-from selenium.webdriver.support import expected_conditions as EC
 
 
 class CRMClientProfilePage(CRMBasePage):
@@ -311,7 +305,13 @@ class CRMClientProfilePage(CRMBasePage):
         return country.text
 
     def perform_scroll(self, parameter):
+        Logging().reportDebugStep(self, "Perform  the scroll")
         super().perform_scroll(parameter)
+
+    '''
+        Click Ok in the Deposit module
+        :returns CRM Client Profile Page instance
+    '''
 
     def click_ok(self):
         super().click_ok()
@@ -323,6 +323,7 @@ class CRMClientProfilePage(CRMBasePage):
 
     def get_confirm_message(self):
         confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
+        Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text
 
     def refresh_page(self):

@@ -1,8 +1,6 @@
 from selenium.webdriver.common.by import By
-
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.ui.brand.model.ca_modules.CAModules import CAModules
 from src.main.python.ui.brand.model.forms.create_personal_profile.BrandCreatePersonalProfileForm import \

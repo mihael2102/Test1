@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 
 

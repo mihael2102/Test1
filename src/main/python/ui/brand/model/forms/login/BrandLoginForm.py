@@ -1,7 +1,5 @@
 from time import sleep
-
 from selenium.webdriver.common.by import By
-
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.ui.brand.model.forms.login.BrandForgotPassword import BrandForgotPassword
 from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPage
@@ -24,7 +22,6 @@ class BrandLoginForm(BrandBasePage):
         self.passwordFieldLocator.clear()
         self.passwordFieldLocator.send_keys(password)
         Logging().reportDebugStep(self, "Set the  password " + password + '\n')
-
 
         screen_path = "/"
         screen = ScreenShot(self.driver)

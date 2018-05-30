@@ -6,5 +6,6 @@ class DocumentDetailViewPage(BrandBasePage):
         super().__init__()
 
     def get_document_status(self):
-        document_status_crm = super().wait_load_element_present("//td[contains(text(),'Status')]//following-sibling::td[1]")
+        document_status_crm = super().wait_load_element_present(
+            "//td[contains(text(),'Status')]//following-sibling::td[1]")
         return document_status_crm.text
