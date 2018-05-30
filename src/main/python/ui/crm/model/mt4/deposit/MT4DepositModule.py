@@ -103,3 +103,7 @@ class MT4DepositModule(CRMBasePage):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
         create_button.click()
         return CRMClientProfilePage()
+
+    def click_ok(self):
+        super().click_ok()
+        return CRMClientProfilePage()

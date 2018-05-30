@@ -3,8 +3,7 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 
 
-class MT4CheckPasswordModule(CRMBasePage):
-
+class MT4UpdatePasswordModule(CRMBasePage):
     def __init__(self):
         super().__init__()
 
@@ -20,7 +19,7 @@ class MT4CheckPasswordModule(CRMBasePage):
         select_account = self.driver.find_element(By.XPATH, "//select[@name='pwd_loginSel']//"
                                                             "following-sibling::*[contains(text(),'%s')]" % account)
         select_account.click()
-        return MT4CheckPasswordModule()
+        return MT4UpdatePasswordModule()
 
     '''
          Enter the password 
@@ -32,7 +31,7 @@ class MT4CheckPasswordModule(CRMBasePage):
         field_password = self.driver.find_element(By.XPATH, "//input[@type='password']")
         field_password.clear()
         field_password.send_keys(password)
-        return MT4CheckPasswordModule()
+        return MT4UpdatePasswordModule()
 
     '''
         Enter the check button 
@@ -42,7 +41,7 @@ class MT4CheckPasswordModule(CRMBasePage):
     def click_check_button(self):
         check_button = self.driver.find_element(By.XPATH, "//span[@id='MTPasswordSubmitButton']")
         check_button.click()
-        return MT4CheckPasswordModule()
+        return MT4UpdatePasswordModule()
 
     '''
         Returns a confirmation  message if the user entered a valid password
@@ -52,12 +51,6 @@ class MT4CheckPasswordModule(CRMBasePage):
         confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
         return confirm_message.text
 
-    def refresh_page(self):
-        super().refresh_page()
-        return MT4CheckPasswordModule()
-
     def click_ok(self):
         super().click_ok()
-        return MT4CheckPasswordModule()
-
-
+        return MT4UpdatePasswordModule()

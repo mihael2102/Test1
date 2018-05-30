@@ -25,9 +25,14 @@ class WithdrawTestCRM(BaseTest):
         crm_client_profile.perform_scroll_up() \
             .open_mt4_actions(CRMConstants.WITHDRAW)
 
-        amount_withdraw_crm = MT4WithdrawModule().make_withdraw(
+        MT4WithdrawModule().make_withdraw(
             account, CRMConstants.AMOUNT_WITHDRAW, CRMConstants.PAYMENT_METHOD_WITHDRAW, CRMConstants.STATUS_WITHDRAW,
-            CRMConstants.DESCRIPTION_WITHDRAW) \
+            CRMConstants.DESCRIPTION_WITHDRAW)
+
+        confirmation_message = crm_client_profile.get_confirm_message()
+        assert confirmation_message == CRMConstants.WITHDRAW_SUCCESSFULLY
+
+        amount_withdraw_crm = crm_client_profile.click_ok() \
             .refresh_page() \
             .click_trading_accounts_tab() \
             .get_amount_text(total_amount_withdraw_crm)

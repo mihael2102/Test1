@@ -3,7 +3,6 @@ from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManag
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
-from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.avtomation.implemetation.crm.Test_Make_Deposit import Config
 from src.test.python.utils.TestDataConstants import TestDataConstants
@@ -25,6 +24,7 @@ class CAWithdrawPrecondition(object):
         CaManageAccounts().open_new_account_button() \
             .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_USD)) \
             .create_account_button()
+
         return CAWithdrawPrecondition()
 
     def make_deposit(self):
@@ -40,16 +40,16 @@ class CAWithdrawPrecondition(object):
             .open_trading_accounts_tab() \
             .get_client_account()
 
-        CRMClientProfilePage() \
+        crm_client_profile \
             .perform_scroll_up() \
             .open_mt4_actions(CRMConstants.DEPOSIT)
 
         MT4DepositModule() \
             .make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT, CRMConstants.PAYMENT_METHOD_DEPOSIT,
                           CRMConstants.STATUS_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT) \
+            .click_ok() \
             .refresh_page()
 
-        CRMClientProfilePage() \
-            .click_trading_accounts_tab() \
-            .get_amount_text(CRMConstants.AMOUNT_DEPOSIT)
+        crm_client_profile.click_trading_accounts_tab().get_amount_text(CRMConstants.AMOUNT_DEPOSIT)
+
         return CAWithdrawPrecondition()

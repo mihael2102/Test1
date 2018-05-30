@@ -34,9 +34,9 @@ class CRMClientProfilePage(CRMBasePage):
         return CRMClientProfilePage()
 
     '''
-          Perform scroll_down
-          returns Manage Accounts Module  instance    
-     '''
+        Perform scroll_down
+        returns Manage Accounts Module  instance    
+    '''
 
     def click_trading_accounts_tab(self):
         trading_account_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'Trading Accounts')][1]")
@@ -67,8 +67,8 @@ class CRMClientProfilePage(CRMBasePage):
         return CRMClientProfilePage()
 
     '''
-         Open the Finacial Transactions tabs
-         returns Manage Accounts Module  instance    
+        Open the Finacial Transactions tabs
+        returns Manage Accounts Module  instance    
     '''
 
     def open_financial_transactions_tab(self):
@@ -95,7 +95,7 @@ class CRMClientProfilePage(CRMBasePage):
         return str(total_amount)
 
     '''
-           :returns client total amount withdraw from Trading Accounts tabs 
+        :returns client total amount withdraw from Trading Accounts tabs 
     '''
 
     def get_total_amount_withdraw_text(self, amount, initial_amount):
@@ -138,7 +138,7 @@ class CRMClientProfilePage(CRMBasePage):
     '''
         Open the document tabs  
         :parameter id client account ID 
-         returns Client Profile instance    
+        returns Client Profile instance    
     '''
 
     def open_document_tab(self):
@@ -210,12 +210,6 @@ class CRMClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Open mt4 actions ")
         MT4DropDown().mt4_actions(module)
 
-    def refresh_page(self):
-        sleep(5)
-        self.driver.refresh()
-        Logging().reportDebugStep(self, "The page is refreshed")
-        return CRMClientProfilePage()
-
     def wait_element_is_present(self):
         super().wait_until_element_present("//span[@class ='clientStatusFTD']")
         return CRMClientProfilePage()
@@ -241,7 +235,7 @@ class CRMClientProfilePage(CRMBasePage):
         return parser_data
 
     '''
-         Returns the first name
+        Returns the first name
     '''
 
     def get_first_name(self):
@@ -250,7 +244,7 @@ class CRMClientProfilePage(CRMBasePage):
         return first_name.text
 
     '''
-         Returns the phone 
+        Returns the phone 
     '''
 
     def get_phone_text(self):
@@ -318,3 +312,19 @@ class CRMClientProfilePage(CRMBasePage):
 
     def perform_scroll(self, parameter):
         super().perform_scroll(parameter)
+
+    def click_ok(self):
+        super().click_ok()
+        return CRMClientProfilePage()
+
+    '''
+         Returns a confirmation  message if the user entered a valid password
+    '''
+
+    def get_confirm_message(self):
+        confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
+        return confirm_message.text
+
+    def refresh_page(self):
+        super().refresh_page()
+        return CRMClientProfilePage()

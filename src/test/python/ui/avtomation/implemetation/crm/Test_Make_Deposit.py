@@ -26,18 +26,22 @@ class DepositTestCRM(BaseTest):
             .open_trading_accounts_tab() \
             .get_client_account()
 
-        amount_initial = CRMClientProfilePage().get_initial_amount()
+        amount_initial = crm_client_profile.get_initial_amount()
 
-        total_amount_crm = CRMClientProfilePage() \
-            .get_total_amount_text(amount_initial, CRMConstants.AMOUNT_DEPOSIT)
+        total_amount_crm = crm_client_profile.get_total_amount_text(amount_initial, CRMConstants.AMOUNT_DEPOSIT)
 
-        CRMClientProfilePage() \
+        crm_client_profile \
             .perform_scroll_up() \
             .open_mt4_actions(CRMConstants.DEPOSIT)
 
-        amount_crm = MT4DepositModule() \
-            .make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT, CRMConstants.PAYMENT_METHOD_DEPOSIT,
-                          CRMConstants.STATUS_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT) \
+        MT4DepositModule().make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT,
+                                        CRMConstants.PAYMENT_METHOD_DEPOSIT,
+                                        CRMConstants.STATUS_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT)
+
+        confirmation_message = crm_client_profile.get_confirm_message()
+        assert confirmation_message == CRMConstants.DEPOSIT_SUCCESSFULLY
+
+        amount_crm = crm_client_profile.click_ok() \
             .refresh_page() \
             .click_trading_accounts_tab() \
             .get_amount_text(total_amount_crm)

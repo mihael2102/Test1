@@ -1,9 +1,14 @@
 from datetime import *
-
 from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    WITHDRAW_SUCCESSFULLY = "MT4 Withdraw successfull"
+    DEPOSIT_SUCCESSFULLY = "MT4 Deposit successfull"
+    PASSWORD_CHANGE = "Password was change successfully"
+    CHANGE_PASSWORD = "4"
+    PASSWORD_MESSAGE = "Entered password valid"
+    CHECK_PASSWORD = "3"
     EXPIRE_DATE = datetime.now() + relativedelta(days=2)
     FORMAT = "%d-%m-%Y"
     CREDIT_IN_COMMENT = "Credit in "

@@ -1,6 +1,8 @@
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
+from src.test.python.ui.avtomation.utils.preconditions.credit_in.CRMCredit_In_Precondition import \
+    CRMCreditInPrecondition
 from src.test.python.utils.TestDataConstants import TestDataConstants
 from src.main.python.utils.config import Config
 

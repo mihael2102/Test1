@@ -1,8 +1,11 @@
+from time import sleep
+
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.utils.config import Config
+from src.main.python.utils.logs.Loging import Logging
 
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 
@@ -26,9 +29,6 @@ class CRMBasePage(object):
         return WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH, element)))
 
-    def refreshing_wait(self, account):
-        return WaitingUtils().wait_until_element_present_ca(account, self.driver)
-
     def switch_first_tab_page(self):
         self.driver.switch_to_window(Config.window_before)
 
@@ -50,3 +50,12 @@ class CRMBasePage(object):
 
     def perform_scroll(self, parameter):
         self.driver.execute_script("scroll(0, '%s');" % parameter)
+
+    def refresh_page(self):
+        sleep(3)
+        self.driver.refresh()
+        Logging().reportDebugStep(self, "The page is refreshed")
+
+    def click_ok(self):
+        button = self.wait_load_element("//button[contains(text(),'OK')]")
+        button.click()
