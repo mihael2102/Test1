@@ -6,6 +6,7 @@ from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBaseP
 from src.main.python.ui.brand.model.forms.login.BrandForgotPassword import BrandForgotPassword
 from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPage
 from src.main.python.utils.logs.Loging import Logging
+from src.main.python.utils.screenshot.ScreenShot import ScreenShot
 
 
 class BrandLoginForm(BrandBasePage):
@@ -23,6 +24,12 @@ class BrandLoginForm(BrandBasePage):
         self.passwordFieldLocator.clear()
         self.passwordFieldLocator.send_keys(password)
         Logging().reportDebugStep(self, "Set the  password " + password + '\n')
+
+
+        screen_path = "/"
+        screen = ScreenShot(self.driver)
+        screen.perform_screen_shot(screen_path + "NewForexSignForm.png")
+
         return BrandLoginForm()
 
     def click_login_button(self):

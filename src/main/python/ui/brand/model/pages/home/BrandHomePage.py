@@ -28,7 +28,7 @@ class BrandHomePage(BrandBasePage):
         screen_path = "/"
         screen = ScreenShot(self.driver)
         sign_on_button_locator.click()
-        screen.PerfomScreenShot(screen_path + "NewForexLoginPage.png")
+        screen.perform_screen_shot(screen_path + "NewForexLoginPage.png")
         return BrandSignUpForm()
 
     def login(self):

@@ -48,11 +48,11 @@ class BrandSignUpForm(BrandBasePage):
 
     def set_check_box(self):
         self.checkBoxLocator = self.driver.find_element(By.XPATH, "//label[@class='terms-pandats']")
-        screen_path = "/"
+        screen_path = "passed_screenshots/"
         screen = ScreenShot(self.driver)
         if self.checkBoxLocator.is_displayed():
             self.checkBoxLocator.click()
-        screen.PerfomScreenShot(screen_path + "NewForexSignForm.png")
+        screen.perform_screen_shot(screen_path + "NewForexSignForm.png")
         return BrandSignUpForm()
 
     def sign_up_button(self):
@@ -61,5 +61,5 @@ class BrandSignUpForm(BrandBasePage):
         screen_path = "/"
         screen = ScreenShot(self.driver)
         self.submitLocator.click()
-        screen.PerfomScreenShot(screen_path + "ForexTradingPlatformPage.png")
+        screen.perform_screen_shot(screen_path + "ForexTradingPlatformPage.png")
         return BrandTradingPlatformPage()
