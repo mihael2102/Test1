@@ -8,6 +8,7 @@ from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.ui.crm.model.pages.trading_accounts_information.CRMTradingAccountsInformationPage import \
     CRMTradingAccountsInformationPage
+from src.main.python.ui.crm.model.side_bar.CRMSidebarModules import CRMSidebarModules
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -329,3 +330,4 @@ class CRMClientProfilePage(CRMBasePage):
     def refresh_page(self):
         super().refresh_page()
         return CRMClientProfilePage()
+

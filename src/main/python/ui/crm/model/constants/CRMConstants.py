@@ -3,6 +3,13 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    DESCRIPTION = "Test"
+    PRIORITY = "Medium"
+    ASSIGN_TO = "Default User"
+    DATE = datetime.now()
+    DURATION = "30M"
+    EVENT_TYPE = "Meeting"
+    EVENT_STATUS = "In Progress"
     WITHDRAW_SUCCESSFULLY = "MT4 Withdraw successfull"
     DEPOSIT_SUCCESSFULLY = "MT4 Deposit successfull"
     PASSWORD_CHANGE = "Password was change successfully"
@@ -10,7 +17,8 @@ class CRMConstants(object):
     PASSWORD_MESSAGE = "Entered password valid"
     CHECK_PASSWORD = "3"
     EXPIRE_DATE = datetime.now() + relativedelta(days=2)
-    FORMAT = "%d-%m-%Y"
+    FORMAT_DATE = "%d-%m-%Y"
+    FORMAT_TIME = "%H:%M:%S"
     CREDIT_IN_COMMENT = "Credit in "
     AMOUNT_CREDIT_IN = "25.00"
     CREDIT_IN = "9"
@@ -26,3 +34,4 @@ class CRMConstants(object):
     AMOUNT_WITHDRAW = "15"
     AMOUNT_DEPOSIT = "10.00"
     AMOUNT_WITHDRAW_SECOND = "30.00"
+    ADD_INTERACTION = "6"

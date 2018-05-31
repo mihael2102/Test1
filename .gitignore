@@ -8,9 +8,6 @@ __pycache__/
 *.so
 .idea
 *.bat
-*.jpg
-*.png
-*.jpeg
 *.html
 # Distribution / packaging
 .Python

@@ -44,7 +44,7 @@ class CRMCreditInPrecondition(object):
 
         MT4CreditInModule() \
             .make_credit_in(account_number, CRMConstants.AMOUNT_CREDIT_IN,
-                            CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT),
+                            CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
                             CRMConstants.CREDIT_IN_COMMENT) \
             .click_ok() \
             .refresh_page()
