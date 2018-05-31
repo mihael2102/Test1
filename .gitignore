@@ -7,7 +7,10 @@ __pycache__/
 # C extensions
 *.so
 .idea
-.bat
+*.bat
+*.jpg
+*.png
+*.jpeg
 *.html
 # Distribution / packaging
 .Python
