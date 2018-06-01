@@ -393,6 +393,7 @@ a.popup_link:hover {
     <td>Fail</td>
     <td>Error</td>
     <td>View</td>
+    <td>Picture</td>
 </tr>
 %(test_list)s
 <tr id='total_row'>
@@ -401,6 +402,7 @@ a.popup_link:hover {
     <td>%(Pass)s</td>
     <td>%(fail)s</td>
     <td>%(error)s</td>
+    <td></td>
     <td>&nbsp;</td>
 </tr>
 </table>
@@ -413,6 +415,7 @@ a.popup_link:hover {
     <td>%(Pass)s</td>
     <td>%(fail)s</td>
     <td>%(error)s</td>
+    <td></td>
     <td><a href="javascript:showClassDetail('%(cid)s',%(count)s)">Detail</a></td>
 </tr>
 """ # variables: (style, desc, count, Pass, fail, error, cid)

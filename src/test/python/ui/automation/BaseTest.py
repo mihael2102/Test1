@@ -1,5 +1,8 @@
 from datetime import *
 import unittest
+
+import allure
+from allure_commons.types import AttachmentType
 from selenium import webdriver
 from src.main.python.ui.brand.model.data.providers.DataProviders import DataProviders
 from src.main.python.utils.config import Config
@@ -25,8 +28,11 @@ class BaseTest(unittest.TestCase):
                 now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
                 file_name = 'D:/automation-newforexqa/src/screen_shots/failed_screenshots/failed_screenshot %s.png' % now
                 Config.browser.get_screenshot_as_file(file_name)
+                allure.attach(Config.browser.get_screenshot_as_png(), name="Failed Screenshot",
+                              attachment_type=AttachmentType.PNG)
+
                 Config.browser.close()
                 Config.browser.quit()
-            else:
-                Config.browser.close()
-                Config.browser.quit()
+
+    Config.browser.close()
+    Config.browser.quit()

@@ -22,7 +22,7 @@ class CRMTradingAccountsInformationPage(CRMBasePage):
 
     def get_currency_text(self):
         super().wait_load_element("//span[@id='dtlview_Trading Account Login']")
-        count_id_field = self.driver.find_element(By.XPATH, "//span[@id='dtlview_Currency']")
+        count_id_field = self.driver.find_element(By.XPATH, "//td[@class='dvtCellInfo']//font[1]")
         return count_id_field.text
 
     ''' 

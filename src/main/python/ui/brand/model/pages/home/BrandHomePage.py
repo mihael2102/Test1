@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -12,6 +13,7 @@ class BrandHomePage(BrandBasePage):
     def __init__(self):
         super().__init__()
 
+    @allure.step("Open first tab")
     def open_first_tab_page(self, url):
         super().open_first_tab_page(url)
         return BrandHomePage()
@@ -30,6 +32,7 @@ class BrandHomePage(BrandBasePage):
         screen.perform_screen_shot(screen_path + "NewForexLoginPage.png")
         return BrandSignUpForm()
 
+    @allure.step("Click login")
     def login(self):
         login_button_locator = super().wait_load_element_present("//button[@class='forex-button-pandats simple-button-pandats "
                                                          "spinner-button-pandats']")

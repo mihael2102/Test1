@@ -2,6 +2,7 @@ from unittest import TestLoader, TestSuite
 
 import os
 from src.main.python.ui.core.reporter.HTMLTestRunner import HTMLTestRunner
+from src.test.python.ui.automation.implementation.Test_Demo import TestDemo
 from src.test.python.ui.automation.implementation.ca.Test_Add_Demo_Accounts import AddDemoAccountsTestCA
 from src.test.python.ui.automation.implementation.ca.Test_Add_New_Live_Accounts import AddNewLiveAccountTestCA
 from src.test.python.ui.automation.implementation.ca.Test_Download_Documents import DownloadDocumentsTestCA
@@ -15,13 +16,7 @@ direct = os.getcwd()
 if __name__ == "__main__":
     loader = TestLoader()
     suite = TestSuite((
-        loader.loadTestsFromTestCase(SignUpTest),
-        loader.loadTestsFromTestCase(AddNewLiveAccountTestCA),
-        loader.loadTestsFromTestCase(AddDemoAccountsTestCA),
-        loader.loadTestsFromTestCase(TransferFundsTestCA),
-        loader.loadTestsFromTestCase(DownloadDocumentsTestCA),
-        loader.loadTestsFromTestCase(CreateSupportTicketTestCa),
-        loader.loadTestsFromTestCase(WithdrawTestCA)
+        loader.loadTestsFromTestCase(TestDemo),
     ))
 
     outfile = open(direct + "\Regression.html", "w")
