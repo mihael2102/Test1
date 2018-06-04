@@ -33,6 +33,7 @@ class CRMConstants(object):
     PAYMENT_METHOD_DEPOSIT = "Credit card"
     WITHDRAW = "7"
     DEPOSIT = "6"
+    AMOUNT_DEPOSIT = "10.00"
     AMOUNT_WITHDRAW = "15"
     AMOUNT_DEPOSIT_FOR_CREDIT_OUT = "35.00"
     AMOUNT_WITHDRAW_SECOND = "30.00"
