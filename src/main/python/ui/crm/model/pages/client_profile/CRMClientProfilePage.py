@@ -8,7 +8,6 @@ from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.ui.crm.model.pages.trading_accounts_information.CRMTradingAccountsInformationPage import \
     CRMTradingAccountsInformationPage
-from src.main.python.ui.crm.model.side_bar.CRMSidebarModules import CRMSidebarModules
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -95,7 +94,7 @@ class CRMClientProfilePage(CRMBasePage):
 
     def get_total_amount_withdraw_text(self, amount, initial_amount):
         total_amount = Decimal(amount) - Decimal(initial_amount)
-        Logging().reportDebugStep(self, "Returns the total amount text " + str(total_amount))
+        Logging().reportDebugStep(self, "Returns the total amount_withdraw text " + str(total_amount))
         return str(total_amount)
 
     '''
@@ -216,7 +215,7 @@ class CRMClientProfilePage(CRMBasePage):
     def get_initial_amount(self):
         initial_amount = super().wait_load_element("//tr[@class='lvtColData'][1]//td[3]")
         total_amount = re.sub('[$£CA€ [ ]', '', initial_amount.text)
-        Logging().reportDebugStep(self, "Return the total amount text: " + total_amount)
+        Logging().reportDebugStep(self, "Return initial amount text: " + total_amount)
         return total_amount
 
     '''
@@ -331,3 +330,7 @@ class CRMClientProfilePage(CRMBasePage):
         super().refresh_page()
         return CRMClientProfilePage()
 
+    def get_total_credit_out_amount_text(self, initial_amount, amount_deposit):
+        total_amount = Decimal(initial_amount) - Decimal(amount_deposit)
+        Logging().reportDebugStep(self, "Returns the total credit out amount text " + str(total_amount))
+        return str(total_amount)

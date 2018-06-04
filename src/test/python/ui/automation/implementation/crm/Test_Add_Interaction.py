@@ -8,7 +8,7 @@ from src.test.python.utils.TestDataConstants import TestDataConstants
 class AddInteraction(BaseTest):
 
     def test_add_interaction(self):
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+        crm_client_profile = CRMLoginPage().open_first_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
                        Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
@@ -19,3 +19,7 @@ class AddInteraction(BaseTest):
                           CRMConstants.DATE.strftime(CRMConstants.FORMAT_TIME),
                           CRMConstants.DATE.strftime(CRMConstants.FORMAT_DATE),
                           CRMConstants.ASSIGN_TO, CRMConstants.PRIORITY, CRMConstants.DESCRIPTION)
+
+        confirmation_message = crm_client_profile.get_confirm_message()
+        assert confirmation_message == CRMConstants.INTERACTION_SUCCESSFULLY
+        crm_client_profile.click_ok()

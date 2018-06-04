@@ -13,7 +13,9 @@ class CreditInTestCRM(BaseTest):
 
         crm_client_profile = CRMClientProfilePage()
 
-        account_client = crm_client_profile.click_trading_accounts_tab().get_client_account()
+        account_client = crm_client_profile\
+            .click_trading_accounts_tab()\
+            .get_client_account()
 
         amount_credit_in_crm = crm_client_profile.get_amount_text(CRMConstants.AMOUNT_CREDIT_IN)
 

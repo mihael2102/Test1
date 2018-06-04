@@ -1,7 +1,8 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
-
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 
 
 class CRMCreateEvent(CRMBasePage):
@@ -17,6 +18,8 @@ class CRMCreateEvent(CRMBasePage):
         self.set_assign_to(assign_to)
         self.set_priority(priority)
         self.set_description(comments)
+        self.click_save()
+        return CRMClientProfilePage()
 
     def set_event_status(self, status):
         event_element = super().wait_element_to_be_clickable("//select[@name='event_status']")
@@ -40,12 +43,14 @@ class CRMCreateEvent(CRMBasePage):
         time_element = self.driver.find_element(By.XPATH, "//input[@id='event_start_time']")
         time_element.clear()
         time_element.send_keys(time)
+        time_element.send_keys(Keys.ENTER)
         return CRMCreateEvent()
 
     def set_date(self, date):
-        date_element = self.driver.find_element(By.XPATH, "//input[@id='event_start_date")
+        date_element = self.driver.find_element(By.XPATH, "//input[@id='event_start_date']")
         date_element.clear()
         date_element.send_keys(date)
+        date_element.send_keys(Keys.ENTER)
         return CRMCreateEvent()
 
     def set_assign_to(self, assign_to):
@@ -64,7 +69,14 @@ class CRMCreateEvent(CRMBasePage):
         return CRMCreateEvent()
 
     def set_description(self, comments):
-        description_element = self.driver.find_element(By.XPATH, "//select[@id='priority']")
+        description_element = self.driver.find_element(By.XPATH, "//textarea[@name='description']")
         description_element.clear()
         description_element.send_keys(comments)
-        pass
+        return CRMCreateEvent()
+
+    def click_save(self):
+        save_button = self.driver.find_element(By.XPATH, "//button[@id='save_btn']")
+        save_button.click()
+        return CRMCreateEvent()
+
+

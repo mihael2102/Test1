@@ -22,7 +22,7 @@ class CRMCreditInPrecondition(object):
             .select_module(CaConstants.MANAGE_ACCOUNTS)
 
         CaManageAccounts().open_new_account_button() \
-            .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_JPY)) \
+            .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_CAD)) \
             .create_account_button()
 
         return CRMCreditInPrecondition()
@@ -42,8 +42,7 @@ class CRMCreditInPrecondition(object):
 
         crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN)
 
-        MT4CreditInModule() \
-            .make_credit_in(account_number, CRMConstants.AMOUNT_CREDIT_IN,
+        MT4CreditInModule().make_credit_in(account_number, CRMConstants.AMOUNT_CREDIT_IN,
                             CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
                             CRMConstants.CREDIT_IN_COMMENT) \
             .click_ok() \

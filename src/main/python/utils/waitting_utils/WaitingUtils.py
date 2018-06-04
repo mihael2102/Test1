@@ -23,7 +23,8 @@ class WaitingUtils(object):
                 amount = driver.find_element(By.XPATH,
                                              "//td[contains(text(),'%s')]//following-sibling::*[3]" % account_id)
 
-                amount_without_symbol = re.sub('[$£CA€]', '', amount.text)
+                amount_without_symbol = re.sub('[$£CA€¥]', '', amount.text)
+                Logging().reportDebugStep(self, "Returns the amount \n" + amount_without_symbol + " from CA")
                 if amount_without_symbol == amount_crm:
                     return amount_without_symbol
                 else:
@@ -38,8 +39,8 @@ class WaitingUtils(object):
             try:
                 sleep(2)
                 amount_present = driver.find_element(By.XPATH, element)
-                amount_reg = re.sub('[$£CA€ [ ]', '', amount_present.text)
-                Logging().reportDebugStep(self, "Returns the amount \n" + amount_reg)
+                amount_reg = re.sub('[$£CA€¥ [ ]', '', amount_present.text)
+                Logging().reportDebugStep(self, "Returns the amount \n" + amount_reg + " from CRM")
                 if amount_reg == total_amount_crm:
                     return amount_reg
                 else:
