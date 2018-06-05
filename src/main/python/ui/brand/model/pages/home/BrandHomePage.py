@@ -32,7 +32,7 @@ class BrandHomePage(BrandBasePage):
         screen.perform_screen_shot(screen_path + "NewForexLoginPage.png")
         return BrandSignUpForm()
 
-    @allure.step("Click login")
+    @allure.step("Login")
     def login(self):
         login_button_locator = super().wait_load_element_present("//button[@class='forex-button-pandats simple-button-pandats "
                                                          "spinner-button-pandats']")

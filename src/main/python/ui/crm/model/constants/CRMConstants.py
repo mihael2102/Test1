@@ -3,7 +3,10 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
-    DESCRIPTION = "Test"
+    TRANSFER_BETWEEN_TA_MESSAGE = "Funds were transferred successfully"
+    AMOUNT_TRANSFER_BETWEEN_TA = "15.00"
+    TRANSFER_BETWEEN_TA = "8"
+    DESCRIPTION_ADD_INTERACTION = "Description Interaction"
     PRIORITY = "Medium"
     ASSIGN_TO = "Default User"
     DATE = datetime.now()
@@ -28,7 +31,8 @@ class CRMConstants(object):
     DESCRIPTION_WITHDRAW = "Test"
     STATUS_WITHDRAW = "Approved"
     PAYMENT_METHOD_WITHDRAW = "Credit card"
-    DESCRIPTION_DEPOSIT = "Test"
+    DESCRIPTION_DEPOSIT = "Description Deposit"
+    DESCRIPTION_TRANSFER_BETWEEN_TA = "Description Transfer Between Ta"
     STATUS_DEPOSIT = "Approved"
     PAYMENT_METHOD_DEPOSIT = "Credit card"
     WITHDRAW = "7"

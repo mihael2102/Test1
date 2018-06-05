@@ -50,7 +50,7 @@ class CreateSupportTicketTestCa(BaseTest):
         ticket_status_crm = crm_help_desk.get_ticket_status_text()
         subject_crm = crm_help_desk.get_subject_tittle()
 
-        SupportTicketExpectedResult().print_expected_result(subject_crm,category_tittle_crm, ticket_status_crm)
+        SupportTicketExpectedResult().print_expected_result(subject_crm, category_tittle_crm, ticket_status_crm)
 
         assert subject_ca == subject_crm
         assert category_tittle_ca == category_tittle_crm

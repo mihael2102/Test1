@@ -43,18 +43,8 @@ class MT4CheckPasswordModule(CRMBasePage):
         check_button.click()
         return MT4CheckPasswordModule()
 
-    '''
-        Returns a confirmation  message if the user entered a valid password
-    '''
-
-    def get_confirm_message(self):
-        confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
-        return confirm_message.text
-
     def refresh_page(self):
         super().refresh_page()
         return MT4CheckPasswordModule()
 
-    def click_ok(self):
-        super().click_ok()
-        return MT4CheckPasswordModule()
+

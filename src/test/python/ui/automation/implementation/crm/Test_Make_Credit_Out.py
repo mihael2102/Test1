@@ -13,8 +13,8 @@ class CreditInTestCRM(BaseTest):
         crm_client_profile = CRMClientProfilePage()
         amount_initial = crm_client_profile.get_initial_amount()
 
-        total_amount_credit_out_crm = crm_client_profile \
-            .get_total_credit_out_amount_text(amount_initial, CRMConstants.AMOUNT_CREDIT_OUT)
+        difference_amount = crm_client_profile \
+            .get_difference_amount_text(amount_initial, CRMConstants.AMOUNT_CREDIT_OUT)
 
         account_number = crm_client_profile.get_client_account()
         crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_OUT)
@@ -24,6 +24,6 @@ class CreditInTestCRM(BaseTest):
             .click_ok() \
             .refresh_page()
 
-        amount_credit_out = crm_client_profile.click_trading_accounts_tab().get_amount_text(total_amount_credit_out_crm)
+        amount_credit_out = crm_client_profile.click_trading_accounts_tab().get_amount_text(difference_amount)
 
-        assert amount_credit_out == total_amount_credit_out_crm
+        assert amount_credit_out == difference_amount

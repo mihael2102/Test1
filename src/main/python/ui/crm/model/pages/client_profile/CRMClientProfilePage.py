@@ -83,8 +83,8 @@ class CRMClientProfilePage(CRMBasePage):
         :returns client total amount from Trading Accounts tabs 
     '''
 
-    def get_total_amount_text(self, amount, initial_amount):
-        total_amount = Decimal(amount) + Decimal(initial_amount)
+    def get_total_amount_text(self, initial_amount, amount_deposit):
+        total_amount = Decimal(initial_amount) + Decimal(amount_deposit)
         Logging().reportDebugStep(self, "Returns the total amount text " + str(total_amount))
         return str(total_amount)
 
@@ -92,9 +92,9 @@ class CRMClientProfilePage(CRMBasePage):
         :returns client total amount withdraw from Trading Accounts tabs 
     '''
 
-    def get_total_amount_withdraw_text(self, amount, initial_amount):
-        total_amount = Decimal(amount) - Decimal(initial_amount)
-        Logging().reportDebugStep(self, "Returns the total amount_withdraw text " + str(total_amount))
+    def get_difference_amount_text(self, initial_amount, amount_deposit):
+        total_amount = Decimal(initial_amount) - Decimal(amount_deposit)
+        Logging().reportDebugStep(self, "Returns the total amount " + str(total_amount))
         return str(total_amount)
 
     '''
@@ -118,6 +118,7 @@ class CRMClientProfilePage(CRMBasePage):
     def get_client_account(self):
         account_number = super().wait_load_element("//tr[@class='lvtColData'][1]//td[1]")
         Logging().reportDebugStep(self, "Returns the client_account  text " + account_number.text)
+
         return account_number.text
 
     '''
@@ -329,8 +330,3 @@ class CRMClientProfilePage(CRMBasePage):
     def refresh_page(self):
         super().refresh_page()
         return CRMClientProfilePage()
-
-    def get_total_credit_out_amount_text(self, initial_amount, amount_deposit):
-        total_amount = Decimal(initial_amount) - Decimal(amount_deposit)
-        Logging().reportDebugStep(self, "Returns the total credit out amount text " + str(total_amount))
-        return str(total_amount)

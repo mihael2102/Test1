@@ -18,7 +18,7 @@ class AddInteraction(BaseTest):
             .create_event(CRMConstants.EVENT_STATUS, CRMConstants.EVENT_TYPE, CRMConstants.DURATION,
                           CRMConstants.DATE.strftime(CRMConstants.FORMAT_TIME),
                           CRMConstants.DATE.strftime(CRMConstants.FORMAT_DATE),
-                          CRMConstants.ASSIGN_TO, CRMConstants.PRIORITY, CRMConstants.DESCRIPTION)
+                          CRMConstants.ASSIGN_TO, CRMConstants.PRIORITY, CRMConstants.DESCRIPTION_ADD_INTERACTION)
 
         confirmation_message = crm_client_profile.get_confirm_message()
         assert confirmation_message == CRMConstants.INTERACTION_SUCCESSFULLY

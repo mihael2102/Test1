@@ -1,5 +1,4 @@
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-
 from src.main.python.ui.crm.model.mt4.password.MT4CheckPasswordModule import MT4CheckPasswordModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *

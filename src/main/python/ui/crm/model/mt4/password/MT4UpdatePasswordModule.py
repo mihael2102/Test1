@@ -41,15 +41,3 @@ class MT4UpdatePasswordModule(CRMBasePage):
         check_button = self.driver.find_element(By.XPATH, "//span[@id='MTPasswordSubmitButton']")
         check_button.click()
         return MT4UpdatePasswordModule()
-
-    '''
-        Returns a confirmation  message if the user entered a valid password
-    '''
-
-    def get_confirm_message(self):
-        confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
-        return confirm_message.text
-
-    def click_ok(self):
-        super().click_ok()
-        return MT4UpdatePasswordModule()

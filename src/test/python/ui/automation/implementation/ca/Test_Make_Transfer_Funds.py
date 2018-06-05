@@ -7,6 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.transfer_funds.CATransferFundsPrecondition import \
     CATransferFundsPrecondition
 
+
 class TransferFundsTestCA(BaseTest):
 
     def test_make_transfer_funds(self):
@@ -14,8 +15,9 @@ class TransferFundsTestCA(BaseTest):
             .add_two_eur_currencies() \
             .make_deposit()
 
-        first_transfer_account = CRMClientProfilePage().get_client_account()
-        second_transfer_account = CRMClientProfilePage().get_second_client_account()
+        client_profile = CRMClientProfilePage()
+        first_transfer_account = client_profile.get_client_account()
+        second_transfer_account = client_profile.get_second_client_account()
 
         CaManageAccounts().switch_first_tab_page() \
             .open_transfer_between_accounts_button() \
@@ -23,7 +25,7 @@ class TransferFundsTestCA(BaseTest):
             .choose_transfer_to_account(second_transfer_account) \
             .set_amount(second_transfer_account, CaConstants.AMOUNT) \
             .confirm_check_box() \
-            .make_transfer_button()\
+            .make_transfer_button() \
             .refreshing_wait()
 
         TransferFundsActualResult().print_actual_result(first_transfer_account, CaConstants.AMOUNT,

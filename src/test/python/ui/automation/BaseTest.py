@@ -1,6 +1,5 @@
 from datetime import *
 import unittest
-
 import allure
 from allure_commons.types import AttachmentType
 from selenium import webdriver

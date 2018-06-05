@@ -23,7 +23,7 @@ class WithdrawTestCA(BaseTest):
             .perform_withdraw_first_step_request(account_number) \
             .perform_withdraw_second_step_request() \
             .click_withdraw_history_tab() \
-            .select_account(account_number) \
+            .select_first_account(account_number) \
             .get_status_request()
 
         WithdrawActualResult().print_first_actual_result(withdraw_status, account_number)
