@@ -6,7 +6,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class CheckPasswordTestCRM(BaseTest):
+class ChangePasswordTestCRM(BaseTest):
 
     def test_make_change_password_from_crm(self):
         crm_client_profile = CRMLoginPage() \

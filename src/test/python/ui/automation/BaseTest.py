@@ -31,8 +31,8 @@ class BaseTest(unittest.TestCase):
                     allure.attach(Config.browser.get_screenshot_as_png(), name="Failed Screenshot",
                                   attachment_type=AttachmentType.PNG)
 
-                    # Config.browser.close()
-                    # Config.browser.quit()
-        # else:
-        #     Config.browser.close()
-        #     Config.browser.quit()
+                    Config.browser.close()
+                    Config.browser.quit()
+        else:
+            Config.browser.close()
+            Config.browser.quit()
