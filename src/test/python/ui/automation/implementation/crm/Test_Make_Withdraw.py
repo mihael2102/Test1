@@ -2,7 +2,6 @@ from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManag
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.withdraw.MT4WithdrawModule import MT4WithdrawModule
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
-from src.main.python.ui.results.expected_result.DepositExpectedResult import DepositExpectedResult
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.withdraw_crm.CRMWithdrawPrecondition import \
     CRMWithdrawPrecondition
@@ -42,7 +41,5 @@ class WithdrawTestCRM(BaseTest):
         amount_from_ca = CaManageAccounts() \
             .switch_first_tab_page() \
             .get_amount_element(account, amount_withdraw_crm)
-
-        DepositExpectedResult().print_expected_result(amount_from_ca, account)
 
         assert amount_withdraw_crm == amount_from_ca

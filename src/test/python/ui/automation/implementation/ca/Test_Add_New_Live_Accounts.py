@@ -4,8 +4,6 @@ from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePag
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.pages.trading_accounts_information.CRMTradingAccountsInformationPage import \
     CRMTradingAccountsInformationPage
-from src.main.python.ui.results.actual_result.AddNewLiveAccountActualResult import AddNewLiveAccountActualResult
-from src.main.python.ui.results.expected_result.AddNewLiveAccountExpectedResult import AddNewLiveAccountExpectedResult
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
@@ -28,8 +26,6 @@ class AddNewLiveAccountTestCA(BaseTest):
         account_id_ca = brand_manage_accounts.get_account_id_text()
         eur_currency_ca = brand_manage_accounts.get_account_currency_text()
 
-        AddNewLiveAccountActualResult().print_actual_result(account_id_ca, eur_currency_ca)
-
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
@@ -44,7 +40,6 @@ class AddNewLiveAccountTestCA(BaseTest):
             .get_account_text()
 
         eur_currency_crm = CRMTradingAccountsInformationPage().get_currency_text()
-        AddNewLiveAccountExpectedResult().print_expected_result(account_id_crm, eur_currency_crm)
 
         assert account_id_ca == account_id_crm
         assert eur_currency_ca == eur_currency_crm
@@ -65,8 +60,6 @@ class AddNewLiveAccountTestCA(BaseTest):
         account_id_ca = brand_manage_accounts.get_account_id_text()
         gbr_currency_ca = brand_manage_accounts.get_account_currency_text()
 
-        AddNewLiveAccountActualResult().print_actual_result(account_id_ca, gbr_currency_ca)
-
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
@@ -81,7 +74,6 @@ class AddNewLiveAccountTestCA(BaseTest):
             .get_account_text()
 
         gbr_currency_crm = CRMTradingAccountsInformationPage().get_currency_text()
-        AddNewLiveAccountExpectedResult().print_expected_result(account_id_crm, gbr_currency_crm)
 
         assert account_id_ca == account_id_crm
         assert gbr_currency_ca == gbr_currency_crm
@@ -102,8 +94,6 @@ class AddNewLiveAccountTestCA(BaseTest):
         account_id_ca = brand_manage_accounts.get_account_id_text()
         cad_currency__ca = brand_manage_accounts.get_account_currency_text()
 
-        AddNewLiveAccountActualResult().print_actual_result(account_id_ca, cad_currency__ca)
-
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
@@ -118,7 +108,6 @@ class AddNewLiveAccountTestCA(BaseTest):
             .get_account_text()
 
         cad_currency_crm = CRMTradingAccountsInformationPage().get_currency_text()
-        AddNewLiveAccountExpectedResult().print_expected_result(account_id_crm, cad_currency_crm)
 
         assert account_id_ca == account_id_crm
         assert cad_currency__ca == cad_currency_crm
@@ -139,8 +128,6 @@ class AddNewLiveAccountTestCA(BaseTest):
         account_id_ca = brand_manage_accounts.get_account_id_text()
         jpy_currency__ca = brand_manage_accounts.get_account_currency_text()
 
-        AddNewLiveAccountActualResult().print_actual_result(account_id_ca, jpy_currency__ca)
-
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
@@ -155,6 +142,6 @@ class AddNewLiveAccountTestCA(BaseTest):
             .get_account_text()
 
         jpy_currency_crm = CRMTradingAccountsInformationPage().get_currency_text()
-        AddNewLiveAccountExpectedResult().print_expected_result(account_id_crm, jpy_currency_crm)
+
         assert account_id_ca == account_id_crm
         assert jpy_currency__ca == jpy_currency_crm

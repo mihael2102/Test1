@@ -2,8 +2,6 @@ from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManag
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.main.python.ui.results.actual_result.DepositActualResult import DepositActualResult
-from src.main.python.ui.results.expected_result.DepositExpectedResult import DepositExpectedResult
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.deposit.CADepositPrecondition import CADepositPrecondition
 from src.test.python.utils.TestDataConstants import TestDataConstants
@@ -50,7 +48,5 @@ class DepositTestCRM(BaseTest):
         amount_from_ca = CaManageAccounts() \
             .switch_first_tab_page() \
             .get_amount_element(account_number, amount_crm)
-
-        DepositExpectedResult().print_expected_result(amount_from_ca, account_number)
 
         assert amount_crm == amount_from_ca

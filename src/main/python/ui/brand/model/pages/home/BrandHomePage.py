@@ -1,5 +1,4 @@
 import allure
-import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -7,7 +6,6 @@ from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBaseP
 from src.main.python.ui.brand.model.forms.login.BrandLoginForm import BrandLoginForm
 from src.main.python.ui.brand.model.forms.signup.BrandSignUpForm import BrandSignUpForm
 from src.main.python.utils.logs.Loging import Logging
-from src.main.python.utils.screenshot.ScreenShot import ScreenShot
 
 
 class BrandHomePage(BrandBasePage):

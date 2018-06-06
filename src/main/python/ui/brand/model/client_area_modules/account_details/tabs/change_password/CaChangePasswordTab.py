@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 
 
@@ -17,7 +16,6 @@ class CaChangePasswordTab(BrandBasePage):
         repeat_password = self.driver.find_element(By.XPATH, "//button[contains(text(),'Save Changes')]")
         repeat_password.click()
         return CaChangePasswordTab()
-
 
     def close_client_area_pop_up(self):
         super().close_client_area_pop_up()

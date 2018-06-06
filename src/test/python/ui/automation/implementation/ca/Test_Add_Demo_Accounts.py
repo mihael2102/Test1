@@ -4,8 +4,6 @@ from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePag
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.pages.trading_accounts_information.CRMTradingAccountsInformationPage import \
     CRMTradingAccountsInformationPage
-from src.main.python.ui.results.actual_result.AddDemoAccountsActualResult import AddDemoAccountsActualResult
-from src.main.python.ui.results.expected_result.AddDemoAccountsExpectedResult import AddDemoAccountsExpectedResult
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
@@ -31,8 +29,6 @@ class AddDemoAccountsTestCA(BaseTest):
         usd_currency_ca = brand_accounts_module.get_account_currency_text()
         balance_ca = brand_accounts_module.get_deposit_balance()
 
-        AddDemoAccountsActualResult().print_actual_result(account_id_ca, usd_currency_ca, balance_ca)
-
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
@@ -50,8 +46,6 @@ class AddDemoAccountsTestCA(BaseTest):
 
         usd_currency_crm = trading_accounts_info.get_currency_text()
         balance_crm = trading_accounts_info.get_balance_text()
-
-        AddDemoAccountsExpectedResult().print_expected_result(account_id_crm, usd_currency_crm, balance_crm)
 
         assert account_id_ca == account_id_crm
         assert usd_currency_ca == usd_currency_crm
@@ -75,8 +69,6 @@ class AddDemoAccountsTestCA(BaseTest):
         account_id_ca = brand_accounts_module.get_account_id_text()
         eur_currency_ca = brand_accounts_module.get_account_currency_text()
         balance_ca = brand_accounts_module.get_deposit_balance()
-
-        AddDemoAccountsActualResult().print_actual_result(account_id_ca, eur_currency_ca, balance_ca)
 
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \

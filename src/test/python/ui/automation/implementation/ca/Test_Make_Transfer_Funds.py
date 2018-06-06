@@ -1,8 +1,6 @@
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
-from src.main.python.ui.results.actual_result.TransferFundsActualResult import TransferFundsActualResult
-from src.main.python.ui.results.expected_result.TransferFundsExpectedResult import TransferFundsExpectedResult
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.transfer_funds.CATransferFundsPrecondition import \
     CATransferFundsPrecondition
@@ -28,12 +26,6 @@ class TransferFundsTestCA(BaseTest):
             .make_transfer_button() \
             .refreshing_wait()
 
-        TransferFundsActualResult().print_actual_result(first_transfer_account, CaConstants.AMOUNT,
-                                                        second_transfer_account)
-
         amount_first_transfer_account_ca = CaManageAccounts().get_amount_by_account_text(first_transfer_account)
-
-        TransferFundsExpectedResult().print_expected_result(first_transfer_account, CaConstants.AMOUNT,
-                                                            second_transfer_account)
 
         assert CaConstants.AMOUNT == amount_first_transfer_account_ca
