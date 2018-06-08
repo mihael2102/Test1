@@ -88,8 +88,6 @@ class AddDemoAccountsTestCA(BaseTest):
         eur_currency_crm = trading_accounts_info.get_currency_text()
         balance_crm = trading_accounts_info.get_balance_text()
 
-        AddDemoAccountsExpectedResult().print_expected_result(account_id_crm, eur_currency_crm, balance_crm)
-
         assert account_id_ca == account_id_crm
         assert eur_currency_ca == eur_currency_crm
         assert balance_ca == balance_crm
@@ -133,8 +131,6 @@ class AddDemoAccountsTestCA(BaseTest):
         gbr_currency_crm = trading_accounts_info.get_currency_text()
         balance_crm = trading_accounts_info.get_balance_text()
 
-        AddDemoAccountsExpectedResult().print_expected_result(account_id_crm, gbr_currency_crm, balance_crm)
-
         assert account_id_ca == account_id_crm
         assert gbr_currency_ca == gbr_currency_crm
         assert balance_ca == balance_crm
@@ -176,8 +172,6 @@ class AddDemoAccountsTestCA(BaseTest):
         trading_accounts_info = CRMTradingAccountsInformationPage()
         cad_currency_crm = trading_accounts_info.get_currency_text()
         balance_crm = trading_accounts_info.get_balance_text()
-
-        AddDemoAccountsExpectedResult().print_expected_result(account_id_crm, cad_currency_crm, balance_crm)
 
         assert account_id_ca == account_id_crm
         assert cad_currency_ca == cad_currency_crm

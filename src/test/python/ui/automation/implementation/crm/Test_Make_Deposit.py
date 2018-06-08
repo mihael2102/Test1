@@ -43,8 +43,6 @@ class DepositTestCRM(BaseTest):
             .click_trading_accounts_tab() \
             .get_amount_text(total_amount_crm)
 
-        DepositActualResult().print_actual_result(amount_crm, account_number)
-
         amount_from_ca = CaManageAccounts() \
             .switch_first_tab_page() \
             .get_amount_element(account_number, amount_crm)
