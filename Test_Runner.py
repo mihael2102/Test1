@@ -1,6 +1,4 @@
 import pytest
-
-from src.test.python.ui.automation.BaseTest import BaseTest
 from src.test.python.ui.automation.implementation.ca.Test_Add_Demo_Accounts import AddDemoAccountsTestCA
 from src.test.python.ui.automation.implementation.ca.Test_Add_New_Live_Accounts import AddNewLiveAccountTestCA
 from src.test.python.ui.automation.implementation.ca.Test_Change_Password import ChangePasswordTestCA
@@ -20,106 +18,55 @@ from src.test.python.ui.automation.implementation.crm.Test_Make_Deposit import D
 from src.test.python.ui.automation.implementation.crm.Test_Transfer_Between_Ta import TransferBetweenTa
 
 
-class TestRunner(BaseTest):
+class TestRunner(object):
 
-    @pytest.mark.run(order=1)
     def run_sign_up(self):
-        SignUpTest().test_check_sign_up()
+        SignUpTest()
 
-    @pytest.mark.run(order=2)
     def run_live_accounts(self):
-        live_accounts = AddNewLiveAccountTestCA()
-        live_accounts.test_check_add_live_account_eur_currency()
-        live_accounts.test_check_add_live_account_cad_currency()
-        live_accounts.test_check_add_live_account_gbr_currency()
-        live_accounts.test_check_add_live_account_jpy_currency()
+        AddNewLiveAccountTestCA()
 
-    @pytest.mark.run(order=3)
     def run_demo_accounts(self):
-        demo_accounts = AddDemoAccountsTestCA()
-        demo_accounts.test_check_add_demo_account_usd_currency()
-        demo_accounts.test_check_add_demo_account_eur_currency()
-        demo_accounts.test_check_add_demo_account_gbr_currency()
-        demo_accounts.test_check_add_demo_account_cad_currency()
+        AddDemoAccountsTestCA()
 
-    @pytest.mark.run(order=4)
     def run_create_ticket(self):
-        create_ticket = CreateSupportTicketTestCa()
-        create_ticket.test_create_ticket()
+        CreateSupportTicketTestCa()
 
-    @pytest.mark.run(order=5)
     def run_deposit_ca(self):
-        deposit_ca = DepositTestCa()
-        deposit_ca.test_make_deposit_from_ca()
+        DepositTestCa()
 
-    @pytest.mark.run(order=6)
     def run_withdraw(self):
-        withdraw = WithdrawTestCA()
-        withdraw.test_make_withdraw_ca()
+        WithdrawTestCA()
 
-    @pytest.mark.run(order=7)
     def run_transfer_funds(self):
-        transfer = TransferFundsTestCA()
-        transfer.test_make_transfer_funds()
+        TransferFundsTestCA()
 
-    @pytest.mark.run(order=8)
     def run_upload_documents(self):
-        upload_documents = DownloadDocumentsTestCA()
-        upload_documents.test_make_dowload_documents()
+        DownloadDocumentsTestCA()
 
-    @pytest.mark.run(order=9)
-    def run_upload_documents(self):
-        upload_documents = DownloadDocumentsTestCA()
-        upload_documents.test_make_dowload_documents()
-
-    @pytest.mark.run(order=10)
     def run_change_password(self):
-        change_password = ChangePasswordTestCA()
-        change_password.test_change_password_from_ca()
+        ChangePasswordTestCA()
 
-    @pytest.mark.run(order=11)
     def run_client_update(self):
-        client_update = PersonalDetailsUpdateTestCA()
-        client_update.test_perform_client_update_from_CA()
-        client_update.test_perform_client_update_from_CRM()
+        PersonalDetailsUpdateTestCA()
 
-    @pytest.mark.run(order=12)
-    def run_client_update(self):
-        client_update = PersonalDetailsUpdateTestCA()
-        client_update.test_perform_client_update_from_CA()
-        client_update.test_perform_client_update_from_CRM()
-
-    @pytest.mark.run(order=13)
     def run_deposit_crm(self):
-        deposit_crm = DepositTestCRM()
-        deposit_crm.test_make_deposit()
+        DepositTestCRM()
 
-    @pytest.mark.run(order=14)
     def test_run_credit_in_crm(self):
-        credit_in_crm = CreditInTestCRM()
-        credit_in_crm.test_make_credit_in_crm()
+        CreditInTestCRM()
 
-    @pytest.mark.run(order=15)
     def run_credit_out_crm(self):
-        credit_out_crm = CreditOutTestCRM()
-        credit_out_crm.test_make_credit_out_crm()
+        CreditOutTestCRM()
 
-    @pytest.mark.run(order=16)
-    def test_run_transfer_between_ta_crm(self):
-        transfer_between = TransferBetweenTa()
-        transfer_between.test_make_transfer_between_ta()
+    def run_transfer_between_ta_crm(self):
+        TransferBetweenTa()
 
-    @pytest.mark.run(order=17)
     def run_check_password_crm(self):
-        check_password = CheckPasswordTestCRM()
-        check_password.test_check_password_crm()
+        CheckPasswordTestCRM()
 
-    @pytest.mark.run(order=18)
     def run_change_password_crm(self):
-        change_password = ChangePasswordTestCRM()
-        change_password.test_make_change_password_from_crm()
+        ChangePasswordTestCRM()
 
-    @pytest.mark.run(order=19)
-    def run_change_password_crm(self):
-        add_interaction = AddInteraction()
-        add_interaction.test_add_interaction()
+    def run_add_interaction_crm(self):
+        AddInteraction()

@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.withdraw_module.tabs.CaWithdrawHistory import CaWithdrawHistory
 from src.main.python.ui.brand.model.ca_modules.CAModules import CAModules
@@ -7,6 +9,7 @@ from src.test.python.ui.automation.utils.preconditions.withdraw_ca.CAWithdrawPre
     CAWithdrawPrecondition
 
 
+@pytest.mark.run(order=6)
 class WithdrawTestCA(BaseTest):
 
     def test_make_withdraw_ca(self):
