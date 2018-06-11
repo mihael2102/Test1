@@ -17,11 +17,11 @@ class CAModules(BrandBasePage):
         return CAModules()
 
     def open_withdraw_page(self):
-        withdraw_page = self.driver.find_element(By.XPATH, "//a[@href='#/clientArea/withdraw_ca']")
+        withdraw_page = super().wait_element_to_be_clickable("//a[@href='#/clientArea/withdraw']")
         withdraw_page.click()
         return CaWithdrawFirstStepRequest()
 
     def open_verification_center_page(self):
-        withdraw_page = self.driver.find_element(By.XPATH, "//a[@href='#/clientArea/withdraw_ca']")
-        withdraw_page.click()
+        verification__page = super().wait_element_to_be_clickable("//a[@href='#/clientArea/verification']")
+        verification__page.click()
         return CaVerificationCenter()

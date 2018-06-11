@@ -25,7 +25,7 @@ class WithdrawTestCA(BaseTest):
             .perform_withdraw_first_step_request(account_number) \
             .perform_withdraw_second_step_request() \
             .click_withdraw_history_tab() \
-            .select_first_account(account_number) \
+            .select_account(account_number) \
             .get_status_request()
 
         assert withdraw_status == CaConstants().PENDING

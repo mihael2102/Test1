@@ -21,8 +21,8 @@ class ChangePasswordTestCA(BaseTest):
             .select_module(CaConstants.ACCOUNT_DETAILS)
 
         CaAccountDetails().open_change_password_tab() \
-            .perform_change_password(Config.data.get_data_first_client(TestDataConstants.PASSWORD)
-                                     , Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD)) \
+            .perform_change_password(Config.data.get_data_first_client(TestDataConstants.PASSWORD),
+                                     Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD)) \
             .refreshing_wait() \
             .close_client_area_pop_up()
 
@@ -44,8 +44,8 @@ class ChangePasswordTestCA(BaseTest):
             .select_module(CaConstants.ACCOUNT_DETAILS)
 
         password_changed = CaAccountDetails().open_change_password_tab() \
-            .perform_change_password(Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD)
-                                     , Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+            .perform_change_password(Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD),
+                                     Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .get_password_changed()
 
         assert password_changed == CaConstants.PASSWORD_SUCCESSFUL_CHANGED

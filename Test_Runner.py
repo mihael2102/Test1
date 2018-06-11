@@ -53,7 +53,7 @@ class TestRunner(object):
     def run_deposit_crm(self):
         DepositTestCRM()
 
-    def test_run_credit_in_crm(self):
+    def run_credit_in_crm(self):
         CreditInTestCRM()
 
     def run_credit_out_crm(self):

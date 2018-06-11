@@ -12,11 +12,11 @@ class CaAccountDetails(BrandBasePage):
     def open_change_password_tab(self):
         change_password = super().wait_load_element_present("//a[contains(text(),'Change Password')]")
         change_password.click()
-        Logging().reportDebugStep(self, "Change Password is opened " + '\n')
+        Logging().reportDebugStep(self, "Change Password module is opened " + '\n')
         return CaChangePasswordTab()
 
     def open_personal_information_tab(self):
         personal_detail_tab = super().wait_load_element_present("//a[contains(text(),'Personal Information')]")
         personal_detail_tab.click()
-        Logging().reportDebugStep(self, "Change Password is opened " + '\n')
+        Logging().reportDebugStep(self, "Personal Information module is opened " + '\n')
         return CaPersonalInformationTab()
