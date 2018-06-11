@@ -63,7 +63,7 @@ class MT4CreditOutModule(CRMBasePage):
         amount_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_comment']")
         amount_filed.clear()
         amount_filed.send_keys(description_credit_in)
-        Logging().reportDebugStep(self, "The  description of credit out module was set in the description field:  " +
+        Logging().reportDebugStep(self, "The description of credit out module was set in the description field:  " +
                                   description_credit_in)
         return MT4CreditOutModule()
 
@@ -75,5 +75,5 @@ class MT4CreditOutModule(CRMBasePage):
     def perform_create_credit_out(self):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
         create_button.click()
-        Logging().reportDebugStep(self, "Perform the create credit in  of credit out module was clicked")
+        Logging().reportDebugStep(self, "Perform the create of credit out module was clicked")
         return CRMClientProfilePage()

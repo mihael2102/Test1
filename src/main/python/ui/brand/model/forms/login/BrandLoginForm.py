@@ -15,8 +15,7 @@ class BrandLoginForm(BrandBasePage):
         super().__init__()
 
     def set_fields(self, email, password):
-        with allure.step("E-mail " + email + " and " + password + " are set"):
-            self.loginFieldLocator = self.driver.find_element(By.XPATH, "//input[@name='login']")
+        self.loginFieldLocator = self.driver.find_element(By.XPATH, "//input[@name='login']")
         self.loginFieldLocator.clear()
         self.loginFieldLocator.send_keys(email)
         Logging().reportDebugStep(self, "Set the email field " + email + '\n')
@@ -27,10 +26,9 @@ class BrandLoginForm(BrandBasePage):
         return BrandLoginForm()
 
     def click_login_button(self):
-        with allure.step("Click the 'Login' button"):
-            self.loginButtonLocator = self.driver.find_element(By.XPATH,
-                                                               "//button[@class='forex-button-pandats short-button-pandats "
-                                                               "login-button-pandats']")
+        self.loginButtonLocator = self.driver.find_element(By.XPATH,
+                                                           "//button[@class='forex-button-pandats short-button-pandats "
+                                                           "login-button-pandats']")
         self.loginButtonLocator.click()
         Logging().reportDebugStep(self, "Click the 'Login' button" + '\n')
         return BrandTradingPlatformPage()
