@@ -24,4 +24,4 @@ class TestRunner(object):
         PersonalDetailsUpdateTestCA()
 
     def run_deposit_crm(self):
-       DepositTestCRM()
+        DepositTestCRM()
