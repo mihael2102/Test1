@@ -4,6 +4,7 @@ from src.test.python.ui.automation.implementation.ca.Test_Make_Deposit import De
 from src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update import PersonalDetailsUpdateTestCA
 from src.test.python.ui.automation.implementation.ca.Test_SignUp import SignUpTest
 from src.test.python.ui.automation.implementation.ca.Test_Support_Ticket import CreateSupportTicketTestCa
+from src.test.python.ui.automation.implementation.crm.Test_Make_Deposit import DepositTestCRM
 
 
 class TestRunner(object):
@@ -23,8 +24,8 @@ class TestRunner(object):
     def run_client_update(self):
         PersonalDetailsUpdateTestCA()
 
-    def run_deposit_ca(self):
-        DepositTestCa()
+    def run_deposit_crm(self):
+       DepositTestCRM()
 
     # def run_withdraw(self):
     #     WithdrawTestCA()
@@ -40,8 +41,7 @@ class TestRunner(object):
     #
 
     #
-    # def run_deposit_crm(self):
-    #     DepositTestCRM()
+
     #
     # def run_credit_in_crm(self):
     #     CreditInTestCRM()
