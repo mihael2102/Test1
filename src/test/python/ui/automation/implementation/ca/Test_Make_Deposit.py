@@ -13,7 +13,7 @@ from src.test.python.utils.TestDataConstants import TestDataConstants
 class DepositTestCa(BaseTest):
 
     def test_make_deposit_from_ca(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex) \
+        BrandHomePage().open_first_tab_page(Config.url_client_area) \
             .login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \

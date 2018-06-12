@@ -14,7 +14,7 @@ from src.test.python.utils.TestDataConstants import TestDataConstants
 class PersonalDetailsUpdateTestCA(BaseTest):
 
     def test_perform_client_update_from_CA(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex) \
+        BrandHomePage().open_first_tab_page(Config.url_client_area) \
             .login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
@@ -88,7 +88,7 @@ class PersonalDetailsUpdateTestCA(BaseTest):
             .edit_city_by_pencil(Config.data.get_data_first_client(TestDataConstants.CITY)) \
             .edit_country_by_pencil(Config.data.get_data_first_client(TestDataConstants.FIRST_COUNTRY))
 
-        BrandHomePage().open_second_tab_page(Config.url_new_forex).login() \
+        BrandHomePage().open_second_tab_page(Config.url_client_area).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \

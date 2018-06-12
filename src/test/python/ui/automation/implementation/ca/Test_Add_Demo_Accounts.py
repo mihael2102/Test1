@@ -14,7 +14,7 @@ from src.test.python.utils.TestDataConstants import TestDataConstants
 class AddDemoAccountsTestCA(BaseTest):
 
     def test_check_add_demo_account_usd_currency(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \
+        BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
@@ -55,7 +55,7 @@ class AddDemoAccountsTestCA(BaseTest):
         assert balance_ca == balance_crm
 
     def test_check_add_demo_account_eur_currency(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \
+        BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
@@ -96,7 +96,7 @@ class AddDemoAccountsTestCA(BaseTest):
         assert balance_ca == balance_crm
 
     def test_check_add_demo_account_gbr_currency(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \
+        BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
@@ -137,7 +137,7 @@ class AddDemoAccountsTestCA(BaseTest):
         assert balance_ca == balance_crm
 
     def test_check_add_demo_account_cad_currency(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \
+        BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \

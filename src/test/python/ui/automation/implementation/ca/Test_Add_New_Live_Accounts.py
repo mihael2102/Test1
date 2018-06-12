@@ -14,7 +14,7 @@ from src.test.python.utils.TestDataConstants import TestDataConstants
 class AddNewLiveAccountTestCA(BaseTest):
 
     def test_check_add_live_account_eur_currency(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \
+        BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
@@ -48,7 +48,7 @@ class AddNewLiveAccountTestCA(BaseTest):
         assert eur_currency_ca == eur_currency_crm
 
     def test_check_add_live_account_gbr_currency(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \
+        BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
@@ -82,7 +82,7 @@ class AddNewLiveAccountTestCA(BaseTest):
         assert gbr_currency_ca == gbr_currency_crm
 
     def test_check_add_live_account_cad_currency(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \
+        BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
@@ -116,7 +116,7 @@ class AddNewLiveAccountTestCA(BaseTest):
         assert cad_currency__ca == cad_currency_crm
 
     def test_check_add_live_account_jpy_currency(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \
+        BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \

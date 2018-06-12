@@ -13,7 +13,7 @@ class CRMTransferBetweenPrecondition(object):
         super().__init__()
 
     def add_two_usd_currencies(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex).login() \
+        BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
