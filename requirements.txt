@@ -14,5 +14,4 @@ python-dateutil
 allure-behave
 pytest-allure-adaptor
 allure-pytest
-allure-python-commons
-allure-python-commons-test
+allure-python-commons==2.4.0
