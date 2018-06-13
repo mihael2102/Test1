@@ -12,5 +12,7 @@ setuptools-scm==2.0.0
 six==1.11.0
 python-dateutil
 allure-behave
-allure.pytest_plugin
+pytest-allure-adaptor 1.7.10
 allure-pytest
+allure-python-commons
+allure-python-commons-test
