@@ -13,6 +13,6 @@ six==1.11.0
 python-dateutil
 allure-behave
 pytest-allure-adaptor
-allure-pytest
+
 
 
