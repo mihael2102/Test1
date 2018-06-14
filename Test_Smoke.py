@@ -1,4 +1,3 @@
-import pytest
 from src.test.python.ui.automation.implementation.ca.Test_Add_Demo_Accounts import AddDemoAccountsTestCA
 from src.test.python.ui.automation.implementation.ca.Test_Add_New_Live_Accounts import AddNewLiveAccountTestCA
 from src.test.python.ui.automation.implementation.ca.Test_Change_Password import ChangePasswordTestCA
