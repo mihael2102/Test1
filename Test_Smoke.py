@@ -18,7 +18,7 @@ from src.test.python.ui.automation.implementation.crm.Test_Make_Deposit import D
 from src.test.python.ui.automation.implementation.crm.Test_Transfer_Between_Ta import TransferBetweenTa
 
 
-class TestRunner(object):
+class TestSmoke(object):
 
     @pytest.mark.run(order=1)
     def test_run_sign_up(self):
