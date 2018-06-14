@@ -8,8 +8,6 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.withdraw_ca.CAWithdrawPrecondition import \
     CAWithdrawPrecondition
 
-
-@pytest.mark.run(order=6)
 class WithdrawTestCA(BaseTest):
 
     def test_make_withdraw_ca(self):
