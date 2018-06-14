@@ -2,7 +2,7 @@
   "client_1": {
     "country": "Germany",
     "first_name": "TestQa",
-    "email": "evgeniy+testing20@pandats.com",
+    "email": "evgeniy+testing21@pandats.com",
     "last_name": "Li",
     "area_code": "44444",
     "phone": "55555555",
@@ -36,7 +36,7 @@
     "us_taxid": "777777",
     "user_name": "pandaqa",
     "crm_password": "xUQ7hrr9VF",
-    "test_filter": "test",
+    "test_filter": "TestFilter",
     "initial_deposit1": "2500",
     "initial_deposit2": "20000",
     "initial_deposit3": "15000",
