@@ -9,8 +9,8 @@ class TestDemo(BaseTest):
     def testing_tabs(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                        "fdfsdfs") \
-            .click_login_button().get_amount_by_account_text()
+                        Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+            .click_login_button()
 
         CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
