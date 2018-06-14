@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.deposit.CADeposit import CADeposit
 from src.main.python.ui.brand.model.client_area_modules.deposit.CASuccessDeposit import CASuccessDeposit
@@ -7,6 +9,7 @@ from src.main.python.utils.config import Config
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=5)
 class DepositTestCa(BaseTest):
 
     def test_make_deposit_from_ca(self):

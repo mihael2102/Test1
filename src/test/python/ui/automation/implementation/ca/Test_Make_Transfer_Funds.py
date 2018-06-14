@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
@@ -5,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.transfer_funds.CATransferFundsPrecondition import \
     CATransferFundsPrecondition
 
-
+@pytest.mark.run(order=7)
 class TransferFundsTestCA(BaseTest):
 
     def test_make_transfer_funds(self):

@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.transfer_between_ta.MT4TransferBetweenTa import MT4TransferBetweenTa
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
@@ -6,6 +8,7 @@ from src.test.python.ui.automation.utils.preconditions.transfer_between_ta.CRMTr
     CRMTransferBetweenPrecondition
 
 
+@pytest.mark.run(order=14)
 class TransferBetweenTa(BaseTest):
 
     def test_make_transfer_between_ta(self):
