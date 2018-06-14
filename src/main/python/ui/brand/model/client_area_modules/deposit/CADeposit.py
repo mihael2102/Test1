@@ -12,7 +12,7 @@ class CADeposit(BrandBasePage):
         print("hello")
 
     def select_payment_method(self, payment_method):
-        method = super().wait_load_element_present("//div[@class='pay-method-pandats'][%s]" % payment_method)
+        method = super().wait_load_element_present("//div[@class='pay-method-pandats credit-card'][%s]" % payment_method)
         method.click()
         return CADeposit()
 
