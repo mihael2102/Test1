@@ -43,3 +43,6 @@ class CRMConstants(object):
     AMOUNT_WITHDRAW_SECOND = "30.00"
     ADD_INTERACTION = "6"
     INTERACTION_SUCCESSFULLY = "Interraction successfully created"
+    SHORT_E_MAIL = "short_email"
+    SHORT_CLIENT_NAME = "short_client_name"
+    SHORT_FIRST_NAME = "short_first_name"

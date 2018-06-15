@@ -46,6 +46,9 @@
     "expiry_year":"2020",
     "cvs":"123",
     "withdrawal_reason":"Limited funds",
-    "new_password":"qa1qa2"
+    "new_password":"qa1qa2",
+    "short_email":"testing25",
+    "short_client_name":"Qa",
+    "short_first_name":"st"
   }
 }
