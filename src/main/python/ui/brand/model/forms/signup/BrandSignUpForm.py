@@ -1,8 +1,6 @@
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformPage import BrandTradingPlatformPage
-from src.main.python.utils.screenshot.ScreenShot import ScreenShot
-
 
 class BrandSignUpForm(BrandBasePage):
 
@@ -16,49 +14,43 @@ class BrandSignUpForm(BrandBasePage):
         return BrandSignUpForm()
 
     def set_password(self, password):
-        self.password_locator = self.driver.find_element(By.XPATH, "//*[@name='password']")
-        self.password_locator.clear()
-        self.password_locator.send_keys(password)
+        password_locator = self.driver.find_element(By.XPATH, "//*[@name='password']")
+        password_locator.clear()
+        password_locator.send_keys(password)
         return BrandSignUpForm()
 
     def set_confirm_password(self, confirm_password):
-        self.confirmLocator = self.driver.find_element(By.XPATH, "//*[@name='passwordConfirm']")
-        self.confirmLocator.clear()
-        self.confirmLocator.send_keys(confirm_password)
+        confirmLocator = self.driver.find_element(By.XPATH, "//*[@name='passwordConfirm']")
+        confirmLocator.clear()
+        confirmLocator.send_keys(confirm_password)
         return BrandSignUpForm()
 
     def set_promo_code(self, promo_code):
-        self.promo_code_locator = self.driver.find_element(By.XPATH, "//*[@placeholder='Enter Promocode']")
-        self.promo_code_locator.clear()
-        self.promo_code_locator.send_keys(promo_code)
+        promo_code_locator = self.driver.find_element(By.XPATH, "//*[@placeholder='Enter Promocode']")
+        promo_code_locator.clear()
+        promo_code_locator.send_keys(promo_code)
         return BrandSignUpForm()
 
     def set_country(self, country):
-        self.change_country_locator = self.driver.find_element(By.XPATH,
+        change_country_locator = self.driver.find_element(By.XPATH,
                                                                "//div[@class='country-pandats']//following-sibling::a")
-        self.change_country_locator.click()
-        self.exist_counter_locator = self.driver.find_element(By.XPATH, "//div[@class='content-pandats']//ul")
-        self.search_locator = self.driver.find_element(By.XPATH,
+        change_country_locator.click()
+        exist_counter_locator = self.driver.find_element(By.XPATH, "//div[@class='content-pandats']//ul")
+        search_locator = self.driver.find_element(By.XPATH,
                                                        "//div[@class='search-pandats']//following-sibling::input")
 
-        self.search_locator.send_keys(country)
-        self.exist_counter_locator.click()
+        search_locator.send_keys(country)
+        exist_counter_locator.click()
         return BrandSignUpForm()
 
     def set_check_box(self):
-        self.checkBoxLocator = self.driver.find_element(By.XPATH, "//label[@class='terms-pandats']")
-        screen_path = "passed_screenshots/"
-        screen = ScreenShot(self.driver)
-        if self.checkBoxLocator.is_displayed():
-            self.checkBoxLocator.click()
-        screen.perform_screen_shot(screen_path + "NewForexSignForm.png")
+        checkBoxLocator = self.driver.find_element(By.XPATH, "//label[@class='terms-pandats']")
+        checkBoxLocator.click()
         return BrandSignUpForm()
 
     def sign_up_button(self):
-        self.submitLocator = self.driver.find_element(By.XPATH,
+        submitLocator = self.driver.find_element(By.XPATH,
                                                       "//button[@class='forex-button-pandats signup-button-pandats']")
-        screen_path = "/"
-        screen = ScreenShot(self.driver)
-        self.submitLocator.click()
-        screen.perform_screen_shot(screen_path + "ForexTradingPlatformPage.png")
+
+        submitLocator.click()
         return BrandTradingPlatformPage()
