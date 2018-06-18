@@ -4,9 +4,9 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class TestSearchingClientsTestCRM(BaseTest):
+class MassEditTestCRM(BaseTest):
 
-    def test_make_searching(self):
+    def test_make_mass_edit(self):
         crm_client_profile = CRMLoginPage() \
             .open_first_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
@@ -19,13 +19,8 @@ class TestSearchingClientsTestCRM(BaseTest):
                                Config.data.get_data_first_client(CRMConstants.SHORT_FIRST_NAME),
                                Config.data.get_data_first_client(CRMConstants.SHORT_LAST_NAME),
                                Config.data.get_data_first_client(TestDataConstants.CITY),
-                               Config.data.get_data_first_client(CRMConstants.BRAND_NEW_FOREX)) \
-            .open_client_id()
+                               Config.data.get_data_first_client(CRMConstants.BRAND_NEW_FOREX))
 
-        first_name_crm = crm_client_profile.get_first_name()
-        last_name_crm = crm_client_profile.get_last_name()
-        email = crm_client_profile.get_email_text()
+        crm_client_profile.select_several_records()
 
-        assert Config.data.get_data_first_client(TestDataConstants.FIRST_NAME) == first_name_crm
-        assert Config.data.get_data_first_client(TestDataConstants.LAST_NAME) == last_name_crm
-        assert Config.data.get_data_first_client(TestDataConstants.E_MAIL) == email
+

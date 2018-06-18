@@ -279,6 +279,16 @@ class CRMClientProfilePage(CRMBasePage):
         return parser_address_text
 
     '''
+        Returns the email 
+    '''
+
+    def get_email_text(self):
+        email = self.driver.find_element(By.XPATH,
+                                         "//td[contains(text(),'Email')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the email " + email.text)
+        return email.text
+
+    '''
         Returns the city
     '''
 

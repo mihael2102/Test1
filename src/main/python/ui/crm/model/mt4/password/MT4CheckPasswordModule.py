@@ -8,7 +8,7 @@ class MT4CheckPasswordModule(CRMBasePage):
         super().__init__()
 
     '''
-        Select an account from drop down
+        Choice an account from the pick-list
         :parameter account the live account of the client
         :returns MT4 Check PasswordModule instance
     '''

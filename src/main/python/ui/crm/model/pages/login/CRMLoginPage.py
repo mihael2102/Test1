@@ -32,7 +32,6 @@ class CRMLoginPage(CRMBasePage):
     '''
 
     def crm_login(self, user_name, password):
-        self.log = Logging()
         user_name_field = self.driver.find_element(By.XPATH, "//input[@id='user_name']")
         password__field = self.driver.find_element(By.XPATH, "//input[@id='user_password']")
         login_button = self.driver.find_element(By.XPATH, "//input[@id='submitButton']")
@@ -55,3 +54,7 @@ class CRMLoginPage(CRMBasePage):
         super().switch_second_tab_page()
         Logging().reportDebugStep(self, "Switch  the second page")
         return CRMLoginPage()
+
+
+
+
