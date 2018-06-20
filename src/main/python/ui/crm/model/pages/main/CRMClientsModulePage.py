@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.filter.CRMFilterModule import CRMFilterModule
 from src.main.python.ui.crm.model.modules.help_desk.CRMHelpDeskModule import CRMHelpDesk
+from src.main.python.ui.crm.model.modules.mass_assign_client_module.CRMMassAssignModule import CRMMassAssignModule
 from src.main.python.ui.crm.model.modules.mass_edit_client_module.CRMMassEditModule import CRMMassEditModule
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
@@ -24,6 +25,10 @@ class CRMClientsModulePage(CRMBasePage):
         self.enter_city(city)
         self.select_brand(brand)
         self.click_search_button()
+        return CRMClientsModulePage()
+
+    def perform_searching_by_email(self, email):
+        self.enter_email(email)
         return CRMClientsModulePage()
 
     ''' 
@@ -63,7 +68,7 @@ class CRMClientsModulePage(CRMBasePage):
         sleep(2)
         client_id = super().wait_element_to_be_clickable("//tr[@class='lvtColData']//div[@class='link_field']")
         client_id.click()
-        Logging().reportDebugStep(self, "Clicking on user's name by email : ")
+        Logging().reportDebugStep(self, "Click user name: ")
         return CRMClientProfilePage()
 
     ''' 
@@ -97,11 +102,12 @@ class CRMClientsModulePage(CRMBasePage):
     def refresh(self):
         self.driver.refresh()
         Logging().reportDebugStep(self, "Perform the refresh ")
-        return CRMHelpDesk()
+        return CRMClientsModulePage()
 
     def enter_email(self, email):
         sleep(2)
         email_field = super().wait_load_element("//input[@id='tks_email1']")
+        email_field.clear()
         email_field.send_keys(email)
         return CRMClientsModulePage()
 
@@ -193,7 +199,7 @@ class CRMClientsModulePage(CRMBasePage):
         sleep(2)
         client_id = super().wait_element_to_be_clickable("//tr[@class='lvtColData']//div[@class='link_field']")
         client_id.click()
-        Logging().reportDebugStep(self, "Clicking on user's name by email : ")
+        Logging().reportDebugStep(self, "Click user name by email : ")
         return CRMClientProfilePage()
 
     def open_create_filter_pop_up(self):
@@ -209,50 +215,50 @@ class CRMClientsModulePage(CRMBasePage):
         return name_first_column.text
 
     def get_second_name_column(self):
-        name_second_column = super().wait_element_to_be_clickable(
-            "//table[@id='resizeble_cols']//td[3]")
+        name_second_column = self.driver.find_element(By.XPATH,
+                                                      "//table[@id='resizeble_cols']//td[3]")
         Logging().reportDebugStep(self, "Second column name: " + name_second_column.text)
         return name_second_column.text
 
     def get_third_name_column(self):
-        name_third_column = super().wait_element_to_be_clickable(
-            "//table[@id='resizeble_cols']//td[4]")
+        name_third_column = self.driver.find_element(By.XPATH,
+                                                     "//table[@id='resizeble_cols']//td[4]")
         Logging().reportDebugStep(self, "Third column name: " + name_third_column.text)
         return name_third_column.text
 
     def get_fourth_name_column(self):
-        name_fourth_column = super().wait_element_to_be_clickable(
-            "//table[@id='resizeble_cols']//td[5]")
+        name_fourth_column = self.driver.find_element(By.XPATH,
+                                                      "//table[@id='resizeble_cols']//td[5]")
         Logging().reportDebugStep(self, "Fourth column name : " + name_fourth_column.text)
         return name_fourth_column.text
 
     def get_fifth_name_column(self):
-        name_fifth_column = super().wait_element_to_be_clickable(
-            "//table[@id='resizeble_cols']//td[6]")
+        name_fifth_column = self.driver.find_element(By.XPATH,
+                                                     "//table[@id='resizeble_cols']//td[6]")
         Logging().reportDebugStep(self, "Fifth column name : " + name_fifth_column.text)
         return name_fifth_column.text
 
     def get_sixth_name_column(self):
-        name_sixth_column = super().wait_element_to_be_clickable(
-            "//table[@id='resizeble_cols']//td[7]")
+        name_sixth_column = self.driver.find_element(By.XPATH,
+                                                     "//table[@id='resizeble_cols']//td[7]")
         Logging().reportDebugStep(self, "Sixth column name : " + name_sixth_column.text)
         return name_sixth_column.text
 
     def get_seventh_name_column(self):
-        name_seventh_column = super().wait_element_to_be_clickable(
-            "//table[@id='resizeble_cols']//td[8]")
+        name_seventh_column = self.driver.find_element(By.XPATH,
+                                                       "//table[@id='resizeble_cols']//td[8]")
         Logging().reportDebugStep(self, "Seventh column name : " + name_seventh_column.text)
         return name_seventh_column.text
 
     def get_eighth_name_column(self):
-        name_eighth_column = super().wait_element_to_be_clickable(
-            "//table[@id='resizeble_cols']//td[9]")
+        name_eighth_column = self.driver.find_element(By.XPATH,
+                                                      "//table[@id='resizeble_cols']//td[9]")
         Logging().reportDebugStep(self, "Seventh column name : " + name_eighth_column.text)
         return name_eighth_column.text
 
     def get_ninth_name_column(self):
-        name_ninth_column = super().wait_element_to_be_clickable(
-            "//table[@id='resizeble_cols']//td[10]")
+        name_ninth_column = self.driver.find_element(By.XPATH,
+                                                     "//table[@id='resizeble_cols']//td[10]")
         Logging().reportDebugStep(self, "Ninth  column name : " + name_ninth_column.text)
         return name_ninth_column.text
 
@@ -263,8 +269,8 @@ class CRMClientsModulePage(CRMBasePage):
         return name_tenth_column.text
 
     def get_eleventh_name_column(self):
-        name_eleventh_column = super().wait_element_to_be_clickable(
-            "//table[@id='resizeble_cols']//td[12]")
+        name_eleventh_column = self.driver.find_element(By.XPATH,
+                                                        "//table[@id='resizeble_cols']//td[12]")
         Logging().reportDebugStep(self, "Eleventh  column name : " + name_eleventh_column.text)
         return name_eleventh_column.text
 
@@ -284,9 +290,9 @@ class CRMClientsModulePage(CRMBasePage):
         sleep(2)
         first_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[1]")
         first_check_box.click()
-        second_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[2]//td[2]")
+        second_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[2]//td[1]")
         second_check_box.click()
-        third_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[3]//td[2]")
+        third_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[3]//td[1]")
         third_check_box.click()
         return CRMClientsModulePage()
 
@@ -295,4 +301,50 @@ class CRMClientsModulePage(CRMBasePage):
         mass_edit_module.click()
         return CRMMassEditModule()
 
+    '''
+        Returns a confirmation  message if the user entered a valid password
+     '''
 
+    def get_confirm_message(self):
+        confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
+        Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
+        return confirm_message.text
+
+    def open_mass_assign_module(self):
+        mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass assign']")
+        mass_edit_module.click()
+        return CRMMassAssignModule()
+
+    def get_first_client_email(self):
+        sleep(3)
+        first_client_id = super().wait_element_to_be_clickable(
+            "//tbody[@id='listBody']//tr[1]//td[2]")
+        first_client_id.click()
+
+        client_email = super().wait_load_element("//td[contains(text(),'Email')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the first client: " + client_email.text)
+        return client_email.text
+
+    def get_second_client_email(self):
+        sleep(3)
+        second_client_id = super().wait_element_to_be_clickable(
+            "//tbody[@id='listBody']//tr[2]//td[2]")
+        second_client_id.click()
+
+        client_email = super().wait_load_element("//td[contains(text(),'Email')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the first client: " + client_email.text)
+        return client_email.text
+
+    def get_third_client_email(self):
+        sleep(3)
+        third_client_id = super().wait_element_to_be_clickable(
+            "//tbody[@id='listBody']//tr[3]//td[2]")
+        third_client_id.click()
+
+        client_email = super().wait_load_element("//td[contains(text(),'Email')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the first client: " + client_email.text)
+        return client_email.text
+
+    def came_back_on_previous_page(self):
+        super().came_back_on_previous_page()
+        return CRMClientsModulePage()

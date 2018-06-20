@@ -64,10 +64,6 @@
     "eighth_column": "First Name",
     "ninth_column": "Last Name *",
     "tenth_column": "City *",
-    "eleventh_column": "Brand",
-    "gender_male": "M",
-    "gender_female": "F",
-    "assigned_to_panda": "pandaqa pandaqa"
-
+    "eleventh_column": "Brand"
   }
 }

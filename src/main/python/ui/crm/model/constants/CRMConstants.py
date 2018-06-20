@@ -3,6 +3,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    MASS_ASSIGN = "3 accounts assigned to Panda Support"
     FIRST_COLUMN = "first_column"
     SECOND_COLUMN = "second_column"
     THIRD_COLUMN = "third_column"
@@ -34,6 +35,7 @@ class CRMConstants(object):
     WITHDRAW_SUCCESSFULLY = "MT4 Withdraw successfull"
     DEPOSIT_SUCCESSFULLY = "MT4 Deposit successfull"
     PASSWORD_CHANGE = "Password was change successfully"
+    MASS_EDIT = "Successfuly updated"
     CHANGE_PASSWORD = "4"
     PASSWORD_MESSAGE = "Entered password valid"
     CHECK_PASSWORD = "3"
