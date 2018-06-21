@@ -5,6 +5,7 @@ from src.test.python.ui.automation.BaseTest import BaseTest
 from src.test.python.ui.automation.utils.preconditions.credit_in.CRMCredit_In_Precondition import \
     CRMCreditInPrecondition
 
+
 class CreditInTestCRM(BaseTest):
 
     def test_make_credit_in_crm(self):

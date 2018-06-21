@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.side_bar.CRMSidebarModules import CRMSidebarModules
