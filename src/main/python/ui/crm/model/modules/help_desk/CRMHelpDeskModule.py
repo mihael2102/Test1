@@ -2,6 +2,7 @@ import re
 from time import sleep
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.utils.logs.Loging import Logging
 
 
 class CRMHelpDesk(CRMBasePage):
@@ -16,6 +17,7 @@ class CRMHelpDesk(CRMBasePage):
     def opened_today_tab(self):
         tab = super().wait_load_element("//li[contains(text(),'Opened Today')]")
         tab.click()
+        Logging().reportDebugStep(self, "The today tab was opened")
         return CRMHelpDesk()
 
     '''
@@ -27,6 +29,7 @@ class CRMHelpDesk(CRMBasePage):
         sleep(2)
         ticket_number = super().wait_load_element("//div[@class='link_field']")
         ticket_number.click()
+        Logging().reportDebugStep(self, "Open ticket number")
         return CRMHelpDesk()
 
     '''
@@ -35,6 +38,7 @@ class CRMHelpDesk(CRMBasePage):
 
     def get_category_status_text(self):
         category = super().wait_load_element("//span[@id='dtlview_Category']")
+        Logging().reportDebugStep(self, "Returns category of ticket: " + category.text)
         return category.text
 
     ''' 
@@ -43,6 +47,7 @@ class CRMHelpDesk(CRMBasePage):
 
     def get_ticket_status_text(self):
         category = super().wait_load_element("//td[@id='mouseArea_Status']")
+        Logging().reportDebugStep(self, "Returns status of ticket: " + category.text)
         return category.text
 
     ''' 
@@ -52,6 +57,7 @@ class CRMHelpDesk(CRMBasePage):
     def get_subject_tittle(self):
         subject_tittle = super().wait_load_element("//td[@id='mouseArea_Title']")
         new_subject_tittle = re.sub(' ', "", subject_tittle.text)
+        Logging().reportDebugStep(self, "The subject is set:  " + new_subject_tittle)
         return new_subject_tittle
 
     ''' 
@@ -71,6 +77,7 @@ class CRMHelpDesk(CRMBasePage):
                                                       "//span[contains(text(), '%s')]" % test_filter)
 
         select_test_filter.click()
+        Logging().reportDebugStep(self, "The filter was selected: " + test_filter)
 
         return CRMHelpDesk()
 
@@ -84,6 +91,7 @@ class CRMHelpDesk(CRMBasePage):
         field_id = super().wait_load_element("//input[@name='tks_bl_id']")
         field_id.clear()
         field_id.send_keys(ticket_id)
+        Logging().reportDebugStep(self, "The ticket was find: " + ticket_id)
         return CRMHelpDesk()
 
     ''' 
@@ -94,4 +102,5 @@ class CRMHelpDesk(CRMBasePage):
     def perform_search(self):
         search_button = super().wait_load_element("//td[@class='txt_al_c']")
         search_button.click()
+        Logging().reportDebugStep(self, "Perform search")
         return CRMHelpDesk()

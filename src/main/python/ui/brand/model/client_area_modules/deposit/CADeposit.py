@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.ui.brand.model.client_area_modules.deposit.CASuccessDeposit import CASuccessDeposit
 
@@ -13,7 +12,7 @@ class CADeposit(BrandBasePage):
         print("hello")
 
     def select_payment_method(self, payment_method):
-        method = super().wait_load_element_present("//div[@class='pay-method-pandats'][%s]" % payment_method)
+        method = super().wait_load_element_present("//div[@class='pay-method-pandats credit-card'][%s]" % payment_method)
         method.click()
         return CADeposit()
 

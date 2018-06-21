@@ -6,7 +6,7 @@ from src.test.python.ui.automation.utils.preconditions.credit_out.CRMCredit_Out_
     CRMCreditOutPrecondition
 
 
-class CreditInTestCRM(BaseTest):
+class CreditOutTestCRM(BaseTest):
 
     def test_make_credit_out_crm(self):
         CRMCreditOutPrecondition().add_live_account().make_deposit()

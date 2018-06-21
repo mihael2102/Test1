@@ -1,7 +1,5 @@
 from time import sleep
-
 from selenium.webdriver.common.by import By
-
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.utils.parser.ParserDate import ParserDate
 
@@ -168,11 +166,6 @@ class CaPersonalInformationTab(BrandBasePage):
     def get_country_text(self):
         country = self.driver.find_element(By.XPATH, "//custom-select[@name='country']")
         return country.text
-
-    def get_citizen_ship_text(self):
-        citizen = self.driver.find_element(By.XPATH, "//custom-select[@name='citizenship']")
-        return citizen.text
-
 
     def get_citizen_ship_text(self):
         citizen = self.driver.find_element(By.XPATH, "//custom-select[@name='citizenship']")

@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.password.MT4CheckPasswordModule import MT4CheckPasswordModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -5,6 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=2)
 class CheckPasswordTestCRM(BaseTest):
 
     def test_check_password_crm(self):
@@ -22,11 +25,11 @@ class CheckPasswordTestCRM(BaseTest):
 
         crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CHECK_PASSWORD)
 
-        check_password_module = MT4CheckPasswordModule().select_account(account_number) \
+        MT4CheckPasswordModule().select_account(account_number) \
             .enter_password(Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_check_button()
 
-        message = check_password_module.get_confirm_message()
-        check_password_module.click_ok()
+        message = crm_client_profile.get_confirm_message()
+        crm_client_profile.click_ok()
 
         assert message == CRMConstants.PASSWORD_MESSAGE

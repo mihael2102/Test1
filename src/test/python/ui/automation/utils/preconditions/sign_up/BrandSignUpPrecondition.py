@@ -14,7 +14,7 @@ class BrandSignUpPrecondition(object):
         super().__init__()
 
     def perform_first_step(self):
-        BrandHomePage().open_first_tab_page(Config.url_new_forex) \
+        BrandHomePage().open_first_tab_page(Config.url_client_area) \
             .open_sign_form() \
             .set_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL)) \
             .set_password(Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \

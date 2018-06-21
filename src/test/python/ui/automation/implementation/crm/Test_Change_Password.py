@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.password.MT4CheckPasswordModule import MT4CheckPasswordModule
 from src.main.python.ui.crm.model.mt4.password.MT4UpdatePasswordModule import MT4UpdatePasswordModule
@@ -6,7 +8,8 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class CheckPasswordTestCRM(BaseTest):
+@pytest.mark.run(order=3)
+class ChangePasswordTestCRM(BaseTest):
 
     def test_make_change_password_from_crm(self):
         crm_client_profile = CRMLoginPage() \
@@ -23,34 +26,32 @@ class CheckPasswordTestCRM(BaseTest):
 
         crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CHANGE_PASSWORD)
 
-        update_password_module = MT4UpdatePasswordModule().select_account(account_number) \
+        MT4UpdatePasswordModule().select_account(account_number) \
             .enter_password(Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD)) \
             .click_check_button()
 
-        confirmation_message = update_password_module.get_confirm_message()
-        update_password_module.click_ok()
+        message_confirm = crm_client_profile.get_confirm_message()
+        crm_client_profile.click_ok()
 
-        assert confirmation_message == CRMConstants.PASSWORD_CHANGE
+        assert message_confirm == CRMConstants.PASSWORD_CHANGE
 
         crm_client_profile.refresh_page().open_mt4_actions(CRMConstants.CHECK_PASSWORD)
 
-        check_password_module = MT4CheckPasswordModule() \
-            .select_account(account_number) \
+        MT4CheckPasswordModule().select_account(account_number) \
             .enter_password(Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD)) \
             .click_check_button()
 
-        confirmation_message = check_password_module.get_confirm_message()
-        check_password_module.click_ok()
+        message_confirm = crm_client_profile.get_confirm_message()
+        crm_client_profile.click_ok()
 
-        assert confirmation_message == CRMConstants.PASSWORD_MESSAGE
+        assert message_confirm == CRMConstants.PASSWORD_MESSAGE
 
         crm_client_profile.refresh_page().open_mt4_actions(CRMConstants.CHANGE_PASSWORD)
 
-        update_password_module = MT4UpdatePasswordModule() \
-            .select_account(account_number) \
+        MT4UpdatePasswordModule().select_account(account_number) \
             .enter_password(Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
             .click_check_button()
 
-        confirmation_message = update_password_module.get_confirm_message()
-        update_password_module.click_ok()
-        assert confirmation_message == CRMConstants.PASSWORD_CHANGE
+        message_confirm = crm_client_profile.get_confirm_message()
+        crm_client_profile.click_ok()
+        assert message_confirm == CRMConstants.PASSWORD_CHANGE

@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.ui.brand.model.forms.login.BrandLoginForm import BrandLoginForm
 from src.main.python.ui.brand.model.forms.signup.BrandSignUpForm import BrandSignUpForm
-from src.main.python.utils.screenshot.ScreenShot import ScreenShot
+from src.main.python.utils.logs.Loging import Logging
 
 
 class BrandHomePage(BrandBasePage):
@@ -13,30 +13,29 @@ class BrandHomePage(BrandBasePage):
     def __init__(self):
         super().__init__()
 
-    @allure.step("Open first tab")
     def open_first_tab_page(self, url):
         super().open_first_tab_page(url)
+        Logging().reportDebugStep(self, "Open the first tab with the page: " + url)
         return BrandHomePage()
 
     def open_second_tab_page(self, url):
         super().open_second_tab_page(url)
+        Logging().reportDebugStep(self, "Open the second tab with the page: " + url)
         return BrandHomePage()
 
     def open_sign_form(self):
         sign_on_button_locator = WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//button[contains (text(),'Sign Up')]")))
-
-        screen_path = "/"
-        screen = ScreenShot(self.driver)
+                EC.element_to_be_clickable((By.XPATH, "//button[contains (text(),'Sign Up')]")))
         sign_on_button_locator.click()
-        screen.perform_screen_shot(screen_path + "NewForexLoginPage.png")
+        Logging().reportDebugStep(self, "Open the sign form")
         return BrandSignUpForm()
 
-    @allure.step("Login")
     def login(self):
-        login_button_locator = super().wait_load_element_present("//button[@class='forex-button-pandats simple-button-pandats "
-                                                         "spinner-button-pandats']")
+        login_button_locator = super().wait_load_element_present(
+                "//button[@class='forex-button-pandats simple-button-pandats "
+                "spinner-button-pandats']")
         login_button_locator.click()
+        Logging().reportDebugStep(self, "Click the 'Login' button on Home page")
         return BrandLoginForm()
 
     def switch_first_tab_page(self):

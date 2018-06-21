@@ -21,7 +21,7 @@ class CaVerificationCenter(BrandBasePage):
         front_upload_picture.click()
         sleep(2)
         autoit.control_set_text("Open", "Edit1",
-                                r"D:\automation-newforexqa\src\main\python\utils\documents\bear.jpg")
+                                r"C:\Users\Administrator\.jenkins\workspace\Regression New Forex Staging\src\main\python\utils\documents\bear.jpg")
         autoit.control_send("Open", "Edit1", "{ENTER}")
         Logging().reportDebugStep(self, "The  document was uploaded ")
         return CaVerificationCenter()
