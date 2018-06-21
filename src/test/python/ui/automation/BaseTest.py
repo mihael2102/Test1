@@ -26,7 +26,7 @@ class BaseTest(unittest.TestCase):
                     fail_url = Config.browser.current_url
                     print(fail_url)
                     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
-                    file_name = 'C:/Users/Administrator/.jenkins/workspace/Regression testing/src/screen_shots/failed_screenshots/failed_screenshot %s.png' % now
+                    file_name = 'C:/Users/Administrator/.jenkins/workspace/Smoke New Forex Staging/src/screen_shots/failed_screenshots/failed_screenshot %s.png' % now
                     Config.browser.get_screenshot_as_file(file_name)
                     allure.attach(Config.browser.get_screenshot_as_png(), name="Failed Screenshot",
                                   attachment_type=AttachmentType.PNG)
