@@ -1,6 +1,5 @@
 import json
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
-from src.main.python.ui.crm.model.constants.CRMMassEditConstants import CRMMassEditConstants
 from src.test.python.utils.TestDataConstants import TestDataConstants
 from src.test.python.utils.XpathDataConstants import XpathDataConstants
 
