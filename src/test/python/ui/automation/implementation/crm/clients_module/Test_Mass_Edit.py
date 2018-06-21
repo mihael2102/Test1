@@ -51,7 +51,7 @@ class MassEditTestCRM(BaseTest):
 
         crm_client_profile = crm_clients_module_page.refresh() \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .perform_searching_by_email(first_client) \
+            .find_client_by_email(first_client) \
             .click_search_button() \
             .open_client_id()
 

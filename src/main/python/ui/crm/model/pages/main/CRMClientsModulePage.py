@@ -48,7 +48,7 @@ class CRMClientsModulePage(CRMBasePage):
         Logging().reportDebugStep(self, "The field found is : " + test_filter)
         select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
         select_test_filter.click()
-        Logging().reportDebugStep(self, "Click on selected filter")
+        Logging().reportDebugStep(self, "Click the selected filter")
         return CRMClientsModulePage()
 
     ''' 
@@ -71,13 +71,6 @@ class CRMClientsModulePage(CRMBasePage):
         client_id.click()
         Logging().reportDebugStep(self, "Click user name: ")
         return CRMClientProfilePage()
-
-    ''' 
-         Returns the account id   
-    '''
-
-    def get_account_id(self):
-        print("account")
 
     '''
          Select the crm page again
