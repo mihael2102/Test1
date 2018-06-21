@@ -8,13 +8,9 @@ from src.test.python.ui.automation.implementation.ca.Test_Make_Withdraw import W
 from src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update import PersonalDetailsUpdateTestCA
 from src.test.python.ui.automation.implementation.ca.Test_SignUp import SignUpTest
 from src.test.python.ui.automation.implementation.ca.Test_Support_Ticket import CreateSupportTicketTestCa
-from src.test.python.ui.automation.implementation.crm.Test_Add_Interaction import AddInteraction
-from src.test.python.ui.automation.implementation.crm.Test_Change_Password import ChangePasswordTestCRM
-from src.test.python.ui.automation.implementation.crm.Test_Check_Password import CheckPasswordTestCRM
 from src.test.python.ui.automation.implementation.crm.Test_Make_Credit_In import CreditInTestCRM
 from src.test.python.ui.automation.implementation.crm.Test_Make_Credit_Out import CreditOutTestCRM
 from src.test.python.ui.automation.implementation.crm.Test_Make_Deposit import DepositTestCRM
-from src.test.python.ui.automation.implementation.crm.Test_Transfer_Between_Ta import TransferBetweenTa
 
 
 class TestSmoke(object):
@@ -58,14 +54,6 @@ class TestSmoke(object):
     def run_credit_out_crm(self):
         CreditOutTestCRM()
 
-    def run_transfer_between_ta_crm(self):
-        TransferBetweenTa()
 
-    def run_password_crm(self):
-        CheckPasswordTestCRM()
 
-    def change_password_crm(self):
-        ChangePasswordTestCRM()
 
-    def add_interaction_crm(self):
-        AddInteraction()
