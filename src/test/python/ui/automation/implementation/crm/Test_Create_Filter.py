@@ -4,6 +4,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=6)
 class CreateFilterTestCRM(BaseTest):
 
     def test_create_filter(self):

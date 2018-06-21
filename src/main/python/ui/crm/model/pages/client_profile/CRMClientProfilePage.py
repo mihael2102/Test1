@@ -350,8 +350,6 @@ class CRMClientProfilePage(CRMBasePage):
         assigned_to = self.driver.find_element(By.XPATH,
                                                "//td[contains(text(),'Assigned To')]//following-sibling::td[1]")
         parser_assigned_to_text = re.sub('[" "]', '', assigned_to.text, 4)
-        print("--------------------------")
-        print(parser_assigned_to_text)
         Logging().reportDebugStep(self, "Returns the assigned to: " + parser_assigned_to_text)
         return parser_assigned_to_text
 
@@ -379,9 +377,8 @@ class CRMClientProfilePage(CRMBasePage):
     def get_client_status_text(self):
         client_status = self.driver.find_element(By.XPATH,
                                                  "//td[contains(text(),'Client Status')]//following-sibling::td[1]")
-        parser_client_status_text = re.sub('[" "]', '', client_status.text, 1)
-        Logging().reportDebugStep(self, "Returns the client status source: " + parser_client_status_text)
-        return parser_client_status_text
+        Logging().reportDebugStep(self, "Returns the client status source: " + client_status.text)
+        return client_status.text
 
     def get_retention_status_text(self):
         retention_status = self.driver.find_element(By.XPATH,

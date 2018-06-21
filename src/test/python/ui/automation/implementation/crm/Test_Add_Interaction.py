@@ -1,5 +1,3 @@
-import pytest
-
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.side_bar.CRMSidebarModules import CRMSidebarModules
@@ -7,7 +5,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=17)
+@pytest.mark.run(order=4)
 class AddInteraction(BaseTest):
 
     def test_add_interaction(self):

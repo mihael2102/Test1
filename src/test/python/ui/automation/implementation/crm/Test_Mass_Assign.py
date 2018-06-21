@@ -5,7 +5,8 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class MassEditTestCRM(BaseTest):
+@pytest.mark.run(order=8)
+class MassAssignTestCRM(BaseTest):
 
     def test_mass_assign(self):
         crm_client_profile = CRMLoginPage() \
