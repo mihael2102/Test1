@@ -39,6 +39,33 @@ class CRMClientProfilePage(CRMBasePage):
         return CRMClientProfilePage()
 
     '''
+         Perform scroll_down
+         returns Manage Accounts Module  instance    
+     '''
+
+    def click_sms_tab(self):
+        trading_account_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'SMS')][1]")
+        trading_account_tab.click()
+        Logging().reportDebugStep(self, "Open the sms tab ")
+        return CRMClientProfilePage()
+
+    '''
+        Open the SMS tab
+        returns Manage Accounts Module  instance    
+    '''
+
+    def open_sms_tab(self):
+        trading_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_SMS']")
+        trading_tab.click()
+        Logging().reportDebugStep(self, "Open the sms tab ")
+        return CRMClientProfilePage()
+
+    def get_counter_sms(self):
+        counter_sms = super().wait_element_to_be_clickable("//span[@class='amount amount_SMS']")
+        Logging().reportDebugStep(self, "Counter is " + counter_sms.text)
+        return counter_sms.text
+
+    '''
          Perform scroll_top
          returns Manage Accounts Module  instance    
      '''

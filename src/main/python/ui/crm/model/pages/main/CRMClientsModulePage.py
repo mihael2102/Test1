@@ -2,10 +2,11 @@ from time import sleep
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.modules.client_modules.mass_sms.CRMSendSMSModule import CRMSendSMSModule
 from src.main.python.ui.crm.model.modules.filter.CRMFilterModule import CRMFilterModule
 from src.main.python.ui.crm.model.modules.help_desk.CRMHelpDeskModule import CRMHelpDesk
-from src.main.python.ui.crm.model.modules.mass_assign_client_module.CRMMassAssignModule import CRMMassAssignModule
-from src.main.python.ui.crm.model.modules.mass_edit_client_module.CRMMassEditModule import CRMMassEditModule
+from src.main.python.ui.crm.model.modules.client_modules.mass_assign.CRMMassAssignModule import CRMMassAssignModule
+from src.main.python.ui.crm.model.modules.client_modules.mass_edit.CRMMassEditModule import CRMMassEditModule
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 
@@ -296,6 +297,12 @@ class CRMClientsModulePage(CRMBasePage):
         third_check_box.click()
         return CRMClientsModulePage()
 
+    def select_one_records(self):
+        sleep(2)
+        first_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[1]")
+        first_check_box.click()
+        return CRMClientsModulePage()
+
     def open_mass_edit_module(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass Edit']")
         mass_edit_module.click()
@@ -348,3 +355,11 @@ class CRMClientsModulePage(CRMBasePage):
     def came_back_on_previous_page(self):
         super().came_back_on_previous_page()
         return CRMClientsModulePage()
+
+    def open_send_sms_module(self):
+        mass_sms_module = super().wait_element_to_be_clickable("//input[@value='Send SMS']")
+        mass_sms_module.click()
+        return CRMSendSMSModule()
+
+
+

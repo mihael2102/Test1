@@ -5,6 +5,7 @@ from src.test.python.ui.automation.implementation.crm.Test_Create_Filter import 
 from src.test.python.ui.automation.implementation.crm.Test_Mass_Assign import MassAssignTestCRM
 from src.test.python.ui.automation.implementation.crm.Test_Mass_Edit import MassEditTestCRM
 from src.test.python.ui.automation.implementation.crm.Test_Searching_Clients import TestSearchingClientsTestCRM
+from src.test.python.ui.automation.implementation.crm.Test_Send_SMS_Clients_Module import TestSendSMSClientsModule
 from src.test.python.ui.automation.implementation.crm.Test_Transfer_Between_Ta import TransferBetweenTa
 
 
@@ -33,3 +34,6 @@ class TestRegression(object):
 
     def run_perform_mass_assigned_to_clients_module(self):
         MassAssignTestCRM()
+
+    def run_perform_send_sms(self):
+        TestSendSMSClientsModule()

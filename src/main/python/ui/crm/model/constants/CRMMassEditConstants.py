@@ -11,4 +11,5 @@ class CRMMassEditConstants(object):
     RETENTION_STATUS = "retention_status"
     DESCRIPTION = "description"
     REFERRAL = "referral"
-    MASS_EDIT_ONE = "mass_edit_1"
+    MASS_EDIT_CLIENT_MODULE = "mass_edit_1"
+    MASS_SMS_CLIENT_MODULE = "mass_sms_info"

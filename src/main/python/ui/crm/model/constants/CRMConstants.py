@@ -3,7 +3,8 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
-    MASS_ASSIGN = "3 accounts assigned to Panda Support"
+    SEND_SMS_MESSAGE = "Message was sent successfully"
+    MASS_ASSIGN_MESSAGE = "3 accounts assigned to Panda Support"
     FIRST_COLUMN = "first_column"
     SECOND_COLUMN = "second_column"
     THIRD_COLUMN = "third_column"
@@ -68,3 +69,6 @@ class CRMConstants(object):
     SHORT_CLIENT_NAME = "short_client_name"
     SHORT_FIRST_NAME = "short_first_name"
     SHORT_LAST_NAME = "short_last_name"
+    FIRST_PHONE_TYPE = "first_phone_type"
+    DESCRIPTION_SEND_SMS = "Hello"
+    COUNTER_SMS = "1"
