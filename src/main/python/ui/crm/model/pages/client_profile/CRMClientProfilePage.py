@@ -4,6 +4,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.modules.client_modules.document.CRMAddDocumentModule import CRMAddDocumentModule
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.ui.crm.model.pages.trading_accounts_information.CRMTradingAccountsInformationPage import \
@@ -37,6 +38,55 @@ class CRMClientProfilePage(CRMBasePage):
         trading_account_tab.click()
         Logging().reportDebugStep(self, "Open the trading account tab ")
         return CRMClientProfilePage()
+
+    '''
+         Perform scroll_down
+         returns Manage Accounts Module  instance    
+     '''
+
+    def click_sms_tab(self):
+        trading_account_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'SMS')][1]")
+        trading_account_tab.click()
+        Logging().reportDebugStep(self, "Open the sms tab ")
+        return CRMClientProfilePage()
+
+    '''
+        Open the SMS tab
+        returns Manage Accounts Module  instance    
+    '''
+
+    def open_sms_tab(self):
+        trading_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_SMS']")
+        trading_tab.click()
+        Logging().reportDebugStep(self, "Open the sms tab ")
+        return CRMClientProfilePage()
+
+    '''
+        Open the Documents tab
+        returns Manage Accounts Module  instance    
+    '''
+
+    def open_document_tab(self):
+        document_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_Documents']")
+        document_tab.click()
+        Logging().reportDebugStep(self, "Open the document tab ")
+        return CRMClientProfilePage()
+
+    '''
+        Open the Documents module
+        returns Manage Accounts Module  instance    
+    '''
+
+    def open_download_module(self):
+        document_tab = super().wait_element_to_be_clickable("//input[@title='Add Document']")
+        document_tab.click()
+        Logging().reportDebugStep(self, "Open the document module ")
+        return CRMAddDocumentModule()
+
+    def get_counter_sms(self):
+        counter_sms = super().wait_element_to_be_clickable("//span[@class='amount amount_SMS']")
+        Logging().reportDebugStep(self, "Counter is " + counter_sms.text)
+        return counter_sms.text
 
     '''
          Perform scroll_top
@@ -279,6 +329,16 @@ class CRMClientProfilePage(CRMBasePage):
         return parser_address_text
 
     '''
+        Returns the email 
+    '''
+
+    def get_email_text(self):
+        email = self.driver.find_element(By.XPATH,
+                                         "//td[contains(text(),'Email')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the email " + email.text)
+        return email.text
+
+    '''
         Returns the city
     '''
 
@@ -330,3 +390,66 @@ class CRMClientProfilePage(CRMBasePage):
     def refresh_page(self):
         super().refresh_page()
         return CRMClientProfilePage()
+
+    def get_gender_text(self):
+        country = self.driver.find_element(By.XPATH, "//td[contains(text(),'Gender')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the gender: " + country.text)
+        return country.text
+
+    def get_assigned_to_text(self):
+        assigned_to = self.driver.find_element(By.XPATH,
+                                               "//td[contains(text(),'Assigned To')]//following-sibling::td[1]")
+        parser_assigned_to_text = re.sub('[" "]', '', assigned_to.text, 4)
+        Logging().reportDebugStep(self, "Returns the assigned to: " + parser_assigned_to_text)
+        return parser_assigned_to_text
+
+    def get_client_source_text(self):
+        client_source = self.driver.find_element(By.XPATH,
+                                                 "//td[contains(text(),'Client Source')]//following-sibling::td[1]")
+        parser_client_source_text = re.sub('[" "]', '', client_source.text, 1)
+        Logging().reportDebugStep(self, "Returns the client source: " + parser_client_source_text)
+        return parser_client_source_text
+
+    def get_compliance_agent_text(self):
+        compliance_agent = self.driver.find_element(By.XPATH,
+                                                    "//td[contains(text(),'Compliance Agent')]//following-sibling::td[1]")
+        parser_compliance_agent_text = re.sub('[" "]', '', compliance_agent.text, 4)
+        Logging().reportDebugStep(self, "Returns the compliance_agent source: " + parser_compliance_agent_text)
+        return parser_compliance_agent_text
+
+    def get_compliance_notes_text(self):
+        compliance_notes = self.driver.find_element(By.XPATH,
+                                                    "//td[contains(text(),'Compliance Notes')]//following-sibling::td[1]")
+        parser_compliance_notes_text = re.sub('[" "]', '', compliance_notes.text, 1)
+        Logging().reportDebugStep(self, "Returns the compliance notes source: " + parser_compliance_notes_text)
+        return parser_compliance_notes_text
+
+    def get_client_status_text(self):
+        client_status = self.driver.find_element(By.XPATH,
+                                                 "//td[contains(text(),'Client Status')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the client status source: " + client_status.text)
+        return client_status.text
+
+    def get_retention_status_text(self):
+        retention_status = self.driver.find_element(By.XPATH,
+                                                    "//td[contains(text(),'Retention Status')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the retention status source: " + retention_status.text)
+        return retention_status.text
+
+    def get_description_text(self):
+        description = self.driver.find_element(By.XPATH,
+                                               "//td[contains(text(),'Description')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the description : " + description.text)
+        return description.text
+
+    def get_referral_text(self):
+        self.perform_scroll(400)
+        custom_info = self.driver.find_element(By.XPATH,
+                                               "//b[contains(text(),'Custom Information')]")
+        custom_info.click()
+
+        referral = self.driver.find_element(By.XPATH,
+                                            "//td[contains(text(),'Refferal')]//following-sibling::td[1]")
+        parser_client_status_text = re.sub('[" "]', '', referral.text, 3)
+        Logging().reportDebugStep(self, "Returns the referral : " + parser_client_status_text)
+        return parser_client_status_text

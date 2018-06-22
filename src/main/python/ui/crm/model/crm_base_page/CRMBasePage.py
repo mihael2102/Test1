@@ -57,3 +57,4 @@ class CRMBasePage(object):
     def click_ok(self):
         button = self.wait_load_element("//button[contains(text(),'OK')]")
         button.click()
+
