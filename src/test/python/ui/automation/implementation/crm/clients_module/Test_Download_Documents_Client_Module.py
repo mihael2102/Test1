@@ -4,7 +4,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class TestDownloadDocumentsClientModule(BaseTest):
+class DownloadDocumentsClientModule(BaseTest):
 
     def test_perform_download_document(self):
         crm_clients_module_page = CRMLoginPage() \
@@ -21,5 +21,5 @@ class TestDownloadDocumentsClientModule(BaseTest):
         document_module.perform_download_document() \
             .set_document_type(Config.data.get_crm_data(CRMDocumentConstants.FIRST_DOCUMENT_TYPE)) \
             .set_status(Config.data.get_crm_data(CRMDocumentConstants.FIRST_STATUS)) \
-            .set_expire_date(Config.data.get_crm_data(CRMDocumentConstants.EXPIRE_DATE_DOCUMENT)) \
+            .set_expire_date() \
             .set_description_date(Config.data.get_crm_data(CRMDocumentConstants.COMMENTS))

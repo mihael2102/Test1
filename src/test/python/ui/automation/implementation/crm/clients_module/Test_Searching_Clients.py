@@ -7,7 +7,7 @@ from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
 @pytest.mark.run(order=5)
-class TestSearchingClientsTestCRM(BaseTest):
+class SearchingClientsTestCRM(BaseTest):
 
     def test_make_searching(self):
         crm_client_profile = CRMLoginPage() \

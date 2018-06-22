@@ -3,6 +3,10 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    MESSAGE_CREATE_EVENT = "Task was created"
+    DESCRIPTION_ADD_EVENT = "Description Add Event"
+    SUBJECT = "Test1"
+    FIRST_ACCOUNT_NAME = "test"
     SEND_SMS_MESSAGE = "Message was sent successfully"
     MASS_ASSIGN_MESSAGE = "3 accounts assigned to Panda Support"
     FIRST_COLUMN = "first_column"
@@ -42,6 +46,7 @@ class CRMConstants(object):
     CHECK_PASSWORD = "3"
     EXPIRE_DATE = datetime.now() + relativedelta(days=2)
     FORMAT_DATE = "%d-%m-%Y"
+    SECOND_FORMAT_DATE = "%Y-%m-%d"
     FORMAT_TIME = "%H:%M:%S"
     CREDIT_IN_COMMENT = "Credit in "
     CREDIT_OUT_COMMENT = "Credit out "
