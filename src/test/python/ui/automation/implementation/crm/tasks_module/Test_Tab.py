@@ -14,11 +14,11 @@ class TabTasksModuleCRM(BaseTest):
 
         task_module = CRMHomePage().open_task_module()
 
-        show_all_tab_name = task_module.click_show_all_tab()
-        show_mine_tab_name = task_module.click_show_mine_tab()
-        today_tab_name = task_module.click_today_tab()
-        this_week_tab_name = task_module.click_this_week_tab()
-        history_tab_name = task_module.click_history_tab()
+        show_all_tab_name = task_module.get_show_all_tab_text()
+        show_mine_tab_name = task_module.get_show_mine_tab_text()
+        today_tab_name = task_module.get_today_tab_text()
+        this_week_tab_name = task_module.get_this_week_tab_text()
+        history_tab_name = task_module.get_history_tab_text()
 
         assert show_all_tab_name == Config.data.get_data_task_module(CRMTaskModuleConstants.FIRST_TAB)
         assert show_mine_tab_name == Config.data.get_data_task_module(CRMTaskModuleConstants.SECOND_TAB)

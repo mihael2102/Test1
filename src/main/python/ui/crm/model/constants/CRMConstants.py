@@ -3,10 +3,6 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
-    MESSAGE_CREATE_EVENT = "Task was created"
-    DESCRIPTION_ADD_EVENT = "Description Add Event"
-    SUBJECT = "Test1"
-    FIRST_ACCOUNT_NAME = "test"
     SEND_SMS_MESSAGE = "Message was sent successfully"
     MASS_ASSIGN_MESSAGE = "3 accounts assigned to Panda Support"
     FIRST_COLUMN = "first_column"
@@ -31,12 +27,10 @@ class CRMConstants(object):
     AMOUNT_TRANSFER_BETWEEN_TA = "15.00"
     TRANSFER_BETWEEN_TA = "8"
     DESCRIPTION_ADD_INTERACTION = "Description Interaction"
-    PRIORITY = "Medium"
-    ASSIGN_TO = "Default User"
     DATE = datetime.now()
-    DURATION = "30M"
-    EVENT_TYPE = "Meeting"
-    EVENT_STATUS = "In Progress"
+    SECOND_DATE = datetime.now() + relativedelta(days=1, minutes=15)
+    THIRD_DATE = datetime.now() + relativedelta(days=2, minutes=30)
+    FOURTH_DATE = datetime.now() + relativedelta(days=3, minutes=45)
     WITHDRAW_SUCCESSFULLY = "MT4 Withdraw successfull"
     DEPOSIT_SUCCESSFULLY = "MT4 Deposit successfull"
     PASSWORD_CHANGE = "Password was change successfully"
@@ -47,7 +41,8 @@ class CRMConstants(object):
     EXPIRE_DATE = datetime.now() + relativedelta(days=2)
     FORMAT_DATE = "%d-%m-%Y"
     SECOND_FORMAT_DATE = "%Y-%m-%d"
-    FORMAT_TIME = "%H:%M:%S"
+    FIRST_FORMAT_TIME = "%H:%M:%S"
+    SECOND_FORMAT_TIME = "%H"
     CREDIT_IN_COMMENT = "Credit in "
     CREDIT_OUT_COMMENT = "Credit out "
     AMOUNT_CREDIT_IN = "25.00"

@@ -310,14 +310,7 @@ class CRMClientsModulePage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the message confirmation : " + confirm_message.text)
         return confirm_message.text
 
-    '''
-        Returns a task was_updated  message if the user entered a valid password
-     '''
 
-    def get_message_task_was_updated(self):
-        confirm_message = super().wait_load_element("//div[@class='toast-message']")
-        Logging().reportDebugStep(self, "Returns the message task_was_updated : " + confirm_message.text)
-        return confirm_message.text
 
     def open_mass_assign_module(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass assign']")

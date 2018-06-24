@@ -1,7 +1,7 @@
 from datetime import *
 import unittest
 import allure
-from allure_commons.types import AttachmentType
+from allure.constants import AttachmentType
 from selenium import webdriver
 from src.main.python.ui.brand.model.data.providers.DataProviders import DataProviders
 from src.main.python.utils.config import Config
@@ -18,7 +18,15 @@ class BaseTest(unittest.TestCase):
         Config.browser = webdriver.Remote(desired_capabilities=options.to_capabilities(),
                                           command_executor=selenium_grid_url)
 
+        report_started = datetime.now().strftime("%d-%m-%Y") + " " + datetime.now().strftime("%H:%M:%S")
+
+        allure.MASTER_HELPER.environment(BROWSER="CHROME", REPORT_STARTED_AT=report_started,
+                                         URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
+
     def tearDown(self):
+        report_finished = datetime.now().strftime("%d-%m-%Y") + " " + datetime.now().strftime("%H:%M:%S")
+        allure.MASTER_HELPER.environment(REPORT_FINISHED_AT=report_finished)
+
         """Take a Screen-shot of the drive homepage, when it Failed."""
         if self._outcome.errors:
             for method, error in self._outcome.errors:
@@ -26,13 +34,15 @@ class BaseTest(unittest.TestCase):
                     fail_url = Config.browser.current_url
                     print(fail_url)
                     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
-                    file_name = 'D:/automation-newforexqa//src/screen_shots/failed_screenshots/failed_screenshot %s.png' % now
+                    file_name = 'D:/automation-newforexqa/results/failed_screenshots/failed_screenshot %s.png' % now
                     Config.browser.get_screenshot_as_file(file_name)
-                    allure.attach(Config.browser.get_screenshot_as_png(), name="Failed Screenshot",
-                                  attachment_type=AttachmentType.PNG)
-        #
-        #             Config.browser.close()
-        #             Config.browser.quit()
-        # else:
-        #     Config.browser.close()
-        #     Config.browser.quit()
+                    allure.MASTER_HELPER.attach('failed_screenshot', Config.browser.get_screenshot_as_png(),
+                                                type=AttachmentType.PNG)
+
+                    allure.MASTER_HELPER.environment(REPORT_FINISHED=datetime.now())
+
+                    Config.browser.close()
+                    Config.browser.quit()
+        else:
+            Config.browser.close()
+            Config.browser.quit()
