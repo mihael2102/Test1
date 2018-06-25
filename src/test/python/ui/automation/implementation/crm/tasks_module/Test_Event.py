@@ -26,8 +26,7 @@ class AddEventTaskModule(BaseTest):
                                                      CRMTaskModuleConstants.FIRST_PRIORITY,
                                                      CRMTaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
-        confirmation_message = task_module.get_message_task()
-        assert confirmation_message == CRMTaskModuleConstants.MESSAGE_CREATE_EVENT
+        assert task_module.get_message_task() == CRMTaskModuleConstants.MESSAGE_CREATE_EVENT
 
     def test_edit_event(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
@@ -47,8 +46,7 @@ class AddEventTaskModule(BaseTest):
                                                      CRMTaskModuleConstants.FIRST_PRIORITY,
                                                      CRMTaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
-        confirmation_message = task_module.get_message_task()
-        assert confirmation_message == CRMTaskModuleConstants.MESSAGE_CREATE_EVENT
+        assert task_module.get_message_task() == CRMTaskModuleConstants.MESSAGE_CREATE_EVENT
 
         task_module.open_this_week_tab() \
             .click_pencil_button().edit_event(CRMTaskModuleConstants.SECOND_EVENT_STATUS,
