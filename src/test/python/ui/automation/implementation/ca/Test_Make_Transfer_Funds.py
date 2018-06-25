@@ -5,6 +5,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.transfer_funds.CATransferFundsPrecondition import \
     CATransferFundsPrecondition
 
+
 @pytest.mark.run(order=7)
 class TransferFundsTestCA(BaseTest):
 

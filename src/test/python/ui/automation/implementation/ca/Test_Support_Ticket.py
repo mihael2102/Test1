@@ -7,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=1)
+@pytest.mark.run(order=4)
 class CreateSupportTicketTestCa(BaseTest):
 
     def test_create_ticket(self):
