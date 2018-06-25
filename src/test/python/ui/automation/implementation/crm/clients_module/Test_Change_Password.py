@@ -8,7 +8,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=16)
+@pytest.mark.run(order=3)
 class ChangePasswordTestCRM(BaseTest):
 
     def test_make_change_password_from_crm(self):

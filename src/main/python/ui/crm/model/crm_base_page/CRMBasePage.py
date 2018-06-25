@@ -48,6 +48,7 @@ class CRMBasePage(object):
 
     def perform_scroll(self, parameter):
         self.driver.execute_script("scroll(0, '%s');" % parameter)
+        Logging().reportDebugStep(self, "Scroll was performed ")
 
     def refresh_page(self):
         sleep(3)
@@ -57,3 +58,4 @@ class CRMBasePage(object):
     def click_ok(self):
         button = self.wait_load_element("//button[contains(text(),'OK')]")
         button.click()
+

@@ -1,5 +1,3 @@
-import pytest
-
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
@@ -8,7 +6,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.deposit.CADepositPrecondition import CADepositPrecondition
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
-@pytest.mark.run(order=11)
+
 class DepositTestCRM(BaseTest):
 
     def test_make_deposit(self):

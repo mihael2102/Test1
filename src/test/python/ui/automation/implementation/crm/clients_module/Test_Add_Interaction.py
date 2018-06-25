@@ -7,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=17)
+@pytest.mark.run(order=4)
 class AddInteraction(BaseTest):
 
     def test_add_interaction(self):
@@ -18,8 +18,8 @@ class AddInteraction(BaseTest):
             .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
 
         CRMSidebarModules().open_create_event_module(CRMConstants.ADD_INTERACTION) \
-            .create_event(CRMConstants.EVENT_STATUS, CRMConstants.EVENT_TYPE, CRMConstants.DURATION,
-                          CRMConstants.DATE.strftime(CRMConstants.FORMAT_TIME),
+            .create_event(CRMConstants.FIRST_EVENT_STATUS, CRMConstants.FIRST_EVENT_TYPE, CRMConstants.FIRST_DURATION,
+                          CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
                           CRMConstants.DATE.strftime(CRMConstants.FORMAT_DATE),
                           CRMConstants.ASSIGN_TO, CRMConstants.PRIORITY, CRMConstants.DESCRIPTION_ADD_INTERACTION)
 
