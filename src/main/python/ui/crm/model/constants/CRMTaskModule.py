@@ -1,5 +1,9 @@
+import random
+
+
 class CRMTaskModuleConstants(object):
     MESSAGE_TASK_WAS_UPDATED = "Task was updated"
+    MESSAGE_TASK_WERE_UPDATED = "Tasks were updated"
     MESSAGE_TASK_WAS_DELETED = "Tasks were deleted"
     TASK_MODULE = "TasksModule"
     FIRST_TAB = "first_tab"
@@ -22,11 +26,12 @@ class CRMTaskModuleConstants(object):
     FIRST_ACCOUNT_NAME = "alena"
     SECOND_ACCOUNT_NAME = "evgen"
     THIRD_ACCOUNT_NAME = "dima"
-    FIRST_SUBJECT = "QATest1"
-    SECOND_SUBJECT = "ATest1"
-    THIRD_SUBJECT = "WTest1"
+    FIRST_SUBJECT = "QATest1" + str(random.randrange(1, 10000))
+    SECOND_SUBJECT = "ATest1" + str(random.randrange(1, 10000))
+    THIRD_SUBJECT = "WTest1" + str(random.randrange(1, 10000))
     FIRST_PRIORITY = "Medium"
     SECOND_PRIORITY = "High"
     THIRD_PRIORITY = "Low"
     DESCRIPTION_ADD_EVENT = "Description Add Event"
     MESSAGE_CREATE_EVENT = "Task was created"
+    MESSAGE_SMS_SUCCESSFULLY = "Sending SMS to 3 phone numbers from 3 persons"

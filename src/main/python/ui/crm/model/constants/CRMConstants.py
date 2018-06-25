@@ -1,8 +1,10 @@
+import random
 from datetime import *
 from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    PHONE = "Phone"
     SEND_SMS_MESSAGE = "Message was sent successfully"
     MASS_ASSIGN_MESSAGE = "3 accounts assigned to Panda Support"
     FIRST_COLUMN = "first_column"
@@ -72,3 +74,5 @@ class CRMConstants(object):
     FIRST_PHONE_TYPE = "first_phone_type"
     DESCRIPTION_SEND_SMS = "Hello"
     COUNTER_SMS = "1"
+    SUBJECT_MASS_SMS = "mass sms test"
+    MESSAGE_MASS_SMS = "Sms test " + str(random.randrange(1, 9999999))

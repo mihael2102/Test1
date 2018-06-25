@@ -4,8 +4,10 @@ from src.test.python.ui.automation.implementation.crm.clients_module.Test_Check_
 from src.test.python.ui.automation.implementation.crm.clients_module.Test_Create_Filter import CreateFilterTestCRM
 from src.test.python.ui.automation.implementation.crm.clients_module.Test_Mass_Assign import MassAssignTestCRM
 from src.test.python.ui.automation.implementation.crm.clients_module.Test_Mass_Edit import MassEditTestCRM
-from src.test.python.ui.automation.implementation.crm.clients_module.Test_Searching_Clients import TestSearchingClientsTestCRM
-from src.test.python.ui.automation.implementation.crm.clients_module.Test_Send_SMS_Clients_Module import TestSendSMSClientsModule
+from src.test.python.ui.automation.implementation.crm.clients_module.Test_Searching_Clients import \
+    SearchingClientsTestCRM
+from src.test.python.ui.automation.implementation.crm.clients_module.Test_Send_SMS_Clients_Module import \
+    SendSMSClientsModule
 from src.test.python.ui.automation.implementation.crm.clients_module.Test_Transfer_Between_Ta import TransferBetweenTa
 
 
@@ -24,7 +26,7 @@ class TestRegression(object):
         AddInteraction()
 
     def run_perform_searching_crm(self):
-        TestSearchingClientsTestCRM()
+        SearchingClientsTestCRM()
 
     def run_perform_create_filter_crm(self):
         CreateFilterTestCRM()
@@ -36,4 +38,4 @@ class TestRegression(object):
         MassAssignTestCRM()
 
     def run_perform_send_sms(self):
-        TestSendSMSClientsModule()
+        SendSMSClientsModule()

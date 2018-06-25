@@ -24,7 +24,7 @@ class SendSMSClientsModule(BaseTest):
         first_client = crm_clients_module_page.get_first_client_email()
         crm_clients_module_page.came_back_on_previous_page().click_search_button()
 
-        send_message_module = crm_clients_module_page.select_one_records() \
+        send_message_module = crm_clients_module_page.select_record() \
             .open_send_sms_module() \
             .perform_send_sms(CRMConstants.DESCRIPTION_SEND_SMS) \
             .click_send_button()

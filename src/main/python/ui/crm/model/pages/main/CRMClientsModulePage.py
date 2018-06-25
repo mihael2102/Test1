@@ -6,7 +6,7 @@ from src.main.python.ui.crm.model.modules.client_modules.mass_sms.CRMSendSMSModu
 from src.main.python.ui.crm.model.modules.filter.CRMFilterModule import CRMFilterModule
 from src.main.python.ui.crm.model.modules.help_desk.CRMHelpDeskModule import CRMHelpDesk
 from src.main.python.ui.crm.model.modules.client_modules.mass_assign.CRMMassAssignModule import CRMMassAssignModule
-from src.main.python.ui.crm.model.modules.client_modules.mass_edit.CRMMassEditModule import CRMMassEditModule
+from src.main.python.ui.crm.model.modules.client_modules.mass_edit.CRMMassEditClientsModule import CRMMassEditClientsModule
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 
@@ -290,7 +290,7 @@ class CRMClientsModulePage(CRMBasePage):
         third_check_box.click()
         return CRMClientsModulePage()
 
-    def select_one_records(self):
+    def select_record(self):
         sleep(2)
         first_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[1]")
         first_check_box.click()
@@ -299,7 +299,7 @@ class CRMClientsModulePage(CRMBasePage):
     def open_mass_edit_module(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass Edit']")
         mass_edit_module.click()
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     '''
         Returns a confirmation  message if the user entered a valid password

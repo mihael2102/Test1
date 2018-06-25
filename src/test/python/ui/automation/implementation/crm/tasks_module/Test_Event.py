@@ -15,16 +15,16 @@ class AddEventTaskModule(BaseTest):
 
         task_module = CRMHomePage().open_task_module()
 
-        task_module.open_event_module().create_event(CRMTaskModuleConstants.FIRST_EVENT_STATUS,
-                                                     CRMTaskModuleConstants.FIRST_EVENT_TYPE,
-                                                     CRMTaskModuleConstants.FIRST_DURATION,
-                                                     CRMConstants.DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
-                                                     CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
-                                                     CRMTaskModuleConstants.FIRST_ASSIGN_TO,
-                                                     CRMTaskModuleConstants.FIRST_ACCOUNT_NAME,
-                                                     CRMTaskModuleConstants.FIRST_SUBJECT,
-                                                     CRMTaskModuleConstants.FIRST_PRIORITY,
-                                                     CRMTaskModuleConstants.DESCRIPTION_ADD_EVENT)
+        task_module.open_add_event_module().create_event(CRMTaskModuleConstants.FIRST_EVENT_STATUS,
+                                                         CRMTaskModuleConstants.FIRST_EVENT_TYPE,
+                                                         CRMTaskModuleConstants.FIRST_DURATION,
+                                                         CRMConstants.DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
+                                                         CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
+                                                         CRMTaskModuleConstants.FIRST_ASSIGN_TO,
+                                                         CRMTaskModuleConstants.FIRST_ACCOUNT_NAME,
+                                                         CRMTaskModuleConstants.FIRST_SUBJECT,
+                                                         CRMTaskModuleConstants.FIRST_PRIORITY,
+                                                         CRMTaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
         assert task_module.get_message_task() == CRMTaskModuleConstants.MESSAGE_CREATE_EVENT
 
@@ -35,16 +35,16 @@ class AddEventTaskModule(BaseTest):
 
         task_module = CRMHomePage().open_task_module()
 
-        task_module.open_event_module().create_event(CRMTaskModuleConstants.FIRST_EVENT_STATUS,
-                                                     CRMTaskModuleConstants.FIRST_EVENT_TYPE,
-                                                     CRMTaskModuleConstants.FIRST_DURATION,
-                                                     CRMConstants.DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
-                                                     CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
-                                                     CRMTaskModuleConstants.FIRST_ASSIGN_TO,
-                                                     CRMTaskModuleConstants.FIRST_ACCOUNT_NAME,
-                                                     CRMTaskModuleConstants.FIRST_SUBJECT,
-                                                     CRMTaskModuleConstants.FIRST_PRIORITY,
-                                                     CRMTaskModuleConstants.DESCRIPTION_ADD_EVENT)
+        task_module.open_add_event_module().create_event(CRMTaskModuleConstants.FIRST_EVENT_STATUS,
+                                                         CRMTaskModuleConstants.FIRST_EVENT_TYPE,
+                                                         CRMTaskModuleConstants.FIRST_DURATION,
+                                                         CRMConstants.DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
+                                                         CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
+                                                         CRMTaskModuleConstants.FIRST_ASSIGN_TO,
+                                                         CRMTaskModuleConstants.FIRST_ACCOUNT_NAME,
+                                                         CRMTaskModuleConstants.FIRST_SUBJECT,
+                                                         CRMTaskModuleConstants.FIRST_PRIORITY,
+                                                         CRMTaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
         assert task_module.get_message_task() == CRMTaskModuleConstants.MESSAGE_CREATE_EVENT
 
