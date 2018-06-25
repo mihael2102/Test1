@@ -4,7 +4,6 @@ from src.test.python.ui.automation.implementation.ca.Test_Support_Ticket import 
 
 class TestSmoke(object):
 
-
     def run_create_ticket(self):
         CreateSupportTicketTestCa()
 
