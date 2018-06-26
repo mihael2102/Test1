@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.client_modules.document.CRMAddDocumentModule import CRMAddDocumentModule
+from src.main.python.ui.crm.model.modules.tasks_module.CRMSmsNotifier import CRMSmsNotifierModule
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.ui.crm.model.pages.trading_accounts_information.CRMTradingAccountsInformationPage import \
@@ -60,6 +61,13 @@ class CRMClientProfilePage(CRMBasePage):
         trading_tab.click()
         Logging().reportDebugStep(self, "Open the sms tab ")
         return CRMClientProfilePage()
+
+    def open_sms_view_module(self, sms):
+        sms_element_ = super().wait_element_to_be_clickable(
+            "//table[@id='rld_table_content']//tr[2]//td[2]//div//a[contains(text(),'%s')]" % sms)
+        sms_element_.click()
+        Logging().reportDebugStep(self, "Open the sms view  ")
+        return CRMSmsNotifierModule()
 
     '''
         Open the Documents tab

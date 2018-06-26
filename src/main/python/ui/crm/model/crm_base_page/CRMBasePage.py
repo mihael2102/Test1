@@ -1,4 +1,6 @@
 from time import sleep
+
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -43,7 +45,7 @@ class CRMBasePage(object):
         return WaitingUtils().wait_until_element_present_crm(element, total_amount_crm, self.driver)
 
     def wait_element_to_be_clickable(self, element):
-        return WebDriverWait(self.driver, 15).until(
+        return WebDriverWait(self.driver, 30).until(
             EC.element_to_be_clickable((By.XPATH, element)))
 
     def perform_scroll(self, parameter):
@@ -58,4 +60,3 @@ class CRMBasePage(object):
     def click_ok(self):
         button = self.wait_load_element("//button[contains(text(),'OK')]")
         button.click()
-

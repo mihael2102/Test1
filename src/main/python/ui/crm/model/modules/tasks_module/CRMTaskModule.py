@@ -5,7 +5,14 @@ from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.tasks_module.CRMAddEventModule import CRMAddEventModule
 from src.main.python.ui.crm.model.modules.tasks_module.CRMCalendarViewModule import CRMCalendarViewModule
 from src.main.python.ui.crm.model.modules.tasks_module.CRMEditEventModule import CRMEditEventModule
+from src.main.python.ui.crm.model.modules.tasks_module.CRMMassEditTaskModule import CRMMassEditTaskModule
+from src.main.python.ui.crm.model.modules.tasks_module.CRMMassSMSModule import MassSMSModule
+from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
+from datetime import *
+import allure
+from allure.constants import AttachmentType
+from src.main.python.utils.config import Config
 
 
 class CRMTaskModule(CRMBasePage):
@@ -50,11 +57,16 @@ class CRMTaskModule(CRMBasePage):
         return tab_text.text
 
     def open_this_week_tab(self):
-        tab = self.driver.find_element(By.XPATH,
-                                       "//ul[@id='main-tabs']//li[4]")
+        sleep(1)
+        tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[4]")
         tab.click()
         Logging().reportDebugStep(self, "The this week tab was opened ")
         return CRMTaskModule()
+
+    def open_mass_edit_task(self):
+        mass_edit_module = super().wait_element_to_be_clickable("//button[contains(text(),'Mass Edit')]")
+        mass_edit_module.click()
+        return CRMMassEditTaskModule()
 
     def get_history_tab_text(self):
         tab = self.driver.find_element(By.XPATH,
@@ -65,9 +77,9 @@ class CRMTaskModule(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
 
-    def open_event_module(self):
-        event_button = self.driver.find_element(By.XPATH,
-                                                "//button[contains(text(),'Add Event')]")
+    def open_add_event_module(self):
+        sleep(3)
+        event_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Event')]")
         event_button.click()
         Logging().reportDebugStep(self, "The event  module was opened ")
         return CRMAddEventModule()
@@ -80,6 +92,7 @@ class CRMTaskModule(CRMBasePage):
         return CRMCalendarViewModule()
 
     def select_several_records_task_module(self):
+        sleep(1)
         first_check_box = super().wait_element_to_be_clickable("//div[@class='table-grid-container']//tr[3]//td[1]")
         first_check_box.click()
         second_check_box = self.driver.find_element(By.XPATH, "//div[@class='table-grid-container']//tr[4]//td[1]")
@@ -99,6 +112,13 @@ class CRMTaskModule(CRMBasePage):
         Logging().reportDebugStep(self, "The mass delete was performed")
         return CRMTaskModule()
 
+    def open_mass_sms_module(self):
+        event_button = self.driver.find_element(By.XPATH,
+                                                "//button[contains(text(),'Mass SMS')]")
+        event_button.click()
+        Logging().reportDebugStep(self, "The event  module was opened ")
+        return MassSMSModule()
+
     '''
            Returns a task was_updated  message if the user entered a valid password
     '''
@@ -114,3 +134,38 @@ class CRMTaskModule(CRMBasePage):
             "//tr[@class='tableRow'][1]//span[@class='glyphicon glyphicon-pencil cursor-pointer']")
         pencil_button.click()
         return CRMEditEventModule()
+
+    def click_ok(self):
+        super().click_ok()
+        Logging().reportDebugStep(self, "Message sent successfully")
+        return MassSMSModule()
+
+    def open_first_client_profile(self):
+        sleep(3)
+        client_link = super().wait_element_to_be_clickable(
+            "//div[@class='table-grid-container']//tr[3]//td[6]")
+        client_link.click()
+        return CRMClientProfilePage()
+
+    def open_second_client_profile(self):
+        sleep(3)
+        client_link = super().wait_element_to_be_clickable(
+            "//div[@class='table-grid-container']//tr[4]//td[6]")
+        client_link.click()
+        return CRMClientProfilePage()
+
+    def open_third_client_profile(self):
+        sleep(3)
+        client_link = super().wait_element_to_be_clickable(
+            "//div[@class='table-grid-container']//tr[5]//td[6]")
+        client_link.click()
+        return CRMClientProfilePage()
+
+    def perform_screen_shot(self):
+        now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
+        file_name = 'D:/automation-newforexqa/screenshots/task_module/tasks_screenshot %s.png' % now
+        Config.browser.get_screenshot_as_file(file_name)
+        allure.MASTER_HELPER.attach('failed_screenshot', Config.browser.get_screenshot_as_png(),
+                                    type=AttachmentType.PNG)
+        Logging().reportDebugStep(self, "Screenshot was performed ")
+        return CRMCalendarViewModule()
