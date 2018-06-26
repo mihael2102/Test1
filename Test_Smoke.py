@@ -8,6 +8,7 @@ from src.test.python.ui.automation.implementation.ca.Test_Make_Withdraw import W
 from src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update import PersonalDetailsUpdateTestCA
 from src.test.python.ui.automation.implementation.ca.Test_SignUp import SignUpTest
 from src.test.python.ui.automation.implementation.ca.Test_Support_Ticket import CreateSupportTicketTestCa
+from src.test.python.ui.automation.implementation.crm.clients_module.Test_Make_Deposit import DepositTestCRM
 
 
 class TestSmoke(object):
@@ -41,3 +42,6 @@ class TestSmoke(object):
 
     def run_client_update(self):
         PersonalDetailsUpdateTestCA()
+
+    def run_deposit_crm(self):
+        DepositTestCRM()
