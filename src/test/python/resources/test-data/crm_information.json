@@ -9,6 +9,15 @@
     "second_tab": "Show mine",
     "third_tab": "Today",
     "fourth_tab": "This week",
-    "fifth_tab": "History"
+    "fifth_tab": "History",
+    "first_call_outcome": "Answer",
+    "second_call_outcome": "No Answer",
+    "first_positive_outcome": "R - Active",
+    "second_positive_outcome": "C - High Potential",
+    "third_positive_outcome": "C - Low Potential",
+    "first_negative_outcome": "C - No Answer",
+    "second_negative_outcome": "C - No Answer",
+    "third_negative_outcome": "B - Wrong number",
+    "fourth_negative_outcome": "B - Under 18"
   }
 }

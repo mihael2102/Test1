@@ -9,7 +9,7 @@ class MassSMSModule(CRMBasePage):
     def __init__(self) -> None:
         super().__init__()
 
-    def perform_mass_sms(self, phone, message):
+    def perform_send_sms(self, phone, message):
         self.select_mobile(phone)
         self.enter_message(message)
         return MassSMSModule()

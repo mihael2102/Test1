@@ -41,8 +41,8 @@ class BaseTest(unittest.TestCase):
 
                     allure.MASTER_HELPER.environment(REPORT_FINISHED=datetime.now())
 
-                    Config.browser.close()
-                    Config.browser.quit()
-        else:
-            Config.browser.close()
-            Config.browser.quit()
+        #             Config.browser.close()
+        #             Config.browser.quit()
+        # else:
+        #     Config.browser.close()
+        #     Config.browser.quit()
