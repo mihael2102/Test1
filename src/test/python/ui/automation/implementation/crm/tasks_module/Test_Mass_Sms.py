@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.CRMTaskModule import CRMTaskModuleConstants
 from src.main.python.ui.crm.model.modules.tasks_module.CRMTaskModule import CRMTaskModule
