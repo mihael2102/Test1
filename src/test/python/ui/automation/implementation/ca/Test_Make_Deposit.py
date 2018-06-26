@@ -6,6 +6,7 @@ from src.test.python.ui.automation.BaseTest import BaseTest
 from src.main.python.utils.config import Config
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
+
 class DepositTestCa(BaseTest):
 
     def test_make_deposit_from_ca(self):

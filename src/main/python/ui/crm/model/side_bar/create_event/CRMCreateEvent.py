@@ -23,7 +23,7 @@ class CRMCreateEvent(CRMBasePage):
         return CRMClientProfilePage()
 
     def set_event_status(self, status):
-        event_element = super().wait_element_to_be_clickable("//select[@name='event_status']")
+        event_element = super().wait_element_to_be_clickable("//select[@id='event_status']")
         select_status = Select(event_element)
         select_status.select_by_visible_text(status)
         Logging().reportDebugStep(self, "The event status is set " + status)

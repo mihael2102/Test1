@@ -6,7 +6,7 @@ from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 
 
-class CRMMassEditModule(CRMBasePage):
+class CRMMassEditClientsModule(CRMBasePage):
 
     def __init__(self):
         super().__init__()
@@ -23,7 +23,7 @@ class CRMMassEditModule(CRMBasePage):
         self.set_retention_status(retention_status)
         self.set_description(description)
         self.set_referral(referral)
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     def set_gender(self, gender):
         sleep(3)
@@ -31,7 +31,7 @@ class CRMMassEditModule(CRMBasePage):
         check_box.click()
         gender_drop_drown = Select(self.driver.find_element(By.XPATH,"//select[@name='gender']"))
         gender_drop_drown.select_by_visible_text(gender)
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     def set_assigned_to(self, assigned_to):
         check_box = self.driver.find_element(By.XPATH,
@@ -39,7 +39,7 @@ class CRMMassEditModule(CRMBasePage):
         check_box.click()
         assigned_to_drown = Select(self.driver.find_element(By.XPATH, "//select[@name='assigned_user_id']"))
         assigned_to_drown.select_by_visible_text(assigned_to)
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     def set_client_source(self, client_source):
         check_box = self.driver.find_element(By.XPATH,
@@ -49,7 +49,7 @@ class CRMMassEditModule(CRMBasePage):
                                                        "//input[@id='client_source']")
         client_source_field.clear()
         client_source_field.send_keys(client_source)
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     def set_compliance_agent(self, compliance_agent):
         check_box = self.driver.find_element(By.XPATH,
@@ -58,7 +58,7 @@ class CRMMassEditModule(CRMBasePage):
         compliance_agent_drop_down = Select(
             self.driver.find_element(By.XPATH, "//select[@name='compliance_agent_group_id']"))
         compliance_agent_drop_down.select_by_visible_text(compliance_agent)
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     def set_compliance_notes(self, compliance_notes):
         check_box = self.driver.find_element(By.XPATH,
@@ -68,7 +68,7 @@ class CRMMassEditModule(CRMBasePage):
                                                           "//input[@id='compliance_note']")
         compliance_notes_field.clear()
         compliance_notes_field.send_keys(compliance_notes)
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     def set_terms_conditions(self):
         check_box = self.driver.find_element(By.XPATH,
@@ -77,7 +77,7 @@ class CRMMassEditModule(CRMBasePage):
         check_box_confirm = self.driver.find_element(By.XPATH,
                                                      "//div[@name='terms_and_conditions']//div[1]")
         check_box_confirm.click()
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     def set_client_status(self, client_status):
         check_box = self.driver.find_element(By.XPATH,
@@ -85,7 +85,7 @@ class CRMMassEditModule(CRMBasePage):
         check_box.click()
         client_status_drop_down = Select(self.driver.find_element(By.XPATH, "//select[@name='accountstatus']"))
         client_status_drop_down.select_by_visible_text(client_status)
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     def set_retention_status(self, retention_status):
         check_box = self.driver.find_element(By.XPATH,
@@ -93,7 +93,7 @@ class CRMMassEditModule(CRMBasePage):
         check_box.click()
         retention_status_drop_down = Select(self.driver.find_element(By.XPATH, "//select[@name='retention_status']"))
         retention_status_drop_down.select_by_visible_text(retention_status)
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     def set_description(self, description):
         check_box = self.driver.find_element(By.XPATH,
@@ -103,7 +103,7 @@ class CRMMassEditModule(CRMBasePage):
                                                      "//input[@id='client_description']")
         description_field.clear()
         description_field.send_keys(description)
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     def set_referral(self, referral):
         check_box = self.driver.find_element(By.XPATH,
@@ -113,10 +113,10 @@ class CRMMassEditModule(CRMBasePage):
                                                   "//textarea[@name='referral']")
         referral_field.clear()
         referral_field.send_keys(referral)
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     def click_save(self):
         save_button = self.driver.find_element(By.XPATH,
                                                "//button[contains(text(),'Save')]")
         save_button.click()
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()

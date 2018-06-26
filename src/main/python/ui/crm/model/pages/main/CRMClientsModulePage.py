@@ -6,7 +6,7 @@ from src.main.python.ui.crm.model.modules.client_modules.mass_sms.CRMSendSMSModu
 from src.main.python.ui.crm.model.modules.filter.CRMFilterModule import CRMFilterModule
 from src.main.python.ui.crm.model.modules.help_desk.CRMHelpDeskModule import CRMHelpDesk
 from src.main.python.ui.crm.model.modules.client_modules.mass_assign.CRMMassAssignModule import CRMMassAssignModule
-from src.main.python.ui.crm.model.modules.client_modules.mass_edit.CRMMassEditModule import CRMMassEditModule
+from src.main.python.ui.crm.model.modules.client_modules.mass_edit.CRMMassEditClientsModule import CRMMassEditClientsModule
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 
@@ -48,7 +48,7 @@ class CRMClientsModulePage(CRMBasePage):
         Logging().reportDebugStep(self, "The field found is : " + test_filter)
         select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
         select_test_filter.click()
-        Logging().reportDebugStep(self, "Click on selected filter")
+        Logging().reportDebugStep(self, "Click the selected filter")
         return CRMClientsModulePage()
 
     ''' 
@@ -71,13 +71,6 @@ class CRMClientsModulePage(CRMBasePage):
         client_id.click()
         Logging().reportDebugStep(self, "Click user name: ")
         return CRMClientProfilePage()
-
-    ''' 
-         Returns the account id   
-    '''
-
-    def get_account_id(self):
-        print("account")
 
     '''
          Select the crm page again
@@ -297,7 +290,7 @@ class CRMClientsModulePage(CRMBasePage):
         third_check_box.click()
         return CRMClientsModulePage()
 
-    def select_one_records(self):
+    def select_record(self):
         sleep(2)
         first_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[1]")
         first_check_box.click()
@@ -306,7 +299,7 @@ class CRMClientsModulePage(CRMBasePage):
     def open_mass_edit_module(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass Edit']")
         mass_edit_module.click()
-        return CRMMassEditModule()
+        return CRMMassEditClientsModule()
 
     '''
         Returns a confirmation  message if the user entered a valid password
@@ -314,8 +307,10 @@ class CRMClientsModulePage(CRMBasePage):
 
     def get_confirm_message(self):
         confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
-        Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
+        Logging().reportDebugStep(self, "Returns the message confirmation : " + confirm_message.text)
         return confirm_message.text
+
+
 
     def open_mass_assign_module(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass assign']")
