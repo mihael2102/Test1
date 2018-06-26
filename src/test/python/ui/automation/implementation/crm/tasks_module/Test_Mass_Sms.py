@@ -6,6 +6,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.CRMSmsPrecondition import MassSmSPrecondition
 
 
+@pytest.mark.run(order=5)
 class MassSmsTaskModule(BaseTest):
 
     def test_perform_mass_sms_task_module(self):

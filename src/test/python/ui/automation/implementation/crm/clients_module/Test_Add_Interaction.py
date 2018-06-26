@@ -7,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=4)
+@pytest.mark.run(order=1)
 class AddInteraction(BaseTest):
 
     def test_add_interaction(self):
