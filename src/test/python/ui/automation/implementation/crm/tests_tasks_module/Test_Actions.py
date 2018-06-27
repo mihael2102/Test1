@@ -45,6 +45,6 @@ class ActionsTask(BaseTest):
         client_status = task_module.open_this_week_tab() \
             .find_event_by_subject(CRMTaskModuleConstants.FIRST_SUBJECT) \
             .open_first_client_profile() \
-            .get_client_status
+            .get_client_status()
 
         assert client_status == Config.data.get_data_task_module(CRMTaskModuleConstants.THIRD_NEGATIVE_OUTCOME)

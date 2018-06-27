@@ -1,14 +1,14 @@
-from src.test.python.ui.automation.implementation.crm.clients_module.Test_Add_Interaction import AddInteraction
-from src.test.python.ui.automation.implementation.crm.clients_module.Test_Change_Password import ChangePasswordTestCRM
-from src.test.python.ui.automation.implementation.crm.clients_module.Test_Check_Password import CheckPasswordTestCRM
-from src.test.python.ui.automation.implementation.crm.clients_module.Test_Create_Filter import CreateFilterTestCRM
-from src.test.python.ui.automation.implementation.crm.clients_module.Test_Mass_Assign import MassAssignTestCRM
-from src.test.python.ui.automation.implementation.crm.clients_module.Test_Mass_Edit import MassEditTestCRM
-from src.test.python.ui.automation.implementation.crm.clients_module.Test_Searching_Clients import \
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction import AddInteraction
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password import ChangePasswordTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password import CheckPasswordTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Create_Filter import CreateFilterTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign import MassAssignTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit import MassEditTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients import \
     SearchingClientsTestCRM
-from src.test.python.ui.automation.implementation.crm.clients_module.Test_Send_SMS_Clients_Module import \
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_SMS_Clients_Module import \
     SendSMSClientsModule
-from src.test.python.ui.automation.implementation.crm.clients_module.Test_Transfer_Between_Ta import TransferBetweenTa
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta import TransferBetweenTa
 
 
 class TestRegression(object):

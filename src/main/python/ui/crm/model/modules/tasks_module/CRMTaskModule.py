@@ -168,6 +168,7 @@ class CRMTaskModule(CRMBasePage):
         client_link = super().wait_element_to_be_clickable(
             "//div[@class='table-grid-container']//tr[3]//td[6]")
         client_link.click()
+        Logging().reportDebugStep(self, "The first client profile is opened")
         return CRMClientProfilePage()
 
     def open_second_client_profile(self):

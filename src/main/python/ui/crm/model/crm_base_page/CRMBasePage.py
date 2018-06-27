@@ -32,6 +32,9 @@ class CRMBasePage(object):
     def switch_first_tab_page(self):
         self.driver.switch_to_window(Config.window_before)
 
+    def switch_first_window_page(self):
+        self.driver.switch_to_window(Config.window_before)
+
     def switch_second_tab_page(self):
         self.driver.switch_to_window(Config.window_after)
 
@@ -60,3 +63,4 @@ class CRMBasePage(object):
     def click_ok(self):
         button = self.wait_load_element("//button[contains(text(),'OK')]")
         button.click()
+        Logging().reportDebugStep(self, "The Ok button was clicked ")

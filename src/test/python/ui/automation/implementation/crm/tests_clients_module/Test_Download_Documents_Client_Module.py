@@ -18,8 +18,7 @@ class DownloadDocumentsClientModule(BaseTest):
             .open_document_tab() \
             .open_download_module()
 
-        document_module.perform_download_document() \
-            .set_document_type(Config.data.get_crm_data(CRMDocumentConstants.FIRST_DOCUMENT_TYPE)) \
-            .set_status(Config.data.get_crm_data(CRMDocumentConstants.FIRST_STATUS)) \
-            .set_expire_date() \
-            .set_description_date(Config.data.get_crm_data(CRMDocumentConstants.COMMENTS))
+        document_module.perform_create_document(
+            Config.data.get_data_document_crm(CRMDocumentConstants.FIRST_DOCUMENT_TYPE),
+            Config.data.get_data_document_crm(CRMDocumentConstants.FIRST_STATUS),
+            Config.data.get_data_document_crm(CRMDocumentConstants.COMMENTS))
