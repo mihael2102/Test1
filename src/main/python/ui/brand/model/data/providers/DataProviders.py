@@ -14,7 +14,7 @@ class DataProviders(object):
         conn_string = json.load(connection_file)
         return conn_string[TestDataConstants.CLIENT_ONE][value]
 
-    def get_crm_data(self, value):
+    def get_data_document_crm(self, value):
         connection_file = open(
             'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging/src/test/python/resources/test-data/crm_information.json')
         conn_string = json.load(connection_file)

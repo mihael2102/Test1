@@ -44,7 +44,7 @@ class MassSmSPrecondition(object):
                                                              CRMConstants.FIRST_FORMAT_TIME),
                                                          CRMTaskModuleConstants.SECOND_ASSIGN_TO,
                                                          CRMTaskModuleConstants.SECOND_ACCOUNT_NAME,
-                                                         CRMTaskModuleConstants.SECOND_SUBJECT,
+                                                         CRMTaskModuleConstants.FIRST_SUBJECT,
                                                          CRMTaskModuleConstants.SECOND_PRIORITY,
                                                          CRMTaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
@@ -61,7 +61,7 @@ class MassSmSPrecondition(object):
                                                              CRMConstants.FIRST_FORMAT_TIME),
                                                          CRMTaskModuleConstants.THIRD_ASSIGN_TO,
                                                          CRMTaskModuleConstants.THIRD_ACCOUNT_NAME,
-                                                         CRMTaskModuleConstants.THIRD_SUBJECT,
+                                                         CRMTaskModuleConstants.FIRST_SUBJECT,
                                                          CRMTaskModuleConstants.THIRD_PRIORITY,
                                                          CRMTaskModuleConstants.DESCRIPTION_ADD_EVENT)
 

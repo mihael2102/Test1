@@ -8,7 +8,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class AddNewTask(BaseTest):
+class AddNewTaskCalendarView(BaseTest):
 
     def test_check_add_tasks_calendar_view(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \

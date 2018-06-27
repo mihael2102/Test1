@@ -40,6 +40,12 @@ class CRMClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Open the trading account tab ")
         return CRMClientProfilePage()
 
+    def get_client_status(self):
+        client_status = super().wait_element_to_be_clickable(
+            "//td[contains(text(),'Client Status')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Client status is " + client_status.text)
+        return client_status.text
+
     '''
          Perform scroll_down
          returns Manage Accounts Module  instance    
@@ -248,7 +254,7 @@ class CRMClientProfilePage(CRMBasePage):
          Returns the status of ticket 
     '''
 
-    def get_client_status(self):
+    def get_live_status_client(self):
         client_status = super().wait_load_element("//span[@class ='clientStatusFTD']")
         Logging().reportDebugStep(self, "Returns the client status: " + client_status.text)
         return client_status.text

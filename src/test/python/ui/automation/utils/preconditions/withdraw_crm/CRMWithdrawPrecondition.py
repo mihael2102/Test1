@@ -5,7 +5,7 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.utils.TestDataConstants import TestDataConstants
-from src.test.python.ui.automation.implementation.crm.clients_module.Test_Make_Deposit import Config
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit import Config
 
 
 class CRMWithdrawPrecondition(object):

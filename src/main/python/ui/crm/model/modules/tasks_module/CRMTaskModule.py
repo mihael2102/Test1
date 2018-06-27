@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.tasks_module.CRMAddEventModule import CRMAddEventModule
 from src.main.python.ui.crm.model.modules.tasks_module.CRMCalendarViewModule import CRMCalendarViewModule
+from src.main.python.ui.crm.model.modules.tasks_module.CRMCallModule import CRMCallTaskModule
 from src.main.python.ui.crm.model.modules.tasks_module.CRMEditEventModule import CRMEditEventModule
 from src.main.python.ui.crm.model.modules.tasks_module.CRMMassEditTaskModule import CRMMassEditTaskModule
 from src.main.python.ui.crm.model.modules.tasks_module.CRMMassSMSModule import MassSMSModule
@@ -19,6 +20,21 @@ class CRMTaskModule(CRMBasePage):
 
     def __init__(self):
         super().__init__()
+
+    '''
+        Open the second tabs of crm page
+        :parameter url crm page url  
+    '''
+
+    def open_second_tab_page(self, url):
+        super().open_second_tab_page(url)
+        Logging().reportDebugStep(self, "Open second tabs page: " + url + '\n')
+        return CRMTaskModule()
+
+    def open_first_tab_page(self, url):
+        super().open_first_tab_page(url)
+        Logging().reportDebugStep(self, "Open first tabs page: " + url)
+        return CRMTaskModule()
 
     def get_show_all_tab_text(self):
         super().wait_load_element("//ul[@id='main-tabs']//li[1]")
@@ -62,6 +78,13 @@ class CRMTaskModule(CRMBasePage):
         tab.click()
         Logging().reportDebugStep(self, "The this week tab was opened ")
         return CRMTaskModule()
+
+    def open_sms_module(self):
+        first_check_box = super().wait_element_to_be_clickable(
+            "//tr[@class='tableRow'][1]//div[2]")
+        first_check_box.click()
+        Logging().reportDebugStep(self, "The sms module was opened: ")
+        return MassSMSModule()
 
     def open_mass_edit_task(self):
         mass_edit_module = super().wait_element_to_be_clickable("//button[contains(text(),'Mass Edit')]")
@@ -145,6 +168,7 @@ class CRMTaskModule(CRMBasePage):
         client_link = super().wait_element_to_be_clickable(
             "//div[@class='table-grid-container']//tr[3]//td[6]")
         client_link.click()
+        Logging().reportDebugStep(self, "The first client profile is opened")
         return CRMClientProfilePage()
 
     def open_second_client_profile(self):
@@ -152,6 +176,7 @@ class CRMTaskModule(CRMBasePage):
         client_link = super().wait_element_to_be_clickable(
             "//div[@class='table-grid-container']//tr[4]//td[6]")
         client_link.click()
+        Logging().reportDebugStep(self, "The second client profile was opened ")
         return CRMClientProfilePage()
 
     def open_third_client_profile(self):
@@ -159,6 +184,7 @@ class CRMTaskModule(CRMBasePage):
         client_link = super().wait_element_to_be_clickable(
             "//div[@class='table-grid-container']//tr[5]//td[6]")
         client_link.click()
+        Logging().reportDebugStep(self, "The third client profile was opened ")
         return CRMClientProfilePage()
 
     def perform_screen_shot(self):
@@ -169,3 +195,18 @@ class CRMTaskModule(CRMBasePage):
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
         return CRMCalendarViewModule()
+
+    def find_event_by_subject(self, subject):
+        sleep(2)
+        subject_field = super().wait_element_to_be_clickable("//tr[@class='tableFilters']//td[15]//input")
+        subject_field.clear()
+        subject_field.send_keys(subject)
+        Logging().reportDebugStep(self, "The subject was set: " + subject)
+        return CRMTaskModule()
+
+    def open_call_module(self):
+        first_check_box = super().wait_element_to_be_clickable(
+            "//tr[@class='tableRow'][1]//div[3]")
+        first_check_box.click()
+        Logging().reportDebugStep(self, "The call phone module was opened: ")
+        return CRMCallTaskModule()
