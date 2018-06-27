@@ -1,9 +1,12 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMDocumentConstants import CRMDocumentConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=12)
 class DownloadDocumentsClientModule(BaseTest):
 
     def test_perform_download_document(self):
@@ -22,3 +25,9 @@ class DownloadDocumentsClientModule(BaseTest):
             Config.data.get_data_document_crm(CRMDocumentConstants.FIRST_DOCUMENT_TYPE),
             Config.data.get_data_document_crm(CRMDocumentConstants.FIRST_STATUS),
             Config.data.get_data_document_crm(CRMDocumentConstants.COMMENTS))
+
+        message = document_module.get_successful_message()
+
+        assert message == CRMDocumentConstants.MESSAGE_SUCCESSFUL
+
+        document_module.click_ok()

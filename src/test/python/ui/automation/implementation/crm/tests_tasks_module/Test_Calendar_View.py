@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.CRMTaskModule import CRMTaskModuleConstants
 from src.main.python.ui.crm.model.main_page.CRMHomePage import CRMHomePage
@@ -6,6 +8,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=15)
 class CalendarView(BaseTest):
 
     def test_check_month_tab(self):

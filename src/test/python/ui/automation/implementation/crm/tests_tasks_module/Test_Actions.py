@@ -1,9 +1,12 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMTaskModule import CRMTaskModuleConstants
 from src.main.python.ui.crm.model.modules.tasks_module.CRMTaskModule import CRMTaskModule
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.CRMSmsPrecondition import MassSmSPrecondition
 
 
+@pytest.mark.run(order=20)
 class ActionsTask(BaseTest):
 
     def test_check_send_sms_actions_section(self):

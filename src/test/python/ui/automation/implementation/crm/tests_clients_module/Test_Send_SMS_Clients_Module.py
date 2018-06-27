@@ -6,7 +6,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=3)
+@pytest.mark.run(order=11)
 class SendSMSClientsModule(BaseTest):
 
     def test_perform_send_sms_clients_module(self):

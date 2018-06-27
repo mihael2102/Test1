@@ -7,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=7)
+@pytest.mark.run(order=9)
 class MassEditTestCRM(BaseTest):
 
     def test_make_mass_edit(self):

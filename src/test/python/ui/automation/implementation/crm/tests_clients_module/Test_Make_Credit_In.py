@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
@@ -6,6 +8,7 @@ from src.test.python.ui.automation.utils.preconditions.credit_in.CRMCredit_In_Pr
     CRMCreditInPrecondition
 
 
+@pytest.mark.run(order=1)
 class CreditInTestCRM(BaseTest):
 
     def test_make_credit_in_crm(self):
