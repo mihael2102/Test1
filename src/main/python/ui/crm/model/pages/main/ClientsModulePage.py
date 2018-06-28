@@ -69,7 +69,7 @@ class ClientsModulePage(CRMBasePage):
         sleep(2)
         client_id = super().wait_element_to_be_clickable("//tr[@class='lvtColData']//div[@class='link_field']")
         client_id.click()
-        Logging().reportDebugStep(self, "Click user name: ")
+        Logging().reportDebugStep(self, "Click user name: "+email)
         return ClientProfilePage()
 
     '''

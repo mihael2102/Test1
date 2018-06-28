@@ -1,0 +1,27 @@
+{
+  "FirstLeadInfo": {
+    "first_name": "lead name",
+    "last_name": "lead last name",
+    "mobile": "8888888",
+    "fax": "5555",
+    "email": "testqa+1@pandats.com",
+    "secondary_email": "secondarytestqa+1@pandats.com",
+    "language": "English",
+    "panda_partner_id": "55",
+    "referral": "referral text",
+    "street": "street test",
+    "postal_code": "88888",
+    "country": "United States",
+    "descriptions": "Description test",
+    "phone": "22222",
+    "tittle": "tittle test",
+    "lead_source": "Conference",
+    "lead_status": "F - Active vip",
+    "assigned_to": "Panda UA",
+    "source_name": "source name test",
+    "brand": "NFX",
+    "po_box": "po box text",
+    "city": "Kharkiv",
+    "state": "New York"
+  }
+}

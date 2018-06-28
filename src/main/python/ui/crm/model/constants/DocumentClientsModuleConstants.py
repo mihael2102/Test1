@@ -16,3 +16,4 @@ class DocumentClientsModuleConstants(object):
     COMMENTS = "document"
     MESSAGE_SUCCESSFUL = "Upload Document successfull"
     MESSAGE_DELETE_DOCUMENT = "Document was deleted successfully"
+    NAME_DOCUMENT = "bear.jpg"

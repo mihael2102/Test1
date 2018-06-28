@@ -18,7 +18,12 @@ class DownloadDocumentsClientModule(BaseTest):
             .open_document_tab() \
             .open_download_module()
 
-        document_module.perform_create_document(
+        document_module.perform_create_document_client_profile(
             Config.data.get_data_document_crm(DocumentClientsModuleConstants.FIRST_DOCUMENT_TYPE),
             Config.data.get_data_document_crm(DocumentClientsModuleConstants.FIRST_STATUS),
             Config.data.get_data_document_crm(DocumentClientsModuleConstants.COMMENTS))
+
+        message = crm_clients_module_page.refresh_page() \
+            .get_name_document()
+
+        assert message == DocumentClientsModuleConstants.NAME_DOCUMENT

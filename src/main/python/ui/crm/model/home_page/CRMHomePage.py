@@ -1,6 +1,7 @@
 from selenium.webdriver import ActionChains
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.document_module.DocumentModule import DocumentModule
+from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
 from src.main.python.utils.logs.Loging import Logging
 
@@ -37,4 +38,4 @@ class CRMHomePage(CRMBasePage):
         task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Leads']")
         task_module.click()
         Logging().reportDebugStep(self, "Leads module is opened")
-        return TaskModule()
+        return LeadsModule()

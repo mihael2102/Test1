@@ -21,6 +21,15 @@ class CreateDocumentModule(CRMBasePage):
         self.set_status(status)
         self.set_description(description)
         self.click_save_button_document_module()
+        return CreateDocumentModule()
+
+    def perform_create_document_client_profile(self, type, status, description):
+        self.perform_download_document()
+        self.set_document_type(type)
+        self.set_status(status)
+        self.set_description(description)
+        self.click_save_button_document_module()
+        return CreateDocumentModule()
 
     def perform_download_document(self):
         front_upload_picture = super().wait_element_to_be_clickable("//span[contains(text(),'Browse')]")

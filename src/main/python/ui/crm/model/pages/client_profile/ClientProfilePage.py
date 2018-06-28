@@ -4,7 +4,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.client_modules.document.AddDocumentClientsModule import AddDocumentClientsModule
+from src.main.python.ui.crm.model.modules.document_module.CreateDocumentModule import CreateDocumentModule
 from src.main.python.ui.crm.model.modules.tasks_module.SmsNotifier import SmsNotifierModule
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
@@ -95,7 +95,7 @@ class ClientProfilePage(CRMBasePage):
         document_tab = super().wait_element_to_be_clickable("//input[@title='Add Document']")
         document_tab.click()
         Logging().reportDebugStep(self, "Open the document module ")
-        return AddDocumentClientsModule()
+        return CreateDocumentModule()
 
     def get_counter_sms(self):
         counter_sms = super().wait_element_to_be_clickable("//span[@class='amount amount_SMS']")
@@ -249,6 +249,11 @@ class ClientProfilePage(CRMBasePage):
         account.click()
         Logging().reportDebugStep(self, "Open help desc tab ")
         return EditionTicketInfoPage()
+
+    def get_name_document(self):
+        document_name = super().wait_load_element("//tr[@class='lvtColData']//td[3]//a[contains(text(),'bear.jpg')]")
+        Logging().reportDebugStep(self, "Returns the client status: " + document_name.text)
+        return document_name.text
 
     '''
          Returns the status of ticket 

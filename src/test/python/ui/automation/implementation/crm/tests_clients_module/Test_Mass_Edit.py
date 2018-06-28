@@ -51,9 +51,7 @@ class MassEditTestCRM(BaseTest):
 
         crm_client_profile = crm_clients_module_page.refresh() \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(first_client) \
-            .click_search_button() \
-            .open_client_id()
+            .find_client_by_email(first_client)
 
         assert crm_client_profile.get_gender_text() == Config.data.get_data_mass_edit(
             MassEditConstants.GENDER_FEMALE)
