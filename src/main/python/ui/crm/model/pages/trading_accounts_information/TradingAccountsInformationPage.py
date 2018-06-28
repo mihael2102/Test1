@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 
 
-class CRMTradingAccountsInformationPage(CRMBasePage):
+class TradingAccountsInformationPage(CRMBasePage):
 
     def __init__(self):
         super().__init__()

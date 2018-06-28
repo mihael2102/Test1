@@ -3,8 +3,8 @@ from time import sleep
 from selenium.webdriver.common.by import By
 
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.document_module.CRMCreateDocumentModule import CRMCreateDocumentModule
-from src.main.python.ui.crm.model.modules.filter.CRMFilterModule import CRMFilterModule
+from src.main.python.ui.crm.model.modules.document_module.CreateDocumentModule import CreateDocumentModule
+from src.main.python.ui.crm.model.modules.filter.FilterModule import FilterModule
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.utils.logs.Loging import Logging
 
@@ -18,13 +18,13 @@ class DocumentModule(CRMBasePage):
         filter_button = super().wait_element_to_be_clickable("//a[@title='Create Filter']")
         filter_button.click()
         Logging().reportDebugStep(self, "The filter pop-up is opened")
-        return CRMFilterModule()
+        return FilterModule()
 
     def open_create_document_module(self):
         document_module = self.driver.find_element(By.XPATH, "//button[@title='Create Document']")
         document_module.click()
         Logging().reportDebugStep(self, "The Create Document module was opened")
-        return CRMCreateDocumentModule()
+        return CreateDocumentModule()
 
     def get_successful_message(self):
         message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")

@@ -3,7 +3,7 @@ from datetime import *
 from dateutil.relativedelta import relativedelta
 
 
-class CRMDocumentConstants(object):
+class DocumentClientsModuleConstants(object):
     FOURTH_TAB = "fourth_tab"
     FIRST_TAB = "first_tab"
     SECOND_TAB = "second_tab"

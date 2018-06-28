@@ -1,4 +1,4 @@
-from src.main.python.ui.crm.model.constants.CRMDocumentConstants import CRMDocumentConstants
+from src.main.python.ui.crm.model.constants.DocumentClientsModuleConstants import DocumentClientsModuleConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
@@ -19,6 +19,6 @@ class DownloadDocumentsClientModule(BaseTest):
             .open_download_module()
 
         document_module.perform_create_document(
-            Config.data.get_data_document_crm(CRMDocumentConstants.FIRST_DOCUMENT_TYPE),
-            Config.data.get_data_document_crm(CRMDocumentConstants.FIRST_STATUS),
-            Config.data.get_data_document_crm(CRMDocumentConstants.COMMENTS))
+            Config.data.get_data_document_crm(DocumentClientsModuleConstants.FIRST_DOCUMENT_TYPE),
+            Config.data.get_data_document_crm(DocumentClientsModuleConstants.FIRST_STATUS),
+            Config.data.get_data_document_crm(DocumentClientsModuleConstants.COMMENTS))

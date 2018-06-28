@@ -1,7 +1,7 @@
 import random
 
 
-class CRMTaskModuleConstants(object):
+class TaskModuleConstants(object):
     DESCRIPTION_SEND_SMS = "Hello from task module"
     MESSAGE_TASK_WAS_UPDATED = "Task was updated"
     MESSAGE_TASK_WERE_UPDATED = "Tasks were updated"

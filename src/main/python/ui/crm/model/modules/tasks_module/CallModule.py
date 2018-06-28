@@ -6,7 +6,7 @@ from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 
 
-class CRMCallTaskModule(CRMBasePage):
+class CallTaskModule(CRMBasePage):
 
     def __init__(self):
         super().__init__()
@@ -16,7 +16,7 @@ class CRMCallTaskModule(CRMBasePage):
         self.set_positive_outcome(positive_outcome)
         self.set_negative_outcome(negative_outcome)
         self.set_comments(comments)
-        return CRMCallTaskModule()
+        return CallTaskModule()
 
     def set_call_outcome(self, call_outcome):
         sleep(2)
@@ -24,32 +24,32 @@ class CRMCallTaskModule(CRMBasePage):
         call_outcome_element.click()
 
         Logging().reportDebugStep(self, "The call outcome was set " + call_outcome)
-        return CRMCallTaskModule()
+        return CallTaskModule()
 
     def set_positive_outcome(self, positive_outcome):
         call_outcome_element = self.driver.find_element(By.XPATH, "//input[@value='%s']" % positive_outcome)
         call_outcome_element.click()
 
         Logging().reportDebugStep(self, "The call outcome was set " + positive_outcome)
-        return CRMCallTaskModule()
+        return CallTaskModule()
 
     def set_negative_outcome(self, negative_outcome):
         call_outcome_element = self.driver.find_element(By.XPATH, "//input[@value='%s']" % negative_outcome)
         call_outcome_element.click()
 
         Logging().reportDebugStep(self, "The call outcome was set " + negative_outcome)
-        return CRMCallTaskModule()
+        return CallTaskModule()
 
     def click_submit_button(self):
         send_button = self.driver.find_element(By.XPATH,
                                                "//div[@class='modal-body new-modal-body']//button[contains(text(),'Submit')]")
         send_button.click()
         Logging().reportDebugStep(self, "The submit button was clicked")
-        return CRMCallTaskModule()
+        return CallTaskModule()
 
     def set_comments(self, comments):
         comments_element = self.driver.find_element(By.XPATH, "//textarea[@name='interaction_comment']")
         comments_element.clear()
         comments_element.send_keys(comments)
         Logging().reportDebugStep(self, "The comments is set " + comments)
-        return CRMCallTaskModule()
+        return CallTaskModule()

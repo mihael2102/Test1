@@ -4,16 +4,16 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.client_modules.document.CRMAddDocumentModule import CRMAddDocumentModule
-from src.main.python.ui.crm.model.modules.tasks_module.CRMSmsNotifier import CRMSmsNotifierModule
+from src.main.python.ui.crm.model.modules.client_modules.document.AddDocumentClientsModule import AddDocumentClientsModule
+from src.main.python.ui.crm.model.modules.tasks_module.SmsNotifier import SmsNotifierModule
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
-from src.main.python.ui.crm.model.pages.trading_accounts_information.CRMTradingAccountsInformationPage import \
-    CRMTradingAccountsInformationPage
+from src.main.python.ui.crm.model.pages.trading_accounts_information.TradingAccountsInformationPage import \
+    TradingAccountsInformationPage
 from src.main.python.utils.logs.Loging import Logging
 
 
-class CRMClientProfilePage(CRMBasePage):
+class ClientProfilePage(CRMBasePage):
 
     def __init__(self):
         super().__init__()
@@ -27,7 +27,7 @@ class CRMClientProfilePage(CRMBasePage):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         Logging().reportDebugStep(self, "Perform scroll down ")
         sleep(2)
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
         Perform scroll_down
@@ -38,7 +38,7 @@ class CRMClientProfilePage(CRMBasePage):
         trading_account_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'Trading Accounts')][1]")
         trading_account_tab.click()
         Logging().reportDebugStep(self, "Open the trading account tab ")
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     def get_client_status(self):
         client_status = super().wait_element_to_be_clickable(
@@ -55,7 +55,7 @@ class CRMClientProfilePage(CRMBasePage):
         trading_account_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'SMS')][1]")
         trading_account_tab.click()
         Logging().reportDebugStep(self, "Open the sms tab ")
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
         Open the SMS tab
@@ -66,14 +66,14 @@ class CRMClientProfilePage(CRMBasePage):
         trading_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_SMS']")
         trading_tab.click()
         Logging().reportDebugStep(self, "Open the sms tab ")
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     def open_sms_view_module(self, sms):
         sms_element_ = super().wait_element_to_be_clickable(
             "//table[@id='rld_table_content']//tr[2]//td[2]//div//a[contains(text(),'%s')]" % sms)
         sms_element_.click()
         Logging().reportDebugStep(self, "Open the sms view  ")
-        return CRMSmsNotifierModule()
+        return SmsNotifierModule()
 
     '''
         Open the Documents tab
@@ -84,7 +84,7 @@ class CRMClientProfilePage(CRMBasePage):
         document_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_Documents']")
         document_tab.click()
         Logging().reportDebugStep(self, "Open the document tab ")
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
         Open the Documents module
@@ -95,7 +95,7 @@ class CRMClientProfilePage(CRMBasePage):
         document_tab = super().wait_element_to_be_clickable("//input[@title='Add Document']")
         document_tab.click()
         Logging().reportDebugStep(self, "Open the document module ")
-        return CRMAddDocumentModule()
+        return AddDocumentClientsModule()
 
     def get_counter_sms(self):
         counter_sms = super().wait_element_to_be_clickable("//span[@class='amount amount_SMS']")
@@ -110,7 +110,7 @@ class CRMClientProfilePage(CRMBasePage):
     def perform_scroll_up(self):
         self.driver.execute_script("scroll(0, 0);")
         Logging().reportDebugStep(self, "Perform scroll up ")
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
         Open the trading tabs
@@ -122,7 +122,7 @@ class CRMClientProfilePage(CRMBasePage):
         trading_tab.click()
         Logging().reportDebugStep(self, "Open the trading account tab ")
 
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
         Open the Finacial Transactions tabs
@@ -133,7 +133,7 @@ class CRMClientProfilePage(CRMBasePage):
         trading_tab = super().wait_load_element("//a[@id='show_Accounts_FinancialTransactions']")
         trading_tab.click()
         Logging().reportDebugStep(self, "Open the financial transactions tab ")
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
         :returns client amount from Trading Accounts tabs 
@@ -173,7 +173,7 @@ class CRMClientProfilePage(CRMBasePage):
                                            "//div[@class ='link_field']//a[contains(text(),'%s')]" % account_id)
         account.click()
         Logging().reportDebugStep(self, "Open client_account ")
-        return CRMTradingAccountsInformationPage()
+        return TradingAccountsInformationPage()
 
     '''
         :returns client account from trading accounts tabs 
@@ -204,7 +204,7 @@ class CRMClientProfilePage(CRMBasePage):
         select_country = super().wait_load_element("//a[@id='show_Accounts_Documents']")
         select_country.click()
         Logging().reportDebugStep(self, "Open the document tab ")
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
         Open the document tabs  
@@ -237,7 +237,7 @@ class CRMClientProfilePage(CRMBasePage):
         select_country = super().wait_load_element("//a[@id='show_Accounts_HelpDesk']")
         select_country.click()
         Logging().reportDebugStep(self, "Open help desc tab ")
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
          Open the action of the ticket number
@@ -271,7 +271,7 @@ class CRMClientProfilePage(CRMBasePage):
 
     def wait_element_is_present(self):
         super().wait_until_element_present("//span[@class ='clientStatusFTD']")
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
          Returns the initial amount 
@@ -390,7 +390,7 @@ class CRMClientProfilePage(CRMBasePage):
 
     def click_ok(self):
         super().click_ok()
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
          Returns a confirmation  message if the user entered a valid password
@@ -403,7 +403,7 @@ class CRMClientProfilePage(CRMBasePage):
 
     def refresh_page(self):
         super().refresh_page()
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     def get_gender_text(self):
         country = self.driver.find_element(By.XPATH, "//td[contains(text(),'Gender')]//following-sibling::td[1]")

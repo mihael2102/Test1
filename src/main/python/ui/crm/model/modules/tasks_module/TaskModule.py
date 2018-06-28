@@ -2,13 +2,13 @@ from time import sleep
 
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.tasks_module.CRMAddEventModule import CRMAddEventModule
-from src.main.python.ui.crm.model.modules.tasks_module.CRMCalendarViewModule import CRMCalendarViewModule
-from src.main.python.ui.crm.model.modules.tasks_module.CRMCallModule import CRMCallTaskModule
-from src.main.python.ui.crm.model.modules.tasks_module.CRMEditEventModule import CRMEditEventModule
-from src.main.python.ui.crm.model.modules.tasks_module.CRMMassEditTaskModule import CRMMassEditTaskModule
-from src.main.python.ui.crm.model.modules.tasks_module.CRMMassSMSModule import MassSMSModule
-from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
+from src.main.python.ui.crm.model.modules.tasks_module.AddEventModule import AddEventModule
+from src.main.python.ui.crm.model.modules.tasks_module.CalendarViewModule import CalendarViewModule
+from src.main.python.ui.crm.model.modules.tasks_module.CallModule import CallTaskModule
+from src.main.python.ui.crm.model.modules.tasks_module.EditEventModule import EditEventModule
+from src.main.python.ui.crm.model.modules.tasks_module.MassEditTaskModule import MassEditTaskModule
+from src.main.python.ui.crm.model.modules.tasks_module.MassSMSModule import MassSMSModule
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 from datetime import *
 import allure
@@ -16,7 +16,7 @@ from allure.constants import AttachmentType
 from src.main.python.utils.config import Config
 
 
-class CRMTaskModule(CRMBasePage):
+class TaskModule(CRMBasePage):
 
     def __init__(self):
         super().__init__()
@@ -29,12 +29,12 @@ class CRMTaskModule(CRMBasePage):
     def open_second_tab_page(self, url):
         super().open_second_tab_page(url)
         Logging().reportDebugStep(self, "Open second tabs page: " + url + '\n')
-        return CRMTaskModule()
+        return TaskModule()
 
     def open_first_tab_page(self, url):
         super().open_first_tab_page(url)
         Logging().reportDebugStep(self, "Open first tabs page: " + url)
-        return CRMTaskModule()
+        return TaskModule()
 
     def get_show_all_tab_text(self):
         super().wait_load_element("//ul[@id='main-tabs']//li[1]")
@@ -77,7 +77,7 @@ class CRMTaskModule(CRMBasePage):
         tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[4]")
         tab.click()
         Logging().reportDebugStep(self, "The this week tab was opened ")
-        return CRMTaskModule()
+        return TaskModule()
 
     def open_sms_module(self):
         first_check_box = super().wait_element_to_be_clickable(
@@ -89,7 +89,7 @@ class CRMTaskModule(CRMBasePage):
     def open_mass_edit_task(self):
         mass_edit_module = super().wait_element_to_be_clickable("//button[contains(text(),'Mass Edit')]")
         mass_edit_module.click()
-        return CRMMassEditTaskModule()
+        return MassEditTaskModule()
 
     def get_history_tab_text(self):
         tab = self.driver.find_element(By.XPATH,
@@ -105,14 +105,14 @@ class CRMTaskModule(CRMBasePage):
         event_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Event')]")
         event_button.click()
         Logging().reportDebugStep(self, "The event  module was opened ")
-        return CRMAddEventModule()
+        return AddEventModule()
 
     def open_calendar_view_module(self):
         calendar_view_button = self.driver.find_element(By.XPATH,
                                                         "//button[contains(text(),'Calendar View')]")
         calendar_view_button.click()
         Logging().reportDebugStep(self, "The calendar view module was opened")
-        return CRMCalendarViewModule()
+        return CalendarViewModule()
 
     def select_several_records_task_module(self):
         sleep(1)
@@ -123,7 +123,7 @@ class CRMTaskModule(CRMBasePage):
         third_check_box = self.driver.find_element(By.XPATH, "//div[@class='table-grid-container']//tr[5]//td[1]")
         third_check_box.click()
         Logging().reportDebugStep(self, "The records were selected")
-        return CRMTaskModule()
+        return TaskModule()
 
     def perform_mass_delete(self):
         sleep(3)
@@ -133,7 +133,7 @@ class CRMTaskModule(CRMBasePage):
             "//div[@class='modal-footer new-modal-footer']//button[contains(text(),'OK')]")
         delete_button.click()
         Logging().reportDebugStep(self, "The mass delete was performed")
-        return CRMTaskModule()
+        return TaskModule()
 
     def open_mass_sms_module(self):
         event_button = self.driver.find_element(By.XPATH,
@@ -156,7 +156,7 @@ class CRMTaskModule(CRMBasePage):
         pencil_button = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow'][1]//span[@class='glyphicon glyphicon-pencil cursor-pointer']")
         pencil_button.click()
-        return CRMEditEventModule()
+        return EditEventModule()
 
     def click_ok(self):
         super().click_ok()
@@ -169,7 +169,7 @@ class CRMTaskModule(CRMBasePage):
             "//div[@class='table-grid-container']//tr[3]//td[6]")
         client_link.click()
         Logging().reportDebugStep(self, "The first client profile is opened")
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     def open_second_client_profile(self):
         sleep(3)
@@ -177,7 +177,7 @@ class CRMTaskModule(CRMBasePage):
             "//div[@class='table-grid-container']//tr[4]//td[6]")
         client_link.click()
         Logging().reportDebugStep(self, "The second client profile was opened ")
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     def open_third_client_profile(self):
         sleep(3)
@@ -185,7 +185,7 @@ class CRMTaskModule(CRMBasePage):
             "//div[@class='table-grid-container']//tr[5]//td[6]")
         client_link.click()
         Logging().reportDebugStep(self, "The third client profile was opened ")
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     def perform_screen_shot(self):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
@@ -194,7 +194,7 @@ class CRMTaskModule(CRMBasePage):
         allure.MASTER_HELPER.attach('failed_screenshot', Config.browser.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
-        return CRMCalendarViewModule()
+        return CalendarViewModule()
 
     def find_event_by_subject(self, subject):
         sleep(2)
@@ -202,11 +202,11 @@ class CRMTaskModule(CRMBasePage):
         subject_field.clear()
         subject_field.send_keys(subject)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
-        return CRMTaskModule()
+        return TaskModule()
 
     def open_call_module(self):
         first_check_box = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow'][1]//div[3]")
         first_check_box.click()
         Logging().reportDebugStep(self, "The call phone module was opened: ")
-        return CRMCallTaskModule()
+        return CallTaskModule()

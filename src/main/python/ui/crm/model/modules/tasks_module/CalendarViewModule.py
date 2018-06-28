@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.tasks_module.CRMAddEventModule import CRMAddEventModule
+from src.main.python.ui.crm.model.modules.tasks_module.AddEventModule import AddEventModule
 from datetime import *
 import allure
 from allure.constants import AttachmentType
@@ -9,7 +9,7 @@ from src.main.python.utils.config import Config
 from src.main.python.utils.logs.Loging import Logging
 
 
-class CRMCalendarViewModule(CRMBasePage):
+class CalendarViewModule(CRMBasePage):
 
     def __init__(self):
         super().__init__()
@@ -18,7 +18,7 @@ class CRMCalendarViewModule(CRMBasePage):
         add_new_task_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add New Task')]")
         add_new_task_button.click()
         Logging().reportDebugStep(self, "The add new task module was opened")
-        return CRMAddEventModule()
+        return AddEventModule()
 
     def click_calendar_display(self, hour):
         calendar_scroll = super().wait_element_to_be_clickable("//tr[@data-time='%s:00:00']" % hour)
@@ -26,7 +26,7 @@ class CRMCalendarViewModule(CRMBasePage):
 
         Logging().reportDebugStep(self, "Scroll down has been performed ")
 
-        return CRMCalendarViewModule()
+        return CalendarViewModule()
 
     def perform_screen_shot(self):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
@@ -35,31 +35,31 @@ class CRMCalendarViewModule(CRMBasePage):
         allure.MASTER_HELPER.attach('failed_screenshot', Config.browser.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
-        return CRMCalendarViewModule()
+        return CalendarViewModule()
 
     def close_calendar_view(self):
         close_button = super().wait_element_to_be_clickable("//button[contains(text(),'Close')]")
         close_button.click()
         Logging().reportDebugStep(self, "The calendar view module was closed")
-        return CRMCalendarViewModule()
+        return CalendarViewModule()
 
     def open_month_tab(self):
         month_tab_button = super().wait_element_to_be_clickable("//button[contains(text(),'Month')]")
         month_tab_button.click()
         Logging().reportDebugStep(self, "The Month tab was opened")
-        return CRMCalendarViewModule()
+        return CalendarViewModule()
 
     def open_week_tab(self):
         week_tab_button = super().wait_element_to_be_clickable("//button[contains(text(),'Week')]")
         week_tab_button.click()
         Logging().reportDebugStep(self, "The Week tab was opened")
-        return CRMCalendarViewModule()
+        return CalendarViewModule()
 
     def open_day_tab(self):
         day_tab_button = super().wait_element_to_be_clickable("//button[contains(text(),'Day')]")
         day_tab_button.click()
         Logging().reportDebugStep(self, "The Day tab was opened")
-        return CRMCalendarViewModule()
+        return CalendarViewModule()
 
     def get_sunday_text(self):
         sunday_tab_button = super().wait_element_to_be_clickable("//div[@class='fc-row fc-widget-header']//th[1]")

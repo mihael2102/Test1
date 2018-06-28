@@ -8,7 +8,7 @@ from src.test.python.utils.TestDataConstants import TestDataConstants
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit import Config
 
 
-class CRMWithdrawPrecondition(object):
+class WithdrawPrecondition(object):
 
     def __init__(self) -> None:
         super().__init__()
@@ -25,7 +25,7 @@ class CRMWithdrawPrecondition(object):
             .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_CAD)) \
             .create_account_button()
 
-        return CRMWithdrawPrecondition()
+        return WithdrawPrecondition()
 
     def make_deposit(self):
         crm_client_profile = CRMLoginPage() \
@@ -50,4 +50,4 @@ class CRMWithdrawPrecondition(object):
 
         crm_client_profile.click_trading_accounts_tab().get_amount_text(CRMConstants.AMOUNT_WITHDRAW_SECOND)
 
-        return CRMWithdrawPrecondition()
+        return WithdrawPrecondition()

@@ -8,7 +8,7 @@ from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 
 
-class CRMCreateDocumentModule(CRMBasePage):
+class CreateDocumentModule(CRMBasePage):
 
     def __init__(self):
         super().__init__()
@@ -30,7 +30,7 @@ class CRMCreateDocumentModule(CRMBasePage):
                                 r"D:\automation-newforexqa\src\main\python\utils\documents\bear.jpg")
         autoit.control_send("Open", "Edit1", "{ENTER}")
         Logging().reportDebugStep(self, "The  document was uploaded ")
-        return CRMCreateDocumentModule()
+        return CreateDocumentModule()
 
     def set_attach_to(self):
         attach_to = super().wait_element_to_be_clickable("//img[@title='Select Attached To']")
@@ -39,24 +39,24 @@ class CRMCreateDocumentModule(CRMBasePage):
         self.driver.switch_to_window(handle)
         search_button = super().wait_element_to_be_clickable("//a[contains(text(),'TestQa Li')]")
         search_button.click()
-        return CRMCreateDocumentModule()
+        return CreateDocumentModule()
 
     def switch_first_window_page(self):
         super().switch_first_window_page()
-        return CRMCreateDocumentModule()
+        return CreateDocumentModule()
 
     def set_document_type(self, type):
         super().wait_element_to_be_clickable("//select[@id='doctype']")
         type_document = Select(self.driver.find_element(By.XPATH, "//select[@id='doctype']"))
         type_document.select_by_visible_text(type)
         Logging().reportDebugStep(self, "The document type was set ")
-        return CRMCreateDocumentModule()
+        return CreateDocumentModule()
 
     def set_status(self, status):
         status_document = Select(self.driver.find_element(By.XPATH, "//select[@id='doc_status']"))
         status_document.select_by_visible_text(status)
         Logging().reportDebugStep(self, "The  document status was set ")
-        return CRMCreateDocumentModule()
+        return CreateDocumentModule()
 
     def set_expire_date(self, ):
         expire_date_drop_down = self.driver.find_element(By.XPATH, "//input[@id='crm_expiry_date']")
@@ -64,16 +64,16 @@ class CRMCreateDocumentModule(CRMBasePage):
         hoverer.perform()
         expire_date_drop_down.click()
         Logging().reportDebugStep(self, "The expiry date was set ")
-        return CRMCreateDocumentModule()
+        return CreateDocumentModule()
 
     def set_description(self, description):
         description_field = self.driver.find_element(By.XPATH, "//textarea[@id='notecontent']")
         description_field.clear()
         description_field.send_keys(description)
         Logging().reportDebugStep(self, "The description was set ")
-        return CRMCreateDocumentModule()
+        return CreateDocumentModule()
 
     def click_save_button_document_module(self):
         save_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Save')]")
         save_button.click()
-        return CRMCreateDocumentModule()
+        return CreateDocumentModule()

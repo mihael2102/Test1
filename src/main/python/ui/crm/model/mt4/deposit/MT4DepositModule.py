@@ -3,7 +3,7 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -28,7 +28,7 @@ class MT4DepositModule(CRMBasePage):
         self.set_amount(amount)
         self.set_description(description_deposit)
         self.create_deposit()
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
         Select a payment method from drop down
@@ -109,4 +109,4 @@ class MT4DepositModule(CRMBasePage):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
         create_button.click()
         Logging().reportDebugStep(self, "The create withdraw button of deposit module was clicked")
-        return CRMClientProfilePage()
+        return ClientProfilePage()

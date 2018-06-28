@@ -4,16 +4,15 @@ from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePag
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.test.python.utils.TestDataConstants import TestDataConstants
 from src.main.python.utils.config import Config
+from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class CRMCreditOutPrecondition(object):
-
+class TransferBetweenPrecondition(object):
     def __init__(self) -> None:
         super().__init__()
 
-    def add_live_account(self):
+    def add_two_usd_currencies(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
             .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
                         Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
@@ -21,10 +20,16 @@ class CRMCreditOutPrecondition(object):
             .open_drop_down_menu() \
             .select_module(CaConstants.MANAGE_ACCOUNTS)
 
-        CaManageAccounts().open_new_account_button() \
+        CaManageAccounts() \
+            .open_new_account_button() \
             .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_USD)) \
             .create_account_button()
-        return CRMCreditOutPrecondition()
+        CaManageAccounts() \
+            .open_new_account_button() \
+            .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_USD)) \
+            .create_account_button()
+
+        return TransferBetweenPrecondition()
 
     def make_deposit(self):
         crm_client_profile = CRMLoginPage() \
@@ -48,4 +53,4 @@ class CRMCreditOutPrecondition(object):
             .refresh_page()
 
         crm_client_profile.click_trading_accounts_tab().get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
-        return CRMCreditOutPrecondition()
+        return TransferBetweenPrecondition()

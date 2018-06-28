@@ -1,4 +1,4 @@
-class CRMMassEditConstants(object):
+class MassEditConstants(object):
     USER_ONE = "Panda Support"
     DEPARTMENT_OTHER = "0"
     GENDER_MALE = "gender_male"

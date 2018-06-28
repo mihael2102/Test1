@@ -4,7 +4,7 @@ from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 
 
-class CRMSmsNotifierModule(CRMBasePage):
+class SmsNotifierModule(CRMBasePage):
     def __init__(self):
         super().__init__()
 

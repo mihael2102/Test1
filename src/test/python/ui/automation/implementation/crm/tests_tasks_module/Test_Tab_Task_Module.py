@@ -1,4 +1,4 @@
-from src.main.python.ui.crm.model.constants.CRMTaskModule import CRMTaskModuleConstants
+from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.main_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
@@ -20,8 +20,8 @@ class TabTasksModuleCRM(BaseTest):
         this_week_tab_name = task_module.get_this_week_tab_text()
         history_tab_name = task_module.get_history_tab_text()
 
-        assert show_all_tab_name == Config.data.get_data_task_module(CRMTaskModuleConstants.FIRST_TAB)
-        assert show_mine_tab_name == Config.data.get_data_task_module(CRMTaskModuleConstants.SECOND_TAB)
-        assert today_tab_name == Config.data.get_data_task_module(CRMTaskModuleConstants.THIRD_TAB)
-        assert this_week_tab_name == Config.data.get_data_task_module(CRMTaskModuleConstants.FOURTH_TAB)
-        assert history_tab_name == Config.data.get_data_task_module(CRMTaskModuleConstants.FIFTH_TAB)
+        assert show_all_tab_name == Config.data.get_data_task_module(TaskModuleConstants.FIRST_TAB)
+        assert show_mine_tab_name == Config.data.get_data_task_module(TaskModuleConstants.SECOND_TAB)
+        assert today_tab_name == Config.data.get_data_task_module(TaskModuleConstants.THIRD_TAB)
+        assert this_week_tab_name == Config.data.get_data_task_module(TaskModuleConstants.FOURTH_TAB)
+        assert history_tab_name == Config.data.get_data_task_module(TaskModuleConstants.FIFTH_TAB)

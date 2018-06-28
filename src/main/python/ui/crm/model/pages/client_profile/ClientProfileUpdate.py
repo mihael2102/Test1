@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 
 
-class CRMClientProfileUpdate(CRMBasePage):
+class ClientProfileUpdate(CRMBasePage):
     def __init__(self):
         super().__init__()
 
@@ -24,7 +24,7 @@ class CRMClientProfileUpdate(CRMBasePage):
         save_button = self.driver.find_element(By.XPATH, "//div[@id='editarea_First Name']//span[1]")
         hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
         hoverer.perform()
-        return CRMClientProfileUpdate()
+        return ClientProfileUpdate()
 
     def edit_last_name_by_pencil(self, last_name_update):
         self.driver.refresh()
@@ -40,7 +40,7 @@ class CRMClientProfileUpdate(CRMBasePage):
         save_button = self.driver.find_element(By.XPATH, "//div[@id='editarea_Last Name']//span[1]")
         hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
         hoverer.perform()
-        return CRMClientProfileUpdate()
+        return ClientProfileUpdate()
 
     def edit_phone_by_pencil(self, phone_number_update):
         self.driver.refresh()
@@ -56,7 +56,7 @@ class CRMClientProfileUpdate(CRMBasePage):
         save_button = self.driver.find_element(By.XPATH, "//div[@id='editarea_Phone']//span[1]")
         hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
         hoverer.perform()
-        return CRMClientProfileUpdate()
+        return ClientProfileUpdate()
 
     def edit_citizen_ship_by_pencil(self, parameter_update):
         self.driver.refresh()
@@ -76,7 +76,7 @@ class CRMClientProfileUpdate(CRMBasePage):
         save_button = self.driver.find_element(By.XPATH, "//div[@id='editarea_Citizenship']//span[1]")
         hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
         hoverer.perform()
-        return CRMClientProfileUpdate()
+        return ClientProfileUpdate()
 
     def edit_address_by_pencil(self, parameter_update):
         self.driver.refresh()
@@ -92,7 +92,7 @@ class CRMClientProfileUpdate(CRMBasePage):
         save_button = self.driver.find_element(By.XPATH, "//div[@id='editarea_Address']//span[1]")
         hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
         hoverer.perform()
-        return CRMClientProfileUpdate()
+        return ClientProfileUpdate()
 
     def edit_post_code_by_pencil(self, phone_number_update):
         self.driver.refresh()
@@ -108,7 +108,7 @@ class CRMClientProfileUpdate(CRMBasePage):
         save_button = self.driver.find_element(By.XPATH, "//div[@id='editarea_Code']//span[1]")
         hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
         hoverer.perform()
-        return CRMClientProfileUpdate()
+        return ClientProfileUpdate()
 
     def edit_city_by_pencil(self, phone_number_update):
         self.driver.refresh()
@@ -124,7 +124,7 @@ class CRMClientProfileUpdate(CRMBasePage):
         save_button = self.driver.find_element(By.XPATH, "//div[@id='editarea_City']//span[1]")
         hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
         hoverer.perform()
-        return CRMClientProfileUpdate()
+        return ClientProfileUpdate()
 
     def edit_country_by_pencil(self, parameter_update):
         self.driver.refresh()
@@ -144,8 +144,8 @@ class CRMClientProfileUpdate(CRMBasePage):
         save_button = self.driver.find_element(By.XPATH, "//div[@id='editarea_Country']//span[1]")
         hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
         hoverer.perform()
-        return CRMClientProfileUpdate()
+        return ClientProfileUpdate()
 
     def perform_scroll(self, parameter):
         super().perform_scroll(parameter)
-        return CRMClientProfileUpdate()
+        return ClientProfileUpdate()

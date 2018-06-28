@@ -8,7 +8,7 @@ from src.test.python.utils.TestDataConstants import TestDataConstants
 from src.main.python.utils.config import Config
 
 
-class CRMCreditInPrecondition(object):
+class CreditInPrecondition(object):
 
     def __init__(self) -> None:
         super().__init__()
@@ -25,7 +25,7 @@ class CRMCreditInPrecondition(object):
             .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_CAD)) \
             .create_account_button()
 
-        return CRMCreditInPrecondition()
+        return CreditInPrecondition()
 
     def make_credit_in(self):
         crm_client_profile = CRMLoginPage() \
@@ -48,4 +48,4 @@ class CRMCreditInPrecondition(object):
             .click_ok() \
             .refresh_page()
 
-        return CRMCreditInPrecondition()
+        return CreditInPrecondition()
