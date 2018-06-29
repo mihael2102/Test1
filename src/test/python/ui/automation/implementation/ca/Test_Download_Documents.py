@@ -7,6 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=8)
 class DownloadDocumentsTestCA(BaseTest):
 
     def test_make_dowload_documents(self):
