@@ -191,7 +191,7 @@ class TaskModule(CRMBasePage):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/task_module/tasks_screenshot %s.png' % now
         Config.browser.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('failed_screenshot', Config.browser.get_screenshot_as_png(),
+        allure.MASTER_HELPER.attach('passed_screenshot', Config.browser.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
         return CalendarViewModule()

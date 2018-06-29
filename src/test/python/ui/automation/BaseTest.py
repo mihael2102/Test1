@@ -18,15 +18,9 @@ class BaseTest(unittest.TestCase):
         Config.browser = webdriver.Remote(desired_capabilities=options.to_capabilities(),
                                           command_executor=selenium_grid_url)
 
-        report_started = datetime.now().strftime("%d-%m-%Y") + " " + datetime.now().strftime("%H:%M:%S")
-
-        allure.MASTER_HELPER.environment(BROWSER="CHROME", REPORT_STARTED_AT=report_started,
-                                         URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
+        allure.MASTER_HELPER.environment(BROWSER="CHROME", URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
 
     def tearDown(self):
-        report_finished = datetime.now().strftime("%d-%m-%Y") + " " + datetime.now().strftime("%H:%M:%S")
-        allure.MASTER_HELPER.environment(REPORT_FINISHED_AT=report_finished)
-
         """Take a Screen-shot of the drive homepage, when it Failed."""
         if self._outcome.errors:
             for method, error in self._outcome.errors:
@@ -37,8 +31,8 @@ class BaseTest(unittest.TestCase):
                     allure.MASTER_HELPER.attach('failed_screenshot', Config.browser.get_screenshot_as_png(),
                                                 type=AttachmentType.PNG)
 
-                    Config.browser.close()
-                    Config.browser.quit()
-        else:
-            Config.browser.close()
-            Config.browser.quit()
+        #             Config.browser.close()
+        #             Config.browser.quit()
+        # else:
+        #     Config.browser.close()
+        #     Config.browser.quit()
