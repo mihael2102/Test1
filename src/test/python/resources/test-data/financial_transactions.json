@@ -1,0 +1,10 @@
+{
+  "Financial Transactions": {
+    "first_tab": "All",
+    "second_tab": "Credit In",
+    "third_tab": "Credit Out",
+    "fourth_tab": "Demo Accounts Transactions",
+    "fifth_tab": "Deposits",
+    "six_tab": "Withdraw"
+  }
+}

@@ -13,7 +13,7 @@ class CreateDocument(BaseTest):
                        Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
 
         document_module = CRMHomePage().open_more_list_modules() \
-            .select_module_more_list(DocumentClientsModuleConstants.DOCUMENT)
+            .select_document_module_more_list(DocumentClientsModuleConstants.DOCUMENT)
 
         document_module.open_create_document_module().perform_create_document(
             Config.data.get_data_document_crm(DocumentClientsModuleConstants.FIRST_DOCUMENT_TYPE),
@@ -42,7 +42,7 @@ class CreateDocument(BaseTest):
                        Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
 
         document_module = CRMHomePage().open_more_list_modules() \
-            .select_module_more_list(DocumentClientsModuleConstants.DOCUMENT)
+            .select_document_module_more_list(DocumentClientsModuleConstants.DOCUMENT)
 
         document_module.open_create_document_module().perform_create_document(
             Config.data.get_data_document_crm(DocumentClientsModuleConstants.FIRST_DOCUMENT_TYPE),

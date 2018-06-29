@@ -1,6 +1,8 @@
 from selenium.webdriver import ActionChains
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.document_module.DocumentModule import DocumentModule
+from src.main.python.ui.crm.model.modules.financial_transactions_module.FinancialTransactionsModule import \
+    FinancialTransactionsModule
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
 from src.main.python.utils.logs.Loging import Logging
@@ -29,7 +31,7 @@ class CRMHomePage(CRMBasePage):
         hover_mouse.perform()
         return CRMHomePage()
 
-    def select_module_more_list(self, module):
+    def select_document_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         return DocumentModule()
@@ -39,3 +41,11 @@ class CRMHomePage(CRMBasePage):
         task_module.click()
         Logging().reportDebugStep(self, "Leads module is opened")
         return LeadsModule()
+
+    def select_financial_transactions_module_more_list(self, module):
+        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+        module_element.click()
+        return FinancialTransactionsModule()
+
+
+

@@ -9,7 +9,7 @@ from src.test.python.utils.TestDataConstants import TestDataConstants
 @pytest.mark.run(order=5)
 class SearchingClientsTestCRM(BaseTest):
 
-    def test_make_searching(self):
+    def test_make_searching_client_module(self):
         crm_client_profile = CRMLoginPage() \
             .open_first_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),

@@ -6,7 +6,7 @@ class TaskModuleConstants(object):
     MESSAGE_TASK_WAS_UPDATED = "Task was updated"
     MESSAGE_TASK_WERE_UPDATED = "Tasks were updated"
     MESSAGE_TASK_WAS_DELETED = "Tasks were deleted"
-    TASK_MODULE = "TasksModule"
+    TASK_MODULE = "Tasks Module"
     FIRST_TAB = "first_tab"
     SECOND_TAB = "second_tab"
     THIRD_TAB = "third_tab"

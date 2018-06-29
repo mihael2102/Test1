@@ -1,6 +1,8 @@
 import json
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
 from src.main.python.ui.crm.model.constants.DocumentClientsModuleConstants import DocumentClientsModuleConstants
+from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
+    FinancialTransactionsModuleConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
@@ -50,3 +52,9 @@ class DataProviders(object):
             'D:/automation-newforexqa/src/test/python/resources/test-data/leads-information.json')
         conn_string = json.load(connection_file)
         return conn_string[LeadsModuleConstants.FIRST_LEAD_INFO][value]
+
+    def get_data_financial_transactions_info(self, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/financial_transactions.json')
+        conn_string = json.load(connection_file)
+        return conn_string[FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE][value]
