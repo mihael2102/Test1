@@ -1,8 +1,8 @@
 import pytest
 
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.constants.CRMTaskModule import CRMTaskModuleConstants
-from src.main.python.ui.crm.model.main_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
+from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
@@ -28,13 +28,13 @@ class CalendarView(BaseTest):
         fri_day = calendar_module.get_friday_text()
         sat_day = calendar_module.get_saturday_text()
 
-        assert sun_day == CRMTaskModuleConstants.SUNDAY
-        assert mon_day == CRMTaskModuleConstants.MONDAY
-        assert tue_day == CRMTaskModuleConstants.TUESDAY
-        assert wed_day == CRMTaskModuleConstants.WEDNESDAY
-        assert thu_day == CRMTaskModuleConstants.THURSDAY
-        assert fri_day == CRMTaskModuleConstants.FRIDAY
-        assert sat_day == CRMTaskModuleConstants.SATURDAY
+        assert sun_day == TaskModuleConstants.SUNDAY
+        assert mon_day == TaskModuleConstants.MONDAY
+        assert tue_day == TaskModuleConstants.TUESDAY
+        assert wed_day == TaskModuleConstants.WEDNESDAY
+        assert thu_day == TaskModuleConstants.THURSDAY
+        assert fri_day == TaskModuleConstants.FRIDAY
+        assert sat_day == TaskModuleConstants.SATURDAY
 
     def test_check_week_tab(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \

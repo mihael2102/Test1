@@ -37,8 +37,6 @@ class BaseTest(unittest.TestCase):
                     allure.MASTER_HELPER.attach('failed_screenshot', Config.browser.get_screenshot_as_png(),
                                                 type=AttachmentType.PNG)
 
-                    allure.MASTER_HELPER.environment(REPORT_FINISHED=datetime.now())
-
                     Config.browser.close()
                     Config.browser.quit()
         else:

@@ -1,7 +1,7 @@
 import pytest
 
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.constants.CRMMassEditConstants import CRMMassEditConstants
+from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
@@ -27,7 +27,7 @@ class MassAssignTestCRM(BaseTest):
 
         crm_client_profile.select_several_records() \
             .open_mass_assign_module() \
-            .search_user(CRMMassEditConstants.USER_ONE) \
+            .search_user(MassEditConstants.USER_ONE) \
             .enter_check_box() \
             .click_save()
 

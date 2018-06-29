@@ -2,8 +2,8 @@ from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants imp
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.main.python.ui.crm.model.pages.trading_accounts_information.CRMTradingAccountsInformationPage import \
-    CRMTradingAccountsInformationPage
+from src.main.python.ui.crm.model.pages.trading_accounts_information.TradingAccountsInformationPage import \
+    TradingAccountsInformationPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
@@ -39,7 +39,7 @@ class AddNewLiveAccountTestCA(BaseTest):
             .open_client_account(account_id_ca) \
             .get_account_text()
 
-        eur_currency_crm = CRMTradingAccountsInformationPage().get_currency_text()
+        eur_currency_crm = TradingAccountsInformationPage().get_currency_text()
 
         assert account_id_ca == account_id_crm
         assert eur_currency_ca == eur_currency_crm
@@ -73,7 +73,7 @@ class AddNewLiveAccountTestCA(BaseTest):
             .open_client_account(account_id_ca) \
             .get_account_text()
 
-        gbr_currency_crm = CRMTradingAccountsInformationPage().get_currency_text()
+        gbr_currency_crm = TradingAccountsInformationPage().get_currency_text()
 
         assert account_id_ca == account_id_crm
         assert gbr_currency_ca == gbr_currency_crm
@@ -107,7 +107,7 @@ class AddNewLiveAccountTestCA(BaseTest):
             .open_client_account(account_id_ca) \
             .get_account_text()
 
-        cad_currency_crm = CRMTradingAccountsInformationPage().get_currency_text()
+        cad_currency_crm = TradingAccountsInformationPage().get_currency_text()
 
         assert account_id_ca == account_id_crm
         assert cad_currency__ca == cad_currency_crm
@@ -141,7 +141,7 @@ class AddNewLiveAccountTestCA(BaseTest):
             .open_client_account(account_id_ca) \
             .get_account_text()
 
-        jpy_currency_crm = CRMTradingAccountsInformationPage().get_currency_text()
+        jpy_currency_crm = TradingAccountsInformationPage().get_currency_text()
 
         assert account_id_ca == account_id_crm
         assert jpy_currency__ca == jpy_currency_crm

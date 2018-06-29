@@ -2,18 +2,18 @@ import pytest
 
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.credit_out.MT4CreditOutModule import MT4CreditOutModule
-from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.ui.automation.utils.preconditions.credit_out.CRMCredit_Out_Precondition import \
-    CRMCreditOutPrecondition
+from src.test.python.ui.automation.utils.preconditions.credit_out.Credit_Out_Precondition import \
+    CreditOutPrecondition
 
 
 @pytest.mark.run(order=2)
 class CreditOutTestCRM(BaseTest):
 
     def test_make_credit_out_crm(self):
-        CRMCreditOutPrecondition().add_live_account().make_deposit()
-        crm_client_profile = CRMClientProfilePage()
+        CreditOutPrecondition().add_live_account().make_deposit()
+        crm_client_profile = ClientProfilePage()
         amount_initial = crm_client_profile.get_initial_amount()
 
         difference_amount = crm_client_profile \

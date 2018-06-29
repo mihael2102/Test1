@@ -1,7 +1,7 @@
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.withdraw_module.tabs.CaWithdrawHistory import CaWithdrawHistory
 from src.main.python.ui.brand.model.ca_modules.CAModules import CAModules
-from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.withdraw_ca.CAWithdrawPrecondition import \
     CAWithdrawPrecondition
@@ -13,7 +13,7 @@ class WithdrawTestCA(BaseTest):
             .add_live_account() \
             .make_deposit()
 
-        account_number = CRMClientProfilePage().get_client_account()
+        account_number = ClientProfilePage().get_client_account()
 
         withdraw_status = CAModules() \
             .switch_first_tab_page() \

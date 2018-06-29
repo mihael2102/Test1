@@ -1,0 +1,11 @@
+{
+  "AddDocument": {
+    "first_document_type": "Email",
+    "first_status": "Pending",
+    "document": "Test",
+    "first_tab": "All",
+    "second_tab": "Approved",
+    "third_tab": "Not Approved",
+    "fourth_tab": "Pending"
+  }
+}

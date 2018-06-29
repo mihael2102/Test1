@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -23,7 +23,7 @@ class MT4CreditInModule(CRMBasePage):
         self.set_expire_date(expire_date)
         self.set_description(comment)
         self.perform_create_credit_in()
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
         Select an account from drop down
@@ -91,4 +91,4 @@ class MT4CreditInModule(CRMBasePage):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
         create_button.click()
         Logging().reportDebugStep(self, "Perform the create credit in  of credit in module was clicked")
-        return CRMClientProfilePage()
+        return ClientProfilePage()

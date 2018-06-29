@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -22,7 +22,7 @@ class MT4CreditOutModule(CRMBasePage):
         self.set_amount(amount)
         self.set_description(comment)
         self.perform_create_credit_out()
-        return CRMClientProfilePage()
+        return ClientProfilePage()
 
     '''
         Select an account from drop down
@@ -76,4 +76,4 @@ class MT4CreditOutModule(CRMBasePage):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
         create_button.click()
         Logging().reportDebugStep(self, "Perform the create of credit out module was clicked")
-        return CRMClientProfilePage()
+        return ClientProfilePage()

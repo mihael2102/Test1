@@ -2,7 +2,7 @@ from src.main.python.ui.brand.model.client_area_modules.account_details.CaAccoun
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
-from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfileUpdate import CRMClientProfileUpdate
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfileUpdate import ClientProfileUpdate
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
@@ -72,7 +72,7 @@ class PersonalDetailsUpdateTestCA(BaseTest):
 
         date_birthday_crm = crm_client_profile.get_date_birthday()
 
-        client_profile_edit = CRMClientProfileUpdate()
+        client_profile_edit = ClientProfileUpdate()
 
         client_profile_edit.edit_first_name_by_pencil(
             Config.data.get_data_first_client(TestDataConstants.FIRST_NAME)) \

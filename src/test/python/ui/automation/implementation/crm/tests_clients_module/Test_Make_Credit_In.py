@@ -2,19 +2,19 @@ import pytest
 
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.test.python.ui.automation.BaseTest import BaseTest
-from src.test.python.ui.automation.utils.preconditions.credit_in.CRMCredit_In_Precondition import \
-    CRMCreditInPrecondition
+from src.test.python.ui.automation.utils.preconditions.credit_in.Credit_In_Precondition import \
+    CreditInPrecondition
 
 
 @pytest.mark.run(order=1)
 class CreditInTestCRM(BaseTest):
 
     def test_make_credit_in_crm(self):
-        CRMCreditInPrecondition().add_live_account().make_credit_in()
+        CreditInPrecondition().add_live_account().make_credit_in()
 
-        crm_client_profile = CRMClientProfilePage()
+        crm_client_profile = ClientProfilePage()
 
         account_client = crm_client_profile \
             .click_trading_accounts_tab() \

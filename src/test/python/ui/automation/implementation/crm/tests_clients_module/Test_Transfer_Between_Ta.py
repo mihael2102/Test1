@@ -2,19 +2,19 @@ import pytest
 
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.transfer_between_ta.MT4TransferBetweenTa import MT4TransferBetweenTa
-from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.ui.automation.utils.preconditions.transfer_between_ta.CRMTransferBetweenPrecondition import \
-    CRMTransferBetweenPrecondition
+from src.test.python.ui.automation.utils.preconditions.transfer_between_ta.TransferBetweenPrecondition import \
+    TransferBetweenPrecondition
 
 
 @pytest.mark.run(order=3)
 class TransferBetweenTa(BaseTest):
 
     def test_make_transfer_between_ta(self):
-        CRMTransferBetweenPrecondition().add_two_usd_currencies().make_deposit()
+        TransferBetweenPrecondition().add_two_usd_currencies().make_deposit()
 
-        crm_client_profile = CRMClientProfilePage()
+        crm_client_profile = ClientProfilePage()
 
         first_client_profile = crm_client_profile.get_client_account()
         second_client_profile = crm_client_profile.get_second_client_account()

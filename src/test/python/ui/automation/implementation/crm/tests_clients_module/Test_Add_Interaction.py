@@ -1,9 +1,9 @@
 import pytest
 
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.constants.CRMTaskModule import CRMTaskModuleConstants
+from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.main.python.ui.crm.model.side_bar.CRMSidebarModules import CRMSidebarModules
+from src.main.python.ui.crm.model.side_bar.SidebarModules import SidebarModules
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
@@ -18,12 +18,12 @@ class AddInteraction(BaseTest):
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
             .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
 
-        CRMSidebarModules().open_create_event_module(CRMConstants.ADD_INTERACTION) \
-            .create_event(CRMTaskModuleConstants.FIRST_EVENT_STATUS, CRMTaskModuleConstants.FIRST_EVENT_TYPE,
-                          CRMTaskModuleConstants.FIRST_DURATION,
+        SidebarModules().open_create_event_module(CRMConstants.ADD_INTERACTION) \
+            .create_event(TaskModuleConstants.FIRST_EVENT_STATUS, TaskModuleConstants.FIRST_EVENT_TYPE,
+                          TaskModuleConstants.FIRST_DURATION,
                           CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
                           CRMConstants.DATE.strftime(CRMConstants.FORMAT_DATE),
-                          CRMTaskModuleConstants.FIRST_ASSIGN_TO, CRMTaskModuleConstants.FIRST_PRIORITY,
+                          TaskModuleConstants.FIRST_ASSIGN_TO, TaskModuleConstants.FIRST_PRIORITY,
                           CRMConstants.DESCRIPTION_ADD_INTERACTION)
 
         confirmation_message = crm_client_profile.get_confirm_message()

@@ -1,24 +1,24 @@
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.withdraw.MT4WithdrawModule import MT4WithdrawModule
-from src.main.python.ui.crm.model.pages.client_profile.CRMClientProfilePage import CRMClientProfilePage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.ui.automation.utils.preconditions.withdraw_crm.CRMWithdrawPrecondition import \
-    CRMWithdrawPrecondition
+from src.test.python.ui.automation.utils.preconditions.withdraw_crm.WithdrawPrecondition import \
+    WithdrawPrecondition
 
 
 class WithdrawTestCRM(BaseTest):
 
     def test_make_withdraw_crm(self):
-        CRMWithdrawPrecondition().add_live_account().make_deposit()
+        WithdrawPrecondition().add_live_account().make_deposit()
 
-        crm_client_profile = CRMClientProfilePage()
+        crm_client_profile = ClientProfilePage()
 
         account = crm_client_profile.get_client_account()
 
         amount_initial = crm_client_profile.get_initial_amount()
 
-        difference_amount = CRMClientProfilePage() \
+        difference_amount = ClientProfilePage() \
             .get_difference_amount_text(amount_initial, CRMConstants.AMOUNT_WITHDRAW)
 
         crm_client_profile.perform_scroll_up() \

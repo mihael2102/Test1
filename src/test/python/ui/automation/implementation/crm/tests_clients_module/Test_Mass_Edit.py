@@ -1,7 +1,7 @@
 import pytest
 
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.constants.CRMMassEditConstants import CRMMassEditConstants
+from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
@@ -34,15 +34,15 @@ class MassEditTestCRM(BaseTest):
 
         crm_clients_module_page.select_several_records() \
             .open_mass_edit_module() \
-            .perform_mass_edit(Config.data.get_data_mass_edit(CRMMassEditConstants.GENDER_FEMALE),
-                               Config.data.get_data_mass_edit(CRMMassEditConstants.ASSIGNED_TO_PANDA),
-                               Config.data.get_data_mass_edit(CRMMassEditConstants.CLIENT_SOURCE),
-                               Config.data.get_data_mass_edit(CRMMassEditConstants.COMPLIANCE_AGENT),
-                               Config.data.get_data_mass_edit(CRMMassEditConstants.COMPLIANCE_NOTES),
-                               Config.data.get_data_mass_edit(CRMMassEditConstants.CLIENT_STATUS),
-                               Config.data.get_data_mass_edit(CRMMassEditConstants.RETENTION_STATUS),
-                               Config.data.get_data_mass_edit(CRMMassEditConstants.DESCRIPTION),
-                               Config.data.get_data_mass_edit(CRMMassEditConstants.REFERRAL)) \
+            .perform_mass_edit(Config.data.get_data_mass_edit(MassEditConstants.GENDER_FEMALE),
+                               Config.data.get_data_mass_edit(MassEditConstants.ASSIGNED_TO_PANDA),
+                               Config.data.get_data_mass_edit(MassEditConstants.CLIENT_SOURCE),
+                               Config.data.get_data_mass_edit(MassEditConstants.COMPLIANCE_AGENT),
+                               Config.data.get_data_mass_edit(MassEditConstants.COMPLIANCE_NOTES),
+                               Config.data.get_data_mass_edit(MassEditConstants.CLIENT_STATUS),
+                               Config.data.get_data_mass_edit(MassEditConstants.RETENTION_STATUS),
+                               Config.data.get_data_mass_edit(MassEditConstants.DESCRIPTION),
+                               Config.data.get_data_mass_edit(MassEditConstants.REFERRAL)) \
             .click_save()
 
         confirmation_message = crm_clients_module_page.get_confirm_message()
@@ -51,25 +51,23 @@ class MassEditTestCRM(BaseTest):
 
         crm_client_profile = crm_clients_module_page.refresh() \
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(first_client) \
-            .click_search_button() \
-            .open_client_id()
+            .find_client_by_email(first_client)
 
         assert crm_client_profile.get_gender_text() == Config.data.get_data_mass_edit(
-            CRMMassEditConstants.GENDER_FEMALE)
+            MassEditConstants.GENDER_FEMALE)
         assert crm_client_profile.get_assigned_to_text() == Config.data.get_data_mass_edit(
-            CRMMassEditConstants.ASSIGNED_TO_PANDA)
+            MassEditConstants.ASSIGNED_TO_PANDA)
         assert crm_client_profile.get_client_source_text() == Config.data.get_data_mass_edit(
-            CRMMassEditConstants.CLIENT_SOURCE)
+            MassEditConstants.CLIENT_SOURCE)
         assert crm_client_profile.get_compliance_agent_text() == Config.data.get_data_mass_edit(
-            CRMMassEditConstants.COMPLIANCE_AGENT)
+            MassEditConstants.COMPLIANCE_AGENT)
         assert crm_client_profile.get_compliance_notes_text() == Config.data.get_data_mass_edit(
-            CRMMassEditConstants.COMPLIANCE_NOTES)
+            MassEditConstants.COMPLIANCE_NOTES)
         assert crm_client_profile.get_client_status_text() == Config.data.get_data_mass_edit(
-            CRMMassEditConstants.CLIENT_STATUS)
+            MassEditConstants.CLIENT_STATUS)
         assert crm_client_profile.get_retention_status_text() == Config.data.get_data_mass_edit(
-            CRMMassEditConstants.RETENTION_STATUS)
+            MassEditConstants.RETENTION_STATUS)
         assert crm_client_profile.get_description_text() == Config.data.get_data_mass_edit(
-            CRMMassEditConstants.DESCRIPTION)
+            MassEditConstants.DESCRIPTION)
         assert crm_client_profile.get_referral_text() == Config.data.get_data_mass_edit(
-            CRMMassEditConstants.REFERRAL)
+            MassEditConstants.REFERRAL)
