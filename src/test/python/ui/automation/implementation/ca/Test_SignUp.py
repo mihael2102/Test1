@@ -22,4 +22,4 @@ class SignUpTest(BaseTest):
             .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
             .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
 
-        assert crm_client_profile.get_client_status() == "Live"
+        assert crm_client_profile.get_live_status_client() == "Live"

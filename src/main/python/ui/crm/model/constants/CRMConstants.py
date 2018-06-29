@@ -23,6 +23,7 @@ class CRMConstants(object):
     TENTH_COLUMN_OTHER_TYPE = "City"
     ELEVENTH_COLUMN = "eleventh_column"
     FILTER_NAME = "test_filter2"
+    SECOND_FILTER_NAME = "TestFilter" + str(random.randrange(1, 9999))
     CLIENT_STATUS = "client_status_1"
     BRAND_NEW_FOREX = "brand_one"
     TRANSFER_BETWEEN_TA_MESSAGE = "Funds were transferred successfully"
@@ -30,6 +31,7 @@ class CRMConstants(object):
     TRANSFER_BETWEEN_TA = "8"
     DESCRIPTION_ADD_INTERACTION = "Description Interaction"
     DATE = datetime.now()
+    TODAY_DATE = datetime.today().now()
     SECOND_DATE = datetime.now() + relativedelta(days=1, minutes=15)
     THIRD_DATE = datetime.now() + relativedelta(days=2, minutes=30)
     FOURTH_DATE = datetime.now() + relativedelta(days=3, minutes=45)
@@ -43,8 +45,10 @@ class CRMConstants(object):
     EXPIRE_DATE = datetime.now() + relativedelta(days=2)
     FORMAT_DATE = "%d-%m-%Y"
     SECOND_FORMAT_DATE = "%Y-%m-%d"
+    THIRD_FORMAT_DATE = "%A"
     FIRST_FORMAT_TIME = "%H:%M:%S"
     SECOND_FORMAT_TIME = "%H"
+    THIRD_FORMAT = "%B" + " " + "%d" + ", " + "%Y"
     CREDIT_IN_COMMENT = "Credit in "
     CREDIT_OUT_COMMENT = "Credit out "
     AMOUNT_CREDIT_IN = "25.00"
