@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -5,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=22)
+@pytest.mark.run(order=23)
 class LeadModule(BaseTest):
 
     def test_create_lead(self):
