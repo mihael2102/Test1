@@ -13,4 +13,4 @@ six==1.11.0
 python-dateutil
 allure-behave
 pytest-ordering
-pytest-allure-adaptor
+allure-pytest
