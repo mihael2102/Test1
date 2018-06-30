@@ -8,6 +8,7 @@ from src.test.python.ui.automation.utils.preconditions.credit_in.Credit_In_Preco
     CreditInPrecondition
 
 
+@pytest.mark.run(order=1)
 class CreditInTestCRM(BaseTest):
 
     def test_make_credit_in_crm(self):
