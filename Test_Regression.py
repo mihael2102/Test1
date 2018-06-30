@@ -17,7 +17,6 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta import \
     TransferBetweenTa
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module import CreateDocument
-
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Tab_Document_Module import \
     TabDocumentModule
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module import LeadModule
