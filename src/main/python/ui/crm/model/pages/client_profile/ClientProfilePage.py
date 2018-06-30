@@ -314,7 +314,7 @@ class ClientProfilePage(CRMBasePage):
     def get_phone_text(self):
         phone = self.driver.find_element(By.XPATH, "//td[contains(text(),'Phone')]//following-sibling::td[1]")
         parser_phone_text = re.sub('[+," "]', '', phone.text)
-        Logging().reportDebugStep(self, "Returns the first name: " + parser_phone_text)
+        Logging().reportDebugStep(self, "Returns the phone number: " + parser_phone_text)
         return parser_phone_text
 
     '''

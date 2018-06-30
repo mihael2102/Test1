@@ -72,16 +72,16 @@ class TaskModule(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
 
-    def open_this_week_tab(self):
+    def open_show_all_tab(self):
         sleep(1)
-        tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[4]")
+        tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[1]")
         tab.click()
         Logging().reportDebugStep(self, "The this week tab was opened ")
         return TaskModule()
 
     def open_sms_module(self):
         first_check_box = super().wait_element_to_be_clickable(
-            "//tr[@class='tableRow'][1]//div[2]")
+            "//tr[@class='tableRow']//div[2]")
         first_check_box.click()
         Logging().reportDebugStep(self, "The sms module was opened: ")
         return MassSMSModule()
@@ -202,6 +202,7 @@ class TaskModule(CRMBasePage):
         subject_field.clear()
         subject_field.send_keys(subject)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
+        sleep(3)
         return TaskModule()
 
     def open_call_module(self):

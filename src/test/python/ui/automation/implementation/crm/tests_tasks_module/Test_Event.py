@@ -51,7 +51,7 @@ class AddEventTaskModule(BaseTest):
 
         assert task_module.get_message_task() == TaskModuleConstants.MESSAGE_CREATE_EVENT
 
-        task_module.open_this_week_tab() \
+        task_module.open_show_all_tab() \
             .click_pencil_button().edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
                                               TaskModuleConstants.SECOND_EVENT_TYPE,
                                               TaskModuleConstants.SECOND_DURATION,
