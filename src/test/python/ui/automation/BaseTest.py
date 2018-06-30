@@ -1,7 +1,7 @@
 from datetime import *
 import unittest
 import allure
-from allure.constants import AttachmentType
+from allure_commons.types import AttachmentType
 from selenium import webdriver
 from src.main.python.ui.brand.model.data.providers.DataProviders import DataProviders
 from src.main.python.utils.config import Config
@@ -18,8 +18,6 @@ class BaseTest(unittest.TestCase):
         Config.browser = webdriver.Remote(desired_capabilities=options.to_capabilities(),
                                           command_executor=selenium_grid_url)
 
-        allure.MASTER_HELPER.environment(BROWSER="CHROME", URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
-
     def tearDown(self):
         """Take a Screen-shot of the drive homepage, when it Failed."""
         if self._outcome.errors:
@@ -30,8 +28,8 @@ class BaseTest(unittest.TestCase):
                                 '/allure/results/failed_screenshot %s.png' % now
 
                     Config.browser.get_screenshot_as_file(file_name)
-                    allure.MASTER_HELPER.attach('failed_screenshot', Config.browser.get_screenshot_as_png(),
-                                                type=AttachmentType.PNG)
+                    allure.attach('failed_screenshot', Config.browser.get_screenshot_as_png(),
+                                  type=AttachmentType.PNG)
 
                     Config.browser.close()
                     Config.browser.quit()
