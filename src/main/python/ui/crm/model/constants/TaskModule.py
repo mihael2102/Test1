@@ -2,7 +2,7 @@ import random
 
 
 class TaskModuleConstants(object):
-    DESCRIPTION_SEND_SMS = "Hello from task module"
+    DESCRIPTION_SEND_SMS = "Hello from actions section"
     MESSAGE_TASK_WAS_UPDATED = "Task was updated"
     MESSAGE_TASK_WERE_UPDATED = "Tasks were updated"
     MESSAGE_TASK_WAS_DELETED = "Tasks were deleted"
@@ -34,7 +34,6 @@ class TaskModuleConstants(object):
     FIFTH_SUBJECT = "Testing5" + str(random.randrange(1, 10000))
     SIXTH_SUBJECT = "Testing6" + str(random.randrange(1, 10000))
     SEVENTH_SUBJECT = "Testing7" + str(random.randrange(1, 10000))
-
     FIRST_PRIORITY = "Medium"
     SECOND_PRIORITY = "High"
     THIRD_PRIORITY = "Low"

@@ -11,7 +11,7 @@ class MassSmsTaskModule(BaseTest):
         MassSmSPrecondition().create_first_event().create_second_event().create_third_event()
 
         task_module = TaskModule()
-        task_module.open_this_week_tab().find_event_by_subject(
+        task_module.open_show_all_tab().find_event_by_subject(
             TaskModuleConstants.SEVENTH_SUBJECT).select_several_records_task_module() \
             .open_mass_sms_module().perform_send_sms(CRMConstants.PHONE, CRMConstants.MESSAGE_MASS_SMS) \
             .click_send_button()

@@ -4,7 +4,6 @@ from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
-from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
@@ -31,7 +30,7 @@ class MassEditPrecondition(object):
                                                          TaskModuleConstants.FIFTH_SUBJECT,
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
-        return MassSmSPrecondition()
+        return MassEditPrecondition()
 
     def create_second_event(self):
         task_module = TaskModule()
@@ -48,7 +47,7 @@ class MassEditPrecondition(object):
                                                          TaskModuleConstants.SECOND_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
-        return MassSmSPrecondition()
+        return MassEditPrecondition()
 
     def create_third_event(self):
         task_module = TaskModule()
@@ -65,4 +64,4 @@ class MassEditPrecondition(object):
                                                          TaskModuleConstants.THIRD_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
-        return MassSmSPrecondition()
+        return MassEditPrecondition()
