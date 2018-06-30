@@ -170,8 +170,3 @@ class CaPersonalInformationTab(BrandBasePage):
     def get_citizen_ship_text(self):
         citizen = self.driver.find_element(By.XPATH, "//custom-select[@name='citizenship']")
         return citizen.text
-
-
-    def get_citizen_ship_text(self):
-        citizen = self.driver.find_element(By.XPATH, "//custom-select[@name='citizenship']")
-        return citizen.text

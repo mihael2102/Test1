@@ -30,6 +30,9 @@ class CRMBasePage(object):
     def switch_first_tab_page(self):
         self.driver.switch_to_window(Config.window_before)
 
+    def switch_first_window_page(self):
+        self.driver.switch_to_window(Config.window_before)
+
     def switch_second_tab_page(self):
         self.driver.switch_to_window(Config.window_after)
 
@@ -43,11 +46,12 @@ class CRMBasePage(object):
         return WaitingUtils().wait_until_element_present_crm(element, total_amount_crm, self.driver)
 
     def wait_element_to_be_clickable(self, element):
-        return WebDriverWait(self.driver, 15).until(
+        return WebDriverWait(self.driver, 30).until(
             EC.element_to_be_clickable((By.XPATH, element)))
 
     def perform_scroll(self, parameter):
         self.driver.execute_script("scroll(0, '%s');" % parameter)
+        Logging().reportDebugStep(self, "Scroll was performed ")
 
     def refresh_page(self):
         sleep(3)
@@ -57,3 +61,4 @@ class CRMBasePage(object):
     def click_ok(self):
         button = self.wait_load_element("//button[contains(text(),'OK')]")
         button.click()
+        Logging().reportDebugStep(self, "The Ok button was clicked ")

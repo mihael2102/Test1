@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.pages.main.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.main.ClientsModulePage import ClientsModulePage
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -32,7 +32,6 @@ class CRMLoginPage(CRMBasePage):
     '''
 
     def crm_login(self, user_name, password):
-        self.log = Logging()
         user_name_field = self.driver.find_element(By.XPATH, "//input[@id='user_name']")
         password__field = self.driver.find_element(By.XPATH, "//input[@id='user_password']")
         login_button = self.driver.find_element(By.XPATH, "//input[@id='submitButton']")
@@ -44,7 +43,7 @@ class CRMLoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Setting the user name in the password: " + password + '\n')
         login_button.click()
         Logging().reportDebugStep(self, "Click the login button" + '\n')
-        return CRMHomePage()
+        return ClientsModulePage()
 
     '''
         Select the crm page again
@@ -55,3 +54,7 @@ class CRMLoginPage(CRMBasePage):
         super().switch_second_tab_page()
         Logging().reportDebugStep(self, "Switch  the second page")
         return CRMLoginPage()
+
+
+
+

@@ -4,8 +4,8 @@ from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants imp
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.main.python.ui.crm.model.pages.trading_accounts_information.CRMTradingAccountsInformationPage import \
-    CRMTradingAccountsInformationPage
+from src.main.python.ui.crm.model.pages.trading_accounts_information.TradingAccountsInformationPage import \
+    TradingAccountsInformationPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
@@ -45,7 +45,7 @@ class AddDemoAccountsTestCA(BaseTest):
             .open_client_account(account_id_ca) \
             .get_account_text()
 
-        trading_accounts_info = CRMTradingAccountsInformationPage()
+        trading_accounts_info = TradingAccountsInformationPage()
 
         usd_currency_crm = trading_accounts_info.get_currency_text()
         balance_crm = trading_accounts_info.get_balance_text()
@@ -86,7 +86,7 @@ class AddDemoAccountsTestCA(BaseTest):
             .open_client_account(account_id_ca) \
             .get_account_text()
 
-        trading_accounts_info = CRMTradingAccountsInformationPage()
+        trading_accounts_info = TradingAccountsInformationPage()
 
         eur_currency_crm = trading_accounts_info.get_currency_text()
         balance_crm = trading_accounts_info.get_balance_text()
@@ -127,7 +127,7 @@ class AddDemoAccountsTestCA(BaseTest):
             .open_client_account(account_id_ca) \
             .get_account_text()
 
-        trading_accounts_info = CRMTradingAccountsInformationPage()
+        trading_accounts_info = TradingAccountsInformationPage()
 
         gbr_currency_crm = trading_accounts_info.get_currency_text()
         balance_crm = trading_accounts_info.get_balance_text()
@@ -168,7 +168,7 @@ class AddDemoAccountsTestCA(BaseTest):
             .open_client_account(account_id_ca) \
             .get_account_text()
 
-        trading_accounts_info = CRMTradingAccountsInformationPage()
+        trading_accounts_info = TradingAccountsInformationPage()
         cad_currency_crm = trading_accounts_info.get_currency_text()
         balance_crm = trading_accounts_info.get_balance_text()
 

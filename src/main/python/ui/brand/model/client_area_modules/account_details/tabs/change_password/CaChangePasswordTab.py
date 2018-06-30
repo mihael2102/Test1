@@ -11,16 +11,16 @@ class CaChangePasswordTab(BrandBasePage):
         old_password_field = super().wait_load_element_present("//input[@name='oldPassword']")
         old_password_field.send_keys(old_password)
         Logging().reportDebugStep(self,
-                                  "Entering the old password in the field :  " + old_password)
+                                  "Enter the  old password in the field :  " + old_password)
         new_password_field = self.driver.find_element(By.XPATH, "//input[@name='password']")
         new_password_field.send_keys(new_password)
         Logging().reportDebugStep(self,
-                                  "Entering the new password in the field :  " + new_password)
+                                  "Enter the new password in the field :  " + new_password)
         repeat_password = self.driver.find_element(By.XPATH, "//input[@name='passwordConfirm']")
         repeat_password.send_keys(new_password)
         repeat_password = self.driver.find_element(By.XPATH, "//button[contains(text(),'Save Changes')]")
         Logging().reportDebugStep(self,
-                                  "Entering the confirmation of the new password in the field  : " + new_password)
+                                  "Enter the confirmation of the new password in the field  : " + new_password)
         repeat_password.click()
         Logging().reportDebugStep(self,
                                   "Password changed successfully, new password is: " + new_password)
