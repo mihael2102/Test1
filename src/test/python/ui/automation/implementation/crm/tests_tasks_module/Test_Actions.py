@@ -14,13 +14,13 @@ class ActionsTask(BaseTest):
 
         task_module = TaskModule()
         phone_number = task_module.open_this_week_tab() \
-            .find_event_by_subject(TaskModuleConstants.FIRST_SUBJECT) \
+            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_first_client_profile() \
             .get_phone_text()
 
         task_module.open_first_tab_page(Config.url_task)
 
-        task_module.find_event_by_subject(TaskModuleConstants.FIRST_SUBJECT) \
+        task_module.find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_sms_module() \
             .perform_send_sms(phone_number, TaskModuleConstants.DESCRIPTION_SEND_SMS) \
             .click_send_button()
@@ -37,7 +37,7 @@ class ActionsTask(BaseTest):
         MassSmSPrecondition().create_first_event()
         task_module = TaskModule()
         task_module.open_this_week_tab() \
-            .find_event_by_subject(TaskModuleConstants.FIRST_SUBJECT) \
+            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_call_module() \
             .perform_call_section(Config.data.get_data_task_module(TaskModuleConstants.SECOND_CALL_OUTCOME),
                                   Config.data.get_data_task_module(TaskModuleConstants.SECOND_POSITIVE_OUTCOME),
@@ -46,7 +46,7 @@ class ActionsTask(BaseTest):
             .click_submit_button()
 
         client_status = task_module.open_this_week_tab() \
-            .find_event_by_subject(TaskModuleConstants.FIRST_SUBJECT) \
+            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_first_client_profile() \
             .get_client_status()
 

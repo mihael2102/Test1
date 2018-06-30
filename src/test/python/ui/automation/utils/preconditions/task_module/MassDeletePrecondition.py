@@ -3,11 +3,12 @@ from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstant
 from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
 from src.main.python.utils.config import Config
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class MassSmSPrecondition(object):
+class MassDeletePrecondition(object):
 
     def __init__(self) -> None:
         super().__init__()
@@ -28,7 +29,7 @@ class MassSmSPrecondition(object):
                                                              CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.FIRST_ASSIGN_TO,
                                                          TaskModuleConstants.FIRST_ACCOUNT_NAME,
-                                                         TaskModuleConstants.SEVENTH_SUBJECT,
+                                                         TaskModuleConstants.SIXTH_SUBJECT,
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
         return MassSmSPrecondition()
@@ -44,7 +45,7 @@ class MassSmSPrecondition(object):
                                                              CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.SECOND_ASSIGN_TO,
                                                          TaskModuleConstants.SECOND_ACCOUNT_NAME,
-                                                         TaskModuleConstants.SEVENTH_SUBJECT,
+                                                         TaskModuleConstants.SIXTH_SUBJECT,
                                                          TaskModuleConstants.SECOND_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
@@ -61,7 +62,7 @@ class MassSmSPrecondition(object):
                                                              CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.THIRD_ASSIGN_TO,
                                                          TaskModuleConstants.THIRD_ACCOUNT_NAME,
-                                                         TaskModuleConstants.SEVENTH_SUBJECT,
+                                                         TaskModuleConstants.SIXTH_SUBJECT,
                                                          TaskModuleConstants.THIRD_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 

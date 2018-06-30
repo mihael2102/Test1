@@ -25,7 +25,7 @@ class AddEventTaskModule(BaseTest):
                                                          CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.FIRST_ASSIGN_TO,
                                                          TaskModuleConstants.FIRST_ACCOUNT_NAME,
-                                                         TaskModuleConstants.FIRST_SUBJECT,
+                                                         TaskModuleConstants.FOURTH_SUBJECT,
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
@@ -45,7 +45,7 @@ class AddEventTaskModule(BaseTest):
                                                          CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.FIRST_ASSIGN_TO,
                                                          TaskModuleConstants.FIRST_ACCOUNT_NAME,
-                                                         TaskModuleConstants.FIRST_SUBJECT,
+                                                         TaskModuleConstants.FOURTH_SUBJECT,
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
