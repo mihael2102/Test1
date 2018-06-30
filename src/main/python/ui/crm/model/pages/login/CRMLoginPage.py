@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.pages.main.ClientsModulePage import ClientsModulePage
+from src.main.python.ui.crm.model.pages.main.ClientsModule import ClientsModule
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -43,7 +43,7 @@ class CRMLoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Setting the user name in the password: " + password + '\n')
         login_button.click()
         Logging().reportDebugStep(self, "Click the login button" + '\n')
-        return ClientsModulePage()
+        return ClientsModule()
 
     '''
         Select the crm page again
