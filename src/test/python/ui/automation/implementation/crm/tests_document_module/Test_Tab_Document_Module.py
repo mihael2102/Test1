@@ -9,8 +9,8 @@ class TabDocumentModule(BaseTest):
 
     def test_check_tabs_document_module(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
         document_module = CRMHomePage().open_more_list_modules() \
             .select_document_module_more_list(DocumentClientsModuleConstants.DOCUMENT)

@@ -12,7 +12,7 @@ class MassEditTaskModule(BaseTest):
 
         task_module = TaskModule()
         task_module.open_show_all_tab().find_event_by_subject(
-            TaskModuleConstants.FIFTH_SUBJECT).select_several_records_task_module() \
+            TaskModuleConstants.FIFTH_SUBJECT).select_three_records_task_module() \
             .open_mass_edit_task().perform_mass_edit(TaskModuleConstants.SECOND_EVENT_STATUS,
                                                      TaskModuleConstants.SECOND_EVENT_TYPE,
                                                      TaskModuleConstants.SECOND_DURATION,

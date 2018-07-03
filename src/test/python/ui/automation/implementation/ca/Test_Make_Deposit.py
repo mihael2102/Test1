@@ -12,8 +12,8 @@ class DepositTestCa(BaseTest):
     def test_make_deposit_from_ca(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area) \
             .login() \
-            .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(CaConstants.DEPOSIT)
@@ -21,10 +21,10 @@ class DepositTestCa(BaseTest):
         deposit_successful = CADeposit().select_payment_method(CaConstants.VISA) \
             .set_amount_deposit(CaConstants.AMOUNT_DEPOSIT) \
             .click_deposit_button() \
-            .set_card_number(Config.data.get_data_first_client(TestDataConstants.CREDIT_CARD)) \
-            .set_expiry_date(Config.data.get_data_first_client(TestDataConstants.EXPIRY_DATE)) \
-            .set_expiry_year(Config.data.get_data_first_client(TestDataConstants.EXPIRY_YEAR)) \
-            .set_cvc(Config.data.get_data_first_client(TestDataConstants.CVC)) \
+            .set_card_number(Config.data.get_data_client(TestDataConstants.CREDIT_CARD)) \
+            .set_expiry_date(Config.data.get_data_client(TestDataConstants.EXPIRY_DATE)) \
+            .set_expiry_year(Config.data.get_data_client(TestDataConstants.EXPIRY_YEAR)) \
+            .set_cvc(Config.data.get_data_client(TestDataConstants.CVC)) \
             .perform_deposit() \
             .get_successful_deposit_message()
 

@@ -67,8 +67,8 @@ class CRMHomePage(CRMBasePage):
         return CRMHomePage()
 
     def open_home_page(self):
-        home_page_element = super().wait_element_to_be_clickable("//a[@class='navbar-brand']//img")
+        home_page_element = super().wait_element_to_be_clickable("//a//img[@src='themes/panda/images/Home.PNG']")
         home_page_element.click()
-        Logging().reportDebugStep(self, "The home page  was opened")
+        Logging().reportDebugStep(self, "The home page was opened")
         return CRMHomePage()
 

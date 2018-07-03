@@ -13,10 +13,10 @@ class AddInteraction(BaseTest):
 
     def test_add_interaction(self):
         crm_client_profile = CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
+            .find_client_by_email(Config.data.get_data_client(TestDataConstants.E_MAIL))
 
         SidebarModules().open_create_event_module(CRMConstants.ADD_INTERACTION) \
             .create_event(TaskModuleConstants.FIRST_EVENT_STATUS, TaskModuleConstants.FIRST_EVENT_TYPE,

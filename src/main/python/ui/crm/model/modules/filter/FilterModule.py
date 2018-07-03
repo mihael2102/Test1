@@ -27,13 +27,19 @@ class FilterModule(CRMBasePage):
         self.perform_choice_eleventh_column(name_eleventh_column)
         return FilterModule()
 
-    # def perform_second_create_filter(self, name_filter,document, name_first_column, name_second_column, name_third_column,
-    #                           name_fourth_column):
-    #     self.set_name_filter(name_filter)
-    #     self.perform_choice_first_column(document)
-    #     self.perform_choice_second_column(name_first_column)
-    #     self.perform_choice_third_column(name_second_column)
-    #     return CRMFilterModule()
+    def perform_create_filter(self, name_filter, name_first_column, name_second_column, name_third_column,
+                              name_fourth_column, name_fifth_column, name_sixth_column, name_seventh_column,
+                              name_eighth_column):
+        self.set_name_filter(name_filter)
+        self.perform_choice_first_column(name_first_column)
+        self.perform_choice_second_column(name_second_column)
+        self.perform_choice_third_column(name_third_column)
+        self.perform_choice_fourth_column(name_fourth_column)
+        self.perform_choice_fifth_column(name_fifth_column)
+        self.perform_choice_sixth_column(name_sixth_column)
+        self.perform_choice_seventh_column(name_seventh_column)
+        self.perform_choice_eighth_column(name_eighth_column)
+        return FilterModule()
 
     def set_name_filter(self, name_filter):
         name_filter_field = super().wait_load_element("//input[@name='viewName']")

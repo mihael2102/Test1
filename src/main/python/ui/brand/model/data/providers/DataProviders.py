@@ -12,7 +12,7 @@ from src.test.python.utils.TestDataConstants import TestDataConstants
 
 class DataProviders(object):
 
-    def get_data_first_client(self, value):
+    def get_data_client(self, value):
         connection_file = open(
             'D:/automation-newforexqa/src/test/python/resources/test-data/client-information.json')
         conn_string = json.load(connection_file)
@@ -48,11 +48,11 @@ class DataProviders(object):
         conn_string = json.load(connection_file)
         return conn_string[TaskModuleConstants.TASK_MODULE][value]
 
-    def get_data_first_lead_info(self, value):
+    def get_data_lead_info(self, key, value):
         connection_file = open(
             'D:/automation-newforexqa/src/test/python/resources/test-data/leads-information.json')
         conn_string = json.load(connection_file)
-        return conn_string[LeadsModuleConstants.FIRST_LEAD_INFO][value]
+        return conn_string[key][value]
 
     def get_data_financial_transactions_info(self, value):
         connection_file = open(
