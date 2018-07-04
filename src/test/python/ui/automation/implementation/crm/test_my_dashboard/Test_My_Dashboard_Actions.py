@@ -20,7 +20,8 @@ class MyDashboardActions(BaseTest):
             .open_first_client_profile() \
             .get_phone_text()
 
-        dashboard_module.find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
+        dashboard_module.came_back_on_previous_page() \
+            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_sms_module_my_dashboard() \
             .perform_send_sms(phone_number, TaskModuleConstants.DESCRIPTION_SEND_SMS) \
             .click_send_button()
