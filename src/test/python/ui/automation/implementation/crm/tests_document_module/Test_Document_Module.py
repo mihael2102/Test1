@@ -12,11 +12,11 @@ class CreateDocument(BaseTest):
 
     def test_create_document(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
         document_module = CRMHomePage().open_more_list_modules() \
-            .select_module_more_list(DocumentClientsModuleConstants.DOCUMENT)
+            .select_document_module_more_list(DocumentClientsModuleConstants.DOCUMENT)
 
         document_module.open_create_document_module().perform_create_document(
             Config.data.get_data_document_crm(DocumentClientsModuleConstants.FIRST_DOCUMENT_TYPE),
@@ -41,11 +41,11 @@ class CreateDocument(BaseTest):
 
     def test_delete_document(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
         document_module = CRMHomePage().open_more_list_modules() \
-            .select_module_more_list(DocumentClientsModuleConstants.DOCUMENT)
+            .select_document_module_more_list(DocumentClientsModuleConstants.DOCUMENT)
 
         document_module.open_create_document_module().perform_create_document(
             Config.data.get_data_document_crm(DocumentClientsModuleConstants.FIRST_DOCUMENT_TYPE),

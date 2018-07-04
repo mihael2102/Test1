@@ -9,7 +9,7 @@ class DocumentClientsModuleConstants(object):
     SECOND_TAB = "second_tab"
     THIRD_TAB = "third_tab"
     DOCUMENT = "Documents"
-    CRM_ADD_DOCUMENT = "AddDocument"
+    CRM_ADD_DOCUMENT = "Add Document Module"
     FIRST_DOCUMENT_TYPE = "first_document_type"
     FIRST_STATUS = "first_status"
     EXPIRE_DATE_DOCUMENT = datetime.now() + relativedelta(days=2)

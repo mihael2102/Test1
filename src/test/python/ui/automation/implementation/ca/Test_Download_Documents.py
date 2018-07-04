@@ -11,8 +11,8 @@ class DownloadDocumentsTestCA(BaseTest):
 
     def test_make_dowload_documents(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
-            .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(CaConstants.VERIFICATION_CENTER)
@@ -21,10 +21,10 @@ class DownloadDocumentsTestCA(BaseTest):
 
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
+            .find_client_by_email(Config.data.get_data_client(TestDataConstants.E_MAIL))
 
         status_document_crm = crm_client_profile \
             .perform_scroll_down() \

@@ -13,8 +13,8 @@ class AddEventTaskModule(BaseTest):
 
     def test_add_event(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage().open_task_module()
 
@@ -25,7 +25,7 @@ class AddEventTaskModule(BaseTest):
                                                          CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.FIRST_ASSIGN_TO,
                                                          TaskModuleConstants.FIRST_ACCOUNT_NAME,
-                                                         TaskModuleConstants.FIRST_SUBJECT,
+                                                         TaskModuleConstants.FOURTH_SUBJECT,
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
@@ -33,8 +33,8 @@ class AddEventTaskModule(BaseTest):
 
     def test_edit_event(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage().open_task_module()
 
@@ -45,13 +45,13 @@ class AddEventTaskModule(BaseTest):
                                                          CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.FIRST_ASSIGN_TO,
                                                          TaskModuleConstants.FIRST_ACCOUNT_NAME,
-                                                         TaskModuleConstants.FIRST_SUBJECT,
+                                                         TaskModuleConstants.FOURTH_SUBJECT,
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
         assert task_module.get_message_task() == TaskModuleConstants.MESSAGE_CREATE_EVENT
 
-        task_module.open_this_week_tab() \
+        task_module.open_show_all_tab() \
             .click_pencil_button().edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
                                               TaskModuleConstants.SECOND_EVENT_TYPE,
                                               TaskModuleConstants.SECOND_DURATION,

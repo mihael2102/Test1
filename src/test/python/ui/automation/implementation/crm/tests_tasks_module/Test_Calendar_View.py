@@ -13,8 +13,8 @@ class CalendarView(BaseTest):
 
     def test_check_month_tab(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
         calendar_module = CRMHomePage().open_task_module() \
             .open_calendar_view_module() \
@@ -38,8 +38,8 @@ class CalendarView(BaseTest):
 
     def test_check_week_tab(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
         CRMHomePage().open_task_module() \
             .open_calendar_view_module() \
@@ -48,8 +48,8 @@ class CalendarView(BaseTest):
 
     def test_check_day_tab(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
         calendar_module = CRMHomePage().open_task_module() \
             .open_calendar_view_module() \

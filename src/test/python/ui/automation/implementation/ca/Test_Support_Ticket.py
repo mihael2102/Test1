@@ -9,8 +9,8 @@ class CreateSupportTicketTestCa(BaseTest):
     def test_create_ticket(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area) \
             .login() \
-            .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(TestDataConstants.SERVICE_DESK)
@@ -33,10 +33,10 @@ class CreateSupportTicketTestCa(BaseTest):
         crm_login_page = CRMLoginPage()
         crm_help_desk = crm_login_page \
             .open_second_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
             .open_help_desk_module() \
-            .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
             .find_ticket_by_id(ca_id) \
             .perform_search() \
             .open_ticket_number()

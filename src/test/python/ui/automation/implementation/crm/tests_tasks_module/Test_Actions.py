@@ -3,6 +3,8 @@ import pytest
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
 from src.test.python.ui.automation.BaseTest import *
+from src.test.python.ui.automation.utils.preconditions.task_module.ActionsTasksPrecondition import \
+    ActionsTasksPrecondition
 from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
 
 
@@ -10,17 +12,16 @@ from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecon
 class ActionsTask(BaseTest):
 
     def test_check_send_sms_actions_section(self):
-        MassSmSPrecondition().create_first_event()
+        ActionsTasksPrecondition().create_first_event()
 
         task_module = TaskModule()
-        phone_number = task_module.open_this_week_tab() \
-            .find_event_by_subject(TaskModuleConstants.FIRST_SUBJECT) \
+        phone_number = task_module.open_show_all_tab() \
+            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_first_client_profile() \
             .get_phone_text()
 
-        task_module.open_first_tab_page(Config.url_task)
-
-        task_module.find_event_by_subject(TaskModuleConstants.FIRST_SUBJECT) \
+        task_module.open_first_tab_page(Config.url_task)\
+            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_sms_module() \
             .perform_send_sms(phone_number, TaskModuleConstants.DESCRIPTION_SEND_SMS) \
             .click_send_button()
@@ -36,8 +37,8 @@ class ActionsTask(BaseTest):
     def test_check_phone_actions_section(self):
         MassSmSPrecondition().create_first_event()
         task_module = TaskModule()
-        task_module.open_this_week_tab() \
-            .find_event_by_subject(TaskModuleConstants.FIRST_SUBJECT) \
+        task_module.open_show_all_tab() \
+            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_call_module() \
             .perform_call_section(Config.data.get_data_task_module(TaskModuleConstants.SECOND_CALL_OUTCOME),
                                   Config.data.get_data_task_module(TaskModuleConstants.SECOND_POSITIVE_OUTCOME),
@@ -45,8 +46,8 @@ class ActionsTask(BaseTest):
                                   TaskModuleConstants.COMMENTS_CALL_PHONE) \
             .click_submit_button()
 
-        client_status = task_module.open_this_week_tab() \
-            .find_event_by_subject(TaskModuleConstants.FIRST_SUBJECT) \
+        client_status = task_module.open_show_all_tab() \
+            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_first_client_profile() \
             .get_client_status()
 
