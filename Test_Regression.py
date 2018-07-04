@@ -114,7 +114,7 @@ class TestRegression(object):
     def run_check_my_dashboard_test(self):
         MyDashboardActions()
 
-    def run_check_my_dashboard_test(self):
+    def run_check_audit_logs_test(self):
         AuditLogs()
 
 
