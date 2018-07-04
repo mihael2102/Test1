@@ -10,9 +10,10 @@ class FilterModule(CRMBasePage):
     def __init__(self):
         super().__init__()
 
-    def perform_create_filter(self, name_filter, name_first_column, name_second_column, name_third_column,
-                              name_fourth_column, name_fifth_column, name_sixth_column, name_seventh_column,
-                              name_eighth_column, name_ninth_column, name_tenth_column, name_eleventh_column):
+    def perform_create_filter_client_module(self, name_filter, name_first_column, name_second_column, name_third_column,
+                                            name_fourth_column, name_fifth_column, name_sixth_column,
+                                            name_seventh_column,name_eighth_column, name_ninth_column, name_tenth_column,
+                                            name_eleventh_column):
         self.set_name_filter(name_filter)
         self.perform_choice_first_column(name_first_column)
         self.perform_choice_second_column(name_second_column)
@@ -27,9 +28,9 @@ class FilterModule(CRMBasePage):
         self.perform_choice_eleventh_column(name_eleventh_column)
         return FilterModule()
 
-    def perform_create_filter(self, name_filter, name_first_column, name_second_column, name_third_column,
-                              name_fourth_column, name_fifth_column, name_sixth_column, name_seventh_column,
-                              name_eighth_column):
+    def perform_create_filter_lead_module(self, name_filter, name_first_column, name_second_column, name_third_column,
+                                          name_fourth_column, name_fifth_column, name_sixth_column, name_seventh_column,
+                                          name_eighth_column):
         self.set_name_filter(name_filter)
         self.perform_choice_first_column(name_first_column)
         self.perform_choice_second_column(name_second_column)

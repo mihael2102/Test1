@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    SECOND_COUNTRY = "country_two"
     PHONE = "Phone"
     SEND_SMS_MESSAGE = "Message was sent successfully"
     MASS_ASSIGN_MESSAGE = "3 accounts assigned to Panda Support"
