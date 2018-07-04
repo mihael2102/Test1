@@ -1,23 +1,14 @@
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
-from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.MassEditPrecondition import MassEditPrecondition
-from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
 class MassEditTaskModule(BaseTest):
 
     def test_mass_edit_task(self):
-        # MassEditPrecondition().create_first_event().create_second_event().create_third_event()
-
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
-
-        CRMHomePage().open_task_module()
+        MassEditPrecondition().create_first_event().create_second_event().create_third_event()
 
         task_module = TaskModule()
         task_module.open_show_all_tab().find_event_by_subject(
