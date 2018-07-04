@@ -13,17 +13,17 @@ class MassEditTestCRM(BaseTest):
     def test_make_mass_edit(self):
         crm_clients_module_page = CRMLoginPage() \
             .open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .perform_searching(Config.data.get_data_first_client(CRMConstants.CLIENT_STATUS),
-                               Config.data.get_data_first_client(CRMConstants.SHORT_E_MAIL),
-                               Config.data.get_data_first_client(CRMConstants.SHORT_CLIENT_NAME),
-                               Config.data.get_data_first_client(TestDataConstants.FIRST_COUNTRY),
-                               Config.data.get_data_first_client(CRMConstants.SHORT_FIRST_NAME),
-                               Config.data.get_data_first_client(CRMConstants.SHORT_LAST_NAME),
-                               Config.data.get_data_first_client(TestDataConstants.CITY),
-                               Config.data.get_data_first_client(CRMConstants.BRAND_NEW_FOREX))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
+            .perform_searching(Config.data.get_data_client(CRMConstants.CLIENT_STATUS),
+                               Config.data.get_data_client(CRMConstants.SHORT_E_MAIL),
+                               Config.data.get_data_client(CRMConstants.SHORT_CLIENT_NAME),
+                               Config.data.get_data_client(TestDataConstants.FIRST_COUNTRY),
+                               Config.data.get_data_client(CRMConstants.SHORT_FIRST_NAME),
+                               Config.data.get_data_client(CRMConstants.SHORT_LAST_NAME),
+                               Config.data.get_data_client(TestDataConstants.CITY),
+                               Config.data.get_data_client(CRMConstants.BRAND_NEW_FOREX))
 
         first_client = crm_clients_module_page.get_first_client_email()
         crm_clients_module_page.came_back_on_previous_page().click_search_button()
@@ -50,7 +50,7 @@ class MassEditTestCRM(BaseTest):
         crm_clients_module_page.click_ok()
 
         crm_client_profile = crm_clients_module_page.refresh() \
-            .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
             .find_client_by_email(first_client)
 
         assert crm_client_profile.get_gender_text() == Config.data.get_data_mass_edit(

@@ -17,9 +17,9 @@ class SignUpTest(BaseTest):
         crm_login_page = CRMLoginPage()
         crm_client_profile = crm_login_page \
             .open_second_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
+            .find_client_by_email(Config.data.get_data_client(TestDataConstants.E_MAIL))
 
         assert crm_client_profile.get_live_status_client() == "Live"

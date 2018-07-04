@@ -9,8 +9,8 @@ class TabTasksModuleCRM(BaseTest):
 
     def test_check_tab_tasks_module(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage().open_task_module()
 

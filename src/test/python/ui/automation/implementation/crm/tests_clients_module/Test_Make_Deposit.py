@@ -16,10 +16,10 @@ class DepositTestCRM(BaseTest):
         CADepositPrecondition().add_live_account()
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
+            .find_client_by_email(Config.data.get_data_client(TestDataConstants.E_MAIL))
 
         account_number = crm_client_profile \
             .perform_scroll_down() \

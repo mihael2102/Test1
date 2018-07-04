@@ -15,8 +15,8 @@ class AddDemoAccountsTestCA(BaseTest):
 
     def test_check_add_demo_account_usd_currency(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
-            .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(CaConstants.MANAGE_ACCOUNTS)
@@ -24,8 +24,8 @@ class AddDemoAccountsTestCA(BaseTest):
         brand_accounts_module = CaManageAccounts() \
             .open_demo_button() \
             .open_new_account_button() \
-            .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_USD)) \
-            .set_initial_deposit(Config.data.get_data_first_client(TestDataConstants.INITIAL_DEPOSIT_FIRST)) \
+            .select_account_currency(Config.data.get_data_client(TestDataConstants.ACCOUNT_CURRENCY_USD)) \
+            .set_initial_deposit(Config.data.get_data_client(TestDataConstants.INITIAL_DEPOSIT_FIRST)) \
             .create_account_button()
 
         account_id_ca = brand_accounts_module.get_account_id_text()
@@ -34,10 +34,10 @@ class AddDemoAccountsTestCA(BaseTest):
 
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
+            .find_client_by_email(Config.data.get_data_client(TestDataConstants.E_MAIL))
 
         account_id_crm = crm_client_profile \
             .perform_scroll_down() \
@@ -56,8 +56,8 @@ class AddDemoAccountsTestCA(BaseTest):
 
     def test_check_add_demo_account_eur_currency(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
-            .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(CaConstants.MANAGE_ACCOUNTS)
@@ -65,8 +65,8 @@ class AddDemoAccountsTestCA(BaseTest):
         brand_accounts_module = CaManageAccounts() \
             .open_demo_button() \
             .open_new_account_button() \
-            .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_EUR)) \
-            .set_initial_deposit(Config.data.get_data_first_client(TestDataConstants.INITIAL_DEPOSIT_SECOND)) \
+            .select_account_currency(Config.data.get_data_client(TestDataConstants.ACCOUNT_CURRENCY_EUR)) \
+            .set_initial_deposit(Config.data.get_data_client(TestDataConstants.INITIAL_DEPOSIT_SECOND)) \
             .create_account_button()
 
         account_id_ca = brand_accounts_module.get_account_id_text()
@@ -75,10 +75,10 @@ class AddDemoAccountsTestCA(BaseTest):
 
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
+            .find_client_by_email(Config.data.get_data_client(TestDataConstants.E_MAIL))
 
         account_id_crm = crm_client_profile \
             .perform_scroll_down() \
@@ -97,8 +97,8 @@ class AddDemoAccountsTestCA(BaseTest):
 
     def test_check_add_demo_account_gbr_currency(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
-            .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(CaConstants.MANAGE_ACCOUNTS)
@@ -106,8 +106,8 @@ class AddDemoAccountsTestCA(BaseTest):
         brand_accounts_module = CaManageAccounts() \
             .open_demo_button() \
             .open_new_account_button() \
-            .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_GBR)) \
-            .set_initial_deposit(Config.data.get_data_first_client(TestDataConstants.INITIAL_DEPOSIT_THIRD)) \
+            .select_account_currency(Config.data.get_data_client(TestDataConstants.ACCOUNT_CURRENCY_GBR)) \
+            .set_initial_deposit(Config.data.get_data_client(TestDataConstants.INITIAL_DEPOSIT_THIRD)) \
             .create_account_button()
 
         account_id_ca = brand_accounts_module.get_account_id_text()
@@ -116,10 +116,10 @@ class AddDemoAccountsTestCA(BaseTest):
 
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
+            .find_client_by_email(Config.data.get_data_client(TestDataConstants.E_MAIL))
 
         account_id_crm = crm_client_profile \
             .perform_scroll_down() \
@@ -138,8 +138,8 @@ class AddDemoAccountsTestCA(BaseTest):
 
     def test_check_add_demo_account_cad_currency(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
-            .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(CaConstants.MANAGE_ACCOUNTS)
@@ -147,8 +147,8 @@ class AddDemoAccountsTestCA(BaseTest):
         brand_accounts_module = CaManageAccounts() \
             .open_demo_button() \
             .open_new_account_button() \
-            .select_account_currency(Config.data.get_data_first_client(TestDataConstants.ACCOUNT_CURRENCY_CAD)) \
-            .set_initial_deposit(Config.data.get_data_first_client(TestDataConstants.INITIAL_DEPOSIT_FOURTH)) \
+            .select_account_currency(Config.data.get_data_client(TestDataConstants.ACCOUNT_CURRENCY_CAD)) \
+            .set_initial_deposit(Config.data.get_data_client(TestDataConstants.INITIAL_DEPOSIT_FOURTH)) \
             .create_account_button()
 
         account_id_ca = brand_accounts_module.get_account_id_text()
@@ -157,10 +157,10 @@ class AddDemoAccountsTestCA(BaseTest):
 
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_first_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
+            .find_client_by_email(Config.data.get_data_client(TestDataConstants.E_MAIL))
 
         account_id_crm = crm_client_profile \
             .perform_scroll_down() \

@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage

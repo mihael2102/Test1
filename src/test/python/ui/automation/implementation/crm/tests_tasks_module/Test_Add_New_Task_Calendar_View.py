@@ -12,8 +12,8 @@ class AddNewTaskCalendarView(BaseTest):
 
     def test_check_add_tasks_calendar_view(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage().open_task_module()
 
@@ -61,6 +61,6 @@ class AddNewTaskCalendarView(BaseTest):
             .perform_screen_shot() \
             .close_calendar_view()
 
-        task_module.open_this_week_tab().select_several_records_task_module().perform_mass_delete()
+        task_module.open_show_all_tab().select_three_records_task_module().perform_mass_delete()
         task_delete_message = task_module.get_message_task()
         assert task_delete_message == TaskModuleConstants.MESSAGE_TASK_WAS_DELETED

@@ -9,5 +9,5 @@ class ForgotPasswordTestCA(BaseTest):
         BrandHomePage().open_first_tab_page(Config.url_client_area) \
             .login() \
             .open_forgot_password_link() \
-            .set_email(Config.data.get_data_first_client(TestDataConstants.E_MAIL)) \
+            .set_email(Config.data.get_data_client(TestDataConstants.E_MAIL)) \
             .restore_password()

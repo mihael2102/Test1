@@ -14,15 +14,15 @@ class ChangePasswordTestCA(BaseTest):
 
     def test_change_password_from_ca(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
-            .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(CaConstants.ACCOUNT_DETAILS)
 
         client_details_page = CaAccountDetails().open_change_password_tab() \
-            .perform_change_password(Config.data.get_data_first_client(TestDataConstants.PASSWORD),
-                                     Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD))
+            .perform_change_password(Config.data.get_data_client(TestDataConstants.PASSWORD),
+                                     Config.data.get_data_client(TestDataConstants.NEW_PASSWORD))
 
         password_changed_message = client_details_page.get_password_changed()
 
@@ -34,22 +34,22 @@ class ChangePasswordTestCA(BaseTest):
             .select_module(CaConstants.SIGN_OUT)
 
         invalid_login_message = BrandHomePage().login() \
-            .set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
             .click_login_button_with_invalid_password() \
             .get_invalid_login_message()
 
         assert invalid_login_message == CaConstants.INVALID_LOGIN_MESSAGE
 
-        BrandLoginForm().set_fields(Config.data.get_data_first_client(TestDataConstants.E_MAIL),
-                                    Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD)) \
+        BrandLoginForm().set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
+                                    Config.data.get_data_client(TestDataConstants.NEW_PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(CaConstants.ACCOUNT_DETAILS)
 
         password_changed_message = CaAccountDetails().open_change_password_tab() \
-            .perform_change_password(Config.data.get_data_first_client(TestDataConstants.NEW_PASSWORD),
-                                     Config.data.get_data_first_client(TestDataConstants.PASSWORD)) \
+            .perform_change_password(Config.data.get_data_client(TestDataConstants.NEW_PASSWORD),
+                                     Config.data.get_data_client(TestDataConstants.PASSWORD)) \
             .get_password_changed()
 
         assert password_changed_message == CaConstants.PASSWORD_SUCCESSFUL_CHANGED

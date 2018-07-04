@@ -76,6 +76,8 @@ class CaNewAccountsTab(BrandBasePage):
             "//button[@class='forex-button-pandats']")
         create_account_button.click()
         Logging().reportDebugStep(self, "Create account button")
+        sleep(5)
+        Logging().reportDebugStep(self, "Wait until the live account is displayed in CRM")
         return CaNewAccountsTab()
 
     '''

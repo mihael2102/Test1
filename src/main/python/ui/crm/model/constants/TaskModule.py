@@ -2,11 +2,11 @@ import random
 
 
 class TaskModuleConstants(object):
-    DESCRIPTION_SEND_SMS = "Hello from task module"
+    DESCRIPTION_SEND_SMS = "Hello from actions section"
     MESSAGE_TASK_WAS_UPDATED = "Task was updated"
     MESSAGE_TASK_WERE_UPDATED = "Tasks were updated"
     MESSAGE_TASK_WAS_DELETED = "Tasks were deleted"
-    TASK_MODULE = "TasksModule"
+    TASK_MODULE = "Tasks Module"
     FIRST_TAB = "first_tab"
     SECOND_TAB = "second_tab"
     THIRD_TAB = "third_tab"
@@ -27,9 +27,13 @@ class TaskModuleConstants(object):
     FIRST_ACCOUNT_NAME = "alena"
     SECOND_ACCOUNT_NAME = "evgen"
     THIRD_ACCOUNT_NAME = "dima"
-    FIRST_SUBJECT = "QATest1" + str(random.randrange(1, 10000))
-    SECOND_SUBJECT = "ATest1" + str(random.randrange(1, 10000))
-    THIRD_SUBJECT = "WTest1" + str(random.randrange(1, 10000))
+    FIRST_SUBJECT = "Testing1" + str(random.randrange(1, 10000))
+    SECOND_SUBJECT = "Testing2" + str(random.randrange(1, 10000))
+    THIRD_SUBJECT = "Testing3" + str(random.randrange(1, 10000))
+    FOURTH_SUBJECT = "Testing4" + str(random.randrange(1, 10000))
+    FIFTH_SUBJECT = "Testing5" + str(random.randrange(1, 10000))
+    SIXTH_SUBJECT = "Testing6" + str(random.randrange(1, 10000))
+    SEVENTH_SUBJECT = "Testing7" + str(random.randrange(1, 10000))
     FIRST_PRIORITY = "Medium"
     SECOND_PRIORITY = "High"
     THIRD_PRIORITY = "Low"

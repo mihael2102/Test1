@@ -1,0 +1,14 @@
+{
+  "Audit_Logs_module_info": {
+    "first_tab": "All",
+    "second_tab": "Today",
+    "third_tab": "Week",
+    "fourth_tab": "Month",
+    "first_module":"Leads",
+    "first_action":"Delete",
+    "first_user":"pandaqa",
+    "first_id_record":"122064",
+    "first_user_agent":"Google Chrome",
+    "first_email":"testqa+1@pandats.com"
+  }
+}

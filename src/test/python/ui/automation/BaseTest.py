@@ -1,7 +1,7 @@
 from datetime import *
 import unittest
 import allure
-from allure.constants import AttachmentType
+from allure_commons.types import AttachmentType
 from selenium import webdriver
 from src.main.python.ui.brand.model.data.providers.DataProviders import DataProviders
 from src.main.python.utils.config import Config
@@ -31,8 +31,8 @@ class BaseTest(unittest.TestCase):
                     allure.MASTER_HELPER.attach('failed_screenshot', Config.browser.get_screenshot_as_png(),
                                                 type=AttachmentType.PNG)
 
-                    Config.browser.close()
-                    Config.browser.quit()
-        else:
-            Config.browser.close()
-            Config.browser.quit()
+        #             Config.browser.close()
+        #             Config.browser.quit()
+        # else:
+        #     Config.browser.close()
+        #     Config.browser.quit()

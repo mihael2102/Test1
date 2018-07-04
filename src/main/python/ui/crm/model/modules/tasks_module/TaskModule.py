@@ -1,5 +1,6 @@
 from time import sleep
 
+from allure_commons.types import AttachmentType
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.tasks_module.AddEventModule import AddEventModule
@@ -12,7 +13,6 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 from src.main.python.utils.logs.Loging import Logging
 from datetime import *
 import allure
-from allure.constants import AttachmentType
 from src.main.python.utils.config import Config
 
 
@@ -72,16 +72,16 @@ class TaskModule(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
 
-    def open_this_week_tab(self):
+    def open_show_all_tab(self):
         sleep(1)
-        tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[4]")
+        tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[1]")
         tab.click()
         Logging().reportDebugStep(self, "The this week tab was opened ")
         return TaskModule()
 
     def open_sms_module(self):
         first_check_box = super().wait_element_to_be_clickable(
-            "//tr[@class='tableRow'][1]//div[2]")
+            "//tr[@class='tableRow']//div[2]")
         first_check_box.click()
         Logging().reportDebugStep(self, "The sms module was opened: ")
         return MassSMSModule()
@@ -191,7 +191,7 @@ class TaskModule(CRMBasePage):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/task_module/tasks_screenshot %s.png' % now
         Config.browser.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('failed_screenshot', Config.browser.get_screenshot_as_png(),
+        allure.MASTER_HELPER.attach('passed_screenshot', Config.browser.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
         return CalendarViewModule()
@@ -202,6 +202,7 @@ class TaskModule(CRMBasePage):
         subject_field.clear()
         subject_field.send_keys(subject)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
+        sleep(3)
         return TaskModule()
 
     def open_call_module(self):
