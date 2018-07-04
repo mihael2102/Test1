@@ -1,3 +1,6 @@
+from src.test.python.ui.automation.implementation.crm.test_my_dashboard.Test_My_Dashboard_Actions import \
+    MyDashboardActions
+from src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs import AuditLogs
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction import AddInteraction
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password import \
     ChangePasswordTestCRM
@@ -20,6 +23,8 @@ from src.test.python.ui.automation.implementation.crm.tests_document_module.Test
 
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Tab_Document_Module import \
     TabDocumentModule
+from src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module import \
+    TabFinancialTransaction
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module import LeadModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Actions import ActionsTask
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Add_New_Task_Calendar_View import \
@@ -102,3 +107,19 @@ class TestRegression(object):
 
     def run_check_lead_test(self):
         LeadModule()
+
+    def run_check_tab_financial_transaction(self):
+        TabFinancialTransaction()
+
+    def run_check_my_dashboard_test(self):
+        MyDashboardActions()
+
+    def run_check_my_dashboard_test(self):
+        AuditLogs()
+
+
+
+
+
+
+

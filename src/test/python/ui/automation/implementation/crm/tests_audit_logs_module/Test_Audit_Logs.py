@@ -5,6 +5,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=26)
 class AuditLogs(BaseTest):
 
     def test_check_tab_audit_logs_module(self):
