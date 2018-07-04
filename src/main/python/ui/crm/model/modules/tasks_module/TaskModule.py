@@ -114,7 +114,7 @@ class TaskModule(CRMBasePage):
         Logging().reportDebugStep(self, "The calendar view module was opened")
         return CalendarViewModule()
 
-    def select_several_records_task_module(self):
+    def select_three_records_task_module(self):
         sleep(1)
         first_check_box = super().wait_element_to_be_clickable("//div[@class='table-grid-container']//tr[3]//td[1]")
         first_check_box.click()
