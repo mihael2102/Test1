@@ -16,18 +16,18 @@ class CreateFilterTestCRM(BaseTest):
                        Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
         clients_module_page.open_create_filter_pop_up() \
-            .perform_create_filter(Config.data.get_data_client(CRMConstants.FILTER_NAME),
-                                   Config.data.get_data_client(CRMConstants.FIRST_COLUMN),
-                                   Config.data.get_data_client(CRMConstants.SECOND_COLUMN),
-                                   Config.data.get_data_client(CRMConstants.THIRD_COLUMN),
-                                   Config.data.get_data_client(CRMConstants.FOURTH_COLUMN),
-                                   Config.data.get_data_client(CRMConstants.FIFTH_COLUMN),
-                                   Config.data.get_data_client(CRMConstants.SIXTH_COLUMN),
-                                   Config.data.get_data_client(CRMConstants.SEVENTH_COLUMN),
-                                   Config.data.get_data_client(CRMConstants.EIGHTH_COLUMN),
-                                   Config.data.get_data_client(CRMConstants.NINTH_COLUMN),
-                                   Config.data.get_data_client(CRMConstants.TENTH_COLUMN),
-                                   Config.data.get_data_client(CRMConstants.ELEVENTH_COLUMN)) \
+            .perform_create_filter_client_module(Config.data.get_data_client(CRMConstants.FILTER_NAME),
+                                                 Config.data.get_data_client(CRMConstants.FIRST_COLUMN),
+                                                 Config.data.get_data_client(CRMConstants.SECOND_COLUMN),
+                                                 Config.data.get_data_client(CRMConstants.THIRD_COLUMN),
+                                                 Config.data.get_data_client(CRMConstants.FOURTH_COLUMN),
+                                                 Config.data.get_data_client(CRMConstants.FIFTH_COLUMN),
+                                                 Config.data.get_data_client(CRMConstants.SIXTH_COLUMN),
+                                                 Config.data.get_data_client(CRMConstants.SEVENTH_COLUMN),
+                                                 Config.data.get_data_client(CRMConstants.EIGHTH_COLUMN),
+                                                 Config.data.get_data_client(CRMConstants.NINTH_COLUMN),
+                                                 Config.data.get_data_client(CRMConstants.TENTH_COLUMN),
+                                                 Config.data.get_data_client(CRMConstants.ELEVENTH_COLUMN)) \
             .click_save_button()
 
         first_name__column = clients_module_page.get_first_name_column()
