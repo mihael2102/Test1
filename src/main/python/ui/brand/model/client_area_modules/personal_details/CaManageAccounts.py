@@ -38,10 +38,12 @@ class CaManageAccounts(BrandBasePage):
 
     def switch_first_tab_page(self):
         super().switch_first_tab_page()
+        Logging().reportDebugStep(self, "Open first tab page")
         return CaManageAccounts()
 
     def refresh(self):
         self.driver.refresh()
+        Logging().reportDebugStep(self, "The page was refreshed")
         return CaManageAccounts()
 
     '''

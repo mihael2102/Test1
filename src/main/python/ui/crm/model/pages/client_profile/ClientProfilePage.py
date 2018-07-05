@@ -121,7 +121,6 @@ class ClientProfilePage(CRMBasePage):
         trading_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_TradingAccounts']")
         trading_tab.click()
         Logging().reportDebugStep(self, "Open the trading account tab ")
-
         return ClientProfilePage()
 
     '''
@@ -182,7 +181,6 @@ class ClientProfilePage(CRMBasePage):
     def get_client_account(self):
         account_number = super().wait_load_element("//tr[@class='lvtColData'][1]//td[1]")
         Logging().reportDebugStep(self, "Returns the client_account  text " + account_number.text)
-
         return account_number.text
 
     '''
@@ -193,18 +191,6 @@ class ClientProfilePage(CRMBasePage):
         account_number = super().wait_load_element("//tr[@class='lvtColData'][2]//td[1]")
         Logging().reportDebugStep(self, "Return the second client account " + account_number.text)
         return account_number.text
-
-    '''
-        Open the document tabs  
-        :parameter id client account ID 
-        returns Client Profile instance    
-    '''
-
-    def open_document_tab(self):
-        select_country = super().wait_load_element("//a[@id='show_Accounts_Documents']")
-        select_country.click()
-        Logging().reportDebugStep(self, "Open the document tab ")
-        return ClientProfilePage()
 
     '''
         Open the document tabs  
@@ -395,6 +381,7 @@ class ClientProfilePage(CRMBasePage):
 
     def click_ok(self):
         super().click_ok()
+        Logging().reportDebugStep(self, "Click 'ok' button ")
         return ClientProfilePage()
 
     '''

@@ -31,7 +31,7 @@ class MT4WithdrawModule(CRMBasePage):
         return ClientProfilePage()
 
     '''
-        Select a payment method from drop down
+         Choice a payment method from drop down
          :parameter payment method the method of withdraw  in the drop down
         :returns MT4 Withdraw instance
     '''
@@ -45,7 +45,7 @@ class MT4WithdrawModule(CRMBasePage):
         return MT4WithdrawModule()
 
     '''
-        Select a status  from drop down
+        Choice a status  from drop down
         :parameter withdraw status the status of the withdraw e.g Approve,Pending....
         :returns MT4 Withdraw instance
     '''
@@ -57,7 +57,7 @@ class MT4WithdrawModule(CRMBasePage):
         return MT4WithdrawModule()
 
     '''
-       Select an account from drop down
+       Choice an account from drop down
        :parameter account the account of the  client
        :returns MT4 Withdraw instance
     '''

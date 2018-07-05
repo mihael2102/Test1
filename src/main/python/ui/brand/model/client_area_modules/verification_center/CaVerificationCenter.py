@@ -34,5 +34,5 @@ class CaVerificationCenter(BrandBasePage):
         front_upload_picture = super().wait_load_element_present("//div[@class='document-wrapper-pandats']//span")
         re_front_upload_picture = re.sub('Front ', '', front_upload_picture.text)
         Logging().reportDebugStep(self,
-                                  "Returns the document status: the  document status is :" + re_front_upload_picture)
+                                  "Returns the status of document  : " + re_front_upload_picture)
         return re_front_upload_picture

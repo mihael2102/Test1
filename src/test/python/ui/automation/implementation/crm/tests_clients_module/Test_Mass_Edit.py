@@ -32,7 +32,7 @@ class MassEditTestCRM(BaseTest):
         third_client = crm_clients_module_page.get_third_client_email()
         crm_clients_module_page.came_back_on_previous_page().click_search_button()
 
-        crm_clients_module_page.select_several_records() \
+        crm_clients_module_page.select_three_records_clients_module() \
             .open_mass_edit_module() \
             .perform_mass_edit(Config.data.get_data_mass_edit(MassEditConstants.GENDER_FEMALE),
                                Config.data.get_data_mass_edit(MassEditConstants.ASSIGNED_TO_PANDA),

@@ -12,7 +12,7 @@ from src.test.python.utils.TestDataConstants import TestDataConstants
 @pytest.mark.run(order=11)
 class DepositTestCRM(BaseTest):
 
-    def test_make_deposit(self):
+    def test_make_deposit_crm(self):
         CADepositPrecondition().add_live_account()
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
