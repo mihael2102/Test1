@@ -25,7 +25,7 @@ class MassAssignTestCRM(BaseTest):
                                Config.data.get_data_client(TestDataConstants.CITY),
                                Config.data.get_data_client(CRMConstants.BRAND_NEW_FOREX))
 
-        crm_client_profile.select_several_records() \
+        crm_client_profile.select_three_records_clients_module() \
             .open_mass_assign_module() \
             .search_user(MassEditConstants.USER_ONE) \
             .enter_check_box() \

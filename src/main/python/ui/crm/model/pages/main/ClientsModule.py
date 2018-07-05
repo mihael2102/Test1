@@ -70,7 +70,7 @@ class ClientsModule(CRMBasePage):
         sleep(2)
         client_id = super().wait_element_to_be_clickable("//tr[@class='lvtColData']//div[@class='link_field']")
         client_id.click()
-        Logging().reportDebugStep(self, "Click user name: " + email)
+        Logging().reportDebugStep(self, "Click user email: " + email)
         return ClientProfilePage()
 
     '''
@@ -289,7 +289,7 @@ class ClientsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Filter was deleted")
         return ClientsModule()
 
-    def select_several_records(self):
+    def select_three_records_clients_module(self):
         sleep(2)
         first_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[1]")
         first_check_box.click()
@@ -297,17 +297,20 @@ class ClientsModule(CRMBasePage):
         second_check_box.click()
         third_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[3]//td[1]")
         third_check_box.click()
+        Logging().reportDebugStep(self, "The three records were selected")
         return ClientsModule()
 
     def select_record(self):
         sleep(2)
         first_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[1]")
         first_check_box.click()
+        Logging().reportDebugStep(self, "The record was selected")
         return ClientsModule()
 
     def open_mass_edit_module(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass Edit']")
         mass_edit_module.click()
+        Logging().reportDebugStep(self, "The mass edit module was opened")
         return MassEditClientsModule()
 
     '''
@@ -322,6 +325,7 @@ class ClientsModule(CRMBasePage):
     def open_mass_assign_module(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass assign']")
         mass_edit_module.click()
+        Logging().reportDebugStep(self, "The mass assign module was opened")
         return MassAssignClientsModule()
 
     def get_first_client_email(self):
@@ -356,9 +360,11 @@ class ClientsModule(CRMBasePage):
 
     def came_back_on_previous_page(self):
         super().came_back_on_previous_page()
+        Logging().reportDebugStep(self, "Come back on previous page was successfully")
         return ClientsModule()
 
     def open_send_sms_module(self):
         mass_sms_module = super().wait_element_to_be_clickable("//input[@value='Send SMS']")
         mass_sms_module.click()
+        Logging().reportDebugStep(self, "The send sms module was opened")
         return SendSMSClientsModule()

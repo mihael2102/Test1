@@ -156,6 +156,7 @@ class TaskModule(CRMBasePage):
         pencil_button = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow'][1]//span[@class='glyphicon glyphicon-pencil cursor-pointer']")
         pencil_button.click()
+        Logging().reportDebugStep(self, "Click the record by pencil button")
         return EditEventModule()
 
     def click_ok(self):
@@ -203,6 +204,7 @@ class TaskModule(CRMBasePage):
         subject_field.send_keys(subject)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
         sleep(3)
+        Logging().reportDebugStep(self, "The subject was set: "+subject)
         return TaskModule()
 
     def open_call_module(self):
