@@ -77,7 +77,7 @@ class LeadPrecondition(object):
             Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.CITY),
             Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_STATE))
         home_page.refresh_page()\
-            .open_home_page() \
+            .open_client_module() \
             .open_lead_module() \
             .open_create_lead_module()\
             .perform_create_lead(
@@ -105,7 +105,7 @@ class LeadPrecondition(object):
             Config.data.get_data_lead_info(LeadsModuleConstants.SECOND_LEAD_INFO, LeadsModuleConstants.CITY),
             Config.data.get_data_lead_info(LeadsModuleConstants.SECOND_LEAD_INFO, LeadsModuleConstants.FIRST_STATE))
         home_page.refresh_page()\
-            .open_home_page()\
+            .open_client_module()\
             .open_lead_module() \
             .open_create_lead_module() \
             .perform_create_lead(

@@ -40,6 +40,11 @@ class MyDashBoardModule(CRMBasePage):
         Logging().reportDebugStep(self, "The call phone module was opened: ")
         return CallTaskModule()
 
+    def came_back_on_previous_page(self):
+        super().came_back_on_previous_page()
+        Logging().reportDebugStep(self, "came back on previous page was performed")
+        return MyDashBoardModule()
+
     def open_first_client_profile(self):
         sleep(3)
         client_link = super().wait_element_to_be_clickable(
@@ -47,5 +52,3 @@ class MyDashBoardModule(CRMBasePage):
         client_link.click()
         Logging().reportDebugStep(self, "The first client profile is opened")
         return ClientProfilePage()
-
-

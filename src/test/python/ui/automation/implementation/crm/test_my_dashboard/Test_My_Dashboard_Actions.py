@@ -12,7 +12,7 @@ class MyDashboardActions(BaseTest):
     def test_check_send_sms_actions_section(self):
         ActionsTasksPrecondition().create_first_event()
 
-        dashboard_module = CRMHomePage().refresh_page().open_home_page().open_more_list_modules() \
+        dashboard_module = CRMHomePage().refresh_page().open_client_module().open_more_list_modules() \
             .select_my_dashboard_module_more_list(MyDashboardConstants.MY_DASHBOARD_MODULE)
 
         phone_number = dashboard_module.open_show_all_tab() \
@@ -20,7 +20,8 @@ class MyDashboardActions(BaseTest):
             .open_first_client_profile() \
             .get_phone_text()
 
-        dashboard_module.find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
+        dashboard_module.came_back_on_previous_page() \
+            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_sms_module_my_dashboard() \
             .perform_send_sms(phone_number, TaskModuleConstants.DESCRIPTION_SEND_SMS) \
             .click_send_button()
@@ -36,7 +37,7 @@ class MyDashboardActions(BaseTest):
     def test_check_phone_actions_section(self):
         MassSmSPrecondition().create_first_event()
 
-        dashboard_module = CRMHomePage().refresh_page().open_home_page().open_more_list_modules() \
+        dashboard_module = CRMHomePage().refresh_page().open_client_module().open_more_list_modules() \
             .select_my_dashboard_module_more_list(MyDashboardConstants.MY_DASHBOARD_MODULE)
 
         dashboard_module.open_call_module() \

@@ -87,11 +87,11 @@ class LeadModule(BaseTest):
         LeadPrecondition().create_three_leads()
         lead_module = CRMHomePage() \
             .refresh_page() \
-            .open_home_page() \
+            .open_client_module() \
             .open_lead_module()
 
         lead_module.open_create_filter_pop_up() \
-            .perform_create_filter(
+            .perform_create_filter_lead_module(
             Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FILTER_VIEW_NAME),
             Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FIRST_COLUMN),
             Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.SECOND_COLUMN),
@@ -133,11 +133,11 @@ class LeadModule(BaseTest):
         LeadPrecondition().create_three_leads()
         lead_module = CRMHomePage() \
             .refresh_page() \
-            .open_home_page() \
+            .open_client_module() \
             .open_lead_module()
 
         lead_module.open_create_filter_pop_up() \
-            .perform_create_filter(
+            .perform_create_filter_lead_module(
             Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FILTER_VIEW_NAME),
             Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FIRST_COLUMN),
             Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.SECOND_COLUMN),

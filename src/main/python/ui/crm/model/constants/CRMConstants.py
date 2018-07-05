@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    SECOND_COUNTRY = "country_two"
     PHONE = "Phone"
     SEND_SMS_MESSAGE = "Message was sent successfully"
     MASS_ASSIGN_MESSAGE = "3 accounts assigned to Panda Support"
@@ -48,7 +49,7 @@ class CRMConstants(object):
     THIRD_FORMAT_DATE = "%A"
     FIRST_FORMAT_TIME = "%H:%M:%S"
     SECOND_FORMAT_TIME = "%H"
-    THIRD_FORMAT = "%B" + " " + "%d" + ", " + "%Y"
+    THIRD_FORMAT = f'{TODAY_DATE:%B} {TODAY_DATE.day}, {TODAY_DATE.year}'
     CREDIT_IN_COMMENT = "Credit in "
     CREDIT_OUT_COMMENT = "Credit out "
     AMOUNT_CREDIT_IN = "25.00"
