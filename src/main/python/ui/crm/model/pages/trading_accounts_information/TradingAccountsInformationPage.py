@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.utils.logs.Loging import Logging
 
 
 class TradingAccountsInformationPage(CRMBasePage):
@@ -14,6 +15,7 @@ class TradingAccountsInformationPage(CRMBasePage):
     def get_account_text(self):
         super().wait_load_element("//span[@id='dtlview_Trading Account Login']")
         count_id_field = self.driver.find_element(By.XPATH, "//span[@id='dtlview_Trading Account Login']")
+        Logging().reportDebugStep(self, "Returns the account from crm: " + count_id_field.text)
         return count_id_field.text
 
     ''' 
@@ -22,8 +24,9 @@ class TradingAccountsInformationPage(CRMBasePage):
 
     def get_currency_text(self):
         super().wait_load_element("//span[@id='dtlview_Trading Account Login']")
-        count_id_field = self.driver.find_element(By.XPATH, "//td[@class='dvtCellInfo']//font[1]")
-        return count_id_field.text
+        currency_field = self.driver.find_element(By.XPATH, "//td[@class='dvtCellInfo']//font[1]")
+        Logging().reportDebugStep(self, "Returns the currency from crm: " + currency_field.text)
+        return currency_field.text
 
     ''' 
         Returns the balance text   
@@ -31,4 +34,5 @@ class TradingAccountsInformationPage(CRMBasePage):
 
     def get_balance_text(self):
         balance_text = self.driver.find_element(By.XPATH, "//span[@id='dtlview_Balance']")
+        Logging().reportDebugStep(self, "Returns the balance from crm: " + balance_text.text)
         return balance_text.text

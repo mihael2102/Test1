@@ -102,5 +102,4 @@ class AddEventModule(CRMBasePage):
         calendar_scroll = self.driver.find_element(By.XPATH, "//div[@class='fc-scroller fc-time-grid-container']")
         hoverer = ActionChains(self.driver).move_to_element(calendar_scroll).move_by_offset(0, 400)
         hoverer.perform()
-
         return CreateEvent()
