@@ -2,6 +2,7 @@ from time import sleep
 from datetime import *
 import allure
 from allure_commons.types import AttachmentType
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.filter.FilterModule import FilterModule
@@ -16,6 +17,19 @@ class LeadsModule(CRMBasePage):
 
     def __init__(self):
         super().__init__()
+
+    def perform_searching_lead_module(self, first_name, last_name, email, assigned_to, tittle, lead_source, lead_status,
+                                      language):
+        self.enter_first_name(first_name)
+        self.enter_last_name(last_name)
+        self.enter_email(email)
+        self.enter_assigned_to(assigned_to)
+        self.enter_tittle(tittle)
+        self.enter_lead_source(lead_source)
+        self.enter_lead_status(lead_status)
+        self.enter_language(language)
+        self.click_search_button_leads_module()
+        return LeadsModule()
 
     def open_create_lead_module(self):
         task_module = super().wait_load_element("//td[@class='moduleName']//button[1]")
@@ -75,7 +89,7 @@ class LeadsModule(CRMBasePage):
     def perform_screen_shot_lead_module(self):
         sleep(3)
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
-        file_name = 'D:/automation-newforexqa/screenshots/lead_module/lead update_screenshot %s.png' % now
+        file_name = 'D:/automation-newforexqa/results/screenshots/leads_module/leads_screenshot %s.png' % now
         Config.browser.get_screenshot_as_file(file_name)
         allure.MASTER_HELPER.attach('screenshot', Config.browser.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
@@ -92,4 +106,107 @@ class LeadsModule(CRMBasePage):
         delete_filter_button = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
         delete_filter_button.click()
         Logging().reportDebugStep(self, "Filter was deleted")
+        return LeadsModule()
+
+    def enter_first_name(self, first_name):
+        first_name_field = self.driver.find_element(By.XPATH,
+                                                    "//tr[@name='customAdvanceSearch']//input[@name='tks_firstname']")
+        first_name_field.clear()
+        first_name_field.send_keys(first_name)
+        Logging().reportDebugStep(self, "The first name was entered : " + first_name)
+        return LeadsModule()
+
+    def enter_last_name(self, last_name):
+        first_name_field = self.driver.find_element(By.XPATH,
+                                                    "//tr[@name='customAdvanceSearch']//input[@name='tks_lastname']")
+        first_name_field.clear()
+        first_name_field.send_keys(last_name)
+        Logging().reportDebugStep(self, "The last name was entered : " + last_name)
+        return LeadsModule()
+
+    def enter_email(self, email):
+        first_name_field = self.driver.find_element(By.XPATH,
+                                                    "//tr[@name='customAdvanceSearch']//input[@name='tks_email']")
+        first_name_field.clear()
+        first_name_field.send_keys(email)
+        Logging().reportDebugStep(self, "The email was entered : " + email)
+        return LeadsModule()
+
+    def enter_assigned_to(self, assigned_to):
+        country_drop_down = self.driver.find_element(By.XPATH,
+                                                     "//tr[@id='customAdvanceSearch']//td[5]//span[@class='multiselect-selected-text']")
+
+        country_drop_down.click()
+        search_field = self.driver.find_element(By.XPATH,
+                                                "//tr[@id='customAdvanceSearch']//td[5]//input[@class='form-control multiselect-search']")
+        search_field.clear()
+        search_field.send_keys(assigned_to)
+        country_choice = self.driver.find_element(By.XPATH,
+                                                  "//label[contains(text(),'%s')]" % assigned_to)
+        country_choice.click()
+
+        ac = ActionChains(self.driver)
+
+        ac.move_by_offset(250, 250).click().perform()
+        Logging().reportDebugStep(self, "The brand  was selected : " + assigned_to)
+        return LeadsModule()
+
+    def enter_tittle(self, tittle):
+        tittle_name_field = self.driver.find_element(By.XPATH,
+                                                     "//tr[@name='customAdvanceSearch']//input[@id='tks_designation']")
+        tittle_name_field.clear()
+        tittle_name_field.send_keys(tittle)
+        Logging().reportDebugStep(self, "The assigned_to was entered : " + tittle)
+        return LeadsModule()
+
+    def enter_lead_source(self, lead_source):
+        lead_source_drop_down = self.driver.find_element(By.XPATH,
+                                                         "//tr[@id='customAdvanceSearch']//td[7]//span[@class='multiselect-selected-text']")
+
+        lead_source_drop_down.click()
+        search_field = self.driver.find_element(By.XPATH,
+                                                "//tr[@id='customAdvanceSearch']//td[7]//input[@class='form-control multiselect-search']")
+        search_field.clear()
+        search_field.send_keys(lead_source)
+        country_choice = self.driver.find_element(By.XPATH,
+                                                  "//label[contains(text(),'%s')]" % lead_source)
+        country_choice.click()
+
+        ac = ActionChains(self.driver)
+
+        ac.move_by_offset(250, 250).click().perform()
+        Logging().reportDebugStep(self, "The brand  was selected : " + lead_source)
+        return LeadsModule()
+
+    def enter_lead_status(self, lead_status):
+        lead_source_drop_down = self.driver.find_element(By.XPATH,
+                                                         "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']")
+
+        lead_source_drop_down.click()
+        search_field = self.driver.find_element(By.XPATH,
+                                                "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']")
+        search_field.clear()
+        search_field.send_keys(lead_status)
+        country_choice = self.driver.find_element(By.XPATH,
+                                                  "//label[contains(text(),'%s')]" % lead_status)
+        country_choice.click()
+
+        ac = ActionChains(self.driver)
+
+        ac.move_by_offset(250, 250).click().perform()
+        Logging().reportDebugStep(self, "The lead_status  was selected : " + lead_status)
+        return LeadsModule()
+
+    def enter_language(self, language):
+        first_name_field = self.driver.find_element(By.XPATH,
+                                                    "//tr[@name='customAdvanceSearch']//input[@name='tks_cf_1092']")
+        first_name_field.clear()
+        first_name_field.send_keys(language)
+        Logging().reportDebugStep(self, "The language was entered : " + language)
+        return LeadsModule()
+
+    def click_search_button_leads_module(self):
+        search_button = super().wait_element_to_be_clickable("//td[@class='txt_al_c']")
+        search_button.click()
+        Logging().reportDebugStep(self, "The search button was clicked ")
         return LeadsModule()
