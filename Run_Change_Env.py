@@ -7,7 +7,7 @@ new_url_crm = "222"
 
 collector = []
 
-with open("D://automation-newforexqa//src//main//python//utils//config//Config.py", "a") as f:
+with open(path_to_file, "a") as f:
     for i, line in enumerate(fileinput.input(path_to_file)):
         if line.startswith("url_client_area"):
             tmp_list = line.split("\"")
@@ -24,6 +24,6 @@ with open("D://automation-newforexqa//src//main//python//utils//config//Config.p
 
 open(path_to_file, 'w').close()
 
-with open("D://automation-newforexqa//src//main//python//utils//config//Config.py", "a") as f:
+with open(path_to_file, "a") as f:
     for i in collector:
         f.write(i)
