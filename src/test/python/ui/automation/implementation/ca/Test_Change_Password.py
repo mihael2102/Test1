@@ -6,6 +6,7 @@ from src.main.python.ui.brand.model.pages.trading_platform.BrandTradingPlatformP
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
+
 class ChangePasswordTestCA(BaseTest):
 
     def test_change_password_from_ca(self):
