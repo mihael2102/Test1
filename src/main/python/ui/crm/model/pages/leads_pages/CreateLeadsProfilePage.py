@@ -13,6 +13,7 @@ class CreateLeadsProfilePage(CRMBasePage):
                             language, panda_partner_id, referral, street, postal_code, country, description,
                             phone, tittle, lead_source, lead_status, assigned_to, source_name, brand, po_box,
                             city, state):
+
         self.set_first_name(first_name)
         self.set_last_name(last_name)
         self.set_mobile(mobile)

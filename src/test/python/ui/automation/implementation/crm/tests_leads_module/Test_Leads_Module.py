@@ -4,6 +4,8 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
 from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.modules.leads_module.LeadViewInfo import LeadViewInfo
+from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
 
@@ -162,3 +164,45 @@ class LeadModule(BaseTest):
         assert confirmation_message == CRMConstants().MASS_ASSIGN_MESSAGE
         lead_module.click_ok().perform_screen_shot_lead_module()
         lead_module.delete_filter_lead_module().confirm_delete_lead_module()
+
+    def test_perform_convert_lead(self):
+        LeadPrecondition().create_lead()
+        lead_view_profile_page = LeadViewInfo()
+
+        lead_view_profile_page.open_convert_lead_module() \
+            .perform_convert_lead(
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_NAME_LEAD),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_LAST_NAME_LEAD),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_EMAIL_LEAD),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_PHONE_LEAD),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_BIRTHDAY_LEAD),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_CITIZENSHIP),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_ADDRESS_LEAD),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_POSTAL_CODE_LEAD),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_CITY_LEAD),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_COUNTRY_NAME),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_PASSWORD_LEAD),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_CURRENCY_LEAD),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_REFERRAL_LEAD),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_BRAND_LEAD),
+            Config.data.get_data_lead_info(
+                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_SOURCE_NAME))
+
+        confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
+        assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+        lead_view_profile_page.click_ok()
+

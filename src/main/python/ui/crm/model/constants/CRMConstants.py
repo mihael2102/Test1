@@ -8,6 +8,7 @@ class CRMConstants(object):
     PHONE = "Phone"
     SEND_SMS_MESSAGE = "Message was sent successfully"
     MASS_ASSIGN_MESSAGE = "3 accounts assigned to Panda Support"
+    CONVERT_SUCCESSFUL_MESSAGE = "Account created successfully"
     FIRST_COLUMN = "first_column"
     SECOND_COLUMN = "second_column"
     THIRD_COLUMN = "third_column"
