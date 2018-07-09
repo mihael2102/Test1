@@ -37,7 +37,7 @@ class CaTransferBetweenTab(BrandBasePage):
         self.driver.execute_script("arguments[0].scrollIntoView();", select)
         select.click()
         Logging().reportDebugStep(self,
-                                  "Select the second account that receives the amount from  the first account in the drop down: " + transfer_to_account)
+                                  "Choice the second account that receives the amount from  the first account in the drop down: " + transfer_to_account)
         return CaTransferBetweenTab()
 
     def set_amount(self, second_account, amount):

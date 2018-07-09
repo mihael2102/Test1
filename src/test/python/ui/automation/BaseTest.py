@@ -15,6 +15,7 @@ class BaseTest(unittest.TestCase):
         options = webdriver.ChromeOptions()
         options.add_argument("--lang=de")
         options.add_argument("--start-maximized")
+
         Config.browser = webdriver.Remote(desired_capabilities=options.to_capabilities(),
                                           command_executor=selenium_grid_url)
 
