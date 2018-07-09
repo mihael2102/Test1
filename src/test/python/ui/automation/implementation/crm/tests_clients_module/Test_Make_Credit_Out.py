@@ -7,6 +7,7 @@ from src.test.python.ui.automation.utils.preconditions.credit_out.Credit_Out_Pre
     CreditOutPrecondition
 
 
+@pytest.mark.run(order=2)
 class CreditOutTestCRM(BaseTest):
 
     def test_make_credit_out_crm(self):

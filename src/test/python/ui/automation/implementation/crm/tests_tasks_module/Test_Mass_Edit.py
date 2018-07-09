@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
@@ -5,6 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.MassEditPrecondition import MassEditPrecondition
 
 
+@pytest.mark.run(order=16)
 class MassEditTaskModule(BaseTest):
 
     def test_mass_edit_task(self):

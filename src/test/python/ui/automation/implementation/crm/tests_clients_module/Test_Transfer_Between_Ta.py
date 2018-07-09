@@ -8,7 +8,7 @@ from src.test.python.ui.automation.utils.preconditions.transfer_between_ta.Trans
     TransferBetweenPrecondition
 
 
-@pytest.mark.run(order=1)
+@pytest.mark.run(order=3)
 class TransferBetweenTa(BaseTest):
 
     def test_make_transfer_between_ta(self):

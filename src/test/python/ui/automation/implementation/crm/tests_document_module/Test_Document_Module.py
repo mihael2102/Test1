@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.DocumentClientsModuleConstants import DocumentClientsModuleConstants
 from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -5,6 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=21)
 class CreateDocument(BaseTest):
 
     def test_create_document(self):
@@ -53,7 +56,7 @@ class CreateDocument(BaseTest):
 
         message_delete_document = document_module.open_pending_tab() \
             .select_document_by_delete_button() \
-            .click_yes_button()\
+            .click_yes_button() \
             .get_successful_message()
 
         assert message_delete_document == DocumentClientsModuleConstants.MESSAGE_DELETE_DOCUMENT
