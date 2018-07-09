@@ -1,8 +1,8 @@
 browser = None
 timeout = 4
 data = None
-url_client_area = "https://newforexqa.pandats.com/"
-url_crm = "https://newforexstaging.ptscrm.com/"
+url_client_area = "https://newforexstaging.ptscrm.com/"
+url_crm = "https://newforexqa.pandats.com/"
 url_task = "https://newforexstaging.ptscrm.com/tasks"
 window_after = None
 window_before = None

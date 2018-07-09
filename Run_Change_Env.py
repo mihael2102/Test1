@@ -2,8 +2,8 @@ import fileinput
 
 path_to_file = "D://automation-newforexqa//src//main//python//utils//config//Config.py"
 
-url_client_area = "111"
-new_url_crm = "222"
+url_client_area = "https://newforexqa.pandats.com/"
+new_url_crm = "https://newforexstaging.ptscrm.com/"
 
 collector = []
 
