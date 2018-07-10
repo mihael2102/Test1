@@ -9,7 +9,7 @@ from src.test.python.ui.automation.utils.preconditions.withdraw_ca.CAWithdrawPre
     CAWithdrawPrecondition
 
 
-@pytest.mark.run(order=6)
+@pytest.mark.run(order=7)
 class WithdrawTestCA(BaseTest):
 
     def test_make_withdraw_ca(self):

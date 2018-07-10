@@ -10,7 +10,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=10)
+@pytest.mark.run(order=11)
 class PersonalDetailsUpdateTestCA(BaseTest):
 
     def test_perform_client_update_from_CA(self):

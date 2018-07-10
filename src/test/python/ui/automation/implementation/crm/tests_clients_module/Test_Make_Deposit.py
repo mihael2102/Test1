@@ -9,7 +9,7 @@ from src.test.python.ui.automation.utils.preconditions.deposit.CADepositPrecondi
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=11)
+@pytest.mark.run(order=12)
 class DepositTestCRM(BaseTest):
 
     def test_make_deposit_crm(self):

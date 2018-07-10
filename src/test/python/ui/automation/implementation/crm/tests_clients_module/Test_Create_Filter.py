@@ -1,9 +1,12 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=2)
 class CreateFilterTestCRM(BaseTest):
 
     def test_create_filter(self):
@@ -50,4 +53,3 @@ class CreateFilterTestCRM(BaseTest):
         assert CRMConstants.NINTH_COLUMN_OTHER_TYPE == ninth_name_column
         assert CRMConstants.TENTH_COLUMN_OTHER_TYPE == tenth_name_column
         assert Config.data.get_data_client(CRMConstants.ELEVENTH_COLUMN) == eleventh_name_column
-

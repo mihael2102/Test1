@@ -9,7 +9,7 @@ from src.main.python.utils.config import Config
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=5)
+@pytest.mark.run(order=6)
 class DepositTestCa(BaseTest):
 
     def test_make_deposit_from_ca(self):
