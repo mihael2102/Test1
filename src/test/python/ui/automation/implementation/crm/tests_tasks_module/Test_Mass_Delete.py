@@ -1,12 +1,9 @@
-import pytest
-
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
 from src.test.python.ui.automation.BaseTest import BaseTest
 from src.test.python.ui.automation.utils.preconditions.task_module.MassDeletePrecondition import MassDeletePrecondition
 
 
-@pytest.mark.run(order=17)
 class MassDeleteTaskModule(BaseTest):
 
     def test_mass_delete_task_module(self):

@@ -1,5 +1,3 @@
-import pytest
-
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.password.MT4CheckPasswordModule import MT4CheckPasswordModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -7,7 +5,6 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=4)
 class CheckPasswordTestCRM(BaseTest):
 
     def test_check_password_crm(self):

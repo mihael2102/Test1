@@ -1,5 +1,3 @@
-import pytest
-
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
@@ -9,7 +7,6 @@ from src.test.python.ui.automation.utils.preconditions.task_module.EventPrecondi
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=13)
 class TabTasksModuleCRM(BaseTest):
 
     def test_check_tab_tasks_module(self):

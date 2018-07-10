@@ -1,16 +1,12 @@
-import pytest
-
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
 from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.modules.leads_module.LeadViewInfo import LeadViewInfo
-from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
 
 
-@pytest.mark.run(order=23)
 class LeadModule(BaseTest):
 
     def test_create_lead(self):
@@ -205,4 +201,3 @@ class LeadModule(BaseTest):
         confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
         assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
         lead_view_profile_page.click_ok()
-
