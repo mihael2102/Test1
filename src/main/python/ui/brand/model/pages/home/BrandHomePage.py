@@ -1,6 +1,6 @@
 import allure
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.ui.brand.model.forms.login.BrandLoginForm import BrandLoginForm
@@ -31,9 +31,8 @@ class BrandHomePage(BrandBasePage):
         return BrandSignUpForm()
 
     def login(self):
-        login_button_locator = super().wait_load_element_present(
-                "//button[@class='forex-button-pandats simple-button-pandats "
-                "spinner-button-pandats']")
+        login_button_locator = super().wait_element_to_be_clickable(
+                "//div[@class='right_menu']//button[contains(text(),'Login')]")
         login_button_locator.click()
         Logging().reportDebugStep(self, "Click the 'Login' button on Home page")
         return BrandLoginForm()

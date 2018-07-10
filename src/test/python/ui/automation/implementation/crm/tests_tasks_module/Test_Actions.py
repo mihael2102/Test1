@@ -5,7 +5,6 @@ from src.test.python.ui.automation.utils.preconditions.task_module.ActionsTasksP
     ActionsTasksPrecondition
 from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
 
-
 class ActionsTask(BaseTest):
 
     def test_check_send_sms_actions_section(self):

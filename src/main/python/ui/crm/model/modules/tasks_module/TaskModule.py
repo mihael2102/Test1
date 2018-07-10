@@ -190,7 +190,7 @@ class TaskModule(CRMBasePage):
 
     def perform_screen_shot(self):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
-        file_name = 'D:/automation-newforexqa/screenshots/task_module/tasks_screenshot %s.png' % now
+        file_name = 'D:/automation-newforexqa/screenshots/tasks_module/tasks_screenshot %s.png' % now
         Config.browser.get_screenshot_as_file(file_name)
         allure.MASTER_HELPER.attach('passed_screenshot', Config.browser.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
@@ -204,7 +204,7 @@ class TaskModule(CRMBasePage):
         subject_field.send_keys(subject)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
         sleep(3)
-        Logging().reportDebugStep(self, "The subject was set: "+subject)
+        Logging().reportDebugStep(self, "The subject was set: " + subject)
         return TaskModule()
 
     def open_call_module(self):
@@ -213,3 +213,28 @@ class TaskModule(CRMBasePage):
         first_check_box.click()
         Logging().reportDebugStep(self, "The call phone module was opened: ")
         return CallTaskModule()
+
+    def perform_searching(self, first_name, last_name):
+        self.enter_first_name(first_name)
+        self.enter_last_name(last_name)
+        self.enter_first_name(first_name)
+        self.enter_first_name(first_name)
+        self.enter_first_name(first_name)
+        self.enter_first_name(first_name)
+        return TaskModule()
+
+    def enter_first_name(self, first_name):
+        first_name_field = self.driver.find_element(By.XPATH,
+                                                    "//tr[@name='customAdvanceSearch']//input[@name='tks_firstname']")
+        first_name_field.clear()
+        first_name_field.send_keys(first_name)
+        Logging().reportDebugStep(self, "The first name was entered : " + first_name)
+        return TaskModule()
+
+    def enter_last_name(self, last_name):
+        first_name_field = self.driver.find_element(By.XPATH,
+                                                    "//tr[@name='customAdvanceSearch']//input[@name='tks_firstname']")
+        first_name_field.clear()
+        first_name_field.send_keys(last_name)
+        Logging().reportDebugStep(self, "The first name was entered : " + last_name)
+        return TaskModule()

@@ -1,5 +1,3 @@
-import pytest
-
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.credit_out.MT4CreditOutModule import MT4CreditOutModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage

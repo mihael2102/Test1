@@ -53,7 +53,7 @@ class CreateDocument(BaseTest):
 
         message_delete_document = document_module.open_pending_tab() \
             .select_document_by_delete_button() \
-            .click_yes_button()\
+            .click_yes_button() \
             .get_successful_message()
 
         assert message_delete_document == DocumentClientsModuleConstants.MESSAGE_DELETE_DOCUMENT

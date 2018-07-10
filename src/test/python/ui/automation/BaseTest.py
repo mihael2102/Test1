@@ -15,6 +15,7 @@ class BaseTest(unittest.TestCase):
         options = webdriver.ChromeOptions()
         options.add_argument("--lang=de")
         options.add_argument("--start-maximized")
+
         Config.browser = webdriver.Remote(desired_capabilities=options.to_capabilities(),
                                           command_executor=selenium_grid_url)
 
@@ -26,7 +27,9 @@ class BaseTest(unittest.TestCase):
             for method, error in self._outcome.errors:
                 if error:
                     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
-                    file_name = 'C:/Users/Administrator/.jenkins/workspace/Smoke New Forex Staging/screenshots/failed_screenshot %s.png' % now
+                    file_name = 'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging' \
+                                '/allure/results/failed_screenshot %s.png' % now
+
                     Config.browser.get_screenshot_as_file(file_name)
                     allure.MASTER_HELPER.attach('failed_screenshot', Config.browser.get_screenshot_as_png(),
                                                 type=AttachmentType.PNG)

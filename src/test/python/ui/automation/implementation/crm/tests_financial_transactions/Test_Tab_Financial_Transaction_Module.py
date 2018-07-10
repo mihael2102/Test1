@@ -58,6 +58,3 @@ class TabFinancialTransaction(BaseTest):
         get_brand = financial_transaction_information.get_brand_text()
         modified_time = financial_transaction_information.get_modified_time()
         crm_id = financial_transaction_information.get_crm_id()
-
-
-
