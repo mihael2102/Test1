@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.MyDashboardConstants import MyDashboardConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
@@ -7,6 +9,7 @@ from src.test.python.ui.automation.utils.preconditions.task_module.ActionsTasksP
 from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
 
 
+@pytest.mark.run(order=25)
 class MyDashboardActions(BaseTest):
 
     def test_check_send_sms_actions_section(self):

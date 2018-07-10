@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.credit_out.MT4CreditOutModule import MT4CreditOutModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
@@ -6,6 +8,7 @@ from src.test.python.ui.automation.utils.preconditions.credit_out.Credit_Out_Pre
     CreditOutPrecondition
 
 
+@pytest.mark.run(order=2)
 class CreditOutTestCRM(BaseTest):
 
     def test_make_credit_out_crm(self):
