@@ -175,7 +175,7 @@ class CaPersonalInformationTab(BrandBasePage):
         date = self.driver.find_element(By.XPATH, "//custom-select[@name= 'day']")
         month = self.driver.find_element(By.XPATH, "//custom-select[@name= 'month']")
         year = self.driver.find_element(By.XPATH, "//custom-select[@name= 'year']")
-        date = date.text + ParserDate().get_month_number(month.text) + year.text
+        date = year.text + ParserDate().get_month_number(month.text) + date.text
         Logging().reportDebugStep(self, "Returns the date of birthday" + date)
         return date
 
