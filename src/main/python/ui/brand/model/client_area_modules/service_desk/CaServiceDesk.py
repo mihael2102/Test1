@@ -14,7 +14,7 @@ class CaServiceDesk(BrandBasePage):
     '''
 
     def open_tickets_tab(self):
-        create_ticket_button = self.driver.find_element(By.XPATH, "//span[contains(text(),'Open Tickets')]")
+        create_ticket_button = super().wait_element_to_be_clickable("//span[contains(text(),'Open Tickets')]")
         create_ticket_button.click()
         Logging().reportDebugStep(self, "Ticket tab is opened")
         return CaServiceDesk()

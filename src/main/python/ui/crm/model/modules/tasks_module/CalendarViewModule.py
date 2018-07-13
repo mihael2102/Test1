@@ -1,3 +1,5 @@
+from time import sleep
+
 from allure_commons.types import AttachmentType
 from selenium.webdriver.common.by import By
 
@@ -15,6 +17,7 @@ class CalendarViewModule(CRMBasePage):
         super().__init__()
 
     def add_new_task(self):
+        sleep(2)
         add_new_task_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add New Task')]")
         add_new_task_button.click()
         Logging().reportDebugStep(self, "The add new task module was opened")

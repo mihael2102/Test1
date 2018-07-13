@@ -34,5 +34,6 @@ class TradingAccountsInformationPage(CRMBasePage):
 
     def get_balance_text(self):
         balance_text = self.driver.find_element(By.XPATH, "//span[@id='dtlview_Balance']")
-        Logging().reportDebugStep(self, "Returns the balance from crm: " + balance_text.text)
-        return balance_text.text
+        parser_balance = balance_text.text.split(".")[0]
+        Logging().reportDebugStep(self, "Returns the balance from crm: " + parser_balance)
+        return parser_balance

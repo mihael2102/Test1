@@ -5,6 +5,7 @@ from src.main.python.ui.crm.model.side_bar.SidebarModules import SidebarModules
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
+
 class AddInteraction(BaseTest):
 
     def test_add_interaction(self):

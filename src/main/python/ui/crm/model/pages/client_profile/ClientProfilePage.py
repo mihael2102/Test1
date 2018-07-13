@@ -188,7 +188,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_second_client_account(self):
-        account_number = super().wait_load_element("//tr[@class='lvtColData'][2]//td[1]")
+        account_number = super().wait_load_element("//tr[@class='lvtColData'][3]//td[1]")
         Logging().reportDebugStep(self, "Return the second client account " + account_number.text)
         return account_number.text
 

@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.client_modules.mass_sms.SendSMSClientsModule import SendSMSClientsModule
 from src.main.python.ui.crm.model.modules.filter.FilterModule import FilterModule
-from src.main.python.ui.crm.model.modules.help_desk.HelpDeskModule import CRMHelpDesk
+from src.main.python.ui.crm.model.modules.help_desk.HelpDeskModule import HelpDeskModule
 from src.main.python.ui.crm.model.modules.client_modules.mass_assign.MassAssignClientsModule import \
     MassAssignClientsModule
 from src.main.python.ui.crm.model.modules.client_modules.mass_edit.MassEditClientsModule import MassEditClientsModule
@@ -92,7 +92,7 @@ class ClientsModule(CRMBasePage):
         help_desc_module = super().wait_load_element("//a[contains(text(), 'Help Desk')]")
         help_desc_module.click()
         Logging().reportDebugStep(self, "Open  the help desk module ")
-        return CRMHelpDesk()
+        return HelpDeskModule()
 
     def refresh(self):
         self.driver.refresh()

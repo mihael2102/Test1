@@ -1,12 +1,16 @@
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
+
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.audit_logs_module.AuditLogsModule import AuditLogsModule
 from src.main.python.ui.crm.model.modules.document_module.DocumentModule import DocumentModule
 from src.main.python.ui.crm.model.modules.financial_transactions_module.FinancialTransactionsModule import \
     FinancialTransactionsModule
+from src.main.python.ui.crm.model.modules.help_desk.HelpDeskModule import HelpDeskModule
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.modules.my_dashboard_module.MyDashBoardModule import MyDashBoardModule
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
+from src.main.python.ui.crm.model.modules.user_management.UserManagement import UserManagement
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -56,6 +60,12 @@ class CRMHomePage(CRMBasePage):
         Logging().reportDebugStep(self, "The audit logs module was opened")
         return AuditLogsModule()
 
+    def select_service_desk_module_more_list(self, module):
+        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+        module_element.click()
+        Logging().reportDebugStep(self, "The Service Desk  module was opened")
+        return HelpDeskModule()
+
     def select_my_dashboard_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
@@ -71,3 +81,19 @@ class CRMHomePage(CRMBasePage):
         home_page_element.click()
         Logging().reportDebugStep(self, "The client module was opened")
         return CRMHomePage()
+
+    def open_financial_transactions_module(self):
+        home_page_element = super().wait_element_to_be_clickable(
+            "//span[@class='glyphicon glyphicon-Financial Transactions']")
+        home_page_element.click()
+        Logging().reportDebugStep(self, "The financial transactions was opened")
+        return FinancialTransactionsModule()
+
+    def open_user_management_module(self, settings):
+        module_element = super().wait_element_to_be_clickable("//table[@class='user_settings']//td[3]")
+        user_management = self.driver.find_element(By.XPATH,
+                                                   "//ul[@class='dropdown-menu pull-right']//li//a[contains(text(),'%s')]" % settings)
+        hoverer = ActionChains(self.driver).move_to_element(module_element).click(user_management)
+        hoverer.perform()
+        Logging().reportDebugStep(self, "The user management was opened")
+        return UserManagement()

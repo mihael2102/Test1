@@ -156,7 +156,7 @@ class CaPersonalInformationTab(BrandBasePage):
         return CaPersonalInformationTab()
 
     def get_date_birthday(self):
-        date = date_parser + ParserDate().get_month_number(month_parser) + year_parser
+        date = year_parser + ParserDate().get_month_number(month_parser) + date_parser
         Logging().reportDebugStep(self, "Returns the date of birthday" + date)
         return date
 

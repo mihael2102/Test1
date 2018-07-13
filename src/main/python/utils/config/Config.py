@@ -3,7 +3,6 @@ timeout = 4
 data = None
 url_client_area = "https://www.royalcfds.com/"
 url_crm = "https://royalcfds.ptscrm.com"
-url_task = "https://newforexstaging.ptscrm.com/tasks"
 window_after = None
 window_before = None
 counter = 1

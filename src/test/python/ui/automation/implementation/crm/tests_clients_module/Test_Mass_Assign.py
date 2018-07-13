@@ -20,7 +20,7 @@ class MassAssignTestCRM(BaseTest):
                                Config.data.get_data_client(CRMConstants.SHORT_FIRST_NAME),
                                Config.data.get_data_client(CRMConstants.SHORT_LAST_NAME),
                                Config.data.get_data_client(TestDataConstants.CITY),
-                               Config.data.get_data_client(CRMConstants.BRAND_NEW_FOREX))
+                               Config.data.get_data_client(CRMConstants.BRAND))
 
         crm_client_profile.select_three_records_clients_module() \
             .open_mass_assign_module() \
