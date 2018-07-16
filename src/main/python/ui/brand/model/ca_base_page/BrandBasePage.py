@@ -34,8 +34,7 @@ class BrandBasePage(object):
         return WaitingUtils().wait_until_element_present_ca(account, amount, self.driver)
 
     def switch_first_tab_page(self):
-        with allure.step("switch the first tab_page"):
-            self.driver.switch_to_window(Config.window_before)
+        self.driver.switch_to_window(Config.window_before)
         Logging().reportDebugStep(self, "Switch the first tab page")
 
     def switch_second_tab_page(self):
@@ -45,8 +44,7 @@ class BrandBasePage(object):
         self.driver.back()
 
     def open_drop_down_menu(self):
-        with allure.step("Open drop down menu : "):
-            self.wait_load_element_present("//div[@class='button-pandats']")
+        self.wait_load_element_present("//div[@class='button-pandats']")
         drop_down_panda = self.driver.find_element(By.XPATH, "//div[@class='button-pandats']")
         drop_down_panda.click()
         Logging().reportDebugStep(self, "Open the drop down menu")
@@ -55,11 +53,10 @@ class BrandBasePage(object):
         self.driver.back()
 
     def select_module(self, module):
-        with allure.step("Module was selected : " + module):
-            element_module = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.XPATH,
-                                                "//div[@class='dropdown-pandats menu-pandats']//"
-                                                "following-sibling::*[contains(text(),'%s')]" % module)))
+        element_module = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,
+                                            "//div[@class='dropdown-pandats menu-pandats']//"
+                                            "following-sibling::*[contains(text(),'%s')]" % module)))
         element_module.click()
         Logging().reportDebugStep(self, "Module was selected : " + module)
 
