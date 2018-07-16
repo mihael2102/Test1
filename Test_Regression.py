@@ -57,11 +57,11 @@ class TestRegression(object):
     def run_add_interaction_crm(self):
         AddInteraction()
 
-    def run_perform_searching_crm(self):
-        SearchingClientsTestCRM()
-
     def run_perform_create_filter_crm(self):
         CreateFilterTestCRM()
+
+    def run_perform_searching_crm(self):
+        SearchingClientsTestCRM()
 
     def run_perform_mass_edit_clients_module(self):
         MassEditTestCRM()
@@ -116,10 +116,3 @@ class TestRegression(object):
 
     def run_check_audit_logs_test(self):
         AuditLogs()
-
-
-
-
-
-
-

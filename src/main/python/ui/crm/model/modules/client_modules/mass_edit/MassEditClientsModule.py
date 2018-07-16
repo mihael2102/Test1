@@ -11,14 +11,12 @@ class MassEditClientsModule(CRMBasePage):
     def __init__(self):
         super().__init__()
 
-    def perform_mass_edit(self, gender, assigned_to, client_source, compliance_agent, compliance_notes, client_status,
+    def perform_mass_edit(self, gender, assigned_to, compliance_notes, client_status,
                           retention_status, description, referral):
         self.set_gender(gender)
         self.set_assigned_to(assigned_to)
-        self.set_client_source(client_source)
-        self.set_compliance_agent(compliance_agent)
+        self.set_compliance_agent()
         self.set_compliance_notes(compliance_notes)
-        self.set_terms_conditions()
         self.set_client_status(client_status)
         self.set_retention_status(retention_status)
         self.set_description(description)
@@ -41,23 +39,13 @@ class MassEditClientsModule(CRMBasePage):
         assigned_to_drown.select_by_visible_text(assigned_to)
         return MassEditClientsModule()
 
-    def set_client_source(self, client_source):
-        check_box = self.driver.find_element(By.XPATH,
-                                             "//div[@id='client_source_mass_edit_check']//div[1]")
-        check_box.click()
-        client_source_field = self.driver.find_element(By.XPATH,
-                                                       "//input[@id='client_source']")
-        client_source_field.clear()
-        client_source_field.send_keys(client_source)
-        return MassEditClientsModule()
-
-    def set_compliance_agent(self, compliance_agent):
+    def set_compliance_agent(self):
         check_box = self.driver.find_element(By.XPATH,
                                              "//div[@id='compliance_agent_mass_edit_check']//div[1]")
         check_box.click()
         compliance_agent_drop_down = Select(
             self.driver.find_element(By.XPATH, "//select[@name='compliance_agent_group_id']"))
-        compliance_agent_drop_down.select_by_visible_text(compliance_agent)
+        compliance_agent_drop_down.select_by_index(0)
         return MassEditClientsModule()
 
     def set_compliance_notes(self, compliance_notes):
@@ -68,15 +56,6 @@ class MassEditClientsModule(CRMBasePage):
                                                           "//input[@id='compliance_note']")
         compliance_notes_field.clear()
         compliance_notes_field.send_keys(compliance_notes)
-        return MassEditClientsModule()
-
-    def set_terms_conditions(self):
-        check_box = self.driver.find_element(By.XPATH,
-                                             "//div[@id='terms_and_conditions_mass_edit_check']//div[1]")
-        check_box.click()
-        check_box_confirm = self.driver.find_element(By.XPATH,
-                                                     "//div[@name='terms_and_conditions']//div[1]")
-        check_box_confirm.click()
         return MassEditClientsModule()
 
     def set_client_status(self, client_status):

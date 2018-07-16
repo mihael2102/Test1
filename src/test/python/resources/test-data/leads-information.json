@@ -99,7 +99,6 @@
   "FirstConvertLead": {
     "first_name_lead": "Test",
     "first_last_name": "Lead last name",
-    "first_email_lead": "test+1@gmail.com",
     "first_phone_lead": "444444444",
     "first_birthday_lead": "1988-07-02",
     "first_citizenship": "Italian",
