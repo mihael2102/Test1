@@ -33,7 +33,12 @@ class MyDashBoardModule(CRMBasePage):
         Logging().reportDebugStep(self, "The sms module was opened: ")
         return MassSMSModule()
 
-    def open_call_module(self):
+    def perform_scroll_down(self):
+        super().wait_element_to_be_clickable("//tr[@class='tableRow'][1]//div[3]")
+        super().perform_scroll_down()
+        return MyDashBoardModule()
+
+    def open_call_module_my_dashboard(self):
         first_check_box = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow'][1]//div[3]")
         first_check_box.click()

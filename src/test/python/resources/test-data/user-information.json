@@ -1,0 +1,8 @@
+{
+  "FirstUser": {
+    "first_name": "Panda",
+    "first_role": "CEO VP",
+    "first_password": "Testinqa",
+    "first_confirm_password": "Testinqa"
+  }
+}

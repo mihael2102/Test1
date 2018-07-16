@@ -52,6 +52,17 @@ class ClientsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Click the selected filter")
         return ClientsModule()
 
+    def clear_filter(self):
+        filter_lear = super().wait_element_to_be_clickable("//a[@id='clearFilter']")
+        filter_lear.click()
+        return ClientsModule()
+
+    def open_client_module_clients_module(self):
+        home_page_element = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Clients']")
+        home_page_element.click()
+        Logging().reportDebugStep(self, "The client module was opened")
+        return ClientsModule()
+
     ''' 
          Select the filter in drop-down   
          :parameter email the email of exist user

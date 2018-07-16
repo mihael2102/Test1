@@ -70,3 +70,9 @@ class DataProviders(object):
             'D:/automation-royalcfd-brand/src/test/python/resources/test-data/audit_logs_module.json')
         conn_string = json.load(connection_file)
         return conn_string[AuditLogsConstants.AUDIT_LOGS_MODULE_INFO][value]
+
+    def get_data_user_info(self, key, value):
+        connection_file = open(
+            'D:/automation-royalcfd-brand/src/test/python/resources/test-data/user-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[key][value]
