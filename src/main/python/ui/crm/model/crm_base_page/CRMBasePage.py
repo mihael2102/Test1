@@ -58,6 +58,10 @@ class CRMBasePage(object):
         self.driver.refresh()
         Logging().reportDebugStep(self, "The page is refreshed")
 
+    def perform_scroll_down(self):
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        Logging().reportDebugStep(self, "Perform scroll down ")
+
     def click_ok(self):
         button = self.wait_load_element("//button[contains(text(),'OK')]")
         button.click()

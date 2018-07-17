@@ -13,9 +13,7 @@ class TabFinancialTransaction(BaseTest):
             .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
                        Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
-        financial_transaction_module = CRMHomePage().open_more_list_modules() \
-            .select_financial_transactions_module_more_list(
-            FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
+        financial_transaction_module = CRMHomePage().open_financial_transactions_module()
 
         all_tab_name = financial_transaction_module.get_all_tab_text()
         credit_in_tab_name = financial_transaction_module.get_credit_in_tab_text()
@@ -42,9 +40,7 @@ class TabFinancialTransaction(BaseTest):
             .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
                        Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
-        financial_transaction_information = CRMHomePage().open_more_list_modules() \
-            .select_financial_transactions_module_more_list(
-            FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE) \
+        financial_transaction_information = CRMHomePage().open_financial_transactions_module()\
             .open_first_transactions()
 
         trading_account = financial_transaction_information.get_trading_account_text()

@@ -15,11 +15,10 @@ class AffiliateModule(CRMBasePage):
 
 
     def open_create_affiliate_popup(self):
-        '''
+        """
         Open create new affiliate popup
         :return: AffiliateModule()
-        '''
-        add_new_affiliate_button =
-
-
+        """
+        add_new_affiliate_button = super().wait_element_to_be_clickable("//button[contains(text(), 'Add new affiliate')]")
+        Logging().reportDebugStep(self, "Open 'Add new affiliate' popup")
         return CreateAffiliateModule()

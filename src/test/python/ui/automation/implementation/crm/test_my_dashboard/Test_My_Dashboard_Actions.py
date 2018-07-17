@@ -15,7 +15,7 @@ class MyDashboardActions(BaseTest):
         dashboard_module = CRMHomePage().refresh_page().open_client_module().open_more_list_modules() \
             .select_my_dashboard_module_more_list(MyDashboardConstants.MY_DASHBOARD_MODULE)
 
-        phone_number = dashboard_module.open_show_all_tab() \
+        phone_number = dashboard_module.perform_scroll_down().open_show_all_tab() \
             .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_first_client_profile() \
             .get_phone_text()
@@ -40,7 +40,7 @@ class MyDashboardActions(BaseTest):
         dashboard_module = CRMHomePage().refresh_page().open_client_module().open_more_list_modules() \
             .select_my_dashboard_module_more_list(MyDashboardConstants.MY_DASHBOARD_MODULE)
 
-        dashboard_module.open_call_module() \
+        dashboard_module.perform_scroll_down().open_call_module_my_dashboard() \
             .perform_call_section(Config.data.get_data_task_module(TaskModuleConstants.SECOND_CALL_OUTCOME),
                                   Config.data.get_data_task_module(TaskModuleConstants.SECOND_POSITIVE_OUTCOME),
                                   Config.data.get_data_task_module(TaskModuleConstants.THIRD_NEGATIVE_OUTCOME),

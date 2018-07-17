@@ -12,7 +12,8 @@ class FilterModule(CRMBasePage):
 
     def perform_create_filter_client_module(self, name_filter, name_first_column, name_second_column, name_third_column,
                                             name_fourth_column, name_fifth_column, name_sixth_column,
-                                            name_seventh_column,name_eighth_column, name_ninth_column, name_tenth_column,
+                                            name_seventh_column, name_eighth_column, name_ninth_column,
+                                            name_tenth_column,
                                             name_eleventh_column):
         self.set_name_filter(name_filter)
         self.perform_choice_first_column(name_first_column)
@@ -42,6 +43,18 @@ class FilterModule(CRMBasePage):
         self.perform_choice_eighth_column(name_eighth_column)
         return FilterModule()
 
+    def perform_create_filter_help_desk_module(self, name_filter, name_first_column, name_second_column,
+                                               name_third_column, name_fourth_column, name_fifth_column,
+                                               name_sixth_column):
+        self.set_name_filter(name_filter)
+        self.perform_choice_first_column(name_first_column)
+        self.perform_choice_second_column(name_second_column)
+        self.perform_choice_third_column(name_third_column)
+        self.perform_choice_fourth_column(name_fourth_column)
+        self.perform_choice_fifth_column(name_fifth_column)
+        self.perform_choice_sixth_column(name_sixth_column)
+        return FilterModule()
+
     def set_name_filter(self, name_filter):
         name_filter_field = super().wait_load_element("//input[@name='viewName']")
         name_filter_field.clear()
@@ -50,6 +63,7 @@ class FilterModule(CRMBasePage):
         return FilterModule()
 
     def perform_choice_first_column(self, name_first_column):
+        super().wait_element_to_be_clickable("//select[@name='column1']")
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='column1']"))
         select.select_by_visible_text(name_first_column)
         Logging().reportDebugStep(self, "The first column was selected")

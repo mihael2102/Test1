@@ -15,11 +15,11 @@ class SendSMSClientsModule(BaseTest):
             .perform_searching(Config.data.get_data_client(CRMConstants.CLIENT_STATUS),
                                Config.data.get_data_client(CRMConstants.SHORT_E_MAIL),
                                Config.data.get_data_client(CRMConstants.SHORT_CLIENT_NAME),
-                               Config.data.get_data_client(TestDataConstants.SECOND_COUNTRY),
+                               Config.data.get_data_client(TestDataConstants.FIRST_COUNTRY),
                                Config.data.get_data_client(CRMConstants.SHORT_FIRST_NAME),
                                Config.data.get_data_client(CRMConstants.SHORT_LAST_NAME),
                                Config.data.get_data_client(TestDataConstants.CITY),
-                               Config.data.get_data_client(CRMConstants.BRAND_NEW_FOREX))
+                               Config.data.get_data_client(CRMConstants.BRAND))
 
         first_client = crm_clients_module_page.get_first_client_email()
         crm_clients_module_page.came_back_on_previous_page().click_search_button()

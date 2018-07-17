@@ -19,7 +19,7 @@
     "first_lead_status": "R - in practice",
     "first_assigned_to": "Panda UA",
     "first_source_name": "source name test",
-    "brand": "NFX",
+    "brand": "RoyalCFDs",
     "po_box": "po box text",
     "city": "Kharkiv",
     "first_state": "New York"
@@ -44,7 +44,7 @@
     "first_lead_status": "B - No interest",
     "first_assigned_to": "Panda UA",
     "first_source_name": "source name test",
-    "brand": "NFX",
+    "brand": "RoyalCFDs",
     "po_box": "po box text",
     "city": "Kharkiv",
     "first_state": "New York"
@@ -69,7 +69,7 @@
     "first_lead_status": "R - welcome call",
     "first_assigned_to": "Panda UA",
     "first_source_name": "source name test",
-    "brand": "NFX",
+    "brand": "RoyalCFDs",
     "po_box": "po box text",
     "city": "Kharkiv",
     "first_state": "New York"
@@ -99,11 +99,10 @@
   "FirstConvertLead": {
     "first_name_lead": "Test",
     "first_last_name": "Lead last name",
-    "first_email_lead": "test+1@gmail.com",
     "first_phone_lead": "444444444",
     "first_birthday_lead": "1988-07-02",
     "first_citizenship": "Italian",
-    "first_brand": "NFX",
+    "first_brand": "RoyalCFDs",
     "first_referral": "Referral_lead",
     "first_currency": "USD",
     "first_password": "Password_lead",

@@ -20,7 +20,7 @@ class MassEditTestCRM(BaseTest):
                                Config.data.get_data_client(CRMConstants.SHORT_FIRST_NAME),
                                Config.data.get_data_client(CRMConstants.SHORT_LAST_NAME),
                                Config.data.get_data_client(TestDataConstants.CITY),
-                               Config.data.get_data_client(CRMConstants.BRAND_NEW_FOREX))
+                               Config.data.get_data_client(CRMConstants.BRAND))
 
         first_client = crm_clients_module_page.get_first_client_email()
         crm_clients_module_page.came_back_on_previous_page().click_search_button()
@@ -33,8 +33,6 @@ class MassEditTestCRM(BaseTest):
             .open_mass_edit_module() \
             .perform_mass_edit(Config.data.get_data_mass_edit(MassEditConstants.GENDER_FEMALE),
                                Config.data.get_data_mass_edit(MassEditConstants.ASSIGNED_TO_PANDA),
-                               Config.data.get_data_mass_edit(MassEditConstants.CLIENT_SOURCE),
-                               Config.data.get_data_mass_edit(MassEditConstants.COMPLIANCE_AGENT),
                                Config.data.get_data_mass_edit(MassEditConstants.COMPLIANCE_NOTES),
                                Config.data.get_data_mass_edit(MassEditConstants.CLIENT_STATUS),
                                Config.data.get_data_mass_edit(MassEditConstants.RETENTION_STATUS),
@@ -54,8 +52,6 @@ class MassEditTestCRM(BaseTest):
             MassEditConstants.GENDER_FEMALE)
         assert crm_client_profile.get_assigned_to_text() == Config.data.get_data_mass_edit(
             MassEditConstants.ASSIGNED_TO_PANDA)
-        assert crm_client_profile.get_client_source_text() == Config.data.get_data_mass_edit(
-            MassEditConstants.CLIENT_SOURCE)
         assert crm_client_profile.get_compliance_agent_text() == Config.data.get_data_mass_edit(
             MassEditConstants.COMPLIANCE_AGENT)
         assert crm_client_profile.get_compliance_notes_text() == Config.data.get_data_mass_edit(

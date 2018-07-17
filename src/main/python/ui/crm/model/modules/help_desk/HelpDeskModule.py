@@ -2,10 +2,11 @@ import re
 from time import sleep
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.help_desk.HelpDeskDetailViewPage import HelpDeskDetailViewPage
 from src.main.python.utils.logs.Loging import Logging
 
 
-class CRMHelpDesk(CRMBasePage):
+class HelpDeskModule(CRMBasePage):
     def __init__(self):
         super().__init__()
 
@@ -18,7 +19,7 @@ class CRMHelpDesk(CRMBasePage):
         tab = super().wait_load_element("//li[contains(text(),'Opened Today')]")
         tab.click()
         Logging().reportDebugStep(self, "The today tab was opened")
-        return CRMHelpDesk()
+        return HelpDeskModule()
 
     '''
          Open the ticket number 
@@ -30,35 +31,7 @@ class CRMHelpDesk(CRMBasePage):
         ticket_number = super().wait_load_element("//div[@class='link_field']")
         ticket_number.click()
         Logging().reportDebugStep(self, "Open ticket number")
-        return CRMHelpDesk()
-
-    '''
-        Returns the category text   
-    '''
-
-    def get_category_status_text(self):
-        category = super().wait_load_element("//span[@id='dtlview_Category']")
-        Logging().reportDebugStep(self, "Returns category of ticket: " + category.text)
-        return category.text
-
-    ''' 
-        Returns the ticket status   
-    '''
-
-    def get_ticket_status_text(self):
-        category = super().wait_load_element("//td[@id='mouseArea_Status']")
-        Logging().reportDebugStep(self, "Returns status of ticket: " + category.text)
-        return category.text
-
-    ''' 
-        Returns the subject tittle text   
-    '''
-
-    def get_subject_tittle(self):
-        subject_tittle = super().wait_load_element("//td[@id='mouseArea_Title']")
-        new_subject_tittle = re.sub(' ', "", subject_tittle.text)
-        Logging().reportDebugStep(self, "The subject is set:  " + new_subject_tittle)
-        return new_subject_tittle
+        return HelpDeskDetailViewPage()
 
     ''' 
         Select the filter in drop-down   
@@ -79,7 +52,7 @@ class CRMHelpDesk(CRMBasePage):
         select_test_filter.click()
         Logging().reportDebugStep(self, "The filter was selected: " + test_filter)
 
-        return CRMHelpDesk()
+        return HelpDeskModule()
 
     ''' 
          Returns the ticket status  
@@ -92,15 +65,15 @@ class CRMHelpDesk(CRMBasePage):
         field_id.clear()
         field_id.send_keys(ticket_id)
         Logging().reportDebugStep(self, "The ticket was find: " + ticket_id)
-        return CRMHelpDesk()
+        return HelpDeskModule()
 
     ''' 
          Perform  search ticket    
          :return Help Desk instance
     '''
 
-    def perform_search(self):
+    def perform_search_ticket(self):
         search_button = super().wait_load_element("//td[@class='txt_al_c']")
         search_button.click()
         Logging().reportDebugStep(self, "Perform search")
-        return CRMHelpDesk()
+        return HelpDeskModule()

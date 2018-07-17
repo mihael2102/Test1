@@ -28,20 +28,20 @@ class TabTasksModuleCRM(BaseTest):
         assert this_week_tab_name == Config.data.get_data_task_module(TaskModuleConstants.FOURTH_TAB)
         assert history_tab_name == Config.data.get_data_task_module(TaskModuleConstants.FIFTH_TAB)
 
-    def test_check_searching_module(self):
-        EventPrecondition().create_first_event()
-
-        task_module = TaskModule()
-        task_module.open_show_all_tab().find_event_by_subject(
-            TaskModuleConstants.FIFTH_SUBJECT)
-        #
-        # task_module.perform_searching(TaskModuleConstants.SECOND_EVENT_STATUS,
-        #                               TaskModuleConstants.SECOND_EVENT_TYPE,
-        #                               TaskModuleConstants.SECOND_DURATION,
-        #                               CRMConstants.THIRD_DATE.strftime(
-        #                                   CRMConstants.SECOND_FORMAT_DATE),
-        #                               CRMConstants.THIRD_DATE.strftime(
-        #                                   CRMConstants.FIRST_FORMAT_TIME),
-        #                               TaskModuleConstants.SECOND_ASSIGN_TO,
-        #
-        #                               task_module.perform_screen_shot()
+    # def test_check_searching_module(self):
+    #     EventPrecondition().create_first_event()
+    #
+    #     task_module = TaskModule()
+    #     task_module.open_show_all_tab().find_event_by_subject(
+    #         TaskModuleConstants.FIFTH_SUBJECT)
+    #     #
+    #     # task_module.perform_searching(TaskModuleConstants.SECOND_EVENT_STATUS,
+    #     #                               TaskModuleConstants.SECOND_EVENT_TYPE,
+    #     #                               TaskModuleConstants.SECOND_DURATION,
+    #     #                               CRMConstants.THIRD_DATE.strftime(
+    #     #                                   CRMConstants.SECOND_FORMAT_DATE),
+    #     #                               CRMConstants.THIRD_DATE.strftime(
+    #     #                                   CRMConstants.FIRST_FORMAT_TIME),
+    #     #                               TaskModuleConstants.SECOND_ASSIGN_TO,
+    #     #
+    #     #                               task_module.perform_screen_shot()

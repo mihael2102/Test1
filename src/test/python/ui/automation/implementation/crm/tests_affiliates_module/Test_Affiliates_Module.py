@@ -20,11 +20,12 @@ class CreateAffiliate(BaseTest):
             .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
 
 
-        # Create new affiliate
+        # Open popup and create new affiliate
         affiliate_module.open_create_affiliate_popup().perform_create_affiliate()
 
 
         # Read the message after creating affiliate
+
 
 
 

@@ -29,7 +29,7 @@ class AddEventModule(CRMBasePage):
         event_element = super().wait_element_to_be_clickable("//select[@id='eventstatus']")
         select_status = Select(event_element)
         select_status.select_by_visible_text(status)
-        Logging().reportDebugStep(self, "The event status is set " + status)
+        Logging().reportDebugStep(self, "The event status was set " + status)
         return AddEventModule()
 
     def set_event_type(self, type):
@@ -43,29 +43,29 @@ class AddEventModule(CRMBasePage):
         duration_element = self.driver.find_element(By.XPATH, "//select[@id='duration_minutes']")
         select = Select(duration_element)
         select.select_by_visible_text(duration)
-        Logging().reportDebugStep(self, "The duration  is set " + duration)
+        Logging().reportDebugStep(self, "The duration  was set " + duration)
         return AddEventModule()
 
     def set_priority(self, priority):
         priority_element = super().wait_element_to_be_clickable("//select[@id='priority']")
         select = Select(priority_element)
         select.select_by_visible_text(priority)
-        Logging().reportDebugStep(self, "The priority is set " + priority)
+        Logging().reportDebugStep(self, "The priority was set " + priority)
         return AddEventModule()
 
     def set_time(self, date, time):
         time_element = self.driver.find_element(By.XPATH, "//input[@id='date_time_start']")
         time_element.clear()
         time_element.send_keys(date + " " + time)
-        Logging().reportDebugStep(self, "The date  is set " + date)
-        Logging().reportDebugStep(self, "The time  is set " + time)
+        Logging().reportDebugStep(self, "The date  was set " + date)
+        Logging().reportDebugStep(self, "The time  was set " + time)
         return AddEventModule()
 
     def set_assign_to(self, assign_to):
         assign_to_element = self.driver.find_element(By.XPATH, "//select[@id='smownerid']")
         select = Select(assign_to_element)
         select.select_by_visible_text(assign_to)
-        Logging().reportDebugStep(self, "The  assign to is set " + assign_to)
+        Logging().reportDebugStep(self, "The  assign to was set " + assign_to)
         return AddEventModule()
 
     def set_account_name(self, account_name):
@@ -73,23 +73,23 @@ class AddEventModule(CRMBasePage):
         account_name_element.clear()
         account_name_element.send_keys(account_name)
         selecting_account_element = super().wait_element_to_be_clickable(
-            "//div[@class='ngui-auto-complete']//ul//li[4]")
+            "//div[@class='ngui-auto-complete']//ul//li[contains(text(),'%s')]" % account_name)
         selecting_account_element.click()
-        Logging().reportDebugStep(self, "The account is set " + account_name)
+        Logging().reportDebugStep(self, "The account was set " + account_name)
         return AddEventModule()
 
     def set_subject(self, subject):
         description_element = self.driver.find_element(By.XPATH, "//input[@id='subject']")
         description_element.clear()
         description_element.send_keys(subject)
-        Logging().reportDebugStep(self, "The subject is set " + subject)
+        Logging().reportDebugStep(self, "The subject was set " + subject)
         return CreateEvent()
 
     def set_description(self, comments):
         description_element = self.driver.find_element(By.XPATH, "//textarea[@id='description']")
         description_element.clear()
         description_element.send_keys(comments)
-        Logging().reportDebugStep(self, "The comments is set " + comments)
+        Logging().reportDebugStep(self, "The comments was set " + comments)
         return CreateEvent()
 
     def click_save(self):

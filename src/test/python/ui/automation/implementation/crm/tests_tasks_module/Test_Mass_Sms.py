@@ -1,5 +1,6 @@
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
+from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
@@ -18,7 +19,7 @@ class MassSmsTaskModule(BaseTest):
 
         assert task_module.get_message_task() == TaskModuleConstants.MESSAGE_SMS_SUCCESSFULLY
 
-        task_module.open_first_tab_page(Config.url_task)
+        task_module = CRMHomePage().open_task_module()
 
         message = task_module.find_event_by_subject(
             TaskModuleConstants.SEVENTH_SUBJECT).open_first_client_profile() \
@@ -29,7 +30,7 @@ class MassSmsTaskModule(BaseTest):
 
         assert message == CRMConstants.MESSAGE_MASS_SMS
 
-        task_module.open_first_tab_page(Config.url_task)
+        task_module = CRMHomePage().open_task_module()
 
         second_message = task_module.find_event_by_subject(
             TaskModuleConstants.SEVENTH_SUBJECT).open_second_client_profile() \
@@ -38,7 +39,7 @@ class MassSmsTaskModule(BaseTest):
             .get_sms_text()
         assert second_message == CRMConstants.MESSAGE_MASS_SMS
 
-        task_module.open_first_tab_page(Config.url_task)
+        task_module = CRMHomePage().open_task_module()
 
         third_message = task_module.find_event_by_subject(
             TaskModuleConstants.SEVENTH_SUBJECT).open_third_client_profile() \

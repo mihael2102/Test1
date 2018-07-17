@@ -8,7 +8,7 @@ from src.test.python.utils.TestDataConstants import TestDataConstants
 
 class ChangePasswordTestCRM(BaseTest):
 
-    def test_make_change_password_from_crm(self):
+    def test_make_check_password_from_crm(self):
         crm_client_profile = CRMLoginPage() \
             .open_first_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),

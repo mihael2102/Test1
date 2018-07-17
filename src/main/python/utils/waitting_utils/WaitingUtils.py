@@ -62,5 +62,5 @@ class WaitingUtils(object):
                                      "//td[contains(text(),'%s')]//following-sibling::*[3]" % account_id)
         amount_without_symbol = re.sub('[$£CA€]', '', amount.text)
 
-        Logging().reportDebugStep(self, "Getting the amount id text")
+        Logging().reportDebugStep(self, "Getting the amount : "+amount_without_symbol+" from client area: ")
         return amount_without_symbol

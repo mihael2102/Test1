@@ -170,8 +170,7 @@ class LeadModule(BaseTest):
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_NAME_LEAD),
             Config.data.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_LAST_NAME_LEAD),
-            Config.data.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_EMAIL_LEAD),
+            LeadsModuleConstants.FIRST_EMAIL_LEAD,
             Config.data.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_PHONE_LEAD),
             Config.data.get_data_lead_info(

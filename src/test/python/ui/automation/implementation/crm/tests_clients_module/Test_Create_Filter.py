@@ -51,4 +51,3 @@ class CreateFilterTestCRM(BaseTest):
         assert CRMConstants.TENTH_COLUMN_OTHER_TYPE == tenth_name_column
         assert Config.data.get_data_client(CRMConstants.ELEVENTH_COLUMN) == eleventh_name_column
 
-        clients_module_page.delete_filter().confirm_delete()

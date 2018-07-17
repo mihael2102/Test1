@@ -19,7 +19,7 @@ class SearchingClientsTestCRM(BaseTest):
                                Config.data.get_data_client(CRMConstants.SHORT_FIRST_NAME),
                                Config.data.get_data_client(CRMConstants.SHORT_LAST_NAME),
                                Config.data.get_data_client(TestDataConstants.CITY),
-                               Config.data.get_data_client(CRMConstants.BRAND_NEW_FOREX)) \
+                               Config.data.get_data_client(CRMConstants.BRAND)) \
             .open_client_id()
 
         first_name_crm = crm_client_profile.get_first_name()

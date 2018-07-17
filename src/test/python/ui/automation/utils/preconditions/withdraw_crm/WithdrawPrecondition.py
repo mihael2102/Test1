@@ -22,7 +22,7 @@ class WithdrawPrecondition(object):
             .select_module(CaConstants.MANAGE_ACCOUNTS)
 
         CaManageAccounts().open_new_account_button() \
-            .select_account_currency(Config.data.get_data_client(TestDataConstants.ACCOUNT_CURRENCY_CAD)) \
+            .select_account_currency(Config.data.get_data_client(TestDataConstants.ACCOUNT_CURRENCY_USD)) \
             .create_account_button()
 
         return WithdrawPrecondition()

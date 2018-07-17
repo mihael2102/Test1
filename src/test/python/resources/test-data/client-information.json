@@ -1,8 +1,8 @@
 {
   "client_1": {
     "country": "Germany",
-    "first_name": "TestQa",
-    "email": "evgeniy.l+testing8@pandats.com",
+    "first_name": "Test11111",
+    "email": "evgeniy.l+1@pandats.com",
     "last_name": "Li",
     "area_code": "44444",
     "phone": "55555555",
@@ -48,12 +48,12 @@
     "cvs": "123",
     "withdrawal_reason": "Limited funds",
     "new_password": "qa1qa2",
-    "short_email": "testing",
-    "short_client_name": "TestQA",
-    "short_first_name": "Qa",
+    "short_email": "evgen",
+    "short_client_name": "Test",
+    "short_first_name": "Test",
     "short_last_name": "Li",
     "client_status_1": "R - New",
-    "brand_one": "newForex",
+    "brand_one": "RoyalCFDs",
     "first_column": "CRM Id",
     "second_column": "Client Status",
     "third_column": "Lead Exist",
@@ -62,8 +62,8 @@
     "sixth_column": "Assigned To *",
     "seventh_column": "Country",
     "eighth_column": "First Name",
-    "ninth_column": "Last Name *",
-    "tenth_column": "City *",
+    "ninth_column": "Last Name",
+    "tenth_column": "City",
     "eleventh_column": "Brand"
   }
 }

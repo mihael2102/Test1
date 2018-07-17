@@ -1,9 +1,11 @@
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
+from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.ActionsTasksPrecondition import \
     ActionsTasksPrecondition
 from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
+
 
 class ActionsTask(BaseTest):
 
@@ -16,8 +18,8 @@ class ActionsTask(BaseTest):
             .open_first_client_profile() \
             .get_phone_text()
 
-        task_module.open_first_tab_page(Config.url_task)\
-            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
+        task_module = CRMHomePage().open_task_module()
+        task_module.find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_sms_module() \
             .perform_send_sms(phone_number, TaskModuleConstants.DESCRIPTION_SEND_SMS) \
             .click_send_button()

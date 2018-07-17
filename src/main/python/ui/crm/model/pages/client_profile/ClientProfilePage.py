@@ -179,7 +179,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_client_account(self):
-        account_number = super().wait_load_element("//tr[@class='lvtColData'][1]//td[1]")
+        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
         Logging().reportDebugStep(self, "Returns the client_account  text " + account_number.text)
         return account_number.text
 
@@ -188,7 +188,8 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_second_client_account(self):
-        account_number = super().wait_load_element("//tr[@class='lvtColData'][2]//td[1]")
+        sleep(3)
+        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[2]//td[1]")
         Logging().reportDebugStep(self, "Return the second client account " + account_number.text)
         return account_number.text
 
@@ -405,9 +406,10 @@ class ClientProfilePage(CRMBasePage):
     def get_assigned_to_text(self):
         assigned_to = self.driver.find_element(By.XPATH,
                                                "//td[contains(text(),'Assigned To')]//following-sibling::td[1]")
-        parser_assigned_to_text = re.sub('[" "]', '', assigned_to.text, 4)
-        Logging().reportDebugStep(self, "Returns the assigned to: " + parser_assigned_to_text)
-        return parser_assigned_to_text
+        new_line = assigned_to.text.strip()
+
+        Logging().reportDebugStep(self, "Returns the assigned to: " + new_line)
+        return new_line
 
     def get_client_source_text(self):
         client_source = self.driver.find_element(By.XPATH,
@@ -419,9 +421,10 @@ class ClientProfilePage(CRMBasePage):
     def get_compliance_agent_text(self):
         compliance_agent = self.driver.find_element(By.XPATH,
                                                     "//td[contains(text(),'Compliance Agent')]//following-sibling::td[1]")
-        parser_compliance_agent_text = re.sub('[" "]', '', compliance_agent.text, 4)
-        Logging().reportDebugStep(self, "Returns the compliance_agent source: " + parser_compliance_agent_text)
-        return parser_compliance_agent_text
+
+        new_line = compliance_agent.text.strip()
+        Logging().reportDebugStep(self, "Returns the compliance_agent source: " + new_line)
+        return new_line
 
     def get_compliance_notes_text(self):
         compliance_notes = self.driver.find_element(By.XPATH,
