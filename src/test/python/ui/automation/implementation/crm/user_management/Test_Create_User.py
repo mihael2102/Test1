@@ -21,5 +21,6 @@ class CreateUserTest(BaseTest):
                                                                 UserInformation.FIRST_PASSWORD),
                                  Config.data.get_data_user_info(UserInformation.FIRST_USER,
                                                                 UserInformation.FIRST_CONFIRM_PASSWORD),
-                                 UserInformation.FIRST_LAST_NAME)
+                                 Config.data.get_data_user_info(UserInformation.FIRST_USER,
+                                                                UserInformation.FIRST_LAST_NAME))
         new_user_profile.click_save_button_user_module()

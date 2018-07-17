@@ -11,4 +11,4 @@ class UserInformation(object):
     FIRST_ROLE = "first_role"
     FIRST_PASSWORD = "first_password"
     FIRST_CONFIRM_PASSWORD = "first_confirm_password"
-    FIRST_LAST_NAME = "UA " + random_number
+    FIRST_LAST_NAME = "first_last_name"
