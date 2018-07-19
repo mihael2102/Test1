@@ -9,8 +9,8 @@ class SearchingClientsTestCRM(BaseTest):
     def test_make_searching_client_module(self):
         crm_client_profile = CRMLoginPage() \
             .open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
+            .crm_login(TestDataConstants.CLIENT_ONE, Config.data.get_data_client(TestDataConstants.USER_NAME),
+                       TestDataConstants.CLIENT_ONE, Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
             .perform_searching(Config.data.get_data_client(CRMConstants.CLIENT_STATUS),
                                Config.data.get_data_client(TestDataConstants.E_MAIL),

@@ -26,7 +26,7 @@ class MT4CreditInModule(CRMBasePage):
         return ClientProfilePage()
 
     '''
-        Select an account from drop down
+        Choice an account from drop down
         :parameter account the account of the  client
         :returns MT4 Credit In instance
     '''

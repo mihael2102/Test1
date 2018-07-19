@@ -31,7 +31,7 @@ class MT4DepositModule(CRMBasePage):
         return ClientProfilePage()
 
     '''
-        Select a payment method from drop down
+         Choice a payment method from drop down
          :parameter payment method the method of deposit  in the drop down
         :returns MT4 Deposit instance
     '''
