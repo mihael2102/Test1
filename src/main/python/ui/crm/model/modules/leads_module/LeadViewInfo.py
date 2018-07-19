@@ -1,6 +1,6 @@
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import ConvertLeadModule
-from src.main.python.ui.crm.model.pages.leads_pages.EditLeadsProfilePage import EditLeadsProfilePage
+from src.main.python.ui.crm.model.pages.leads.EditLeadsProfilePage import EditLeadsProfilePage
 from src.main.python.utils.logs.Loging import Logging
 
 

@@ -1,6 +1,6 @@
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
-from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
+from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.utils.TestDataConstants import TestDataConstants
 from src.main.python.utils.config import Config
@@ -15,7 +15,7 @@ class EventPrecondition(object):
             .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
                        Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
 
-        task_module = TaskModule()
+        task_module = TasksPage()
         task_module.open_add_event_module().create_event(TaskModuleConstants.SECOND_EVENT_STATUS,
                                                          TaskModuleConstants.SECOND_EVENT_TYPE,
                                                          TaskModuleConstants.SECOND_DURATION,

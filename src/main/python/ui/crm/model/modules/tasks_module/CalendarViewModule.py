@@ -3,7 +3,7 @@ from time import sleep
 from allure_commons.types import AttachmentType
 from selenium.webdriver.common.by import By
 
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.tasks_module.AddEventModule import AddEventModule
 from datetime import *
 import allure

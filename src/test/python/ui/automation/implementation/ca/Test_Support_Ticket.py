@@ -1,6 +1,6 @@
 from src.main.python.ui.brand.model.client_area_modules.service_desk.CaServiceDesk import CaServiceDesk
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
-from src.main.python.ui.crm.model.modules.help_desk.HelpDeskModule import HelpDeskModule
+from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskModule
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
 from src.test.python.utils.TestDataConstants import TestDataConstants

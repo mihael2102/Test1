@@ -2,12 +2,13 @@ from time import sleep
 
 from allure_commons.types import AttachmentType
 from selenium.webdriver.common.by import By
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.tasks_module.AddEventModule import AddEventModule
 from src.main.python.ui.crm.model.modules.tasks_module.CalendarViewModule import CalendarViewModule
 from src.main.python.ui.crm.model.modules.tasks_module.CallModule import CallTaskModule
 from src.main.python.ui.crm.model.modules.tasks_module.EditEventModule import EditEventModule
 from src.main.python.ui.crm.model.modules.tasks_module.MassEditTaskModule import MassEditTaskModule
+from src.main.python.ui.crm.model.modules.tasks_module.MassEmailModule import MassEmailModule
 from src.main.python.ui.crm.model.modules.tasks_module.MassSMSModule import MassSMSModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
@@ -16,7 +17,7 @@ import allure
 from src.main.python.utils.config import Config
 
 
-class TaskModule(CRMBasePage):
+class TasksPage(CRMBasePage):
 
     def __init__(self):
         super().__init__()
@@ -29,12 +30,12 @@ class TaskModule(CRMBasePage):
     def open_second_tab_page(self, url):
         super().open_second_tab_page(url)
         Logging().reportDebugStep(self, "Open second tabs page: " + url + '\n')
-        return TaskModule()
+        return TasksPage()
 
     def open_first_tab_page(self, url):
         super().open_first_tab_page(url)
         Logging().reportDebugStep(self, "Open first tabs page: " + url)
-        return TaskModule()
+        return TasksPage()
 
     def get_show_all_tab_text(self):
         super().wait_load_element("//ul[@id='main-tabs']//li[1]")
@@ -77,19 +78,26 @@ class TaskModule(CRMBasePage):
         tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[1]")
         tab.click()
         Logging().reportDebugStep(self, "The this week tab was opened ")
-        return TaskModule()
+        return TasksPage()
 
     def open_sms_module(self):
         first_check_box = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow']//div[2]")
         first_check_box.click()
-        Logging().reportDebugStep(self, "The sms module was opened: ")
+        Logging().reportDebugStep(self, "The sms module was opened")
         return MassSMSModule()
 
     def open_mass_edit_task(self):
         mass_edit_module = super().wait_element_to_be_clickable("//button[contains(text(),'Mass Edit')]")
         mass_edit_module.click()
+        Logging().reportDebugStep(self, "The mass edit module was opened")
         return MassEditTaskModule()
+
+    def open_mass_email_task_module(self):
+        mass_email_module = super().wait_element_to_be_clickable("//button[contains(text(),'Mass Email')]")
+        mass_email_module.click()
+        Logging().reportDebugStep(self, "The mass email module was opened")
+        return MassEmailModule()
 
     def get_history_tab_text(self):
         tab = self.driver.find_element(By.XPATH,
@@ -104,7 +112,7 @@ class TaskModule(CRMBasePage):
         sleep(3)
         event_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Event')]")
         event_button.click()
-        Logging().reportDebugStep(self, "The event  module was opened ")
+        Logging().reportDebugStep(self, "The event  module was opened")
         return AddEventModule()
 
     def open_calendar_view_module(self):
@@ -123,7 +131,14 @@ class TaskModule(CRMBasePage):
         third_check_box = self.driver.find_element(By.XPATH, "//div[@class='table-grid-container']//tr[5]//td[1]")
         third_check_box.click()
         Logging().reportDebugStep(self, "The records were selected")
-        return TaskModule()
+        return TasksPage()
+
+    def select_two_records_task_module(self):
+        first_check_box = super().wait_element_to_be_clickable("//div[@class='table-grid-container']//tr[3]//td[1]")
+        first_check_box.click()
+        second_check_box = self.driver.find_element(By.XPATH, "//div[@class='table-grid-container']//tr[4]//td[1]")
+        second_check_box.click()
+        return TasksPage()
 
     def perform_mass_delete(self):
         sleep(3)
@@ -133,7 +148,7 @@ class TaskModule(CRMBasePage):
             "//div[@class='modal-footer new-modal-footer']//button[contains(text(),'OK')]")
         delete_button.click()
         Logging().reportDebugStep(self, "The mass delete was performed")
-        return TaskModule()
+        return TasksPage()
 
     def open_mass_sms_module(self):
         event_button = self.driver.find_element(By.XPATH,
@@ -146,7 +161,7 @@ class TaskModule(CRMBasePage):
            Returns a task was_updated  message if the user entered a valid password
     '''
 
-    def get_message_task(self):
+    def get_confirm_message_task_module(self):
         confirm_message = super().wait_load_element("//div[@class='toast-message']")
         Logging().reportDebugStep(self, "Returns the message task  : " + confirm_message.text)
         return confirm_message.text
@@ -205,7 +220,7 @@ class TaskModule(CRMBasePage):
         Logging().reportDebugStep(self, "The subject was set: " + subject)
         sleep(3)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
-        return TaskModule()
+        return TasksPage()
 
     def open_call_module(self):
         first_check_box = super().wait_element_to_be_clickable(
@@ -221,7 +236,7 @@ class TaskModule(CRMBasePage):
         self.enter_first_name(first_name)
         self.enter_first_name(first_name)
         self.enter_first_name(first_name)
-        return TaskModule()
+        return TasksPage()
 
     def enter_first_name(self, first_name):
         first_name_field = self.driver.find_element(By.XPATH,
@@ -229,7 +244,7 @@ class TaskModule(CRMBasePage):
         first_name_field.clear()
         first_name_field.send_keys(first_name)
         Logging().reportDebugStep(self, "The first name was entered : " + first_name)
-        return TaskModule()
+        return TasksPage()
 
     def enter_last_name(self, last_name):
         first_name_field = self.driver.find_element(By.XPATH,
@@ -237,4 +252,4 @@ class TaskModule(CRMBasePage):
         first_name_field.clear()
         first_name_field.send_keys(last_name)
         Logging().reportDebugStep(self, "The first name was entered : " + last_name)
-        return TaskModule()
+        return TasksPage()

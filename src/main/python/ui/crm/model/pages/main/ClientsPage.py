@@ -1,10 +1,13 @@
 from time import sleep
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.client_modules.mass_sms.SendSMSClientsModule import SendSMSClientsModule
-from src.main.python.ui.crm.model.modules.filter.FilterModule import FilterModule
-from src.main.python.ui.crm.model.modules.help_desk.HelpDeskModule import HelpDeskModule
+from src.main.python.ui.crm.model.modules.client_modules.send_email.SendEmailClientsModule import SendEmailClientsModule
+from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
+from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskModule
 from src.main.python.ui.crm.model.modules.client_modules.mass_assign.MassAssignClientsModule import \
     MassAssignClientsModule
 from src.main.python.ui.crm.model.modules.client_modules.mass_edit.MassEditClientsModule import MassEditClientsModule
@@ -12,7 +15,7 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 from src.main.python.utils.logs.Loging import Logging
 
 
-class ClientsModule(CRMBasePage):
+class ClientsPage(CRMBasePage):
 
     def __init__(self):
         super().__init__()
@@ -27,11 +30,11 @@ class ClientsModule(CRMBasePage):
         self.enter_city(city)
         self.select_brand(brand)
         self.click_search_button()
-        return ClientsModule()
+        return ClientsPage()
 
     def perform_searching_by_email(self, email):
         self.enter_email(email)
-        return ClientsModule()
+        return ClientsPage()
 
     ''' 
         Select the filter in drop-down   
@@ -50,18 +53,24 @@ class ClientsModule(CRMBasePage):
         select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
         select_test_filter.click()
         Logging().reportDebugStep(self, "Click the selected filter")
-        return ClientsModule()
+        return ClientsPage()
 
     def clear_filter(self):
         filter_lear = super().wait_element_to_be_clickable("//a[@id='clearFilter']")
         filter_lear.click()
-        return ClientsModule()
+        return ClientsPage()
 
     def open_client_module_clients_module(self):
         home_page_element = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Clients']")
         home_page_element.click()
         Logging().reportDebugStep(self, "The client module was opened")
-        return ClientsModule()
+        return ClientsPage()
+
+    def open_all_tab_clients_module(self):
+        all_tab = super().wait_element_to_be_clickable("//li[contains(text(),'All')]")
+        all_tab.click()
+        Logging().reportDebugStep(self, "The client module was opened")
+        return ClientsPage()
 
     ''' 
          Select the filter in drop-down   
@@ -92,7 +101,7 @@ class ClientsModule(CRMBasePage):
     def switch_second_tab_page(self):
         super().switch_second_tab_page()
         Logging().reportDebugStep(self, "switch the second tab ")
-        return ClientsModule()
+        return ClientsPage()
 
     ''' 
         Open the help desk module 
@@ -108,7 +117,7 @@ class ClientsModule(CRMBasePage):
     def refresh(self):
         self.driver.refresh()
         Logging().reportDebugStep(self, "Perform the refresh ")
-        return ClientsModule()
+        return ClientsPage()
 
     def enter_email(self, email):
         sleep(2)
@@ -116,13 +125,13 @@ class ClientsModule(CRMBasePage):
         email_field.clear()
         email_field.send_keys(email)
         Logging().reportDebugStep(self, "Email was entered : " + email)
-        return ClientsModule()
+        return ClientsPage()
 
     def enter_client_name(self, name):
         client_name = self.driver.find_element(By.XPATH, "//input[@name='tks_accountname']")
         client_name.send_keys(name)
         Logging().reportDebugStep(self, "The client name was entered : " + name)
-        return ClientsModule()
+        return ClientsPage()
 
     def enter_country(self, country):
         country_drop_down = self.driver.find_element(By.XPATH,
@@ -142,28 +151,28 @@ class ClientsModule(CRMBasePage):
         ac.move_by_offset(250, 250).click().perform()
         Logging().reportDebugStep(self, "The country was entered : " + country)
 
-        return ClientsModule()
+        return ClientsPage()
 
     def enter_first_name(self, first_name):
         first_name_field = self.driver.find_element(By.XPATH, "//input[@name='tks_firstname']")
         first_name_field.clear()
         first_name_field.send_keys(first_name)
         Logging().reportDebugStep(self, "The first name  was entered : " + first_name)
-        return ClientsModule()
+        return ClientsPage()
 
     def enter_last_name(self, last_name):
         first_name_field = self.driver.find_element(By.XPATH, "//input[@name='tks_lastname']")
         first_name_field.clear()
         first_name_field.send_keys(last_name)
         Logging().reportDebugStep(self, "The last name  was entered : " + last_name)
-        return ClientsModule()
+        return ClientsPage()
 
     def enter_city(self, city):
         city_field = self.driver.find_element(By.XPATH, "//input[@name='tks_city']")
         city_field.clear()
         city_field.send_keys(city)
         Logging().reportDebugStep(self, "The city  was entered : " + city)
-        return ClientsModule()
+        return ClientsPage()
 
     def select_brand(self, brand):
         country_drop_down = self.driver.find_element(By.XPATH,
@@ -182,7 +191,7 @@ class ClientsModule(CRMBasePage):
 
         ac.move_by_offset(250, 250).click().perform()
         Logging().reportDebugStep(self, "The brand  was selected : " + brand)
-        return ClientsModule()
+        return ClientsPage()
 
     def select_client_status(self, client_status):
         country_drop_down = super().wait_load_element(
@@ -201,17 +210,17 @@ class ClientsModule(CRMBasePage):
 
         ac.move_by_offset(250, 250).click().perform()
         Logging().reportDebugStep(self, "The client status was selected : " + client_status)
-        return ClientsModule()
+        return ClientsPage()
 
     def click_search_button(self):
         search_button = super().wait_element_to_be_clickable("//td[@class='txt_al_c']")
         search_button.click()
         Logging().reportDebugStep(self, "The search button was clicked ")
-        return ClientsModule()
+        return ClientsPage()
 
     def open_client_id(self):
         sleep(2)
-        client_id = super().wait_element_to_be_clickable("//tr[@class='lvtColData']//div[@class='link_field']")
+        client_id = self.driver.find_element(By.XPATH, "//tr[@class='lvtColData']//div[@class='link_field']")
         client_id.click()
         Logging().reportDebugStep(self, "Click user name by email : ")
         return ClientProfilePage()
@@ -220,7 +229,7 @@ class ClientsModule(CRMBasePage):
         filter_button = super().wait_element_to_be_clickable("//a[@title='Create Filter']")
         filter_button.click()
         Logging().reportDebugStep(self, "The filter pop-up is opened")
-        return FilterModule()
+        return FilterPage()
 
     def get_first_name_column(self):
         name_first_column = super().wait_element_to_be_clickable(
@@ -292,13 +301,13 @@ class ClientsModule(CRMBasePage):
         delete_filter_button = super().wait_element_to_be_clickable("//a[@title='Delete']")
         delete_filter_button.click()
         Logging().reportDebugStep(self, "The delete button was clicked")
-        return ClientsModule()
+        return ClientsPage()
 
     def confirm_delete(self):
         delete_filter_button = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
         delete_filter_button.click()
         Logging().reportDebugStep(self, "Filter was deleted")
-        return ClientsModule()
+        return ClientsPage()
 
     def select_three_records_clients_module(self):
         sleep(2)
@@ -309,14 +318,20 @@ class ClientsModule(CRMBasePage):
         third_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[3]//td[1]")
         third_check_box.click()
         Logging().reportDebugStep(self, "The three records were selected")
-        return ClientsModule()
+        return ClientsPage()
 
     def select_record(self):
         sleep(2)
         first_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[1]")
         first_check_box.click()
         Logging().reportDebugStep(self, "The record was selected")
-        return ClientsModule()
+        return ClientsPage()
+
+    def click_send_email_module(self):
+        send_email_module = super().wait_element_to_be_clickable("//input[@value='Send Mail']")
+        send_email_module.click()
+        Logging().reportDebugStep(self, "The mass edit module was opened")
+        return SendEmailClientsModule()
 
     def open_mass_edit_module(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass Edit']")
@@ -340,12 +355,8 @@ class ClientsModule(CRMBasePage):
         return MassAssignClientsModule()
 
     def get_first_client_email(self):
-        sleep(3)
-        first_client_id = super().wait_element_to_be_clickable(
-            "//tbody[@id='listBody']//tr[1]//td[2]")
-        first_client_id.click()
-
-        client_email = super().wait_load_element("//td[contains(text(),'Email')]//following-sibling::td[1]")
+        client_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Email')]//following-sibling::td[1]")))
         Logging().reportDebugStep(self, "Returns the first client: " + client_email.text)
         return client_email.text
 
@@ -372,7 +383,7 @@ class ClientsModule(CRMBasePage):
     def came_back_on_previous_page(self):
         super().came_back_on_previous_page()
         Logging().reportDebugStep(self, "Come back on previous page was successfully")
-        return ClientsModule()
+        return ClientsPage()
 
     def open_send_sms_module(self):
         mass_sms_module = super().wait_element_to_be_clickable("//input[@value='Send SMS']")

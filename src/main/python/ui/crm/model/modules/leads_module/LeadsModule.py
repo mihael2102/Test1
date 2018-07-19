@@ -4,11 +4,11 @@ import allure
 from allure_commons.types import AttachmentType
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.filter.FilterModule import FilterModule
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from src.main.python.ui.crm.model.modules.leads_module.MassAssignLeadModule import MassAssignLeadModule
 from src.main.python.ui.crm.model.modules.leads_module.MassEditLeadModule import MassEditLeadModule
-from src.main.python.ui.crm.model.pages.leads_pages.CreateLeadsProfilePage import CreateLeadsProfilePage
+from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
 from src.main.python.utils.config import Config
 from src.main.python.utils.logs.Loging import Logging
 
@@ -41,7 +41,7 @@ class LeadsModule(CRMBasePage):
         filter_button = super().wait_element_to_be_clickable("//a[@title='Create Filter']")
         filter_button.click()
         Logging().reportDebugStep(self, "The filter pop-up is opened")
-        return FilterModule()
+        return FilterPage()
 
     '''
          Returns a confirmation  message if the user entered a valid password

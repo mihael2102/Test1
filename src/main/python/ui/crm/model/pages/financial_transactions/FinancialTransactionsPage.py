@@ -2,13 +2,13 @@ from time import sleep
 
 from selenium.webdriver.common.by import By
 
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.financial_transactions_module.FinancialTransactionInformation import \
-    FinancialTransactionInformation
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.financial_transactions.FinancialTransactionInformationPage import \
+    FinancialTransactionInformationPage
 from src.main.python.utils.logs.Loging import Logging
 
 
-class FinancialTransactionsModule(CRMBasePage):
+class FinancialTransactionsPage(CRMBasePage):
 
     def __init__(self):
         super().__init__()
@@ -64,4 +64,4 @@ class FinancialTransactionsModule(CRMBasePage):
     def open_first_transactions(self):
         transaction_number = self.driver.find_element(By.XPATH, "//tr[@class='lvtColData']//td[2]")
         transaction_number.click()
-        return FinancialTransactionInformation()
+        return FinancialTransactionInformationPage()

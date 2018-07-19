@@ -1,5 +1,5 @@
 from time import sleep
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.tasks_module.CallModule import CallTaskModule
 from src.main.python.ui.crm.model.modules.tasks_module.MassSMSModule import MassSMSModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage

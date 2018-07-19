@@ -1,7 +1,7 @@
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
-from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
 
@@ -11,7 +11,7 @@ class MassSmsTaskModule(BaseTest):
     def test_perform_mass_sms_task_module(self):
         MassSmSPrecondition().create_first_event().create_second_event().create_third_event()
 
-        task_module = TaskModule()
+        task_module = TasksPage()
         task_module.open_show_all_tab().find_event_by_subject(
             TaskModuleConstants.SEVENTH_SUBJECT).select_three_records_task_module() \
             .open_mass_sms_module().perform_send_sms(CRMConstants.PHONE, CRMConstants.MESSAGE_MASS_SMS) \

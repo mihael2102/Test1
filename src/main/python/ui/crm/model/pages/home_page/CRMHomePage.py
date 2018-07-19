@@ -1,16 +1,16 @@
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.pages.affiliate.AffiliatePage import AffiliatePage
-from src.main.python.ui.crm.model.modules.audit_logs_module.AuditLogsModule import AuditLogsModule
-from src.main.python.ui.crm.model.modules.document_module.DocumentModule import DocumentModule
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.audit_logs.AuditLogsPage import AuditLogsPage
+from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
 from src.main.python.ui.crm.model.modules.financial_transactions_module.FinancialTransactionsModule import \
     FinancialTransactionsModule
-from src.main.python.ui.crm.model.modules.help_desk.HelpDeskModule import HelpDeskModule
+from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskModule
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
-from src.main.python.ui.crm.model.modules.my_dashboard_module.MyDashBoardModule import MyDashBoardModule
-from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
+from src.main.python.ui.crm.model.modules.my_dashboard.MyDashBoardModule import MyDashBoardModule
+from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
+from src.main.python.ui.crm.model.modules.affiliates.AffiliateModule import AffiliateModule
 from src.main.python.ui.crm.model.modules.user_management.UserManagement import UserManagement
 from src.main.python.utils.logs.Loging import Logging
 
@@ -29,7 +29,7 @@ class CRMHomePage(CRMBasePage):
         task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Tasks']")
         task_module.click()
         Logging().reportDebugStep(self, "Task module is opened")
-        return TaskModule()
+        return TasksPage()
 
     def open_more_list_modules(self):
         hover_mouse = ActionChains(self.driver)
@@ -42,7 +42,7 @@ class CRMHomePage(CRMBasePage):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The document module was opened")
-        return DocumentModule()
+        return DocumentsPage()
 
     def open_lead_module(self):
         task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Leads']")
@@ -59,7 +59,7 @@ class CRMHomePage(CRMBasePage):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The audit logs module was opened")
-        return AuditLogsModule()
+        return AuditLogsPage()
 
     def select_service_desk_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
@@ -73,11 +73,11 @@ class CRMHomePage(CRMBasePage):
         Logging().reportDebugStep(self, "The my dashboard  module was opened")
         return MyDashBoardModule()
 
-    def select_affiliates_page_more_list(self, page):
-        page_element = super().wait_element_to_be_clickable("//*[@name='%s']" % page)
-        page_element.click()
-        Logging().reportDebugStep(self, "The Affiliates page was opened")
-        return AffiliatePage()
+    def select_affiliates_module_more_list(self, module):
+        module_element = super().wait_element_to_be_clickable("//*[@name='%s']" % module)
+        module_element.click()
+        Logging().reportDebugStep(self, "The Affiliates module was opened")
+        return AffiliateModule()
 
     def refresh_page(self):
         super().refresh_page()

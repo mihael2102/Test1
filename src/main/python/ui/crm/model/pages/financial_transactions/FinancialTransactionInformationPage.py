@@ -1,8 +1,8 @@
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 
 
-class FinancialTransactionInformation(CRMBasePage):
+class FinancialTransactionInformationPage(CRMBasePage):
 
     def __init__(self):
         super().__init__()
