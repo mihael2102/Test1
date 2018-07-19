@@ -9,7 +9,9 @@ from src.main.python.ui.crm.model.modules.filter.FilterModule import FilterModul
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.utils.logs.Loging import Logging
 
-class AffiliateModule(CRMBasePage):
+
+class AffiliatePage(CRMBasePage):
+
     def __init__(self):
         super().__init__()
 

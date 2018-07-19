@@ -16,15 +16,16 @@ class CreateAffiliate(BaseTest):
 
 
         # Open Affiliates module
-        affiliate_module = CRMHomePage().open_more_list_modules().open_more_list_modules() \
+        affiliate_page = CRMHomePage().open_more_list_modules() \
             .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
 
 
         # Open popup and create new affiliate
-        affiliate_module.open_create_affiliate_popup().perform_create_affiliate()
+        affiliate_page.open_create_affiliate_popup().perform_create_affiliate()
 
 
         # Read the message after creating affiliate
+
 
 
 
