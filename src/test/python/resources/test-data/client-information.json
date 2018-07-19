@@ -65,5 +65,12 @@
     "ninth_column": "Last Name",
     "tenth_column": "City",
     "eleventh_column": "Brand"
+  },
+  "client_4": {
+    "first_email": "username.testing1",
+    "first_email_address": "username.testing1@gmail.com",
+    "second_email_address": "username.testing1@gmail.com",
+    "first_email_password": "as1as2qa1qa2",
+    "second_email_password": "as1as2qa1qa2"
   }
 }
