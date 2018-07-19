@@ -1,6 +1,6 @@
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
-from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.ActionsTasksPrecondition import \
     ActionsTasksPrecondition
@@ -12,7 +12,7 @@ class ActionsTask(BaseTest):
     def test_check_send_sms_actions_section(self):
         ActionsTasksPrecondition().create_first_event()
 
-        task_module = TaskModule()
+        task_module = TasksPage()
         phone_number = task_module.open_show_all_tab() \
             .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_first_client_profile() \
@@ -34,7 +34,7 @@ class ActionsTask(BaseTest):
 
     def test_check_phone_actions_section(self):
         MassSmSPrecondition().create_first_event()
-        task_module = TaskModule()
+        task_module = TasksPage()
         task_module.open_show_all_tab() \
             .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_call_module() \

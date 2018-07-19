@@ -1,7 +1,7 @@
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
-from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.test.python.utils.TestDataConstants import TestDataConstants
@@ -33,7 +33,7 @@ class MassEditPrecondition(object):
         return MassEditPrecondition()
 
     def create_second_event(self):
-        task_module = TaskModule()
+        task_module = TasksPage()
         task_module.open_add_event_module().create_event(TaskModuleConstants.SECOND_EVENT_STATUS,
                                                          TaskModuleConstants.SECOND_EVENT_TYPE,
                                                          TaskModuleConstants.SECOND_DURATION,
@@ -50,7 +50,7 @@ class MassEditPrecondition(object):
         return MassEditPrecondition()
 
     def create_third_event(self):
-        task_module = TaskModule()
+        task_module = TasksPage()
         task_module.open_add_event_module().create_event(TaskModuleConstants.THIRD_EVENT_STATUS,
                                                          TaskModuleConstants.THIRD_EVENT_TYPE,
                                                          TaskModuleConstants.THIRD_DURATION,

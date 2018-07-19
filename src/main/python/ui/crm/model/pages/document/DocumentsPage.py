@@ -2,14 +2,14 @@ from time import sleep
 
 from selenium.webdriver.common.by import By
 
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.document_module.CreateDocumentModule import CreateDocumentModule
-from src.main.python.ui.crm.model.modules.filter.FilterModule import FilterModule
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.modules.document.CreateDocumentModule import CreateDocumentModule
+from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.utils.logs.Loging import Logging
 
 
-class DocumentModule(CRMBasePage):
+class DocumentsPage(CRMBasePage):
 
     def __init__(self):
         super().__init__()
@@ -18,7 +18,7 @@ class DocumentModule(CRMBasePage):
         filter_button = super().wait_element_to_be_clickable("//a[@title='Create Filter']")
         filter_button.click()
         Logging().reportDebugStep(self, "The filter pop-up is opened")
-        return FilterModule()
+        return FilterPage()
 
     def open_create_document_module(self):
         document_module = self.driver.find_element(By.XPATH, "//button[@title='Create Document']")
@@ -38,14 +38,14 @@ class DocumentModule(CRMBasePage):
 
     def click_ok(self):
         super().click_ok()
-        return DocumentModule()
+        return DocumentsPage()
 
     def open_pending_tab(self):
         sleep(2)
         pending_tab_element = super().wait_element_to_be_clickable("//a[contains(text(),'Pending')]")
         pending_tab_element.click()
         Logging().reportDebugStep(self, "The pending tab was opened ")
-        return DocumentModule()
+        return DocumentsPage()
 
     def open_document_number(self):
         pending_tab_element = self.driver.find_element(By.XPATH,
@@ -58,13 +58,13 @@ class DocumentModule(CRMBasePage):
         check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[7]//a[2]")
         check_box.click()
         Logging().reportDebugStep(self, "Delete document module was opened ")
-        return DocumentModule()
+        return DocumentsPage()
 
     def click_yes_button(self):
         check_box = super().wait_element_to_be_clickable("//button[contains(text(),'Yes')]")
         check_box.click()
         Logging().reportDebugStep(self, "Click the Yes button was performed ")
-        return DocumentModule()
+        return DocumentsPage()
 
     def get_all_tab_text(self):
         pending_tab_element = super().wait_element_to_be_clickable("//a[contains(text(),'All')]")

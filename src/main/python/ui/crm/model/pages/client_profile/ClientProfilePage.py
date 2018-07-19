@@ -3,8 +3,8 @@ from _decimal import Decimal
 from time import sleep
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.document_module.CreateDocumentModule import CreateDocumentModule
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.modules.document.CreateDocumentModule import CreateDocumentModule
 from src.main.python.ui.crm.model.modules.tasks_module.SmsNotifier import SmsNotifierModule
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage

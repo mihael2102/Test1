@@ -1,6 +1,6 @@
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
-from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
+from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.MassEditPrecondition import MassEditPrecondition
 
@@ -10,7 +10,7 @@ class MassEditTaskModule(BaseTest):
     def test_mass_edit_task(self):
         MassEditPrecondition().create_first_event().create_second_event().create_third_event()
 
-        task_module = TaskModule()
+        task_module = TasksPage()
         task_module.open_show_all_tab().find_event_by_subject(
             TaskModuleConstants.FIFTH_SUBJECT).select_three_records_task_module() \
             .open_mass_edit_task().perform_mass_edit(TaskModuleConstants.SECOND_EVENT_STATUS,

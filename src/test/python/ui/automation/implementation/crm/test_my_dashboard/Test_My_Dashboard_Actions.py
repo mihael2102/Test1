@@ -1,6 +1,6 @@
 from src.main.python.ui.crm.model.constants.MyDashboardConstants import MyDashboardConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
-from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.ActionsTasksPrecondition import \
     ActionsTasksPrecondition
@@ -12,10 +12,13 @@ class MyDashboardActions(BaseTest):
     def test_check_send_sms_actions_section(self):
         ActionsTasksPrecondition().create_first_event()
 
-        dashboard_module = CRMHomePage().refresh_page().open_client_module().open_more_list_modules() \
+        dashboard_module = CRMHomePage().refresh_page()\
+            .open_client_module()\
+            .open_more_list_modules() \
             .select_my_dashboard_module_more_list(MyDashboardConstants.MY_DASHBOARD_MODULE)
 
-        phone_number = dashboard_module.perform_scroll_down().open_show_all_tab() \
+        phone_number = dashboard_module.perform_scroll_down()\
+            .open_show_all_tab() \
             .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_first_client_profile() \
             .get_phone_text()

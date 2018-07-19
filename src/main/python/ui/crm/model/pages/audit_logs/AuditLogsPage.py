@@ -5,14 +5,14 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from datetime import *
 import allure
 from src.main.python.utils.config import Config
 
 
-class AuditLogsModule(CRMBasePage):
+class AuditLogsPage(CRMBasePage):
 
     def __init__(self):
         super().__init__()
@@ -27,19 +27,19 @@ class AuditLogsModule(CRMBasePage):
     def perform_screen_shot(self):
         sleep(3)
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
-        file_name = 'D:/automation-newforexqa/screenshots/audit_logs_module/audit logs_module screenshot %s.png' % now
+        file_name = 'D:/automation-newforexqa/screenshots/audit_logs/audit logs_module screenshot %s.png' % now
         Config.browser.get_screenshot_as_file(file_name)
         allure.MASTER_HELPER.attach('screenshot', Config.browser.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "The screenshot was performed ")
-        return AuditLogsModule()
+        return AuditLogsPage()
 
     def open_calendar_view(self):
         all_tab = super().wait_element_to_be_clickable(
             "//div[@class='module-header-date-filter']//span[@id='basic-addon2']")
         all_tab.click()
         Logging().reportDebugStep(self, "The calendar view was opened ")
-        return AuditLogsModule()
+        return AuditLogsPage()
 
     def get_today_tab_text(self):
         today_tab = super().wait_element_to_be_clickable("//button[contains(text(),'Today')]")
@@ -69,7 +69,7 @@ class AuditLogsModule(CRMBasePage):
         self.enter_id_record(id_record)
         self.enter_email_audit_logs(email)
         self.select_user_agent(user_agent)
-        return AuditLogsModule()
+        return AuditLogsPage()
 
     def select_module_audit_logs(self, module):
         module_drop_down = super().wait_element_to_be_clickable("//tr[@class='tableFilters']//td[1]")
@@ -88,7 +88,7 @@ class AuditLogsModule(CRMBasePage):
         ac.move_by_offset(250, 250).click().perform()
         Logging().reportDebugStep(self, "The module was entered : " + module)
 
-        return AuditLogsModule()
+        return AuditLogsPage()
 
     def select_action_audit_logs(self, action):
         action_drop_down = super().wait_element_to_be_clickable("//tr[@class='tableFilters']//td[2]")
@@ -107,7 +107,7 @@ class AuditLogsModule(CRMBasePage):
         ac.move_by_offset(250, 250).click().perform()
         Logging().reportDebugStep(self, "The action was entered : " + action)
 
-        return AuditLogsModule()
+        return AuditLogsPage()
 
     def select_user_audit_logs(self, user):
         user_drop_down = super().wait_element_to_be_clickable("//tr[@class='tableFilters']//td[3]")
@@ -127,7 +127,7 @@ class AuditLogsModule(CRMBasePage):
         ac.move_by_offset(250, 250).click().perform()
         Logging().reportDebugStep(self, "The user was entered : " + user)
 
-        return AuditLogsModule()
+        return AuditLogsPage()
 
     def enter_id_record(self, id_record):
         id_record_element = super().wait_element_to_be_clickable("//tr[@class='tableFilters']//td[4]//input")
@@ -138,7 +138,7 @@ class AuditLogsModule(CRMBasePage):
 
         ac.move_by_offset(250, 250).click().perform()
         Logging().reportDebugStep(self, "The id_record was entered : " + id_record)
-        return AuditLogsModule()
+        return AuditLogsPage()
 
     def select_user_agent(self, user_agent):
         super().wait_element_to_be_clickable("//tr[@class='tableFilters']//td[8]")
@@ -151,7 +151,7 @@ class AuditLogsModule(CRMBasePage):
 
         ac.move_by_offset(250, 250).click().perform()
         Logging().reportDebugStep(self, "The user_agent was entered : " + user_agent)
-        return AuditLogsModule()
+        return AuditLogsPage()
 
     def enter_email_audit_logs(self, email):
         search_field = self.driver.find_element(By.XPATH,
@@ -161,4 +161,4 @@ class AuditLogsModule(CRMBasePage):
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()
-        return AuditLogsModule()
+        return AuditLogsPage()

@@ -10,17 +10,19 @@ class MassAssignTestCRM(BaseTest):
     def test_mass_assign(self):
         crm_client_profile = CRMLoginPage() \
             .open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
-            .perform_searching(Config.data.get_data_client(CRMConstants.CLIENT_STATUS),
-                               Config.data.get_data_client(CRMConstants.SHORT_E_MAIL),
-                               Config.data.get_data_client(CRMConstants.SHORT_CLIENT_NAME),
-                               Config.data.get_data_client(TestDataConstants.FIRST_COUNTRY),
-                               Config.data.get_data_client(CRMConstants.SHORT_FIRST_NAME),
-                               Config.data.get_data_client(CRMConstants.SHORT_LAST_NAME),
-                               Config.data.get_data_client(TestDataConstants.CITY),
-                               Config.data.get_data_client(CRMConstants.BRAND))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .perform_searching(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.CLIENT_STATUS),
+                               Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_E_MAIL),
+                               Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                           CRMConstants.SHORT_CLIENT_NAME),
+                               Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                           TestDataConstants.FIRST_COUNTRY),
+                               Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_FIRST_NAME),
+                               Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_LAST_NAME),
+                               Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CITY),
+                               Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.BRAND))
 
         crm_client_profile.select_three_records_clients_module() \
             .open_mass_assign_module() \

@@ -1,10 +1,7 @@
 from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
-from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
-from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
 from src.main.python.ui.email.pages.EmailSignInPage import EmailSignInPage
 
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.ui.automation.utils.preconditions.task_module.MassEmailPrecondition import MassEmailPrecondition
 
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
