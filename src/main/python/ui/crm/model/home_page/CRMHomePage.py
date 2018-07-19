@@ -4,12 +4,14 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.audit_logs_module.AuditLogsModule import AuditLogsModule
 from src.main.python.ui.crm.model.modules.document_module.DocumentModule import DocumentModule
+from src.main.python.ui.crm.model.modules.affiliates_modules.AffiliateModule import
 from src.main.python.ui.crm.model.modules.financial_transactions_module.FinancialTransactionsModule import \
     FinancialTransactionsModule
 from src.main.python.ui.crm.model.modules.help_desk.HelpDeskModule import HelpDeskModule
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.modules.my_dashboard_module.MyDashBoardModule import MyDashBoardModule
 from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
+from src.main.python.ui.crm.model.modules.affiliates_modules.AffiliateModule import AffiliateModule
 from src.main.python.ui.crm.model.modules.user_management.UserManagement import UserManagement
 from src.main.python.utils.logs.Loging import Logging
 
@@ -71,6 +73,12 @@ class CRMHomePage(CRMBasePage):
         module_element.click()
         Logging().reportDebugStep(self, "The my dashboard  module was opened")
         return MyDashBoardModule()
+
+    def select_affiliates_module_more_list(self, module):
+        module_element = super().wait_element_to_be_clickable("//*[@name='%s']" % module)
+        module_element.click()
+        Logging().reportDebugStep(self, "The Affiliates module was opened")
+        return AffiliateModule()
 
     def refresh_page(self):
         super().refresh_page()
