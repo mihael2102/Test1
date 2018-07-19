@@ -6,16 +6,15 @@ from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants
     FinancialTransactionsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
-from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
 class DataProviders(object):
 
-    def get_data_client(self, value):
+    def get_data_client(self, key, value):
         connection_file = open(
             'D:/automation-newforexqa/src/test/python/resources/test-data/client-information.json')
         conn_string = json.load(connection_file)
-        return conn_string[TestDataConstants.CLIENT_ONE][value]
+        return conn_string[key][value]
 
     def get_data_filter_crm(self, key, value):
         connection_file = open(
