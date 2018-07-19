@@ -3,6 +3,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.client_modules.mass_sms.SendSMSClientsModule import SendSMSClientsModule
+from src.main.python.ui.crm.model.modules.client_modules.send_email.SendEmailClientsModule import SendEmailClientsModule
 from src.main.python.ui.crm.model.modules.filter.FilterModule import FilterModule
 from src.main.python.ui.crm.model.modules.help_desk.HelpDeskModule import HelpDeskModule
 from src.main.python.ui.crm.model.modules.client_modules.mass_assign.MassAssignClientsModule import \
@@ -28,6 +29,10 @@ class ClientsModule(CRMBasePage):
         self.select_brand(brand)
         self.click_search_button()
         return ClientsModule()
+
+
+
+
 
     def perform_searching_by_email(self, email):
         self.enter_email(email)
@@ -60,6 +65,12 @@ class ClientsModule(CRMBasePage):
     def open_client_module_clients_module(self):
         home_page_element = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Clients']")
         home_page_element.click()
+        Logging().reportDebugStep(self, "The client module was opened")
+        return ClientsModule()
+
+    def open_all_tab_clients_module(self):
+        all_tab = super().wait_element_to_be_clickable("//li[contains(text(),'All')]")
+        all_tab.click()
         Logging().reportDebugStep(self, "The client module was opened")
         return ClientsModule()
 
@@ -317,6 +328,12 @@ class ClientsModule(CRMBasePage):
         first_check_box.click()
         Logging().reportDebugStep(self, "The record was selected")
         return ClientsModule()
+
+    def click_send_email_module(self):
+        send_email_module = super().wait_element_to_be_clickable("//input[@value='Send Mail']")
+        send_email_module.click()
+        Logging().reportDebugStep(self, "The mass edit module was opened")
+        return SendEmailClientsModule()
 
     def open_mass_edit_module(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass Edit']")

@@ -8,6 +8,7 @@ from src.main.python.ui.crm.model.modules.tasks_module.CalendarViewModule import
 from src.main.python.ui.crm.model.modules.tasks_module.CallModule import CallTaskModule
 from src.main.python.ui.crm.model.modules.tasks_module.EditEventModule import EditEventModule
 from src.main.python.ui.crm.model.modules.tasks_module.MassEditTaskModule import MassEditTaskModule
+from src.main.python.ui.crm.model.modules.tasks_module.MassEmailModule import MassEmailModule
 from src.main.python.ui.crm.model.modules.tasks_module.MassSMSModule import MassSMSModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
@@ -83,13 +84,20 @@ class TaskModule(CRMBasePage):
         first_check_box = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow']//div[2]")
         first_check_box.click()
-        Logging().reportDebugStep(self, "The sms module was opened: ")
+        Logging().reportDebugStep(self, "The sms module was opened")
         return MassSMSModule()
 
     def open_mass_edit_task(self):
         mass_edit_module = super().wait_element_to_be_clickable("//button[contains(text(),'Mass Edit')]")
         mass_edit_module.click()
+        Logging().reportDebugStep(self, "The mass edit module was opened")
         return MassEditTaskModule()
+
+    def open_mass_email_task_module(self):
+        mass_email_module = super().wait_element_to_be_clickable("//button[contains(text(),'Mass Email')]")
+        mass_email_module.click()
+        Logging().reportDebugStep(self, "The mass email module was opened")
+        return MassEmailModule()
 
     def get_history_tab_text(self):
         tab = self.driver.find_element(By.XPATH,
@@ -104,7 +112,7 @@ class TaskModule(CRMBasePage):
         sleep(3)
         event_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Event')]")
         event_button.click()
-        Logging().reportDebugStep(self, "The event  module was opened ")
+        Logging().reportDebugStep(self, "The event  module was opened")
         return AddEventModule()
 
     def open_calendar_view_module(self):
@@ -123,6 +131,13 @@ class TaskModule(CRMBasePage):
         third_check_box = self.driver.find_element(By.XPATH, "//div[@class='table-grid-container']//tr[5]//td[1]")
         third_check_box.click()
         Logging().reportDebugStep(self, "The records were selected")
+        return TaskModule()
+
+    def select_two_records_task_module(self):
+        first_check_box = super().wait_element_to_be_clickable("//div[@class='table-grid-container']//tr[3]//td[1]")
+        first_check_box.click()
+        second_check_box = self.driver.find_element(By.XPATH, "//div[@class='table-grid-container']//tr[4]//td[1]")
+        second_check_box.click()
         return TaskModule()
 
     def perform_mass_delete(self):
@@ -146,7 +161,7 @@ class TaskModule(CRMBasePage):
            Returns a task was_updated  message if the user entered a valid password
     '''
 
-    def get_message_task(self):
+    def get_confirm_message_task_module(self):
         confirm_message = super().wait_load_element("//div[@class='toast-message']")
         Logging().reportDebugStep(self, "Returns the message task  : " + confirm_message.text)
         return confirm_message.text

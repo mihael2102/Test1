@@ -3,6 +3,7 @@ timeout = 4
 data = None
 url_client_area = "https://www.royalcfds.com/"
 url_crm = "https://royalcfds.ptscrm.com"
+url_gmail = "https://mail.google.com"
 window_after = None
 window_before = None
 counter = 1

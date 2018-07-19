@@ -1,9 +1,7 @@
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.crm.model.modules.tasks_module.TaskModule import TaskModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.ui.automation.utils.preconditions.task_module.EventPrecondition import EventPrecondition
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
@@ -11,8 +9,8 @@ class TabTasksModuleCRM(BaseTest):
 
     def test_check_tab_tasks_module(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage().open_task_module()
 
