@@ -15,14 +15,15 @@ class CreditInPrecondition(object):
 
     def add_live_account(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
-            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(CaConstants.MANAGE_ACCOUNTS)
 
         CaManageAccounts().open_new_account_button() \
-            .select_account_currency(Config.data.get_data_client(TestDataConstants.ACCOUNT_CURRENCY_USD)) \
+            .select_account_currency(
+            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_USD)) \
             .create_account_button()
 
         return CreditInPrecondition()
@@ -30,10 +31,10 @@ class CreditInPrecondition(object):
     def make_credit_in(self):
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(Config.data.get_data_client(TestDataConstants.E_MAIL))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
         account_number = crm_client_profile \
             .perform_scroll_down() \
@@ -43,8 +44,8 @@ class CreditInPrecondition(object):
         crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN)
 
         MT4CreditInModule().make_credit_in(account_number, CRMConstants.AMOUNT_CREDIT_IN,
-                            CRMConstants.EXPIRE_DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
-                            CRMConstants.CREDIT_IN_COMMENT) \
+                                           CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
+                                           CRMConstants.CREDIT_IN_COMMENT) \
             .click_ok() \
             .refresh_page()
 
