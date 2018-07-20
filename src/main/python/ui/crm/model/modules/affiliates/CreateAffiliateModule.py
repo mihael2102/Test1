@@ -18,7 +18,7 @@ class CreateAffiliateModule(CRMBasePage):
 
     def set_partner_name(self, partner_name):
         partner_name_field = super().wait_load_element("//input[@name='partnerName']")
-        partner_name_field.
+
 
 
 

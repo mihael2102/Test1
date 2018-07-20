@@ -4,8 +4,8 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.audit_logs.AuditLogsPage import AuditLogsPage
 from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
-from src.main.python.ui.crm.model.modules.financial_transactions_module.FinancialTransactionsModule import \
-    FinancialTransactionsModule
+from src.main.python.ui.crm.model.pages.financial_transactions.FinancialTransactionsPage import \
+    FinancialTransactionsPage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskModule
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.modules.my_dashboard.MyDashBoardModule import MyDashBoardModule
@@ -53,7 +53,7 @@ class CRMHomePage(CRMBasePage):
     def select_financial_transactions_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
-        return FinancialTransactionsModule()
+        return FinancialTransactionsPage()
 
     def select_audit_logs_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
@@ -94,7 +94,7 @@ class CRMHomePage(CRMBasePage):
             "//span[@class='glyphicon glyphicon-Financial Transactions']")
         home_page_element.click()
         Logging().reportDebugStep(self, "The financial transactions was opened")
-        return FinancialTransactionsModule()
+        return FinancialTransactionsPage()
 
     def open_user_management_module(self, settings):
         module_element = super().wait_element_to_be_clickable("//table[@class='user_settings']//td[3]")

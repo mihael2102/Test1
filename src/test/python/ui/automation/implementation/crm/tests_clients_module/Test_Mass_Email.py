@@ -1,4 +1,5 @@
 from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
+from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.email.pages.EmailHomePage import EmailHomePage
 from src.test.python.ui.automation.BaseTest import *
@@ -23,7 +24,7 @@ class SendEmailTestCRM(BaseTest):
 
         confirm_message = crm_clients_module_page.get_confirm_message()
 
-        assert confirm_message == EmailConstants.EMAIL_CONFIRM_MESSAGE
+        assert confirm_message == TaskModuleConstants.EMAIL_CONFIRM_MESSAGE
 
         email_home_page = EmailHomePage().open_second_tab_page(Config.url_gmail) \
             .set_login_email(Config.data.get_data_client(EmailConstants.FIRST_EMAIL_ADDRESS)) \

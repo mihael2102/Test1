@@ -24,7 +24,6 @@ class TestDataConstants(object):
     ANNUAL_IN_COME = "annual_income"
     CITIZEN_SHIP = "citizen_ship"
     CLIENT_ONE = "client_1"
-    CLIENT_FOURTH = "client_4"
     FIRST_COUNTRY = "country"
     FIRST_NAME = "first_name"
     LAST_NAME = "last_name"
