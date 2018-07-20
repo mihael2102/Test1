@@ -68,14 +68,14 @@
   },
   "client_4": {
     "email_name": "username.testing1",
-    "email_address": "username.testing1@gmail.com",
-    "email_password": "as1as2qa1qa2",
+    "email": "username.testing1@gmail.com",
+    "password": "as1as2qa1qa2",
     "confirm_password": "as1as2qa1qa2"
   },
   "client_5": {
     "email_name": "username.testing2",
-    "email_address": "username.testing2@gmail.com",
-    "email_password": "as1as2qa1qa2",
+    "email": "username.testing2@gmail.com",
+    "password": "as1as2qa1qa2",
     "confirm_email_password": "as1as2qa1qa2"
   }
 }

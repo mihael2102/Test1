@@ -60,16 +60,15 @@ class EmailHomePage(object):
 
     def open_google_accounts(self):
         self.driver.set_page_load_timeout(30)
-        google_accounts_button = WebDriverWait(self.driver, 15).until(
+        google_accounts_button = WebDriverWait(self.driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, "(//a)[33]//span")))
         google_accounts_button.click()
         Logging().reportDebugStep(self, "The google accounts  was clicked")
         return EmailHomePage()
 
     def perform_sign_out(self):
-        # self.driver.set_page_load_timeout(30)
         google_accounts_button = WebDriverWait(self.driver, 15).until(
-            EC.element_to_be_clickable((By.XPATH, ".//*[@id='gb_71']")))
+            EC.presence_of_element_located((By.XPATH, ".//a[@id='gb_71']")))
         google_accounts_button.click()
         Logging().reportDebugStep(self, "The google accounts  was clicked")
         return EmailHomePage()

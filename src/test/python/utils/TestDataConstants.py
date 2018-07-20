@@ -28,7 +28,6 @@ class TestDataConstants(object):
     FIRST_NAME = "first_name"
     LAST_NAME = "last_name"
     E_MAIL = "email"
-    FIRST_EMAIL = "first_email"
     AREA_CODE = "area_code"
     PHONE = "phone"
     PASSWORD = "password"

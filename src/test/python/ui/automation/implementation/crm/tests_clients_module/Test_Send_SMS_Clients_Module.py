@@ -26,7 +26,7 @@ class SendSMSClientsModule(BaseTest):
         initial_counter_client = crm_clients_module_page.open_client_id().get_counter_sms()
         first_client = crm_clients_module_page.get_first_client_email()
 
-        total_counter = int(initial_counter_client) + 1
+        total_counter = initial_counter_client + 1
 
         crm_clients_module_page.came_back_on_previous_page().click_search_button()
 
@@ -45,7 +45,7 @@ class SendSMSClientsModule(BaseTest):
             .click_search_button() \
             .open_client_id()
 
-        counter = int(crm_client_profile.get_counter_sms())
+        counter = crm_client_profile.get_counter_sms()
         assert counter == total_counter
 
         message = crm_client_profile \
