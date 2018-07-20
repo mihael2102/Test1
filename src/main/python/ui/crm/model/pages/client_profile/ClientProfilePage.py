@@ -100,7 +100,7 @@ class ClientProfilePage(CRMBasePage):
     def get_counter_sms(self):
         counter_sms = super().wait_element_to_be_clickable("//span[@class='amount amount_SMS']")
         Logging().reportDebugStep(self, "Counter is " + counter_sms.text)
-        return counter_sms.text
+        return int(counter_sms.text)
 
     '''
          Perform scroll_top

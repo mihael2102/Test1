@@ -1,4 +1,6 @@
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+from src.main.python.ui.crm.model.constants.FifthClientConstants import FifthClientConstants
+from src.main.python.ui.crm.model.constants.FourthClientConstants import FourthClientConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
@@ -26,7 +28,7 @@ class MassEmailPrecondition(object):
                                                          CRMConstants.SECOND_DATE.strftime(
                                                              CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.FIRST_ASSIGN_TO,
-                                                         TaskModuleConstants.FOURTH_ACCOUNT_NAME,
+                                                         FourthClientConstants.ACCOUNT_NAME,
                                                          TaskModuleConstants.FIFTH_SUBJECT,
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
@@ -42,7 +44,7 @@ class MassEmailPrecondition(object):
                                                          CRMConstants.THIRD_DATE.strftime(
                                                              CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.SECOND_ASSIGN_TO,
-                                                         TaskModuleConstants.FIFTH_ACCOUNT_NAME,
+                                                         FifthClientConstants.ACCOUNT_NAME,
                                                          TaskModuleConstants.FIFTH_SUBJECT,
                                                          TaskModuleConstants.SECOND_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
