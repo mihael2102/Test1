@@ -26,7 +26,7 @@ class EmailSignInPage(object):
             EC.visibility_of_element_located((By.XPATH, "(//content)[3]//span")))
         another_link.click()
         another_email = WebDriverWait(self.driver, 50).until(
-            EC.element_to_be_clickable((By.XPATH, "//form//p[contains(text(),'Use another account')]")))
+            EC.visibility_of_element_located((By.XPATH, ".//p[contains(text(),'Use another account')]")))
         another_email.click()
         if NoSuchElementException():
             print("heello")
