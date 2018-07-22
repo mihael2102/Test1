@@ -1,4 +1,3 @@
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from src.main.python.ui.email.pages.EmailHomePage import EmailHomePage
@@ -20,7 +19,6 @@ class EmailSignInPage(object):
         Logging().reportDebugStep(self, "The second tab was opened")
         return EmailSignInPage()
 
-
     def click_use_another_email(self):
         another_link = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "(//content)[3]//span")))
@@ -28,8 +26,6 @@ class EmailSignInPage(object):
         another_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, ".//p[contains(text(),'Use another account')]")))
         another_email.click()
-        if NoSuchElementException():
-            print("heello")
         Logging().reportDebugStep(self, "The another email was clicked")
         return EmailSignInPage()
 
