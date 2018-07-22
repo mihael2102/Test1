@@ -22,7 +22,7 @@ class SendEmailClientsModule(CRMBasePage):
         return SendEmailClientsModule()
 
     def set_comment(self, comments):
-        self.driver.switch_to_frame(self.driver.find_element(By.XPATH, "//div[@id='cke_description']//iframe"))
+        self.driver.switch_to_frame(super().wait_element_to_be_clickable("//div[@id='cke_description']//iframe"))
         comment_tag = self.driver.find_element(By.XPATH, "//html[@dir='ltr']/body")
         comment_tag.send_keys(comments)
         self.driver.switch_to_default_content()
