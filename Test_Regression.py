@@ -16,7 +16,7 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients import \
     SearchingClientsTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_SMS_Clients_Module import \
-    SendSMSClientsModule
+    SendSMSClientsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta import \
     TransferBetweenTa
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module import CreateDocument
@@ -70,7 +70,7 @@ class TestRegression(object):
         MassAssignTestCRM()
 
     def run_perform_send_sms(self):
-        SendSMSClientsModule()
+        SendSMSClientsModuleTest()
 
     def run_perform_upload_document_client_module(self):
         DownloadDocumentsClientModule()

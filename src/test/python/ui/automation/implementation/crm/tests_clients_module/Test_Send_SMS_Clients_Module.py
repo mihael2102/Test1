@@ -4,7 +4,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class SendSMSClientsModule(BaseTest):
+class SendSMSClientsModuleTest(BaseTest):
 
     def test_perform_send_sms_clients_module(self):
         crm_clients_module_page = CRMLoginPage() \

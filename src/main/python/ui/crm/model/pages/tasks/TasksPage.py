@@ -2,10 +2,12 @@ from time import sleep
 
 from allure_commons.types import AttachmentType
 from selenium.webdriver.common.by import By
+
+from src.main.python.ui.crm.model.modules.tasks_module.SendEmailModuleActions import SendEmailModuleActions
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.tasks_module.AddEventModule import AddEventModule
 from src.main.python.ui.crm.model.modules.tasks_module.CalendarViewModule import CalendarViewModule
-from src.main.python.ui.crm.model.modules.tasks_module.CallModule import CallTaskModule
+from src.main.python.ui.crm.model.modules.tasks_module.CallModule import PhoneActionsModule
 from src.main.python.ui.crm.model.modules.tasks_module.EditEventModule import EditEventModule
 from src.main.python.ui.crm.model.modules.tasks_module.MassEditTaskModule import MassEditTaskModule
 from src.main.python.ui.crm.model.modules.tasks_module.MassEmailModule import MassEmailModule
@@ -30,6 +32,17 @@ class TasksPage(CRMBasePage):
     def open_second_tab_page(self, url):
         super().open_second_tab_page(url)
         Logging().reportDebugStep(self, "Open second tabs page: " + url + '\n')
+        return TasksPage()
+
+    ''' 
+          Open the task module 
+          return Help Desk instance
+      '''
+
+    def open_task_module(self):
+        task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Tasks']")
+        task_module.click()
+        Logging().reportDebugStep(self, "Task module is opened")
         return TasksPage()
 
     def open_first_tab_page(self, url):
@@ -80,12 +93,19 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "The this week tab was opened ")
         return TasksPage()
 
-    def open_sms_module(self):
+    def open_sms_actions_section(self):
         first_check_box = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow']//div[2]")
         first_check_box.click()
         Logging().reportDebugStep(self, "The sms module was opened")
         return MassSMSModule()
+
+    def open_email_actions_section(self):
+        first_check_box = super().wait_element_to_be_clickable(
+            "//td[@class='grid-actions-cell']//div[1]")
+        first_check_box.click()
+        Logging().reportDebugStep(self, "The sms module was opened")
+        return SendEmailModuleActions()
 
     def open_mass_edit_task(self):
         mass_edit_module = super().wait_element_to_be_clickable("//button[contains(text(),'Mass Edit')]")
@@ -162,6 +182,7 @@ class TasksPage(CRMBasePage):
     '''
 
     def get_confirm_message_task_module(self):
+        sleep(2)
         confirm_message = super().wait_load_element("//div[@class='toast-message']")
         Logging().reportDebugStep(self, "Returns the message task  : " + confirm_message.text)
         return confirm_message.text
@@ -222,12 +243,13 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "The subject was set: " + subject)
         return TasksPage()
 
-    def open_call_module(self):
+    def open_phone_actions(self):
         first_check_box = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow'][1]//div[3]")
         first_check_box.click()
         Logging().reportDebugStep(self, "The call phone module was opened: ")
-        return CallTaskModule()
+        return PhoneActionsModule()
+
 
     def perform_searching(self, first_name, last_name):
         self.enter_first_name(first_name)

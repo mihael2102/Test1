@@ -1,6 +1,6 @@
 from time import sleep
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.tasks_module.CallModule import CallTaskModule
+from src.main.python.ui.crm.model.modules.tasks_module.CallModule import PhoneActionsModule
 from src.main.python.ui.crm.model.modules.tasks_module.MassSMSModule import MassSMSModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
@@ -43,7 +43,7 @@ class MyDashBoardModule(CRMBasePage):
             "//tr[@class='tableRow'][1]//div[3]")
         first_check_box.click()
         Logging().reportDebugStep(self, "The call phone module was opened: ")
-        return CallTaskModule()
+        return PhoneActionsModule()
 
     def came_back_on_previous_page(self):
         super().came_back_on_previous_page()
