@@ -7,15 +7,14 @@ from src.main.python.utils.config import Config
 from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
-class MassDeletePrecondition(object):
-
+class MassEmailPrecondition(object):
     def __init__(self) -> None:
         super().__init__()
 
     def create_first_event(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage().open_task_module()
 
@@ -27,11 +26,11 @@ class MassDeletePrecondition(object):
                                                          CRMConstants.SECOND_DATE.strftime(
                                                              CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.FIRST_ASSIGN_TO,
-                                                         TaskModuleConstants.FIRST_ACCOUNT_NAME,
-                                                         TaskModuleConstants.SIXTH_SUBJECT,
+                                                         TaskModuleConstants.FOURTH_ACCOUNT_NAME,
+                                                         TaskModuleConstants.FIFTH_SUBJECT,
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
-        return MassDeletePrecondition()
+        return MassEmailPrecondition()
 
     def create_second_event(self):
         task_module = TasksPage()
@@ -43,26 +42,9 @@ class MassDeletePrecondition(object):
                                                          CRMConstants.THIRD_DATE.strftime(
                                                              CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.SECOND_ASSIGN_TO,
-                                                         TaskModuleConstants.SECOND_ACCOUNT_NAME,
-                                                         TaskModuleConstants.SIXTH_SUBJECT,
+                                                         TaskModuleConstants.FIFTH_ACCOUNT_NAME,
+                                                         TaskModuleConstants.FIFTH_SUBJECT,
                                                          TaskModuleConstants.SECOND_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
-        return MassDeletePrecondition()
-
-    def create_third_event(self):
-        task_module = TasksPage()
-        task_module.open_add_event_module().create_event(TaskModuleConstants.THIRD_EVENT_STATUS,
-                                                         TaskModuleConstants.THIRD_EVENT_TYPE,
-                                                         TaskModuleConstants.THIRD_DURATION,
-                                                         CRMConstants.FOURTH_DATE.strftime(
-                                                             CRMConstants.SECOND_FORMAT_DATE),
-                                                         CRMConstants.FOURTH_DATE.strftime(
-                                                             CRMConstants.FIRST_FORMAT_TIME),
-                                                         TaskModuleConstants.THIRD_ASSIGN_TO,
-                                                         TaskModuleConstants.THIRD_ACCOUNT_NAME,
-                                                         TaskModuleConstants.SIXTH_SUBJECT,
-                                                         TaskModuleConstants.THIRD_PRIORITY,
-                                                         TaskModuleConstants.DESCRIPTION_ADD_EVENT)
-
-        return MassDeletePrecondition()
+        return MassEmailPrecondition()

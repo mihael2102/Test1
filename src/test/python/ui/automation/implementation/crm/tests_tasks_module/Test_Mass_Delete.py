@@ -12,6 +12,6 @@ class MassDeleteTaskModule(BaseTest):
         task_module = TasksPage()
         task_module.open_show_all_tab().find_event_by_subject(
             TaskModuleConstants.SIXTH_SUBJECT).select_three_records_task_module().perform_mass_delete()
-        task_delete_message = task_module.get_confirm_message_task_module()
+        task_delete_message = task_module.get_message_task()
 
         assert task_delete_message == TaskModuleConstants.MESSAGE_TASK_WAS_DELETED

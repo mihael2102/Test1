@@ -17,7 +17,7 @@ class MassSmsTaskModule(BaseTest):
             .open_mass_sms_module().perform_send_sms(CRMConstants.PHONE, CRMConstants.MESSAGE_MASS_SMS) \
             .click_send_button()
 
-        assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_SMS_SUCCESSFULLY
+        assert task_module.get_message_task() == TaskModuleConstants.MESSAGE_SMS_SUCCESSFULLY
 
         task_module = CRMHomePage().open_task_module()
 

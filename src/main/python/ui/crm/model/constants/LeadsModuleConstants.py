@@ -14,7 +14,7 @@ class LeadsModuleConstants(object):
     FIRST_POSTAL_CODE_LEAD = "first_postal_code"
     FIRST_BIRTHDAY_LEAD = "first_birthday_lead"
     FIRST_PHONE_LEAD = "first_phone_lead"
-    FIRST_EMAIL_LEAD = "test+%s@pages.com" % random_numbers
+    FIRST_EMAIL_LEAD = "test+%s@gmail.com" % random_numbers
     FIRST_LAST_NAME_LEAD = "first_last_name"
     FIRST_NAME_LEAD = "first_name_lead"
     FIRST_LEAD_INFO = "FirstLeadInfo"
