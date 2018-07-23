@@ -36,6 +36,6 @@ class BaseTest(unittest.TestCase):
 
                     Config.browser.close()
                     Config.browser.quit()
-        else:
-            Config.browser.close()
-            Config.browser.quit()
+        # else:
+        #     Config.browser.close()
+        #     Config.browser.quit()

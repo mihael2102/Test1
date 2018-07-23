@@ -10,7 +10,7 @@ from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskMo
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.modules.my_dashboard.MyDashBoardModule import MyDashBoardModule
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
-from src.main.python.ui.crm.model.modules.affiliates.AffiliateModule import AffiliateModule
+from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
 from src.main.python.ui.crm.model.modules.user_management.UserManagement import UserManagement
 from src.main.python.utils.logs.Loging import Logging
 
@@ -76,8 +76,8 @@ class CRMHomePage(CRMBasePage):
     def select_affiliates_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//*[@name='%s']" % module)
         module_element.click()
-        Logging().reportDebugStep(self, "The Affiliates module was opened")
-        return AffiliateModule()
+        Logging().reportDebugStep(self, "The Affiliates page was opened")
+        return AffiliatePage()
 
     def refresh_page(self):
         super().refresh_page()
