@@ -2,7 +2,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.modules.affiliates.CreateAffiliateModule import CreateAffiliateModule
 from src.main.python.utils.logs.Loging import Logging
 
-class AffiliateModule(CRMBasePage):
+class AffiliatePage(CRMBasePage):
     def __init__(self):
         super().__init__()
 
