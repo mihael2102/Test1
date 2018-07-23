@@ -250,7 +250,6 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "The call phone module was opened: ")
         return PhoneActionsModule()
 
-
     def perform_searching(self, first_name, last_name):
         self.enter_first_name(first_name)
         self.enter_last_name(last_name)

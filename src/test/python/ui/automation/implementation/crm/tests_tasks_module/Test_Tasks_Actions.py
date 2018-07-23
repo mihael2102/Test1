@@ -11,7 +11,7 @@ from src.test.python.ui.automation.utils.preconditions.task_module.MassEmailPrec
 from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
 
 
-class ActionsTask(BaseTest):
+class ActionsTaskModuleTest(BaseTest):
 
     def test_check_send_sms_actions_section(self):
         ActionsTasksPrecondition().create_first_event()
@@ -37,7 +37,7 @@ class ActionsTask(BaseTest):
         assert message == TaskModuleConstants.DESCRIPTION_SEND_SMS
 
     def test_check_phone_actions_section(self):
-        MassSmSPrecondition().create_first_event()
+        ActionsTasksPrecondition().create_second_event()
         task_module = TasksPage()
         task_module.open_show_all_tab() \
             .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
@@ -88,7 +88,7 @@ class ActionsTask(BaseTest):
         assert support_email == EmailConstants.FIRST_SUPPORT_EMAIL
 
     def test_send_email_from_phone_actions_section(self):
-        MassEmailPrecondition().create_first_event()
+        MassEmailPrecondition().create_third_event()
 
         task_module = TasksPage()
 
@@ -121,18 +121,18 @@ class ActionsTask(BaseTest):
         assert support_email == EmailConstants.FIRST_SUPPORT_EMAIL
 
     def test_send_sms_from_phone_actions_section(self):
-        MassEmailPrecondition().create_first_event()
+        MassSmSPrecondition().create_fourth_event()
 
         task_module = TasksPage()
 
         phone_number = task_module.open_show_all_tab() \
-            .find_event_by_subject(TaskModuleConstants.FIFTH_SUBJECT) \
+            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_first_client_profile() \
             .get_phone_text()
 
         task_module.open_task_module()\
             .open_show_all_tab().find_event_by_subject(
-            TaskModuleConstants.FIFTH_SUBJECT) \
+            TaskModuleConstants.SEVENTH_SUBJECT) \
             .open_phone_actions() \
             .open_send_sms_module() \
             .perform_send_sms(phone_number, TaskModuleConstants.DESCRIPTION_SEND_SMS) \

@@ -1,9 +1,15 @@
 from time import sleep
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
+from src.main.python.ui.crm.model.modules.tasks_module.SendEmailModuleActions import SendEmailModuleActions
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.tasks_module.CallModule import PhoneActionsModule
 from src.main.python.ui.crm.model.modules.tasks_module.MassSMSModule import MassSMSModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class MyDashBoardModule(CRMBasePage):
@@ -26,9 +32,33 @@ class MyDashBoardModule(CRMBasePage):
         sleep(3)
         return MyDashBoardModule()
 
-    def open_sms_module_my_dashboard(self):
+    def open_phone_actions(self):
         first_check_box = super().wait_element_to_be_clickable(
-            "//tr[@class='tableRow']//div[2]")
+            "//tr[@class='tableRow'][1]//div[3]")
+        first_check_box.click()
+        Logging().reportDebugStep(self, "The call phone module was opened: ")
+        return PhoneActionsModule()
+
+    def open_email_actions_section(self):
+        first_check_box = super().wait_element_to_be_clickable(
+            "//td[@class='grid-actions-cell']//div[1]")
+        first_check_box.click()
+        Logging().reportDebugStep(self, "The sms module was opened")
+        return SendEmailModuleActions()
+
+    '''
+       Returns a task was_updated  message if the user entered a valid password
+    '''
+
+    def get_confirm_message_task_module(self):
+        sleep(2)
+        confirm_message = super().wait_load_element("//div[@class='toast-message']")
+        Logging().reportDebugStep(self, "Returns the message task  : " + confirm_message.text)
+        return confirm_message.text
+
+    def open_sms_module_my_dashboard(self):
+        first_check_box = WebDriverWait(self.driver, 100).until(
+            EC.visibility_of_element_located((By.XPATH, "//tr[@class='tableRow']//div[2]")))
         first_check_box.click()
         Logging().reportDebugStep(self, "The sms module was opened: ")
         return MassSMSModule()
