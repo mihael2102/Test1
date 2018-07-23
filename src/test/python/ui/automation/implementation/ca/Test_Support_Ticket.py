@@ -11,8 +11,8 @@ class CreateSupportTicketTestCa(BaseTest):
     def test_create_ticket(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area) \
             .login() \
-            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(TestDataConstants.SERVICE_DESK)

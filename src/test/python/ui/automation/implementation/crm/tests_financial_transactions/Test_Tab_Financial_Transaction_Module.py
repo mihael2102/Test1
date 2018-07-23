@@ -10,8 +10,8 @@ class TabFinancialTransaction(BaseTest):
 
     def test_check_all_tab_from_financial_transactions(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
         financial_transaction_module = CRMHomePage().open_financial_transactions_module()
 
@@ -37,10 +37,10 @@ class TabFinancialTransaction(BaseTest):
 
     def test_check_searching_by_column(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
-        financial_transaction_information = CRMHomePage().open_financial_transactions_module()\
+        financial_transaction_information = CRMHomePage().open_financial_transactions_module() \
             .open_first_transactions()
 
         trading_account = financial_transaction_information.get_trading_account_text()
