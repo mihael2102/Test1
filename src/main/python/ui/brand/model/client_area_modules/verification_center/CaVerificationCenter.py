@@ -31,6 +31,7 @@ class CaVerificationCenter(BrandBasePage):
     '''
 
     def get_document_status(self):
+        sleep(3)
         front_upload_picture = super().wait_load_element_present("//div[@class='document-wrapper-pandats']//span")
         re_front_upload_picture = re.sub('Front ', '', front_upload_picture.text)
         Logging().reportDebugStep(self,

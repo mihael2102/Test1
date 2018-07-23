@@ -23,11 +23,11 @@ class BrandBasePage(object):
         Config.window_before = self.driver.window_handles[0]
 
     def wait_load_element_present(self, element):
-        return WebDriverWait(self.driver, 10).until(
+        return WebDriverWait(self.driver, 35).until(
             EC.presence_of_element_located((By.XPATH, element)))
 
     def wait_element_to_be_clickable(self, element):
-        return WebDriverWait(self.driver, 10).until(
+        return WebDriverWait(self.driver, 35).until(
             EC.element_to_be_clickable((By.XPATH, element)))
 
     def get_amount_element(self, account, amount):

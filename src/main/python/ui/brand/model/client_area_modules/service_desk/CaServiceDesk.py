@@ -1,5 +1,7 @@
 import re
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.utils.logs.Loging import Logging
 
@@ -25,7 +27,7 @@ class CaServiceDesk(BrandBasePage):
     '''
 
     def create_new_ticket(self):
-        create_ticket_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create New Ticket')]")
+        create_ticket_button = super().wait_element_to_be_clickable("//button[contains(text(),'Create New Ticket')]")
         create_ticket_button.click()
         Logging().reportDebugStep(self, "The new ticket was created")
         return CaServiceDesk()
