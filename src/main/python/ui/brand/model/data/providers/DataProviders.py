@@ -75,3 +75,9 @@ class DataProviders(object):
             'D:/automation-newforexqa/src/test/python/resources/test-data/user-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]
+
+    def get_data_affliate_info(self, key, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/affiliate-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[key][value]

@@ -9,8 +9,8 @@ class CreateUserTest(BaseTest):
 
     def test_create_user(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
         user_management_module = CRMHomePage().open_user_management_module(UserInformation.USER_MANAGEMENT)
         new_user_profile = user_management_module.click_new_user_module() \

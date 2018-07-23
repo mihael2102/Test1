@@ -24,7 +24,7 @@ class MassEditTaskModule(BaseTest):
                                                      TaskModuleConstants.SECOND_PRIORITY,
                                                      TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
-        assert task_module.get_message_task() == TaskModuleConstants.MESSAGE_TASK_WERE_UPDATED
+        assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_TASK_WERE_UPDATED
         task_module.open_show_all_tab() \
             .find_event_by_subject(TaskModuleConstants.FIFTH_SUBJECT) \
             .perform_screen_shot()

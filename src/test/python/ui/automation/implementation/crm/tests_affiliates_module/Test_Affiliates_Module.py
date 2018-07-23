@@ -18,6 +18,33 @@ class AffiliateModule(BaseTest):
             .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
 
         '''Open popup and create new affiliate '''
-        affiliate_page.open_create_affiliate_popup().perform_create_affiliate()
+        affiliate_page.open_create_affiliate_popup() \
+            .perform_create_affiliate(AffiliateModuleConstants.PARTNER_NAME,
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.BRAND_NEW_FOREX),
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.ALLOWED_IP),
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.IS_ENABLED),
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.FIRST_ALLOWED_METHOD),
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.SECOND_ALLOWED_METHOD),
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.THIRD_ALLOWED_METHOD),
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.FOURTH_ALLOWED_METHOD),
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.FIFTH_ALLOWED_METHOD),
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.FIRST_COUNTRY),
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.SECOND_COUNTRY),
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.THIRD_COUNTRY),
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.FOURTH_COUNTRY),
+                                      Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                         AffiliateModuleConstants.FIFTH_COUNTRY))
 
-    #     # Read the message after creating affiliate
+        #     # Read the message after creating affiliate
