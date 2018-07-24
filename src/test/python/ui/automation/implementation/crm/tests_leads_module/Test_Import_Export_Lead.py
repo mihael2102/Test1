@@ -41,5 +41,8 @@ class ImportExportLeadTest(BaseTest):
             .open_today_lead_tab()\
             .get_import_lead(LeadsModuleConstants.LAST_IMPORT_NAME_LEAD)\
             .perform_screen_shot_confirm_import_lead_module() \
+            .select_leads()\
+            .click_delete_button()
+
 
 

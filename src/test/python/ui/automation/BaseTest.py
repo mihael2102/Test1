@@ -10,7 +10,7 @@ from src.main.python.utils.config import Config
 class BaseTest(unittest.TestCase):
     selenium_grid_url = "http://localhost:5578/wd/hub/"
     options = webdriver.ChromeOptions()
-    options.add_argument("--lang=de")
+    options.add_argument("--lang=en")
     options.add_argument("--start-maximized")
 
     browser = webdriver.Remote(desired_capabilities=options.to_capabilities(),

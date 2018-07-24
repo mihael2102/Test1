@@ -134,6 +134,20 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Screenshot was performed,the lead is displayed")
         return LeadsModule()
 
+    def select_leads(self):
+        select_lead_check_box = super().wait_element_to_be_clickable("//td[@class='lvtCol']//input")
+        select_lead_check_box.click()
+        Logging().reportDebugStep(self, "All the importing  leads were selected")
+        return LeadsModule()
+
+    def click_delete_button(self):
+        delete_lead_check_box = super().wait_element_to_be_clickable("//input[@value='Delete']")
+        delete_lead_check_box.click()
+        allert = self.driver.switch_to_alert()
+        allert.accept()
+        Logging().reportDebugStep(self, "All the importing leads were deleted")
+        return LeadsModule()
+
     def delete_filter_lead_module(self):
         delete_filter_button = super().wait_element_to_be_clickable("//a[@title='Delete']")
         delete_filter_button.click()
