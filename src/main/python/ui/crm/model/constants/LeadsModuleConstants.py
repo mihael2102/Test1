@@ -2,7 +2,8 @@ import random
 
 
 class LeadsModuleConstants(object):
-    CONFIRM_MESSAGE = "File successfully uploaded"
+    CONFIRM_MESSAGE = "File successfully uploaded."
+    LAST_IMPORT_NAME_LEAD = "Testing1QA1"
     FIRST_IMPORT_LEAD = "FirstImportLead"
     random_numbers = str(random.randrange(1, 9999))
     FIRST_ADDRESS_LEAD = "first_address"

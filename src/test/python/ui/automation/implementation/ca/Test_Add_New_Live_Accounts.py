@@ -5,7 +5,7 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.pages.trading_accounts_information.TradingAccountsInformationPage import \
     TradingAccountsInformationPage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 class AddNewLiveAccountTestCA(BaseTest):

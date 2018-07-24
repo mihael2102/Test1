@@ -2,7 +2,7 @@ from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants imp
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.utils.config import Config
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 class CADepositPrecondition(object):
