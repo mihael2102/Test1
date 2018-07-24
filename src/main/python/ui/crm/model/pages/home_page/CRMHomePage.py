@@ -9,6 +9,7 @@ from src.main.python.ui.crm.model.pages.financial_transactions.FinancialTransact
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskModule
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.modules.my_dashboard.MyDashBoardModule import MyDashBoardModule
+from src.main.python.ui.crm.model.pages.leads.ImportLeadPage import ImportLeadPage
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
 from src.main.python.ui.crm.model.modules.user_management.UserManagement import UserManagement
@@ -53,6 +54,7 @@ class CRMHomePage(CRMBasePage):
     def select_financial_transactions_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
+        Logging().reportDebugStep(self, "The financial_transactions_module was selected")
         return FinancialTransactionsPage()
 
     def select_audit_logs_module_more_list(self, module):

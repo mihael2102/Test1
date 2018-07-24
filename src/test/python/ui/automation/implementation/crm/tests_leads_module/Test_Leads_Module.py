@@ -55,7 +55,8 @@ class LeadModule(BaseTest):
             LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_SOURCE_NAME)
         assert panda_partner_id_ == Config.data.get_data_lead_info(
             LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.PANDA_PARTNER)
-        assert referral == Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_REFERRAL)
+        assert referral == Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                                          LeadsModuleConstants.FIRST_REFERRAL)
         assert street == Config.data.get_data_lead_info(
             LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.STREET)
         assert postal_code == Config.data.get_data_lead_info(

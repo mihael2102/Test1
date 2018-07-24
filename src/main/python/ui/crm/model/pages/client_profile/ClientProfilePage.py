@@ -200,7 +200,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_document_number(self):
-        select_country = super().wait_load_element("//a[contains(text(),'bear.jpg')]/../preceding-sibling::td[2]")
+        select_country = super().wait_load_element("//a[contains(text(),'Bear.jpg')]/../preceding-sibling::td[2]")
         select_country.click()
         Logging().reportDebugStep(self, "Open the document number ")
         return DocumentDetailViewPage()
@@ -238,7 +238,7 @@ class ClientProfilePage(CRMBasePage):
         return EditionTicketInfoPage()
 
     def get_name_document(self):
-        document_name = super().wait_load_element("//tr[@class='lvtColData']//td[3]//a[contains(text(),'bear.jpg')]")
+        document_name = super().wait_load_element("//tr[@class='lvtColData']//td[3]//a[contains(text(),'Bear.jpg')]")
         Logging().reportDebugStep(self, "Returns the client status: " + document_name.text)
         return document_name.text
 

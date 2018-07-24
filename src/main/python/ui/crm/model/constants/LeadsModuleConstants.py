@@ -2,6 +2,8 @@ import random
 
 
 class LeadsModuleConstants(object):
+    CONFIRM_MESSAGE = "File successfully uploaded"
+    FIRST_IMPORT_LEAD = "FirstImportLead"
     random_numbers = str(random.randrange(1, 9999))
     FIRST_ADDRESS_LEAD = "first_address"
     FIRST_CITIZENSHIP = "first_citizenship"
@@ -42,6 +44,10 @@ class LeadsModuleConstants(object):
     FIRST_LEAD_STATUS = "first_lead_status"
     FIRST_ASSIGNED_TO = "first_assigned_to"
     FIRST_SOURCE_NAME = "first_source_name"
+    THIRD_LEAD_STATUS = "third_lead_status"
+    THIRD_SOURCE_NAME = "third_source_name"
+    THIRD_LEAD_SOURCE = "third_lead_source"
+    THIRD_ASSIGNED_TO = "third_assigned_to"
     BRAND = "brand"
     PO_BOX = "po_box"
     CITY = "city"

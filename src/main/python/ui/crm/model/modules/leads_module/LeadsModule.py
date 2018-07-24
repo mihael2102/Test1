@@ -9,6 +9,7 @@ from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from src.main.python.ui.crm.model.modules.leads_module.MassAssignLeadModule import MassAssignLeadModule
 from src.main.python.ui.crm.model.modules.leads_module.MassEditLeadModule import MassEditLeadModule
 from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
+from src.main.python.ui.crm.model.pages.leads.ImportLeadPage import ImportLeadPage
 from src.main.python.utils.config import Config
 from src.main.python.utils.logs.Loging import Logging
 
@@ -42,6 +43,18 @@ class LeadsModule(CRMBasePage):
         filter_button.click()
         Logging().reportDebugStep(self, "The filter pop-up is opened")
         return FilterPage()
+
+    def open_import_page(self):
+        import_page = super().wait_element_to_be_clickable("//button[@title='Import Leads']")
+        import_page.click()
+        Logging().reportDebugStep(self, "The import_page was opened")
+        return ImportLeadPage()
+
+    def open_today_lead_tab(self):
+        today_lead_tab = super().wait_element_to_be_clickable("//li[contains(text(),'Today Leads')]")
+        today_lead_tab.click()
+        Logging().reportDebugStep(self, "The today tab was opened")
+        return LeadsModule()
 
     '''
          Returns a confirmation  message if the user entered a valid password
@@ -89,11 +102,31 @@ class LeadsModule(CRMBasePage):
     def perform_screen_shot_lead_module(self):
         sleep(3)
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
-        file_name = 'D:/automation-newforexqa/results/screenshots/leads_module/leads_screenshot %s.png' % now
+        file_name = 'D:/automation-newforexqa/screenshots/leads_module/leads_screenshot %s.png' % now
         Config.browser.get_screenshot_as_file(file_name)
         allure.MASTER_HELPER.attach('screenshot', Config.browser.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
+        return LeadsModule()
+
+    def perform_screen_shot_import_lead_module(self):
+        sleep(3)
+        now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
+        file_name = 'D:/automation-newforexqa/screenshots/leads_module/leads_screenshot %s.png' % now
+        Config.browser.get_screenshot_as_file(file_name)
+        allure.MASTER_HELPER.attach('screenshot', Config.browser.get_screenshot_as_png(),
+                                    type=AttachmentType.PNG)
+        Logging().reportDebugStep(self, "Screenshot was performed,the grid with leads is empty ")
+        return LeadsModule()
+
+    def perform_screen_shot_confirm_import_lead_module(self):
+        sleep(3)
+        now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
+        file_name = 'D:/automation-newforexqa/screenshots/leads_module/leads_screenshot %s.png' % now
+        Config.browser.get_screenshot_as_file(file_name)
+        allure.MASTER_HELPER.attach('screenshot', Config.browser.get_screenshot_as_png(),
+                                    type=AttachmentType.PNG)
+        Logging().reportDebugStep(self, "Screenshot was performed,the lead is displayed")
         return LeadsModule()
 
     def delete_filter_lead_module(self):
