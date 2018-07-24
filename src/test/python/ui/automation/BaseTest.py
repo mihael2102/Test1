@@ -8,18 +8,23 @@ from src.main.python.utils.config import Config
 
 
 class BaseTest(unittest.TestCase):
+    selenium_grid_url = "http://localhost:5578/wd/hub/"
+    options = webdriver.ChromeOptions()
+    options.add_argument("--lang=de")
+    options.add_argument("--start-maximized")
+
+    browser = webdriver.Remote(desired_capabilities=options.to_capabilities(),
+                               command_executor=selenium_grid_url)
 
     def setUp(self):
-        Config.data = DataProviders()
-        selenium_grid_url = "http://localhost:5578/wd/hub/"
-        options = webdriver.ChromeOptions()
-        options.add_argument("--lang=de")
-        options.add_argument("--start-maximized")
 
-        Config.browser = webdriver.Remote(desired_capabilities=options.to_capabilities(),
-                                          command_executor=selenium_grid_url)
+        Config.data = DataProviders()
 
         allure.MASTER_HELPER.environment(BROWSER="CHROME", URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
+
+    @property
+    def driver(self):
+        return type(self).browser
 
     def tearDown(self):
         """Take a Screen-shot of the drive homepage, when it Failed."""

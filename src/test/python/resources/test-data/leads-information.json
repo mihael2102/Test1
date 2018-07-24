@@ -111,5 +111,11 @@
     "first_postal_code": "555555",
     "first_source_name": " source_name_lead",
     "first_address": " address_lead"
+  },
+  "FirstImportLead": {
+    "third_lead_source": "Partner",
+    "third_source_name": "Test",
+    "third_lead_status": "R - New",
+    "third_assigned_to": "Panda UA"
   }
 }

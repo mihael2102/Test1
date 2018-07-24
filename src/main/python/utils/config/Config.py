@@ -1,4 +1,3 @@
-browser = None
 timeout = 4
 data = None
 url_client_area = "https://newforexqa.pandats.com/"

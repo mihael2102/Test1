@@ -6,12 +6,14 @@ from src.main.python.utils.config import Config
 from src.main.python.utils.logs.Loging import Logging
 
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
+from src.test.python.ui.automation.BaseTest import BaseTest
 
 
 class CRMBasePage(object):
 
     def __init__(self):
-        self.driver = Config.browser
+        self.driver = BaseTest().driver
+
 
     def open_second_tab_page(self, url):
         self.driver.execute_script("window.open()")
@@ -46,7 +48,6 @@ class CRMBasePage(object):
         return WaitingUtils().wait_until_element_present_crm(element, total_amount_crm, self.driver)
 
     def wait_element_to_be_clickable(self, element):
-        sleep(3)
         return WebDriverWait(self.driver, 100).until(
             EC.element_to_be_clickable((By.XPATH, element)))
 
