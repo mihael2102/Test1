@@ -20,6 +20,10 @@ class BaseTest(unittest.TestCase):
         Config.data = DataProviders()
         allure.MASTER_HELPER.environment(BROWSER="CHROME", URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
 
+    @property
+    def get_driver(self):
+        return type(self).browser
+
     def tearDown(self):
         """Take a Screen-shot of the drive homepage, when it Failed."""
         if self._outcome.errors:
