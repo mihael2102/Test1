@@ -18,7 +18,7 @@ class MassEmailTaskModule(BaseTest):
         task_module.open_show_all_tab().find_event_by_subject(
             TaskModuleConstants.FIFTH_SUBJECT).select_two_records_task_module() \
             .open_mass_email_task_module() \
-            .perform_send_email(EmailConstants.FIRST_SUBJECT, EmailConstants.TASK_COMMENT)
+            .perform_mass_email(EmailConstants.FIRST_SUBJECT, EmailConstants.TASK_COMMENT)
 
         confirm_message = task_module.get_confirm_message_task_module()
 

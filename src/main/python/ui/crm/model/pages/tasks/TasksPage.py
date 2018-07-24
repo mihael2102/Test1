@@ -227,8 +227,8 @@ class TasksPage(CRMBasePage):
     def perform_screen_shot(self):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/tasks_module/tasks_screenshot %s.png' % now
-        Config.browser.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('passed_screenshot', Config.browser.get_screenshot_as_png(),
+        self.driver.get_screenshot_as_file(file_name)
+        allure.MASTER_HELPER.attach('passed_screenshot', self.driver.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
         return CalendarViewModule()
@@ -257,6 +257,13 @@ class TasksPage(CRMBasePage):
         self.enter_first_name(first_name)
         self.enter_first_name(first_name)
         self.enter_first_name(first_name)
+        return TasksPage()
+
+    def clear_filter(self):
+        first_check_box = super().wait_element_to_be_clickable(
+            "//tr[@class='tableHeader']//td[1]//input")
+        Logging().reportDebugStep(self, "Clear filter was performed")
+        first_check_box.click()
         return TasksPage()
 
     def enter_first_name(self, first_name):

@@ -6,12 +6,14 @@ from src.main.python.utils.config import Config
 from src.main.python.utils.logs.Loging import Logging
 from selenium.webdriver.support import expected_conditions as EC
 
+from src.test.python.ui.automation.BaseTest import BaseTest
+
 
 class EmailHomePage(object):
 
     def __init__(self) -> None:
         super().__init__()
-        self.driver = Config.browser
+        self.driver = BaseTest().get_driver
 
     def enter_subject(self, subject):
         subject_filed = WebDriverWait(self.driver, 50).until(
