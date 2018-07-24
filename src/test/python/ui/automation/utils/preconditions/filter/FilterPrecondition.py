@@ -14,8 +14,7 @@ class FilterPrecondition(object):
             .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
-        CRMHomePage().open_more_list_modules() \
-            .select_service_desk_module_more_list(HelpDeskConstants.SERVICE_DESK_MODULE)
+        CRMHomePage().open_help_desk_module() \
 
         clients_module_page.open_create_filter_pop_up() \
             .perform_create_filter_help_desk_module(FilterConstants.FIRST_NAME,

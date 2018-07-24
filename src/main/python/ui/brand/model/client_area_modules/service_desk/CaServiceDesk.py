@@ -1,4 +1,6 @@
 import re
+from time import sleep
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -16,7 +18,8 @@ class CaServiceDesk(BrandBasePage):
     '''
 
     def open_tickets_tab(self):
-        create_ticket_button = super().wait_element_to_be_clickable("//span[contains(text(),'Open Tickets')]")
+        sleep(2)
+        create_ticket_button = super().wait_visible_of_element("//span[contains(text(),'Open Tickets')]")
         create_ticket_button.click()
         Logging().reportDebugStep(self, "Ticket tab is opened")
         return CaServiceDesk()
@@ -27,7 +30,7 @@ class CaServiceDesk(BrandBasePage):
     '''
 
     def create_new_ticket(self):
-        create_ticket_button = super().wait_element_to_be_clickable("//button[contains(text(),'Create New Ticket')]")
+        create_ticket_button = super().wait_visible_of_element("//button[contains(text(),'Create New Ticket')]")
         create_ticket_button.click()
         Logging().reportDebugStep(self, "The new ticket was created")
         return CaServiceDesk()

@@ -137,7 +137,7 @@ class LeadsModule(CRMBasePage):
     def select_leads(self):
         select_lead_check_box = super().wait_element_to_be_clickable("//td[@class='lvtCol']//input")
         select_lead_check_box.click()
-        Logging().reportDebugStep(self, "All the importing  leads were selected")
+        Logging().reportDebugStep(self, "All imported leads were selected")
         return LeadsModule()
 
     def click_delete_button(self):
@@ -145,7 +145,7 @@ class LeadsModule(CRMBasePage):
         delete_lead_check_box.click()
         allert = self.driver.switch_to_alert()
         allert.accept()
-        Logging().reportDebugStep(self, "All the importing leads were deleted")
+        Logging().reportDebugStep(self, "All imported leads were deleted")
         return LeadsModule()
 
     def delete_filter_lead_module(self):

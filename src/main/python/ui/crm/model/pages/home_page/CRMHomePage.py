@@ -85,6 +85,12 @@ class CRMHomePage(CRMBasePage):
         super().refresh_page()
         return CRMHomePage()
 
+    def open_help_desk_module(self):
+        help_desc_module = super().wait_load_element("//a[contains(text(), 'Help Desk')]")
+        help_desc_module.click()
+        Logging().reportDebugStep(self, "Open  the help desk module ")
+        return HelpDeskModule()
+
     def open_client_module(self):
         home_page_element = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Clients']")
         home_page_element.click()

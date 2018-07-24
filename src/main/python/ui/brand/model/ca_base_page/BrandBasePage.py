@@ -28,8 +28,12 @@ class BrandBasePage(object):
             EC.presence_of_element_located((By.XPATH, element)))
 
     def wait_element_to_be_clickable(self, element):
-        return WebDriverWait(self.driver, 35).until(
+        return WebDriverWait(self.driver, 25).until(
             EC.element_to_be_clickable((By.XPATH, element)))
+
+    def wait_visible_of_element(self, element):
+        return WebDriverWait(self.driver, 25).until(
+            EC.visibility_of_element_located((By.XPATH, element)))
 
     def get_amount_element(self, account, amount):
         return WaitingUtils().wait_until_element_present_ca(account, amount, self.driver)

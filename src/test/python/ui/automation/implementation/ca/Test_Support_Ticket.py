@@ -20,6 +20,7 @@ class CreateSupportTicketTestCa(BaseTest):
         brand_service_desk = CaServiceDesk()
 
         subject_ca = brand_service_desk \
+            .open_tickets_tab() \
             .create_new_ticket() \
             .set_subject_field(TestDataConstants.SUBJECT) \
             .set_category_drop_down(TestDataConstants.CATEGORY_FIRST) \
