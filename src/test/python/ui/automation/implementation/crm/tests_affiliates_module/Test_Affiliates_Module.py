@@ -47,4 +47,10 @@ class AffiliateModule(BaseTest):
                                       Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
                                                                          AffiliateModuleConstants.FIFTH_COUNTRY))
 
-        #     # Read the message after creating affiliate
+        """ Perform search by Partner name and open affiliate details page """
+        affiliate_page.perform_search_by_partner_name(AffiliateModuleConstants.PARTNER_NAME)
+
+        affiliate_page.open_affiliate_details_page(AffiliateModuleConstants.PARTNER_NAME)
+
+
+

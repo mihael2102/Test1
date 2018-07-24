@@ -178,4 +178,4 @@ class CreateAffiliateModule(CRMBasePage):
 
     def click_submit(self):
         submit_button = self.driver.find_element(By.XPATH, "//button[@class='btn btn-success']")
-        submit_button.
+        submit_button.click()
