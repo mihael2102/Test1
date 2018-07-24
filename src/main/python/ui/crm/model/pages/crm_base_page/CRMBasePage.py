@@ -12,8 +12,7 @@ from src.test.python.ui.automation.BaseTest import BaseTest
 class CRMBasePage(object):
 
     def __init__(self):
-        self.driver = BaseTest().driver
-
+        self.driver = BaseTest().browser
 
     def open_second_tab_page(self, url):
         self.driver.execute_script("window.open()")
