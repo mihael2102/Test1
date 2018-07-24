@@ -4,7 +4,7 @@ from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 class MassDeletePrecondition(object):

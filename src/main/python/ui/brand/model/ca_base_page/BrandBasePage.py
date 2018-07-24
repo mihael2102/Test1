@@ -5,12 +5,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 from src.main.python.utils.config import Config
+from src.test.python.ui.automation.BaseTest import BaseTest
 
 
 class BrandBasePage(object):
 
     def __init__(self):
-        self.driver = Config.browser
+        self.driver = BaseTest().get_driver
 
     def open_second_tab_page(self, url):
         self.driver.execute_script("window.open()")
@@ -61,9 +62,8 @@ class BrandBasePage(object):
         Logging().reportDebugStep(self, "Module was selected : " + module)
 
     def open_deposit_page(self):
-        with allure.step("Open deposit page"):
-            self.wait_load_element_present("//div[@class='button-pandats']")
-            Logging().reportDebugStep(self, "Open deposit page")
+        self.wait_load_element_present("//div[@class='button-pandats']")
+        Logging().reportDebugStep(self, "Open deposit page")
 
     def wait_until_element_present(self, element):
         return WaitingUtils().wait_until_element_present_crm(element, self.driver)

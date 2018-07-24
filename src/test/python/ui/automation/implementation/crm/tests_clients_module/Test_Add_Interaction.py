@@ -3,7 +3,7 @@ from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstant
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.side_bar.SidebarModules import SidebarModules
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 class AddInteraction(BaseTest):

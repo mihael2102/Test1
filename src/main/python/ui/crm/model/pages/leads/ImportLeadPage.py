@@ -16,7 +16,7 @@ class ImportLeadPage(CRMBasePage):
         browser_element.click()
         sleep(2)
         autoit.control_set_text("Open", "Edit1",
-                                r"D:\automation-newforexqa\src\main\python\utils\documents\Leads.csv")
+                                r"D:\automation-newforexqa\src\main\python\utils\documents\Leads_import.csv")
         autoit.control_send("Open", "Edit1", "{ENTER}")
         Logging().reportDebugStep(self, "The  document was uploaded ")
         return ImportLeadPage()

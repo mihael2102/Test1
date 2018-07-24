@@ -2,7 +2,7 @@ from src.main.python.ui.crm.model.constants.FilterConstants import FilterConstan
 from src.main.python.ui.crm.model.constants.HelpDeskConstants import HelpDeskConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.utils.config import Config
 
 

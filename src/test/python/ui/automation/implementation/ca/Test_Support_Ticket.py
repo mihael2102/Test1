@@ -3,7 +3,7 @@ from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePag
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskModule
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 class CreateSupportTicketTestCa(BaseTest):

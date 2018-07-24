@@ -7,7 +7,7 @@ from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBaseP
 from src.main.python.ui.brand.model.client_area_modules.withdraw_module.tabs.CaWithdrawHistory import CaWithdrawHistory
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.config import Config
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 class CaWithdrawSecondStepRequest(BrandBasePage):

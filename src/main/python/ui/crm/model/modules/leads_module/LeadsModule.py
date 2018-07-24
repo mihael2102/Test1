@@ -12,6 +12,7 @@ from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import Crea
 from src.main.python.ui.crm.model.pages.leads.ImportLeadPage import ImportLeadPage
 from src.main.python.utils.config import Config
 from src.main.python.utils.logs.Loging import Logging
+from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 
 
 class LeadsModule(CRMBasePage):
@@ -54,6 +55,10 @@ class LeadsModule(CRMBasePage):
         today_lead_tab = super().wait_element_to_be_clickable("//li[contains(text(),'Today Leads')]")
         today_lead_tab.click()
         Logging().reportDebugStep(self, "The today tab was opened")
+        return LeadsModule()
+
+    def get_import_lead(self, last_name_lead):
+        WaitingUtils().wait_util_element_is_displayed(last_name_lead, self.driver)
         return LeadsModule()
 
     '''
@@ -103,8 +108,8 @@ class LeadsModule(CRMBasePage):
         sleep(3)
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/leads_module/leads_screenshot %s.png' % now
-        Config.browser.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('screenshot', Config.browser.get_screenshot_as_png(),
+        self.driver.get_screenshot_as_file(file_name)
+        allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
         return LeadsModule()
@@ -113,8 +118,8 @@ class LeadsModule(CRMBasePage):
         sleep(3)
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/leads_module/leads_screenshot %s.png' % now
-        Config.browser.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('screenshot', Config.browser.get_screenshot_as_png(),
+        self.driver.get_screenshot_as_file(file_name)
+        allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed,the grid with leads is empty ")
         return LeadsModule()
@@ -123,8 +128,8 @@ class LeadsModule(CRMBasePage):
         sleep(3)
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/leads_module/leads_screenshot %s.png' % now
-        Config.browser.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('screenshot', Config.browser.get_screenshot_as_png(),
+        self.driver.get_screenshot_as_file(file_name)
+        allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed,the lead is displayed")
         return LeadsModule()
