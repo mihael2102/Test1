@@ -14,11 +14,11 @@ class AffiliateModule(BaseTest):
                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
         """ Open Affiliates page """
-        affiliate_page = CRMHomePage().open_more_list_modules().open_more_list_modules() \
+        affiliate_list_view_page = CRMHomePage().open_more_list_modules().open_more_list_modules() \
             .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
 
         '''Open popup and create new affiliate '''
-        affiliate_page.open_create_affiliate_popup() \
+        affiliate_list_view_page.open_create_affiliate_popup() \
             .perform_create_affiliate(AffiliateModuleConstants.PARTNER_NAME,
                                       Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
                                                                          AffiliateModuleConstants.BRAND_NEW_FOREX),
@@ -48,9 +48,25 @@ class AffiliateModule(BaseTest):
                                                                          AffiliateModuleConstants.FIFTH_COUNTRY))
 
         """ Perform search by Partner name and open affiliate details page """
-        affiliate_page.perform_search_by_partner_name(AffiliateModuleConstants.PARTNER_NAME)
+        affiliate_list_view_page.perform_search_by_partner_name(AffiliateModuleConstants.PARTNER_NAME)
 
-        affiliate_page.open_affiliate_details_page(AffiliateModuleConstants.PARTNER_NAME)
+        affiliate_details_page = affiliate_list_view_page.open_affiliate_details_page(AffiliateModuleConstants.PARTNER_NAME)
+
+        partner_name_for_checking = affiliate_details_page.get_partner_name()
+
+        """ Check values on Details view page """
+
+        assert AffiliateModuleConstants.PARTNER_NAME == partner_name_for_checking
+
+        assert Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                  AffiliateModuleConstants.BRAND_NEW_FOREX) == affiliate_details_page \
+                                                    .get_brand()
+
+        """ Check values on List view page """
+
+
+
+
 
 
 
