@@ -12,7 +12,7 @@ class DataProviders(object):
 
     def get_data_client(self, key, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/client-information.json')
+            'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging/src/test/python/resources/test-data/client-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]
 
@@ -24,37 +24,37 @@ class DataProviders(object):
 
     def get_data_document_crm(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/crm-information.json')
+            'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging/src/test/python/resources/test-data/crm-information.json')
         conn_string = json.load(connection_file)
         return conn_string[DocumentClientsModuleConstants.CRM_ADD_DOCUMENT][value]
 
     def get_data_client_information_update_ca(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/client-information-update_ca.json')
+            'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging/src/test/python/resources/test-data/client-information-update_ca.json')
         conn_string = json.load(connection_file)
         return conn_string[CAClientUpdate.CLIENT_UPDATE_CA][value]
 
     def get_data_mass_edit(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/tasks-module.json')
+            'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging/src/test/python/resources/test-data/tasks-module.json')
         conn_string = json.load(connection_file)
         return conn_string[MassEditConstants.MASS_EDIT_CLIENT_MODULE][value]
 
     def get_data_mass_sms(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/tasks-module.json')
+            'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging/src/test/python/resources/test-data/tasks-module.json')
         conn_string = json.load(connection_file)
         return conn_string[MassEditConstants.MASS_SMS_CLIENT_MODULE][value]
 
     def get_data_task_module(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/tasks-module.json')
+            'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging/src/test/python/resources/test-data/tasks-module.json')
         conn_string = json.load(connection_file)
         return conn_string[TaskModuleConstants.TASK_MODULE][value]
 
     def get_data_lead_info(self, key, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/leads-information.json')
+            'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging/src/test/python/resources/test-data/leads-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]
 

@@ -1,3 +1,4 @@
+import pytest
 from _pytest.config import Config
 
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
@@ -8,6 +9,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=19)
 class AddNewTaskCalendarView(BaseTest):
 
     def test_check_add_tasks_calendar_view(self):

@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
     FinancialTransactionsModuleConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
@@ -6,6 +8,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=24)
 class TabFinancialTransaction(BaseTest):
 
     def test_check_all_tab_from_financial_transactions(self):
