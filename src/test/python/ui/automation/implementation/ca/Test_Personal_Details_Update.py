@@ -75,7 +75,7 @@ class PersonalDetailsUpdateTestCA(BaseTest):
         client_profile_edit = ClientProfileUpdate()
 
         client_profile_edit.edit_first_name_by_pencil(
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME)) \
+            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.SECOND_FIRST_NAME)) \
             .edit_last_name_by_pencil(
             Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.LAST_NAME)) \
             .edit_phone_by_pencil(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PHONE)) \

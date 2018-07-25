@@ -66,7 +66,7 @@ class DataProviders(object):
 
     def get_data_audit_logs_info(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/audit_logs.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/audit_logs_module.json')
         conn_string = json.load(connection_file)
         return conn_string[AuditLogsConstants.AUDIT_LOGS_MODULE_INFO][value]
 

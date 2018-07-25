@@ -28,8 +28,8 @@ class AuditLogsPage(CRMBasePage):
         sleep(3)
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/audit_logs/audit logs_module screenshot %s.png' % now
-        Config.browser.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('screenshot', Config.browser.get_screenshot_as_png(),
+        self.driver.get_screenshot_as_file(file_name)
+        allure.MASTER_HELPER.attach('screenshot',  self.driver.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "The screenshot was performed ")
         return AuditLogsPage()
