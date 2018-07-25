@@ -37,24 +37,8 @@ class BaseTest(unittest.TestCase):
                     allure.MASTER_HELPER.attach('failed_screenshot', self.browser.get_screenshot_as_png(),
                                                 type=AttachmentType.PNG)
 
-                    # self.browser.close()///////
-                    # self.browser.quit()///
-                    # self.browser.quit()
-                    # self.browser.quit()
-                    # self.browser.quit()
-                    # self.browser.quit()
-                    # self.browser.quit()
-                    # self.browser.quit()
-                    # self.browser.quit()
-                    # self.browser.quit()
-                    # self.browser.quit()
-                    # self.browser.quit()
-                    # self.browser.quit()
-                    # self.browser.quit()/////////////
-
+                    self.browser.close()
+                    self.browser.quit()
         else:
-            self.browser.close()
-            self.browser.quit()
-    # else:
             self.browser.close()
             self.browser.quit()
