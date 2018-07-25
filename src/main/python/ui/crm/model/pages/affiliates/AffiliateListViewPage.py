@@ -43,6 +43,29 @@ class AffiliateListViewPage(CRMBasePage):
         return  AffiliateListViewPage()
 
     def get_partner_id(self):
-        partner_id_text = self.driver.find_element(By.XPATH, "//tr[3]/td[2]/grid-cell/div/span[2]").text
+        partner_id_text = self.driver.find_element(By.XPATH, "//td[2]/grid-cell/div/span[2]").text
         return partner_id_text
+
+    def get_is_enabled(self):
+        is_enabled_text = self.driver.find_element(By.XPATH, "//td[5]/grid-cell/div/span[2]").text
+        return is_enabled_text
+
+    def get_allowed_ip(self):
+        allowed_ip_text = self.driver.find_element(By.XPATH, "//td[6]/grid-cell/div/span[2]").text
+        return allowed_ip_text
+
+    def get_blocked_countries(self):
+        blocked_countries_text = self.driver.find_element(By.XPATH, "//td[7]/grid-cell/div/span[2]").text
+        return blocked_countries_text
+
+    def get_allowed_methods(self):
+        allowed_methods_text = self.driver.find_element(By.XPATH, "//td[8]/grid-cell/div/span[2]").text
+        return allowed_methods_text
+
+    def get_brand_name(self):
+        brand_name_text = self.driver.find_element(By.XPATH, "//td[9]/grid-cell/div/span[2]").text
+        return brand_name_text
+
+
+
 

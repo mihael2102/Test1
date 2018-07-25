@@ -1,7 +1,7 @@
 {
   "Affiliate_info": {
     "first_brand": "newForex",
-    "is_enabled": "true",
+    "is_enabled": "yes",
     "allowed_ip": "0.0.0.0",
     "allowed_methods_1": "1",
     "allowed_methods_2": "2",
