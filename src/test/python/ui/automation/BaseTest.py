@@ -39,6 +39,19 @@ class BaseTest(unittest.TestCase):
 
                     # self.browser.close()
                     # self.browser.quit()
+                    # self.browser.quit()
+                    # self.browser.quit()
+                    # self.browser.quit()
+                    # self.browser.quit()
+                    # self.browser.quit()
+                    # self.browser.quit()
+                    # self.browser.quit()
+                    # self.browser.quit()
+                    # self.browser.quit()
+                    # self.browser.quit()
+                    # self.browser.quit()
+                    # self.browser.quit()
+
         else:
             self.browser.close()
             self.browser.quit()
