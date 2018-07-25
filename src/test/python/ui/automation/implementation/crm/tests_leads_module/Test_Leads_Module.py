@@ -3,7 +3,7 @@ import pytest
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
-from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.modules.leads_module.LeadViewInfo import LeadViewInfo
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
@@ -58,8 +58,8 @@ class LeadModule(BaseTest):
             LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_SOURCE_NAME)
         assert panda_partner_id_ == Config.data.get_data_lead_info(
             LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.PANDA_PARTNER)
-        assert referral == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_REFERRAL)
+        assert referral == Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                                          LeadsModuleConstants.FIRST_REFERRAL)
         assert street == Config.data.get_data_lead_info(
             LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.STREET)
         assert postal_code == Config.data.get_data_lead_info(
@@ -174,8 +174,7 @@ class LeadModule(BaseTest):
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_NAME_LEAD),
             Config.data.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_LAST_NAME_LEAD),
-            Config.data.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_EMAIL_LEAD),
+            LeadsModuleConstants.FIRST_EMAIL_LEAD,
             Config.data.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_PHONE_LEAD),
             Config.data.get_data_lead_info(

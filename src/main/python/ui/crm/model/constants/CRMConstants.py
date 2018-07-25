@@ -24,10 +24,10 @@ class CRMConstants(object):
     TENTH_COLUMN = "tenth_column"
     TENTH_COLUMN_OTHER_TYPE = "City"
     ELEVENTH_COLUMN = "eleventh_column"
-    FILTER_NAME = "test_filter2"
+    FILTER_NAME = "test_filter"
     SECOND_FILTER_NAME = "TestFilter" + str(random.randrange(1, 9999))
     CLIENT_STATUS = "client_status_1"
-    BRAND_NEW_FOREX = "brand_one"
+    BRAND = "brand_one"
     TRANSFER_BETWEEN_TA_MESSAGE = "Funds were transferred successfully"
     AMOUNT_TRANSFER_BETWEEN_TA = "15.00"
     TRANSFER_BETWEEN_TA = "8"

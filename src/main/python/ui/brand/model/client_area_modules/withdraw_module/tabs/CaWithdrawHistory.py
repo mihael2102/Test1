@@ -21,12 +21,12 @@ class CaWithdrawHistory(BrandBasePage):
         return status_request.text
 
     '''
-        Select an account from withdraw pop-up history
+        Choice an account from withdraw pop-up history
     '''
 
     def select_account(self, account):
-        account_drop_down = WebDriverWait(self.driver, 15).until(
-            EC.element_to_be_clickable((By.XPATH, "//custom-select[@name='tradingAccounts']")))
+        account_drop_down = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//custom-select[@name='tradingAccounts']")))
         account_drop_down.click()
         sleep(1)
 

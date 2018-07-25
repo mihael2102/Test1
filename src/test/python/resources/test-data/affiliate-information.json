@@ -1,0 +1,17 @@
+{
+  "Affiliate_info": {
+    "first_brand": "newForex",
+    "is_enabled": "true",
+    "allowed_ip": "0.0.0.0",
+    "allowed_methods_1": "0",
+    "allowed_methods_2": "1",
+    "allowed_methods_3": "2",
+    "allowed_methods_4": "3",
+    "allowed_methods_5": "4",
+    "blocked_countries_1": "0",
+    "blocked_countries_2": "1",
+    "blocked_countries_3": "2",
+    "blocked_countries_4": "3",
+    "blocked_countries_5": "4"
+  }
+}

@@ -17,7 +17,7 @@ class CADeposit(BrandBasePage):
         return CADeposit()
 
     def set_amount_deposit(self, amount):
-        amount_element = self.driver.find_element(By.XPATH, "//input[@name='amount']")
+        amount_element = super().wait_load_element_present("//div[@class='form-group-pandats']//input[@name='amount']")
         amount_element.clear()
         amount_element.send_keys(amount)
         Logging().reportDebugStep(self, "The amount  was set:" + amount)

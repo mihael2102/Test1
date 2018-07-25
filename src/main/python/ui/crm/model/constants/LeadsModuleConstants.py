@@ -1,4 +1,11 @@
+import random
+
+
 class LeadsModuleConstants(object):
+    CONFIRM_MESSAGE = "File successfully uploaded."
+    LAST_IMPORT_NAME_LEAD = "Testing1QA1"
+    FIRST_IMPORT_LEAD = "FirstImportLead"
+    random_numbers = str(random.randrange(1, 9999))
     FIRST_ADDRESS_LEAD = "first_address"
     FIRST_CITIZENSHIP = "first_citizenship"
     FIRST_BRAND_LEAD = "first_brand"
@@ -10,7 +17,7 @@ class LeadsModuleConstants(object):
     FIRST_POSTAL_CODE_LEAD = "first_postal_code"
     FIRST_BIRTHDAY_LEAD = "first_birthday_lead"
     FIRST_PHONE_LEAD = "first_phone_lead"
-    FIRST_EMAIL_LEAD = "first_email_lead"
+    FIRST_EMAIL_LEAD = "test+%s@gmail.com" % random_numbers
     FIRST_LAST_NAME_LEAD = "first_last_name"
     FIRST_NAME_LEAD = "first_name_lead"
     FIRST_LEAD_INFO = "FirstLeadInfo"
@@ -38,6 +45,10 @@ class LeadsModuleConstants(object):
     FIRST_LEAD_STATUS = "first_lead_status"
     FIRST_ASSIGNED_TO = "first_assigned_to"
     FIRST_SOURCE_NAME = "first_source_name"
+    THIRD_LEAD_STATUS = "third_lead_status"
+    THIRD_SOURCE_NAME = "third_source_name"
+    THIRD_LEAD_SOURCE = "third_lead_source"
+    THIRD_ASSIGNED_TO = "third_assigned_to"
     BRAND = "brand"
     PO_BOX = "po_box"
     CITY = "city"

@@ -2,7 +2,8 @@
   "client_1": {
     "country": "Germany",
     "first_name": "TestQa",
-    "email": "evgeniy.l+testing11@pandats.com",
+    "second_first_name": "Test11111",
+    "email": "evgeniy.l+testing13@pandats.com",
     "last_name": "Li",
     "area_code": "44444",
     "phone": "55555555",
@@ -48,9 +49,9 @@
     "cvs": "123",
     "withdrawal_reason": "Limited funds",
     "new_password": "qa1qa2",
-    "short_email": "testing",
-    "short_client_name": "TestQA",
-    "short_first_name": "Qa",
+    "short_email": "evgen",
+    "short_client_name": "Test",
+    "short_first_name": "Test",
     "short_last_name": "Li",
     "client_status_1": "R - New",
     "brand_one": "newForex",
@@ -65,5 +66,17 @@
     "ninth_column": "Last Name *",
     "tenth_column": "City *",
     "eleventh_column": "Brand"
+  },
+  "client_4": {
+    "email_name": "username.testing1",
+    "email": "username.testing1@gmail.com",
+    "password": "as1as2qa1qa2",
+    "confirm_password": "as1as2qa1qa2"
+  },
+  "client_5": {
+    "email_name": "username.testing2",
+    "email": "username.testing2@gmail.com",
+    "password": "as1as2qa1qa2",
+    "confirm_email_password": "as1as2qa1qa2"
   }
 }

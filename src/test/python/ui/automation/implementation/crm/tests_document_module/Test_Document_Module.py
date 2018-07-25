@@ -1,10 +1,10 @@
 import pytest
 
 from src.main.python.ui.crm.model.constants.DocumentClientsModuleConstants import DocumentClientsModuleConstants
-from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 @pytest.mark.run(order=21)
@@ -12,8 +12,8 @@ class CreateDocument(BaseTest):
 
     def test_create_document(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
         document_module = CRMHomePage().open_more_list_modules() \
             .select_document_module_more_list(DocumentClientsModuleConstants.DOCUMENT)
@@ -41,8 +41,8 @@ class CreateDocument(BaseTest):
 
     def test_delete_document(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
         document_module = CRMHomePage().open_more_list_modules() \
             .select_document_module_more_list(DocumentClientsModuleConstants.DOCUMENT)

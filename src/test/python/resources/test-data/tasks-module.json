@@ -18,11 +18,11 @@
   "mass_edit_1": {
     "gender_male": "M",
     "gender_female": "F",
-    "assigned_to_panda": "testuser",
+    "assigned_to_panda": "Panda UA",
     "client_source": "client_source",
     "compliance_agent": "John",
     "compliance_notes": "compliance_test",
-    "client_status": "F - Active vip",
+    "client_status": "R - New",
     "retention_status": "Pending Deposit",
     "description": "mass_edit_description",
     "referral": "referral_description"

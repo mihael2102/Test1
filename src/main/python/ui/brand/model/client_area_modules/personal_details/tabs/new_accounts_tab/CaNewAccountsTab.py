@@ -11,7 +11,7 @@ class CaNewAccountsTab(BrandBasePage):
         super().__init__()
 
     '''
-       Select currency from drop down
+       Choice currency from drop down
        :parameter currency
        return Manage Accounts Module  instance    
     '''

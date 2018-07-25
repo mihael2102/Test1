@@ -5,7 +5,8 @@ from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstant
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.side_bar.SidebarModules import SidebarModules
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+
 
 
 @pytest.mark.run(order=6)
@@ -13,10 +14,10 @@ class AddInteraction(BaseTest):
 
     def test_add_interaction(self):
         crm_client_profile = CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(Config.data.get_data_client(TestDataConstants.E_MAIL))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
         SidebarModules().open_create_event_module(CRMConstants.ADD_INTERACTION) \
             .create_event(TaskModuleConstants.FIRST_EVENT_STATUS, TaskModuleConstants.FIRST_EVENT_TYPE,

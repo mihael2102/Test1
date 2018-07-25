@@ -1,5 +1,5 @@
 from src.test.python.ui.automation.implementation.crm.test_my_dashboard.Test_My_Dashboard_Actions import \
-    MyDashboardActions
+    MyDashboardActionsTest
 from src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs import AuditLogs
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction import AddInteraction
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password import \
@@ -16,7 +16,7 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients import \
     SearchingClientsTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_SMS_Clients_Module import \
-    SendSMSClientsModule
+    SendSMSClientsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta import \
     TransferBetweenTa
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module import CreateDocument
@@ -26,7 +26,7 @@ from src.test.python.ui.automation.implementation.crm.tests_document_module.Test
 from src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module import \
     TabFinancialTransaction
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module import LeadModule
-from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Actions import ActionsTask
+from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tasks_Actions import ActionsTaskModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Add_New_Task_Calendar_View import \
     AddNewTaskCalendarView
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View import CalendarView
@@ -57,11 +57,11 @@ class TestRegression(object):
     def run_add_interaction_crm(self):
         AddInteraction()
 
-    def run_perform_searching_crm(self):
-        SearchingClientsTestCRM()
-
     def run_perform_create_filter_crm(self):
         CreateFilterTestCRM()
+
+    def run_perform_searching_crm(self):
+        SearchingClientsTestCRM()
 
     def run_perform_mass_edit_clients_module(self):
         MassEditTestCRM()
@@ -70,7 +70,7 @@ class TestRegression(object):
         MassAssignTestCRM()
 
     def run_perform_send_sms(self):
-        SendSMSClientsModule()
+        SendSMSClientsModuleTest()
 
     def run_perform_upload_document_client_module(self):
         DownloadDocumentsClientModule()
@@ -97,7 +97,7 @@ class TestRegression(object):
         AddNewTaskCalendarView()
 
     def run_actions_task_module(self):
-        ActionsTask()
+        ActionsTaskModuleTest()
 
     def run_create_delete_document(self):
         CreateDocument()
@@ -112,14 +112,7 @@ class TestRegression(object):
         TabFinancialTransaction()
 
     def run_check_my_dashboard_test(self):
-        MyDashboardActions()
+        MyDashboardActionsTest()
 
     def run_check_audit_logs_test(self):
         AuditLogs()
-
-
-
-
-
-
-

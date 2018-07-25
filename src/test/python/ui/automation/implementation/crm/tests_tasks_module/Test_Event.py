@@ -2,10 +2,10 @@ import pytest
 
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
-from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 @pytest.mark.run(order=14)
@@ -13,8 +13,8 @@ class AddEventTaskModule(BaseTest):
 
     def test_add_event(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage().open_task_module()
 
@@ -29,12 +29,12 @@ class AddEventTaskModule(BaseTest):
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
-        assert task_module.get_message_task() == TaskModuleConstants.MESSAGE_CREATE_EVENT
+        assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_CREATE_EVENT
 
     def test_edit_event(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage().open_task_module()
 
@@ -49,7 +49,7 @@ class AddEventTaskModule(BaseTest):
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
-        assert task_module.get_message_task() == TaskModuleConstants.MESSAGE_CREATE_EVENT
+        assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_CREATE_EVENT
 
         task_module.open_show_all_tab() \
             .click_pencil_button().edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
@@ -64,4 +64,4 @@ class AddEventTaskModule(BaseTest):
                                               TaskModuleConstants.SECOND_PRIORITY,
                                               TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
-        assert task_module.get_message_task() == TaskModuleConstants.MESSAGE_TASK_WAS_UPDATED
+        assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_TASK_WAS_UPDATED

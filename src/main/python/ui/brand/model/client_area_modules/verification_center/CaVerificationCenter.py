@@ -21,7 +21,7 @@ class CaVerificationCenter(BrandBasePage):
         front_upload_picture.click()
         sleep(2)
         autoit.control_set_text("Open", "Edit1",
-                                r"C:\Users\Administrator\.jenkins\workspace\Regression Brand\src\main\python\utils\documents\bear.jpg")
+                                r"D:\automation-newforexqa\src\main\python\utils\documents\Bear.jpg")
         autoit.control_send("Open", "Edit1", "{ENTER}")
         Logging().reportDebugStep(self, "The  document was uploaded ")
         return CaVerificationCenter()
@@ -31,6 +31,7 @@ class CaVerificationCenter(BrandBasePage):
     '''
 
     def get_document_status(self):
+        sleep(3)
         front_upload_picture = super().wait_load_element_present("//div[@class='document-wrapper-pandats']//span")
         re_front_upload_picture = re.sub('Front ', '', front_upload_picture.text)
         Logging().reportDebugStep(self,

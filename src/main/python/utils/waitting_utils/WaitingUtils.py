@@ -62,5 +62,22 @@ class WaitingUtils(object):
                                      "//td[contains(text(),'%s')]//following-sibling::*[3]" % account_id)
         amount_without_symbol = re.sub('[$£CA€]', '', amount.text)
 
-        Logging().reportDebugStep(self, "Getting the amount id text")
+        Logging().reportDebugStep(self, "Getting the amount : " + amount_without_symbol + " from client area: ")
         return amount_without_symbol
+
+    def wait_util_element_is_displayed(self, element, driver):
+        for Config.counter in range(20):
+            try:
+                sleep(2)
+                last_name_element = driver.find_element(By.XPATH,
+                                              "*//a[contains(text(),'%s')]" % element)
+
+                if last_name_element.is_displayed():
+                    Logging().reportDebugStep(self, "Returns the: " + element)
+                    return True
+                else:
+                    raise NoSuchElementException()
+            except (NoSuchElementException, StaleElementReferenceException):
+                sleep(5)
+                driver.refresh()
+        fail("There is no such element after the page reloads")
