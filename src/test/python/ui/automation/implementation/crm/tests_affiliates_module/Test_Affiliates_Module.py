@@ -56,6 +56,7 @@ class AffiliateModule(BaseTest):
 
         assert Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO, AffiliateModuleConstants.IS_ENABLED) == affiliate_list_view_page.get_is_enabled()
         assert Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO, AffiliateModuleConstants.ALLOWED_IP) == affiliate_list_view_page.get_allowed_ip()
+
         assert AffiliateModuleConstants
         assert AffiliateModuleConstants
         assert AffiliateModuleConstants.BRAND_NEW_FOREX == affiliate_list_view_page.get_brand_name()
