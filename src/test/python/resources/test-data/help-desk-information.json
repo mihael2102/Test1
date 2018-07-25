@@ -1,0 +1,13 @@
+{
+  "HelpDeskInfo": {
+    "first_related_to": "Test33333",
+    "second_related_to": "Test33333 Li",
+    "first_assigned_to": "Panda UA",
+    "first_status": "In Progress",
+    "first_priority": "Low",
+    "first_category": "Mobile Client",
+    "first_ticket_source": "Telephone Call",
+    "first_description": "Description Help Desk",
+    "first_notes": "Notes Help Desk"
+  }
+}

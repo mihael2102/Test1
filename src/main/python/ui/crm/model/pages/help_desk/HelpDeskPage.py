@@ -1,11 +1,16 @@
 from time import sleep
+
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
+from src.main.python.ui.crm.model.pages.help_desk.HelpDeskCreationTicket import HelpDeskCreationTicket
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskDetailViewPage import HelpDeskDetailViewPage
+from src.main.python.ui.crm.model.pages.help_desk.HelpDeskEditPage import HelpDeskEditPage
 from src.main.python.utils.logs.Loging import Logging
 
 
-class HelpDeskModule(CRMBasePage):
+class HelpDeskPage(CRMBasePage):
     def __init__(self):
         super().__init__()
 
@@ -18,7 +23,19 @@ class HelpDeskModule(CRMBasePage):
         tab = super().wait_load_element("//li[contains(text(),'Opened Today')]")
         tab.click()
         Logging().reportDebugStep(self, "The today tab was opened")
-        return HelpDeskModule()
+        return HelpDeskPage()
+
+    def open_create_ticket_page(self):
+        create_ticket_page_button = super().wait_load_element("//td[@class='moduleName']//button[1]")
+        create_ticket_page_button.click()
+        Logging().reportDebugStep(self, "The create ticket page was opened")
+        return HelpDeskCreationTicket()
+
+    def open_create_filter_pop_up(self):
+        filter_button = super().wait_element_to_be_clickable("//a[@title='Create Filter']")
+        filter_button.click()
+        Logging().reportDebugStep(self, "The filter pop-up is opened")
+        return FilterPage()
 
     '''
          Open the ticket number 
@@ -51,7 +68,7 @@ class HelpDeskModule(CRMBasePage):
         select_test_filter.click()
         Logging().reportDebugStep(self, "The filter was selected: " + test_filter)
 
-        return HelpDeskModule()
+        return HelpDeskPage()
 
     ''' 
          Returns the ticket status  
@@ -64,7 +81,14 @@ class HelpDeskModule(CRMBasePage):
         field_id.clear()
         field_id.send_keys(ticket_id)
         Logging().reportDebugStep(self, "The ticket was find: " + ticket_id)
-        return HelpDeskModule()
+        return HelpDeskPage()
+
+    def find_ticket_by_title(self, tittle):
+        tittle_field = super().wait_load_element("//input[@name='tks_subject']")
+        tittle_field.clear()
+        tittle_field.send_keys(tittle)
+        Logging().reportDebugStep(self, "The tittle was find: " + tittle)
+        return HelpDeskPage()
 
     ''' 
          Perform  search ticket    
@@ -75,4 +99,10 @@ class HelpDeskModule(CRMBasePage):
         search_button = super().wait_load_element("//td[@class='txt_al_c']")
         search_button.click()
         Logging().reportDebugStep(self, "Perform search")
-        return HelpDeskModule()
+        return HelpDeskPage()
+
+    def click_edit_ticket_pencil(self):
+        pencil_link = super().wait_element_to_be_clickable("//div[@class='actions_wrapper']//a[@alt='Edit']")
+        self.driver.execute_script("arguments[0].click();", pencil_link)
+        Logging().reportDebugStep(self, "Click edit of the ticket by pencil link")
+        return HelpDeskEditPage()

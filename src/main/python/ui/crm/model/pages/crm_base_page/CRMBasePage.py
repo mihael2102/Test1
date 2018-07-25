@@ -28,6 +28,10 @@ class CRMBasePage(object):
         return WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH, element)))
 
+    def wait_visible_of_element(self, element):
+        return WebDriverWait(self.driver, 25).until(
+            EC.visibility_of_element_located((By.XPATH, element)))
+
     def switch_first_tab_page(self):
         self.driver.switch_to_window(Config.window_before)
 
