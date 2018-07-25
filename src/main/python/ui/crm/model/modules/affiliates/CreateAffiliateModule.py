@@ -55,7 +55,7 @@ class CreateAffiliateModule(CRMBasePage):
 
     def set_is_enabled_radio_button(self, is_enabled):
 
-        if is_enabled:
+        if is_enabled == "yes":
             is_enabled_element = self.driver.find_element(By.XPATH, "//div[@class='btn-group form-group']//label[1]")
             is_enabled_element.click()
             Logging().reportDebugStep(self, "The enabled  was set" + is_enabled)
