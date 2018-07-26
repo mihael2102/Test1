@@ -92,7 +92,8 @@ class AffiliateListViewPage(CRMBasePage):
             if i in self.get_blocked_countries():
                 continue
             else:
-                self.fail("Selected country '%s' is not in the list" % i)
+                Logging().reportDebugStep(self, "Selected country '%s' is not in the list" % i)
+                return False
         return True
 
     def check_allowed_methods(self):
@@ -113,15 +114,16 @@ class AffiliateListViewPage(CRMBasePage):
             if i in self.get_allowed_methods():
                 continue
             else:
-                self.fail("Selected allowed method '%s' is not in the list. We expect one of following methods %s" % (
+                Logging().reportDebugStep(self, "Selected allowed method '%s' is not in the list. We expect one of following methods %s" % (
                 i, self.get_allowed_methods()))
+                return False
         return True
 
-    def edit_affiliate(self, partner_name, brand, allowed_ip, is_enabled, allowed_methods_1,
-                                 allowed_methods_2, allowed_methods_3, allowed_methods_4, allowed_methods_5,
-                                 blocked_countries_1, blocked_countries_2, blocked_countries_3, blocked_countries_4,
-                                 blocked_countries_5):
-        return self.open_edit_affiliate_popup().
+        # def edit_affiliate(self, partner_name, brand, allowed_ip, is_enabled, allowed_methods_1,
+        #                allowed_methods_2, allowed_methods_3, allowed_methods_4, allowed_methods_5,
+        #                blocked_countries_1, blocked_countries_2, blocked_countries_3, blocked_countries_4,
+        #                blocked_countries_5):
+        # return self.open_edit_affiliate_popup().
 
 
 
