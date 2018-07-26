@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 
 
 class MT4UpdatePasswordModule(CRMBasePage):
@@ -7,7 +8,7 @@ class MT4UpdatePasswordModule(CRMBasePage):
         super().__init__()
 
     '''
-        Select an account from drop down
+        Choice an account from drop down
         :parameter account the live account of the client
         :returns MT4 Check PasswordModule instance
     '''
@@ -15,8 +16,8 @@ class MT4UpdatePasswordModule(CRMBasePage):
     def select_account(self, account):
         drop_down = super().wait_element_to_be_clickable("//select[@name='pwd_loginSel']")
         drop_down.click()
-        select_account = self.driver.find_element(By.XPATH, "//select[@name='pwd_loginSel']//"
-                                                            "following-sibling::*[contains(text(),'%s')]" % account)
+        select_account = self.driver.find_element(By.XPATH,
+                                                  "//select[@name='pwd_loginSel']//option[contains(text(),'%s')]" % account)
         select_account.click()
         return MT4UpdatePasswordModule()
 

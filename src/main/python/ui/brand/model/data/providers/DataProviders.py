@@ -6,16 +6,21 @@ from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants
     FinancialTransactionsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
-from src.test.python.utils.TestDataConstants import TestDataConstants
 
 
 class DataProviders(object):
 
-    def get_data_client(self, value):
+    def get_data_client(self, key, value):
         connection_file = open(
             'C:/Users/Administrator/.jenkins/workspace/Smoke New Forex Staging/src/test/python/resources/test-data/client-information.json')
         conn_string = json.load(connection_file)
-        return conn_string[TestDataConstants.CLIENT_ONE][value]
+        return conn_string[key][value]
+
+    def get_data_filter_crm(self, key, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/filter-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[key][value]
 
     def get_data_document_crm(self, value):
         connection_file = open(
@@ -55,12 +60,30 @@ class DataProviders(object):
 
     def get_data_financial_transactions_info(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/financial_transactions.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/financial-transactions-information.json')
         conn_string = json.load(connection_file)
         return conn_string[FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE][value]
 
     def get_data_audit_logs_info(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/audit_logs_module.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/audit-logs-information.json')
         conn_string = json.load(connection_file)
         return conn_string[AuditLogsConstants.AUDIT_LOGS_MODULE_INFO][value]
+
+    def get_data_user_info(self, key, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/user-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[key][value]
+
+    def get_data_affliate_info(self, key, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/affiliate-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[key][value]
+
+    def get_data_help_desk(self, key, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/help-desk-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[key][value]

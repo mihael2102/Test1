@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 
@@ -26,7 +26,7 @@ class MT4CreditInModule(CRMBasePage):
         return ClientProfilePage()
 
     '''
-        Select an account from drop down
+        Choice an account from drop down
         :parameter account the account of the  client
         :returns MT4 Credit In instance
     '''

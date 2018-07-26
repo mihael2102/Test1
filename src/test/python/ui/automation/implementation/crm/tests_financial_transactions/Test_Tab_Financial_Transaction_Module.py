@@ -1,17 +1,17 @@
 from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
     FinancialTransactionsModuleConstants
-from src.main.python.ui.crm.model.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 class TabFinancialTransaction(BaseTest):
 
     def test_check_all_tab_from_financial_transactions(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
         financial_transaction_module = CRMHomePage().open_more_list_modules() \
             .select_financial_transactions_module_more_list(
@@ -39,8 +39,8 @@ class TabFinancialTransaction(BaseTest):
 
     def test_check_searching_by_column(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
         financial_transaction_information = CRMHomePage().open_more_list_modules() \
             .select_financial_transactions_module_more_list(
@@ -58,3 +58,5 @@ class TabFinancialTransaction(BaseTest):
         get_brand = financial_transaction_information.get_brand_text()
         modified_time = financial_transaction_information.get_modified_time()
         crm_id = financial_transaction_information.get_crm_id()
+
+

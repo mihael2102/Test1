@@ -3,8 +3,8 @@ from _decimal import Decimal
 from time import sleep
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
-from src.main.python.ui.crm.model.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.document_module.CreateDocumentModule import CreateDocumentModule
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.modules.document.CreateDocumentModule import CreateDocumentModule
 from src.main.python.ui.crm.model.modules.tasks_module.SmsNotifier import SmsNotifierModule
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
@@ -100,7 +100,7 @@ class ClientProfilePage(CRMBasePage):
     def get_counter_sms(self):
         counter_sms = super().wait_element_to_be_clickable("//span[@class='amount amount_SMS']")
         Logging().reportDebugStep(self, "Counter is " + counter_sms.text)
-        return counter_sms.text
+        return int(counter_sms.text)
 
     '''
          Perform scroll_top
@@ -179,7 +179,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_client_account(self):
-        account_number = super().wait_load_element("//tr[@class='lvtColData'][1]//td[1]")
+        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
         Logging().reportDebugStep(self, "Returns the client_account  text " + account_number.text)
         return account_number.text
 
@@ -188,7 +188,8 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_second_client_account(self):
-        account_number = super().wait_load_element("//tr[@class='lvtColData'][2]//td[1]")
+        sleep(3)
+        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[2]//td[1]")
         Logging().reportDebugStep(self, "Return the second client account " + account_number.text)
         return account_number.text
 
@@ -199,7 +200,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_document_number(self):
-        select_country = super().wait_load_element("//a[contains(text(),'bear.jpg')]/../preceding-sibling::td[2]")
+        select_country = super().wait_load_element("//a[contains(text(),'Bear.jpg')]/../preceding-sibling::td[2]")
         select_country.click()
         Logging().reportDebugStep(self, "Open the document number ")
         return DocumentDetailViewPage()
@@ -237,7 +238,7 @@ class ClientProfilePage(CRMBasePage):
         return EditionTicketInfoPage()
 
     def get_name_document(self):
-        document_name = super().wait_load_element("//tr[@class='lvtColData']//td[3]//a[contains(text(),'bear.jpg')]")
+        document_name = super().wait_load_element("//tr[@class='lvtColData']//td[3]//a[contains(text(),'Bear.jpg')]")
         Logging().reportDebugStep(self, "Returns the client status: " + document_name.text)
         return document_name.text
 
@@ -405,9 +406,10 @@ class ClientProfilePage(CRMBasePage):
     def get_assigned_to_text(self):
         assigned_to = self.driver.find_element(By.XPATH,
                                                "//td[contains(text(),'Assigned To')]//following-sibling::td[1]")
-        parser_assigned_to_text = re.sub('[" "]', '', assigned_to.text, 4)
-        Logging().reportDebugStep(self, "Returns the assigned to: " + parser_assigned_to_text)
-        return parser_assigned_to_text
+        new_line = assigned_to.text.strip()
+
+        Logging().reportDebugStep(self, "Returns the assigned to: " + new_line)
+        return new_line
 
     def get_client_source_text(self):
         client_source = self.driver.find_element(By.XPATH,
@@ -419,9 +421,10 @@ class ClientProfilePage(CRMBasePage):
     def get_compliance_agent_text(self):
         compliance_agent = self.driver.find_element(By.XPATH,
                                                     "//td[contains(text(),'Compliance Agent')]//following-sibling::td[1]")
-        parser_compliance_agent_text = re.sub('[" "]', '', compliance_agent.text, 4)
-        Logging().reportDebugStep(self, "Returns the compliance_agent source: " + parser_compliance_agent_text)
-        return parser_compliance_agent_text
+
+        new_line = compliance_agent.text.strip()
+        Logging().reportDebugStep(self, "Returns the compliance_agent source: " + new_line)
+        return new_line
 
     def get_compliance_notes_text(self):
         compliance_notes = self.driver.find_element(By.XPATH,

@@ -7,7 +7,7 @@ from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePag
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfileUpdate import ClientProfileUpdate
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 @pytest.mark.run(order=11)
@@ -16,8 +16,8 @@ class PersonalDetailsUpdateTestCA(BaseTest):
     def test_perform_client_update_from_CA(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area) \
             .login() \
-            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(CaConstants.ACCOUNT_DETAILS)
@@ -41,10 +41,10 @@ class PersonalDetailsUpdateTestCA(BaseTest):
 
         crm_client_profile = CRMLoginPage() \
             .open_second_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(Config.data.get_data_client(TestDataConstants.E_MAIL))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
         first_name_crm = crm_client_profile.get_first_name()
         last_name_crm = crm_client_profile.get_last_name()
@@ -68,29 +68,34 @@ class PersonalDetailsUpdateTestCA(BaseTest):
 
     def test_perform_client_update_from_CRM(self):
         crm_client_profile = CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_client(TestDataConstants.FILTER)) \
-            .find_client_by_email(Config.data.get_data_client(TestDataConstants.E_MAIL))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
         date_birthday_crm = crm_client_profile.get_date_birthday()
 
         client_profile_edit = ClientProfileUpdate()
 
         client_profile_edit.edit_first_name_by_pencil(
-            Config.data.get_data_client(TestDataConstants.FIRST_NAME)) \
-            .edit_last_name_by_pencil(Config.data.get_data_client(TestDataConstants.LAST_NAME)) \
-            .edit_phone_by_pencil(Config.data.get_data_client(TestDataConstants.PHONE)) \
-            .edit_citizen_ship_by_pencil(Config.data.get_data_client(TestDataConstants.CITIZEN_SHIP)) \
+            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.SECOND_FIRST_NAME)) \
+            .edit_last_name_by_pencil(
+            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.LAST_NAME)) \
+            .edit_phone_by_pencil(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PHONE)) \
+            .edit_citizen_ship_by_pencil(
+            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CITIZEN_SHIP)) \
             .perform_scroll(300) \
-            .edit_address_by_pencil(Config.data.get_data_client(TestDataConstants.ADDRESS)) \
-            .edit_post_code_by_pencil(Config.data.get_data_client(TestDataConstants.POST_CODE)) \
-            .edit_city_by_pencil(Config.data.get_data_client(TestDataConstants.CITY)) \
-            .edit_country_by_pencil(Config.data.get_data_client(TestDataConstants.FIRST_COUNTRY))
+            .edit_address_by_pencil(
+            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ADDRESS)) \
+            .edit_post_code_by_pencil(
+            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.POST_CODE)) \
+            .edit_city_by_pencil(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CITY)) \
+            .edit_country_by_pencil(
+            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
         BrandHomePage().open_second_tab_page(Config.url_client_area).login() \
-            .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
-                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
+            .set_fields(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
             .click_login_button() \
             .open_drop_down_menu() \
             .select_module(CaConstants.ACCOUNT_DETAILS)
@@ -102,5 +107,5 @@ class PersonalDetailsUpdateTestCA(BaseTest):
         country = account_info_ca.get_country_text()
 
         assert date_birthday_crm == day_of_birthday_ca
-        assert Config.data.get_data_client(TestDataConstants.CITIZEN_SHIP) == citizen
-        assert Config.data.get_data_client(TestDataConstants.FIRST_COUNTRY) == country
+        assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.CITIZEN_SHIP) == citizen
+        assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.FIRST_COUNTRY) == country

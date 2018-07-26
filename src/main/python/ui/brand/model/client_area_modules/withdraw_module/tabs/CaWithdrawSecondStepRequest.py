@@ -7,7 +7,7 @@ from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBaseP
 from src.main.python.ui.brand.model.client_area_modules.withdraw_module.tabs.CaWithdrawHistory import CaWithdrawHistory
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.config import Config
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 class CaWithdrawSecondStepRequest(BrandBasePage):
@@ -15,11 +15,13 @@ class CaWithdrawSecondStepRequest(BrandBasePage):
         super().__init__()
 
     def perform_withdraw_second_step_request(self):
-        self.set_card_number_field(Config.data.get_data_client(TestDataConstants.CREDIT_CARD))
-        self.set_expiry_date(Config.data.get_data_client(TestDataConstants.EXPIRY_DATE))
-        self.set_year_field(Config.data.get_data_client(TestDataConstants.EXPIRY_YEAR))
-        self.set_cvc_field(Config.data.get_data_client(TestDataConstants.CVC))
-        self.select_withdraw_reason(Config.data.get_data_client(TestDataConstants.WITHDRAWAL_REASON))
+        self.set_card_number_field(
+            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CREDIT_CARD))
+        self.set_expiry_date(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.EXPIRY_DATE))
+        self.set_year_field(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.EXPIRY_YEAR))
+        self.set_cvc_field(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CVC))
+        self.select_withdraw_reason(
+            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.WITHDRAWAL_REASON))
         self.submit_button()
         return CaWithdrawSecondStepRequest()
 

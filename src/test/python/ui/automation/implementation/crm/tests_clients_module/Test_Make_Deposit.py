@@ -6,7 +6,7 @@ from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4Deposit
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.deposit.CADepositPrecondition import CADepositPrecondition
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 @pytest.mark.run(order=12)

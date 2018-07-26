@@ -1,6 +1,6 @@
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.utils.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
 class ForgotPasswordTestCA(BaseTest):
