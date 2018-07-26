@@ -4,14 +4,19 @@
     "is_enabled": "yes",
     "allowed_ip": "0.0.0.0",
     "allowed_methods_1": "1",
+    "allowed_methods_1_name": "get.customer",
     "allowed_methods_2": "2",
+    "allowed_methods_2_name": "get.tradingAccount",
     "allowed_methods_3": "3",
+    "allowed_methods_3_name": "post.leads",
     "allowed_methods_4": "4",
+    "allowed_methods_4_name": "post.tradingAccount",
     "allowed_methods_5": "5",
-    "blocked_countries_1": "1",
-    "blocked_countries_2": "2",
-    "blocked_countries_3": "3",
-    "blocked_countries_4": "4",
-    "blocked_countries_5": "5"
+    "allowed_methods_5_name": "system.login-token",
+    "blocked_countries_1": "Afghanistan",
+    "blocked_countries_2": "Albania",
+    "blocked_countries_3": "American Samoa",
+    "blocked_countries_4": "Aland Islands",
+    "blocked_countries_5": "Algeria"
   }
 }
