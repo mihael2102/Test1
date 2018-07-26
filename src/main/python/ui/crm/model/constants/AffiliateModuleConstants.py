@@ -3,7 +3,6 @@ import random
 
 class AffiliateModuleConstants(object):
     random_number = str(random.randrange(1, 9999))
-
     AFFILIATES_MODULE = "Affiliates"
     AFFILIATE_INFO = "Affiliate_info"
     BRAND_NEW_FOREX = "first_brand"

@@ -60,13 +60,13 @@ class DataProviders(object):
 
     def get_data_financial_transactions_info(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/financial_transactions.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/financial-transactions-information.json')
         conn_string = json.load(connection_file)
         return conn_string[FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE][value]
 
     def get_data_audit_logs_info(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/audit_logs_module.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/audit-logs-information.json')
         conn_string = json.load(connection_file)
         return conn_string[AuditLogsConstants.AUDIT_LOGS_MODULE_INFO][value]
 
@@ -79,5 +79,11 @@ class DataProviders(object):
     def get_data_affliate_info(self, key, value):
         connection_file = open(
             'D:/automation-newforexqa/src/test/python/resources/test-data/affiliate-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[key][value]
+
+    def get_data_help_desk(self, key, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/help-desk-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]

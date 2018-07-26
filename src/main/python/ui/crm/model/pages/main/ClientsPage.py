@@ -7,7 +7,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.modules.client_modules.mass_sms.SendSMSClientsModule import SendSMSClientsModule
 from src.main.python.ui.crm.model.modules.client_modules.send_email.SendEmailClientsModule import SendEmailClientsModule
 from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
-from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskModule
+from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
 from src.main.python.ui.crm.model.modules.client_modules.mass_assign.MassAssignClientsModule import \
     MassAssignClientsModule
 from src.main.python.ui.crm.model.modules.client_modules.mass_edit.MassEditClientsModule import MassEditClientsModule
@@ -112,7 +112,7 @@ class ClientsPage(CRMBasePage):
         help_desc_module = super().wait_load_element("//a[contains(text(), 'Help Desk')]")
         help_desc_module.click()
         Logging().reportDebugStep(self, "Open  the help desk module ")
-        return HelpDeskModule()
+        return HelpDeskPage()
 
     def refresh(self):
         self.driver.refresh()
