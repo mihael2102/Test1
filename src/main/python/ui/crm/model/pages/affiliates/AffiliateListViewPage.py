@@ -121,7 +121,7 @@ class AffiliateListViewPage(CRMBasePage):
                                  allowed_methods_2, allowed_methods_3, allowed_methods_4, allowed_methods_5,
                                  blocked_countries_1, blocked_countries_2, blocked_countries_3, blocked_countries_4,
                                  blocked_countries_5):
-        return self.open_edit_affiliate_popup().
+        return self.open_edit_affiliate_popup()
 
 
 
