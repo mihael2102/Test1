@@ -22,7 +22,7 @@ class BaseTest(unittest.TestCase):
 
     @property
     def get_driver(self):
-        return driver
+        return type(driver)
 
     def tearDown(self):
         """Take a Screen-shot of the drive homepage, when it Failed."""
