@@ -11,8 +11,10 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
     DownloadDocumentsClientModule
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In import CreditInTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out import CreditOutTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Withdraw import WithdrawTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign import MassAssignTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit import MassEditTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email import SendEmailTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients import \
     SearchingClientsTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_SMS_Clients_Module import \
@@ -25,7 +27,12 @@ from src.test.python.ui.automation.implementation.crm.tests_document_module.Test
     TabDocumentModule
 from src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module import \
     TabFinancialTransaction
+from src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module import HelpDeskTest
+from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Import_Export_Lead import \
+    ImportLeadTest
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module import LeadModule
+from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module import TabLeadsModuleCRM
+from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Email import MassEmailTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tasks_Actions import ActionsTaskModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Add_New_Task_Calendar_View import \
     AddNewTaskCalendarView
@@ -35,6 +42,7 @@ from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Ma
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Edit import MassEditTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Sms import MassSmsTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tab_Task_Module import TabTasksModuleCRM
+from src.test.python.ui.automation.implementation.crm.user_management.Test_Create_User import CreateUserTest
 
 
 class TestRegression(object):
@@ -60,11 +68,17 @@ class TestRegression(object):
     def run_perform_create_filter_crm(self):
         CreateFilterTestCRM()
 
+    def create_user(self):
+        CreateUserTest()
+
     def run_perform_searching_crm(self):
         SearchingClientsTestCRM()
 
     def run_perform_mass_edit_clients_module(self):
         MassEditTestCRM()
+
+    def run_withdraw_clients_module(self):
+        WithdrawTestCRM()
 
     def run_perform_mass_assigned_to_clients_module(self):
         MassAssignTestCRM()
@@ -99,6 +113,10 @@ class TestRegression(object):
     def run_actions_task_module(self):
         ActionsTaskModuleTest()
 
+
+    def run_mass_email_task_module(self):
+        MassEmailTaskModule()
+
     def run_create_delete_document(self):
         CreateDocument()
 
@@ -108,6 +126,12 @@ class TestRegression(object):
     def run_check_lead_test(self):
         LeadModule()
 
+    def run_import_lead(self):
+        ImportLeadTest()
+
+    def run_tab_lead_test(self):
+        TabLeadsModuleCRM()
+
     def run_check_tab_financial_transaction(self):
         TabFinancialTransaction()
 
@@ -116,3 +140,9 @@ class TestRegression(object):
 
     def run_check_audit_logs_test(self):
         AuditLogs()
+
+    def run_send_email_clients_module(self):
+        SendEmailTestCRM()
+
+    def run_help_desk_test(self):
+        HelpDeskTest()
