@@ -14,11 +14,11 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
 
 class TestSmoke(object):
 
-    def run_sign_up(self):
-        SignUpTest()
-
     def run_create_filter(self):
         CreateFilterTestCRM()
+
+    def run_sign_up(self):
+        SignUpTest()
 
     def run_create_ticket(self):
         CreateSupportTicketTestCa()

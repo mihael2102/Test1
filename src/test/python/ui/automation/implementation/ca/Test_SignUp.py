@@ -6,7 +6,7 @@ from src.test.python.ui.automation.utils.preconditions.sign_up.BrandSignUpPrecon
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=1)
+@pytest.mark.run(order=2)
 class SignUpTest(BaseTest):
 
     def test_check_sign_up(self):
