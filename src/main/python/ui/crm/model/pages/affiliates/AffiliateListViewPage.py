@@ -39,7 +39,6 @@ class AffiliateListViewPage(CRMBasePage):
                                   "Open details page of required affiliate -> " + AffiliateModuleConstants.PARTNER_NAME)
         return AffiliateDetailsViewPage()
 
-
     def perform_search_by_partner_name(self, partner_name_text):
         partner_name_input = self.driver.find_element(By.XPATH, "(//*[@id='host-element']/input)[2]")
 

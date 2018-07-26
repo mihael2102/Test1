@@ -1,5 +1,7 @@
 from src.test.python.ui.automation.implementation.crm.test_my_dashboard.Test_My_Dashboard_Actions import \
     MyDashboardActionsTest
+from src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module import \
+    AffiliateModule
 from src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs import AuditLogs
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction import AddInteraction
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password import \
@@ -113,7 +115,6 @@ class TestRegression(object):
     def run_actions_task_module(self):
         ActionsTaskModuleTest()
 
-
     def run_mass_email_task_module(self):
         MassEmailTaskModule()
 
@@ -146,3 +147,6 @@ class TestRegression(object):
 
     def run_help_desk_test(self):
         HelpDeskTest()
+
+    def run_affiliate_module(self):
+        AffiliateModule()
