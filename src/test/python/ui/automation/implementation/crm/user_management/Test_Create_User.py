@@ -7,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=27)
+@pytest.mark.run(order=8)
 class CreateUserTest(BaseTest):
 
     def test_create_user(self):

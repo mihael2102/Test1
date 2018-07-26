@@ -6,7 +6,7 @@ from src.test.python.ui.automation.BaseTest import BaseTest
 from src.test.python.ui.automation.utils.preconditions.task_module.MassDeletePrecondition import MassDeletePrecondition
 
 
-@pytest.mark.run(order=17)
+@pytest.mark.run(order=19)
 class MassDeleteTaskModule(BaseTest):
 
     def test_mass_delete_task_module(self):

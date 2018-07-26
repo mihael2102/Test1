@@ -8,7 +8,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
 
 
-@pytest.mark.run(order=18)
+@pytest.mark.run(order=20)
 class MassSmsTaskModule(BaseTest):
 
     def test_perform_mass_sms_task_module(self):

@@ -9,7 +9,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=19)
+@pytest.mark.run(order=21)
 class AddNewTaskCalendarView(BaseTest):
 
     def test_check_add_tasks_calendar_view(self):

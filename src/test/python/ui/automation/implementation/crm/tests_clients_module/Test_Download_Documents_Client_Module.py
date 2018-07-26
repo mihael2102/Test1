@@ -6,7 +6,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=12)
+@pytest.mark.run(order=14)
 class DownloadDocumentsClientModule(BaseTest):
 
     def test_perform_download_document(self):

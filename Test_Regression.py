@@ -1,3 +1,5 @@
+import pytest
+
 from src.test.python.ui.automation.implementation.crm.test_my_dashboard.Test_My_Dashboard_Actions import \
     MyDashboardActionsTest
 from src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module import \

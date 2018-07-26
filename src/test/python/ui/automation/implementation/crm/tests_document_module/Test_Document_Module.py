@@ -7,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=21)
+@pytest.mark.run(order=24)
 class CreateDocument(BaseTest):
 
     def test_create_document(self):

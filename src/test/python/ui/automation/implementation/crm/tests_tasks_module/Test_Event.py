@@ -8,7 +8,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=14)
+@pytest.mark.run(order=16)
 class AddEventTaskModule(BaseTest):
 
     def test_add_event(self):

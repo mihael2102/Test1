@@ -8,7 +8,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=15)
+@pytest.mark.run(order=17)
 class CalendarView(BaseTest):
 
     def test_check_month_tab(self):

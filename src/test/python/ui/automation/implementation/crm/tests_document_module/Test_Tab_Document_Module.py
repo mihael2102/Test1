@@ -7,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=22)
+@pytest.mark.run(order=25)
 class TabDocumentModule(BaseTest):
 
     def test_check_tabs_document_module(self):

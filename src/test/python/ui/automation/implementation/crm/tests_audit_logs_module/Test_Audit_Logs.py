@@ -7,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=26)
+@pytest.mark.run(order=31)
 class AuditLogs(BaseTest):
 
     def test_check_tab_audit_logs_module(self):
