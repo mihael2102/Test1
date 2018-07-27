@@ -5,7 +5,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-class ImportExportLeadTest(BaseTest):
+class ImportLeadTest(BaseTest):
 
     def test_import_lead(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
