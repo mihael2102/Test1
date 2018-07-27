@@ -28,6 +28,6 @@ class SearchingClientsTestCRM(BaseTest):
         last_name_crm = crm_client_profile.get_last_name()
         email = crm_client_profile.get_email_text()
 
-        assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME) == first_name_crm
+        assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.SECOND_FIRST_NAME) == first_name_crm
         assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.LAST_NAME) == last_name_crm
         assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL) == email
