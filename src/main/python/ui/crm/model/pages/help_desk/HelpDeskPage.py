@@ -37,6 +37,54 @@ class HelpDeskPage(CRMBasePage):
         Logging().reportDebugStep(self, "The filter pop-up is opened")
         return FilterPage()
 
+    def get_all_tab_text(self):
+        all_tab = super().wait_element_to_be_clickable("//li[contains(text(),'All')]")
+        all_tab.click()
+        sleep(1)
+        tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'All')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        return tab_text.text
+
+    def get_closed_tab_text(self):
+        closed_tab = super().wait_element_to_be_clickable("//li[contains(text(),'Closed')]")
+        closed_tab.click()
+        sleep(1)
+        tab = super().wait_element_to_be_clickable("//li[contains(text(),'Closed')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab.text)
+        return tab.text
+
+    def get_in_progress_tab_text(self):
+        in_progress = super().wait_element_to_be_clickable("//li[contains(text(),'In Progress')]")
+        in_progress.click()
+        sleep(1)
+        tab = super().wait_element_to_be_clickable("//li[contains(text(),'In Progress')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab.text)
+        return tab.text
+
+    def get_open_tab_text(self):
+        open_tab = super().wait_element_to_be_clickable("//li[contains(text(),'Open')]")
+        open_tab.click()
+        sleep(1)
+        tab = super().wait_element_to_be_clickable("//li[contains(text(),'Open')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab.text)
+        return tab.text
+
+    def get_open_today_tab_text(self):
+        open_today_tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Opened Today')]")
+        open_today_tab_text.click()
+        sleep(1)
+        tab = super().wait_element_to_be_clickable("//li[contains(text(),'Opened Today')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab.text)
+        return tab.text
+
+    def get_wait_for_response_tab_text(self):
+        wait_for_response = super().wait_element_to_be_clickable("//li[contains(text(),'Wait For Response')]")
+        wait_for_response.click()
+        sleep(1)
+        tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Wait For Response')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        return tab_text.text
+
     '''
          Open the ticket number 
          :return Help Desk instance  

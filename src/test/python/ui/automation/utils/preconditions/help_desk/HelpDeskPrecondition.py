@@ -7,7 +7,7 @@ class HelpDeskPrecondition(object):
     def __init__(self) -> None:
         super().__init__()
 
-    def create_ticket(self):
+    def create_first_ticket(self):
         CRMHomePage().open_help_desk_page()\
             .open_create_ticket_page() \
             .perform_create_new_ticket(HelpDeskConstants.FIRST_TITTLE,
