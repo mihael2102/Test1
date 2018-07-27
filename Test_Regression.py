@@ -32,8 +32,7 @@ from src.test.python.ui.automation.implementation.crm.tests_document_module.Test
 from src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module import \
     TabFinancialTransaction
 from src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module import HelpDeskTest
-from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Import_Export_Lead import \
-    ImportLeadTest
+from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Import_Lead import ImportLeadTest
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module import LeadModule
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module import TabLeadsModuleCRM
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Email import MassEmailTaskModule
