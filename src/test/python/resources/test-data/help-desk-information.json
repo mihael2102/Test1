@@ -8,7 +8,9 @@
     "first_category": "Mobile Client",
     "first_ticket_source": "Telephone Call",
     "first_description": "Description Help Desk",
-    "first_notes": "Notes Help Desk",
+    "first_notes": "Notes Help Desk"
+  },
+  "HelpDeskTabs": {
     "first_tab": "All",
     "second_tab": "Closed",
     "third_tab": "In Progress",

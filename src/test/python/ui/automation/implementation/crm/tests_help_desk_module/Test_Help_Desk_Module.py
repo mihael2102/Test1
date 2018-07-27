@@ -16,7 +16,7 @@ class HelpDeskTest(BaseTest):
 
         FilterPrecondition().create_filter_service_desk()
 
-        HelpDeskPrecondition().create_ticket()
+        HelpDeskPrecondition().create_first_ticket()
 
         detail_view_page_service_desk_module = HelpDeskPage().find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
             .perform_search_ticket() \
@@ -55,7 +55,7 @@ class HelpDeskTest(BaseTest):
 
         FilterPrecondition().create_filter_service_desk()
 
-        HelpDeskPrecondition().create_ticket()
+        HelpDeskPrecondition().create_first_ticket()
 
         HelpDeskPage().find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
             .perform_search_ticket() \

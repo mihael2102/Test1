@@ -3,6 +3,7 @@ import random
 
 class HelpDeskConstants(object):
     FIRST_STATUS = "first_status"
+    HELP_DESK_TABS = "HelpDeskTabs"
     random_number = str(random.randrange(1, 9999))
     HELP_DESK_MODULE = "Help Desk"
     HELP_DESK_INFO = "HelpDeskInfo"
