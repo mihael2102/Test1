@@ -37,6 +37,48 @@ class HelpDeskPage(CRMBasePage):
         Logging().reportDebugStep(self, "The filter pop-up is opened")
         return FilterPage()
 
+    def get_all_tab_text(self):
+        all_tab = super().wait_element_to_be_clickable("//li[contains(text(),'All')]")
+        all_tab.click()
+        tab_text = self.driver.find_element(By.XPATH, "//li[contains(text(),'All')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        return tab_text.text
+
+    def get_closed_tab_text(self):
+        closed_tab = super().wait_element_to_be_clickable("//li[contains(text(),'Closed')]")
+        closed_tab.click()
+        tab_text = self.driver.find_element(By.XPATH, "//li[contains(text(),'Closed')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        return tab_text.text
+
+    def get_in_progress_tab_text(self):
+        in_progress_ = super().wait_element_to_be_clickable("//li[contains(text(),'In progress')]")
+        in_progress_.click()
+        tab_text = self.driver.find_element(By.XPATH, "//li[contains(text(),'In progress')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        return tab_text.text
+
+    def get_open_tab_text(self):
+        open_tab_ = super().wait_element_to_be_clickable("//li[contains(text(),'Open')]")
+        open_tab_.click()
+        tab_text = self.driver.find_element(By.XPATH, "//li[contains(text(),'Open')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        return tab_text.text
+
+    def get_open_today_tab_text(self):
+        open_today_tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Open Today')]")
+        open_today_tab_text.click()
+        tab_text = self.driver.find_element(By.XPATH, "//li[contains(text(),'Open')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        return tab_text.text
+
+    def get_wait_for_response_tab_text(self):
+        wait_for_response = super().wait_element_to_be_clickable("//li[contains(text(),'Wait For Response')]")
+        wait_for_response.click()
+        tab_text = self.driver.find_element(By.XPATH, "//li[contains(text(),'Wait For Response')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        return tab_text.text
+
     '''
          Open the ticket number 
          :return Help Desk instance  

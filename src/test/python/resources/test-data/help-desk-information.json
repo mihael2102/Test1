@@ -8,6 +8,12 @@
     "first_category": "Mobile Client",
     "first_ticket_source": "Telephone Call",
     "first_description": "Description Help Desk",
-    "first_notes": "Notes Help Desk"
+    "first_notes": "Notes Help Desk",
+    "first_tab": "All",
+    "second_tab": "Closed",
+    "third_tab": "In Progress",
+    "fourth_tab": "Open",
+    "fifth_tab": "Opened Today",
+    "sixth_tab": "Wait For Response"
   }
 }
