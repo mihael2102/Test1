@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
