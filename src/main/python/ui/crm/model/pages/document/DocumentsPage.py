@@ -18,8 +18,6 @@ class DocumentsPage(CRMBasePage):
     def open_create_filter_pop_up(self):
         element = super().wait_element_to_be_clickable("//a[contains(text(),'Create Filter')]")
         self.driver.execute_script("arguments[0].click();", element)
-        # self.driver.execute_script(
-        #     "document.getElementsByClassName('before')[0].click()")
         Logging().reportDebugStep(self, "The filter pop-up is opened")
         return FilterPage()
 

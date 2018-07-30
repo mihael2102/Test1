@@ -61,7 +61,7 @@ class LeadsModuleConstants(object):
     SIXTH_COLUMN = "sixth_column"
     SEVENTH_COLUMN = "seventh_column"
     EIGHT_COLUMN = "eight_column"
-    FILTER_INFO = "TabsLeadInfo"
+    LEADS_MODULE_TABS = "TabsLeadInfo"
     FILTER_NAME = "filter_name"
     FIRST_UPDATE_LEAD = "FirstUpdateLead"
     SECOND_TITTLE = "second_tittle"

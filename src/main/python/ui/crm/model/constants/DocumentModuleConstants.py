@@ -5,7 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 class DocumentModuleConstants(object):
     FILTER_INFO = "Tabs Document module"
-    COLUMNS_INFO = "Columns Documents module"
+    DOCUMENTS_MODULE_TABS = "Columns Documents module"
     FILTER_NAME = "filter_name"
     DOCUMENTS_INFO_MODULE = "Documents module information"
     FOURTH_TAB = "fourth_tab"

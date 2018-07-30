@@ -16,15 +16,15 @@ class TabLeadsModuleCRM(BaseTest):
 
         lead_module.open_create_filter_pop_up() \
             .perform_create_filter_lead_module(
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.FILTER_NAME),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.FIRST_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.SECOND_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.THIRD_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.FOURTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.FIFTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.SIXTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.SEVENTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.EIGHT_COLUMN)) \
+            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_TABS, LeadsModuleConstants.FILTER_NAME),
+            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_TABS, LeadsModuleConstants.FIRST_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_TABS, LeadsModuleConstants.SECOND_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_TABS, LeadsModuleConstants.THIRD_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_TABS, LeadsModuleConstants.FOURTH_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_TABS, LeadsModuleConstants.FIFTH_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_TABS, LeadsModuleConstants.SIXTH_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_TABS, LeadsModuleConstants.SEVENTH_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_TABS, LeadsModuleConstants.EIGHT_COLUMN)) \
             .click_save_button()
 
         lead_module.perform_searching_lead_module(

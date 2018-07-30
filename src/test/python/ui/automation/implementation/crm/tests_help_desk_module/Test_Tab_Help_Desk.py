@@ -46,7 +46,7 @@ class TabHelpDeskTest(BaseTest):
 
         HelpDeskPrecondition().create_first_ticket()
 
-        detail_view_page_service_desk_module = HelpDeskPage().select_filter(HelpDeskConstants.FILTER_INFO) \
+        detail_view_page_service_desk_module = HelpDeskPage().select_filter(HelpDeskConstants.FILTER_NAME) \
             .find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
             .perform_search_ticket() \
             .open_ticket_number()
