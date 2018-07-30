@@ -18,6 +18,14 @@
     "blocked_countries_3": "American Samoa",
     "blocked_countries_4": "Aland Islands",
     "blocked_countries_5": "Algeria"
+  },
+  "Affiliate_info_edited": {
+	"first_brand": "newForex",
+	"is_enabled": "no",
+	"allowed_ip": "255.255.255.255",
+	"edited_allowed_methods_1": "12",
+	"edited_allowed_methods_1_name": "get.lead",
+	"edited_countries_1": "Afghanistan"
   }
 }
 

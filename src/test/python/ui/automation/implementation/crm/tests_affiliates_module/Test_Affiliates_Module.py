@@ -40,14 +40,14 @@ class AffiliateModule(BaseTest):
         assert Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
                                                   AffiliateModuleConstants.BRAND_NEW_FOREX) == affiliate_details_page.get_brand()
 
-    # def test_edit_affiliate(self):
-    #
-    #     AffiliatesPrecondition.create_affiliate()
-    #
-    #     """ Open 'Edit' popup and edit affiliate """
-    #     affiliate_list_view_page = AffiliateListViewPage()
-    #
-    #     affiliate_list_view_page.edit_affiliate()
+    def test_edit_affiliate(self):
+
+        AffiliatesPrecondition().create_affiliate()
+
+        """ Open 'Edit' popup and edit affiliate """
+        affiliate_list_view_page = AffiliateListViewPage()
+
+        affiliate_list_view_page.edit_affiliate()
 
 
 

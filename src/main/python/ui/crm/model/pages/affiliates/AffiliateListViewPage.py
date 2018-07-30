@@ -26,8 +26,24 @@ class AffiliateListViewPage(CRMBasePage):
         return CreateAffiliateModule()
 
     def open_edit_affiliate_popup(self):
-        edit_affiliate_button = super().wait_element_to_be_clickable("//tr[3]/td[10]/div/span")
+        """Open 'Edit' popup twice to avoid bug with allowed methods which are not displayed. After fixing remove first opening step"""
+
+        """Open and close popup"""
+        edit_affiliate_button = super().wait_element_to_be_clickable("//tr[3]/td[10]/div")
         edit_affiliate_button.click()
+
+        sleep(1)
+
+        close_edit_affiliate_button = self.driver.find_element(By.XPATH, "(//bs-modal-footer/div/button[2])[1]").click()
+
+        """Open popup second time to see allowed methods"""
+
+        edit_affiliate_button = super().wait_element_to_be_clickable("//tr[3]/td[10]/div")
+
+        sleep(1)
+
+        edit_affiliate_button.click()
+
         Logging().reportDebugStep(self, "Open 'Edit affiliate' popup")
         return EditAffiliateModule()
 
@@ -119,11 +135,21 @@ class AffiliateListViewPage(CRMBasePage):
                 return False
         return True
 
-        # def edit_affiliate(self, partner_name, brand, allowed_ip, is_enabled, allowed_methods_1,
-        #                allowed_methods_2, allowed_methods_3, allowed_methods_4, allowed_methods_5,
-        #                blocked_countries_1, blocked_countries_2, blocked_countries_3, blocked_countries_4,
-        #                blocked_countries_5):
-        # return self.open_edit_affiliate_popup().
+    def edit_affiliate(self):
+        return self.open_edit_affiliate_popup().perform_edit_affiliate("partner_name 541",
+                                                                        Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                           AffiliateModuleConstants.BRAND_NEW_FOREX),
+                                                                        Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                           AffiliateModuleConstants.ALLOWED_IP),
+                                                                        Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                           AffiliateModuleConstants.IS_ENABLED),
+                                                                        Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                           AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD),
+                                                                        Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                           AffiliateModuleConstants.EDITED_COUNTRY_1))
+
+
+
 
 
 
