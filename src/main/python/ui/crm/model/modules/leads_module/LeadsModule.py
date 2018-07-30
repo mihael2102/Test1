@@ -157,7 +157,7 @@ class LeadsModule(CRMBasePage):
     def confirm_delete_lead_module(self):
         delete_filter_button = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
         delete_filter_button.click()
-        Logging().reportDebugStep(self, "Filter was deleted")
+        Logging().reportDebugStep(self, "Three lead were deleted")
         return LeadsModule()
 
     def enter_first_name(self, first_name):

@@ -6,7 +6,7 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
     ChangePasswordTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password import \
     CheckPasswordTestCRM
-from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Create_Filter import CreateFilterTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter import CreateFiltersTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Download_Documents_Client_Module import \
     DownloadDocumentsClientModule
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In import CreditInTestCRM
@@ -58,7 +58,7 @@ class TestRegression(object):
         AddInteraction()
 
     def run_perform_create_filter_crm(self):
-        CreateFilterTestCRM()
+        CreateFiltersTestCRM()
 
     def run_perform_searching_crm(self):
         SearchingClientsTestCRM()

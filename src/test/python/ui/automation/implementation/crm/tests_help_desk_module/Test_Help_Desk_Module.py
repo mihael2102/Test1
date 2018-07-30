@@ -14,8 +14,6 @@ class HelpDeskTest(BaseTest):
             .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
-        FilterPrecondition().create_filter_service_desk()
-
         HelpDeskPrecondition().create_first_ticket()
 
         detail_view_page_service_desk_module = HelpDeskPage().find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \

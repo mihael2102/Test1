@@ -8,22 +8,23 @@ class TabLeadsModuleCRM(BaseTest):
 
     def test_searching_lead_modules(self):
         LeadPrecondition().create_lead()
-        lead_module = CRMHomePage() \
-            .refresh_page() \
-            .open_client_module() \
-            .open_lead_module()
+
+        CRMHomePage().refresh_page() \
+            .open_client_module()
+
+        lead_module = CRMHomePage().open_lead_module()
 
         lead_module.open_create_filter_pop_up() \
             .perform_create_filter_lead_module(
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FILTER_VIEW_NAME),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FIRST_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.SECOND_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.THIRD_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FOURTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FIFTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.SIXTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.SEVENTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.EIGHT_COLUMN)) \
+            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.FILTER_NAME),
+            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.FIRST_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.SECOND_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.THIRD_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.FOURTH_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.FIFTH_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.SIXTH_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.SEVENTH_COLUMN),
+            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_INFO, LeadsModuleConstants.EIGHT_COLUMN)) \
             .click_save_button()
 
         lead_module.perform_searching_lead_module(

@@ -52,3 +52,9 @@ class HelpDeskDetailViewPage(CRMBasePage):
         new_tittle = tittle.text.strip()
         Logging().reportDebugStep(self, "The tittle is:  " + new_tittle)
         return new_tittle
+
+    def came_back_on_previous_page(self):
+        super().came_back_on_previous_page()
+        return HelpDeskDetailViewPage()
+
+

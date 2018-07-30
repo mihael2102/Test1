@@ -2,9 +2,10 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
 
 
-class CreateFilterTestCRM(BaseTest):
+class CreateFiltersTestCRM(BaseTest):
 
     def test_create_filter(self):
         clients_module_page = CRMLoginPage() \
@@ -12,21 +13,7 @@ class CreateFilterTestCRM(BaseTest):
             .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
-        clients_module_page.open_create_filter_pop_up() \
-            .perform_create_filter_client_module(
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.FILTER_NAME),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.FIRST_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SECOND_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.THIRD_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.FOURTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.FIFTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SIXTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SEVENTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.EIGHTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.NINTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.TENTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.ELEVENTH_COLUMN)) \
-            .click_save_button()
+        FilterPrecondition().create_filter_clients_module()
 
         first_name__column = clients_module_page.get_first_name_column()
         second_name_column = clients_module_page.get_second_name_column()
@@ -57,3 +44,7 @@ class CreateFilterTestCRM(BaseTest):
         assert CRMConstants.TENTH_COLUMN_OTHER_TYPE == tenth_name_column
         assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
                                            CRMConstants.ELEVENTH_COLUMN) == eleventh_name_column
+
+        FilterPrecondition().create_filter_documents_module() \
+            .create_filter_leads_module() \
+            .create_filter_service_desk()

@@ -154,3 +154,80 @@ class HelpDeskPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", pencil_link)
         Logging().reportDebugStep(self, "Click edit of the ticket by pencil link")
         return HelpDeskEditPage()
+
+    def find_ticket_by_columns(self, ticket_number, related_to, priority, assigned_to, status, brand):
+        self.enter_ticket_number(ticket_number)
+        self.enter_related_to(related_to)
+        self.enter_priority(priority)
+        self.enter_assigned_to(assigned_to)
+        self.enter_status(status)
+        self.enter_brand(brand)
+
+    def enter_ticket_number(self, ticket_number):
+        ticket_number_field = super().wait_visible_of_element("//input[@id='tks_ticket_no']")
+        ticket_number_field.send_keys(ticket_number)
+        Logging().reportDebugStep(self, "The ticket number was entered: " + ticket_number)
+        return HelpDeskPage()
+
+    def enter_related_to(self, related_to):
+        ticket_number_field = super().wait_visible_of_element("//input[@id='tks_parent_id']")
+        ticket_number_field.send_keys(related_to)
+        Logging().reportDebugStep(self, "The ticket number was entered: " + related_to)
+        return HelpDeskPage()
+
+    def enter_priority(self, priority):
+        country_drop_down = self.driver.find_element(By.XPATH,
+                                                     "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']")
+
+        country_drop_down.click()
+        search_field = self.driver.find_element(By.XPATH,
+                                                "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']")
+        search_field.clear()
+        search_field.send_keys(priority)
+        country_choice = self.driver.find_element(By.XPATH,
+                                                  "//label[contains(text(),'%s')]" % priority)
+        country_choice.click()
+
+        country_drop_down.click()
+        Logging().reportDebugStep(self, "The country was entered : " + priority)
+        return HelpDeskPage()
+
+    def enter_assigned_to(self, assigned_to):
+        country_drop_down = self.driver.find_element(By.XPATH,
+                                                     "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']")
+
+        country_drop_down.click()
+        search_field = self.driver.find_element(By.XPATH,
+                                                "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']")
+        search_field.clear()
+        search_field.send_keys(priority)
+        country_choice = self.driver.find_element(By.XPATH,
+                                                  "//label[contains(text(),'%s')]" % assigned_to)
+        country_choice.click()
+
+        country_drop_down.click()
+        Logging().reportDebugStep(self, "The country was entered : " + assigned_to)
+        return HelpDeskPage()
+
+    def enter_status(self, status):
+        country_drop_down = self.driver.find_element(By.XPATH,
+                                                     "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']")
+
+        country_drop_down.click()
+        search_field = self.driver.find_element(By.XPATH,
+                                                "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']")
+        search_field.clear()
+        search_field.send_keys(priority)
+        country_choice = self.driver.find_element(By.XPATH,
+                                                  "//label[contains(text(),'%s')]" % status)
+        country_choice.click()
+
+        country_drop_down.click()
+        Logging().reportDebugStep(self, "The country was entered : " + status)
+        return HelpDeskPage()
+
+    def enter_brand(self, brand):
+        ticket_number_field = super().wait_visible_of_element("//input[@id='tks_ticket_no']")
+        ticket_number_field.send_keys(brand)
+        Logging().reportDebugStep(self, "The brand was entered: " + brand)
+        return HelpDeskPage()

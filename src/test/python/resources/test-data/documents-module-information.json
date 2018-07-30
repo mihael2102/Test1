@@ -1,0 +1,21 @@
+{
+  "Documents module information": {
+    "document": "Test",
+    "first_status": "Pending",
+    "first_document_type": "Email",
+    "first_comments": "comments form documents module"
+  },
+  "Tabs Document module": {
+    "first_tab": "All",
+    "second_tab": "Approved",
+    "third_tab": "Not Approved",
+    "fourth_tab": "Pending"
+  },
+  "Columns Documents module": {
+    "filter_name": "TestFilterDocumentsModule",
+    "first_column": "Document No",
+    "second_column": "Status",
+    "third_column": "Comments",
+    "fourth_column": "Assigned To *"
+  }
+}

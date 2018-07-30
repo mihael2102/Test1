@@ -32,8 +32,6 @@ class CreateSupportTicketTestCa(BaseTest):
         ticket_status_ca = brand_service_desk.get_ticket_status()
         ca_id = brand_service_desk.get_ca_id()
 
-        FilterPrecondition().create_filter()
-
         detail_view_page_service_desk_module = HelpDeskPage().find_ticket_by_id(ca_id) \
             .perform_search_ticket() \
             .open_ticket_number()

@@ -55,6 +55,15 @@ class FilterPage(CRMBasePage):
         self.perform_choice_sixth_column(name_sixth_column)
         return FilterPage()
 
+    def perform_create_documents_module(self, name_filter, name_first_column, name_second_column,
+                                        name_third_column, name_fourth_column):
+        self.set_name_filter(name_filter)
+        self.perform_choice_first_column(name_first_column)
+        self.perform_choice_second_column(name_second_column)
+        self.perform_choice_third_column(name_third_column)
+        self.perform_choice_fourth_column(name_fourth_column)
+        return FilterPage()
+
     def set_name_filter(self, name_filter):
         name_filter_field = super().wait_load_element("//input[@name='viewName']")
         name_filter_field.clear()

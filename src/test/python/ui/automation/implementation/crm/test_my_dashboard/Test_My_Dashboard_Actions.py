@@ -15,10 +15,10 @@ class MyDashboardActionsTest(BaseTest):
 
     def test_check_send_sms_actions_section(self):
         ActionsTasksPrecondition().create_first_event()
+        CRMHomePage().refresh_page() \
+            .open_client_module()
 
-        dashboard_module = CRMHomePage().refresh_page() \
-            .open_client_module() \
-            .open_more_list_modules() \
+        dashboard_module = CRMHomePage().open_more_list_modules() \
             .select_my_dashboard_module_more_list(MyDashboardConstants.MY_DASHBOARD_MODULE)
 
         phone_number = dashboard_module.perform_scroll_down() \
@@ -43,10 +43,10 @@ class MyDashboardActionsTest(BaseTest):
 
     def test_check_phone_actions_section(self):
         ActionsTasksPrecondition().create_second_event()
+        CRMHomePage().refresh_page() \
+            .open_client_module()
 
-        dashboard_module = CRMHomePage().refresh_page() \
-            .open_client_module() \
-            .open_more_list_modules() \
+        dashboard_module = CRMHomePage().open_more_list_modules() \
             .select_my_dashboard_module_more_list(MyDashboardConstants.MY_DASHBOARD_MODULE)
 
         dashboard_module.perform_scroll_down() \
@@ -66,10 +66,10 @@ class MyDashboardActionsTest(BaseTest):
 
     def test_send_email_actions_section(self):
         MassEmailPrecondition().create_first_event()
+        CRMHomePage().refresh_page() \
+            .open_client_module()
 
-        dashboard_module = CRMHomePage().refresh_page() \
-            .open_client_module() \
-            .open_more_list_modules() \
+        dashboard_module = CRMHomePage().open_more_list_modules() \
             .select_my_dashboard_module_more_list(MyDashboardConstants.MY_DASHBOARD_MODULE)
 
         dashboard_module.open_show_all_tab().find_event_by_subject(
@@ -101,10 +101,10 @@ class MyDashboardActionsTest(BaseTest):
 
     def test_send_email_from_phone_actions_section(self):
         MassEmailPrecondition().create_third_event()
+        CRMHomePage().open_client_module() \
+            .refresh_page()
 
-        dashboard_module = CRMHomePage().refresh_page() \
-            .open_client_module() \
-            .open_more_list_modules() \
+        dashboard_module = CRMHomePage().open_more_list_modules() \
             .select_my_dashboard_module_more_list(MyDashboardConstants.MY_DASHBOARD_MODULE)
 
         dashboard_module.open_show_all_tab().find_event_by_subject(
@@ -137,10 +137,10 @@ class MyDashboardActionsTest(BaseTest):
 
     def test_send_sms_from_phone_actions_section(self):
         MassSmSPrecondition().create_fourth_event()
+        CRMHomePage().open_client_module() \
+            .refresh_page()
 
-        dashboard_module = CRMHomePage().refresh_page() \
-            .open_client_module() \
-            .open_more_list_modules() \
+        dashboard_module = CRMHomePage().open_more_list_modules() \
             .select_my_dashboard_module_more_list(MyDashboardConstants.MY_DASHBOARD_MODULE)
 
         phone_number = dashboard_module.open_show_all_tab() \

@@ -1,7 +1,6 @@
 import json
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
 from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
-from src.main.python.ui.crm.model.constants.DocumentClientsModuleConstants import DocumentClientsModuleConstants
 from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
     FinancialTransactionsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
@@ -22,11 +21,11 @@ class DataProviders(object):
         conn_string = json.load(connection_file)
         return conn_string[key][value]
 
-    def get_data_document_crm(self, value):
+    def get_data_document_crm(self, key, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/crm-information.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/documents-module-information.json')
         conn_string = json.load(connection_file)
-        return conn_string[DocumentClientsModuleConstants.CRM_ADD_DOCUMENT][value]
+        return conn_string[key][value]
 
     def get_data_client_information_update_ca(self, value):
         connection_file = open(

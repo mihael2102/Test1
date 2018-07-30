@@ -1,9 +1,10 @@
+from src.main.python.ui.crm.model.constants.FilterConstants import HelpDeskConstants
 from src.main.python.ui.crm.model.constants.HelpDeskConstants import HelpDeskConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
 from src.test.python.ui.automation.utils.preconditions.help_desk.HelpDeskPrecondition import HelpDeskPrecondition
 
 
@@ -43,8 +44,32 @@ class TabHelpDeskTest(BaseTest):
 
         help_desk_module = CRMHomePage().open_help_desk_page()
 
-        FilterPrecondition().create_filter_service_desk()
-
         HelpDeskPrecondition().create_first_ticket()
 
+        detail_view_page_service_desk_module = HelpDeskPage().select_filter(HelpDeskConstants.FILTER_INFO) \
+            .find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
+            .perform_search_ticket() \
+            .open_ticket_number()
 
+        tittle = detail_view_page_service_desk_module.get_title_text()
+        category = detail_view_page_service_desk_module.get_category_status_text()
+        ticket_status = detail_view_page_service_desk_module.get_ticket_status_text()
+        account_name = detail_view_page_service_desk_module.get_account_name()
+        description = detail_view_page_service_desk_module.get_description_text()
+        notes = detail_view_page_service_desk_module.get_notes_text()
+        priority = detail_view_page_service_desk_module.get_priority_text()
+
+        detail_view_page_service_desk_module.came_back_on_previous_page()
+
+        help_desk_module.find_ticket_by_columns(
+
+            HelpDeskConstants.FIRST_TITTLE,
+            Config.data.get_data_help_desk(tittle),
+            Config.data.get_data_help_desk(category),
+            Config.data.get_data_help_desk(ticket_status),
+            Config.data.get_data_help_desk(account_name),
+            Config.data.get_data_help_desk(description),
+            Config.data.get_data_help_desk(notes),
+            Config.data.get_data_help_desk(priority))
+
+        help_desk_module.open_ticket_number()
