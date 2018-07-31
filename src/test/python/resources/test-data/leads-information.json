@@ -19,7 +19,7 @@
     "first_lead_status": "R - in practice",
     "first_assigned_to": "Panda UA",
     "first_source_name": "source name test",
-    "brand": "RoyalCFDs",
+    "brand": "NFX",
     "po_box": "po box text",
     "city": "Kharkiv",
     "first_state": "New York"
@@ -44,7 +44,7 @@
     "first_lead_status": "B - No interest",
     "first_assigned_to": "Panda UA",
     "first_source_name": "source name test",
-    "brand": "RoyalCFDs",
+    "brand": "NFX",
     "po_box": "po box text",
     "city": "Kharkiv",
     "first_state": "New York"
@@ -69,13 +69,13 @@
     "first_lead_status": "R - welcome call",
     "first_assigned_to": "Panda UA",
     "first_source_name": "source name test",
-    "brand": "RoyalCFDs",
+    "brand": "NFX",
     "po_box": "po box text",
     "city": "Kharkiv",
     "first_state": "New York"
   },
-  "FilterColumns": {
-    "view_name": "TestFilter",
+  "LeadModuleColumns": {
+    "filter_name": "TestFilterLeadModule",
     "first_column": "First Name",
     "second_column": "Last Name *",
     "third_column": "Email",
@@ -102,7 +102,7 @@
     "first_phone_lead": "444444444",
     "first_birthday_lead": "1988-07-02",
     "first_citizenship": "Italian",
-    "first_brand": "RoyalCFDs",
+    "first_brand": "NFX",
     "first_referral": "Referral_lead",
     "first_currency": "USD",
     "first_password": "Password_lead",

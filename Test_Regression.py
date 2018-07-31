@@ -6,7 +6,7 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
     ChangePasswordTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password import \
     CheckPasswordTestCRM
-from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Create_Filter import CreateFilterTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter import CreateFiltersTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Download_Documents_Client_Module import \
     DownloadDocumentsClientModule
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In import CreditInTestCRM
@@ -19,10 +19,7 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
     SendSMSClientsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta import \
     TransferBetweenTa
-from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module import CreateDocument
 
-from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Tab_Document_Module import \
-    TabDocumentModule
 from src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module import \
     TabFinancialTransaction
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module import LeadModule
@@ -34,7 +31,6 @@ from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Ev
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Delete import MassDeleteTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Edit import MassEditTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Sms import MassSmsTaskModule
-from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tab_Task_Module import TabTasksModuleCRM
 
 
 class TestRegression(object):
@@ -58,7 +54,7 @@ class TestRegression(object):
         AddInteraction()
 
     def run_perform_create_filter_crm(self):
-        CreateFilterTestCRM()
+        CreateFiltersTestCRM()
 
     def run_perform_searching_crm(self):
         SearchingClientsTestCRM()
@@ -76,7 +72,7 @@ class TestRegression(object):
         DownloadDocumentsClientModule()
 
     def run_perform_check_tabs(self):
-        TabTasksModuleCRM()
+        TabTasksTest()
 
     def run_perform_add_event(self):
         AddEventTaskModule()

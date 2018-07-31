@@ -1,0 +1,34 @@
+{
+  "HelpDeskInfo": {
+    "first_related_to": "Test33333",
+    "second_related_to": "Test33333 Li",
+    "first_assigned_to": "Panda UA",
+    "first_status": "In Progress",
+    "first_priority": "Low",
+    "first_category": "Mobile Client",
+    "first_ticket_source": "Telephone Call",
+    "first_description": "Description Help Desk",
+    "first_notes": "Notes Help Desk"
+  },
+  "HelpDeskTabs": {
+    "first_tab": "All",
+    "second_tab": "Closed",
+    "third_tab": "In Progress",
+    "fourth_tab": "Open",
+    "fifth_tab": "Opened Today",
+    "sixth_tab": "Wait For Response"
+  },
+  "HelpDeskColumns": {
+    "filter_name": "TestFilterHelpDeskModule",
+    "first_column": "Ticket No",
+    "second_column": "Title *",
+    "third_column": "Priority",
+    "fourth_column": "Assigned To *",
+    "fifth_column": "Status *",
+    "sixth_column": "CA Id",
+    "seventh_column": "Category *",
+    "eighth_column": "Brand",
+    "tenth_column": "Description *",
+    "eleventh_column": "Related to *"
+  }
+}

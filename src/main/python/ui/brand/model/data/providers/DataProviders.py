@@ -1,7 +1,6 @@
 import json
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
 from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
-from src.main.python.ui.crm.model.constants.DocumentClientsModuleConstants import DocumentClientsModuleConstants
 from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
     FinancialTransactionsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
@@ -16,17 +15,11 @@ class DataProviders(object):
         conn_string = json.load(connection_file)
         return conn_string[key][value]
 
-    def get_data_filter_crm(self, key, value):
+    def get_data_document_crm(self, key, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/filter-information.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/documents-module-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]
-
-    def get_data_document_crm(self, value):
-        connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/crm-information.json')
-        conn_string = json.load(connection_file)
-        return conn_string[DocumentClientsModuleConstants.CRM_ADD_DOCUMENT][value]
 
     def get_data_client_information_update_ca(self, value):
         connection_file = open(
@@ -60,13 +53,13 @@ class DataProviders(object):
 
     def get_data_financial_transactions_info(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/financial_transactions.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/financial-transactions-information.json')
         conn_string = json.load(connection_file)
         return conn_string[FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE][value]
 
     def get_data_audit_logs_info(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/audit_logs_module.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/audit-logs-information.json')
         conn_string = json.load(connection_file)
         return conn_string[AuditLogsConstants.AUDIT_LOGS_MODULE_INFO][value]
 
@@ -79,5 +72,11 @@ class DataProviders(object):
     def get_data_affliate_info(self, key, value):
         connection_file = open(
             'D:/automation-newforexqa/src/test/python/resources/test-data/affiliate-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[key][value]
+
+    def get_data_help_desk(self, key, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/help-desk-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]

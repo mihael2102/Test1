@@ -3,7 +3,7 @@ import random
 
 class LeadsModuleConstants(object):
     CONFIRM_MESSAGE = "File successfully uploaded."
-    LAST_IMPORT_NAME_LEAD = "Testing1QA1"
+    LAST_IMPORT_NAME_LEAD = "qatesting1"
     FIRST_IMPORT_LEAD = "FirstImportLead"
     random_numbers = str(random.randrange(1, 9999))
     FIRST_ADDRESS_LEAD = "first_address"
@@ -61,8 +61,8 @@ class LeadsModuleConstants(object):
     SIXTH_COLUMN = "sixth_column"
     SEVENTH_COLUMN = "seventh_column"
     EIGHT_COLUMN = "eight_column"
-    FILTER_NAME = "FilterColumns"
-    FILTER_VIEW_NAME = "view_name"
+    LEADS_MODULE_COLUMNS = "LeadModuleColumns"
+    FILTER_NAME = "filter_name"
     FIRST_UPDATE_LEAD = "FirstUpdateLead"
     SECOND_TITTLE = "second_tittle"
     SECOND_LEAD_SOURCE = "second_lead_source"

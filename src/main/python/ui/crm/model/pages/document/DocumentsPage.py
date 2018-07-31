@@ -1,5 +1,6 @@
 from time import sleep
 
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
@@ -15,8 +16,8 @@ class DocumentsPage(CRMBasePage):
         super().__init__()
 
     def open_create_filter_pop_up(self):
-        filter_button = super().wait_element_to_be_clickable("//a[@title='Create Filter']")
-        filter_button.click()
+        element = super().wait_element_to_be_clickable("//a[contains(text(),'Create Filter')]")
+        self.driver.execute_script("arguments[0].click();", element)
         Logging().reportDebugStep(self, "The filter pop-up is opened")
         return FilterPage()
 
