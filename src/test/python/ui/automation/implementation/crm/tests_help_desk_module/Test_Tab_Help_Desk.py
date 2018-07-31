@@ -1,4 +1,3 @@
-from src.main.python.ui.crm.model.constants.FilterConstants import HelpDeskConstants
 from src.main.python.ui.crm.model.constants.HelpDeskConstants import HelpDeskConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
@@ -46,30 +45,31 @@ class TabHelpDeskTest(BaseTest):
 
         HelpDeskPrecondition().create_first_ticket()
 
-        detail_view_page_service_desk_module = HelpDeskPage().select_filter(HelpDeskConstants.FILTER_NAME) \
+        detail_view_page_service_desk_module = HelpDeskPage().select_filter(
+            Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME)) \
             .find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
             .perform_search_ticket() \
             .open_ticket_number()
 
-        tittle = detail_view_page_service_desk_module.get_title_text()
-        category = detail_view_page_service_desk_module.get_category_status_text()
-        ticket_status = detail_view_page_service_desk_module.get_ticket_status_text()
-        account_name = detail_view_page_service_desk_module.get_account_name()
-        description = detail_view_page_service_desk_module.get_description_text()
-        notes = detail_view_page_service_desk_module.get_notes_text()
-        priority = detail_view_page_service_desk_module.get_priority_text()
+        ticket_number = detail_view_page_service_desk_module.get_ticket_number_text()
+        ca_id = detail_view_page_service_desk_module.get_ca_id_text()
+        brand = detail_view_page_service_desk_module.get_brand_text()
 
         detail_view_page_service_desk_module.came_back_on_previous_page()
 
-        help_desk_module.find_ticket_by_columns(
-
-            HelpDeskConstants.FIRST_TITTLE,
-            Config.data.get_data_help_desk(tittle),
-            Config.data.get_data_help_desk(category),
-            Config.data.get_data_help_desk(ticket_status),
-            Config.data.get_data_help_desk(account_name),
-            Config.data.get_data_help_desk(description),
-            Config.data.get_data_help_desk(notes),
-            Config.data.get_data_help_desk(priority))
+        help_desk_module.find_ticket_by_columns(ticket_number, ca_id, brand,
+                                                HelpDeskConstants.FIRST_TITTLE,
+                                                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                                               HelpDeskConstants.FIRST_RELATED_TO),
+                                                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                                               HelpDeskConstants.FIRST_ASSIGNED_TO),
+                                                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                                               HelpDeskConstants.FIRST_STATUS),
+                                                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                                               HelpDeskConstants.FIRST_PRIORITY),
+                                                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                                               HelpDeskConstants.FIRST_CATEGORY),
+                                                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                                               HelpDeskConstants.FIRST_DESCRIPTION))
 
         help_desk_module.open_ticket_number()

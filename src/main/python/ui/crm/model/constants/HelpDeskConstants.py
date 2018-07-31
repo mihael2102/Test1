@@ -2,6 +2,10 @@ import random
 
 
 class HelpDeskConstants(object):
+    ELEVENTH_COLUMN = "eleventh_column"
+    SEVENTH_COLUMN = "seventh_column"
+    EIGHTH_COLUMN = "eighth_column"
+    TENTH_COLUMN = "tenth_column"
     FIRST_STATUS = "first_status"
     random_number = str(random.randrange(1, 9999))
     HELP_DESK_MODULE = "Help Desk"
@@ -11,6 +15,7 @@ class HelpDeskConstants(object):
     SECOND_RELATED_TO = "second_related_to"
     FIRST_ASSIGNED_TO = "first_assigned_to"
     FIRST_PRIORITY = "first_priority"
+    TICKET_NUMBER = "Ticket No"
     FIRST_CATEGORY = "first_category"
     FIRST_TICKET_SOURCE = "first_ticket_source"
     FIRST_DESCRIPTION = "first_description"

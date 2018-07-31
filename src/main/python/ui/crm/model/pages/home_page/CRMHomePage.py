@@ -112,5 +112,3 @@ class CRMHomePage(CRMBasePage):
         hoverer.perform()
         Logging().reportDebugStep(self, "The user management was opened")
         return UserManagement()
-
-

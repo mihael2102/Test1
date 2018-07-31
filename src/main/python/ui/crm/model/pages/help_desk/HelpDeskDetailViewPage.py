@@ -1,5 +1,3 @@
-import re
-
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 
@@ -53,8 +51,24 @@ class HelpDeskDetailViewPage(CRMBasePage):
         Logging().reportDebugStep(self, "The tittle is:  " + new_tittle)
         return new_tittle
 
+    def get_ticket_number_text(self):
+        ticket_number = super().wait_load_element("//td[contains(text(),'Ticket No')]//following-sibling::td[1]")
+        new_tittle = ticket_number.text.strip()
+        Logging().reportDebugStep(self, "The tittle is:  " + new_tittle)
+        return new_tittle
+
+    def get_brand_text(self):
+        brand_field = super().wait_load_element("//td[contains(text(),'Brand')]//following-sibling::td[1]")
+        new_brand_field = brand_field.text.strip()
+        Logging().reportDebugStep(self, "The brand is:  " + new_brand_field)
+        return new_brand_field
+
+    def get_ca_id_text(self):
+        ca_id = super().wait_load_element("//td[contains(text(),'Ticket No')]//following-sibling::td[1]")
+        new_tittle = ca_id.text.strip()
+        Logging().reportDebugStep(self, "The tittle is:  " + new_tittle)
+        return new_tittle
+
     def came_back_on_previous_page(self):
         super().came_back_on_previous_page()
         return HelpDeskDetailViewPage()
-
-
