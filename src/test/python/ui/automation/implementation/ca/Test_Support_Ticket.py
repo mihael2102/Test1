@@ -2,7 +2,6 @@ from src.main.python.ui.brand.model.client_area_modules.service_desk.CaServiceDe
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
@@ -36,7 +35,7 @@ class CreateSupportTicketTestCa(BaseTest):
             .perform_search_ticket() \
             .open_ticket_number()
 
-        category_tittle_crm = detail_view_page_service_desk_module.get_category_status_text()
+        category_tittle_crm = detail_view_page_service_desk_module.get_category_text()
         ticket_status_crm = detail_view_page_service_desk_module.get_ticket_status_text()
         subject_crm = detail_view_page_service_desk_module.get_subject_tittle()
 
