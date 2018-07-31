@@ -15,12 +15,6 @@ class DataProviders(object):
         conn_string = json.load(connection_file)
         return conn_string[key][value]
 
-    def get_data_filter_crm(self, key, value):
-        connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/filter-information.json')
-        conn_string = json.load(connection_file)
-        return conn_string[key][value]
-
     def get_data_document_crm(self, key, value):
         connection_file = open(
             'D:/automation-newforexqa/src/test/python/resources/test-data/documents-module-information.json')

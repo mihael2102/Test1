@@ -74,7 +74,7 @@
     "city": "Kharkiv",
     "first_state": "New York"
   },
-  "TabsLeadInfo": {
+  "LeadModuleColumns": {
     "filter_name": "TestFilterLeadModule",
     "first_column": "First Name",
     "second_column": "Last Name *",

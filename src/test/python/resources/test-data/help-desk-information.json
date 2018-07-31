@@ -17,5 +17,14 @@
     "fourth_tab": "Open",
     "fifth_tab": "Opened Today",
     "sixth_tab": "Wait For Response"
+  },
+  "HelpDeskColumns": {
+    "filter_name":"TestFilterHelpDeskModule",
+    "first_column": "Ticket No",
+    "second_column": "Title *",
+    "third_column": "Priority",
+    "fourth_column": "Assigned To *",
+    "fifth_column": "Status *",
+    "sixth_column": "CA Id"
   }
 }
