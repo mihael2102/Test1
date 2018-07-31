@@ -107,7 +107,7 @@ class HelpDeskTest(BaseTest):
         assert priority == Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
                                                           HelpDeskConstants.FIRST_PRIORITY)
 
-    def test_searching_for_help_desk(self):
+    def test_searching_in_help_desk_by_ticket_number(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
@@ -130,3 +130,99 @@ class HelpDeskTest(BaseTest):
             .get_ticket_number_text()
 
         assert ticket_number == ticket_number_id
+
+    def test_searching_in_help_desk_by_acount_name(self):
+        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+
+        HelpDeskPrecondition().create_first_ticket()
+        detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
+            HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME)) \
+            .find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
+            .perform_search_ticket() \
+            .open_ticket_number()
+
+        account_name = detail_view_page_service_desk_module.get_account_name()
+        detail_view_page_service_desk_module.came_back_on_previous_page()
+
+        account_name_id = HelpDeskPage().click_searching_in_help_desk() \
+            .select_in_column(HelpDeskConstants.ACCOUNT_NAME) \
+            .enter_search_for_field(account_name) \
+            .click_search_now_button() \
+            .open_ticket_number() \
+            .get_account_name()
+
+        assert account_name == account_name_id
+
+    def test_searching_in_help_desk_by_priority(self):
+        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+
+        HelpDeskPrecondition().create_first_ticket()
+        detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
+            HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME)) \
+            .find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
+            .perform_search_ticket() \
+            .open_ticket_number()
+
+        priority = detail_view_page_service_desk_module.get_priority_text()
+        detail_view_page_service_desk_module.came_back_on_previous_page()
+
+        priority_id = HelpDeskPage().click_searching_in_help_desk() \
+            .select_in_column(HelpDeskConstants.PRIORITY) \
+            .enter_search_for_field(priority) \
+            .click_search_now_button() \
+            .open_ticket_number() \
+            .get_account_name()
+
+        assert priority == priority_id
+
+    def test_searching_in_help_desk_by_assigned_to(self):
+        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+
+        HelpDeskPrecondition().create_first_ticket()
+        detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
+            HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME)) \
+            .find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
+            .perform_search_ticket() \
+            .open_ticket_number()
+
+        assigned = detail_view_page_service_desk_module.get_assigned_to_text()
+        detail_view_page_service_desk_module.came_back_on_previous_page()
+
+        assigned_id = HelpDeskPage().click_searching_in_help_desk() \
+            .select_in_column(HelpDeskConstants.PRIORITY) \
+            .enter_search_for_field(assigned) \
+            .click_search_now_button() \
+            .open_ticket_number() \
+            .get_account_name()
+
+        assert assigned == assigned_id
+
+    def test_searching_in_help_desk_by_status(self):
+        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+
+        HelpDeskPrecondition().create_first_ticket()
+        detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
+            HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME)) \
+            .find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
+            .perform_search_ticket() \
+            .open_ticket_number()
+
+        status = detail_view_page_service_desk_module.get_category_status_text()
+        detail_view_page_service_desk_module.came_back_on_previous_page()
+
+        status_id = HelpDeskPage().click_searching_in_help_desk() \
+            .select_in_column(HelpDeskConstants.STATUS) \
+            .enter_search_for_field(status) \
+            .click_search_now_button() \
+            .open_ticket_number() \
+            .get_account_name()
+
+        assert status == status_id

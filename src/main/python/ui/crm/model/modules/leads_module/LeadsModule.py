@@ -10,7 +10,6 @@ from src.main.python.ui.crm.model.modules.leads_module.MassAssignLeadModule impo
 from src.main.python.ui.crm.model.modules.leads_module.MassEditLeadModule import MassEditLeadModule
 from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
 from src.main.python.ui.crm.model.pages.leads.ImportLeadPage import ImportLeadPage
-from src.main.python.utils.config import Config
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 
