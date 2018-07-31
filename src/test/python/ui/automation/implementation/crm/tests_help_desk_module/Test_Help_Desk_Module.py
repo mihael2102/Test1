@@ -113,7 +113,9 @@ class HelpDeskTest(BaseTest):
                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
         HelpDeskPrecondition().create_first_ticket()
-        detail_view_page_service_desk_module = HelpDeskPage().find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
+        detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
+            HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME)) \
+            .find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
             .perform_search_ticket() \
             .open_ticket_number()
 
@@ -121,7 +123,7 @@ class HelpDeskTest(BaseTest):
         detail_view_page_service_desk_module.came_back_on_previous_page()
 
         ticket_number_id = HelpDeskPage().click_searching_in_help_desk() \
-            .select_in_column(HelpDeskConstants.FIRST_CATEGORY) \
+            .select_in_column(HelpDeskConstants.TICKET_NUMBER) \
             .enter_search_for_field(ticket_number) \
             .click_search_now_button() \
             .open_ticket_number() \

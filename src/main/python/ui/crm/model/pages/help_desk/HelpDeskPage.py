@@ -304,7 +304,9 @@ class HelpDeskPage(CRMBasePage):
         return HelpDeskPage()
 
     def select_in_column(self, column):
-        column_drop_down = Select(self.driver.find_element(By.XPATH, "//td[@class='moduleName']//button[2]"))
+        super().wait_visible_of_element("//div[@id='basicsearchcolumns_real']//select[@id='bas_searchfield']")
+        column_drop_down = Select(
+            self.driver.find_element(By.XPATH, "//div[@id='basicsearchcolumns_real']//select[@id='bas_searchfield']"))
         column_drop_down.select_by_visible_text(column)
         Logging().reportDebugStep(self, "The column was clicked: " + column)
         return HelpDeskPage()
