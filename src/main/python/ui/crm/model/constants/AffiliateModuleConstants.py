@@ -3,6 +3,7 @@ import random
 
 class AffiliateModuleConstants(object):
     random_number = str(random.randrange(1, 9999))
+    random_number_edited = random_number + str(10)
 
     AFFILIATES_MODULE = "Affiliates"
     AFFILIATE_INFO = "Affiliate_info"
@@ -10,6 +11,7 @@ class AffiliateModuleConstants(object):
     BRAND_NEW_FOREX = "first_brand"
     BRAND_NFX = "second_brand"
     PARTNER_NAME = "partner_name " + random_number
+    PARTNER_NAME_EDITED = "partner_name " + random_number_edited
     ALLOWED_IP = "allowed_ip"
     IS_ENABLED = "is_enabled"
     FIRST_ALLOWED_METHOD = "allowed_methods_1"

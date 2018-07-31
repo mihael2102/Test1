@@ -1,3 +1,5 @@
+from time import sleep
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -12,10 +14,10 @@ class EditAffiliateModule(CRMBasePage):
     def __init__(self):
         super().__init__()
 
-    def perform_edit_affiliate(self, partner_name, brand, allowed_ip, is_enabled, added_allowed_method_1,
+    def perform_edit_affiliate(self, partner_name_edited, brand, allowed_ip, is_enabled, added_allowed_method_1,
                                edited_country_1):
 
-        self.edit_partner_name(partner_name)
+        self.edit_partner_name(partner_name_edited)
         self.edit_brand(brand)
         self.edit_allowed_ip(allowed_ip)
         self.edit_is_enabled_radio_button(is_enabled)
@@ -116,6 +118,8 @@ class EditAffiliateModule(CRMBasePage):
         search_element.clear()
         search_element.send_keys(edited_blocked_countries)
 
+        sleep(1)
+
         find_country = self.driver.find_element(By.XPATH,
                                                 "//div[@class='select-options options-enabled']//span[@class='active-option'][1]")
 
@@ -189,5 +193,7 @@ class EditAffiliateModule(CRMBasePage):
     def click_submit(self):
         submit_button = self.driver.find_element(By.XPATH, "//button[@class='btn btn-success']")
         submit_button.click()
+
+
 
 

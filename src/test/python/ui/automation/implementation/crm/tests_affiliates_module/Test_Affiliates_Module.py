@@ -47,7 +47,12 @@ class AffiliateModule(BaseTest):
         """ Open 'Edit' popup and edit affiliate """
         affiliate_list_view_page = AffiliateListViewPage()
 
-        affiliate_list_view_page.edit_affiliate()
+        affiliate_list_view_page.edit_affiliate(AffiliateModuleConstants.PARTNER_NAME)
+
+        """ Perform search by Partner name """
+        affiliate_list_view_page.perform_search_by_partner_name(AffiliateModuleConstants.PARTNER_NAME_EDITED)
+
+        """ Check values on List view page """
 
 
 

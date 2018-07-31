@@ -14,6 +14,50 @@ class AffiliateListViewPage(CRMBasePage):
     def __init__(self):
         super().__init__()
 
+        """Use appropriate dictionary for creating and editing affiliate info and then use these dictionaries in asserts"""
+        self.created_client_initial_info = {AffiliateModuleConstants.PARTNER_NAME: AffiliateModuleConstants.PARTNER_NAME,
+                                            AffiliateModuleConstants.BRAND_NEW_FOREX: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                                                    AffiliateModuleConstants.BRAND_NEW_FOREX),
+                                            AffiliateModuleConstants.ALLOWED_IP: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                                                AffiliateModuleConstants.ALLOWED_IP),
+                                            AffiliateModuleConstants.IS_ENABLED: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                                                AffiliateModuleConstants.IS_ENABLED),
+                                            AffiliateModuleConstants.FIRST_ALLOWED_METHOD: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                                                                                        AffiliateModuleConstants.FIRST_ALLOWED_METHOD),
+                                            AffiliateModuleConstants.SECOND_ALLOWED_METHOD: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                                                                                          AffiliateModuleConstants.SECOND_ALLOWED_METHOD),
+                                            AffiliateModuleConstants.THIRD_ALLOWED_METHOD: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                                                                                        AffiliateModuleConstants.THIRD_ALLOWED_METHOD),
+                                            AffiliateModuleConstants.FOURTH_ALLOWED_METHOD: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                                                                                           AffiliateModuleConstants.FOURTH_ALLOWED_METHOD),
+                                            AffiliateModuleConstants.FIFTH_ALLOWED_METHOD: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                                                                         AffiliateModuleConstants.FIFTH_ALLOWED_METHOD),
+                                            AffiliateModuleConstants.FIRST_COUNTRY: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                                                                         AffiliateModuleConstants.FIRST_COUNTRY),
+                                            AffiliateModuleConstants.SECOND_COUNTRY:  Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                                                                         AffiliateModuleConstants.SECOND_COUNTRY),
+                                            AffiliateModuleConstants.THIRD_COUNTRY: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                                                                         AffiliateModuleConstants.THIRD_COUNTRY),
+                                            AffiliateModuleConstants.FOURTH_COUNTRY: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                                                                         AffiliateModuleConstants.FOURTH_COUNTRY),
+                                            AffiliateModuleConstants.FIFTH_COUNTRY: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                                                                         AffiliateModuleConstants.FIFTH_COUNTRY)
+
+
+                                            }
+        
+        self.edited_client_initial_info = {AffiliateModuleConstants.PARTNER_NAME_EDITED: AffiliateModuleConstants.PARTNER_NAME_EDITED,
+                                             AffiliateModuleConstants.BRAND_NEW_FOREX: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                               AffiliateModuleConstants.BRAND_NEW_FOREX),
+                                             AffiliateModuleConstants.ALLOWED_IP: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                                    AffiliateModuleConstants.ALLOWED_IP),
+                                             AffiliateModuleConstants.IS_ENABLED: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                                    AffiliateModuleConstants.IS_ENABLED),
+                                             AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                                                    AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD),
+                                             AffiliateModuleConstants.EDITED_COUNTRY_1: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                            AffiliateModuleConstants.EDITED_COUNTRY_1)}
+
     def open_create_affiliate_popup(self):
         """
         Open create new affiliate popup
@@ -25,8 +69,11 @@ class AffiliateListViewPage(CRMBasePage):
         Logging().reportDebugStep(self, "Open 'Add new affiliate' popup")
         return CreateAffiliateModule()
 
-    def open_edit_affiliate_popup(self):
+    def open_edit_affiliate_popup(self, partner_name):
         """Open 'Edit' popup twice to avoid bug with allowed methods which are not displayed. After fixing remove first opening step"""
+
+        """Find created client by name and then editing him"""
+        self.perform_search_by_partner_name(partner_name)
 
         """Open and close popup"""
         edit_affiliate_button = super().wait_element_to_be_clickable("//tr[3]/td[10]/div")
@@ -135,18 +182,14 @@ class AffiliateListViewPage(CRMBasePage):
                 return False
         return True
 
-    def edit_affiliate(self):
-        return self.open_edit_affiliate_popup().perform_edit_affiliate("partner_name 541",
-                                                                        Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
-                                                                                                           AffiliateModuleConstants.BRAND_NEW_FOREX),
-                                                                        Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
-                                                                                                           AffiliateModuleConstants.ALLOWED_IP),
-                                                                        Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
-                                                                                                           AffiliateModuleConstants.IS_ENABLED),
-                                                                        Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
-                                                                                                           AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD),
-                                                                        Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
-                                                                                                           AffiliateModuleConstants.EDITED_COUNTRY_1))
+    def edit_affiliate(self, partner_name):
+        """Open popup with initial name from 'create affil' dictionary, but then change it to name from 'edit affil' dictionary"""
+        return self.open_edit_affiliate_popup(self.created_client_initial_info[partner_name]).perform_edit_affiliate(self.edited_client_initial_info[AffiliateModuleConstants.PARTNER_NAME_EDITED],
+                                                                                                                    self.edited_client_initial_info[AffiliateModuleConstants.BRAND_NEW_FOREX],
+                                                                                                                    self.edited_client_initial_info[AffiliateModuleConstants.ALLOWED_IP],
+                                                                                                                    self.edited_client_initial_info[AffiliateModuleConstants.IS_ENABLED],
+                                                                                                                    self.edited_client_initial_info[AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD],
+                                                                                                                    self.edited_client_initial_info[AffiliateModuleConstants.EDITED_COUNTRY_1])
 
 
 
