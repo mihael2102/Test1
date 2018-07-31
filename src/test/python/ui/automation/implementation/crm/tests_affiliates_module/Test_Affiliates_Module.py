@@ -53,8 +53,29 @@ class AffiliateModule(BaseTest):
         affiliate_list_view_page.perform_search_by_partner_name(AffiliateModuleConstants.PARTNER_NAME_EDITED)
 
         """ Check values on List view page """
+        assert affiliate_list_view_page.edited_client_initial_info[AffiliateModuleConstants.IS_ENABLED] == affiliate_list_view_page.get_is_enabled()
 
 
+        assert affiliate_list_view_page.edited_client_initial_info[AffiliateModuleConstants.ALLOWED_IP] == affiliate_list_view_page.get_allowed_ip()
+
+        """ Check blocked countries """
+        assert AffiliateListViewPage().check_editing_of_blocked_countries()
+
+        """ Check allowed methods """
+        assert AffiliateListViewPage().check_editing_of_allowed_methods(affiliate_list_view_page.edited_client_initial_info[AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD_NAME])
+
+        """ Check brand name """
+        assert affiliate_list_view_page.edited_client_initial_info[AffiliateModuleConstants.BRAND_NEW_FOREX] == affiliate_list_view_page.get_brand_name()
+
+        """ Open affiliate details page and check values on Details view page """
+        affiliate_details_page = affiliate_list_view_page.open_affiliate_details_page(
+            AffiliateModuleConstants.PARTNER_NAME_EDITED)
+
+        partner_name_for_checking = affiliate_details_page.get_partner_name()
+
+        assert AffiliateModuleConstants.PARTNER_NAME_EDITED == partner_name_for_checking
+
+        assert affiliate_list_view_page.edited_client_initial_info[AffiliateModuleConstants.BRAND_NEW_FOREX] == affiliate_details_page.get_brand()
 
 
 

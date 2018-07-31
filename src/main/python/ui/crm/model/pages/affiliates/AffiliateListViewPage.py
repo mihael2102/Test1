@@ -16,11 +16,11 @@ class AffiliateListViewPage(CRMBasePage):
 
         """Use appropriate dictionary for creating and editing affiliate info and then use these dictionaries in asserts"""
         self.created_client_initial_info = {AffiliateModuleConstants.PARTNER_NAME: AffiliateModuleConstants.PARTNER_NAME,
-                                            AffiliateModuleConstants.BRAND_NEW_FOREX: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                            AffiliateModuleConstants.BRAND_NEW_FOREX: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
                                                                                                                                     AffiliateModuleConstants.BRAND_NEW_FOREX),
-                                            AffiliateModuleConstants.ALLOWED_IP: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                            AffiliateModuleConstants.ALLOWED_IP: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
                                                                                                                                 AffiliateModuleConstants.ALLOWED_IP),
-                                            AffiliateModuleConstants.IS_ENABLED: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                            AffiliateModuleConstants.IS_ENABLED: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
                                                                                                                                 AffiliateModuleConstants.IS_ENABLED),
                                             AffiliateModuleConstants.FIRST_ALLOWED_METHOD: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
                                                                                                                                         AffiliateModuleConstants.FIRST_ALLOWED_METHOD),
@@ -55,6 +55,8 @@ class AffiliateListViewPage(CRMBasePage):
                                                                                                                     AffiliateModuleConstants.IS_ENABLED),
                                              AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
                                                                                                                                     AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD),
+                                             AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD_NAME: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
+                                                                                                                                           AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD_NAME),
                                              AffiliateModuleConstants.EDITED_COUNTRY_1: Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED,
                                                                                                             AffiliateModuleConstants.EDITED_COUNTRY_1)}
 
@@ -157,7 +159,39 @@ class AffiliateListViewPage(CRMBasePage):
             else:
                 Logging().reportDebugStep(self, "Selected country '%s' is not in the list" % i)
                 return False
+
+        Logging().reportDebugStep(self, "Checked. Countries were created successfully.")
         return True
+
+    def check_editing_of_blocked_countries(self):
+        list_of_counties = []
+        list_of_counties.append(Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                   AffiliateModuleConstants.FIRST_COUNTRY))
+        list_of_counties.append(Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                   AffiliateModuleConstants.SECOND_COUNTRY))
+        list_of_counties.append(Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                   AffiliateModuleConstants.THIRD_COUNTRY))
+        list_of_counties.append(Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                   AffiliateModuleConstants.FOURTH_COUNTRY))
+        list_of_counties.append(Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                   AffiliateModuleConstants.FIFTH_COUNTRY))
+
+        """Remove country from initial list which was unselected during test"""
+        for i in list_of_counties:
+            if i == Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO_EDITED, AffiliateModuleConstants.EDITED_COUNTRY_1):
+                list_of_counties.remove(i)
+
+        """ Get country from affiliate list view page and compare them with edited values (based on JSON - one country was deleted)"""
+        for i in list_of_counties:
+            if i in self.get_blocked_countries():
+                continue
+            else:
+                Logging().reportDebugStep(self, "Selected country '%s' is not in the list" % i)
+                return False
+        Logging().reportDebugStep(self, "Checked. Countries were edited successfully.")
+        return True
+
+
 
     def check_allowed_methods(self):
         list_of_allowed_methods = []
@@ -172,7 +206,7 @@ class AffiliateListViewPage(CRMBasePage):
         list_of_allowed_methods.append(Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
                                                                           AffiliateModuleConstants.FIFTH_ALLOWED_METHOD_NAME))
 
-        """ Get country from affiliate list view page and compare them with initial values from JSON"""
+        """ Get methods from affiliate list view page and compare them with initial values from JSON"""
         for i in list_of_allowed_methods:
             if i in self.get_allowed_methods():
                 continue
@@ -180,6 +214,34 @@ class AffiliateListViewPage(CRMBasePage):
                 Logging().reportDebugStep(self, "Selected allowed method '%s' is not in the list. We expect one of following methods %s" % (
                 i, self.get_allowed_methods()))
                 return False
+        return True
+
+    def check_editing_of_allowed_methods(self, added_method):
+        list_of_allowed_methods = []
+        list_of_allowed_methods.append(Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                          AffiliateModuleConstants.FIRST_ALLOWED_METHOD_NAME))
+        list_of_allowed_methods.append(Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                          AffiliateModuleConstants.SECOND_ALLOWED_METHOD_NAME))
+        list_of_allowed_methods.append(Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                          AffiliateModuleConstants.THIRD_ALLOWED_METHOD_NAME))
+        list_of_allowed_methods.append(Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                          AffiliateModuleConstants.FOURTH_ALLOWED_METHOD_NAME))
+        list_of_allowed_methods.append(Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
+                                                                          AffiliateModuleConstants.FIFTH_ALLOWED_METHOD_NAME))
+        """Add to initial list new method which was added after editing"""
+        list_of_allowed_methods.append(added_method)
+
+        """ Get methods from affiliate list view page and compare them with edited values (based on JSON)"""
+        for i in list_of_allowed_methods:
+            if i in self.get_allowed_methods():
+                continue
+            else:
+                Logging().reportDebugStep(self,
+                                          "Selected allowed method '%s' is not in the list. We expect one of following methods %s" % (
+                                              i, self.get_allowed_methods()))
+                return False
+
+        Logging().reportDebugStep(self, "Checked. Allowed methods were edited successfully.")
         return True
 
     def edit_affiliate(self, partner_name):
