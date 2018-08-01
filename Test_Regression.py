@@ -1,5 +1,3 @@
-import pytest
-
 from src.test.python.ui.automation.implementation.crm.test_my_dashboard.Test_My_Dashboard_Actions import \
     MyDashboardActionsTest
 from src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module import \
@@ -10,7 +8,6 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
     ChangePasswordTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password import \
     CheckPasswordTestCRM
-from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Create_Filter import CreateFilterTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Download_Documents_Client_Module import \
     DownloadDocumentsClientModule
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In import CreditInTestCRM
@@ -25,6 +22,8 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
     SendSMSClientsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta import \
     TransferBetweenTa
+from src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter import \
+    CreateFiltersTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module import CreateDocument
 
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Tab_Document_Module import \
@@ -67,9 +66,6 @@ class TestRegression(object):
 
     def run_add_interaction_crm(self):
         AddInteraction()
-
-    def run_perform_create_filter_crm(self):
-        CreateFilterTestCRM()
 
     def create_user(self):
         CreateUserTest()
