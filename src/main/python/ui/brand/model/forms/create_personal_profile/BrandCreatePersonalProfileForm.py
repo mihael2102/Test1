@@ -32,7 +32,7 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
 
         self.driver.execute_script("arguments[0].scrollIntoView();", select_day)
         select_day.click()
-        Logging().reportDebugStep(self, "The day was set" + select_day)
+        Logging().reportDebugStep(self, "The day was set" + day)
         return BrandCreatePersonalProfileForm()
 
     def select_month(self, month):
