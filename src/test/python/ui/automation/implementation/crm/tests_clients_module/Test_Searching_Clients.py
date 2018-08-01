@@ -20,7 +20,7 @@ class SearchingClientsTestCRM(BaseTest):
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
                                                            CRMConstants.SHORT_CLIENT_NAME),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                           TestDataConstants.FIRST_COUNTRY),
+                                                           TestDataConstants.SECOND_COUNTRY),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_FIRST_NAME),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_LAST_NAME),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CITY),

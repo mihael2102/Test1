@@ -54,7 +54,7 @@ class BrandSignUpPrecondition(object):
         BrandFinancialInformationForm() \
             .select_annual_income(
             Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ANNUAL_IN_COME)) \
-            .select_employye_status(
+            .select_employee_status(
             Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.EMPLOYMENT_STATUS)) \
             .select_risk(
             Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.INVEST_MENT_KNOWLEDGE)) \
