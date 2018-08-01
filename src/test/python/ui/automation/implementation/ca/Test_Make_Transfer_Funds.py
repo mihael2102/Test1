@@ -8,7 +8,7 @@ from src.test.python.ui.automation.utils.preconditions.transfer_funds.CATransfer
     CATransferFundsPrecondition
 
 
-@pytest.mark.run(order=8)
+@pytest.mark.run(order=9)
 class TransferFundsTestCA(BaseTest):
 
     def test_make_transfer_funds(self):

@@ -10,7 +10,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=5)
+@pytest.mark.run(order=6)
 class AddDemoAccountsTestCA(BaseTest):
 
     def test_check_add_demo_account_usd_currency(self):

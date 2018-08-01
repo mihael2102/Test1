@@ -9,6 +9,8 @@ from src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Updat
 from src.test.python.ui.automation.implementation.ca.Test_SignUp import SignUpTest
 from src.test.python.ui.automation.implementation.ca.Test_Support_Ticket import CreateSupportTicketTestCa
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit import DepositTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients import \
+    SearchingClientsTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter import \
     CreateFiltersTestCRM
 
@@ -20,6 +22,9 @@ class TestSmoke(object):
 
     def run_sign_up(self):
         SignUpTest()
+
+    def run_test_searching_client_module(self):
+        SearchingClientsTestCRM()
 
     def run_create_ticket(self):
         CreateSupportTicketTestCa()

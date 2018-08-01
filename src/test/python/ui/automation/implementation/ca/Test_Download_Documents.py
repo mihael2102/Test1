@@ -9,7 +9,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=9)
+@pytest.mark.run(order=10)
 class DownloadDocumentsTestCA(BaseTest):
 
     def test_make_dowload_documents(self):

@@ -9,7 +9,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=10)
+@pytest.mark.run(order=11)
 class ChangePasswordTestCA(BaseTest):
 
     def test_change_password_from_ca(self):
