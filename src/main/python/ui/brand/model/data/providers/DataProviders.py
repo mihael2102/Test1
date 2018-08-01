@@ -48,7 +48,7 @@ class DataProviders(object):
 
     def get_data_mass_sms(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/tasks-module.json')
+            'C:/Users/Administrator/.jenkins/workspace/Smoke New Forex Staging/src/test/python/resources/test-data/tasks-module.json')
         conn_string = json.load(connection_file)
         return conn_string[MassEditConstants.MASS_SMS_CLIENT_MODULE][value]
 
