@@ -8,14 +8,15 @@ from src.test.python.ui.automation.implementation.ca.Test_Make_Withdraw import W
 from src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update import PersonalDetailsUpdateTestCA
 from src.test.python.ui.automation.implementation.ca.Test_SignUp import SignUpTest
 from src.test.python.ui.automation.implementation.ca.Test_Support_Ticket import CreateSupportTicketTestCa
-from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Create_Filter import CreateFilterTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit import DepositTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter import \
+    CreateFiltersTestCRM
 
 
 class TestSmoke(object):
 
     def run_create_filter(self):
-        CreateFilterTestCRM()
+        CreateFiltersTestCRM()
 
     def run_sign_up(self):
         SignUpTest()
