@@ -11,7 +11,7 @@ class HelpDeskDetailViewPage(CRMBasePage):
     def __init__(self):
         super().__init__()
 
-    def get_category_status_text(self):
+    def get_category_text(self):
         category = super().wait_load_element("//span[@id='dtlview_Category']")
         Logging().reportDebugStep(self, "Returns category of ticket: " + category.text)
         return category.text
@@ -85,7 +85,7 @@ class HelpDeskDetailViewPage(CRMBasePage):
         return HelpDeskDetailViewPage()
 
     def get_ca_id_text(self):
-        ca_id = super().wait_load_element("//td[contains(text(),'Ticket No')]//following-sibling::td[1]")
+        ca_id = super().wait_load_element("//td[contains(text(),'CA Id')]//following-sibling::td[1]")
         new_tittle = ca_id.text.strip()
         Logging().reportDebugStep(self, "The tittle is:  " + new_tittle)
         return new_tittle
