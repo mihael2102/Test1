@@ -30,7 +30,7 @@ class DataProviders(object):
 
     def get_data_columns_trading_module(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/Smoke New Forex Staging/src/test/python/resources/test-data/crm-information.json')
+            'C:/Users/Administrator/.jenkins/workspace/Smoke New Forex Staging/src/test/python/resources/test-data/trading-account-module-information.json')
         conn_string = json.load(connection_file)
         return conn_string[TradingAccountConstants.TRADING_ACCOUNT_MODULE_COLUMNS][value]
 
