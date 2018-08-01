@@ -1,11 +1,11 @@
 import json
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
 from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
-from src.main.python.ui.crm.model.constants.DocumentClientsModuleConstants import DocumentClientsModuleConstants
 from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
     FinancialTransactionsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
+from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
 
 
 class DataProviders(object):
