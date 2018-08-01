@@ -1,9 +1,12 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=9)
 class SearchingClientsTestCRM(BaseTest):
 
     def test_make_searching_client_module(self):
@@ -28,6 +31,6 @@ class SearchingClientsTestCRM(BaseTest):
         last_name_crm = crm_client_profile.get_last_name()
         email = crm_client_profile.get_email_text()
 
-        assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME) == first_name_crm
+        assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.SECOND_FIRST_NAME) == first_name_crm
         assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.LAST_NAME) == last_name_crm
         assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL) == email

@@ -16,17 +16,23 @@ class DataProviders(object):
         conn_string = json.load(connection_file)
         return conn_string[key][value]
 
-    def get_data_filter_crm(self, key, value):
+    def get_data_document_module(self, key, value):
         connection_file = open(
             'D:/automation-newforexqa/src/test/python/resources/test-data/filter-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]
 
-    def get_data_document_crm(self, value):
+    def get_data_tabs_trading_module(self, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/trading-account-module-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[TradingAccountConstants.TRADING_ACCOUNT_MODULE_TABS][value]
+
+    def get_data_columns_trading_module(self, value):
         connection_file = open(
             'C:/Users/Administrator/.jenkins/workspace/Smoke New Forex Staging/src/test/python/resources/test-data/crm-information.json')
         conn_string = json.load(connection_file)
-        return conn_string[DocumentClientsModuleConstants.CRM_ADD_DOCUMENT][value]
+        return conn_string[TradingAccountConstants.TRADING_ACCOUNT_MODULE_COLUMNS][value]
 
     def get_data_client_information_update_ca(self, value):
         connection_file = open(
@@ -42,7 +48,7 @@ class DataProviders(object):
 
     def get_data_mass_sms(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/Smoke New Forex Staging/src/test/python/resources/test-data/tasks-module.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/tasks-module.json')
         conn_string = json.load(connection_file)
         return conn_string[MassEditConstants.MASS_SMS_CLIENT_MODULE][value]
 

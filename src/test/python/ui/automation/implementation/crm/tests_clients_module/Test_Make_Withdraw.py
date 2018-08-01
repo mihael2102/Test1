@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.withdraw.MT4WithdrawModule import MT4WithdrawModule
@@ -7,6 +9,7 @@ from src.test.python.ui.automation.utils.preconditions.withdraw_crm.WithdrawPrec
     WithdrawPrecondition
 
 
+@pytest.mark.run(order=11)
 class WithdrawTestCRM(BaseTest):
 
     def test_make_withdraw_crm(self):

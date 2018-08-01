@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
@@ -7,6 +9,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
 
 
+@pytest.mark.run(order=26)
 class LeadModule(BaseTest):
 
     def test_create_lead(self):
@@ -86,23 +89,10 @@ class LeadModule(BaseTest):
 
     def test_mass_edit_lead(self):
         LeadPrecondition().create_three_leads()
-        lead_module = CRMHomePage() \
-            .refresh_page() \
-            .open_client_module() \
-            .open_lead_module()
+        CRMHomePage().refresh_page() \
+            .open_client_module()
 
-        lead_module.open_create_filter_pop_up() \
-            .perform_create_filter_lead_module(
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FILTER_VIEW_NAME),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FIRST_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.SECOND_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.THIRD_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FOURTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FIFTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.SIXTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.SEVENTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.EIGHT_COLUMN)) \
-            .click_save_button()
+        lead_module = CRMHomePage().open_lead_module()
 
         lead_module.select_three_records_task_module() \
             .open_mass_edit_task() \
@@ -132,23 +122,10 @@ class LeadModule(BaseTest):
 
     def test_mass_assign_lead_module(self):
         LeadPrecondition().create_three_leads()
-        lead_module = CRMHomePage() \
-            .refresh_page() \
-            .open_client_module() \
-            .open_lead_module()
+        CRMHomePage().refresh_page() \
+            .open_client_module()
 
-        lead_module.open_create_filter_pop_up() \
-            .perform_create_filter_lead_module(
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FILTER_VIEW_NAME),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FIRST_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.SECOND_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.THIRD_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FOURTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.FIFTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.SIXTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.SEVENTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.FILTER_NAME, LeadsModuleConstants.EIGHT_COLUMN)) \
-            .click_save_button()
+        lead_module = CRMHomePage().open_lead_module()
 
         lead_module.select_three_records_task_module() \
             .open_mass_assign_lead_module() \

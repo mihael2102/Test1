@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
 from src.main.python.ui.crm.model.constants.FourthClientConstants import FourthClientConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
@@ -7,6 +9,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=32)
 class SendEmailTestCRM(BaseTest):
 
     def test_make_send_email(self):

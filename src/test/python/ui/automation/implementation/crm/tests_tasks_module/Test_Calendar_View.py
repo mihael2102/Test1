@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
@@ -6,6 +8,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=17)
 class CalendarView(BaseTest):
 
     def test_check_month_tab(self):
@@ -45,8 +48,8 @@ class CalendarView(BaseTest):
 
     def test_check_day_tab(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CRM_PASSWORD))
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.CRM_PASSWORD))
 
         calendar_module = CRMHomePage().open_task_module() \
             .open_calendar_view_module() \
@@ -112,7 +115,7 @@ class CalendarView(BaseTest):
 
         assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_CREATE_EVENT
         calendar_module.click_calendar_display(CRMConstants.SECOND_DATE.strftime(CRMConstants.SECOND_FORMAT_TIME)) \
-            .perform_screen_shot() \
+            .perform_screen_shot(live_trading_account_tab) \
             .close_calendar_view()
 
         task_module.open_show_all_tab().select_three_records_task_module().perform_mass_delete()

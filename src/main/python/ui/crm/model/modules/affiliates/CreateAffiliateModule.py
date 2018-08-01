@@ -6,6 +6,7 @@ from selenium.webdriver.support.ui import Select
 from src.main.python.utils.logs.Loging import Logging
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class CreateAffiliateModule(CRMBasePage):
     """
     Methods which are related to "Create affiliate" popup
@@ -29,6 +30,9 @@ class CreateAffiliateModule(CRMBasePage):
         self.set_countries(blocked_countries_1, blocked_countries_2, blocked_countries_3,
                            blocked_countries_4,blocked_countries_5)
         self.click_submit()
+        Logging().reportDebugStep(self, "New affiliate was created")
+
+        """ Now you are at AffiliateListViewPage() """
 
     def set_partner_name(self, partner_name):
         partner_name_field = WebDriverWait(self.driver, 20).until(
