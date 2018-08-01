@@ -18,13 +18,13 @@ class DataProviders(object):
 
     def get_data_document_module(self, key, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/filter-information.json')
+            'C:/Users/Administrator/.jenkins/workspace/Smoke New Forex Staging/src/test/python/resources/test-data/documents-module-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]
 
     def get_data_tabs_trading_module(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/trading-account-module-information.json')
+            'C:/Users/Administrator/.jenkins/workspace/Smoke New Forex Staging/src/test/python/resources/test-data/trading-account-module-information.json')
         conn_string = json.load(connection_file)
         return conn_string[TradingAccountConstants.TRADING_ACCOUNT_MODULE_TABS][value]
 
