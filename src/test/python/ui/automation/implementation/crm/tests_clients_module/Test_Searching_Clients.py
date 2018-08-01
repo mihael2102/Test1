@@ -11,13 +11,13 @@ class SearchingClientsTestCRM(BaseTest):
             .open_first_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(Config.data.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.FILTER)) \
+            .select_filter(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .perform_searching(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.CLIENT_STATUS),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
                                                            CRMConstants.SHORT_CLIENT_NAME),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                           TestDataConstants.FIRST_COUNTRY),
+                                                           TestDataConstants.SECOND_COUNTRY),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_FIRST_NAME),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_LAST_NAME),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CITY),
@@ -28,6 +28,6 @@ class SearchingClientsTestCRM(BaseTest):
         last_name_crm = crm_client_profile.get_last_name()
         email = crm_client_profile.get_email_text()
 
-        assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.SECOND_FIRST_NAME) == first_name_crm
+        assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME) == first_name_crm
         assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.LAST_NAME) == last_name_crm
         assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL) == email
