@@ -115,7 +115,7 @@ class CalendarView(BaseTest):
 
         assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_CREATE_EVENT
         calendar_module.click_calendar_display(CRMConstants.SECOND_DATE.strftime(CRMConstants.SECOND_FORMAT_TIME)) \
-            .perform_screen_shot() \
+            .perform_screen_shot(live_trading_account_tab) \
             .close_calendar_view()
 
         task_module.open_show_all_tab().select_three_records_task_module().perform_mass_delete()

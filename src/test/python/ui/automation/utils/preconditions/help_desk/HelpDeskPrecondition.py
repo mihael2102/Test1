@@ -28,3 +28,6 @@ class HelpDeskPrecondition(object):
                                        Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
                                                                       HelpDeskConstants.FIRST_NOTES))
         return HelpDeskPrecondition()
+
+
+

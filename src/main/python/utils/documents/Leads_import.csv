@@ -1,5 +1,6 @@
-Language,First Name,Last Name,Lead Status,Country,Email,Phone,Assigned To
-UA,import,Testing11111QA1,F - Active,German,testing1qa1@import.com,4.35E+12,Panda UA
-ENG,import,Testing22222QA2,F - Active,German,testlead2qa2@import.com,4.35E+11,Panda UA
-eu,import,Testing33333QA3,F - Active,German,testing3qa3@lead.com,51516526525,Panda UA
-UA,import,Testing44444QA4,F - Active,German,testing4qa4@import.com,4.35E+12,Panda UA
+Created Time,Lead No,Language,First Name,Last Name,Lead Status,Country,Email,Phone,Exists,Client Exist,Duplicate,Assigned To,Referral
+2/3/2017 14:53,LEA100008,,qatesting1,Maria1,R - New,ALBANIA,11s111@dimaqa1.ua,,,,,Default User,
+2/3/2017 14:53,LEA100009,,qatesting2,Maria2,R - New,AFGHANISTAN,reut@dimaqa2.ua,,,,,Default User,
+2/3/2017 14:53,LEA100010,,qatesting3,Maria3,R - New,AFGHANISTAN,yotam.akunis+111@dimaqa3.ua,,,,,Default User,
+11/3/2016 17:20,LEA100002,,qatesting6,Maria6,Enabled,Israel,alon@dimaqa6.ua,,,,,Default User,
+9/7/2016 13:34,LEA100001,,qatesting7,Maria7,R - New,,yotam.akunis+111@dimaqa7.ua,,,,,Default User,

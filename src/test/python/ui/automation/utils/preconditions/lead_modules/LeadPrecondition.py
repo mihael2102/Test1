@@ -86,9 +86,11 @@ class LeadPrecondition(object):
             Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.PO_BOX),
             Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.CITY),
             Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_STATE))
+
         home_page.refresh_page() \
-            .open_client_module() \
-            .open_lead_module() \
+            .open_client_module()
+
+        CRMHomePage().open_lead_module() \
             .open_create_lead_module() \
             .perform_create_lead(
             Config.data.get_data_lead_info(LeadsModuleConstants.SECOND_LEAD_INFO, LeadsModuleConstants.SECOND_NAME),
@@ -119,9 +121,11 @@ class LeadPrecondition(object):
             Config.data.get_data_lead_info(LeadsModuleConstants.SECOND_LEAD_INFO, LeadsModuleConstants.PO_BOX),
             Config.data.get_data_lead_info(LeadsModuleConstants.SECOND_LEAD_INFO, LeadsModuleConstants.CITY),
             Config.data.get_data_lead_info(LeadsModuleConstants.SECOND_LEAD_INFO, LeadsModuleConstants.FIRST_STATE))
+
         home_page.refresh_page() \
-            .open_client_module() \
-            .open_lead_module() \
+            .open_client_module()
+
+        CRMHomePage().open_lead_module() \
             .open_create_lead_module() \
             .perform_create_lead(
             Config.data.get_data_lead_info(LeadsModuleConstants.THIRD_LEAD_INFO, LeadsModuleConstants.THIRD_NAME),

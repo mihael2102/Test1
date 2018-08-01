@@ -8,7 +8,7 @@ from src.main.python.ui.crm.model.modules.document.CreateDocumentModule import C
 from src.main.python.ui.crm.model.modules.tasks_module.SmsNotifier import SmsNotifierModule
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
-from src.main.python.ui.crm.model.pages.trading_accounts_information.TradingAccountsInformationPage import \
+from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsInformationPage import \
     TradingAccountsInformationPage
 from src.main.python.utils.logs.Loging import Logging
 

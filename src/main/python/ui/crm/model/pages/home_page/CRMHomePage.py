@@ -1,18 +1,22 @@
+from time import sleep
+
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.audit_logs.AuditLogsPage import AuditLogsPage
 from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
+from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from src.main.python.ui.crm.model.pages.financial_transactions.FinancialTransactionsPage import \
     FinancialTransactionsPage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.modules.my_dashboard.MyDashBoardModule import MyDashBoardModule
-from src.main.python.ui.crm.model.pages.leads.ImportLeadPage import ImportLeadPage
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
 from src.main.python.ui.crm.model.modules.user_management.UserManagement import UserManagement
+from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsPage import TradingAccountsPage
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -27,7 +31,7 @@ class CRMHomePage(CRMBasePage):
      '''
 
     def open_task_module(self):
-        task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Tasks']")
+        task_module = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Tasks']")
         task_module.click()
         Logging().reportDebugStep(self, "Task module is opened")
         return TasksPage()
@@ -95,7 +99,7 @@ class CRMHomePage(CRMBasePage):
         home_page_element = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Clients']")
         home_page_element.click()
         Logging().reportDebugStep(self, "The client module was opened")
-        return CRMHomePage()
+        return ClientsPage()
 
     def open_financial_transactions_module(self):
         home_page_element = super().wait_element_to_be_clickable(
@@ -112,5 +116,12 @@ class CRMHomePage(CRMBasePage):
         hoverer.perform()
         Logging().reportDebugStep(self, "The user management was opened")
         return UserManagement()
+
+    def open_trading_account_module(self):
+        home_page_element = super().wait_element_to_be_clickable(
+            "//span[@class='glyphicon glyphicon-Trading Accounts']")
+        home_page_element.click()
+        Logging().reportDebugStep(self, "The client module was opened")
+        return TradingAccountsPage()
 
 

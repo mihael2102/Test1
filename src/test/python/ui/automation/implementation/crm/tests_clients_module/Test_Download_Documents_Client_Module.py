@@ -1,12 +1,9 @@
-import pytest
-
-from src.main.python.ui.crm.model.constants.DocumentClientsModuleConstants import DocumentClientsModuleConstants
+from src.main.python.ui.crm.model.constants.DocumentModuleConstants import DocumentModuleConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=14)
 class DownloadDocumentsClientModule(BaseTest):
 
     def test_perform_download_document(self):
@@ -22,11 +19,14 @@ class DownloadDocumentsClientModule(BaseTest):
             .open_download_module()
 
         document_module.perform_create_document_client_profile(
-            Config.data.get_data_document_crm(DocumentClientsModuleConstants.FIRST_DOCUMENT_TYPE),
-            Config.data.get_data_document_crm(DocumentClientsModuleConstants.FIRST_STATUS),
-            Config.data.get_data_document_crm(DocumentClientsModuleConstants.COMMENTS))
+            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
+                                                 DocumentModuleConstants.FIRST_DOCUMENT_TYPE),
+            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
+                                                 DocumentModuleConstants.FIRST_STATUS),
+            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
+                                                 DocumentModuleConstants.COMMENTS))
 
         message = crm_clients_module_page.refresh_page() \
             .get_name_document()
 
-        assert message == DocumentClientsModuleConstants.NAME_DOCUMENT
+        assert message == DocumentModuleConstants.NAME_DOCUMENT

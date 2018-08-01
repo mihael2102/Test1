@@ -1,9 +1,9 @@
 from src.main.python.ui.crm.model.constants.HelpDeskConstants import HelpDeskConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
 from src.test.python.ui.automation.utils.preconditions.help_desk.HelpDeskPrecondition import HelpDeskPrecondition
 
 
@@ -43,8 +43,33 @@ class TabHelpDeskTest(BaseTest):
 
         help_desk_module = CRMHomePage().open_help_desk_page()
 
-        FilterPrecondition().create_filter_service_desk()
-
         HelpDeskPrecondition().create_first_ticket()
 
+        detail_view_page_service_desk_module = HelpDeskPage().select_filter(
+            Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME)) \
+            .find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
+            .perform_search_ticket() \
+            .open_ticket_number()
 
+        ticket_number = detail_view_page_service_desk_module.get_ticket_number_text()
+        ca_id = detail_view_page_service_desk_module.get_ca_id_text()
+        brand = detail_view_page_service_desk_module.get_brand_text()
+
+        detail_view_page_service_desk_module.came_back_on_previous_page()
+
+        help_desk_module.find_ticket_by_columns(ticket_number, ca_id, brand,
+                                                HelpDeskConstants.FIRST_TITTLE,
+                                                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                                               HelpDeskConstants.FIRST_RELATED_TO),
+                                                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                                               HelpDeskConstants.FIRST_ASSIGNED_TO),
+                                                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                                               HelpDeskConstants.FIRST_STATUS),
+                                                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                                               HelpDeskConstants.FIRST_PRIORITY),
+                                                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                                               HelpDeskConstants.FIRST_CATEGORY),
+                                                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                                               HelpDeskConstants.FIRST_DESCRIPTION))
+
+        help_desk_module.open_ticket_number()
