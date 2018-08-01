@@ -2,6 +2,7 @@ import random
 
 
 class HelpDeskConstants(object):
+    CONFIRM_DELETE_MESSAGE = "There are no tickets that match the search criteria "
     ELEVENTH_COLUMN = "eleventh_column"
     SEVENTH_COLUMN = "seventh_column"
     EIGHTH_COLUMN = "eighth_column"

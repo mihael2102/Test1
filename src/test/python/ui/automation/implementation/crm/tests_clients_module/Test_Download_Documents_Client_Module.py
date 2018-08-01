@@ -19,12 +19,12 @@ class DownloadDocumentsClientModule(BaseTest):
             .open_download_module()
 
         document_module.perform_create_document_client_profile(
-            Config.data.get_data_document_crm(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
-                                              DocumentModuleConstants.FIRST_DOCUMENT_TYPE),
-            Config.data.get_data_document_crm(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
-                                              DocumentModuleConstants.FIRST_STATUS),
-            Config.data.get_data_document_crm(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
-                                              DocumentModuleConstants.COMMENTS))
+            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
+                                                 DocumentModuleConstants.FIRST_DOCUMENT_TYPE),
+            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
+                                                 DocumentModuleConstants.FIRST_STATUS),
+            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
+                                                 DocumentModuleConstants.COMMENTS))
 
         message = crm_clients_module_page.refresh_page() \
             .get_name_document()

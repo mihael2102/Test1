@@ -7,7 +7,6 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.modules.tasks_module.AddEventModule import AddEventModule
 from datetime import *
 import allure
-from src.main.python.utils.config import Config
 from src.main.python.utils.logs.Loging import Logging
 
 

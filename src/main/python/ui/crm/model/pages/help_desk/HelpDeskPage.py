@@ -151,6 +151,17 @@ class HelpDeskPage(CRMBasePage):
         Logging().reportDebugStep(self, "Perform search")
         return HelpDeskPage()
 
+    def delete_ticket(self):
+        search_button = super().wait_load_element("//a[@alt='Delete']")
+        search_button.click()
+        Logging().reportDebugStep(self, "The delete button was clicked")
+        return HelpDeskPage()
+
+    def get_confirm_delete_ticket(self):
+        confirm_delete_ticket_message = super().wait_load_element("//span[@class='genHeaderSmall message_title']")
+        Logging().reportDebugStep(self, "The delete ticket was successfully : " + confirm_delete_ticket_message.text)
+        return confirm_delete_ticket_message.text
+
     def click_edit_ticket_pencil(self):
         pencil_link = super().wait_element_to_be_clickable("//div[@class='actions_wrapper']//a[@alt='Edit']")
         self.driver.execute_script("arguments[0].click();", pencil_link)

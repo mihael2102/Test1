@@ -20,14 +20,14 @@ class TabDocumentModule(BaseTest):
         not_approved_tab_name = document_module.get_not_approved_text()
         pending_tab_name = document_module.get_pending_tab_text()
 
-        assert all_tab_name == Config.data.get_data_document_crm(DocumentModuleConstants.DOCUMENTS_MODULE_TABS,
-                                                                 DocumentModuleConstants.FIRST_TAB)
-        assert approved_tab_name == Config.data.get_data_document_crm(DocumentModuleConstants.DOCUMENTS_MODULE_TABS,
-                                                                      DocumentModuleConstants.SECOND_TAB)
-        assert not_approved_tab_name == Config.data.get_data_document_crm(DocumentModuleConstants.DOCUMENTS_MODULE_TABS,
-                                                                          DocumentModuleConstants.THIRD_TAB)
-        assert pending_tab_name == Config.data.get_data_document_crm(DocumentModuleConstants.DOCUMENTS_MODULE_TABS,
-                                                                     DocumentModuleConstants.FOURTH_TAB)
+        assert all_tab_name == Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_TABS,
+                                                                    DocumentModuleConstants.FIRST_TAB)
+        assert approved_tab_name == Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_TABS,
+                                                                         DocumentModuleConstants.SECOND_TAB)
+        assert not_approved_tab_name == Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_TABS,
+                                                                             DocumentModuleConstants.THIRD_TAB)
+        assert pending_tab_name == Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_TABS,
+                                                                        DocumentModuleConstants.FOURTH_TAB)
 
     # def test_searching_tabs_document_module(self):
     #     CRMLoginPage().open_first_tab_page(Config.url_crm) \

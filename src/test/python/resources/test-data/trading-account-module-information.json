@@ -1,0 +1,26 @@
+{
+  "TradingAccountModuleInformation": {
+    "document": "Test",
+    "first_status": "Pending",
+    "first_document_type": "Email",
+    "first_comments": "comments form documents module"
+  },
+  "TradingAccountModuleTabs": {
+    "first_tab": "All",
+    "second_tab": "Balance Above Zero",
+    "third_tab": "Balance Below Zero",
+    "fourth_tab": "Demo Trading Accounts",
+    "fifth_tab": "Live Trading Account"
+  },
+  "TradingAccountModuleColumns": {
+    "filter_name": "TestFilterTradingAccountModule",
+    "first_column": "Trading Account Login *",
+    "second_column": "Server",
+    "third_column": "Brand",
+    "fourth_column": "Currency",
+    "fifth_column": "Balance",
+    "sixth_column": "Credit",
+    "seventh_column": "Equity",
+    "eighth_column": "Assigned To *"
+  }
+}
