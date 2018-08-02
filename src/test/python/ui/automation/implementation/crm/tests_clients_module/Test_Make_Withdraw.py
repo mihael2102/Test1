@@ -9,7 +9,7 @@ from src.test.python.ui.automation.utils.preconditions.withdraw_crm.WithdrawPrec
     WithdrawPrecondition
 
 
-@pytest.mark.run(order=11)
+@pytest.mark.run(order=9)
 class WithdrawTestCRM(BaseTest):
 
     def test_make_withdraw_crm(self):

@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.DocumentModuleConstants import DocumentModuleConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -5,6 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=23)
 class TabDocumentModule(BaseTest):
 
     def test_check_tabs_document_module(self):
@@ -24,8 +27,9 @@ class TabDocumentModule(BaseTest):
                                                                     DocumentModuleConstants.FIRST_TAB)
         assert approved_tab_name == Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_TABS,
                                                                          DocumentModuleConstants.SECOND_TAB)
-        assert not_approved_tab_name == Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_TABS,
-                                                                             DocumentModuleConstants.THIRD_TAB)
+        assert not_approved_tab_name == Config.data.get_data_document_module(
+            DocumentModuleConstants.DOCUMENTS_MODULE_TABS,
+            DocumentModuleConstants.THIRD_TAB)
         assert pending_tab_name == Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_TABS,
                                                                         DocumentModuleConstants.FOURTH_TAB)
 

@@ -6,7 +6,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
 
 
-@pytest.mark.run(order=28)
+@pytest.mark.run(order=26)
 class TabLeadsModuleCRM(BaseTest):
 
     def test_searching_lead_modules(self):

@@ -13,7 +13,7 @@ from src.test.python.ui.automation.utils.preconditions.task_module.MassEmailPrec
 from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
 
 
-@pytest.mark.run(order=30)
+@pytest.mark.run(order=28)
 class MyDashboardActionsTest(BaseTest):
 
     def test_check_send_sms_actions_section(self):

@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
@@ -5,6 +7,7 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 
 
+@pytest.mark.run(order=34)
 class TradingAccountTest(BaseTest):
 
     def test_check_tab_trading_account_module(self):

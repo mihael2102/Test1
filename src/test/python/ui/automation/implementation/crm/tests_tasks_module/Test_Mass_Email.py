@@ -10,7 +10,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.MassEmailPrecondition import MassEmailPrecondition
 
 
-@pytest.mark.run(order=23)
+@pytest.mark.run(order=21)
 class MassEmailTaskModule(BaseTest):
 
     def test_make_mass_email(self):

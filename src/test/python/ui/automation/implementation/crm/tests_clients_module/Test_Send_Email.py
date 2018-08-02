@@ -9,7 +9,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=32)
+@pytest.mark.run(order=30)
 class SendEmailTestCRM(BaseTest):
 
     def test_make_send_email(self):

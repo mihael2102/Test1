@@ -16,14 +16,10 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign import MassAssignTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit import MassEditTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email import SendEmailTestCRM
-from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients import \
-    SearchingClientsTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_SMS_Clients_Module import \
     SendSMSClientsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta import \
     TransferBetweenTa
-from src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter import \
-    CreateFiltersTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module import CreateDocument
 
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Tab_Document_Module import \
@@ -31,6 +27,7 @@ from src.test.python.ui.automation.implementation.crm.tests_document_module.Test
 from src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module import \
     TabFinancialTransaction
 from src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module import HelpDeskTest
+from src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk import TabHelpDeskTest
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Import_Lead import ImportLeadTest
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module import LeadModule
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module import TabLeadsModuleCRM
@@ -44,6 +41,8 @@ from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Ma
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Edit import MassEditTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Sms import MassSmsTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tab_Task_Module import TabTasksModuleCRM
+from src.test.python.ui.automation.implementation.crm.tests_trading_account.Test_Tab_Trading_Account_Module import \
+    TradingAccountTest
 from src.test.python.ui.automation.implementation.crm.user_management.Test_Create_User import CreateUserTest
 
 
@@ -69,9 +68,6 @@ class TestRegression(object):
 
     def create_user(self):
         CreateUserTest()
-
-    def run_perform_searching_crm(self):
-        SearchingClientsTestCRM()
 
     def run_perform_mass_edit_clients_module(self):
         MassEditTestCRM()
@@ -145,5 +141,12 @@ class TestRegression(object):
     def run_help_desk_test(self):
         HelpDeskTest()
 
+    def run_tab_help_desk(self):
+        TabHelpDeskTest()
+
     def run_affiliate_module(self):
         AffiliateModule()
+
+
+    def run_trading_account_module(self):
+        TradingAccountTest()

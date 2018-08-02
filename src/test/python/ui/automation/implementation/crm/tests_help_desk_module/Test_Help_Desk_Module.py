@@ -8,7 +8,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.help_desk.HelpDeskPrecondition import HelpDeskPrecondition
 
 
-@pytest.mark.run(order=33)
+@pytest.mark.run(order=31)
 class HelpDeskTest(BaseTest):
 
     def test_create_ticket(self):
@@ -353,7 +353,3 @@ class HelpDeskTest(BaseTest):
             .get_account_name()
 
         assert account_name == account_name_id
-
-    def tearDown(self):
-            self.widget.dispose()
-            self.widget = None

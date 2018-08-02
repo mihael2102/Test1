@@ -1,9 +1,11 @@
+import pytest
+
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
 from src.test.python.ui.automation.utils.preconditions.affiliates.Affiliates_Precondition import AffiliatesPrecondition
 from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
 
-
+@pytest.mark.run(order=33)
 class AffiliateModule(BaseTest):
 
     def test_create_affiliate(self):

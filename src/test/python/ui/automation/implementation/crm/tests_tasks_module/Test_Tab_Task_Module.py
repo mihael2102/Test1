@@ -7,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=15)
+@pytest.mark.run(order=13)
 class TabTasksModuleCRM(BaseTest):
 
     def test_check_tab_tasks_module(self):

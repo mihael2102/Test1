@@ -7,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=12)
+@pytest.mark.run(order=10)
 class MassAssignTestCRM(BaseTest):
 
     def test_mass_assign(self):
