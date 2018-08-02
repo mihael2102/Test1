@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.ui.brand.model.forms.financial_transaction.BrandFinancialInformationForm import \
     BrandFinancialInformationForm
+from src.main.python.utils.logs.Loging import Logging
 
 
 class BrandCreatePersonalProfileForm(BrandBasePage):
@@ -18,6 +19,7 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
     def set_last_name(self, last_name):
         last_name_field = self.driver.find_element(By.XPATH, "//input[@name='lastName']")
         last_name_field.send_keys(last_name)
+        Logging().reportDebugStep(self, "The last name was set"+last_name)
         return BrandCreatePersonalProfileForm()
 
     def select_day(self, day):
@@ -30,6 +32,7 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
 
         self.driver.execute_script("arguments[0].scrollIntoView();", select_day)
         select_day.click()
+        Logging().reportDebugStep(self, "The day was set" + day)
         return BrandCreatePersonalProfileForm()
 
     def select_month(self, month):
@@ -41,6 +44,7 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
 
         self.driver.execute_script("arguments[0].scrollIntoView();", select_month)
         select_month.click()
+        Logging().reportDebugStep(self, "The month was set" + month)
         return BrandCreatePersonalProfileForm()
 
     def select_year(self, year):
@@ -53,7 +57,7 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
 
         self.driver.execute_script("arguments[0].scrollIntoView();", select_year)
         select_year.click()
-
+        Logging().reportDebugStep(self, "The year was set" + year)
         return BrandCreatePersonalProfileForm()
 
     def select_country(self, country):
@@ -66,7 +70,7 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
         self.driver.execute_script("arguments[0].scrollIntoView();", select_country)
 
         select_country.click()
-
+        Logging().reportDebugStep(self, "The country was set" + country)
         return BrandCreatePersonalProfileForm()
 
     def select_currency(self, currency):
@@ -78,6 +82,7 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
                                                    "following-sibling::*[contains(text(),'%s')]" % currency)
         self.driver.execute_script("arguments[0].scrollIntoView();", select_currency)
         select_currency.click()
+        Logging().reportDebugStep(self, "The currency was set" + currency)
         return BrandCreatePersonalProfileForm()
 
     def select_citizenship(self, citizenship):
@@ -90,33 +95,39 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
 
         self.driver.execute_script("arguments[0].scrollIntoView();", select_citizenship)
         select_citizenship.click()
+        Logging().reportDebugStep(self, "The citizenship was set" + citizenship)
         return BrandCreatePersonalProfileForm()
 
     def set_city(self, city):
         field_city = self.driver.find_element(By.XPATH, "//input[@name='city']")
         field_city.clear()
         field_city.send_keys(city)
+        Logging().reportDebugStep(self, "The city was set" + city)
         return BrandCreatePersonalProfileForm()
 
     def set_post_code(self, post_code):
         field_post_code = self.driver.find_element(By.XPATH, "//input[@name='postCode']")
         field_post_code.clear()
         field_post_code.send_keys(post_code)
+        Logging().reportDebugStep(self, "The post_code was set" + post_code)
         return BrandCreatePersonalProfileForm()
 
     def set_address(self, address):
         field_address = self.driver.find_element(By.XPATH, "//input[@name='address']")
         field_address.clear()
         field_address.send_keys(address)
+        Logging().reportDebugStep(self, "The address was set" + address)
         return BrandCreatePersonalProfileForm()
 
     def set_phone(self, phone):
         field_phone = self.driver.find_element(By.XPATH, "//input[@name='phone']")
         field_phone.clear()
         field_phone.send_keys(phone)
+        Logging().reportDebugStep(self, "The phone was set" + phone)
         return BrandCreatePersonalProfileForm()
 
     def enter_next_button(self):
         next_button = self.driver.find_element(By.XPATH, "//button[@class='forex-button-pandats']")
         next_button.click()
+        Logging().reportDebugStep(self, "the next button was clicked")
         return BrandFinancialInformationForm()
