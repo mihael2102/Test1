@@ -10,8 +10,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 class CreateDocumentModule(CRMBasePage):
 
-
-
     def perform_create_document(self, type, status, description):
         self.perform_download_document()
         self.set_attach_to()
@@ -35,7 +33,7 @@ class CreateDocumentModule(CRMBasePage):
         front_upload_picture.click()
         sleep(2)
         autoit.control_set_text("Open", "Edit1",
-                                r"C:\Users\Administrator\.jenkins\workspace\Regression New Forex Staging\src\main\python\utils\documents\Bear.jpg")
+                                r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
         autoit.control_send("Open", "Edit1", "{ENTER}")
         Logging().reportDebugStep(self, "The  document was uploaded ")
         return CreateDocumentModule()

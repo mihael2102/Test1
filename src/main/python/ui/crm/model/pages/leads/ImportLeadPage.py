@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from src.main.python.utils.config import Config
 
 
 class ImportLeadPage(CRMBasePage):
@@ -16,7 +17,7 @@ class ImportLeadPage(CRMBasePage):
         browser_element.click()
         sleep(2)
         autoit.control_set_text("Open", "Edit1",
-                                r"C:\Users\Administrator\.jenkins\workspace\Regression New Forex Staging\src\main\python\utils\documents\Leads_import.csv")
+                                r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Leads_import.csv" % Config.test)
         autoit.control_send("Open", "Edit1", "{ENTER}")
         Logging().reportDebugStep(self, "The  document was uploaded ")
         return ImportLeadPage()
