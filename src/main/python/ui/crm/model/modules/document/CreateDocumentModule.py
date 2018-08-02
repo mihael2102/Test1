@@ -10,8 +10,7 @@ from src.main.python.utils.logs.Loging import Logging
 
 class CreateDocumentModule(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
+
 
     def perform_create_document(self, type, status, description):
         self.perform_download_document()

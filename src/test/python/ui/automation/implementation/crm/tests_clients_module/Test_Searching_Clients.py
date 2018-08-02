@@ -6,7 +6,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=9)
+@pytest.mark.run(order=3)
 class SearchingClientsTestCRM(BaseTest):
 
     def test_make_searching_client_module(self):

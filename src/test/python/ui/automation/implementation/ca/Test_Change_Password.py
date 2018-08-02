@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.brand.model.client_area_modules.account_details.CaAccountDetails import CaAccountDetails
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.forms.login.BrandLoginForm import BrandLoginForm
@@ -7,6 +9,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=11)
 class ChangePasswordTestCA(BaseTest):
 
     def test_change_password_from_ca(self):
