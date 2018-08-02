@@ -19,10 +19,14 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
     SendSMSClientsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta import \
     TransferBetweenTa
+from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module import CreateDocument
+from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Tab_Document_Module import \
+    TabDocumentModule
 
 from src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module import \
     TabFinancialTransaction
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module import LeadModule
+from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tab_Task_Module import TabTasksModuleCRM
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tasks_Actions import ActionsTaskModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Add_New_Task_Calendar_View import \
     AddNewTaskCalendarView
@@ -72,7 +76,7 @@ class TestRegression(object):
         DownloadDocumentsClientModule()
 
     def run_perform_check_tabs(self):
-        TabTasksTest()
+        TabTasksModuleCRM()
 
     def run_perform_add_event(self):
         AddEventTaskModule()
