@@ -19,7 +19,7 @@ class EmailHomePage(object):
         subject_filed = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "(//table)[1]//input[1]")))
         subject_filed.send_keys(subject)
-        Logging().reportDebugStep(self, "The subject was entered")
+        Logging().reportDebugStep(self, "The subject was entered: " + subject)
         return EmailHomePage()
 
     def open_second_tab_page(self, url):
@@ -27,7 +27,7 @@ class EmailHomePage(object):
         Config.window_after = self.driver.window_handles[1]
         self.driver.switch_to_window(Config.window_after)
         self.driver.get(url)
-        Logging().reportDebugStep(self, "The second tab was opened")
+        Logging().reportDebugStep(self, "The second tab was opened : " + url)
         return EmailHomePage()
 
     def click_searching_button(self):
@@ -40,7 +40,7 @@ class EmailHomePage(object):
         subject_link = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "(//*[contains(text(),'%s')])[5]" % subject)))
         subject_link.click()
-        Logging().reportDebugStep(self, "The subject link was clicked")
+        Logging().reportDebugStep(self, "The subject link was clicked: " + subject)
         return EmailHomePage()
 
     def click_tool_tip(self):

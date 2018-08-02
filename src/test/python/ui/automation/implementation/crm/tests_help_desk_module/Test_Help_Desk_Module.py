@@ -175,7 +175,7 @@ class HelpDeskTest(BaseTest):
             .enter_search_for_field(priority) \
             .click_search_now_button() \
             .open_ticket_number() \
-            .get_account_name()
+            .get_priority_text()
 
         assert priority == priority_id
 
@@ -350,7 +350,3 @@ class HelpDeskTest(BaseTest):
             .get_account_name()
 
         assert account_name == account_name_id
-
-    def tearDown(self):
-            self.widget.dispose()
-            self.widget = None
