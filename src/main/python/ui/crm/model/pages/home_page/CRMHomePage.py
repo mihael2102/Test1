@@ -52,7 +52,7 @@ class CRMHomePage(CRMBasePage):
     def open_lead_module(self):
         task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Leads']")
         task_module.click()
-        Logging().reportDebugStep(self, "Leads module is opened")
+        Logging().reportDebugStep(self, "Leads module was opened")
         return LeadsModule()
 
     def select_financial_transactions_module_more_list(self, module):
@@ -92,7 +92,7 @@ class CRMHomePage(CRMBasePage):
     def open_help_desk_page(self):
         help_desc_module = super().wait_load_element("//a[contains(text(), 'Help Desk')]")
         help_desc_module.click()
-        Logging().reportDebugStep(self, "Open  the help desk module ")
+        Logging().reportDebugStep(self, "Open  help desk module ")
         return HelpDeskPage()
 
     def open_client_module(self):
@@ -109,7 +109,7 @@ class CRMHomePage(CRMBasePage):
         return FinancialTransactionsPage()
 
     def open_user_management_module(self, settings):
-        module_element = super().wait_element_to_be_clickable("//table[@class='user_settings']//td[3]")
+        module_element = super().wait_element_to_be_clickable("//table[@class='user_settings']//td[4]")
         user_management = self.driver.find_element(By.XPATH,
                                                    "//ul[@class='dropdown-menu pull-right']//li//a[contains(text(),'%s')]" % settings)
         hoverer = ActionChains(self.driver).move_to_element(module_element).click(user_management)

@@ -7,7 +7,7 @@ class DocumentModuleConstants(object):
     DOCUMENTS_MODULE_TABS = "DocumentModuleTabs"
     DOCUMENTS_MODULE_COLUMNS = "DocumentsModuleColumns"
     FILTER_NAME = "filter_name"
-    DOCUMENTS_INFO_MODULE = "Documents module information"
+    DOCUMENTS_INFO_MODULE = "DocumentsModuleInformation"
     FOURTH_TAB = "fourth_tab"
     FIRST_TAB = "first_tab"
     SECOND_TAB = "second_tab"
