@@ -2,7 +2,7 @@ import fileinput
 
 path_to_file = "D:/automation-newforexqa/src/main/python/utils/config/Config.py"
 
-test = "Regression New Fore Staging"
+test = "Regression New Forex Staging"
 
 collector = []
 

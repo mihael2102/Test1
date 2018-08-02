@@ -1,4 +1,4 @@
-test = "Regression New Fore Staging"
+test = "Regression New Forex Staging"
 timeout = 4
 data = None
 url_client_area = "https://newforexqa.pandats.com/"
