@@ -2,7 +2,7 @@ import fileinput
 
 path_to_file = "D:/automation-newforexqa/src/main/python/utils/config/Config.py"
 
-test = "Smoke New Fore Staging"
+test = "Smoke New Forex Staging"
 
 collector = []
 
