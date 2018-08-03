@@ -7,7 +7,7 @@ from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition
 
 class CreateFiltersTestCRM(BaseTest):
 
-    def test_create_filter(self):
+    def test_create_filter_clients_module(self):
         clients_module_page = CRMLoginPage() \
             .open_first_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
@@ -45,7 +45,14 @@ class CreateFiltersTestCRM(BaseTest):
         assert Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
                                            CRMConstants.ELEVENTH_COLUMN) == eleventh_name_column
 
-        FilterPrecondition().create_filter_documents_module() \
-            .create_filter_leads_module() \
-            .create_filter_help_desk() \
-            .create_filter_trading_account_module()
+    def test_create_filter_documents_module(self):
+        FilterPrecondition().create_filter_documents_module()
+
+    def test_create_filter_leads_modul(self):
+        FilterPrecondition().create_filter_leads_module()
+
+    def test_create_filter_help_desk(self):
+        FilterPrecondition().create_filter_help_desk()
+
+    def test_create_filter_trading_account_module(self):
+        FilterPrecondition().create_filter_trading_account_module()
