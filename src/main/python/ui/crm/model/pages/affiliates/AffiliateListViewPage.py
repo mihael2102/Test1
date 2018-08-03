@@ -253,6 +253,14 @@ class AffiliateListViewPage(CRMBasePage):
                                                                                                                     self.edited_client_initial_info[AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD],
                                                                                                                     self.edited_client_initial_info[AffiliateModuleConstants.EDITED_COUNTRY_1])
 
+    def delete_affiliate(self, partner_id):
+        """Find needed affiliate"""
+        self.perform_search_by_partner_name(partner_id)
+
+        """Click delete button"""
+        delete_button = self.driver.find_element(By.XPATH, "//table/tbody/tr[3]/td[12]/div/span")
+        delete_button.click()
+
 
 
 

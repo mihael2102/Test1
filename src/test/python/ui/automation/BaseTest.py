@@ -41,5 +41,5 @@ class BaseTest(unittest.TestCase):
                     self.browser.quit()
 
         else:
-            # self.browser.close()
-            # self.browser.quit()
+            self.browser.close()
+            self.browser.quit()

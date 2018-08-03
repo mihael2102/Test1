@@ -35,3 +35,4 @@ class AffiliatesPrecondition(object):
                                       created_client_initial_info[AffiliateModuleConstants.THIRD_COUNTRY],
                                       created_client_initial_info[AffiliateModuleConstants.FOURTH_COUNTRY],
                                       created_client_initial_info[AffiliateModuleConstants.FIFTH_COUNTRY])
+
