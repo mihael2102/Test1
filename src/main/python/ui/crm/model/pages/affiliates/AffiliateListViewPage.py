@@ -104,7 +104,6 @@ class AffiliateListViewPage(CRMBasePage):
                                   "Open details page of required affiliate -> " + AffiliateModuleConstants.PARTNER_NAME)
         return AffiliateDetailsViewPage()
 
-
     def perform_search_by_partner_name(self, partner_name_text):
         partner_name_input = self.driver.find_element(By.XPATH, "(//*[@id='host-element']/input)[2]")
 
@@ -113,7 +112,7 @@ class AffiliateListViewPage(CRMBasePage):
         partner_name_input.send_keys(partner_name_text)
         sleep(1)
         Logging().reportDebugStep(self, "Searching by partner name: " + partner_name_text)
-        return  AffiliateListViewPage()
+        return AffiliateListViewPage()
 
     def get_partner_id(self):
         partner_id_text = self.driver.find_element(By.XPATH, "//td[2]/grid-cell/div/span[2]").text
@@ -253,13 +252,35 @@ class AffiliateListViewPage(CRMBasePage):
                                                                                                                     self.edited_client_initial_info[AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD],
                                                                                                                     self.edited_client_initial_info[AffiliateModuleConstants.EDITED_COUNTRY_1])
 
-    def delete_affiliate(self, partner_id):
+    def delete_affiliate(self, partner_name):
         """Find needed affiliate"""
-        self.perform_search_by_partner_name(partner_id)
+        self.perform_search_by_partner_name(partner_name)
 
         """Click delete button"""
         delete_button = self.driver.find_element(By.XPATH, "//table/tbody/tr[3]/td[12]/div/span")
         delete_button.click()
+
+        """Confirm deletion"""
+        sleep(1)
+        confirm_button = self.driver.find_element(By.XPATH, "//div/bs-modal-footer/div/button[2]")
+        confirm_button.click()
+        Logging().reportDebugStep(self, "Affiliate with partner name '%s' was deleted" % partner_name)
+        sleep(1)
+        return AffiliateListViewPage()
+
+    def is_affiliate_deleted(self, partner_name):
+        self.perform_search_by_partner_name(partner_name)
+
+        """Get text of search of deleted affiliate"""
+        search_result = self.driver.find_element(By.XPATH, "//td[contains(text(), 'Data not found')]").text
+
+        if search_result == AffiliateModuleConstants.DELETED_AFFILIATE_TEXT:
+            return True
+        else:
+            return False
+
+
+
 
 
 

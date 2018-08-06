@@ -9,6 +9,11 @@ from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import Affi
 
 class AffiliateDetailsViewPage(CRMBasePage):
 
+    def open_affiliate_list_view_page(self):
+        """Click on Affiliate button in menu"""
+        self.driver.find_element(By.XPATH, "//ul[1]/li[6]/a").click()
+        return ""
+
     def get_partner_name(self):
         sleep(2)
         partner_name_text = self.driver.find_element(By.XPATH, "//div[1]/div/div[1]/h1").text
