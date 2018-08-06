@@ -1,5 +1,7 @@
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
+from src.test.python.ui.automation.utils.postconditions.affiliates.Affiliates_Postcondition import \
+    AffiliatesPostcondition
 from src.test.python.ui.automation.utils.preconditions.affiliates.Affiliates_Precondition import AffiliatesPrecondition
 from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
 
@@ -40,14 +42,8 @@ class AffiliateModule(BaseTest):
         assert Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
                                                   AffiliateModuleConstants.BRAND_NEW_FOREX) == affiliate_details_page.get_brand()
 
-        """Delete affiliate and check it"""
-        affiliate_details_page.open_affiliate_list_view_page()
-        affiliate_list_view_page = AffiliateListViewPage()
-        affiliate_list_view_page.perform_search_by_partner_name(AffiliateModuleConstants.PARTNER_NAME).delete_affiliate(AffiliateModuleConstants.PARTNER_NAME)
-
-        assert affiliate_list_view_page.is_affiliate_deleted(AffiliateModuleConstants.PARTNER_NAME)
-
-
+        """Postcondition - Delete created affiliate"""
+        AffiliatesPostcondition().delete_affiliate(AffiliateModuleConstants.PARTNER_NAME)
 
 
     def test_edit_affiliate(self):
@@ -86,6 +82,16 @@ class AffiliateModule(BaseTest):
         assert AffiliateModuleConstants.PARTNER_NAME_EDITED == partner_name_for_checking
 
         assert affiliate_list_view_page.edited_client_initial_info[AffiliateModuleConstants.BRAND_NEW_FOREX] == affiliate_details_page.get_brand()
+
+        """Postcondition - Delete created affiliate"""
+        AffiliatesPostcondition().delete_affiliate(AffiliateModuleConstants.PARTNER_NAME_EDITED)
+
+    def test_delete_affiliate(self):
+        AffiliatesPrecondition().create_affiliate()
+
+        AffiliatesPostcondition().delete_affiliate(AffiliateModuleConstants.PARTNER_NAME)
+
+        assert AffiliateListViewPage().is_affiliate_deleted(AffiliateModuleConstants.PARTNER_NAME)
 
 
 

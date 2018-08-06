@@ -1,5 +1,7 @@
 from time import sleep
 
+from selenium.common.exceptions import StaleElementReferenceException
+
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.affiliates.CreateAffiliateModule import CreateAffiliateModule
 from src.main.python.ui.crm.model.modules.affiliates.EditAffiliateModule import EditAffiliateModule
@@ -101,14 +103,19 @@ class AffiliateListViewPage(CRMBasePage):
         partner_name_from_list = self.driver.find_element(By.XPATH, "//grid-cell/div/link-spa/a[contains(., '%s')]" % existed_partner_name)
         partner_name_from_list.click()
         Logging().reportDebugStep(self,
-                                  "Open details page of required affiliate -> " + AffiliateModuleConstants.PARTNER_NAME)
+                                  "Open details page of required affiliate -> " + existed_partner_name)
         return AffiliateDetailsViewPage()
 
     def perform_search_by_partner_name(self, partner_name_text):
-        partner_name_input = self.driver.find_element(By.XPATH, "(//*[@id='host-element']/input)[2]")
+        partner_name_input_xpath = "(//*[@id='host-element']/input)[2]"
+        partner_name_input = self.driver.find_element(By.XPATH, partner_name_input_xpath)
 
         sleep(1)
-        partner_name_input.clear()
+        try:
+            partner_name_input.clear()
+        except StaleElementReferenceException:
+            partner_name_input = self.driver.find_element(By.XPATH, partner_name_input_xpath).clear()
+        partner_name_input = self.driver.find_element(By.XPATH, partner_name_input_xpath)
         partner_name_input.send_keys(partner_name_text)
         sleep(1)
         Logging().reportDebugStep(self, "Searching by partner name: " + partner_name_text)
@@ -252,21 +259,6 @@ class AffiliateListViewPage(CRMBasePage):
                                                                                                                     self.edited_client_initial_info[AffiliateModuleConstants.EDITED_FIRST_ALLOWED_METHOD],
                                                                                                                     self.edited_client_initial_info[AffiliateModuleConstants.EDITED_COUNTRY_1])
 
-    def delete_affiliate(self, partner_name):
-        """Find needed affiliate"""
-        self.perform_search_by_partner_name(partner_name)
-
-        """Click delete button"""
-        delete_button = self.driver.find_element(By.XPATH, "//table/tbody/tr[3]/td[12]/div/span")
-        delete_button.click()
-
-        """Confirm deletion"""
-        sleep(1)
-        confirm_button = self.driver.find_element(By.XPATH, "//div/bs-modal-footer/div/button[2]")
-        confirm_button.click()
-        Logging().reportDebugStep(self, "Affiliate with partner name '%s' was deleted" % partner_name)
-        sleep(1)
-        return AffiliateListViewPage()
 
     def is_affiliate_deleted(self, partner_name):
         self.perform_search_by_partner_name(partner_name)
@@ -278,6 +270,24 @@ class AffiliateListViewPage(CRMBasePage):
             return True
         else:
             return False
+
+    def click_delete_icon_and_confirm_deletion(self):
+        delete_button = self.driver.find_element(By.XPATH, "//table/tbody/tr[3]/td[12]/div/span")
+        delete_button.click()
+
+        sleep(1)
+        confirm_button = self.driver.find_element(By.XPATH, "//div/bs-modal-footer/div/button[2]")
+        confirm_button.click()
+        Logging().reportDebugStep(self, "Affiliate with partner name '%s' was deleted" % partner_name)
+        sleep(1)
+        return AffiliateListViewPage()
+
+
+
+
+
+
+
 
 
 

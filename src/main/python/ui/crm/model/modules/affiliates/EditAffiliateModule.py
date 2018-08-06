@@ -127,67 +127,6 @@ class EditAffiliateModule(CRMBasePage):
 
         Logging().reportDebugStep(self, "The country was edited: " + edited_blocked_countries)
 
-        # '''
-        #     second country
-        # '''
-        #
-        # search_element = self.driver.find_element(By.XPATH,
-        #                                           "//div[@class='select-options options-enabled']//input")
-        # search_element.clear()
-        # search_element.send_keys(blocked_countries_2)
-        #
-        # find_country = self.driver.find_element(By.XPATH,
-        #                                         "//div[@class='select-options options-enabled']//span[@class='hovered-option'][1]")
-        #
-        # find_country.click()
-        # '''
-        #     third country
-        # '''
-        #
-        # search_element = self.driver.find_element(By.XPATH,
-        #                                           "//div[@class='select-options options-enabled']//input")
-        # search_element.clear()
-        # search_element.send_keys(blocked_countries_3)
-        #
-        # find_country = self.driver.find_element(By.XPATH,
-        #                                         "//div[@class='select-options options-enabled']//span[@class='hovered-option'][1]")
-        #
-        # find_country.click()
-        #
-        # Logging().reportDebugStep(self, "The third country was edited")
-        #
-        # '''
-        #     fourth country
-        # '''
-        #
-        # search_element = self.driver.find_element(By.XPATH,
-        #                                           "//div[@class='select-options options-enabled']//input")
-        # search_element.clear()
-        # search_element.send_keys(blocked_countries_4)
-        #
-        # find_country = self.driver.find_element(By.XPATH,
-        #                                         "//div[@class='select-options options-enabled']//span[@class='hovered-option'][1]")
-        #
-        # find_country.click()
-        #
-        # Logging().reportDebugStep(self, "The fourth country was edited")
-        #
-        # '''
-        #     fifth country
-        # '''
-        #
-        # search_element = self.driver.find_element(By.XPATH,
-        #                                           "//div[@class='select-options options-enabled']//input")
-        # search_element.clear()
-        # search_element.send_keys(blocked_countries_5)
-        #
-        # find_country = self.driver.find_element(By.XPATH,
-        #                                         "//div[@class='select-options options-enabled']//span[@class='hovered-option'][1]")
-        #
-        # find_country.click()
-        #
-        # Logging().reportDebugStep(self, "The fifth country was edited")
-
         return EditAffiliateModule()
 
     def click_submit(self):
