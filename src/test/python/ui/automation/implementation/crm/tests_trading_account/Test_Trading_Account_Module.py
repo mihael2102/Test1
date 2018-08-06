@@ -31,7 +31,7 @@ class TradingAccountTest(BaseTest):
         assert live_trading_account_name == Config.data.get_data_tabs_trading_module(TradingAccountConstants.FIFTH_TAB)
 
     def test_searching_trading_account_module(self):
-        # TradingAccountPrecondition().make_deposit()
+        TradingAccountPrecondition()
         crm_client_profile = CRMLoginPage().open_first_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD)) \
