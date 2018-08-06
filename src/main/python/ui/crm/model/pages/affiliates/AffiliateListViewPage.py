@@ -278,7 +278,6 @@ class AffiliateListViewPage(CRMBasePage):
         sleep(1)
         confirm_button = self.driver.find_element(By.XPATH, "//div/bs-modal-footer/div/button[2]")
         confirm_button.click()
-        Logging().reportDebugStep(self, "Affiliate with partner name '%s' was deleted" % partner_name)
         sleep(1)
         return AffiliateListViewPage()
 

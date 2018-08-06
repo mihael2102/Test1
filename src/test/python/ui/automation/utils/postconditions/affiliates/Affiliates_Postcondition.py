@@ -20,7 +20,7 @@ class AffiliatesPostcondition(BaseTest):
 
         """Click delete button and Confirm deletion"""
         affiliate_list_view_page.click_delete_icon_and_confirm_deletion()
-
+        Logging().reportDebugStep(self, "Affiliate with partner name '%s' was deleted" % partner_name)
         return AffiliateListViewPage()
 
 
