@@ -147,6 +147,5 @@ class TestRegression(object):
     def run_affiliate_module(self):
         AffiliateModule()
 
-
     def run_trading_account_module(self):
         TradingAccountTest()
