@@ -4,7 +4,7 @@ from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
 from src.main.python.ui.crm.model.constants.FourthClientConstants import FourthClientConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.main.python.ui.email.pages.EmailSignInPage import EmailSignInPage
+from src.main.python.ui.email.model.pages.EmailSignInPage import EmailSignInPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 

@@ -94,7 +94,9 @@ class LeadModule(BaseTest):
 
         lead_module = CRMHomePage().open_lead_module()
 
-        lead_module.select_three_records_task_module() \
+        lead_module.select_filter(Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
+                                                                 LeadsModuleConstants.FILTER_NAME)) \
+            .select_three_records_task_module() \
             .open_mass_edit_task() \
             .perform_mass_edit(Config.data.get_data_lead_info(
             LeadsModuleConstants.FIRST_UPDATE_LEAD, LeadsModuleConstants.SECOND_TITTLE),
@@ -118,8 +120,6 @@ class LeadModule(BaseTest):
         assert lead_module.get_message_lead_module() == LeadsModuleConstants.MESSAGE_MASS_EDIT_SUCCESSFULY
         lead_module.click_ok().perform_screen_shot_lead_module()
 
-        lead_module.delete_filter_lead_module().confirm_delete_lead_module()
-
     def test_mass_assign_lead_module(self):
         LeadPrecondition().create_three_leads()
         CRMHomePage().refresh_page() \
@@ -127,7 +127,9 @@ class LeadModule(BaseTest):
 
         lead_module = CRMHomePage().open_lead_module()
 
-        lead_module.select_three_records_task_module() \
+        lead_module.select_filter(Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
+                                                                 LeadsModuleConstants.FILTER_NAME)) \
+            .select_three_records_task_module() \
             .open_mass_assign_lead_module() \
             .search_user(MassEditConstants.USER_ONE) \
             .enter_check_box() \
@@ -136,7 +138,6 @@ class LeadModule(BaseTest):
         confirmation_message = lead_module.get_confirm_message_lead_module()
         assert confirmation_message == CRMConstants().MASS_ASSIGN_MESSAGE
         lead_module.click_ok().perform_screen_shot_lead_module()
-        lead_module.delete_filter_lead_module().confirm_delete_lead_module()
 
     def test_perform_convert_lead(self):
         LeadPrecondition().create_lead()

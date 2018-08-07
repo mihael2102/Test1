@@ -32,3 +32,4 @@ class AffiliateModuleConstants(object):
     FOURTH_COUNTRY = "blocked_countries_4"
     FIFTH_COUNTRY = "blocked_countries_5"
     EDITED_COUNTRY_1 = "edited_countries_1"
+    DELETED_AFFILIATE_TEXT = "Data not found"

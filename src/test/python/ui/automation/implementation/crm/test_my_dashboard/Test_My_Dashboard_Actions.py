@@ -5,7 +5,7 @@ from src.main.python.ui.crm.model.constants.FourthClientConstants import FourthC
 from src.main.python.ui.crm.model.constants.MyDashboardConstants import MyDashboardConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.email.pages.EmailSignInPage import EmailSignInPage
+from src.main.python.ui.email.model.pages.EmailSignInPage import EmailSignInPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.ActionsTasksPrecondition import \
     ActionsTasksPrecondition

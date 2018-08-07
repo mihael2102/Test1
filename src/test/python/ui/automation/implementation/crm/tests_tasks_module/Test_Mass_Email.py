@@ -5,7 +5,7 @@ from src.main.python.ui.crm.model.constants.FifthClientConstants import FifthCli
 from src.main.python.ui.crm.model.constants.FourthClientConstants import FourthClientConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
-from src.main.python.ui.email.pages.EmailSignInPage import EmailSignInPage
+from src.main.python.ui.email.model.pages.EmailSignInPage import EmailSignInPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.task_module.MassEmailPrecondition import MassEmailPrecondition
 

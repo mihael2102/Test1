@@ -40,7 +40,7 @@ class AddNewLiveAccountTestCA(BaseTest):
         account_id_crm = crm_client_profile \
             .perform_scroll_down() \
             .open_trading_accounts_tab() \
-            .open_client_account(account_id_ca) \
+            .open_client_account_by_account_id(account_id_ca) \
             .get_account_text()
 
         eur_currency_crm = TradingAccountsInformationPage().get_currency_text()
@@ -75,7 +75,7 @@ class AddNewLiveAccountTestCA(BaseTest):
         account_id_crm = crm_client_profile \
             .perform_scroll_down() \
             .open_trading_accounts_tab() \
-            .open_client_account(account_id_ca) \
+            .open_client_account_by_account_id(account_id_ca) \
             .get_account_text()
 
         gbr_currency_crm = TradingAccountsInformationPage().get_currency_text()
@@ -110,7 +110,7 @@ class AddNewLiveAccountTestCA(BaseTest):
         account_id_crm = crm_client_profile \
             .perform_scroll_down() \
             .open_trading_accounts_tab() \
-            .open_client_account(account_id_ca) \
+            .open_client_account_by_account_id(account_id_ca) \
             .get_account_text()
 
         cad_currency_crm = TradingAccountsInformationPage().get_currency_text()
@@ -145,7 +145,7 @@ class AddNewLiveAccountTestCA(BaseTest):
         account_id_crm = crm_client_profile \
             .perform_scroll_down() \
             .open_trading_accounts_tab() \
-            .open_client_account(account_id_ca) \
+            .open_client_account_by_account_id(account_id_ca) \
             .get_account_text()
 
         jpy_currency_crm = TradingAccountsInformationPage().get_currency_text()

@@ -166,7 +166,7 @@ class ClientProfilePage(CRMBasePage):
         returns Trading Accounts_Info  instance    
     '''
 
-    def open_client_account(self, account_id):
+    def open_client_account_by_account_id(self, account_id):
         super().wait_load_element("//div[@class ='link_field']//a[contains(text(),'%s')]" % account_id)
         account = self.driver.find_element(By.XPATH,
                                            "//div[@class ='link_field']//a[contains(text(),'%s')]" % account_id)
@@ -182,6 +182,12 @@ class ClientProfilePage(CRMBasePage):
         account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
         Logging().reportDebugStep(self, "Returns the client_account  text " + account_number.text)
         return account_number.text
+
+    def open_client_account(self):
+        account_number = super().wait_visible_of_element("//div[@id='tbl_Accounts_TradingAccounts']//tr[2]//a[2]")
+        account_number.click()
+        Logging().reportDebugStep(self, "The client account was opened")
+        return TradingAccountsInformationPage()
 
     '''
        :returns second client account from trading accounts tabs 

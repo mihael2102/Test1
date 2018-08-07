@@ -9,6 +9,13 @@ from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import Affi
 
 class AffiliateDetailsViewPage(CRMBasePage):
 
+    def open_affiliate_list_view_page(self):
+        """If URL contains digit in the end it means that we are at Details page and need to go to List view page via menu button. Else stay at current page"""
+        if list(self.driver.current_url)[-2] in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]:
+            """Click on Affiliate button in menu"""
+            self.driver.find_element(By.XPATH, "//ul[1]/li[6]/a").click()
+        return ""
+
     def get_partner_name(self):
         sleep(2)
         partner_name_text = self.driver.find_element(By.XPATH, "//div[1]/div/div[1]/h1").text

@@ -1,10 +1,10 @@
 from src.main.python.ui.crm.model.constants.HelpDeskConstants import HelpDeskConstants
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.utils.config import Config
 
 
 class HelpDeskPostCondition(object):
+
     def __init__(self) -> None:
         super().__init__()
 

@@ -1,6 +1,9 @@
 import json
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
+from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
 from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
+from src.main.python.ui.crm.model.constants.AutoAssignConstants import AutoAssignConstants
+from src.main.python.ui.crm.model.constants.CampaingsConstants import CampaignsConstants
 from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
     FinancialTransactionsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
@@ -16,6 +19,12 @@ class DataProviders(object):
             'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/client-information.json' % Config.test)
         conn_string = json.load(connection_file)
         return conn_string[key][value]
+
+    def get_data_campaign_module(self, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/campaigns-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[CampaignsConstants.CAMPAIGN_MODULE_INFO][value]
 
     def get_data_document_module(self, key, value):
         connection_file = open(
@@ -77,17 +86,30 @@ class DataProviders(object):
         conn_string = json.load(connection_file)
         return conn_string[AuditLogsConstants.AUDIT_LOGS_MODULE_INFO][value]
 
+    def get_data_auto_assign_info(self, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/auto-assign-module-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[AutoAssignConstants.AUTO_ASSIGN_INFO][value]
+
     def get_data_user_info(self, key, value):
         connection_file = open(
             'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/user-information.json' % Config.test)
         conn_string = json.load(connection_file)
         return conn_string[key][value]
 
-    def get_data_affliate_info(self, key, value):
+    def get_data_affliate_info(self, value):
         connection_file = open(
             'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/affiliate-information.json' % Config.test)
         conn_string = json.load(connection_file)
-        return conn_string[key][value]
+        return conn_string[AffiliateModuleConstants.AFFILIATE_INFO][value]
+
+    def get_data_affliate_info_edited(self, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/affiliate-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[AffiliateModuleConstants.AFFILIATE_INFO_EDITED][value]
+
 
     def get_data_help_desk(self, key, value):
         connection_file = open(
