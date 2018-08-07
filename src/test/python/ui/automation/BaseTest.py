@@ -36,9 +36,9 @@ class BaseTest(unittest.TestCase):
                     driver.get_screenshot_as_file(file_name)
                     allure.MASTER_HELPER.attach('failed_screenshot', driver.get_screenshot_as_png(),
                                                 type=AttachmentType.PNG)
-        #
-        #             driver.close()
-        #             driver.quit()
+
+        #             self.browser.close()
+        #             self.browser.quit()
         # else:
-        #     driver.close()
-        #     driver.quit()
+        #     self.browser.close()
+        #     self.browser.quit()
