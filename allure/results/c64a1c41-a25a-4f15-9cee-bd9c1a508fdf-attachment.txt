@@ -1,0 +1,26 @@
+Loging.py                   26 DEBUG    CRMLoginPage - Open first tabs page: https://newforexstaging.ptscrm.com/
+Loging.py                   26 DEBUG    CRMLoginPage - Setting the user name in the field : pandaqa
+
+Loging.py                   26 DEBUG    CRMLoginPage - Setting the user name in the password: xUQ7hrr9VF
+
+Loging.py                   26 DEBUG    CRMLoginPage - Click the login button
+
+Loging.py                   26 DEBUG    CRMHomePage - Task module is opened
+Loging.py                   26 DEBUG    TasksPage - The event  module was opened
+Loging.py                   26 DEBUG    AddEventModule - The event status was set In Progress
+Loging.py                   26 DEBUG    AddEventModule - The event type is set Meeting
+Loging.py                   26 DEBUG    AddEventModule - The date  was set 2018-08-04
+Loging.py                   26 DEBUG    AddEventModule - The time  was set 11:31:02
+Loging.py                   26 DEBUG    AddEventModule - The duration  was set 30M
+Loging.py                   26 DEBUG    AddEventModule - The priority was set Medium
+Loging.py                   26 DEBUG    AddEventModule - The  assign to was set Default User
+Loging.py                   26 DEBUG    AddEventModule - The account was set Test11111
+Loging.py                   26 DEBUG    AddEventModule - The subject was set Testing76213
+Loging.py                   26 DEBUG    AddEventModule - The comments was set Description Add Event
+Loging.py                   26 DEBUG    AddEventModule - Click the 'save' button 
+Loging.py                   26 DEBUG    TasksPage - The this week tab was opened 
+Loging.py                   26 DEBUG    TasksPage - The subject was set: Testing76213
+Loging.py                   26 DEBUG    TasksPage - The subject was set: Testing76213
+Loging.py                   26 DEBUG    TasksPage - The first client profile is opened
+Loging.py                   26 DEBUG    ClientProfilePage - Returns the phone number: 55555555
+Loging.py                   26 DEBUG    TasksPage - Task module is opened
