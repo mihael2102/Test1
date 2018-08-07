@@ -1,6 +1,5 @@
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
-from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
@@ -31,7 +30,7 @@ class TradingAccountTest(BaseTest):
         assert live_trading_account_name == Config.data.get_data_tabs_trading_module(TradingAccountConstants.FIFTH_TAB)
 
     def test_searching_trading_account_module(self):
-        TradingAccountPrecondition()
+        TradingAccountPrecondition().add_live_account().make_deposit()
         crm_client_profile = CRMLoginPage().open_first_tab_page(Config.url_crm) \
             .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD)) \
@@ -45,7 +44,6 @@ class TradingAccountTest(BaseTest):
 
         trading_account = client_account_detail_view.get_account_text()
         server_text = client_account_detail_view.get_server_to_text()
-        # brand_text = client_account_detail_view.get_brand_text()
         currency_text = client_account_detail_view.get_currency_text()
         balance_text = client_account_detail_view.get_balance_text()
         equity_text = client_account_detail_view.get_equity_text()

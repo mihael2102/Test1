@@ -15,9 +15,12 @@ class CampaignsConstants(object):
     MODULE = "Campaigns"
     CAMPAIGN_MODULE_INFO = "Campaigns_info_1"
     CAMPAIGN_NAME = "Campaign name " + first_random_number
+    FIRST_ACTIVITY = "first_activity"
+    SECOND_ACTIVITY = "second_activity"
     FIRST_START_DATE = datetime.now()
     SECOND_START_DATE = datetime.now() + relativedelta(days=1)
     FIRST_END_DATE = datetime.now() + relativedelta(days=2)
     SECOND_END_DATE = datetime.now() + relativedelta(days=2)
     FORMAT_DATE = "%Y-%m-%d"
+    SECOND_FORMAT_DATE = "%d"
     RATE = second_random_number

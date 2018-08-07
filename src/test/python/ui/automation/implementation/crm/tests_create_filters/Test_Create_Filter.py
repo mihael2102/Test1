@@ -46,13 +46,25 @@ class CreateFiltersTestCRM(BaseTest):
                                            CRMConstants.ELEVENTH_COLUMN) == eleventh_name_column
 
     def test_create_filter_documents_module(self):
+        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
         FilterPrecondition().create_filter_documents_module()
 
-    def test_create_filter_leads_modul(self):
+    def test_create_filter_leads_module(self):
+        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
         FilterPrecondition().create_filter_leads_module()
 
     def test_create_filter_help_desk(self):
+        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
         FilterPrecondition().create_filter_help_desk()
 
     def test_create_filter_trading_account_module(self):
+        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
         FilterPrecondition().create_filter_trading_account_module()

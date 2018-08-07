@@ -1,6 +1,7 @@
 import json
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
 from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
+from src.main.python.ui.crm.model.constants.AutoAssignConstants import AutoAssignConstants
 from src.main.python.ui.crm.model.constants.CampaingsConstants import CampaignsConstants
 from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
     FinancialTransactionsModuleConstants
@@ -82,6 +83,12 @@ class DataProviders(object):
             'D:/automation-newforexqa/src/test/python/resources/test-data/audit-logs-information.json')
         conn_string = json.load(connection_file)
         return conn_string[AuditLogsConstants.AUDIT_LOGS_MODULE_INFO][value]
+
+    def get_data_auto_assign_info(self, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/auto-assign-module-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[AutoAssignConstants.AUTO_ASSIGN_INFO][value]
 
     def get_data_user_info(self, key, value):
         connection_file = open(

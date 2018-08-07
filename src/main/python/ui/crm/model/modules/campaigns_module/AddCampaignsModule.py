@@ -18,6 +18,7 @@ class AddCampaignsModule(CRMBasePage):
         self.set_end_date(end_date)
         self.set_deal(deal)
         self.set_rate(rate)
+        self.set_active_check_box()
         self.click_save_button()
 
     def set_name(self, name):
@@ -63,5 +64,13 @@ class AddCampaignsModule(CRMBasePage):
     def set_deal(self, deal):
         deal_button = Select(self.driver.find_element(By.XPATH, "//select[@name='deal']"))
         deal_button.select_by_visible_text(deal)
+        deal_drop_down = self.driver.find_element(By.XPATH, "//select[@name='deal']")
+        deal_drop_down.click()
+        Logging().reportDebugStep(self, "The deal was set ")
+        return AddCampaignsModule()
+
+    def set_active_check_box(self):
+        activity_button = self.driver.find_element(By.XPATH, "//input[@type='checkbox']")
+        activity_button.click()
         Logging().reportDebugStep(self, "The deal was set ")
         return AddCampaignsModule()

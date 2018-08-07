@@ -80,6 +80,25 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "The records were selected")
         return LeadsModule()
 
+    ''' 
+           Select the filter in drop-down   
+          :parameter test_filter the filter that is created in the filters drop down
+          :return Home Page instance
+       '''
+
+    def select_filter(self, test_filter):
+        drop_down_filter = super().wait_load_element("//span[@class='filter-option pull-left']")
+        drop_down_filter.click()
+        Logging().reportDebugStep(self, "Click the  drop down filter ")
+        field_found = self.driver.find_element(By.XPATH, "//input[@class='input-block-level form-control']")
+        field_found.clear()
+        field_found.send_keys(test_filter)
+        Logging().reportDebugStep(self, "The field found is : " + test_filter)
+        select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
+        select_test_filter.click()
+        Logging().reportDebugStep(self, "Click the selected filter")
+        return LeadsModule()
+
     def open_mass_edit_task(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass Edit']")
         mass_edit_module.click()

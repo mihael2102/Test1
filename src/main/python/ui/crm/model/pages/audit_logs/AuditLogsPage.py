@@ -9,7 +9,6 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.utils.logs.Loging import Logging
 from datetime import *
 import allure
-from src.main.python.utils.config import Config
 
 
 class AuditLogsPage(CRMBasePage):

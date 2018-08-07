@@ -1,10 +1,13 @@
+from time import sleep
+
+from pytest import fail
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from src.main.python.ui.email.pages.EmailHomePage import EmailHomePage
+from src.main.python.ui.email.model.pages.EmailHomePage import EmailHomePage
 from src.main.python.utils.config import Config
 from src.main.python.utils.logs.Loging import Logging
 from selenium.webdriver.support import expected_conditions as EC
-
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
 from src.test.python.ui.automation.BaseTest import BaseTest
 
 
@@ -23,9 +26,20 @@ class EmailSignInPage(object):
         return EmailSignInPage()
 
     def click_use_another_email(self):
-        another_link = WebDriverWait(self.driver, 50).until(
-            EC.visibility_of_element_located((By.XPATH, "(//content)[3]//span")))
-        another_link.click()
+        try:
+            sleep(3)
+            if self.driver.find_element(By.XPATH, "(//content)[3]//span").is_displayed():
+                self.driver.find_element(By.XPATH, "(//content)[3]//span").click()
+                self.click_another_method()
+        except (NoSuchElementException, StaleElementReferenceException):
+            if self.driver.find_element(By.XPATH, "//div[@id='profileIdentifier']").is_displayed():
+                self.driver.find_element(By.XPATH, "//div[@id='profileIdentifier']").click()
+                self.click_another_method()
+            else:
+                raise NoSuchElementException()
+        return EmailSignInPage()
+
+    def click_another_method(self):
         another_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, ".//p[contains(text(),'Use another account')]")))
         another_email.click()

@@ -4,6 +4,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
 from src.main.python.ui.crm.model.modules.campaigns_module.AddCampaignsModule import AddCampaignsModule
+from src.main.python.ui.crm.model.pages.auto_assign.AutoAssignPage import AutoAssignPage
 from src.main.python.ui.crm.model.pages.campaigns.CampaignsPage import CampaignsPage
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.audit_logs.AuditLogsPage import AuditLogsPage
@@ -73,7 +74,13 @@ class CRMHomePage(CRMBasePage):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The audit logs module was opened")
-        return AuditLogsPage()
+        return AutoAssignPage()
+
+    def select_auto_assign_module_more_list(self, module):
+        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+        module_element.click()
+        Logging().reportDebugStep(self, "The audit logs module was opened")
+        return AutoAssignPage()
 
     def select_service_desk_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
