@@ -1,5 +1,6 @@
 import json
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
+from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
 from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
 from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
     FinancialTransactionsModuleConstants
@@ -69,11 +70,18 @@ class DataProviders(object):
         conn_string = json.load(connection_file)
         return conn_string[key][value]
 
-    def get_data_affliate_info(self, key, value):
+    def get_data_affliate_info(self, value):
         connection_file = open(
             'D:/automation-newforexqa/src/test/python/resources/test-data/affiliate-information.json')
         conn_string = json.load(connection_file)
-        return conn_string[key][value]
+        return conn_string[AffiliateModuleConstants.AFFILIATE_INFO][value]
+
+    def get_data_affliate_info_edited(self, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/affiliate-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[AffiliateModuleConstants.AFFILIATE_INFO_EDITED][value]
+
 
     def get_data_help_desk(self, key, value):
         connection_file = open(

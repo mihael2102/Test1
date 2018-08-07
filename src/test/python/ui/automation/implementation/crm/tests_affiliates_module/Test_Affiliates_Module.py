@@ -19,8 +19,10 @@ class AffiliateModule(BaseTest):
 
         """ Check values on List view page """
 
-        assert Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO, AffiliateModuleConstants.IS_ENABLED) == affiliate_list_view_page.get_is_enabled()
-        assert Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO, AffiliateModuleConstants.ALLOWED_IP) == affiliate_list_view_page.get_allowed_ip()
+        assert Config.data.get_data_affliate_info(
+            AffiliateModuleConstants.IS_ENABLED) == affiliate_list_view_page.get_is_enabled()
+        assert Config.data.get_data_affliate_info(
+            AffiliateModuleConstants.ALLOWED_IP) == affiliate_list_view_page.get_allowed_ip()
 
         """ Check blocked countries """
 
@@ -30,7 +32,8 @@ class AffiliateModule(BaseTest):
         assert AffiliateListViewPage().check_allowed_methods()
 
         """ Check brand name """
-        assert Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO, AffiliateModuleConstants.BRAND_NEW_FOREX)== affiliate_list_view_page.get_brand_name()
+        assert Config.data.get_data_affliate_info(
+            AffiliateModuleConstants.BRAND_NEW_FOREX) == affiliate_list_view_page.get_brand_name()
 
         """ Open affiliate details page and check values on Details view page """
         affiliate_details_page = affiliate_list_view_page.open_affiliate_details_page(AffiliateModuleConstants.PARTNER_NAME)
@@ -39,8 +42,8 @@ class AffiliateModule(BaseTest):
 
         assert AffiliateModuleConstants.PARTNER_NAME == partner_name_for_checking
 
-        assert Config.data.get_data_affliate_info(AffiliateModuleConstants.AFFILIATE_INFO,
-                                                  AffiliateModuleConstants.BRAND_NEW_FOREX) == affiliate_details_page.get_brand()
+        assert Config.data.get_data_affliate_info(
+            AffiliateModuleConstants.BRAND_NEW_FOREX) == affiliate_details_page.get_brand()
 
         """Postcondition - Delete created affiliate"""
         AffiliatesPostcondition().delete_affiliate(AffiliateModuleConstants.PARTNER_NAME)
