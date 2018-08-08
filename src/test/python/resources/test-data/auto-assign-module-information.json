@@ -1,7 +1,17 @@
 {
   "AutoAssign_info_1": {
     "first_brand": "newForex",
+    "second_brand": "NFX",
     "first_rule_type": "Campaign",
-    "first_role": "CEO VP"
+    "second_rule_type": "Base Currency",
+    "first_assign_details": "CEO VP",
+    "second_assign_details": "Panda UA",
+    "first_user": "Panda UA",
+    "first_created_by": "pandaqa pandaqa",
+    "first_status": "Active",
+    "first_module": "Leads",
+    "second_module": "Clients",
+    "first_assign_to": "Role",
+    "first_currency": "USD"
   }
 }
