@@ -4,6 +4,7 @@
     "second_brand": "NFX",
     "first_rule_type": "Campaign",
     "second_rule_type": "Base Currency",
+    "third_rule_type": "Language",
     "first_assign_details": "CEO VP",
     "second_assign_details": "Panda UA",
     "first_user": "Panda UA",
@@ -12,6 +13,8 @@
     "first_module": "Leads",
     "second_module": "Clients",
     "first_assign_to": "Role",
-    "first_currency": "USD"
+    "second_assign_to": "User",
+    "first_currency": "USD",
+    "first_language": "German"
   }
 }

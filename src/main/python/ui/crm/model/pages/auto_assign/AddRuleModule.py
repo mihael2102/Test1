@@ -20,6 +20,17 @@ class AddRuleModule(CRMBasePage):
         self.select_item(campaign)
         self.perform_submit()
 
+    def perform_second_add_rule(self, rule_name, brand, rule_type, item, role):
+        self.set_rule_name(rule_name)
+        self.set_brand(brand)
+        self.set_lead_module_check_box()
+        self.set_clients_module_check_box()
+        self.set_set_assign_to_role_checkbox()
+        self.select_role(role)
+        self.select_rule_type(rule_type)
+        self.select_item(item)
+        self.perform_submit()
+
     def set_rule_name(self, rule_name):
         rule_name_field = super().wait_visible_of_element("//input[@name='rule_name']")
         rule_name_field.clear()

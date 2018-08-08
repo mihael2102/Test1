@@ -9,10 +9,10 @@ class EditRuleModule(CRMBasePage):
     def __init__(self):
         super().__init__()
 
-    def perform_edit_rule(self, rule_name, brand, user, rule_type,currency):
+    def perform_edit_rule(self, rule_name, brand, user, rule_type, currency):
+        self.set_lead_module_check_box()
         self.set_rule_name(rule_name)
         self.set_brand(brand)
-        self.set_lead_module_check_box()
         self.set_set_assign_to_user_checkbox()
         self.select_user(user)
         self.select_rule_type(rule_type)
@@ -47,7 +47,7 @@ class EditRuleModule(CRMBasePage):
         return EditRuleModule()
 
     def set_lead_module_check_box(self):
-        campaign_name_link = self.driver.find_element(By.XPATH, "//input[@name='leadrule']")
+        campaign_name_link = super().wait_element_to_be_clickable("//input[@name='leadrule']")
         campaign_name_link.click()
         Logging().reportDebugStep(self, "The lead module checkbox was set")
         return EditRuleModule()
@@ -111,5 +111,3 @@ class EditRuleModule(CRMBasePage):
             "//div[contains(text(),'%s')]/preceding-sibling::div[1]//div[1]//div[1]" % user)
         item.click()
         return EditRuleModule()
-
-
