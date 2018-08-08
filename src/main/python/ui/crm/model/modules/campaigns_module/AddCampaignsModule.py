@@ -24,7 +24,7 @@ class AddCampaignsModule(CRMBasePage):
     def set_name(self, name):
         search_button = super().wait_element_to_be_clickable("//input[@name='campaign_name']")
         search_button.send_keys(name)
-        Logging().reportDebugStep(self, "The search button was clicked ")
+        Logging().reportDebugStep(self, "The campaign name was set : "+name)
         return AddCampaignsModule()
 
     def set_assigned_to(self, assigned_to):
@@ -39,6 +39,7 @@ class AddCampaignsModule(CRMBasePage):
         start_date_button = super().wait_element_to_be_clickable("//input[@name='start_date']")
         start_date_button.send_keys(start_date)
         start_date_button.send_keys(Keys.ENTER)
+        start_date_button.click()
         Logging().reportDebugStep(self, "The start date was set: " + start_date)
         return AddCampaignsModule()
 
@@ -46,6 +47,7 @@ class AddCampaignsModule(CRMBasePage):
         search_button = super().wait_element_to_be_clickable("//input[@name='end_date']")
         search_button.send_keys(end_date)
         search_button.send_keys(Keys.ENTER)
+        search_button.click()
         Logging().reportDebugStep(self, "The end date was set: " + end_date)
         return AddCampaignsModule()
 

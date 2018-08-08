@@ -14,6 +14,6 @@ class AutoAssignPrecondition(object):
             .perform_add_rule(AutoAssignConstants.RULE_NAME,
                               Config.data.get_data_auto_assign_info(AutoAssignConstants.FIRST_BRAND),
                               Config.data.get_data_auto_assign_info(AutoAssignConstants.FIRST_RULE_TYPE),
-                              campaign, Config.data.get_data_auto_assign_info(AutoAssignConstants.FIRST_ROLE))
+                              campaign, Config.data.get_data_auto_assign_info(AutoAssignConstants.FIRST_ASSIGN_DETAILS))
 
         return AutoAssignPrecondition()
