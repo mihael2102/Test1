@@ -22,7 +22,7 @@ class DataProviders(object):
 
     def get_data_campaign_module(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/campaigns-information.json')
+            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/campaigns-information.json' % Config.test)
         conn_string = json.load(connection_file)
         return conn_string[CampaignsConstants.CAMPAIGN_MODULE_INFO][value]
 
@@ -106,10 +106,9 @@ class DataProviders(object):
 
     def get_data_affliate_info_edited(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/affiliate-information.json')
+            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/affiliate-information.json' % Config.test)
         conn_string = json.load(connection_file)
         return conn_string[AffiliateModuleConstants.AFFILIATE_INFO_EDITED][value]
-
 
     def get_data_help_desk(self, key, value):
         connection_file = open(
