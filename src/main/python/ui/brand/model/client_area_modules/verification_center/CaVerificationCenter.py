@@ -17,7 +17,9 @@ class CaVerificationCenter(BrandBasePage):
     '''
 
     def perform_front_upload(self):
-        front_upload_picture = super().wait_load_element_present("//label[@for='upload_photo_id_front']")
+        sleep(2)
+        front_upload_picture = super().wait_visible_of_element(
+            "//div[@class='verif-row-pandats'][1]//div[@class='upload-new-pandats']")
         front_upload_picture.click()
         sleep(2)
         autoit.control_set_text("Open", "Edit1",
