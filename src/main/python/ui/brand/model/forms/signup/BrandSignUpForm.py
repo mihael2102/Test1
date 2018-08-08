@@ -51,9 +51,26 @@ class BrandSignUpForm(BrandBasePage):
         return BrandSignUpForm()
 
     def set_check_box(self):
-        check_box_locator = self.driver.find_element(By.XPATH, "//label[@class='terms-pandats']")
+        check_box_locator = self.driver.find_element(By.XPATH, "//div[@class='content-popup-pandats']//div[6]/label")
         check_box_locator.click()
         Logging().reportDebugStep(self, "The check box was set")
+        return BrandSignUpForm()
+
+    def set_accept_check_box(self):
+        check_box_locator = self.driver.find_element(By.XPATH, "//div[@class='content-popup-pandats']//div[6]/label")
+        check_box_locator.click()
+        Logging().reportDebugStep(self, "The check box was set")
+        return BrandSignUpForm()
+
+    def set_first_name(self, name):
+        first_name_field = self.driver.find_element(By.XPATH, "// input[ @ name = 'firstName']")
+        first_name_field.send_keys(name)
+        return BrandSignUpForm()
+
+    def set_last_name(self, last_name):
+        last_name_field = self.driver.find_element(By.XPATH, "//input[@name='lastName']")
+        last_name_field.send_keys(last_name)
+        Logging().reportDebugStep(self, "The last name was set"+last_name)
         return BrandSignUpForm()
 
     def sign_up_button(self):
