@@ -13,12 +13,14 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
 
     def set_first_name(self, name):
         first_name_field = self.driver.find_element(By.XPATH, "// input[ @ name = 'firstName']")
+        first_name_field.clear()
         first_name_field.send_keys(name)
         return BrandCreatePersonalProfileForm()
 
     def set_last_name(self, last_name):
         last_name_field = self.driver.find_element(By.XPATH, "//input[@name='lastName']")
         last_name_field.send_keys(last_name)
+        last_name_field.clear()
         Logging().reportDebugStep(self, "The last name was set"+last_name)
         return BrandCreatePersonalProfileForm()
 

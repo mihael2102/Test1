@@ -56,8 +56,15 @@ class BrandSignUpForm(BrandBasePage):
         Logging().reportDebugStep(self, "The check box was set")
         return BrandSignUpForm()
 
+    def set_phone(self, phone):
+        phone_field = super().wait_visible_of_element("//input[@name='phone']")
+        phone_field.clear()
+        phone_field.send_keys(phone)
+        Logging().reportDebugStep(self, "The phone number was set: " + phone)
+        return BrandSignUpForm()
+
     def set_accept_check_box(self):
-        check_box_locator = self.driver.find_element(By.XPATH, "//div[@class='content-popup-pandats']//div[6]/label")
+        check_box_locator = self.driver.find_element(By.XPATH, "//div[@class='content-popup-pandats']//div[7]/label")
         check_box_locator.click()
         Logging().reportDebugStep(self, "The check box was set")
         return BrandSignUpForm()
@@ -70,12 +77,12 @@ class BrandSignUpForm(BrandBasePage):
     def set_last_name(self, last_name):
         last_name_field = self.driver.find_element(By.XPATH, "//input[@name='lastName']")
         last_name_field.send_keys(last_name)
-        Logging().reportDebugStep(self, "The last name was set"+last_name)
+        Logging().reportDebugStep(self, "The last name was set" + last_name)
         return BrandSignUpForm()
 
-    def sign_up_button(self):
+    def submit_sign_up_button(self):
         submit_locator = self.driver.find_element(By.XPATH,
-                                                 "//button[@class='forex-button-pandats signup-button-pandats']")
+                                                  "//button[@class='forex-button-pandats signup-button-pandats']")
 
         submit_locator.click()
         Logging().reportDebugStep(self, "The sign up button was clicked")

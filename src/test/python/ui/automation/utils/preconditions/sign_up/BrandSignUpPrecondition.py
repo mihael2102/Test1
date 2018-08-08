@@ -16,14 +16,17 @@ class BrandSignUpPrecondition(object):
     def perform_first_step(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area) \
             .open_sign_form() \
+            .set_first_name(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME)) \
+            .set_last_name(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.LAST_NAME)) \
             .set_email(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL)) \
+            .set_phone(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PHONE)) \
             .set_password(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
             .set_confirm_password(
             Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CONFIRMATION_PASSWORD)) \
             .set_promo_code(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PROMO_CODE)) \
-            .set_country(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY)) \
             .set_check_box() \
-            .sign_up_button()
+            .set_accept_check_box()\
+            .submit_sign_up_button()
         return BrandSignUpPrecondition()
 
     def perform_second_step(self):
