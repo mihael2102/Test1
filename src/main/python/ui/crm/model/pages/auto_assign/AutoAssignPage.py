@@ -35,7 +35,21 @@ class AutoAssignPage(CRMBasePage):
         Logging().reportDebugStep(self, "The campaign_name was entered: " + rule_name)
         return AutoAssignPage()
 
+    def make_delete_rule(self):
+        sleep(2)
+        delete_button = super().wait_visible_of_element("//div[@title='Delete']")
+        delete_button.click()
+        Logging().reportDebugStep(self, "The edit pencil was clicked")
+        return AutoAssignPage()
+
+    def confirm_delete_rule(self):
+        confirm_delete_button = super().wait_visible_of_element("//button[contains(text(),'OK')]")
+        confirm_delete_button.click()
+        Logging().reportDebugStep(self, "Confirm delete button was clicked")
+        return AutoAssignPage()
+
     def click_edit_by_pencil(self):
+        sleep(2)
         pencil_link = super().wait_visible_of_element("//div[@title='Edit']")
         pencil_link.click()
         Logging().reportDebugStep(self, "The edit pencil was clicked")
@@ -143,3 +157,7 @@ class AutoAssignPage(CRMBasePage):
             else:
                 return False
 
+    def get_no_data_text(self):
+        no_data_text = super().wait_visible_of_element("//span[contains(text(),'No data to display')]")
+        Logging().reportDebugStep(self, "The rule was delete, the message was displayed on grid: " + no_data_text.text)
+        return no_data_text.text
