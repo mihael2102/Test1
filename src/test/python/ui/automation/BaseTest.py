@@ -3,7 +3,7 @@ import unittest
 import allure
 from allure_commons.types import AttachmentType
 from selenium import webdriver
-from src.main.python.ui.brand.model.data.providers.DataProviders import DataProviders
+from src.main.python.utils.data.providers.DataProviders import DataProviders
 from src.main.python.utils.config import Config
 
 
