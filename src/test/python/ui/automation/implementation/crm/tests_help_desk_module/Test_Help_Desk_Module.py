@@ -6,7 +6,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.help_desk.HelpDeskPrecondition import HelpDeskPrecondition
 
 
-class HelpDeskTest(BaseTest):
+class HelpDeskModuleTest(BaseTest):
 
     def test_create_ticket(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \

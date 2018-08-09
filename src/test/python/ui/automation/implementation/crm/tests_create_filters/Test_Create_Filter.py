@@ -5,7 +5,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
 
 
-class CreateFiltersTestCRM(BaseTest):
+class FilterModulesTest(BaseTest):
 
     def test_create_filter_clients_module(self):
         clients_module_page = CRMLoginPage() \

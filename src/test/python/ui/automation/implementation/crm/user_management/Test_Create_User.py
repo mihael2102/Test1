@@ -5,7 +5,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-class CreateUserTest(BaseTest):
+class UserTest(BaseTest):
 
     def test_create_user(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \

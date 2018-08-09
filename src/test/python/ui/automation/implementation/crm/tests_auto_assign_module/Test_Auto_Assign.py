@@ -9,7 +9,7 @@ from src.test.python.ui.automation.utils.preconditions.auto_assign.AutoAssignPre
 from src.test.python.ui.automation.utils.preconditions.campaigns.CampaignsPrecondition import CampaignsPrecondition
 
 
-class AutoAssignTest(BaseTest):
+class AutoAssignModuleTest(BaseTest):
 
     def test_perform_add_rule(self):
         CampaignsPrecondition().perform_create_new_campaigns()

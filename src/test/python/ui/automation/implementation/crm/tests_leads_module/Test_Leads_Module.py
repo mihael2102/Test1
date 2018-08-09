@@ -7,7 +7,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
 
 
-class LeadModule(BaseTest):
+class LeadModuleTest(BaseTest):
 
     def test_create_lead(self):
         LeadPrecondition().create_lead()

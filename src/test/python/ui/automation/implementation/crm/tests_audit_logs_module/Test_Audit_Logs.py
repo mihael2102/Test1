@@ -5,7 +5,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-class AuditLogs(BaseTest):
+class AuditLogsModuleTest(BaseTest):
 
     def test_check_tab_audit_logs_module(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \

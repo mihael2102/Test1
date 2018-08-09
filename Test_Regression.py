@@ -1,12 +1,12 @@
 from src.test.python.ui.automation.implementation.crm.test_my_dashboard.Test_My_Dashboard_Actions import \
     MyDashboardActionsTest
-from src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs import AuditLogs
+from src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs import AuditLogsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction import AddInteraction
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password import \
     ChangePasswordTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password import \
     CheckPasswordTestCRM
-from src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter import CreateFiltersTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter import FilterModulesTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Download_Documents_Client_Module import \
     DownloadDocumentsClientModule
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In import CreditInTestCRM
@@ -19,13 +19,13 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
     SendSMSClientsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta import \
     TransferBetweenTa
-from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module import CreateDocument
+from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module import DocumentModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Tab_Document_Module import \
     TabDocumentModule
 
 from src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module import \
     TabFinancialTransaction
-from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module import LeadModule
+from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module import LeadModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tab_Task_Module import TabTasksModuleCRM
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tasks_Actions import ActionsTaskModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Add_New_Task_Calendar_View import \
@@ -58,7 +58,7 @@ class TestRegression(object):
         AddInteraction()
 
     def run_perform_create_filter_crm(self):
-        CreateFiltersTestCRM()
+        FilterModulesTest()
 
     def run_perform_searching_crm(self):
         SearchingClientsTestCRM()
@@ -100,13 +100,13 @@ class TestRegression(object):
         ActionsTaskModuleTest()
 
     def run_create_delete_document(self):
-        CreateDocument()
+        DocumentModuleTest()
 
     def run_check_tabs(self):
         TabDocumentModule()
 
     def run_check_lead_test(self):
-        LeadModule()
+        LeadModuleTest()
 
     def run_check_tab_financial_transaction(self):
         TabFinancialTransaction()
@@ -115,4 +115,4 @@ class TestRegression(object):
         MyDashboardActionsTest()
 
     def run_check_audit_logs_test(self):
-        AuditLogs()
+        AuditLogsModuleTest()

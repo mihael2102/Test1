@@ -5,7 +5,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-class CreateDocument(BaseTest):
+class DocumentModuleTest(BaseTest):
 
     def test_create_document(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \

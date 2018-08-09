@@ -1,7 +1,6 @@
 from src.main.python.ui.brand.model.client_area_modules.service_desk.CaServiceDesk import CaServiceDesk
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.constants.HelpDeskConstants import HelpDeskConstants
-from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants

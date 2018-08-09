@@ -4,7 +4,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.campaigns.CampaignsPrecondition import CampaignsPrecondition
 
 
-class CreateCampaignsModuleTest(BaseTest):
+class CampaignsModuleTest(BaseTest):
 
     def test_create_campaigns_module(self):
         CampaignsPrecondition().perform_create_new_campaigns()
