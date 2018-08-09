@@ -73,9 +73,9 @@ class EditCampaignModule(CRMBasePage):
     def get_name_text(self, name):
         if super().wait_visible_of_element("//input[@value='%s']" % name).is_displayed():
             Logging().reportDebugStep(self, "Campaign name exist: " + name)
+            return True
         else:
             return False
-        return True
 
     def get_assigned_to_text(self):
         assigned_to_text = super().wait_element_to_be_clickable("//span[@dir='ltr']").text
@@ -83,25 +83,27 @@ class EditCampaignModule(CRMBasePage):
         return assigned_to_text
 
     def get_start_date_text(self, start_date):
-        if super().wait_element_to_be_clickable("//input[@value='%s']" % start_date).is_displayed():
+        if super().wait_element_to_be_clickable(
+                "//input[@value='%s']/preceding-sibling::label[contains(text(),'Start Date')]" % start_date).is_displayed():
             Logging().reportDebugStep(self, "The start date of campaign is: " + start_date)
+            return True
         else:
             return False
-        return True
 
     def get_end_date_text(self, end_date):
-        if super().wait_element_to_be_clickable("//input[@value='%s']" % end_date).is_displayed():
+        if super().wait_element_to_be_clickable(
+                "//input[@value='%s']/preceding-sibling::label[contains(text(),'End Date')]" % end_date).is_displayed():
             Logging().reportDebugStep(self, "The end date of campaign is: " + end_date)
+            return True
         else:
             return False
-        return True
 
     def get_rate_text(self, rate):
         if super().wait_element_to_be_clickable("//input[@value='%s']" % rate).is_displayed():
             Logging().reportDebugStep(self, "The rate of campaign is : " + rate)
+            return True
         else:
             return False
-        return True
 
     def get_deal_text(self, deal):
 
@@ -110,11 +112,10 @@ class EditCampaignModule(CRMBasePage):
         if element.first_selected_option.text == deal:
 
             Logging().reportDebugStep(self, "The deal is displayed: " + deal)
+            return True
 
         else:
             return False
-
-        return True
 
     def click_save_button(self):
         save_button = super().wait_element_to_be_clickable("//button[@id='Save']")

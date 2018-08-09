@@ -37,6 +37,7 @@ class AddCampaignsModule(CRMBasePage):
 
     def set_start_date(self, start_date):
         start_date_button = super().wait_element_to_be_clickable("//input[@name='start_date']")
+        start_date_button.clear()
         start_date_button.send_keys(start_date)
         start_date_button.send_keys(Keys.ENTER)
         start_date_button.click()
@@ -45,6 +46,7 @@ class AddCampaignsModule(CRMBasePage):
 
     def set_end_date(self, end_date):
         search_button = super().wait_element_to_be_clickable("//input[@name='end_date']")
+        search_button.clear()
         search_button.send_keys(end_date)
         search_button.send_keys(Keys.ENTER)
         search_button.click()

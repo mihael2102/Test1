@@ -87,7 +87,7 @@ class TasksPage(CRMBasePage):
         return tab_text.text
 
     def open_show_all_tab(self):
-        sleep(1)
+        sleep(2)
         tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[1]")
         tab.click()
         Logging().reportDebugStep(self, "The this week tab was opened ")
@@ -144,19 +144,19 @@ class TasksPage(CRMBasePage):
 
     def select_three_records_task_module(self):
         sleep(1)
-        first_check_box = super().wait_element_to_be_clickable("//div[@class='table-grid-container']//tr[3]//td[1]")
+        first_check_box = super().wait_element_to_be_clickable("//tr[@class='tableRow'][1]//td[1]")
         first_check_box.click()
-        second_check_box = self.driver.find_element(By.XPATH, "//div[@class='table-grid-container']//tr[4]//td[1]")
+        second_check_box = self.driver.find_element(By.XPATH, "//tr[@class='tableRow'][2]//td[1]")
         second_check_box.click()
-        third_check_box = self.driver.find_element(By.XPATH, "//div[@class='table-grid-container']//tr[5]//td[1]")
+        third_check_box = self.driver.find_element(By.XPATH, "//tr[@class='tableRow'][3]//td[1]")
         third_check_box.click()
         Logging().reportDebugStep(self, "The records were selected")
         return TasksPage()
 
     def select_two_records_task_module(self):
-        first_check_box = super().wait_element_to_be_clickable("//div[@class='table-grid-container']//tr[3]//td[1]")
+        first_check_box = super().wait_element_to_be_clickable("/tr[@class='tableRow'][1]//td[1]")
         first_check_box.click()
-        second_check_box = self.driver.find_element(By.XPATH, "//div[@class='table-grid-container']//tr[4]//td[1]")
+        second_check_box = self.driver.find_element(By.XPATH, "/tr[@class='tableRow'][2]//td[1]")
         second_check_box.click()
         return TasksPage()
 
@@ -203,7 +203,7 @@ class TasksPage(CRMBasePage):
     def open_first_client_profile(self):
         sleep(3)
         client_link = super().wait_element_to_be_clickable(
-            "//div[@class='table-grid-container']//tr[3]//td[6]")
+            "//tr[@class='tableRow']//td[6]")
         client_link.click()
         Logging().reportDebugStep(self, "The first client profile is opened")
         return ClientProfilePage()

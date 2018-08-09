@@ -74,7 +74,7 @@ class CRMHomePage(CRMBasePage):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The audit logs module was opened")
-        return AutoAssignPage()
+        return AuditLogsPage()
 
     def select_auto_assign_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
@@ -111,7 +111,8 @@ class CRMHomePage(CRMBasePage):
         return HelpDeskPage()
 
     def open_client_module(self):
-        home_page_element = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Clients']")
+        sleep(2)
+        home_page_element = super().wait_visible_of_element("//span[@class='glyphicon glyphicon-Clients']")
         home_page_element.click()
         Logging().reportDebugStep(self, "The client module was opened")
         return ClientsPage()
