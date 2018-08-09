@@ -1,0 +1,2 @@
+Loging.py                   26 DEBUG    BrandHomePage - Open the first tab with the page: https://newforexqa.pandats.com/
+Loging.py                   26 DEBUG    BrandHomePage - Click the 'Login' button on Home page
