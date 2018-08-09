@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.AutoAssignConstants import AutoAssignConstants
 from src.main.python.ui.crm.model.constants.CampaingsConstants import CampaignsConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -9,6 +11,7 @@ from src.test.python.ui.automation.utils.preconditions.auto_assign.AutoAssignPre
 from src.test.python.ui.automation.utils.preconditions.campaigns.CampaignsPrecondition import CampaignsPrecondition
 
 
+@pytest.mark.run(order=34)
 class AutoAssignModuleTest(BaseTest):
 
     def test_perform_add_rule(self):
