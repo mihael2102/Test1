@@ -154,9 +154,9 @@ class TasksPage(CRMBasePage):
         return TasksPage()
 
     def select_two_records_task_module(self):
-        first_check_box = super().wait_element_to_be_clickable("/tr[@class='tableRow'][1]//td[1]")
+        first_check_box = super().wait_element_to_be_clickable("//tr[@class='tableRow'][1]//td[1]")
         first_check_box.click()
-        second_check_box = self.driver.find_element(By.XPATH, "/tr[@class='tableRow'][2]//td[1]")
+        second_check_box = self.driver.find_element(By.XPATH, "//tr[@class='tableRow'][2]//td[1]")
         second_check_box.click()
         return TasksPage()
 

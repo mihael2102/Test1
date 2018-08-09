@@ -1,0 +1,48 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1533220686116" stop="1533220702605">
+  <name>Test_Demo</name>
+  <labels/>
+  <test-cases>
+    <test-case start="1533220686116" status="failed" stop="1533220702605">
+      <name>TestDemo.testing_tabs</name>
+      <failure>
+        <message>TypeError: get_data_client() missing 1 required positional argument: 'value'</message>
+        <stack-trace>self = &lt;Test_Demo.TestDemo testMethod=testing_tabs&gt;
+
+    def testing_tabs(self):
+        BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
+&gt;           .set_fields(Config.data.get_data_client(TestDataConstants.E_MAIL),
+                        Config.data.get_data_client(TestDataConstants.PASSWORD)) \
+            .click_login_button()
+E       TypeError: get_data_client() missing 1 required positional argument: 'value'
+
+Test_Demo.py:11: TypeError</stack-trace>
+      </failure>
+      <attachments>
+        <attachment source="f9852280-d664-4404-9da6-85bfc19391ee-attachment.png" title="failed_screenshot" type="image/png"/>
+        <attachment source="347d1643-df15-4772-93ad-3831e1a63271-attachment.txt" title="Captured stderr call" type="text/plain"/>
+        <attachment source="46da4589-4b1b-4a42-a48d-85e023ff79ed-attachment.txt" title="Captured log call" type="text/plain"/>
+      </attachments>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="22584-MainThread"/>
+        <label name="host" value="HRK1-LHP-F73384"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1533220698497" status="passed" stop="1533220698497">
+          <name>Open the first tab with the page: https://newforexqa.pandats.com/</name>
+          <title>Open the first tab with the page: https://newforexqa.pandats.com/</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533220699484" status="passed" stop="1533220699485">
+          <name>Click the 'Login' button on Home page</name>
+          <title>Click the 'Login' button on Home page</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>
