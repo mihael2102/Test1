@@ -1,5 +1,3 @@
-import pytest
-
 from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -7,8 +5,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=29)
-class AuditLogs(BaseTest):
+class AuditLogsModuleTest(BaseTest):
 
     def test_check_tab_audit_logs_module(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \

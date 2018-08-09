@@ -1,5 +1,3 @@
-import pytest
-
 from src.main.python.ui.crm.model.constants.DocumentModuleConstants import DocumentModuleConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -7,8 +5,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
-@pytest.mark.run(order=22)
-class CreateDocument(BaseTest):
+class DocumentModuleTest(BaseTest):
 
     def test_create_document(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \

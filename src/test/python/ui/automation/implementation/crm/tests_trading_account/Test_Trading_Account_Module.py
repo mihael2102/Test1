@@ -7,7 +7,7 @@ from src.test.python.ui.automation.utils.preconditions.trading_account.TradingAc
     TradingAccountPrecondition
 
 
-class TradingAccountTest(BaseTest):
+class TradingAccountModuleTest(BaseTest):
 
     def test_check_tab_trading_account_module(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
