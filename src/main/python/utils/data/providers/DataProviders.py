@@ -88,7 +88,7 @@ class DataProviders(object):
 
     def get_data_auto_assign_info(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/auto-assign-module-information.json')
+            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/auto-assign-module-information.json' % Config.test)
         conn_string = json.load(connection_file)
         return conn_string[AutoAssignConstants.AUTO_ASSIGN_INFO][value]
 
