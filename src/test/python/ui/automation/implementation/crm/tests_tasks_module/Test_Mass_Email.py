@@ -11,7 +11,8 @@ from src.test.python.ui.automation.utils.preconditions.task_module.MassEmailPrec
 class MassEmailTaskModule(BaseTest):
 
     def test_make_mass_email(self):
-        MassEmailPrecondition().create_first_event().create_second_event()
+        MassEmailPrecondition().create_first_event()\
+            .create_second_event()
 
         task_module = TasksPage()
 

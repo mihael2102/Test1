@@ -1,4 +1,4 @@
-from src.test.python.ui.automation.implementation.crm.test_my_dashboard.Test_My_Dashboard_Actions import \
+from src.test.python.ui.automation.implementation.crm.tests_my_dashboard_module.Test_My_Dashboard_Actions import \
     MyDashboardActionsTest
 from src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs import AuditLogsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction import AddInteraction

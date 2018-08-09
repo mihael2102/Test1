@@ -8,7 +8,9 @@ from src.test.python.ui.automation.utils.preconditions.task_module.MassEditPreco
 class MassEditTaskModule(BaseTest):
 
     def test_mass_edit_task(self):
-        MassEditPrecondition().create_first_event().create_second_event().create_third_event()
+        MassEditPrecondition().create_first_event()\
+            .create_second_event()\
+            .create_third_event()
 
         task_module = TasksPage()
         task_module.open_show_all_tab().find_event_by_subject(

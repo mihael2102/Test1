@@ -61,6 +61,3 @@ class AddNewTaskCalendarView(BaseTest):
             .perform_screen_shot() \
             .close_calendar_view()
 
-        task_module.open_show_all_tab().select_three_records_task_module().perform_mass_delete()
-        task_delete_message = task_module.get_confirm_message_task_module()
-        assert task_delete_message == TaskModuleConstants.MESSAGE_TASK_WAS_DELETED

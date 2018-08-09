@@ -7,7 +7,9 @@ from src.test.python.ui.automation.utils.preconditions.task_module.MassDeletePre
 class MassDeleteTaskModule(BaseTest):
 
     def test_mass_delete_task_module(self):
-        MassDeletePrecondition().create_first_event().create_second_event().create_third_event()
+        MassDeletePrecondition().create_first_event()\
+            .create_second_event()\
+            .create_third_event()
 
         task_module = TasksPage()
         task_module.open_show_all_tab().find_event_by_subject(

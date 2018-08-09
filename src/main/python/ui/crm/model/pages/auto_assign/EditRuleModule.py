@@ -1,3 +1,5 @@
+from time import sleep
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
@@ -47,6 +49,7 @@ class EditRuleModule(CRMBasePage):
         return EditRuleModule()
 
     def set_lead_module_check_box(self):
+        sleep(2)
         campaign_name_link = super().wait_element_to_be_clickable("//input[@name='leadrule']")
         campaign_name_link.click()
         Logging().reportDebugStep(self, "The lead module checkbox was set")

@@ -9,7 +9,9 @@ from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecon
 class MassSmsTaskModule(BaseTest):
 
     def test_perform_mass_sms_task_module(self):
-        MassSmSPrecondition().create_first_event().create_second_event().create_third_event()
+        MassSmSPrecondition().create_first_event()\
+            .create_second_event()\
+            .create_third_event()
 
         task_module = TasksPage()
         task_module.open_show_all_tab().find_event_by_subject(
