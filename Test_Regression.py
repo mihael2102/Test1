@@ -3,6 +3,7 @@ from src.test.python.ui.automation.implementation.crm.test_my_dashboard.Test_My_
 from src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module import \
     AffiliateModule
 from src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs import AuditLogs
+from src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign import AutoAssignTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction import AddInteraction
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password import \
     ChangePasswordTestCRM
@@ -20,6 +21,8 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
     SendSMSClientsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta import \
     TransferBetweenTa
+from src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module import \
+    CreateCampaignsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module import CreateDocument
 
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Tab_Document_Module import \
@@ -41,7 +44,7 @@ from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Ma
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Edit import MassEditTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Sms import MassSmsTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tab_Task_Module import TabTasksModuleCRM
-from src.test.python.ui.automation.implementation.crm.tests_trading_account.Test_Tab_Trading_Account_Module import \
+from src.test.python.ui.automation.implementation.crm.tests_trading_account.Test_Trading_Account_Module import \
     TradingAccountTest
 from src.test.python.ui.automation.implementation.crm.user_management.Test_Create_User import CreateUserTest
 
@@ -149,3 +152,9 @@ class TestRegression(object):
 
     def run_trading_account_module(self):
         TradingAccountTest()
+
+    def run_auto_assign_module(self):
+        AutoAssignTest()
+
+    def run_campaign_module(self):
+        CreateCampaignsModuleTest()
