@@ -14,7 +14,7 @@ from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 
 
-class LeadsModule(CRMBasePage):
+class LeadsPage(CRMBasePage):
 
     def __init__(self):
         super().__init__()
@@ -30,7 +30,7 @@ class LeadsModule(CRMBasePage):
         self.enter_lead_status(lead_status)
         self.enter_language(language)
         self.click_search_button_leads_module()
-        return LeadsModule()
+        return LeadsPage()
 
     def open_create_lead_module(self):
         task_module = super().wait_load_element("//td[@class='moduleName']//button[1]")
@@ -54,11 +54,11 @@ class LeadsModule(CRMBasePage):
         today_lead_tab = super().wait_element_to_be_clickable("//li[contains(text(),'Today Leads')]")
         today_lead_tab.click()
         Logging().reportDebugStep(self, "The today tab was opened")
-        return LeadsModule()
+        return LeadsPage()
 
     def get_import_lead(self, last_name_lead):
         WaitingUtils().wait_util_element_is_displayed(last_name_lead, self.driver)
-        return LeadsModule()
+        return LeadsPage()
 
     '''
          Returns a confirmation  message if the user entered a valid password
@@ -78,7 +78,7 @@ class LeadsModule(CRMBasePage):
         third_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[3]//td[1]")
         third_check_box.click()
         Logging().reportDebugStep(self, "The records were selected")
-        return LeadsModule()
+        return LeadsPage()
 
     ''' 
            Select the filter in drop-down   
@@ -97,7 +97,7 @@ class LeadsModule(CRMBasePage):
         select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
         select_test_filter.click()
         Logging().reportDebugStep(self, "Click the selected filter")
-        return LeadsModule()
+        return LeadsPage()
 
     def open_mass_edit_task(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass Edit']")
@@ -120,7 +120,7 @@ class LeadsModule(CRMBasePage):
 
     def click_ok(self):
         super().click_ok()
-        return LeadsModule()
+        return LeadsPage()
 
     def perform_screen_shot_lead_module(self):
         sleep(3)
@@ -130,7 +130,7 @@ class LeadsModule(CRMBasePage):
         allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
-        return LeadsModule()
+        return LeadsPage()
 
     def perform_screen_shot_import_lead_module(self):
         sleep(3)
@@ -140,7 +140,7 @@ class LeadsModule(CRMBasePage):
         allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed,the grid with leads is empty ")
-        return LeadsModule()
+        return LeadsPage()
 
     def perform_screen_shot_confirm_import_lead_module(self):
         sleep(3)
@@ -150,41 +150,64 @@ class LeadsModule(CRMBasePage):
         allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed,the lead is displayed")
-        return LeadsModule()
+        return LeadsPage()
 
     def select_leads(self):
         select_lead_check_box = super().wait_element_to_be_clickable("//td[@class='lvtCol']//input")
         select_lead_check_box.click()
         Logging().reportDebugStep(self, "All imported leads were selected")
-        return LeadsModule()
+        return LeadsPage()
 
-    def click_delete_button(self):
+    def click_mass_delete_button(self):
         delete_lead_check_box = super().wait_element_to_be_clickable("//input[@value='Delete']")
         delete_lead_check_box.click()
         allert = self.driver.switch_to_alert()
         allert.accept()
         Logging().reportDebugStep(self, "All imported leads were deleted")
-        return LeadsModule()
+        return LeadsPage()
+
+    def click_delete_lead(self):
+        sleep(2)
+        delete_lead_button = super().wait_element_to_be_clickable(
+            "//tr[@class='lvtColData'][1]//div[@class='actions_wrapper']//a")
+        delete_lead_button.click()
+        confirm_delete_lead = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
+        confirm_delete_lead.click()
+        Logging().reportDebugStep(self, "The delete button  were clicked")
+        return LeadsPage()
+
+    def get_confirm_delete_ticket(self):
+        confirm_delete_ticket_message = super().wait_load_element("//span[@class='genHeaderSmall message_title']")
+        Logging().reportDebugStep(self, "The delete ticket was successfully : " + confirm_delete_ticket_message.text)
+        return confirm_delete_ticket_message.text
 
     def delete_filter_lead_module(self):
         delete_filter_button = super().wait_element_to_be_clickable("//a[@title='Delete']")
         delete_filter_button.click()
         Logging().reportDebugStep(self, "The delete button was clicked")
-        return LeadsModule()
+        return LeadsPage()
 
     def confirm_delete_lead_module(self):
         delete_filter_button = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
         delete_filter_button.click()
         Logging().reportDebugStep(self, "Three lead were deleted")
-        return LeadsModule()
+        return LeadsPage()
 
     def enter_first_name(self, first_name):
+        sleep(2)
         first_name_field = self.driver.find_element(By.XPATH,
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_firstname']")
         first_name_field.clear()
         first_name_field.send_keys(first_name)
         Logging().reportDebugStep(self, "The first name was entered : " + first_name)
-        return LeadsModule()
+        return LeadsPage()
+
+    def click_delete_button(self):
+        delete_button = self.driver.find_element(By.XPATH,
+                                                 "//tr[@class='lvtColData'][1]//div[@class='actions_wrapper']")
+        delete_button.click()
+        Logging().reportDebugStep(self, "Delete button was clicked")
+        return LeadsPage()
 
     def enter_last_name(self, last_name):
         first_name_field = self.driver.find_element(By.XPATH,
@@ -192,7 +215,7 @@ class LeadsModule(CRMBasePage):
         first_name_field.clear()
         first_name_field.send_keys(last_name)
         Logging().reportDebugStep(self, "The last name was entered : " + last_name)
-        return LeadsModule()
+        return LeadsPage()
 
     def enter_email(self, email):
         first_name_field = self.driver.find_element(By.XPATH,
@@ -200,7 +223,7 @@ class LeadsModule(CRMBasePage):
         first_name_field.clear()
         first_name_field.send_keys(email)
         Logging().reportDebugStep(self, "The email was entered : " + email)
-        return LeadsModule()
+        return LeadsPage()
 
     def enter_assigned_to(self, assigned_to):
         country_drop_down = self.driver.find_element(By.XPATH,
@@ -219,7 +242,7 @@ class LeadsModule(CRMBasePage):
 
         ac.move_by_offset(250, 250).click().perform()
         Logging().reportDebugStep(self, "The brand  was selected : " + assigned_to)
-        return LeadsModule()
+        return LeadsPage()
 
     def enter_tittle(self, tittle):
         tittle_name_field = self.driver.find_element(By.XPATH,
@@ -227,7 +250,7 @@ class LeadsModule(CRMBasePage):
         tittle_name_field.clear()
         tittle_name_field.send_keys(tittle)
         Logging().reportDebugStep(self, "The assigned_to was entered : " + tittle)
-        return LeadsModule()
+        return LeadsPage()
 
     def enter_lead_source(self, lead_source):
         lead_source_drop_down = self.driver.find_element(By.XPATH,
@@ -246,7 +269,7 @@ class LeadsModule(CRMBasePage):
 
         ac.move_by_offset(250, 250).click().perform()
         Logging().reportDebugStep(self, "The brand  was selected : " + lead_source)
-        return LeadsModule()
+        return LeadsPage()
 
     def enter_lead_status(self, lead_status):
         lead_source_drop_down = self.driver.find_element(By.XPATH,
@@ -265,7 +288,7 @@ class LeadsModule(CRMBasePage):
 
         ac.move_by_offset(250, 250).click().perform()
         Logging().reportDebugStep(self, "The lead_status  was selected : " + lead_status)
-        return LeadsModule()
+        return LeadsPage()
 
     def enter_language(self, language):
         first_name_field = self.driver.find_element(By.XPATH,
@@ -273,10 +296,10 @@ class LeadsModule(CRMBasePage):
         first_name_field.clear()
         first_name_field.send_keys(language)
         Logging().reportDebugStep(self, "The language was entered : " + language)
-        return LeadsModule()
+        return LeadsPage()
 
     def click_search_button_leads_module(self):
         search_button = super().wait_element_to_be_clickable("//td[@class='txt_al_c']")
         search_button.click()
         Logging().reportDebugStep(self, "The search button was clicked ")
-        return LeadsModule()
+        return LeadsPage()

@@ -3,19 +3,18 @@ from time import sleep
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
-from src.main.python.ui.crm.model.modules.campaigns_module.AddCampaignsModule import AddCampaignsModule
 from src.main.python.ui.crm.model.pages.auto_assign.AutoAssignPage import AutoAssignPage
 from src.main.python.ui.crm.model.pages.campaigns.CampaignsPage import CampaignsPage
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.audit_logs.AuditLogsPage import AuditLogsPage
 from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
-from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from src.main.python.ui.crm.model.pages.financial_transactions.FinancialTransactionsPage import \
     FinancialTransactionsPage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
-from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
+from src.main.python.ui.crm.model.pages.leads.LeadsPage import LeadsPage
 from src.main.python.ui.crm.model.modules.my_dashboard.MyDashBoardModule import MyDashBoardModule
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from src.main.python.ui.crm.model.pages.recycle_bin.RecycleBinPage import RecycleBinPage
 from src.main.python.ui.crm.model.pages.report.ReportPage import ReportPage
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
@@ -41,6 +40,7 @@ class CRMHomePage(CRMBasePage):
         return TasksPage()
 
     def open_more_list_modules(self):
+        sleep(2)
         hover_mouse = ActionChains(self.driver)
         more_list_element = super().wait_element_to_be_clickable("//a[contains(text(),'More')]")
         hover_mouse.move_to_element(more_list_element)
@@ -60,10 +60,11 @@ class CRMHomePage(CRMBasePage):
         return CampaignsPage()
 
     def open_lead_module(self):
-        task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Leads']")
+        sleep(3)
+        task_module = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Leads']")
         task_module.click()
         Logging().reportDebugStep(self, "Leads module was opened")
-        return LeadsModule()
+        return LeadsPage()
 
     def select_financial_transactions_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
@@ -82,6 +83,12 @@ class CRMHomePage(CRMBasePage):
         module_element.click()
         Logging().reportDebugStep(self, "The report module was opened")
         return ReportPage()
+
+    def select_recycle_bin_module_more_list(self, module):
+        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+        module_element.click()
+        Logging().reportDebugStep(self, "The recycle bin module was opened")
+        return RecycleBinPage()
 
     '''
             Open the second tabs of crm page
