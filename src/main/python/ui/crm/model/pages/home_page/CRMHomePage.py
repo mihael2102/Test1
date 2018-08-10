@@ -16,6 +16,7 @@ from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPa
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.modules.my_dashboard.MyDashBoardModule import MyDashBoardModule
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from src.main.python.ui.crm.model.pages.report.ReportPage import ReportPage
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
 from src.main.python.ui.crm.model.modules.user_management.UserManagement import UserManagement
@@ -75,6 +76,22 @@ class CRMHomePage(CRMBasePage):
         module_element.click()
         Logging().reportDebugStep(self, "The audit logs module was opened")
         return AuditLogsPage()
+
+    def select_report_module_more_list(self, module):
+        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+        module_element.click()
+        Logging().reportDebugStep(self, "The report module was opened")
+        return ReportPage()
+
+    '''
+            Open the second tabs of crm page
+            :parameter url crm page url  
+    '''
+
+    def open_second_tab_page(self, url):
+        super().open_second_tab_page(url)
+        Logging().reportDebugStep(self, "Open second tabs page: " + url + '\n')
+        return CRMHomePage()
 
     def select_auto_assign_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)

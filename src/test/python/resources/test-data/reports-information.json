@@ -1,0 +1,15 @@
+{
+  "Management_Reports": {
+    "first_management_report": "Performance by Date",
+    "first_management_export": "Performance by Date Exported",
+    "second_management_report": "Deposits by month"
+  },
+  "Trading_Reports": {
+    "first_trading_reports_report": "",
+    "second_trading_reports_report": "",
+    "third_trading_reports_report": "",
+    "fourth_trading_reports_report": "",
+    "fifth_trading_reports_report": "",
+    "sixth_trading_reports_report": ""
+  }
+}

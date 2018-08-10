@@ -23,12 +23,19 @@ class AuditLogsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
 
+    def switch_second_tab_page(self):
+        super().switch_second_tab_page()
+        return AuditLogsPage()
+
+    def get_performance_text(self, report_text):
+        return super().wait_util_report_is_displayed(report_text, self.driver)
+
     def perform_screen_shot(self):
         sleep(3)
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/audit_logs/audit logs_module screenshot %s.png' % now
         self.driver.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('screenshot',  self.driver.get_screenshot_as_png(),
+        allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "The screenshot was performed ")
         return AuditLogsPage()

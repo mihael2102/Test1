@@ -70,9 +70,26 @@ class WaitingUtils(object):
             try:
                 sleep(2)
                 last_name_element = driver.find_element(By.XPATH,
-                                              "*//a[contains(text(),'%s')]" % element)
+                                                        "*//a[contains(text(),'%s')]" % element)
 
                 if last_name_element.is_displayed():
+                    Logging().reportDebugStep(self, "Returns the: " + element)
+                    return True
+                else:
+                    raise NoSuchElementException()
+            except (NoSuchElementException, StaleElementReferenceException):
+                sleep(5)
+                driver.refresh()
+        fail("There is no such element after the page reloads")
+
+    def wait_util_report_is_displayed(self, element, driver):
+        for Config.counter in range(2):
+            try:
+                sleep(2)
+                report_element = driver.find_element(By.XPATH,
+                                                     "//tr[@class='tableRow'][1]//a")
+
+                if report_element.text == element:
                     Logging().reportDebugStep(self, "Returns the: " + element)
                     return True
                 else:

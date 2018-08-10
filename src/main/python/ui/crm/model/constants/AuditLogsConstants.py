@@ -11,3 +11,7 @@ class AuditLogsConstants(object):
     AUDIT_LOGS_MODULE_INFO = "Audit_Logs_module_info"
     FIRST_MODULE = "first_module"
     FIRST_ACTION = "first_action"
+
+
+class ExportReportConstants(object):
+    PERFORMANCE_BY_DATE = "Performance by Date Exported"

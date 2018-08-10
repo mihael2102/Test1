@@ -7,6 +7,7 @@ from src.main.python.ui.crm.model.constants.CampaingsConstants import CampaignsC
 from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
     FinancialTransactionsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
+from src.main.python.ui.crm.model.constants.ReportConstants import ManagementReportConstants, TradingReportConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
 
@@ -24,6 +25,18 @@ class DataProviders(object):
             'D:/automation-newforexqa/src/test/python/resources/test-data/campaigns-information.json')
         conn_string = json.load(connection_file)
         return conn_string[CampaignsConstants.CAMPAIGN_MODULE_INFO][value]
+
+    def get_data_management_report_module(self, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/reports-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[ManagementReportConstants.MANAGEMENT_REPORT_INFO][value]
+
+    def get_data_trading_report_module(self, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/reports-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[TradingReportConstants.TRADING_REPORT_INFO][value]
 
     def get_data_document_module(self, key, value):
         connection_file = open(
@@ -108,7 +121,6 @@ class DataProviders(object):
             'D:/automation-newforexqa/src/test/python/resources/test-data/affiliate-information.json')
         conn_string = json.load(connection_file)
         return conn_string[AffiliateModuleConstants.AFFILIATE_INFO_EDITED][value]
-
 
     def get_data_help_desk(self, key, value):
         connection_file = open(

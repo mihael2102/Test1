@@ -75,3 +75,6 @@ class CRMBasePage(object):
         button = self.wait_load_element("//button[contains(text(),'OK')]")
         button.click()
         Logging().reportDebugStep(self, "The Ok button was clicked ")
+
+    def wait_util_report_is_displayed(self, element, driver):
+        return WaitingUtils().wait_util_report_is_displayed(element, driver)
