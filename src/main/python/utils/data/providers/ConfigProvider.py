@@ -11,6 +11,7 @@ from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstant
 from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
 from src.main.python.utils.config import Config
 import yaml
+from os import path
 
 
 class ConfigProvider:
@@ -53,7 +54,8 @@ class ConfigProvider:
         """
         # load default configuration as a base configuration
         if use_base:
-            with open(self.home_config_dir + "brands/" + self.default_config_file, 'r') as stream:
+            brands_file_path = path.relpath(self.home_config_dir + "Brands/" + self.default_config_file)
+            with open(brands_file_path, 'r') as stream:
                 try:
                     self.data = yaml.load(stream)
                 except yaml.YAMLError as e:
@@ -61,7 +63,8 @@ class ConfigProvider:
         for config in self.brands_config['brands']:
             if config['name'] != brand:
                 continue
-            with open(self.home_config_dir + "brands/" + config['config_file'], 'r') as stream:
+            config_file_path = path.relpath(self.home_config_dir + "Brands/" + config['config_file'])
+            with open(config_file_path, 'r') as stream:
                 try:
                     brand_config = yaml.load(stream)
                     if use_base:

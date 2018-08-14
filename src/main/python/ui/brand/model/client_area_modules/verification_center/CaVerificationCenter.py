@@ -1,6 +1,6 @@
 import re
 from time import sleep
-import autoit
+# import autoit
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.config import Config
@@ -23,9 +23,9 @@ class CaVerificationCenter(BrandBasePage):
             "//div[@class='verif-row-pandats'][1]//div[@class='upload-new-pandats']")
         front_upload_picture.click()
         sleep(2)
-        autoit.control_set_text("Open", "Edit1",
-                                r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
-        autoit.control_send("Open", "Edit1", "{ENTER}")
+        # autoit.control_set_text("Open", "Edit1",
+        #                         r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
+        # autoit.control_send("Open", "Edit1", "{ENTER}")
         Logging().reportDebugStep(self, "The  document was uploaded ")
         return CaVerificationCenter()
 

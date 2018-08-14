@@ -1,6 +1,5 @@
 from time import sleep
 
-import autoit
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
@@ -36,9 +35,9 @@ class CreateDocumentModule(CRMBasePage):
         front_upload_picture = super().wait_element_to_be_clickable("//span[contains(text(),'Browse')]")
         front_upload_picture.click()
         sleep(2)
-        autoit.control_set_text("Open", "Edit1",
-                                r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
-        autoit.control_send("Open", "Edit1", "{ENTER}")
+        # autoit.control_set_text("Open", "Edit1",
+        #                         r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
+        # autoit.control_send("Open", "Edit1", "{ENTER}")
         Logging().reportDebugStep(self, "The  document was uploaded ")
         return CreateDocumentModule()
 
