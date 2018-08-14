@@ -1,0 +1,15 @@
+tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
+  class: CalendarView
+  tests:
+    - test_check_day_tab
+    - test_check_week_tab
+    - test_check_month_tab
+#- module: src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs
+#  class: AuditLogsModuleTest
+#  tests:
+#    - test_check_tab_audit_logs_module
+#- module: src.test.python.ui.automation.implementation.crm.user_management.Test_Create_User
+#  class: UserTest
+#  tests:
+#    - test_create_user
