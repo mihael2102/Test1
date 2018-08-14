@@ -102,3 +102,6 @@ venv.bak/
 # result directories
 allure/
 result/
+
+# utils directory
+utils/

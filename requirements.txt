@@ -14,3 +14,6 @@ python-dateutil
 allure-behave
 pytest-ordering
 pytest-allure-adaptor
+pyyaml
+xlsxwriter
+unittest-xml-reporting
