@@ -42,7 +42,7 @@ class BrandSignUpPrecondition(object):
             .select_day(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.DAY)) \
             .select_month(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.MONTH)) \
             .select_year(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.YEAR)) \
-            .select_country(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.SECOND_COUNTRY)) \
+            .select_country(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY)) \
             .select_currency(
             Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_USD)) \
             .select_citizenship(

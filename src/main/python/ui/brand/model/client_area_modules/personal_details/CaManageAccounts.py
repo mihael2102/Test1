@@ -31,7 +31,7 @@ class CaManageAccounts(BrandBasePage):
 
     def open_demo_button(self):
         demo_button = self.driver.find_element(By.XPATH,
-                                               "//li[@class ='header-menu-pandats']//span[contains(text(),'Demo')]")
+                                               "//li[contains(@class,'header-menu-pandats')]//span[contains(text(),'Demo')]")
         demo_button.click()
         Logging().reportDebugStep(self, "Open the demo button")
         return CaManageAccounts()

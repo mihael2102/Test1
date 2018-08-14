@@ -23,9 +23,7 @@ class BrandTradingPlatformPage(BrandBasePage):
 
         demo_drop_down.click()
         Logging().reportDebugStep(self, "Click the drop down")
-        select = self.driver.find_element(By.XPATH, "//div[@class='account-actions-pandats']//"
-                                                    "following-sibling::"
-                                                    "button[contains(text(),'%s')]" % value)
+        select = self.driver.find_element(By.XPATH, "//div[@class='account-actions-pandats']//button[contains(text(),'%s')]" % value)
         select.click()
         Logging().reportDebugStep(self, "Select the module")
         return BrandCreatePersonalProfileForm()
