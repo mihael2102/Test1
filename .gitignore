@@ -98,3 +98,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# result directories
+allure/
+result/
