@@ -97,7 +97,7 @@ class CaServiceDesk(BrandBasePage):
 
     def get_category_tittle(self):
         category_tittle = super().wait_load_element_present("//div[@class='description-pandats'][1]")
-        new_sub = re.sub('Category: ', "", category_tittle.text)
+        new_sub = re.sub('Category:', "", category_tittle.text)
         Logging().reportDebugStep(self, "The category text was received: " + new_sub)
         return new_sub
 

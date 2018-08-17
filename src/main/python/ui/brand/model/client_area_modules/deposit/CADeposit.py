@@ -11,7 +11,7 @@ class CADeposit(BrandBasePage):
 
     def select_payment_method(self, payment_method):
         method = super().wait_load_element_present(
-            "//div[@class='pay-method-pandats credit-card'][%s]" % payment_method)
+            "//div[contains(@class, 'pay-method-pandats credit-card')][%s]" % payment_method)
         method.click()
         Logging().reportDebugStep(self, "The payment method was set:" + payment_method)
         return CADeposit()

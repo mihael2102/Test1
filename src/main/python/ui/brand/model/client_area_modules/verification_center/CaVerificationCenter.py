@@ -19,12 +19,15 @@ class CaVerificationCenter(BrandBasePage):
 
     def perform_front_upload(self):
         sleep(2)
+        """
+        Upload document to section: Proof of Identity -> Photo ID ->Front upload 
+        """
         front_upload_picture = super().wait_visible_of_element(
-            "//div[@class='verif-row-pandats'][1]//div[@class='upload-new-pandats']")
+            "(//label[contains(@for, '')])[4]")
         front_upload_picture.click()
         sleep(2)
         autoit.control_set_text("Open", "Edit1",
-                                r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
+                                r"D:\automation-newforexqa\src\main\python\utils\documents\Bear.jpg")
         autoit.control_send("Open", "Edit1", "{ENTER}")
         Logging().reportDebugStep(self, "The  document was uploaded ")
         return CaVerificationCenter()
@@ -34,7 +37,7 @@ class CaVerificationCenter(BrandBasePage):
     '''
 
     def get_document_status(self):
-        front_upload_picture = super().wait_load_element_present("//div[@class='document-wrapper-pandats']//span")
+        front_upload_picture = super().wait_load_element_present("//span[contains(text(), 'Front Pending')]")
         re_front_upload_picture = re.sub('Front ', '', front_upload_picture.text)
         Logging().reportDebugStep(self,
                                   "Returns the status of document  : " + re_front_upload_picture)
