@@ -62,7 +62,7 @@ class LeadModuleTest(BaseTest):
         lead_module.click_ok().perform_screen_shot_lead_module()
 
     def test_mass_assign_lead_module(self):
-        LeadPrecondition().create_three_leads()
+        LeadPrecondition(self.driver, self.config).create_three_leads()
         CRMHomePage().refresh_page() \
             .open_client_module()
 
@@ -81,7 +81,7 @@ class LeadModuleTest(BaseTest):
         lead_module.click_ok().perform_screen_shot_lead_module()
 
     def test_perform_convert_lead(self):
-        LeadPrecondition().create_lead()
+        LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
         lead_view_profile_page = LeadViewInfo()
 
         lead_view_profile_page.open_convert_lead_module() \

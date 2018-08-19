@@ -21,9 +21,6 @@ from src.main.python.utils.config import Config
 
 class TasksPage(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
-
     '''
         Open the second tabs of crm page
         :parameter url crm page url  
@@ -140,7 +137,7 @@ class TasksPage(CRMBasePage):
                                                         "//button[contains(text(),'Calendar View')]")
         calendar_view_button.click()
         Logging().reportDebugStep(self, "The calendar view module was opened")
-        return CalendarViewModule()
+        return CalendarViewModule(self.driver)
 
     def select_three_records_task_module(self):
         sleep(1)

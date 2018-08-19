@@ -17,9 +17,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 class ClientsPage(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
-
     def perform_searching(self, client_status, email, name, country, first_name, last_name, city, brand):
         self.select_client_status(client_status)
         self.enter_email(email)

@@ -26,13 +26,13 @@ class MultiRunner(unittest.TestCase):
 
         # write the results to an Excel file
         result_writer = ExcelWriter()
-        # result_writer.write_test_results(brand_pretty_names, test_list, overall_results)
+        result_writer.write_test_results(brand_pretty_names, test_list, overall_results)
 
     def single_brand_test(self, brand, test_list, data_provider):
-        runner = xmlrunner.XMLTestRunner(output='result', outsuffix=brand)
+        runner = xmlrunner.XMLTestRunner(output='result')
         results = {}
 
-        suite = unittest.TestSuite()
+        # suite = unittest.TestSuite()
 
         for test_data in test_list:
             test_module = importlib.import_module(test_data['module'])
@@ -43,25 +43,24 @@ class MultiRunner(unittest.TestCase):
             test.driver_type = 'Chrome'
             data_provider.reload_configuration()
             test.config = data_provider
-            # suite = unittest.TestSuite()
-            suite.addTest(test)
+            # suite.addTest(test)
             # result = runner.run(suite)
-            # runner.outsuffix = test_data['method'] + "-" + brand
-            # result = runner.run(test)
+            runner.outsuffix = test_data['method'] + "-" + brand
+            result = runner.run(test)
 
-        #     test_name = test_data['class'] + '.' + test_data['method']
-        #     if not result or result.errors:
-        #         results[test_name] = "ERROR"
-        #     elif result.failures:
-        #         results[test_name] = "FAIL"
-        #     elif not result.testsRun:
-        #         results[test_name] = "SKIP"
-        #     else:
-        #         results[test_name] = "PASS"
-        # return results
-
-        results = runner.run(suite)
+            test_name = test_data['class'] + '.' + test_data['method']
+            if not result or result.errors:
+                results[test_name] = "ERROR"
+            elif result.failures:
+                results[test_name] = "FAIL"
+            elif not result.testsRun:
+                results[test_name] = "SKIP"
+            else:
+                results[test_name] = "PASS"
         return results
+
+        # results = runner.run(suite)
+        # return results
 
 
 if __name__ == "__main__":
