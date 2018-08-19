@@ -1,41 +1,39 @@
-from datetime import *
 import unittest
+from datetime import *
+
 import allure
-from allure_commons.types import AttachmentType
 from selenium import webdriver
-from src.main.python.utils.data.providers.DataProviders import DataProviders
-from src.main.python.utils.data.providers.ConfigProvider import ConfigProvider
+
 from src.main.python.utils.config import Config
+from src.main.python.utils.data.providers.ConfigProvider import ConfigProvider
 from src.main.python.utils.logs.Loging import Logging
 
 
 class BaseTest(unittest.TestCase):
 
-    data_provider = None
-    driver_type = None
-    data = None
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.driver_type = None
+        self.config = None
+        self.driver = None
 
     def setUp(self):
-        global driver
-        if self.data_provider is None:
-            self.data = DataProviders()
-        else:
-            self.data = self.data_provider
+        if not self.config:
+            self.config = ConfigProvider()
         allure.MASTER_HELPER.environment(BROWSER="CHROME", URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
-        if self.driver_type is None:
+        if self.driver_type is None or self.driver_type == 'Chrome':
+            self.driver = webdriver.Chrome(Config.chrome_driver)
+            self.driver.maximize_window()
+        elif self.driver_type == 'Remote':
             selenium_grid_url = "http://localhost:5578/wd/hub/"
             options = webdriver.ChromeOptions()
             options.add_argument("--lang=en")
             options.add_argument("--start-maximized")
-            driver = webdriver.Remote(desired_capabilities=options.to_capabilities(),
+            self.driver = webdriver.Remote(desired_capabilities=options.to_capabilities(),
                                       command_executor=selenium_grid_url)
-        elif self.driver_type == 'Chrome':
-            driver = webdriver.Chrome(Config.chrome_driver)
-            driver.maximize_window()
-
-    @property
-    def get_driver(self):
-        return driver
+            # driver = webdriver.Remote("http://127.0.0.1:4444/wd/hub", webdriver.DesiredCapabilities.CHROME)
+        else:
+            raise TypeError("Invalid web driver")
 
     def tearDown(self):
         """Take a Screen-shot of the drive homepage, when it Failed."""
@@ -43,11 +41,12 @@ class BaseTest(unittest.TestCase):
             for method, error in self._outcome.errors:
                 if error:
                     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
+                    print("%s %s" % (now, error))
                     # file_name = 'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging' \
                     #             '/allure/results/failed_screenshot %s.png' % now
                     #
                     # driver.get_screenshot_as_file(file_name)
                     # allure.MASTER_HELPER.attach('failed_screenshot', driver.get_screenshot_as_png(),
                     #                             type=AttachmentType.PNG)
-        driver.close()
-        driver.quit()
+        self.driver.close()
+        self.driver.quit()

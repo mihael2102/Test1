@@ -12,11 +12,13 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 class CalendarView(BaseTest):
 
     def test_check_month_tab(self):
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
-        calendar_module = CRMHomePage().open_task_module() \
+        calendar_module = CRMHomePage(self.driver)\
+            .open_task_module() \
             .open_calendar_view_module() \
             .open_month_tab()
 
@@ -37,21 +39,25 @@ class CalendarView(BaseTest):
         assert sat_day == TaskModuleConstants.SATURDAY
 
     def test_check_week_tab(self):
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
-        CRMHomePage().open_task_module() \
+        CRMHomePage(self.driver)\
+            .open_task_module() \
             .open_calendar_view_module() \
             .open_week_tab() \
             .perform_screen_shot()
 
     def test_check_day_tab(self):
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.CRM_PASSWORD))
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
-        calendar_module = CRMHomePage().open_task_module() \
+        calendar_module = CRMHomePage(self.driver)\
+            .open_task_module() \
             .open_calendar_view_module() \
             .open_day_tab()
 
@@ -62,11 +68,12 @@ class CalendarView(BaseTest):
         assert day_of_week == CRMConstants.TODAY_DATE.strftime(CRMConstants.THIRD_FORMAT_DATE)
 
     def test_check_add_tasks_calendar_view(self):
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
 
-        task_module = CRMHomePage().open_task_module()
+        task_module = CRMHomePage(self.driver).open_task_module()
 
         calendar_module = task_module.open_calendar_view_module()
 

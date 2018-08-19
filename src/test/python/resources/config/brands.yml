@@ -1,8 +1,8 @@
 brands:
-#- name: newfxcrm.loc
-#  config_file: newfxcrm.loc.yml
-- name: newforexdev
-  config_file: new_forex_dev.yml
+- name: newfxcrm.loc
+  config_file: newfxcrm.loc.yml
+#- name: newforexdev
+#  config_file: new_forex_dev.yml
 #- name: newforexstaging
 #  config_file: new_forex_staging.yml
 #- name: newforexqa

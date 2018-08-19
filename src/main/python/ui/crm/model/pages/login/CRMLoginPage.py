@@ -6,9 +6,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 class CRMLoginPage(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
-
     '''
         Open the second tabs of crm page
         :parameter url crm page url  
@@ -17,12 +14,12 @@ class CRMLoginPage(CRMBasePage):
     def open_second_tab_page(self, url):
         super().open_second_tab_page(url)
         Logging().reportDebugStep(self, "Open second tabs page: " + url + '\n')
-        return CRMLoginPage()
+        return CRMLoginPage(self.driver)
 
     def open_first_tab_page(self, url):
         super().open_first_tab_page(url)
         Logging().reportDebugStep(self, "Open first tabs page: " + url)
-        return CRMLoginPage()
+        return CRMLoginPage(self.driver)
 
     '''
         Login  to CRM 
@@ -43,7 +40,7 @@ class CRMLoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Setting the user name in the password: " + password + '\n')
         login_button.click()
         Logging().reportDebugStep(self, "Click the login button" + '\n')
-        return ClientsPage()
+        return ClientsPage(self.driver)
 
     '''
         Select the crm page again
@@ -52,8 +49,8 @@ class CRMLoginPage(CRMBasePage):
 
     def switch_second_tab_page(self):
         super().switch_second_tab_page()
-        Logging().reportDebugStep(self, "Switch  the second page")
-        return CRMLoginPage()
+        Logging().reportDebugStep(self, "Switch the second page")
+        return CRMLoginPage(self.driver)
 
 
 

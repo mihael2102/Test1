@@ -5,8 +5,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 
 class EditLeadsProfilePage(CRMBasePage):
-    def __init__(self):
-        super().__init__()
 
     def perform_edit_lead(self, first_name, last_name, mobile, fax, email, secondary_email,
                             language, panda_partner_id, referral, street, postal_code, country, description,
@@ -32,12 +30,13 @@ class EditLeadsProfilePage(CRMBasePage):
         self.set_lead_status(lead_status)
         self.set_assigned_to(assigned_to)
         self.set_source_name(source_name)
-        self.set_brand(brand)
+        if brand:
+            self.set_brand(brand)
         self.set_po_box(po_box)
         self.set_city(city)
         self.set_state(state)
         self.click_save()
-        return EditLeadsProfilePage()
+        return EditLeadsProfilePage(self.driver)
 
     def set_first_name(self, first_name):
         first_name_field = super().wait_load_element("//input[@name='firstname']")
@@ -71,7 +70,7 @@ class EditLeadsProfilePage(CRMBasePage):
         email_field = super().wait_load_element("//input[@name='email']")
         email_field.clear()
         email_field.send_keys(email)
-        Logging().reportDebugStep(self, "The first name was set: " + email)
+        Logging().reportDebugStep(self, "The first email was set: " + email)
         return EditLeadsProfilePage()
 
     def set_secondary_email(self, secondary_email):
@@ -197,6 +196,7 @@ class EditLeadsProfilePage(CRMBasePage):
 
     def click_save(self):
         save_button = self.driver.find_element(By.XPATH, "//input[@title='Save [Alt+S]']")
+        self.perform_scroll_up()
         save_button.click()
         Logging().reportDebugStep(self, "The save button was clicked: ")
         return EditLeadsProfilePage()

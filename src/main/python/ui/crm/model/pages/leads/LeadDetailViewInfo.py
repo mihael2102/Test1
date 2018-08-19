@@ -10,9 +10,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 class LeadDetailViewInfo(CRMBasePage):
 
-    def __init__(self) -> None:
-        super().__init__()
-
     def click_delete_button(self):
         task_module = super().wait_load_element("//input[@name='Delete']")
         task_module.click()
@@ -23,7 +20,7 @@ class LeadDetailViewInfo(CRMBasePage):
         task_module = super().wait_load_element("//input[@name='Edit']")
         task_module.click()
         Logging().reportDebugStep(self, "The delete pop-up is displayed")
-        return EditLeadsProfilePage()
+        return EditLeadsProfilePage(self.driver)
 
     '''
         Returns the first name

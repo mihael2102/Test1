@@ -1,12 +1,12 @@
 test = "Regression New Forex Staging"
 timeout = 4
 data = None
-url_client_area = "https://newforexqa.pandats.com/"
-url_crm = "https://newforexstaging.ptscrm.com/"
+url_client_area = ""
+url_crm = ""
 url_gmail = "https://mail.google.com"
 window_after = None
 window_before = None
 counter = 1
 logger = None
 handler = None
-chrome_driver = "utils/chromedriver"
+chrome_driver = "/home/israel/code/automation-newforexqa/utils/chromedriver"

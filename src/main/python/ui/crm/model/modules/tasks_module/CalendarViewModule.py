@@ -12,15 +12,12 @@ from src.main.python.utils.logs.Loging import Logging
 
 class CalendarViewModule(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
-
     def add_new_task(self):
         sleep(2)
         add_new_task_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add New Task')]")
         add_new_task_button.click()
         Logging().reportDebugStep(self, "The add new task module was opened")
-        return AddEventModule()
+        return AddEventModule(self.driver)
 
     def click_calendar_display(self, hour):
         calendar_scroll = super().wait_element_to_be_clickable("//tr[@data-time='%s:00:00']" % hour)
@@ -28,7 +25,7 @@ class CalendarViewModule(CRMBasePage):
 
         Logging().reportDebugStep(self, "Scroll down has been performed ")
 
-        return CalendarViewModule()
+        return CalendarViewModule(self.driver)
 
     def perform_screen_shot(self):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
@@ -37,31 +34,31 @@ class CalendarViewModule(CRMBasePage):
         allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
-        return CalendarViewModule()
+        return CalendarViewModule(self.driver)
 
     def close_calendar_view(self):
         close_button = super().wait_element_to_be_clickable("//button[contains(text(),'Close')]")
         close_button.click()
         Logging().reportDebugStep(self, "The calendar view module was closed")
-        return CalendarViewModule()
+        return CalendarViewModule(self.driver)
 
     def open_month_tab(self):
         month_tab_button = super().wait_element_to_be_clickable("//button[contains(text(),'Month')]")
         month_tab_button.click()
         Logging().reportDebugStep(self, "The Month tab was opened")
-        return CalendarViewModule()
+        return CalendarViewModule(self.driver)
 
     def open_week_tab(self):
         week_tab_button = super().wait_element_to_be_clickable("//button[contains(text(),'Week')]")
         week_tab_button.click()
         Logging().reportDebugStep(self, "The Week tab was opened")
-        return CalendarViewModule()
+        return CalendarViewModule(self.driver)
 
     def open_day_tab(self):
         day_tab_button = super().wait_element_to_be_clickable("//button[contains(text(),'Day')]")
         day_tab_button.click()
         Logging().reportDebugStep(self, "The Day tab was opened")
-        return CalendarViewModule()
+        return CalendarViewModule(self.driver)
 
     def get_sunday_text(self):
         sunday_tab_button = super().wait_element_to_be_clickable("//div[@class='fc-row fc-widget-header']//th[1]")

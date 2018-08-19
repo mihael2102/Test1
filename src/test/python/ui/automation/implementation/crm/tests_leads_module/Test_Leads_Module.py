@@ -3,8 +3,9 @@ import pytest
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.modules.leads_module.LeadViewInfo import LeadViewInfo
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.leads.LeadDetailViewInfo import LeadDetailViewInfo
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
 
@@ -12,109 +13,49 @@ from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondi
 @pytest.mark.run(order=24)
 class LeadModuleTest(BaseTest):
 
+    def setUp(self):
+        super(LeadModuleTest, self).setUp()
+        self.lead1 = self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)
+        self.lead2 = self.load_lead_from_config(LeadsModuleConstants.SECOND_LEAD_INFO)
+
     def test_create_lead(self):
-        LeadPrecondition().create_lead()
+        LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+        self.verify_lead(self.lead1)
 
     def test_edit_lead(self):
-        LeadPrecondition().create_lead()
-        lead_profile = LeadPrecondition().edit_lead_profile()
-
-        first_name = lead_profile.get_first_name_text()
-        last_name = lead_profile.get_last_name_text()
-        mobile = lead_profile.get_mobile_text()
-        fax = lead_profile.get_fax_text()
-        email = lead_profile.get_email_text()
-        secondary_email = lead_profile.get_secondary_email_text()
-        source_name = lead_profile.get_source_name_text()
-        panda_partner_id_ = lead_profile.get_panda_partner_id_text()
-        referral = lead_profile.get_referral_text()
-        street = lead_profile.get_street_text()
-        postal_code = lead_profile.get_postal_code_text()
-        country = lead_profile.get_country_text()
-        description = lead_profile.get_description_text()
-        phone = lead_profile.get_phone_text()
-        tittle = lead_profile.get_tittle_text()
-        lead_source = lead_profile.get_lead_source_text()
-        lead_status = lead_profile.get_lead_status_text()
-        language = lead_profile.get_language_text()
-        brand = lead_profile.get_brand_text()
-        po_box = lead_profile.get_po_box_text()
-        city = lead_profile.get_city_text()
-        state = lead_profile.get_state_text()
-
-        assert first_name == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_NAME)
-        assert last_name == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_LAST_NAME)
-        assert mobile == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_MOBILE)
-        assert fax == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FAX)
-        assert email == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.EMAIL)
-        assert secondary_email == Config.data.get_data_lead_info \
-            (LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.SECONDARY_EMAIL)
-        assert source_name == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_SOURCE_NAME)
-        assert panda_partner_id_ == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.PANDA_PARTNER)
-        assert referral == Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
-                                                          LeadsModuleConstants.FIRST_REFERRAL)
-        assert street == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.STREET)
-        assert postal_code == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.POSTAL_CODE)
-        assert country == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_COUNTRY)
-        assert description == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_DESCRIPTION)
-        assert phone == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.PHONE)
-        assert tittle == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_TITTLE)
-        assert lead_source == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_LEAD_SOURCE)
-        assert lead_status == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_LEAD_STATUS)
-        assert language == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_LANGUAGE)
-        assert brand == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.BRAND)
-        assert po_box == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.PO_BOX)
-        assert city == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.CITY)
-        assert state == Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_STATE)
+        LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+        self.verify_lead(self.lead1)
+        LeadPrecondition(self.driver, self.config).edit_lead_profile(self.lead2)
+        self.verify_lead(self.lead2)
 
     def test_mass_edit_lead(self):
-        LeadPrecondition().create_three_leads()
+        LeadPrecondition(self.driver, self.config).create_three_leads()
         CRMHomePage().refresh_page() \
             .open_client_module()
 
         lead_module = CRMHomePage().open_lead_module()
 
-        lead_module.select_filter(Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
+        lead_module.select_filter(self.config.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
                                                                  LeadsModuleConstants.FILTER_NAME)) \
             .select_three_records_task_module() \
             .open_mass_edit_task() \
-            .perform_mass_edit(Config.data.get_data_lead_info(
-            LeadsModuleConstants.FIRST_UPDATE_LEAD, LeadsModuleConstants.SECOND_TITTLE),
-            Config.data.get_data_lead_info(
+            .perform_mass_edit(self.config.get_data_lead_info(LeadsModuleConstants.FIRST_UPDATE_LEAD,
+                                                              LeadsModuleConstants.SECOND_TITTLE),
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_UPDATE_LEAD, LeadsModuleConstants.SECOND_LEAD_SOURCE),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_UPDATE_LEAD, LeadsModuleConstants.SECOND_LEAD_STATUS),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_UPDATE_LEAD, LeadsModuleConstants.SECOND_ASSIGNED_TO),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_UPDATE_LEAD, LeadsModuleConstants.SECOND_LANGUAGE),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_UPDATE_LEAD, LeadsModuleConstants.SECOND_SOURCE_NAME),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_UPDATE_LEAD, LeadsModuleConstants.SECOND_REFERRAL),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_UPDATE_LEAD, LeadsModuleConstants.SECOND_COUNTRY),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_UPDATE_LEAD, LeadsModuleConstants.SECOND_DESCRIPTION))
 
         assert lead_module.get_message_lead_module() == LeadsModuleConstants.MESSAGE_MASS_EDIT_SUCCESSFULY
@@ -127,7 +68,7 @@ class LeadModuleTest(BaseTest):
 
         lead_module = CRMHomePage().open_lead_module()
 
-        lead_module.select_filter(Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
+        lead_module.select_filter(self.config.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
                                                                  LeadsModuleConstants.FILTER_NAME)) \
             .select_three_records_task_module() \
             .open_mass_assign_lead_module() \
@@ -145,36 +86,99 @@ class LeadModuleTest(BaseTest):
 
         lead_view_profile_page.open_convert_lead_module() \
             .perform_convert_lead(
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_NAME_LEAD),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_LAST_NAME_LEAD),
             LeadsModuleConstants.FIRST_EMAIL_LEAD,
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_PHONE_LEAD),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_BIRTHDAY_LEAD),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_CITIZENSHIP),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_ADDRESS_LEAD),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_POSTAL_CODE_LEAD),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_CITY_LEAD),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_COUNTRY_NAME),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_PASSWORD_LEAD),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_CURRENCY_LEAD),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_REFERRAL_LEAD),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_BRAND_LEAD),
-            Config.data.get_data_lead_info(
+            self.config.get_data_lead_info(
                 LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_SOURCE_NAME))
 
         confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
         assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
         lead_view_profile_page.click_ok()
+
+    def load_lead_from_config(self, lead_key):
+        lead = self.config.get_value(lead_key)
+        return lead
+
+    def verify_lead(self, lead_data):
+        """
+        Verify the lead displayed in the detail view against a lead_data dictionary
+        :param lead_data: a dictionary containing lead data
+        :return: returns True if the lead displayed matches the given lead_data
+        :raise: asserts on non matching fields
+        """
+        lead_detail_view = LeadDetailViewInfo(self.driver)
+        lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
+        Logging().reportDebugStep(self, "Verifying lead data")
+
+        first_name = lead_detail_view.get_first_name_text()
+        last_name = lead_detail_view.get_last_name_text()
+        mobile = lead_detail_view.get_mobile_text()
+        fax = lead_detail_view.get_fax_text()
+        email = lead_detail_view.get_email_text()
+        secondary_email = lead_detail_view.get_secondary_email_text()
+        source_name = lead_detail_view.get_source_name_text()
+        panda_partner_id_ = lead_detail_view.get_panda_partner_id_text()
+        referral = lead_detail_view.get_referral_text()
+        street = lead_detail_view.get_street_text()
+        postal_code = lead_detail_view.get_postal_code_text()
+        country = lead_detail_view.get_country_text()
+        description = lead_detail_view.get_description_text()
+        phone = lead_detail_view.get_phone_text()
+        tittle = lead_detail_view.get_tittle_text()
+        lead_source = lead_detail_view.get_lead_source_text()
+        lead_status = lead_detail_view.get_lead_status_text()
+        language = lead_detail_view.get_language_text()
+        brand = lead_detail_view.get_brand_text()
+        po_box = lead_detail_view.get_po_box_text()
+        city = lead_detail_view.get_city_text()
+        state = lead_detail_view.get_state_text()
+
+        self.assertEqual(first_name, lead_data[LeadsModuleConstants.FIRST_NAME])
+        self.assertEqual(last_name, lead_data[LeadsModuleConstants.FIRST_LAST_NAME])
+        self.assertEqual(mobile, lead_data[LeadsModuleConstants.FIRST_MOBILE])
+        self.assertEqual(fax, lead_data[LeadsModuleConstants.FAX])
+        self.assertEqual(email, lead_data[LeadsModuleConstants.EMAIL])
+        self.assertEqual(secondary_email, lead_data[LeadsModuleConstants.SECONDARY_EMAIL])
+        self.assertEqual(source_name, lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME])
+        self.assertEqual(panda_partner_id_, lead_data[LeadsModuleConstants.PANDA_PARTNER])
+        self.assertEqual(referral, lead_data[LeadsModuleConstants.FIRST_REFERRAL])
+        self.assertEqual(street, lead_data[LeadsModuleConstants.STREET])
+        self.assertEqual(postal_code, lead_data[LeadsModuleConstants.POSTAL_CODE])
+        self.assertEqual(country, lead_data[LeadsModuleConstants.FIRST_COUNTRY])
+        self.assertEqual(description, lead_data[LeadsModuleConstants.FIRST_DESCRIPTION])
+        self.assertEqual(phone, lead_data[LeadsModuleConstants.PHONE])
+        self.assertEqual(tittle, lead_data[LeadsModuleConstants.FIRST_TITTLE])
+        self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])
+        self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS])
+        self.assertEqual(language, lead_data[LeadsModuleConstants.FIRST_LANGUAGE])
+        if lead_data[LeadsModuleConstants.BRAND]:
+            self.assertEqual(brand, lead_data[LeadsModuleConstants.BRAND])
+        self.assertEqual(po_box, lead_data[LeadsModuleConstants.PO_BOX])
+        self.assertEqual(city, lead_data[LeadsModuleConstants.CITY])
+        self.assertEqual(state, lead_data[LeadsModuleConstants.FIRST_STATE])
+        return True

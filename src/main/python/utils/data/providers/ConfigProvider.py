@@ -1,4 +1,8 @@
 import json
+import os
+import collections
+import yaml
+
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
 from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
 from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
@@ -10,69 +14,137 @@ from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditCon
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
 from src.main.python.utils.config import Config
-import yaml
-from os import path
+from datetime import datetime
 
 
 class ConfigProvider:
 
-    home_config_dir = "src/main/python/utils/config/"
+    config_dir = "../../../../../test/python/resources/config/"
     default_config_file = "default.yml"
     brand = None
     tests = None
 
     def __init__(self):
+        print("init config")
+        self.script_dir = os.path.dirname(__file__)
         self.data = {}
         self.brands_config = {}
         self.tests_config = {}
         self.load_config()
+        self.load_brand_config()
         self.brands = None
 
     def load_config(self):
         """
         Loads brands and tests configuration
         """
-        with open(self.home_config_dir + "brands.yml", 'r') as stream:
+        brands_file_path = os.path.join(self.script_dir, self.config_dir, "brands.yml")
+        with open(os.path.realpath(brands_file_path), 'r') as stream:
             try:
                 self.brands_config = yaml.load(stream)
                 print(self.brands_config)
             except yaml.YAMLError as e:
                 print(e)
-        with open(self.home_config_dir + "tests.yml", 'r') as stream:
+        tests_file_path = os.path.join(self.script_dir, self.config_dir, "tests.yml")
+        with open(os.path.realpath(tests_file_path), 'r') as stream:
             try:
                 self.tests_config = yaml.load(stream)
                 print(self.tests_config)
             except yaml.YAMLError as e:
                 print(e)
 
-
-    def load_brand_config(self, brand, use_base=True):
+    def load_brand_config(self, brand='default', use_base=True):
         """
         Load a configuration for a specific brand
         :param brand the brand name as specified in the brands_config loaded previously
         :param use_base whether to use the default configuration as a base for the brand configuration
         """
         # load default configuration as a base configuration
+        config_dict = {}
         if use_base:
-            brands_file_path = path.relpath(self.home_config_dir + "Brands/" + self.default_config_file)
-            with open(brands_file_path, 'r') as stream:
+            brands_file_path = os.path.join(self.script_dir, self.config_dir, self.default_config_file)
+            with open(os.path.realpath(brands_file_path), 'r') as stream:
                 try:
-                    self.data = yaml.load(stream)
+                    config_dict = yaml.load(stream)
                 except yaml.YAMLError as e:
                     print(e)
+        brand_config_loaded = False
+        # if not brand:
+        #     brand = 'default'
         for config in self.brands_config['brands']:
             if config['name'] != brand:
                 continue
-            config_file_path = path.relpath(self.home_config_dir + "Brands/" + config['config_file'])
-            with open(config_file_path, 'r') as stream:
+            config_file_path = os.path.join(self.script_dir, self.config_dir, "Brands/", config['config_file'])
+            with open(os.path.realpath(config_file_path), 'r') as stream:
                 try:
                     brand_config = yaml.load(stream)
                     if use_base:
-                        self.data = {**self.data, **brand_config}
+                        config_dict = self.dict_merge(config_dict, brand_config)
                     else:
-                        self.data = brand_config
+                        config_dict = brand_config
+                    brand_config_loaded = True
                 except yaml.YAMLError as e:
                     print(e)
+        if not brand_config_loaded:
+            print("Using default brand configuration")
+        config_dict = self.render_configuration(config_dict)
+        self.data = config_dict
+
+    def dict_merge(self, dct, merge_dct, add_keys=True):
+        """ Recursive dict merge. Inspired by :meth:``dict.update()``, instead of
+        updating only top-level keys, dict_merge recurses down into dicts nested
+        to an arbitrary depth, updating keys. The ``merge_dct`` is merged into
+        ``dct``.
+
+        This version will return a copy of the dictionary and leave the original
+        arguments untouched.
+
+        The optional argument ``add_keys``, determines whether keys which are
+        present in ``merge_dict`` but not ``dct`` should be included in the
+        new dict.
+
+        Args:
+            dct (dict) onto which the merge is executed
+            merge_dct (dict): dct merged into dct
+            add_keys (bool): whether to add new keys
+
+        Returns:
+            dict: updated dict
+        """
+        dct = dct.copy()
+        if not add_keys:
+            merge_dct = {
+                k: merge_dct[k]
+                for k in set(dct).intersection(set(merge_dct))
+            }
+
+        for k, v in merge_dct.items():
+            if (k in dct and isinstance(dct[k], dict)
+                    and isinstance(merge_dct[k], collections.Mapping)):
+                dct[k] = self.dict_merge(dct[k], merge_dct[k], add_keys=add_keys)
+            else:
+                dct[k] = merge_dct[k]
+
+        return dct
+
+    def render_configuration(self, config):
+        config = config.copy()
+        for key, value in config.items():
+            if isinstance(value, collections.Mapping):
+                config[key] = self.render_configuration(value)
+            else:
+                if isinstance(value, str) and value.startswith("eval:"):
+                    config[key] = self.eval_field(value)
+        return config
+
+    def reload_configuration(self):
+        self.data = self.render_configuration(self.data)
+
+    @staticmethod
+    def eval_field(value):
+        value_to_eval = value.split('eval:')[1]
+        res = eval(value_to_eval)
+        return res
 
     def get_brands(self):
         if self.brands is None:
@@ -91,11 +163,14 @@ class ConfigProvider:
             self.tests = tests_list
         return self.tests
 
-    def get_data_client(self, key, sub_key=None):
+    def get_value(self, key, sub_key=None):
         if sub_key:
             return self.data[key][sub_key]
         else:
             return self.data[key]
+
+    def get_data_client(self, key, sub_key=None):
+        return self.get_value(key, sub_key)
 
     def get_data_campaign_module(self, value):
         connection_file = open(
@@ -146,10 +221,7 @@ class ConfigProvider:
         return conn_string[TaskModuleConstants.TASK_MODULE][value]
 
     def get_data_lead_info(self, key, value):
-        connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/leads-information.json' % Config.test)
-        conn_string = json.load(connection_file)
-        return conn_string[key][value]
+        return self.get_value(key, value)
 
     def get_data_financial_transactions_info(self, value):
         connection_file = open(

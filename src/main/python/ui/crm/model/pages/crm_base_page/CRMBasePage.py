@@ -11,8 +11,8 @@ from src.test.python.ui.automation.BaseTest import BaseTest
 
 class CRMBasePage(object):
 
-    def __init__(self):
-        self.driver = BaseTest().get_driver
+    def __init__(self, driver=None):
+        self.driver = driver
 
     def open_second_tab_page(self, url):
         self.driver.execute_script("window.open()")
@@ -70,6 +70,10 @@ class CRMBasePage(object):
     def perform_scroll_down(self):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         Logging().reportDebugStep(self, "Perform scroll down ")
+
+    def perform_scroll_up(self):
+        self.driver.execute_script("window.scrollTo(0, 0);")
+        Logging().reportDebugStep(self, "Perform scroll up ")
 
     def click_ok(self):
         button = self.wait_load_element("//button[contains(text(),'OK')]")

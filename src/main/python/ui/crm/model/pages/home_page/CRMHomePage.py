@@ -25,9 +25,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 class CRMHomePage(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
-
     ''' 
          Open the task module 
          return Help Desk instance
@@ -37,92 +34,92 @@ class CRMHomePage(CRMBasePage):
         task_module = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Tasks']")
         task_module.click()
         Logging().reportDebugStep(self, "Task module is opened")
-        return TasksPage()
+        return TasksPage(self.driver)
 
     def open_more_list_modules(self):
         hover_mouse = ActionChains(self.driver)
         more_list_element = super().wait_element_to_be_clickable("//a[contains(text(),'More')]")
         hover_mouse.move_to_element(more_list_element)
         hover_mouse.perform()
-        return CRMHomePage()
+        return CRMHomePage(self.driver)
 
     def select_document_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The document module was opened")
-        return DocumentsPage()
+        return DocumentsPage(self.driver)
 
     def select_campaigns_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The campaigns module was opened")
-        return CampaignsPage()
+        return CampaignsPage(self.driver)
 
     def open_lead_module(self):
         task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Leads']")
         task_module.click()
         Logging().reportDebugStep(self, "Leads module was opened")
-        return LeadsModule()
+        return LeadsModule(self.driver)
 
     def select_financial_transactions_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The financial_transactions_module was selected")
-        return FinancialTransactionsPage()
+        return FinancialTransactionsPage(self.driver)
 
     def select_audit_logs_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The audit logs module was opened")
-        return AuditLogsPage()
+        return AuditLogsPage(self.driver)
 
     def select_auto_assign_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The audit logs module was opened")
-        return AutoAssignPage()
+        return AutoAssignPage(self.driver)
 
     def select_service_desk_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The Service Desk  module was opened")
-        return HelpDeskPage()
+        return HelpDeskPage(self.driver)
 
     def select_my_dashboard_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The my dashboard  module was opened")
-        return MyDashBoardModule()
+        return MyDashBoardModule(self.driver)
 
     def select_affiliates_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//*[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The Affiliates page was opened")
-        return AffiliateListViewPage()
+        return AffiliateListViewPage(self.driver)
 
     def refresh_page(self):
         super().refresh_page()
-        return CRMHomePage()
+        return CRMHomePage(self.driver)
 
     def open_help_desk_page(self):
         help_desc_module = super().wait_load_element("//a[contains(text(), 'Help Desk')]")
         help_desc_module.click()
         Logging().reportDebugStep(self, "Open  help desk module ")
-        return HelpDeskPage()
+        return HelpDeskPage(self.driver)
 
     def open_client_module(self):
         sleep(2)
-        home_page_element = super().wait_visible_of_element("//span[@class='glyphicon glyphicon-Clients']")
+        home_page_element = self.wait_visible_of_element("//span[@class='glyphicon glyphicon-Clients']")
         home_page_element.click()
         Logging().reportDebugStep(self, "The client module was opened")
-        return ClientsPage()
+        return ClientsPage(self.driver)
 
     def open_financial_transactions_module(self):
         home_page_element = super().wait_element_to_be_clickable(
             "//span[@class='glyphicon glyphicon-Financial Transactions']")
         home_page_element.click()
         Logging().reportDebugStep(self, "The financial transactions was opened")
-        return FinancialTransactionsPage()
+        return FinancialTransactionsPage(self.driver)
 
     def open_user_management_module(self, settings):
         module_element = super().wait_element_to_be_clickable("//table[@class='user_settings']//td[4]")
@@ -131,11 +128,11 @@ class CRMHomePage(CRMBasePage):
         hoverer = ActionChains(self.driver).move_to_element(module_element).click(user_management)
         hoverer.perform()
         Logging().reportDebugStep(self, "The user management was opened")
-        return UserManagement()
+        return UserManagement(self.driver)
 
     def open_trading_account_module(self):
         home_page_element = super().wait_element_to_be_clickable(
             "//span[@class='glyphicon glyphicon-Trading Accounts']")
         home_page_element.click()
         Logging().reportDebugStep(self, "The client module was opened")
-        return TradingAccountsPage()
+        return TradingAccountsPage(self.driver)
