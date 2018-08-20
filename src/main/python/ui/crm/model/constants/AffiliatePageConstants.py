@@ -1,7 +1,9 @@
 import random
 
+import time
 
-class AffiliateModuleConstants(object):
+
+class AffiliatePageConstants(object):
     random_number = str(random.randrange(1, 9999))
     random_number_edited = random_number + str(10)
 
@@ -33,3 +35,5 @@ class AffiliateModuleConstants(object):
     FIFTH_COUNTRY = "blocked_countries_5"
     EDITED_COUNTRY_1 = "edited_countries_1"
     DELETED_AFFILIATE_TEXT = "Data not found"
+
+
