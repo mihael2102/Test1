@@ -29,8 +29,8 @@ class TabLeadsModuleCRM(BaseTest):
         lead_module = CRMHomePage(self.driver)\
             .open_lead_module()
 
-        lead_module.select_filter("test")
-        time.sleep(2)
+        lead_module.select_filter(
+            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
 
         lead_module.perform_searching_lead_module(
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_NAME),

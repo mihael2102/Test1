@@ -11,6 +11,7 @@ class TestDataConstants(object):
     FILTER = "test_filter"
     USER_NAME = "user_name"
     CRM_PASSWORD = "crm_password"
+    OTP_SECRET = "otp_secret"
     US_TAXID = "us_taxid"
     ETD_FREQUNCY = "frequncy"
     US_CITIZEN = "us_citizen"

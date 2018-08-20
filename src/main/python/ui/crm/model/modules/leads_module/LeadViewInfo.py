@@ -2,30 +2,29 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import ConvertLeadModule
 from src.main.python.ui.crm.model.pages.leads.EditLeadsProfilePage import EditLeadsProfilePage
 from src.main.python.utils.logs.Loging import Logging
+from time import sleep
 
 
 class LeadViewInfo(CRMBasePage):
-
-    def __init__(self) -> None:
-        super().__init__()
 
     def click_delete_button(self):
         task_module = super().wait_load_element("//input[@name='Delete']")
         task_module.click()
         Logging().reportDebugStep(self, "The delete pop-up is displayed")
-        return LeadViewInfo()
+        return LeadViewInfo(self.driver)
 
     def edit_lead_profile(self):
         task_module = super().wait_load_element("//input[@name='Delete']")
         task_module.click()
         Logging().reportDebugStep(self, "The delete pop-up is displayed")
-        return EditLeadsProfilePage()
+        return EditLeadsProfilePage(self.driver)
 
     def open_convert_lead_module(self):
+        sleep(2)
         task_module = super().wait_load_element("//div[@id='sidebar']//tr[3]//a")
         task_module.click()
         Logging().reportDebugStep(self, "The convert lead module was opened")
-        return ConvertLeadModule()
+        return ConvertLeadModule(self.driver)
 
     '''
         Returns a confirmation  message if the user entered a valid password
@@ -38,4 +37,4 @@ class LeadViewInfo(CRMBasePage):
 
     def click_ok(self):
         super().click_ok()
-        return ConvertLeadModule()
+        return ConvertLeadModule(self.driver)

@@ -19,6 +19,8 @@ from datetime import datetime
 
 class ConfigProvider:
 
+    eval_prefix = "EVAL_"
+
     config_dir = "../../../../../test/python/resources/config/"
     default_config_file = "default.yml"
     brand = None
@@ -128,25 +130,28 @@ class ConfigProvider:
         return dct
 
     def render_configuration(self, config):
-        config = config.copy()
+        """
+        Render configuration dictionary. Create actual values for keys with the self.eval_prefix prefix
+        :param config: the configuration dictionary
+        :return: configuration with the values calculated
+        """
+        res_config = config.copy()
         for key, value in config.items():
             if isinstance(value, collections.Mapping):
-                config[key] = self.render_configuration(value)
+                res_config[key] = self.render_configuration(value)
             else:
-                if isinstance(value, str) and value.startswith("eval:"):
-                    config[key] = self.eval_field(value)
-        return config
+                if key.startswith(self.eval_prefix):
+                    res_config[key[len(self.eval_prefix):]] = eval(value)
+        return res_config
 
     def reload_configuration(self):
         self.data = self.render_configuration(self.data)
 
-    @staticmethod
-    def eval_field(value):
-        value_to_eval = value.split('eval:')[1]
-        res = eval(value_to_eval)
-        return res
-
     def get_brands(self):
+        """
+        Get the list of brands configured. Load the list if not loaded before.
+        :return:
+        """
         if self.brands is None:
             brands_list = []
             for brand in self.brands_config['brands']:
@@ -155,6 +160,10 @@ class ConfigProvider:
         return self.brands
 
     def get_tests(self):
+        """
+        Get the list of tests configured. Load the list if not loaded before.
+        :return:
+        """
         if self.tests is None:
             tests_list = []
             for test in self.tests_config['tests']:

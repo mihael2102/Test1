@@ -28,6 +28,7 @@ class LeadsModule(CRMBasePage):
         # self.enter_lead_status(lead_status)
         # self.enter_language(language)
         self.click_search_button_leads_module()
+        self.wait_crm_loading_to_finish()
         return LeadsModule()
 
     def open_create_lead_module(self):
@@ -95,6 +96,7 @@ class LeadsModule(CRMBasePage):
         select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
         select_test_filter.click()
         Logging().reportDebugStep(self, "Click the selected filter")
+        self.wait_crm_loading_to_finish()
         return LeadsModule(self.driver)
 
     def open_mass_edit_task(self):

@@ -40,6 +40,7 @@ class LeadsModuleConstants(object):
     FIRST_COUNTRY = "first_country"
     FIRST_DESCRIPTION = "first_descriptions"
     PHONE = "phone"
+    PHONE_AREA_CODE = "phone_area_code"
     FIRST_TITTLE = "first_tittle"
     FIRST_LEAD_SOURCE = "first_lead_source"
     FIRST_LEAD_STATUS = "first_lead_status"
@@ -75,3 +76,5 @@ class LeadsModuleConstants(object):
     SECOND_DESCRIPTION = "second_descriptions"
     MESSAGE_MASS_EDIT_SUCCESSFULY = "Successfuly updated"
     FIRST_CONVERT_LEAD = "FirstConvertLead"
+    BIRTHDAY = "birthday"
+    CITIZENSHIP = "citizenship"

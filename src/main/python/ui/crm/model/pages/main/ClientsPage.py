@@ -18,20 +18,28 @@ from src.main.python.utils.logs.Loging import Logging
 class ClientsPage(CRMBasePage):
 
     def perform_searching(self, client_status, email, name, country, first_name, last_name, city, brand):
-        self.select_client_status(client_status)
-        self.enter_email(email)
-        self.enter_client_name(name)
-        self.enter_country(country)
-        self.enter_first_name(first_name)
-        self.enter_last_name(last_name)
-        self.enter_city(city)
-        self.select_brand(brand)
+        if client_status:
+            self.select_client_status(client_status)
+        if email:
+            self.enter_email(email)
+        if name:
+            self.enter_client_name(name)
+        if country:
+            self.enter_country(country)
+        if first_name:
+            self.enter_first_name(first_name)
+        if last_name:
+            self.enter_last_name(last_name)
+        if city:
+            self.enter_city(city)
+        if brand:
+            self.select_brand(brand)
         self.click_search_button()
-        return ClientsPage()
+        return ClientsPage(self.driver)
 
     def perform_searching_by_email(self, email):
         self.enter_email(email)
-        return ClientsPage()
+        return ClientsPage(self.driver)
 
     ''' 
         Select the filter in drop-down   
@@ -50,7 +58,8 @@ class ClientsPage(CRMBasePage):
         select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
         select_test_filter.click()
         Logging().reportDebugStep(self, "Click the selected filter")
-        return ClientsPage()
+        self.wait_crm_loading_to_finish()
+        return ClientsPage(self.driver)
 
     def clear_filter(self):
         filter_lear = super().wait_element_to_be_clickable("//a[@id='clearFilter']")
@@ -216,11 +225,14 @@ class ClientsPage(CRMBasePage):
         return ClientsPage()
 
     def open_client_id(self):
-        sleep(2)
+        self.wait_crm_loading_to_finish()
         client_id = self.driver.find_element(By.XPATH, "//tr[@class='lvtColData']//div[@class='link_field']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", client_id)
+        self.perform_scroll_up()
+        sleep(1)
         client_id.click()
         Logging().reportDebugStep(self, "Click user name by email : ")
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     def open_create_filter_pop_up(self):
         filter_button = super().wait_element_to_be_clickable("//a[@title='Create Filter']")

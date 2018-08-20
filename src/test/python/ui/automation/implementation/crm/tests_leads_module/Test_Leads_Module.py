@@ -82,39 +82,26 @@ class LeadModuleTest(BaseTest):
 
     def test_perform_convert_lead(self):
         LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
-        lead_view_profile_page = LeadViewInfo()
+        lead_view_profile_page = LeadViewInfo(self.driver)
 
         lead_view_profile_page.open_convert_lead_module() \
             .perform_convert_lead(
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_NAME_LEAD),
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_LAST_NAME_LEAD),
-            LeadsModuleConstants.FIRST_EMAIL_LEAD,
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_PHONE_LEAD),
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_BIRTHDAY_LEAD),
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_CITIZENSHIP),
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_ADDRESS_LEAD),
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_POSTAL_CODE_LEAD),
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_CITY_LEAD),
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_COUNTRY_NAME),
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_PASSWORD_LEAD),
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_CURRENCY_LEAD),
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_REFERRAL_LEAD),
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_BRAND_LEAD),
-            self.config.get_data_lead_info(
-                LeadsModuleConstants.FIRST_CONVERT_LEAD, LeadsModuleConstants.FIRST_SOURCE_NAME))
+            self.lead1[LeadsModuleConstants.FIRST_NAME],
+            self.lead1[LeadsModuleConstants.FIRST_LAST_NAME],
+            self.lead1[LeadsModuleConstants.EMAIL],
+            self.lead1[LeadsModuleConstants.PHONE],
+            self.lead1[LeadsModuleConstants.BIRTHDAY],
+            self.lead1[LeadsModuleConstants.CITIZENSHIP],
+            self.lead1[LeadsModuleConstants.STREET],
+            self.lead1[LeadsModuleConstants.POSTAL_CODE],
+            self.lead1[LeadsModuleConstants.CITY],
+            self.lead1[LeadsModuleConstants.FIRST_COUNTRY],
+            self.lead1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+            self.lead1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+            self.lead1[LeadsModuleConstants.FIRST_REFERRAL],
+            self.lead1[LeadsModuleConstants.BRAND],
+            self.lead1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+            self.lead1[LeadsModuleConstants.PHONE_AREA_CODE])
 
         confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
         assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
@@ -142,7 +129,7 @@ class LeadModuleTest(BaseTest):
         email = lead_detail_view.get_email_text()
         secondary_email = lead_detail_view.get_secondary_email_text()
         source_name = lead_detail_view.get_source_name_text()
-        panda_partner_id_ = lead_detail_view.get_panda_partner_id_text()
+        panda_partner_id = lead_detail_view.get_panda_partner_id_text()
         referral = lead_detail_view.get_referral_text()
         street = lead_detail_view.get_street_text()
         postal_code = lead_detail_view.get_postal_code_text()
@@ -165,8 +152,10 @@ class LeadModuleTest(BaseTest):
         self.assertEqual(email, lead_data[LeadsModuleConstants.EMAIL])
         self.assertEqual(secondary_email, lead_data[LeadsModuleConstants.SECONDARY_EMAIL])
         self.assertEqual(source_name, lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME])
-        self.assertEqual(panda_partner_id_, lead_data[LeadsModuleConstants.PANDA_PARTNER])
-        self.assertEqual(referral, lead_data[LeadsModuleConstants.FIRST_REFERRAL])
+        if lead_data[LeadsModuleConstants.PANDA_PARTNER]:
+            self.assertEqual(panda_partner_id, lead_data[LeadsModuleConstants.PANDA_PARTNER])
+        if lead_data[LeadsModuleConstants.FIRST_REFERRAL]:
+            self.assertEqual(referral, lead_data[LeadsModuleConstants.FIRST_REFERRAL])
         self.assertEqual(street, lead_data[LeadsModuleConstants.STREET])
         self.assertEqual(postal_code, lead_data[LeadsModuleConstants.POSTAL_CODE])
         self.assertEqual(country, lead_data[LeadsModuleConstants.FIRST_COUNTRY])

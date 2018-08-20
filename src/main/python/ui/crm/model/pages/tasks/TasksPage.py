@@ -133,6 +133,7 @@ class TasksPage(CRMBasePage):
         return AddEventModule()
 
     def open_calendar_view_module(self):
+        self.wait_element_to_be_clickable("//button[contains(text(),'Calendar View')]")
         calendar_view_button = self.driver.find_element(By.XPATH,
                                                         "//button[contains(text(),'Calendar View')]")
         calendar_view_button.click()

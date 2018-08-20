@@ -4,15 +4,16 @@ from selenium.webdriver.support.select import Select
 
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from selenium.common.exceptions import NoSuchElementException
+from time import sleep
 
 
 class ConvertLeadModule(CRMBasePage):
-    def __init__(self) -> None:
-        super().__init__()
 
     def perform_convert_lead(self, first_name, last_name, email, phone, birthday, citizenship,
                              address, postal_code, city, country, password, currency, referral,
-                             brand, source_name):
+                             brand, source_name, phone_area_code=None):
+        sleep(2)
         self.set_first_name(first_name)
         self.set_last_name(last_name)
         self.set_email(email)
@@ -25,9 +26,13 @@ class ConvertLeadModule(CRMBasePage):
         self.set_country(country)
         self.set_password(password)
         self.set_currency(currency)
-        self.set_referral(referral)
-        self.set_brand(brand)
+        if referral:
+            self.set_referral(referral)
+        if brand:
+            self.set_brand(brand)
         self.set_source_name(source_name)
+        if phone_area_code:
+            self.set_area_code(phone_area_code)
         self.click_submit()
 
     def set_first_name(self, first_name):
@@ -55,7 +60,7 @@ class ConvertLeadModule(CRMBasePage):
         email_field = super().wait_load_element("//input[@name='account[Email]']")
         email_field.clear()
         email_field.send_keys(email)
-        Logging().reportDebugStep(self, "The first name was set: " + email)
+        Logging().reportDebugStep(self, "The email was set to: " + email)
         return ConvertLeadModule()
 
     def set_phone(self, phone):
@@ -63,6 +68,16 @@ class ConvertLeadModule(CRMBasePage):
         phone_field.clear()
         phone_field.send_keys(phone)
         Logging().reportDebugStep(self, "The phone number was set: " + phone)
+        return ConvertLeadModule(self.driver)
+
+    def set_area_code(self, area_code):
+        try:
+            area_code_field = super().wait_load_element("//input[@name='account[PhoneAreaCode]']")
+            area_code_field.clear()
+            area_code_field.send_keys(area_code)
+            Logging().reportDebugStep(self, "The phone area code was set: " + area_code)
+        except NoSuchElementException:
+            Logging().reportDebugStep(self, "Area code input was not found")
         return ConvertLeadModule()
 
     def set_brand(self, brand):
@@ -106,12 +121,15 @@ class ConvertLeadModule(CRMBasePage):
         return ConvertLeadModule()
 
     def set_birthday(self, birthday):
-        address_field = super().wait_load_element("//input[@name='account[Birthday]']")
-        address_field.clear()
-        address_field.send_keys(birthday)
-        hoverer = ActionChains(self.driver).move_by_offset(0, 80).click()
-        hoverer.perform()
-        Logging().reportDebugStep(self, "The birthday was set: " + birthday)
+        try:
+            birthday_field = super().wait_load_element("//input[@name='account[Birthday]']")
+            birthday_field.clear()
+            birthday_field.send_keys(birthday)
+            hoverer = ActionChains(self.driver).move_by_offset(0, 80).click()
+            hoverer.perform()
+            Logging().reportDebugStep(self, "The birthday was set: " + birthday)
+        except NoSuchElementException:
+            Logging().reportDebugStep(self, "Birthday input was not found")
         return ConvertLeadModule()
 
     def set_address(self, address):
@@ -141,7 +159,10 @@ class ConvertLeadModule(CRMBasePage):
         return ConvertLeadModule()
 
     def set_citizenship(self, citizenship):
-        country_list = Select(self.driver.find_element(By.XPATH, "//select[@name='account[Citizenship]']"))
-        country_list.select_by_visible_text(citizenship)
-        Logging().reportDebugStep(self, "The citizenship was set: " + citizenship)
+        try:
+            country_list = Select(self.driver.find_element(By.XPATH, "//select[@name='account[Citizenship]']"))
+            country_list.select_by_visible_text(citizenship)
+            Logging().reportDebugStep(self, "The citizenship was set: " + citizenship)
+        except NoSuchElementException:
+            Logging().reportDebugStep(self, "Citizenship input was not found")
         return ConvertLeadModule()

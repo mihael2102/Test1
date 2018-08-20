@@ -14,8 +14,8 @@ class CalendarView(BaseTest):
     def test_check_month_tab(self):
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         calendar_module = CRMHomePage(self.driver)\
             .open_task_module() \
@@ -41,8 +41,8 @@ class CalendarView(BaseTest):
     def test_check_week_tab(self):
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         CRMHomePage(self.driver)\
             .open_task_module() \
@@ -53,8 +53,8 @@ class CalendarView(BaseTest):
     def test_check_day_tab(self):
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         calendar_module = CRMHomePage(self.driver)\
             .open_task_module() \
@@ -70,8 +70,8 @@ class CalendarView(BaseTest):
     def test_check_add_tasks_calendar_view(self):
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage(self.driver).open_task_module()
 

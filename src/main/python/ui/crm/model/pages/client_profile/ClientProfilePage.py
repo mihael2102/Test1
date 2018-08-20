@@ -15,9 +15,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 class ClientProfilePage(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
-
     '''
         Perform scroll_down
         returns Manage Accounts Module  instance    

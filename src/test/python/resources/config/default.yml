@@ -2,34 +2,52 @@ pretty_name: "Default"
 url: ""
 user_name: pandaqa
 crm_password: xUQ7hrr9VF
+otp_secret:
 client_1:
-  user_name: pandaqa
-  crm_password: xUQ7hrr9VF
+  test_filter: "Test Clients"
+  client_status_1:
+  email: "@pandats.com"
+  short_client_name: "John Doe"
+  country:
+  short_first_name:
+  short_last_name:
+  city:
+  brand_one:
+  first_name: "John"
+  last_name: "Doe"
 FirstLeadInfo:
   first_name: "John"
   last_name: "Doe"
   mobile: "8888888"
   fax: "5555"
-  email: "eval: 'testqa_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S.%f')) + '@pandats.com'"
+  EVAL_email: "'testqa_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S.%f')) + '@pandats.com'"
   secondary_email: "secondarytestqa+1@pandats.com"
   first_language: "English"
-  panda_partner_id: "55"
-  first_referral: "referral text"
+#  panda_partner_id: "55"
+#  first_referral: "referral text"
+  panda_partner_id:
+  first_referral:
   street: "street test"
   postal_code: "88888"
-  first_country: "United States"
+  first_country: "Germany"
   first_descriptions: "Description test"
-  phone: "22222"
+  phone: "222222"
+  phone_area_code:
   first_tittle: "tittle test"
   first_lead_source: "Conference"
-  first_lead_status: "R - in practice"
-  first_assigned_to: "Panda Support"
+  first_lead_status: "R - New"
+  first_assigned_to: "pandaqa pandaqa"
   first_source_name: "source name test"
   # brand: "NFX"
   brand:
   po_box: "po box text"
-  city: "New York"
-  first_state: "NY"
+  city: "Berlin"
+  first_state: ""
+  birthday: "1970-01-01"
+  citizenship: "German"
+  first_password: "Abcd1234"
+  first_currency: "USD"
+  filter_name: "test"
 SecondLeadInfo:
   first_name: "second_lead name"
   last_name: "second lead last name"
@@ -44,7 +62,7 @@ SecondLeadInfo:
   postal_code: "99999"
   first_country: "United States"
   first_descriptions: "Second description test"
-  phone: "33333"
+  phone: "333333"
   first_tittle: "second tittle test"
   first_lead_source: "Conference"
   first_lead_status: "B - No interest"

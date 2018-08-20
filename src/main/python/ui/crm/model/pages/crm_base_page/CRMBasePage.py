@@ -54,6 +54,10 @@ class CRMBasePage(object):
         return WebDriverWait(self.driver, 25).until(
             EC.element_to_be_clickable((By.XPATH, element)))
 
+    def wait_element_to_be_disappear(self, element):
+        return WebDriverWait(self.driver, 25).until(
+            EC.invisibility_of_element_located((By.XPATH, element)))
+
     def perform_scroll(self, parameter):
         self.driver.execute_script("scroll(0, '%s');" % parameter)
         Logging().reportDebugStep(self, "Scroll was performed ")
@@ -79,3 +83,6 @@ class CRMBasePage(object):
         button = self.wait_load_element("//button[contains(text(),'OK')]")
         button.click()
         Logging().reportDebugStep(self, "The Ok button was clicked ")
+
+    def wait_crm_loading_to_finish(self):
+        self.wait_element_to_be_disappear("//div[@class='loader']")

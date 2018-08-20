@@ -3,6 +3,8 @@ from selenium.webdriver.support.select import Select
 
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from selenium.common.exceptions import NoSuchElementException
+from time import sleep
 
 
 class CreateLeadsProfilePage(CRMBasePage):
@@ -11,7 +13,7 @@ class CreateLeadsProfilePage(CRMBasePage):
                             language, panda_partner_id, referral, street, postal_code, country, description,
                             phone, tittle, lead_source, lead_status, assigned_to, source_name, brand, po_box,
                             city, state):
-
+        sleep(2)
         self.set_first_name(first_name)
         self.set_last_name(last_name)
         self.set_mobile(mobile)
@@ -19,8 +21,10 @@ class CreateLeadsProfilePage(CRMBasePage):
         self.set_email(email)
         self.set_secondary_email(secondary_email)
         self.set_language(language)
-        self.set_panda_partner_id(panda_partner_id)
-        self.set_referral(referral)
+        if panda_partner_id:
+            self.set_panda_partner_id(panda_partner_id)
+        if referral:
+            self.set_referral(referral)
         self.set_street(street)
         self.set_postal_code(postal_code)
         self.set_country(country)
@@ -142,9 +146,12 @@ class CreateLeadsProfilePage(CRMBasePage):
         return CreateLeadsProfilePage(self.driver)
 
     def set_first_brand(self):
-        brand_list = Select(self.driver.find_element(By.XPATH, "//select[@name='brands']"))
-        brand_list.select_by_index(1)
-        Logging().reportDebugStep(self, "The lead status was set to the first brand")
+        try:
+            brand_list = Select(self.driver.find_element(By.XPATH, "//select[@name='brands']"))
+            brand_list.select_by_index(1)
+            Logging().reportDebugStep(self, "The lead status was set to the first brand")
+        except NoSuchElementException:
+            Logging().reportDebugStep(self, "Brand select box was not found")
         return CreateLeadsProfilePage(self.driver)
 
     def set_referral(self, referral):

@@ -17,3 +17,4 @@ pytest-allure-adaptor
 pyyaml
 xlsxwriter
 unittest-xml-reporting
+pyotp

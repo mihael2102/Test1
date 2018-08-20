@@ -17,8 +17,8 @@ class LeadPrecondition(object):
 
     def create_lead(self, lead):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         CRMHomePage(self.driver).open_lead_module() \
             .open_create_lead_module().perform_create_lead(
