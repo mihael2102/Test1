@@ -13,8 +13,9 @@ class TabFinancialTransaction(BaseTest):
 
     def test_check_all_tab_from_financial_transactions(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         financial_transaction_module = CRMHomePage().open_more_list_modules() \
             .select_financial_transactions_module_more_list(
@@ -42,8 +43,9 @@ class TabFinancialTransaction(BaseTest):
 
     def test_check_searching_by_column(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         financial_transaction_information = CRMHomePage().open_more_list_modules() \
             .select_financial_transactions_module_more_list(

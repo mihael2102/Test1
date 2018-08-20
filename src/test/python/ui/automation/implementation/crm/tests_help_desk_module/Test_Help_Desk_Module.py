@@ -13,8 +13,9 @@ class HelpDeskModuleTest(BaseTest):
 
     def test_create_ticket(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         HelpDeskPrecondition().create_first_ticket()
 
@@ -52,8 +53,9 @@ class HelpDeskModuleTest(BaseTest):
 
     def test_edit_ticket(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         HelpDeskPrecondition().create_first_ticket()
 
@@ -112,8 +114,9 @@ class HelpDeskModuleTest(BaseTest):
 
     def test_searching_in_help_desk_by_ticket_number(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         HelpDeskPrecondition().create_first_ticket()
         detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
@@ -136,8 +139,9 @@ class HelpDeskModuleTest(BaseTest):
 
     def test_searching_in_help_desk_by_tittle(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         HelpDeskPrecondition().create_first_ticket()
         detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
@@ -160,8 +164,9 @@ class HelpDeskModuleTest(BaseTest):
 
     def test_searching_in_help_desk_by_priority(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         HelpDeskPrecondition().create_first_ticket()
         detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
@@ -184,8 +189,9 @@ class HelpDeskModuleTest(BaseTest):
 
     def test_searching_in_help_desk_by_assigned_to(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         HelpDeskPrecondition().create_first_ticket()
         detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
@@ -208,8 +214,9 @@ class HelpDeskModuleTest(BaseTest):
 
     def test_searching_in_help_desk_by_status(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         HelpDeskPrecondition().create_first_ticket()
         detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
@@ -232,8 +239,9 @@ class HelpDeskModuleTest(BaseTest):
 
     def test_searching_in_help_desk_by_ca_id(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         HelpDeskPrecondition().create_first_ticket()
         detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
@@ -256,9 +264,9 @@ class HelpDeskModuleTest(BaseTest):
 
     def test_searching_in_help_desk_by_category(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                   TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         HelpDeskPrecondition().create_first_ticket()
         detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
@@ -281,9 +289,9 @@ class HelpDeskModuleTest(BaseTest):
 
     def test_searching_in_help_desk_by_brand(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                   TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         HelpDeskPrecondition().create_first_ticket()
         detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
@@ -306,9 +314,9 @@ class HelpDeskModuleTest(BaseTest):
 
     def test_searching_in_help_desk_by_description(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                   TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         HelpDeskPrecondition().create_first_ticket()
         detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(
@@ -331,9 +339,9 @@ class HelpDeskModuleTest(BaseTest):
 
     def test_searching_in_help_desk_by_related_to(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                   TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         HelpDeskPrecondition().create_first_ticket()
         detail_view_page_service_desk_module = HelpDeskPage().select_filter(Config.data.get_data_help_desk(

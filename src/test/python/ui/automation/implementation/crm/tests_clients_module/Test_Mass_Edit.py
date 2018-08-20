@@ -13,8 +13,9 @@ class MassEditTestCRM(BaseTest):
     def test_make_mass_edit(self):
         crm_clients_module_page = CRMLoginPage() \
             .open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD)) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .perform_searching(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.CLIENT_STATUS),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_E_MAIL),

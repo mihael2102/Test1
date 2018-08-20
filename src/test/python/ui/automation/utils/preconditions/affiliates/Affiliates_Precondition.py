@@ -11,8 +11,9 @@ class AffiliatesPrecondition(object):
     def create_affiliate(self):
         """ Login to CRM """
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Affiliates page """
         affiliate_list_view_page = CRMHomePage().open_more_list_modules().open_more_list_modules() \

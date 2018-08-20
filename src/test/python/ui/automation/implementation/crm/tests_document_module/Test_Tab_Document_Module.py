@@ -12,8 +12,9 @@ class TabDocumentModule(BaseTest):
 
     def test_check_tabs_document_module(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         document_module = CRMHomePage().open_more_list_modules() \
             .select_document_module_more_list(DocumentModuleConstants.DOCUMENT)
@@ -35,8 +36,9 @@ class TabDocumentModule(BaseTest):
 
     # def test_searching_tabs_document_module(self):
     #     CRMLoginPage().open_first_tab_page(Config.url_crm) \
-    #         .crm_login(Config.data.get_data_first_client(TestDataConstants.USER_NAME),
-    #                    Config.data.get_data_first_client(TestDataConstants.CRM_PASSWORD))
+    #         .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+    #                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
+    #                        self.config.get_value(TestDataConstants.OTP_SECRET))
     #
     #     document = CRMHomePage().open_more_list_modules() \
     #         .select_module_more_list(CRMDocumentConstants.DOCUMENT)
