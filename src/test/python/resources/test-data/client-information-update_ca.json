@@ -1,0 +1,15 @@
+{
+  "client_update_ca": {
+    "first_name": "TestQa",
+    "last_name": "LiQA",
+    "day": "26",
+    "month": "September",
+    "year": "1985",
+    "country": "Japan",
+    "citizenship": "Spanish",
+    "city": "Kharkiv",
+    "zip_code": "7777",
+    "address": "SpanishAddress",
+    "phone": "777777"
+  }
+}

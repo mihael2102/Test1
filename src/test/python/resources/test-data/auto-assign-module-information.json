@@ -1,0 +1,20 @@
+{
+  "AutoAssign_info_1": {
+    "first_brand": "newForex",
+    "second_brand": "NFX",
+    "first_rule_type": "Campaign",
+    "second_rule_type": "Base Currency",
+    "third_rule_type": "Language",
+    "first_assign_details": "CEO VP",
+    "second_assign_details": "Panda UA",
+    "first_user": "Panda UA",
+    "first_created_by": "pandaqa pandaqa",
+    "first_status": "Active",
+    "first_module": "Leads",
+    "second_module": "Clients",
+    "first_assign_to": "Role",
+    "second_assign_to": "User",
+    "first_currency": "USD",
+    "first_language": "German"
+  }
+}

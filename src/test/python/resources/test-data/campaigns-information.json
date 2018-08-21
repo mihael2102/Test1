@@ -1,0 +1,11 @@
+{
+  "Campaigns_info_1": {
+    "first_assigned_to": "Default User",
+    "second_assigned_to": "Default User",
+    "first_deal":"CPA",
+    "second_deal":"CPL",
+    "third_deal":"FIX",
+    "first_activity":"2",
+    "second_activity":"3"
+  }
+}

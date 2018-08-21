@@ -1,0 +1,35 @@
+{
+  "Tasks Module": {
+    "first_tab": "Show all",
+    "second_tab": "Show mine",
+    "third_tab": "Today",
+    "fourth_tab": "This week",
+    "fifth_tab": "History",
+    "first_call_outcome": "Answer",
+    "second_call_outcome": "No Answer",
+    "first_positive_outcome": "R - Active",
+    "second_positive_outcome": "C - High Potential",
+    "third_positive_outcome": "C - Low Potential",
+    "first_negative_outcome": "C - No Answer",
+    "second_negative_outcome": "C - No Answer",
+    "third_negative_outcome": "B - Wrong number",
+    "fourth_negative_outcome": "B - Under 18"
+  },
+  "mass_edit_1": {
+    "gender_male": "M",
+    "gender_female": "F",
+    "assigned_to_panda": "Panda UA",
+    "client_source": "client_source",
+    "compliance_agent": "John",
+    "compliance_notes": "compliance_test",
+    "client_status": "R - New",
+    "retention_status": "Pending Deposit",
+    "description": "mass_edit_description",
+    "referral": "referral_description"
+  },
+  "mass_sms_info": {
+    "first_phone_type": "Phone",
+    "second_mobile_type": "Mobile",
+    "third_phone_verified_type": "Phone verified"
+  }
+}

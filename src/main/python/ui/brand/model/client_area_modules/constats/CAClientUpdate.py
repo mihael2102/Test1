@@ -1,0 +1,14 @@
+class CAClientUpdate(object):
+    FIRST_NAME = "first_name"
+    LAST_NAME = "last_name"
+    DAY = "day"
+    MONTH = "month"
+    YEAR = "year"
+    COUNTRY = "country"
+    CITIZEN_SHIP = "citizenship"
+    CITY = "city"
+    ZIP_CODE = "zip_code"
+    ADDRESS = "address"
+    PHONE = "phone"
+    CLIENT_UPDATE_CA = "client_update_ca"
+
