@@ -11,8 +11,26 @@ from src.main.python.utils.config import Config
 
 
 class ClientsPreconditions():
-    def create_client_via_api(self):
-        api = ApiPage(ApiConstants.PARTNER_ID, ApiConstants.PARTNER_SECRET_KEY, ApiConstants.MILLIS_TIME, Config.url_api_authorization)
-        api.api_create_client(api.get_generated_token_api(), Config.url_api_create_client)
+    def create_client_via_api(self, partner_id, partner_secret_key, millis_time, url_api_authorization, generated_token, url_create_client, content_type, client_email, client_password, client_country, client_first_name, client_last_name, client_phone):
+        api_entity = ApiPage(partner_id, partner_secret_key, millis_time, url_api_authorization)
+        api_entity.api_create_client(generated_token, url_create_client, content_type, client_email, client_password, client_country, client_first_name, client_last_name, client_phone)
 
-ClientsPreconditions().create_client_via_api()
+api_entity = ClientsPreconditions()
+ap = ApiPage(Config.data.get_data_api_affiliate_information(ApiConstants.FIELD_NAME_PARTNER_ID),
+             Config.data.get_data_api_affiliate_information(ApiConstants.PARTNER_SECRET_KEY),
+             ApiConstants.MILLIS_TIME,
+             Config.url_api_authorization)
+
+api_entity.create_client_via_api(Config.data.get_data_api_affiliate_information(ApiConstants.FIELD_NAME_PARTNER_ID),
+                                 Config.data.get_data_api_affiliate_information(ApiConstants.PARTNER_SECRET_KEY),
+                                 ApiConstants.MILLIS_TIME,
+                                 Config.url_api_authorization,
+                                 ap.get_generated_token_api(),
+                                 Config.url_api_create_client,
+                                 Config.data.get_data_api_affiliate_information(ApiConstants.FIELD_NAME_CONTENT_TYPE),
+                                 Config.data.get_data_api_client_information(ApiConstants.FIELD_NAME_EMAIL),
+                                 Config.data.get_data_api_client_information(ApiConstants.FIELD_NAME_PASSWORD),
+                                 Config.data.get_data_api_client_information(ApiConstants.FIELD_NAME_COUNTRY),
+                                 Config.data.get_data_api_client_information(ApiConstants.FIELD_NAME_FIRSTNAME),
+                                 Config.data.get_data_api_client_information(ApiConstants.FIELD_NAME_LASTNAME),
+                                 Config.data.get_data_api_client_information(ApiConstants.FIELD_NAME_PHONE))

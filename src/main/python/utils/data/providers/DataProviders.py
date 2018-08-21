@@ -1,6 +1,7 @@
 import json
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
 from src.main.python.ui.crm.model.constants.AffiliatePageConstants import AffiliatePageConstants
+from src.main.python.ui.crm.model.constants.ApiConstants import ApiConstants
 from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
 from src.main.python.ui.crm.model.constants.AutoAssignConstants import AutoAssignConstants
 from src.main.python.ui.crm.model.constants.CampaingsConstants import CampaignsConstants
@@ -19,6 +20,18 @@ class DataProviders(object):
             'D:/automation-newforexqa/src/test/python/resources/test-data/client-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]
+
+    def get_data_api_client_information(self, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/api_information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[ApiConstants.CLIENT_INFO_API][value]
+
+    def get_data_api_affiliate_information(self, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/api_information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[ApiConstants.AFFILIATE_INFO_API][value]
 
     def get_data_campaign_module(self, value):
         connection_file = open(
@@ -127,3 +140,4 @@ class DataProviders(object):
             'D:/automation-newforexqa/src/test/python/resources/test-data/help-desk-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]
+

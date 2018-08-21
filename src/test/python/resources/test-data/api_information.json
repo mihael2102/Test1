@@ -1,0 +1,15 @@
+{
+  "Affiliate_info_api": {
+    "partnerId": "3898",
+    "partner_secret_key": "5fb7b2998ef7c9223cf14b4db93f7a4cbf79c58749def28ebf1032165888c5f5",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
+  "Client_info_api": {
+    "email": "dmytro.k+api014@pandats.com",
+    "password": "as1as2",
+    "country": "de",
+    "firstName": "Dima Api",
+    "lastName": "QA",
+    "phone": "10235145789569"
+  }
+}

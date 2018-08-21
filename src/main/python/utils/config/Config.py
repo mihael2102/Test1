@@ -1,5 +1,7 @@
+from src.main.python.utils.data.providers.DataProviders import DataProviders
+
 timeout = 4
-data = None
+data = None  # DataProviders()
 url_client_area = "https://newforexqa.pandats.com/"
 url_crm = "https://newforexstaging.ptscrm.com/"
 url_gmail = "https://mail.google.com"
