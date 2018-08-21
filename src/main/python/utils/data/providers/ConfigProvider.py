@@ -14,7 +14,8 @@ from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditCon
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
 from src.main.python.utils.config import Config
-from datetime import datetime
+from datetime import *
+from dateutil.relativedelta import relativedelta
 
 
 class ConfigProvider:

@@ -34,6 +34,7 @@ class CRMHomePage(CRMBasePage):
         task_module = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Tasks']")
         task_module.click()
         Logging().reportDebugStep(self, "Task module is opened")
+        self.wait_crm_loading_to_finish()
         return TasksPage(self.driver)
 
     def open_more_list_modules(self):

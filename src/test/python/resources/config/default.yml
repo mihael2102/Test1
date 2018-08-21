@@ -3,18 +3,6 @@ url: ""
 user_name: pandaqa
 crm_password: xUQ7hrr9VF
 otp_secret:
-client_1:
-  test_filter: "Test Clients"
-  client_status_1:
-  email: "@pandats.com"
-  short_client_name: "John Doe"
-  country:
-  short_first_name:
-  short_last_name:
-  city:
-  brand_one:
-  first_name: "John"
-  last_name: "Doe"
 FirstLeadInfo:
   first_name: "John"
   last_name: "Doe"
@@ -72,3 +60,25 @@ SecondLeadInfo:
   po_box: "po box text"
   city: "New York"
   first_state: "NY"
+client_1:
+  test_filter: "Test Clients"
+  client_status_1:
+  email: "@pandats.com"
+  short_client_name: "John Doe"
+  country:
+  short_first_name:
+  short_last_name:
+  city:
+  brand_one:
+  first_name: "John"
+  last_name: "Doe"
+event_1:
+  type: "Meeting"
+  status: "Not Started"
+  duration: "30M"
+  EVAL_time: "(datetime.now() + relativedelta(days=1)).strftime('%H:%M:%S')"
+  EVAL_date: "(datetime.now() + relativedelta(days=1)).strftime('%d-%m-%Y')"
+  assign_to: "pandaqa pandaqa"
+  priority: "Medium"
+  description: "Event Description"
+

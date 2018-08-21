@@ -7,8 +7,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 
 class CreateEvent(CRMBasePage):
-    def __init__(self):
-        super().__init__()
 
     def create_event(self, status, type, duration, time, date, assign_to, priority, comments):
         self.set_event_status(status)

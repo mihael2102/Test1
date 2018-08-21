@@ -7,8 +7,6 @@ from src.main.python.utils.config import Config
 
 
 class EventPrecondition(object):
-    def __init__(self) -> None:
-        super().__init__()
 
     def create_first_event(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
