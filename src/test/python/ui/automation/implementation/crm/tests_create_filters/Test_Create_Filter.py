@@ -1,10 +1,12 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
 
-
+@pytest.mark.run(order=1)
 class FilterModulesTest(BaseTest):
 
     def test_create_filter_clients_module(self):

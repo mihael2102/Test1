@@ -1,7 +1,6 @@
-from src.main.python.utils.data.providers.DataProviders import DataProviders
-
+test = "Regression New Forex Staging"
 timeout = 4
-data = None  # DataProviders()
+data = None
 url_client_area = "https://newforexqa.pandats.com/"
 url_crm = "https://newforexstaging.ptscrm.com/"
 url_gmail = "https://mail.google.com"

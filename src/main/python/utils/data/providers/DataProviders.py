@@ -11,6 +11,7 @@ from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditCon
 from src.main.python.ui.crm.model.constants.ReportConstants import ManagementReportConstants, TradingReportConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
+from src.main.python.utils.config import Config
 
 
 class DataProviders(object):
@@ -140,4 +141,3 @@ class DataProviders(object):
             'D:/automation-newforexqa/src/test/python/resources/test-data/help-desk-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]
-

@@ -1,0 +1,24 @@
+2018-08-03 11:16:09,253 - Logger - DEBUG - CRMLoginPage - Open first tabs page: https://newforexstaging.ptscrm.com/
+2018-08-03 11:16:09,464 - Logger - DEBUG - CRMLoginPage - Setting the user name in the field : pandaqa
+
+2018-08-03 11:16:09,571 - Logger - DEBUG - CRMLoginPage - Setting the user name in the password: xUQ7hrr9VF
+
+2018-08-03 11:16:09,653 - Logger - DEBUG - CRMLoginPage - Click the login button
+
+2018-08-03 11:16:18,748 - Logger - DEBUG - CRMHomePage - Task module is opened
+2018-08-03 11:16:21,995 - Logger - DEBUG - TasksPage - The event  module was opened
+2018-08-03 11:16:23,033 - Logger - DEBUG - AddEventModule - The event status was set Planned
+2018-08-03 11:16:23,312 - Logger - DEBUG - AddEventModule - The event type is set Call
+2018-08-03 11:16:25,659 - Logger - DEBUG - AddEventModule - The date  was set 2018-08-05
+2018-08-03 11:16:25,660 - Logger - DEBUG - AddEventModule - The time  was set 11:46:02
+2018-08-03 11:16:26,030 - Logger - DEBUG - AddEventModule - The duration  was set 15M
+2018-08-03 11:16:26,385 - Logger - DEBUG - AddEventModule - The priority was set High
+2018-08-03 11:16:26,815 - Logger - DEBUG - AddEventModule - The  assign to was set pandaqa pandaqa
+2018-08-03 11:16:31,433 - Logger - DEBUG - AddEventModule - The account was set Test11111
+2018-08-03 11:16:32,425 - Logger - DEBUG - AddEventModule - The subject was set Testing76213
+2018-08-03 11:16:34,165 - Logger - DEBUG - AddEventModule - The comments was set Description Add Event
+2018-08-03 11:16:34,395 - Logger - DEBUG - AddEventModule - Click the 'save' button 
+2018-08-03 11:16:35,615 - Logger - DEBUG - TasksPage - The this week tab was opened 
+2018-08-03 11:16:38,569 - Logger - DEBUG - TasksPage - The subject was set: Testing76213
+2018-08-03 11:16:41,569 - Logger - DEBUG - TasksPage - The subject was set: Testing76213
+2018-08-03 11:16:41,734 - Logger - DEBUG - TasksPage - The call phone module was opened: 

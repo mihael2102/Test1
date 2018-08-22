@@ -41,7 +41,7 @@ class CaTransferBetweenTab(BrandBasePage):
         return CaTransferBetweenTab()
 
     def set_amount(self, second_account, amount):
-        amount_field = self.driver.find_element(By.XPATH, "//input[@type='text']")
+        amount_field = self.driver.find_element(By.XPATH, "(//input[@type='text' and contains(@class, 'custom-input-field-pandats')])[1]")
         amount_field.clear()
         amount_field.send_keys(amount)
         Logging().reportDebugStep(self,

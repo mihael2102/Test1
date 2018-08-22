@@ -1,0 +1,1791 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1533284163019" stop="1533284461942">
+  <name>Test_Regression</name>
+  <labels/>
+  <test-cases>
+    <test-case start="1533284163019" status="failed" stop="1533284206833">
+      <name>ActionsTaskModuleTest.test_check_phone_actions_section</name>
+      <failure>
+        <message>TypeError: not all arguments converted during string formatting</message>
+        <stack-trace>self = &lt;src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tasks_Actions.ActionsTaskModuleTest testMethod=test_check_phone_actions_section&gt;
+
+    def test_check_phone_actions_section(self):
+        ActionsTasksPrecondition().create_second_event()
+        task_module = TasksPage()
+        task_module.open_show_all_tab() \
+            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
+            .open_phone_actions() \
+&gt;           .perform_call_section(Config.data.get_data_task_module(TaskModuleConstants.SECOND_CALL_OUTCOME),
+                                  Config.data.get_data_task_module(TaskModuleConstants.SECOND_POSITIVE_OUTCOME),
+                                  Config.data.get_data_task_module(TaskModuleConstants.THIRD_NEGATIVE_OUTCOME),
+                                  TaskModuleConstants.COMMENTS_CALL_PHONE) \
+            .click_submit_button()
+
+src\test\python\ui\automation\implementation\crm\tests_tasks_module\Test_Tasks_Actions.py:48: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;src.main.python.ui.brand.model.data.providers.DataProviders.DataProviders object at 0x06549FD0&gt;
+value = 'second_call_outcome'
+
+    def get_data_task_module(self, value):
+        connection_file = open(
+&gt;           'D:/automation-newforexqa/src/test/python/resources/test-data/tasks-module.json' % Config.test)
+E       TypeError: not all arguments converted during string formatting
+
+src\main\python\ui\brand\model\data\providers\DataProviders.py:58: TypeError</stack-trace>
+      </failure>
+      <attachments>
+        <attachment source="5c0a45e7-1e69-4316-962c-49a1d0d10e5d-attachment.png" title="failed_screenshot" type="image/png"/>
+        <attachment source="2fe117c9-56d8-4894-b7bb-2382d547b3da-attachment.txt" title="Captured stderr call" type="text/plain"/>
+        <attachment source="c93b97a5-cfe6-421d-b08f-f9b7d96cb5f5-attachment.txt" title="Captured log call" type="text/plain"/>
+      </attachments>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="10996-MainThread"/>
+        <label name="host" value="HRK1-LHP-F73380"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1533284169254" status="passed" stop="1533284169254">
+          <name>Open first tabs page: https://newforexstaging.ptscrm.com/</name>
+          <title>Open first tabs page: https://newforexstaging.ptscrm.com/</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284169465" status="passed" stop="1533284169465">
+          <name>Setting the user name in the field : pandaqa
+</name>
+          <title>Setting the user name in the field : pandaqa
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284169571" status="passed" stop="1533284169572">
+          <name>Setting the user name in the password: xUQ7hrr9VF
+</name>
+          <title>Setting the user name in the password: xUQ7hrr9VF
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284169654" status="passed" stop="1533284169654">
+          <name>Click the login button
+</name>
+          <title>Click the login button
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284178748" status="passed" stop="1533284178748">
+          <name>Task module is opened</name>
+          <title>Task module is opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284181995" status="passed" stop="1533284181995">
+          <name>The event  module was opened</name>
+          <title>The event  module was opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284183033" status="passed" stop="1533284183034">
+          <name>The event status was set Planned</name>
+          <title>The event status was set Planned</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284183313" status="passed" stop="1533284183313">
+          <name>The event type is set Call</name>
+          <title>The event type is set Call</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284185660" status="passed" stop="1533284185660">
+          <name>The date  was set 2018-08-05</name>
+          <title>The date  was set 2018-08-05</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284185660" status="passed" stop="1533284185660">
+          <name>The time  was set 11:46:02</name>
+          <title>The time  was set 11:46:02</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284186031" status="passed" stop="1533284186031">
+          <name>The duration  was set 15M</name>
+          <title>The duration  was set 15M</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284186385" status="passed" stop="1533284186386">
+          <name>The priority was set High</name>
+          <title>The priority was set High</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284186815" status="passed" stop="1533284186815">
+          <name>The  assign to was set pandaqa pandaqa</name>
+          <title>The  assign to was set pandaqa pandaqa</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284191434" status="passed" stop="1533284191434">
+          <name>The account was set Test11111</name>
+          <title>The account was set Test11111</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284192425" status="passed" stop="1533284192425">
+          <name>The subject was set Testing76213</name>
+          <title>The subject was set Testing76213</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284194165" status="passed" stop="1533284194165">
+          <name>The comments was set Description Add Event</name>
+          <title>The comments was set Description Add Event</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284194395" status="passed" stop="1533284194396">
+          <name>Click the 'save' button </name>
+          <title>Click the 'save' button </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284195615" status="passed" stop="1533284195616">
+          <name>The this week tab was opened </name>
+          <title>The this week tab was opened </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284198569" status="passed" stop="1533284198569">
+          <name>The subject was set: Testing76213</name>
+          <title>The subject was set: Testing76213</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284201570" status="passed" stop="1533284201570">
+          <name>The subject was set: Testing76213</name>
+          <title>The subject was set: Testing76213</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284201734" status="passed" stop="1533284201735">
+          <name>The call phone module was opened: </name>
+          <title>The call phone module was opened: </title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+    <test-case start="1533284206849" status="passed" stop="1533284275089">
+      <name>ActionsTaskModuleTest.test_check_send_sms_actions_section</name>
+      <attachments>
+        <attachment source="4bf16f73-a0c9-4d7c-a9fe-7517b91e0631-attachment.txt" title="Captured stderr call" type="text/plain"/>
+        <attachment source="28815ada-9afd-47eb-99a1-08a121407502-attachment.txt" title="Captured log call" type="text/plain"/>
+      </attachments>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="10996-MainThread"/>
+        <label name="host" value="HRK1-LHP-F73380"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1533284212809" status="passed" stop="1533284212809">
+          <name>Open first tabs page: https://newforexstaging.ptscrm.com/</name>
+          <title>Open first tabs page: https://newforexstaging.ptscrm.com/</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284212993" status="passed" stop="1533284212993">
+          <name>Setting the user name in the field : pandaqa
+</name>
+          <title>Setting the user name in the field : pandaqa
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284213111" status="passed" stop="1533284213111">
+          <name>Setting the user name in the password: xUQ7hrr9VF
+</name>
+          <title>Setting the user name in the password: xUQ7hrr9VF
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284213182" status="passed" stop="1533284213182">
+          <name>Click the login button
+</name>
+          <title>Click the login button
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284223892" status="passed" stop="1533284223892">
+          <name>Task module is opened</name>
+          <title>Task module is opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284227173" status="passed" stop="1533284227173">
+          <name>The event  module was opened</name>
+          <title>The event  module was opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284227741" status="passed" stop="1533284227741">
+          <name>The event status was set Planned</name>
+          <title>The event status was set Planned</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284228052" status="passed" stop="1533284228052">
+          <name>The event type is set Call</name>
+          <title>The event type is set Call</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284230456" status="passed" stop="1533284230457">
+          <name>The date  was set 2018-08-05</name>
+          <title>The date  was set 2018-08-05</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284230457" status="passed" stop="1533284230457">
+          <name>The time  was set 11:46:02</name>
+          <title>The time  was set 11:46:02</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284230785" status="passed" stop="1533284230785">
+          <name>The duration  was set 15M</name>
+          <title>The duration  was set 15M</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284231093" status="passed" stop="1533284231093">
+          <name>The priority was set High</name>
+          <title>The priority was set High</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284231369" status="passed" stop="1533284231369">
+          <name>The  assign to was set pandaqa pandaqa</name>
+          <title>The  assign to was set pandaqa pandaqa</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284233370" status="passed" stop="1533284233371">
+          <name>The account was set Test11111</name>
+          <title>The account was set Test11111</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284234361" status="passed" stop="1533284234361">
+          <name>The subject was set Testing76213</name>
+          <title>The subject was set Testing76213</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284236058" status="passed" stop="1533284236058">
+          <name>The comments was set Description Add Event</name>
+          <title>The comments was set Description Add Event</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284236240" status="passed" stop="1533284236240">
+          <name>Click the 'save' button </name>
+          <title>Click the 'save' button </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284237479" status="passed" stop="1533284237480">
+          <name>The this week tab was opened </name>
+          <title>The this week tab was opened </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284240483" status="passed" stop="1533284240484">
+          <name>The subject was set: Testing76213</name>
+          <title>The subject was set: Testing76213</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284243485" status="passed" stop="1533284243485">
+          <name>The subject was set: Testing76213</name>
+          <title>The subject was set: Testing76213</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284248460" status="passed" stop="1533284248460">
+          <name>The first client profile is opened</name>
+          <title>The first client profile is opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284248527" status="passed" stop="1533284248527">
+          <name>Returns the phone number: 55555555</name>
+          <title>Returns the phone number: 55555555</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284251698" status="passed" stop="1533284251698">
+          <name>Task module is opened</name>
+          <title>Task module is opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284254943" status="passed" stop="1533284254943">
+          <name>The subject was set: Testing76213</name>
+          <title>The subject was set: Testing76213</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284257944" status="passed" stop="1533284257945">
+          <name>The subject was set: Testing76213</name>
+          <title>The subject was set: Testing76213</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284258124" status="passed" stop="1533284258124">
+          <name>The sms module was opened</name>
+          <title>The sms module was opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284262175" status="passed" stop="1533284262175">
+          <name>The mobile item was selected 55555555</name>
+          <title>The mobile item was selected 55555555</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284262881" status="passed" stop="1533284262882">
+          <name>The message was entered Hello from actions section</name>
+          <title>The message was entered Hello from actions section</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284262986" status="passed" stop="1533284262987">
+          <name>The save button was clicked</name>
+          <title>The save button was clicked</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284267809" status="passed" stop="1533284267810">
+          <name>The first client profile is opened</name>
+          <title>The first client profile is opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284267824" status="passed" stop="1533284267824">
+          <name>Perform scroll down </name>
+          <title>Perform scroll down </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284269984" status="passed" stop="1533284269984">
+          <name>Open the sms tab </name>
+          <title>Open the sms tab </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284271929" status="passed" stop="1533284271929">
+          <name>Open the sms view  </name>
+          <title>Open the sms view  </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284272027" status="passed" stop="1533284272027">
+          <name>Returns the sms message Hello from actions section</name>
+          <title>Returns the sms message Hello from actions section</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+    <test-case start="1533284275100" status="passed" stop="1533284332983">
+      <name>ActionsTaskModuleTest.test_send_email_actions_section</name>
+      <attachments>
+        <attachment source="4249e0f9-f6b3-4049-9545-ba7e8b7f3f59-attachment.txt" title="Captured stderr call" type="text/plain"/>
+        <attachment source="aa907276-ceb9-4ce7-93c2-2bbc37b6cb0c-attachment.txt" title="Captured log call" type="text/plain"/>
+      </attachments>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="10996-MainThread"/>
+        <label name="host" value="HRK1-LHP-F73380"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1533284280987" status="passed" stop="1533284280987">
+          <name>Open first tabs page: https://newforexstaging.ptscrm.com/</name>
+          <title>Open first tabs page: https://newforexstaging.ptscrm.com/</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284281167" status="passed" stop="1533284281167">
+          <name>Setting the user name in the field : pandaqa
+</name>
+          <title>Setting the user name in the field : pandaqa
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284281274" status="passed" stop="1533284281274">
+          <name>Setting the user name in the password: xUQ7hrr9VF
+</name>
+          <title>Setting the user name in the password: xUQ7hrr9VF
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284281364" status="passed" stop="1533284281364">
+          <name>Click the login button
+</name>
+          <title>Click the login button
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284291219" status="passed" stop="1533284291220">
+          <name>Task module is opened</name>
+          <title>Task module is opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284294486" status="passed" stop="1533284294486">
+          <name>The event  module was opened</name>
+          <title>The event  module was opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284295038" status="passed" stop="1533284295038">
+          <name>The event status was set In Progress</name>
+          <title>The event status was set In Progress</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284295345" status="passed" stop="1533284295345">
+          <name>The event type is set Meeting</name>
+          <title>The event type is set Meeting</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284297727" status="passed" stop="1533284297727">
+          <name>The date  was set 2018-08-04</name>
+          <title>The date  was set 2018-08-04</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284297727" status="passed" stop="1533284297727">
+          <name>The time  was set 11:31:02</name>
+          <title>The time  was set 11:31:02</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284298022" status="passed" stop="1533284298022">
+          <name>The duration  was set 30M</name>
+          <title>The duration  was set 30M</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284298354" status="passed" stop="1533284298355">
+          <name>The priority was set Medium</name>
+          <title>The priority was set Medium</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284298651" status="passed" stop="1533284298651">
+          <name>The  assign to was set Default User</name>
+          <title>The  assign to was set Default User</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284300605" status="passed" stop="1533284300606">
+          <name>The account was set Test44444</name>
+          <title>The account was set Test44444</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284301616" status="passed" stop="1533284301616">
+          <name>The subject was set Testing55635</name>
+          <title>The subject was set Testing55635</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284303386" status="passed" stop="1533284303387">
+          <name>The comments was set Description Add Event</name>
+          <title>The comments was set Description Add Event</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284303571" status="passed" stop="1533284303571">
+          <name>Click the 'save' button </name>
+          <title>Click the 'save' button </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284304804" status="passed" stop="1533284304804">
+          <name>The this week tab was opened </name>
+          <title>The this week tab was opened </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284307847" status="passed" stop="1533284307847">
+          <name>The subject was set: Testing55635</name>
+          <title>The subject was set: Testing55635</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284310847" status="passed" stop="1533284310847">
+          <name>The subject was set: Testing55635</name>
+          <title>The subject was set: Testing55635</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284311021" status="passed" stop="1533284311021">
+          <name>The sms module was opened</name>
+          <title>The sms module was opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284312091" status="passed" stop="1533284312091">
+          <name>The subject was set: Email subject 7750</name>
+          <title>The subject was set: Email subject 7750</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284312313" status="passed" stop="1533284312313">
+          <name>The comment was set: Comment from task module</name>
+          <title>The comment was set: Comment from task module</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284312998" status="passed" stop="1533284312998">
+          <name>The send button was clicked</name>
+          <title>The send button was clicked</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284315061" status="passed" stop="1533284315061">
+          <name>Returns the message task  : Email sent</name>
+          <title>Returns the message task  : Email sent</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284319065" status="passed" stop="1533284319066">
+          <name>The second tab was opened</name>
+          <title>The second tab was opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284319289" status="passed" stop="1533284319289">
+          <name>The email address was set: username.testing1@gmail.com</name>
+          <title>The email address was set: username.testing1@gmail.com</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284319389" status="passed" stop="1533284319389">
+          <name>The next button was clicked</name>
+          <title>The next button was clicked</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284320689" status="passed" stop="1533284320689">
+          <name>The password  was set: as1as2qa1qa2</name>
+          <title>The password  was set: as1as2qa1qa2</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284320807" status="passed" stop="1533284320807">
+          <name>The next button was clicked</name>
+          <title>The next button was clicked</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284328056" status="passed" stop="1533284328057">
+          <name>The subject was entered: Email subject 7750</name>
+          <title>The subject was entered: Email subject 7750</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284328177" status="passed" stop="1533284328177">
+          <name>The search button was clicked</name>
+          <title>The search button was clicked</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284329413" status="passed" stop="1533284329414">
+          <name>The subject link was clicked: Email subject 7750</name>
+          <title>The subject link was clicked: Email subject 7750</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284329564" status="passed" stop="1533284329564">
+          <name>The comment text was getting: Comment from task module</name>
+          <title>The comment text was getting: Comment from task module</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284330191" status="passed" stop="1533284330191">
+          <name>The tool tip was opened </name>
+          <title>The tool tip was opened </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284330320" status="passed" stop="1533284330320">
+          <name>The support email was getting: &lt;newforex@pandats.com&gt;</name>
+          <title>The support email was getting: &lt;newforex@pandats.com&gt;</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+    <test-case start="1533284332994" status="passed" stop="1533284393878">
+      <name>ActionsTaskModuleTest.test_send_email_from_phone_actions_section</name>
+      <attachments>
+        <attachment source="5539e0c5-d82e-4821-98c9-5497e6e64748-attachment.txt" title="Captured stderr call" type="text/plain"/>
+        <attachment source="0ded4f27-d1e9-4705-9ff5-99cb5dd2a25e-attachment.txt" title="Captured log call" type="text/plain"/>
+      </attachments>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="10996-MainThread"/>
+        <label name="host" value="HRK1-LHP-F73380"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1533284339226" status="passed" stop="1533284339227">
+          <name>Open first tabs page: https://newforexstaging.ptscrm.com/</name>
+          <title>Open first tabs page: https://newforexstaging.ptscrm.com/</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284339409" status="passed" stop="1533284339410">
+          <name>Setting the user name in the field : pandaqa
+</name>
+          <title>Setting the user name in the field : pandaqa
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284339522" status="passed" stop="1533284339524">
+          <name>Setting the user name in the password: xUQ7hrr9VF
+</name>
+          <title>Setting the user name in the password: xUQ7hrr9VF
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284339601" status="passed" stop="1533284339601">
+          <name>Click the login button
+</name>
+          <title>Click the login button
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284350080" status="passed" stop="1533284350081">
+          <name>Task module is opened</name>
+          <title>Task module is opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284353307" status="passed" stop="1533284353307">
+          <name>The event  module was opened</name>
+          <title>The event  module was opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284354353" status="passed" stop="1533284354353">
+          <name>The event status was set In Progress</name>
+          <title>The event status was set In Progress</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284354616" status="passed" stop="1533284354616">
+          <name>The event type is set Meeting</name>
+          <title>The event type is set Meeting</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284356961" status="passed" stop="1533284356962">
+          <name>The date  was set 2018-08-04</name>
+          <title>The date  was set 2018-08-04</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284356962" status="passed" stop="1533284356962">
+          <name>The time  was set 11:31:02</name>
+          <title>The time  was set 11:31:02</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284357222" status="passed" stop="1533284357222">
+          <name>The duration  was set 30M</name>
+          <title>The duration  was set 30M</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284357526" status="passed" stop="1533284357526">
+          <name>The priority was set Medium</name>
+          <title>The priority was set Medium</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284357797" status="passed" stop="1533284357797">
+          <name>The  assign to was set Default User</name>
+          <title>The  assign to was set Default User</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284359734" status="passed" stop="1533284359735">
+          <name>The account was set Test44444</name>
+          <title>The account was set Test44444</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284360671" status="passed" stop="1533284360671">
+          <name>The subject was set Testing55635</name>
+          <title>The subject was set Testing55635</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284362273" status="passed" stop="1533284362274">
+          <name>The comments was set Description Add Event</name>
+          <title>The comments was set Description Add Event</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284362457" status="passed" stop="1533284362458">
+          <name>Click the 'save' button </name>
+          <title>Click the 'save' button </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284363689" status="passed" stop="1533284363689">
+          <name>The this week tab was opened </name>
+          <title>The this week tab was opened </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284366675" status="passed" stop="1533284366675">
+          <name>The subject was set: Testing55635</name>
+          <title>The subject was set: Testing55635</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284369675" status="passed" stop="1533284369675">
+          <name>The subject was set: Testing55635</name>
+          <title>The subject was set: Testing55635</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284369857" status="passed" stop="1533284369857">
+          <name>The call phone module was opened: </name>
+          <title>The call phone module was opened: </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284370831" status="passed" stop="1533284370831">
+          <name>The call phone module was opened: </name>
+          <title>The call phone module was opened: </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284372497" status="passed" stop="1533284372497">
+          <name>The subject was set: Email subject 7750</name>
+          <title>The subject was set: Email subject 7750</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284372718" status="passed" stop="1533284372718">
+          <name>The comment was set: Comment from task module</name>
+          <title>The comment was set: Comment from task module</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284373410" status="passed" stop="1533284373410">
+          <name>The send button was clicked</name>
+          <title>The send button was clicked</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284375461" status="passed" stop="1533284375461">
+          <name>Returns the message task  : Email sent</name>
+          <title>Returns the message task  : Email sent</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284379729" status="passed" stop="1533284379730">
+          <name>The second tab was opened</name>
+          <title>The second tab was opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284379962" status="passed" stop="1533284379962">
+          <name>The email address was set: username.testing1@gmail.com</name>
+          <title>The email address was set: username.testing1@gmail.com</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284380113" status="passed" stop="1533284380114">
+          <name>The next button was clicked</name>
+          <title>The next button was clicked</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284381465" status="passed" stop="1533284381466">
+          <name>The password  was set: as1as2qa1qa2</name>
+          <title>The password  was set: as1as2qa1qa2</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284381581" status="passed" stop="1533284381581">
+          <name>The next button was clicked</name>
+          <title>The next button was clicked</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284390054" status="passed" stop="1533284390055">
+          <name>The subject was entered: Email subject 7750</name>
+          <title>The subject was entered: Email subject 7750</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284390197" status="passed" stop="1533284390197">
+          <name>The search button was clicked</name>
+          <title>The search button was clicked</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284391340" status="passed" stop="1533284391341">
+          <name>The subject link was clicked: Email subject 7750</name>
+          <title>The subject link was clicked: Email subject 7750</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284391489" status="passed" stop="1533284391489">
+          <name>The comment text was getting: Comment from task module</name>
+          <title>The comment text was getting: Comment from task module</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284391593" status="passed" stop="1533284391594">
+          <name>The tool tip was opened </name>
+          <title>The tool tip was opened </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284391654" status="passed" stop="1533284391654">
+          <name>The support email was getting: &lt;newforex@pandats.com&gt;</name>
+          <title>The support email was getting: &lt;newforex@pandats.com&gt;</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+    <test-case start="1533284393892" status="failed" stop="1533284451922">
+      <name>ActionsTaskModuleTest.test_send_sms_from_phone_actions_section</name>
+      <failure>
+        <message>URLError: &lt;urlopen error [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted&gt;</message>
+        <stack-trace>self = &lt;urllib.request.HTTPHandler object at 0x06A3BC90&gt;
+http_class = &lt;class 'http.client.HTTPConnection'&gt;
+req = &lt;selenium.webdriver.remote.remote_connection.Request object at 0x06A0EF10&gt;
+http_conn_args = {}, host = '127.0.0.1:5578'
+h = &lt;http.client.HTTPConnection object at 0x0644BE30&gt;
+
+    def do_open(self, http_class, req, **http_conn_args):
+        """Return an HTTPResponse object for the request, using http_class.
+    
+            http_class must implement the HTTPConnection API from http.client.
+            """
+        host = req.host
+        if not host:
+            raise URLError('no host given')
+    
+        # will parse host:port
+        h = http_class(host, timeout=req.timeout, **http_conn_args)
+        h.set_debuglevel(self._debuglevel)
+    
+        headers = dict(req.unredirected_hdrs)
+        headers.update(dict((k, v) for k, v in req.headers.items()
+                            if k not in headers))
+    
+        # TODO(jhylton): Should this be redesigned to handle
+        # persistent connections?
+    
+        # We want to make an HTTP/1.1 request, but the addinfourl
+        # class isn't prepared to deal with a persistent connection.
+        # It will try to read all remaining data from the socket,
+        # which will block while the server waits for the next request.
+        # So make sure the connection gets closed after the (only)
+        # request.
+        headers["Connection"] = "close"
+        headers = dict((name.title(), val) for name, val in headers.items())
+    
+        if req._tunnel_host:
+            tunnel_headers = {}
+            proxy_auth_hdr = "Proxy-Authorization"
+            if proxy_auth_hdr in headers:
+                tunnel_headers[proxy_auth_hdr] = headers[proxy_auth_hdr]
+                # Proxy-Authorization should not be sent to origin
+                # server.
+                del headers[proxy_auth_hdr]
+            h.set_tunnel(req._tunnel_host, headers=tunnel_headers)
+    
+        try:
+            try:
+                h.request(req.get_method(), req.selector, req.data, headers,
+&gt;                         encode_chunked=req.has_header('Transfer-encoding'))
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\urllib\request.py:1318: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPConnection object at 0x0644BE30&gt;, method = 'POST'
+url = '/wd/hub//session/d2de9205-ab64-42ca-ba90-06bde7af24ec/element/26/click'
+body = b'{"id": "26", "sessionId": "d2de9205-ab64-42ca-ba90-06bde7af24ec"}'
+headers = {'Accept': 'application/json', 'Connection': 'close', 'Content-Length': '65', 'Content-Type': 'application/json;charset=UTF-8', ...}
+
+    def request(self, method, url, body=None, headers={}, *,
+                encode_chunked=False):
+        """Send a complete request to the server."""
+&gt;       self._send_request(method, url, body, headers, encode_chunked)
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\http\client.py:1239: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPConnection object at 0x0644BE30&gt;, method = 'POST'
+url = '/wd/hub//session/d2de9205-ab64-42ca-ba90-06bde7af24ec/element/26/click'
+body = b'{"id": "26", "sessionId": "d2de9205-ab64-42ca-ba90-06bde7af24ec"}'
+headers = {'Accept': 'application/json', 'Connection': 'close', 'Content-Length': '65', 'Content-Type': 'application/json;charset=UTF-8', ...}
+encode_chunked = False
+
+    def _send_request(self, method, url, body, headers, encode_chunked):
+        # Honor explicitly requested Host: and Accept-Encoding: headers.
+        header_names = frozenset(k.lower() for k in headers)
+        skips = {}
+        if 'host' in header_names:
+            skips['skip_host'] = 1
+        if 'accept-encoding' in header_names:
+            skips['skip_accept_encoding'] = 1
+    
+        self.putrequest(method, url, **skips)
+    
+        # chunked encoding will happen if HTTP/1.1 is used and either
+        # the caller passes encode_chunked=True or the following
+        # conditions hold:
+        # 1. content-length has not been explicitly set
+        # 2. the body is a file or iterable, but not a str or bytes-like
+        # 3. Transfer-Encoding has NOT been explicitly set by the caller
+    
+        if 'content-length' not in header_names:
+            # only chunk body if not explicitly set for backwards
+            # compatibility, assuming the client code is already handling the
+            # chunking
+            if 'transfer-encoding' not in header_names:
+                # if content-length cannot be automatically determined, fall
+                # back to chunked encoding
+                encode_chunked = False
+                content_length = self._get_content_length(body, method)
+                if content_length is None:
+                    if body is not None:
+                        if self.debuglevel &gt; 0:
+                            print('Unable to determine size of %r' % body)
+                        encode_chunked = True
+                        self.putheader('Transfer-Encoding', 'chunked')
+                else:
+                    self.putheader('Content-Length', str(content_length))
+        else:
+            encode_chunked = False
+    
+        for hdr, value in headers.items():
+            self.putheader(hdr, value)
+        if isinstance(body, str):
+            # RFC 2616 Section 3.7.1 says that text default has a
+            # default charset of iso-8859-1.
+            body = _encode(body, 'body')
+&gt;       self.endheaders(body, encode_chunked=encode_chunked)
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\http\client.py:1285: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPConnection object at 0x0644BE30&gt;
+message_body = b'{"id": "26", "sessionId": "d2de9205-ab64-42ca-ba90-06bde7af24ec"}'
+
+    def endheaders(self, message_body=None, *, encode_chunked=False):
+        """Indicate that the last header line has been sent to the server.
+    
+            This method sends the request to the server.  The optional message_body
+            argument can be used to pass a message body associated with the
+            request.
+            """
+        if self.__state == _CS_REQ_STARTED:
+            self.__state = _CS_REQ_SENT
+        else:
+            raise CannotSendHeader()
+&gt;       self._send_output(message_body, encode_chunked=encode_chunked)
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\http\client.py:1234: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPConnection object at 0x0644BE30&gt;
+message_body = b'{"id": "26", "sessionId": "d2de9205-ab64-42ca-ba90-06bde7af24ec"}'
+encode_chunked = False
+
+    def _send_output(self, message_body=None, encode_chunked=False):
+        """Send the currently buffered request and clear the buffer.
+    
+            Appends an extra \\r\\n to the buffer.
+            A message_body may be specified, to be appended to the request.
+            """
+        self._buffer.extend((b"", b""))
+        msg = b"\r\n".join(self._buffer)
+        del self._buffer[:]
+&gt;       self.send(msg)
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\http\client.py:1026: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPConnection object at 0x0644BE30&gt;
+data = b'POST /wd/hub//session/d2de9205-ab64-42ca-ba90-06bde7af24ec/element/26/click HTTP/1.1\r\nAccept-Encoding: identity\r\...tion/json\r\nContent-Type: application/json;charset=UTF-8\r\nUser-Agent: Python http auth\r\nConnection: close\r\n\r\n'
+
+    def send(self, data):
+        """Send `data' to the server.
+            ``data`` can be a string object, a bytes object, an array object, a
+            file-like object that supports a .read() method, or an iterable object.
+            """
+    
+        if self.sock is None:
+            if self.auto_open:
+&gt;               self.connect()
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\http\client.py:964: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPConnection object at 0x0644BE30&gt;
+
+    def connect(self):
+        """Connect to the host and port specified in __init__."""
+        self.sock = self._create_connection(
+&gt;           (self.host,self.port), self.timeout, self.source_address)
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\http\client.py:936: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+address = ('127.0.0.1', 5578), timeout = &lt;object object at 0x02A49F50&gt;
+source_address = None
+
+    def create_connection(address, timeout=_GLOBAL_DEFAULT_TIMEOUT,
+                          source_address=None):
+        """Connect to *address* and return the socket object.
+    
+        Convenience function.  Connect to *address* (a 2-tuple ``(host,
+        port)``) and return the socket object.  Passing the optional
+        *timeout* parameter will set the timeout on the socket instance
+        before attempting to connect.  If no *timeout* is supplied, the
+        global default timeout setting returned by :func:`getdefaulttimeout`
+        is used.  If *source_address* is set it must be a tuple of (host, port)
+        for the socket to bind as a source address before making the connection.
+        A host of '' or port 0 tells the OS to use the default.
+        """
+    
+        host, port = address
+        err = None
+        for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+            af, socktype, proto, canonname, sa = res
+            sock = None
+            try:
+                sock = socket(af, socktype, proto)
+                if timeout is not _GLOBAL_DEFAULT_TIMEOUT:
+                    sock.settimeout(timeout)
+                if source_address:
+                    sock.bind(source_address)
+                sock.connect(sa)
+                # Break explicitly a reference cycle
+                err = None
+                return sock
+    
+            except error as _:
+                err = _
+                if sock is not None:
+                    sock.close()
+    
+        if err is not None:
+&gt;           raise err
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\socket.py:724: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+address = ('127.0.0.1', 5578), timeout = &lt;object object at 0x02A49F50&gt;
+source_address = None
+
+    def create_connection(address, timeout=_GLOBAL_DEFAULT_TIMEOUT,
+                          source_address=None):
+        """Connect to *address* and return the socket object.
+    
+        Convenience function.  Connect to *address* (a 2-tuple ``(host,
+        port)``) and return the socket object.  Passing the optional
+        *timeout* parameter will set the timeout on the socket instance
+        before attempting to connect.  If no *timeout* is supplied, the
+        global default timeout setting returned by :func:`getdefaulttimeout`
+        is used.  If *source_address* is set it must be a tuple of (host, port)
+        for the socket to bind as a source address before making the connection.
+        A host of '' or port 0 tells the OS to use the default.
+        """
+    
+        host, port = address
+        err = None
+        for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+            af, socktype, proto, canonname, sa = res
+            sock = None
+            try:
+                sock = socket(af, socktype, proto)
+                if timeout is not _GLOBAL_DEFAULT_TIMEOUT:
+                    sock.settimeout(timeout)
+                if source_address:
+                    sock.bind(source_address)
+&gt;               sock.connect(sa)
+E               OSError: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\socket.py:713: OSError
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tasks_Actions.ActionsTaskModuleTest testMethod=test_send_sms_from_phone_actions_section&gt;
+
+    def test_send_sms_from_phone_actions_section(self):
+        MassSmSPrecondition().create_fourth_event()
+    
+        task_module = TasksPage()
+    
+        phone_number = task_module.open_show_all_tab() \
+            .find_event_by_subject(TaskModuleConstants.SEVENTH_SUBJECT) \
+            .open_first_client_profile() \
+            .get_phone_text()
+    
+&gt;       task_module.open_task_module() \
+            .open_show_all_tab().find_event_by_subject(
+            TaskModuleConstants.SEVENTH_SUBJECT) \
+            .open_phone_actions() \
+            .open_send_sms_module() \
+            .perform_send_sms(phone_number, TaskModuleConstants.DESCRIPTION_SEND_SMS) \
+            .click_send_button()
+
+src\test\python\ui\automation\implementation\crm\tests_tasks_module\Test_Tasks_Actions.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\main\python\ui\crm\model\pages\tasks\TasksPage.py:92: in open_show_all_tab
+    tab.click()
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\site-packages\selenium\webdriver\remote\webelement.py:80: in click
+    self._execute(Command.CLICK_ELEMENT)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\site-packages\selenium\webdriver\remote\webelement.py:628: in _execute
+    return self._parent.execute(command, params)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\site-packages\selenium\webdriver\remote\webdriver.py:310: in execute
+    response = self.command_executor.execute(driver_command, params)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\site-packages\selenium\webdriver\remote\remote_connection.py:466: in execute
+    return self._request(command_info[0], url, body=data)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\site-packages\selenium\webdriver\remote\remote_connection.py:528: in _request
+    resp = opener.open(request, timeout=self._timeout)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\urllib\request.py:526: in open
+    response = self._open(req, data)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\urllib\request.py:544: in _open
+    '_open', req)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\urllib\request.py:504: in _call_chain
+    result = func(*args)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\urllib\request.py:1346: in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;urllib.request.HTTPHandler object at 0x06A3BC90&gt;
+http_class = &lt;class 'http.client.HTTPConnection'&gt;
+req = &lt;selenium.webdriver.remote.remote_connection.Request object at 0x06A0EF10&gt;
+http_conn_args = {}, host = '127.0.0.1:5578'
+h = &lt;http.client.HTTPConnection object at 0x0644BE30&gt;
+
+    def do_open(self, http_class, req, **http_conn_args):
+        """Return an HTTPResponse object for the request, using http_class.
+    
+            http_class must implement the HTTPConnection API from http.client.
+            """
+        host = req.host
+        if not host:
+            raise URLError('no host given')
+    
+        # will parse host:port
+        h = http_class(host, timeout=req.timeout, **http_conn_args)
+        h.set_debuglevel(self._debuglevel)
+    
+        headers = dict(req.unredirected_hdrs)
+        headers.update(dict((k, v) for k, v in req.headers.items()
+                            if k not in headers))
+    
+        # TODO(jhylton): Should this be redesigned to handle
+        # persistent connections?
+    
+        # We want to make an HTTP/1.1 request, but the addinfourl
+        # class isn't prepared to deal with a persistent connection.
+        # It will try to read all remaining data from the socket,
+        # which will block while the server waits for the next request.
+        # So make sure the connection gets closed after the (only)
+        # request.
+        headers["Connection"] = "close"
+        headers = dict((name.title(), val) for name, val in headers.items())
+    
+        if req._tunnel_host:
+            tunnel_headers = {}
+            proxy_auth_hdr = "Proxy-Authorization"
+            if proxy_auth_hdr in headers:
+                tunnel_headers[proxy_auth_hdr] = headers[proxy_auth_hdr]
+                # Proxy-Authorization should not be sent to origin
+                # server.
+                del headers[proxy_auth_hdr]
+            h.set_tunnel(req._tunnel_host, headers=tunnel_headers)
+    
+        try:
+            try:
+                h.request(req.get_method(), req.selector, req.data, headers,
+                          encode_chunked=req.has_header('Transfer-encoding'))
+            except OSError as err: # timeout error
+&gt;               raise URLError(err)
+E               urllib.error.URLError: &lt;urlopen error [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted&gt;
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\urllib\request.py:1320: URLError</stack-trace>
+      </failure>
+      <attachments>
+        <attachment source="7f4327f1-6974-4a1f-aa0f-d8eb473495a7-attachment.png" title="failed_screenshot" type="image/png"/>
+        <attachment source="18c0ec26-ea67-4867-adca-a80b76a78746-attachment.txt" title="Captured stderr call" type="text/plain"/>
+        <attachment source="c64a1c41-a25a-4f15-9cee-bd9c1a508fdf-attachment.txt" title="Captured log call" type="text/plain"/>
+      </attachments>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="10996-MainThread"/>
+        <label name="host" value="HRK1-LHP-F73380"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1533284402346" status="passed" stop="1533284402346">
+          <name>Open first tabs page: https://newforexstaging.ptscrm.com/</name>
+          <title>Open first tabs page: https://newforexstaging.ptscrm.com/</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284402491" status="passed" stop="1533284402491">
+          <name>Setting the user name in the field : pandaqa
+</name>
+          <title>Setting the user name in the field : pandaqa
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284402573" status="passed" stop="1533284402574">
+          <name>Setting the user name in the password: xUQ7hrr9VF
+</name>
+          <title>Setting the user name in the password: xUQ7hrr9VF
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284407623" status="passed" stop="1533284407623">
+          <name>Click the login button
+</name>
+          <title>Click the login button
+</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284418390" status="passed" stop="1533284418391">
+          <name>Task module is opened</name>
+          <title>Task module is opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284421606" status="passed" stop="1533284421606">
+          <name>The event  module was opened</name>
+          <title>The event  module was opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284422628" status="passed" stop="1533284422629">
+          <name>The event status was set In Progress</name>
+          <title>The event status was set In Progress</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284422885" status="passed" stop="1533284422885">
+          <name>The event type is set Meeting</name>
+          <title>The event type is set Meeting</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284425216" status="passed" stop="1533284425217">
+          <name>The date  was set 2018-08-04</name>
+          <title>The date  was set 2018-08-04</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284425217" status="passed" stop="1533284425217">
+          <name>The time  was set 11:31:02</name>
+          <title>The time  was set 11:31:02</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284425485" status="passed" stop="1533284425486">
+          <name>The duration  was set 30M</name>
+          <title>The duration  was set 30M</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284425804" status="passed" stop="1533284425804">
+          <name>The priority was set Medium</name>
+          <title>The priority was set Medium</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284426089" status="passed" stop="1533284426089">
+          <name>The  assign to was set Default User</name>
+          <title>The  assign to was set Default User</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284428031" status="passed" stop="1533284428031">
+          <name>The account was set Test11111</name>
+          <title>The account was set Test11111</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284429015" status="passed" stop="1533284429016">
+          <name>The subject was set Testing76213</name>
+          <title>The subject was set Testing76213</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284430670" status="passed" stop="1533284430670">
+          <name>The comments was set Description Add Event</name>
+          <title>The comments was set Description Add Event</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284430850" status="passed" stop="1533284430851">
+          <name>Click the 'save' button </name>
+          <title>Click the 'save' button </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284432057" status="passed" stop="1533284432057">
+          <name>The this week tab was opened </name>
+          <title>The this week tab was opened </title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284435090" status="passed" stop="1533284435091">
+          <name>The subject was set: Testing76213</name>
+          <title>The subject was set: Testing76213</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284438091" status="passed" stop="1533284438091">
+          <name>The subject was set: Testing76213</name>
+          <title>The subject was set: Testing76213</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284443161" status="passed" stop="1533284443161">
+          <name>The first client profile is opened</name>
+          <title>The first client profile is opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284443242" status="passed" stop="1533284443243">
+          <name>Returns the phone number: 55555555</name>
+          <title>Returns the phone number: 55555555</title>
+          <attachments/>
+          <steps/>
+        </step>
+        <step start="1533284446455" status="passed" stop="1533284446455">
+          <name>Task module is opened</name>
+          <title>Task module is opened</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+    <test-case start="1533284451939" status="failed" stop="1533284461942">
+      <name>MassEmailTaskModule.test_make_mass_email</name>
+      <failure>
+        <message>URLError: &lt;urlopen error [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted&gt;</message>
+        <stack-trace>self = &lt;urllib.request.HTTPHandler object at 0x00549730&gt;
+http_class = &lt;class 'http.client.HTTPConnection'&gt;
+req = &lt;selenium.webdriver.remote.remote_connection.Request object at 0x00549530&gt;
+http_conn_args = {}, host = '127.0.0.1:5578'
+h = &lt;http.client.HTTPConnection object at 0x00549810&gt;
+
+    def do_open(self, http_class, req, **http_conn_args):
+        """Return an HTTPResponse object for the request, using http_class.
+    
+            http_class must implement the HTTPConnection API from http.client.
+            """
+        host = req.host
+        if not host:
+            raise URLError('no host given')
+    
+        # will parse host:port
+        h = http_class(host, timeout=req.timeout, **http_conn_args)
+        h.set_debuglevel(self._debuglevel)
+    
+        headers = dict(req.unredirected_hdrs)
+        headers.update(dict((k, v) for k, v in req.headers.items()
+                            if k not in headers))
+    
+        # TODO(jhylton): Should this be redesigned to handle
+        # persistent connections?
+    
+        # We want to make an HTTP/1.1 request, but the addinfourl
+        # class isn't prepared to deal with a persistent connection.
+        # It will try to read all remaining data from the socket,
+        # which will block while the server waits for the next request.
+        # So make sure the connection gets closed after the (only)
+        # request.
+        headers["Connection"] = "close"
+        headers = dict((name.title(), val) for name, val in headers.items())
+    
+        if req._tunnel_host:
+            tunnel_headers = {}
+            proxy_auth_hdr = "Proxy-Authorization"
+            if proxy_auth_hdr in headers:
+                tunnel_headers[proxy_auth_hdr] = headers[proxy_auth_hdr]
+                # Proxy-Authorization should not be sent to origin
+                # server.
+                del headers[proxy_auth_hdr]
+            h.set_tunnel(req._tunnel_host, headers=tunnel_headers)
+    
+        try:
+            try:
+                h.request(req.get_method(), req.selector, req.data, headers,
+&gt;                         encode_chunked=req.has_header('Transfer-encoding'))
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\urllib\request.py:1318: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPConnection object at 0x00549810&gt;, method = 'POST'
+url = '/wd/hub//session/2461b6be-762d-414a-9e8a-47ba9b98df2c/element/0/value'
+body = b'{"text": "pandaqa", "value": ["p", "a", "n", "d", "a", "q", "a"], "id": "0", "sessionId": "2461b6be-762d-414a-9e8a-47ba9b98df2c"}'
+headers = {'Accept': 'application/json', 'Connection': 'close', 'Content-Length': '129', 'Content-Type': 'application/json;charset=UTF-8', ...}
+
+    def request(self, method, url, body=None, headers={}, *,
+                encode_chunked=False):
+        """Send a complete request to the server."""
+&gt;       self._send_request(method, url, body, headers, encode_chunked)
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\http\client.py:1239: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPConnection object at 0x00549810&gt;, method = 'POST'
+url = '/wd/hub//session/2461b6be-762d-414a-9e8a-47ba9b98df2c/element/0/value'
+body = b'{"text": "pandaqa", "value": ["p", "a", "n", "d", "a", "q", "a"], "id": "0", "sessionId": "2461b6be-762d-414a-9e8a-47ba9b98df2c"}'
+headers = {'Accept': 'application/json', 'Connection': 'close', 'Content-Length': '129', 'Content-Type': 'application/json;charset=UTF-8', ...}
+encode_chunked = False
+
+    def _send_request(self, method, url, body, headers, encode_chunked):
+        # Honor explicitly requested Host: and Accept-Encoding: headers.
+        header_names = frozenset(k.lower() for k in headers)
+        skips = {}
+        if 'host' in header_names:
+            skips['skip_host'] = 1
+        if 'accept-encoding' in header_names:
+            skips['skip_accept_encoding'] = 1
+    
+        self.putrequest(method, url, **skips)
+    
+        # chunked encoding will happen if HTTP/1.1 is used and either
+        # the caller passes encode_chunked=True or the following
+        # conditions hold:
+        # 1. content-length has not been explicitly set
+        # 2. the body is a file or iterable, but not a str or bytes-like
+        # 3. Transfer-Encoding has NOT been explicitly set by the caller
+    
+        if 'content-length' not in header_names:
+            # only chunk body if not explicitly set for backwards
+            # compatibility, assuming the client code is already handling the
+            # chunking
+            if 'transfer-encoding' not in header_names:
+                # if content-length cannot be automatically determined, fall
+                # back to chunked encoding
+                encode_chunked = False
+                content_length = self._get_content_length(body, method)
+                if content_length is None:
+                    if body is not None:
+                        if self.debuglevel &gt; 0:
+                            print('Unable to determine size of %r' % body)
+                        encode_chunked = True
+                        self.putheader('Transfer-Encoding', 'chunked')
+                else:
+                    self.putheader('Content-Length', str(content_length))
+        else:
+            encode_chunked = False
+    
+        for hdr, value in headers.items():
+            self.putheader(hdr, value)
+        if isinstance(body, str):
+            # RFC 2616 Section 3.7.1 says that text default has a
+            # default charset of iso-8859-1.
+            body = _encode(body, 'body')
+&gt;       self.endheaders(body, encode_chunked=encode_chunked)
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\http\client.py:1285: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPConnection object at 0x00549810&gt;
+message_body = b'{"text": "pandaqa", "value": ["p", "a", "n", "d", "a", "q", "a"], "id": "0", "sessionId": "2461b6be-762d-414a-9e8a-47ba9b98df2c"}'
+
+    def endheaders(self, message_body=None, *, encode_chunked=False):
+        """Indicate that the last header line has been sent to the server.
+    
+            This method sends the request to the server.  The optional message_body
+            argument can be used to pass a message body associated with the
+            request.
+            """
+        if self.__state == _CS_REQ_STARTED:
+            self.__state = _CS_REQ_SENT
+        else:
+            raise CannotSendHeader()
+&gt;       self._send_output(message_body, encode_chunked=encode_chunked)
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\http\client.py:1234: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPConnection object at 0x00549810&gt;
+message_body = b'{"text": "pandaqa", "value": ["p", "a", "n", "d", "a", "q", "a"], "id": "0", "sessionId": "2461b6be-762d-414a-9e8a-47ba9b98df2c"}'
+encode_chunked = False
+
+    def _send_output(self, message_body=None, encode_chunked=False):
+        """Send the currently buffered request and clear the buffer.
+    
+            Appends an extra \\r\\n to the buffer.
+            A message_body may be specified, to be appended to the request.
+            """
+        self._buffer.extend((b"", b""))
+        msg = b"\r\n".join(self._buffer)
+        del self._buffer[:]
+&gt;       self.send(msg)
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\http\client.py:1026: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPConnection object at 0x00549810&gt;
+data = b'POST /wd/hub//session/2461b6be-762d-414a-9e8a-47ba9b98df2c/element/0/value HTTP/1.1\r\nAccept-Encoding: identity\r\n...tion/json\r\nContent-Type: application/json;charset=UTF-8\r\nUser-Agent: Python http auth\r\nConnection: close\r\n\r\n'
+
+    def send(self, data):
+        """Send `data' to the server.
+            ``data`` can be a string object, a bytes object, an array object, a
+            file-like object that supports a .read() method, or an iterable object.
+            """
+    
+        if self.sock is None:
+            if self.auto_open:
+&gt;               self.connect()
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\http\client.py:964: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;http.client.HTTPConnection object at 0x00549810&gt;
+
+    def connect(self):
+        """Connect to the host and port specified in __init__."""
+        self.sock = self._create_connection(
+&gt;           (self.host,self.port), self.timeout, self.source_address)
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\http\client.py:936: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+address = ('127.0.0.1', 5578), timeout = &lt;object object at 0x02A49F50&gt;
+source_address = None
+
+    def create_connection(address, timeout=_GLOBAL_DEFAULT_TIMEOUT,
+                          source_address=None):
+        """Connect to *address* and return the socket object.
+    
+        Convenience function.  Connect to *address* (a 2-tuple ``(host,
+        port)``) and return the socket object.  Passing the optional
+        *timeout* parameter will set the timeout on the socket instance
+        before attempting to connect.  If no *timeout* is supplied, the
+        global default timeout setting returned by :func:`getdefaulttimeout`
+        is used.  If *source_address* is set it must be a tuple of (host, port)
+        for the socket to bind as a source address before making the connection.
+        A host of '' or port 0 tells the OS to use the default.
+        """
+    
+        host, port = address
+        err = None
+        for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+            af, socktype, proto, canonname, sa = res
+            sock = None
+            try:
+                sock = socket(af, socktype, proto)
+                if timeout is not _GLOBAL_DEFAULT_TIMEOUT:
+                    sock.settimeout(timeout)
+                if source_address:
+                    sock.bind(source_address)
+                sock.connect(sa)
+                # Break explicitly a reference cycle
+                err = None
+                return sock
+    
+            except error as _:
+                err = _
+                if sock is not None:
+                    sock.close()
+    
+        if err is not None:
+&gt;           raise err
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\socket.py:724: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+address = ('127.0.0.1', 5578), timeout = &lt;object object at 0x02A49F50&gt;
+source_address = None
+
+    def create_connection(address, timeout=_GLOBAL_DEFAULT_TIMEOUT,
+                          source_address=None):
+        """Connect to *address* and return the socket object.
+    
+        Convenience function.  Connect to *address* (a 2-tuple ``(host,
+        port)``) and return the socket object.  Passing the optional
+        *timeout* parameter will set the timeout on the socket instance
+        before attempting to connect.  If no *timeout* is supplied, the
+        global default timeout setting returned by :func:`getdefaulttimeout`
+        is used.  If *source_address* is set it must be a tuple of (host, port)
+        for the socket to bind as a source address before making the connection.
+        A host of '' or port 0 tells the OS to use the default.
+        """
+    
+        host, port = address
+        err = None
+        for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+            af, socktype, proto, canonname, sa = res
+            sock = None
+            try:
+                sock = socket(af, socktype, proto)
+                if timeout is not _GLOBAL_DEFAULT_TIMEOUT:
+                    sock.settimeout(timeout)
+                if source_address:
+                    sock.bind(source_address)
+&gt;               sock.connect(sa)
+E               OSError: [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\socket.py:713: OSError
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Email.MassEmailTaskModule testMethod=test_make_mass_email&gt;
+
+    def test_make_mass_email(self):
+&gt;       MassEmailPrecondition().create_first_event().create_second_event()
+
+src\test\python\ui\automation\implementation\crm\tests_tasks_module\Test_Mass_Email.py:17: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\test\python\ui\automation\utils\preconditions\task_module\MassEmailPrecondition.py:19: in create_first_event
+    Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+src\main\python\ui\crm\model\pages\login\CRMLoginPage.py:39: in crm_login
+    user_name_field.send_keys(user_name)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\site-packages\selenium\webdriver\remote\webelement.py:479: in send_keys
+    'value': keys_to_typing(value)})
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\site-packages\selenium\webdriver\remote\webelement.py:628: in _execute
+    return self._parent.execute(command, params)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\site-packages\selenium\webdriver\remote\webdriver.py:310: in execute
+    response = self.command_executor.execute(driver_command, params)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\site-packages\selenium\webdriver\remote\remote_connection.py:466: in execute
+    return self._request(command_info[0], url, body=data)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\site-packages\selenium\webdriver\remote\remote_connection.py:528: in _request
+    resp = opener.open(request, timeout=self._timeout)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\urllib\request.py:526: in open
+    response = self._open(req, data)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\urllib\request.py:544: in _open
+    '_open', req)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\urllib\request.py:504: in _call_chain
+    result = func(*args)
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\urllib\request.py:1346: in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;urllib.request.HTTPHandler object at 0x00549730&gt;
+http_class = &lt;class 'http.client.HTTPConnection'&gt;
+req = &lt;selenium.webdriver.remote.remote_connection.Request object at 0x00549530&gt;
+http_conn_args = {}, host = '127.0.0.1:5578'
+h = &lt;http.client.HTTPConnection object at 0x00549810&gt;
+
+    def do_open(self, http_class, req, **http_conn_args):
+        """Return an HTTPResponse object for the request, using http_class.
+    
+            http_class must implement the HTTPConnection API from http.client.
+            """
+        host = req.host
+        if not host:
+            raise URLError('no host given')
+    
+        # will parse host:port
+        h = http_class(host, timeout=req.timeout, **http_conn_args)
+        h.set_debuglevel(self._debuglevel)
+    
+        headers = dict(req.unredirected_hdrs)
+        headers.update(dict((k, v) for k, v in req.headers.items()
+                            if k not in headers))
+    
+        # TODO(jhylton): Should this be redesigned to handle
+        # persistent connections?
+    
+        # We want to make an HTTP/1.1 request, but the addinfourl
+        # class isn't prepared to deal with a persistent connection.
+        # It will try to read all remaining data from the socket,
+        # which will block while the server waits for the next request.
+        # So make sure the connection gets closed after the (only)
+        # request.
+        headers["Connection"] = "close"
+        headers = dict((name.title(), val) for name, val in headers.items())
+    
+        if req._tunnel_host:
+            tunnel_headers = {}
+            proxy_auth_hdr = "Proxy-Authorization"
+            if proxy_auth_hdr in headers:
+                tunnel_headers[proxy_auth_hdr] = headers[proxy_auth_hdr]
+                # Proxy-Authorization should not be sent to origin
+                # server.
+                del headers[proxy_auth_hdr]
+            h.set_tunnel(req._tunnel_host, headers=tunnel_headers)
+    
+        try:
+            try:
+                h.request(req.get_method(), req.selector, req.data, headers,
+                          encode_chunked=req.has_header('Transfer-encoding'))
+            except OSError as err: # timeout error
+&gt;               raise URLError(err)
+E               urllib.error.URLError: &lt;urlopen error [WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted&gt;
+
+c:\users\dmytro.klymenko\appdata\local\programs\python\python36-32\lib\urllib\request.py:1320: URLError</stack-trace>
+      </failure>
+      <attachments>
+        <attachment source="211b2d55-f751-4360-9055-5c62053c77e0-attachment.png" title="failed_screenshot" type="image/png"/>
+        <attachment source="fbcd83aa-2352-42b6-8fe8-9b92839597f1-attachment.txt" title="Captured stderr call" type="text/plain"/>
+        <attachment source="15744158-19f1-406b-a741-97e6f2ad2479-attachment.txt" title="Captured log call" type="text/plain"/>
+      </attachments>
+      <labels>
+        <label name="severity" value="normal"/>
+        <label name="thread" value="10996-MainThread"/>
+        <label name="host" value="HRK1-LHP-F73380"/>
+        <label name="framework" value="pytest"/>
+        <label name="language" value="cpython3"/>
+      </labels>
+      <steps>
+        <step start="1533284457797" status="passed" stop="1533284457797">
+          <name>Open first tabs page: https://newforexstaging.ptscrm.com/</name>
+          <title>Open first tabs page: https://newforexstaging.ptscrm.com/</title>
+          <attachments/>
+          <steps/>
+        </step>
+      </steps>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>

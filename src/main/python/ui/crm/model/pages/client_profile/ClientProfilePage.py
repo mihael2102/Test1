@@ -129,10 +129,34 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_financial_transactions_tab(self):
-        trading_tab = super().wait_load_element("//a[@id='show_Accounts_FinancialTransactions']")
+        trading_tab = self.wait_load_element("//a[@id='show_Accounts_FinancialTransactions']")
         trading_tab.click()
         Logging().reportDebugStep(self, "Open the financial transactions tab ")
         return ClientProfilePage()
+
+    def get_transaction_approval_state(self):
+        transaction_approval_state_element = self.wait_load_element("(//tr[@class='lvtColData']/td[10])[14]")
+        transaction_approval_state_text = transaction_approval_state_element.text
+        Logging().reportDebugStep(self, "State of transaction_approval, as result of transaction at CA, is: "
+                                                                                    + transaction_approval_state_text)
+        return transaction_approval_state_text
+
+    def get_financial_transaction_text(self):
+        financial_transaction_amount_element = self.wait_load_element("//*[@id='rld_table_content']/tbody/tr[2]/td[8]/span[1]")
+        financial_transaction_amount_text_raw = financial_transaction_amount_element.text
+
+        # Remove symbols and digits after the decimal point
+        tmp_list = list(financial_transaction_amount_text_raw)
+        tmp_list.pop()  # second digits after the decimal point
+        tmp_list.pop()  # first digits after the decimal point
+        tmp_list.pop()  # point
+        tmp_list.remove(",") # thousands separator
+        tmp_list.remove(" ")    # space
+        financial_transaction_amount_text_adapted = "".join(tmp_list)
+
+        Logging().reportDebugStep(self, "Amount of financial transaction: " + financial_transaction_amount_text_raw)
+
+        return financial_transaction_amount_text_adapted
 
     '''
         :returns client amount from Trading Accounts tabs 

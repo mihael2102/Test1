@@ -1,9 +1,12 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=3)
 class SearchingClientsTestCRM(BaseTest):
 
     def test_make_searching_client_module(self):
@@ -17,7 +20,7 @@ class SearchingClientsTestCRM(BaseTest):
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
                                                            CRMConstants.SHORT_CLIENT_NAME),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                           TestDataConstants.SECOND_COUNTRY),
+                                                           TestDataConstants.FIRST_COUNTRY),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_FIRST_NAME),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_LAST_NAME),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CITY),

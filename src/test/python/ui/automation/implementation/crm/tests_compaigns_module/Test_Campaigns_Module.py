@@ -1,9 +1,12 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.CampaingsConstants import CampaignsConstants
 from src.main.python.ui.crm.model.pages.campaigns.CampaignsPage import CampaignsPage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.campaigns.CampaignsPrecondition import CampaignsPrecondition
 
 
+@pytest.mark.run(order=35)
 class CampaignsModuleTest(BaseTest):
 
     def test_create_campaigns_module(self):

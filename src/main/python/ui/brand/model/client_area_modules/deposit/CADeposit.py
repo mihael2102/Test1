@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
-from src.main.python.ui.brand.model.client_area_modules.deposit.CASuccessDeposit import CASuccessDeposit
+from src.main.python.ui.brand.model.client_area_modules.deposit.CASuccessFailedDeposit import CASuccessFailedDeposit
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -11,7 +11,7 @@ class CADeposit(BrandBasePage):
 
     def select_payment_method(self, payment_method):
         method = super().wait_load_element_present(
-            "//div[@class='pay-method-pandats credit-card'][%s]" % payment_method)
+            "//div[contains(@class, 'pay-method-pandats credit-card')][%s]" % payment_method)
         method.click()
         Logging().reportDebugStep(self, "The payment method was set:" + payment_method)
         return CADeposit()
@@ -61,4 +61,4 @@ class CADeposit(BrandBasePage):
         deposit_button = self.driver.find_element(By.XPATH, "//button[@class='forex-button-pandats']")
         deposit_button.click()
         Logging().reportDebugStep(self, "Perform the deposit")
-        return CASuccessDeposit()
+        return CASuccessFailedDeposit()

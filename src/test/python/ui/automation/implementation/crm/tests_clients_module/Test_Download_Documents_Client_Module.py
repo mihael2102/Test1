@@ -1,9 +1,12 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.DocumentModuleConstants import DocumentModuleConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 
 
+@pytest.mark.run(order=12)
 class DownloadDocumentsClientModule(BaseTest):
 
     def test_perform_download_document(self):

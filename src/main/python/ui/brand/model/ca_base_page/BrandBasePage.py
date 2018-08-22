@@ -60,8 +60,8 @@ class BrandBasePage(object):
     def select_module(self, module):
         element_module = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH,
-                                            "//div[@class='dropdown-pandats menu-pandats']//"
-                                            "following-sibling::*[contains(text(),'%s')]" % module)))
+                                            "//div[contains(@class,'dropdown-pandats ')]"
+                                            "//following-sibling::*[contains(text(),'%s')]" % module)))
         element_module.click()
         Logging().reportDebugStep(self, "Module was selected : " + module)
 

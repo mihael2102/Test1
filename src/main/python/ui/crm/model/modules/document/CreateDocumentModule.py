@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from src.main.python.utils.config import Config
 
 
 class CreateDocumentModule(CRMBasePage):
@@ -36,7 +37,7 @@ class CreateDocumentModule(CRMBasePage):
         front_upload_picture.click()
         sleep(2)
         autoit.control_set_text("Open", "Edit1",
-                                r"D:\automation-newforexqa\src\main\python\utils\documents\Bear.jpg")
+                                r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
         autoit.control_send("Open", "Edit1", "{ENTER}")
         Logging().reportDebugStep(self, "The  document was uploaded ")
         return CreateDocumentModule()

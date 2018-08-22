@@ -1,3 +1,5 @@
+import pytest
+
 from src.main.python.ui.crm.model.constants.HelpDeskConstants import HelpDeskConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
@@ -6,6 +8,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.help_desk.HelpDeskPrecondition import HelpDeskPrecondition
 
 
+@pytest.mark.run(order=31)
 class HelpDeskModuleTest(BaseTest):
 
     def test_create_ticket(self):
