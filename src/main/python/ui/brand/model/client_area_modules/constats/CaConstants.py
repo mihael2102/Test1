@@ -1,6 +1,8 @@
 class CaConstants(object):
+    TRANSACTION_APPROVAL_STATE_FAILED = "Rejected"
     SUCCESSFUL_AMOUNT_MESSAGE = "$4,000.00"
     SUCCESSFUL_DEPOSIT_MESSAGE = "Successful Deposit"
+    FAILED_DEPOSIT_MESSAGE = "Transaction failed"
     AMOUNT_DEPOSIT = "4000"
     VISA = "1"
     DEPOSIT = "Deposit"
