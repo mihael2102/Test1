@@ -18,10 +18,8 @@ class MassEditTestCRM(BaseTest):
             .select_filter(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .perform_searching(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.CLIENT_STATUS),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_E_MAIL),
-                               Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                           CRMConstants.SHORT_CLIENT_NAME),
-                               Config.data.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                           TestDataConstants.FIRST_COUNTRY),
+                               Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_CLIENT_NAME),
+                               Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_FIRST_NAME),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_LAST_NAME),
                                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CITY),

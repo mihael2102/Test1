@@ -35,7 +35,7 @@ class WaitingUtils(object):
         fail("There is no such element after the page reloads")
 
     def wait_until_element_present_crm(self, element, total_amount_crm, driver):
-        for Config.counter in range(20):
+        for Config.counter in range(9):
             try:
                 sleep(2)
                 amount_present = driver.find_element(By.XPATH, element)
@@ -46,6 +46,7 @@ class WaitingUtils(object):
                 else:
                     raise NoSuchElementException()
             except (NoSuchElementException, StaleElementReferenceException):
+                Logging().reportDebugStep(self, "Element is not displayed on the page or show old value. Updating page and waiting for correct value")
                 sleep(10)
                 driver.refresh()
         fail("There is no such element after the page reloads")

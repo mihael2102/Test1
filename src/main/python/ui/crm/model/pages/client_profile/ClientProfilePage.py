@@ -164,7 +164,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_amount_text(self, total_amount_crm):
         Logging().reportDebugStep(self, "Returns the amount you placed on the deposit page \n" + total_amount_crm)
-        return super().wait_until_element_present("//tr[@class='lvtColData'][1]//td[3]", total_amount_crm)
+        return super().wait_until_element_present("//tr[@class='lvtColData'][1]/td[3]", total_amount_crm)
 
     '''
         :returns client total amount from Trading Accounts tabs 
@@ -203,7 +203,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_client_account(self):
-        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
+        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]/td[1]")
         Logging().reportDebugStep(self, "Returns the client_account  text " + account_number.text)
         return account_number.text
 
@@ -300,7 +300,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_initial_amount(self):
-        initial_amount = super().wait_load_element("//tr[@class='lvtColData'][1]//td[3]")
+        initial_amount = super().wait_load_element("(//tr[@class='lvtColData'])[1]/td[3]")
         total_amount = re.sub('[$£CA€ [ ]', '', initial_amount.text)
         Logging().reportDebugStep(self, "Return initial amount text: " + total_amount)
         return total_amount
