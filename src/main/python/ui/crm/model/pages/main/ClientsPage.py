@@ -18,22 +18,22 @@ from src.main.python.utils.logs.Loging import Logging
 class ClientsPage(CRMBasePage):
 
     def perform_searching(self, client_status, email, name, country, first_name, last_name, city, brand):
-        if client_status:
-            self.select_client_status(client_status)
+        # if client_status:
+        #     self.select_client_status(client_status)
         if email:
             self.enter_email(email)
         if name:
             self.enter_client_name(name)
-        if country:
-            self.enter_country(country)
+        # if country:
+        #     self.enter_country(country)
         if first_name:
             self.enter_first_name(first_name)
         if last_name:
             self.enter_last_name(last_name)
-        if city:
-            self.enter_city(city)
-        if brand:
-            self.select_brand(brand)
+        # if city:
+        #     self.enter_city(city)
+        # if brand:
+        #     self.select_brand(brand)
         self.click_search_button()
         return ClientsPage(self.driver)
 

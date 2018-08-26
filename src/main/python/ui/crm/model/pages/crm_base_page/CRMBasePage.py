@@ -24,8 +24,8 @@ class CRMBasePage(object):
         self.driver.get(url)
         Config.window_before = self.driver.window_handles[0]
 
-    def wait_load_element(self, element):
-        return WebDriverWait(self.driver, 25).until(
+    def wait_load_element(self, element, timeout=25):
+        return WebDriverWait(self.driver, timeout).until(
             EC.presence_of_element_located((By.XPATH, element)))
 
     def wait_visible_of_element(self, element):
@@ -50,12 +50,12 @@ class CRMBasePage(object):
     def wait_until_element_present(self, element, total_amount_crm):
         return WaitingUtils().wait_until_element_present_crm(element, total_amount_crm, self.driver)
 
-    def wait_element_to_be_clickable(self, element):
-        return WebDriverWait(self.driver, 25).until(
+    def wait_element_to_be_clickable(self, element, timeout=25):
+        return WebDriverWait(self.driver, timeout).until(
             EC.element_to_be_clickable((By.XPATH, element)))
 
-    def wait_element_to_be_disappear(self, element):
-        return WebDriverWait(self.driver, 25).until(
+    def wait_element_to_be_disappear(self, element, timeout=25):
+        return WebDriverWait(self.driver, timeout).until(
             EC.invisibility_of_element_located((By.XPATH, element)))
 
     def perform_scroll(self, parameter):

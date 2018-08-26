@@ -33,7 +33,7 @@ class AddInteraction(BaseTest):
         crm_client_profile = crm_client_profile.open_client_id()
 
         SidebarModules(self.driver)\
-            .open_create_event_module(CRMConstants.ADD_INTERACTION) \
+            .open_create_event_module(CRMConstants.ADD_INTERACTION_TEXT) \
             .create_event(self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_STATUS),
                           self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE),
                           self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DURATION),
@@ -54,7 +54,7 @@ class AddInteraction(BaseTest):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         res_count = CRMHomePage(self.driver)\
             .open_task_module()\
-            .open_show_mine_tab()\
+            .open_show_all_tab()\
             .find_event_by_subject(self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE))\
             .get_results_count()
 

@@ -256,3 +256,9 @@ class LeadDetailViewInfo(CRMBasePage):
                                          "//td[contains(text(),'State')]//following-sibling::td[1]")
         Logging().reportDebugStep(self, "Returns the language text: " + state.text)
         return state.text
+
+    def get_exists_text(self):
+        exists = self.driver.find_element(By.XPATH,
+                                         "//td[contains(text(),'Exists')]//following-sibling::td[1]")
+        Logging().reportDebugStep(self, "Returns the exists text: " + exists.text)
+        return exists.text

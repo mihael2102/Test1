@@ -4,7 +4,6 @@ from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsMod
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
-import time
 
 
 @pytest.mark.run(order=26)

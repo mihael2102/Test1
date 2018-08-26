@@ -32,8 +32,6 @@ class MultiRunner(unittest.TestCase):
         runner = xmlrunner.XMLTestRunner(output='result')
         results = {}
 
-        # suite = unittest.TestSuite()
-
         for test_data in test_list:
             test_module = importlib.import_module(test_data['module'])
             test_class = getattr(test_module, test_data['class'])
@@ -41,11 +39,13 @@ class MultiRunner(unittest.TestCase):
             test._testMethodName = test_data['method']
 
             test.driver_type = 'Chrome'
-            data_provider.reload_configuration()
+            if 'reload_config' in test_data and test_data['reload_config']:
+                data_provider.reload_configuration()
             test.config = data_provider
-            # suite.addTest(test)
-            # result = runner.run(suite)
+            # print("Test: %s, email used: %s" % (test_data['method'], test.config.data['FirstLeadInfo']['email']))
+            # continue
             runner.outsuffix = test_data['method'] + "-" + brand
+            print("Running test %s on %s" % (test_data['method'], brand))
             result = runner.run(test)
 
             test_name = test_data['class'] + '.' + test_data['method']
@@ -58,9 +58,6 @@ class MultiRunner(unittest.TestCase):
             else:
                 results[test_name] = "PASS"
         return results
-
-        # results = runner.run(suite)
-        # return results
 
 
 if __name__ == "__main__":

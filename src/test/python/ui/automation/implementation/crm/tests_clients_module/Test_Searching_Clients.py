@@ -27,6 +27,8 @@ class SearchingClientsTestCRM(BaseTest):
                                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CITY),
                                self.config.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.BRAND))
 
+        # TODO: verify that only one client was found
+
         crm_client_profile.perform_scroll_up()
         crm_client_profile = crm_client_profile.open_client_id()
 
@@ -36,4 +38,4 @@ class SearchingClientsTestCRM(BaseTest):
 
         assert self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME) == first_name_crm
         assert self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.LAST_NAME) == last_name_crm
-        # assert self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL) == email
+        assert self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL) == email

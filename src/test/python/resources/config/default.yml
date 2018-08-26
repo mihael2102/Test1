@@ -11,8 +11,6 @@ FirstLeadInfo:
   EVAL_email: "'testqa_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S.%f')) + '@pandats.com'"
   secondary_email: "secondarytestqa+1@pandats.com"
   first_language: "English"
-#  panda_partner_id: "55"
-#  first_referral: "referral text"
   panda_partner_id:
   first_referral:
   street: "street test"
@@ -26,7 +24,6 @@ FirstLeadInfo:
   first_lead_status: "R - New"
   first_assigned_to: "pandaqa pandaqa"
   first_source_name: "source name test"
-  # brand: "NFX"
   brand:
   po_box: "po box text"
   city: "Berlin"
@@ -35,7 +32,7 @@ FirstLeadInfo:
   citizenship: "German"
   first_password: "Abcd1234"
   first_currency: "USD"
-  filter_name: "test"
+  filter_name: "Test Leads"
 SecondLeadInfo:
   first_name: "second_lead name"
   last_name: "second lead last name"
@@ -54,7 +51,7 @@ SecondLeadInfo:
   first_tittle: "second tittle test"
   first_lead_source: "Conference"
   first_lead_status: "B - No interest"
-  first_assigned_to: "Panda UA"
+  first_assigned_to: "pandaqa pandaqa"
   first_source_name: "source name test"
   brand:
   po_box: "po box text"
@@ -63,15 +60,29 @@ SecondLeadInfo:
 client_1:
   test_filter: "Test Clients"
   client_status_1:
-  email: "@pandats.com"
-  short_client_name: "John Doe"
-  country:
+  # EVAL_first_name: "'John_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S'))"
+  first_name: "John-test" # manual config
+  last_name: "Doe"
+  EVAL_email: "'john_doe_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S')) + '@pandats.com'"
+  # email: "john_doe_20180826_095641@pandats.com" # manual config
+  short_client_name: "John-test Doe"
+  phone: "7777777"
+  phone_area_code: 111
+  birthday: "1971-01-01"
+  country: "Germany"
+  first_country: "Germany"
+  street: "My street"
+  city: "Berlin"
+  postal_code: "11111"
+  citizenship: "German"
   short_first_name:
   short_last_name:
-  city:
+  brand:
   brand_one:
-  first_name: "John"
-  last_name: "Doe"
+  first_password: "Abcd1234"
+  first_referral:
+  first_source_name: "source 1"
+  first_currency: "USD"
 event_1:
   type: "Meeting"
   status: "Not Started"
@@ -81,4 +92,3 @@ event_1:
   assign_to: "pandaqa pandaqa"
   priority: "Medium"
   description: "Event Description"
-

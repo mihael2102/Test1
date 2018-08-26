@@ -41,6 +41,10 @@ class ConfigProvider:
         """
         Loads brands and tests configuration
         """
+        self.load_brands()
+        self.load_tests()
+
+    def load_brands(self):
         brands_file_path = os.path.join(self.script_dir, self.config_dir, "brands.yml")
         with open(os.path.realpath(brands_file_path), 'r') as stream:
             try:
@@ -48,6 +52,8 @@ class ConfigProvider:
                 print(self.brands_config)
             except yaml.YAMLError as e:
                 print(e)
+
+    def load_tests(self):
         tests_file_path = os.path.join(self.script_dir, self.config_dir, "tests.yml")
         with open(os.path.realpath(tests_file_path), 'r') as stream:
             try:
@@ -167,9 +173,22 @@ class ConfigProvider:
         """
         if self.tests is None:
             tests_list = []
-            for test in self.tests_config['tests']:
-                for method in test['tests']:
-                    tests_list.append({'module': test['module'], 'class': test['class'], 'method': method})
+            for test_conf in self.tests_config['tests_config']:
+                # handle general directives
+                reload_config = False
+                reload_config_once = False
+                if 'directive' in test_conf:
+                    if test_conf['directive'] == 'reload_configuration_once':
+                        reload_config_once = True
+                    if test_conf['directive'] == 'reload_configuration':
+                        reload_config = True
+                # add tests to list
+                for method in test_conf['tests']:
+                    test_item = {'module': test_conf['module'], 'class': test_conf['class'], 'method': method}
+                    if reload_config_once or reload_config:
+                        test_item['reload_config'] = True
+                        reload_config_once = False
+                    tests_list.append(test_item)
             self.tests = tests_list
         return self.tests
 

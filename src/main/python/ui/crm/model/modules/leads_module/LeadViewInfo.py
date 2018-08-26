@@ -1,4 +1,5 @@
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.side_bar.SidebarModules import SidebarModules
 from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import ConvertLeadModule
 from src.main.python.ui.crm.model.pages.leads.EditLeadsProfilePage import EditLeadsProfilePage
 from src.main.python.utils.logs.Loging import Logging
@@ -20,6 +21,7 @@ class LeadViewInfo(CRMBasePage):
         return EditLeadsProfilePage(self.driver)
 
     def open_convert_lead_module(self):
+        SidebarModules(self.driver).open_sidebar_if_exists()
         sleep(2)
         task_module = super().wait_load_element("//div[@id='sidebar']//tr[3]//a")
         task_module.click()
@@ -31,7 +33,7 @@ class LeadViewInfo(CRMBasePage):
     '''
 
     def get_confirm_message_lead_view_profile(self):
-        confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
+        confirm_message = self.wait_load_element("//div[contains(@class, 'bootstrap-dialog-message')]")
         Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text
 

@@ -71,6 +71,7 @@ class CRMConstants(object):
     AMOUNT_DEPOSIT_FOR_CREDIT_OUT = "35.00"
     AMOUNT_WITHDRAW_SECOND = "30.00"
     ADD_INTERACTION = "6"
+    ADD_INTERACTION_TEXT = "Add Interaction"
     INTERACTION_SUCCESSFULLY = "Interraction successfully created"
     SHORT_E_MAIL = "short_email"
     SHORT_SECOND_E_MAIL = "short_second_email"

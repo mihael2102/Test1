@@ -2,12 +2,14 @@ import pytest
 
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
 from src.main.python.ui.crm.model.modules.leads_module.LeadViewInfo import LeadViewInfo
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.leads.LeadDetailViewInfo import LeadDetailViewInfo
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
+from selenium.common.exceptions import TimeoutException
 
 
 @pytest.mark.run(order=24)
@@ -17,6 +19,7 @@ class LeadModuleTest(BaseTest):
         super(LeadModuleTest, self).setUp()
         self.lead1 = self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)
         self.lead2 = self.load_lead_from_config(LeadsModuleConstants.SECOND_LEAD_INFO)
+        self.client1 = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
 
     def test_create_lead(self):
         LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
@@ -86,32 +89,41 @@ class LeadModuleTest(BaseTest):
 
         lead_view_profile_page.open_convert_lead_module() \
             .perform_convert_lead(
-            self.lead1[LeadsModuleConstants.FIRST_NAME],
-            self.lead1[LeadsModuleConstants.FIRST_LAST_NAME],
-            self.lead1[LeadsModuleConstants.EMAIL],
-            self.lead1[LeadsModuleConstants.PHONE],
-            self.lead1[LeadsModuleConstants.BIRTHDAY],
-            self.lead1[LeadsModuleConstants.CITIZENSHIP],
-            self.lead1[LeadsModuleConstants.STREET],
-            self.lead1[LeadsModuleConstants.POSTAL_CODE],
-            self.lead1[LeadsModuleConstants.CITY],
-            self.lead1[LeadsModuleConstants.FIRST_COUNTRY],
-            self.lead1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-            self.lead1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-            self.lead1[LeadsModuleConstants.FIRST_REFERRAL],
-            self.lead1[LeadsModuleConstants.BRAND],
-            self.lead1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-            self.lead1[LeadsModuleConstants.PHONE_AREA_CODE])
+            self.client1[LeadsModuleConstants.FIRST_NAME],
+            self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+            self.client1[LeadsModuleConstants.EMAIL],
+            self.client1[LeadsModuleConstants.PHONE],
+            self.client1[LeadsModuleConstants.BIRTHDAY],
+            self.client1[LeadsModuleConstants.CITIZENSHIP],
+            self.client1[LeadsModuleConstants.STREET],
+            self.client1[LeadsModuleConstants.POSTAL_CODE],
+            self.client1[LeadsModuleConstants.CITY],
+            self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+            self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+            self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+            self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+            self.client1[LeadsModuleConstants.BRAND],
+            self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+            self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
-        confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
-        assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
-        lead_view_profile_page.click_ok()
+        convert_verified = False
+        try:
+            confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
+            assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+            lead_view_profile_page.click_ok()
+            convert_verified = True
+        except TimeoutException:
+            Logging().reportDebugStep(self, "Lead convert message was not picked up")
+        if not convert_verified:
+            lead_detail_view = LeadDetailViewInfo(self.driver)
+            lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
+            self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
 
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)
         return lead
 
-    def verify_lead(self, lead_data):
+    def verify_lead(self, lead_data, converted=None):
         """
         Verify the lead displayed in the detail view against a lead_data dictionary
         :param lead_data: a dictionary containing lead data
@@ -140,7 +152,7 @@ class LeadModuleTest(BaseTest):
         lead_source = lead_detail_view.get_lead_source_text()
         lead_status = lead_detail_view.get_lead_status_text()
         language = lead_detail_view.get_language_text()
-        brand = lead_detail_view.get_brand_text()
+        # brand = lead_detail_view.get_brand_text()
         po_box = lead_detail_view.get_po_box_text()
         city = lead_detail_view.get_city_text()
         state = lead_detail_view.get_state_text()
@@ -165,8 +177,8 @@ class LeadModuleTest(BaseTest):
         self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])
         self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS])
         self.assertEqual(language, lead_data[LeadsModuleConstants.FIRST_LANGUAGE])
-        if lead_data[LeadsModuleConstants.BRAND]:
-            self.assertEqual(brand, lead_data[LeadsModuleConstants.BRAND])
+        # if lead_data[LeadsModuleConstants.BRAND]:
+        #     self.assertEqual(brand, lead_data[LeadsModuleConstants.BRAND])
         self.assertEqual(po_box, lead_data[LeadsModuleConstants.PO_BOX])
         self.assertEqual(city, lead_data[LeadsModuleConstants.CITY])
         self.assertEqual(state, lead_data[LeadsModuleConstants.FIRST_STATE])

@@ -93,7 +93,7 @@ class LeadsModule(CRMBasePage):
         field_found.clear()
         field_found.send_keys(test_filter)
         Logging().reportDebugStep(self, "The field found is : " + test_filter)
-        select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
+        select_test_filter = self.driver.find_element(By.XPATH, "//a/span[contains(., '%s')]" % test_filter)
         select_test_filter.click()
         Logging().reportDebugStep(self, "Click the selected filter")
         self.wait_crm_loading_to_finish()
