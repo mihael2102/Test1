@@ -129,7 +129,7 @@ class LeadsPage(CRMBasePage):
         self.driver.get_screenshot_as_file(file_name)
         allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
-        Logging().reportDebugStep(self, "Screenshot was performed ")
+        Logging().reportDebugStep(self, "Screenshot was performed and saved to screenshot folder. Open it and please check the result visually.")
         return LeadsPage()
 
     def perform_screen_shot_import_lead_module(self):

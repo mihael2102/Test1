@@ -12,10 +12,9 @@ class TabLeadsModuleCRM(BaseTest):
     def test_searching_lead_modules(self):
         LeadPrecondition().create_lead()
 
-        CRMHomePage().refresh_page() \
-            .open_client_module()
-
         lead_module = CRMHomePage().open_lead_module()
+
+        lead_module.select_filter(Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS, LeadsModuleConstants.FILTER_NAME))
 
         lead_module.perform_searching_lead_module(
             Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_NAME),
