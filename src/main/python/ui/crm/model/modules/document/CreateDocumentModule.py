@@ -37,7 +37,7 @@ class CreateDocumentModule(CRMBasePage):
         front_upload_picture.click()
         sleep(2)
         autoit.control_set_text("Open", "Edit1",
-                                r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
+                                r"D:\automation-newforexqa\src\main\python\utils\documents\Bear.jpg")
         autoit.control_send("Open", "Edit1", "{ENTER}")
         Logging().reportDebugStep(self, "The  document was uploaded ")
         return CreateDocumentModule()
