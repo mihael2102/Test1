@@ -19,12 +19,9 @@ class DocumentModuleTest(BaseTest):
             .select_document_module_more_list(DocumentModuleConstants.DOCUMENT)
 
         document_module.open_create_document_module().perform_create_document(
-            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
-                                                 DocumentModuleConstants.FIRST_DOCUMENT_TYPE),
-            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
-                                                 DocumentModuleConstants.FIRST_STATUS),
-            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
-                                                 DocumentModuleConstants.COMMENTS))
+            Config.data.get_data_document_module_information(DocumentModuleConstants.FIRST_DOCUMENT_TYPE),
+            Config.data.get_data_document_module_information(DocumentModuleConstants.FIRST_STATUS),
+            Config.data.get_data_document_module_information(DocumentModuleConstants.COMMENTS))
 
         message = document_module.get_successful_message()
 
@@ -55,12 +52,9 @@ class DocumentModuleTest(BaseTest):
 
         document_module.open_create_document_module() \
             .perform_create_document(
-            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
-                                                 DocumentModuleConstants.FIRST_DOCUMENT_TYPE),
-            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
-                                                 DocumentModuleConstants.FIRST_STATUS),
-            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_INFO_MODULE,
-                                                 DocumentModuleConstants.COMMENTS))
+            Config.data.get_data_document_module_information(DocumentModuleConstants.FIRST_DOCUMENT_TYPE),
+            Config.data.get_data_document_module_information(DocumentModuleConstants.FIRST_STATUS),
+            Config.data.get_data_document_module_information(DocumentModuleConstants.COMMENTS))
 
         document_module.click_ok()
 

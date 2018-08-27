@@ -5,6 +5,7 @@ from src.main.python.ui.crm.model.constants.ApiConstants import ApiConstants
 from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
 from src.main.python.ui.crm.model.constants.AutoAssignConstants import AutoAssignConstants
 from src.main.python.ui.crm.model.constants.CampaingsConstants import CampaignsConstants
+from src.main.python.ui.crm.model.constants.DocumentModuleConstants import DocumentModuleConstants
 from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
     FinancialTransactionsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
@@ -53,10 +54,17 @@ class DataProviders(object):
         return conn_string[TradingReportConstants.TRADING_REPORT_INFO][value]
 
     def get_data_document_module(self, key, value):
+        # exclude this method from usages. Instead of it please use more specific methods below
         connection_file = open(
             'D:/automation-newforexqa/src/test/python/resources/test-data/documents-module-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]
+
+    def get_data_document_module_information(self, value):
+        connection_file = open(
+            'D:/automation-newforexqa/src/test/python/resources/test-data/documents-module-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[DocumentModuleConstants.DOCUMENTS_INFO_MODULE][value]
 
     def get_data_tabs_trading_module(self, value):
         connection_file = open(
