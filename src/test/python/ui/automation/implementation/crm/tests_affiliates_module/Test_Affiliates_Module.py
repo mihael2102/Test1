@@ -17,14 +17,14 @@ class AffiliateModule(BaseTest):
         affiliate_list_view_page = AffiliateListViewPage()
 
         """ Perform search by Partner name """
-        affiliate_list_view_page.perform_search_by_partner_name(AffiliateModuleConstants.PARTNER_NAME)
+        affiliate_list_view_page.perform_search_by_partner_name(AffiliatePageConstants.PARTNER_NAME)
 
         """ Check values on List view page """
 
         assert Config.data.get_data_affliate_info(
-            AffiliateModuleConstants.IS_ENABLED) == affiliate_list_view_page.get_is_enabled()
+            AffiliatePageConstants.IS_ENABLED) == affiliate_list_view_page.get_is_enabled()
         assert Config.data.get_data_affliate_info(
-            AffiliateModuleConstants.ALLOWED_IP) == affiliate_list_view_page.get_allowed_ip()
+            AffiliatePageConstants.ALLOWED_IP) == affiliate_list_view_page.get_allowed_ip()
 
         """ Check blocked countries """
 
@@ -35,11 +35,11 @@ class AffiliateModule(BaseTest):
 
         """ Check brand name """
         assert Config.data.get_data_affliate_info(
-            AffiliateModuleConstants.BRAND_NEW_FOREX) == affiliate_list_view_page.get_brand_name()
+            AffiliatePageConstants.BRAND_NEW_FOREX) == affiliate_list_view_page.get_brand_name()
 
         """ Open affiliate details page and check values on Details view page """
         affiliate_details_page = affiliate_list_view_page.open_affiliate_details_page(
-            AffiliateModuleConstants.PARTNER_NAME)
+            AffiliatePageConstants.PARTNER_NAME)
 
         partner_name_for_checking = affiliate_details_page.get_partner_name()
 
