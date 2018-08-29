@@ -93,8 +93,7 @@ class AddNewLiveAccountTestCA(BaseTest):
 
         brand_manage_accounts = CaManageAccounts() \
             .open_new_account_button() \
-            .select_account_currency(
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_CAD)) \
+            .select_account_currency(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_CAD)) \
             .create_account_button()
 
         account_id_ca = brand_manage_accounts.get_account_id_text()
