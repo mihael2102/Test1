@@ -123,7 +123,7 @@ class EditLeadsProfilePage(CRMBasePage):
     def set_assigned_to(self, assigned_to):
         assigned_to_list = Select(self.driver.find_element(By.XPATH, "//select[@name='assigned_user_id']"))
         assigned_to_list.select_by_visible_text(assigned_to)
-        Logging().reportDebugStep(self, "The lead status was set: " + assigned_to)
+        Logging().reportDebugStep(self, "The assign to was set: " + assigned_to)
         return EditLeadsProfilePage()
 
     def set_source_name(self, source_name):

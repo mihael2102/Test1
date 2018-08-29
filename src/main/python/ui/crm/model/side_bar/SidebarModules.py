@@ -28,6 +28,7 @@ class SidebarModules(CRMBasePage):
         self.open_sidebar_if_exists()
         selected_module = super().wait_element_to_be_clickable("//div[@id='sidebar']//a[contains(., '%s')]" % module)
         selected_module.click()
+        sleep(2)
         super().wait_element_to_be_clickable("//a[@id='additional_actions_button']")
         Logging().reportDebugStep(self, "The event module was opened")
         return CreateEvent(self.driver)

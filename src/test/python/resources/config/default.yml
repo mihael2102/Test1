@@ -34,11 +34,11 @@ FirstLeadInfo:
   first_currency: "USD"
   filter_name: "Test Leads"
 SecondLeadInfo:
-  first_name: "second_lead name"
-  last_name: "second lead last name"
+  first_name: "Sam"
+  last_name: "White"
   mobile: "7777777"
   fax: "6666"
-  email: "testqa+2@pandats.com"
+  EVAL_email: "'testqa2_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S.%f')) + '@pandats.com'"
   secondary_email: "secondarytestqa+2@pandats.com"
   first_language: "English"
   panda_partner_id: "66"
@@ -64,7 +64,7 @@ client_1:
   first_name: "John-test" # manual config
   last_name: "Doe"
   EVAL_email: "'john_doe_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S')) + '@pandats.com'"
-  # email: "john_doe_20180826_095641@pandats.com" # manual config
+  # email: "john_doe_20180829_095858@pandats.com" # manual config
   short_client_name: "John-test Doe"
   phone: "7777777"
   phone_area_code: 111

@@ -7,6 +7,7 @@ from selenium import webdriver
 from src.main.python.utils.config import Config
 from src.main.python.utils.data.providers.ConfigProvider import ConfigProvider
 from src.main.python.utils.logs.Loging import Logging
+from time import sleep
 
 
 class BaseTest(unittest.TestCase):
@@ -48,5 +49,6 @@ class BaseTest(unittest.TestCase):
                     # driver.get_screenshot_as_file(file_name)
                     # allure.MASTER_HELPER.attach('failed_screenshot', driver.get_screenshot_as_png(),
                     #                             type=AttachmentType.PNG)
+        sleep(3)
         self.driver.close()
         self.driver.quit()
