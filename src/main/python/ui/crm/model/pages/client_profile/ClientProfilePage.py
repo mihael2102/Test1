@@ -135,7 +135,7 @@ class ClientProfilePage(CRMBasePage):
         return ClientProfilePage()
 
     def get_transaction_approval_state(self):
-        transaction_approval_state_element = self.wait_load_element("(//tr[@class='lvtColData']/td[10])[14]")
+        transaction_approval_state_element = self.wait_load_element("(//tr[@class='lvtColData']/td[10])[1]")
         transaction_approval_state_text = transaction_approval_state_element.text
         Logging().reportDebugStep(self, "State of transaction_approval, as result of transaction at CA, is: "
                                                                                     + transaction_approval_state_text)

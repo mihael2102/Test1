@@ -1,1 +1,0 @@
-Loging.py                   26 DEBUG    CRMLoginPage - Open first tabs page: https://newforexstaging.ptscrm.com/
