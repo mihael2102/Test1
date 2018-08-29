@@ -25,11 +25,11 @@ class CRMBasePage(object):
         Config.window_before = self.driver.window_handles[0]
 
     def wait_load_element(self, element):
-        return WebDriverWait(self.driver, 25).until(
+        return WebDriverWait(self.driver, 12).until(
             EC.presence_of_element_located((By.XPATH, element)))
 
     def wait_visible_of_element(self, element):
-        return WebDriverWait(self.driver, 25).until(
+        return WebDriverWait(self.driver, 12).until(
             EC.visibility_of_element_located((By.XPATH, element)))
 
     def switch_first_tab_page(self):
