@@ -5,6 +5,7 @@ from src.main.python.ui.brand.model.client_area_modules.verification_center.CaVe
     CaVerificationCenter
 from src.main.python.ui.brand.model.client_area_modules.withdraw_module.tabs.CaWithdrawFirstStepRequest import \
     CaWithdrawFirstStepRequest
+from src.main.python.utils.waitting_utils.JSWaiter import JSWaiter
 
 
 class CAModules(BrandBasePage):
@@ -17,6 +18,8 @@ class CAModules(BrandBasePage):
         return CAModules()
 
     def open_withdraw_page(self):
+        # Check that JS script for angular is working
+        JSWaiter().wait_for_angular_load(self.driver)
         withdraw_page = super().wait_element_to_be_clickable("//a[@href='#/clientArea/withdraw']")
         withdraw_page.click()
         return CaWithdrawFirstStepRequest()
