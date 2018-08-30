@@ -8,12 +8,6 @@ class AngularLoad(object):
     def __call__(self, driver):
         return driver.execute_script(self.script_text_)
 
-        # try:
-        #     element_text = EC._find_element(driver, self.locator).text
-        #     return element_text.startswith(self.text)
-        # except StaleElementReferenceException:
-        #     return False
-
 class JSWaiter(object):
 
     # Get the driver
@@ -30,15 +24,46 @@ class JSWaiter(object):
 
 
         # Wait for ANGULAR to load обратить внимание на данный пункт. его логика для питона может быть не правильна
-        angular_load = driver.execute_script("return (window.angular !== undefined) && (angular.element(document).injector() !== undefined) && (angular.element(document).injector().get('$http').pendingRequests.length === 0)")
+        # angular_load = driver.execute_script("return (window.angular !== undefined) && (angular.element(document).injector() !== undefined) && (angular.element(document).injector().get('$http').pendingRequests.length === 0)")
 
 
         # Get Angular is Ready
-        is_ready_angular = driver.execute_script("return (window.angular !== undefined) && (angular.element(document).injector() !== undefined) && (angular.element(document).injector().get('$http').pendingRequests.length === 0)")
+        is_ready_jquery_requests = driver.execute_script("return (window.jQuery != null)   && (jQuery.active === 0);")
+
+        # Refactor and insert into JS executor
+       function JsAndAjaxLoader(){
+    // Loading of all elements on the page
+    window.onload = function () { }
+
+    // Checking the state of document
+    counter = 1;
+    var timerId = setInterval(function(counter) {
+        if(counter < 7){
+            if(document.readyState === 'complete') {
+                clearInterval(timerId);
+            }
+        }
+        counter = counter + 1;
+      }, 1000);
+
+    // Checking if there is any active ajax requests
+    counter = 1;
+
+    var interval = setInterval(function() {
+        if((window.jQuery != null)   && (jQuery.active === 0)) {
+            counter = counter + 1;
+            clearInterval(interval);
+            return true;
+        } else if(counter < 7){
+            clearInterval(interval);
+            return false;
+        }
+    }, 100);
+}
 
 
         # Wait ANGULAR until it is Ready!
-        if not is_ready_angular:
+        if not is_ready_jquery_requests:
             print("ANGULAR is NOT Ready!")
             wait.until(AngularLoad(angular_ready_script))
         else:
