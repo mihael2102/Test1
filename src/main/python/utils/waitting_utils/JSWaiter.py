@@ -30,38 +30,6 @@ class JSWaiter(object):
         # Get Angular is Ready
         is_ready_jquery_requests = driver.execute_script("return (window.jQuery != null)   && (jQuery.active === 0);")
 
-        # Refactor and insert into JS executor
-       function JsAndAjaxLoader(){
-    // Loading of all elements on the page
-    window.onload = function () { }
-
-    // Checking the state of document
-    counter = 1;
-    var timerId = setInterval(function(counter) {
-        if(counter < 7){
-            if(document.readyState === 'complete') {
-                clearInterval(timerId);
-            }
-        }
-        counter = counter + 1;
-      }, 1000);
-
-    // Checking if there is any active ajax requests
-    counter = 1;
-
-    var interval = setInterval(function() {
-        if((window.jQuery != null)   && (jQuery.active === 0)) {
-            counter = counter + 1;
-            clearInterval(interval);
-            return true;
-        } else if(counter < 7){
-            clearInterval(interval);
-            return false;
-        }
-    }, 100);
-}
-
-
         # Wait ANGULAR until it is Ready!
         if not is_ready_jquery_requests:
             print("ANGULAR is NOT Ready!")
