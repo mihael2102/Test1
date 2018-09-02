@@ -33,7 +33,7 @@ class AddInteraction(BaseTest):
         crm_client_profile = crm_client_profile.open_client_id()
 
         SidebarModules(self.driver)\
-            .open_create_event_module(CRMConstants.ADD_INTERACTION_TEXT) \
+            .open_create_event_module() \
             .create_event(self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_STATUS),
                           self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE),
                           self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DURATION),

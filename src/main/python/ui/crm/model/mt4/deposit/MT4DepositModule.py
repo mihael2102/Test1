@@ -8,8 +8,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 
 class MT4DepositModule(CRMBasePage):
-    def __init__(self) -> None:
-        super().__init__()
 
     '''
         Make deposit from CRM   
@@ -28,7 +26,7 @@ class MT4DepositModule(CRMBasePage):
         self.set_amount(amount)
         self.set_description(description_deposit)
         self.create_deposit()
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     '''
          Choice a payment method from drop down

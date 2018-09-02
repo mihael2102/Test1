@@ -4,9 +4,6 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 
 class MT4CheckPasswordModule(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
-
     '''
         Choice an account from the pick-list
         :parameter account the live account of the client
@@ -19,7 +16,7 @@ class MT4CheckPasswordModule(CRMBasePage):
         select_account = self.driver.find_element(By.XPATH,
                                                   "//select[@name='pwd_loginSel']//option[contains(text(),'%s')]" % account)
         select_account.click()
-        return MT4CheckPasswordModule()
+        return MT4CheckPasswordModule(self.driver)
 
     '''
          Enter the password 
@@ -31,7 +28,7 @@ class MT4CheckPasswordModule(CRMBasePage):
         field_password = self.driver.find_element(By.XPATH, "//input[@type='password']")
         field_password.clear()
         field_password.send_keys(password)
-        return MT4CheckPasswordModule()
+        return MT4CheckPasswordModule(self.driver)
 
     '''
         Enter the check button 
@@ -41,8 +38,8 @@ class MT4CheckPasswordModule(CRMBasePage):
     def click_check_button(self):
         check_button = self.driver.find_element(By.XPATH, "//span[@id='MTPasswordSubmitButton']")
         check_button.click()
-        return MT4CheckPasswordModule()
+        return MT4CheckPasswordModule(self.driver)
 
     def refresh_page(self):
         super().refresh_page()
-        return MT4CheckPasswordModule()
+        return MT4CheckPasswordModule(self.driver)

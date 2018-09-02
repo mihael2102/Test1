@@ -13,8 +13,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 
 class HelpDeskPage(CRMBasePage):
-    def __init__(self):
-        super().__init__()
 
     ''' 
         Open the today tabs  

@@ -37,12 +37,15 @@ class CRMConstants(object):
     SECOND_DATE = datetime.now() + relativedelta(days=1, minutes=15)
     THIRD_DATE = datetime.now() + relativedelta(days=2, minutes=30)
     FOURTH_DATE = datetime.now() + relativedelta(days=3, minutes=45)
+    MT4_ACCOUNT_CREATED_SUCCESFULLY = "MT4 Account created successfully"
     WITHDRAW_SUCCESSFULLY = "MT4 Withdraw successfull"
     DEPOSIT_SUCCESSFULLY = "MT4 Deposit successfull"
     PASSWORD_CHANGE = "Password was change successfully"
+    CRM_CLIENT_AREA_PASSWORD_CHANGE = "Client Area Password changed successfully"
     MASS_EDIT = "Successfuly updated"
     CHANGE_PASSWORD = "4"
-    PASSWORD_MESSAGE = "Entered password valid"
+    MT4_PASSWORD_VALID_MESSAGE = "Entered password valid"
+    CUSTOMER_PASSWORD_VALID_MESSAGE = "The password that was entered is correct."
     CHECK_PASSWORD = "3"
     EXPIRE_DATE = datetime.now() + relativedelta(days=2)
     FORMAT_DATE = "%d-%m-%Y"
@@ -66,12 +69,15 @@ class CRMConstants(object):
     PAYMENT_METHOD_DEPOSIT = "Credit card"
     WITHDRAW = "7"
     DEPOSIT = "6"
+    CREATE_MT4_USER = "1"
     AMOUNT_DEPOSIT = "10.00"
     AMOUNT_WITHDRAW = "15"
     AMOUNT_DEPOSIT_FOR_CREDIT_OUT = "35.00"
     AMOUNT_WITHDRAW_SECOND = "30.00"
     ADD_INTERACTION = "6"
     ADD_INTERACTION_TEXT = "Add Interaction"
+    CHECK_CLIENT_PASSWORD = "Check Client Password"
+    CHANGE_CLIENT_PASSWORD = "Change Client Password"
     INTERACTION_SUCCESSFULLY = "Interraction successfully created"
     SHORT_E_MAIL = "short_email"
     SHORT_SECOND_E_MAIL = "short_second_email"

@@ -5,9 +5,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 class SendSMSClientsModule(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
-
     def perform_send_sms(self, message):
         self.enter_message(message)
         return SendSMSClientsModule()

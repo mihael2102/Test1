@@ -6,9 +6,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 class SendEmailClientsModule(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
-
     def perform_send_email(self, subject, comment):
         self.set_subject(subject)
         self.set_comment(comment)

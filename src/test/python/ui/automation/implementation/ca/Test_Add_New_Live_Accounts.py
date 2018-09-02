@@ -31,7 +31,7 @@ class AddNewLiveAccountTestCA(BaseTest):
         eur_currency_ca = brand_manage_accounts.get_account_currency_text()
 
         crm_client_profile = CRMLoginPage() \
-            .open_second_tab_page(Config.url_crm) \
+            .open_second_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
@@ -67,7 +67,7 @@ class AddNewLiveAccountTestCA(BaseTest):
         gbr_currency_ca = brand_manage_accounts.get_account_currency_text()
 
         crm_client_profile = CRMLoginPage() \
-            .open_second_tab_page(Config.url_crm) \
+            .open_second_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
@@ -103,7 +103,7 @@ class AddNewLiveAccountTestCA(BaseTest):
         cad_currency__ca = brand_manage_accounts.get_account_currency_text()
 
         crm_client_profile = CRMLoginPage() \
-            .open_second_tab_page(Config.url_crm) \
+            .open_second_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
@@ -139,7 +139,7 @@ class AddNewLiveAccountTestCA(BaseTest):
         jpy_currency__ca = brand_manage_accounts.get_account_currency_text()
 
         crm_client_profile = CRMLoginPage() \
-            .open_second_tab_page(Config.url_crm) \
+            .open_second_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \

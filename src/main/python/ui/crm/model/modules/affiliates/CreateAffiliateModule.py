@@ -12,9 +12,6 @@ class CreateAffiliateModule(CRMBasePage):
     Methods which are related to "Create affiliate" popup
     """
 
-    def __init__(self):
-        super().__init__()
-
     def perform_create_affiliate(self, partner_name, brand, allowed_ip, is_enabled, allowed_methods_1,
                                  allowed_methods_2, allowed_methods_3, allowed_methods_4, allowed_methods_5,
                                  blocked_countries_1, blocked_countries_2, blocked_countries_3, blocked_countries_4,
@@ -40,13 +37,13 @@ class CreateAffiliateModule(CRMBasePage):
         partner_name_field.clear()
         partner_name_field.send_keys(partner_name)
         Logging().reportDebugStep(self, "Partner name was set: " + partner_name)
-        return CreateAffiliateModule()
+        return CreateAffiliateModule(self.driver)
 
     def set_brand(self, brand):
         select = Select(self.driver.find_element(By.ID, "brand"))
         select.select_by_visible_text(brand)
         Logging().reportDebugStep(self, "The brand was selected: " + brand)
-        return CreateAffiliateModule()
+        return CreateAffiliateModule(self.driver)
 
     def set_allowed_ip(self, ip_value):
         allowed_ip_field = self.driver.find_element(By.XPATH, "//*[@id='allowedIps']")
@@ -55,7 +52,7 @@ class CreateAffiliateModule(CRMBasePage):
         add_ip_button = self.driver.find_element(By.XPATH, "//bs-modal-body/div/div[3]/button")
         add_ip_button.click()
         Logging().reportDebugStep(self, "The allowed ip was set: " + ip_value)
-        return CreateAffiliateModule()
+        return CreateAffiliateModule(self.driver)
 
     def set_is_enabled_radio_button(self, is_enabled):
 
@@ -67,7 +64,7 @@ class CreateAffiliateModule(CRMBasePage):
             is_enabled_element = self.driver.find_element(By.XPATH, "//div[@class='btn-group form-group']//label[2]")
             is_enabled_element.click()
         Logging().reportDebugStep(self, "The enabled was set" + is_enabled)
-        return CreateAffiliateModule()
+        return CreateAffiliateModule(self.driver)
 
     def set_allowed_methods(self, allowed_methods_1, allowed_methods_2, allowed_methods_3, allowed_methods_4,
                             allowed_methods_5):
@@ -99,7 +96,7 @@ class CreateAffiliateModule(CRMBasePage):
 
         fifth_allowed_element.click()
         Logging().reportDebugStep(self, "The fifth_allowed_element was set" + allowed_methods_5)
-        return CreateAffiliateModule()
+        return CreateAffiliateModule(self.driver)
 
     def set_countries(self, blocked_countries_1, blocked_countries_2, blocked_countries_3, blocked_countries_4,
                       blocked_countries_5):

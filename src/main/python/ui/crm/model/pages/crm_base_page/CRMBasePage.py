@@ -1,12 +1,12 @@
 from time import sleep
+
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+
 from src.main.python.utils.config import Config
 from src.main.python.utils.logs.Loging import Logging
-
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
-from src.test.python.ui.automation.BaseTest import BaseTest
 
 
 class CRMBasePage(object):

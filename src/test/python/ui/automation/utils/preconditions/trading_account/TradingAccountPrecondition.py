@@ -3,14 +3,20 @@ from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManag
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 
 
 class TradingAccountPrecondition(object):
-    def __init__(self) -> None:
-        super().__init__()
+
+    driver = None
+    config = None
+
+    def __init__(self, driver, config):
+        self.driver = driver
+        self.config = config
 
     def add_live_account(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
@@ -25,6 +31,25 @@ class TradingAccountPrecondition(object):
             Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_USD)) \
             .create_account_button()
         return TradingAccountPrecondition()
+
+    def add_demo_account_from_crm(self):
+        crm_client_profile = CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+
+        crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+
+        MT4CreateAccountModule(self.driver)\
+            .create_account(
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
+        return self
 
     def make_deposit(self):
         crm_client_profile = CRMLoginPage() \

@@ -4,10 +4,14 @@ import importlib
 import xmlrunner
 
 
-class MultiRunner(unittest.TestCase):
+class MultiRunner:
+
+    def __init__(self):
+        self.data_provider = ConfigProvider()
+        # whether to stop after first failing test
+        self.fail_fast = True
 
     def test_brands(self):
-        self.data_provider = ConfigProvider()
         brands = self.data_provider.get_brands()
 
         test_list = self.data_provider.get_tests()
@@ -20,7 +24,7 @@ class MultiRunner(unittest.TestCase):
             brand_pretty_name = self.data_provider.get_data_client('pretty_name')
             brand_pretty_names.append(brand_pretty_name)
             print("Testing %s\n" % brand_pretty_name)
-            brand_results = self.single_brand_test(brand, test_list, self.data_provider)
+            brand_results = self.single_brand_test(brand, test_list)
             overall_results[brand_pretty_name] = brand_results
             print("Finished testing %s\n" % brand_pretty_name)
 
@@ -28,7 +32,7 @@ class MultiRunner(unittest.TestCase):
         result_writer = ExcelWriter()
         result_writer.write_test_results(brand_pretty_names, test_list, overall_results)
 
-    def single_brand_test(self, brand, test_list, data_provider):
+    def single_brand_test(self, brand, test_list):
         runner = xmlrunner.XMLTestRunner(output='result')
         results = {}
 
@@ -40,15 +44,14 @@ class MultiRunner(unittest.TestCase):
 
             test.driver_type = 'Chrome'
             if 'reload_config' in test_data and test_data['reload_config']:
-                data_provider.reload_configuration()
-            test.config = data_provider
-            # print("Test: %s, email used: %s" % (test_data['method'], test.config.data['FirstLeadInfo']['email']))
-            # continue
+                self.data_provider.reload_configuration()
+            test.config = self.data_provider
             runner.outsuffix = test_data['method'] + "-" + brand
             print("Running test %s on %s" % (test_data['method'], brand))
             result = runner.run(test)
 
             test_name = test_data['class'] + '.' + test_data['method']
+            test_passed = False
             if not result or result.errors:
                 results[test_name] = "ERROR"
             elif result.failures:
@@ -57,6 +60,10 @@ class MultiRunner(unittest.TestCase):
                 results[test_name] = "SKIP"
             else:
                 results[test_name] = "PASS"
+                test_passed = True
+            if self.fail_fast and not test_passed:
+                break
+
         return results
 
 

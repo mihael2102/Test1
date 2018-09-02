@@ -64,7 +64,7 @@ client_1:
   first_name: "John-test" # manual config
   last_name: "Doe"
   EVAL_email: "'john_doe_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S')) + '@pandats.com'"
-  # email: "john_doe_20180829_095858@pandats.com" # manual config
+  # email: "john_doe_20180823_131412@pandats.com" # manual config
   short_client_name: "John-test Doe"
   phone: "7777777"
   phone_area_code: 111
@@ -83,6 +83,7 @@ client_1:
   first_referral:
   first_source_name: "source 1"
   first_currency: "USD"
+  new_password: "Panda123456"
 event_1:
   type: "Meeting"
   status: "Not Started"
@@ -92,3 +93,8 @@ event_1:
   assign_to: "pandaqa pandaqa"
   priority: "Medium"
   description: "Event Description"
+trading_account_1:
+  server: "Demo"
+  currency: "USD"
+  group: "USD"
+  leverage: "100"

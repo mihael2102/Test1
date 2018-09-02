@@ -5,9 +5,6 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 
 class MassAssignClientsModule(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
-
     def search_user(self, user_name):
         user_field = super().wait_element_to_be_clickable("//input[@id='searchstring']")
         user_field.clear()

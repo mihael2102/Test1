@@ -9,9 +9,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 class MassEditClientsModule(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
-
     def perform_mass_edit(self, gender, assigned_to, client_source, compliance_agent, compliance_notes, client_status,
                           retention_status, description, referral):
         self.set_gender(gender)

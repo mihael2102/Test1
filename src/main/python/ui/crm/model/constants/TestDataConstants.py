@@ -54,3 +54,8 @@ class TestDataConstants(object):
     EXPIRY_YEAR = "expiry_year"
     CVC = "cvs"
     WITHDRAWAL_REASON = "withdrawal_reason"
+    TRADING_ACCOUNT1 = "trading_account_1"
+    TRADING_SERVER = "server"
+    TRADING_CURRENCY = "currency"
+    TRADING_GROUP = "group"
+    TRADING_LEVERAGE = "leverage"

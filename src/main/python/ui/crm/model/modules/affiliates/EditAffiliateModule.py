@@ -11,9 +11,6 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class EditAffiliateModule(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
-
     def perform_edit_affiliate(self, partner_name_edited, brand, allowed_ip, is_enabled, added_allowed_method_1,
                                edited_country_1):
 
@@ -33,7 +30,7 @@ class EditAffiliateModule(CRMBasePage):
         partner_name_field.clear()
         partner_name_field.send_keys(partner_name)
         Logging().reportDebugStep(self, "Partner name was edited: " + partner_name)
-        return EditAffiliateModule()
+        return EditAffiliateModule(self.driver)
 
     """Leave without the changes because second brand doesn't have allowed methods"""
     def edit_brand(self, brand):
@@ -53,7 +50,7 @@ class EditAffiliateModule(CRMBasePage):
         add_ip_button = self.driver.find_element(By.XPATH, "//bs-modal-body/div/div[2]/button")
         add_ip_button.click()
         Logging().reportDebugStep(self, "The allowed ip was edited: " + ip_value)
-        return EditAffiliateModule()
+        return EditAffiliateModule(self.driver)
 
     def edit_is_enabled_radio_button(self, is_enabled):
 
@@ -65,7 +62,7 @@ class EditAffiliateModule(CRMBasePage):
             is_enabled_element = self.driver.find_element(By.XPATH, "//div[@class='btn-group form-group']//label[2]")
             is_enabled_element.click()
         Logging().reportDebugStep(self, "The enabled was edited and value was set: " + is_enabled)
-        return EditAffiliateModule()
+        return EditAffiliateModule(self.driver)
 
     def edit_allowed_methods(self, added_allowed_method):
         """Open pick list"""
@@ -105,7 +102,7 @@ class EditAffiliateModule(CRMBasePage):
         #
         # fifth_allowed_element.click()
         # Logging().reportDebugStep(self, "The fifth_allowed_element was edited" + allowed_methods_5)
-        return EditAffiliateModule()
+        return EditAffiliateModule(self.driver)
 
     def edit_countries(self, edited_blocked_countries):
         """Remove country from list (deselect it) and other countries leave as is"""
@@ -127,7 +124,7 @@ class EditAffiliateModule(CRMBasePage):
 
         Logging().reportDebugStep(self, "The country was edited: " + edited_blocked_countries)
 
-        return EditAffiliateModule()
+        return EditAffiliateModule(self.driver)
 
     def click_submit(self):
         submit_button = self.driver.find_element(By.XPATH, "//button[@class='btn btn-success']")

@@ -24,7 +24,7 @@ class ClientProfilePage(CRMBasePage):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         Logging().reportDebugStep(self, "Perform scroll down ")
         sleep(2)
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     '''
         Perform scroll_down
@@ -107,7 +107,7 @@ class ClientProfilePage(CRMBasePage):
     def perform_scroll_up(self):
         self.driver.execute_script("scroll(0, 0);")
         Logging().reportDebugStep(self, "Perform scroll up ")
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     '''
         Open the trading tabs
@@ -118,7 +118,7 @@ class ClientProfilePage(CRMBasePage):
         trading_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_TradingAccounts']")
         trading_tab.click()
         Logging().reportDebugStep(self, "Open the trading account tab ")
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     '''
         Open the Finacial Transactions tabs
@@ -144,7 +144,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_total_amount_text(self, initial_amount, amount_deposit):
-        total_amount = Decimal(initial_amount) + Decimal(amount_deposit)
+        total_amount = Decimal(initial_amount.replace(",", "")) + Decimal(amount_deposit.replace(",", ""))
         Logging().reportDebugStep(self, "Returns the total amount text " + str(total_amount))
         return str(total_amount)
 
@@ -227,7 +227,7 @@ class ClientProfilePage(CRMBasePage):
         select_country = super().wait_load_element("//a[@id='show_Accounts_HelpDesk']")
         select_country.click()
         Logging().reportDebugStep(self, "Open help desc tab ")
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     '''
          Open the action of the ticket number
@@ -262,11 +262,11 @@ class ClientProfilePage(CRMBasePage):
         mt4_button = super().wait_load_element("//div[@class='mt4_act_box']")
         mt4_button.click()
         Logging().reportDebugStep(self, "Open mt4 actions ")
-        MT4DropDown().mt4_actions(module)
+        MT4DropDown(self.driver).mt4_actions(module)
 
     def wait_element_is_present(self):
         super().wait_until_element_present("//span[@class ='clientStatusFTD']")
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     '''
          Returns the initial amount 
@@ -399,7 +399,7 @@ class ClientProfilePage(CRMBasePage):
 
     def refresh_page(self):
         super().refresh_page()
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     def get_gender_text(self):
         country = self.driver.find_element(By.XPATH, "//td[contains(text(),'Gender')]//following-sibling::td[1]")
