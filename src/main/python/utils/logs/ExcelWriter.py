@@ -31,7 +31,8 @@ class ExcelWriter:
             worksheet.write(row, col, brand)
             for test in tests:
                 row += 1
-                test_result = results[brand][self.get_test_pretty_name(test)]
+                test_result = results[brand][self.get_test_pretty_name(test)] \
+                    if self.get_test_pretty_name(test) in results[brand] else ""
                 if test_result == 'PASS':
                     worksheet.write(row, col, test_result, cell_format_pass)
                 else:
