@@ -1,18 +1,21 @@
 brands:
-#- name: newfxcrm.loc
-#  config_file: newfxcrm.loc.yml
+### testing environments - old forex
 #- name: forexcrm.loc
 #  config_file: forexcrm.loc.yml
-- name: newforexdev
-  config_file: new_forex_dev.yml
 #- name: forexdev
 #  config_file: forex_dev.yml
 #- name: forexstaging
 #  config_file: forex_staging.yml
+### testing environments - new forex
+#- name: newfxcrm.loc
+#  config_file: newfxcrm.loc.yml
+- name: newforexdev
+  config_file: new_forex_dev.yml
 #- name: newforexstaging
 #  config_file: new_forex_staging.yml
-#- name: newforexqaF
+#- name: newforexqa
 #  config_file: new_forex_qa.yml
+### production environments - old forex
 #- name: itrader
 #  config_file: itrader.yml
 #- name: itrader_global
@@ -27,8 +30,7 @@ brands:
 #  config_file: rimarkets.yml
 #- name: kayafx
 #  config_file: kaya_fx.yml
-#- name: q8
-#  config_file: q8.yml
+### production environmets - new forex
 #- name: uft
 #  config_file: uft.yml
 #- name: brokerz
@@ -47,3 +49,5 @@ brands:
 #  config_file: solid_fx.yml
 #- name: FXMarketPro
 #  config_file: fx_markets_pro.yml
+#- name: q8
+#  config_file: q8.yml
