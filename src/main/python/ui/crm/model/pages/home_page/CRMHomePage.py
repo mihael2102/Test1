@@ -149,7 +149,7 @@ class CRMHomePage(CRMBasePage):
         return FinancialTransactionsPage()
 
     def open_user_management_module(self, settings):
-        module_element = super().wait_element_to_be_clickable("//table[@class='user_settings']//td[4]")
+        module_element = super().wait_element_to_be_clickable("//table[@class='user_settings']//td[3]")
         user_management = self.driver.find_element(By.XPATH,
                                                    "//ul[@class='dropdown-menu pull-right']//li//a[contains(text(),'%s')]" % settings)
         hoverer = ActionChains(self.driver).move_to_element(module_element).click(user_management)

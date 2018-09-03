@@ -37,7 +37,7 @@ class AuditLogsPage(CRMBasePage):
         self.driver.get_screenshot_as_file(file_name)
         allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
                                     type=AttachmentType.PNG)
-        Logging().reportDebugStep(self, "The screenshot was performed ")
+        Logging().reportDebugStep(self, "The screenshot was performed. PLEASE SEE IT IN THE APPROPRIATE FOLDER AND CHECK THE RESULT VISUALLY! ")
         return AuditLogsPage()
 
     def open_calendar_view(self):

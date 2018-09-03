@@ -29,6 +29,7 @@ class CRMBasePage(object):
             EC.presence_of_element_located((By.XPATH, element)))
 
     def wait_visible_of_element(self, element):
+        WaitingUtils().wait_until_JS_and_AJAX_are_loaded(self.driver)
         return WebDriverWait(self.driver, 12).until(
             EC.visibility_of_element_located((By.XPATH, element)))
 
@@ -51,7 +52,8 @@ class CRMBasePage(object):
         return WaitingUtils().wait_until_element_present_crm(element, total_amount_crm, self.driver)
 
     def wait_element_to_be_clickable(self, element):
-        return WebDriverWait(self.driver, 25).until(
+        WaitingUtils().wait_until_JS_and_AJAX_are_loaded(self.driver)
+        return WebDriverWait(self.driver, 15).until(
             EC.element_to_be_clickable((By.XPATH, element)))
 
     def perform_scroll(self, parameter):
