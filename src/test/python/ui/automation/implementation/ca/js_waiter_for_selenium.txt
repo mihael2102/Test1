@@ -1,137 +1,29 @@
-let waiting_until_all_window_elements_were_loaded = function(){
-    return new Promise(function(resolve, reject){
-        resolve(window.onload = function () { });
-    });
-};
-
-let checking_document_state = function(){
-    return new Promise(function(resolve, reject){
-        resolve(function(){
-            counter = 1;
-            var timerId = setInterval(function(counter) {
-                if(counter < 7){
-                    if(document.readyState === 'complete') {
-                        clearInterval(timerId);
-                    }
-                }
-                counter = counter + 1;
-            }, 1000);
-        });
-    });
-}
-
-let checking_active_AJAX_requests = function(){
-    return new Promise(function(resolve, reject){
-        resolve(function(){
-            counter = 1;
-
-            var interval = setInterval(function() {
-                if((window.jQuery != null)   && (jQuery.active === 0)) {
-                    clearInterval(interval);
-                    return true;
-                } else if(counter > 70){
-                    clearInterval(interval);
-                    return false;
-                }
-            counter = counter + 1;
-            }, 100);
-        });
-    });
-};
-
-waiting_until_all_window_elements_were_loaded().then(function(){
-    return checking_document_state();
-}).then(function(){
-    return checking_active_AJAX_requests();
-}).then(function(fromResolve){
-    if(fromResolve === "true"){
-        return true;
-    } else {
-        return false;
-    }
-})
-
-
-
-
-// ====================================
-let checking_active_AJAX_requests = function(){
-    return new Promise(function(resolve, reject){
-
-        setTimeout(resolve(""), 5);
-    });
-};
-checking_active_AJAX_requests().then(function(response){
-    console.log("");
-    console.log(" " + response);
-})
-
-
-
-
-//=========================================================================
-let promise = new Promise((resolve, reject) => {
-
-    setTimeout(() => {
-
-      resolve("result");
-    }, 3000);
-
-  });
-
-  // promise.then навешивает обработчики на успешный результат или ошибку
-  promise
-    .then(
-      result => {
-        // первая функция-обработчик - запустится при вызове resolve
-        console.log("" + result); // result - аргумент resolve
-      },
-      error => {
-        // вторая функция - запустится при вызове reject
-        console.log("" + error); // error - аргумент reject
-      }
-    );
-//=========================================================================
-
-
-
-  let waiting_until_all_window_elements_were_loaded = new Promise((resolve, reject) => {
-    // if page hasn't been loaded completely call 'onload' function
-
-    if(document.readyState !== 'complete') {
-
-        window.onload = function(){
-        console.log("result from 'onload' function");
-        resolve("result from 'onload' function");
-        };
-    } else {
-        console.log("result from 'onload' function");
-        resolve("Page was loaded. 'Onload' function waasn't called")
-    }
-  });
-
-  let checking_active_AJAX_requests = new Promise((resolve, reject) => {
+function checkingActiveAJAX(){
     counter = 1;
 
     var interval = setInterval(function() {
-        if((window.jQuery != null)  && (jQuery.active === 0)) {
+        if((window.jQuery != null)   && ((jQuery.active === 0)) || (jQuery.active === 1)) {
+            console.log("AJAX has been completed");
             clearInterval(interval);
-            console.log("There are no active AJAX requests");
-            resolve(true);
+            resolve("true");
         } else if(counter > 70){
-
-
+            console.log("TIMEOUT. But AJAX is still active.");
             clearInterval(interval);
-            console.log("There are still active AJAX requests");
-            resolve(false);
+            reject("false");
+        } else {
+            console.log("AJAX is still active. And counter => " + counter);
         }
     counter = counter + 1;
     }, 100);
-  }
-);
-  // promise.then навешивает обработчики на успешный результат или ошибку
-  waiting_until_all_window_elements_were_loaded().then(
-      result => {
-        return checking_active_AJAX_requests();
-      }
-    );
+}
+
+if(document.readyState === "complete"){
+    console.log("Page has been loaded");
+    checkingActiveAJAX();
+} else {
+	console.log("Page has NOT been loaded");
+    window.addEventListener('load', function(){
+        console.log("Page in progress");
+        checkingActiveAJAX();
+    }, false);
+}

@@ -6,6 +6,7 @@ from src.main.python.ui.brand.model.ca_modules.CAModules import CAModules
 from src.main.python.ui.brand.model.forms.create_personal_profile.BrandCreatePersonalProfileForm import \
     BrandCreatePersonalProfileForm
 from src.main.python.utils.logs.Loging import Logging
+from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 
 
 class BrandTradingPlatformPage(BrandBasePage):
@@ -18,6 +19,7 @@ class BrandTradingPlatformPage(BrandBasePage):
     '''
 
     def open_demo_drop_down(self, value):
+        WaitingUtils().wait_until_JS_and_AJAX_are_loaded(self.driver)
         demo_drop_down = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//div[@class='button-pandats account-pandats']")))
 

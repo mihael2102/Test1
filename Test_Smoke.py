@@ -11,14 +11,12 @@ from src.test.python.ui.automation.implementation.ca.Test_Support_Ticket import 
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit import DepositTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients import \
     SearchingClientsTestCRM
-from src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter import \
-    FilterModulesTest
 
 
 class TestSmoke(object):
 
-    def run_create_filter(self):
-        FilterModulesTest()
+    # def run_create_filter(self):
+    #     FilterModulesTest()
 
     def run_sign_up(self):
         SignUpTest()

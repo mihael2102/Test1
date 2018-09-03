@@ -99,3 +99,10 @@ class WaitingUtils(object):
                 sleep(5)
                 driver.refresh()
         fail("There is no such element after the page reloads")
+
+    def wait_until_JS_and_AJAX_are_loaded(self, driver):
+        # Read the JS script from file
+        with open('D:\\automation-newforexqa\\src\\test\\python\\ui\\automation\\implementation\\ca\\js_waiter_for_selenium.txt','r') as content_file:
+            content = content_file.read()
+
+        driver.execute_script(content)
