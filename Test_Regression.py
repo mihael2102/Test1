@@ -1,5 +1,3 @@
-from src.test.python.ui.automation.implementation.crm.tests_my_dashboard_module.Test_My_Dashboard_Actions import \
-    MyDashboardActionsTest
 from src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module import \
     AffiliateModule
 from src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs import AuditLogsModuleTest
@@ -10,25 +8,24 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
     ChangePasswordTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password import \
     CheckPasswordTestCRM
-from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Withdraw import WithdrawTestCRM
-from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email import SendEmailTestCRM
-from src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module import \
-    CampaignsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Download_Documents_Client_Module import \
     DownloadDocumentsClientModule
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In import CreditInTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out import CreditOutTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Withdraw import WithdrawTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign import MassAssignTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit import MassEditTestCRM
+from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email import SendEmailTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_SMS_Clients_Module import \
     SendSMSClientsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta import \
     TransferBetweenTa
+from src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module import \
+    CampaignsModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module import \
     DocumentModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Tab_Document_Module import \
     TabDocumentModule
-
 from src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module import \
     TabFinancialTransaction
 from src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module import \
@@ -37,16 +34,18 @@ from src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Tes
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Import_Lead import ImportLeadTest
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module import LeadModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module import TabLeadsModuleCRM
-from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Email import MassEmailTaskModule
-from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tab_Task_Module import TabTasksModuleCRM
-from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tasks_Actions import ActionsTaskModuleTest
+from src.test.python.ui.automation.implementation.crm.tests_my_dashboard_module.Test_My_Dashboard_Actions import \
+    MyDashboardActionsTest
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Add_New_Task_Calendar_View import \
     AddNewTaskCalendarView
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View import CalendarView
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event import AddEventTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Delete import MassDeleteTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Edit import MassEditTaskModule
+from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Email import MassEmailTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Sms import MassSmsTaskModule
+from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tab_Task_Module import TabTasksModuleCRM
+from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tasks_Actions import ActionsTaskModuleTest
 from src.test.python.ui.automation.implementation.crm.tests_trading_account.Test_Trading_Account_Module import \
     TradingAccountModuleTest
 from src.test.python.ui.automation.implementation.crm.user_management.Test_Create_User import UserTest

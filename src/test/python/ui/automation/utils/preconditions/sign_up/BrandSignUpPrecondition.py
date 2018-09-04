@@ -29,6 +29,22 @@ class BrandSignUpPrecondition(object):
             .submit_sign_up_button()
         return BrandSignUpPrecondition()
 
+    def perform_first_step_for_crm_sign_up(self):
+        BrandHomePage().open_first_tab_page(Config.url_client_area) \
+            .open_sign_form() \
+            .set_first_name(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME)) \
+            .set_last_name(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.LAST_NAME)) \
+            .set_email(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL_CRM)) \
+            .set_phone(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PHONE)) \
+            .set_password(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
+            .set_confirm_password(
+            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CONFIRMATION_PASSWORD)) \
+            .set_promo_code(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PROMO_CODE)) \
+            .set_check_box() \
+            .set_accept_check_box()\
+            .submit_sign_up_button()
+        return BrandSignUpPrecondition()
+
     def perform_second_step(self):
         self.fill_personal_profile()
         self.fill_financial_information()

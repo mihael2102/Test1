@@ -34,6 +34,8 @@ class TestSmoke(object):
         AddDemoAccountsTestCA()
 
     def run_deposit_ca(self):
+        # TEST "test_make_success_deposit_from_ca" WAS DISABLED UNTIL DEPOSIT TRANSACTIONS WOULD BE CONFIGURED
+        # Just "test_make_failed_deposit_from_ca" is executed
         DepositTestCa()
 
     def run_withdraw(self):
