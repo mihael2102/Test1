@@ -3,9 +3,10 @@ import json
 import requests
 
 from src.main.python.ui.crm.model.constants.ApiConstants import ApiConstants
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 
 
-class ApiPage():
+class ApiPage(CRMBasePage):
     def __init__(self, partner_id, partner_secret_key, millis_time, auth_url):
         super().__init__()
         self.partner_id = str(partner_id)

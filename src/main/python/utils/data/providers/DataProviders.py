@@ -25,15 +25,15 @@ class DataProviders(object):
 
     def get_data_api_client_information(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/api_information.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/client-information.json')
         conn_string = json.load(connection_file)
-        return conn_string[ApiConstants.CLIENT_INFO_API][value]
+        return conn_string[ApiConstants.CLIENT_1_INFO_API][value]
 
     def get_data_api_affiliate_information(self, value):
         connection_file = open(
-            'D:/automation-newforexqa/src/test/python/resources/test-data/api_information.json')
+            'D:/automation-newforexqa/src/test/python/resources/test-data/client-information.json')
         conn_string = json.load(connection_file)
-        return conn_string[ApiConstants.AFFILIATE_INFO_API][value]
+        return conn_string[ApiConstants.CLIENT_1_INFO_API][value]
 
     def get_data_campaign_module(self, value):
         connection_file = open(
