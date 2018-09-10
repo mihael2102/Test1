@@ -66,6 +66,30 @@
     "tenth_column": "City *",
     "eleventh_column": "Brand"
   },
+  "client_1_api": {
+    "email": "qa+testing49@pandats.com",
+    "password": "as1as2",
+    "country": "de",
+    "firstName": "TestQa",
+    "lastName": "Kl",
+    "phone": "55555555",
+    "currency": "usd",
+    "city": "Paris",
+    "address": "test address",
+    "postalCode": "56677",
+    "citizenship": "ye",
+    "usCitizen": "true",
+    "usTaxId": "777777",
+    "birthday": "1988-12-31",
+    "referral": "test referral",
+    "ip": "0.0.0.0",
+    "clientSource": "test client source"
+  },
+  "Affiliate_info_api": {
+    "partnerId": "3898",
+    "partner_secret_key": "5fb7b2998ef7c9223cf14b4db93f7a4cbf79c58749def28ebf1032165888c5f5",
+    "content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+  },
   "client_4": {
     "email_name": "username.testing1",
     "email": "username.testing1@gmail.com",

@@ -1,7 +1,7 @@
 import time
 
 class ApiConstants(object):
-    # HEADER. Field names for requests. Key values for JSON
+    # Request. HEADER. Field names for requests. Key values for JSON
     FIELD_NAME_CONTENT_TYPE = 'content-type'
     FIELD_NAME_AUTHORIZATION = 'Authorization'
 
@@ -20,6 +20,8 @@ class ApiConstants(object):
     MILLIS_TIME = int(round(time.time()))
 
     # NEW CLIENT
+    # Info about new client
+    CLIENT_1_INFO_API = "client_1_api"
     # Field names for requests. Key values for JSON
     FIELD_NAME_EMAIL = "email"
     FIELD_NAME_PASSWORD = "password"
@@ -27,6 +29,5 @@ class ApiConstants(object):
     FIELD_NAME_FIRSTNAME = "firstName"
     FIELD_NAME_LASTNAME = "lastName"
     FIELD_NAME_PHONE = "phone"
-    # Info about new client
-    CLIENT_INFO_API = "Client_info_api"
+
 
