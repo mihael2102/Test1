@@ -17,7 +17,7 @@ class CaNewAccountsTab(BrandBasePage):
     '''
 
     def select_account_currency(self, currency):
-        drop_down_currency = self.driver.find_element(By.XPATH, "//custom-select[@name='currency']")
+        drop_down_currency = super().wait_element_to_be_clickable("//custom-select[@name='currency']")
         drop_down_currency.click()
         Logging().reportDebugStep(self, "Click the drop_down_currency: " + currency)
         sleep(1)
