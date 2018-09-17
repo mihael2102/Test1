@@ -1,48 +1,13 @@
 tests_config:
   # Smoke test suite
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
-  class: CalendarView
-  tests:
-    - test_check_day_tab
-    - test_check_week_tab
-    - test_check_month_tab
-    - test_check_add_tasks_calendar_view
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
-  class: TabLeadsModuleCRM
-  tests:
-    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
-    - test_edit_lead  # Creates a new lead and edits it's data. Validates that the data changed.
-    - test_mass_edit_lead
-    - test_mass_assign_lead_module
-    - test_perform_convert_lead   # Creates a lead and converts it to a client
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
   class: SearchingClientsTestCRM
   tests:
     - test_make_searching_client_module   # Searches for a client.
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
-  class: AddInteraction
-  tests:
-    - test_add_interaction  # Adds an interaction for a client
-    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
   class: TradingAccountCrmTest
   tests:
     - test_crm_open_trading_account  # open a new trading account
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
-  class: CheckPasswordTestCRM
-  tests:
-    - test_check_client_password_crm  # check the client account password
-    - test_check_mt4_password_crm   # check the MT4 account password
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
-  class: ChangePasswordTestCRM
-  tests:
-    - test_change_client_password_from_crm  # change a client account password from the crm
-    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
   class: DepositTestCRM
   tests:
@@ -53,7 +18,185 @@ tests_config:
   class: CreditInTestCRM
   tests:
     - test_make_credit_in_crm
-
-
-
-
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
+  class: CreditOutTestCRM
+  tests: 
+    - test_make_credit_out_crm
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
+  class: TransferBetweenTa
+  tests:
+    - test_make_transfer_between_ta
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
+  class: CheckPasswordTestCRM
+  tests:
+    - test_check_client_password_crm  # check the client account password
+    - test_check_mt4_password_crm   # check the MT4 account password
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
+  class: ChangePasswordTestCRM
+  tests:
+    - test_change_client_password_from_crm  # change a client account password from the crm
+    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
+  class: AddInteraction
+  tests:
+    - test_add_interaction  # Adds an interaction for a client
+    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
+- module: src.test.python.ui.automation.implementation.crm.user_management.Test_Create_User
+  class: UserTest
+  tests:
+    - test_create_user
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
+  class: MassEditTestCRM
+  tests:
+    - test_make_mass_edit
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Withdraw
+  class: WithdrawTestCRM
+  tests:
+    - test_make_withdraw_crm
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign
+  class: MassAssignTestCRM
+  tests:
+    - test_mass_assign
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_SMS_Clients_Module
+  class: SendSMSClientsModuleTest
+  tests:
+    - test_perform_send_sms_clients_module
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Download_Documents_Client_Module
+  class: DownloadDocumentsClientModule
+  tests:
+    - test_perform_download_document
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tab_Task_Module
+  class: TabTasksModuleCRM
+  tests:
+    - test_check_tab_tasks_module
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+  class: AddEventTaskModule
+  tests:
+    - test_add_event
+    - test_edit_event
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
+  class: CalendarView
+  tests:
+    - test_check_day_tab
+    - test_check_week_tab
+    - test_check_month_tab
+    - test_check_add_tasks_calendar_view
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Edit
+  class: MassEditTaskModule
+  tests:
+    - test_mass_edit_task
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Delete
+  class: MassDeleteTaskModule
+  tests:
+    - test_mass_delete_task_module
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Sms
+  class: MassSmsTaskModule
+  tests:
+    - test_perform_mass_sms_task_module
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Add_New_Task_Calendar_View
+  class: AddNewTaskCalendarView
+  tests:
+    - test_check_add_tasks_calendar_view
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Tasks_Actions
+  class: ActionsTaskModuleTest
+  tests:
+    - test_check_send_sms_actions_section
+    - test_check_phone_actions_section
+    - test_send_email_actions_section
+    - test_send_email_from_phone_actions_section
+    - test_send_sms_from_phone_actions_section
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Email
+  class: MassEmailTaskModule
+  tests:
+    - test_make_mass_email
+- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
+  class: DocumentModuleTest
+  tests:
+    - test_create_document
+    - test_delete_document
+- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Tab_Document_Module
+  class: TabDocumentModule
+  tests:
+    - test_check_tabs_document_module
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
+    - test_edit_lead  # Creates a new lead and edits it's data. Validates that the data changed.
+    - test_mass_edit_lead
+    - test_mass_assign_lead_module
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Import_Lead
+  class: ImportLeadTest
+  tests:
+    - test_import_lead
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
+  class: TabLeadsModuleCRM
+  tests:
+    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
+- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
+  class: TabFinancialTransaction
+  tests:
+    - test_check_all_tab_from_financial_transactions
+    - test_check_searching_by_column
+- module: src.test.python.ui.automation.implementation.crm.tests_my_dashboard_module.Test_My_Dashboard_Actions
+  class: MyDashboardActionsTest
+  tests:
+    - test_check_send_sms_actions_section
+    - test_check_phone_actions_section
+    - test_send_email_actions_section
+    - test_send_email_from_phone_actions_section
+    - test_send_sms_from_phone_actions_section
+- module: src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs
+  class: AuditLogsModuleTest
+  tests:
+    - test_check_tab_audit_logs_module
+    - test_check_searching_module
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
+  class: SendEmailTestCRM
+  tests:
+    - test_make_send_email
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
+  class: HelpDeskModuleTest
+  tests:
+    - test_create_ticket
+    - test_edit_ticket
+    - test_searching_in_help_desk_by_ticket_number
+    - test_searching_in_help_desk_by_tittle
+    - test_searching_in_help_desk_by_priority
+    - test_searching_in_help_desk_by_assigned_to
+    - test_searching_in_help_desk_by_status
+    - test_searching_in_help_desk_by_ca_id
+    - test_searching_in_help_desk_by_category
+    - test_searching_in_help_desk_by_brand
+    - test_searching_in_help_desk_by_description
+    - test_searching_in_help_desk_by_related_to
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk
+  class: TabHelpDeskTest
+  tests:
+    - test_check_tab_help_desk
+    - test_searching_help_desk
+- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
+  class: AffiliateModule
+  tests:
+    - test_create_affiliate
+    - test_edit_affiliate
+    - test_delete_affiliate
+- module: src.test.python.ui.automation.implementation.crm.tests_trading_account.Test_Trading_Account_Module
+  class: TradingAccountModuleTest
+  tests:
+    - test_check_tab_trading_account_module
+    - test_searching_trading_account_module
+- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
+  class: AutoAssignModuleTest
+  tests:
+    - test_perform_add_rule
+    - test_perform_edit_rule
+    - test_perform_delete_rule
+- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
+  class: CampaignsModuleTest
+  tests:
+    - test_create_campaigns_module
+    - test_edit_campaigns_module
+    - test_searching_columns
