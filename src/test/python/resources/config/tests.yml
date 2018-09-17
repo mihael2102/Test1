@@ -5,6 +5,7 @@ tests_config:
     - test_check_day_tab
     - test_check_week_tab
     - test_check_month_tab
+    - test_check_add_tasks_calendar_view
 - module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
   class: TabLeadsModuleCRM
   tests:
@@ -13,8 +14,10 @@ tests_config:
   directive: reload_configuration
   class: LeadModuleTest
   tests:
-#    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
+    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
     - test_edit_lead  # Creates a new lead and edits it's data. Validates that the data changed.
+    - test_mass_edit_lead
+    - test_mass_assign_lead_module
     - test_perform_convert_lead   # Creates a lead and converts it to a client
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
   class: SearchingClientsTestCRM

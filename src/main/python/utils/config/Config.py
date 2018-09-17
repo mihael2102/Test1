@@ -9,4 +9,4 @@ window_before = None
 counter = 1
 logger = None
 handler = None
-chrome_driver = "/home/israel/code/automation-newforexqa/utils/chromedriver"
+chrome_driver = "D:/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"

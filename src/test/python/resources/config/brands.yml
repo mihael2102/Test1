@@ -1,9 +1,9 @@
 brands:
 ### testing environments - old forex
-#- name: forexcrm.loc
-#  config_file: forexcrm.loc.yml
-#- name: forexdev
-#  config_file: forex_dev.yml
+##- name: forexcrm.loc
+##  config_file: forexcrm.loc.yml
+##- name: forexdev
+##  config_file: forex_dev.yml
 #- name: forexstaging
 #  config_file: forex_staging.yml
 ### testing environments - new forex
@@ -11,10 +11,10 @@ brands:
 #  config_file: newfxcrm.loc.yml
 - name: newforexdev
   config_file: new_forex_dev.yml
-#- name: newforexstaging
-#  config_file: new_forex_staging.yml
-#- name: newforexqa
-#  config_file: new_forex_qa.yml
+##- name: newforexstaging
+##  config_file: new_forex_staging.yml
+##- name: newforexqa
+##  config_file: new_forex_qa.yml
 ### production environments - old forex
 #- name: itrader
 #  config_file: itrader.yml
@@ -24,8 +24,8 @@ brands:
 #  config_file: otcapital.yml
 #- name: urf
 #  config_file: urf_financial.yml
-#- name: gmo
-#  config_file: gmo_trading.yml
+##- name: gmo
+##  config_file: gmo_trading.yml
 #- name: rimarkets
 #  config_file: rimarkets.yml
 #- name: kayafx
@@ -51,3 +51,17 @@ brands:
 #  config_file: fx_markets_pro.yml
 #- name: q8
 #  config_file: q8.yml
+- name: 2mercados
+  config_file: 2mercados.yml
+- name: axa_markets
+  config_file: axa_markets.yml
+- name: aztrades
+  config_file: aztrades.yml
+- name: bots
+  config_file: bots.yml
+- name: kontofx
+  config_file: kontofx.yml
+- name: xtraderfx
+  config_file: xtraderfx.yml
+- name: firstindex
+  config_file: firstindex.yml
