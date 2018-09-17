@@ -1,4 +1,5 @@
 tests_config:
+  # Smoke test suite
 - module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
   class: CalendarView
   tests:
@@ -46,3 +47,13 @@ tests_config:
   class: DepositTestCRM
   tests:
     - test_make_deposit_crm  # make a deposit into a trading account from the crm
+
+  # CRM test suite
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
+  class: CreditInTestCRM
+  tests:
+    - test_make_credit_in_crm
+
+
+
+
