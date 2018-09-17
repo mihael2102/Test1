@@ -250,3 +250,7 @@ module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Te
     - test_create_campaigns_module
     - test_edit_campaigns_module
     - test_searching_columns
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - test_crm_open_trading_account  # open a new trading account
