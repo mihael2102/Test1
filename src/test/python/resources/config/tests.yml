@@ -1,18 +1,68 @@
 tests_config:
   # Smoke test suite
+- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
+  class: FilterModulesTest
+  tests:
+    - test_create_filter_clients_module
+    - test_create_filter_documents_module
+    - test_create_filter_leads_module
+    - test_create_filter_help_desk
+    - test_create_filter_trading_account_module
+- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
+  class: SignUpTest
+  tests:
+    - test_check_sign_up
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
   class: SearchingClientsTestCRM
   tests:
-    - test_make_searching_client_module   # Searches for a client.
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
+    - test_make_searching_client_module
+- module: src.test.python.ui.automation.implementation.ca.Test_Support_Ticket
+  class: CreateSupportTicketTestCa
   tests:
-    - test_crm_open_trading_account  # open a new trading account
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+    - test_create_ticket
+- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Live_Accounts
+  class: AddNewLiveAccountTestCA
+  tests:
+     - test_check_add_live_account_eur_currency
+     - test_check_add_live_account_gbr_currency
+     - test_check_add_live_account_cad_currency
+     - test_check_add_live_account_jpy_currency
+- module: src.test.python.ui.automation.implementation.ca.Test_Add_Demo_Accounts
+  class: AddDemoAccountsTestCA
+  tests:
+    - test_check_add_demo_account_usd_currency
+    - test_check_add_demo_account_eur_currency
+    - test_check_add_demo_account_gbr_currency
+    - test_check_add_demo_account_cad_currency
+- module: src.test.python.ui.automation.implementation.ca.Test_Make_Deposit
+  class: DepositTestCa
+  tests:
+    - test_make_deposit_from_ca
+- module: src.test.python.ui.automation.implementation.ca.Test_Make_Withdraw
+  class: WithdrawTestCA
+  tests:
+    - test_make_withdraw_ca
+- module: src.test.python.ui.automation.implementation.ca.Test_Make_Transfer_Funds
+  class: TransferFundsTestCA
+  tests:
+    - test_make_transfer_funds
+- module: src.test.python.ui.automation.implementation.ca.Test_Download_Documents
+  class: DownloadDocumentsTestCA
+  tests:
+    - test_make_dowload_documents
+- module: src.test.python.ui.automation.implementation.ca.Test_Change_Password
+  class: ChangePasswordTestCA
+  tests:
+    - test_change_password_from_ca
+- module: src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update
+  class: PersonalDetailsUpdateTestCA
+  tests:
+     - test_perform_client_update_from_CA
+     - test_perform_client_update_from_CRM
+module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
   class: DepositTestCRM
   tests:
     - test_make_deposit_crm  # make a deposit into a trading account from the crm
-
   # CRM test suite
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
   class: CreditInTestCRM
@@ -20,7 +70,7 @@ tests_config:
     - test_make_credit_in_crm
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
   class: CreditOutTestCRM
-  tests: 
+  tests:
     - test_make_credit_out_crm
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
   class: TransferBetweenTa

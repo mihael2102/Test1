@@ -12,13 +12,13 @@ from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_
 from src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients import \
     SearchingClientsTestCRM
 from src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter import \
-    CreateFiltersTestCRM
+    FilterModulesTest
 
 
 class TestSmoke(object):
 
     def run_create_filter(self):
-        CreateFiltersTestCRM()
+        FilterModulesTest()
 
     def run_sign_up(self):
         SignUpTest()
