@@ -91,8 +91,8 @@ brands:
 #  config_file: mpcrypto.yml
 #- name: forexbestmarket
 #  config_file: forexbestmarket.yml
-#- name: newrichmarket
-#  config_file: newrichmarket.yml
+#- name: newrichmarkets
+#  config_file: newrichmarkets.yml
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
 #- name: goldenmarkets
