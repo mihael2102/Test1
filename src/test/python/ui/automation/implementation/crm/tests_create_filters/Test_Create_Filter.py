@@ -8,11 +8,11 @@ from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition
 class FilterModulesTest(BaseTest):
 
     def test_create_filter_clients_module(self):
-        clients_module_page = CRMLoginPage() \
-            .open_first_tab_page(Config.url_crm) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        clients_module_page = CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_data_client(TestDataConstants.USER_NAME),
+                       self.config.get_data_client(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_data_client(TestDataConstants.OTP_SECRET))
 
         FilterPrecondition().create_filter_clients_module()
 
