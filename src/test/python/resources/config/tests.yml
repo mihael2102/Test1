@@ -59,7 +59,7 @@ tests_config:
   tests:
      - test_perform_client_update_from_CA
      - test_perform_client_update_from_CRM
-module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
   class: DepositTestCRM
   tests:
     - test_make_deposit_crm  # make a deposit into a trading account from the crm

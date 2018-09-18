@@ -235,7 +235,7 @@ class ClientsPage(CRMBasePage):
         return ClientProfilePage(self.driver)
 
     def open_create_filter_pop_up(self):
-        filter_button = super().wait_element_to_be_clickable("//a[@title='Create Filter']")
+        filter_button = super().wait_element_to_be_clickable("//a[contains(text(), 'Create Filter')]")
         filter_button.click()
         Logging().reportDebugStep(self, "The filter pop-up is opened")
         return FilterPage(self.driver)
