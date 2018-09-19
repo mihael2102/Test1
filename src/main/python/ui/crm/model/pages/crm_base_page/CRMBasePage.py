@@ -79,6 +79,10 @@ class CRMBasePage(object):
         self.driver.execute_script("window.scrollTo(0, 0);")
         Logging().reportDebugStep(self, "Perform scroll up ")
 
+    def scroll_into_view(self, element):
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+        Logging().reportDebugStep(self, "Perform scroll into view of the element '%s'" % element.text)
+
     def click_ok(self):
         button = self.wait_load_element("//button[contains(text(),'OK')]")
         button.click()
