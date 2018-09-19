@@ -51,7 +51,7 @@ class MultiRunner:
             result = runner.run(test)
 
             test_name = test_data['class'] + '.' + test_data['method']
-            test_passed = False
+            #test_passed = False
             if not result or result.errors:
                 results[test_name] = "ERROR"
             elif result.failures:
@@ -60,9 +60,9 @@ class MultiRunner:
                 results[test_name] = "SKIP"
             else:
                 results[test_name] = "PASS"
-                test_passed = True
-            if self.fail_fast and not test_passed:
-                break
+                #test_passed = True
+            #if self.fail_fast and not test_passed:
+                #break
 
         return results
 
