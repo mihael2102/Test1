@@ -49,16 +49,16 @@ class TabFinancialTransaction(BaseTest):
                        self.config.get_data_client(TestDataConstants.OTP_SECRET))
 
         financial_transaction_list_page = CRMHomePage(self.driver) \
-                                                .open_more_list_modules() \
                                                 .select_financial_transactions_module_more_list(
                                                     FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
 
         # Get data of 3rd transaction (transaction's info will be changed when registration via CA starts to work)
         transaction_number = financial_transaction_list_page.get_transaction_id_by_position_from_list()
+        trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
         client_name = financial_transaction_list_page.get_client_name_by_position_from_list()
         transaction_type_text = financial_transaction_list_page.get_transaction_type_by_position_from_list()
         modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()[:10] + " - " + financial_transaction_list_page.get_modified_time_by_position_from_list()[:10]
-        trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
+
 
         transaction_number_from_its_details_page = financial_transaction_list_page.perform_searching_trading_account_via_filters(transaction_number, client_name,
                                                                 transaction_type_text, modified_time,trading_account)\
