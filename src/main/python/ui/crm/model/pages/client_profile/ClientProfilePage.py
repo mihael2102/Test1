@@ -1,10 +1,12 @@
 import re
 from _decimal import Decimal
 from time import sleep
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.modules.client_modules.client_deposit.CRMClientDeposit import CRMClientDeposit
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.document.CreateDocumentModule import CreateDocumentModule
 from src.main.python.ui.crm.model.modules.tasks_module.SmsNotifier import SmsNotifierModule
@@ -178,6 +180,8 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_client_account(self):
+        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
+        super().scroll_into_view(account_number)
         account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
         Logging().reportDebugStep(self, "Returns the client_account  text " + account_number.text)
         return account_number.text
@@ -472,3 +476,26 @@ class ClientProfilePage(CRMBasePage):
         parser_client_status_text = re.sub('[" "]', '', referral.text, 3)
         Logging().reportDebugStep(self, "Returns the referral : " + parser_client_status_text)
         return parser_client_status_text
+
+    def open_deposit_for_client_in_menu(self):
+        deposit_for_client_element = super().wait_element_to_be_clickable("//*[@id='sidebar']/table[1]/tbody/tr[4]/td/a")
+        deposit_for_client_element.click()
+        Logging().reportDebugStep(self, "Deposit for client popup was opened")
+        return ClientProfilePage(self.driver)
+
+    def fill_client_deposit_pop(self, account_number):
+        try:
+            trading_account_dropdown_list = super().wait_element_to_be_clickable(
+                                        "//*[@id='ClientDepositConfirmation']//button[@title='Choose trading account']", 10)
+            trading_account_dropdown_list.click()
+            selected_live_trading_account = self.driver.find_element(By.XPATH, "//span[contains(text(), '%s')]" % account_number)
+            super().scroll_into_view(selected_live_trading_account)
+            selected_live_trading_account.click()
+        except (NoSuchElementException, TimeoutException) as e:
+            Logging().reportDebugStep(self, "There is no accounts drop down list")
+        i_confirm_checkbox = super().wait_element_to_be_clickable("//*[@id='confirmed']")
+        i_confirm_checkbox.click()
+        ok_button = super().wait_element_to_be_clickable("//*[@id='confirmationform_action_button']")
+        ok_button.click()
+        Logging().reportDebugStep(self, "Click OK in Client Deposit popup")
+        return CRMClientDeposit(self.driver)
