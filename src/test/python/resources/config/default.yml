@@ -63,8 +63,8 @@ client_1:
   # EVAL_first_name: "'John_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S'))"
   first_name: "John-test" # manual config
   last_name: "Doe"
-#  EVAL_email: "'john_doe_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S')) + '@pandats.com'"
-  email: "john_doe_20180823_131412@pandats.com" # manual config
+  EVAL_email: "'john_doe_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S')) + '@pandats.com'"
+#  email: "john_doe_20180823_131412@pandats.com" # manual config
   short_client_name: "John-test Doe"
   phone: "7777777"
   phone_area_code: 111
