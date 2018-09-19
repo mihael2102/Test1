@@ -255,3 +255,4 @@ tests_config:
   class: TradingAccountCrmTest
   tests:
     - test_crm_open_trading_account  # open a new trading account
+    - test_crm_edit_trading_account  # edit trading account

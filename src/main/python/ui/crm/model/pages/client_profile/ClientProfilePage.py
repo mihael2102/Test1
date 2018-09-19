@@ -3,6 +3,8 @@ from _decimal import Decimal
 from time import sleep
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
+from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.document.CreateDocumentModule import CreateDocumentModule
 from src.main.python.ui.crm.model.modules.tasks_module.SmsNotifier import SmsNotifierModule
@@ -263,6 +265,11 @@ class ClientProfilePage(CRMBasePage):
         mt4_button.click()
         Logging().reportDebugStep(self, "Open mt4 actions ")
         MT4DropDown(self.driver).mt4_actions(module)
+
+    def close_popup_new_trading_account(self):
+        super().wait_element_to_be_clickable("(//button[@class = 'btn btn-primary'])[2]").click()
+        sleep(3)
+        return ClientProfilePage(self.driver)
 
     def wait_element_is_present(self):
         super().wait_until_element_present("//span[@class ='clientStatusFTD']")
