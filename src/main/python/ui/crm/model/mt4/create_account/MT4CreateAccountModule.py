@@ -27,13 +27,38 @@ class MT4CreateAccountModule(CRMBasePage):
         self.click_create()
         return ClientProfilePage(self.driver)
 
+    def update_account(self, trading_account, group, leverage):
+        """
+                create a trading account
+                :param trading_account:
+                :param group:
+                :param leverage:
+                :return:
+                """
+        if trading_account:
+            self.select_trading_account(trading_account)
+        if group:
+            self.select_group(group)
+        if leverage:
+            self.select_leverage(leverage)
+        self.click_update()
+        return ClientProfilePage(self.driver)
+
+    def select_trading_account(self, trading_account):
+        drop_down = self.wait_element_to_be_clickable("//select[@name='login']")
+        drop_down.click()
+        trading_account_selection = self.driver.find_element(By.XPATH, "//*[@id='login']/option[contains(text(), '%s')]" % trading_account)
+        trading_account_selection.click()
+        Logging().reportDebugStep(self, "Trading account was updated with value: %s" % trading_account_selection.text)
+        return self
+
     def select_server(self, server):
         drop_down = self.wait_element_to_be_clickable("//select[@name='server']")
         drop_down.click()
         server_selection = self.driver.find_element(By.XPATH, "//select[@name='server']//"
                                                               "following-sibling::*[contains(.,'%s')]" % server)
         server_selection.click()
-        Logging().reportDebugStep(self, "Trading account server was selected: %s" + server_selection.text)
+        Logging().reportDebugStep(self, "Trading account server was selected: " + server_selection.text)
         return self
 
     def select_currency(self, currency):
@@ -42,16 +67,17 @@ class MT4CreateAccountModule(CRMBasePage):
         currency_selection = self.driver.find_element(By.XPATH, "//select[@name='currency']//"
                                                                 "following-sibling::*[contains(.,'%s')]" % currency)
         currency_selection.click()
-        Logging().reportDebugStep(self, "Trading account currency was selected: %s" + currency_selection.text)
+        Logging().reportDebugStep(self, "Trading account currency was selected: " + currency_selection.text)
         return self
 
     def select_group(self, group):
         drop_down = self.wait_element_to_be_clickable("//select[@name='group']")
         drop_down.click()
         group_selection = self.driver.find_element(By.XPATH, "//select[@name='group']//"
-                                                             "following-sibling::*[contains(.,'%s')]" % group)
+                                                             "*[contains(.,'%s')]" % group)
+        #"//select[@name='group']//following-sibling::*[contains(.,'%s')]"
         group_selection.click()
-        Logging().reportDebugStep(self, "Trading account group was selected: %s" + group_selection.text)
+        Logging().reportDebugStep(self, "Trading account group was selected: " + group_selection.text)
         return self
 
     def select_leverage(self, leverage):
@@ -60,10 +86,15 @@ class MT4CreateAccountModule(CRMBasePage):
         leverage_selection = self.driver.find_element(By.XPATH, "//select[@name='leverage']//"
                                                                 "following-sibling::*[contains(.,'%s')]" % leverage)
         leverage_selection.click()
-        Logging().reportDebugStep(self, "Trading account leverage was selected: %s" + leverage_selection.text)
+        Logging().reportDebugStep(self, "Trading account leverage was selected: " + leverage_selection.text)
         return self
 
     def click_create(self):
         button = self.wait_load_element("//button[contains(., 'Create')]")
         button.click()
         Logging().reportDebugStep(self, "The Create button was clicked")
+
+    def click_update(self):
+        button = self.wait_load_element("//button[contains(., 'Save')]")
+        button.click()
+        Logging().reportDebugStep(self, "The Save button was clicked")

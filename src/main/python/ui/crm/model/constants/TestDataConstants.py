@@ -59,3 +59,8 @@ class TestDataConstants(object):
     TRADING_CURRENCY = "currency"
     TRADING_GROUP = "group"
     TRADING_LEVERAGE = "leverage"
+    TRADING_ACCOUNT1_UPDATED = "trading_account_1_demo_upd"
+    TRADING_ACCOUNT_DEMO = "trading_account_demo"
+    TRADING_ACCOUNT_DEMO_GROUP = "group"
+    TRADING_ACCOUNT_DEMO_LEVERAGE = "leverage"
+

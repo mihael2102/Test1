@@ -14,3 +14,19 @@ class TradingAccountCrmTest(BaseTest):
             .add_demo_account_from_crm()
         confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
         self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+
+    def test_crm_edit_trading_account(self):
+        TradingAccountPrecondition(self.driver, self.config) \
+            .add_demo_account_from_crm()
+
+        # Close pop up and update popup
+        ClientProfilePage(self.driver).close_popup_new_trading_account()
+        TradingAccountPrecondition(self.driver, self.config).update_demo_account_from_crm()
+
+        confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
+        self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY)
+
+
+
+
+
