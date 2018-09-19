@@ -4,8 +4,8 @@ from src.main.python.utils.logs.Loging import Logging
 
 class FinancialTransactionInformationPage(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
+    # def __init__(self):
+    #     super().__init__()
 
     def get_trading_account_text(self):
         account_text = super().wait_element_to_be_clickable(
