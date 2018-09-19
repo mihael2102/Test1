@@ -102,4 +102,9 @@ trading_account_1_demo_upd:
   trading_account_demo: "newForex Demo"
   group: "EUR"
   leverage: "200"
+trading_account_1_live:
+  server: "Live"
+  currency: "USD"
+  group: "USD"
+  leverage: "100"
 
