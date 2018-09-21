@@ -35,7 +35,7 @@ class HelpDeskPage(CRMBasePage):
         filter_button = super().wait_element_to_be_clickable("//a[@title='Create Filter']")
         filter_button.click()
         Logging().reportDebugStep(self, "The filter pop-up is opened")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def get_all_tab_text(self):
         all_tab = super().wait_element_to_be_clickable("//li[contains(text(),'All')]")
@@ -332,3 +332,63 @@ class HelpDeskPage(CRMBasePage):
         search_now_button.click()
         Logging().reportDebugStep(self, "The search_now_button was clicked")
         return HelpDeskPage()
+
+    def get_first_name_column(self):
+        name_first_column = super().wait_element_to_be_clickable(
+            "//table[@id='resizeble_cols']//td[2]")
+        Logging().reportDebugStep(self, "First column name  : " + name_first_column.text)
+        return name_first_column.text
+
+    def get_second_name_column(self):
+        name_second_column = self.driver.find_element(By.XPATH,
+                                                      "//table[@id='resizeble_cols']//td[3]")
+        Logging().reportDebugStep(self, "Second column name: " + name_second_column.text)
+        return name_second_column.text
+
+    def get_third_name_column(self):
+        name_third_column = self.driver.find_element(By.XPATH,
+                                                     "//table[@id='resizeble_cols']//td[4]")
+        Logging().reportDebugStep(self, "Third column name: " + name_third_column.text)
+        return name_third_column.text
+
+    def get_fourth_name_column(self):
+        name_fourth_column = self.driver.find_element(By.XPATH,
+                                                      "//table[@id='resizeble_cols']//td[5]")
+        Logging().reportDebugStep(self, "Fourth column name : " + name_fourth_column.text)
+        return name_fourth_column.text
+
+    def get_fifth_name_column(self):
+        name_fifth_column = self.driver.find_element(By.XPATH,
+                                                     "//table[@id='resizeble_cols']//td[6]")
+        Logging().reportDebugStep(self, "Fifth column name : " + name_fifth_column.text)
+        return name_fifth_column.text
+
+    def get_sixth_name_column(self):
+        name_sixth_column = self.driver.find_element(By.XPATH,
+                                                     "//table[@id='resizeble_cols']//td[7]")
+        Logging().reportDebugStep(self, "Sixth column name : " + name_sixth_column.text)
+        return name_sixth_column.text
+
+    def get_seventh_name_column(self):
+        name_seventh_column = self.driver.find_element(By.XPATH,
+                                                       "//table[@id='resizeble_cols']//td[8]")
+        Logging().reportDebugStep(self, "Seventh column name : " + name_seventh_column.text)
+        return name_seventh_column.text
+
+    def get_eighth_name_column(self):
+        name_eighth_column = self.driver.find_element(By.XPATH,
+                                                      "//table[@id='resizeble_cols']//td[9]")
+        Logging().reportDebugStep(self, "Eighth column name : " + name_eighth_column.text)
+        return name_eighth_column.text
+
+    def get_tenth_name_column(self):
+        name_tenth_column = super().wait_element_to_be_clickable(
+            "//table[@id='resizeble_cols']//td[10]")
+        Logging().reportDebugStep(self, "Tenth  column name : " + name_tenth_column.text)
+        return name_tenth_column.text
+
+    def get_eleventh_name_column(self):
+        name_eleventh_column = self.driver.find_element(By.XPATH,
+                                                        "//table[@id='resizeble_cols']//td[11]")
+        Logging().reportDebugStep(self, "Eleventh  column name : " + name_eleventh_column.text)
+        return name_eleventh_column.text

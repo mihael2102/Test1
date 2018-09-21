@@ -54,7 +54,7 @@ class FilterPage(CRMBasePage):
         self.perform_choice_eighth_column(eightn_column_name)
         self.perform_choice_tenth_column(tenth_column_name)
         self.perform_choice_eleventh_column(eleventh_column_name)
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_create_filter_documents_module(self, filter_name, first_column_name, second_column_name,
                                                third_column_name, fourth_column_name):
