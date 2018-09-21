@@ -37,7 +37,7 @@ class FilterPage(CRMBasePage):
         self.perform_choice_sixth_column(sixth_column_name)
         self.perform_choice_seventh_column(seventh_column_name)
         self.perform_choice_eighth_column(eighth_column_name)
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_create_filter_help_desk_module(self, filter_name, first_column_name, second_column_name,
                                                third_column_name, fourth_column_name, fifth_column_name,
@@ -84,74 +84,74 @@ class FilterPage(CRMBasePage):
         name_filter_field.clear()
         name_filter_field.send_keys(name_filter)
         Logging().reportDebugStep(self, "Tha name filter was set")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_choice_first_column(self, name_first_column):
         super().wait_element_to_be_clickable("//select[@name='column1']")
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='column1']"))
         select.select_by_visible_text(name_first_column)
         Logging().reportDebugStep(self, "The first column was selected")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_choice_second_column(self, name_second_column):
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='column2']"))
         select.select_by_visible_text(name_second_column)
         Logging().reportDebugStep(self, "The second column was selected")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_choice_third_column(self, name_third_column):
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='column3']"))
         select.select_by_visible_text(name_third_column)
         Logging().reportDebugStep(self, "The third column was selected")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_choice_fourth_column(self, name_fourth_column):
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='column4']"))
         select.select_by_visible_text(name_fourth_column)
         Logging().reportDebugStep(self, "The fourth column was selected")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_choice_fifth_column(self, name_fifth_column):
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='column5']"))
         select.select_by_visible_text(name_fifth_column)
         Logging().reportDebugStep(self, "The fifth column was selected")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_choice_sixth_column(self, name_sixth_column):
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='column6']"))
         select.select_by_visible_text(name_sixth_column)
         Logging().reportDebugStep(self, "The sixth column was selected")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_choice_seventh_column(self, name_seventh_column):
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='column7']"))
         select.select_by_visible_text(name_seventh_column)
         Logging().reportDebugStep(self, "The seventh column was selected")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_choice_eighth_column(self, name_eighth_column):
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='column8']"))
         select.select_by_visible_text(name_eighth_column)
         Logging().reportDebugStep(self, "The eight column was selected")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_choice_ninth_column(self, name_ninth_column):
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='column9']"))
         select.select_by_visible_text(name_ninth_column)
         Logging().reportDebugStep(self, "The ninth column was selected")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_choice_tenth_column(self, name_tenth_column):
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='column10']"))
         select.select_by_visible_text(name_tenth_column)
         Logging().reportDebugStep(self, "The eleventh column was selected")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_choice_eleventh_column(self, name_eleventh_column):
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='column11']"))
         select.select_by_visible_text(name_eleventh_column)
         Logging().reportDebugStep(self, "The eleventh column was selected")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def click_save_button(self):
         save_button = self.driver.find_element(By.XPATH, "//input[@id='saveCustomView']")

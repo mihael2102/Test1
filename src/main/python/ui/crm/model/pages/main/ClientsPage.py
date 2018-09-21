@@ -285,7 +285,7 @@ class ClientsPage(CRMBasePage):
     def get_eighth_name_column(self):
         name_eighth_column = self.driver.find_element(By.XPATH,
                                                       "//table[@id='resizeble_cols']//td[9]")
-        Logging().reportDebugStep(self, "Seventh column name : " + name_eighth_column.text)
+        Logging().reportDebugStep(self, "Eighth column name : " + name_eighth_column.text)
         return name_eighth_column.text
 
     def get_ninth_name_column(self):

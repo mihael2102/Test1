@@ -10,6 +10,7 @@ from src.main.python.ui.crm.model.constants.AutoAssignConstants import AutoAssig
 from src.main.python.ui.crm.model.constants.CampaingsConstants import CampaignsConstants
 from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
     FinancialTransactionsModuleConstants
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
@@ -265,6 +266,12 @@ class ConfigProvider:
 
     def get_data_lead_info(self, key, value):
         return self.get_value(key, value)
+
+    def get_data_lead_info_from_json(self, value):
+        connection_file = open(
+            self.path_to_data_provider + 'leads-information.json')
+        conn_string = json.load(connection_file)
+        return conn_string[LeadsModuleConstants.LEADS_MODULE_COLUMNS][value]
 
     def get_data_financial_transactions_info(self, value):
         connection_file = open(

@@ -58,24 +58,15 @@ class FilterPrecondition(object):
         CRMHomePage(self.driver).open_lead_module() \
             .open_create_filter_pop_up() \
             .perform_create_filter_lead_module(
-            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
-                                           LeadsModuleConstants.FILTER_NAME),
-            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
-                                           LeadsModuleConstants.FIRST_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
-                                           LeadsModuleConstants.SECOND_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
-                                           LeadsModuleConstants.THIRD_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
-                                           LeadsModuleConstants.FOURTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
-                                           LeadsModuleConstants.FIFTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
-                                           LeadsModuleConstants.SIXTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
-                                           LeadsModuleConstants.SEVENTH_COLUMN),
-            Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
-                                           LeadsModuleConstants.EIGHT_COLUMN)) \
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FILTER_NAME),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIRST_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.SECOND_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.THIRD_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FOURTH_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIFTH_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.SIXTH_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.SEVENTH_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN)) \
             .click_save_button()
         return FilterPrecondition(self.driver, self.config)
 
