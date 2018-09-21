@@ -107,4 +107,17 @@ trading_account_1_live:
   currency: "USD"
   group: "USD"
   leverage: "100"
+module_clients_filter:
+  test_filter: "TestFilterClientsModule"
+  first_column: "CRM Id"
+  second_column: "Client Status"
+  third_column: "Lead Exist"
+  fourth_column: "Email *"
+  fifth_column: "Client Name"
+  sixth_column: "Assigned To *"
+  seventh_column: "Country"
+  eighth_column: "First Name"
+  ninth_column: "Last Name"
+  tenth_column: "City *"
+  eleventh_column: "Brand"
 

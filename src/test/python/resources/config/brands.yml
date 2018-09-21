@@ -45,8 +45,8 @@ brands:
 #  config_file: royal_cfds.yml
 #- name: intelligent_capital
 #  config_file: intelligent_capital.yml
-#- name: solid_fx
-#  config_file: solid_fx.yml
+- name: solid_fx
+  config_file: solid_fx.yml
 #- name: FXMarketPro
 #  config_file: fx_markets_pro.yml
 #- name: q8
@@ -135,8 +135,8 @@ brands:
 #  config_file: kbcapitals.yml
 #- name: oinvestsa
 #  config_file: oinvestsa.yml
-- name: rimarkets-staging
-  config_file: rimarkets-staging.yml
+#- name: rimarkets-staging
+#  config_file: rimarkets-staging.yml
 
 
 

@@ -10,27 +10,34 @@ from src.main.python.utils.config import Config
 
 class FilterPrecondition(object):
 
+    driver = None
+    config = None
+
+    def __init__(self, driver, config):
+        self.driver = driver
+        self.config = config
+
     def create_filter_clients_module(self):
-        CRMHomePage().open_client_module() \
+        CRMHomePage(self.driver).open_client_module() \
             .open_create_filter_pop_up() \
             .perform_create_filter_client_module(
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.FILTER_NAME),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.FIRST_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SECOND_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.THIRD_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.FOURTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.FIFTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SIXTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SEVENTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.EIGHTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.NINTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.TENTH_COLUMN),
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.ELEVENTH_COLUMN)) \
+            self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FILTER_NAME),
+            self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
+            self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SECOND_COLUMN),
+            self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
+            self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FOURTH_COLUMN),
+            self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIFTH_COLUMN),
+            self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SIXTH_COLUMN),
+            self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SEVENTH_COLUMN),
+            self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.EIGHTH_COLUMN),
+            self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.NINTH_COLUMN),
+            self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN),
+            self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN)) \
             .click_save_button()
-        return FilterPrecondition()
+        return FilterPrecondition(self.driver, self.config)
 
     def create_filter_help_desk(self):
-        CRMHomePage().open_help_desk_page() \
+        CRMHomePage(self.driver).open_help_desk_page() \
             .open_create_filter_pop_up() \
             .perform_create_filter_help_desk_module(
             Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME),
@@ -45,10 +52,10 @@ class FilterPrecondition(object):
             Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.TENTH_COLUMN),
             Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.ELEVENTH_COLUMN)) \
             .click_save_button()
-        return FilterPrecondition()
+        return FilterPrecondition(self.driver, self.config)
 
     def create_filter_leads_module(self):
-        CRMHomePage().open_lead_module() \
+        CRMHomePage(self.driver).open_lead_module() \
             .open_create_filter_pop_up() \
             .perform_create_filter_lead_module(
             Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
@@ -70,25 +77,25 @@ class FilterPrecondition(object):
             Config.data.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
                                            LeadsModuleConstants.EIGHT_COLUMN)) \
             .click_save_button()
-        return FilterPrecondition()
+        return FilterPrecondition(self.driver, self.config)
 
     def create_filter_documents_module(self):
-        CRMHomePage().open_more_list_modules() \
+        CRMHomePage(self.driver).open_more_list_modules() \
             .select_document_module_more_list(DocumentModuleConstants.DOCUMENT) \
             .open_create_filter_pop_up() \
             .perform_create_filter_documents_module(
-            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+            self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                  DocumentModuleConstants.FILTER_NAME),
-            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+            self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                  DocumentModuleConstants.FIRST_COLUMN),
-            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+            self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                  DocumentModuleConstants.SECOND_COLUMN),
-            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+            self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                  DocumentModuleConstants.THIRD_COLUMN),
-            Config.data.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+            self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                  DocumentModuleConstants.FOURTH_COLUMN)) \
             .click_save_button()
-        return FilterPrecondition()
+        return FilterPrecondition(self.driver, self.config)
 
     def create_filter_trading_account_module(self):
         CRMHomePage().open_trading_account_module() \
@@ -104,4 +111,4 @@ class FilterPrecondition(object):
             Config.data.get_data_columns_trading_module(TradingAccountConstants.SEVENTH_COLUMN),
             Config.data.get_data_columns_trading_module(TradingAccountConstants.EIGHTH_COLUMN)) \
             .click_save_button()
-        return FilterPrecondition()
+        return FilterPrecondition(self.driver, self.config)

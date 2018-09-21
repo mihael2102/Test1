@@ -37,6 +37,20 @@ class ConfigProvider:
         self.load_brand_config()
         self.brands = None
 
+        self.path_to_data_provider = ""
+        # Path to current directory where current file is located
+        fileDir = os.path.dirname(__file__)
+
+        # If "jenkins" in filePath, set DataProvider path to jenkins folder on server
+        if "jenkins" in fileDir:
+            self.path_to_data_provider = "C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/" % Config.test
+        # If tests are run locally, set local DataProvider path
+        elif ("D:/automation-newforexqa" in fileDir) or ("D:\\automation-newforexqa" in fileDir):
+            self.path_to_data_provider = "D:/automation-newforexqa/src/test/python/resources/test-data/"
+        # If tests are run neither on server nor locally, throw an exception and check path
+        else:
+            raise Exception("Wrong path to Data Provider. Please check it")
+
     def load_config(self):
         """
         Loads brands and tests configuration
@@ -203,49 +217,49 @@ class ConfigProvider:
 
     def get_data_campaign_module(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/campaigns-information.json' % Config.test)
+            self.path_to_data_provider + 'campaigns-information.json')
         conn_string = json.load(connection_file)
         return conn_string[CampaignsConstants.CAMPAIGN_MODULE_INFO][value]
 
     def get_data_document_module(self, key, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/documents-module-information.json' % Config.test)
+            self.path_to_data_provider + 'documents-module-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]
 
     def get_data_tabs_trading_module(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/trading-account-module-information.json' % Config.test)
+            self.path_to_data_provider + 'trading-account-module-information.json')
         conn_string = json.load(connection_file)
         return conn_string[TradingAccountConstants.TRADING_ACCOUNT_MODULE_TABS][value]
 
     def get_data_columns_trading_module(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/trading-account-module-information.json' % Config.test)
+            self.path_to_data_provider + 'trading-account-module-information.json')
         conn_string = json.load(connection_file)
         return conn_string[TradingAccountConstants.TRADING_ACCOUNT_MODULE_COLUMNS][value]
 
     def get_data_client_information_update_ca(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/client-information-update_ca.json' % Config.test)
+            self.path_to_data_provider + 'client-information-update_ca.json')
         conn_string = json.load(connection_file)
         return conn_string[CAClientUpdate.CLIENT_UPDATE_CA][value]
 
     def get_data_mass_edit(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/tasks-module.json' % Config.test)
+            self.path_to_data_provider + 'tasks-module.json')
         conn_string = json.load(connection_file)
         return conn_string[MassEditConstants.MASS_EDIT_CLIENT_MODULE][value]
 
     def get_data_mass_sms(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/tasks-module.json' % Config.test)
+            self.path_to_data_provider + 'tasks-module.json')
         conn_string = json.load(connection_file)
         return conn_string[MassEditConstants.MASS_SMS_CLIENT_MODULE][value]
 
     def get_data_task_module(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/tasks-module.json' % Config.test)
+            self.path_to_data_provider + 'tasks-module.json')
         conn_string = json.load(connection_file)
         return conn_string[TaskModuleConstants.TASK_MODULE][value]
 
@@ -254,42 +268,42 @@ class ConfigProvider:
 
     def get_data_financial_transactions_info(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/financial-transactions-information.json' % Config.test)
+            self.path_to_data_provider + 'financial-transactions-information.json')
         conn_string = json.load(connection_file)
         return conn_string[FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE][value]
 
     def get_data_audit_logs_info(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/audit-logs-information.json' % Config.test)
+            self.path_to_data_provider + 'audit-logs-information.json')
         conn_string = json.load(connection_file)
         return conn_string[AuditLogsConstants.AUDIT_LOGS_MODULE_INFO][value]
 
     def get_data_auto_assign_info(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/auto-assign-module-information.json' % Config.test)
+            self.path_to_data_provider + 'auto-assign-module-information.json')
         conn_string = json.load(connection_file)
         return conn_string[AutoAssignConstants.AUTO_ASSIGN_INFO][value]
 
     def get_data_user_info(self, key, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/user-information.json' % Config.test)
+            self.path_to_data_provider + 'user-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]
 
     def get_data_affliate_info(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/affiliate-information.json' % Config.test)
+            self.path_to_data_provider + 'affiliate-information.json')
         conn_string = json.load(connection_file)
         return conn_string[AffiliateModuleConstants.AFFILIATE_INFO][value]
 
     def get_data_affliate_info_edited(self, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/affiliate-information.json' % Config.test)
+            self.path_to_data_provider + 'affiliate-information.json')
         conn_string = json.load(connection_file)
         return conn_string[AffiliateModuleConstants.AFFILIATE_INFO_EDITED][value]
 
     def get_data_help_desk(self, key, value):
         connection_file = open(
-            'C:/Users/Administrator/.jenkins/workspace/%s/src/test/python/resources/test-data/help-desk-information.json' % Config.test)
+            self.path_to_data_provider + 'help-desk-information.json')
         conn_string = json.load(connection_file)
         return conn_string[key][value]

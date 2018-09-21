@@ -12,14 +12,14 @@ from src.main.python.utils.logs.Loging import Logging
 
 class DocumentsPage(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
+    # def __init__(self):
+    #     super().__init__()
 
     def open_create_filter_pop_up(self):
         element = super().wait_element_to_be_clickable("//a[contains(text(),'Create Filter')]")
         self.driver.execute_script("arguments[0].click();", element)
         Logging().reportDebugStep(self, "The filter pop-up is opened")
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def open_create_document_module(self):
         document_module = self.driver.find_element(By.XPATH, "//button[@title='Create Document']")
@@ -98,3 +98,27 @@ class DocumentsPage(CRMBasePage):
         pending_tab_text = super().wait_element_to_be_clickable("//a[contains(text(),'Pending')]")
         Logging().reportDebugStep(self, "The fourth tab is : " + pending_tab_text.text)
         return pending_tab_text.text
+
+    def get_first_name_column(self):
+        name_first_column = super().wait_element_to_be_clickable(
+            "//table//td[@class='lvtCol'][2]/a")
+        Logging().reportDebugStep(self, "First column name  : " + name_first_column.text)
+        return name_first_column.text
+
+    def get_second_name_column(self):
+        name_second_column = self.driver.find_element(By.XPATH,
+                                                      "//table//td[@class='lvtCol'][3]/a")
+        Logging().reportDebugStep(self, "Second column name: " + name_second_column.text)
+        return name_second_column.text
+
+    def get_third_name_column(self):
+        name_third_column = self.driver.find_element(By.XPATH,
+                                                     "//table//td[@class='lvtCol'][4]/a")
+        Logging().reportDebugStep(self, "Third column name: " + name_third_column.text)
+        return name_third_column.text
+
+    def get_fourth_name_column(self):
+        name_fourth_column = self.driver.find_element(By.XPATH,
+                                                      "//table//td[@class='lvtCol'][5]/a")
+        Logging().reportDebugStep(self, "Fourth column name : " + name_fourth_column.text)
+        return name_fourth_column.text

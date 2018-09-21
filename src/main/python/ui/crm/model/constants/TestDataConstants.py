@@ -9,6 +9,7 @@ class TestDataConstants(object):
     INITIAL_DEPOSIT_FOURTH = "initial_deposit4"
     PERSONAL_DETAILS = "Personal Details"
     FILTER = "test_filter"
+    MODULE_CLIENTS_FILTER = "module_clients_filter"
     USER_NAME = "user_name"
     CRM_PASSWORD = "crm_password"
     OTP_SECRET = "otp_secret"

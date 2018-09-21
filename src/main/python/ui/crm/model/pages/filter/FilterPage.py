@@ -63,7 +63,7 @@ class FilterPage(CRMBasePage):
         self.perform_choice_second_column(second_column_name)
         self.perform_choice_third_column(third_column_name)
         self.perform_choice_fourth_column(fourth_column_name)
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def perform_create_filter_trading_accounts_module(self, filter_name, first_column_name, second_column_name,
                                                       third_column_name, fourth_column_name, fifth_column_name,
@@ -77,7 +77,7 @@ class FilterPage(CRMBasePage):
         self.perform_choice_sixth_column(sixth_column_name)
         self.perform_choice_seventh_column(seventh_column_name)
         self.perform_choice_eighth_column(eightn_column_name)
-        return FilterPage()
+        return FilterPage(self.driver)
 
     def set_name_filter(self, name_filter):
         name_filter_field = super().wait_load_element("//input[@name='viewName']")
@@ -157,4 +157,4 @@ class FilterPage(CRMBasePage):
         save_button = self.driver.find_element(By.XPATH, "//input[@id='saveCustomView']")
         save_button.click()
         Logging().reportDebugStep(self, "The filter was crated: ")
-        return FilterPage()
+        return FilterPage(self.driver)
