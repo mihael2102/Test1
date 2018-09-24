@@ -57,12 +57,18 @@ class TabFinancialTransaction(BaseTest):
         trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
         client_name = financial_transaction_list_page.get_client_name_by_position_from_list()
         transaction_type_text = financial_transaction_list_page.get_transaction_type_by_position_from_list()
-        modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()[:10] + " - " + financial_transaction_list_page.get_modified_time_by_position_from_list()[:10]
+        modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()[:10] + " - " + \
+                                        financial_transaction_list_page.get_modified_time_by_position_from_list()[:10]
 
 
-        transaction_number_from_its_details_page = financial_transaction_list_page.perform_searching_trading_account_via_filters(transaction_number, client_name,
-                                                                transaction_type_text, modified_time,trading_account)\
-                .open_first_financial_transaction_in_list().get_transaction_number_text()
+        transaction_number_from_its_details_page = financial_transaction_list_page\
+                                            .perform_searching_trading_account_via_filters(transaction_number,
+                                                                                           client_name,
+                                                                                           transaction_type_text,
+                                                                                           modified_time,
+                                                                                           trading_account)\
+                                            .open_first_financial_transaction_in_list()\
+                                            .get_transaction_number_text()
 
         self.assertEqual(transaction_number, transaction_number_from_its_details_page,
                                             "Wrong financial transaction was found. They have diffent transaction ID")

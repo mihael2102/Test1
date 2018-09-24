@@ -69,31 +69,35 @@ class FinancialTransactionsPage(CRMBasePage):
 
     def get_transaction_id_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
-            sleep(2)
-        transaction_number_element = self.driver.find_element(By.XPATH, "(//a[contains(text(), 'MTT')])[%s]" % position_in_list)
+            sleep(2)    # Waiting until page reloading will be finished
+        transaction_number_element = self.driver.find_element(By.XPATH,
+                                                              "(//a[contains(text(), 'MTT')])[%s]" % position_in_list)
         return transaction_number_element.text
 
     def get_client_name_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
-            sleep(2)
+            sleep(2)    # Waiting until page reloading will be finished
         client_name_element = self.driver.find_element(By.XPATH, "(//td[4]/div/a)[%s]" % position_in_list)
         return client_name_element.text
 
     def get_transaction_type_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
-            sleep(2)
-        transaction_type_element = self.driver.find_element(By.XPATH, "(//*[@id='listBody']//tr/td[5])[%s]" % position_in_list)
+            sleep(2)    # Waiting until page reloading will be finished
+        transaction_type_element = self.driver.find_element(By.XPATH,
+                                                            "(//*[@id='listBody']//tr/td[5])[%s]" % position_in_list)
         return transaction_type_element.text
 
     def get_modified_time_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
-            sleep(2)
-        modified_time_element = self.driver.find_element(By.XPATH, "(//*[@id='listBody']//tr/td[12])[%s]" % position_in_list)
+            sleep(2)    # Waiting until page reloading will be finished
+        modified_time_element = self.driver.find_element(By.XPATH,
+                                                         "(//*[@id='listBody']//tr/td[10])[%s]" % position_in_list)
         return modified_time_element.text
 
     def is_modified_time_in_search_results(self, modified_time):
         # Get collection of time search result because search does not consider hours/minutes but only date
-        modified_time_elements = self.driver.find_elements(By.XPATH, "//div[@class='main_tbl_wrapper']//tbody[@id = 'listBody']//td[12]")
+        modified_time_elements = self.driver.find_elements(By.XPATH,
+                                                   "//div[@class='main_tbl_wrapper']//tbody[@id = 'listBody']//td[12]")
         for time_item in modified_time_elements:
             if time_item.text == modified_time:
                 return True
@@ -101,8 +105,9 @@ class FinancialTransactionsPage(CRMBasePage):
 
     def get_trading_account_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
-            sleep(2)
-        trading_account_element = self.driver.find_element(By.XPATH, "(//*[@id='listBody']//tr/td[3])[%s]//a" % position_in_list)
+            sleep(2)    # Waiting until page reloading will be finished
+        trading_account_element = self.driver.find_element(By.XPATH,
+                                                           "(//*[@id='listBody']//tr/td[3])[%s]//a" % position_in_list)
         return trading_account_element.text
 
     def perform_searching_trading_account_via_filters(self, transaction_number, client_name, transaction_type_text,
@@ -137,7 +142,8 @@ class FinancialTransactionsPage(CRMBasePage):
         transaction_type_field = self.driver.find_element(By.XPATH, "(//div/div[1]/ul/li[1]/div/input)[1]")
         transaction_type_field.clear()
         transaction_type_field.send_keys(transaction_type_text)
-        transaction_type_checkbox = self.driver.find_element(By.XPATH, "//td[5]/div/div[1]/ul/li[3]/a/label/input")
+        transaction_type_checkbox = self.driver.find_element(By.XPATH,
+                             "//li/a/label[@class='checkbox']/input[contains(@value, '%s')]" % transaction_type_text)
         transaction_type_checkbox.click()
         Logging().reportDebugStep(self, "In filter the transaction_type was entered: " + transaction_type_text)
         return FinancialTransactionsPage(self.driver)
