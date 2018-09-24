@@ -91,17 +91,17 @@ class FilterPrecondition(object):
         return FilterPrecondition(self.driver, self.config)
 
     def create_filter_trading_account_module(self):
-        CRMHomePage().open_trading_account_module() \
+        CRMHomePage(self.driver).open_trading_account_module() \
             .open_create_filter_pop_up() \
             .perform_create_filter_trading_accounts_module(
-            Config.data.get_data_columns_trading_module(TradingAccountConstants.FILTER_NAME),
-            Config.data.get_data_columns_trading_module(TradingAccountConstants.FIRST_COLUMN),
-            Config.data.get_data_columns_trading_module(TradingAccountConstants.SECOND_COLUMN),
-            Config.data.get_data_columns_trading_module(TradingAccountConstants.THIRD_COLUMN),
-            Config.data.get_data_columns_trading_module(TradingAccountConstants.FOURTH_COLUMN),
-            Config.data.get_data_columns_trading_module(TradingAccountConstants.FIFTH_COLUMN),
-            Config.data.get_data_columns_trading_module(TradingAccountConstants.SIXTH_COLUMN),
-            Config.data.get_data_columns_trading_module(TradingAccountConstants.SEVENTH_COLUMN),
-            Config.data.get_data_columns_trading_module(TradingAccountConstants.EIGHTH_COLUMN)) \
+            self.config.get_data_columns_trading_module(TradingAccountConstants.FILTER_NAME),
+            self.config.get_data_columns_trading_module(TradingAccountConstants.FIRST_COLUMN),
+            self.config.get_data_columns_trading_module(TradingAccountConstants.SECOND_COLUMN),
+            self.config.get_data_columns_trading_module(TradingAccountConstants.THIRD_COLUMN),
+            self.config.get_data_columns_trading_module(TradingAccountConstants.FOURTH_COLUMN),
+            self.config.get_data_columns_trading_module(TradingAccountConstants.FIFTH_COLUMN),
+            self.config.get_data_columns_trading_module(TradingAccountConstants.SIXTH_COLUMN),
+            self.config.get_data_columns_trading_module(TradingAccountConstants.SEVENTH_COLUMN),
+            self.config.get_data_columns_trading_module(TradingAccountConstants.EIGHTH_COLUMN)) \
             .click_save_button()
         return FilterPrecondition(self.driver, self.config)

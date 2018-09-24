@@ -2,10 +2,12 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.DocumentModuleConstants import DocumentModuleConstants
 from src.main.python.ui.crm.model.constants.HelpDeskConstants import HelpDeskConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
+from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsPage import TradingAccountsPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
@@ -137,8 +139,36 @@ class FilterModulesTest(BaseTest):
         assert HelpDeskConstants.ACCOUNT_NAME == eleventh_name_column
 
     def test_create_filter_trading_account_module(self):
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         FilterPrecondition(self.driver, self.config).create_filter_trading_account_module()
+        
+        trading_account_module_page = TradingAccountsPage(self.driver)
+
+        first_name__column = trading_account_module_page.get_first_name_column()
+        second_name_column = trading_account_module_page.get_second_name_column()
+        third_name__column = trading_account_module_page.get_third_name_column()
+        fourth_name_column = trading_account_module_page.get_fourth_name_column()
+        fifth_name_column = trading_account_module_page.get_fifth_name_column()
+        sixth_name_column = trading_account_module_page.get_sixth_name_column()
+        seventh_name_column = trading_account_module_page.get_seventh_name_column()
+        eighth_name_column = trading_account_module_page.get_eighth_name_column()
+
+        self.assertEqual(self.config.get_data_columns_trading_module(TradingAccountConstants.FIRST_COLUMN)[:-2],
+                         first_name__column, "Name of the column is wrong")
+        self.assertEqual(self.config.get_data_columns_trading_module(TradingAccountConstants.SECOND_COLUMN),
+                         second_name_column, "Name of the column is wrong")
+        self.assertEqual(self.config.get_data_columns_trading_module(TradingAccountConstants.THIRD_COLUMN),
+                         third_name__column, "Name of the column is wrong")
+        self.assertEqual(self.config.get_data_columns_trading_module(TradingAccountConstants.FOURTH_COLUMN),
+                         fourth_name_column, "Name of the column is wrong")
+        self.assertEqual(self.config.get_data_columns_trading_module(TradingAccountConstants.FIFTH_COLUMN),
+                         fifth_name_column, "Name of the column is wrong")
+        self.assertEqual(self.config.get_data_columns_trading_module(TradingAccountConstants.SIXTH_COLUMN),
+                         sixth_name_column, "Name of the column is wrong")
+        self.assertEqual(self.config.get_data_columns_trading_module(TradingAccountConstants.SEVENTH_COLUMN),
+                         seventh_name_column, "Name of the column is wrong")
+        self.assertEqual(self.config.get_data_columns_trading_module(TradingAccountConstants.EIGHTH_COLUMN)[:-2],
+                         eighth_name_column, "Name of the column is wrong")
