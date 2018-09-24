@@ -302,3 +302,14 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "Got %d search results" % result_count)
         return result_count
 
+    def search_account_name(self, first_name):
+        input_account_name = self.driver.find_element(By.XPATH, "//*[@id='host-element']/input")
+        input_account_name.send_keys(first_name)
+        sleep(5)
+        return TasksPage(self.driver)
+
+    def open_edit_event(self):
+        pencil_button = self.driver.find_element(By.XPATH,
+            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span")
+        self.driver.execute_script("arguments[0].click();", pencil_button)
+        return EditEventModule(self.driver)
