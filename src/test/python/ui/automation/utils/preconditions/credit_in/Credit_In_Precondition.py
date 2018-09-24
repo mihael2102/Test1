@@ -2,16 +2,20 @@ from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants imp
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 from src.main.python.ui.crm.model.mt4.credit_in.MT4CreditInModule import MT4CreditInModule
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.config import Config
 
 
 class CreditInPrecondition(object):
 
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, driver, config) -> None:
+        self.driver = driver
+        self.config = config
 
     def add_live_account(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
@@ -26,7 +30,23 @@ class CreditInPrecondition(object):
             Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_USD)) \
             .create_account_button()
 
-        return CreditInPrecondition()
+        return CreditInPrecondition(self.driver)
+
+    def add_live_account_in_crm(self):
+        CRMHomePage(self.driver).open_client_module()
+        ClientsPage(self.driver).select_filter(self.config.get_data_client(
+                                                            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
+                                            .find_client_by_email(self.config.get_data_client(
+                                                                TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))\
+                                            .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+        crm_client_profile = MT4CreateAccountModule(self.driver) \
+            .create_account(
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE))
+
+        return crm_client_profile
 
     def make_credit_in(self):
         crm_client_profile = CRMLoginPage() \
@@ -49,5 +69,4 @@ class CreditInPrecondition(object):
                                            CRMConstants.CREDIT_IN_COMMENT) \
             .click_ok() \
             .refresh_page()
-
-        return CreditInPrecondition()
+        return CreditInPrecondition(self.driver)

@@ -161,6 +161,12 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the total amount " + str(total_amount))
         return str(total_amount)
 
+    def get_amount_of_credit_in(self):
+        credit_in_amount_element = self.driver.find_element(By.XPATH,
+                                                            "//*[@id='rld_table_content']/tbody/tr[2]/td[6]/span[1]")
+        Logging().reportDebugStep(self, "Amount of Credit in is " + credit_in_amount_element.text)
+        return credit_in_amount_element.text
+
     '''
         Open the client account 
         :parameter id client account ID 
@@ -397,7 +403,7 @@ class ClientProfilePage(CRMBasePage):
     def click_ok(self):
         super().click_ok()
         Logging().reportDebugStep(self, "Click 'ok' button ")
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     '''
          Returns a confirmation  message if the user entered a valid password

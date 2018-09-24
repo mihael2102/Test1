@@ -1,3 +1,5 @@
+from time import sleep
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
@@ -6,8 +8,8 @@ from src.main.python.utils.logs.Loging import Logging
 
 
 class MT4CreditInModule(CRMBasePage):
-    def __init__(self) -> None:
-        super().__init__()
+    # def __init__(self) -> None:
+    #     super().__init__()
 
     '''
         Make credit in from CRM   
@@ -23,7 +25,7 @@ class MT4CreditInModule(CRMBasePage):
         self.set_expire_date(expire_date)
         self.set_description(comment)
         self.perform_create_credit_in()
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     '''
         Choice an account from drop down
@@ -64,6 +66,7 @@ class MT4CreditInModule(CRMBasePage):
         date_drop_down = self.driver.find_element(By.XPATH, "//input[@id='expire_date']")
         date_drop_down.clear()
         date_drop_down.send_keys(date)
+        sleep(0.5)
         date_drop_down.send_keys(Keys.ENTER)
         Logging().reportDebugStep(self, "The expire date of credit in module was set:  " + date)
         return MT4CreditInModule()
@@ -75,7 +78,7 @@ class MT4CreditInModule(CRMBasePage):
      '''
 
     def set_description(self, description_credit_in):
-        amount_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_comment']")
+        amount_filed = super().wait_element_to_be_clickable("//input[@id='transaction_comment']", timeout=5)
         amount_filed.clear()
         amount_filed.send_keys(description_credit_in)
         Logging().reportDebugStep(self, "The  description of credit in module was set in the description field:  " +
@@ -88,7 +91,7 @@ class MT4CreditInModule(CRMBasePage):
     '''
 
     def perform_create_credit_in(self):
-        create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
+        create_button = super().wait_element_to_be_clickable("//button[contains(text(),'Create')]", timeout=5)
         create_button.click()
         Logging().reportDebugStep(self, "Perform the create credit in  of credit in module was clicked")
         return ClientProfilePage()

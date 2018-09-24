@@ -49,7 +49,8 @@ class CRMConstants(object):
     CUSTOMER_PASSWORD_VALID_MESSAGE = "The password that was entered is correct."
     CHECK_PASSWORD = "3"
     EXPIRE_DATE = datetime.now() + relativedelta(days=2)
-    FORMAT_DATE = "%d-%m-%Y"
+    # FORMAT_DATE = "%d-%m-%Y"
+    FORMAT_DATE = "%Y-%m-%d"
     SECOND_FORMAT_DATE = "%Y-%m-%d"
     THIRD_FORMAT_DATE = "%A"
     FIRST_FORMAT_TIME = "%H:%M:%S"
