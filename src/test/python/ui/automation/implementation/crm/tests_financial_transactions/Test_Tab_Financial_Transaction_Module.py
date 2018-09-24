@@ -12,12 +12,12 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 class TabFinancialTransaction(BaseTest):
 
     def test_check_all_tab_from_financial_transactions(self):
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        financial_transaction_module = CRMHomePage().open_more_list_modules() \
+        financial_transaction_module = CRMHomePage(self.driver).open_more_list_modules() \
             .select_financial_transactions_module_more_list(
             FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
 
@@ -28,17 +28,17 @@ class TabFinancialTransaction(BaseTest):
         deposit_name = financial_transaction_module.get_deposits_tab_text()
         withdraw = financial_transaction_module.get_withdraw_tab_text()
 
-        assert all_tab_name == Config.data.get_data_financial_transactions_info(
+        assert all_tab_name == self.config.get_data_financial_transactions_info(
             FinancialTransactionsModuleConstants.FIRST_TAB)
-        assert credit_in_tab_name == Config.data.get_data_financial_transactions_info(
+        assert credit_in_tab_name == self.config.get_data_financial_transactions_info(
             FinancialTransactionsModuleConstants.SECOND_TAB)
-        assert credit_out_name == Config.data.get_data_financial_transactions_info(
+        assert credit_out_name == self.config.get_data_financial_transactions_info(
             FinancialTransactionsModuleConstants.THIRD_TAB)
-        assert demo_accounts_name == Config.data.get_data_financial_transactions_info(
+        assert demo_accounts_name == self.config.get_data_financial_transactions_info(
             FinancialTransactionsModuleConstants.FOURTH_TAB)
-        assert deposit_name == Config.data.get_data_financial_transactions_info(
+        assert deposit_name == self.config.get_data_financial_transactions_info(
             FinancialTransactionsModuleConstants.FIFTH_TAB)
-        assert withdraw == Config.data.get_data_financial_transactions_info(
+        assert withdraw == self.config.get_data_financial_transactions_info(
             FinancialTransactionsModuleConstants.SIX_TAB)
 
     def test_check_searching_by_column(self):
