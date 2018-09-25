@@ -131,7 +131,8 @@ class TabFinancialTransaction(BaseTest):
         self.assertEqual(transaction_type_text, transaction_type_after_searching, "Wrong transaction type was found")
 
         # Search for modified time. Search form is opened
-        is_modified_time_found = financial_transaction_list_page.search_for_modified_time(modified_time).is_modified_time_in_search_results(modified_time)
+        is_modified_time_found = financial_transaction_list_page.search_for_modified_time(modified_time)\
+                                                                .is_modified_time_in_search_results(modified_time)
         self.assertTrue(is_modified_time_found, "Wrong modified time was found")
 
         # Search for trading account. Search form is opened
