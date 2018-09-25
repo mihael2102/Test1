@@ -7,7 +7,7 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.test.python.ui.automation.utils.preconditions.task_module.EventPrecondition import EventPrecondition
-
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 
 @pytest.mark.run(order=14)
 class AddEventTaskModule(BaseTest):

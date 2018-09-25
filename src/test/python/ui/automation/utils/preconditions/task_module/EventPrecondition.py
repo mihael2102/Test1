@@ -8,6 +8,8 @@ from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.modules.tasks_module.EditEventModule import EditEventModule
+from src.test.python.ui.automation.BaseTest import *
+import pytest
 
 class EventPrecondition(object):
 
@@ -37,6 +39,14 @@ class EventPrecondition(object):
                                                          TaskModuleConstants.FOURTH_SUBJECT,
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
+
+        task_module.open_show_all_tab() \
+            .search_account_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])
+        search_account_name_text = task_module.open_show_all_tab() \
+                                         .get_account_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])
+        name = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME] + " Doe"
+        assert name == search_account_name_text
+
         return EventPrecondition(self.driver, self.config)
 
     def load_lead_from_config(self, lead_key):
@@ -61,5 +71,9 @@ class EventPrecondition(object):
                                               TaskModuleConstants.SECOND_SUBJECT,
                                               TaskModuleConstants.SECOND_PRIORITY,
                                               TaskModuleConstants.DESCRIPTION_ADD_EVENT)
+
+        task_was_updated_text = task_module.open_show_all_tab().task_was_updated()
+        text = "Task was updated"
+        assert text == task_was_updated_text
 
 

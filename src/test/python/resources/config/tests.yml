@@ -78,8 +78,8 @@ tests_config:
 #    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
 #    - test_check_search_via_button # Check search using search button
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-#  class: TradingAccountCrmTest
-#  tests:
-#    - test_crm_open_trading_account  # open a new trading account
-#    - test_crm_edit_trading_account  # edit trading account
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - test_crm_open_trading_account  # open a new trading account
+    - test_crm_edit_trading_account  # edit trading account

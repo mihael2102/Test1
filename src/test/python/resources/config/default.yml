@@ -100,13 +100,13 @@ trading_account_1:
   group: "USD"
   leverage: "100"
 trading_account_1_demo_upd:
-  trading_account_demo: "newForex Demo"
-  group: "EUR"
+  trading_account_demo: "Demo"
+  group: "demo"
   leverage: "200"
 trading_account_1_live:
   server: "Live"
   currency: "USD"
-  group: "USD"
+  group: "demo"
   leverage: "100"
 module_clients_filter:
   test_filter: "TestFilterClientsModule"

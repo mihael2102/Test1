@@ -308,8 +308,18 @@ class TasksPage(CRMBasePage):
         sleep(5)
         return TasksPage(self.driver)
 
+    def get_account_name(self, first_name):
+        search_account_name_text = self.driver.find_element(By.XPATH, "//a[contains(text(),'%s')]" % first_name).text
+        return search_account_name_text
+
     def open_edit_event(self):
         pencil_button = self.driver.find_element(By.XPATH,
             "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span")
         self.driver.execute_script("arguments[0].click();", pencil_button)
         return EditEventModule(self.driver)
+
+    def task_was_updated(self):
+        task_was_updated_text = super().wait_load_element("//div[contains(text(),'Task was updated')]").text
+        return task_was_updated_text
+
+
