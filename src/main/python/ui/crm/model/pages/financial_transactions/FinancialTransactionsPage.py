@@ -7,6 +7,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.pages.financial_transactions.FinancialTransactionInformationPage import \
     FinancialTransactionInformationPage
 from src.main.python.utils.logs.Loging import Logging
+import datetime
 
 
 class FinancialTransactionsPage(CRMBasePage):
@@ -95,9 +96,12 @@ class FinancialTransactionsPage(CRMBasePage):
         return modified_time_element.text
 
     def is_modified_time_in_search_results(self, modified_time):
-        # Get collection of time search result because search does not consider hours/minutes but only date
-        modified_time_elements = self.driver.find_elements(By.XPATH,
-                                                   "//div[@class='main_tbl_wrapper']//tbody[@id = 'listBody']//td[12]")
+        # Get collection of time search results because search does not consider hours/minutes but only date
+        sleep(2)
+        current_year = datetime.datetime.now().year
+        modified_time_elements = self.driver.find_elements(
+                By.XPATH,
+                "//div[@class='main_tbl_wrapper']//tbody[@id = 'listBody']//td[contains(text(), '%s')]" % current_year)
         for time_item in modified_time_elements:
             if time_item.text == modified_time:
                 return True

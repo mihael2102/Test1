@@ -39,7 +39,7 @@ class ClientProfilePage(CRMBasePage):
         trading_account_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'Trading Accounts')][1]")
         trading_account_tab.click()
         Logging().reportDebugStep(self, "Open the trading account tab ")
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     def get_client_status(self):
         client_status = super().wait_element_to_be_clickable(
@@ -140,6 +140,8 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_amount_text(self, total_amount_crm):
+        # Use it after deposit etc. because we need to wait some time
+        # while deposit will be applied and displayed at the page
         Logging().reportDebugStep(self, "Returns the amount you placed on the deposit page \n" + total_amount_crm)
         return super().wait_until_element_present("//tr[@class='lvtColData'][1]//td[3]", total_amount_crm)
 
