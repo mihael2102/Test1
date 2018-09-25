@@ -9,8 +9,8 @@ from src.main.python.utils.logs.Loging import Logging
 
 class AddEventModule(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
+    # def __init__(self):
+    #     super().__init__()
 
     def create_event(self, status, type, duration, date, time, assign_to, account_name, subject, priority, comments):
         self.set_event_status(status)

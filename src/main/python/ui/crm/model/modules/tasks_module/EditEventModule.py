@@ -3,11 +3,11 @@ from selenium.webdriver.support.select import Select
 
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
-
+import time
 
 class EditEventModule(CRMBasePage):
-    def __init__(self):
-        super().__init__()
+    # def __init__(self):
+    #     super().__init__()
 
     def edit_event(self, status, type, duration, date, time, assign_to, subject, priority,
                    comments):
@@ -26,7 +26,7 @@ class EditEventModule(CRMBasePage):
         event_element = super().wait_element_to_be_clickable("//select[@id='eventstatus']")
         select_status = Select(event_element)
         select_status.select_by_visible_text(status)
-        Logging().reportDebugStep(self, "The event status is set " + status)
+        Logging().reportDebugStep(self, "The event status was set " + status)
         return EditEventModule()
 
     def set_event_type(self, type):

@@ -1,4 +1,5 @@
 import random
+import string
 
 
 class LeadsModuleConstants(object):
@@ -6,6 +7,7 @@ class LeadsModuleConstants(object):
     LAST_IMPORT_NAME_LEAD = "qatesting1"
     FIRST_IMPORT_LEAD = "FirstImportLead"
     random_numbers = str(random.randrange(1, 9999))
+    random_character = ''.join(random.choice(string.ascii_uppercase) for _ in range(5))
     FIRST_ADDRESS_LEAD = "first_address"
     FIRST_CITIZENSHIP = "first_citizenship"
     FIRST_BRAND_LEAD = "first_brand"
@@ -25,6 +27,9 @@ class LeadsModuleConstants(object):
     THIRD_LEAD_INFO = "ThirdLeadInfo"
     FIRST_NAME = "first_name"
     SECOND_NAME = "second_name"
+    FIRST_NAME_RAND = "first_name%s" % random_character
+    SECOND_NAME_RAND = "second_name%s" % random_character
+    USER_NAME_RAND = "second_name%s" % random_character
     THIRD_NAME = "third_name"
     FIRST_LAST_NAME = "last_name"
     SECOND_LAST_NAME = "second_name"
