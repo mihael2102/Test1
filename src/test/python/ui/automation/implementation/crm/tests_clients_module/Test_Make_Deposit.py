@@ -111,16 +111,71 @@ class DepositTestCRM(BaseTest):
                     CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, deposit_amount_text, "Wrong deposit sum is displayed")
 
     def test_make_deposit_for_client_crm(self):
-        TradingAccountPrecondition(self.driver, self.config) \
-            .add_live_account_from_crm()
+        lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
+        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
 
-        crm_client_profile = ClientProfilePage(self.driver).close_popup_new_trading_account()
+        # Create new lead and convert him to new client
+        LeadPrecondition(self.driver, self.config).create_lead(lead1)
+        lead_view_profile_page = LeadViewInfo(self.driver)
 
-        account_number = crm_client_profile \
+        lead_view_profile_page.open_convert_lead_module() \
+            .perform_convert_lead(
+            client1[LeadsModuleConstants.FIRST_NAME],
+            client1[LeadsModuleConstants.FIRST_LAST_NAME],
+            client1[LeadsModuleConstants.EMAIL],
+            client1[LeadsModuleConstants.PHONE],
+            client1[LeadsModuleConstants.BIRTHDAY],
+            client1[LeadsModuleConstants.CITIZENSHIP],
+            client1[LeadsModuleConstants.STREET],
+            client1[LeadsModuleConstants.POSTAL_CODE],
+            client1[LeadsModuleConstants.CITY],
+            client1[LeadsModuleConstants.FIRST_COUNTRY],
+            client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+            client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+            client1[LeadsModuleConstants.FIRST_REFERRAL],
+            client1[LeadsModuleConstants.BRAND],
+            client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+            client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+        convert_verified = False
+        # Checking that the lead was converted successfully
+        try:
+            confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
+            assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+            lead_view_profile_page.click_ok()
+            convert_verified = True
+        except TimeoutException:
+            Logging().reportDebugStep(self, "Lead convert message was not picked up")
+        if not convert_verified:
+            lead_detail_view = LeadDetailViewInfo(self.driver)
+            lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
+            self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state. "
+                                                                          "Client was not created")
+
+        # ADD LIVE ACCOUNT IN CRM
+        # Open clients module. Find created client by email and open his profile
+        CRMHomePage(self.driver).open_client_module() \
+            .select_filter(self.config.get_value(
+            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+
+        # Create LIVE account for client using MT4 Actions
+        crm_client_profile = ClientProfilePage(self.driver)
+        crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+
+        MT4CreateAccountModule(self.driver) \
+            .create_account(
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
+            .click_ok()
+
+        # Get account number to make deposit in future. And get initial amount
+        account_number = ClientProfilePage(self.driver) \
             .perform_scroll_down() \
             .open_trading_accounts_tab() \
             .get_client_account()
-
         amount_initial = crm_client_profile.get_initial_amount()
 
         crm_client_profile \
