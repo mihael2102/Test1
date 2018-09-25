@@ -100,6 +100,6 @@ class CreditInTestCRM(BaseTest):
         # Check the Credit In amount
         credit_in_amount = ClientProfilePage(self.driver) \
             .perform_scroll_down() \
-            .get_amount_of_credit_in(CRMConstants.AMOUNT_CREDIT_IN)     # Get amount from block 'Trading Accounts'
+            .get_amount_of_credit_in()     # Get amount from block 'Trading Accounts'
 
         self.assertEqual(CRMConstants.AMOUNT_CREDIT_IN, credit_in_amount[1:], "Wrong Credit In amount is displayed")
