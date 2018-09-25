@@ -21,7 +21,7 @@ from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondi
 class CreditInTestCRM(BaseTest):
 
     def test_make_credit_in_crm(self):
-        CreditInPrecondition(self.driver).add_live_account().make_credit_in()
+        CreditInPrecondition(self.driver, self.config).add_live_account().make_credit_in()
 
         crm_client_profile = ClientProfilePage()
 

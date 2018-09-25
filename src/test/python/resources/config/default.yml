@@ -106,7 +106,7 @@ trading_account_1_demo_upd:
 trading_account_1_live:
   server: "Live"
   currency: "USD"
-  group: "demo"
+  group: "USD"
   leverage: "100"
 module_clients_filter:
   test_filter: "TestFilterClientsModule"
