@@ -309,6 +309,7 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def get_account_name(self, first_name):
+        sleep(2)
         search_account_name_text = super().wait_load_element("//a[contains(text(),'%s')]" % first_name).text
         return search_account_name_text
 

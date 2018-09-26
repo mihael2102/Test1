@@ -273,6 +273,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_mt4_actions(self, module):
+        sleep(3)
         mt4_button = super().wait_load_element("//div[@class='mt4_act_box']")
         mt4_button.click()
         sleep(5)

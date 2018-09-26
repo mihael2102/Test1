@@ -10,6 +10,8 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 class SearchingClientsTestCRM(BaseTest):
 
     def test_make_searching_client_module(self):
+        # Test depends on test 'test_perform_convert_lead'
+        # Please run it before current test because we need to create new client firstly.
         crm_client_profile = CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_data_client(TestDataConstants.USER_NAME),
@@ -18,14 +20,7 @@ class SearchingClientsTestCRM(BaseTest):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .perform_searching(self.config.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.CLIENT_STATUS),
                                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                           CRMConstants.SHORT_CLIENT_NAME),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                           TestDataConstants.FIRST_COUNTRY),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_FIRST_NAME),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_LAST_NAME),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CITY),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.BRAND))
+                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
         # TODO: verify that only one client was found
 
