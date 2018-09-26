@@ -11,6 +11,7 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 from src.main.python.ui.crm.model.pages.leads.LeadDetailViewInfo import LeadDetailViewInfo
 from src.main.python.utils.logs.Loging import Logging
 from src.test.python.ui.automation.BaseTest import BaseTest
+from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module import LeadModuleTest
 from src.test.python.ui.automation.utils.preconditions.credit_in.Credit_In_Precondition import \
     CreditInPrecondition
@@ -38,46 +39,48 @@ class CreditInTestCRM(BaseTest):
         assert amount_credit_in_crm == amount_credit_in_ca
 
     def test_make_credit_in_from_crm(self):
-        lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
-        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
-        
+        # lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
+        # client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
         # Create new lead and convert him to new client
-        LeadPrecondition(self.driver, self.config).create_lead(lead1)
-        lead_view_profile_page = LeadViewInfo(self.driver)
-
-        lead_view_profile_page.open_convert_lead_module() \
-            .perform_convert_lead(
-            client1[LeadsModuleConstants.FIRST_NAME],
-            client1[LeadsModuleConstants.FIRST_LAST_NAME],
-            client1[LeadsModuleConstants.EMAIL],
-            client1[LeadsModuleConstants.PHONE],
-            client1[LeadsModuleConstants.BIRTHDAY],
-            client1[LeadsModuleConstants.CITIZENSHIP],
-            client1[LeadsModuleConstants.STREET],
-            client1[LeadsModuleConstants.POSTAL_CODE],
-            client1[LeadsModuleConstants.CITY],
-            client1[LeadsModuleConstants.FIRST_COUNTRY],
-            client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-            client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-            client1[LeadsModuleConstants.FIRST_REFERRAL],
-            client1[LeadsModuleConstants.BRAND],
-            client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-            client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-        convert_verified = False
-        # Checking that the lead was converted successfully
-        try:
-            confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
-            assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
-            lead_view_profile_page.click_ok()
-            convert_verified = True
-        except TimeoutException:
-            Logging().reportDebugStep(self, "Lead convert message was not picked up")
-        if not convert_verified:
-            lead_detail_view = LeadDetailViewInfo(self.driver)
-            lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
-            self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state. "
-                                                                          "Client was not created")
+        # LeadPrecondition(self.driver, self.config).create_lead(lead1)
+        # lead_view_profile_page = LeadViewInfo(self.driver)
+        #
+        # lead_view_profile_page.open_convert_lead_module() \
+        #     .perform_convert_lead(
+        #     client1[LeadsModuleConstants.FIRST_NAME],
+        #     client1[LeadsModuleConstants.FIRST_LAST_NAME],
+        #     client1[LeadsModuleConstants.EMAIL],
+        #     client1[LeadsModuleConstants.PHONE],
+        #     client1[LeadsModuleConstants.BIRTHDAY],
+        #     client1[LeadsModuleConstants.CITIZENSHIP],
+        #     client1[LeadsModuleConstants.STREET],
+        #     client1[LeadsModuleConstants.POSTAL_CODE],
+        #     client1[LeadsModuleConstants.CITY],
+        #     client1[LeadsModuleConstants.FIRST_COUNTRY],
+        #     client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+        #     client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+        #     client1[LeadsModuleConstants.FIRST_REFERRAL],
+        #     client1[LeadsModuleConstants.BRAND],
+        #     client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+        #     client1[LeadsModuleConstants.PHONE_AREA_CODE])
+        #
+        # convert_verified = False
+        # # Checking that the lead was converted successfully
+        # try:
+        #     confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
+        #     assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+        #     lead_view_profile_page.click_ok()
+        #     convert_verified = True
+        # except TimeoutException:
+        #     Logging().reportDebugStep(self, "Lead convert message was not picked up")
+        # if not convert_verified:
+        #     lead_detail_view = LeadDetailViewInfo(self.driver)
+        #     lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
+        #     self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state. "
+        #                                                                   "Client was not created")
 
         # ADD LIVE ACCOUNT IN CRM
         # Open clients module. Find created client by email and open his profile
