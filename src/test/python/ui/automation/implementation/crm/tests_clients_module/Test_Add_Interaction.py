@@ -18,16 +18,16 @@ class AddInteraction(BaseTest):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .perform_searching(self.config.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.CLIENT_STATUS),
+            .perform_searching(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS),
                                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                                self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                           CRMConstants.SHORT_CLIENT_NAME),
+                                                           TestDataConstants.SHORT_CLIENT_NAME),
                                self.config.get_data_client(TestDataConstants.CLIENT_ONE,
                                                            TestDataConstants.FIRST_COUNTRY),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_FIRST_NAME),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.SHORT_LAST_NAME),
+                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME),
+                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.LAST_NAME),
                                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CITY),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.BRAND))
+                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.BRAND))
 
         crm_client_profile.perform_scroll_up()
         crm_client_profile = crm_client_profile.open_client_id()

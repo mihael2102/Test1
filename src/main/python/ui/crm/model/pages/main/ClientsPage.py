@@ -22,14 +22,14 @@ class ClientsPage(CRMBasePage):
         #     self.select_client_status(client_status)
         if email:
             self.enter_email(email)
-        if name:
-            self.enter_client_name(name)
+        # if name:
+        #     self.enter_client_name(name)
         # if country:
         #     self.enter_country(country)
-        if first_name:
-            self.enter_first_name(first_name)
-        if last_name:
-            self.enter_last_name(last_name)
+        # if first_name:
+        #     self.enter_first_name(first_name)
+        # if last_name:
+        #     self.enter_last_name(last_name)
         # if city:
         #     self.enter_city(city)
         # if brand:

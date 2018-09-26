@@ -59,7 +59,7 @@ SecondLeadInfo:
   first_state: "NY"
 client_1:
   test_filter: "Test Clients"
-  client_status_1:
+  client_status_1: "R - New"
   # EVAL_first_name: "'John_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S'))"
 #  first_name: "John-test" # manual config
   EVAL_first_name: "'testqa_' + (''.join(random.sample(string.ascii_uppercase*6, 6)))"
@@ -98,6 +98,7 @@ trading_account_1:
   server: "Demo"
   currency: "USD"
   group: "USD"
+  demo: "demo"
   leverage: "100"
 trading_account_1_demo_upd:
   trading_account_demo: "Demo"
