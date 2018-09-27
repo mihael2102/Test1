@@ -96,6 +96,7 @@ class TasksPage(CRMBasePage):
         tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[1]")
         tab.click()
         self.wait_crm_loading_to_finish()
+        sleep(2)
         Logging().reportDebugStep(self, "The all tab was opened ")
         return TasksPage(self.driver)
 
@@ -303,7 +304,7 @@ class TasksPage(CRMBasePage):
         return result_count
 
     def search_account_name(self, first_name):
-        input_account_name = self.driver.find_element(By.XPATH, "//*[@id='host-element']/input")
+        input_account_name = super().wait_element_to_be_clickable("//*[@id='host-element']/input", timeout=10)
         input_account_name.send_keys(first_name)
         sleep(5)
         return TasksPage(self.driver)
