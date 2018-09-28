@@ -8,7 +8,7 @@ FirstLeadInfo:
   last_name: "DoeA"
   mobile: "8888888"
   fax: "5555"
-  EVAL_email: "'testqa_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S.%f')) + '@pandats.com'"
+  EVAL_email: "'testqa ' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S.%f')) + '@pandats.com'"
   secondary_email: "secondarytestqa+1@pandats.com"
   first_language: "English"
   panda_partner_id:
@@ -62,7 +62,7 @@ client_1:
   client_status_1: "R - New"
   # EVAL_first_name: "'John_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S'))"
 #  first_name: "John-test" # manual config
-  EVAL_first_name: "'testqa_' + (''.join(random.sample(string.ascii_uppercase*6, 6)))"
+  EVAL_first_name: "'testqa ' + (''.join(random.sample(string.ascii_uppercase*6, 6)))"
   last_name: "Doe"
   EVAL_email: "'john_doe_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S')) + '@pandats.com'"
 #  email: "john_doe_20180823_131412@pandats.com" # manual config
