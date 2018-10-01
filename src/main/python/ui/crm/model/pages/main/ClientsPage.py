@@ -214,7 +214,12 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def click_search_button(self):
-        search_button = super().wait_element_to_be_clickable("//td[@class='txt_al_c']")
+        # Need to scroll to 'Filters' button to make 'Search' button visible
+        drop_down_filter = super().wait_load_element("//span[@class='filter-option pull-left']")
+        super().scroll_into_view(drop_down_filter)
+        # Click on 'Search'
+        search_button_xpath = "//td[@class='txt_al_c']/input"
+        search_button = super().wait_element_to_be_clickable(search_button_xpath)
         search_button.click()
         Logging().reportDebugStep(self, "The search button was clicked ")
         return ClientsPage(self.driver)

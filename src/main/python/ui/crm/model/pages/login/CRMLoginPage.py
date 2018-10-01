@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.logs.Loging import Logging
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from time import sleep
 import pyotp
 
@@ -56,6 +56,20 @@ class CRMLoginPage(CRMBasePage):
             Logging().reportDebugStep(self, "Click the submit button" + '\n')
         except NoSuchElementException:
             Logging().reportDebugStep(self, "No OTP authentication is required" + '\n')
+
+        # Wait for News popup at Old forex and close popup if it is shown
+        try:
+            # if ("uminvestments" or "ogtrade") in super().get_current_url():
+            sleep(1)
+            do_not_show_again_checkbox = super().wait_element_to_be_clickable("//*[@id='do_not_show']", timeout=1)
+            do_not_show_again_checkbox.click()
+
+            close_window_button = super().wait_element_to_be_clickable(
+                                        "//*[@id = 'whats_newcontent']//button[@aria-label = 'Close']", timeout=1)
+            close_window_button.click()
+            Logging().reportDebugStep(self, "'What's new' popup was closed")
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "'What's new' popup isn't displayed ")
         return ClientsPage(self.driver)
 
     '''
