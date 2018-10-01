@@ -303,6 +303,7 @@ class TasksPage(CRMBasePage):
         return result_count
 
     def search_account_name(self, first_name):
+        sleep(3)
         input_account_name = self.driver.find_element(By.XPATH, "//*[@id='host-element']/input")
         input_account_name.send_keys(first_name)
         sleep(5)
