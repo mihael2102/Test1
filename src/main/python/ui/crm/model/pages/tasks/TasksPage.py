@@ -16,6 +16,7 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 from src.main.python.utils.logs.Loging import Logging
 from datetime import *
 import allure
+import src.main.python.utils.data.globals.Globals as global_var
 from src.main.python.utils.config import Config
 
 
@@ -316,7 +317,7 @@ class TasksPage(CRMBasePage):
 
     def open_edit_event(self):
         pencil_button = self.driver.find_element(By.XPATH,
-            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span")
+                                                 global_var.current_brand_xpath_dict["TasksPage"]["pencil_button"])
         self.driver.execute_script("arguments[0].click();", pencil_button)
         return EditEventModule(self.driver)
 

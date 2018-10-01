@@ -2,6 +2,7 @@ import json
 import os
 import collections
 import yaml
+import src.main.python.utils.data.globals.Globals as global_var
 
 import random
 import string
@@ -25,6 +26,7 @@ from dateutil.relativedelta import relativedelta
 class ConfigProvider:
 
     eval_prefix = "EVAL_"
+    dir_with_xpath = "../../../ui/crm/model/BrandsXpath/"
 
     config_dir = "../../../../../test/python/resources/config/"
     default_config_file = "default.yml"
@@ -209,6 +211,15 @@ class ConfigProvider:
                     tests_list.append(test_item)
             self.tests = tests_list
         return self.tests
+
+    def set_xpath_for_tests(self):
+        current_brand = global_var.current_brand_name
+        # Read relevant XPaths from file for current brand
+        with open(os.path.join(self.script_dir, self.dir_with_xpath, current_brand, (current_brand + ".yml")), 'r') as stream:
+            try:
+                global_var.current_brand_xpath_dict = yaml.load(stream)
+            except yaml.YAMLError as e:
+                print(e)
 
     def get_value(self, key, sub_key=None):
         if sub_key:
