@@ -25,10 +25,10 @@
     "third_column": "Priority",
     "fourth_column": "Assigned To *",
     "fifth_column": "Status *",
-    "sixth_column": "CA Id",
-    "seventh_column": "Category *",
-    "eighth_column": "Brand",
-    "tenth_column": "Description *",
-    "eleventh_column": "Related to *"
+    "sixth_column": "CRM Id",
+    "seventh_column": "Category",
+    "eighth_column": "Currency",
+    "tenth_column": "Description",
+    "eleventh_column": "Related to"
   }
 }

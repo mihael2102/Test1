@@ -46,7 +46,7 @@ class FilterModulesTest(BaseTest):
         assert self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIFTH_COLUMN) == fifth_name_column
         assert CRMConstants.SIXTH_COLUMN_OTHER_TYPE == sixth_name_column
         assert self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER,
-                                           CRMConstants.SEVENTH_COLUMN) == seventh_name_column
+                                           CRMConstants.SEVENTH_COLUMN_IN_GRID) == seventh_name_column
         assert self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER,
                                            CRMConstants.EIGHTH_COLUMN) == eighth_name_column
         assert CRMConstants.NINTH_COLUMN_OTHER_TYPE == ninth_name_column

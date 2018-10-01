@@ -16,7 +16,7 @@
     "filter_name": "TestFilterTradingAccountModule",
     "first_column": "Trading Account Login *",
     "second_column": "Server",
-    "third_column": "Brand",
+    "third_column": "Margin Level",
     "fourth_column": "Currency",
     "fifth_column": "Balance",
     "sixth_column": "Credit",

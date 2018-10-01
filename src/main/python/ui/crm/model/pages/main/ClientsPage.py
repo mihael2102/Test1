@@ -136,11 +136,11 @@ class ClientsPage(CRMBasePage):
 
     def enter_country(self, country):
         country_drop_down = self.driver.find_element(By.XPATH,
-                                                     "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']")
+                                                     "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/button")
 
         country_drop_down.click()
         search_field = self.driver.find_element(By.XPATH,
-                                                "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']")
+                                                "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/ul/li[1]/div/input")
         search_field.clear()
         search_field.send_keys(country)
         country_choice = self.driver.find_element(By.XPATH,
@@ -195,12 +195,13 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def select_client_status(self, client_status):
+        sleep(3)
         country_drop_down = super().wait_load_element(
-            "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']")
+            "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/button")
 
         country_drop_down.click()
         search_field = self.driver.find_element(By.XPATH,
-                                                "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']")
+                                                "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/ul/li[1]/div/input")
         search_field.clear()
         search_field.send_keys(client_status)
         country_choice = self.driver.find_element(By.XPATH,

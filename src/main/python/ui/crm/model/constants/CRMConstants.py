@@ -18,6 +18,8 @@ class CRMConstants(object):
     SIXTH_COLUMN = "sixth_column"
     SIXTH_COLUMN_OTHER_TYPE = "Assigned To"
     SEVENTH_COLUMN = "seventh_column"
+    SEVENTH_COLUMN_IN_GRID = "seventh_column_in_grid"
+    NINTH_COLUMN_IN_GRID = "ninth_column_in_grid"
     EIGHTH_COLUMN = "eighth_column"
     NINTH_COLUMN = "ninth_column"
     NINTH_COLUMN_OTHER_TYPE = "Last Name"
