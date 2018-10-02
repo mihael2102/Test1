@@ -78,7 +78,7 @@ class FinancialTransactionsPage(CRMBasePage):
     def get_client_name_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        client_name_element = self.driver.find_element(By.XPATH, "(//td[4]/div/a)[%s]" % position_in_list)
+        client_name_element = self.driver.find_element(By.XPATH, "(//*[@id='listBody']//tr/td[4]" % position_in_list)
         return client_name_element.text
 
     def get_transaction_type_by_position_from_list(self, position_in_list=3):
@@ -114,13 +114,12 @@ class FinancialTransactionsPage(CRMBasePage):
                                                            "(//*[@id='listBody']//tr/td[3])[%s]//a" % position_in_list)
         return trading_account_element.text
 
-    def perform_searching_trading_account_via_filters(self, transaction_number, client_name, transaction_type_text,
-                                                      modified_time, trading_account):
-        self.enter_transaction_number(transaction_number)
+    def perform_searching_trading_account_via_filters(self, client_name):
+        # self.enter_transaction_number(transaction_number)
         self.enter_client_name(client_name)
-        self.enter_transaction_type_text(transaction_type_text)
-        self.enter_modified_time(modified_time)
-        self.enter_trading_account(trading_account)
+        # self.enter_transaction_type_text(transaction_type_text)
+        # self.enter_modified_time(modified_time)
+        # self.enter_trading_account(trading_account)
         self.click_search_button()
         return FinancialTransactionsPage(self.driver)
 

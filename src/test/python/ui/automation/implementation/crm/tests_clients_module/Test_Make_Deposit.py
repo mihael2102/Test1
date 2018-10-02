@@ -17,7 +17,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
 from src.test.python.ui.automation.utils.preconditions.trading_account.TradingAccountPrecondition import \
     TradingAccountPrecondition
-
+from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 
 @pytest.mark.run(order=13)
 class DepositTestCRM(BaseTest):
@@ -79,28 +79,32 @@ class DepositTestCRM(BaseTest):
 
         MT4CreateAccountModule(self.driver) \
             .create_account(
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
             self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
             self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
             self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
-            .click_ok()
+            .click_close()
 
         # Get account number to make deposit in future
-        account_number = ClientProfilePage(self.driver) \
+        # account_number = ClientProfilePage(self.driver) \
+        #     .perform_scroll_down() \
+        #     .open_trading_accounts_tab() \
+        #     .get_client_account()
+
+        account_number = crm_client_profile \
             .perform_scroll_down() \
             .open_trading_accounts_tab() \
             .get_client_account()
-
         # Make deposit for account number using MT4 Actions
-        crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.DEPOSIT)
+        crm_client_profile.perform_scroll_up()
+        MT4DropDown(self.driver).mt4_actions(CRMConstants.DEPOSIT)
 
         MT4DepositModule(self.driver).make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
-                                                   CRMConstants.PAYMENT_METHOD_DEPOSIT,
-                                                   CRMConstants.STATUS_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT)
+                                                   CRMConstants.PAYMENT_METHOD_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT)
 
         # Check confirmation message
         confirmation_message = crm_client_profile.get_confirm_message()
-        self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY)
+        self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULL_OLD_FOREX)
 
         # Close popup
         crm_client_profile.click_ok()\

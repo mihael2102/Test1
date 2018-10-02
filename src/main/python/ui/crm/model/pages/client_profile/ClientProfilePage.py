@@ -110,6 +110,7 @@ class ClientProfilePage(CRMBasePage):
 
     def perform_scroll_up(self):
         self.driver.execute_script("scroll(0, 0);")
+        sleep(5)
         Logging().reportDebugStep(self, "Perform scroll up ")
         return ClientProfilePage(self.driver)
 
@@ -409,11 +410,23 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Click 'ok' button ")
         return ClientProfilePage(self.driver)
 
+    def click_close(self):
+        super().click_close()
+        Logging().reportDebugStep(self, "Click 'close' button ")
+        return ClientProfilePage(self.driver)
+
     '''
          Returns a confirmation  message if the user entered a valid password
     '''
 
     def get_confirm_message(self):
+        #for_old_forex
+        confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-title']")
+        Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
+        return confirm_message.text
+
+    def get_confirm_message_body(self):
+        #for_old_forex
         confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
         Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text
@@ -509,3 +522,10 @@ class ClientProfilePage(CRMBasePage):
         ok_button.click()
         Logging().reportDebugStep(self, "Click OK in Client Deposit popup")
         return CRMClientDeposit(self.driver)
+
+    def create_credit_in(self):
+        #for_old_forex
+        create_button = self.wait_element_to_be_clickable("//*[@id='mt_interaction']/div/div[4]/button[2]")
+        self.driver.execute_script("arguments[0].click();", create_button)
+        Logging().reportDebugStep(self, "The button Save in create credit in ")
+        return ClientProfilePage()

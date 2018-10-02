@@ -34,7 +34,8 @@ class SidebarModules(CRMBasePage):
         return CreateEvent(self.driver)
 
     def open_check_client_password(self):
-        self.open_sidebar_module(CRMConstants.CHECK_CLIENT_PASSWORD)
+        #for_old_forex
+        self.open_sidebar_module(CRMConstants.CHECK_CLIENT_PASSWORD_OLD_FOREX)
         Logging().reportDebugStep(self, "The check client module was opened")
         return CheckClientPassword(self.driver)
 

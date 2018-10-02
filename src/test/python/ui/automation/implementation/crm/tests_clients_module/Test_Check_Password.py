@@ -7,6 +7,7 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.side_bar.SidebarModules import SidebarModules
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.side_bar.check_password.CheckClientPassword import CheckClientPassword
 
 
 @pytest.mark.run(order=4)
@@ -21,13 +22,13 @@ class CheckPasswordTestCRM(BaseTest):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
-        SidebarModules(self.driver)\
-            .open_check_client_password() \
+        crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CHECK_PASSWORD_OLD_FOREX)
+        check_client_password = CheckClientPassword(self.driver) \
             .set_password_to_check(self.config.get_value(TestDataConstants.CLIENT_ONE,
-                                                         LeadsModuleConstants.FIRST_PASSWORD_LEAD)) \
+                                                         LeadsModuleConstants.FIRST_PASSWORD_LEAD))\
             .click_check()
 
-        confirmation_message = crm_client_profile.get_confirm_message()
+        confirmation_message = crm_client_profile.get_confirm_message_body()
         self.assertEqual(confirmation_message, CRMConstants.CUSTOMER_PASSWORD_VALID_MESSAGE)
         crm_client_profile.click_ok()
 

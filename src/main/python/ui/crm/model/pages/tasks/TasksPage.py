@@ -243,6 +243,7 @@ class TasksPage(CRMBasePage):
 
     def find_event_by_subject(self, subject):
         sleep(2)
+        # for_old_forex
         self.driver.execute_script("window.scrollTo(0, document.body.scrollWeight);")
         subject_button = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
         subject_button.click()

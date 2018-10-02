@@ -47,6 +47,7 @@ class FilterModulesTest(BaseTest):
         assert CRMConstants.SIXTH_COLUMN_OTHER_TYPE == sixth_name_column
         assert self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER,
                                            CRMConstants.SEVENTH_COLUMN_IN_GRID) == seventh_name_column
+        # for_old_forex
         assert self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER,
                                            CRMConstants.EIGHTH_COLUMN) == eighth_name_column
         assert CRMConstants.NINTH_COLUMN_OTHER_TYPE == ninth_name_column
@@ -73,6 +74,7 @@ class FilterModulesTest(BaseTest):
                                                                 DocumentModuleConstants.SECOND_COLUMN) == second_name_column
         assert self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                                 DocumentModuleConstants.THIRD_COLUMN) == third_name__column
+        # for_old_forex Comments changed to Size
         self.assertEqual(fourth_name_column, DocumentModuleConstants.FOURTH_COLUMN_TEXT,
                                                                 "Filter columns are different in Documents module")
 
@@ -131,12 +133,12 @@ class FilterModulesTest(BaseTest):
         assert HelpDeskConstants.ASSIGNED_TO_TYPE == fourth_name_column
         assert HelpDeskConstants.STATUS == fifth_name_column
         assert self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS,
-                                              HelpDeskConstants.SIXTH_COLUMN) == sixth_name_column
-        assert HelpDeskConstants.CATEGORY == seventh_name_column
+                                              HelpDeskConstants.SIXTH_COLUMN) == sixth_name_column  #for_old_forex CA Id changed to CRM Id
+        assert HelpDeskConstants.CATEGORY == seventh_name_column  #for_old_forex delete *
         assert self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS,
-                                              HelpDeskConstants.EIGHTH_COLUMN) == eighth_name_column
-        assert HelpDeskConstants.DESCRIPTION == tenth_name_column
-        assert HelpDeskConstants.ACCOUNT_NAME == eleventh_name_column
+                                              HelpDeskConstants.EIGHTH_COLUMN) == eighth_name_column   #for_old_forex brand changed to Currency
+        assert HelpDeskConstants.DESCRIPTION == tenth_name_column #for_old_forex delete *
+        assert HelpDeskConstants.ACCOUNT_NAME == eleventh_name_column  #for_old_forex delete *
 
     def test_create_filter_trading_account_module(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \

@@ -98,6 +98,7 @@ trading_account_1:
   server: "Demo"
   currency: "USD"
   group: "USD"
+  group_old_forex: "demo"
   demo: "demo"
   leverage: "100"
 trading_account_1_demo_upd:
@@ -106,6 +107,7 @@ trading_account_1_demo_upd:
   leverage: "200"
 trading_account_1_live:
   server: "Live"
+  server_old_forex: "real"
   currency: "USD"
   group: "USD"
   leverage: "100"
@@ -118,10 +120,10 @@ module_clients_filter:
   fifth_column: "Client Name"
   sixth_column: "Assigned To *"
   seventh_column: "Country *"
-  seventh_column_in_grid: "Country"
+  seventh_column_in_grid: "Country" #for_old_forex
   eighth_column: "First Name"
   ninth_column: "Last Name *"
-  ninth_column_in_grid: "Last Name"
+  ninth_column_in_grid: "Last Name"  #for_old_forex
   tenth_column: "City"
   eleventh_column: "Phone"
 
