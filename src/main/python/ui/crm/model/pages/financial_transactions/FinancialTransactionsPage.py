@@ -90,7 +90,8 @@ class FinancialTransactionsPage(CRMBasePage):
             sleep(2)    # Waiting until page reloading will be finished
         transaction_type_element = self.driver.find_element(
             By.XPATH,
-            global_var.current_brand_name["FinancialTransactionsPage"]["transaction_type_element"] % position_in_list)
+            global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["transaction_type_element"]
+            % position_in_list)
         return transaction_type_element.text
 
     def get_modified_time_by_position_from_list(self, position_in_list=3):
@@ -116,8 +117,10 @@ class FinancialTransactionsPage(CRMBasePage):
     def get_trading_account_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        trading_account_element = self.driver.find_element(By.XPATH,
-                                                           "(//*[@id='listBody']//tr/td[3])[%s]//a" % position_in_list)
+        trading_account_element = self.driver.find_element(
+            By.XPATH,
+            global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["trading_account_element"]
+            % position_in_list)
         return trading_account_element.text
 
     def perform_searching_trading_account_via_filters(self, transaction_number, client_name, transaction_type_text,
@@ -130,10 +133,11 @@ class FinancialTransactionsPage(CRMBasePage):
         # In other case it may contain wrong value from another column due to incorrect XPath,
         # so we need to skip this column
         current_year = datetime.datetime.now().year
-        if current_year in modified_time:
+        if str(current_year) in modified_time:
             self.enter_modified_time(modified_time)
 
-        if trading_account == None:
+        # Check that column 'Trading account' is absent
+        if trading_account is not None:
             self.enter_trading_account(trading_account)
 
         self.click_search_button()
@@ -155,7 +159,9 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def enter_transaction_type_text(self, transaction_type_text):
-        transaction_type_drop_down = self.driver.find_element(By.XPATH, "//td[5]/div/div[1]/button")
+        transaction_type_drop_down = self.driver.find_element(
+            By.XPATH,
+            global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["transaction_type_drop_down"])
         transaction_type_drop_down.click()
 
         transaction_type_field = self.driver.find_element(
