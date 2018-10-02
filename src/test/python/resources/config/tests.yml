@@ -18,7 +18,7 @@ tests_config:
   directive: reload_configuration
   class: LeadModuleTest
   tests:
-#    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
+    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
     - test_edit_lead  # Creates a new lead and edits it's data. Validates that the data changed.
     - test_perform_convert_lead   # Creates a lead and converts it to a client
 
@@ -28,22 +28,28 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
   class: SearchingClientsTestCRM
   tests:
+     ## PRECONDITION: - test_perform_convert_lead
     - test_make_searching_client_module   # Searches for a client.
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
   class: AddInteraction
   tests:
+     ## PRECONDITION: - test_perform_convert_lead
     - test_add_interaction  # Adds an interaction for a client
+     ## PRECONDITION: - test_perform_convert_lead
     - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
 - module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
   class: AddEventTaskModule
   tests:
+    ## PRECONDITION: - test_perform_convert_lead;
     - test_add_event
+    ## PRECONDITION: - test_perform_convert_lead; - test_add_event
     - test_edit_event
 #
-##MT4
+###MT4
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
   class: TradingAccountCrmTest
   tests:
+     ## PRECONDITION: - test_perform_convert_lead
     - test_crm_open_trading_account  # open a new trading account
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
   class: CheckPasswordTestCRM
@@ -76,7 +82,9 @@ tests_config:
   class: TabFinancialTransaction
   tests:
     - test_check_all_tab_from_financial_transactions
+     ## PRECONDITION: No
     - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
+     ## PRECONDITION: No
     - test_check_search_via_button # Check search using search button
 
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account

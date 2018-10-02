@@ -1,0 +1,5 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+FinancialTransactionsPage:
+  client_name_element:  "(//td[3]/div/a)[%s]"
+  transaction_type_element : "(//*[@id='listBody']//tr/td[5])[%s]"
+  transaction_type_field: "(//div/div[1]/ul/li[1]/div/input)[1]"

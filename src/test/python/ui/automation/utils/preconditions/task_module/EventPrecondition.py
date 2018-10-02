@@ -72,7 +72,7 @@ class EventPrecondition(object):
                                               TaskModuleConstants.SECOND_PRIORITY,
                                               TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
-        task_was_updated_text = task_module.open_show_all_tab().task_was_updated()
+        task_was_updated_text = task_module.task_was_updated()
         text = "Task was updated"
         assert text == task_was_updated_text
 

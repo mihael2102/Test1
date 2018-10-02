@@ -1,4 +1,7 @@
 import pytest
+from selenium.common.exceptions import NoSuchElementException
+
+import src.main.python.utils.data.globals.Globals as global_var
 
 from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
     FinancialTransactionsModuleConstants
@@ -54,13 +57,18 @@ class TabFinancialTransaction(BaseTest):
 
         # Get data of 3rd transaction (transaction's info will be changed when registration via CA starts to work)
         transaction_number = financial_transaction_list_page.get_transaction_id_by_position_from_list()
-        trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
         client_name = financial_transaction_list_page.get_client_name_by_position_from_list()
         transaction_type_text = financial_transaction_list_page.get_transaction_type_by_position_from_list()
-        modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()[:10] + " - " + \
-                                        financial_transaction_list_page.get_modified_time_by_position_from_list()[:10]
+        try:
+            modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()[:10] + " - " + \
+                                            financial_transaction_list_page.get_modified_time_by_position_from_list()[:10]
+            trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
+        except NoSuchElementException:
+            pass
 
-
+        # TIME and Trading Account columns are absent on some brands: 'mpcrypto'.
+        # So we skip this column during searching in this case.
+        # Details of checking please see in search method below
         transaction_number_from_its_details_page = financial_transaction_list_page\
                                             .perform_searching_trading_account_via_filters(transaction_number,
                                                                                            client_name,

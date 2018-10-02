@@ -319,10 +319,13 @@ class TasksPage(CRMBasePage):
         pencil_button = self.driver.find_element(By.XPATH,
                                                  global_var.current_brand_xpath_dict["TasksPage"]["pencil_button"])
         self.driver.execute_script("arguments[0].click();", pencil_button)
+        Logging().reportDebugStep(self, "Edit popup was opened")
         return EditEventModule(self.driver)
 
     def task_was_updated(self):
+        sleep(0.5)
         task_was_updated_text = super().wait_load_element("//div[contains(text(),'Task was updated')]").text
+        Logging().reportDebugStep(self, "Text from 'Update' popup has been got: " + task_was_updated_text)
         return task_was_updated_text
 
 

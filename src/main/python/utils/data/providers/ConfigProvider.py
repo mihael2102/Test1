@@ -215,7 +215,7 @@ class ConfigProvider:
     def set_xpath_for_tests(self):
         current_brand = global_var.current_brand_name
         # Read relevant XPaths from file for current brand
-        with open(os.path.join(self.script_dir, self.dir_with_xpath, current_brand, (current_brand + ".yml")), 'r') as stream:
+        with open(os.path.join(self.script_dir, self.dir_with_xpath, current_brand, (current_brand + "_xpath.yml")), 'r') as stream:
             try:
                 global_var.current_brand_xpath_dict = yaml.load(stream)
             except yaml.YAMLError as e:
