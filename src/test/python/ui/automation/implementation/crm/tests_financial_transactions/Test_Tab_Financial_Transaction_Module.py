@@ -59,9 +59,14 @@ class TabFinancialTransaction(BaseTest):
         transaction_number = financial_transaction_list_page.get_transaction_id_by_position_from_list()
         client_name = financial_transaction_list_page.get_client_name_by_position_from_list()
         transaction_type_text = financial_transaction_list_page.get_transaction_type_by_position_from_list()
+        # Check that column exists
         try:
             modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()[:10] + " - " + \
                                             financial_transaction_list_page.get_modified_time_by_position_from_list()[:10]
+        except NoSuchElementException:
+            modified_time = None
+        # Check that column exists
+        try:
             trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
         except NoSuchElementException:
             trading_account = None

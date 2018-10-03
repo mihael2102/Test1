@@ -80,8 +80,8 @@ class FinancialTransactionsPage(CRMBasePage):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
         client_name_element = self.driver.find_element(By.XPATH,
-                                                       global_var.current_brand_xpath_dict[
-                                                           "FinancialTransactionsPage"]["client_name_element"]
+                                                       global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__, )["client_name_element"]
                                                        % position_in_list)
         return client_name_element.text
 
@@ -90,7 +90,7 @@ class FinancialTransactionsPage(CRMBasePage):
             sleep(2)    # Waiting until page reloading will be finished
         transaction_type_element = self.driver.find_element(
             By.XPATH,
-            global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["transaction_type_element"]
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__, )["transaction_type_element"]
             % position_in_list)
         return transaction_type_element.text
 
@@ -119,21 +119,18 @@ class FinancialTransactionsPage(CRMBasePage):
             sleep(2)    # Waiting until page reloading will be finished
         trading_account_element = self.driver.find_element(
             By.XPATH,
-            global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["trading_account_element"]
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__, )["trading_account_element"]
             % position_in_list)
         return trading_account_element.text
 
     def perform_searching_trading_account_via_filters(self, transaction_number, client_name, transaction_type_text,
-                                                      modified_time, trading_account=None):
+                                                      modified_time, trading_account):
         self.enter_transaction_number(transaction_number)
         self.enter_client_name(client_name)
         self.enter_transaction_type_text(transaction_type_text)
 
-        # Check that current year is in modified_time. If YES, enter modified time.
-        # In other case it may contain wrong value from another column due to incorrect XPath,
-        # so we need to skip this column
-        current_year = datetime.datetime.now().year
-        if str(current_year) in modified_time:
+        # Check that column 'Time' is absent
+        if modified_time is not None:
             self.enter_modified_time(modified_time)
 
         # Check that column 'Trading account' is absent
@@ -166,7 +163,7 @@ class FinancialTransactionsPage(CRMBasePage):
 
         transaction_type_field = self.driver.find_element(
                             By.XPATH,
-                            global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["transaction_type_field"])
+                            global_var.get_xpath_for_current_brand_element(self.__class__.__name__, )["transaction_type_field"])
         transaction_type_field.clear()
         transaction_type_field.send_keys(transaction_type_text)
         transaction_type_checkbox = self.driver.find_element(By.XPATH,
