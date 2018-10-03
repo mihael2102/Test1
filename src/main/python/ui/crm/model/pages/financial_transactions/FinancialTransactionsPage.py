@@ -155,7 +155,9 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def enter_transaction_type_text(self, transaction_type_text):
-        transaction_type_drop_down = self.driver.find_element(By.XPATH, "//td[5]/div/div[1]/button")
+        transaction_type_drop_down = self.driver.find_element(
+                        By.XPATH,
+                        global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["transaction_type_drop_down"])
         transaction_type_drop_down.click()
 
         transaction_type_field = self.driver.find_element(
