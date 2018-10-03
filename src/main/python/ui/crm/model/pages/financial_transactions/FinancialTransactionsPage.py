@@ -78,7 +78,7 @@ class FinancialTransactionsPage(CRMBasePage):
     def get_client_name_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        client_name_element = self.driver.find_element(By.XPATH, "(//*[@id='listBody']//tr/td[4]" % position_in_list)
+        client_name_element = self.driver.find_element(By.XPATH, "(//*[@id='listBody']//tr/td[4])[%s]" % position_in_list)
         return client_name_element.text
 
     def get_transaction_type_by_position_from_list(self, position_in_list=3):
@@ -114,12 +114,13 @@ class FinancialTransactionsPage(CRMBasePage):
                                                            "(//*[@id='listBody']//tr/td[3])[%s]//a" % position_in_list)
         return trading_account_element.text
 
-    def perform_searching_trading_account_via_filters(self, client_name):
-        # self.enter_transaction_number(transaction_number)
+    def perform_searching_trading_account_via_filters(self, transaction_number, client_name, transaction_type_text,
+                                                      trading_account):
+        self.enter_transaction_number(transaction_number)
         self.enter_client_name(client_name)
-        # self.enter_transaction_type_text(transaction_type_text)
+        self.enter_transaction_type_text(transaction_type_text)
         # self.enter_modified_time(modified_time)
-        # self.enter_trading_account(trading_account)
+        self.enter_trading_account(trading_account)
         self.click_search_button()
         return FinancialTransactionsPage(self.driver)
 
@@ -213,14 +214,14 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def search_for_transaction_type(self, transaction_type):
-        self.__change_search_criteria_by_visible_text("Transaction Type")
+        self.__change_search_criteria_by_visible_text("Platform")
         self.__fill_search_field_with_value(transaction_type)
         self.__click_search_now_button()
         Logging().reportDebugStep(self, "Searching for transaction type: %s was performed" % transaction_type)
         return FinancialTransactionsPage(self.driver)
 
     def search_for_modified_time(self, modified_time):
-        self.__change_search_criteria_by_visible_text("Created Time")
+        self.__change_search_criteria_by_visible_text("Amount")
         self.__fill_search_field_with_value(modified_time)
         self.__click_search_now_button()
         Logging().reportDebugStep(self, "Searching for modified time: %s was performed" % modified_time)

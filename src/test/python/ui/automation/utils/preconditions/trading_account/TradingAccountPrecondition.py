@@ -8,6 +8,7 @@ from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4Deposit
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
+from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 
 
 class TradingAccountPrecondition(object):
@@ -50,6 +51,8 @@ class TradingAccountPrecondition(object):
             self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
             self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO_OLD_FOREX),
             self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
+
+
         return self
 
     def add_live_account_from_crm(self):
@@ -72,7 +75,7 @@ class TradingAccountPrecondition(object):
         return self
 
     def update_demo_account_from_crm(self):
-        ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.UPDATE_MT4_USER)
+        MT4DropDown(self.driver).mt4_actions(CRMConstants.UPDATE_MT4_USER)
         from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
         MT4CreateAccountModule(self.driver).update_account(
             self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO),
