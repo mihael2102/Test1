@@ -90,7 +90,7 @@ class FinancialTransactionsPage(CRMBasePage):
             sleep(2)    # Waiting until page reloading will be finished
         transaction_type_element = self.driver.find_element(
             By.XPATH,
-            global_var.current_brand_name["FinancialTransactionsPage"]["transaction_type_element"] % position_in_list)
+            global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["transaction_type_element"] % position_in_list)
         return transaction_type_element.text
 
     def get_modified_time_by_position_from_list(self, position_in_list=3):
@@ -130,7 +130,7 @@ class FinancialTransactionsPage(CRMBasePage):
         # In other case it may contain wrong value from another column due to incorrect XPath,
         # so we need to skip this column
         current_year = datetime.datetime.now().year
-        if current_year in modified_time:
+        if str(current_year) in modified_time:
             self.enter_modified_time(modified_time)
 
         if trading_account == None:
