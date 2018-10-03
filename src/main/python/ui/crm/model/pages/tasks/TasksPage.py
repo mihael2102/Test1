@@ -244,7 +244,7 @@ class TasksPage(CRMBasePage):
 
     def find_event_by_subject(self, subject):
         sleep(2)
-        subject_field = super().wait_element_to_be_clickable("//tr[@class='tableFilters']//td[15]//input")
+        subject_field = super().wait_element_to_be_clickable(global_var.current_brand_xpath_dict["TasksPage"]["subject_input"])
         subject_field.clear()
         subject_field.send_keys(subject)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
@@ -305,7 +305,7 @@ class TasksPage(CRMBasePage):
         return result_count
 
     def search_account_name(self, first_name):
-        input_account_name = super().wait_element_to_be_clickable("//*[@id='host-element']/input", timeout=10)
+        input_account_name = super().wait_element_to_be_clickable(global_var.current_brand_xpath_dict["TasksPage"]["account_name_input"], timeout=10)
         input_account_name.send_keys(first_name)
         sleep(5)
         return TasksPage(self.driver)

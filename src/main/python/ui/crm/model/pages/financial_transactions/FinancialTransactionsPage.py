@@ -97,7 +97,7 @@ class FinancialTransactionsPage(CRMBasePage):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
         modified_time_element = self.driver.find_element(By.XPATH,
-                                                         "(//*[@id='listBody']//tr/td[10])[%s]" % position_in_list)
+                                                         global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["modified_time_element"] % position_in_list)
         return modified_time_element.text
 
     def is_modified_time_in_search_results(self, modified_time):
@@ -163,7 +163,7 @@ class FinancialTransactionsPage(CRMBasePage):
         transaction_type_field = self.driver.find_element(
                             By.XPATH,
                             global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["transaction_type_field"])
-        transaction_type_field.clear()
+        # transaction_type_field.clear()
         transaction_type_field.send_keys(transaction_type_text)
         transaction_type_checkbox = self.driver.find_element(By.XPATH,
                              "//li/a/label[@class='checkbox']/input[contains(@value, '%s')]" % transaction_type_text)

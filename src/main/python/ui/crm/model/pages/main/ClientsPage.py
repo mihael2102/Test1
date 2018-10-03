@@ -145,6 +145,7 @@ class ClientsPage(CRMBasePage):
         search_field.send_keys(country)
         country_choice = self.driver.find_element(By.XPATH,
                                                   "//label[contains(text(),'%s')]" % country)
+        sleep(5)
         country_choice.click()
 
         ac = ActionChains(self.driver)

@@ -17,6 +17,7 @@ from src.test.python.ui.automation.utils.preconditions.credit_in.Credit_In_Preco
     CreditInPrecondition
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
 
+import time
 
 @pytest.mark.run(order=1)
 class CreditInTestCRM(BaseTest):
@@ -99,7 +100,8 @@ class CreditInTestCRM(BaseTest):
                                            CRMConstants.CREDIT_IN_COMMENT) \
             .click_ok() \
             .refresh_page()
-
+        time.sleep(3)
+        MT4CreditInModule(self.driver).refresh_page()
         # Check the Credit In amount
         credit_in_amount = ClientProfilePage(self.driver) \
             .perform_scroll_down() \

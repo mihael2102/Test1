@@ -1,8 +1,11 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
 TasksPage:
   pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
+  subject_input: "//tr[@class='tableFilters']//td[15]//input"
+  account_name_input: "//*[@id='host-element']/input"
 FinancialTransactionsPage:
   client_name_element:  "(//td[3]/div/a)[%s]"
   transaction_type_element : "(//*[@id='listBody']//tr/td[5])[%s]"
   transaction_type_field: "(//div/div[1]/ul/li[1]/div/input)[1]"
   transaction_type_drop_down: "//td[5]/div/div[1]/button"
+  modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
