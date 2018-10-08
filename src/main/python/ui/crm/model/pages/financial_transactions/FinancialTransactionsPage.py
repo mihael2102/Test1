@@ -81,7 +81,7 @@ class FinancialTransactionsPage(CRMBasePage):
             sleep(2)    # Waiting until page reloading will be finished
         client_name_element = self.driver.find_element(By.XPATH,
                                                        global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__, )["client_name_element"]
+                                                           self.__class__.__name__)["client_name_element"]
                                                        % position_in_list)
         return client_name_element.text
 
@@ -90,7 +90,7 @@ class FinancialTransactionsPage(CRMBasePage):
             sleep(2)    # Waiting until page reloading will be finished
         transaction_type_element = self.driver.find_element(
             By.XPATH,
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__, )["transaction_type_element"]
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_element"]
             % position_in_list)
         return transaction_type_element.text
 
@@ -119,7 +119,7 @@ class FinancialTransactionsPage(CRMBasePage):
             sleep(2)    # Waiting until page reloading will be finished
         trading_account_element = self.driver.find_element(
             By.XPATH,
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__, )["trading_account_element"]
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["trading_account_element"]
             % position_in_list)
         return trading_account_element.text
 
@@ -158,12 +158,12 @@ class FinancialTransactionsPage(CRMBasePage):
     def enter_transaction_type_text(self, transaction_type_text):
         transaction_type_drop_down = self.driver.find_element(
             By.XPATH,
-            global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["transaction_type_drop_down"])
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_drop_down"])
         transaction_type_drop_down.click()
 
         transaction_type_field = self.driver.find_element(
                             By.XPATH,
-                            global_var.get_xpath_for_current_brand_element(self.__class__.__name__, )["transaction_type_field"])
+                            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_field"])
         transaction_type_field.clear()
         transaction_type_field.send_keys(transaction_type_text)
         transaction_type_checkbox = self.driver.find_element(By.XPATH,
