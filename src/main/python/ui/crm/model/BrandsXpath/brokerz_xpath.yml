@@ -10,7 +10,7 @@ TasksPage:
   account_name_input: "//*[@id='host-element']/input"
 FinancialTransactionsPage:
   client_name_element:  "(//td[3]/div/a)[%s]"
-  transaction_type_element : "(//*[@id='listBody']//tr/td[5])[%s]"
+  transaction_type_element : "(//*[@id='listBody']//tr/td[4])[%s]"
   transaction_type_field: "(//div/div[1]/ul/li[1]/div/input)[1]"
-  transaction_type_drop_down: "//td[5]/div/div[1]/button"
-  modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
+  transaction_type_drop_down: "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/button"
+  modified_time_element: "(//*[@id='listBody']//tr/td[9])[%s]"

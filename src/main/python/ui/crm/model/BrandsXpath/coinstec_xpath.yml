@@ -1,4 +1,3 @@
-# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
 ClientsPage:
   client_status_button: "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']"
   client_status_field: "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']"
@@ -9,8 +8,8 @@ TasksPage:
   subject_input: "//tr[@class='tableFilters']//td[15]//input"
   account_name_input: "//*[@id='host-element']/input"
 FinancialTransactionsPage:
-  client_name_element:  "(//td[3]/div/a)[%s]"
-  transaction_type_element : "(//*[@id='listBody']//tr/td[5])[%s]"
-  transaction_type_field: "(//div/div[1]/ul/li[1]/div/input)[1]"
-  transaction_type_drop_down: "//td[5]/div/div[1]/button"
-  modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
+  client_name_element:  "(//*[@id='listBody']//tr/td[3])[%s]"
+  transaction_type_element : "(//*[@id='listBody']//tr/td[4])[%s]"
+  transaction_type_field: "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/ul/li[1]/div/input"
+  transaction_type_drop_down: "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/button"
+  modified_time_element: "(//*[@id='listBody']//tr/td[8])[%s]"

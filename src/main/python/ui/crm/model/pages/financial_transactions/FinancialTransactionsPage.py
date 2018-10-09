@@ -121,7 +121,7 @@ class FinancialTransactionsPage(CRMBasePage):
         return trading_account_element.text
 
     def perform_searching_trading_account_via_filters(self, transaction_number, client_name, transaction_type_text,
-                                                      modified_time, trading_account=None):
+                                                      modified_time):
         self.enter_transaction_number(transaction_number)
         self.enter_client_name(client_name)
         self.enter_transaction_type_text(transaction_type_text)
@@ -133,8 +133,8 @@ class FinancialTransactionsPage(CRMBasePage):
         if str(current_year) in modified_time:
             self.enter_modified_time(modified_time)
 
-        if trading_account == None:
-            self.enter_trading_account(trading_account)
+        # if trading_account == None:
+        #     self.enter_trading_account(trading_account)
 
         self.click_search_button()
         return FinancialTransactionsPage(self.driver)
@@ -175,6 +175,9 @@ class FinancialTransactionsPage(CRMBasePage):
         modified_time_field = self.driver.find_element(By.XPATH, "//input[@name='tks_createdtime_date1']")
         modified_time_field.clear()
         modified_time_field.send_keys(modified_time)
+        sleep(5)
+        # apply_button = self.driver.find_element(By.XPATH, "/html/body/div[11]/div[3]/div/button[1]")
+        # apply_button.click()
         Logging().reportDebugStep(self, "In filter the modified_time was entered: " + modified_time)
         return FinancialTransactionsPage(self.driver)
 

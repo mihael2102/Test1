@@ -13,6 +13,9 @@ from src.main.python.ui.crm.model.modules.client_modules.mass_assign.MassAssignC
 from src.main.python.ui.crm.model.modules.client_modules.mass_edit.MassEditClientsModule import MassEditClientsModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
+import allure
+import src.main.python.utils.data.globals.Globals as global_var
+from src.main.python.utils.config import Config
 
 
 class ClientsPage(CRMBasePage):
@@ -135,19 +138,19 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def enter_country(self, country):
-        country_drop_down = self.driver.find_element(By.XPATH,
-                                                     "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']")
+        country_drop_down = super().wait_element_to_be_clickable(global_var.current_brand_xpath_dict["ClientsPage"]["country_button"])
 
-        country_drop_down.click()
-        search_field = self.driver.find_element(By.XPATH,
-                                                "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']")
+        sleep(5)
+        # country_drop_down.click()
+        self.driver.execute_script("arguments[0].click();", country_drop_down)
+        search_field = super().wait_element_to_be_clickable(global_var.current_brand_xpath_dict["ClientsPage"]["country_field"])
         search_field.clear()
         search_field.send_keys(country)
         country_choice = self.driver.find_element(By.XPATH,
                                                   "//label[contains(text(),'%s')]" % country)
         sleep(5)
-        country_choice.click()
-
+        # country_choice.click()
+        self.driver.execute_script("arguments[0].click();", country_choice)
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()
@@ -196,18 +199,16 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def select_client_status(self, client_status):
-        country_drop_down = super().wait_load_element(
-            "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']")
-
-        country_drop_down.click()
-        search_field = self.driver.find_element(By.XPATH,
-                                                "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']")
+        country_drop_down = super().wait_element_to_be_clickable(global_var.current_brand_xpath_dict["ClientsPage"]["client_status_button"])
+        self.driver.execute_script("arguments[0].click();", country_drop_down)
+        # country_drop_down.click()
+        search_field = super().wait_element_to_be_clickable(global_var.current_brand_xpath_dict["ClientsPage"]["client_status_field"])
         search_field.clear()
         search_field.send_keys(client_status)
         country_choice = self.driver.find_element(By.XPATH,
                                                   "//label[contains(text(),'%s')]" % client_status)
-        country_choice.click()
-
+        # country_choice.click()
+        self.driver.execute_script("arguments[0].click();", country_choice)
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()

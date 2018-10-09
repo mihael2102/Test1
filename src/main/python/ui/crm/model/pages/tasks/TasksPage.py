@@ -246,6 +246,7 @@ class TasksPage(CRMBasePage):
         sleep(2)
         subject_field = super().wait_element_to_be_clickable(global_var.current_brand_xpath_dict["TasksPage"]["subject_input"])
         subject_field.clear()
+        sleep(5)
         subject_field.send_keys(subject)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
         sleep(3)
@@ -292,6 +293,8 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def get_results_count(self):
+        sleep(5)
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         refresh_icon = self.driver.find_element(By.XPATH, "//a[@class='fa fa-refresh']")
         refresh_icon.click()
         sleep(2)
