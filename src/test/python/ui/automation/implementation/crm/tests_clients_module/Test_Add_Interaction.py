@@ -7,7 +7,8 @@ from src.main.python.ui.crm.model.side_bar.SidebarModules import SidebarModules
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
-
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 
 @pytest.mark.run(order=6)
 class AddInteraction(BaseTest):
@@ -18,9 +19,32 @@ class AddInteraction(BaseTest):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .perform_searching(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.FIRST_COUNTRY))
+            # .perform_searching(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
+            #                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+            #                    self.config.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.FIRST_COUNTRY))
+
+        if (global_var.current_brand_name == "goldenmarkets") or (global_var.current_brand_name == "ptbanc") or (global_var.current_brand_name == "royal_cfds"):
+                ClientsPage(self.driver).perform_searching(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+
+        elif global_var.current_brand_name == "4xfx":
+                ClientsPage(self.driver).perform_searching(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_C_NEW),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+
+        elif global_var.current_brand_name == "q8":
+                ClientsPage(self.driver).perform_searching(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_TEST),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+        else:
+                ClientsPage(self.driver).perform_searching(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
         crm_client_profile.perform_scroll_up()
         crm_client_profile = crm_client_profile.open_client_id()

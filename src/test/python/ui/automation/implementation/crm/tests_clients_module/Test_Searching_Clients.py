@@ -25,6 +25,30 @@ class SearchingClientsTestCRM(BaseTest):
             # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
         if (global_var.current_brand_name == "goldenmarkets") or (global_var.current_brand_name == "ptbanc") or (global_var.current_brand_name == "royal_cfds"):
+                sleep(5)
+                self.driver.refresh()
+                sleep(5)
+                self.driver.refresh()
+                sleep(5)
+                self.driver.refresh()
+                sleep(5)
+                self.driver.refresh()
+                sleep(5)
+                self.driver.refresh()
+                sleep(5)
+                self.driver.refresh()
+                sleep(5)
+                self.driver.refresh()
+                sleep(5)
+                self.driver.refresh()
+                sleep(5)
+                self.driver.refresh()
+                sleep(5)
+                self.driver.refresh()
+                sleep(5)
+                self.driver.refresh()
+                sleep(5)
+                self.driver.refresh()
                 ClientsPage(self.driver).perform_searching(
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
