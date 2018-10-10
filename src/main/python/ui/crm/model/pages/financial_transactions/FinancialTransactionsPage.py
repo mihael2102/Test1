@@ -97,8 +97,9 @@ class FinancialTransactionsPage(CRMBasePage):
     def get_modified_time_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        modified_time_element = self.driver.find_element(By.XPATH,
-                                                         global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["modified_time_element"] % position_in_list)
+        modified_time_element = self.driver.find_element(
+            By.XPATH,
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["modified_time_element"] % position_in_list)
         return modified_time_element.text
 
     def is_modified_time_in_search_results(self, modified_time):

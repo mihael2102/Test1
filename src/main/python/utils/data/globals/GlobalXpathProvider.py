@@ -12,7 +12,7 @@ def __get_default_xpath_of_elements_of_current_page():
 
 def __get_xpath_of_elements_of_current_page(current_page_name):
     # Get default xpath values for elements of current page
-    FinancialTransactionsPage_default_dict = __get_default_xpath_of_elements_of_current_page[current_page_name]
+    FinancialTransactionsPage_default_dict = __get_default_xpath_of_elements_of_current_page()[current_page_name]
 
     # Get xpath values for elements of current brand. If in file there is no xpath for page, return default dict 'as is'
     # without any changes
@@ -28,11 +28,27 @@ def __get_xpath_of_elements_of_current_page(current_page_name):
 # Add new brands and pages for brands here
 def get_xpath_for_current_brand_element(page_name):
     if current_brand_name == "mpcrypto":
-        if page_name == "FinancialTransactionsPage":
+        if page_name == "TasksPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "newforexstaging":
-        if page_name == "FinancialTransactionsPage":
+        if page_name == "TasksPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "FinancialTransactionsPage":
+           return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
+    elif current_brand_name == "jonesmutual":
+        if page_name == "TasksPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "FinancialTransactionsPage":
+           return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
     else:

@@ -138,12 +138,14 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def enter_country(self, country):
-        country_drop_down = super().wait_element_to_be_clickable(global_var.current_brand_xpath_dict["ClientsPage"]["country_button"])
+        country_drop_down = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["country_button"])
 
         sleep(5)
         # country_drop_down.click()
         self.driver.execute_script("arguments[0].click();", country_drop_down)
-        search_field = super().wait_element_to_be_clickable(global_var.current_brand_xpath_dict["ClientsPage"]["country_field"])
+        search_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["country_field"])
         search_field.clear()
         search_field.send_keys(country)
         country_choice = self.driver.find_element(By.XPATH,
@@ -199,10 +201,12 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def select_client_status(self, client_status):
-        country_drop_down = super().wait_element_to_be_clickable(global_var.current_brand_xpath_dict["ClientsPage"]["client_status_button"])
+        country_drop_down = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["client_status_button"])
         self.driver.execute_script("arguments[0].click();", country_drop_down)
         # country_drop_down.click()
-        search_field = super().wait_element_to_be_clickable(global_var.current_brand_xpath_dict["ClientsPage"]["client_status_field"])
+        search_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["client_status_field"])
         search_field.clear()
         search_field.send_keys(client_status)
         country_choice = self.driver.find_element(By.XPATH,
