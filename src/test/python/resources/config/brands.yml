@@ -7,14 +7,14 @@ brands:
 #- name: lq-fx
 #  config_file: lq-fx.yml
 
-#- name: jonesmutual
-#  config_file: jonesmutual.yml
+- name: jonesmutual
+  config_file: jonesmutual.yml
 #- name: hamiltonfordgroup
 #  config_file: hamiltonfordgroup.yml
 #- name: baronsvc
 #  config_file: baronsvc.yml
-- name: mpcrypto
-  config_file: mpcrypto.yml
+#- name: mpcrypto
+#  config_file: mpcrypto.yml
 #- name: forexbestmarket
 #  config_file: forexbestmarket.yml
 #- name: newrichmarkets
