@@ -60,6 +60,9 @@ SecondLeadInfo:
 client_1:
   test_filter: "Test Clients"
   client_status_1: "R - New"
+  client_status_B: "B - Test"
+  client_status_C: "C - New"
+  client_status_T: "Test"
   # EVAL_first_name: "'John_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S'))"
 #  first_name: "John-test" # manual config
   EVAL_first_name: "'testqa' + (''.join(random.sample(string.ascii_uppercase*6, 6)))"
