@@ -2,7 +2,7 @@ import json
 import os
 import collections
 import yaml
-import src.main.python.utils.data.globals.Globals as global_var
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
 
 import random
 import string

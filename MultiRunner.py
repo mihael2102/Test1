@@ -1,4 +1,4 @@
-import src.main.python.utils.data.globals.Globals as global_var
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.utils.logs.ExcelWriter import ExcelWriter
 import importlib

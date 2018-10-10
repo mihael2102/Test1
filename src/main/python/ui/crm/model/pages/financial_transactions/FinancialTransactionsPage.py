@@ -8,7 +8,7 @@ from src.main.python.ui.crm.model.pages.financial_transactions.FinancialTransact
     FinancialTransactionInformationPage
 from src.main.python.utils.logs.Loging import Logging
 import datetime
-import src.main.python.utils.data.globals.Globals as global_var
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
 
 
 class FinancialTransactionsPage(CRMBasePage):
