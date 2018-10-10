@@ -2,8 +2,10 @@ import pytest
 
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
 
 
 @pytest.mark.run(order=3)
@@ -12,15 +14,38 @@ class SearchingClientsTestCRM(BaseTest):
     def test_make_searching_client_module(self):
         # Test depends on test 'test_perform_convert_lead'
         # Please run it before current test because we need to create new client firstly.
-        crm_client_profile = CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_data_client(TestDataConstants.USER_NAME),
-                       self.config.get_data_client(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_data_client(TestDataConstants.OTP_SECRET)) \
+        crm_client_profile = CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .perform_searching(self.config.get_data_client(TestDataConstants.CLIENT_ONE, CRMConstants.CLIENT_STATUS),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                               self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+            # .perform_searching(
+            # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
+            # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+            # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+
+        if (global_var.current_brand_name == "goldenmarkets") or (global_var.current_brand_name == "ptbanc") or (global_var.current_brand_name == "royal_cfds"):
+                ClientsPage(self.driver).perform_searching(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+
+        elif global_var.current_brand_name == "4xfx":
+                ClientsPage(self.driver).perform_searching(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_C_NEW),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+
+        elif global_var.current_brand_name == "q8":
+                ClientsPage(self.driver).perform_searching(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_TEST),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+        else:
+                ClientsPage(self.driver).perform_searching(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
         # TODO: verify that only one client was found
 

@@ -27,6 +27,7 @@ def __get_xpath_of_elements_of_current_page(current_page_name):
 
 # Add new brands and pages for brands here
 def get_xpath_for_current_brand_element(page_name):
+
     if current_brand_name == "mpcrypto":
         if page_name == "TasksPage":
             return __get_xpath_of_elements_of_current_page(page_name)
@@ -170,5 +171,6 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+
     else:
         return __get_default_xpath_of_elements_of_current_page()[page_name]
