@@ -1,3 +1,4 @@
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
@@ -39,7 +40,15 @@ class CreditInPrecondition(object):
                                             .find_client_by_email(self.config.get_data_client(
                                                                 TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))\
                                             .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
-        crm_client_profile = MT4CreateAccountModule(self.driver) \
+        if (global_var.current_brand_name == "royal_cfds"):
+            crm_client_profile = MT4CreateAccountModule(self.driver) \
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
+        else:
+            crm_client_profile = MT4CreateAccountModule(self.driver) \
             .create_account(
             self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER),
             self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY),

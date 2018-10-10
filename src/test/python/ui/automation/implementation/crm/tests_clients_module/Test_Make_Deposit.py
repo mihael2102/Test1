@@ -1,4 +1,5 @@
 import pytest
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
 from selenium.common.exceptions import TimeoutException
 
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
@@ -77,13 +78,22 @@ class DepositTestCRM(BaseTest):
         crm_client_profile = ClientProfilePage(self.driver)
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-        MT4CreateAccountModule(self.driver) \
-            .create_account(
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
-            .click_ok()
+        if (global_var.current_brand_name == "royal_cfds"):
+            MT4CreateAccountModule(self.driver) \
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200)) \
+                .click_ok()
+        else:
+            MT4CreateAccountModule(self.driver) \
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
+                .click_ok()
 
         # Get account number to make deposit in future
         account_number = ClientProfilePage(self.driver) \

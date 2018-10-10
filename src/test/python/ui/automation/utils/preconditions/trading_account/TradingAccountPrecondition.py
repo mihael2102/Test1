@@ -8,6 +8,7 @@ from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4Deposit
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
 
 
 class TradingAccountPrecondition(object):
@@ -44,13 +45,22 @@ class TradingAccountPrecondition(object):
 
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-        MT4CreateAccountModule(self.driver)\
-            .create_account(
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
-        return self
+        if (global_var.current_brand_name == "royal_cfds"):
+            MT4CreateAccountModule(self.driver) \
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_1_200))
+            return self
+        else:
+            MT4CreateAccountModule(self.driver) \
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
+            return self
 
     def add_live_account_from_crm(self):
         crm_client_profile = CRMLoginPage(self.driver) \
