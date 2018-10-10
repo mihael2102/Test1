@@ -1,0 +1,3 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+FinancialTransactionsPage:
+  transaction_type_element: "(//*[@id='listBody']//tr/td[4])[%s]"

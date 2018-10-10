@@ -8,7 +8,7 @@ from src.main.python.ui.crm.model.pages.financial_transactions.FinancialTransact
     FinancialTransactionInformationPage
 from src.main.python.utils.logs.Loging import Logging
 import datetime
-import src.main.python.utils.data.globals.Globals as global_var
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
 
 
 class FinancialTransactionsPage(CRMBasePage):
@@ -80,8 +80,8 @@ class FinancialTransactionsPage(CRMBasePage):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
         client_name_element = self.driver.find_element(By.XPATH,
-                                                       global_var.current_brand_xpath_dict[
-                                                           "FinancialTransactionsPage"]["client_name_element"]
+                                                       global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["client_name_element"]
                                                        % position_in_list)
         return client_name_element.text
 
@@ -90,7 +90,8 @@ class FinancialTransactionsPage(CRMBasePage):
             sleep(2)    # Waiting until page reloading will be finished
         transaction_type_element = self.driver.find_element(
             By.XPATH,
-            global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["transaction_type_element"] % position_in_list)
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_element"]
+            % position_in_list)
         return transaction_type_element.text
 
     def get_modified_time_by_position_from_list(self, position_in_list=3):
@@ -116,8 +117,10 @@ class FinancialTransactionsPage(CRMBasePage):
     def get_trading_account_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        trading_account_element = self.driver.find_element(By.XPATH,
-                                                           "(//*[@id='listBody']//tr/td[3])[%s]//a" % position_in_list)
+        trading_account_element = self.driver.find_element(
+            By.XPATH,
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["trading_account_element"]
+            % position_in_list)
         return trading_account_element.text
 
     def perform_searching_trading_account_via_filters(self, transaction_number, client_name, transaction_type_text,
@@ -126,11 +129,8 @@ class FinancialTransactionsPage(CRMBasePage):
         self.enter_client_name(client_name)
         self.enter_transaction_type_text(transaction_type_text)
 
-        # Check that current year is in modified_time. If YES, enter modified time.
-        # In other case it may contain wrong value from another column due to incorrect XPath,
-        # so we need to skip this column
-        current_year = datetime.datetime.now().year
-        if str(current_year) in modified_time:
+        # Check that column 'Time' is absent
+        if modified_time is not None:
             self.enter_modified_time(modified_time)
 
         # if trading_account == None:
@@ -156,14 +156,14 @@ class FinancialTransactionsPage(CRMBasePage):
 
     def enter_transaction_type_text(self, transaction_type_text):
         transaction_type_drop_down = self.driver.find_element(
-                        By.XPATH,
-                        global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["transaction_type_drop_down"])
+            By.XPATH,
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_drop_down"])
         transaction_type_drop_down.click()
 
         transaction_type_field = self.driver.find_element(
                             By.XPATH,
-                            global_var.current_brand_xpath_dict["FinancialTransactionsPage"]["transaction_type_field"])
-        # transaction_type_field.clear()
+                            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_field"])
+        transaction_type_field.clear()
         transaction_type_field.send_keys(transaction_type_text)
         transaction_type_checkbox = self.driver.find_element(By.XPATH,
                              "//li/a/label[@class='checkbox']/input[contains(@value, '%s')]" % transaction_type_text)

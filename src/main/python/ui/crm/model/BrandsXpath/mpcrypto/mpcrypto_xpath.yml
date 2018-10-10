@@ -1,0 +1,7 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+FinancialTransactionsPage:
+  client_name_element:  "(//td[3]/div/a)[%s]"
+  transaction_type_element : "(//*[@id='listBody']//tr/td[4])[%s]"
+  transaction_type_field: "(//td/div/div[1]/ul/li[1]/div/input)[1]"
+  transaction_type_drop_down: "//td[4]/div/div[1]/button"
+  trading_account_element: "(//*[@id='listBody']//tr[15]/td[3])[%s]//a" # Column does not exist so wrong xpath was specified

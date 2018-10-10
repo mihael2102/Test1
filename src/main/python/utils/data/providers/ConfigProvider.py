@@ -2,7 +2,7 @@ import json
 import os
 import collections
 import yaml
-import src.main.python.utils.data.globals.Globals as global_var
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
 
 import random
 import string
@@ -212,12 +212,30 @@ class ConfigProvider:
             self.tests = tests_list
         return self.tests
 
-    def set_xpath_for_tests(self):
+    # def set_xpath_for_tests(self):
+    #     current_brand = global_var.current_brand_name
+    #     # Read relevant XPaths from file for current brand
+    #     with open(os.path.join(self.script_dir, self.dir_with_xpath, current_brand, (current_brand + "_xpath.yml")), 'r') as stream:
+    #         try:
+    #             global_var.current_brand_xpath_dict = yaml.load(stream)
+    #         except yaml.YAMLError as e:
+    #             print(e)
+
+    def get_xpath_for_brand_pages(self):
         current_brand = global_var.current_brand_name
         # Read relevant XPaths from file for current brand
         with open(os.path.join(self.script_dir, self.dir_with_xpath, (current_brand + "_xpath.yml")), 'r') as stream:
             try:
-                global_var.current_brand_xpath_dict = yaml.load(stream)
+                return yaml.load(stream)
+            except yaml.YAMLError as e:
+                print(e)
+
+    def get_default_xpath_dictionary(self):
+        current_brand = global_var.current_brand_name
+        # Read relevant XPaths from file for current brand
+        with open(os.path.join(self.script_dir, self.dir_with_xpath, "default", "default.yml"), 'r') as stream:
+            try:
+                return yaml.load(stream)
             except yaml.YAMLError as e:
                 print(e)
 

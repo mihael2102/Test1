@@ -1,4 +1,4 @@
-import src.main.python.utils.data.globals.Globals as global_var
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.utils.logs.ExcelWriter import ExcelWriter
 import importlib
@@ -23,7 +23,7 @@ class MultiRunner:
         for brand in brands:
             # Load relevant XPaths for current brand in dict
             global_var.current_brand_name = brand
-            self.data_provider.set_xpath_for_tests()
+            # self.data_provider.set_xpath_for_tests()
 
             self.data_provider.load_brand_config(brand)
             brand_pretty_name = self.data_provider.get_data_client('pretty_name')
