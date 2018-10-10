@@ -66,10 +66,10 @@ class TabFinancialTransaction(BaseTest):
         except NoSuchElementException:
             modified_time = None
         # Check that column exists
-        try:
-            # trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
-        except NoSuchElementException:
-            trading_account = None
+        # try:
+        #     trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
+        # except NoSuchElementException:
+        #     trading_account = None
 
         # TIME and Trading Account columns are absent on some brands: 'mpcrypto'.
         # So we skip this column during searching in this case.

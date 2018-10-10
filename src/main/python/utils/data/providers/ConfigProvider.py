@@ -233,7 +233,7 @@ class ConfigProvider:
     def get_default_xpath_dictionary(self):
         current_brand = global_var.current_brand_name
         # Read relevant XPaths from file for current brand
-        with open(os.path.join(self.script_dir, self.dir_with_xpath, "default", "default.yml"), 'r') as stream:
+        with open(os.path.join(self.script_dir, self.dir_with_xpath, "default.yml"), 'r') as stream:
             try:
                 return yaml.load(stream)
             except yaml.YAMLError as e:
