@@ -148,8 +148,8 @@ class ClientsPage(CRMBasePage):
                                                            self.__class__.__name__)["country_field"])
         search_field.clear()
         search_field.send_keys(country)
-        country_choice = self.driver.find_element(By.XPATH,
-                                                  "//label[contains(text(),'%s')]" % country)
+        country_choice = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["country_click"] % country)
         sleep(5)
         # country_choice.click()
         self.driver.execute_script("arguments[0].click();", country_choice)

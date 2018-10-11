@@ -1,8 +1,9 @@
 ClientsPage:
   client_status_button: "//*[@id='customAdvanceSearch']/td[3]/div/div[1]/button"
   client_status_field: "//*[@id='customAdvanceSearch']/td[3]/div/div[1]/ul/li[1]/div/input"
-  country_button: "//*[@id='customAdvanceSearch']/td[8]/div/div[1]/button"
-  country_field: "//*[@id='customAdvanceSearch']/td[8]/div/div[1]/ul/li[1]/div/input"
+  country_button: "//td[8]/div/div/button"
+  country_field: "//td[8]//ul/li/div/input"
+  country_click: "//td[8]//label[contains(text(),'%s')]"
 TasksPage:
   pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
   subject_input: "//tr[@class='tableFilters']//td[15]//input"

@@ -1,10 +1,10 @@
 tests_config:
 
   #General
-- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
-  class: FilterModulesTest
-  tests:
-  - test_create_filter_clients_module
+#- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
+#  class: FilterModulesTest
+#  tests:
+#  - test_create_filter_clients_module
 #  - test_create_filter_documents_module
 #  - test_create_filter_leads_module
 #  - test_create_filter_help_desk
@@ -25,11 +25,11 @@ tests_config:
 ### - search leads
 ##
 ###Clients
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
-#  class: SearchingClientsTestCRM
-#  tests:
-#     ## PRECONDITION: - test_perform_convert_lead
-#    - test_make_searching_client_module   # Searches for a client.
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
+  class: SearchingClientsTestCRM
+  tests:
+     ## PRECONDITION: - test_perform_convert_lead
+    - test_make_searching_client_module   # Searches for a client.
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
 #  class: AddInteraction
 #  tests:
