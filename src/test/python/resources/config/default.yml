@@ -97,7 +97,12 @@ event_1:
   assign_to: "pandaqa pandaqa"
   priority: "Medium"
   description: "Event Description"
+platforms:
+  platform_MT5: "MT5"
+  platform_MT4: "MT4"
 trading_account_1:
+  platform_MT5: "MT5"
+  platform_MT4: "MT4"
   server: "Demo"
   currency: "USD"
   group: "USD"

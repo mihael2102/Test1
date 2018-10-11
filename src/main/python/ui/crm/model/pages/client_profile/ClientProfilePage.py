@@ -1,4 +1,5 @@
 import re
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
 from _decimal import Decimal
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
@@ -143,7 +144,8 @@ class ClientProfilePage(CRMBasePage):
         # Use it after deposit etc. because we need to wait some time
         # while deposit will be applied and displayed at the page
         Logging().reportDebugStep(self, "Returns the amount you placed on the deposit page \n" + total_amount_crm)
-        return super().wait_until_element_present("//tr[@class='lvtColData'][1]//td[3]", total_amount_crm)
+        return super().wait_until_element_present(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["deposit_sum"], total_amount_crm)
 
     '''
         :returns client total amount from Trading Accounts tabs 
@@ -164,8 +166,7 @@ class ClientProfilePage(CRMBasePage):
         return str(total_amount)
 
     def get_amount_of_credit_in(self):
-        credit_in_amount_element = self.driver.find_element(By.XPATH,
-                                                            "//*[@id='rld_table_content']/tbody/tr[2]/td[6]/span[1]")
+        credit_in_amount_element = super().wait_visible_of_element("//*[@id='rld_table_content']/tbody/tr[2]/td[6]/span[1]")
         Logging().reportDebugStep(self, "Amount of Credit in is " + credit_in_amount_element.text)
         return credit_in_amount_element.text
 
