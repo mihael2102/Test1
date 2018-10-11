@@ -4,7 +4,8 @@ from src.main.python.ui.crm.model.pages.leads.LeadDetailViewInfo import LeadDeta
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
+from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
 
 class LeadPrecondition(object):
 
@@ -21,7 +22,39 @@ class LeadPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         CRMHomePage(self.driver).open_lead_module() \
-            .open_create_lead_module().perform_create_lead(
+            .open_create_lead_module()\
+
+
+        if global_var.current_brand_name == "safemarkets":
+            CreateLeadsProfilePage(self.driver).perform_create_lead(
+            lead[LeadsModuleConstants.FIRST_NAME],
+            lead[LeadsModuleConstants.FIRST_LAST_NAME],
+            lead[LeadsModuleConstants.FIRST_MOBILE],
+            lead[LeadsModuleConstants.FAX],
+            lead[LeadsModuleConstants.EMAIL],
+            lead[LeadsModuleConstants.SECONDARY_EMAIL],
+            lead[LeadsModuleConstants.FIRST_LANGUAGE],
+            lead[LeadsModuleConstants.PANDA_PARTNER],
+            lead[LeadsModuleConstants.FIRST_REFERRAL],
+            lead[LeadsModuleConstants.STREET],
+            lead[LeadsModuleConstants.POSTAL_CODE],
+            lead[LeadsModuleConstants.FIRST_COUNTRY],
+            lead[LeadsModuleConstants.FIRST_DESCRIPTION],
+            lead[LeadsModuleConstants.PHONE],
+            lead[LeadsModuleConstants.FIRST_TITTLE],
+            lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
+            lead[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW],
+            lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+            lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
+            lead[LeadsModuleConstants.BRAND],
+            lead[LeadsModuleConstants.PO_BOX],
+            lead[LeadsModuleConstants.CITY],
+            lead[LeadsModuleConstants.FIRST_STATE])
+            return LeadPrecondition(self.driver, self.config)
+
+        else:
+
+            CreateLeadsProfilePage(self.driver).perform_create_lead(
             lead[LeadsModuleConstants.FIRST_NAME],
             lead[LeadsModuleConstants.FIRST_LAST_NAME],
             lead[LeadsModuleConstants.FIRST_MOBILE],
@@ -45,7 +78,7 @@ class LeadPrecondition(object):
             lead[LeadsModuleConstants.PO_BOX],
             lead[LeadsModuleConstants.CITY],
             lead[LeadsModuleConstants.FIRST_STATE])
-        return LeadPrecondition(self.driver, self.config)
+            return LeadPrecondition(self.driver, self.config)
 
     def create_three_leads(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \

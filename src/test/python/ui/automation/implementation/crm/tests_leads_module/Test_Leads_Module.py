@@ -10,7 +10,8 @@ from src.main.python.ui.crm.model.pages.leads.LeadDetailViewInfo import LeadDeta
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
 from selenium.common.exceptions import TimeoutException
-
+import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
+from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import ConvertLeadModule
 
 @pytest.mark.run(order=24)
 class LeadModuleTest(BaseTest):
@@ -88,23 +89,46 @@ class LeadModuleTest(BaseTest):
         lead_view_profile_page = LeadViewInfo(self.driver)
 
         lead_view_profile_page.open_convert_lead_module() \
-            .perform_convert_lead(
-            self.client1[LeadsModuleConstants.FIRST_NAME],
-            self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-            self.client1[LeadsModuleConstants.EMAIL],
-            self.client1[LeadsModuleConstants.PHONE],
-            self.client1[LeadsModuleConstants.BIRTHDAY],
-            self.client1[LeadsModuleConstants.CITIZENSHIP],
-            self.client1[LeadsModuleConstants.STREET],
-            self.client1[LeadsModuleConstants.POSTAL_CODE],
-            self.client1[LeadsModuleConstants.CITY],
-            self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-            self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-            self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-            self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-            self.client1[LeadsModuleConstants.BRAND],
-            self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-            self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+        if global_var.current_brand_name == "mpcrypto":
+            ConvertLeadModule(self.driver).perform_convert_lead(
+                self.client1[LeadsModuleConstants.FIRST_NAME],
+                self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                self.client1[LeadsModuleConstants.EMAIL],
+                self.client1[LeadsModuleConstants.PHONE],
+                self.client1[LeadsModuleConstants.BIRTHDAY],
+                self.client1[LeadsModuleConstants.CITIZENSHIP],
+                self.client1[LeadsModuleConstants.STREET],
+                self.client1[LeadsModuleConstants.POSTAL_CODE],
+                self.client1[LeadsModuleConstants.CITY],
+                self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BCH],
+                self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                self.client1[LeadsModuleConstants.BRAND],
+                self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+        else:
+
+            ConvertLeadModule(self.driver).perform_convert_lead(
+                self.client1[LeadsModuleConstants.FIRST_NAME],
+                self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                self.client1[LeadsModuleConstants.EMAIL],
+                self.client1[LeadsModuleConstants.PHONE],
+                self.client1[LeadsModuleConstants.BIRTHDAY],
+                self.client1[LeadsModuleConstants.CITIZENSHIP],
+                self.client1[LeadsModuleConstants.STREET],
+                self.client1[LeadsModuleConstants.POSTAL_CODE],
+                self.client1[LeadsModuleConstants.CITY],
+                self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+                self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                self.client1[LeadsModuleConstants.BRAND],
+                self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
 
         convert_verified = False
         try:

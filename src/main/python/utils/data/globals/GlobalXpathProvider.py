@@ -44,6 +44,22 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
+    elif current_brand_name == "optionstars":
+        if page_name == "TasksPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "FinancialTransactionsPage":
+           return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
+    elif current_brand_name == "24btcmarket":
+        if page_name == "TasksPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "FinancialTransactionsPage":
+           return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
     elif current_brand_name == "jonesmutual":
         if page_name == "TasksPage":
             return __get_xpath_of_elements_of_current_page(page_name)

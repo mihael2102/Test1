@@ -22,6 +22,7 @@ FirstLeadInfo:
   first_tittle: "tittle test"
   first_lead_source: "Conference"
   first_lead_status: "R - New"
+  first_lead_status_new: "New"
   first_assigned_to: "pandaqa pandaqa"
   first_source_name: "source name test"
   brand:
@@ -63,6 +64,8 @@ client_1:
   client_status_B: "B - Test"
   client_status_C: "C - New"
   client_status_T: "Test"
+  client_status_F: "F - New"
+  client_status_N: ""
   # EVAL_first_name: "'John_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S'))"
 #  first_name: "John-test" # manual config
   EVAL_first_name: "'testqa' + (''.join(random.sample(string.ascii_uppercase*6, 6)))"
@@ -87,9 +90,11 @@ client_1:
   first_referral:
   first_source_name: "source 1"
   first_currency: "USD"
+  first_currency_BCH: "BCH"
   new_password: "Panda123456"
 event_1:
   type: "Meeting"
+  task: "Task"
   status: "Not Started"
   duration: "30M"
   EVAL_time: "(datetime.now() + relativedelta(days=1)).strftime('%H:%M:%S')"
@@ -105,6 +110,7 @@ trading_account_1:
   platform_MT4: "MT4"
   server: "Demo"
   currency: "USD"
+  currency_BCH: "BCH"
   group: "USD"
   demo: "demo"
   leverage: "100"
