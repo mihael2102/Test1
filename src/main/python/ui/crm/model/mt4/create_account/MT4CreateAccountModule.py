@@ -27,6 +27,12 @@ class MT4CreateAccountModule(CRMBasePage):
         self.click_create()
         return ClientProfilePage(self.driver)
 
+    def create_account_with_platform(self, platform, server, currency, group, leverage):
+        if platform:
+            self.select_platform(platform)
+        self.create_account(server, currency, group, leverage)
+        return ClientProfilePage(self.driver)
+
     def update_account(self, trading_account, group, leverage):
         """
                 create a trading account
@@ -43,6 +49,16 @@ class MT4CreateAccountModule(CRMBasePage):
             self.select_leverage(leverage)
         self.click_update()
         return ClientProfilePage(self.driver)
+
+    def select_platform(self, platform):
+        drop_down = super().wait_element_to_be_clickable("//*[@id='trading_platform']", timeout=10)
+        drop_down.click()
+        platform_selection = self.driver.find_element(
+            By.XPATH,
+            "//select[@id='trading_platform']/option[contains(text(), '%s')]" % platform)
+        platform_selection.click()
+        Logging().reportDebugStep(self, "Platform was selected: " + platform_selection.text)
+        return self
 
     def select_trading_account(self, trading_account):
         drop_down = self.wait_element_to_be_clickable("//select[@name='login']")

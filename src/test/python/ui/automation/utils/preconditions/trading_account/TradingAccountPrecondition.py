@@ -54,6 +54,16 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_1_200))
             return self
 
+        elif (global_var.current_brand_name == "q8"):
+            MT4CreateAccountModule(self.driver) \
+                .create_account_with_platform(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT4),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
+            return self
+
         elif (global_var.current_brand_name == "mpcrypto"):
             MT4CreateAccountModule(self.driver) \
                 .create_account(
