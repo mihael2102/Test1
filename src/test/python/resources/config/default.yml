@@ -132,5 +132,6 @@ module_clients_filter:
   eighth_column: "First Name"
   ninth_column: "Last Name"
   tenth_column: "City *"
+  City: "City"
   eleventh_column: "Brand"
 

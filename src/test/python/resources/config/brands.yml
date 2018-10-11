@@ -37,10 +37,10 @@ brands:
 #  config_file: herdos.yml
 #- name: ptbanc
 #  config_file: ptbanc.yml
-#- name: royal_cfds
-#  config_file: royal_cfds.yml
-#- name: intelligent_capital
-#  config_file: intelligent_capital.yml
+- name: royal_cfds
+  config_file: royal_cfds.yml
+- name: intelligent_capital
+  config_file: intelligent_capital.yml
 #- name: solid_fx
 #  config_file: solid_fx.yml
 #- name: FXMarketPro
@@ -82,8 +82,8 @@ brands:
 #  config_file: new_forex_qa.yml
 
 ##BLOCKED
-- name: 24btcmarket
-  config_file: 24btcmarket.yml
+#- name: 24btcmarket
+#  config_file: 24btcmarket.yml
 #- name: marketsplus
 #  config_file: marketsplus.yml
 #- name: eu4xsolutions

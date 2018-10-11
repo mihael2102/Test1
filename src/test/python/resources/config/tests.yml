@@ -1,10 +1,10 @@
 tests_config:
 
   #General
-#- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
-#  class: FilterModulesTest
-#  tests:
-#  - test_create_filter_clients_module
+- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
+  class: FilterModulesTest
+  tests:
+  - test_create_filter_clients_module
 #  - test_create_filter_documents_module
 #  - test_create_filter_leads_module
 #  - test_create_filter_help_desk
@@ -78,14 +78,14 @@ tests_config:
 #    - test_check_day_tab
 #    - test_check_week_tab
 ##    - test_check_month_tab
-- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
-  class: TabFinancialTransaction
-  tests:
-#    - test_check_all_tab_from_financial_transactions
-     ## PRECONDITION: No
-    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
-     ## PRECONDITION: No
-    - test_check_search_via_button # Check search using search button
+#- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
+#  class: TabFinancialTransaction
+#  tests:
+##    - test_check_all_tab_from_financial_transactions
+#     ## PRECONDITION: No
+#    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
+#     ## PRECONDITION: No
+#    - test_check_search_via_button # Check search using search button
 ##
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
 #  class: TradingAccountCrmTest
