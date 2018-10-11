@@ -62,6 +62,7 @@ class TaskModuleConstants(object):
     EVENT1 = "event_1"
     EVENT_STATUS = "status"
     EVENT_TYPE = "type"
+    EVENT_TYPE_TASK = "task"
     EVENT_DURATION = "duration"
     EVENT_TIME = "time"
     EVENT_DATE = "date"

@@ -9,6 +9,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from src.main.python.ui.crm.model.side_bar.create_event.CreateEvent import CreateEvent
 
 @pytest.mark.run(order=6)
 class AddInteraction(BaseTest):
@@ -23,35 +24,53 @@ class AddInteraction(BaseTest):
             #                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
             #                    self.config.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.FIRST_COUNTRY))
 
-        if (global_var.current_brand_name == "goldenmarkets") or (global_var.current_brand_name == "ptbanc") or (global_var.current_brand_name == "royal_cfds"):
-                ClientsPage(self.driver).perform_searching(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+        if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds"):
+            ClientsPage(self.driver).perform_searching(
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
         elif global_var.current_brand_name == "4xfx":
-                ClientsPage(self.driver).perform_searching(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_C_NEW),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+            ClientsPage(self.driver).perform_searching(
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_C_NEW),
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
         elif global_var.current_brand_name == "q8":
-                ClientsPage(self.driver).perform_searching(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_TEST),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+            ClientsPage(self.driver).perform_searching(
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_TEST),
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+
+        elif global_var.current_brand_name == "goldenmarkets":
+            ClientsPage(self.driver).perform_searching(
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_F_NEW),
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
         else:
-                ClientsPage(self.driver).perform_searching(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+            ClientsPage(self.driver).perform_searching(
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS),
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
         crm_client_profile.perform_scroll_up()
         crm_client_profile = crm_client_profile.open_client_id()
 
         SidebarModules(self.driver)\
             .open_create_event_module() \
-            .create_event(self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_STATUS),
+
+        if global_var.current_brand_name == "4xfx":
+            CreateEvent(self.driver).create_event(self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_STATUS),
+                      self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE_TASK),
+                      self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DURATION),
+                      self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TIME),
+                      self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DATE),
+                      self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_ASSIGN_TO),
+                      self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_PRIORITY),
+                      self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DESCRIPTION))
+        else:
+
+            CreateEvent(self.driver).create_event(self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_STATUS),
                           self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE),
                           self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DURATION),
                           self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TIME),

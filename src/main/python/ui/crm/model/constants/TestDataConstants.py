@@ -48,6 +48,7 @@ class TestDataConstants(object):
     CLIENT_STATUS_B_TEST = "client_status_B"
     CLIENT_STATUS_C_NEW = "client_status_C"
     CLIENT_STATUS_TEST = "client_status_T"
+    CLIENT_STATUS_F_NEW = "client_status_F"
     SECOND_COUNTRY = "country_two"
     ACCOUNT_CURRENCY_JPY = "account_currency_jpy"
     ACCOUNT_CURRENCY_USD = "account_currency_usd"

@@ -63,6 +63,7 @@ client_1:
   client_status_B: "B - Test"
   client_status_C: "C - New"
   client_status_T: "Test"
+  client_status_F: "F - New"
   # EVAL_first_name: "'John_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S'))"
 #  first_name: "John-test" # manual config
   EVAL_first_name: "'testqa' + (''.join(random.sample(string.ascii_uppercase*6, 6)))"
@@ -90,6 +91,7 @@ client_1:
   new_password: "Panda123456"
 event_1:
   type: "Meeting"
+  task: "Task"
   status: "Not Started"
   duration: "30M"
   EVAL_time: "(datetime.now() + relativedelta(days=1)).strftime('%H:%M:%S')"

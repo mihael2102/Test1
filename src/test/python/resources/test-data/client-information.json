@@ -56,6 +56,7 @@
     "client_status_B": "B - Test",
     "client_status_C": "C - New",
     "client_status_T": "Test",
+    "client_status_F": "F - New",
     "brand_one": "newForex",
     "first_column": "CRM Id",
     "second_column": "Client Status",
