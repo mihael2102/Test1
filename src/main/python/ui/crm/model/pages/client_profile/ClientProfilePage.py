@@ -189,6 +189,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_client_account(self):
+        sleep(1)
         account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
         super().scroll_into_view(account_number)
         account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
