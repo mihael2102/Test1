@@ -199,7 +199,13 @@ class LeadModuleTest(BaseTest):
         self.assertEqual(phone, lead_data[LeadsModuleConstants.PHONE])
         self.assertEqual(tittle, lead_data[LeadsModuleConstants.FIRST_TITTLE])
         self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])
-        self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS])
+
+        if global_var.current_brand_name == "safemarkets":
+            self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW])
+
+        else:
+            self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS])
+
         self.assertEqual(language, lead_data[LeadsModuleConstants.FIRST_LANGUAGE])
         # if lead_data[LeadsModuleConstants.BRAND]:
         #     self.assertEqual(brand, lead_data[LeadsModuleConstants.BRAND])

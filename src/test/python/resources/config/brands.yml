@@ -24,8 +24,8 @@ brands:
 #  config_file: solocapitlas.yml
 #- name: goldenmarkets
 #  config_file: goldenmarkets.yml
-#- name: safemarkets
-#  config_file: safemarkets.yml
+- name: safemarkets
+  config_file: safemarkets.yml
 #- name: optionstars
 #  config_file: optionstars.yml
 #- name: uft

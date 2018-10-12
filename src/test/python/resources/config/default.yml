@@ -52,6 +52,7 @@ SecondLeadInfo:
   first_tittle: "second tittle test"
   first_lead_source: "Conference"
   first_lead_status: "B - No interest"
+  first_lead_status_new: "Not interested"
   first_assigned_to: "pandaqa pandaqa"
   first_source_name: "source name test"
   brand:
