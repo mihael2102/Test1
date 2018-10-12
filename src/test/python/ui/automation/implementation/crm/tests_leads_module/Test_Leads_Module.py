@@ -10,7 +10,7 @@ from src.main.python.ui.crm.model.pages.leads.LeadDetailViewInfo import LeadDeta
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
 from selenium.common.exceptions import TimeoutException
-import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import ConvertLeadModule
 
 @pytest.mark.run(order=24)

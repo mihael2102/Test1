@@ -1,5 +1,5 @@
 import re
-import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from _decimal import Decimal
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException, TimeoutException

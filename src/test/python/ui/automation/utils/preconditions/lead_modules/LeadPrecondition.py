@@ -4,7 +4,7 @@ from src.main.python.ui.crm.model.pages.leads.LeadDetailViewInfo import LeadDeta
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
 
 class LeadPrecondition(object):

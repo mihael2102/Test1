@@ -16,7 +16,7 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 from src.main.python.utils.logs.Loging import Logging
 from datetime import *
 import allure
-import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
 
 

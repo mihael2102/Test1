@@ -6,7 +6,7 @@ from src.main.python.ui.crm.model.constants.TradingAccountConstants import Tradi
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.utils.config import Config
-import src.main.python.utils.data.globals.GlobalXpathProvider as global_var
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 
 class FilterPrecondition(object):
