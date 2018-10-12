@@ -24,8 +24,8 @@ brands:
 #  config_file: solocapitlas.yml
 #- name: goldenmarkets
 #  config_file: goldenmarkets.yml
-- name: safemarkets
-  config_file: safemarkets.yml
+#- name: safemarkets
+#  config_file: safemarkets.yml
 #- name: optionstars
 #  config_file: optionstars.yml
 #- name: uft
@@ -56,8 +56,8 @@ brands:
 #  config_file: bots.yml
 #- name: kontofx
 #  config_file: kontofx.yml
-#- name: xtraderfx
-#  config_file: xtraderfx.yml
+- name: xtraderfx
+  config_file: xtraderfx.yml
 #- name: firstindex
 #  config_file: firstindex.yml
 #- name: coinstec
