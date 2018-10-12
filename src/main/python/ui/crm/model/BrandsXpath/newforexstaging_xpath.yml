@@ -1,3 +1,5 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
 FinancialTransactionsPage:
   transaction_type_element: "(//*[@id='listBody']//tr/td[4])[%s]"
+ClientProfilePage:
+  deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"

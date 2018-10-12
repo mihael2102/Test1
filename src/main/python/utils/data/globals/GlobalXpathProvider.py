@@ -35,6 +35,8 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "newforexstaging":
         if page_name == "TasksPage":
@@ -42,6 +44,8 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "newrichmarkets":
@@ -51,6 +55,8 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "forexbestmarket":
         if page_name == "TasksPage":
@@ -58,6 +64,8 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "solocapitlas":
@@ -67,6 +75,8 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "lq-fx":
         if page_name == "TasksPage":
@@ -74,6 +84,8 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "optionstars":
@@ -83,6 +95,8 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "24btcmarket":
         if page_name == "TasksPage":
@@ -90,6 +104,8 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "jonesmutual":
@@ -99,6 +115,8 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "goldenmarkets":
         if page_name == "TasksPage":
@@ -106,6 +124,8 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "safemarkets":
@@ -115,6 +135,8 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "uft":
         if page_name == "TasksPage":
@@ -122,6 +144,8 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "brokerz":
@@ -131,6 +155,8 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "4xfx":
         if page_name == "TasksPage":
@@ -138,6 +164,8 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "herdos":
@@ -147,6 +175,8 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "ptbanc":
         if page_name == "TasksPage":
@@ -154,6 +184,8 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "royal_cfds":
@@ -163,6 +195,8 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "intelligent_capital":
         if page_name == "TasksPage":
@@ -171,6 +205,8 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "FXMarketPro":
         if page_name == "TasksPage":
@@ -178,6 +214,8 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "q8":
@@ -197,6 +235,8 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "xtraderfx":
         if page_name == "TasksPage":
@@ -204,6 +244,8 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "coinstec":
@@ -213,6 +255,8 @@ def get_xpath_for_current_brand_element(page_name):
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "marketsplus":
         if page_name == "TasksPage":
@@ -220,6 +264,8 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
         elif page_name == "ClientsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "ClientProfilePage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
     else:

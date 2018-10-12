@@ -7,3 +7,5 @@ TasksPage:
   pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
   subject_input: "//tr[@class='tableFilters']//td[15]//input"
   account_name_input: "//*[@id='host-element']/input"
+ClientProfilePage:
+  deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"

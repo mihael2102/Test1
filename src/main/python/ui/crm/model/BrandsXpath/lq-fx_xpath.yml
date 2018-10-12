@@ -16,4 +16,6 @@ FinancialTransactionsPage:
   transaction_type_field: "(//div/div[1]/ul/li[1]/div/input)[1]"
   transaction_type_drop_down: "//td[5]/div/div[1]/button"
   modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
+ClientProfilePage:
+  deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
 
