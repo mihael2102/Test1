@@ -3,6 +3,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.financial_transactions.FinancialTransactionInformationPage import \
     FinancialTransactionInformationPage
@@ -79,14 +80,19 @@ class FinancialTransactionsPage(CRMBasePage):
     def get_client_name_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        client_name_element = self.driver.find_element(By.XPATH, "(//*[@id='listBody']//tr/td[4])[%s]" % position_in_list)
+        client_name_element = self.driver.find_element(
+            By.XPATH,
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["client_name_element"]
+            % position_in_list)
         return client_name_element.text
 
     def get_transaction_type_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        transaction_type_element = self.driver.find_element(By.XPATH,
-                                                            "(//*[@id='listBody']//tr/td[5])[%s]" % position_in_list)
+        transaction_type_element = self.driver.find_element(
+            By.XPATH,
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_element"]
+            % position_in_list)
         return transaction_type_element.text
 
     def get_modified_time_by_position_from_list(self, position_in_list=3):
@@ -142,10 +148,14 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def enter_transaction_type_text(self, transaction_type_text):
-        transaction_type_drop_down = self.driver.find_element(By.XPATH, "//td[5]/div/div[1]/button")
+        transaction_type_drop_down = self.driver.find_element(
+            By.XPATH,
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_drop_down"])
         transaction_type_drop_down.click()
 
-        transaction_type_field = self.driver.find_element(By.XPATH, "(//div/div[1]/ul/li[1]/div/input)[1]")
+        transaction_type_field = self.driver.find_element(
+            By.XPATH,
+            "(//select[contains(@name, 'tks_transactiontype')]//..//input)[1]")
         transaction_type_field.clear()
         transaction_type_field.send_keys(transaction_type_text)
         transaction_type_checkbox = self.driver.find_element(By.XPATH,
@@ -216,7 +226,7 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def search_for_transaction_type(self, transaction_type):
-        self.__change_search_criteria_by_visible_text("Platform")
+        self.__change_search_criteria_by_visible_text(TestDataConstants.TRANSACTION_TYPE)
         self.__fill_search_field_with_value(transaction_type)
         self.__click_search_now_button()
         Logging().reportDebugStep(self, "Searching for transaction type: %s was performed" % transaction_type)
