@@ -45,7 +45,7 @@ class MT4CreateAccountModule(CRMBasePage):
         return ClientProfilePage(self.driver)
 
     def select_trading_account(self, trading_account):
-        drop_down = self.wait_element_to_be_clickable("//select[@name='login']")
+        drop_down = self.wait_element_to_be_clickable("//*[@id='mtUserSelect']")
         drop_down.click()
         trading_account_selection = self.driver.find_element(By.XPATH, "//*[@id='login']/option[contains(text(), '%s')]" % trading_account)
         trading_account_selection.click()
