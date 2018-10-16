@@ -104,8 +104,8 @@ brands:
 #  config_file: brokerxp.yml
 #- name: finmarket
 #  config_file: finmarket.yml
-#- name: fxpmarkets
-#  config_file: fxpmarkets.yml
+- name: fxpmarkets
+  config_file: fxpmarkets.yml
 #- name: soarfx
 #  config_file: soarfx.yml
 #- name: highfx
@@ -118,8 +118,8 @@ brands:
 #  config_file: gmo-dev.yml
 #- name: mtxplus
 #  config_file: mtxplus.yml
-- name: 24fxm
-  config_file: 24fxm.yml
+#- name: 24fxm
+#  config_file: 24fxm.yml
 #- name: stoxmarket
 #  config_file: stoxmarket.yml
 #- name: alphabetfx
