@@ -147,8 +147,8 @@ class ClientsPage(CRMBasePage):
         search_field.send_keys(country)
         country_choice = self.driver.find_element(By.XPATH,
                                                   "//label[contains(text(),'%s')]" % country)
-        country_choice.click()
-
+        # country_choice.click()
+        self.driver.execute_script("arguments[0].click();", country_choice)
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()
@@ -211,7 +211,8 @@ class ClientsPage(CRMBasePage):
         country_choice = self.driver.find_element(By.XPATH,
                                                   "//label[contains(text(),'%s')]" % client_status)
         # for_old_forex
-        country_choice.click()
+        # country_choice.click()
+        self.driver.execute_script("arguments[0].click();", country_choice)
 
         ac = ActionChains(self.driver)
 
@@ -221,12 +222,13 @@ class ClientsPage(CRMBasePage):
 
     def click_search_button(self):
         # Need to scroll to 'Filters' button to make 'Search' button visible
-        drop_down_filter = super().wait_load_element("//span[@class='filter-option pull-left']")
-        super().scroll_into_view(drop_down_filter)
+        # drop_down_filter = super().wait_load_element("//span[@class='filter-option pull-left']")
+        # super().scroll_into_view(drop_down_filter)
         # Click on 'Search'
         search_button_xpath = "//td[@class='txt_al_c']/input"
         search_button = super().wait_element_to_be_clickable(search_button_xpath)
-        search_button.click()
+        # search_button.click()
+        self.driver.execute_script("arguments[0].click();", search_button)
         Logging().reportDebugStep(self, "The search button was clicked ")
         return ClientsPage(self.driver)
 
