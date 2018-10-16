@@ -112,8 +112,8 @@ brands:
 #  config_file: highfx.yml
 #- name: mlnfx
 #  config_file: mlnfx.yml
-#- name: gmo
-#  config_file: gmo.yml
+- name: gmo
+  config_file: gmo.yml
 #- name: gmo-dev
 #  config_file: gmo-dev.yml
 #- name: mtxplus

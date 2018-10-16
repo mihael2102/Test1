@@ -1,0 +1,2 @@
+LeadViewInfo:
+  convert_lead_module: "//div[@id='sidebar']//tr[2]//a"
