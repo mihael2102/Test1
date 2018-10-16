@@ -5,7 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
-
+import time
 
 class MT4CreditInModule(CRMBasePage):
     # def __init__(self) -> None:
@@ -34,12 +34,21 @@ class MT4CreditInModule(CRMBasePage):
     '''
 
     def select_account(self, account):
-        drop_down = super().wait_element_to_be_clickable("//select[@name='loginserver']")
+        time.sleep(3)
+        drop_down = self.wait_element_to_be_clickable("//*[@id='loginserver']")
         drop_down.click()
 
-        select_account = self.driver.find_element(By.XPATH, "//select[@name='loginserver']//"
-                                                            "following-sibling::*[contains(text(),'%s')]" % account)
+        select_account = self.wait_element_to_be_clickable(
+            "//select[@id='loginserver']/option[contains(text(),'%s')]" % account)
         select_account.click()
+
+
+        # drop_down = super().wait_element_to_be_clickable("//select[@name='loginserver']")
+        # drop_down.click()
+        #
+        # select_account = self.driver.find_element(By.XPATH, "//select[@name='loginserver']//"
+        #                                                     "following-sibling::*[contains(text(),'%s')]" % account)
+        # select_account.click()
         Logging().reportDebugStep(self, "The account of deposit in module was selected:  " + account)
         return MT4CreditInModule()
 
@@ -50,6 +59,7 @@ class MT4CreditInModule(CRMBasePage):
     '''
 
     def set_amount(self, amount):
+        sleep(3)
         amount_filed = self.driver.find_element(By.XPATH, "//input[@id='amount']")
         amount_filed.clear()
         amount_filed.send_keys(amount)
@@ -63,6 +73,7 @@ class MT4CreditInModule(CRMBasePage):
     '''
 
     def set_expire_date(self, date):
+        sleep(3)
         date_drop_down = self.driver.find_element(By.XPATH, "//input[@id='expire_date']")
         date_drop_down.clear()
         date_drop_down.send_keys(date)
@@ -78,7 +89,8 @@ class MT4CreditInModule(CRMBasePage):
      '''
 
     def set_description(self, description_credit_in):
-        amount_filed = super().wait_element_to_be_clickable("//input[@id='transaction_comment']", timeout=5)
+        sleep(2)
+        amount_filed = super().wait_element_to_be_clickable("//*[@id='transaction_comment']", timeout=5)
         amount_filed.clear()
         amount_filed.send_keys(description_credit_in)
         Logging().reportDebugStep(self, "The  description of credit in module was set in the description field:  " +
@@ -91,7 +103,10 @@ class MT4CreditInModule(CRMBasePage):
     '''
 
     def perform_create_credit_in(self):
-        create_button = super().wait_element_to_be_clickable("//button[contains(text(),'Create')]", timeout=5)
+        # for_old_forex
+        sleep(2)
+        create_button = self.wait_element_to_be_clickable("//*[@id='mt_interaction']/div/div[4]/button[2]")
+        #self.driver.execute_script("arguments[0].click();", create_button)
         create_button.click()
-        Logging().reportDebugStep(self, "Perform the create credit in  of credit in module was clicked")
+        Logging().reportDebugStep(self, "The create withdraw button of deposit module was clicked")
         return ClientProfilePage()

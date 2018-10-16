@@ -16,7 +16,6 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 from src.main.python.utils.logs.Loging import Logging
 from datetime import *
 import allure
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
 
 
@@ -244,14 +243,21 @@ class TasksPage(CRMBasePage):
 
     def find_event_by_subject(self, subject):
         sleep(2)
-        subject_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["subject_input"])
+        # for_old_forex
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollWeight);")
+        subject_button = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+        subject_button.click()
+        subject_field = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input")
         subject_field.clear()
         sleep(5)
         subject_field.send_keys(subject)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
         sleep(3)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
+        event_type = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        event_type.click()
+        title = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[1]/div/button-block/div[1]/h3")
+        title.click()
         return TasksPage(self.driver)
 
     def open_phone_actions(self):
@@ -309,8 +315,7 @@ class TasksPage(CRMBasePage):
         return result_count
 
     def search_account_name(self, first_name):
-        input_account_name = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["account_name_input"], timeout=10)
+        input_account_name = super().wait_element_to_be_clickable("//*[@id='host-element']/input", timeout=10)
         input_account_name.send_keys(first_name)
         sleep(5)
         return TasksPage(self.driver)
@@ -322,8 +327,7 @@ class TasksPage(CRMBasePage):
 
     def open_edit_event(self):
         pencil_button = self.driver.find_element(By.XPATH,
-                                                 global_var.get_xpath_for_current_brand_element(
-                                                     self.__class__.__name__)["pencil_button"])
+            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span")
         self.driver.execute_script("arguments[0].click();", pencil_button)
         Logging().reportDebugStep(self, "Edit popup was opened")
         return EditEventModule(self.driver)

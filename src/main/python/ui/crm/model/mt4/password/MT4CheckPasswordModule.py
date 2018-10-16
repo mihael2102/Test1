@@ -11,10 +11,10 @@ class MT4CheckPasswordModule(CRMBasePage):
     '''
 
     def select_account(self, account):
-        drop_down = super().wait_element_to_be_clickable("//select[@name='pwd_loginSel']")
+        drop_down = super().wait_element_to_be_clickable("//*[@id='mtpassword']/div[1]/div/div[1]/div/button")
         drop_down.click()
         select_account = self.driver.find_element(By.XPATH,
-                                                  "//select[@name='pwd_loginSel']//option[contains(text(),'%s')]" % account)
+                                                  "//*[@id='mtpassword']/div[1]/div/div[1]/div/div/ul/li/a/span[contains(text(),'%s')]" % account)
         select_account.click()
         return MT4CheckPasswordModule(self.driver)
 

@@ -15,7 +15,7 @@
     "filter_name": "TestFilterDocumentsModule",
     "first_column": "Document No",
     "second_column": "Status",
-    "third_column": "Comments",
+    "third_column": "Size",
     "fourth_column": "Assigned To *"
   }
 }

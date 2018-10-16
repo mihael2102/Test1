@@ -138,14 +138,14 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def enter_country(self, country):
-        country_drop_down = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["country_button"])
+        country_drop_down = self.driver.find_element(By.XPATH,
+                                                     "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/button")
+        # for_old_forex
 
-        sleep(5)
-        # country_drop_down.click()
-        self.driver.execute_script("arguments[0].click();", country_drop_down)
-        search_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["country_field"])
+        country_drop_down.click()
+        search_field = self.driver.find_element(By.XPATH,
+                                                "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/ul/li[1]/div/input")
+        # for_old_forex
         search_field.clear()
         search_field.send_keys(country)
         country_choice = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
@@ -201,18 +201,22 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def select_client_status(self, client_status):
-        country_drop_down = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["client_status_button"])
-        self.driver.execute_script("arguments[0].click();", country_drop_down)
-        # country_drop_down.click()
-        search_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["client_status_field"])
+        sleep(3)
+        # for_old_forex
+        country_drop_down = super().wait_load_element(
+            "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/button")
+
+        country_drop_down.click()
+        search_field = self.driver.find_element(By.XPATH,
+                                                "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/ul/li[1]/div/input")
+        # for_old_forex
         search_field.clear()
         search_field.send_keys(client_status)
         country_choice = self.driver.find_element(By.XPATH,
                                                   "//label[contains(text(),'%s')]" % client_status)
-        # country_choice.click()
-        self.driver.execute_script("arguments[0].click();", country_choice)
+        # for_old_forex
+        country_choice.click()
+
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()

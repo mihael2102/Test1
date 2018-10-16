@@ -88,6 +88,11 @@ class CRMBasePage(object):
         button.click()
         Logging().reportDebugStep(self, "The Ok button was clicked ")
 
+    def click_close(self):
+        button = self.wait_element_to_be_clickable("//div[@class='bootstrap-dialog-footer']/div/button[contains(text(), 'Close')]")
+        self.driver.execute_script("arguments[0].click();", button)
+        Logging().reportDebugStep(self, "The close button was clicked ")
+
     def wait_crm_loading_to_finish(self):
         self.wait_element_to_be_disappear("//div[@class='loader']")
 

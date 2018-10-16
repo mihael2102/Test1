@@ -24,7 +24,7 @@ class MT4CreateAccountModule(CRMBasePage):
             self.select_group(group)
         if leverage:
             self.select_leverage(leverage)
-        self.click_create()
+        self.click_update() #for_old_forex
         return ClientProfilePage(self.driver)
 
     def create_account_with_platform(self, platform, server, currency, group, leverage):
@@ -61,7 +61,7 @@ class MT4CreateAccountModule(CRMBasePage):
         return self
 
     def select_trading_account(self, trading_account):
-        drop_down = self.wait_element_to_be_clickable("//select[@name='login']")
+        drop_down = self.wait_element_to_be_clickable("//*[@id='mtUserSelect']")
         drop_down.click()
         trading_account_selection = self.driver.find_element(By.XPATH, "//*[@id='login']/option[contains(text(), '%s')]" % trading_account)
         trading_account_selection.click()
@@ -69,38 +69,38 @@ class MT4CreateAccountModule(CRMBasePage):
         return self
 
     def select_server(self, server):
-        drop_down = self.wait_element_to_be_clickable("//select[@name='server']")
+        #for_old_forex
+        drop_down = self.wait_element_to_be_clickable("//select[@name='mtUserSelect']")
         drop_down.click()
-        server_selection = self.driver.find_element(By.XPATH, "//select[@name='server']//"
-                                                              "following-sibling::*[contains(.,'%s')]" % server)
+        server_selection = self.driver.find_element(By.XPATH, "//select[@name='mtUserSelect']/option[contains(text(),'%s')]" % server)
         server_selection.click()
         Logging().reportDebugStep(self, "Trading account server was selected: " + server_selection.text)
         return self
 
     def select_currency(self, currency):
-        drop_down = self.wait_element_to_be_clickable("//select[@name='currency']")
+        # for_old_forex
+        drop_down = self.wait_element_to_be_clickable("//select[@name='tacurrency']")
         drop_down.click()
-        currency_selection = self.driver.find_element(By.XPATH, "//select[@name='currency']//"
-                                                                "following-sibling::*[contains(.,'%s')]" % currency)
+        currency_selection = self.driver.find_element(By.XPATH, "//select[@name='tacurrency']/option[contains(text(),'%s')]" % currency)
         currency_selection.click()
         Logging().reportDebugStep(self, "Trading account currency was selected: " + currency_selection.text)
         return self
 
     def select_group(self, group):
-        drop_down = self.wait_element_to_be_clickable("//select[@name='group']")
+        # for_old_forex
+        drop_down = self.wait_element_to_be_clickable("//select[@name='mtGroupSelect']")
         drop_down.click()
-        group_selection = self.driver.find_element(By.XPATH, "//select[@name='group']//"
-                                                             "*[contains(.,'%s')]" % group)
+        group_selection = self.driver.find_element(By.XPATH, "//select[@name='mtGroupSelect']/option[contains(text(),'%s')]" % group)
         #"//select[@name='group']//following-sibling::*[contains(.,'%s')]"
         group_selection.click()
         Logging().reportDebugStep(self, "Trading account group was selected: " + group_selection.text)
         return self
 
     def select_leverage(self, leverage):
+        # for_old_forex
         drop_down = self.wait_element_to_be_clickable("//select[@name='leverage']")
         drop_down.click()
-        leverage_selection = self.driver.find_element(By.XPATH, "//select[@name='leverage']//"
-                                                                "following-sibling::*[contains(.,'%s')]" % leverage)
+        leverage_selection = self.driver.find_element(By.XPATH, "//select[@name='leverage']/option[contains(text(),'%s')]" % leverage)
         leverage_selection.click()
         Logging().reportDebugStep(self, "Trading account leverage was selected: " + leverage_selection.text)
         return self

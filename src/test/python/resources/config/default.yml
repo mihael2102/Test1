@@ -113,6 +113,7 @@ trading_account_1:
   currency: "USD"
   currency_BCH: "BCH"
   group: "USD"
+  group_old_forex: "demo"
   demo: "demo"
   leverage: "100"
   leverage_1_200: "200"
@@ -122,6 +123,7 @@ trading_account_1_demo_upd:
   leverage: "200"
 trading_account_1_live:
   server: "Live"
+  server_old_forex: "real"
   currency: "USD"
   group: "USD"
   leverage: "100"
@@ -134,10 +136,11 @@ module_clients_filter:
   fourth_column: "Email *"
   fifth_column: "Client Name"
   sixth_column: "Assigned To *"
-  seventh_column: "Country"
+  seventh_column: "Country *"
+  seventh_column_in_grid: "Country" #for_old_forex
   eighth_column: "First Name"
-  ninth_column: "Last Name"
-  tenth_column: "City *"
-  City: "City"
-  eleventh_column: "Brand"
+  ninth_column: "Last Name *"
+  ninth_column_in_grid: "Last Name"  #for_old_forex
+  tenth_column: "City"
+  eleventh_column: "Phone"
 

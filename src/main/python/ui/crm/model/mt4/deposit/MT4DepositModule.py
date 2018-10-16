@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
+import time
 
 
 class MT4DepositModule(CRMBasePage):
@@ -19,9 +20,9 @@ class MT4DepositModule(CRMBasePage):
         returns  Client Profile instance    
     '''
 
-    def make_deposit(self, account_number, amount, payment_method, deposit_status, description_deposit):
+    def make_deposit(self, account_number, amount, payment_method, description_deposit):
         self.select_payment_method(payment_method)
-        self.select_status(deposit_status)
+        #self.select_status(deposit_status)
         self.select_account(account_number)
         self.set_amount(amount)
         self.set_description(description_deposit)
@@ -36,8 +37,8 @@ class MT4DepositModule(CRMBasePage):
 
     def select_payment_method(self, payment_method):
         WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//select[@name='payment_method']")))
-        select = Select(self.driver.find_element(By.XPATH, "//select[@name='payment_method']"))
+            EC.element_to_be_clickable((By.XPATH, "//select[@name='payment_type']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='payment_type']"))
         select.select_by_visible_text(payment_method)
         Logging().reportDebugStep(self, "The payment method of deposit module was selected: " + payment_method)
         return MT4DepositModule()
@@ -61,12 +62,11 @@ class MT4DepositModule(CRMBasePage):
     '''
 
     def select_account(self, account):
-        drop_down = self.driver.find_element(By.XPATH, "//select[@name='loginserver']")
-
+        time.sleep(3)
+        drop_down = self.wait_element_to_be_clickable("//select[@name='loginserver']")
         drop_down.click()
 
-        select_account = self.driver.find_element(By.XPATH, "//select[@name='loginserver']//"
-                                                            "following-sibling::*[contains(text(),'%s')]" % account)
+        select_account = self.wait_element_to_be_clickable("//select[@name='loginserver']/option[contains(text(),'%s')]" % account)
         select_account.click()
         Logging().reportDebugStep(self, "The account of deposit module was selected:  " + account)
         return MT4DepositModule()
@@ -91,7 +91,7 @@ class MT4DepositModule(CRMBasePage):
     '''
 
     def set_description(self, description_deposit):
-        amount_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_comment']")
+        amount_filed = self.driver.find_element(By.XPATH, "//*[@id='transaction_comment']")
         amount_filed.clear()
         amount_filed.send_keys(description_deposit)
         Logging().reportDebugStep(self,
@@ -104,7 +104,8 @@ class MT4DepositModule(CRMBasePage):
     '''
 
     def create_deposit(self):
-        create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
-        create_button.click()
+        #for_old_forex
+        create_button = self.wait_element_to_be_clickable("//*[@id='mt_interaction']/div/div[4]/button[2]")
+        self.driver.execute_script("arguments[0].click();", create_button)
         Logging().reportDebugStep(self, "The create withdraw button of deposit module was clicked")
         return ClientProfilePage()

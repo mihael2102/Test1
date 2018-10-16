@@ -16,8 +16,8 @@ from src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Le
 from src.test.python.ui.automation.utils.preconditions.credit_in.Credit_In_Precondition import \
     CreditInPrecondition
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
-
-import time
+from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
+from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 
 @pytest.mark.run(order=1)
 class CreditInTestCRM(BaseTest):
@@ -85,7 +85,7 @@ class CreditInTestCRM(BaseTest):
 
         # ADD LIVE ACCOUNT IN CRM
         # Open clients module. Find created client by email and open his profile
-        CreditInPrecondition(self.driver, self.config).add_live_account_in_crm().click_ok()
+        CreditInPrecondition(self.driver, self.config).add_live_account_in_crm()
 
         # Take number of account
         account_number = ClientProfilePage(self.driver) \
@@ -93,7 +93,8 @@ class CreditInTestCRM(BaseTest):
             .open_trading_accounts_tab() \
             .get_client_account()
 
-        ClientProfilePage(self.driver).perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN)
+        ClientProfilePage(self.driver).perform_scroll_up()
+        MT4DropDown(self.driver).mt4_actions(CRMConstants.CREDIT_IN)
 
         MT4CreditInModule(self.driver).make_credit_in(account_number, CRMConstants.AMOUNT_CREDIT_IN,
                                            CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),

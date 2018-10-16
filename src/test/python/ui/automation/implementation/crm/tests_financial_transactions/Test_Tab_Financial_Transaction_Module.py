@@ -52,33 +52,25 @@ class TabFinancialTransaction(BaseTest):
                        self.config.get_data_client(TestDataConstants.OTP_SECRET))
 
         financial_transaction_list_page = CRMHomePage(self.driver) \
+                                                .open_more_list_modules() \
                                                 .select_financial_transactions_module_more_list(
                                                     FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
 
         # Get data of 3rd transaction (transaction's info will be changed when registration via CA starts to work)
         transaction_number = financial_transaction_list_page.get_transaction_id_by_position_from_list()
+        trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
         client_name = financial_transaction_list_page.get_client_name_by_position_from_list()
         transaction_type_text = financial_transaction_list_page.get_transaction_type_by_position_from_list()
-        # Check that column exists
-        try:
-            modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()[:10] + " - " + \
-                                            financial_transaction_list_page.get_modified_time_by_position_from_list()[:10]
-        except NoSuchElementException:
-            modified_time = None
-        # Check that column exists
-        # try:
-        #     trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
-        # except NoSuchElementException:
-        #     trading_account = None
+        # modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()[:10] + " - " + \
+        #                                 financial_transaction_list_page.get_modified_time_by_position_from_list()[:10]
 
-        # TIME and Trading Account columns are absent on some brands: 'mpcrypto'.
-        # So we skip this column during searching in this case.
-        # Details of checking please see in search method below
+
         transaction_number_from_its_details_page = financial_transaction_list_page\
                                             .perform_searching_trading_account_via_filters(transaction_number,
                                                                                            client_name,
                                                                                            transaction_type_text,
-                                                                                           modified_time)\
+
+                                                                                           trading_account) \
                                             .open_first_financial_transaction_in_list()\
                                             .get_transaction_number_text()
 
@@ -124,7 +116,7 @@ class TabFinancialTransaction(BaseTest):
         client_name = financial_transaction_list_page.get_client_name_by_position_from_list()
         transaction_type_text = financial_transaction_list_page.get_transaction_type_by_position_from_list()
         modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()
-        # trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
+        trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
 
         # Open search form
         financial_transaction_list_page.open_search_form()
@@ -144,9 +136,9 @@ class TabFinancialTransaction(BaseTest):
 
         # Search for modified time. Search form is opened
         is_modified_time_found = financial_transaction_list_page.search_for_modified_time(modified_time)\
-                                                                .is_modified_time_in_search_results(modified_time)
+                                                                .get_modified_time_by_position_from_list()
         self.assertTrue(is_modified_time_found, "Wrong modified time was found")
 
         # Search for trading account. Search form is opened
-        # trading_account_after_searching = financial_transaction_list_page.search_for_trading_account(trading_account).get_trading_account_by_position_from_list(1)
-        # self.assertEqual(trading_account,trading_account_after_searching, "Wrong modified time was found")
+        trading_account_after_searching = financial_transaction_list_page.search_for_trading_account(trading_account).get_trading_account_by_position_from_list(1)
+        self.assertEqual(trading_account,trading_account_after_searching, "Wrong modified time was found")

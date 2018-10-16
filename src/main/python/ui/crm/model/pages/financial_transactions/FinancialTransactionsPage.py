@@ -79,27 +79,21 @@ class FinancialTransactionsPage(CRMBasePage):
     def get_client_name_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        client_name_element = self.driver.find_element(By.XPATH,
-                                                       global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["client_name_element"]
-                                                       % position_in_list)
+        client_name_element = self.driver.find_element(By.XPATH, "(//*[@id='listBody']//tr/td[4])[%s]" % position_in_list)
         return client_name_element.text
 
     def get_transaction_type_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        transaction_type_element = self.driver.find_element(
-            By.XPATH,
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_element"]
-            % position_in_list)
+        transaction_type_element = self.driver.find_element(By.XPATH,
+                                                            "(//*[@id='listBody']//tr/td[5])[%s]" % position_in_list)
         return transaction_type_element.text
 
     def get_modified_time_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        modified_time_element = self.driver.find_element(
-            By.XPATH,
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["modified_time_element"] % position_in_list)
+        modified_time_element = self.driver.find_element(By.XPATH,
+                                                         "(//*[@id='listBody']//tr/td[10])[%s]" % position_in_list)
         return modified_time_element.text
 
     def is_modified_time_in_search_results(self, modified_time):
@@ -118,25 +112,17 @@ class FinancialTransactionsPage(CRMBasePage):
     def get_trading_account_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        trading_account_element = self.driver.find_element(
-            By.XPATH,
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["trading_account_element"]
-            % position_in_list)
+        trading_account_element = self.driver.find_element(By.XPATH,
+                                                           "(//*[@id='listBody']//tr/td[3])[%s]//a" % position_in_list)
         return trading_account_element.text
 
     def perform_searching_trading_account_via_filters(self, transaction_number, client_name, transaction_type_text,
-                                                      modified_time):
+                                                      trading_account):
         self.enter_transaction_number(transaction_number)
         self.enter_client_name(client_name)
         self.enter_transaction_type_text(transaction_type_text)
-
-        # Check that column 'Time' is absent
-        if modified_time is not None:
-            self.enter_modified_time(modified_time)
-
-        # if trading_account == None:
-        #     self.enter_trading_account(trading_account)
-
+        # self.enter_modified_time(modified_time)
+        self.enter_trading_account(trading_account)
         self.click_search_button()
         return FinancialTransactionsPage(self.driver)
 
@@ -156,14 +142,10 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def enter_transaction_type_text(self, transaction_type_text):
-        transaction_type_drop_down = self.driver.find_element(
-            By.XPATH,
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_drop_down"])
+        transaction_type_drop_down = self.driver.find_element(By.XPATH, "//td[5]/div/div[1]/button")
         transaction_type_drop_down.click()
 
-        transaction_type_field = self.driver.find_element(
-                            By.XPATH,
-                            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_field"])
+        transaction_type_field = self.driver.find_element(By.XPATH, "(//div/div[1]/ul/li[1]/div/input)[1]")
         transaction_type_field.clear()
         transaction_type_field.send_keys(transaction_type_text)
         transaction_type_checkbox = self.driver.find_element(By.XPATH,
@@ -176,9 +158,6 @@ class FinancialTransactionsPage(CRMBasePage):
         modified_time_field = self.driver.find_element(By.XPATH, "//input[@name='tks_createdtime_date1']")
         modified_time_field.clear()
         modified_time_field.send_keys(modified_time)
-        sleep(5)
-        # apply_button = self.driver.find_element(By.XPATH, "/html/body/div[11]/div[3]/div/button[1]")
-        # apply_button.click()
         Logging().reportDebugStep(self, "In filter the modified_time was entered: " + modified_time)
         return FinancialTransactionsPage(self.driver)
 
@@ -237,14 +216,14 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def search_for_transaction_type(self, transaction_type):
-        self.__change_search_criteria_by_visible_text("Transaction Type")
+        self.__change_search_criteria_by_visible_text("Platform")
         self.__fill_search_field_with_value(transaction_type)
         self.__click_search_now_button()
         Logging().reportDebugStep(self, "Searching for transaction type: %s was performed" % transaction_type)
         return FinancialTransactionsPage(self.driver)
 
     def search_for_modified_time(self, modified_time):
-        self.__change_search_criteria_by_visible_text("Created Time")
+        self.__change_search_criteria_by_visible_text("Amount")
         self.__fill_search_field_with_value(modified_time)
         self.__click_search_now_button()
         Logging().reportDebugStep(self, "Searching for modified time: %s was performed" % modified_time)
