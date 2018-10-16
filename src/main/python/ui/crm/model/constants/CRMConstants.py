@@ -42,7 +42,7 @@ class CRMConstants(object):
     THIRD_DATE = datetime.now() + relativedelta(days=2, minutes=30)
     FOURTH_DATE = datetime.now() + relativedelta(days=3, minutes=45)
     MT4_ACCOUNT_CREATED_SUCCESFULLY = "MT4 Account created successfully"
-    MT4_ACCOUNT_UPDATED_SUCCESFULLY = "MT4 Account updated successfully"
+    MT4_ACCOUNT_UPDATED_SUCCESFULLY = "User successfully updated"
     MT4_ACCOUNT_CREATED_SUCCESFULLY_OLD_FOREX = "New User Account was created successfully"
     WITHDRAW_SUCCESSFULLY = "MT4 Withdraw successfull"
     DEPOSIT_SUCCESSFULLY = "MT4 Deposit successfull"
@@ -51,7 +51,7 @@ class CRMConstants(object):
     CRM_CLIENT_AREA_PASSWORD_CHANGE = "Password changed succesfully"
     MASS_EDIT = "Successfuly updated"
     CHANGE_PASSWORD = "3"
-    MT4_PASSWORD_VALID_MESSAGE = "Entered password valid"
+    MT4_PASSWORD_VALID_MESSAGE = "Password was change successfully"
     CUSTOMER_PASSWORD_VALID_MESSAGE = "The password that was entered is correct."
     CHECK_PASSWORD_OLD_FOREX = "2"
     CHANGE_PASSWORD_OLD_FOREX = "3"

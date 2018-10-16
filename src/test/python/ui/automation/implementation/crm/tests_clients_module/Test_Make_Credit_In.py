@@ -18,6 +18,7 @@ from src.test.python.ui.automation.utils.preconditions.credit_in.Credit_In_Preco
 from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
+import time
 
 @pytest.mark.run(order=1)
 class CreditInTestCRM(BaseTest):
@@ -101,7 +102,7 @@ class CreditInTestCRM(BaseTest):
                                            CRMConstants.CREDIT_IN_COMMENT) \
             .click_ok() \
             .refresh_page()
-        time.sleep(3)
+        time.sleep(7)
         MT4CreditInModule(self.driver).refresh_page()
         # Check the Credit In amount
         credit_in_amount = ClientProfilePage(self.driver) \

@@ -85,7 +85,7 @@ class AddInteraction(BaseTest):
                           self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_PRIORITY),
                           self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DESCRIPTION))
 
-        confirmation_message = crm_client_profile.get_confirm_message()
+        confirmation_message = crm_client_profile.get_confirm_message_body()
         assert confirmation_message == CRMConstants.INTERACTION_SUCCESSFULLY
         crm_client_profile.click_ok()
 

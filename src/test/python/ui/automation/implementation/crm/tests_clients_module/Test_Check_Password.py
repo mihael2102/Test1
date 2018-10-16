@@ -53,7 +53,7 @@ class CheckPasswordTestCRM(BaseTest):
                                                         LeadsModuleConstants.FIRST_PASSWORD_LEAD)) \
             .click_check_button()
 
-        message = crm_client_profile.get_confirm_message()
+        message = crm_client_profile.get_confirm_message_body()
         crm_client_profile.click_ok()
 
         self.assertEqual(message, CRMConstants.MT4_PASSWORD_VALID_MESSAGE)

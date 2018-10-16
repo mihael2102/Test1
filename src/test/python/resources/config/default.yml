@@ -118,8 +118,8 @@ trading_account_1:
   leverage: "100"
   leverage_1_200: "200"
 trading_account_1_demo_upd:
-  trading_account_demo: "Demo"
-  group: "demo"
+  trading_account_demo: "demo"
+  group: "USD"
   leverage: "200"
 trading_account_1_live:
   server: "Live"

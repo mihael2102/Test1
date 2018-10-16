@@ -61,11 +61,14 @@ class MT4CreateAccountModule(CRMBasePage):
         return self
 
     def select_trading_account(self, trading_account):
-        drop_down = self.wait_element_to_be_clickable("//*[@id='mtUserSelect']")
-        drop_down.click()
-        trading_account_selection = self.driver.find_element(By.XPATH, "//*[@id='login']/option[contains(text(), '%s')]" % trading_account)
-        trading_account_selection.click()
-        Logging().reportDebugStep(self, "Trading account was updated with value: %s" % trading_account_selection.text)
+        drop_down = self.wait_element_to_be_clickable("//select[@name='mtUserSelect']")
+        # drop_down.click()
+        self.driver.execute_script("arguments[0].click();", drop_down)
+        server_selection = self.driver.find_element(By.XPATH,
+                                                    "//select[@name='mtUserSelect']/option[contains(text(),'%s')]" % trading_account)
+        # server_selection.click()
+        self.driver.execute_script("arguments[0].click();", server_selection)
+        Logging().reportDebugStep(self, "Trading account server was selected: " + server_selection.text)
         return self
 
     def select_server(self, server):
@@ -89,19 +92,23 @@ class MT4CreateAccountModule(CRMBasePage):
     def select_group(self, group):
         # for_old_forex
         drop_down = self.wait_element_to_be_clickable("//select[@name='mtGroupSelect']")
-        drop_down.click()
+        # drop_down.click()
+        self.driver.execute_script("arguments[0].click();", drop_down)
         group_selection = self.driver.find_element(By.XPATH, "//select[@name='mtGroupSelect']/option[contains(text(),'%s')]" % group)
         #"//select[@name='group']//following-sibling::*[contains(.,'%s')]"
-        group_selection.click()
+        # group_selection.click()
+        self.driver.execute_script("arguments[0].click();", group_selection)
         Logging().reportDebugStep(self, "Trading account group was selected: " + group_selection.text)
         return self
 
     def select_leverage(self, leverage):
         # for_old_forex
         drop_down = self.wait_element_to_be_clickable("//select[@name='leverage']")
-        drop_down.click()
+        self.driver.execute_script("arguments[0].click();", drop_down)
+        # drop_down.click()
         leverage_selection = self.driver.find_element(By.XPATH, "//select[@name='leverage']/option[contains(text(),'%s')]" % leverage)
-        leverage_selection.click()
+        # leverage_selection.click()
+        self.driver.execute_script("arguments[0].click();", leverage_selection)
         Logging().reportDebugStep(self, "Trading account leverage was selected: " + leverage_selection.text)
         return self
 
