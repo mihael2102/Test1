@@ -166,10 +166,15 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the total amount " + str(total_amount))
         return str(total_amount)
 
-    def get_amount_of_credit_in(self):
-        credit_in_amount_element = super().wait_visible_of_element("//*[@id='rld_table_content']/tbody/tr[2]/td[6]/span[1]")
-        Logging().reportDebugStep(self, "Amount of Credit in is " + credit_in_amount_element.text)
-        return credit_in_amount_element.text
+    def get_amount_of_credit_in(self, credit_in):
+        Logging().reportDebugStep(self, "Returns the amount you placed on the credit_in page \n" + credit_in)
+        return super().wait_until_element_present(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["credit_in_sum"], credit_in)
+
+        #
+        # credit_in_amount_element = super().wait_visible_of_element("//*[@id='rld_table_content']/tbody/tr[2]/td[6]/span[1]")
+        # Logging().reportDebugStep(self, "Amount of Credit in is " + credit_in_amount_element.text)
+        # return credit_in_amount_element.text
 
     '''
         Open the client account 

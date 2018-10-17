@@ -101,12 +101,14 @@ class CreditInTestCRM(BaseTest):
                                            CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
                                            CRMConstants.CREDIT_IN_COMMENT) \
             .click_ok() \
+            .refresh_page()\
             .refresh_page()
-        time.sleep(7)
+        time.sleep(10)
+
         MT4CreditInModule(self.driver).refresh_page()
         # Check the Credit In amount
         credit_in_amount = ClientProfilePage(self.driver) \
             .perform_scroll_down() \
-            .get_amount_of_credit_in()     # Get amount from block 'Trading Accounts'
+            .get_amount_of_credit_in(CRMConstants.AMOUNT_CREDIT_IN)     # Get amount from block 'Trading Accounts'
 
-        self.assertEqual(CRMConstants.AMOUNT_CREDIT_IN, credit_in_amount[1:], "Wrong Credit In amount is displayed")
+        self.assertEqual(CRMConstants.AMOUNT_CREDIT_IN, credit_in_amount, "Wrong Credit In amount is displayed")

@@ -6,3 +6,6 @@ FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
 LeadViewInfo:
   convert_lead_module: "//div[@id='sidebar']//tr[3]//a"
+ClientProfilePage:
+  deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
+  credit_in_sum: "//*[@id='rld_table_content']/tbody/tr[2]/td[6]/span[1]"

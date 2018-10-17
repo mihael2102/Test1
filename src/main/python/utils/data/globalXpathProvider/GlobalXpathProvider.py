@@ -18,7 +18,7 @@ def __get_xpath_of_elements_of_current_page(current_page_name):
     try:
         from src.main.python.utils.data.providers.ConfigProvider import ConfigProvider
         FinancialTransactionsPage_mpcrypto_xpath_dict = ConfigProvider().get_xpath_for_brand_pages()[current_page_name]
-    except TypeError:
+    except (TypeError, KeyError):
         return FinancialTransactionsPage_default_dict
 
     # Rewrite default xpath values with relevant xpath values of current brand
@@ -29,11 +29,10 @@ def __get_xpath_of_elements_of_current_page(current_page_name):
 def get_xpath_for_current_brand_element(page_name):
 
     if (current_brand_name == "triomarkets") or (current_brand_name == "ogtrade") or \
-       (current_brand_name == "finmarket") or (current_brand_name == "fxpmarkets"):
+       (current_brand_name == "finmarket") or (current_brand_name == "fxpmarkets") or \
+       (current_brand_name == "gmo"):
         if page_name == "FinancialTransactionsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
-
-    if (current_brand_name == "gmo"):
         if page_name == "LeadViewInfo":
             return __get_xpath_of_elements_of_current_page(page_name)
 
