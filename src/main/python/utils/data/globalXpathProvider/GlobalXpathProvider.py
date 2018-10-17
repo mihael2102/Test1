@@ -30,7 +30,8 @@ def get_xpath_for_current_brand_element(page_name):
 
     if (current_brand_name == "triomarkets") or (current_brand_name == "ogtrade") or \
        (current_brand_name == "finmarket") or (current_brand_name == "fxpmarkets") or \
-       (current_brand_name == "gmo") or (current_brand_name == "oinvestsa"):
+       (current_brand_name == "gmo") or (current_brand_name == "oinvestsa") or \
+       (current_brand_name == "mlnfx"):
         if page_name == "FinancialTransactionsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
         if page_name == "LeadViewInfo":

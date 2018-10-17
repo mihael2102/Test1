@@ -235,7 +235,7 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def search_for_modified_time(self, modified_time):
-        self.__change_search_criteria_by_visible_text("Amount")
+        self.__change_search_criteria_by_visible_text(TestDataConstants.CREATED_TIME)
         self.__fill_search_field_with_value(modified_time)
         self.__click_search_now_button()
         Logging().reportDebugStep(self, "Searching for modified time: %s was performed" % modified_time)
