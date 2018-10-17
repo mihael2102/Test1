@@ -92,8 +92,10 @@ class ClientsPage(CRMBasePage):
         search_button.click()
         Logging().reportDebugStep(self, "Click the search button ")
         sleep(2)
-        client_id = super().wait_element_to_be_clickable("//tr[@class='lvtColData']//div[@class='link_field']")
-        client_id.click()
+        # client_id = super().wait_element_to_be_clickable("//tr[@class='lvtColData']//div[@class='link_field']")
+        # client_id.click()
+        client_id = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["id_client"])
+        self.driver.execute_script("arguments[0].click();", client_id)
         Logging().reportDebugStep(self, "Click user email: " + email)
         return ClientProfilePage(self.driver)
 

@@ -1,0 +1,2 @@
+ClientsPage:
+  id_client: "//a[contains(text(), 'ACC')]"

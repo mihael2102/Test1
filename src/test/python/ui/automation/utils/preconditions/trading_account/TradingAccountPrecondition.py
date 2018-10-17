@@ -9,7 +9,7 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
-
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class TradingAccountPrecondition(object):
 
@@ -45,14 +45,22 @@ class TradingAccountPrecondition(object):
 
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-        MT4CreateAccountModule(self.driver)\
-            .create_account(
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO_OLD_FOREX),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
+        if (global_var.current_brand_name == "rimarkets-staging") or (global_var.current_brand_name == "rimarkets"):
+            MT4CreateAccountModule(self.driver)\
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
 
-
+        else:
+            MT4CreateAccountModule(self.driver) \
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1,
+                                      TestDataConstants.TRADING_GROUP_DEMO_OLD_FOREX),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
         return self
 
     def add_live_account_from_crm(self):

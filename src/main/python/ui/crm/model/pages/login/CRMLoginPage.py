@@ -60,12 +60,12 @@ class CRMLoginPage(CRMBasePage):
         # Wait for News popup at Old forex and close popup if it is shown
         try:
             # if ("uminvestments" or "ogtrade") in super().get_current_url():
-            sleep(1)
-            do_not_show_again_checkbox = super().wait_element_to_be_clickable("//*[@id='do_not_show']", timeout=1)
+            sleep(8)
+            do_not_show_again_checkbox = super().wait_element_to_be_clickable("//*[@id='do_not_show']", timeout=4)
             do_not_show_again_checkbox.click()
 
             close_window_button = super().wait_element_to_be_clickable(
-                                        "//*[@id = 'whats_newcontent']//button[@aria-label = 'Close']", timeout=1)
+                                        "//*[@id = 'whats_newcontent']//button[@aria-label = 'Close']", timeout=4)
             close_window_button.click()
             Logging().reportDebugStep(self, "'What's new' popup was closed")
         except (NoSuchElementException, TimeoutException):

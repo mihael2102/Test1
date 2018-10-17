@@ -37,6 +37,7 @@ class ConvertLeadModule(CRMBasePage):
         self.click_submit()
 
     def set_first_name(self, first_name):
+        sleep(3)
         first_name_field = super().wait_load_element("//input[@name='account[FirstName]']")
         first_name_field.clear()
         first_name_field.send_keys(first_name)
