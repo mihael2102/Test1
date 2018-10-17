@@ -79,6 +79,8 @@ client_1:
   phone_area_code: 111
   birthday: "1971-01-01"
   country: "Germany"
+  country_sa: "South Africa"
+  first_country_sa: "South Africa"
   first_country: "Germany"
   street: "My street"
   city: "Berlin"

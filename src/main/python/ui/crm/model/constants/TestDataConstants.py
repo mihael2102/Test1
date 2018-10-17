@@ -27,6 +27,7 @@ class TestDataConstants(object):
     CITIZEN_SHIP = "citizen_ship"
     CLIENT_ONE = "client_1"
     FIRST_COUNTRY = "country"
+    FIRST_COUNTRY_SA = "country_sa"
     FIRST_NAME = "first_name"
     SECOND_FIRST_NAME = "second_first_name"
     LAST_NAME = "last_name"
