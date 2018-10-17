@@ -58,7 +58,8 @@ class CRMHomePage(CRMBasePage):
 
     def open_lead_module(self):
         task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Leads']")
-        task_module.click()
+        self.driver.execute_script("arguments[0].click();", task_module)
+        # task_module.click()
         Logging().reportDebugStep(self, "Leads module was opened")
         return LeadsModule(self.driver)
 

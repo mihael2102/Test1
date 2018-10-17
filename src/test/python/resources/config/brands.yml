@@ -126,8 +126,8 @@ brands:
 #  config_file: alphabetfx.yml
 #- name: kbcapitals
 #  config_file: kbcapitals.yml
-- name: oinvestsa
-  config_file: oinvestsa.yml
+#- name: oinvestsa
+#  config_file: oinvestsa.yml
 #- name: rimarkets-staging
 #  config_file: rimarkets-staging.yml
 ## production environments - old forex
@@ -148,8 +148,8 @@ brands:
 # testing environments - old forex
 #- name: forexdev
 #  config_file: forex_dev.yml
-#- name: forexstaging
-#  config_file: forex_staging.yml
+- name: forexstaging
+  config_file: forex_staging.yml
 
 
 

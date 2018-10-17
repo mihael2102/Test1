@@ -1,0 +1,4 @@
+LeadViewInfo:
+  convert_lead_module: "//div[@id='sidebar']//tr[2]//a"
+ClientsPage:
+  id_client: "//a[contains(text(), 'ACC')]"
