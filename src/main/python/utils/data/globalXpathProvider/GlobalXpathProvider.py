@@ -39,5 +39,7 @@ def get_xpath_for_current_brand_element(page_name):
             return __get_xpath_of_elements_of_current_page(page_name)
         if page_name == "ClientsPage":
             return __get_xpath_of_elements_of_current_page(page_name)
+        if page_name == "LeadDetailViewInfo":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     return __get_default_xpath_of_elements_of_current_page()[page_name]

@@ -94,8 +94,8 @@ brands:
 
 
 # Old forex
-#- name: triomarkets
-#  config_file: triomarkets.yml
+- name: triomarkets
+  config_file: triomarkets.yml
 #- name: ogtrade
 #  config_file: ogtrade.yml
 #- name: fm-fx
@@ -118,8 +118,8 @@ brands:
 #  config_file: gmo-dev.yml
 #- name: mtxplus
 #  config_file: mtxplus.yml
-- name: 24fxm
-  config_file: 24fxm.yml
+#- name: 24fxm
+#  config_file: 24fxm.yml
 #- name: stoxmarket
 #  config_file: stoxmarket.yml
 #- name: alphabetfx

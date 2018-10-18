@@ -6,7 +6,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.modules.leads_module.LeadViewInfo import LeadViewInfo
 from src.main.python.ui.crm.model.pages.leads.EditLeadsProfilePage import EditLeadsProfilePage
 from src.main.python.utils.logs.Loging import Logging
-
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class LeadDetailViewInfo(CRMBasePage):
 
@@ -105,8 +105,7 @@ class LeadDetailViewInfo(CRMBasePage):
 
     def get_referral_text(self):
         referral = self.driver.find_element(By.XPATH,
-                                            "//td[contains(text(),'Refferal')]//following-sibling::td[1]")
-
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["referral"])
         parser_referral_text = re.sub('[" "]', '', referral.text, 2)
 
         Logging().reportDebugStep(self, "Returns the referral text: " + parser_referral_text)

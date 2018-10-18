@@ -11,3 +11,5 @@ ClientProfilePage:
   credit_in_sum: "//*[@id='rld_table_content']/tbody/tr[2]/td[6]/span[1]"
 ClientsPage:
   id_client: "//a[contains(text(), 'ACC')]"
+LeadDetailViewInfo:
+    referral: "//td[contains(text(),'Refferal')]//following-sibling::td[1]"
