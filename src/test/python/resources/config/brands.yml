@@ -94,8 +94,8 @@ brands:
 
 
 # Old forex
-#- name: triomarkets
-#  config_file: triomarkets.yml
+- name: triomarkets
+  config_file: triomarkets.yml
 #- name: ogtrade
 #  config_file: ogtrade.yml
 #- name: fm-fx
@@ -148,8 +148,8 @@ brands:
 # testing environments - old forex
 #- name: forexdev
 #  config_file: forex_dev.yml
-- name: forexstaging
-  config_file: forex_staging.yml
+#- name: forexstaging
+#  config_file: forex_staging.yml
 
 
 
