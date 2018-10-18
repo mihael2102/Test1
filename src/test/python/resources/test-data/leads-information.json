@@ -17,6 +17,8 @@
     "first_tittle": "tittle test",
     "first_lead_source": "Conference",
     "first_lead_status": "R - in practice",
+    "first_lead_status_new_lead": "New Lead",
+    "first_lead_status_c_new": "C - New",
     "first_assigned_to": "Panda UA",
     "first_source_name": "source name test",
     "brand": "NFX",
@@ -42,6 +44,8 @@
     "first_tittle": "tittle test",
     "first_lead_source": "Conference",
     "first_lead_status": "B - No interest",
+    "first_lead_status_c_new": "B - No interest",
+    "first_lead_status_new_lead": "New Lead",
     "first_assigned_to": "Panda UA",
     "first_source_name": "source name test",
     "brand": "NFX",
@@ -67,6 +71,8 @@
     "first_tittle": "tittle test",
     "first_lead_source": "Conference",
     "first_lead_status": "R - welcome call",
+    "first_lead_status_new_lead": "New Lead",
+    "first_lead_status_c_new": "B - No interest",
     "first_assigned_to": "Panda UA",
     "first_source_name": "source name test",
     "brand": "NFX",
@@ -83,7 +89,8 @@
     "fifth_column": "Title",
     "sixth_column": "Lead Source",
     "seventh_column": "Lead Status",
-    "eight_column": "Language"
+    "eight_column": "Language",
+    "eight_column_street": "Street"
   },
   "FirstUpdateLead": {
     "second_tittle": "update_tittle lead",

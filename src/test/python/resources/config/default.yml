@@ -23,6 +23,7 @@ FirstLeadInfo:
   first_lead_source: "Conference"
   first_lead_status: "R - New"
   first_lead_status_new: "New"
+  first_lead_status_new_lead: "New Lead"
   first_lead_status_c_new: "C - New"
   first_assigned_to: "pandaqa pandaqa"
   first_source_name: "source name test"
@@ -54,6 +55,8 @@ SecondLeadInfo:
   first_lead_source: "Conference"
   first_lead_status: "B - No interest"
   first_lead_status_new: "Not interested"
+  first_lead_status_new_lead: "New Lead"
+  first_lead_status_c_new: "B - No interest"
   first_assigned_to: "pandaqa pandaqa"
   first_source_name: "source name test"
   brand:

@@ -12,5 +12,7 @@ ClientProfilePage:
   credit_in_sum: "//*[@id='rld_table_content']/tbody/tr[2]/td[6]/span[1]"
 ClientsPage:
   id_client: "//a[contains(text(), 'ACC')]"
+  country: "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/button"
+  country_input: "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/ul/li[1]/div/input"
 LeadDetailViewInfo:
     referral: "//td[contains(text(),'Refferal')]//following-sibling::td[1]"

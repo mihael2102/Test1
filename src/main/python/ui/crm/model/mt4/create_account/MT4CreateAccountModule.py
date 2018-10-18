@@ -119,5 +119,6 @@ class MT4CreateAccountModule(CRMBasePage):
 
     def click_update(self):
         button = self.wait_load_element("//button[contains(., 'Save')]")
-        button.click()
+        # button.click()
+        self.driver.execute_script("arguments[0].click();", button)
         Logging().reportDebugStep(self, "The Save button was clicked")

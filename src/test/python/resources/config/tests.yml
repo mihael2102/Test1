@@ -4,9 +4,9 @@ tests_config:
 #- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
 #  class: FilterModulesTest
 #  tests:
-#  - test_create_filter_clients_module
-#  - test_create_filter_documents_module
-#  - test_create_filter_leads_module
+###  - test_create_filter_clients_module
+###  - test_create_filter_documents_module
+##  - test_create_filter_leads_module
 #  - test_create_filter_help_desk
 #  - test_create_filter_trading_account_module
 ###  #Leads
@@ -20,7 +20,7 @@ tests_config:
   tests:
 #    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
     - test_edit_lead  # Creates a new lead and edits it's data. Validates that the data changed.
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 ###
 ##### - search leads
 ####
@@ -82,5 +82,5 @@ tests_config:
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
 #  class: TradingAccountCrmTest
 #  tests:
-#    - test_crm_open_trading_account  # open a new trading account
+##    - test_crm_open_trading_account  # open a new trading account
 #    - test_crm_edit_trading_account  # edit trading account

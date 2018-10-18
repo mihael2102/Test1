@@ -38,6 +38,30 @@ class EditLeadsProfilePage(CRMBasePage):
         self.click_save()
         return EditLeadsProfilePage(self.driver)
 
+    def perform_edit_lead_ogtrade(self, first_name, last_name, mobile, fax, email, secondary_email,
+                            street, postal_code, description,
+                            phone, tittle, assigned_to, source_name, po_box,
+                            city, state):
+
+        self.set_first_name(first_name)
+        self.set_last_name(last_name)
+        self.set_mobile(mobile)
+        self.set_fax(fax)
+        self.set_email(email)
+        self.set_secondary_email(secondary_email)
+        self.set_street(street)
+        self.set_postal_code(postal_code)
+        self.set_description(description)
+        self.set_phone(phone)
+        self.set_tittle(tittle)
+        self.set_assigned_to(assigned_to)
+        self.set_source_name(source_name)
+        self.set_po_box(po_box)
+        self.set_city(city)
+        self.set_state(state)
+        self.click_save()
+        return EditLeadsProfilePage(self.driver)
+
     def set_first_name(self, first_name):
         first_name_field = super().wait_load_element("//input[@name='firstname']")
         first_name_field.clear()

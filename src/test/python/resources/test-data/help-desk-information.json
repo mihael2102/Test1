@@ -26,6 +26,7 @@
     "fourth_column": "Assigned To *",
     "fifth_column": "Status *",
     "sixth_column": "CRM Id",
+    "sixth_column_new": "Notes",
     "seventh_column": "Category",
     "eighth_column": "Currency",
     "tenth_column": "Description",

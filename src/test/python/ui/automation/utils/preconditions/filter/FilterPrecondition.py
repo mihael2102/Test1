@@ -59,54 +59,104 @@ class FilterPrecondition(object):
         CRMHomePage(self.driver)\
             .open_more_list_modules()\
             .open_help_desk_page() \
-            .open_create_filter_pop_up() \
-            .perform_create_filter_help_desk_module(
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIRST_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SECOND_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.THIRD_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FOURTH_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIFTH_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SIXTH_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SEVENTH_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.EIGHTH_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.TENTH_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.ELEVENTH_COLUMN)) \
-            .click_save_button()
+            .open_create_filter_pop_up()
+
+        if (global_var.current_brand_name == "fm-fx"):
+            FilterPage(self.driver).perform_create_filter_help_desk_module(
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIRST_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SECOND_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.THIRD_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FOURTH_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIFTH_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SIXTH_COLUMN_NEW),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SEVENTH_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.EIGHTH_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.TENTH_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.ELEVENTH_COLUMN)) \
+                .click_save_button()
+
+        else:
+            FilterPage(self.driver).perform_create_filter_help_desk_module(
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIRST_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SECOND_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.THIRD_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FOURTH_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIFTH_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SIXTH_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SEVENTH_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.EIGHTH_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.TENTH_COLUMN),
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.ELEVENTH_COLUMN)) \
+                .click_save_button()
         return FilterPrecondition(self.driver, self.config)
 
     def create_filter_leads_module(self):
         CRMHomePage(self.driver).open_lead_module() \
             .open_create_filter_pop_up() \
-            .perform_create_filter_lead_module(
-            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FILTER_NAME),
-            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIRST_COLUMN),
-            self.config.get_data_lead_info_from_json(LeadsModuleConstants.SECOND_COLUMN),
-            self.config.get_data_lead_info_from_json(LeadsModuleConstants.THIRD_COLUMN),
-            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FOURTH_COLUMN),
-            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIFTH_COLUMN),
-            self.config.get_data_lead_info_from_json(LeadsModuleConstants.SIXTH_COLUMN),
-            self.config.get_data_lead_info_from_json(LeadsModuleConstants.SEVENTH_COLUMN),
-            self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN)) \
-            .click_save_button()
+
+        if (global_var.current_brand_name == "ogtrade"):
+            FilterPage(self.driver).perform_create_filter_lead_module(
+                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.FILTER_NAME),
+                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIRST_COLUMN),
+                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.SECOND_COLUMN),
+                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.THIRD_COLUMN),
+                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.FOURTH_COLUMN),
+                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIFTH_COLUMN),
+                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.SIXTH_COLUMN),
+                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.SEVENTH_COLUMN),
+                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN_STREET)) \
+                    .click_save_button()
+
+        else:
+            FilterPage(self.driver).perform_create_filter_lead_module(
+                self.config.get_data_lead_info_from_json(LeadsModuleConstants.FILTER_NAME),
+                self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIRST_COLUMN),
+                self.config.get_data_lead_info_from_json(LeadsModuleConstants.SECOND_COLUMN),
+                self.config.get_data_lead_info_from_json(LeadsModuleConstants.THIRD_COLUMN),
+                self.config.get_data_lead_info_from_json(LeadsModuleConstants.FOURTH_COLUMN),
+                self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIFTH_COLUMN),
+                self.config.get_data_lead_info_from_json(LeadsModuleConstants.SIXTH_COLUMN),
+                self.config.get_data_lead_info_from_json(LeadsModuleConstants.SEVENTH_COLUMN),
+                self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN)) \
+                .click_save_button()
+
         return FilterPrecondition(self.driver, self.config)
 
     def create_filter_documents_module(self):
         CRMHomePage(self.driver).open_more_list_modules() \
             .select_document_module_more_list(DocumentModuleConstants.DOCUMENT) \
-            .open_create_filter_pop_up() \
-            .perform_create_filter_documents_module(
-            self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+            .open_create_filter_pop_up()
+
+        if (global_var.current_brand_name == "ogtrade"):
+            FilterPage(self.driver).perform_create_filter_documents_module(
+                       self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                  DocumentModuleConstants.FILTER_NAME),
-            self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+                       self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                  DocumentModuleConstants.FIRST_COLUMN),
-            self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
-                                                 DocumentModuleConstants.SECOND_COLUMN),
-            self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+                       self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+                                                 DocumentModuleConstants.SECOND_COLUMN_DOC_ST),
+                       self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                  DocumentModuleConstants.THIRD_COLUMN),
-            self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
-                                                 DocumentModuleConstants.FOURTH_COLUMN)) \
-            .click_save_button()
+                       self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+                                                 DocumentModuleConstants.FOURTH_COLUMN))\
+                                    .click_save_button()
+
+        else:
+            FilterPage(self.driver).perform_create_filter_documents_module(
+                self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+                                                     DocumentModuleConstants.FILTER_NAME),
+                self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+                                                     DocumentModuleConstants.FIRST_COLUMN),
+                self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+                                                     DocumentModuleConstants.SECOND_COLUMN),
+                self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+                                                     DocumentModuleConstants.THIRD_COLUMN),
+                self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+                                                     DocumentModuleConstants.FOURTH_COLUMN)) \
+                                    .click_save_button()
+
         return FilterPrecondition(self.driver, self.config)
 
     def create_filter_trading_account_module(self):

@@ -22,6 +22,7 @@ class DocumentModuleConstants(object):
     NAME_DOCUMENT = "Bear.jpg"
     FIRST_COLUMN = "first_column"
     SECOND_COLUMN = "second_column"
+    SECOND_COLUMN_DOC_ST = "second_column_doc_status"
     THIRD_COLUMN = "third_column"
     FOURTH_COLUMN = "fourth_column"
     FOURTH_COLUMN_TEXT = "Assigned To"

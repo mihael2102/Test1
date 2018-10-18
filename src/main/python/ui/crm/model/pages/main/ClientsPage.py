@@ -140,13 +140,12 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def enter_country(self, country):
-        country_drop_down = self.driver.find_element(By.XPATH,
-                                                     "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/button")
+        country_drop_down = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["country"])
         # for_old_forex
 
         country_drop_down.click()
         search_field = self.driver.find_element(By.XPATH,
-                                                "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/ul/li[1]/div/input")
+                                                global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["country_input"])
         # for_old_forex
         search_field.clear()
         search_field.send_keys(country)

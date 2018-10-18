@@ -11,7 +11,7 @@ from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsPage impo
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
-
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class FilterModulesTest(BaseTest):
 
@@ -70,8 +70,15 @@ class FilterModulesTest(BaseTest):
         
         assert self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                                 DocumentModuleConstants.FIRST_COLUMN) == first_name__column
-        assert self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
-                                                                DocumentModuleConstants.SECOND_COLUMN) == second_name_column
+
+        if (global_var.current_brand_name == "ogtrade"):
+            assert self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+                                                                DocumentModuleConstants.SECOND_COLUMN_DOC_ST) == second_name_column
+
+        else:
+            assert self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
+                                                        DocumentModuleConstants.SECOND_COLUMN) == second_name_column
+
         assert self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                                 DocumentModuleConstants.THIRD_COLUMN) == third_name__column
         # for_old_forex Comments changed to Size
@@ -103,7 +110,12 @@ class FilterModulesTest(BaseTest):
         assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIFTH_COLUMN) == fifth_name_column
         assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.SIXTH_COLUMN) == sixth_name_column
         assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.SEVENTH_COLUMN) == seventh_name_column
-        assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN) == eighth_name_column
+
+        if (global_var.current_brand_name == "ogtrade"):
+            assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN_STREET) == eighth_name_column
+
+        else:
+            assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN) == eighth_name_column
 
     def test_create_filter_help_desk(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
@@ -132,8 +144,12 @@ class FilterModulesTest(BaseTest):
                                               HelpDeskConstants.THIRD_COLUMN) == third_name__column
         assert HelpDeskConstants.ASSIGNED_TO_TYPE == fourth_name_column
         assert HelpDeskConstants.STATUS == fifth_name_column
-        assert self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS,
-                                              HelpDeskConstants.SIXTH_COLUMN) == sixth_name_column  #for_old_forex CA Id changed to CRM Id
+        if (global_var.current_brand_name == "fm-fx"):
+            assert self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS,
+                                              HelpDeskConstants.SIXTH_COLUMN_NEW) == sixth_name_column  #for_old_forex CA Id changed to CRM Id
+        else:
+            assert self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS,
+                                                  HelpDeskConstants.SIXTH_COLUMN) == sixth_name_column  # for_old_forex CA Id changed to CRM Id
         assert HelpDeskConstants.CATEGORY == seventh_name_column  #for_old_forex delete *
         assert self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS,
                                               HelpDeskConstants.EIGHTH_COLUMN) == eighth_name_column   #for_old_forex brand changed to Currency

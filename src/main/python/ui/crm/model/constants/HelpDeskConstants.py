@@ -48,3 +48,4 @@ class HelpDeskConstants(object):
     FOURTH_COLUMN = "fourth_column"
     FIFTH_COLUMN = "fifth_column"
     SIXTH_COLUMN = "sixth_column"
+    SIXTH_COLUMN_NEW = "sixth_column_new"
