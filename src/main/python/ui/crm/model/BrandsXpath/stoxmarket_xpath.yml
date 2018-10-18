@@ -1,9 +1,6 @@
-LeadViewInfo:
-  convert_lead_module: "//div[@id='sidebar']//tr[2]//a"
-ClientsPage:
-  id_client: "//a[contains(text(), 'ACC')]"
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
 FinancialTransactionsPage:
   client_name_element: "(//*[@id='listBody']//tr/td[5])[%s]"
   transaction_type_drop_down: "//td[7]/div/div[1]/button"
   transaction_type_element: "(//*[@id='listBody']//tr/td[7])[%s]"
-  modified_time_element: "(//*[@id='listBody']//tr/td[15])[%s]"
+  modified_time_element: "(//*[@id='listBody']//tr/td[14])[%s]"
