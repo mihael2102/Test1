@@ -19,16 +19,16 @@ tests_config:
   class: LeadModuleTest
   tests:
 #    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
-    - test_edit_lead  # Creates a new lead and edits it's data. Validates that the data changed.
+#    - test_edit_lead  # Creates a new lead and edits it's data. Validates that the data changed.
     - test_perform_convert_lead   # Creates a lead and converts it to a client
 ###
 ##### - search leads
 ####
 ######Clients
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
-#  class: SearchingClientsTestCRM
-#  tests:
-#    - test_make_searching_client_module   # Searches for a client.
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
+  class: SearchingClientsTestCRM
+  tests:
+    - test_make_searching_client_module   # Searches for a client.
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
 #  class: AddInteraction
 #  tests:

@@ -127,7 +127,7 @@ class ClientsPage(CRMBasePage):
 
     def enter_email(self, email):
         sleep(2)
-        email_field = super().wait_load_element("//input[@id='tks_email1']")
+        email_field = self.driver.find_element(By.XPATH, "//input[@id='tks_email1']")
         email_field.clear()
         email_field.send_keys(email)
         Logging().reportDebugStep(self, "Email was entered : " + email)
@@ -206,7 +206,8 @@ class ClientsPage(CRMBasePage):
         country_drop_down = super().wait_load_element(
             "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/button")
 
-        country_drop_down.click()
+        # country_drop_down.click()
+        self.driver.execute_script("arguments[0].click();", country_drop_down)
         search_field = self.driver.find_element(By.XPATH,
                                                 "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/ul/li[1]/div/input")
         # for_old_forex
