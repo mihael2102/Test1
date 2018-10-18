@@ -10,4 +10,4 @@ ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
   credit_in_sum: "//*[@id='rld_table_content']/tbody/tr[2]/td[6]/span[1]"
 ClientsPage:
-  id_client: "//tr[@class='lvtColData']//div[@class='link_field']"
+  id_client: "//a[contains(text(), 'ACC')]"

@@ -118,8 +118,8 @@ brands:
 #  config_file: gmo-dev.yml
 #- name: mtxplus
 #  config_file: mtxplus.yml
-#- name: 24fxm
-#  config_file: 24fxm.yml
+- name: 24fxm
+  config_file: 24fxm.yml
 #- name: stoxmarket
 #  config_file: stoxmarket.yml
 #- name: alphabetfx
@@ -148,8 +148,8 @@ brands:
 # testing environments - old forex
 #- name: forexdev
 #  config_file: forex_dev.yml
-- name: forexstaging
-  config_file: forex_staging.yml
+#- name: forexstaging
+#  config_file: forex_staging.yml
 
 
 
