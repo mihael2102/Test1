@@ -1,2 +1,4 @@
 ClientsPage:
   id_client: "//a[contains(text(), 'ACC')]"
+FinancialTransactionsPage:
+  modified_time_element: "(//*[@id='listBody']//tr/td[14])[%s]"

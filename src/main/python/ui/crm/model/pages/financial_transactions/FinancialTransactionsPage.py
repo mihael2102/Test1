@@ -73,6 +73,10 @@ class FinancialTransactionsPage(CRMBasePage):
     def get_transaction_id_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
+
+        if global_var.current_brand_name == "itrader":
+            sleep(3)
+
         transaction_number_element = self.driver.find_element(By.XPATH,
                                                               "(//a[contains(text(), 'MTT')])[%s]" % position_in_list)
         return transaction_number_element.text
@@ -112,16 +116,26 @@ class FinancialTransactionsPage(CRMBasePage):
         modified_time_elements = self.driver.find_elements(
                 By.XPATH,
                 "//div[@class='main_tbl_wrapper']//tbody[@id = 'listBody']//td[contains(text(), '%s')]" % current_year)
+        Logging().reportDebugStep(self, "looking for created/modified time...")
         for time_item in modified_time_elements:
+            Logging().reportDebugStep(self, "Time from the page list: " + time_item.text)
             if time_item.text == modified_time:
+                Logging().reportDebugStep(self, "Correct time has been found: " + time_item.text)
                 return True
+        Logging().reportDebugStep(self, "Initial time has not been found!")
         return False
 
     def get_trading_account_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        trading_account_element = self.driver.find_element(By.XPATH,
-                                                           "(//*[@id='listBody']//tr/td[3])[%s]//a" % position_in_list)
+
+        if global_var.current_brand_name == "itrader":
+            sleep(5)
+
+        trading_account_element = self.driver.find_element(
+            By.XPATH,
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["trading_account_element"]
+            % position_in_list)
         return trading_account_element.text
 
     def perform_searching_trading_account_via_filters(self, transaction_number, client_name, transaction_type_text,
