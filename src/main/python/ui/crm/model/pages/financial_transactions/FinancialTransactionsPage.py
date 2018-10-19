@@ -34,18 +34,23 @@ class FinancialTransactionsPage(CRMBasePage):
         return tab_text.text
 
     def get_credit_out_tab_text(self):
-        tab = self.driver.find_element(By.XPATH, "//li[contains(text(),'Credit Out')]")
+        tab = self.driver.find_element(By.XPATH,
+                                       global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["tab"])
         tab.click()
         sleep(1)
-        tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Credit Out')]")
+        tab_text = super().wait_element_to_be_clickable(
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["tab"])
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
 
     def get_demo_accounts_transactions_tab_text(self):
-        tab = self.driver.find_element(By.XPATH, "//li[contains(text(),'Demo Accounts Transactions')]")
-        tab.click()
+        demo_tab = self.driver.find_element(
+            By.XPATH,
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["demo_tab"])
+        demo_tab.click()
         sleep(1)
-        tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Demo Accounts Transactions')]")
+        tab_text = super().wait_element_to_be_clickable(
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["demo_tab"])
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
 
@@ -58,10 +63,13 @@ class FinancialTransactionsPage(CRMBasePage):
         return tab_text.text
 
     def get_withdraw_tab_text(self):
-        tab = self.driver.find_element(By.XPATH, "//li[contains(text(),'Withdraw')]")
-        tab.click()
+        withdraw_tab = self.driver.find_element(
+            By.XPATH,
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["withdraw_tab"])
+        withdraw_tab.click()
         sleep(1)
-        tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Withdraw')]")
+        tab_text = super().wait_element_to_be_clickable(
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["withdraw_tab"])
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
 

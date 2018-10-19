@@ -26,7 +26,12 @@ class TabFinancialTransaction(BaseTest):
 
         all_tab_name = financial_transaction_module.get_all_tab_text()
         credit_in_tab_name = financial_transaction_module.get_credit_in_tab_text()
-        credit_out_name = financial_transaction_module.get_credit_out_tab_text()
+
+        if (global_var.current_brand_name == "fm-fx"):
+            credit_out_name = financial_transaction_module.get_credit_out_tab_text()
+        else:
+            credit_out_name = financial_transaction_module.get_credit_out_tab_text()
+
         demo_accounts_name = financial_transaction_module.get_demo_accounts_transactions_tab_text()
         deposit_name = financial_transaction_module.get_deposits_tab_text()
         withdraw = financial_transaction_module.get_withdraw_tab_text()
@@ -35,14 +40,30 @@ class TabFinancialTransaction(BaseTest):
             FinancialTransactionsModuleConstants.FIRST_TAB)
         assert credit_in_tab_name == self.config.get_data_financial_transactions_info(
             FinancialTransactionsModuleConstants.SECOND_TAB)
-        assert credit_out_name == self.config.get_data_financial_transactions_info(
-            FinancialTransactionsModuleConstants.THIRD_TAB)
-        assert demo_accounts_name == self.config.get_data_financial_transactions_info(
-            FinancialTransactionsModuleConstants.FOURTH_TAB)
+
+        if (global_var.current_brand_name == "ogtrade"):
+            assert credit_out_name == self.config.get_data_financial_transactions_info(
+                FinancialTransactionsModuleConstants.THIRD_TAB_LOWERCASE)
+        else:
+            assert credit_out_name == self.config.get_data_financial_transactions_info(
+                FinancialTransactionsModuleConstants.THIRD_TAB)
+
+        if (global_var.current_brand_name == "ogtrade"):
+            assert demo_accounts_name == self.config.get_data_financial_transactions_info(
+                FinancialTransactionsModuleConstants.FOURTH_TAB_LONG)
+        else:
+            assert demo_accounts_name == self.config.get_data_financial_transactions_info(
+                FinancialTransactionsModuleConstants.FOURTH_TAB)
+
         assert deposit_name == self.config.get_data_financial_transactions_info(
             FinancialTransactionsModuleConstants.FIFTH_TAB)
-        assert withdraw == self.config.get_data_financial_transactions_info(
-            FinancialTransactionsModuleConstants.SIX_TAB)
+
+        if (global_var.current_brand_name == "ogtrade"):
+            assert withdraw == self.config.get_data_financial_transactions_info(
+                FinancialTransactionsModuleConstants.SIX_TAB_LONG)
+        else:
+            assert withdraw == self.config.get_data_financial_transactions_info(
+                FinancialTransactionsModuleConstants.SIX_TAB)
 
     def test_check_searching_by_column(self):
         crm_client_profile = CRMLoginPage(self.driver) \

@@ -1,0 +1,3 @@
+FinancialTransactionsPage:
+  transaction_type_drop_down: "//td[7]/div/div[1]/button"
+  transaction_type_element: "(//*[@id='listBody']//tr/td[7])[%s]"

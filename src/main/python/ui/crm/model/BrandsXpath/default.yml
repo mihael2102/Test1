@@ -4,6 +4,9 @@ FinancialTransactionsPage:
   transaction_type_drop_down: "//td[6]/div/div[1]/button"
   transaction_type_element: "(//*[@id='listBody']//tr/td[6])[%s]"
   modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
+  tab: "//li[contains(text(),'Credit Out')]"
+  demo_tab: "//li[contains(text(),'Demo Accounts Transactions')]"
+  withdraw_tab: "//li[contains(text(),'Withdraw')]"
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
 LeadViewInfo:
   convert_lead_module: "//div[@id='sidebar']//tr[3]//a"

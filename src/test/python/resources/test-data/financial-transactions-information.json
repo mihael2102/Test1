@@ -3,8 +3,11 @@
     "first_tab": "All",
     "second_tab": "Credit In",
     "third_tab": "Credit Out",
+    "third_tab_lowercase": "Credit out",
     "fourth_tab": "Demo Accounts Transactions",
+    "fourth_tab_long": "Demo trading accounts transactions",
     "fifth_tab": "Deposits",
-    "six_tab": "Withdraw"
+    "six_tab": "Withdraw",
+    "six_tab_long": "Withdrawals"
   }
 }
