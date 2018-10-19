@@ -87,10 +87,20 @@ class TradingAccountPrecondition(object):
         # from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
         ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.UPDATE_MT4_USER)
 
-        MT4CreateAccountModule(self.driver).update_account(
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO_GROUP),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO_LEVERAGE))
+        if global_var.current_brand_name == "oinvestsa":
+            MT4CreateAccountModule(self.driver)\
+                .update_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_ZAR),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO_LEVERAGE))
+
+        else:
+             MT4CreateAccountModule(self.driver)\
+                 .update_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED,TestDataConstants.TRADING_ACCOUNT_DEMO_GROUP),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED,TestDataConstants.TRADING_ACCOUNT_DEMO_LEVERAGE))
+
         return self
 
     def make_deposit(self):

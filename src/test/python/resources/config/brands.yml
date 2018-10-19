@@ -94,8 +94,8 @@ brands:
 
 
 # Old forex
-- name: triomarkets
-  config_file: triomarkets.yml
+#- name: triomarkets
+#  config_file: triomarkets.yml
 #- name: ogtrade
 #  config_file: ogtrade.yml
 #- name: fm-fx
@@ -131,16 +131,14 @@ brands:
 #- name: rimarkets-staging
 #  config_file: rimarkets-staging.yml
 ## production environments - old forex
-#- name: itrader
-#  config_file: itrader.yml
+- name: itrader
+  config_file: itrader.yml
 #- name: itrader_global
 #  config_file: itrader_global.yml
 #- name: otcapital
 #  config_file: otcapital.yml
 #- name: urf
 #  config_file: urf_financial.yml
-##- name: gmo
-#  config_file: gmo_trading.yml
 #- name: rimarkets
 #  config_file: rimarkets.yml
 #- name: kayafx

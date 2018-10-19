@@ -18,6 +18,7 @@ class CRMConstants(object):
     SIXTH_COLUMN = "sixth_column"
     SIXTH_COLUMN_OTHER_TYPE = "Assigned To"
     SEVENTH_COLUMN = "seventh_column"
+    SEVENTH_COLUMN_NEW = "seventh_column_new"
     SEVENTH_COLUMN_IN_GRID = "seventh_column_in_grid"
     # for_old_forex
     NINTH_COLUMN_IN_GRID = "ninth_column_in_grid"

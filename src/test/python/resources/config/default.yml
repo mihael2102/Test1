@@ -126,6 +126,7 @@ trading_account_1:
 trading_account_1_demo_upd:
   trading_account_demo: "demo"
   group: "USD"
+  group_zar: "ZAR"
   leverage: "200"
 trading_account_1_live:
   server: "Live"
@@ -143,6 +144,7 @@ module_clients_filter:
   fifth_column: "Client Name"
   sixth_column: "Assigned To *"
   seventh_column: "Country *"
+  seventh_column_new: "Country"
   seventh_column_in_grid: "Country" #for_old_forex
   eighth_column: "First Name"
   ninth_column: "Last Name *"

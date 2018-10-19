@@ -1,4 +1,2 @@
-ClientsPage:
-  id_client: "//a[contains(text(), 'ACC')]"
-FinancialTransactionsPage:
-  modified_time_element: "(//*[@id='listBody']//tr/td[14])[%s]"
+LeadDetailViewInfo:
+    referral: "//td[contains(text(),'Referral')]//following-sibling::td[1]"

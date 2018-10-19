@@ -37,6 +37,20 @@ class FilterPrecondition(object):
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN_OTHER_TYPE),
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN))
 
+        elif (global_var.current_brand_name == "stoxmarket") or (global_var.current_brand_name == "urf"):
+            FilterPage(self.driver).perform_create_filter_client_module(
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FILTER_NAME),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SECOND_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FOURTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIFTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SIXTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SEVENTH_COLUMN_NEW),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.EIGHTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.NINTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN))
         else:
             FilterPage(self.driver).perform_create_filter_client_module(
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FILTER_NAME),
@@ -61,7 +75,9 @@ class FilterPrecondition(object):
             .open_help_desk_page() \
             .open_create_filter_pop_up()
 
-        if (global_var.current_brand_name == "fm-fx"):
+        if (global_var.current_brand_name == "fm-fx") or (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "gmo-dev") or \
+            (global_var.current_brand_name == "oinvestsa") or (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "otcapital") or \
+                (global_var.current_brand_name == "urf"):
             FilterPage(self.driver).perform_create_filter_help_desk_module(
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME),
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIRST_COLUMN),

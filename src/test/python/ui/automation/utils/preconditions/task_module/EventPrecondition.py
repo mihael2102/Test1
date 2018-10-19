@@ -62,7 +62,8 @@ class EventPrecondition(object):
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab() \
             .search_account_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])\
-            .open_edit_event().edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
+            .open_edit_event()\
+            .edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
                                               TaskModuleConstants.SECOND_EVENT_TYPE,
                                               TaskModuleConstants.SECOND_DURATION,
                                               CRMConstants.THIRD_DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),

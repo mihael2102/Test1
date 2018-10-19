@@ -17,6 +17,7 @@ from src.main.python.utils.logs.Loging import Logging
 from datetime import *
 import allure
 from src.main.python.utils.config import Config
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 class TasksPage(CRMBasePage):
@@ -245,16 +246,16 @@ class TasksPage(CRMBasePage):
         sleep(2)
         # for_old_forex
         self.driver.execute_script("window.scrollTo(0, document.body.scrollWeight);")
-        subject_button = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+        subject_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["subject_button"])
         subject_button.click()
-        subject_field = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input")
+        subject_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["subject_field"])
         subject_field.clear()
         sleep(5)
         subject_field.send_keys(subject)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
         sleep(3)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
-        event_type = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        event_type = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["event_type"])
         event_type.click()
         title = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[1]/div/button-block/div[1]/h3")
         title.click()
@@ -304,7 +305,7 @@ class TasksPage(CRMBasePage):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         refresh_icon = self.driver.find_element(By.XPATH, "//a[@class='fa fa-refresh']")
         refresh_icon.click()
-        sleep(2)
+        sleep(8)
         result_count_xpath = "//*[contains(text(), 'Showing Records')]"
         self.wait_visible_of_element(result_count_xpath)
         results_count_text = self.driver.find_elements(By.XPATH, result_count_xpath)[0].text
@@ -327,7 +328,7 @@ class TasksPage(CRMBasePage):
 
     def open_edit_event(self):
         pencil_button = self.driver.find_element(By.XPATH,
-            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span")
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["edit_event"])
         self.driver.execute_script("arguments[0].click();", pencil_button)
         Logging().reportDebugStep(self, "Edit popup was opened")
         return EditEventModule(self.driver)

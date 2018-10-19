@@ -218,10 +218,14 @@ class LeadModuleTest(BaseTest):
             self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])
             if lead_data[LeadsModuleConstants.PANDA_PARTNER]:
                 self.assertEqual(panda_partner_id, lead_data[LeadsModuleConstants.PANDA_PARTNER])
-            if lead_data[LeadsModuleConstants.FIRST_REFERRAL]:
-                self.assertEqual(referral, lead_data[LeadsModuleConstants.FIRST_REFERRAL])
+            if (global_var.current_brand_name != "gmo") and (global_var.current_brand_name != "gmo-dev") and (global_var.current_brand_name != "oinvestsa") \
+                    and (global_var.current_brand_name != "itrader") and (global_var.current_brand_name != "otcapital") and (global_var.current_brand_name != "urf") \
+                    and (global_var.current_brand_name != "rimarkets"):
+                if lead_data[LeadsModuleConstants.FIRST_REFERRAL]:
+                    self.assertEqual(referral, lead_data[LeadsModuleConstants.FIRST_REFERRAL])
         else:
             self.assertEqual(description, lead_data[LeadsModuleConstants.FIRST_DESCRIPTION])
+
         self.assertEqual(phone, lead_data[LeadsModuleConstants.PHONE])
         self.assertEqual(tittle, lead_data[LeadsModuleConstants.FIRST_TITTLE])
 
