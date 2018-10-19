@@ -7,7 +7,9 @@
     "fourth_tab": "Demo Accounts Transactions",
     "fourth_tab_long": "Demo trading accounts transactions",
     "fifth_tab": "Deposits",
+    "fifth_tab_short": "Deposit",
     "six_tab": "Withdraw",
-    "six_tab_long": "Withdrawals"
+    "six_tab_long": "Withdrawals",
+    "decline_tab_name": "Decline"
   }
 }

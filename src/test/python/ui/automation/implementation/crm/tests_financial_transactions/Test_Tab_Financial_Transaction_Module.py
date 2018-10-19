@@ -32,33 +32,54 @@ class TabFinancialTransaction(BaseTest):
         else:
             credit_out_name = financial_transaction_module.get_credit_out_tab_text()
 
-        demo_accounts_name = financial_transaction_module.get_demo_accounts_transactions_tab_text()
+        # Decline tab
+        if (global_var.current_brand_name == "fxpmarkets"):
+            decline_name = financial_transaction_module.get_decline_tab_text()
+        else:
+            demo_accounts_name = financial_transaction_module.get_demo_accounts_transactions_tab_text()
+
         deposit_name = financial_transaction_module.get_deposits_tab_text()
         withdraw = financial_transaction_module.get_withdraw_tab_text()
 
+        # all_tab_name
         assert all_tab_name == self.config.get_data_financial_transactions_info(
             FinancialTransactionsModuleConstants.FIRST_TAB)
+
+        # credit_in_tab_name
         assert credit_in_tab_name == self.config.get_data_financial_transactions_info(
             FinancialTransactionsModuleConstants.SECOND_TAB)
 
-        if (global_var.current_brand_name == "ogtrade"):
+        # credit_out_name
+        if (global_var.current_brand_name == "ogtrade") or (global_var.current_brand_name == "stoxmarket"):
             assert credit_out_name == self.config.get_data_financial_transactions_info(
                 FinancialTransactionsModuleConstants.THIRD_TAB_LOWERCASE)
         else:
             assert credit_out_name == self.config.get_data_financial_transactions_info(
                 FinancialTransactionsModuleConstants.THIRD_TAB)
 
-        if (global_var.current_brand_name == "ogtrade"):
-            assert demo_accounts_name == self.config.get_data_financial_transactions_info(
-                FinancialTransactionsModuleConstants.FOURTH_TAB_LONG)
+        # Assert for decline tab
+        if (global_var.current_brand_name == "fxpmarkets"):
+            self.assertEqual(decline_name, self.config.get_data_financial_transactions_info(
+                FinancialTransactionsModuleConstants.DECLINE_TAB))
         else:
-            assert demo_accounts_name == self.config.get_data_financial_transactions_info(
-                FinancialTransactionsModuleConstants.FOURTH_TAB)
+            # demo_accounts_name
+            if (global_var.current_brand_name == "ogtrade") or (global_var.current_brand_name == "stoxmarket"):
+                assert demo_accounts_name == self.config.get_data_financial_transactions_info(
+                    FinancialTransactionsModuleConstants.FOURTH_TAB_LONG)
+            else:
+                assert demo_accounts_name == self.config.get_data_financial_transactions_info(
+                    FinancialTransactionsModuleConstants.FOURTH_TAB)
 
-        assert deposit_name == self.config.get_data_financial_transactions_info(
-            FinancialTransactionsModuleConstants.FIFTH_TAB)
+        # deposit_name
+        if (global_var.current_brand_name == "fxpmarkets"):
+            assert deposit_name == self.config.get_data_financial_transactions_info(
+                FinancialTransactionsModuleConstants.FIFTH_TAB_SHORT)
+        else:
+            assert deposit_name == self.config.get_data_financial_transactions_info(
+                FinancialTransactionsModuleConstants.FIFTH_TAB)
 
-        if (global_var.current_brand_name == "ogtrade"):
+        # withdraw
+        if (global_var.current_brand_name == "ogtrade") or (global_var.current_brand_name == "stoxmarket"):
             assert withdraw == self.config.get_data_financial_transactions_info(
                 FinancialTransactionsModuleConstants.SIX_TAB_LONG)
         else:

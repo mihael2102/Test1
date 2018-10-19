@@ -1,4 +1,5 @@
 class FinancialTransactionsModuleConstants(object):
+    DECLINE_TAB = "decline_tab_name"
     FIRST_TAB = "first_tab"
     SECOND_TAB = "second_tab"
     THIRD_TAB = "third_tab"
@@ -6,6 +7,7 @@ class FinancialTransactionsModuleConstants(object):
     FOURTH_TAB = "fourth_tab"
     FOURTH_TAB_LONG = "fourth_tab_long"
     FIFTH_TAB = "fifth_tab"
+    FIFTH_TAB_SHORT = "fifth_tab_short"
     SIX_TAB = "six_tab"
     SIX_TAB_LONG = "six_tab_long"
     FINANCIAL_TRANSACTIONS_MODULE = "Financial Transactions"

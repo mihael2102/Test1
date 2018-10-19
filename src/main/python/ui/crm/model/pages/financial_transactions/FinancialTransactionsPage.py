@@ -54,11 +54,22 @@ class FinancialTransactionsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
 
-    def get_deposits_tab_text(self):
-        tab = self.driver.find_element(By.XPATH, "//li[contains(text(),'Deposits')]")
-        tab.click()
+    def get_decline_tab_text(self):
+        decline_tab = self.driver.find_element(By.XPATH, "//li[contains(text(),'Decline')]")
+        decline_tab.click()
         sleep(1)
-        tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Deposits')]")
+        tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Decline')]")
+        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        return tab_text.text
+
+    def get_deposits_tab_text(self):
+        deposits_tab = self.driver.find_element(
+            By.XPATH,
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["deposits_tab"])
+        deposits_tab.click()
+        sleep(1)
+        tab_text = super().wait_element_to_be_clickable(
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["deposits_tab"])
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
 
@@ -82,7 +93,7 @@ class FinancialTransactionsPage(CRMBasePage):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
 
-        if global_var.current_brand_name == "itrader":
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "rimarkets-staging"):
             sleep(3)
 
         transaction_number_element = self.driver.find_element(By.XPATH,
@@ -120,7 +131,8 @@ class FinancialTransactionsPage(CRMBasePage):
 
         # Get collection of time search results because search does not consider hours/minutes but only date
         sleep(2)
-        current_year = datetime.datetime.now().year
+        # current_year = datetime.datetime.now().year
+        current_year = modified_time[6:11]
         modified_time_elements = self.driver.find_elements(
                 By.XPATH,
                 "//div[@class='main_tbl_wrapper']//tbody[@id = 'listBody']//td[contains(text(), '%s')]" % current_year)
@@ -210,6 +222,10 @@ class FinancialTransactionsPage(CRMBasePage):
 
     def open_first_financial_transaction_in_list(self):
         sleep(2)
+
+        if (global_var.current_brand_name == "rimarkets-staging"):
+            sleep(3)
+
         transaction_number_element = self.driver.find_element(By.XPATH, "//a[contains(text(), 'MTT')]")
         self.scroll_into_view(transaction_number_element)
         transaction_number_element.click()

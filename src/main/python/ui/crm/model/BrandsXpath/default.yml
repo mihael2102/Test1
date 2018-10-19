@@ -6,6 +6,7 @@ FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
   tab: "//li[contains(text(),'Credit Out')]"
   demo_tab: "//li[contains(text(),'Demo Accounts Transactions')]"
+  deposits_tab: "//li[contains(text(),'Deposits')]"
   withdraw_tab: "//li[contains(text(),'Withdraw')]"
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
 LeadViewInfo:
