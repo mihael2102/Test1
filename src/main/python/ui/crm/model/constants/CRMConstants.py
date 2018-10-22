@@ -48,6 +48,7 @@ class CRMConstants(object):
     WITHDRAW_SUCCESSFULLY = "MT4 Withdraw successfull"
     DEPOSIT_SUCCESSFULLY = "MT4 Deposit successfull"
     DEPOSIT_SUCCESSFULL_OLD_FOREX = "Transaction created successfully"
+    TITLE_OF_CLIENT_DEPOSIT_POPUP = "Client Deposit"
     PASSWORD_CHANGE = "Password was change successfully"
     CRM_CLIENT_AREA_PASSWORD_CHANGE = "Password changed succesfully"
     MASS_EDIT = "Successfuly updated"

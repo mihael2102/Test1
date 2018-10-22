@@ -118,65 +118,73 @@ class DepositTestCRM(BaseTest):
                     CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, deposit_amount_text, "Wrong deposit sum is displayed")
 
     def test_make_deposit_for_client_crm(self):
-        lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
-        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
+        # lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
+        # client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
+        #
+        # # Create new lead and convert him to new client
+        # LeadPrecondition(self.driver, self.config).create_lead(lead1)
+        # lead_view_profile_page = LeadViewInfo(self.driver)
+        #
+        # lead_view_profile_page.open_convert_lead_module() \
+        #     .perform_convert_lead(
+        #     client1[LeadsModuleConstants.FIRST_NAME],
+        #     client1[LeadsModuleConstants.FIRST_LAST_NAME],
+        #     client1[LeadsModuleConstants.EMAIL],
+        #     client1[LeadsModuleConstants.PHONE],
+        #     client1[LeadsModuleConstants.BIRTHDAY],
+        #     client1[LeadsModuleConstants.CITIZENSHIP],
+        #     client1[LeadsModuleConstants.STREET],
+        #     client1[LeadsModuleConstants.POSTAL_CODE],
+        #     client1[LeadsModuleConstants.CITY],
+        #     client1[LeadsModuleConstants.FIRST_COUNTRY],
+        #     client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+        #     client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+        #     client1[LeadsModuleConstants.FIRST_REFERRAL],
+        #     client1[LeadsModuleConstants.BRAND],
+        #     client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+        #     client1[LeadsModuleConstants.PHONE_AREA_CODE])
+        #
+        # convert_verified = False
+        # # Checking that the lead was converted successfully
+        # try:
+        #     confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
+        #     assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+        #     lead_view_profile_page.click_ok()
+        #     convert_verified = True
+        # except TimeoutException:
+        #     Logging().reportDebugStep(self, "Lead convert message was not picked up")
+        # if not convert_verified:
+        #     lead_detail_view = LeadDetailViewInfo(self.driver)
+        #     lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
+        #     self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state. "
+        #                                                                   "Client was not created")
+        #
+        # # ADD LIVE ACCOUNT IN CRM
+        # # Open clients module. Find created client by email and open his profile
+        # CRMHomePage(self.driver).open_client_module() \
+        #     .select_filter(self.config.get_value(
+        #     TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+        #     .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+        #
+        # # Create LIVE account for client using MT4 Actions
+        # crm_client_profile = ClientProfilePage(self.driver)
+        # crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+        #
+        # MT4CreateAccountModule(self.driver) \
+        #     .create_account(
+        #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
+        #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+        #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
+        #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
+        #     .click_ok()
 
-        # Create new lead and convert him to new client
-        LeadPrecondition(self.driver, self.config).create_lead(lead1)
-        lead_view_profile_page = LeadViewInfo(self.driver)
-
-        lead_view_profile_page.open_convert_lead_module() \
-            .perform_convert_lead(
-            client1[LeadsModuleConstants.FIRST_NAME],
-            client1[LeadsModuleConstants.FIRST_LAST_NAME],
-            client1[LeadsModuleConstants.EMAIL],
-            client1[LeadsModuleConstants.PHONE],
-            client1[LeadsModuleConstants.BIRTHDAY],
-            client1[LeadsModuleConstants.CITIZENSHIP],
-            client1[LeadsModuleConstants.STREET],
-            client1[LeadsModuleConstants.POSTAL_CODE],
-            client1[LeadsModuleConstants.CITY],
-            client1[LeadsModuleConstants.FIRST_COUNTRY],
-            client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-            client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-            client1[LeadsModuleConstants.FIRST_REFERRAL],
-            client1[LeadsModuleConstants.BRAND],
-            client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-            client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-        convert_verified = False
-        # Checking that the lead was converted successfully
-        try:
-            confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
-            assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
-            lead_view_profile_page.click_ok()
-            convert_verified = True
-        except TimeoutException:
-            Logging().reportDebugStep(self, "Lead convert message was not picked up")
-        if not convert_verified:
-            lead_detail_view = LeadDetailViewInfo(self.driver)
-            lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
-            self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state. "
-                                                                          "Client was not created")
-
-        # ADD LIVE ACCOUNT IN CRM
-        # Open clients module. Find created client by email and open his profile
-        CRMHomePage(self.driver).open_client_module() \
-            .select_filter(self.config.get_value(
-            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
-
-        # Create LIVE account for client using MT4 Actions
-        crm_client_profile = ClientProfilePage(self.driver)
-        crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
-
-        MT4CreateAccountModule(self.driver) \
-            .create_account(
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
-            .click_ok()
+        crm_client_profile = CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
         # Get account number to make deposit in future. And get initial amount
         account_number = ClientProfilePage(self.driver) \
@@ -190,14 +198,23 @@ class DepositTestCRM(BaseTest):
             .open_deposit_for_client_in_menu()\
             .fill_client_deposit_pop(account_number)
 
-        deposit_successful = CRMClientDeposit(self.driver)\
-            .select_payment_method(CaConstants.VISA) \
-            .set_card_number("4444444444444448") \
-            .set_expiry_date("092020") \
-            .set_cvc("123") \
-            .set_amount_deposit(CaConstants.AMOUNT_DEPOSIT) \
-            .perform_deposit() \
-            .get_successful_deposit_message()
+        # Check that CLIENT DEPOSIT CONFIRMATION page is closed and popup is still displayed
+        self.assertTrue(CRMClientDeposit(self.driver).is_client_deposit_confirmation_page_not_displayed(),
+                        "CLIENT DEPOSIT CONFIRMATION page is still displayed. But Payment Frame is expected")
 
-        self.assertEqual(CaConstants.SUCCESSFUL_DEPOSIT_MESSAGE, deposit_successful, "Transaction failed")
+        self.assertEqual(CRMConstants.TITLE_OF_CLIENT_DEPOSIT_POPUP,
+                         CRMClientDeposit(self.driver).client_deposit_popup_title_text(),
+                         "Client deposit popup is not displayed, but should")
+
+
+        # deposit_successful = CRMClientDeposit(self.driver)\
+        #     .select_payment_method(CaConstants.VISA) \
+        #     .set_card_number("4444444444444448") \
+        #     .set_expiry_date("092020") \
+        #     .set_cvc("123") \
+        #     .set_amount_deposit(CaConstants.AMOUNT_DEPOSIT) \
+        #     .perform_deposit() \
+        #     .get_successful_deposit_message()
+        #
+        # self.assertEqual(CaConstants.SUCCESSFUL_DEPOSIT_MESSAGE, deposit_successful, "Transaction failed")
 

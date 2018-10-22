@@ -523,7 +523,27 @@ class ClientProfilePage(CRMBasePage):
             selected_live_trading_account.click()
         except (NoSuchElementException, TimeoutException) as e:
             Logging().reportDebugStep(self, "There is no accounts drop down list")
-        i_confirm_checkbox = super().wait_element_to_be_clickable("//*[@id='confirmed']")
+        try:
+            i_confirm_checkbox = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                                      self.__class__.__name__)["i_confirm_checkbox"])
+        except TimeoutException:
+            # If client deposit popup hasn't been loaded completely,
+            # we need to refresh the page and try to open popup again
+            super().refresh_page()
+            self.open_deposit_for_client_in_menu()
+            try:
+                trading_account_dropdown_list = super().wait_element_to_be_clickable(
+                    "//*[@id='ClientDepositConfirmation']//button[@title='Choose trading account']", 10)
+                trading_account_dropdown_list.click()
+                selected_live_trading_account = self.driver.find_element(By.XPATH,
+                                                                         "//span[contains(text(), '%s')]" % account_number)
+                super().scroll_into_view(selected_live_trading_account)
+                selected_live_trading_account.click()
+            except (NoSuchElementException, TimeoutException) as e:
+                Logging().reportDebugStep(self, "There is no accounts drop down list")
+            i_confirm_checkbox = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                self.__class__.__name__)["i_confirm_checkbox"])
+
         i_confirm_checkbox.click()
         ok_button = super().wait_element_to_be_clickable("//*[@id='confirmationform_action_button']")
         ok_button.click()

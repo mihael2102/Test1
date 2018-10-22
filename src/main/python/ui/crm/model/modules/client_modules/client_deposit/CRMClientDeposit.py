@@ -1,3 +1,4 @@
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from time import sleep
 
 from selenium.webdriver.common.by import By
@@ -74,3 +75,19 @@ class CRMClientDeposit(CRMBasePage):
         message_element = super().wait_visible_of_element("//main/div[2]/div[1]")
         Logging().reportDebugStep(self, "Returns the successful deposit message: " + message_element.text)
         return message_element.text
+
+    def is_client_deposit_confirmation_page_not_displayed(self):
+        is_confirmation_checkbox_not_displayed = super().wait_element_to_be_disappear(
+                        global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["i_confirm_checkbox"])
+
+        if is_confirmation_checkbox_not_displayed:
+            return True
+        else:
+            return False
+
+    def client_deposit_popup_title_text(self):
+        client_deposit_popup_title_text = super().wait_visible_of_element(
+                                                                    "//span[contains(text(), 'Client Deposit')]").text
+        return client_deposit_popup_title_text
+
+
