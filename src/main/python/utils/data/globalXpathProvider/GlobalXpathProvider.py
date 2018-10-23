@@ -268,5 +268,4 @@ def get_xpath_for_current_brand_element(page_name):
         elif page_name == "ClientProfilePage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
-    else:
-        return __get_default_xpath_of_elements_of_current_page()[page_name]
+    return __get_default_xpath_of_elements_of_current_page()[page_name]

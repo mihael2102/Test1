@@ -18,3 +18,6 @@ FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
+  i_confirm_checkbox: "//*[@name='confirm']"
+CRMClientDeposit:
+  i_confirm_checkbox: "//*[@name='confirm']"

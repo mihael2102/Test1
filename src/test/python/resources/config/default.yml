@@ -110,10 +110,12 @@ trading_account_1:
   platform_MT5: "MT5"
   platform_MT4: "MT4"
   server: "Demo"
+  server_live: "Live"
   currency: "USD"
   currency_BCH: "BCH"
   group: "USD"
   demo: "demo"
+  live: "live"
   leverage: "100"
   leverage_1_200: "200"
 trading_account_1_demo_upd:

@@ -39,8 +39,10 @@ class CRMConstants(object):
     FOURTH_DATE = datetime.now() + relativedelta(days=3, minutes=45)
     MT4_ACCOUNT_CREATED_SUCCESFULLY = "MT4 Account created successfully"
     MT4_ACCOUNT_UPDATED_SUCCESFULLY = "MT4 Account updated successfully"
+    TRADING_SERVER_LIVE = "server_live"
     WITHDRAW_SUCCESSFULLY = "MT4 Withdraw successfull"
     DEPOSIT_SUCCESSFULLY = "MT4 Deposit successfull"
+    TITLE_OF_CLIENT_DEPOSIT_POPUP = "Client Deposit"
     PASSWORD_CHANGE = "Password was change successfully"
     CRM_CLIENT_AREA_PASSWORD_CHANGE = "Client Area Password changed successfully"
     MASS_EDIT = "Successfuly updated"
