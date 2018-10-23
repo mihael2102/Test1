@@ -11,6 +11,7 @@ class MultiRunner:
         # whether to stop after first failing test
         self.fail_fast = True
 
+
     def test_brands(self):
         brands = self.data_provider.get_brands()
 
