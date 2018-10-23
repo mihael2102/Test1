@@ -185,7 +185,10 @@ class LeadModuleTest(BaseTest):
         secondary_email = lead_detail_view.get_secondary_email_text()
         source_name = lead_detail_view.get_source_name_text()
         panda_partner_id = lead_detail_view.get_panda_partner_id_text()
-        referral = lead_detail_view.get_referral_text()
+
+        if global_var.current_brand_name != "rimarkets":
+            referral = lead_detail_view.get_referral_text()
+
         street = lead_detail_view.get_street_text()
         postal_code = lead_detail_view.get_postal_code_text()
         country = lead_detail_view.get_country_text()

@@ -112,8 +112,8 @@ brands:
 #  config_file: highfx.yml
 #- name: mlnfx
 #  config_file: mlnfx.yml
-- name: gmo
-  config_file: gmo.yml
+#- name: gmo
+#  config_file: gmo.yml
 #- name: gmo-dev
 #  config_file: gmo-dev.yml
 #- name: mtxplus
@@ -139,8 +139,8 @@ brands:
 #  config_file: otcapital.yml
 #- name: urf
 #  config_file: urf_financial.yml
-#- name: rimarkets
-#  config_file: rimarkets.yml
+- name: rimarkets
+  config_file: rimarkets.yml
 #- name: kayafx
 #  config_file: kaya_fx.yml
 # testing environments - old forex

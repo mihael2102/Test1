@@ -203,7 +203,7 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def select_client_status(self, client_status):
-        sleep(3)
+        sleep(8)
         # for_old_forex
         country_drop_down = super().wait_load_element(
             "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/button")
