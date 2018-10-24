@@ -54,6 +54,7 @@ class MultiRunner:
             test.config = self.data_provider
             runner.outsuffix = test_data['method'] + "-" + brand
             print("Running test %s on %s" % (test_data['method'], brand))
+            print("This is test name " + test)
             result = runner.run(test)
 
             test_name = test_data['class'] + '.' + test_data['method']
