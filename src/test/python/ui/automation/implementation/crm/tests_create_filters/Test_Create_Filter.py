@@ -13,6 +13,8 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
+
+
 class FilterModulesTest(BaseTest):
 
     def test_create_filter_clients_module(self):

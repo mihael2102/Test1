@@ -73,14 +73,25 @@ class ConfigProvider:
             except yaml.YAMLError as e:
                 print(e)
 
-    def load_tests(self):
+    def test_multi(self):
         tests_file_path = os.path.join(self.script_dir, self.config_dir, "tests.yml")
-        with open(os.path.realpath(tests_file_path), 'r') as stream:
+        tests_file_path2 = os.path.join(self.script_dir, self.config_dir, "tests2.yml")
+        tests_more = [tests_file_path, tests_file_path2]
+        return tests_more
+
+    def load_tests(self, p):
+        # tests_file_path = os.path.join(self.script_dir, self.config_dir, "tests.yml")
+        with open(os.path.realpath(p), 'r') as stream:
             try:
                 self.tests_config = yaml.load(stream)
                 print(self.tests_config)
             except yaml.YAMLError as e:
                 print(e)
+
+    import multiprocessing
+    if __name__ == '__main__':
+        pool = multiprocessing.Pool(processes=2)
+        result_list = pool.map(load_tests, test_multi)
 
     def load_brand_config(self, brand='default', use_base=True):
         """
