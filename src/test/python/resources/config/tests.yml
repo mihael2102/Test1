@@ -66,10 +66,10 @@ tests_config:
 ###    - test_make_credit_in_crm # Test was commented because it needs Client Area functionality but now CA is not configured
 #    - test_make_credit_in_from_crm
 ##Other
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
-#  class: CalendarView
-#  tests:
-#    - test_check_day_tab
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
+  class: CalendarView
+  tests:
+    - test_check_day_tab
 #    - test_check_week_tab
 #    - test_check_month_tab
 - module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
