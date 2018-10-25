@@ -62,9 +62,9 @@ class ConfigProvider:
         """
         Loads brands and tests configuration
         """
-        tests_file_path = ""
+        # tests_file_path = ""
         self.load_brands()
-        self.load_tests(tests_file_path)
+        self.load_tests()
 
     def load_brands(self):
         brands_file_path = os.path.join(self.script_dir, self.config_dir, "brands.yml")
@@ -80,10 +80,18 @@ class ConfigProvider:
         tests_file_path2 = os.path.join(self.script_dir, self.config_dir, "tests2.yml")
         tests_file_path_more = [tests_file_path, tests_file_path2]
         return tests_file_path_more
+    #
+    # def open_file(p):
+    #     with open(os.path.realpath(p), 'r') as stream:
+    #         try:
+    #             a = str(yaml.load(stream))
+    #             print("ok" + a)
+    #         except ValueError as e:
+    #             print("not" + e)
 
-    def load_tests(self, tests_file_path):
+    def load_tests(self, test):
         # tests_file_path = os.path.join(self.script_dir, self.config_dir, "tests.yml")
-        with open(os.path.realpath(tests_file_path), 'r') as stream:
+        with open(os.path.realpath(test), 'r') as stream:
             try:
                 self.tests_config = yaml.load(stream)
                 print(self.tests_config)
@@ -91,9 +99,8 @@ class ConfigProvider:
                 print(e)
 
     if __name__ == '__main__':
-        pool = multiprocessing.Pool(processes=4)
+        pool = multiprocessing.Pool(processes=2)
         result_list = pool.map(load_tests, test_file_path())
-        print(result_list)
 
     def load_brand_config(self, brand='default', use_base=True):
         """
