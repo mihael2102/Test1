@@ -21,7 +21,7 @@ from src.main.python.ui.crm.model.constants.TradingAccountConstants import Tradi
 from src.main.python.utils.config import Config
 from datetime import *
 from dateutil.relativedelta import relativedelta
-import multiprocessing
+from multiprocessing import Pool
 
 class ConfigProvider:
 
@@ -62,7 +62,7 @@ class ConfigProvider:
         Loads brands and tests configuration
         """
         self.load_brands()
-        self.load_tests()
+        self.load_tests(p="")
 
     def load_brands(self):
         brands_file_path = os.path.join(self.script_dir, self.config_dir, "brands.yml")
@@ -72,12 +72,6 @@ class ConfigProvider:
                 print(self.brands_config)
             except yaml.YAMLError as e:
                 print(e)
-
-    def test_multi(self):
-        tests_file_path = os.path.join(self.script_dir, self.config_dir, "tests.yml")
-        tests_file_path2 = os.path.join(self.script_dir, self.config_dir, "tests2.yml")
-        tests_more = [tests_file_path, tests_file_path2]
-        return tests_more
 
     def load_tests(self, p):
         # tests_file_path = os.path.join(self.script_dir, self.config_dir, "tests.yml")
@@ -89,8 +83,9 @@ class ConfigProvider:
                 print(e)
 
     if __name__ == '__main__':
-        pool = multiprocessing.Pool(processes=2)
-        result_list = pool.map(load_tests, test_multi)
+        tests_file_path = ["D:/automation-newforexqa/src/test/python/resources/config/tests.yml","D:/automation-newforexqa/src/test/python/resources/config/tests2.yml"]
+        with Pool(2) as p:
+            result_list = p.map(load_tests, tests_file_path)
 
     def load_brand_config(self, brand='default', use_base=True):
         """
