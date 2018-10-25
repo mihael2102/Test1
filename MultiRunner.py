@@ -2,15 +2,15 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.utils.logs.ExcelWriter import ExcelWriter
 import importlib
 import xmlrunner
+import multiprocessing
 
 
 class MultiRunner:
 
-    def __init__(self):
-        self.data_provider = ConfigProvider()
+    def __init__(self, path_to_test_suite):
+        self.data_provider = ConfigProvider(path_to_test_suite)
         # whether to stop after first failing test
         self.fail_fast = True
-
 
     def test_brands(self):
         brands = self.data_provider.get_brands()
@@ -74,6 +74,23 @@ class MultiRunner:
         return results
 
 
-if __name__ == "__main__":
-    client = MultiRunner()
+def __simple_run(path_to_test_suite):
+    client = MultiRunner(path_to_test_suite)
     client.test_brands()
+
+
+if __name__ == "__main__":
+    # Filename of TestSuite 1
+    path_to_test_suite_1 = "tests.yml"
+
+    # Filename of TestSuite 2
+    path_to_test_suite_2 = "tests2.yml"
+
+    # Form input list where each parameter is filename of TestSuite file
+    input_list = [path_to_test_suite_1, path_to_test_suite_2]
+
+    # Init multiprocess
+    pool = multiprocessing.Pool(processes=2)
+
+    # Run Test Suites as separate processes
+    pool.map(__simple_run, input_list)
