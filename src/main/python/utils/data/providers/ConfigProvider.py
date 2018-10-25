@@ -22,6 +22,7 @@ from src.main.python.utils.config import Config
 from datetime import *
 from dateutil.relativedelta import relativedelta
 from multiprocessing import Pool
+import multiprocessing
 
 class ConfigProvider:
 
@@ -61,8 +62,9 @@ class ConfigProvider:
         """
         Loads brands and tests configuration
         """
+        tests_file_path = ""
         self.load_brands()
-        self.load_tests(p="")
+        self.load_tests(tests_file_path)
 
     def load_brands(self):
         brands_file_path = os.path.join(self.script_dir, self.config_dir, "brands.yml")
@@ -73,9 +75,15 @@ class ConfigProvider:
             except yaml.YAMLError as e:
                 print(e)
 
-    def load_tests(self, p):
+    def test_file_path(self):
+        tests_file_path = os.path.join(self.script_dir, self.config_dir, "tests.yml")
+        tests_file_path2 = os.path.join(self.script_dir, self.config_dir, "tests2.yml")
+        tests_file_path_more = [tests_file_path, tests_file_path2]
+        return tests_file_path_more
+
+    def load_tests(self, tests_file_path):
         # tests_file_path = os.path.join(self.script_dir, self.config_dir, "tests.yml")
-        with open(os.path.realpath(p), 'r') as stream:
+        with open(os.path.realpath(tests_file_path), 'r') as stream:
             try:
                 self.tests_config = yaml.load(stream)
                 print(self.tests_config)
@@ -83,9 +91,9 @@ class ConfigProvider:
                 print(e)
 
     if __name__ == '__main__':
-        tests_file_path = ["D:/automation-newforexqa/src/test/python/resources/config/tests.yml","D:/automation-newforexqa/src/test/python/resources/config/tests2.yml"]
-        with Pool(2) as p:
-            result_list = p.map(load_tests, tests_file_path)
+        pool = multiprocessing.Pool(processes=4)
+        result_list = pool.map(load_tests, test_file_path())
+        print(result_list)
 
     def load_brand_config(self, brand='default', use_base=True):
         """
