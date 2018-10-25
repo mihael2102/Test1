@@ -21,7 +21,7 @@ from src.main.python.ui.crm.model.constants.TradingAccountConstants import Tradi
 from src.main.python.utils.config import Config
 from datetime import *
 from dateutil.relativedelta import relativedelta
-
+import multiprocessing
 
 class ConfigProvider:
 
@@ -88,7 +88,6 @@ class ConfigProvider:
             except yaml.YAMLError as e:
                 print(e)
 
-    import multiprocessing
     if __name__ == '__main__':
         pool = multiprocessing.Pool(processes=2)
         result_list = pool.map(load_tests, test_multi)
