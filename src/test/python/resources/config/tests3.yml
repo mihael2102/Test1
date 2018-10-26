@@ -12,3 +12,17 @@ tests_config:
     - test_check_all_tab_from_financial_transactions
     - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
     - test_check_search_via_button # Check search using search button
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - test_crm_open_trading_account  # open a new trading account
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
+  class: CheckPasswordTestCRM
+  tests:
+    - test_check_client_password_crm  # check the client account password
+    - test_check_mt4_password_crm   # check the MT4 account password
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
+  class: ChangePasswordTestCRM
+  tests:
+    - test_change_client_password_from_crm  # change a client account password from the crm
+    - test_change_mt4_password_from_crm
