@@ -33,8 +33,9 @@ class ConfigProvider:
     brand = None
     tests = None
 
-    def __init__(self):
+    def __init__(self, current_test_suite=None):
         print("init config")
+        self.__current_test_suite = current_test_suite
         self.script_dir = os.path.dirname(__file__)
         self.data = {}
         self.brands_config = {}
@@ -74,13 +75,14 @@ class ConfigProvider:
                 print(e)
 
     def load_tests(self):
-        tests_file_path = os.path.join(self.script_dir, self.config_dir, "tests.yml")
-        with open(os.path.realpath(tests_file_path), 'r') as stream:
-            try:
-                self.tests_config = yaml.load(stream)
-                print(self.tests_config)
-            except yaml.YAMLError as e:
-                print(e)
+        if self.__current_test_suite is not None:
+            tests_file_path = os.path.join(self.script_dir, self.config_dir, self.__current_test_suite)
+            with open(os.path.realpath(tests_file_path), 'r') as stream:
+                try:
+                    self.tests_config = yaml.load(stream)
+                    print(self.tests_config)
+                except yaml.YAMLError as e:
+                    print(e)
 
     def load_brand_config(self, brand='default', use_base=True):
         """
