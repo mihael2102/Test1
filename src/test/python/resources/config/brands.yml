@@ -4,12 +4,12 @@ brands:
 #
 ## production environmets - new forex
 #
-- name: royal_cfds
-  config_file: royal_cfds.yml
-##- name: lq-fx
-##  config_file: lq-fx.yml
-- name: jonesmutual
-  config_file: jonesmutual.yml
+#- name: royal_cfds
+#  config_file: royal_cfds.yml
+#- name: lq-fx
+#  config_file: lq-fx.yml
+#- name: jonesmutual
+#  config_file: jonesmutual.yml
 ##- name: hamiltonfordgroup
 ##  config_file: hamiltonfordgroup.yml
 ##- name: baronsvc
