@@ -1,0 +1,2 @@
+ClientProfilePage:
+  deposit_sum: "//tr[@class='lvtColData'][2]//td[3]"

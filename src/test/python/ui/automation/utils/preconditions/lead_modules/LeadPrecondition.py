@@ -25,7 +25,7 @@ class LeadPrecondition(object):
             .open_create_lead_module()\
 
 
-        if global_var.current_brand_name == "safemarkets":
+        if (global_var.current_brand_name == "safemarkets") or (global_var.current_brand_name == "uft"):
             CreateLeadsProfilePage(self.driver).perform_create_lead(
             lead[LeadsModuleConstants.FIRST_NAME],
             lead[LeadsModuleConstants.FIRST_LAST_NAME],
@@ -211,6 +211,32 @@ class LeadPrecondition(object):
                 new_lead_data[LeadsModuleConstants.FIRST_TITTLE],
                 new_lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE],
                 new_lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW],
+                new_lead_data[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+                new_lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                new_lead_data[LeadsModuleConstants.BRAND],
+                new_lead_data[LeadsModuleConstants.PO_BOX],
+                new_lead_data[LeadsModuleConstants.CITY],
+                new_lead_data[LeadsModuleConstants.FIRST_STATE])
+
+        elif global_var.current_brand_name == "uft":
+            LeadDetailViewInfo(self.driver).open_edit_lead_profile().perform_edit_lead(
+                new_lead_data[LeadsModuleConstants.FIRST_NAME],
+                new_lead_data[LeadsModuleConstants.FIRST_LAST_NAME],
+                new_lead_data[LeadsModuleConstants.FIRST_MOBILE],
+                new_lead_data[LeadsModuleConstants.FAX],
+                new_lead_data[LeadsModuleConstants.EMAIL],
+                new_lead_data[LeadsModuleConstants.SECONDARY_EMAIL],
+                new_lead_data[LeadsModuleConstants.FIRST_LANGUAGE],
+                new_lead_data[LeadsModuleConstants.PANDA_PARTNER],
+                new_lead_data[LeadsModuleConstants.FIRST_REFERRAL],
+                new_lead_data[LeadsModuleConstants.STREET],
+                new_lead_data[LeadsModuleConstants.POSTAL_CODE],
+                new_lead_data[LeadsModuleConstants.FIRST_COUNTRY],
+                new_lead_data[LeadsModuleConstants.FIRST_DESCRIPTION],
+                new_lead_data[LeadsModuleConstants.PHONE],
+                new_lead_data[LeadsModuleConstants.FIRST_TITTLE],
+                new_lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE],
+                new_lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_UFT],
                 new_lead_data[LeadsModuleConstants.FIRST_ASSIGNED_TO],
                 new_lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME],
                 new_lead_data[LeadsModuleConstants.BRAND],

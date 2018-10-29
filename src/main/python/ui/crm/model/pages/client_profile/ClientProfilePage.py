@@ -120,6 +120,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_trading_accounts_tab(self):
+        sleep(3)
         trading_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_TradingAccounts']")
         trading_tab.click()
         Logging().reportDebugStep(self, "Open the trading account tab ")
@@ -166,6 +167,7 @@ class ClientProfilePage(CRMBasePage):
         return str(total_amount)
 
     def get_amount_of_credit_in(self):
+        # add refresh page
         credit_in_amount_element = super().wait_visible_of_element("//*[@id='rld_table_content']/tbody/tr[2]/td[6]/span[1]")
         Logging().reportDebugStep(self, "Amount of Credit in is " + credit_in_amount_element.text)
         return credit_in_amount_element.text
@@ -366,7 +368,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_email_text(self):
         email = self.driver.find_element(By.XPATH,
-                                         "//td[contains(text(),'Email')]//following-sibling::td[1]")
+                                         global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["email"])
         Logging().reportDebugStep(self, "Returns the email " + email.text)
         return email.text
 

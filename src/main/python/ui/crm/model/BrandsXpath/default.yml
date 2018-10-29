@@ -19,5 +19,6 @@ FinancialTransactionsPage:
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
   i_confirm_checkbox: "//*[@name='confirm']"
+  email: "//td[contains(text(),'Email')]//following-sibling::td[1]"
 CRMClientDeposit:
   i_confirm_checkbox: "//*[@name='confirm']"

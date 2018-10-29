@@ -199,6 +199,7 @@ class FinancialTransactionsPage(CRMBasePage):
         sleep(2)
         transaction_number_element = self.driver.find_element(By.XPATH, "//a[contains(text(), 'MTT')]")
         self.scroll_into_view(transaction_number_element)
+        sleep(3)
         transaction_number_element.click()
         Logging().reportDebugStep(self, "First financial transaction in search results was opened")
         return FinancialTransactionInformationPage(self.driver)

@@ -73,6 +73,24 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
             return self
 
+        elif (global_var.current_brand_name == "axa_markets"):
+            MT4CreateAccountModule(self.driver) \
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400))
+            return self
+
+        elif (global_var.current_brand_name == "xtraderfx"):
+            MT4CreateAccountModule(self.driver) \
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY_EUR),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
+            return self
+
         else:
             MT4CreateAccountModule(self.driver) \
                 .create_account(
@@ -151,10 +169,21 @@ class TradingAccountPrecondition(object):
     def update_demo_account_from_crm(self):
         ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.UPDATE_MT4_USER)
         from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
-        MT4CreateAccountModule(self.driver).update_account(
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO_GROUP),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO_LEVERAGE))
+        if global_var.current_brand_name == "axa_markets":
+            MT4CreateAccountModule(self.driver).update_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED,
+                                      TestDataConstants.TRADING_ACCOUNT_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED,
+                                      TestDataConstants.TRADING_ACCOUNT_DEMO_GROUP),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED,
+                                      TestDataConstants.TRADING_ACCOUNT_DEMO_LEVERAGE_400))
+
+        else:
+            MT4CreateAccountModule(self.driver).update_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO_GROUP),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO_LEVERAGE))
+
         return self
 
     def make_deposit(self):

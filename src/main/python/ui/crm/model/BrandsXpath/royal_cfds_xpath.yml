@@ -15,3 +15,4 @@ FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[11])[%s]"
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
+  email: "//*[@id='mouseArea_Email']"
