@@ -4,12 +4,12 @@ tests_config:
 #- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
 #  class: FilterModulesTest
 #  tests:
-#  - test_create_filter_clients_module
-#  - test_create_filter_documents_module
+##  - test_create_filter_clients_module
+##  - test_create_filter_documents_module
 #  - test_create_filter_leads_module
 #  - test_create_filter_help_desk
 #  - test_create_filter_trading_account_module
-####  #Leads
+###  #Leads
 #- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
 #  class: TabLeadsModuleCRM
 #  tests:
@@ -18,5 +18,5 @@ tests_config:
 #  directive: reload_configuration
 #  class: LeadModuleTest
 #  tests:
-#    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
+##    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
 #    - test_edit_lead  # Creates a new lead and edits it's data. Validates that the data changed.

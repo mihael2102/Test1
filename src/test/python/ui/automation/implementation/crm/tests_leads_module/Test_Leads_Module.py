@@ -175,7 +175,8 @@ class LeadModuleTest(BaseTest):
         tittle = lead_detail_view.get_tittle_text()
         lead_source = lead_detail_view.get_lead_source_text()
         lead_status = lead_detail_view.get_lead_status_text()
-        language = lead_detail_view.get_language_text()
+        if global_var.current_brand_name != "marketsplus":
+            language = lead_detail_view.get_language_text()
         # brand = lead_detail_view.get_brand_text()
         po_box = lead_detail_view.get_po_box_text()
         city = lead_detail_view.get_city_text()
@@ -187,10 +188,11 @@ class LeadModuleTest(BaseTest):
         self.assertEqual(fax, lead_data[LeadsModuleConstants.FAX])
         self.assertEqual(email, lead_data[LeadsModuleConstants.EMAIL])
         self.assertEqual(secondary_email, lead_data[LeadsModuleConstants.SECONDARY_EMAIL])
-        self.assertEqual(source_name, lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME])
-        if lead_data[LeadsModuleConstants.PANDA_PARTNER]:
+        if global_var.current_brand_name != "marketsplus":
+            self.assertEqual(source_name, lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME])
+        if lead_data[LeadsModuleConstants.PANDA_PARTNER] and global_var.current_brand_name != "marketsplus":
             self.assertEqual(panda_partner_id, lead_data[LeadsModuleConstants.PANDA_PARTNER])
-        if lead_data[LeadsModuleConstants.FIRST_REFERRAL]:
+        if lead_data[LeadsModuleConstants.FIRST_REFERRAL] and global_var.current_brand_name != "marketsplus":
             self.assertEqual(referral, lead_data[LeadsModuleConstants.FIRST_REFERRAL])
         self.assertEqual(street, lead_data[LeadsModuleConstants.STREET])
         self.assertEqual(postal_code, lead_data[LeadsModuleConstants.POSTAL_CODE])
@@ -198,7 +200,8 @@ class LeadModuleTest(BaseTest):
         self.assertEqual(description, lead_data[LeadsModuleConstants.FIRST_DESCRIPTION])
         self.assertEqual(phone, lead_data[LeadsModuleConstants.PHONE])
         self.assertEqual(tittle, lead_data[LeadsModuleConstants.FIRST_TITTLE])
-        self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])
+        if global_var.current_brand_name != "marketsplus":
+            self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])
 
         if global_var.current_brand_name == "safemarkets":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW])
@@ -209,7 +212,8 @@ class LeadModuleTest(BaseTest):
         else:
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS])
 
-        self.assertEqual(language, lead_data[LeadsModuleConstants.FIRST_LANGUAGE])
+        if global_var.current_brand_name != "marketsplus":
+            self.assertEqual(language, lead_data[LeadsModuleConstants.FIRST_LANGUAGE])
         # if lead_data[LeadsModuleConstants.BRAND]:
         #     self.assertEqual(brand, lead_data[LeadsModuleConstants.BRAND])
         self.assertEqual(po_box, lead_data[LeadsModuleConstants.PO_BOX])

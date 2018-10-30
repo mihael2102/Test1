@@ -39,6 +39,18 @@ class FilterPage(CRMBasePage):
         self.perform_choice_eighth_column(eighth_column_name)
         return FilterPage(self.driver)
 
+    def perform_create_filter_lead_module_new(self, filter_name, first_column_name, second_column_name, third_column_name,
+                                          fourth_column_name, fifth_column_name, sixth_column_name, seventh_column_name):
+        self.set_name_filter(filter_name)
+        self.perform_choice_first_column(first_column_name)
+        self.perform_choice_second_column(second_column_name)
+        self.perform_choice_third_column(third_column_name)
+        self.perform_choice_fourth_column(fourth_column_name)
+        self.perform_choice_fifth_column(fifth_column_name)
+        self.perform_choice_sixth_column(sixth_column_name)
+        self.perform_choice_seventh_column(seventh_column_name)
+        return FilterPage(self.driver)
+
     def perform_create_filter_help_desk_module(self, filter_name, first_column_name, second_column_name,
                                                third_column_name, fourth_column_name, fifth_column_name,
                                                sixth_column_name, seventh_column_name, eightn_column_name,

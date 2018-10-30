@@ -91,6 +91,21 @@ class FilterPrecondition(object):
             .click_save_button()
         return FilterPrecondition(self.driver, self.config)
 
+    def create_filter_leads_module_new(self):
+        CRMHomePage(self.driver).open_lead_module() \
+            .open_create_filter_pop_up() \
+            .perform_create_filter_lead_module_new(
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FILTER_NAME),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIRST_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.SECOND_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.THIRD_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FOURTH_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIFTH_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.SIXTH_COLUMN),
+            self.config.get_data_lead_info_from_json(LeadsModuleConstants.SEVENTH_COLUMN)) \
+            .click_save_button()
+        return FilterPrecondition(self.driver, self.config)
+
     def create_filter_documents_module(self):
         CRMHomePage(self.driver).open_more_list_modules() \
             .select_document_module_more_list(DocumentModuleConstants.DOCUMENT) \

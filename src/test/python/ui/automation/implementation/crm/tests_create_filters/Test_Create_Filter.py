@@ -11,6 +11,7 @@ from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsPage impo
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 class FilterModulesTest(BaseTest):
@@ -81,18 +82,35 @@ class FilterModulesTest(BaseTest):
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
-        FilterPrecondition(self.driver, self.config).create_filter_leads_module()
 
-        leads_module_page = LeadsModule(self.driver)
+        if global_var.current_brand_name == "marketsplus":
+            FilterPrecondition(self.driver, self.config).create_filter_leads_module_new()
 
-        first_name__column = leads_module_page.get_first_name_column()
-        second_name_column = leads_module_page.get_second_name_column()
-        third_name__column = leads_module_page.get_third_name_column()
-        fourth_name_column = leads_module_page.get_fourth_name_column()
-        fifth_name_column = leads_module_page.get_fifth_name_column()
-        sixth_name_column = leads_module_page.get_sixth_name_column()
-        seventh_name_column = leads_module_page.get_seventh_name_column()
-        eighth_name_column = leads_module_page.get_eighth_name_column()
+            leads_module_page = LeadsModule(self.driver)
+
+            first_name__column = leads_module_page.get_first_name_column()
+            second_name_column = leads_module_page.get_second_name_column()
+            third_name__column = leads_module_page.get_third_name_column()
+            fourth_name_column = leads_module_page.get_fourth_name_column()
+            fifth_name_column = leads_module_page.get_fifth_name_column()
+            sixth_name_column = leads_module_page.get_sixth_name_column()
+            seventh_name_column = leads_module_page.get_seventh_name_column()
+
+        else:
+
+            FilterPrecondition(self.driver, self.config).create_filter_leads_module()
+
+            leads_module_page = LeadsModule(self.driver)
+
+            first_name__column = leads_module_page.get_first_name_column()
+            second_name_column = leads_module_page.get_second_name_column()
+            third_name__column = leads_module_page.get_third_name_column()
+            fourth_name_column = leads_module_page.get_fourth_name_column()
+            fifth_name_column = leads_module_page.get_fifth_name_column()
+            sixth_name_column = leads_module_page.get_sixth_name_column()
+            seventh_name_column = leads_module_page.get_seventh_name_column()
+            eighth_name_column = leads_module_page.get_eighth_name_column()
+
 
         assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIRST_COLUMN) == first_name__column
         assert LeadsModuleConstants.LAST_NAME_COLUMN_TEXT == second_name_column
@@ -101,7 +119,8 @@ class FilterModulesTest(BaseTest):
         assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIFTH_COLUMN) == fifth_name_column
         assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.SIXTH_COLUMN) == sixth_name_column
         assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.SEVENTH_COLUMN) == seventh_name_column
-        assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN) == eighth_name_column
+        if global_var.current_brand_name != "marketsplus":
+            assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN) == eighth_name_column
 
     def test_create_filter_help_desk(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
