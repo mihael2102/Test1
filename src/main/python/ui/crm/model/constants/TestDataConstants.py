@@ -28,6 +28,7 @@ class TestDataConstants(object):
     CLIENT_ONE = "client_1"
     FIRST_COUNTRY = "country"
     FIRST_COUNTRY_SA = "country_sa"
+    FIRST_COUNTRY_ME = "country_me"
     FIRST_NAME = "first_name"
     SECOND_FIRST_NAME = "second_first_name"
     LAST_NAME = "last_name"

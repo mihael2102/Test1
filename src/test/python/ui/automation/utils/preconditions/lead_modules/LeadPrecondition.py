@@ -286,7 +286,7 @@ class LeadPrecondition(object):
 
         elif (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "gmo-dev") or (global_var.current_brand_name == "oinvestsa") or \
                 (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "otcapital") or (global_var.current_brand_name == "urf") or \
-                (global_var.current_brand_name == "rimarkets"):
+                (global_var.current_brand_name == "rimarkets") or (global_var.current_brand_name == "itrader_global"):
 
             LeadDetailViewInfo(self.driver).open_edit_lead_profile().perform_edit_lead_without_reff(
                 new_lead_data[LeadsModuleConstants.FIRST_NAME],

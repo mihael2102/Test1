@@ -109,7 +109,7 @@ class LeadModuleTest(BaseTest):
                 self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                 self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
-        elif global_var.current_brand_name == "oinvestsa":
+        elif (global_var.current_brand_name == "oinvestsa") :
             ConvertLeadModule(self.driver).perform_convert_lead(
                 self.client1[LeadsModuleConstants.FIRST_NAME],
                 self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
@@ -121,6 +121,26 @@ class LeadModuleTest(BaseTest):
                 self.client1[LeadsModuleConstants.POSTAL_CODE],
                 self.client1[LeadsModuleConstants.CITY],
                 self.client1[LeadsModuleConstants.FIRST_COUNTRY_SA],
+                self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+                self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                self.client1[LeadsModuleConstants.BRAND],
+                self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+        elif (global_var.current_brand_name == "itrader_global"):
+
+            ConvertLeadModule(self.driver).perform_convert_lead(
+                self.client1[LeadsModuleConstants.FIRST_NAME],
+                self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                self.client1[LeadsModuleConstants.EMAIL],
+                self.client1[LeadsModuleConstants.PHONE],
+                self.client1[LeadsModuleConstants.BIRTHDAY],
+                self.client1[LeadsModuleConstants.CITIZENSHIP],
+                self.client1[LeadsModuleConstants.STREET],
+                self.client1[LeadsModuleConstants.POSTAL_CODE],
+                self.client1[LeadsModuleConstants.CITY],
+                self.client1[LeadsModuleConstants.FIRST_COUNTRY_ME],
                 self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
                 self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
                 self.client1[LeadsModuleConstants.FIRST_REFERRAL],
@@ -223,7 +243,7 @@ class LeadModuleTest(BaseTest):
                 self.assertEqual(panda_partner_id, lead_data[LeadsModuleConstants.PANDA_PARTNER])
             if (global_var.current_brand_name != "gmo") and (global_var.current_brand_name != "gmo-dev") and (global_var.current_brand_name != "oinvestsa") \
                     and (global_var.current_brand_name != "itrader") and (global_var.current_brand_name != "otcapital") and (global_var.current_brand_name != "urf") \
-                    and (global_var.current_brand_name != "rimarkets"):
+                    and (global_var.current_brand_name != "rimarkets") and (global_var.current_brand_name != "itrader_global"):
                 if lead_data[LeadsModuleConstants.FIRST_REFERRAL]:
                     self.assertEqual(referral, lead_data[LeadsModuleConstants.FIRST_REFERRAL])
         else:

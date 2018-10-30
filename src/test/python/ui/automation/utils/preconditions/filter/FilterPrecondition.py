@@ -37,7 +37,7 @@ class FilterPrecondition(object):
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN_OTHER_TYPE),
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN))
 
-        elif (global_var.current_brand_name == "stoxmarket") or (global_var.current_brand_name == "urf"):
+        elif (global_var.current_brand_name == "stoxmarket") or (global_var.current_brand_name == "urf") or (global_var.current_brand_name == "itrader_global"):
             FilterPage(self.driver).perform_create_filter_client_module(
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FILTER_NAME),
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
@@ -77,7 +77,7 @@ class FilterPrecondition(object):
 
         if (global_var.current_brand_name == "fm-fx") or (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "gmo-dev") or \
             (global_var.current_brand_name == "oinvestsa") or (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "otcapital") or \
-                (global_var.current_brand_name == "urf"):
+                (global_var.current_brand_name == "urf") or (global_var.current_brand_name == "itrader_global"):
             FilterPage(self.driver).perform_create_filter_help_desk_module(
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME),
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIRST_COLUMN),

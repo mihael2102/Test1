@@ -45,6 +45,7 @@ class LeadsModuleConstants(object):
     POSTAL_CODE = "postal_code"
     FIRST_COUNTRY = "first_country"
     FIRST_COUNTRY_SA = "first_country_sa"
+    FIRST_COUNTRY_ME = "first_country_me"
     FIRST_DESCRIPTION = "first_descriptions"
     PHONE = "phone"
     PHONE_AREA_CODE = "phone_area_code"

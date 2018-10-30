@@ -148,7 +148,7 @@ class FilterModulesTest(BaseTest):
         assert HelpDeskConstants.STATUS == fifth_name_column
         if (global_var.current_brand_name == "fm-fx") or (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "gmo-dev") or \
             (global_var.current_brand_name == "oinvestsa") or (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "otcapital") or \
-                (global_var.current_brand_name == "urf"):
+                (global_var.current_brand_name == "urf") or (global_var.current_brand_name == "itrader_global"):
             assert self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS,
                                               HelpDeskConstants.SIXTH_COLUMN_NEW) == sixth_name_column  #for_old_forex CA Id changed to CRM Id
         else:
