@@ -1,0 +1,10 @@
+FinancialTransactionsPage:
+  client_name_element: "(//*[@id='listBody']//tr/td[4])[%s]"
+  transaction_type_drop_down: "//td[7]/div/div[1]/button"
+  transaction_type_element: "(//*[@id='listBody']//tr/td[7])[%s]"
+  modified_time_element: "(//*[@id='listBody']//tr/td[14])[%s]"
+  tab: "//li[contains(text(),'Credit Out')]"
+  demo_tab: "//li[contains(text(),'Demo Accounts Transactions')]"
+  deposits_tab: "//li[contains(text(),'Deposits')]"
+  withdraw_tab: "//li[contains(text(),'Withdraw')]"
+  trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
