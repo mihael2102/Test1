@@ -107,8 +107,8 @@ brands:
 #  config_file: finmarket.yml
 #- name: fxpmarkets
 #  config_file: fxpmarkets.yml
-- name: soarfx
-  config_file: soarfx.yml
+#- name: soarfx
+#  config_file: soarfx.yml
 #- name: highfx
 #  config_file: highfx.yml
 #
@@ -130,8 +130,8 @@ brands:
 #- name: kbcapitals
 #  config_file: kbcapitals.yml
 #
-#- name: oinvestsa
-#  config_file: oinvestsa.yml
+- name: oinvestsa
+  config_file: oinvestsa.yml
 #- name: itrader
 #  config_file: itrader.yml
 #- name: itrader_global

@@ -515,12 +515,16 @@ class ClientProfilePage(CRMBasePage):
 
     def fill_client_deposit_pop(self, account_number):
         try:
-            trading_account_dropdown_list = super().wait_element_to_be_clickable(
-                                        "//*[@id='ClientDepositConfirmation']//button[@title='Choose trading account']", 10)
-            trading_account_dropdown_list.click()
-            selected_live_trading_account = self.driver.find_element(By.XPATH, "//span[contains(text(), '%s')]" % account_number)
+            trading_account_dropdown_list = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                                      self.__class__.__name__)["choose_account_drop_down"], 10)
+            sleep(3)
+            self.driver.execute_script("arguments[0].click();", trading_account_dropdown_list)
+            # trading_account_dropdown_list.click()
+            selected_live_trading_account = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+                                                                      self.__class__.__name__)["choose_number"] % account_number)
             super().scroll_into_view(selected_live_trading_account)
-            selected_live_trading_account.click()
+            self.driver.execute_script("arguments[0].click();", selected_live_trading_account)
+            # selected_live_trading_account.click()
         except (NoSuchElementException, TimeoutException) as e:
             Logging().reportDebugStep(self, "There is no accounts drop down list")
         try:
