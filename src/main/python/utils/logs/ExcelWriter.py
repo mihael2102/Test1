@@ -21,7 +21,7 @@ class ExcelWriter:
         # Write the test names
         row = 1
         for test in tests:
-            worksheet.write(row, 0, self.get_test_pretty_name(test))
+            worksheet.write(row, 0, self.get_test_pretty_name_new(test))
             row += 1
 
         # write the test results per brand
@@ -44,3 +44,7 @@ class ExcelWriter:
     @staticmethod
     def get_test_pretty_name(test):
         return test['class'] + '.' + test['method']
+
+    @staticmethod
+    def get_test_pretty_name_new(test):
+        return test['class'] + ': ' + test['method'].replace('_', ' ')
