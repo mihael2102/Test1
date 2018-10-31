@@ -54,12 +54,12 @@ brands:
 ##  config_file: aztrades.yml
 ##- name: bots
 ##  config_file: bots.yml
-##- name: kontofx
-##  config_file: kontofx.yml
+- name: kontofx
+  config_file: kontofx.yml
 #- name: xtraderfx
 #  config_file: xtraderfx.yml
-##- name: firstindex
-##  config_file: firstindex.yml
+#- name: firstindex
+#  config_file: firstindex.yml
 ##- name: coinstec
 ##  config_file: coinstec.yml
 ##- name: swisscci
@@ -68,8 +68,8 @@ brands:
 ##  config_file: tradospot.yml
 ##- name: etoroc
 ##  config_file: etoroc.yml
-- name: 24btcmarket
-  config_file: 24btcmarket.yml
+#- name: 24btcmarket
+#  config_file: 24btcmarket.yml
 #- name: marketsplus
 #  config_file: marketsplus.yml
 #- name: eu4xsolutions
