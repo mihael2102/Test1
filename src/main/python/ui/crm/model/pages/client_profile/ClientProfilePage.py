@@ -536,11 +536,11 @@ class ClientProfilePage(CRMBasePage):
             super().refresh_page()
             self.open_deposit_for_client_in_menu()
             try:
-                trading_account_dropdown_list = super().wait_element_to_be_clickable(
-                    "//*[@id='ClientDepositConfirmation']//button[@title='Choose trading account']", 10)
+                trading_account_dropdown_list = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                                      self.__class__.__name__)["choose_account_drop_down"], 10)
                 trading_account_dropdown_list.click()
-                selected_live_trading_account = self.driver.find_element(By.XPATH,
-                                                                         "//span[contains(text(), '%s')]" % account_number)
+                selected_live_trading_account = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+                                                                      self.__class__.__name__)["choose_number"] % account_number)
                 super().scroll_into_view(selected_live_trading_account)
                 selected_live_trading_account.click()
             except (NoSuchElementException, TimeoutException) as e:
