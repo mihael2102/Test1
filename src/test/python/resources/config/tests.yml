@@ -20,7 +20,7 @@ tests_config:
   tests:
     - test_add_event
     - test_edit_event
-#####MT4
+####MT4
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
   class: TradingAccountCrmTest
   tests:
