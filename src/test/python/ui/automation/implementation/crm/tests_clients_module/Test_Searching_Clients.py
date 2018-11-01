@@ -6,7 +6,8 @@ from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-
+from selenium.common.exceptions import NoSuchElementException
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 
 @pytest.mark.run(order=3)
 class SearchingClientsTestCRM(BaseTest):
@@ -81,11 +82,28 @@ class SearchingClientsTestCRM(BaseTest):
         # TODO: verify that only one client was found
 
         crm_client_profile.perform_scroll_up()
-        crm_client_profile = crm_client_profile.open_client_id()
+        # crm_client_profile = crm_client_profile.open_client_id()
 
-        first_name_crm = crm_client_profile.get_first_name()
-        last_name_crm = crm_client_profile.get_last_name()
-        email = crm_client_profile.get_email_text()
+        try:
+            ClientsPage(self.driver).open_client_id()
+        except NoSuchElementException:
+            if (global_var.current_brand_name == "finmarket") or (global_var.current_brand_name == "itrader"):
+                ClientsPage(self.driver).perform_searching(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+                ClientsPage(self.driver).open_client_id()
+
+            elif global_var.current_brand_name == "highfx":
+                ClientsPage(self.driver).perform_searching(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+                ClientsPage(self.driver).open_client_id()
+
+        first_name_crm = ClientProfilePage(self.driver).get_first_name()
+        last_name_crm = ClientProfilePage(self.driver).get_last_name()
+        email = ClientProfilePage(self.driver).get_email_text()
 
         assert self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME) == first_name_crm
         assert self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.LAST_NAME) == last_name_crm
