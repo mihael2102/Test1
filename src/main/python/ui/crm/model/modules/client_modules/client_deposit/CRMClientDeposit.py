@@ -77,6 +77,7 @@ class CRMClientDeposit(CRMBasePage):
         return message_element.text
 
     def is_client_deposit_confirmation_page_not_displayed(self):
+        sleep(3)
         is_confirmation_checkbox_not_displayed = super().wait_element_to_be_disappear(
                         global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["i_confirm_checkbox"])
 

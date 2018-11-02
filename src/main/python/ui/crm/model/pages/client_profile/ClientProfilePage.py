@@ -520,6 +520,7 @@ class ClientProfilePage(CRMBasePage):
             sleep(3)
             self.driver.execute_script("arguments[0].click();", trading_account_dropdown_list)
             # trading_account_dropdown_list.click()
+            sleep(3)
             selected_live_trading_account = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
                                                                       self.__class__.__name__)["choose_number"] % account_number)
             super().scroll_into_view(selected_live_trading_account)
@@ -560,3 +561,16 @@ class ClientProfilePage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", create_button)
         Logging().reportDebugStep(self, "The button Save in create credit in ")
         return ClientProfilePage()
+
+    def Sign_Out(self):
+        CRMBasePage(self.driver).refresh_page()
+        sleep(2)
+        user = super().wait_element_to_be_clickable("//img[@src='themes/panda/images/user.PNG']")
+        # self.driver.execute_script("arguments[0].click();", user)
+        user.click()
+        sleep(2)
+        sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
+        self.driver.execute_script("arguments[0].click();", sign_out)
+        Logging().reportDebugStep(self, "'Sign_Out")
+        return ClientProfilePage(self.driver)
+

@@ -12,6 +12,7 @@ from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.side_bar.create_event.CreateEvent import CreateEvent
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 
 @pytest.mark.run(order=6)
 class AddInteraction(BaseTest):
@@ -119,6 +120,7 @@ class AddInteraction(BaseTest):
             self.assertGreaterEqual(res_count, 1)
 
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            ClientProfilePage(self.driver).Sign_Out()
             CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                            self.config.get_value(TestDataConstants.CRM_PASSWORD),

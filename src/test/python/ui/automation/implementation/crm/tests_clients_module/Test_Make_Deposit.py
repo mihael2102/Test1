@@ -208,6 +208,7 @@ class DepositTestCRM(BaseTest):
                          CRMClientDeposit(self.driver).client_deposit_popup_title_text(),
                          "Client deposit popup is not displayed, but should")
         except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            ClientProfilePage(self.driver).Sign_Out()
             crm_client_profile = CRMLoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url')) \
                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
