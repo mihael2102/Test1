@@ -10,6 +10,8 @@ from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.side_bar.create_event.CreateEvent import CreateEvent
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 
 @pytest.mark.run(order=6)
 class AddInteraction(BaseTest):
@@ -103,15 +105,31 @@ class AddInteraction(BaseTest):
         crm_client_profile.click_ok()
 
     def test_interaction_search(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-        res_count = CRMHomePage(self.driver)\
-            .open_task_module()\
-            .open_show_all_tab()\
-            .find_event_by_subject(self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE))\
-            .get_results_count()
+        try:
+            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+                .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                         self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                         self.config.get_value(TestDataConstants.OTP_SECRET))
+            res_count = CRMHomePage(self.driver)\
+                .open_task_module()\
+                .open_show_all_tab()\
+                .find_event_by_subject(self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE))\
+                .get_results_count()
 
-        self.assertGreaterEqual(res_count, 1)
+            self.assertGreaterEqual(res_count, 1)
+
+        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+                .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                           self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                           self.config.get_value(TestDataConstants.OTP_SECRET))
+            res_count = CRMHomePage(self.driver) \
+                .open_task_module() \
+                .open_show_all_tab() \
+                .find_event_by_subject(
+                self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE)) \
+                .get_results_count()
+
+            self.assertGreaterEqual(res_count, 1)
+
 
