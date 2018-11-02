@@ -258,3 +258,12 @@ class FinancialTransactionsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Searching for trading account: %s was performed" % trading_account)
         return FinancialTransactionsPage(self.driver)
 
+    def Sign_Out(self):
+        CRMBasePage(self.driver).refresh_page()
+        sleep(2)
+        user = super().wait_element_to_be_clickable("//img[@src='themes/panda/images/user.PNG']")
+        self.driver.execute_script("arguments[0].click();", user)
+        sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
+        self.driver.execute_script("arguments[0].click();", sign_out)
+        Logging().reportDebugStep(self, "'Sign_Out")
+        return FinancialTransactionsPage(self.driver)

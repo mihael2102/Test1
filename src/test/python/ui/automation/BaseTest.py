@@ -27,6 +27,9 @@ class BaseTest(unittest.TestCase):
             chrome_options.add_argument("--headless")
             chrome_options.add_argument("--window-size=1920x1080")
             self.driver = webdriver.Chrome(Config.chrome_driver, chrome_options=chrome_options)
+            #for opened chrome
+            # self.driver = webdriver.Chrome(Config.chrome_driver)
+            # self.driver.maximize_window()
         elif self.driver_type == 'Remote':
             selenium_grid_url = "http://localhost:5578/wd/hub/"
             options = webdriver.ChromeOptions()

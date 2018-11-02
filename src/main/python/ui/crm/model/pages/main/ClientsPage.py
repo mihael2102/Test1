@@ -405,3 +405,5 @@ class ClientsPage(CRMBasePage):
         mass_sms_module.click()
         Logging().reportDebugStep(self, "The send sms module was opened")
         return SendSMSClientsModule(self.driver)
+
+

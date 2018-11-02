@@ -535,3 +535,15 @@ class ClientProfilePage(CRMBasePage):
         ok_button.click()
         Logging().reportDebugStep(self, "Click OK in Client Deposit popup")
         return CRMClientDeposit(self.driver)
+
+    def Sign_Out(self):
+        CRMBasePage(self.driver).refresh_page()
+        sleep(2)
+        user = super().wait_element_to_be_clickable("//img[@src='themes/panda/images/user.PNG']")
+        # self.driver.execute_script("arguments[0].click();", user)
+        user.click()
+        sleep(2)
+        sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
+        self.driver.execute_script("arguments[0].click();", sign_out)
+        Logging().reportDebugStep(self, "'Sign_Out")
+        return ClientProfilePage(self.driver)

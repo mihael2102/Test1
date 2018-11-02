@@ -45,7 +45,7 @@ tests_config:
   tests:
 ##    - test_make_credit_in_crm # Test was commented because it needs Client Area functionality but now CA is not configured
     - test_make_credit_in_from_crm
-#
+
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
   class: TradingAccountCrmTest
   tests:
