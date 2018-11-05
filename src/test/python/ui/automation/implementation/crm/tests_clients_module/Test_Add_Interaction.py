@@ -55,7 +55,7 @@ class AddInteraction(BaseTest):
 
             elif global_var.current_brand_name == "goldenmarkets":
                 ClientsPage(self.driver).perform_searching(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_F_NEW),
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
             else:
