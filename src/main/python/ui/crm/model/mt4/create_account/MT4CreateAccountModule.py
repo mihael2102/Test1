@@ -3,7 +3,7 @@ from selenium.webdriver.common.keys import Keys
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
-
+import time
 
 class MT4CreateAccountModule(CRMBasePage):
 
@@ -61,6 +61,7 @@ class MT4CreateAccountModule(CRMBasePage):
         return self
 
     def select_trading_account(self, trading_account):
+        time.sleep(5)
         drop_down = self.wait_element_to_be_clickable("//select[@name='mtUserSelect']")
         # drop_down.click()
         self.driver.execute_script("arguments[0].click();", drop_down)

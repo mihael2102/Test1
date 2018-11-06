@@ -5,26 +5,26 @@ tests_config:
   class: LeadModuleTest
   tests:
     - test_perform_convert_lead   # Creates a lead and converts it to a client
-######Clients
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
-#  class: SearchingClientsTestCRM
-#  tests:
-#    - test_make_searching_client_module   # Searches for a client.
+#####Clients
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
+  class: SearchingClientsTestCRM
+  tests:
+    - test_make_searching_client_module   # Searches for a client.
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
 #  class: AddInteraction
 #  tests:
 #    - test_add_interaction  # Adds an interaction for a client
-#    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
+##    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
 #  class: AddEventTaskModule
 #  tests:
 #    - test_add_event
 #    - test_edit_event
 #####MT4
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_open_trading_account  # open a new trading account
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+#  class: TradingAccountCrmTest
+#  tests:
+#    - test_crm_open_trading_account  # open a new trading account
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
 #  class: CheckPasswordTestCRM
 #  tests:
@@ -35,16 +35,16 @@ tests_config:
 #  tests:
 #    - test_change_client_password_from_crm  # change a client account password from the crm
 #    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
-  class: DepositTestCRM
-  tests:
-    - test_make_deposit_crm  # make a deposit into a trading account from the crm
-    - test_make_deposit_for_client_crm
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+#  class: DepositTestCRM
+#  tests:
+#    - test_make_deposit_crm  # make a deposit into a trading account from the crm
+#    - test_make_deposit_for_client_crm
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
 #  class: CreditInTestCRM
 #  tests:
 ##    - test_make_credit_in_crm # Test was commented because it needs Client Area functionality but now CA is not configured
-#    - test_make_credit_in_from_crm
+##    - test_make_credit_in_from_crm
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
 #  class: TradingAccountCrmTest
 #  tests:
