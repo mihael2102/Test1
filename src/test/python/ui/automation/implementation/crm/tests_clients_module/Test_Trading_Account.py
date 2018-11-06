@@ -27,18 +27,34 @@ class TradingAccountCrmTest(BaseTest):
 
 
     def test_crm_edit_trading_account(self):
-        TradingAccountPrecondition(self.driver, self.config) \
-            .add_demo_account_from_crm()
-        ClientProfilePage(self.driver).click_close()
-        ClientProfilePage(self.driver).refresh_page()
-        time.sleep(7)
-        ClientProfilePage(self.driver).refresh_page()
-        # Close pop up and update popup
-        # ClientProfilePage(self.driver).close_popup_new_trading_account()
-        TradingAccountPrecondition(self.driver, self.config).update_demo_account_from_crm()
+        try:
+            TradingAccountPrecondition(self.driver, self.config) \
+                .add_demo_account_from_crm()
+            ClientProfilePage(self.driver).click_close()
+            ClientProfilePage(self.driver).refresh_page()
+            time.sleep(7)
+            ClientProfilePage(self.driver).refresh_page()
+            # Close pop up and update popup
+            # ClientProfilePage(self.driver).close_popup_new_trading_account()
+            TradingAccountPrecondition(self.driver, self.config).update_demo_account_from_crm()
 
-        confirmation_message = ClientProfilePage(self.driver).get_confirm_message_body()
-        self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY)
+            confirmation_message = ClientProfilePage(self.driver).get_confirm_message_body()
+            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY)
+
+        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            ClientProfilePage(self.driver).Sign_Out()
+            TradingAccountPrecondition(self.driver, self.config) \
+                .add_demo_account_from_crm()
+            ClientProfilePage(self.driver).click_close()
+            ClientProfilePage(self.driver).refresh_page()
+            time.sleep(7)
+            ClientProfilePage(self.driver).refresh_page()
+            # Close pop up and update popup
+            # ClientProfilePage(self.driver).close_popup_new_trading_account()
+            TradingAccountPrecondition(self.driver, self.config).update_demo_account_from_crm()
+
+            confirmation_message = ClientProfilePage(self.driver).get_confirm_message_body()
+            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY)
 
 
 

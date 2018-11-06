@@ -1,14 +1,14 @@
 tests_config:
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
-#  class: CalendarView
-#  tests:
-#    - test_check_day_tab
-#    - test_check_week_tab
-#    - test_check_month_tab
-#- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
-#  class: TabFinancialTransaction
-#  tests:
-##    - test_check_all_tab_from_financial_transactions
-#    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
-#    - test_check_search_via_button # Check search using search button
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
+  class: CalendarView
+  tests:
+    - test_check_day_tab
+    - test_check_week_tab
+    - test_check_month_tab
+- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
+  class: TabFinancialTransaction
+  tests:
+    - test_check_all_tab_from_financial_transactions
+    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
+    - test_check_search_via_button # Check search using search button

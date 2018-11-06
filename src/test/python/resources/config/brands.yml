@@ -125,8 +125,8 @@ brands:
 ##  config_file: 24fxm.yml
 #- name: stoxmarket
 #  config_file: stoxmarket.yml
-#- name: alphabetfx
-#  config_file: alphabetfx.yml
+- name: alphabetfx
+  config_file: alphabetfx.yml
 #- name: kbcapitals
 #  config_file: kbcapitals.yml
 #
@@ -141,8 +141,8 @@ brands:
 ##
 #- name: urf
 #  config_file: urf_financial.yml
-- name: rimarkets
-  config_file: rimarkets.yml
+#- name: rimarkets
+#  config_file: rimarkets.yml
 #- name: kayafx
 #  config_file: kaya_fx.yml
 
