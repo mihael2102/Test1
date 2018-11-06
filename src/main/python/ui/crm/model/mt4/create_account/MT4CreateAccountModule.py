@@ -92,13 +92,14 @@ class MT4CreateAccountModule(CRMBasePage):
 
     def select_group(self, group):
         # for_old_forex
+        time.sleep(5)
         drop_down = self.wait_element_to_be_clickable("//select[@name='mtGroupSelect']")
-        # drop_down.click()
-        self.driver.execute_script("arguments[0].click();", drop_down)
+        drop_down.click()
+        # self.driver.execute_script("arguments[0].click();", drop_down)
         group_selection = self.driver.find_element(By.XPATH, "//select[@name='mtGroupSelect']/option[contains(text(),'%s')]" % group)
         #"//select[@name='group']//following-sibling::*[contains(.,'%s')]"
-        # group_selection.click()
-        self.driver.execute_script("arguments[0].click();", group_selection)
+        group_selection.click()
+        # self.driver.execute_script("arguments[0].click();", group_selection)
         Logging().reportDebugStep(self, "Trading account group was selected: " + group_selection.text)
         return self
 
