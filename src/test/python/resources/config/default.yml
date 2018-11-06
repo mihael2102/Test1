@@ -135,6 +135,7 @@ trading_account_1_live:
   server_old_forex: "real"
   currency: "USD"
   group: "USD"
+  group_finmarket: "FMA-TEST_USDSTD"
   leverage: "100"
   trading_account_live_1_200: "200"
 module_clients_filter:
