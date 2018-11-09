@@ -263,6 +263,7 @@ class FinancialTransactionsPage(CRMBasePage):
         sleep(2)
         user = super().wait_element_to_be_clickable("//img[@src='themes/panda/images/user.PNG']")
         self.driver.execute_script("arguments[0].click();", user)
+        sleep(3)
         sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
         self.driver.execute_script("arguments[0].click();", sign_out)
         Logging().reportDebugStep(self, "'Sign_Out")

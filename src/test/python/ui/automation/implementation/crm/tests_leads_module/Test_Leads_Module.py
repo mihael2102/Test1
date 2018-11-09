@@ -12,6 +12,8 @@ from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondi
 from selenium.common.exceptions import TimeoutException
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import ConvertLeadModule
+from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
+from selenium.common.exceptions import NoSuchElementException
 
 @pytest.mark.run(order=24)
 class LeadModuleTest(BaseTest):
@@ -23,14 +25,27 @@ class LeadModuleTest(BaseTest):
         self.client1 = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
 
     def test_create_lead(self):
-        LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
-        self.verify_lead(self.lead1)
+        try:
+            LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+            self.verify_lead(self.lead1)
+        except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            DocumentsPage(self.driver).Sign_Out()
+            LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+            self.verify_lead(self.lead1)
 
     def test_edit_lead(self):
-        LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
-        self.verify_lead(self.lead1)
-        LeadPrecondition(self.driver, self.config).edit_lead_profile(self.lead2)
-        self.verify_lead(self.lead2)
+        try:
+            LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+            self.verify_lead(self.lead1)
+            LeadPrecondition(self.driver, self.config).edit_lead_profile(self.lead2)
+            self.verify_lead(self.lead2)
+        except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            DocumentsPage(self.driver).Sign_Out()
+            LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+            self.verify_lead(self.lead1)
+            LeadPrecondition(self.driver, self.config).edit_lead_profile(self.lead2)
+            self.verify_lead(self.lead2)
+
 
     def test_mass_edit_lead(self):
         LeadPrecondition(self.driver, self.config).create_three_leads()
@@ -85,63 +100,123 @@ class LeadModuleTest(BaseTest):
         lead_module.click_ok().perform_screen_shot_lead_module()
 
     def test_perform_convert_lead(self):
-        LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
-        lead_view_profile_page = LeadViewInfo(self.driver)
-
-        lead_view_profile_page.open_convert_lead_module() \
-
-        if global_var.current_brand_name == "mpcrypto":
-            ConvertLeadModule(self.driver).perform_convert_lead(
-                self.client1[LeadsModuleConstants.FIRST_NAME],
-                self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                self.client1[LeadsModuleConstants.EMAIL],
-                self.client1[LeadsModuleConstants.PHONE],
-                self.client1[LeadsModuleConstants.BIRTHDAY],
-                self.client1[LeadsModuleConstants.CITIZENSHIP],
-                self.client1[LeadsModuleConstants.STREET],
-                self.client1[LeadsModuleConstants.POSTAL_CODE],
-                self.client1[LeadsModuleConstants.CITY],
-                self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-                self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BCH],
-                self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                self.client1[LeadsModuleConstants.BRAND],
-                self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-        else:
-
-            ConvertLeadModule(self.driver).perform_convert_lead(
-                self.client1[LeadsModuleConstants.FIRST_NAME],
-                self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                self.client1[LeadsModuleConstants.EMAIL],
-                self.client1[LeadsModuleConstants.PHONE],
-                self.client1[LeadsModuleConstants.BIRTHDAY],
-                self.client1[LeadsModuleConstants.CITIZENSHIP],
-                self.client1[LeadsModuleConstants.STREET],
-                self.client1[LeadsModuleConstants.POSTAL_CODE],
-                self.client1[LeadsModuleConstants.CITY],
-                self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-                self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-                self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                self.client1[LeadsModuleConstants.BRAND],
-                self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-
-        convert_verified = False
         try:
-            confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
-            assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
-            lead_view_profile_page.click_ok()
-            convert_verified = True
-        except TimeoutException:
-            Logging().reportDebugStep(self, "Lead convert message was not picked up")
-        if not convert_verified:
-            lead_detail_view = LeadDetailViewInfo(self.driver)
-            lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
-            self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
+            LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+            lead_view_profile_page = LeadViewInfo(self.driver)
+
+            lead_view_profile_page.open_convert_lead_module() \
+
+            if global_var.current_brand_name == "mpcrypto":
+                ConvertLeadModule(self.driver).perform_convert_lead(
+                    self.client1[LeadsModuleConstants.FIRST_NAME],
+                    self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                    self.client1[LeadsModuleConstants.EMAIL],
+                    self.client1[LeadsModuleConstants.PHONE],
+                    self.client1[LeadsModuleConstants.BIRTHDAY],
+                    self.client1[LeadsModuleConstants.CITIZENSHIP],
+                    self.client1[LeadsModuleConstants.STREET],
+                    self.client1[LeadsModuleConstants.POSTAL_CODE],
+                    self.client1[LeadsModuleConstants.CITY],
+                    self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                    self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                    self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BCH],
+                    self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                    self.client1[LeadsModuleConstants.BRAND],
+                    self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                    self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+            else:
+
+                ConvertLeadModule(self.driver).perform_convert_lead(
+                    self.client1[LeadsModuleConstants.FIRST_NAME],
+                    self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                    self.client1[LeadsModuleConstants.EMAIL],
+                    self.client1[LeadsModuleConstants.PHONE],
+                    self.client1[LeadsModuleConstants.BIRTHDAY],
+                    self.client1[LeadsModuleConstants.CITIZENSHIP],
+                    self.client1[LeadsModuleConstants.STREET],
+                    self.client1[LeadsModuleConstants.POSTAL_CODE],
+                    self.client1[LeadsModuleConstants.CITY],
+                    self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                    self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                    self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+                    self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                    self.client1[LeadsModuleConstants.BRAND],
+                    self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                    self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+
+            convert_verified = False
+            try:
+                confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
+                assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+                lead_view_profile_page.click_ok()
+                convert_verified = True
+            except TimeoutException:
+                Logging().reportDebugStep(self, "Lead convert message was not picked up")
+            if not convert_verified:
+                lead_detail_view = LeadDetailViewInfo(self.driver)
+                lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
+                self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
+
+        except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            DocumentsPage(self.driver).Sign_Out()
+            LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+            lead_view_profile_page = LeadViewInfo(self.driver)
+
+            lead_view_profile_page.open_convert_lead_module() \
+
+            if global_var.current_brand_name == "mpcrypto":
+                ConvertLeadModule(self.driver).perform_convert_lead(
+                    self.client1[LeadsModuleConstants.FIRST_NAME],
+                    self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                    self.client1[LeadsModuleConstants.EMAIL],
+                    self.client1[LeadsModuleConstants.PHONE],
+                    self.client1[LeadsModuleConstants.BIRTHDAY],
+                    self.client1[LeadsModuleConstants.CITIZENSHIP],
+                    self.client1[LeadsModuleConstants.STREET],
+                    self.client1[LeadsModuleConstants.POSTAL_CODE],
+                    self.client1[LeadsModuleConstants.CITY],
+                    self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                    self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                    self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BCH],
+                    self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                    self.client1[LeadsModuleConstants.BRAND],
+                    self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                    self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+            else:
+
+                ConvertLeadModule(self.driver).perform_convert_lead(
+                    self.client1[LeadsModuleConstants.FIRST_NAME],
+                    self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                    self.client1[LeadsModuleConstants.EMAIL],
+                    self.client1[LeadsModuleConstants.PHONE],
+                    self.client1[LeadsModuleConstants.BIRTHDAY],
+                    self.client1[LeadsModuleConstants.CITIZENSHIP],
+                    self.client1[LeadsModuleConstants.STREET],
+                    self.client1[LeadsModuleConstants.POSTAL_CODE],
+                    self.client1[LeadsModuleConstants.CITY],
+                    self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                    self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                    self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+                    self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                    self.client1[LeadsModuleConstants.BRAND],
+                    self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                    self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+            convert_verified = False
+            try:
+                confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
+                assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+                lead_view_profile_page.click_ok()
+                convert_verified = True
+            except TimeoutException:
+                Logging().reportDebugStep(self, "Lead convert message was not picked up")
+            if not convert_verified:
+                lead_detail_view = LeadDetailViewInfo(self.driver)
+                lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
+                self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
 
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)

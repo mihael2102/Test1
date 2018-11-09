@@ -122,3 +122,15 @@ class DocumentsPage(CRMBasePage):
                                                       "//table//td[@class='lvtCol'][5]/a")
         Logging().reportDebugStep(self, "Fourth column name : " + name_fourth_column.text)
         return name_fourth_column.text
+
+    def Sign_Out(self):
+        CRMBasePage(self.driver).refresh_page()
+        sleep(2)
+        user = super().wait_element_to_be_clickable("//img[@src='themes/panda/images/user.PNG']")
+        # self.driver.execute_script("arguments[0].click();", user)
+        user.click()
+        sleep(2)
+        sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
+        self.driver.execute_script("arguments[0].click();", sign_out)
+        Logging().reportDebugStep(self, "'Sign_Out")
+        return DocumentsPage(self.driver)
