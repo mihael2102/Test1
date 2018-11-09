@@ -3,6 +3,7 @@ from src.main.python.utils.logs.ExcelWriter import ExcelWriter
 import importlib
 import xmlrunner
 import multiprocessing
+import os
 
 
 class MultiRunner:
@@ -26,7 +27,7 @@ class MultiRunner:
             global_var.current_brand_name = brand
             # self.data_provider.set_xpath_for_tests()
 
-            self.data_provider.load_brand_config(brand)
+            self.data_provider.load_brands(brand)
             brand_pretty_name = self.data_provider.get_data_client('pretty_name')
             brand_pretty_names.append(brand_pretty_name)
             print("Testing %s\n" % brand_pretty_name)
@@ -37,6 +38,9 @@ class MultiRunner:
         # write the results to an Excel file
         result_writer = ExcelWriter()
         result_writer.write_test_results(brand_pretty_names, test_list, overall_results)
+
+
+
 
     def single_brand_test(self, brand, test_list):
         runner = xmlrunner.XMLTestRunner(output='result')
@@ -79,20 +83,59 @@ def __simple_run(path_to_test_suite):
 
 
 if __name__ == "__main__":
-    # Filename of TestSuite 1
-    path_to_test_suite_1 = "tests.yml"
 
-    # Filename of TestSuite 2
-    path_to_test_suite_2 = "tests2.yml"
+    import socket
 
-    # Filename of TestSuite 3
-    path_to_test_suite_3 = "tests3.yml"
+    p = socket.gethostbyname(socket.gethostname())
+    print(p)
 
-    # Form input list where each parameter is filename of TestSuite file
-    input_list = [path_to_test_suite_1, path_to_test_suite_2, path_to_test_suite_3]
+    if p == '192.168.13.12' or p == '192.168.13.10':
+        #delete all files fron result
+        folder = 'D:/automation-newforexqa/result'
+        for the_file in os.listdir(folder):
+            file_path = os.path.join(folder, the_file)
+            try:
+                if os.path.isfile(file_path):
+                    os.unlink(file_path)
+            except Exception as e:
+                print(e)
+        # Filename of TestSuite 1
+        # path_to_test_suite_1 = "tests.yml"
+        #
+        # # Filename of TestSuite 2
+        # path_to_test_suite_2 = "tests2.yml"
+        #
+        # # Filename of TestSuite 3
+        # path_to_test_suite_3 = "tests3.yml"
+        #
+        # # Form input list where each parameter is filename of TestSuite file
+        # input_list = [path_to_test_suite_1, path_to_test_suite_2, path_to_test_suite_3]
+        #
+        # # Init multiprocess
+        # pool = multiprocessing.Pool(processes=3)
+        #
+        # # Run Test Suites as separate processes
+        # pool.map(__simple_run, input_list)
 
-    # Init multiprocess
-    pool = multiprocessing.Pool(processes=3)
+        path_to_brands_suite_1 = "brands.yml"
+        path_to_brands_suite_2 = "brands1.yml"
+        path_to_brands_suite_3 = "brands2.yml"
+        path_to_brands_suite_4 = "brands3.yml"
+        path_to_brands_suite_5 = "brands4.yml"
 
-    # Run Test Suites as separate processes
-    pool.map(__simple_run, input_list)
+        # Form input list where each parameter is filename of TestSuite file
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4, path_to_brands_suite_5]
+
+        # Init multiprocess
+        pool = multiprocessing.Pool(processes=5)
+
+        # Run Test Suites as separate processes
+        pool.map(__simple_run, input_list)
+
+        pool.close()
+        pool.join()
+
+        os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
+
+    else:
+        print("TURN ON VPN")
