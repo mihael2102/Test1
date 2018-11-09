@@ -84,12 +84,16 @@ def __simple_run(path_to_test_suite):
 
 if __name__ == "__main__":
 
-    import socket
+    # import socket
+    #
+    # p = socket.gethostbyname(socket.gethostname())
+    # print(p)
+    from requests import get
 
-    p = socket.gethostbyname(socket.gethostname())
-    print(p)
+    ip = get('https://api.ipify.org').text
+    print('My public IP address is: {}'.format(ip))
 
-    if p == '192.168.13.12' or p == '192.168.13.10':
+    if ip == '35.158.30.212':
         #delete all files fron result
         folder = 'D:/automation-newforexqa/result'
         for the_file in os.listdir(folder):
