@@ -339,4 +339,16 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "Text from 'Update' popup has been got: " + task_was_updated_text)
         return task_was_updated_text
 
+    def Sign_Out(self):
+        CRMBasePage(self.driver).refresh_page()
+        sleep(2)
+        user = super().wait_element_to_be_clickable("//*[@id='bs-example-navbar-collapse-1']/ul[2]/li[3]/a/img")
+        # self.driver.execute_script("arguments[0].click();", user)
+        user.click()
+        sleep(2)
+        sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
+        self.driver.execute_script("arguments[0].click();", sign_out)
+        Logging().reportDebugStep(self, "'Sign_Out")
+        return TasksPage(self.driver)
+
 
