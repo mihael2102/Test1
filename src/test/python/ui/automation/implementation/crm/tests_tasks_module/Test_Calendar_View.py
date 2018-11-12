@@ -15,10 +15,10 @@ class CalendarView(BaseTest):
 
     def test_check_month_tab(self):
         try:
-            CRMLoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url')) \
+            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                           self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                           self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                           self.config.get_value(TestDataConstants.OTP_SECRET))
 
             calendar_module = CRMHomePage(self.driver)\
                 .open_task_module() \
@@ -71,10 +71,10 @@ class CalendarView(BaseTest):
 
     def test_check_week_tab(self):
         try:
-            CRMLoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url')) \
+            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                           self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                           self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                           self.config.get_value(TestDataConstants.OTP_SECRET))
 
             CRMHomePage(self.driver)\
                 .open_task_module() \
@@ -97,10 +97,10 @@ class CalendarView(BaseTest):
 
     def test_check_day_tab(self):
         try:
-            CRMLoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url')) \
+            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                           self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                           self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                           self.config.get_value(TestDataConstants.OTP_SECRET))
 
             calendar_module = CRMHomePage(self.driver)\
                 .open_task_module() \

@@ -63,12 +63,12 @@ class MT4CreateAccountModule(CRMBasePage):
     def select_trading_account(self, trading_account):
         time.sleep(5)
         drop_down = self.wait_element_to_be_clickable("//select[@name='mtUserSelect']")
-        # drop_down.click()
-        self.driver.execute_script("arguments[0].click();", drop_down)
+        drop_down.click()
+        # self.driver.execute_script("arguments[0].click();", drop_down)
         server_selection = self.driver.find_element(By.XPATH,
                                                     "//select[@name='mtUserSelect']/option[contains(text(),'%s')]" % trading_account)
-        # server_selection.click()
-        self.driver.execute_script("arguments[0].click();", server_selection)
+        server_selection.click()
+        # self.driver.execute_script("arguments[0].click();", server_selection)
         Logging().reportDebugStep(self, "Trading account server was selected: " + server_selection.text)
         return self
 

@@ -1,2 +1,4 @@
 LeadDetailViewInfo:
     referral: "//td[contains(text(),'Referral')]//following-sibling::td[1]"
+FinancialTransactionsPage:
+  modified_time_element: "(//*[@id='listBody']//tr/td[14])[%s]"
