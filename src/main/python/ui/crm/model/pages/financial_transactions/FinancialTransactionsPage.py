@@ -57,6 +57,7 @@ class FinancialTransactionsPage(CRMBasePage):
         return tab_text.text
 
     def get_withdraw_tab_text(self):
+        sleep(2)
         tab = self.driver.find_element(By.XPATH, "//li[contains(text(),'Withdraw')]")
         tab.click()
         sleep(1)

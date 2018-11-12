@@ -4,4 +4,4 @@ FinancialTransactionsPage:
   transaction_type_field: "(//div/div[1]/ul/li[1]/div/input)[1]"
   transaction_type_drop_down: "//td[5]/div/div[1]/button"
   trading_account_element: "(//*[@id='listBody']//tr/td[11])[%s]//a"
-  modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
+  modified_time_element: "(//*[@id='listBody']//tr/td[3])[%s]"

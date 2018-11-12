@@ -41,17 +41,17 @@ class SearchingClientsTestCRM(BaseTest):
                         self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                         self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
-            elif (global_var.current_brand_name == "safemarkets") or (global_var.current_brand_name == "uft"):
+            elif (global_var.current_brand_name == "safemarkets") or (global_var.current_brand_name == "uft") or (global_var.current_brand_name == "q8"):
                     ClientsPage(self.driver).perform_searching(
                         self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_NEW),
                         self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                         self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
-            elif global_var.current_brand_name == "q8":
-                    ClientsPage(self.driver).perform_searching(
-                        self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_TEST),
-                        self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                        self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+            # elif global_var.current_brand_name == "q8":
+            #         ClientsPage(self.driver).perform_searching(
+            #             self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_TEST),
+            #             self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+            #             self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
             elif global_var.current_brand_name == "goldenmarkets":
                     ClientsPage(self.driver).perform_searching(
