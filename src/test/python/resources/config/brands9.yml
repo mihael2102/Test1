@@ -1,0 +1,4 @@
+brands:
+
+- name: herdos
+  config_file: herdos.yml

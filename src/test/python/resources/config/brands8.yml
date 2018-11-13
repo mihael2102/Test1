@@ -1,0 +1,4 @@
+brands:
+
+- name: solocapitlas
+  config_file: solocapitlas.yml
