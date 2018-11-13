@@ -40,7 +40,7 @@ class CreditInPrecondition(object):
                                             .find_client_by_email(self.config.get_data_client(
                                                                 TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))\
                                             .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
-        if (global_var.current_brand_name == "royal_cfds"):
+        if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "newforexstaging"):
             crm_client_profile = MT4CreateAccountModule(self.driver) \
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER),

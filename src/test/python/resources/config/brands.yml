@@ -1,9 +1,11 @@
 brands:
 
-- name: newforexstaging
-  config_file: new_forex_staging.yml
-#- name: royal_cfds
-#  config_file: royal_cfds.yml
+# testing on
+#- name: newforexstaging
+#  config_file: new_forex_staging.yml
+# prod
+- name: royal_cfds
+  config_file: royal_cfds.yml
 #- name: jonesmutual
 #  config_file: jonesmutual.yml
 #- name: forexbestmarket
