@@ -113,13 +113,26 @@ class CreditInTestCRM(BaseTest):
             self.assertEqual(CRMConstants.AMOUNT_CREDIT_IN, credit_in_amount[1:], "Wrong Credit In amount is displayed")
 
         except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            time.sleep(60)
-            MT4CreditInModule(self.driver).refresh_page()
-            time.sleep(3)
-            MT4CreditInModule(self.driver).refresh_page()
-            # Check the Credit In amount
-            credit_in_amount = ClientProfilePage(self.driver) \
-                .perform_scroll_down() \
-                .get_amount_of_credit_in()  # Get amount from block 'Trading Accounts'
+            try:
+                time.sleep(60)
+                MT4CreditInModule(self.driver).refresh_page()
+                time.sleep(3)
+                MT4CreditInModule(self.driver).refresh_page()
+                # Check the Credit In amount
+                credit_in_amount = ClientProfilePage(self.driver) \
+                    .perform_scroll_down() \
+                    .get_amount_of_credit_in()  # Get amount from block 'Trading Accounts'
 
-            self.assertEqual(CRMConstants.AMOUNT_CREDIT_IN, credit_in_amount[1:], "Wrong Credit In amount is displayed")
+                self.assertEqual(CRMConstants.AMOUNT_CREDIT_IN, credit_in_amount[1:], "Wrong Credit In amount is displayed")
+            except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+                time.sleep(6)
+                MT4CreditInModule(self.driver).refresh_page()
+                time.sleep(3)
+                MT4CreditInModule(self.driver).refresh_page()
+                # Check the Credit In amount
+                credit_in_amount = ClientProfilePage(self.driver) \
+                    .perform_scroll_down() \
+                    .get_amount_of_credit_in()  # Get amount from block 'Trading Accounts'
+
+                self.assertEqual(CRMConstants.AMOUNT_CREDIT_IN, credit_in_amount[1:],
+                                 "Wrong Credit In amount is displayed")
