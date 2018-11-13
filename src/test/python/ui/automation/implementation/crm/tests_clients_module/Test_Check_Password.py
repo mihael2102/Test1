@@ -36,25 +36,48 @@ class CheckPasswordTestCRM(BaseTest):
             self.assertEqual(confirmation_message, CRMConstants.CUSTOMER_PASSWORD_VALID_MESSAGE)
             crm_client_profile.click_ok()
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            ClientProfilePage(self.driver).Sign_Out()
-            crm_client_profile = CRMLoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url')) \
-                .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                           self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                           self.config.get_value(TestDataConstants.OTP_SECRET)) \
-                .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-                .find_client_by_email(
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+            try:
 
-            crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CHECK_PASSWORD_OLD_FOREX)
-            check_client_password = CheckClientPassword(self.driver) \
-                .set_password_to_check(self.config.get_value(TestDataConstants.CLIENT_ONE,
-                                                             LeadsModuleConstants.FIRST_PASSWORD_LEAD)) \
-                .click_check()
+                ClientProfilePage(self.driver).Sign_Out()
+                crm_client_profile = CRMLoginPage(self.driver) \
+                    .open_first_tab_page(self.config.get_value('url')) \
+                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                               self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                               self.config.get_value(TestDataConstants.OTP_SECRET)) \
+                    .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+                    .find_client_by_email(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
-            confirmation_message = crm_client_profile.get_confirm_message_body()
-            self.assertEqual(confirmation_message, CRMConstants.CUSTOMER_PASSWORD_VALID_MESSAGE)
-            crm_client_profile.click_ok()
+                crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CHECK_PASSWORD_OLD_FOREX)
+                check_client_password = CheckClientPassword(self.driver) \
+                    .set_password_to_check(self.config.get_value(TestDataConstants.CLIENT_ONE,
+                                                                 LeadsModuleConstants.FIRST_PASSWORD_LEAD)) \
+                    .click_check()
+
+                confirmation_message = crm_client_profile.get_confirm_message_body()
+                self.assertEqual(confirmation_message, CRMConstants.CUSTOMER_PASSWORD_VALID_MESSAGE)
+                crm_client_profile.click_ok()
+            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+                ClientProfilePage(self.driver).Sign_Out()
+                crm_client_profile = CRMLoginPage(self.driver) \
+                    .open_first_tab_page(self.config.get_value('url')) \
+                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                               self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                               self.config.get_value(TestDataConstants.OTP_SECRET)) \
+                    .select_filter(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+                    .find_client_by_email(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+
+                crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CHECK_PASSWORD_OLD_FOREX)
+                check_client_password = CheckClientPassword(self.driver) \
+                    .set_password_to_check(self.config.get_value(TestDataConstants.CLIENT_ONE,
+                                                                 LeadsModuleConstants.FIRST_PASSWORD_LEAD)) \
+                    .click_check()
+
+                confirmation_message = crm_client_profile.get_confirm_message_body()
+                self.assertEqual(confirmation_message, CRMConstants.CUSTOMER_PASSWORD_VALID_MESSAGE)
+                crm_client_profile.click_ok()
 
 
     def test_check_mt4_password_crm(self):
@@ -84,29 +107,57 @@ class CheckPasswordTestCRM(BaseTest):
 
             self.assertEqual(message, CRMConstants.MT4_PASSWORD_VALID_MESSAGE)
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            ClientProfilePage(self.driver).Sign_Out()
-            crm_client_profile = CRMLoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url')) \
-                .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                           self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                           self.config.get_value(TestDataConstants.OTP_SECRET)) \
-                .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-                .find_client_by_email(
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+            try:
+                ClientProfilePage(self.driver).Sign_Out()
+                crm_client_profile = CRMLoginPage(self.driver) \
+                    .open_first_tab_page(self.config.get_value('url')) \
+                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                               self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                               self.config.get_value(TestDataConstants.OTP_SECRET)) \
+                    .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+                    .find_client_by_email(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
-            account_number = crm_client_profile \
-                .perform_scroll_down() \
-                .open_trading_accounts_tab() \
-                .get_client_account()
+                account_number = crm_client_profile \
+                    .perform_scroll_down() \
+                    .open_trading_accounts_tab() \
+                    .get_client_account()
 
-            crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CHECK_PASSWORD)
+                crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CHECK_PASSWORD)
 
-            MT4CheckPasswordModule(self.driver).select_account(account_number) \
-                .enter_password(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                            LeadsModuleConstants.FIRST_PASSWORD_LEAD)) \
-                .click_check_button()
+                MT4CheckPasswordModule(self.driver).select_account(account_number) \
+                    .enter_password(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                                LeadsModuleConstants.FIRST_PASSWORD_LEAD)) \
+                    .click_check_button()
 
-            message = crm_client_profile.get_confirm_message_body()
-            crm_client_profile.click_ok()
+                message = crm_client_profile.get_confirm_message_body()
+                crm_client_profile.click_ok()
 
-            self.assertEqual(message, CRMConstants.MT4_PASSWORD_VALID_MESSAGE)
+                self.assertEqual(message, CRMConstants.MT4_PASSWORD_VALID_MESSAGE)
+            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+                ClientProfilePage(self.driver).Sign_Out()
+                crm_client_profile = CRMLoginPage(self.driver) \
+                    .open_first_tab_page(self.config.get_value('url')) \
+                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                               self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                               self.config.get_value(TestDataConstants.OTP_SECRET)) \
+                    .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+                    .find_client_by_email(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+
+                account_number = crm_client_profile \
+                    .perform_scroll_down() \
+                    .open_trading_accounts_tab() \
+                    .get_client_account()
+
+                crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CHECK_PASSWORD)
+
+                MT4CheckPasswordModule(self.driver).select_account(account_number) \
+                    .enter_password(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                                LeadsModuleConstants.FIRST_PASSWORD_LEAD)) \
+                    .click_check_button()
+
+                message = crm_client_profile.get_confirm_message_body()
+                crm_client_profile.click_ok()
+
+                self.assertEqual(message, CRMConstants.MT4_PASSWORD_VALID_MESSAGE)

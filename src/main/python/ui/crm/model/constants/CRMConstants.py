@@ -68,7 +68,7 @@ class CRMConstants(object):
     THIRD_FORMAT = f'{TODAY_DATE:%B} {TODAY_DATE.day}, {TODAY_DATE.year}'
     CREDIT_IN_COMMENT = "Credit in "
     CREDIT_OUT_COMMENT = "Credit out "
-    AMOUNT_CREDIT_IN = "25.00"
+    AMOUNT_CREDIT_IN = "1.00"
     AMOUNT_CREDIT_OUT = "10.00"
     CREDIT_IN = "8"
     CREDIT_OUT = "10"
@@ -85,7 +85,7 @@ class CRMConstants(object):
     UPDATE_MT4_USER = "5"
     AMOUNT_DEPOSIT = "10.00"
     AMOUNT_WITHDRAW = "15"
-    AMOUNT_DEPOSIT_FOR_CREDIT_OUT = "35.00"
+    AMOUNT_DEPOSIT_FOR_CREDIT_OUT = "1.00"
     AMOUNT_WITHDRAW_SECOND = "30.00"
     ADD_INTERACTION = "6"
     ADD_INTERACTION_TEXT = "Add Interaction"

@@ -19,15 +19,23 @@ class AddEventTaskModule(BaseTest):
         try:
             EventPrecondition(self.driver, self.config).create_first_event()
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            ClientProfilePage(self.driver).Sign_Out()
-            EventPrecondition(self.driver, self.config).create_first_event()
+            try:
+                ClientProfilePage(self.driver).Sign_Out()
+                EventPrecondition(self.driver, self.config).create_first_event()
+            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+                ClientProfilePage(self.driver).Sign_Out()
+                EventPrecondition(self.driver, self.config).create_first_event()
         # Assert is in method 'create_first_event()'. So need to place it here after refactoring
 
     def test_edit_event(self):
         try:
             EventPrecondition(self.driver, self.config).edit_first_event()
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            ClientProfilePage(self.driver).Sign_Out()
-            EventPrecondition(self.driver, self.config).edit_first_event()
+            try:
+                ClientProfilePage(self.driver).Sign_Out()
+                EventPrecondition(self.driver, self.config).edit_first_event()
+            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+                ClientProfilePage(self.driver).Sign_Out()
+                EventPrecondition(self.driver, self.config).edit_first_event()
         # Assert is in method 'edit_first_event()'. So need to place it here after refactoring
 
