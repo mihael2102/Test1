@@ -85,42 +85,33 @@ def __simple_run(path_to_test_suite):
 if __name__ == "__main__":
 
     # import socket
-    #
-    #
     # p = socket.gethostbyname(socket.gethostname())
     # print(p)
+
     from requests import get
 
     ip = get('https://api.ipify.org').text
     print('My public IP address is: {}'.format(ip))
 
     if ip == '35.158.30.212':
+
         #delete all files fron result
-        folder = 'D:/automation-newforexqa/result'
-        for the_file in os.listdir(folder):
-            file_path = os.path.join(folder, the_file)
-            try:
-                if os.path.isfile(file_path):
-                    os.unlink(file_path)
-            except Exception as e:
-                print(e)
-        # Filename of TestSuite 1
-        # path_to_test_suite_1 = "tests.yml"
-        #
-        # # Filename of TestSuite 2
-        # path_to_test_suite_2 = "tests2.yml"
-        #
-        # # Filename of TestSuite 3
-        # path_to_test_suite_3 = "tests3.yml"
-        #
-        # # Form input list where each parameter is filename of TestSuite file
-        # input_list = [path_to_test_suite_1, path_to_test_suite_2, path_to_test_suite_3]
-        #
-        # # Init multiprocess
-        # pool = multiprocessing.Pool(processes=3)
-        #
-        # # Run Test Suites as separate processes
-        # pool.map(__simple_run, input_list)
+            # folder = 'D:/automation-newforexqa/result'
+            # for the_file in os.listdir(folder):
+            #     file_path = os.path.join(folder, the_file)
+            #     try:
+            #         if os.path.isfile(file_path):
+            #             os.unlink(file_path)
+            #     except Exception as e:
+            #         print(e)
+
+        #configuration for multi tests
+            # path_to_test_suite_1 = "tests.yml"
+            # path_to_test_suite_2 = "tests2.yml"
+            # path_to_test_suite_3 = "tests3.yml"
+            # input_list = [path_to_test_suite_1, path_to_test_suite_2, path_to_test_suite_3]
+            # pool = multiprocessing.Pool(processes=3)
+            # pool.map(__simple_run, input_list)
 
         path_to_brands_suite_1 = "brands.yml"
         path_to_brands_suite_2 = "brands1.yml"
@@ -137,10 +128,12 @@ if __name__ == "__main__":
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
 
+        #synchronization
+
         pool.close()
         pool.join()
 
-        os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
+        # os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
 
     else:
         print("TURN ON VPN")
