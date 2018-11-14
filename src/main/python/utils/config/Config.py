@@ -9,4 +9,4 @@ window_before = None
 counter = 1
 logger = None
 handler = None
-chrome_driver = "/usr/lib/chromium-browser/chromedriver.exe"
+chrome_driver = "/usr/lib/chromium-browser/chromedriver"

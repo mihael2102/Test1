@@ -49,14 +49,14 @@ class ConfigProvider:
         fileDir = os.path.dirname(__file__)
 
         # If "jenkins" in filePath, set DataProvider path to jenkins folder on server
-        if "jenkins" in fileDir:
-            self.path_to_data_provider = "/var/lib/jenkins/workspace/%s/src/test/python/resources/test-data/" % Config.test
+        # if "jenkins" in fileDir:
+        self.path_to_data_provider = "/var/lib/jenkins/workspace/%s/src/test/python/resources/test-data/" % Config.test
         # If tests are run locally, set local DataProvider path
-        elif ("D:/automation-newforexqa" in fileDir) or ("D:\\automation-newforexqa" in fileDir):
-            self.path_to_data_provider = "D:/automation-newforexqa/src/test/python/resources/test-data/"
-        # If tests are run neither on server nor locally, throw an exception and check path
-        else:
-            raise Exception("Wrong path to Data Provider. Please check it")
+        # elif ("D:/automation-newforexqa" in fileDir) or ("D:\\automation-newforexqa" in fileDir):
+        #     self.path_to_data_provider = "D:/automation-newforexqa/src/test/python/resources/test-data/"
+        # # If tests are run neither on server nor locally, throw an exception and check path
+        # else:
+        #     raise Exception("Wrong path to Data Provider. Please check it")
 
     def load_config(self):
         """
