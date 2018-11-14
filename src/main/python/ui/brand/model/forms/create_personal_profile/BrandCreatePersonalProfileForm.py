@@ -28,8 +28,8 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
         drop_down_day = self.driver.find_element(By.XPATH, "//custom-select[@name='day']")
         drop_down_day.click()
 
-        sleep(1)
-        select_day = self.driver.find_element(By.XPATH, "//custom-select[@name= 'day']//"
+        #sleep(1)
+        select_day = super().wait_element_to_be_clickable("//custom-select[@name= 'day']//"
                                                         "following-sibling::span[contains(text(),'%s')]" % day)
 
         self.driver.execute_script("arguments[0].scrollIntoView();", select_day)
@@ -40,8 +40,8 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
     def select_month(self, month):
         drop_down_month = self.driver.find_element(By.XPATH, "//custom-select[@name='month']")
         drop_down_month.click()
-        sleep(1)
-        select_month = self.driver.find_element(By.XPATH, "//custom-select[@name= 'month']//"
+        #sleep(1)
+        select_month = super().wait_element_to_be_clickable("//custom-select[@name= 'month']//"
                                                           "following-sibling::span[contains(text(),'%s')]" % month)
 
         self.driver.execute_script("arguments[0].scrollIntoView();", select_month)
@@ -52,9 +52,9 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
     def select_year(self, year):
         drop_down_year = self.driver.find_element(By.XPATH, "//custom-select[@name='year']")
         drop_down_year.click()
-        sleep(1)
+        #sleep(1)
 
-        select_year = self.driver.find_element(By.XPATH, "//custom-select[@name= 'year']//"
+        select_year = super().wait_element_to_be_clickable("//custom-select[@name= 'year']//"
                                                          "following-sibling::span[contains(text(),'%s')]" % year)
 
         self.driver.execute_script("arguments[0].scrollIntoView();", select_year)
@@ -65,8 +65,8 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
     def select_country(self, country):
         drop_down_country = self.driver.find_element(By.XPATH, "//custom-select[@name='country']")
         drop_down_country.click()
-        sleep(1)
-        select_country = self.driver.find_element(By.XPATH,
+        #sleep(1)
+        select_country = super().wait_element_to_be_clickable(
                                                   "//custom-select[@name='country']//following-sibling::*[contains(text(),'%s')]" % country)
 
         self.driver.execute_script("arguments[0].scrollIntoView();", select_country)
@@ -78,8 +78,8 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
     def select_currency(self, currency):
         drop_down_currency = self.driver.find_element(By.XPATH, "//custom-select[@name='currency']")
         drop_down_currency.click()
-        sleep(1)
-        select_currency = self.driver.find_element(By.XPATH,
+        #sleep(1)
+        select_currency = super().wait_element_to_be_clickable(
                                                    "//custom-select[@name= 'currency']//"
                                                    "following-sibling::*[contains(text(),'%s')]" % currency)
         self.driver.execute_script("arguments[0].scrollIntoView();", select_currency)
@@ -90,8 +90,8 @@ class BrandCreatePersonalProfileForm(BrandBasePage):
     def select_citizenship(self, citizenship):
         drop_down_citizenship = self.driver.find_element(By.XPATH, "//custom-select[@name='citizenship']")
         drop_down_citizenship.click()
-        sleep(1)
-        select_citizenship = self.driver.find_element(By.XPATH,
+        #sleep(1)
+        select_citizenship = super().wait_element_to_be_clickable(
                                                       "//custom-select[@name='citizenship']//"
                                                       "following-sibling::*[contains(text(),'%s')]" % citizenship)
 

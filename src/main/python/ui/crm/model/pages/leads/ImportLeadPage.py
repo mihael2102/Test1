@@ -15,7 +15,7 @@ class ImportLeadPage(CRMBasePage):
     def perform_first_step_upload_lead(self):
         browser_element = super().wait_element_to_be_clickable("//a[contains(text(),'Browse')]")
         browser_element.click()
-        sleep(2)
+        #sleep(2)
         # autoit.control_set_text("Open", "Edit1",
         #                         r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Leads_import.csv" % Config.test)
         # autoit.control_send("Open", "Edit1", "{ENTER}")
@@ -40,8 +40,8 @@ class ImportLeadPage(CRMBasePage):
     def select_source_lead(self, source):
         source_element = super().wait_element_to_be_clickable("//button[@data-id='lead_source']")
         source_element.click()
-        sleep(1)
-        source_element_drop_down = self.driver.find_element(By.XPATH,
+        #sleep(1)
+        source_element_drop_down = super().wait_element_to_be_clickable(
                                                             "//div[@class='dropdown-menu open']//span[contains(text(),'%s')]" % source)
 
         self.driver.execute_script("arguments[0].scrollIntoView();", source_element_drop_down)
@@ -59,8 +59,8 @@ class ImportLeadPage(CRMBasePage):
     def select_status(self, status):
         status_element = super().wait_element_to_be_clickable("//button[@data-id='lead_status']")
         status_element.click()
-        sleep(1)
-        status_element_drop_down = self.driver.find_element(By.XPATH,
+        #sleep(1)
+        status_element_drop_down = super().wait_element_to_be_clickable(
                                                             "//div[@class='dropdown-menu open']//span[contains(text(),'%s')]" % status)
 
         self.driver.execute_script("arguments[0].scrollIntoView();", status_element_drop_down)
@@ -71,8 +71,8 @@ class ImportLeadPage(CRMBasePage):
     def select_assigned_to(self, assigned_to):
         assigned_to_element = super().wait_element_to_be_clickable("//button[@data-id='lead_owner']")
         assigned_to_element.click()
-        sleep(2)
-        assigned_to_element_drop_down = self.driver.find_element(By.XPATH,
+        #sleep(2)
+        assigned_to_element_drop_down = super().wait_element_to_be_clickable(
                                                                  "//div[@class='dropdown-menu open']//span[contains(text(),'%s')]" % assigned_to)
 
         self.driver.execute_script("arguments[0].scrollIntoView();", assigned_to_element_drop_down)

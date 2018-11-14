@@ -19,7 +19,7 @@ class MassSMSModule(CRMBasePage):
     def select_mobile(self, phone):
         phone_drop_down = super().wait_element_to_be_clickable(" //button[@id='dropdownMenu1']")
         phone_drop_down.click()
-        sleep(3)
+        #sleep(3)
         select_item = self.driver.find_element(By.XPATH,
                                                "//ul[@class='dropdown-menu']//a[contains(text(),'%s')]" % phone)
         select_item.click()

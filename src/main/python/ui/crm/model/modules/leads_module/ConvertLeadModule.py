@@ -13,7 +13,7 @@ class ConvertLeadModule(CRMBasePage):
     def perform_convert_lead(self, first_name, last_name, email, phone, birthday, citizenship,
                              address, postal_code, city, country, password, currency, referral,
                              brand, source_name, phone_area_code=None):
-        sleep(2)
+        #sleep(2)
         self.set_first_name(first_name)
         self.set_last_name(last_name)
         self.set_email(email)
@@ -33,7 +33,7 @@ class ConvertLeadModule(CRMBasePage):
             self.set_brand(brand)
         if phone_area_code:
             self.set_area_code(phone_area_code)
-        sleep(1)
+        #sleep(1)
         self.click_submit()
 
     def set_first_name(self, first_name):

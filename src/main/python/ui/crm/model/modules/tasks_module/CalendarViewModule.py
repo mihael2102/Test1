@@ -13,7 +13,7 @@ from src.main.python.utils.logs.Loging import Logging
 class CalendarViewModule(CRMBasePage):
 
     def add_new_task(self):
-        sleep(2)
+        #sleep(2)
         add_new_task_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add New Task')]")
         add_new_task_button.click()
         Logging().reportDebugStep(self, "The add new task module was opened")

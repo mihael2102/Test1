@@ -22,7 +22,7 @@ class LeadViewInfo(CRMBasePage):
 
     def open_convert_lead_module(self):
         SidebarModules(self.driver).open_sidebar_if_exists()
-        sleep(2)
+        #sleep(2)
         task_module = super().wait_load_element("//div[@id='sidebar']//tr[3]//a")
         task_module.click()
         Logging().reportDebugStep(self, "The convert lead module was opened")

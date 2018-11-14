@@ -113,7 +113,7 @@ class MassEditLeadModule(CRMBasePage):
         return MassEditLeadModule()
 
     def set_checkbox(self):
-        sleep(3)
+        #sleep(3)
         event_type_check_box = super().wait_load_element(
             "//label[contains(text(),'Title')]//preceding-sibling::div")
         event_type_check_box.click()

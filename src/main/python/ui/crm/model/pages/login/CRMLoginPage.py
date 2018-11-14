@@ -43,10 +43,10 @@ class CRMLoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Setting the user name in the password: " + password + '\n')
         login_button.click()
         Logging().reportDebugStep(self, "Click the login button" + '\n')
-        sleep(1)
+        #sleep(1)
         try:
-            otp_field = self.driver.find_element(By.XPATH, "//input[@id='otp']")
-            submit_button = self.driver.find_element(By.XPATH, "//a[@id='submitButton2']")
+            otp_field = super().wait_element_to_be_clickable("//input[@id='otp']")
+            submit_button = super().wait_element_to_be_clickable("//a[@id='submitButton2']")
             time_otp = pyotp.TOTP(otp_secret)
             otp = time_otp.now()
             otp_field.clear()
@@ -60,7 +60,7 @@ class CRMLoginPage(CRMBasePage):
         # Wait for News popup at Old forex and close popup if it is shown
         try:
             # if ("uminvestments" or "ogtrade") in super().get_current_url():
-            sleep(1)
+            #sleep(1)
             do_not_show_again_checkbox = super().wait_element_to_be_clickable("//*[@id='do_not_show']", timeout=1)
             do_not_show_again_checkbox.click()
 

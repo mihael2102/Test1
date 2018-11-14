@@ -35,7 +35,7 @@ class PhoneActionsModule(CRMBasePage):
         return SendEmailModuleActions()
 
     def set_call_outcome(self, call_outcome):
-        sleep(2)
+        #sleep(2)
         call_outcome_element = super().wait_element_to_be_clickable("//input[@value='%s']" % call_outcome)
         call_outcome_element.click()
 

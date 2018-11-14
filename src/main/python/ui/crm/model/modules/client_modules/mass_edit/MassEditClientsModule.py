@@ -24,7 +24,7 @@ class MassEditClientsModule(CRMBasePage):
         return MassEditClientsModule()
 
     def set_gender(self, gender):
-        sleep(3)
+        #sleep(3)
         check_box = super().wait_element_to_be_clickable("//div[@id='gender_mass_edit_check']//div[1]")
         check_box.click()
         gender_drop_drown = Select(self.driver.find_element(By.XPATH,"//select[@name='gender']"))

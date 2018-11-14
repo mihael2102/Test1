@@ -20,9 +20,9 @@ class CaWithdrawFirstStepRequest(BrandBasePage):
         drop_down_trading_account_drop_down = self.driver.find_element(By.XPATH,
                                                                        "//custom-select[@name='activeTradingAccount']")
         drop_down_trading_account_drop_down.click()
-        sleep(2)
+        #sleep(2)
 
-        select = self.driver.find_element(By.XPATH, "//custom-select[@name='activeTradingAccount']//"
+        select = super().wait_element_to_be_clickable("//custom-select[@name='activeTradingAccount']//"
                                                     "following-sibling::*[contains(text(),'%s')]" % account)
 
         self.driver.execute_script("arguments[0].scrollIntoView();", select)

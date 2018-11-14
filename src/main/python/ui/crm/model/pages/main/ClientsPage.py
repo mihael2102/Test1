@@ -84,14 +84,14 @@ class ClientsPage(CRMBasePage):
     '''
 
     def find_client_by_email(self, email):
-        sleep(2)
+        #sleep(2)
         email_field = super().wait_load_element("//input[@id='tks_email1']")
         email_field.send_keys(email)
         Logging().reportDebugStep(self, "Setting  the user's email in the email field  is : " + email)
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
         Logging().reportDebugStep(self, "Click the search button ")
-        sleep(2)
+        #sleep(2)
         client_id = super().wait_element_to_be_clickable("//tr[@class='lvtColData']//div[@class='link_field']")
         client_id.click()
         Logging().reportDebugStep(self, "Click user email: " + email)
@@ -124,7 +124,7 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def enter_email(self, email):
-        sleep(2)
+        #sleep(2)
         email_field = super().wait_load_element("//input[@id='tks_email1']")
         email_field.clear()
         email_field.send_keys(email)
@@ -141,7 +141,7 @@ class ClientsPage(CRMBasePage):
         country_drop_down = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["country_button"])
 
-        sleep(5)
+        #sleep(5)
         # country_drop_down.click()
         self.driver.execute_script("arguments[0].click();", country_drop_down)
         search_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
@@ -150,7 +150,7 @@ class ClientsPage(CRMBasePage):
         search_field.send_keys(country)
         country_choice = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["country_click"] % country)
-        sleep(5)
+        #sleep(5)
         # country_choice.click()
         self.driver.execute_script("arguments[0].click();", country_choice)
         ac = ActionChains(self.driver)
@@ -325,7 +325,7 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def select_three_records_clients_module(self):
-        sleep(2)
+        #sleep(2)
         first_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[1]")
         first_check_box.click()
         second_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[2]//td[1]")
@@ -336,7 +336,7 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def select_record(self):
-        sleep(2)
+        #sleep(2)
         first_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[1]")
         first_check_box.click()
         Logging().reportDebugStep(self, "The record was selected")
@@ -376,7 +376,7 @@ class ClientsPage(CRMBasePage):
         return client_email.text
 
     def get_second_client_email(self):
-        sleep(3)
+        #sleep(3)
         second_client_id = super().wait_element_to_be_clickable(
             "//tbody[@id='listBody']//tr[2]//td[2]")
         second_client_id.click()
@@ -386,7 +386,7 @@ class ClientsPage(CRMBasePage):
         return client_email.text
 
     def get_third_client_email(self):
-        sleep(3)
+        #sleep(3)
         third_client_id = super().wait_element_to_be_clickable(
             "//tbody[@id='listBody']//tr[3]//td[2]")
         third_client_id.click()

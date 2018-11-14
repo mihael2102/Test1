@@ -52,7 +52,7 @@ class TasksPage(CRMBasePage):
         super().wait_load_element("//ul[@id='main-tabs']//li[1]")
         tab = self.driver.find_element(By.XPATH, "//ul[@id='main-tabs']//li[1]")
         tab.click()
-        sleep(1)
+        #sleep(1)
         tab_text = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[1]")
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
@@ -61,7 +61,7 @@ class TasksPage(CRMBasePage):
         tab = self.driver.find_element(By.XPATH,
                                        "//ul[@id='main-tabs']//li[2]")
         tab.click()
-        sleep(1)
+        #sleep(1)
         tab_text = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[2]")
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
@@ -70,7 +70,7 @@ class TasksPage(CRMBasePage):
         tab = self.driver.find_element(By.XPATH,
                                        "//ul[@id='main-tabs']//li[3]")
         tab.click()
-        sleep(1)
+        #sleep(1)
         tab_text = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[3]")
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
@@ -79,13 +79,13 @@ class TasksPage(CRMBasePage):
         tab = self.driver.find_element(By.XPATH,
                                        "//ul[@id='main-tabs']//li[4]")
         tab.click()
-        sleep(1)
+        #sleep(1)
         tab_text = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[4]")
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
 
     def open_show_mine_tab(self):
-        sleep(2)
+        #sleep(2)
         tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[2]")
         tab.click()
         self.wait_crm_loading_to_finish()
@@ -93,11 +93,11 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def open_show_all_tab(self):
-        sleep(2)
+        #sleep(2)
         tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[1]")
         tab.click()
         self.wait_crm_loading_to_finish()
-        sleep(2)
+        #sleep(2)
         Logging().reportDebugStep(self, "The all tab was opened ")
         return TasksPage(self.driver)
 
@@ -131,13 +131,13 @@ class TasksPage(CRMBasePage):
         tab = self.driver.find_element(By.XPATH,
                                        "//ul[@id='main-tabs']//li[5]")
         tab.click()
-        sleep(1)
+        #sleep(1)
         tab_text = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[5]")
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
 
     def open_add_event_module(self):
-        sleep(3)
+        #sleep(3)
         event_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Event')]")
         event_button.click()
         Logging().reportDebugStep(self, "The event  module was opened")
@@ -152,7 +152,7 @@ class TasksPage(CRMBasePage):
         return CalendarViewModule(self.driver)
 
     def select_three_records_task_module(self):
-        sleep(1)
+        #sleep(1)
         first_check_box = super().wait_element_to_be_clickable("//tr[@class='tableRow'][1]//td[1]")
         first_check_box.click()
         second_check_box = self.driver.find_element(By.XPATH, "//tr[@class='tableRow'][2]//td[1]")
@@ -170,7 +170,7 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def perform_mass_delete(self):
-        sleep(3)
+        #sleep(3)
         delete_button = super().wait_element_to_be_clickable("//button[contains(text(),'Mass Delete')]")
         delete_button.click()
         delete_button = super().wait_element_to_be_clickable(
@@ -191,13 +191,13 @@ class TasksPage(CRMBasePage):
     '''
 
     def get_confirm_message_task_module(self):
-        sleep(2)
+        #sleep(2)
         confirm_message = super().wait_load_element("//div[@class='toast-message']")
         Logging().reportDebugStep(self, "Returns the message task  : " + confirm_message.text)
         return confirm_message.text
 
     def click_pencil_button(self):
-        sleep(3)
+        #sleep(3)
         pencil_button = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow'][1]//span[@class='glyphicon glyphicon-pencil cursor-pointer']")
         pencil_button.click()
@@ -210,7 +210,7 @@ class TasksPage(CRMBasePage):
         return MassSMSModule(self.driver)
 
     def open_first_client_profile(self):
-        sleep(3)
+        #sleep(3)
         client_link = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow']//td[6]")
         client_link.click()
@@ -218,7 +218,7 @@ class TasksPage(CRMBasePage):
         return ClientProfilePage(self.driver)
 
     def open_second_client_profile(self):
-        sleep(3)
+        #sleep(3)
         client_link = super().wait_element_to_be_clickable(
             "//div[@class='table-grid-container']//tr[4]//td[6]")
         client_link.click()
@@ -226,7 +226,7 @@ class TasksPage(CRMBasePage):
         return ClientProfilePage(self.driver)
 
     def open_third_client_profile(self):
-        sleep(3)
+        #sleep(3)
         client_link = super().wait_element_to_be_clickable(
             "//div[@class='table-grid-container']//tr[5]//td[6]")
         client_link.click()

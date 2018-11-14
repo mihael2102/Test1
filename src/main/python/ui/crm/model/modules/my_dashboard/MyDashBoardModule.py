@@ -17,23 +17,23 @@ class MyDashBoardModule(CRMBasePage):
         super().__init__()
 
     def open_show_all_tab(self):
-        sleep(1)
+        #sleep(1)
         tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[1]")
         tab.click()
         Logging().reportDebugStep(self, "The this week tab was opened ")
         return MyDashBoardModule()
 
     def find_event_by_subject(self, subject):
-        sleep(2)
+        #sleep(2)
         subject_field = super().wait_element_to_be_clickable("//tr[@class='tableFilters']//td[15]//input")
         subject_field.clear()
         subject_field.send_keys(subject)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
-        sleep(3)
+        #sleep(3)
         return MyDashBoardModule()
 
     def open_phone_actions(self):
-        sleep(2)
+        #sleep(2)
         first_check_box = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow'][1]//div[3]")
         first_check_box.click()
@@ -52,13 +52,13 @@ class MyDashBoardModule(CRMBasePage):
     '''
 
     def get_confirm_message_task_module(self):
-        sleep(2)
+        #sleep(2)
         confirm_message = super().wait_load_element("//div[@class='toast-message']")
         Logging().reportDebugStep(self, "Returns the message task  : " + confirm_message.text)
         return confirm_message.text
 
     def open_sms_module_my_dashboard(self):
-        sleep(3)
+        #sleep(3)
         first_check_box = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//tr[@class='tableRow']//div[2]")))
         first_check_box.click()
@@ -83,7 +83,7 @@ class MyDashBoardModule(CRMBasePage):
         return MyDashBoardModule()
 
     def open_first_client_profile(self):
-        sleep(3)
+        #sleep(3)
         client_link = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow']//td[6]")
         client_link.click()
