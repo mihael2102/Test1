@@ -18,11 +18,11 @@ class CaVerificationCenter(BrandBasePage):
     '''
 
     def perform_front_upload(self):
-        sleep(2)
+        #sleep(2)
         front_upload_picture = super().wait_visible_of_element(
             "//div[@class='verif-row-pandats'][1]//div[@class='upload-new-pandats']")
         front_upload_picture.click()
-        sleep(2)
+        #sleep(2)
         # autoit.control_set_text("Open", "Edit1",
         #                         r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
         # autoit.control_send("Open", "Edit1", "{ENTER}")

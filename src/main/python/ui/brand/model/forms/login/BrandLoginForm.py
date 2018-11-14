@@ -39,7 +39,7 @@ class BrandLoginForm(BrandBasePage):
         return BrandLoginForm()
 
     def get_invalid_login_message(self):
-        sleep(2)
+        #sleep(2)
         message_locator = super().wait_load_element_present("//div[@class='toast-content-pandats']")
         return message_locator.text
 
