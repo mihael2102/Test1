@@ -1,4 +1,4 @@
-test = "Regression New Forex Staging"
+test = "New Forex production sanity"
 timeout = 4
 data = None
 url_client_area = ""
@@ -9,4 +9,4 @@ window_before = None
 counter = 1
 logger = None
 handler = None
-chrome_driver = "D:/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
+chrome_driver = "/usr/lib/chromium-browser/chromedriver.exe"
