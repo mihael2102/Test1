@@ -30,26 +30,12 @@ class LeadPrecondition(object):
             lead[LeadsModuleConstants.FIRST_NAME],
             lead[LeadsModuleConstants.FIRST_LAST_NAME],
             lead[LeadsModuleConstants.FIRST_MOBILE],
-            lead[LeadsModuleConstants.FAX],
             lead[LeadsModuleConstants.EMAIL],
-            lead[LeadsModuleConstants.SECONDARY_EMAIL],
-            lead[LeadsModuleConstants.FIRST_LANGUAGE],
-            lead[LeadsModuleConstants.PANDA_PARTNER],
-            lead[LeadsModuleConstants.FIRST_REFERRAL],
-            lead[LeadsModuleConstants.STREET],
-            lead[LeadsModuleConstants.POSTAL_CODE],
             lead[LeadsModuleConstants.FIRST_COUNTRY],
-            lead[LeadsModuleConstants.FIRST_DESCRIPTION],
             lead[LeadsModuleConstants.PHONE],
-            lead[LeadsModuleConstants.FIRST_TITTLE],
-            lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
             lead[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW],
             lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-            lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
-            lead[LeadsModuleConstants.BRAND],
-            lead[LeadsModuleConstants.PO_BOX],
-            lead[LeadsModuleConstants.CITY],
-            lead[LeadsModuleConstants.FIRST_STATE])
+            lead[LeadsModuleConstants.BRAND])
             return LeadPrecondition(self.driver, self.config)
 
         elif (global_var.current_brand_name == "marketsplus"):
@@ -57,22 +43,11 @@ class LeadPrecondition(object):
             lead[LeadsModuleConstants.FIRST_NAME],
             lead[LeadsModuleConstants.FIRST_LAST_NAME],
             lead[LeadsModuleConstants.FIRST_MOBILE],
-            lead[LeadsModuleConstants.FAX],
             lead[LeadsModuleConstants.EMAIL],
-            lead[LeadsModuleConstants.SECONDARY_EMAIL],
-            lead[LeadsModuleConstants.FIRST_REFERRAL],
-            lead[LeadsModuleConstants.STREET],
-            lead[LeadsModuleConstants.POSTAL_CODE],
             lead[LeadsModuleConstants.FIRST_COUNTRY],
-            lead[LeadsModuleConstants.FIRST_DESCRIPTION],
             lead[LeadsModuleConstants.PHONE],
-            lead[LeadsModuleConstants.FIRST_TITTLE],
-            lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
             lead[LeadsModuleConstants.FIRST_LEAD_STATUS],
-            lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-            lead[LeadsModuleConstants.PO_BOX],
-            lead[LeadsModuleConstants.CITY],
-            lead[LeadsModuleConstants.FIRST_STATE])
+            lead[LeadsModuleConstants.FIRST_ASSIGNED_TO])
             return LeadPrecondition(self.driver, self.config)
 
         else:
@@ -81,26 +56,12 @@ class LeadPrecondition(object):
             lead[LeadsModuleConstants.FIRST_NAME],
             lead[LeadsModuleConstants.FIRST_LAST_NAME],
             lead[LeadsModuleConstants.FIRST_MOBILE],
-            lead[LeadsModuleConstants.FAX],
             lead[LeadsModuleConstants.EMAIL],
-            lead[LeadsModuleConstants.SECONDARY_EMAIL],
-            lead[LeadsModuleConstants.FIRST_LANGUAGE],
-            lead[LeadsModuleConstants.PANDA_PARTNER],
-            lead[LeadsModuleConstants.FIRST_REFERRAL],
-            lead[LeadsModuleConstants.STREET],
-            lead[LeadsModuleConstants.POSTAL_CODE],
             lead[LeadsModuleConstants.FIRST_COUNTRY],
-            lead[LeadsModuleConstants.FIRST_DESCRIPTION],
             lead[LeadsModuleConstants.PHONE],
-            lead[LeadsModuleConstants.FIRST_TITTLE],
-            lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
             lead[LeadsModuleConstants.FIRST_LEAD_STATUS],
             lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-            lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
-            lead[LeadsModuleConstants.BRAND],
-            lead[LeadsModuleConstants.PO_BOX],
-            lead[LeadsModuleConstants.CITY],
-            lead[LeadsModuleConstants.FIRST_STATE])
+            lead[LeadsModuleConstants.BRAND])
             return LeadPrecondition(self.driver, self.config)
 
     def create_three_leads(self):
@@ -220,98 +181,45 @@ class LeadPrecondition(object):
                 new_lead_data[LeadsModuleConstants.FIRST_NAME],
                 new_lead_data[LeadsModuleConstants.FIRST_LAST_NAME],
                 new_lead_data[LeadsModuleConstants.FIRST_MOBILE],
-                new_lead_data[LeadsModuleConstants.FAX],
                 new_lead_data[LeadsModuleConstants.EMAIL],
-                new_lead_data[LeadsModuleConstants.SECONDARY_EMAIL],
-                new_lead_data[LeadsModuleConstants.FIRST_LANGUAGE],
-                new_lead_data[LeadsModuleConstants.PANDA_PARTNER],
-                new_lead_data[LeadsModuleConstants.FIRST_REFERRAL],
-                new_lead_data[LeadsModuleConstants.STREET],
-                new_lead_data[LeadsModuleConstants.POSTAL_CODE],
                 new_lead_data[LeadsModuleConstants.FIRST_COUNTRY],
-                new_lead_data[LeadsModuleConstants.FIRST_DESCRIPTION],
                 new_lead_data[LeadsModuleConstants.PHONE],
-                new_lead_data[LeadsModuleConstants.FIRST_TITTLE],
-                new_lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE],
                 new_lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW],
                 new_lead_data[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-                new_lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                new_lead_data[LeadsModuleConstants.BRAND],
-                new_lead_data[LeadsModuleConstants.PO_BOX],
-                new_lead_data[LeadsModuleConstants.CITY],
-                new_lead_data[LeadsModuleConstants.FIRST_STATE])
+                new_lead_data[LeadsModuleConstants.BRAND])
 
         elif global_var.current_brand_name == "uft":
             LeadDetailViewInfo(self.driver).open_edit_lead_profile().perform_edit_lead(
                 new_lead_data[LeadsModuleConstants.FIRST_NAME],
                 new_lead_data[LeadsModuleConstants.FIRST_LAST_NAME],
                 new_lead_data[LeadsModuleConstants.FIRST_MOBILE],
-                new_lead_data[LeadsModuleConstants.FAX],
                 new_lead_data[LeadsModuleConstants.EMAIL],
-                new_lead_data[LeadsModuleConstants.SECONDARY_EMAIL],
-                new_lead_data[LeadsModuleConstants.FIRST_LANGUAGE],
-                new_lead_data[LeadsModuleConstants.PANDA_PARTNER],
-                new_lead_data[LeadsModuleConstants.FIRST_REFERRAL],
-                new_lead_data[LeadsModuleConstants.STREET],
-                new_lead_data[LeadsModuleConstants.POSTAL_CODE],
                 new_lead_data[LeadsModuleConstants.FIRST_COUNTRY],
-                new_lead_data[LeadsModuleConstants.FIRST_DESCRIPTION],
                 new_lead_data[LeadsModuleConstants.PHONE],
-                new_lead_data[LeadsModuleConstants.FIRST_TITTLE],
-                new_lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE],
                 new_lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_UFT],
                 new_lead_data[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-                new_lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                new_lead_data[LeadsModuleConstants.BRAND],
-                new_lead_data[LeadsModuleConstants.PO_BOX],
-                new_lead_data[LeadsModuleConstants.CITY],
-                new_lead_data[LeadsModuleConstants.FIRST_STATE])
+                new_lead_data[LeadsModuleConstants.BRAND])
 
         elif global_var.current_brand_name == "marketsplus":
             LeadDetailViewInfo(self.driver).open_edit_lead_profile().perform_edit_lead_new(
                 new_lead_data[LeadsModuleConstants.FIRST_NAME],
                 new_lead_data[LeadsModuleConstants.FIRST_LAST_NAME],
                 new_lead_data[LeadsModuleConstants.FIRST_MOBILE],
-                new_lead_data[LeadsModuleConstants.FAX],
                 new_lead_data[LeadsModuleConstants.EMAIL],
-                new_lead_data[LeadsModuleConstants.SECONDARY_EMAIL],
-                new_lead_data[LeadsModuleConstants.FIRST_REFERRAL],
-                new_lead_data[LeadsModuleConstants.STREET],
-                new_lead_data[LeadsModuleConstants.POSTAL_CODE],
                 new_lead_data[LeadsModuleConstants.FIRST_COUNTRY],
-                new_lead_data[LeadsModuleConstants.FIRST_DESCRIPTION],
                 new_lead_data[LeadsModuleConstants.PHONE],
-                new_lead_data[LeadsModuleConstants.FIRST_TITTLE],
-                new_lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE],
                 new_lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS],
-                new_lead_data[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-                new_lead_data[LeadsModuleConstants.PO_BOX],
-                new_lead_data[LeadsModuleConstants.CITY],
-                new_lead_data[LeadsModuleConstants.FIRST_STATE])
+                new_lead_data[LeadsModuleConstants.FIRST_ASSIGNED_TO])
         else:
             LeadDetailViewInfo(self.driver).open_edit_lead_profile().perform_edit_lead(
                 new_lead_data[LeadsModuleConstants.FIRST_NAME],
                 new_lead_data[LeadsModuleConstants.FIRST_LAST_NAME],
                 new_lead_data[LeadsModuleConstants.FIRST_MOBILE],
-                new_lead_data[LeadsModuleConstants.FAX],
                 new_lead_data[LeadsModuleConstants.EMAIL],
-                new_lead_data[LeadsModuleConstants.SECONDARY_EMAIL],
-                new_lead_data[LeadsModuleConstants.FIRST_LANGUAGE],
-                new_lead_data[LeadsModuleConstants.PANDA_PARTNER],
-                new_lead_data[LeadsModuleConstants.FIRST_REFERRAL],
-                new_lead_data[LeadsModuleConstants.STREET],
-                new_lead_data[LeadsModuleConstants.POSTAL_CODE],
                 new_lead_data[LeadsModuleConstants.FIRST_COUNTRY],
-                new_lead_data[LeadsModuleConstants.FIRST_DESCRIPTION],
                 new_lead_data[LeadsModuleConstants.PHONE],
-                new_lead_data[LeadsModuleConstants.FIRST_TITTLE],
-                new_lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE],
                 new_lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS],
                 new_lead_data[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-                new_lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                new_lead_data[LeadsModuleConstants.BRAND],
-                new_lead_data[LeadsModuleConstants.PO_BOX],
-                new_lead_data[LeadsModuleConstants.CITY],
-                new_lead_data[LeadsModuleConstants.FIRST_STATE])
+                new_lead_data[LeadsModuleConstants.BRAND])
 
         return LeadPrecondition(self.driver, self.config)

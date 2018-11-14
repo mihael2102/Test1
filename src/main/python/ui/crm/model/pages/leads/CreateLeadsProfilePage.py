@@ -9,67 +9,40 @@ from time import sleep
 
 class CreateLeadsProfilePage(CRMBasePage):
 
-    def perform_create_lead(self, first_name, last_name, mobile, fax, email, secondary_email,
-                            language, panda_partner_id, referral, street, postal_code, country, description,
-                            phone, tittle, lead_source, lead_status, assigned_to, source_name, brand, po_box,
-                            city, state):
-        sleep(2)
+    def perform_create_lead(self, first_name, last_name, mobile, email,  country,
+                            phone, lead_status, assigned_to,  brand):
+        # sleep(2)
         self.set_first_name(first_name)
         self.set_last_name(last_name)
         self.set_mobile(mobile)
-        self.set_fax(fax)
+
         self.set_email(email)
-        self.set_secondary_email(secondary_email)
-        self.set_language(language)
-        if panda_partner_id:
-            self.set_panda_partner_id(panda_partner_id)
-        if referral:
-            self.set_referral(referral)
-        self.set_street(street)
-        self.set_postal_code(postal_code)
+
         self.set_country(country)
-        self.set_description(description)
+
         self.set_phone(phone)
-        self.set_tittle(tittle)
-        self.set_lead_source(lead_source)
+
         self.set_lead_status(lead_status)
         self.set_assigned_to(assigned_to)
-        self.set_source_name(source_name)
+
         if brand:
             self.set_brand(brand)
         else:
             self.set_first_brand()
-        self.set_po_box(po_box)
-        self.set_city(city)
-        self.set_state(state)
         self.click_save()
 
 
-    def perform_create_lead_new(self, first_name, last_name, mobile, fax, email, secondary_email,
-                             referral, street, postal_code, country, description,
-                            phone, tittle, lead_source, lead_status, assigned_to, po_box,
-                            city, state):
-        sleep(2)
+    def perform_create_lead_new(self, first_name, last_name, mobile, email, country,
+                            phone, lead_status, assigned_to):
+        # sleep(2)
         self.set_first_name(first_name)
         self.set_last_name(last_name)
         self.set_mobile(mobile)
-        self.set_fax(fax)
         self.set_email(email)
-        self.set_secondary_email(secondary_email)
-        if referral:
-            self.set_referral(referral)
-        self.set_street(street)
-        self.set_postal_code(postal_code)
         self.set_country(country)
-        self.set_description(description)
         self.set_phone(phone)
-        self.set_tittle(tittle)
-        self.set_lead_source(lead_source)
         self.set_lead_status(lead_status)
         self.set_assigned_to(assigned_to)
-        self.set_po_box(po_box)
-        self.set_city(city)
-        self.set_state(state)
         self.click_save()
 
     def set_first_name(self, first_name):
@@ -238,7 +211,7 @@ class CreateLeadsProfilePage(CRMBasePage):
         return CreateLeadsProfilePage(self.driver)
 
     def click_save(self):
-        save_button = self.driver.find_element(By.XPATH, "//input[@title='Save [Alt+S]']")
+        save_button = super().wait_load_element("//input[@title='Save [Alt+S]']")
         self.perform_scroll_up()
         save_button.click()
         Logging().reportDebugStep(self, "The save button was clicked: ")

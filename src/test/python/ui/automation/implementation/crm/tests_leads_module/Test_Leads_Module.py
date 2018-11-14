@@ -309,47 +309,26 @@ class LeadModuleTest(BaseTest):
         first_name = lead_detail_view.get_first_name_text()
         last_name = lead_detail_view.get_last_name_text()
         mobile = lead_detail_view.get_mobile_text()
-        fax = lead_detail_view.get_fax_text()
+
         email = lead_detail_view.get_email_text()
-        secondary_email = lead_detail_view.get_secondary_email_text()
-        source_name = lead_detail_view.get_source_name_text()
-        panda_partner_id = lead_detail_view.get_panda_partner_id_text()
-        referral = lead_detail_view.get_referral_text()
-        street = lead_detail_view.get_street_text()
-        postal_code = lead_detail_view.get_postal_code_text()
+
         country = lead_detail_view.get_country_text()
-        description = lead_detail_view.get_description_text()
+
         phone = lead_detail_view.get_phone_text()
-        tittle = lead_detail_view.get_tittle_text()
-        lead_source = lead_detail_view.get_lead_source_text()
+
         lead_status = lead_detail_view.get_lead_status_text()
-        if global_var.current_brand_name != "marketsplus":
-            language = lead_detail_view.get_language_text()
-        # brand = lead_detail_view.get_brand_text()
-        po_box = lead_detail_view.get_po_box_text()
-        city = lead_detail_view.get_city_text()
-        state = lead_detail_view.get_state_text()
+
 
         self.assertEqual(first_name, lead_data[LeadsModuleConstants.FIRST_NAME])
         self.assertEqual(last_name, lead_data[LeadsModuleConstants.FIRST_LAST_NAME])
         self.assertEqual(mobile, lead_data[LeadsModuleConstants.FIRST_MOBILE])
-        self.assertEqual(fax, lead_data[LeadsModuleConstants.FAX])
+
         self.assertEqual(email, lead_data[LeadsModuleConstants.EMAIL])
-        self.assertEqual(secondary_email, lead_data[LeadsModuleConstants.SECONDARY_EMAIL])
-        if global_var.current_brand_name != "marketsplus":
-            self.assertEqual(source_name, lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME])
-        if lead_data[LeadsModuleConstants.PANDA_PARTNER] and global_var.current_brand_name != "marketsplus":
-            self.assertEqual(panda_partner_id, lead_data[LeadsModuleConstants.PANDA_PARTNER])
-        if lead_data[LeadsModuleConstants.FIRST_REFERRAL] and global_var.current_brand_name != "marketsplus":
-            self.assertEqual(referral, lead_data[LeadsModuleConstants.FIRST_REFERRAL])
-        self.assertEqual(street, lead_data[LeadsModuleConstants.STREET])
-        self.assertEqual(postal_code, lead_data[LeadsModuleConstants.POSTAL_CODE])
+
         self.assertEqual(country, lead_data[LeadsModuleConstants.FIRST_COUNTRY])
-        self.assertEqual(description, lead_data[LeadsModuleConstants.FIRST_DESCRIPTION])
+
         self.assertEqual(phone, lead_data[LeadsModuleConstants.PHONE])
-        self.assertEqual(tittle, lead_data[LeadsModuleConstants.FIRST_TITTLE])
-        if global_var.current_brand_name != "marketsplus":
-            self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])
+
 
         if global_var.current_brand_name == "safemarkets":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW])
@@ -360,11 +339,5 @@ class LeadModuleTest(BaseTest):
         else:
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS])
 
-        if global_var.current_brand_name != "marketsplus":
-            self.assertEqual(language, lead_data[LeadsModuleConstants.FIRST_LANGUAGE])
-        # if lead_data[LeadsModuleConstants.BRAND]:
-        #     self.assertEqual(brand, lead_data[LeadsModuleConstants.BRAND])
-        self.assertEqual(po_box, lead_data[LeadsModuleConstants.PO_BOX])
-        self.assertEqual(city, lead_data[LeadsModuleConstants.CITY])
-        self.assertEqual(state, lead_data[LeadsModuleConstants.FIRST_STATE])
+
         return True

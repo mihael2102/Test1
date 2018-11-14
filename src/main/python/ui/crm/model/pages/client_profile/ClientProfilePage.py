@@ -278,10 +278,10 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_mt4_actions(self, module):
-        sleep(3)
+        # sleep(3)
         mt4_button = super().wait_load_element("//div[@class='mt4_act_box']")
         mt4_button.click()
-        sleep(5)
+        # sleep(5)
         Logging().reportDebugStep(self, "Open mt4 actions ")
         MT4DropDown(self.driver).mt4_actions(module)
 

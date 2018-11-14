@@ -30,12 +30,7 @@ class FilterPrecondition(object):
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FOURTH_COLUMN),
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIFTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SIXTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SEVENTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.EIGHTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.NINTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN_OTHER_TYPE),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN))
+                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SIXTH_COLUMN))
 
         else:
             FilterPage(self.driver).perform_create_filter_client_module(
@@ -45,12 +40,7 @@ class FilterPrecondition(object):
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FOURTH_COLUMN),
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIFTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SIXTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SEVENTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.EIGHTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.NINTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN))
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SIXTH_COLUMN))
 
         FilterPage(self.driver).click_save_button()
         return FilterPrecondition(self.driver, self.config)
@@ -64,14 +54,7 @@ class FilterPrecondition(object):
             self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME),
             self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIRST_COLUMN),
             self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SECOND_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.THIRD_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FOURTH_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIFTH_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SIXTH_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SEVENTH_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.EIGHTH_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.TENTH_COLUMN),
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.ELEVENTH_COLUMN)) \
+            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.THIRD_COLUMN)) \
             .click_save_button()
         return FilterPrecondition(self.driver, self.config)
 
@@ -131,11 +114,6 @@ class FilterPrecondition(object):
             self.config.get_data_columns_trading_module(TradingAccountConstants.FILTER_NAME),
             self.config.get_data_columns_trading_module(TradingAccountConstants.FIRST_COLUMN),
             self.config.get_data_columns_trading_module(TradingAccountConstants.SECOND_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.THIRD_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.FOURTH_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.FIFTH_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.SIXTH_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.SEVENTH_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.EIGHTH_COLUMN)) \
+            self.config.get_data_columns_trading_module(TradingAccountConstants.THIRD_COLUMN)) \
             .click_save_button()
         return FilterPrecondition(self.driver, self.config)
