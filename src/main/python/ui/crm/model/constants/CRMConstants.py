@@ -57,7 +57,7 @@ class CRMConstants(object):
     THIRD_FORMAT_DATE = "%A"
     FIRST_FORMAT_TIME = "%H:%M:%S"
     SECOND_FORMAT_TIME = "%H"
-    #THIRD_FORMAT = f'{TODAY_DATE:%B} {TODAY_DATE.day}, {TODAY_DATE.year}'
+    THIRD_FORMAT = f'{TODAY_DATE:%B} {TODAY_DATE.day}, {TODAY_DATE.year}'
     CREDIT_IN_COMMENT = "Credit in "
     CREDIT_OUT_COMMENT = "Credit out "
     AMOUNT_CREDIT_IN = "1.00"
