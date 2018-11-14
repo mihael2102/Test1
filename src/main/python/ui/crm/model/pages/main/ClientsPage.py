@@ -91,7 +91,7 @@ class ClientsPage(CRMBasePage):
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
         Logging().reportDebugStep(self, "Click the search button ")
-        #sleep(2)
+        sleep(2)
         client_id = super().wait_element_to_be_clickable("//tr[@class='lvtColData']//div[@class='link_field']")
         client_id.click()
         Logging().reportDebugStep(self, "Click user email: " + email)

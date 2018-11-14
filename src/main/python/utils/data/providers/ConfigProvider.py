@@ -21,7 +21,7 @@ from src.main.python.ui.crm.model.constants.TradingAccountConstants import Tradi
 from src.main.python.utils.config import Config
 from datetime import *
 from dateutil.relativedelta import relativedelta
-
+from threading import Thread
 
 class ConfigProvider:
 
@@ -115,6 +115,7 @@ class ConfigProvider:
                 print(self.tests_config)
             except yaml.YAMLError as e:
                 print(e)
+
 
     # def load_brand_config(self, brand='default', use_base=True):
     #     """

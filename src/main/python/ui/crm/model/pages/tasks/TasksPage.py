@@ -93,11 +93,11 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def open_show_all_tab(self):
-        #sleep(2)
+        sleep(2)
         tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[1]")
         tab.click()
         self.wait_crm_loading_to_finish()
-        #sleep(2)
+        sleep(2)
         Logging().reportDebugStep(self, "The all tab was opened ")
         return TasksPage(self.driver)
 
