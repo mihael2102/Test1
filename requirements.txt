@@ -11,9 +11,7 @@ selenium==3.9.0
 setuptools-scm==2.0.0
 six==1.11.0
 python-dateutil
-allure-behave
 pytest-ordering
-pytest-allure-adaptor
 pyyaml
 xlsxwriter
 unittest-xml-reporting

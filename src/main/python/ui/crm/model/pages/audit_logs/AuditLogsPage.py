@@ -1,6 +1,6 @@
 from time import sleep
 
-from allure_commons.types import AttachmentType
+#from allure_commons.types import AttachmentType
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
@@ -8,7 +8,7 @@ from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from datetime import *
-import allure
+#import allure
 
 
 class AuditLogsPage(CRMBasePage):
@@ -28,8 +28,8 @@ class AuditLogsPage(CRMBasePage):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/audit_logs/audit logs_module screenshot %s.png' % now
         self.driver.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('screenshot',  self.driver.get_screenshot_as_png(),
-                                    type=AttachmentType.PNG)
+        #allure.MASTER_HELPER.attach('screenshot',  self.driver.get_screenshot_as_png(),
+        #                            type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "The screenshot was performed ")
         return AuditLogsPage()
 

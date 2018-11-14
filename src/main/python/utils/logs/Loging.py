@@ -1,7 +1,7 @@
 # create logger
 import logging
 
-import allure
+#import allure
 
 
 class Logging(object):
@@ -22,6 +22,6 @@ class Logging(object):
 
         # add ch to logger
         self.logger.addHandler(self.ch)
-        with allure.step(message):
-            self.logger.debug(class_name.__class__.__name__ + " - " + message)
-        self.logger.removeHandler(self.ch)
+        #with allure.step(message):
+        #    self.logger.debug(class_name.__class__.__name__ + " - " + message)
+        #self.logger.removeHandler(self.ch)

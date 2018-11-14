@@ -1,7 +1,7 @@
 from time import sleep
 from datetime import *
-import allure
-from allure_commons.types import AttachmentType
+#import allure
+#from allure_commons.types import AttachmentType
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
@@ -127,8 +127,8 @@ class LeadsModule(CRMBasePage):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/leads_module/leads_screenshot %s.png' % now
         self.driver.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
-                                    type=AttachmentType.PNG)
+        # allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
+        #                             type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
         return LeadsModule(self.driver)
 
@@ -137,8 +137,8 @@ class LeadsModule(CRMBasePage):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/leads_module/leads_screenshot %s.png' % now
         self.driver.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
-                                    type=AttachmentType.PNG)
+        # allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
+        #                             type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed,the grid with leads is empty ")
         return LeadsModule(self.driver)
 
@@ -147,8 +147,8 @@ class LeadsModule(CRMBasePage):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/leads_module/leads_screenshot %s.png' % now
         self.driver.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
-                                    type=AttachmentType.PNG)
+        # allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
+        #                             type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed,the lead is displayed")
         return LeadsModule(self.driver)
 

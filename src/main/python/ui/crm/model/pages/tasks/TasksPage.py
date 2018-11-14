@@ -1,6 +1,6 @@
 from time import sleep
 
-from allure_commons.types import AttachmentType
+#from allure_commons.types import AttachmentType
 from selenium.webdriver.common.by import By
 
 from src.main.python.ui.crm.model.modules.tasks_module.SendEmailModuleActions import SendEmailModuleActions
@@ -15,7 +15,7 @@ from src.main.python.ui.crm.model.modules.tasks_module.MassSMSModule import Mass
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 from datetime import *
-import allure
+#import allure
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
 
@@ -237,8 +237,8 @@ class TasksPage(CRMBasePage):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/tasks_module/tasks_screenshot %s.png' % now
         self.driver.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('passed_screenshot', self.driver.get_screenshot_as_png(),
-                                    type=AttachmentType.PNG)
+        #allure.MASTER_HELPER.attach('passed_screenshot', self.driver.get_screenshot_as_png(),
+        #                            type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
         return CalendarViewModule(self.driver)
 

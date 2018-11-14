@@ -1,8 +1,8 @@
 from time import sleep
 
 from datetime import *
-import allure
-from allure.constants import AttachmentType
+#import allure
+#from allure.constants import AttachmentType
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
@@ -105,8 +105,8 @@ class TradingAccountsPage(CRMBasePage):
         return tab_text.text
 
     def perform_screen_shot_trading_account(self, tab):
-        allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
-                                    type=AttachmentType.PNG)
+        #allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
+         #                           type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed for " + tab)
         return TradingAccountsPage()
 

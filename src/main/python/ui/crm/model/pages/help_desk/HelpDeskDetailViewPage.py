@@ -1,10 +1,10 @@
 from time import sleep
 
-import allure
+#import allure
 from datetime import *
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
-from allure_commons.types import AttachmentType
+#from allure_commons.types import AttachmentType
 
 
 class HelpDeskDetailViewPage(CRMBasePage):
@@ -79,8 +79,8 @@ class HelpDeskDetailViewPage(CRMBasePage):
         now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
         file_name = 'D:/automation-newforexqa/screenshots/leads_module/leads_screenshot %s.png' % now
         self.driver.get_screenshot_as_file(file_name)
-        allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
-                                    type=AttachmentType.PNG)
+       # allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
+       #                             type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed ")
         return HelpDeskDetailViewPage()
 
