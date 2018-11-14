@@ -45,8 +45,8 @@ class CRMLoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click the login button" + '\n')
         #sleep(1)
         try:
-            otp_field = super().wait_element_to_be_clickable("//input[@id='otp']")
-            submit_button = super().wait_element_to_be_clickable("//a[@id='submitButton2']")
+            otp_field = self.driver.find_element(By.XPATH, "//input[@id='otp']")
+            submit_button = self.driver.find_element(By.XPATH, "//a[@id='submitButton2']")
             time_otp = pyotp.TOTP(otp_secret)
             otp = time_otp.now()
             otp_field.clear()
