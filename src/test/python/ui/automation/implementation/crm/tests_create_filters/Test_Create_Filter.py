@@ -21,6 +21,7 @@ class FilterModulesTest(BaseTest):
 
     def test_create_filter_clients_module(self):
         try:
+            #start changes
             clients_module_page = CRMLoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url')) \
                 .crm_login(self.config.get_data_client(TestDataConstants.USER_NAME),
