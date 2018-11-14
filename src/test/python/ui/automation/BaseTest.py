@@ -1,7 +1,7 @@
 import unittest
 from datetime import *
 
-import allure
+#import allure
 from selenium import webdriver
 
 from src.main.python.utils.config import Config
@@ -21,7 +21,7 @@ class BaseTest(unittest.TestCase):
     def setUp(self):
         if not self.config:
             self.config = ConfigProvider()
-        allure.MASTER_HELPER.environment(BROWSER="CHROME", URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
+        #allure.MASTER_HELPER.environment(BROWSER="CHROME", URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
         if self.driver_type is None or self.driver_type == 'Chrome':
             chrome_options = webdriver.ChromeOptions()
             chrome_options.add_argument("--headless")
