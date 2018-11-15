@@ -1,8 +1,9 @@
 brands:
-
-- name: royal_cfds
-  config_file: royal_cfds.yml
-
+#
+#- name: royal_cfds
+#  config_file: royal_cfds.yml
+- name: firstindex
+  config_file: firstindex.yml
 
 
 
