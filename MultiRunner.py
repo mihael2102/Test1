@@ -3,7 +3,7 @@ from src.main.python.utils.logs.ExcelWriter import ExcelWriter
 import importlib
 import xmlrunner
 import multiprocessing
-import os
+# import os
 
 
 class MultiRunner:
@@ -134,8 +134,8 @@ if __name__ == "__main__":
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
 
-        pool.close()
-        pool.join()
+        # pool.close()
+        # pool.join()
 
         # os.system('start allure generate "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result" -o "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result/allure"')
 
