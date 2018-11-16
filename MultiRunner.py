@@ -139,7 +139,7 @@ if __name__ == "__main__":
 
         os.system('start allure generate "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result" -o "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result/allure"')
         sleep(3)
-        os.system('start allure open "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result/allure"')
+        # os.system('start allure open "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result/allure"')
 
     else:
         print("TURN ON VPN")
