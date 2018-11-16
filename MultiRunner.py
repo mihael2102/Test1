@@ -95,7 +95,7 @@ if __name__ == "__main__":
 
     if ip == '35.158.30.212':
         #delete all files fron result
-        # folder = "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result"
+        # folder = "D:/automation-newforexqa/result"
         # for the_file in os.listdir(folder):
         #     file_path = os.path.join(folder, the_file)
         #     try:
@@ -137,7 +137,7 @@ if __name__ == "__main__":
         pool.close()
         pool.join()
 
-        os.system('start allure generate "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result" -o "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result/allure"')
+        os.system('start allure generate "D:/automation-newforexqa/result" -o "D:/automation-newforexqa/result/allure"')
         sleep(3)
         # os.system('start allure open "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result/allure"')
 

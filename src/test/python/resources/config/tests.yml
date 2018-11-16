@@ -4,11 +4,11 @@ tests_config:
   class: FilterModulesTest
   tests:
   - test_create_filter_clients_module
-  - test_create_filter_documents_module
+#  - test_create_filter_documents_module
 #  - test_create_filter_leads_module
 #  - test_create_filter_help_desk
 #  - test_create_filter_trading_account_module
-##  #Leads
+#  #Leads
 #- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
 #  class: TabLeadsModuleCRM
 #  tests:
