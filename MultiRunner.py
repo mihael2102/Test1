@@ -95,7 +95,7 @@ if __name__ == "__main__":
 
     if ip == '35.158.30.212':
         #delete all files fron result
-        folder = 'D:/automation-newforexqa/result'
+        folder = 'C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result'
         for the_file in os.listdir(folder):
             file_path = os.path.join(folder, the_file)
             try:
