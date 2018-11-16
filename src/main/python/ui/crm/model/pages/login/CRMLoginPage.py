@@ -1,3 +1,5 @@
+import os
+
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
@@ -32,6 +34,10 @@ class CRMLoginPage(CRMBasePage):
     '''
 
     def crm_login(self, user_name, password, otp_secret=None):
+
+        current_dir = os.path.dirname(__file__)
+        print("=====> " + current_dir)
+
         user_name_field = self.driver.find_element(By.XPATH, "//input[@id='user_name']")
         password__field = self.driver.find_element(By.XPATH, "//input[@id='user_password']")
         login_button = self.driver.find_element(By.XPATH, "//input[@id='submitButton']")
