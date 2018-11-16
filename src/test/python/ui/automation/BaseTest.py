@@ -21,6 +21,7 @@ class BaseTest(unittest.TestCase):
 
     def setUp(self):
 
+
         current_dir = os.path.dirname(__file__)
         print("=====> " + current_dir)
 
