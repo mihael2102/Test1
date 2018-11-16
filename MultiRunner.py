@@ -126,7 +126,7 @@ if __name__ == "__main__":
 
 
         # Form input list where each parameter is filename of TestSuite file
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2]
+        input_list = [path_to_brands_suite_1]
 
         # Init multiprocess
         pool = multiprocessing.Pool(processes=1)
