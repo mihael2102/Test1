@@ -95,14 +95,14 @@ if __name__ == "__main__":
 
     if ip == '35.158.30.212':
         #delete all files fron result
-        folder = "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result"
-        for the_file in os.listdir(folder):
-            file_path = os.path.join(folder, the_file)
-            try:
-                if os.path.isfile(file_path):
-                    os.unlink(file_path)
-            except Exception as e:
-                print(e)
+        # folder = "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result"
+        # for the_file in os.listdir(folder):
+        #     file_path = os.path.join(folder, the_file)
+        #     try:
+        #         if os.path.isfile(file_path):
+        #             os.unlink(file_path)
+        #     except Exception as e:
+        #         print(e)
         # Filename of TestSuite 1
         # path_to_test_suite_1 = "tests.yml"
         #
