@@ -125,23 +125,23 @@ if __name__ == "__main__":
         path_to_brands_suite_2 = "brands1.yml"
 
 
-        # # Form input list where each parameter is filename of TestSuite file
-        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2]
-        #
-        # # Init multiprocess
-        # pool = multiprocessing.Pool(processes=2)
-        #
-        # # Run Test Suites as separate processes
-        # pool.map(__simple_run, input_list)
-        #
-        # pool.close()
-        # pool.join()
-        #
+        # Form input list where each parameter is filename of TestSuite file
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2]
+
+        # Init multiprocess
+        pool = multiprocessing.Pool(processes=2)
+
+        # Run Test Suites as separate processes
+        pool.map(__simple_run, input_list)
+
+        pool.close()
+        pool.join()
+
         # os.system('start allure generate "D:/automation-newforexqa/result" -o "D:/automation-newforexqa/result/allure"')
         # sleep(3)
-        # # os.system('start allure open "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result/allure"')
+        # os.system('start allure open "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result/allure"')
 
-        __simple_run(path_to_brands_suite_1)
+
 
     else:
         print("TURN ON VPN")
