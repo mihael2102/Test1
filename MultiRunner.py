@@ -95,14 +95,14 @@ if __name__ == "__main__":
 
     if ip == '35.158.30.212':
         #delete all files fron result
-        folder = 'D:/automation-newforexqa/result'
-        for the_file in os.listdir(folder):
-            file_path = os.path.join(folder, the_file)
-            try:
-                if os.path.isfile(file_path):
-                    os.unlink(file_path)
-            except Exception as e:
-                print(e)
+        # folder = 'D:/automation-newforexqa/result'
+        # for the_file in os.listdir(folder):
+        #     file_path = os.path.join(folder, the_file)
+        #     try:
+        #         if os.path.isfile(file_path):
+        #             os.unlink(file_path)
+        #     except Exception as e:
+        #         print(e)
         # Filename of TestSuite 1
         # path_to_test_suite_1 = "tests.yml"
         #
@@ -137,7 +137,7 @@ if __name__ == "__main__":
         pool.close()
         pool.join()
 
-        os.system('start allure generate "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result" -o "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result/allure"')
+        # os.system('start allure generate "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result" -o "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result/allure"')
 
 
     else:
