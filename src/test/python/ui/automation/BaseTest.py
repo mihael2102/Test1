@@ -1,3 +1,4 @@
+import os
 import unittest
 from datetime import *
 
@@ -19,6 +20,10 @@ class BaseTest(unittest.TestCase):
         self.driver = None
 
     def setUp(self):
+
+        current_dir = os.path.dirname(__file__)
+        print("=====> " + current_dir)
+
         if not self.config:
             self.config = ConfigProvider()
         allure.MASTER_HELPER.environment(BROWSER="CHROME", URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
