@@ -137,7 +137,7 @@ if __name__ == "__main__":
         pool.close()
         pool.join()
 
-        os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure')
+        os.system('start allure generate "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result" -o "C:/Program Files (x86)/Jenkins/workspace/Demo New Forex/result/allure"')
 
 
     else:

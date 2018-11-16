@@ -1,4 +1,4 @@
-test = "Regression New Forex Staging"
+test = "Demo New Forex"
 timeout = 4
 data = None
 url_client_area = ""
