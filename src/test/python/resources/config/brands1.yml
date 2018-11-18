@@ -1,10 +1,10 @@
 brands:
 
-#- name: fxpmarkets
-#  config_file: fxpmarkets.yml
-#- name: soarfx
-#  config_file: soarfx.yml
+- name: fxpmarkets
+  config_file: fxpmarkets.yml
+- name: soarfx
+  config_file: soarfx.yml
 - name: highfx
   config_file: highfx.yml
-#- name: mlnfx
-#  config_file: mlnfx.yml
+- name: mlnfx
+  config_file: mlnfx.yml
