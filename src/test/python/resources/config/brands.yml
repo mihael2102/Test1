@@ -2,19 +2,30 @@ brands:
 #
 #- name: royal_cfds
 #  config_file: royal_cfds.yml
-- name: firstindex
-  config_file: firstindex.yml
-
-
-
-
-
-
-
-
-
-
-
+#- name: firstindex
+#  config_file: firstindex.yml
+#- name: tradospot
+#  config_file: tradospot.yml
+#- name: ptbanc
+#  config_file: ptbanc.yml
+#- name: q8
+#  config_file: q8.yml
+#- name: newrichmarkets
+#  config_file: newrichmarkets.yml
+#- name: optionstars
+#  config_file: optionstars.yml
+#- name: safemarkets
+#  config_file: safemarkets.yml
+#- name: uft
+#  config_file: uft.yml
+#- name: bots
+#  config_file: bots.yml
+#- name: goldenmarkets
+#  config_file: goldenmarkets.yml
+#- name: herdos
+#  config_file: herdos.yml
+- name: xtraderfx
+  config_file: xtraderfx.yml
 
 
 

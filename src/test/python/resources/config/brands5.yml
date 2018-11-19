@@ -1,5 +1,5 @@
 brands:
 
-- name: jonesmutual
-  config_file: jonesmutual.yml
+#- name: jonesmutual
+#  config_file: jonesmutual.yml
 
