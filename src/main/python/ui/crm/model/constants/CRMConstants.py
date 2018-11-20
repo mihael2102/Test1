@@ -39,6 +39,7 @@ class CRMConstants(object):
     DESCRIPTION_ADD_INTERACTION = "Description Interaction"
     DATE = datetime.now()
     TODAY_DATE = datetime.today().now()
+    TIME_ZERO = "07:00:00"
     SECOND_DATE = datetime.now() + relativedelta(days=1, minutes=15)
     THIRD_DATE = datetime.now() + relativedelta(days=2, minutes=30)
     FOURTH_DATE = datetime.now() + relativedelta(days=3, minutes=45)
