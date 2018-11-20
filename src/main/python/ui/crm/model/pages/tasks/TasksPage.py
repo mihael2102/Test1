@@ -192,9 +192,17 @@ class TasksPage(CRMBasePage):
 
     def get_confirm_message_task_module(self):
         sleep(2)
-        confirm_message = super().wait_load_element("//div[@class='toast-message']")
-        Logging().reportDebugStep(self, "Returns the message task  : " + confirm_message.text)
-        return confirm_message.text
+        task_was_created_text = super().wait_load_element("//div[contains(text(),'Task was created')]").text
+        # confirm_message = super().wait_load_element("//div[@class='toast-message']")
+        Logging().reportDebugStep(self, "Returns the message task  : " + task_was_created_text)
+        return task_was_created_text
+
+    def get_task_subject(self, subject):
+        sleep(3)
+        task_subject = self.driver.find_element(By.XPATH, "//a//div[contains(text(),'%s')]" % subject)
+        task_subject.click()
+        Logging().reportDebugStep(self, "Returns the subject task  : " + task_subject.text)
+        return task_subject.text
 
     def click_pencil_button(self):
         sleep(3)

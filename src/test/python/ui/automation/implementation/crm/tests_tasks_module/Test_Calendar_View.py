@@ -9,6 +9,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 
 @pytest.mark.run(order=15)
 class CalendarView(BaseTest):
@@ -189,6 +190,9 @@ class CalendarView(BaseTest):
                 assert current_day == CRMConstants.TODAY_DATE.strftime(CRMConstants.THIRD_FORMAT)
                 assert day_of_week == CRMConstants.TODAY_DATE.strftime(CRMConstants.THIRD_FORMAT_DATE)
 
+    def load_lead_from_config(self, lead_key):
+        lead = self.config.get_value(lead_key)
+        return lead
 
     def test_check_add_tasks_calendar_view(self):
         CRMLoginPage(self.driver)\
@@ -205,49 +209,55 @@ class CalendarView(BaseTest):
                                                     TaskModuleConstants.FIRST_DURATION,
                                                     CRMConstants.SECOND_DATE.strftime(
                                                         CRMConstants.SECOND_FORMAT_DATE),
-                                                    CRMConstants.SECOND_DATE.strftime(
-                                                        CRMConstants.FIRST_FORMAT_TIME),
+                                                    CRMConstants.TIME_ZERO,
                                                     TaskModuleConstants.FIRST_ASSIGN_TO,
-                                                    TaskModuleConstants.FIRST_ACCOUNT_NAME,
-                                                    TaskModuleConstants.FIRST_SUBJECT,
+                                                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                        LeadsModuleConstants.FIRST_NAME],
+                                                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                        LeadsModuleConstants.FIRST_NAME],
                                                     TaskModuleConstants.FIRST_PRIORITY,
                                                     TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
         assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_CREATE_EVENT
 
-        calendar_module.add_new_task().create_event(TaskModuleConstants.SECOND_EVENT_STATUS,
-                                                    TaskModuleConstants.SECOND_EVENT_TYPE,
-                                                    TaskModuleConstants.SECOND_DURATION,
-                                                    CRMConstants.THIRD_DATE.strftime(
-                                                        CRMConstants.SECOND_FORMAT_DATE),
-                                                    CRMConstants.THIRD_DATE.strftime(
-                                                        CRMConstants.FIRST_FORMAT_TIME),
-                                                    TaskModuleConstants.SECOND_ASSIGN_TO,
-                                                    TaskModuleConstants.SECOND_ACCOUNT_NAME,
-                                                    TaskModuleConstants.SECOND_SUBJECT,
-                                                    TaskModuleConstants.SECOND_PRIORITY,
-                                                    TaskModuleConstants.DESCRIPTION_ADD_EVENT)
+        assert task_module.get_task_subject(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                LeadsModuleConstants.FIRST_NAME]) == \
+               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                   LeadsModuleConstants.FIRST_NAME]
 
-        assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_CREATE_EVENT
-
-        calendar_module.add_new_task().create_event(TaskModuleConstants.THIRD_EVENT_STATUS,
-                                                    TaskModuleConstants.THIRD_EVENT_TYPE,
-                                                    TaskModuleConstants.THIRD_DURATION,
-                                                    CRMConstants.FOURTH_DATE.strftime(
-                                                        CRMConstants.SECOND_FORMAT_DATE),
-                                                    CRMConstants.FOURTH_DATE.strftime(
-                                                        CRMConstants.FIRST_FORMAT_TIME),
-                                                    TaskModuleConstants.THIRD_ASSIGN_TO,
-                                                    TaskModuleConstants.THIRD_ACCOUNT_NAME,
-                                                    TaskModuleConstants.THIRD_SUBJECT,
-                                                    TaskModuleConstants.THIRD_PRIORITY,
-                                                    TaskModuleConstants.DESCRIPTION_ADD_EVENT)
-
-        assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_CREATE_EVENT
-        calendar_module.click_calendar_display(CRMConstants.SECOND_DATE.strftime(CRMConstants.SECOND_FORMAT_TIME)) \
-            .perform_screen_shot() \
-            .close_calendar_view()
-
-        task_module.open_show_all_tab().select_three_records_task_module().perform_mass_delete()
-        task_delete_message = task_module.get_confirm_message_task_module()
-        assert task_delete_message == TaskModuleConstants.MESSAGE_TASK_WAS_DELETED
+        # calendar_module.add_new_task().create_event(TaskModuleConstants.SECOND_EVENT_STATUS,
+        #                                             TaskModuleConstants.SECOND_EVENT_TYPE,
+        #                                             TaskModuleConstants.SECOND_DURATION,
+        #                                             CRMConstants.THIRD_DATE.strftime(
+        #                                                 CRMConstants.SECOND_FORMAT_DATE),
+        #                                             CRMConstants.THIRD_DATE.strftime(
+        #                                                 CRMConstants.FIRST_FORMAT_TIME),
+        #                                             TaskModuleConstants.SECOND_ASSIGN_TO,
+        #                                             TaskModuleConstants.SECOND_ACCOUNT_NAME,
+        #                                             TaskModuleConstants.SECOND_SUBJECT,
+        #                                             TaskModuleConstants.SECOND_PRIORITY,
+        #                                             TaskModuleConstants.DESCRIPTION_ADD_EVENT)
+        #
+        # assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_CREATE_EVENT
+        #
+        # calendar_module.add_new_task().create_event(TaskModuleConstants.THIRD_EVENT_STATUS,
+        #                                             TaskModuleConstants.THIRD_EVENT_TYPE,
+        #                                             TaskModuleConstants.THIRD_DURATION,
+        #                                             CRMConstants.FOURTH_DATE.strftime(
+        #                                                 CRMConstants.SECOND_FORMAT_DATE),
+        #                                             CRMConstants.FOURTH_DATE.strftime(
+        #                                                 CRMConstants.FIRST_FORMAT_TIME),
+        #                                             TaskModuleConstants.THIRD_ASSIGN_TO,
+        #                                             TaskModuleConstants.THIRD_ACCOUNT_NAME,
+        #                                             TaskModuleConstants.THIRD_SUBJECT,
+        #                                             TaskModuleConstants.THIRD_PRIORITY,
+        #                                             TaskModuleConstants.DESCRIPTION_ADD_EVENT)
+        #
+        # assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_CREATE_EVENT
+        # calendar_module.click_calendar_display(CRMConstants.SECOND_DATE.strftime(CRMConstants.SECOND_FORMAT_TIME)) \
+        #     .perform_screen_shot() \
+        #     .close_calendar_view()
+        #
+        # task_module.open_show_all_tab().select_three_records_task_module().perform_mass_delete()
+        # task_delete_message = task_module.get_confirm_message_task_module()
+        # assert task_delete_message == TaskModuleConstants.MESSAGE_TASK_WAS_DELETED
