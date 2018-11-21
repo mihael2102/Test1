@@ -149,4 +149,6 @@ module_clients_filter:
   tenth_column: "City *"
   City: "City"
   eleventh_column: "Brand"
+document:
+  document_type: "Other"
 

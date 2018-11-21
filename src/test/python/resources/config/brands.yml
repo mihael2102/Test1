@@ -22,10 +22,10 @@ brands:
 #  config_file: bots.yml
 #- name: goldenmarkets
 #  config_file: goldenmarkets.yml
-#- name: herdos
-#  config_file: herdos.yml
-- name: xtraderfx
-  config_file: xtraderfx.yml
+- name: herdos
+  config_file: herdos.yml
+#- name: xtraderfx
+#  config_file: xtraderfx.yml
 
 
 

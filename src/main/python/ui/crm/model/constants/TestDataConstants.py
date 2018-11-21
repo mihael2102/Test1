@@ -86,5 +86,8 @@ class TestDataConstants(object):
     TRADING_GROUP_LIVE = "group"
     TRADING_LEVERAGE_LIVE = "leverage"
     TRADING_LEVERAGE_LIVE_1_200 = "trading_account_live_1_200"
+    DOCUMENT = "document"
+    DOCUMENT_TYPE = "document_type"
+
 
 

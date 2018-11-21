@@ -2,12 +2,13 @@ from time import sleep
 
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.document.CreateDocumentModule import CreateDocumentModule
 from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.utils.logs.Loging import Logging
+import autoit
 
 
 class DocumentsPage(CRMBasePage):
@@ -26,6 +27,64 @@ class DocumentsPage(CRMBasePage):
         document_module.click()
         Logging().reportDebugStep(self, "The Create Document module was opened")
         return CreateDocumentModule()
+
+    def browse_documents(self):
+        sleep(2)
+        browse_documents = self.driver.find_element(By.XPATH, "//div/span[contains(text(),'Browse')]")
+        # browse_documents.click()
+        # autoit.control_set_text("Open", "Edit1",r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
+        # autoit.control_send("Open", "Edit1", "{ENTER}")
+        Logging().reportDebugStep(self, "Click on button Browse")
+        return DocumentsPage()
+
+    def select_document_type(self, type):
+        sleep(2)
+        document_type = Select(self.driver.find_element(By.XPATH, "//*[@id='doctype']"))
+        document_type.select_by_visible_text(type)
+        Logging().reportDebugStep(self, "Select document type")
+        return DocumentsPage()
+
+    def select_document_status(self, status):
+        sleep(1)
+        document_type = Select(self.driver.find_element(By.XPATH, "//*[@id='doc_status']"))
+        document_type.select_by_visible_text(status)
+        Logging().reportDebugStep(self, "Select document status")
+        return DocumentsPage()
+
+    def select_document_sub_type(self, sub_type):
+        sleep(1)
+        document_type = Select(self.driver.find_element(By.XPATH, "//*[@id='docsubtype']"))
+        document_type.select_by_visible_text(sub_type)
+        Logging().reportDebugStep(self, "Select document sub type")
+        return DocumentsPage()
+
+    def input_message(self, msg):
+        sleep(1)
+        input_message = self.driver.find_element(By.XPATH, "//*[@id='notecontent']")
+        input_message.send_keys(msg)
+        Logging().reportDebugStep(self, "Fill comments")
+        return DocumentsPage()
+
+    def input_expiry_date(self, date):
+        expiry_date = self.driver.find_element(By.XPATH, "//*[@id='crm_expiry_date']")
+        expiry_date.send_keys(date)
+        Logging().reportDebugStep(self, "Fill date")
+        return DocumentsPage()
+
+    def save_document(self):
+        button_save = self.driver.find_element(By.XPATH, "//*[@id='save_document']")
+        button_save.click()
+        Logging().reportDebugStep(self, "Save document")
+        return DocumentsPage()
+
+    def attached_to(self):
+        user_attached = self.driver.find_element(By.XPATH, "//*[@id='upload_document']/div[2]/div[1]/div/div/img[1]")
+        user_attached.click()
+        Logging().reportDebugStep(self, "Click attached To")
+        return DocumentsPage()
+
+
+
 
     def get_successful_message(self):
         message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
