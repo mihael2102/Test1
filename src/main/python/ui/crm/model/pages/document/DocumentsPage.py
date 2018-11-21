@@ -9,6 +9,7 @@ from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.utils.logs.Loging import Logging
 import autoit
+import os
 
 
 class DocumentsPage(CRMBasePage):
@@ -31,9 +32,12 @@ class DocumentsPage(CRMBasePage):
     def browse_documents(self):
         sleep(2)
         browse_documents = self.driver.find_element(By.XPATH, "//div/span[contains(text(),'Browse')]")
-        # browse_documents.click()
+        browse_documents.click()
         # autoit.control_set_text("Open", "Edit1",r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
         # autoit.control_send("Open", "Edit1", "{ENTER}")
+        # autoit.win_wait_active("File Upload", 5)
+        autoit.send(os.path.join("D:/automation-newforexqa/src/main/python/utils/documents/Bear.jpg"))
+        autoit.send("{ENTER}")
         Logging().reportDebugStep(self, "Click on button Browse")
         return DocumentsPage()
 
