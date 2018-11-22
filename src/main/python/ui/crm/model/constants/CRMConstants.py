@@ -95,7 +95,7 @@ class CRMConstants(object):
     COUNTER_SMS = "1"
     SUBJECT_MASS_SMS = "mass sms test"
     MESSAGE_MASS_SMS = "Sms test " + str(random.randrange(1, 9999999))
-    DOCUMENT_TYPE = "Other"
+    DOCUMENT_TYPE = "Bank statement"
     DOCUMENT_STATUS = "Pending"
     DOCUMENT_SUB_TYPE = "Crypto Transfer"
     DOCUMENT_COMMENTS = "Comments"

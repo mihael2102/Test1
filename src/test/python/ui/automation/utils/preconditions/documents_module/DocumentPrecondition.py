@@ -35,7 +35,7 @@ class DocumentPrecondition(object):
         document_module.browse_documents()
         document_module.select_document_type(CRMConstants.DOCUMENT_TYPE)
         document_module.select_document_status(CRMConstants.DOCUMENT_STATUS)
-        document_module.select_document_sub_type(CRMConstants.DOCUMENT_SUB_TYPE)
+        # document_module.select_document_sub_type(CRMConstants.DOCUMENT_SUB_TYPE)
         document_module.input_message(CRMConstants.DOCUMENT_COMMENTS)
         document_module.input_expiry_date(CRMConstants.SECOND_DATE.strftime(
                                                         CRMConstants.FORMAT_DATE_YEARS))
