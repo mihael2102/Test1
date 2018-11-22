@@ -99,4 +99,5 @@ class CRMConstants(object):
     DOCUMENT_STATUS = "Pending"
     DOCUMENT_SUB_TYPE = "Crypto Transfer"
     DOCUMENT_COMMENTS = "Comments"
+    DOCUMENT_SUCCESSFUL_MESSAGE = "Upload Document successfull"
 

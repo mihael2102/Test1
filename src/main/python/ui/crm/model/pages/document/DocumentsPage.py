@@ -38,7 +38,8 @@ class DocumentsPage(CRMBasePage):
         # autoit.win_wait_active("File Upload", 5)
         autoit.win_wait_active("Открытие")
         # autoit.send('D:/automation-newforexqa/src/main/python/utils/documents/"Bear.jpg"')
-        autoit.control_set_text("Открытие", "Edit1", r"D:/automation-newforexqa/src/main/python/utils/documents/Bear.jpg")
+        # autoit.control_set_text("Открытие", "Edit1", r"D:/automation-newforexqa/src/main/python/utils/documents/Bear.jpg")
+        autoit.send("Bear")
         autoit.send("{ENTER}")
         Logging().reportDebugStep(self, "Click on button Browse")
         return DocumentsPage()
@@ -77,19 +78,37 @@ class DocumentsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Fill date")
         return DocumentsPage()
 
+
+    def attached_to(self, client_attached):
+        user_attached = self.driver.find_element(By.XPATH, "//*[@id='upload_document']/div[2]/div[1]/div/div/img[1]")
+        user_attached.click()
+        sleep(10)
+        window_after = self.driver.window_handles[1]
+        self.driver.switch_to_window(window_after)
+        sleep(5)
+        input_attached = self.driver.find_element(By.XPATH, "//*[@id='search_txt']")
+        input_attached.send_keys(client_attached)
+        sleep(3)
+        document_type = Select(self.driver.find_element(By.XPATH, "//select[@name='search_field']"))
+        document_type.select_by_visible_text("Client Name")
+        sleep(3)
+        button_click_search = self.driver.find_element(By.XPATH, "//input[@name='search']")
+        button_click_search.click()
+        sleep(3)
+        select_client = self.driver.find_element(By.XPATH, "//a[contains(text(),'testqa')]")
+        select_client.click()
+        Logging().reportDebugStep(self, "Click attached To")
+        return DocumentsPage()
+
     def save_document(self):
+        sleep(2)
+        window_after = self.driver.window_handles[0]
+        self.driver.switch_to_window(window_after)
+        sleep(2)
         button_save = self.driver.find_element(By.XPATH, "//*[@id='save_document']")
         button_save.click()
         Logging().reportDebugStep(self, "Save document")
         return DocumentsPage()
-
-    def attached_to(self):
-        user_attached = self.driver.find_element(By.XPATH, "//*[@id='upload_document']/div[2]/div[1]/div/div/img[1]")
-        user_attached.click()
-        Logging().reportDebugStep(self, "Click attached To")
-        return DocumentsPage()
-
-
 
 
     def get_successful_message(self):
@@ -199,3 +218,38 @@ class DocumentsPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", sign_out)
         Logging().reportDebugStep(self, "'Sign_Out")
         return DocumentsPage(self.driver)
+
+    def search_by_attached_to(self, client_name):
+        input_attached_to = self.driver.find_element(By.XPATH, "//*[@id='tks_crmid']")
+        input_attached_to.send_keys(client_name)
+        Logging().reportDebugStep(self, "Fill attached to")
+        return DocumentsPage(self.driver)
+
+    def search_document_module(self):
+        button_search = super().wait_element_to_be_clickable("//input[@id='tks_searchbutton']")
+        button_search.click()
+        Logging().reportDebugStep(self, "Click Search")
+        return DocumentsPage(self.driver)
+
+    def open_doc(self):
+        id_doc = super().wait_element_to_be_clickable("//a[contains(text(), 'DOC')]")
+        id_doc.click()
+        Logging().reportDebugStep(self, "Open document details")
+        return DocumentsPage(self.driver)
+
+    def get_attached_to(self):
+        field_attached_to = self.driver.find_element(By.XPATH, "//*[@id='tblBasicInformation']/table/tbody/tr[3]/td[4]/a").text
+        Logging().reportDebugStep(self, "Get client name from document details page")
+        return field_attached_to
+
+    def get_status(self):
+        field_status = self.driver.find_element(By.XPATH, "//*[@id='tblBasicInformation']/table/tbody/tr[4]/td[4]").text
+        Logging().reportDebugStep(self, "Get status from document details page")
+        return field_status
+
+    def get_link(self):
+        field_status = self.driver.find_element(By.XPATH, "//*[@id='tblFileInformation']/table/tbody/tr[1]/td[4]").text
+        Logging().reportDebugStep(self, "Get link from document details page")
+        return field_status
+
+
