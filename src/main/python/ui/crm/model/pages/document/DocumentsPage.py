@@ -110,9 +110,6 @@ class DocumentsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Fill title")
         return DocumentsPage()
 
-
-
-
     def save_document(self):
         # sleep(2)
         # window_after = self.driver.window_handles[0]
@@ -247,6 +244,7 @@ class DocumentsPage(CRMBasePage):
         return DocumentsPage(self.driver)
 
     def open_doc(self):
+        sleep(3)
         id_doc = super().wait_element_to_be_clickable("//a[contains(text(), 'DOC')]")
         id_doc.click()
         Logging().reportDebugStep(self, "Open document details")
