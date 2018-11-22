@@ -60,7 +60,7 @@ class CRMConstants(object):
     CHANGE_PASSWORD_OLD_FOREX = "3"
     CHECK_PASSWORD = "3"
     EXPIRE_DATE = datetime.now() + relativedelta(days=2)
-    # FORMAT_DATE = "%d-%m-%Y"
+    FORMAT_DATE_YEARS = "%d-%m-%Y"
     FORMAT_DATE = "%Y.%m.%d"
     SECOND_FORMAT_DATE = "%Y-%m-%d"
     THIRD_FORMAT_DATE = "%A"
@@ -105,3 +105,8 @@ class CRMConstants(object):
     COUNTER_SMS = "1"
     SUBJECT_MASS_SMS = "mass sms test"
     MESSAGE_MASS_SMS = "Sms test " + str(random.randrange(1, 9999999))
+    DOCUMENT_TYPE = "Bank Statement"
+    DOCUMENT_STATUS = "Pending"
+    DOCUMENT_SUB_TYPE = "Crypto Transfer"
+    DOCUMENT_COMMENTS = "Comments"
+    DOCUMENT_SUCCESSFUL_MESSAGE = "Upload Document successfull"

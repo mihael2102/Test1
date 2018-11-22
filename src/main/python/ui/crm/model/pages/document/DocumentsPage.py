@@ -2,12 +2,14 @@ from time import sleep
 
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.document.CreateDocumentModule import CreateDocumentModule
 from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.utils.logs.Loging import Logging
+import autoit
+import os
 
 
 class DocumentsPage(CRMBasePage):
@@ -22,10 +24,105 @@ class DocumentsPage(CRMBasePage):
         return FilterPage(self.driver)
 
     def open_create_document_module(self):
-        document_module = self.driver.find_element(By.XPATH, "//button[@title='Create Document']")
+        document_module = self.driver.find_element(By.XPATH, "//button[@title='Create Document...']")
         document_module.click()
         Logging().reportDebugStep(self, "The Create Document module was opened")
         return CreateDocumentModule()
+
+    def browse_documents(self):
+        sleep(2)
+        browse_documents = self.driver.find_element(By.XPATH, "//*[@id='filename_I__']")
+        browse_documents.click()
+        # autoit.control_set_text("Open", "Edit1",r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
+        # autoit.control_send("Open", "Edit1", "{ENTER}")
+        # autoit.win_wait_active("File Upload", 5)
+        autoit.win_wait_active("Открытие")
+        # autoit.send('D:/automation-newforexqa/src/main/python/utils/documents/"Bear.jpg"')
+        # autoit.control_set_text("Открытие", "Edit1", r"D:/automation-newforexqa/src/main/python/utils/documents/Bear.jpg")
+        autoit.send("Bear")
+        autoit.send("{ENTER}")
+        Logging().reportDebugStep(self, "Click on button Choose File")
+        return DocumentsPage()
+
+    def select_document_type(self, type):
+        sleep(2)
+        document_type = Select(self.driver.find_element(By.XPATH, "//select[@name='doctype']"))
+        document_type.select_by_visible_text(type)
+        Logging().reportDebugStep(self, "Select document type")
+        return DocumentsPage()
+
+    def select_document_status(self, status):
+        sleep(1)
+        document_type = Select(self.driver.find_element(By.XPATH, "//select[@name='approved']"))
+        document_type.select_by_visible_text(status)
+        Logging().reportDebugStep(self, "Select document status")
+        return DocumentsPage()
+
+    def select_document_sub_type(self, sub_type):
+        sleep(1)
+        document_type = Select(self.driver.find_element(By.XPATH, "//*[@id='docsubtype']"))
+        document_type.select_by_visible_text(sub_type)
+        Logging().reportDebugStep(self, "Select document sub type")
+        return DocumentsPage()
+
+    def input_message(self, msg):
+        sleep(1)
+        input_message = self.driver.find_element(By.XPATH, "//*[@id='notecontent']")
+        input_message.send_keys(msg)
+        Logging().reportDebugStep(self, "Fill comments")
+        return DocumentsPage()
+
+    def input_expiry_date(self, date):
+        expiry_date = self.driver.find_element(By.XPATH, "//input[@name='document_expiry_date']")
+        expiry_date.send_keys(date)
+        Logging().reportDebugStep(self, "Fill date")
+        return DocumentsPage()
+
+
+    def attached_to(self, client_attached):
+        user_attached = self.driver.find_element(By.XPATH, "//img[@name='crmid']")
+        user_attached.click()
+        sleep(10)
+        window_after = self.driver.window_handles[1]
+        self.driver.switch_to_window(window_after)
+        sleep(5)
+        input_attached = self.driver.find_element(By.XPATH, "//*[@id='search_txt']")
+        input_attached.send_keys(client_attached)
+        sleep(3)
+        document_type = Select(self.driver.find_element(By.XPATH, "//select[@name='search_field']"))
+        document_type.select_by_visible_text("Client Name")
+        sleep(3)
+        button_click_search = self.driver.find_element(By.XPATH, "//input[@name='search']")
+        button_click_search.click()
+        sleep(3)
+        select_client = self.driver.find_element(By.XPATH, "//a[contains(text(),'testqa')]")
+        select_client.click()
+        Logging().reportDebugStep(self, "Click attached To")
+        return DocumentsPage()
+
+    def fill_title(self, title):
+        sleep(2)
+        window_after = self.driver.window_handles[0]
+        self.driver.switch_to_window(window_after)
+        sleep(2)
+        input_title = self.driver.find_element(By.XPATH, "//*[@id='basicTab']/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[3]/td[2]/input")
+        input_title.send_keys(title)
+        Logging().reportDebugStep(self, "Fill title")
+        return DocumentsPage()
+
+
+
+
+    def save_document(self):
+        # sleep(2)
+        # window_after = self.driver.window_handles[0]
+        # self.driver.switch_to_window(window_after)
+        # sleep(2)
+        button_save = self.driver.find_element(By.XPATH, "//*[@id='basicTab']/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[1]/td/div/input[1]")
+        button_save.click()
+        Logging().reportDebugStep(self, "Save document")
+        return DocumentsPage()
+
 
     def get_successful_message(self):
         message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
@@ -122,3 +219,55 @@ class DocumentsPage(CRMBasePage):
                                                       "//table//td[@class='lvtCol'][5]/a")
         Logging().reportDebugStep(self, "Fourth column name : " + name_fourth_column.text)
         return name_fourth_column.text
+
+    def Sign_Out(self):
+        CRMBasePage(self.driver).refresh_page()
+        sleep(2)
+        user = super().wait_element_to_be_clickable("//img[@src='themes/panda/images/user.PNG']")
+        # self.driver.execute_script("arguments[0].click();", user)
+        user.click()
+        sleep(2)
+        sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
+        self.driver.execute_script("arguments[0].click();", sign_out)
+        Logging().reportDebugStep(self, "'Sign_Out")
+        return DocumentsPage(self.driver)
+
+    def search_by_attached_to(self, client_name):
+        input_attached_to = self.driver.find_element(By.XPATH, "//*[@id='tks_crmid']")
+        input_attached_to.send_keys(client_name)
+        from selenium.webdriver.common.keys import Keys
+        input_attached_to.send_keys(Keys.ENTER)
+        Logging().reportDebugStep(self, "Fill attached to")
+        return DocumentsPage(self.driver)
+
+    def search_document_module(self):
+        button_search = super().wait_element_to_be_clickable("//input[@id='tks_searchbutton']")
+        button_search.click()
+        Logging().reportDebugStep(self, "Click Search")
+        return DocumentsPage(self.driver)
+
+    def open_doc(self):
+        id_doc = super().wait_element_to_be_clickable("//a[contains(text(), 'DOC')]")
+        id_doc.click()
+        Logging().reportDebugStep(self, "Open document details")
+        return DocumentsPage(self.driver)
+
+    def get_attached_to(self):
+        field_attached_to = self.driver.find_element(By.XPATH, "//*[@id='tblBasicInformation']/table/tbody/tr[3]/td[4]/a").text
+        Logging().reportDebugStep(self, "Get client name from document details page")
+        return field_attached_to
+
+    def get_status(self):
+        field_status = self.driver.find_element(By.XPATH, "//*[@id='tblBasicInformation']/table/tbody/tr[4]/td[4]").text
+        Logging().reportDebugStep(self, "Get status from document details page")
+        return field_status
+
+    def get_link(self):
+        field_status = self.driver.find_element(By.XPATH, "//*[@id='tblFileInformation']/table/tbody/tr[1]/td[4]").text
+        Logging().reportDebugStep(self, "Get link from document details page")
+        return field_status
+
+    def get_title_doc(self):
+        field_title = self.driver.find_element(By.XPATH, "//span[@id='dtlview_Title']").text
+        Logging().reportDebugStep(self, "Get title from document details page")
+        return field_title
