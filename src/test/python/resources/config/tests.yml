@@ -69,13 +69,13 @@ tests_config:
 #  class: TradingAccountCrmTest
 #  tests:
 #    - test_crm_edit_trading_account  # edit trading account
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
-#  class: CalendarView
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
+  class: CalendarView
+  tests:
 #    - test_check_day_tab
 #    - test_check_week_tab
 #    - test_check_month_tab
-#     - test_check_add_tasks_calendar_view #preconditions convert lead
+     - test_check_add_tasks_calendar_view #preconditions convert lead
 #- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
 #  class: TabFinancialTransaction
 #  tests:
