@@ -10,7 +10,7 @@ from src.main.python.ui.crm.model.pages.financial_transactions.FinancialTransact
 from src.main.python.utils.logs.Loging import Logging
 import datetime
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-
+import autoit
 
 class FinancialTransactionsPage(CRMBasePage):
 
@@ -286,3 +286,41 @@ class FinancialTransactionsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Searching for trading account: %s was performed" % trading_account)
         return FinancialTransactionsPage(self.driver)
 
+    def click_select_all_checkbox(self):
+        # element = self.driver.find_element(By.XPATH, "//*[@id='selectCurrentPageRec']")
+        # self.driver.execute_script("arguments[0].scrollIntoView();", element)
+        select_checkbox = super().wait_element_to_be_clickable("//*[@id='selectCurrentPageRec']")
+        self.driver.execute_script("arguments[0].click();", select_checkbox)
+        sleep(2)
+        select_all_records = super().wait_element_to_be_clickable("//*[@id='selectAllRec']")
+        select_all_records.click()
+        return FinancialTransactionsPage(self.driver)
+
+    def click_export(self):
+        button_export = super().wait_element_to_be_clickable("//button[@title='Export Financial Transactions']")
+        button_export.click()
+        return FinancialTransactionsPage(self.driver)
+
+    def click_export_pop_ups(self):
+        button_export = super().wait_element_to_be_clickable("//*[@id='exportpopupcontent']/form/div[2]/button[2]")
+        self.driver.execute_script("arguments[0].click();", button_export)
+        return FinancialTransactionsPage(self.driver)
+
+    def click_save_as(self, name_file):
+        sleep(3)
+        autoit.win_wait_active("Сохранение")
+        sleep(2)
+        autoit.control_send("Сохранение", "Edit1", "%s" % name_file)
+        autoit.send("{ENTER}")
+        return FinancialTransactionsPage(self.driver)
+
+    def select_xls_format(self):
+        sleep(2)
+        radio_xls = super().wait_element_to_be_clickable("//*[@value='excel']")
+        self.driver.execute_script("arguments[0].click();", radio_xls)
+        return FinancialTransactionsPage(self.driver)
+
+    def scroll_financial_transaction(self):
+        element = self.driver.find_element(By.XPATH, "//*[@id='selectCurrentPageRec']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+        return FinancialTransactionsPage(self.driver)
