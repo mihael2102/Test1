@@ -439,15 +439,15 @@ class TabFinancialTransaction(BaseTest):
         # financial_transaction_module.click_save_as(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
         #                                                 LeadsModuleConstants.FIRST_NAME])
 
-        list_of_files = glob.glob('C:/Users/anna.poimenova/Downloads/*')  # * means all if need specific format then *.csv
+        list_of_files = glob.glob('C:/Users/anna.poimenova/Downloads/*')
         latest_file = max(list_of_files, key=os.path.getctime)
         path_to_latest_file = "%s" % latest_file
         count = 0
         with open(path_to_latest_file) as f_obj:
             reader = csv.reader(f_obj, delimiter=',')
-            for line in reader:  # Iterates through the rows of your csv
-                print(line)  # line here refers to a row in the csv
-                if transaction_number and client_name and transaction_type_text and modified_time in line:  # If the string you want to search is in the row
+            for line in reader:
+                print(line)
+                if transaction_number and client_name and transaction_type_text and modified_time in line:
                     print("String found in first row of csv")
                     count = count + 1
 
@@ -479,7 +479,7 @@ class TabFinancialTransaction(BaseTest):
         financial_transaction_module.click_export_pop_ups()
         sleep(10)
         list_of_files = glob.glob(
-            'C:/Users/anna.poimenova/Downloads/*')  # * means all if need specific format then *.csv
+            'C:/Users/anna.poimenova/Downloads/*')
         latest_file = max(list_of_files, key=os.path.getctime)
         path_to_latest_file = "%s" % latest_file
 
