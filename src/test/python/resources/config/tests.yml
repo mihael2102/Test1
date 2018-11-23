@@ -20,18 +20,21 @@ tests_config:
 #    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
 #    - test_edit_lead
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
-#  class: TabFinancialTransaction
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
+  class: TabFinancialTransaction
+  tests:
 #    - test_check_all_tab_from_financial_transactions
 #    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
 #    - test_check_search_via_button
+#    - test_export_financial_transactions_csv
+    - test_export_financial_transactions_xls
+
 #  #General
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_perform_convert_lead   # Creates a lead and converts it to a client
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+#  directive: reload_configuration
+#  class: LeadModuleTest
+#  tests:
+#    - test_perform_convert_lead   # Creates a lead and converts it to a client
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
 #  class: SearchingClientsTestCRM
 #  tests:
@@ -83,7 +86,7 @@ tests_config:
 #    - test_check_week_tab
 #    - test_check_month_tab
 #     - test_check_add_tasks_calendar_view
-- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Create_Documents
-  class: CreateDocument
-  tests:
-    - test_create_documents
+#- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Create_Documents
+#  class: CreateDocument
+#  tests:
+#    - test_create_documents

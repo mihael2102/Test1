@@ -14,6 +14,13 @@ from selenium.common.exceptions import TimeoutException
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.financial_transactions.FinancialTransactionsPage import FinancialTransactionsPage
 from selenium.common.exceptions import WebDriverException
+from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
+import glob
+import os
+import csv
+import xlrd
+
 
 @pytest.mark.run(order=27)
 class TabFinancialTransaction(BaseTest):
@@ -403,4 +410,96 @@ class TabFinancialTransaction(BaseTest):
                 # Search for trading account. Search form is opened
                 # trading_account_after_searching = financial_transaction_list_page.search_for_trading_account(trading_account).get_trading_account_by_position_from_list(1)
                 # self.assertEqual(trading_account,trading_account_after_searching, "Wrong modified time was found")
+    def load_lead_from_config(self, lead_key):
+        lead = self.config.get_value(lead_key)
+        return lead
+
+    def test_export_financial_transactions_csv(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        financial_transaction_module = CRMHomePage(self.driver).open_more_list_modules() \
+            .select_financial_transactions_module_more_list(
+            FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
+
+        financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)
+        financial_transaction_module.click_search_button()
+        financial_transaction_module.click_select_all_checkbox()
+
+        transaction_number = financial_transaction_module.get_transaction_id_by_position_from_list()
+        client_name = financial_transaction_module.get_client_name_by_position_from_list()
+        transaction_type_text = financial_transaction_module.get_transaction_type_by_position_from_list()
+        modified_time = financial_transaction_module.get_modified_time_by_position_from_list()
+
+        financial_transaction_module.click_export()
+        financial_transaction_module.click_export_pop_ups()
+        sleep(10)
+        # financial_transaction_module.click_save_as(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+        #                                                 LeadsModuleConstants.FIRST_NAME])
+
+        list_of_files = glob.glob('C:/Users/anna.poimenova/Downloads/*')  # * means all if need specific format then *.csv
+        latest_file = max(list_of_files, key=os.path.getctime)
+        path_to_latest_file = "%s" % latest_file
+        count = 0
+        with open(path_to_latest_file) as f_obj:
+            reader = csv.reader(f_obj, delimiter=',')
+            for line in reader:  # Iterates through the rows of your csv
+                print(line)  # line here refers to a row in the csv
+                if transaction_number and client_name and transaction_type_text and modified_time in line:  # If the string you want to search is in the row
+                    print("String found in first row of csv")
+                    count = count + 1
+
+        print(count)
+        assert count == 1
+
+
+    def test_export_financial_transactions_xls(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        financial_transaction_module = CRMHomePage(self.driver).open_more_list_modules() \
+            .select_financial_transactions_module_more_list(
+            FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
+
+        financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)
+        financial_transaction_module.click_search_button()
+        financial_transaction_module.click_select_all_checkbox()
+
+        transaction_number = financial_transaction_module.get_transaction_id_by_position_from_list()
+        client_name = financial_transaction_module.get_client_name_by_position_from_list()
+        transaction_type_text = financial_transaction_module.get_transaction_type_by_position_from_list()
+        modified_time = financial_transaction_module.get_modified_time_by_position_from_list()
+
+        financial_transaction_module.click_export()
+        financial_transaction_module.select_xls_format()
+        financial_transaction_module.click_export_pop_ups()
+        sleep(10)
+        list_of_files = glob.glob(
+            'C:/Users/anna.poimenova/Downloads/*')  # * means all if need specific format then *.csv
+        latest_file = max(list_of_files, key=os.path.getctime)
+        path_to_latest_file = "%s" % latest_file
+
+        wb = xlrd.open_workbook(path_to_latest_file)
+
+        sheet = wb.sheet_by_index(0)
+        count = 0
+        for row_num in range(sheet.nrows):
+            row_value = sheet.row_values(row_num)
+            if transaction_number and client_name and transaction_type_text and modified_time in row_value:
+                print(row_value)
+                count = count + 1
+
+        assert count == 1
+
+
+
+
+
+
+
+
 
