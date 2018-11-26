@@ -101,6 +101,7 @@ class CRMConstants(object):
     DOCUMENT_COMMENTS = "Comments"
     DOCUMENT_SUCCESSFUL_MESSAGE = "Upload Document successfull"
     EASY_SEARCH_CLIENT = "testqa"
+    EASY_SEARCH_CLIENT_TEST = "test test"
     ALLOWED_IP = "1.1.1.1"
     ALLOWED_METHOD = "Create lead"
     BLOCKED_COUNTRY = "Albania"
