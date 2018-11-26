@@ -82,7 +82,7 @@ class AffiliatePage(CRMBasePage):
         input_partner_name = super().wait_load_element("//td[3]//input")
         input_partner_name.send_keys(name)
         sleep(2)
-        affiliate_name = super().wait_load_element("//a[contains(text(),'%s')]") % name
+        affiliate_name = super().wait_load_element("/html/body/app-root/affiliate-list/div[2]/div[2]/grid/div/div/div[1]/table/tbody/tr[2]/td[3]")
         affiliate_name.click()
         Logging().reportDebugStep(self, "Search partner name and go to affiliate details page")
 
