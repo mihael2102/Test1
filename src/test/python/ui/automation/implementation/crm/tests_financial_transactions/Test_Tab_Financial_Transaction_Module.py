@@ -559,7 +559,7 @@ class TabFinancialTransaction(BaseTest):
         # financial_transaction_module.click_save_as(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
         #                                                 LeadsModuleConstants.FIRST_NAME])
 
-        list_of_files = glob.glob('C:/Users/anna.poimenova/Downloads/*')
+        list_of_files = glob.glob('C:/Users/Administrator/Downloads/*')
         latest_file = max(list_of_files, key=os.path.getctime)
         path_to_latest_file = "%s" % latest_file
         count = 0
@@ -600,7 +600,7 @@ class TabFinancialTransaction(BaseTest):
         financial_transaction_module.click_export_pop_ups()
         sleep(10)
         list_of_files = glob.glob(
-            'C:/Users/anna.poimenova/Downloads/*')
+            'C:/Users/Administrator/Downloads/*')
         latest_file = max(list_of_files, key=os.path.getctime)
         path_to_latest_file = "%s" % latest_file
 
