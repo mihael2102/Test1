@@ -297,8 +297,11 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def click_export(self):
+        element = self.driver.find_element(By.XPATH, "//button[@title='Export Financial Transactions']")
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
         button_export = super().wait_element_to_be_clickable("//button[@title='Export Financial Transactions']")
-        button_export.click()
+        # button_export.click()
+        self.driver.execute_script("arguments[0].click();", button_export)
         return FinancialTransactionsPage(self.driver)
 
     def click_export_pop_ups(self):
