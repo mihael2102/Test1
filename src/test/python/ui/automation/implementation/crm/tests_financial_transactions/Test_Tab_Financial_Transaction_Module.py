@@ -424,7 +424,11 @@ class TabFinancialTransaction(BaseTest):
             .select_financial_transactions_module_more_list(
             FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
 
-        financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)
+        if global_var.current_brand_name == "kontofx":
+            financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT_TEST)
+        else:
+            financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)
+
         financial_transaction_module.click_search_button()
         financial_transaction_module.click_select_all_checkbox()
 
@@ -446,12 +450,17 @@ class TabFinancialTransaction(BaseTest):
         with open(path_to_latest_file) as f_obj:
             reader = csv.reader(f_obj, delimiter=',')
             for line in reader:
-                print(line)
+                # print(line)
                 if transaction_number and client_name and transaction_type_text and modified_time in line:
-                    print("String found in first row of csv")
+                    # print("String found in first row of csv")
                     count = count + 1
 
-        print(count)
+        # print(count)
+        if count == 1:
+            Logging().reportDebugStep(self, "Pass: checked csv file financial transactions")
+        else:
+            Logging().reportDebugStep(self, "Fail: checked csv file financial transactions")
+
         assert count == 1
 
 
@@ -465,7 +474,11 @@ class TabFinancialTransaction(BaseTest):
             .select_financial_transactions_module_more_list(
             FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
 
-        financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)
+        if global_var.current_brand_name == "kontofx":
+            financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT_TEST)
+        else:
+            financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)
+
         financial_transaction_module.click_search_button()
         financial_transaction_module.click_select_all_checkbox()
 
@@ -490,8 +503,13 @@ class TabFinancialTransaction(BaseTest):
         for row_num in range(sheet.nrows):
             row_value = sheet.row_values(row_num)
             if transaction_number and client_name and transaction_type_text and modified_time in row_value:
-                print(row_value)
+                # print(row_value)
                 count = count + 1
+
+        if count == 1:
+            Logging().reportDebugStep(self, "Pass: checked excel file financial transactions")
+        else:
+            Logging().reportDebugStep(self, "Fail: checked excel file financial transactions")
 
         assert count == 1
 
