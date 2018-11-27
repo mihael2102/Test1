@@ -22,7 +22,9 @@ class AffiliatePage(CRMBasePage):
         Logging().reportDebugStep(self, "Open 'Add new affiliate' popup")
 
     def add_partner_name(self, name):
+        sleep(1)
         input_partner_name = super().wait_load_element("//*[@id='partnerName']")
+        sleep(1)
         input_partner_name.send_keys(name)
         Logging().reportDebugStep(self, "Enter partner name")
 
@@ -49,23 +51,33 @@ class AffiliatePage(CRMBasePage):
         Logging().reportDebugStep(self, "Click plus ip")
 
     def select_allowed_methods(self, method):
+        sleep(1)
         methods_drop_down = super().wait_element_to_be_clickable("/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[4]/div[2]")
+        sleep(1)
         methods_drop_down.click()
+        sleep(1)
         input_methods = super().wait_load_element("/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
+        sleep(1)
         input_methods.send_keys(method)
+        sleep(1)
         methods = super().wait_load_element("//span[@class = 'hovered-option'][contains(text(),'%s')]" % method)
+        sleep(1)
         methods.click()
         Logging().reportDebugStep(self, "Select allowed methods %s" % method)
 
     def select_blocked_country(self, country):
-        country_drop_down = super().wait_element_to_be_clickable(
-            "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[5]/div[2]")
+        # title = self.driver.find_element(By.XPATH, "/html/body/bs-modal[2]/div/div/form/bs-modal-header/div/h4")
+        # title.click()
+        sleep(1)
+        country_drop_down = super().wait_element_to_be_clickable("/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[5]/div[2]")
         country_drop_down.click()
-        input_country = super().wait_load_element(
-            "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
+        sleep(1)
+        input_country = super().wait_load_element("/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
+        sleep(1)
         input_country.send_keys(country)
-        countrys = super().wait_load_element(
-            "//span[@class = 'hovered-option'][contains(text(),'%s')]" % country)
+        sleep(1)
+        countrys = super().wait_load_element("//span[@class = 'hovered-option'][contains(text(),'%s')]" % country)
+        sleep(1)
         countrys.click()
         Logging().reportDebugStep(self, "Select blocked country %s" % country)
 
@@ -83,8 +95,8 @@ class AffiliatePage(CRMBasePage):
         input_partner_name = super().wait_load_element("//td[3]//input")
         input_partner_name.send_keys(name)
         sleep(2)
-        affiliate_name = super().wait_load_element("/html/body/app-root/affiliate-list/div[2]/div[2]/grid/div/div/div[1]/table/tbody/tr[2]/td[3]")
-        affiliate_name.click()
+        affiliate_name = super().wait_load_element("//a[contains(text(),'testqa')]")
+        self.driver.execute_script("arguments[0].click();", affiliate_name)
         Logging().reportDebugStep(self, "Search partner name and go to affiliate details page")
 
     def check_name_on_affiliate_details(self):
