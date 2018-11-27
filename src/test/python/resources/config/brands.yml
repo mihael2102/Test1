@@ -49,6 +49,14 @@ brands:
 - name: kayafx
   config_file: kaya_fx.yml
 
+# new brands - never testing before
+- name: itrader-il
+  config_file: itrader-il.yml
+- name: tycoonfx
+  config_file: tycoonfx.yml
+- name: capitalmarketsbanc
+  config_file: capitalmarketsbanc.yml
+
 
 
 
