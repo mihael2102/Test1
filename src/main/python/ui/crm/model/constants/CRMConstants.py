@@ -115,3 +115,5 @@ class CRMConstants(object):
     ALLOWED_METHOD = "Create lead"
     BLOCKED_COUNTRY = "Albania"
     CREATE_AFFILIATE_SUCCCESS = "Success"
+    EASY_SEARCH_CLIENT_TEST = "test"
+    EASY_SEARCH_CLIENT_TEST_TEST = "test test"

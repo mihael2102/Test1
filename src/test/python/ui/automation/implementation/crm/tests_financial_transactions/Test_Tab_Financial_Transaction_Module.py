@@ -542,7 +542,16 @@ class TabFinancialTransaction(BaseTest):
             .select_financial_transactions_module_more_list(
             FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
 
-        financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)
+        if (global_var.current_brand_name == "ogtrade") or (global_var.current_brand_name == "fm-fx") or (
+                global_var.current_brand_name == "stoxmarket") or (global_var.current_brand_name == "itrader") or (
+                global_var.current_brand_name == "gmo") or (
+                global_var.current_brand_name == "kayafx"):
+            financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT_TEST)
+        # elif global_var.current_brand_name == "highfx":
+        #     financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT_TEST_TEST)
+        else:
+            financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)
+
         financial_transaction_module.click_search_button()
         financial_transaction_module.click_select_all_checkbox()
 
@@ -550,8 +559,7 @@ class TabFinancialTransaction(BaseTest):
         transaction_number = financial_transaction_module.get_transaction_id_by_position_from_list()
         client_name = financial_transaction_module.get_client_name_by_position_from_list()
         transaction_type_text = financial_transaction_module.get_transaction_type_by_position_from_list()
-        modified_time = financial_transaction_module.get_modified_time_by_position_from_list()
-        trading_account = financial_transaction_module.get_trading_account_by_position_from_list()
+
 
         financial_transaction_module.click_export()
         financial_transaction_module.click_export_pop_ups()
@@ -566,13 +574,15 @@ class TabFinancialTransaction(BaseTest):
         with open(path_to_latest_file) as f_obj:
             reader = csv.reader(f_obj, delimiter=',')
             for line in reader:
-                print(line)
+                # print(line)
                 if transaction_number and client_name and transaction_type_text in line:
-                    print("String found in first row of csv")
+                    # print("String found in first row of csv")
                     count = count + 1
 
-        print(count)
-        assert count > 1
+        if count > 1:
+            Logging().reportDebugStep(self, "Pass: checked csv file financial transactions")
+        else:
+            Logging().reportDebugStep(self, "Fail: checked csv file financial transactions")
 
     def test_export_financial_transactions_xls(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
@@ -584,7 +594,14 @@ class TabFinancialTransaction(BaseTest):
             .select_financial_transactions_module_more_list(
             FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
 
-        financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)
+        if (global_var.current_brand_name == "ogtrade") or (global_var.current_brand_name == "fm-fx") or (
+                global_var.current_brand_name == "stoxmarket") or (global_var.current_brand_name == "itrader") or (
+                global_var.current_brand_name == "gmo") or (
+                global_var.current_brand_name == "kayafx"):
+            financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT_TEST)
+        else:
+            financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)
+
         financial_transaction_module.click_search_button()
         financial_transaction_module.click_select_all_checkbox()
 
@@ -592,8 +609,7 @@ class TabFinancialTransaction(BaseTest):
         transaction_number = financial_transaction_module.get_transaction_id_by_position_from_list()
         client_name = financial_transaction_module.get_client_name_by_position_from_list()
         transaction_type_text = financial_transaction_module.get_transaction_type_by_position_from_list()
-        modified_time = financial_transaction_module.get_modified_time_by_position_from_list()
-        trading_account = financial_transaction_module.get_trading_account_by_position_from_list()
+
 
         financial_transaction_module.click_export()
         financial_transaction_module.select_xls_format()
@@ -611,8 +627,11 @@ class TabFinancialTransaction(BaseTest):
         for row_num in range(sheet.nrows):
             row_value = sheet.row_values(row_num)
             if transaction_number and client_name and transaction_type_text in row_value:
-                print(row_value)
+                # print(row_value)
                 count = count + 1
 
-        assert count > 1
+        if count > 1:
+            Logging().reportDebugStep(self, "Pass: checked excel file financial transactions")
+        else:
+            Logging().reportDebugStep(self, "Fail: checked excel file financial transactions")
 

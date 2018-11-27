@@ -287,26 +287,33 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def click_select_all_checkbox(self):
+        sleep(1)
         element = self.driver.find_element(By.XPATH, "//*[@id='selectCurrentPageRec']")
         self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
         select_checkbox = super().wait_element_to_be_clickable("//*[@id='selectCurrentPageRec']")
         self.driver.execute_script("arguments[0].click();", select_checkbox)
-        sleep(2)
+        sleep(1)
         select_all_records = super().wait_element_to_be_clickable("//*[@id='selectAllRec']")
+        sleep(1)
         select_all_records.click()
+        Logging().reportDebugStep(self, "Select all checkbox")
         return FinancialTransactionsPage(self.driver)
 
     def click_export(self):
+        sleep(1)
         element = self.driver.find_element(By.XPATH, "//button[@title='Export Financial Transactions']")
         self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+        sleep(1)
         button_export = super().wait_element_to_be_clickable("//button[@title='Export Financial Transactions']")
         # button_export.click()
         self.driver.execute_script("arguments[0].click();", button_export)
+        Logging().reportDebugStep(self, "Click export")
         return FinancialTransactionsPage(self.driver)
 
     def click_export_pop_ups(self):
         button_export = super().wait_element_to_be_clickable("//*[@id='exportpopupcontent']/form/div[2]/button[2]")
         self.driver.execute_script("arguments[0].click();", button_export)
+        Logging().reportDebugStep(self, "Click export in pop ups")
         return FinancialTransactionsPage(self.driver)
 
     def click_save_as(self, name_file):
@@ -321,6 +328,7 @@ class FinancialTransactionsPage(CRMBasePage):
         sleep(2)
         radio_xls = super().wait_element_to_be_clickable("//*[@value='excel']")
         self.driver.execute_script("arguments[0].click();", radio_xls)
+        Logging().reportDebugStep(self, "Select xls format")
         return FinancialTransactionsPage(self.driver)
 
     def scroll_financial_transaction(self):
