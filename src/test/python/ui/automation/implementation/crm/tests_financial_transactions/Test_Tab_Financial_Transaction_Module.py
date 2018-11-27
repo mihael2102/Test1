@@ -585,6 +585,8 @@ class TabFinancialTransaction(BaseTest):
         else:
             Logging().reportDebugStep(self, "Fail: checked csv file financial transactions")
 
+        assert count > 1
+
     def test_export_financial_transactions_xls(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -637,3 +639,4 @@ class TabFinancialTransaction(BaseTest):
         else:
             Logging().reportDebugStep(self, "Fail: checked excel file financial transactions")
 
+        assert count > 1
