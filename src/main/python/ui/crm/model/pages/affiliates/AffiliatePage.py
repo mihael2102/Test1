@@ -26,6 +26,7 @@ class AffiliatePage(CRMBasePage):
         input_partner_name = super().wait_load_element("//*[@id='partnerName']")
         sleep(1)
         input_partner_name.send_keys(name)
+        sleep(1)
         Logging().reportDebugStep(self, "Enter partner name")
 
     def choose_brand(self):
