@@ -424,11 +424,10 @@ class TabFinancialTransaction(BaseTest):
             .select_financial_transactions_module_more_list(
             FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
 
-        if global_var.current_brand_name == "kontofx":
+        if (global_var.current_brand_name == "4xfx") or (global_var.current_brand_name == "24btcmarket") or (global_var.current_brand_name == "kontofx"):
             financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT_TEST)
         else:
             financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)
-
         financial_transaction_module.click_search_button()
         financial_transaction_module.click_select_all_checkbox()
 
@@ -474,7 +473,7 @@ class TabFinancialTransaction(BaseTest):
             .select_financial_transactions_module_more_list(
             FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
 
-        if global_var.current_brand_name == "kontofx":
+        if (global_var.current_brand_name == "4xfx") or (global_var.current_brand_name == "24btcmarket") or (global_var.current_brand_name == "kontofx"):
             financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT_TEST)
         else:
             financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)
