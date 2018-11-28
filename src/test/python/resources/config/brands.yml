@@ -53,26 +53,26 @@ brands:
 
 
 #new brands - never testing before
-- name: b-finance
-  config_file: b-finance.yml
-- name: eafx
-  config_file: eafx.yml
-- name: gxfx
-  config_file: gxfx.yml
-- name: hizlifx
-  config_file: hizlifx.yml
-- name: libramarkets
-  config_file: libramarkets.yml
-- name: olympusmarkets
-  config_file: olympusmarkets.yml
-- name: privat-trade
-  config_file: privat-trade.yml
-- name: swiftcfd
-  config_file: swiftcfd.yml
-- name: tfxgo
-  config_file: tfxgo.yml
-- name: uprofx
-  config_file: uprofx.yml
+#- name: b-finance
+#  config_file: b-finance.yml
+#- name: eafx
+#  config_file: eafx.yml
+#- name: gxfx
+#  config_file: gxfx.yml
+#- name: hizlifx
+#  config_file: hizlifx.yml
+#- name: libramarkets
+#  config_file: libramarkets.yml
+#- name: olympusmarkets
+#  config_file: olympusmarkets.yml
+#- name: privat-trade
+#  config_file: privat-trade.yml
+#- name: swiftcfd
+#  config_file: swiftcfd.yml
+#- name: tfxgo
+#  config_file: tfxgo.yml
+#- name: uprofx
+#  config_file: uprofx.yml
 
 
 

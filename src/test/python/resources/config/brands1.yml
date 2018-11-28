@@ -1,15 +1,12 @@
 brands:
 
-#- name: goldenmarkets
-#  config_file: goldenmarkets.yml
-#- name: safemarkets
-#  config_file: safemarkets.yml
-#- name: optionstars
-#  config_file: optionstars.yml
-#- name: uft
-#  config_file: uft.yml
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: goldenmarkets
+  config_file: goldenmarkets.yml
+- name: safemarkets
+  config_file: safemarkets.yml
+- name: optionstars
+  config_file: optionstars.yml
+
 
 
 

@@ -1,15 +1,11 @@
 brands:
 
-#- name: axa_markets
-#  config_file: axa_markets.yml
-#- name: aztrades
-#  config_file: aztrades.yml
-#- name: bots
-#  config_file: bots.yml
-#- name: kontofx
-#  config_file: kontofx.yml
-#- name: xtraderfx
-#  config_file: xtraderfx.yml
+- name: axa_markets
+  config_file: axa_markets.yml
+- name: aztrades
+  config_file: aztrades.yml
+- name: bots
+  config_file: bots.yml
 
 
 

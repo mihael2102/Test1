@@ -1,4 +1,6 @@
 brands:
 
-#- name: forexbestmarket
-#  config_file: forexbestmarket.yml
+- name: forexbestmarket
+  config_file: forexbestmarket.yml
+- name: marketsplus
+  config_file: marketsplus.yml
