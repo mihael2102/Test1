@@ -167,6 +167,7 @@ class FilterPage(CRMBasePage):
 
     def click_save_button(self):
         save_button = self.driver.find_element(By.XPATH, "//input[@id='saveCustomView']")
-        save_button.click()
+        self.driver.execute_script("arguments[0].click();", save_button)
+        # save_button.click()
         Logging().reportDebugStep(self, "The filter was crated: ")
         return FilterPage(self.driver)
