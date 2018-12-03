@@ -24,6 +24,7 @@ FirstLeadInfo:
   first_lead_status: "R - New"
   first_lead_status_new: "New"
   first_lead_status_uft: "New"
+  first_lead_status_b_test: "B - Test"
   first_assigned_to: "pandaqa pandaqa"
   first_source_name: "source name test"
   brand:
@@ -55,6 +56,7 @@ SecondLeadInfo:
   first_lead_status: "B - No interest"
   first_lead_status_new: "Not interested"
   first_lead_status_uft: "No interest"
+  first_lead_status_b_test: "B - Test"
   first_assigned_to: "pandaqa pandaqa"
   first_source_name: "source name test"
   brand:

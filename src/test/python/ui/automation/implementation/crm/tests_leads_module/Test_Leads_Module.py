@@ -357,6 +357,9 @@ class LeadModuleTest(BaseTest):
         elif global_var.current_brand_name == "uft":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_UFT])
 
+        elif global_var.current_brand_name == "gxfx":
+            self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_B_TEST])
+
         else:
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS])
 

@@ -233,7 +233,7 @@ class ClientsPage(CRMBasePage):
 
     def open_client_id(self):
         self.wait_crm_loading_to_finish()
-        client_id = self.driver.find_element(By.XPATH, "//tr[@class='lvtColData']//div[@class='link_field']")
+        client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
         self.driver.execute_script("arguments[0].scrollIntoView();", client_id)
         self.perform_scroll_up()
         sleep(1)

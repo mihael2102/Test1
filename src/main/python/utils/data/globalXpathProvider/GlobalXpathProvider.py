@@ -276,4 +276,32 @@ def get_xpath_for_current_brand_element(page_name):
         if page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
 
+    elif current_brand_name == "hizlifx":
+        if page_name == "FinancialTransactionsPage":
+           return __get_xpath_of_elements_of_current_page(page_name)
+
+    elif current_brand_name == "olympusmarkets":
+        if page_name == "FinancialTransactionsPage":
+           return __get_xpath_of_elements_of_current_page(page_name)
+
+    elif current_brand_name == "privat-trade":
+        if page_name == "FinancialTransactionsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
+    elif current_brand_name == "swiftcfd":
+        if page_name == "FinancialTransactionsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
+    elif current_brand_name == "tfxgo":
+        if page_name == "FinancialTransactionsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
+    elif current_brand_name == "eafx":
+        if page_name == "FinancialTransactionsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
+    elif current_brand_name == "gxfx":
+        if page_name == "FinancialTransactionsPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
     return __get_default_xpath_of_elements_of_current_page()[page_name]
