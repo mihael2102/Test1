@@ -94,7 +94,6 @@ class LeadPrecondition(object):
                 lead[LeadsModuleConstants.PHONE],
                 lead[LeadsModuleConstants.FIRST_TITTLE],
                 lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-                lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
                 lead[LeadsModuleConstants.PO_BOX],
                 lead[LeadsModuleConstants.CITY],
                 lead[LeadsModuleConstants.FIRST_STATE])
@@ -280,7 +279,6 @@ class LeadPrecondition(object):
                 new_lead_data[LeadsModuleConstants.PHONE],
                 new_lead_data[LeadsModuleConstants.FIRST_TITTLE],
                 new_lead_data[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-                new_lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME],
                 new_lead_data[LeadsModuleConstants.PO_BOX],
                 new_lead_data[LeadsModuleConstants.CITY],
                 new_lead_data[LeadsModuleConstants.FIRST_STATE])

@@ -1,9 +1,9 @@
 brands:
 
-- name: triomarkets
-  config_file: triomarkets.yml
-- name: ogtrade
-  config_file: ogtrade.yml
+#- name: triomarkets
+#  config_file: triomarkets.yml
+#- name: ogtrade
+#  config_file: ogtrade.yml
 #- name: fm-fx
 #  config_file: fm-fx.yml
 #- name: brokerxp
@@ -24,8 +24,8 @@ brands:
 #  config_file: gmo-dev.yml
 #- name: 24fxm
 #  config_file: 24fxm.yml
-#- name: stoxmarket
-#  config_file: stoxmarket.yml
+- name: stoxmarket
+  config_file: stoxmarket.yml
 #- name: alphabetfx
 #  config_file: alphabetfx.yml
 #- name: kbcapitals

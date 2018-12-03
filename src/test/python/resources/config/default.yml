@@ -154,4 +154,5 @@ module_clients_filter:
   ninth_column_in_grid: "Last Name"  #for_old_forex
   tenth_column: "City"
   eleventh_column: "Phone"
+  eleventh_column_new: "Mobile"
 

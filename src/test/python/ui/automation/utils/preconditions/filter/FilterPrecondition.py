@@ -50,7 +50,7 @@ class FilterPrecondition(object):
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.EIGHTH_COLUMN),
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.NINTH_COLUMN),
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN))
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN_NEW))
         else:
             FilterPage(self.driver).perform_create_filter_client_module(
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FILTER_NAME),

@@ -71,7 +71,7 @@ class EditLeadsProfilePage(CRMBasePage):
 
     def perform_edit_lead_ogtrade(self, first_name, last_name, mobile, fax, email, secondary_email,
                             street, postal_code, description,
-                            phone, tittle, assigned_to, source_name, po_box,
+                            phone, tittle, assigned_to, po_box,
                             city, state):
 
         self.set_first_name(first_name)
@@ -86,7 +86,7 @@ class EditLeadsProfilePage(CRMBasePage):
         self.set_phone(phone)
         self.set_tittle(tittle)
         self.set_assigned_to(assigned_to)
-        self.set_source_name(source_name)
+
         self.set_po_box(po_box)
         self.set_city(city)
         self.set_state(state)

@@ -29,6 +29,7 @@ class CRMConstants(object):
     TENTH_COLUMN = "tenth_column"
     TENTH_COLUMN_OTHER_TYPE = "City"
     ELEVENTH_COLUMN = "eleventh_column"
+    ELEVENTH_COLUMN_NEW = "eleventh_column_new"
     FILTER_NAME = "test_filter"
     SECOND_FILTER_NAME = "TestFilter" + str(random.randrange(1, 9999))
     CLIENT_STATUS = "client_status_1"

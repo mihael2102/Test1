@@ -57,8 +57,12 @@ class FilterModulesTest(BaseTest):
                                                CRMConstants.EIGHTH_COLUMN) == eighth_name_column
             assert CRMConstants.NINTH_COLUMN_OTHER_TYPE == ninth_name_column
             assert CRMConstants.TENTH_COLUMN_OTHER_TYPE == tenth_name_column
+
+
             assert self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER,
-                                               CRMConstants.ELEVENTH_COLUMN) == eleventh_name_column
+                                               CRMConstants.ELEVENTH_COLUMN) or self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER,
+                                               CRMConstants.ELEVENTH_COLUMN_NEW) == eleventh_name_column
+
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             try:
                 ClientProfilePage(self.driver).Sign_Out()

@@ -427,10 +427,10 @@ class LeadModuleTest(BaseTest):
         fax = lead_detail_view.get_fax_text()
         email = lead_detail_view.get_email_text()
         secondary_email = lead_detail_view.get_secondary_email_text()
-        source_name = lead_detail_view.get_source_name_text()
+        # source_name = lead_detail_view.get_source_name_text()
         panda_partner_id = lead_detail_view.get_panda_partner_id_text()
 
-        if global_var.current_brand_name != "rimarkets":
+        if (global_var.current_brand_name != "rimarkets") and (global_var.current_brand_name != "ogtrade"):
             referral = lead_detail_view.get_referral_text()
 
         street = lead_detail_view.get_street_text()
@@ -456,7 +456,7 @@ class LeadModuleTest(BaseTest):
         self.assertEqual(fax, lead_data[LeadsModuleConstants.FAX])
         self.assertEqual(email, lead_data[LeadsModuleConstants.EMAIL])
         self.assertEqual(secondary_email, lead_data[LeadsModuleConstants.SECONDARY_EMAIL])
-        self.assertEqual(source_name, lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME])
+        # self.assertEqual(source_name, lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME])
 
         self.assertEqual(street, lead_data[LeadsModuleConstants.STREET])
         self.assertEqual(postal_code, lead_data[LeadsModuleConstants.POSTAL_CODE])
@@ -467,7 +467,7 @@ class LeadModuleTest(BaseTest):
                 self.assertEqual(panda_partner_id, lead_data[LeadsModuleConstants.PANDA_PARTNER])
             if (global_var.current_brand_name != "gmo") and (global_var.current_brand_name != "gmo-dev") and (global_var.current_brand_name != "oinvestsa") \
                     and (global_var.current_brand_name != "itrader") and (global_var.current_brand_name != "otcapital") and (global_var.current_brand_name != "urf") \
-                    and (global_var.current_brand_name != "rimarkets") and (global_var.current_brand_name != "itrader_global"):
+                    and (global_var.current_brand_name != "rimarkets") and (global_var.current_brand_name != "itrader_global") and (global_var.current_brand_name != "ogtrade"):
                 if lead_data[LeadsModuleConstants.FIRST_REFERRAL]:
                     self.assertEqual(referral, lead_data[LeadsModuleConstants.FIRST_REFERRAL])
         else:
