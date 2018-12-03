@@ -1,4 +1,5 @@
 brands:
+
 - name: b-finance
   config_file: b-finance.yml
 - name: eafx
