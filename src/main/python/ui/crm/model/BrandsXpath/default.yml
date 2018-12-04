@@ -22,3 +22,5 @@ ClientProfilePage:
   email: "//td[contains(text(),'Email')]//following-sibling::td[1]"
 CRMClientDeposit:
   i_confirm_checkbox: "//*[@name='confirm']"
+AffiliatePage:
+  countrys: "//span[@class = 'hovered-option'][contains(text(),'%s')]"

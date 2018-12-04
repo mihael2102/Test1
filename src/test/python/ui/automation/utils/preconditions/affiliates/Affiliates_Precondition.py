@@ -6,6 +6,7 @@ from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class AffiliatesPrecondition(object):
 
@@ -41,7 +42,9 @@ class AffiliatesPrecondition(object):
         affiliate_list_view_page.select_blocked_country(CRMConstants.BLOCKED_COUNTRY)
         affiliate_list_view_page.click_submit()
         success_message = affiliate_list_view_page.get_success_message()
-        assert success_message == CRMConstants.CREATE_AFFILIATE_SUCCCESS
+
+        if global_var.current_brand_name != "solocapitlas":
+            assert success_message == CRMConstants.CREATE_AFFILIATE_SUCCCESS
 
         CRMHomePage(self.driver).refresh_page()
         affiliate_list_view_page.search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[

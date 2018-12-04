@@ -18,3 +18,5 @@ FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
+AffiliatePage:
+  countrys: "//span[@class = 'hovered-option'][contains(text(),'%s')]"

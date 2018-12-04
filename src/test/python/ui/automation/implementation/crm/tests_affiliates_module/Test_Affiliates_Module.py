@@ -6,14 +6,25 @@ from src.test.python.ui.automation.utils.postconditions.affiliates.Affiliates_Po
     AffiliatesPostcondition
 from src.test.python.ui.automation.utils.preconditions.affiliates.Affiliates_Precondition import AffiliatesPrecondition
 from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
-
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
+from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
 
 @pytest.mark.run(order=32)
 class AffiliateModule(BaseTest):
 
     def test_create_affiliate(self):
-
-        AffiliatesPrecondition(self.driver, self.config).create_affiliate()
+        try:
+            AffiliatesPrecondition(self.driver, self.config).create_affiliate()
+        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            try:
+                AffiliatePage(self.driver).Sign_Out()
+                AffiliatesPrecondition(self.driver, self.config).create_affiliate()
+            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+                AffiliatePage(self.driver).Sign_Out()
+                AffiliatesPrecondition(self.driver, self.config).create_affiliate()
 
 
 
