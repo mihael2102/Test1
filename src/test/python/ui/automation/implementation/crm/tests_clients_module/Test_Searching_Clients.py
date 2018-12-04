@@ -28,7 +28,8 @@ class SearchingClientsTestCRM(BaseTest):
                 # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                 # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
-            if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "swiftcfd"):
+            if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "swiftcfd") \
+                    or (global_var.current_brand_name == "ptbanc"):
                     sleep(15)
                     ClientsPage(self.driver).perform_searching(
                         self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
@@ -98,7 +99,8 @@ class SearchingClientsTestCRM(BaseTest):
                     # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                     # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
-                if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds"):
+                if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "swiftcfd") \
+                    or (global_var.current_brand_name == "ptbanc"):
                         sleep(15)
                         ClientsPage(self.driver).perform_searching(
                             self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
@@ -166,7 +168,8 @@ class SearchingClientsTestCRM(BaseTest):
                 # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                 # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
-                if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds"):
+                if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "swiftcfd") \
+                    or (global_var.current_brand_name == "ptbanc"):
                     sleep(15)
                     ClientsPage(self.driver).perform_searching(
                         self.config.get_data_client(TestDataConstants.CLIENT_ONE,

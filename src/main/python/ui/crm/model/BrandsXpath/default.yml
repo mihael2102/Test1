@@ -24,3 +24,4 @@ CRMClientDeposit:
   i_confirm_checkbox: "//*[@name='confirm']"
 AffiliatePage:
   countrys: "//span[@class = 'hovered-option'][contains(text(),'%s')]"
+  methods: "//span[@class = 'hovered-option ng-star-inserted'][contains(text(),'%s')]"

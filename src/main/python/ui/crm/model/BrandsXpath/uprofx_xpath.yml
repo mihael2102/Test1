@@ -1,0 +1,3 @@
+AffiliatePage:
+  countrys: "//span[@class = 'hovered-option'][contains(text(),'%s')]"
+  methods: "//span[@class = 'hovered-option'][contains(text(),'%s')]"

@@ -16,3 +16,7 @@ FinancialTransactionsPage:
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
   email: "//*[@id='mouseArea_Email']"
+AffiliatePage:
+  countrys: "//span[@class = 'hovered-option ng-star-inserted'][contains(text(),'%s')]"
+
+

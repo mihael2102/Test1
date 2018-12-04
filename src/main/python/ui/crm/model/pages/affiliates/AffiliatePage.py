@@ -55,7 +55,8 @@ class AffiliatePage(CRMBasePage):
         methods_drop_down.click()
         input_methods = super().wait_load_element("/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
         input_methods.send_keys(method)
-        methods = super().wait_load_element("//span[@class = 'hovered-option ng-star-inserted'][contains(text(),'%s')]" % method)
+        methods = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["methods"]
+            % method)
         methods.click()
         Logging().reportDebugStep(self, "Select allowed methods %s" % method)
 

@@ -78,7 +78,7 @@ tests_config:
   class: TradingAccountCrmTest
   tests:
     - test_crm_edit_trading_account  # edit trading account
-#
+
 - module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
   class: CalendarView
   tests:
