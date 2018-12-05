@@ -8,3 +8,5 @@ brands:
   config_file: itrader_global.yml
 - name: otcapital
   config_file: otcapital.yml
+- name: tycoonfx
+  config_file: tycoonfx.yml

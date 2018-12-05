@@ -8,3 +8,5 @@ brands:
   config_file: urf_financial.yml
 - name: gmo
   config_file: gmo.yml
+#- name: capitalmarketsbanc
+#  config_file: capitalmarketsbanc.yml

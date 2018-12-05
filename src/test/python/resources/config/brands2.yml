@@ -8,3 +8,7 @@ brands:
   config_file: alphabetfx.yml
 - name: kbcapitals
   config_file: kbcapitals.yml
+#- name: itrader-il
+#  config_file: itrader-il.yml
+- name: gmo-dev
+  config_file: gmo-dev.yml
