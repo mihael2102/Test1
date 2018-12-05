@@ -133,27 +133,27 @@ if __name__ == "__main__":
 
         all_brands_yml = "brands.yml"
         path_to_brands_suite_1 = "brands1.yml"
-        path_to_brands_suite_2 = "brands2.yml"
-        path_to_brands_suite_3 = "brands3.yml"
-        path_to_brands_suite_4 = "brands4.yml"
-        path_to_brands_suite_5 = "brands5.yml"
-        path_to_brands_suite_6 = "brands6.yml"
-        path_to_brands_suite_7 = "brands7.yml"
-        path_to_brands_suite_8 = "brands8.yml"
-        path_to_brands_suite_9 = "brands9.yml"
-        path_to_brands_suite_10 = "brands10.yml"
-        path_to_brands_suite_11 = "brands11.yml"
-        path_to_brands_suite_12 = "brands12.yml"
-        path_to_brands_suite_13 = "brands13.yml"
+        # path_to_brands_suite_2 = "brands2.yml"
+        # path_to_brands_suite_3 = "brands3.yml"
+        # path_to_brands_suite_4 = "brands4.yml"
+        # path_to_brands_suite_5 = "brands5.yml"
+        # path_to_brands_suite_6 = "brands6.yml"
+        # path_to_brands_suite_7 = "brands7.yml"
+        # path_to_brands_suite_8 = "brands8.yml"
+        # path_to_brands_suite_9 = "brands9.yml"
+        # path_to_brands_suite_10 = "brands10.yml"
+        # path_to_brands_suite_11 = "brands11.yml"
+        # path_to_brands_suite_12 = "brands12.yml"
+        # path_to_brands_suite_13 = "brands13.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-                      path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
-                      path_to_brands_suite_13]
-
+        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+        #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+        #               path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
+        #               path_to_brands_suite_13]
+        input_list = [path_to_brands_suite_1]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=13)
+        pool = multiprocessing.Pool(processes=1)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
