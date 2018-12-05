@@ -237,7 +237,7 @@ class ClientsPage(CRMBasePage):
         self.driver.execute_script("arguments[0].scrollIntoView();", client_id)
         self.perform_scroll_up()
         sleep(1)
-        client_id.click()
+        # client_id.click()
         Logging().reportDebugStep(self, "Click user name by email : ")
         return ClientProfilePage(self.driver)
 
