@@ -213,7 +213,7 @@ class DocumentsPage(CRMBasePage):
         sleep(2)
         sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
         self.driver.execute_script("arguments[0].click();", sign_out)
-        Logging().reportDebugStep(self, "'Sign_Out")
+        Logging().reportDebugStep(self, "Sign Out")
         return DocumentsPage(self.driver)
 
     def search_by_attached_to(self, client_name):

@@ -92,9 +92,8 @@ class ClientsPage(CRMBasePage):
         search_button.click()
         Logging().reportDebugStep(self, "Click the search button ")
         sleep(2)
-        client_id = super().wait_element_to_be_clickable("//a[contains(text(), 'ACC')]")
-        # client_id.click()
-        self.driver.execute_script("arguments[0].click();", client_id)
+        client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", client_id)
         Logging().reportDebugStep(self, "Click user email: " + email)
         return ClientProfilePage(self.driver)
 
@@ -233,11 +232,12 @@ class ClientsPage(CRMBasePage):
 
     def open_client_id(self):
         self.wait_crm_loading_to_finish()
+        sleep(3)
         client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
-        self.driver.execute_script("arguments[0].scrollIntoView();", client_id)
+        # self.driver.execute_script("arguments[0].scrollIntoView();", client_id)
         self.perform_scroll_up()
         sleep(1)
-        # client_id.click()
+        client_id.click()
         Logging().reportDebugStep(self, "Click user name by email : ")
         return ClientProfilePage(self.driver)
 

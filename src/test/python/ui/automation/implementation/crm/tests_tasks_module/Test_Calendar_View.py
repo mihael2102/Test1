@@ -109,7 +109,7 @@ class CalendarView(BaseTest):
                 .open_task_module() \
                 .open_calendar_view_module() \
                 .open_week_tab() \
-                .perform_screen_shot()
+                # .perform_screen_shot()
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             try:
                 TasksPage(self.driver).Sign_Out()
@@ -122,7 +122,7 @@ class CalendarView(BaseTest):
                     .open_task_module() \
                     .open_calendar_view_module() \
                     .open_week_tab() \
-                    .perform_screen_shot()
+                    # .perform_screen_shot()
             except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
                 TasksPage(self.driver).Sign_Out()
                 CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
@@ -134,7 +134,7 @@ class CalendarView(BaseTest):
                     .open_task_module() \
                     .open_calendar_view_module() \
                     .open_week_tab() \
-                    .perform_screen_shot()
+                    # .perform_screen_shot()
 
 
     def test_check_day_tab(self):

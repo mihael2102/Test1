@@ -269,7 +269,7 @@ class FinancialTransactionsPage(CRMBasePage):
         sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
         # self.driver.execute_script("arguments[0].click();", sign_out)
         sign_out.click()
-        Logging().reportDebugStep(self, "'Sign_Out")
+        Logging().reportDebugStep(self, "Sign Out")
         return FinancialTransactionsPage(self.driver)
 
     def click_select_all_checkbox(self):

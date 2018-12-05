@@ -1,11 +1,13 @@
 import xlsxwriter
 from time import gmtime, strftime
+from src.test.python.ui.automation.utils.postconditions.SendMail import Send_Email_XLS
 
 class ExcelWriter:
 
     def write_test_results(self, brands, tests, results):
         # Create a workbook and add a worksheet.
-        workbook = xlsxwriter.Workbook("result/test_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx")
+        filepath = "result/test_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx"
+        workbook = xlsxwriter.Workbook(filepath)
         worksheet = workbook.add_worksheet()
 
         # create styles for the PASS/FAIL results
@@ -220,6 +222,8 @@ class ExcelWriter:
 
         workbook.close()
 
+        Send_Email_XLS(filepath)
+
     @staticmethod
     def get_test_pretty_name(test):
         return test['class'] + '.' + test['method']
@@ -233,71 +237,70 @@ class ExcelWriter:
         # CalendarView
 
         if self.get_test_pretty_name_new(test) == "CalendarView: test check add tasks calendar view":
-            step_suit = ["Open first tabs page"
-                        ,"Setting the user name"
-                        ,"Setting the user password"
-                        ,"Click the login button"
-                        ,"No OTP authentication is required"
-                        ,"'What's new' popup isn't displayed"
-                        ,"Task module is opened"
-                        ,"The calendar view module was opened"
-                        ,"The add new task module was opened"
-                        ,"The event status was set In Progress"
-                        ,"The event type is set Meeting"
-                        ,"The date  was set"
-                        ,"The time  was set "
-                        ,"The duration  was set"
-                        ,"The priority was set Medium"
-                        ,"The  assign to was set pandaqa pandaqa"
-                        ,"The account was set"
-                        ,"The subject was set"
-                        ,"The comments was set Description Add Event"
-                        ,"Click the 'save' button"
-                        ,"Returns the message task Task was created"
-                        ,"Returns the subject task"]
+            step_suit = ["Open CRM"
+                        ,"Enter Username"
+                        ,"Enter Password"
+                        ,"Click Login"
+                        ,"No OTP"
+                        ,"No What's new"
+                        ,"Go to Task module"
+                        ,"Go to Calendar View"
+                        ,"Click Add Event"
+                        ,"Set 'Status' to 'In Progress'"
+                        ,"Set 'Event Type' to 'Meeting'"
+                        ,"Set 'Date'"
+                        ,"Set 'Time'"
+                        ,"Set 'Duration' to M"
+                        ,"Set 'Priority' to Medium"
+                        ,"Set 'Assign to' to pandaqa pandaqa"
+                        ,"Set 'Account Name'"
+                        ,"Set 'Subject'"
+                        ,"Set 'Comment'"
+                        ,"Click 'Save'"
+                        ,"Task was created' message is shown"
+                        ,"Verify subject is correct"]
 
         if self.get_test_pretty_name_new(test) == "CalendarView: test check day tab":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name"
-                , "Setting the user password"
-                , "Click the login button"
-                , "No OTP authentication"
-                , "'What's new' popup"
-                ,"Task module is opened"
-                , "The calendar view module was opened"
-                , "The Day tab was opened"
-                , "The current today day"
-                , "The day of week day"]
+            step_suit = ["Open CRM"
+                , "Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "No What's new"
+                , "Go to Task module"
+                , "Go to Calendar View"
+                , "Go to 'Day' tab"
+                , "Verify date is correct"]
 
         if self.get_test_pretty_name_new(test) == "CalendarView: test check month tab":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name"
-                , "Setting the user password"
-                , "Click the login button"
-                , "No OTP authentication"
-                , "'What's new' popup"
-                ,"Task module is opened"
-                , "The calendar view module was opened"
-                , "The Month tab was opened"
-                , "The first day is :"
-                ,"The second day is :"
-                , "The third day is :"
-                , "The fourth day is :"
-                ,"The fifth day is :"
-                , "The sixth day is :"
-                , "The seventh day is :"]
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "No What's new"
+                ,"Go to Task module"
+                , "Go to Calendar View"
+                , "Go to 'Month' tab"
+                , "Verify first column is 'Sun'"
+                ,"Verify second column is 'Mon'"
+                , "Verify third column is 'Tue'"
+                , "Verify fourth column is 'Wed'"
+                ,"Verify fifth column is 'Thu'"
+                , "Verify sixth column is 'Fri'"
+                , "Verify seventh column is 'Sat'"]
 
         if self.get_test_pretty_name_new(test) == "CalendarView: test check week tab":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name"
-                , "Setting the user password"
-                , "Click the login button"
-                , "No OTP authentication"
-                , "'What's new' popup"
-                , "Task module is opened"
-                , "The calendar view module was opened"
-                , "The Week tab was opened"
-                , "Screenshot was performed"]
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "No What's new"
+                , "Go to Task module"
+                , "Go to Calendar View"
+                , "Go to 'Week' tab"]
 
         # TabFinancialTransaction
 
