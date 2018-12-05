@@ -205,19 +205,19 @@ class ExcelWriter:
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
         worksheet.set_row(788, None, None, {'level': 1, 'hidden': True})
-        for i in range(789, 797):
+        for i in range(789, 796):
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-        worksheet.set_row(798, None, None, {'level': 1, 'hidden': True})
-        for i in range(799, 810):
+        worksheet.set_row(797, None, None, {'level': 1, 'hidden': True})
+        for i in range(798, 809):
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-        worksheet.set_row(811, None, None, {'level': 1, 'hidden': True})
-        for i in range(812, 825):
+        worksheet.set_row(810, None, None, {'level': 1, 'hidden': True})
+        for i in range(811, 824):
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-        worksheet.set_row(826, None, None, {'level': 1, 'hidden': True})
-        for i in range(827, 841):
+        worksheet.set_row(825, None, None, {'level': 1, 'hidden': True})
+        for i in range(826, 840):
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
         workbook.close()
