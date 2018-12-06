@@ -283,7 +283,8 @@ class ClientProfilePage(CRMBasePage):
     def open_mt4_actions(self, module):
         sleep(3)
         mt4_button = super().wait_load_element("//div[@class='mt4_act_box']")
-        mt4_button.click()
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", mt4_button)
         sleep(5)
         Logging().reportDebugStep(self, "Open mt4 actions ")
         MT4DropDown(self.driver).mt4_actions(module)
@@ -571,6 +572,6 @@ class ClientProfilePage(CRMBasePage):
         sleep(2)
         sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
         self.driver.execute_script("arguments[0].click();", sign_out)
-        Logging().reportDebugStep(self, "'Sign_Out")
+        Logging().reportDebugStep(self, "Sign Out")
         return ClientProfilePage(self.driver)
 

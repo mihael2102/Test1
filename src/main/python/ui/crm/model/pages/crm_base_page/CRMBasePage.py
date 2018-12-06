@@ -69,7 +69,7 @@ class CRMBasePage(object):
     def refresh_page(self):
         sleep(3)
         self.driver.refresh()
-        Logging().reportDebugStep(self, "The page is refreshed")
+        # Logging().reportDebugStep(self, "The page is refreshed")
 
     def perform_scroll_down(self):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")

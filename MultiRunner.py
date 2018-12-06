@@ -58,21 +58,24 @@ class MultiRunner:
             test.config = self.data_provider
             runner.outsuffix = test_data['method'] + "-" + brand
             print("Running test %s on %s" % (test_data['method'], brand))
-            # result, content = runner.run(test)
-            result = runner.run(test)
+            result, content = runner.run(test)
             # content = runner.run()
             test_name = test_data['class'] + '.' + test_data['method']
-            # content_fail_err = content.decode("utf-8")
-            # temp = content_fail_err.find('Open first tabs page')
-            # index = temp
-            # content_fail_err = content_fail_err[index:]
-            # content_fail_err = content_fail_err[1:]
-            # content_fail_err = content_fail_err.replace('</system-err></testsuite>','')
+            content_fail_err = content.decode("utf-8")
+            temp = content_fail_err.find('Open first tabs page')
+            index = temp
+            content_fail_err = content_fail_err[index:]
+            content_fail_err = content_fail_err[1:]
+
+            content_fail_err = content_fail_err.replace(']]>	</system-err','')
+            content_fail_err = content_fail_err.replace('</testsuite>', '')
+            content_fail_err = content_fail_err.replace('>', '')
+            content_fail_err = content_fail_err.replace(' ', '')
             #test_passed = False
             if not result or result.errors:
-                results[test_name] = "ERROR"
+                results[test_name] = "ERROR" + content_fail_err
             elif result.failures:
-                results[test_name] = "FAIL"
+                results[test_name] = "FAIL" + content_fail_err
             elif not result.testsRun:
                 results[test_name] = "SKIP"
             else:
@@ -121,16 +124,16 @@ if __name__ == "__main__":
             # pool.map(__simple_run, input_list)
 
         path_to_brands_suite_1 = "brands.yml"
-        path_to_brands_suite_2 = "brands1.yml"
-        path_to_brands_suite_3 = "brands2.yml"
-        path_to_brands_suite_4 = "brands3.yml"
-        path_to_brands_suite_5 = "brands4.yml"
+        # path_to_brands_suite_2 = "brands1.yml"
+        # path_to_brands_suite_3 = "brands2.yml"
+        # path_to_brands_suite_4 = "brands3.yml"
+        # path_to_brands_suite_5 = "brands4.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4, path_to_brands_suite_5]
-
+        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4, path_to_brands_suite_5]
+        input_list = [path_to_brands_suite_1]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=5)
+        pool = multiprocessing.Pool(processes=1)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)

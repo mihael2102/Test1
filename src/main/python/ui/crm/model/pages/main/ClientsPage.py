@@ -92,10 +92,10 @@ class ClientsPage(CRMBasePage):
         search_button.click()
         Logging().reportDebugStep(self, "Click the search button ")
         sleep(2)
-        # client_id = super().wait_element_to_be_clickable("//tr[@class='lvtColData']//div[@class='link_field']")
-        # client_id.click()
-        client_id = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["id_client"])
+        client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
+        sleep(1)
         self.driver.execute_script("arguments[0].click();", client_id)
+        sleep(1)
         Logging().reportDebugStep(self, "Click user email: " + email)
         return ClientProfilePage(self.driver)
 
@@ -241,12 +241,14 @@ class ClientsPage(CRMBasePage):
 
     def open_client_id(self):
         self.wait_crm_loading_to_finish()
-        sleep(2)
+        sleep(3)
         client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
-        self.driver.execute_script("arguments[0].scrollIntoView();", client_id)
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", client_id)
+        sleep(1)
         self.perform_scroll_up()
         sleep(1)
-        client_id.click()
+        # client_id.click()
         Logging().reportDebugStep(self, "Click user name by email : ")
         return ClientProfilePage(self.driver)
 
