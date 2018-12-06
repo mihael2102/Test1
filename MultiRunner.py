@@ -124,16 +124,16 @@ if __name__ == "__main__":
             # pool.map(__simple_run, input_list)
 
         path_to_brands_suite_1 = "brands.yml"
-        # path_to_brands_suite_2 = "brands1.yml"
-        # path_to_brands_suite_3 = "brands2.yml"
-        # path_to_brands_suite_4 = "brands3.yml"
-        # path_to_brands_suite_5 = "brands4.yml"
+        path_to_brands_suite_2 = "brands1.yml"
+        path_to_brands_suite_3 = "brands2.yml"
+        path_to_brands_suite_4 = "brands3.yml"
+        path_to_brands_suite_5 = "brands4.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4, path_to_brands_suite_5]
-        input_list = [path_to_brands_suite_1]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4, path_to_brands_suite_5]
+        # input_list = [path_to_brands_suite_1]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=1)
+        pool = multiprocessing.Pool(processes=5)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
