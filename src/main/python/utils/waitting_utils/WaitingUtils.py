@@ -40,7 +40,7 @@ class WaitingUtils(object):
                 sleep(2)
                 amount_present = driver.find_element(By.XPATH, element)
                 amount_reg = re.sub('[$£CA€¥ [ ]', '', amount_present.text)
-                Logging().reportDebugStep(self, "Returns the amount \n" + amount_reg + " from CRM")
+                # Logging().reportDebugStep(self, "Returns the amount \n" + amount_reg + " from CRM")
                 if amount_reg == total_amount_crm:
                     return amount_reg
                 else:
