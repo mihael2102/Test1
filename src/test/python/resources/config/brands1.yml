@@ -6,7 +6,3 @@ brands:
   config_file: soarfx.yml
 - name: highfx
   config_file: highfx.yml
-- name: mlnfx
-  config_file: mlnfx.yml
-- name: 24fxm
-  config_file: 24fxm.yml

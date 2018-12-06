@@ -1,14 +1,16 @@
 brands:
 
-- name: gmo-dev
-  config_file: gmo-dev.yml
-- name: stoxmarket
-  config_file: stoxmarket.yml
-- name: alphabetfx
-  config_file: alphabetfx.yml
+#- name: gmo-dev
+#  config_file: gmo-dev.yml
+#- name: stoxmarket
+#  config_file: stoxmarket.yml
+#- name: alphabetfx
+#  config_file: alphabetfx.yml
 - name: kbcapitals
   config_file: kbcapitals.yml
+- name: 24fxm
+  config_file: 24fxm.yml
 #- name: itrader-il
 #  config_file: itrader-il.yml
-- name: gmo-dev
-  config_file: gmo-dev.yml
+#- name: gmo-dev
+#  config_file: gmo-dev.yml

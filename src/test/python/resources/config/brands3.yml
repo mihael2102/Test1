@@ -2,11 +2,11 @@ brands:
 
 - name: oinvestsa
   config_file: oinvestsa.yml
-- name: itrader
-  config_file: itrader.yml
+#- name: itrader
+#  config_file: itrader.yml
 - name: itrader_global
   config_file: itrader_global.yml
-- name: otcapital
-  config_file: otcapital.yml
-- name: tycoonfx
-  config_file: tycoonfx.yml
+#- name: otcapital
+#  config_file: otcapital.yml
+#- name: tycoonfx
+#  config_file: tycoonfx.yml
