@@ -2,8 +2,8 @@ brands:
 
 - name: triomarkets
   config_file: triomarkets.yml
-#- name: ogtrade
-#  config_file: ogtrade.yml
+- name: ogtrade
+  config_file: ogtrade.yml
 #- name: fm-fx
 #  config_file: fm-fx.yml
 - name: mlnfx
