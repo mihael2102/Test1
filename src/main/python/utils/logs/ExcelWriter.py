@@ -262,7 +262,6 @@ class ExcelWriter:
 
         if self.get_test_pretty_name_new(test) == "CalendarView: test check day tab":
             step_suit = ["Open CRM"
-                , "Open CRM"
                 , "Enter Username"
                 , "Enter Password"
                 , "Click Login"
