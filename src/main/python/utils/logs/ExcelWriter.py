@@ -197,27 +197,27 @@ class ExcelWriter:
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
         worksheet.set_row(761, None, None, {'level': 1, 'hidden': True})
-        for i in range(762, 771):
+        for i in range(762, 770):
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-        worksheet.set_row(772, None, None, {'level': 1, 'hidden': True})
-        for i in range(773, 787):
+        worksheet.set_row(771, None, None, {'level': 1, 'hidden': True})
+        for i in range(772, 786):
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-        worksheet.set_row(788, None, None, {'level': 1, 'hidden': True})
-        for i in range(789, 796):
+        worksheet.set_row(787, None, None, {'level': 1, 'hidden': True})
+        for i in range(788, 795):
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-        worksheet.set_row(797, None, None, {'level': 1, 'hidden': True})
-        for i in range(798, 809):
+        worksheet.set_row(796, None, None, {'level': 1, 'hidden': True})
+        for i in range(797, 808):
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-        worksheet.set_row(810, None, None, {'level': 1, 'hidden': True})
-        for i in range(811, 824):
+        worksheet.set_row(809, None, None, {'level': 1, 'hidden': True})
+        for i in range(810, 823):
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-        worksheet.set_row(825, None, None, {'level': 1, 'hidden': True})
-        for i in range(826, 840):
+        worksheet.set_row(824, None, None, {'level': 1, 'hidden': True})
+        for i in range(825, 839):
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
         workbook.close()
