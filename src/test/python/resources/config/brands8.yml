@@ -2,7 +2,7 @@ brands:
 
 - name: solocapitlas
   config_file: solocapitlas.yml
-- name: olympusmarkets
-  config_file: olympusmarkets.yml
-- name: privat-trade
-  config_file: privat-trade.yml
+#- name: olympusmarkets
+#  config_file: olympusmarkets.yml
+#- name: privat-trade
+#  config_file: privat-trade.yml

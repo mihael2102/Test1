@@ -2,7 +2,7 @@ brands:
 
 - name: b-finance
   config_file: b-finance.yml
-- name: eafx
-  config_file: eafx.yml
-- name: gxfx
-  config_file: gxfx.yml
+#- name: eafx
+#  config_file: eafx.yml
+#- name: gxfx
+#  config_file: gxfx.yml
