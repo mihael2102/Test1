@@ -83,7 +83,7 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = "anna.p@pandats.com"
-    toaddr = "Niv.s@pandats.com "
+    toaddr = "Niv.s@pandats.com"
 
     # instance of MIMEMultipart
     msg = MIMEMultipart()
