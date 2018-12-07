@@ -5,7 +5,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 
-def Send_Email_XML(filepath):
+def Send_Email_XML(filepath, content):
 
     fromaddr = "anna.p@pandats.com"
     toaddr = "ann.poimenova@gmail.com"
@@ -19,11 +19,24 @@ def Send_Email_XML(filepath):
     # storing the receivers email address
     msg['To'] = toaddr
 
+    subject_name_test = filepath.replace('result\\TEST-', '')
+    subject_name_test = subject_name_test.replace('.xml', '')
+    subject_name_test = subject_name_test.replace('_', ' ')
     # storing the subject
-    msg['Subject'] = "Subject of the Mail"
+    msg['Subject'] = "Warning:'" + subject_name_test + "' is failed"
 
     # string to store the body of the mail
-    body = "Body_of_the_mail"
+    content_fail_err = content.decode("utf-8")
+    temp = content_fail_err.find('Open first tabs page')
+    index = temp
+    content_fail_err = content_fail_err[index:]
+    content_fail_err = content_fail_err[1:]
+
+    content_fail_err = content_fail_err.replace(']]>	</system-err', '')
+    content_fail_err = content_fail_err.replace('</testsuite>', '')
+    content_fail_err = content_fail_err.replace('>', '')
+
+    body = content_fail_err
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
