@@ -153,7 +153,7 @@ if __name__ == "__main__":
         #               path_to_brands_suite_13]
         input_list = [path_to_brands_suite_1]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=13)
+        pool = multiprocessing.Pool(processes=1)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
