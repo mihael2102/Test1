@@ -6,3 +6,5 @@ brands:
   config_file: soarfx.yml
 - name: highfx
   config_file: highfx.yml
+- name: urf
+  config_file: urf_financial.yml
