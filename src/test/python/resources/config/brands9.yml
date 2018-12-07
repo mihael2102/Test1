@@ -2,7 +2,7 @@ brands:
 
 - name: herdos
   config_file: herdos.yml
-#- name: hizlifx
-#  config_file: hizlifx.yml
-#- name: libramarkets
-#  config_file: libramarkets.yml
+- name: hizlifx
+  config_file: hizlifx.yml
+- name: libramarkets
+  config_file: libramarkets.yml

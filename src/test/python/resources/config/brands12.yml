@@ -2,7 +2,7 @@ brands:
 
 - name: tradospot
   config_file: tradospot.yml
-#- name: eu4xsolutions
-#  config_file: eu4xsolutions.yml
-#- name: mpcrypto
-#  config_file: mpcrypto.yml
+- name: eu4xsolutions
+  config_file: eu4xsolutions.yml
+- name: mpcrypto
+  config_file: mpcrypto.yml
