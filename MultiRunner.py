@@ -98,12 +98,12 @@ if __name__ == "__main__":
     #
     # p = socket.gethostbyname(socket.gethostname())
     # print(p)
-    from requests import get
-
-    ip = get('https://api.ipify.org').text
-    print('My public IP address is: {}'.format(ip))
-
-    if ip == '35.158.30.212':
+    # from requests import get
+    #
+    # ip = get('https://api.ipify.org').text
+    # print('My public IP address is: {}'.format(ip))
+    #
+    # if ip == '35.158.30.212':
         #delete all files fron result
         # folder = 'D:/automation-newforexqa/result'
         # for the_file in os.listdir(folder):
@@ -131,37 +131,37 @@ if __name__ == "__main__":
         # # Run Test Suites as separate processes
         # pool.map(__simple_run, input_list)
 
-        all_brands_yml = "brands.yml"
-        path_to_brands_suite_1 = "brands1.yml"
-        path_to_brands_suite_2 = "brands2.yml"
-        path_to_brands_suite_3 = "brands3.yml"
-        path_to_brands_suite_4 = "brands4.yml"
-        path_to_brands_suite_5 = "brands5.yml"
-        path_to_brands_suite_6 = "brands6.yml"
-        path_to_brands_suite_7 = "brands7.yml"
-        path_to_brands_suite_8 = "brands8.yml"
-        path_to_brands_suite_9 = "brands9.yml"
-        path_to_brands_suite_10 = "brands10.yml"
-        path_to_brands_suite_11 = "brands11.yml"
-        path_to_brands_suite_12 = "brands12.yml"
-        path_to_brands_suite_13 = "brands13.yml"
+    all_brands_yml = "brands.yml"
+    path_to_brands_suite_1 = "brands1.yml"
+    path_to_brands_suite_2 = "brands2.yml"
+    path_to_brands_suite_3 = "brands3.yml"
+    path_to_brands_suite_4 = "brands4.yml"
+    path_to_brands_suite_5 = "brands5.yml"
+    path_to_brands_suite_6 = "brands6.yml"
+    path_to_brands_suite_7 = "brands7.yml"
+    path_to_brands_suite_8 = "brands8.yml"
+    path_to_brands_suite_9 = "brands9.yml"
+    path_to_brands_suite_10 = "brands10.yml"
+    path_to_brands_suite_11 = "brands11.yml"
+    path_to_brands_suite_12 = "brands12.yml"
+    path_to_brands_suite_13 = "brands13.yml"
 
-        # Form input list where each parameter is filename of TestSuite file
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-                      path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
-                      path_to_brands_suite_13]
-        # input_list = [path_to_brands_suite_1]
-        # Init multiprocess
-        pool = multiprocessing.Pool(processes=13)
+    # Form input list where each parameter is filename of TestSuite file
+    input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+                  path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+                  path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
+                  path_to_brands_suite_13]
+    # input_list = [path_to_brands_suite_1]
+    # Init multiprocess
+    pool = multiprocessing.Pool(processes=13)
 
-        # Run Test Suites as separate processes
-        pool.map(__simple_run, input_list)
+    # Run Test Suites as separate processes
+    pool.map(__simple_run, input_list)
 
-        pool.close()
-        pool.join()
+    pool.close()
+    pool.join()
 
         # os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
 
-    else:
-        print("TURN ON VPN")
+    # else:
+    #     print("TURN ON VPN")
