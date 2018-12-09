@@ -97,13 +97,13 @@ if __name__ == "__main__":
     # import socket
     # p = socket.gethostbyname(socket.gethostname())
     # print(p)
-
-    from requests import get
-
-    ip = get('https://api.ipify.org').text
-    print('My public IP address is: {}'.format(ip))
-
-    if ip == '35.158.30.212':
+    #
+    # from requests import get
+    #
+    # ip = get('https://api.ipify.org').text
+    # print('My public IP address is: {}'.format(ip))
+    #
+    # if ip == '35.158.30.212':
 
         #delete all files fron result
             # folder = 'D:/automation-newforexqa/result'
@@ -123,27 +123,27 @@ if __name__ == "__main__":
             # pool = multiprocessing.Pool(processes=3)
             # pool.map(__simple_run, input_list)
 
-        path_to_brands_suite_1 = "brands.yml"
-        path_to_brands_suite_2 = "brands1.yml"
-        path_to_brands_suite_3 = "brands2.yml"
-        path_to_brands_suite_4 = "brands3.yml"
-        path_to_brands_suite_5 = "brands4.yml"
+    path_to_brands_suite_1 = "brands.yml"
+    path_to_brands_suite_2 = "brands1.yml"
+    path_to_brands_suite_3 = "brands2.yml"
+    path_to_brands_suite_4 = "brands3.yml"
+    path_to_brands_suite_5 = "brands4.yml"
 
-        # Form input list where each parameter is filename of TestSuite file
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4, path_to_brands_suite_5]
-        # input_list = [path_to_brands_suite_1]
-        # Init multiprocess
-        pool = multiprocessing.Pool(processes=5)
+    # Form input list where each parameter is filename of TestSuite file
+    input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4, path_to_brands_suite_5]
+    # input_list = [path_to_brands_suite_1]
+    # Init multiprocess
+    pool = multiprocessing.Pool(processes=5)
 
-        # Run Test Suites as separate processes
-        pool.map(__simple_run, input_list)
+    # Run Test Suites as separate processes
+    pool.map(__simple_run, input_list)
 
-        #synchronization
+    #synchronization
 
-        pool.close()
-        pool.join()
+    pool.close()
+    pool.join()
 
         # os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
-
-    else:
-        print("TURN ON VPN")
+    #
+    # else:
+    #     print("TURN ON VPN")
