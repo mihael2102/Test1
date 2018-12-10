@@ -84,7 +84,9 @@ class AffiliatePage(CRMBasePage):
 
     def click_submit(self):
         button_submit = super().wait_element_to_be_clickable("//button[@class = 'btn btn-success']")
-        button_submit.click()
+        # button_submit.click()
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", button_submit)
         Logging().reportDebugStep(self, "Click Submit")
 
     def get_success_message(self):
