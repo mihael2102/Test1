@@ -4,6 +4,10 @@ import importlib
 import xmlrunner
 import multiprocessing
 import os
+from pandas import ExcelWriter as EX
+import glob
+import pandas as pd
+from src.test.python.ui.automation.utils.postconditions.SendMail import Send_ALL_XLS
 
 
 class MultiRunner:
@@ -160,6 +164,22 @@ if __name__ == "__main__":
 
     pool.close()
     pool.join()
+
+    # Join all results in one excel
+    all_excel = "C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/NF.xlsx"
+    writer = EX('C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/NF.xlsx')
+    # writer = EX('D:/automation-newforexqa/result/NF.xlsx')
+
+    for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/*.xlsx'):
+        excel_file = pd.ExcelFile(filename)
+        (_, f_name) = os.path.split(filename)
+        (f_short_name, _) = os.path.splitext(f_name)
+        for sheet_name in excel_file.sheet_names:
+            df_excel = pd.read_excel(filename, sheet_name=sheet_name)
+            df_excel.to_excel(writer, f_short_name, index=False)
+
+    writer.save()
+    Send_ALL_XLS(all_excel)
 
         # os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
 
