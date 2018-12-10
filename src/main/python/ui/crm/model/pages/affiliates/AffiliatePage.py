@@ -63,7 +63,9 @@ class AffiliatePage(CRMBasePage):
     def select_blocked_country(self, country):
         country_drop_down = super().wait_element_to_be_clickable(
             "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[6]/div[2]")
-        country_drop_down.click()
+        # country_drop_down.click()
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", country_drop_down)
         input_country = super().wait_load_element(
             "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
         input_country.send_keys(country)
@@ -71,12 +73,15 @@ class AffiliatePage(CRMBasePage):
         countrys = super().wait_load_element(
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["countrys"]
             % country)
-        countrys.click()
+        # countrys.click()
+        self.driver.execute_script("arguments[0].click();", countrys)
         Logging().reportDebugStep(self, "Select blocked country %s" % country)
 
     def click_submit(self):
         button_submit = super().wait_element_to_be_clickable("//button[@class = 'btn btn-success']")
-        button_submit.click()
+        # button_submit.click()
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", button_submit)
         Logging().reportDebugStep(self, "Click Submit")
 
     def get_success_message(self):
