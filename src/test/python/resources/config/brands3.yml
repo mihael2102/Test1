@@ -4,8 +4,6 @@ brands:
   config_file: axa_markets.yml
 - name: aztrades
   config_file: aztrades.yml
-- name: bots
-  config_file: bots.yml
 
 
 
