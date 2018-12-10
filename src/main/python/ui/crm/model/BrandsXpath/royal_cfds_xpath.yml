@@ -17,6 +17,6 @@ ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
   email: "//*[@id='mouseArea_Email']"
 AffiliatePage:
-  countrys: "//span[@class = 'hovered-option ng-star-inserted'][contains(text(),'%s')]"
+  countrys: "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]"
 
 

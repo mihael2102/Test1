@@ -1,16 +1,22 @@
 brands:
 
-- name: swiftcfd
-  config_file: swiftcfd.yml
-- name: goldenmarkets
-  config_file: goldenmarkets.yml
-- name: safemarkets
-  config_file: safemarkets.yml
+#- name: swiftcfd
+#  config_file: swiftcfd.yml
+#- name: goldenmarkets
+#  config_file: goldenmarkets.yml
+#- name: safemarkets
+#  config_file: safemarkets.yml
 
-
-
-
-
+#- name: tradospot
+#  config_file: tradospot.yml
+#- name: royal_cfds
+#  config_file: royal_cfds.yml
+#- name: tfxgo
+#  config_file: tfxgo.yml
+#- name: safemarkets
+#  config_file: safemarkets.yml
+- name: brokerz
+  config_file: brokerz.yml
 
 
 
