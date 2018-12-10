@@ -8,6 +8,7 @@ from pandas import ExcelWriter as EX
 import glob
 import pandas as pd
 from src.test.python.ui.automation.utils.postconditions.SendMail import Send_ALL_XLS
+from requests import get
 
 class MultiRunner:
 
@@ -97,72 +98,48 @@ def __simple_run(path_to_test_suite):
 
 if __name__ == "__main__":
 
-    # import socket
-    # p = socket.gethostbyname(socket.gethostname())
-    # print(p)
-    #
-    # from requests import get
-    #
-    # ip = get('https://api.ipify.org').text
-    # print('My public IP address is: {}'.format(ip))
-    #
-    # if ip == '35.158.30.212':
+    ip = get('https://api.ipify.org').text
+    print('My public IP address is: {}'.format(ip))
 
-        #delete all files fron result
-            # folder = 'D:/automation-newforexqa/result'
-            # for the_file in os.listdir(folder):
-            #     file_path = os.path.join(folder, the_file)
-            #     try:
-            #         if os.path.isfile(file_path):
-            #             os.unlink(file_path)
-            #     except Exception as e:
-            #         print(e)
+    if ip == '35.158.30.212' or ip == '35.158.90.50':
 
-        #configuration for multi tests
-            # path_to_test_suite_1 = "tests.yml"
-            # path_to_test_suite_2 = "tests2.yml"
-            # path_to_test_suite_3 = "tests3.yml"
-            # input_list = [path_to_test_suite_1, path_to_test_suite_2, path_to_test_suite_3]
-            # pool = multiprocessing.Pool(processes=3)
-            # pool.map(__simple_run, input_list)
+        path_to_brands_suite_1 = "brands.yml"
+        path_to_brands_suite_2 = "brands1.yml"
+        path_to_brands_suite_3 = "brands2.yml"
+        path_to_brands_suite_4 = "brands3.yml"
+        path_to_brands_suite_5 = "brands4.yml"
 
-    path_to_brands_suite_1 = "brands.yml"
-    path_to_brands_suite_2 = "brands1.yml"
-    path_to_brands_suite_3 = "brands2.yml"
-    path_to_brands_suite_4 = "brands3.yml"
-    path_to_brands_suite_5 = "brands4.yml"
+        # Form input list where each parameter is filename of TestSuite file
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4, path_to_brands_suite_5]
+        # input_list = [path_to_brands_suite_1]
+        # Init multiprocess
+        pool = multiprocessing.Pool(processes=5)
 
-    # Form input list where each parameter is filename of TestSuite file
-    input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4, path_to_brands_suite_5]
-    # input_list = [path_to_brands_suite_1]
-    # Init multiprocess
-    pool = multiprocessing.Pool(processes=5)
+        # Run Test Suites as separate processes
+        pool.map(__simple_run, input_list)
 
-    # Run Test Suites as separate processes
-    pool.map(__simple_run, input_list)
+        #synchronization
 
-    #synchronization
+        pool.close()
+        pool.join()
 
-    pool.close()
-    pool.join()
+        # Join all results in one excel
+        all_excel = "C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/NF.xlsx"
+        writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/NF.xlsx')
+        # writer = EX('D:/automation-newforexqa/result/NF.xlsx')
 
-    # Join all results in one excel
-    all_excel = "C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/NF.xlsx"
-    writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/NF.xlsx')
-    # writer = EX('D:/automation-newforexqa/result/NF.xlsx')
+        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/*.xlsx'):
+            excel_file = pd.ExcelFile(filename)
+            (_, f_name) = os.path.split(filename)
+            (f_short_name, _) = os.path.splitext(f_name)
+            for sheet_name in excel_file.sheet_names:
+                df_excel = pd.read_excel(filename, sheet_name=sheet_name)
+                df_excel.to_excel(writer, f_short_name, index=False)
 
-    for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/*.xlsx'):
-        excel_file = pd.ExcelFile(filename)
-        (_, f_name) = os.path.split(filename)
-        (f_short_name, _) = os.path.splitext(f_name)
-        for sheet_name in excel_file.sheet_names:
-            df_excel = pd.read_excel(filename, sheet_name=sheet_name)
-            df_excel.to_excel(writer, f_short_name, index=False)
-
-    writer.save()
-    Send_ALL_XLS(all_excel)
+        writer.save()
+        Send_ALL_XLS(all_excel)
 
         # os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
-    #
-    # else:
-    #     print("TURN ON VPN")
+
+    else:
+        print("TURN ON VPN")
