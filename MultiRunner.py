@@ -124,8 +124,8 @@ if __name__ == "__main__":
         pool.join()
 
         # Join all results in one excel
-        all_excel = "C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/NF.xlsx"
-        writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/NF.xlsx')
+        all_excel = "C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/OF.xlsx"
+        writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/OF.xlsx')
         # writer = EX('D:/automation-newforexqa/result/NF.xlsx')
 
         for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/*.xlsx'):
