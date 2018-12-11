@@ -98,90 +98,61 @@ def __simple_run(path_to_test_suite):
 
 if __name__ == "__main__":
 
-    # import socket
-    #
-    # p = socket.gethostbyname(socket.gethostname())
-    # print(p)
-    # from requests import get
-    #
-    # ip = get('https://api.ipify.org').text
-    # print('My public IP address is: {}'.format(ip))
-    #
-    # if ip == '35.158.30.212':
-        #delete all files fron result
-        # folder = 'D:/automation-newforexqa/result'
-        # for the_file in os.listdir(folder):
-        #     file_path = os.path.join(folder, the_file)
-        #     try:
-        #         if os.path.isfile(file_path):
-        #             os.unlink(file_path)
-        #     except Exception as e:
-        #         print(e)
-        # Filename of TestSuite 1
-        # path_to_test_suite_1 = "tests.yml"
-        #
-        # # Filename of TestSuite 2
-        # path_to_test_suite_2 = "tests2.yml"
-        #
-        # # Filename of TestSuite 3
-        # path_to_test_suite_3 = "tests3.yml"
-        #
-        # # Form input list where each parameter is filename of TestSuite file
-        # input_list = [path_to_test_suite_1, path_to_test_suite_2, path_to_test_suite_3]
-        #
-        # # Init multiprocess
-        # pool = multiprocessing.Pool(processes=3)
-        #
-        # # Run Test Suites as separate processes
-        # pool.map(__simple_run, input_list)
+    from requests import get
 
-    all_brands_yml = "brands.yml"
-    path_to_brands_suite_1 = "brands1.yml"
-    path_to_brands_suite_2 = "brands2.yml"
-    path_to_brands_suite_3 = "brands3.yml"
-    path_to_brands_suite_4 = "brands4.yml"
-    path_to_brands_suite_5 = "brands5.yml"
-    path_to_brands_suite_6 = "brands6.yml"
-    path_to_brands_suite_7 = "brands7.yml"
-    path_to_brands_suite_8 = "brands8.yml"
-    path_to_brands_suite_9 = "brands9.yml"
-    path_to_brands_suite_10 = "brands10.yml"
-    path_to_brands_suite_11 = "brands11.yml"
-    path_to_brands_suite_12 = "brands12.yml"
-    path_to_brands_suite_13 = "brands13.yml"
+    ip = get('https://api.ipify.org').text
+    print('My public IP address is: {}'.format(ip))
 
-    # Form input list where each parameter is filename of TestSuite file
-    input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-                  path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-                  path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
-                  path_to_brands_suite_13]
-    # input_list = [path_to_brands_suite_1]
-    # Init multiprocess
-    pool = multiprocessing.Pool(processes=13)
+    if ip == '35.158.30.212' or ip == '35.158.90.50':
 
-    # Run Test Suites as separate processes
-    pool.map(__simple_run, input_list)
 
-    pool.close()
-    pool.join()
+        all_brands_yml = "brands.yml"
+        path_to_brands_suite_1 = "brands1.yml"
+        path_to_brands_suite_2 = "brands2.yml"
+        path_to_brands_suite_3 = "brands3.yml"
+        path_to_brands_suite_4 = "brands4.yml"
+        path_to_brands_suite_5 = "brands5.yml"
+        path_to_brands_suite_6 = "brands6.yml"
+        path_to_brands_suite_7 = "brands7.yml"
+        path_to_brands_suite_8 = "brands8.yml"
+        path_to_brands_suite_9 = "brands9.yml"
+        path_to_brands_suite_10 = "brands10.yml"
+        path_to_brands_suite_11 = "brands11.yml"
+        path_to_brands_suite_12 = "brands12.yml"
+        path_to_brands_suite_13 = "brands13.yml"
 
-    # Join all results in one excel
-    all_excel = "C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/NF.xlsx"
-    writer = EX('C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/NF.xlsx')
-    # writer = EX('D:/automation-newforexqa/result/NF.xlsx')
+        # Form input list where each parameter is filename of TestSuite file
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+                      path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
+                      path_to_brands_suite_13]
+        # input_list = [path_to_brands_suite_1]
+        # Init multiprocess
+        pool = multiprocessing.Pool(processes=13)
 
-    for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/*.xlsx'):
-        excel_file = pd.ExcelFile(filename)
-        (_, f_name) = os.path.split(filename)
-        (f_short_name, _) = os.path.splitext(f_name)
-        for sheet_name in excel_file.sheet_names:
-            df_excel = pd.read_excel(filename, sheet_name=sheet_name)
-            df_excel.to_excel(writer, f_short_name, index=False)
+        # Run Test Suites as separate processes
+        pool.map(__simple_run, input_list)
 
-    writer.save()
-    Send_ALL_XLS(all_excel)
+        pool.close()
+        pool.join()
+
+        # Join all results in one excel
+        all_excel = "C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/NF.xlsx"
+        writer = EX('C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/NF.xlsx')
+        # writer = EX('D:/automation-newforexqa/result/NF.xlsx')
+
+        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/*.xlsx'):
+            excel_file = pd.ExcelFile(filename)
+            (_, f_name) = os.path.split(filename)
+            (f_short_name, _) = os.path.splitext(f_name)
+            for sheet_name in excel_file.sheet_names:
+                df_excel = pd.read_excel(filename, sheet_name=sheet_name)
+                df_excel.to_excel(writer, f_short_name, index=False)
+
+        writer.save()
+        Send_ALL_XLS(all_excel)
 
         # os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
 
-    # else:
-    #     print("TURN ON VPN")
+    else:
+        print("TURN ON VPN")
