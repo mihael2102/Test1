@@ -1,9 +1,5 @@
 brands:
 
-- name: rimarkets
-  config_file: rimarkets.yml
-- name: brokerxp
-  config_file: brokerxp.yml
 - name: finmarket
   config_file: finmarket.yml
 - name: kayafx

@@ -1,11 +1,6 @@
 brands:
 
-
-- name: stoxmarket
-  config_file: stoxmarket.yml
-#- name: kbcapitals
-#  config_file: kbcapitals.yml
-#- name: 24fxm
-#  config_file: 24fxm.yml
-#- name: gmo
-#  config_file: gmo.yml
+- name: 24fxm
+  config_file: 24fxm.yml
+- name: gmo
+  config_file: gmo.yml

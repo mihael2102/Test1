@@ -1,0 +1,6 @@
+brands:
+
+- name: rimarkets
+  config_file: rimarkets.yml
+- name: brokerxp
+  config_file: brokerxp.yml

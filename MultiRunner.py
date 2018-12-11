@@ -103,17 +103,25 @@ if __name__ == "__main__":
 
     if ip == '35.158.30.212' or ip == '35.158.90.50':
 
-        path_to_brands_suite_1 = "brands.yml"
-        path_to_brands_suite_2 = "brands1.yml"
-        path_to_brands_suite_3 = "brands2.yml"
-        path_to_brands_suite_4 = "brands3.yml"
-        path_to_brands_suite_5 = "brands4.yml"
+        path_to_brands_suite_all = "brands.yml"
+        path_to_brands_suite_1 = "brands1.yml"
+        path_to_brands_suite_2 = "brands2.yml"
+        path_to_brands_suite_3 = "brands3.yml"
+        path_to_brands_suite_4 = "brands4.yml"
+        path_to_brands_suite_5 = "brands5.yml"
+        path_to_brands_suite_6 = "brands6.yml"
+        path_to_brands_suite_7 = "brands7.yml"
+        path_to_brands_suite_8 = "brands8.yml"
+        path_to_brands_suite_9 = "brands9.yml"
+        path_to_brands_suite_10 = "brands10.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3]
-        # input_list = [path_to_brands_suite_1]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+                      path_to_brands_suite_9, path_to_brands_suite_10]
+
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=3)
+        pool = multiprocessing.Pool(processes=10)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)

@@ -1,0 +1,6 @@
+brands:
+
+- name: fm-fx
+  config_file: fm-fx.yml
+- name: mlnfx
+  config_file: mlnfx.yml
