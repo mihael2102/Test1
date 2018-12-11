@@ -148,6 +148,22 @@ if __name__ == "__main__":
             for sheet_name in excel_file.sheet_names:
                 df_excel = pd.read_excel(filename, sheet_name=sheet_name)
                 df_excel.to_excel(writer, f_short_name, index=False)
+                workbook = writer.book
+                worksheet = writer.sheets[f_short_name]
+                format1 = workbook.add_format({'bg_color': '#FFC7CE',
+                                               'font_color': '#9C0006'})
+
+                format2 = workbook.add_format({'bg_color': '#C4D79B',
+                                               'font_color': '#000000'})
+                worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
+                                                             'criteria': 'beginsWith',
+                                                             'value': 'PASS',
+                                                             'format': format2})
+
+                worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
+                                                             'criteria': 'beginsWith',
+                                                             'value': 'ERROR',
+                                                             'format': format1})
 
         writer.save()
         Send_ALL_XLS(all_excel)
