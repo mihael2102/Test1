@@ -23,9 +23,9 @@ class AffiliatesPrecondition(object):
 
     def create_affiliate(self):
         """ Login to CRM """
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+        # CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        #     .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+        #                self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         """ Open Affiliates page """
         affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)

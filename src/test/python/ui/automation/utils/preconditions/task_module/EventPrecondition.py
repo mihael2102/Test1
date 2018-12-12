@@ -23,9 +23,9 @@ class EventPrecondition(object):
 
     def create_first_event(self):
 
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+        # CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        #     .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+        #                self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage(self.driver).open_task_module()
 
@@ -55,9 +55,9 @@ class EventPrecondition(object):
 
     def edit_first_event(self):
 
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+        # CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        #     .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+        #                self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab() \

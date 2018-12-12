@@ -9,7 +9,7 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 
 class TradingAccountPrecondition(object):
 
@@ -35,15 +35,15 @@ class TradingAccountPrecondition(object):
         return TradingAccountPrecondition()
 
     def add_demo_account_from_crm(self):
-        crm_client_profile = CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+        # crm_client_profile = CRMLoginPage(self.driver) \
+        #     .open_first_tab_page(self.config.get_value('url')) \
+        #     .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+        #                self.config.get_value(TestDataConstants.CRM_PASSWORD),
+        #                self.config.get_value(TestDataConstants.OTP_SECRET)) \
+        ClientsPage(self.driver).select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        ClientsPage(self.driver).find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
-        crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+        ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
         if (global_var.current_brand_name == "royal_cfds"):
             MT4CreateAccountModule(self.driver) \

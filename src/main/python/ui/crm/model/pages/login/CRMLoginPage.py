@@ -19,9 +19,14 @@ class CRMLoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Open second tabs page: " + url + '\n')
         return CRMLoginPage(self.driver)
 
-    def open_first_tab_page(self, url):
+    def open_first_tab_page_one(self, url):
         super().open_first_tab_page(url)
         Logging().reportDebugStep(self, "Open first tabs page: " + url)
+        return CRMLoginPage(self.driver)
+
+    def open_first_tab_page(self, url):
+        super().open_first_tab_page(url)
+        # Logging().reportDebugStep(self, "Next test" + url)
         return CRMLoginPage(self.driver)
 
     '''

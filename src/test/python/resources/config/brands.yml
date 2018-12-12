@@ -1,7 +1,7 @@
 brands:
 
-#- name: royal_cfds
-#  config_file: royal_cfds.yml
+- name: royal_cfds
+  config_file: royal_cfds.yml
 #- name: jonesmutual
 #  config_file: jonesmutual.yml
 #- name: forexbestmarket
