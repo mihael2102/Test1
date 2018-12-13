@@ -46,6 +46,7 @@ class ExcelWriter:
                     for data in new_row_data:
                         if "is failed" in data:
                             worksheet.write(row, col, data, cell_format_fail)
+                        elif "AllTest Create client filter" in data: worksheet.write(row, 0, data, cell_format_name_test)
                         elif "AllTest Create documents filter" in data: worksheet.write(row, 0, data, cell_format_name_test)
                         elif "AllTest Create lead filter" in data: worksheet.write(row, 0, data, cell_format_name_test)
                         elif "AllTest Create help desk filter" in data: worksheet.write(row, 0, data, cell_format_name_test)
