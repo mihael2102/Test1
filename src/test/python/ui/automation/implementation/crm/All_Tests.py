@@ -63,7 +63,7 @@ class AllTest(BaseTest):
                 .crm_login(self.config.get_data_client(TestDataConstants.USER_NAME),
                            self.config.get_data_client(TestDataConstants.CRM_PASSWORD),
                            self.config.get_data_client(TestDataConstants.OTP_SECRET))
-
+            Logging().reportDebugStep(self, "Create client filter")
             FilterPrecondition(self.driver, self.config).create_filter_clients_module()
 
             first_name__column = clients_module_page.get_first_name_column()
@@ -1098,7 +1098,7 @@ class AllTest(BaseTest):
             self.assertTrue(is_modified_time_found, "Wrong modified time was found")
 
         except Exception:
-            Logging().reportDebugStep(self, "Test check search via button FT is failed")
+            Logging().reportDebugStep(self, "Test check search via button FT is faileded")
 
 
 
