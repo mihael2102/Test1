@@ -124,10 +124,13 @@ if __name__ == "__main__":
         # Form input list where each parameter is filename of TestSuite file
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3]
 
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3]
-        # input_list = [all_brands_yml]
+        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+        #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+        #               path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
+        #               path_to_brands_suite_13]
+        input_list = [all_brands_yml]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=3)
+        pool = multiprocessing.Pool(processes=1)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -147,7 +150,32 @@ if __name__ == "__main__":
             for sheet_name in excel_file.sheet_names:
                 df_excel = pd.read_excel(filename, sheet_name=sheet_name)
                 df_excel.to_excel(writer, f_short_name, index=False)
+                workbook = writer.book
+                worksheet = writer.sheets[f_short_name]
+                format1 = workbook.add_format({'bg_color': '#FFC7CE',
+                                               'font_color': '#9C0006'})
 
+                format2 = workbook.add_format({'bg_color': '#C4D79B',
+                                               'font_color': '#000000'})
+
+
+                worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
+                                                             'criteria': 'containsText',
+                                                             'value': 'is failed',
+                                                             'format': format1})
+                test_suit = ["AllTest Create client filter", "AllTest Create documents filter", "AllTest Create lead filter", "AllTest Create help desk filter",
+                             "AllTest Create trading account filter", "AllTest Searching lead modules", "AllTest Create lead", "AllTest Edit lead",
+                             "AllTest Convert lead", "AllTest Searching client", "AllTest Add interaction", "AllTest Interaction search",
+                             "AllTest Add event" , "AllTest Edit event", "AllTest Open trading account", "AllTest Check client password crm" ,
+                             "AllTest Check mt password crm" ,"AllTest Change client password crm" , "AllTest Change mt password","AllTest Create deposit" ,
+                             "AllTest Create deposit for client","AllTest Make credit in" ,"AllTest Edit trading account", "AllTest Create affiliate" ,
+                             "AllTest Create task in calendar view" ,"AllTest Check day tab" ,"AllTest Check month tab", "AllTest Check week tab" ,
+                            "AllTest Check all tab FT", "AllTest Check search by column FT", "AllTest Check search via button FT"]
+                for test in test_suit:
+                    worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
+                                                                 'criteria': 'containsText',
+                                                                 'value': test,
+                                                                 'format': format2})
         writer.save()
         Send_ALL_XLS(all_excel)
 

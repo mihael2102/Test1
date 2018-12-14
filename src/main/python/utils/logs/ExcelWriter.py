@@ -49,6 +49,7 @@ class ExcelWriter:
                             create_filter_clients_module = "The client module was opened\n The filter pop-up is opened \n Tha name filter was set \n The first column was selected \n The second column was selected \n The third column was selected \n The fourth column was selected \n The fifth column was selected \n The sixth column was selected \n The seventh column was selected \n The eight column was selected \n The ninth column was selected \n The eleventh column was selected \n The eleventh column was selected \n The filter was created:  \n First column name  \n Second column name \n Third column name \n Fourth column name \n Fifth column name \n Sixth column name \n Seventh column name  \n Eighth column name \n Ninth  column name \n Tenth  column name \n Eleventh column name"
                             worksheet.write_comment(row, col, create_filter_clients_module, {'width': 250, 'height': 400})
 
+
                         elif "AllTest Test create documents filter is failed" in data:
                             worksheet.write(row, col, data, cell_format_fail)
                             create_filter_documents_module = "The document module was opened \n The filter pop-up is opened \n Tha name filter was set \n The first column was selected \n The second column was selected\nThe third column was selected\nThe fourth column was selected\nThe filter was crated: \nFirst column name\nSecond column name\nThird column name\nFourth column name"
