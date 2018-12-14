@@ -234,69 +234,101 @@ class ExcelWriter:
 
                         elif "AllTest Create client filter" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Create documents filter" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Create lead filter" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Create help desk filter" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Create trading account filter" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Searching lead modules" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Create lead" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Edit lead" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Convert lead" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Searching client" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Add interaction" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Interaction search" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Add event" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Edit event" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Open trading account" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Check client password crm" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Check mt password crm" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Change client password crm" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Change mt password"  in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Create deposit" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Create deposit for client" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Make credit in" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Edit trading account"  in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Create affiliate"  in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Create task in calendar view" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Check day tab"  in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Check month tab"  in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Check week tab"  in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Check all tab FT" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Check search by column FT" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
                         elif "AllTest Check search via button FT" in data:
                             worksheet.write(row, 0, data, cell_format_name_test)
+                            worksheet.set_row(row, None, None, {'level': 1})
 
                         else:
                             worksheet.write(row, col, data, cell_format_pass)
+                            worksheet.set_row(row, None, None, {'level': 2})
                         row += 1
 
 
@@ -304,7 +336,7 @@ class ExcelWriter:
 
         workbook.close()
 
-        Send_Email_XLS(filepath)
+        # Send_Email_XLS(filepath)
 
     @staticmethod
     def get_test_pretty_name(test):
