@@ -46,37 +46,70 @@ class ExcelWriter:
                     for data in new_row_data:
                         if "is failed" in data:
                             worksheet.write(row, col, data, cell_format_fail)
-                        elif "AllTest Create client filter" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Create documents filter" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Create lead filter" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Create help desk filter" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Create trading account filter" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Searching lead modules" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Create lead" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Edit lead" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Convert lead" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Searching client" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Add interaction" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Interaction search" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Add event" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Edit event" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Open trading account" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Check client password crm" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Check mt password crm" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Change client password crm" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Change mt password"  in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Create deposit" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Create deposit for client" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Make credit in" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Edit trading account"  in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Create affiliate"  in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Create task in calendar view" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Check day tab"  in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Check month tab"  in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Check week tab"  in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Check all tab FT" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Check search by column FT" in data: worksheet.write(row, 0, data, cell_format_name_test)
-                        elif "AllTest Check search via button FT" in data: worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Create client filter" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                            create_filter_clients_module = "The client module was opened\n The filter pop-up is opened \n Tha name filter was set \n The first column was selected \n The second column was selected \n The third column was selected \n The fourth column was selected \n The fifth column was selected \n The sixth column was selected \n The seventh column was selected \n The eight column was selected \n The ninth column was selected \n The eleventh column was selected \n The eleventh column was selected \n The filter was created:  \n First column name  \n Second column name \n Third column name \n Fourth column name \n Fifth column name \n Sixth column name \n Seventh column name  \n Eighth column name \n Ninth  column name \n Tenth  column name \n Eleventh column name"
+                            worksheet.write_comment(row, 0, create_filter_clients_module)
+                        elif "AllTest Create documents filter" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Create lead filter" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Create help desk filter" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Create trading account filter" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Searching lead modules" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Create lead" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Edit lead" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Convert lead" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Searching client" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Add interaction" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Interaction search" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Add event" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Edit event" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Open trading account" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Check client password crm" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Check mt password crm" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Change client password crm" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Change mt password"  in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Create deposit" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Create deposit for client" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Make credit in" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Edit trading account"  in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Create affiliate"  in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Create task in calendar view" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Check day tab"  in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Check month tab"  in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Check week tab"  in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Check all tab FT" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Check search by column FT" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
+                        elif "AllTest Check search via button FT" in data:
+                            worksheet.write(row, 0, data, cell_format_name_test)
 
                         else:
                             worksheet.write(row, col, data, cell_format_pass)
@@ -97,46 +130,7 @@ class ExcelWriter:
     def get_test_pretty_name_new(test):
         return test['class'] + ': ' + test['method'].replace('_', ' ')
 
-    # def steps_for_test(self, test):
-    #
-    #     # CalendarView
-    #
-    #     if self.get_test_pretty_name_new(test) == "AllTest: all test":
-    #         step_suit = [
-    #         # FilterModulesTest: test create filter clients module
-    #
-    #         "test create filter clients module"
-    #             , "Setting the user name"
-    #             , "Setting the user password"
-    #             , "Click the login button"
-    #             , "No OTP authentication"
-    #             , "'What's new' popup"
-    #             , "The client module was opened"
-    #             , "The filter pop-up is opened"
-    #             , "Tha name filter was set"
-    #             , "The first column was selected"
-    #             , "The second column was selected"
-    #             , "The third column was selected"
-    #             ,"The fourth column was selected"
-    #             ,"The fifth column was selected"
-    #             ,"The sixth column was selected"
-    #             ,"The seventh column was selected"
-    #             ,"The eight column was selected"
-    #             ,"The ninth column was selected"
-    #             ,"The eleventh column was selected"
-    #             ,"The eleventh column was selected"
-    #             ,"The filter was created: "
-    #             ,"First column name "
-    #             ,"Second column name"
-    #             ,"Third column name"
-    #             ,"Fourth column name"
-    #             ,"Fifth column name"
-    #             ,"Sixth column name"
-    #             ,"Seventh column name "
-    #             ,"Eighth column name"
-    #             ,"Ninth  column name"
-    #             ,"Tenth  column name"
-    #             ,"Eleventh column name"
+    create_filter_clients_module = "The client module was opened\n The filter pop-up is opened \n Tha name filter was set \n The first column was selected \n The second column was selected \n The third column was selected \n The fourth column was selected \n The fifth column was selected \n The sixth column was selected \n The seventh column was selected \n The eight column was selected \n The ninth column was selected \n The eleventh column was selected \n The eleventh column was selected \n The filter was created:  \n First column name  \n Second column name \n Third column name \n Fourth column name \n Fifth column name \n Sixth column name \n Seventh column name  \n Eighth column name \n Ninth  column name \n Tenth  column name \n Eleventh column name"
     #
     #             #FilterModulesTest: test create filter documents module":
     #        ,"test create filter documents module"
