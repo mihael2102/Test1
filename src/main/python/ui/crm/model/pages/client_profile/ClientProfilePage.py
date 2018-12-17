@@ -497,8 +497,9 @@ class ClientProfilePage(CRMBasePage):
         return parser_client_status_text
 
     def open_deposit_for_client_in_menu(self):
-        deposit_for_client_element = super().wait_element_to_be_clickable("//*[@id='sidebar']/table[1]/tbody/tr[4]/td/a")
-        deposit_for_client_element.click()
+        deposit_for_client_element = self.driver.find_element(By.XPATH, "//*[@id='sidebar']/table[1]/tbody/tr[4]/td/a")
+        self.driver.execute_script("arguments[0].click();", deposit_for_client_element)
+        # deposit_for_client_element.click()
         Logging().reportDebugStep(self, "Deposit for client popup was opened")
         return ClientProfilePage(self.driver)
 
