@@ -47,8 +47,7 @@ class AffiliatePage(CRMBasePage):
 
     def click_plus_ip(self):
         sleep(2)
-        button_plus = super().wait_load_element(
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["button_plus"])
+        button_plus = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["button_plus"])
 
         button_plus.click()
 
@@ -71,8 +70,7 @@ class AffiliatePage(CRMBasePage):
         input_country = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["input_country"])
         input_country.send_keys(country)
         sleep(3)
-        countrys = super().wait_load_element(
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["countrys"]
+        countrys = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["countrys"]
             % country)
         self.driver.execute_script("arguments[0].click();", countrys)
 
