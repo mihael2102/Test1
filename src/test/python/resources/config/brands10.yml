@@ -1,7 +1,7 @@
 brands:
 
-- name: kontofx
-  config_file: kontofx.yml
+#- name: kontofx
+#  config_file: kontofx.yml
 - name: xtraderfx
   config_file: xtraderfx.yml
 - name: 2mercados
