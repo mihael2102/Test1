@@ -87,6 +87,7 @@ client_1:
   first_country_sa: "South Africa"
   first_country_me: "Mexico"
   first_country: "Germany"
+  first_country_g: "Germany"
   street: "My street"
   city: "Berlin"
   postal_code: "11111"
@@ -100,6 +101,7 @@ client_1:
   first_source_name: "source 1"
   first_currency: "USD"
   first_currency_BCH: "BCH"
+  first_currency_eur: "EUR"
   new_password: "Panda123456"
 event_1:
   type: "Meeting"
