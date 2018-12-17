@@ -39,9 +39,10 @@ class TabFinancialTransaction(BaseTest):
             all_tab_name = financial_transaction_module.get_all_tab_text()
             credit_in_tab_name = financial_transaction_module.get_credit_in_tab_text()
             credit_out_name = financial_transaction_module.get_credit_out_tab_text()
-            demo_accounts_name = financial_transaction_module.get_demo_accounts_transactions_tab_text()
-            deposit_name = financial_transaction_module.get_deposits_tab_text()
-            withdraw = financial_transaction_module.get_withdraw_tab_text()
+            if global_var.current_brand_name != "goldenmarkets":
+                demo_accounts_name = financial_transaction_module.get_demo_accounts_transactions_tab_text()
+                deposit_name = financial_transaction_module.get_deposits_tab_text()
+                withdraw = financial_transaction_module.get_withdraw_tab_text()
 
             assert all_tab_name == self.config.get_data_financial_transactions_info(
                 FinancialTransactionsModuleConstants.FIRST_TAB)
@@ -49,12 +50,13 @@ class TabFinancialTransaction(BaseTest):
                 FinancialTransactionsModuleConstants.SECOND_TAB)
             assert credit_out_name == self.config.get_data_financial_transactions_info(
                 FinancialTransactionsModuleConstants.THIRD_TAB)
-            assert demo_accounts_name == self.config.get_data_financial_transactions_info(
-                FinancialTransactionsModuleConstants.FOURTH_TAB)
-            assert deposit_name == self.config.get_data_financial_transactions_info(
-                FinancialTransactionsModuleConstants.FIFTH_TAB)
-            assert withdraw == self.config.get_data_financial_transactions_info(
-                FinancialTransactionsModuleConstants.SIX_TAB)
+            if global_var.current_brand_name != "goldenmarkets":
+                assert demo_accounts_name == self.config.get_data_financial_transactions_info(
+                    FinancialTransactionsModuleConstants.FOURTH_TAB)
+                assert deposit_name == self.config.get_data_financial_transactions_info(
+                    FinancialTransactionsModuleConstants.FIFTH_TAB)
+                assert withdraw == self.config.get_data_financial_transactions_info(
+                    FinancialTransactionsModuleConstants.SIX_TAB)
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             try:
                 FinancialTransactionsPage(self.driver).Sign_Out()

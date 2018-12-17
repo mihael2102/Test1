@@ -288,8 +288,10 @@ class ClientProfilePage(CRMBasePage):
         MT4DropDown(self.driver).mt4_actions(module)
 
     def close_popup_new_trading_account(self):
-        super().wait_element_to_be_clickable("(//button[@class = 'btn btn-primary'])[2]").click()
-        sleep(3)
+        sleep(1)
+        popup_new_trading_account = super().wait_load_element("(//button[@class = 'btn btn-primary'])[2]")
+        self.driver.execute_script("arguments[0].click();", popup_new_trading_account)
+        sleep(2)
         return ClientProfilePage(self.driver)
 
     def wait_element_is_present(self):

@@ -46,14 +46,18 @@ class AffiliatePage(CRMBasePage):
         Logging().reportDebugStep(self, "Enter allowed IP")
 
     def click_plus_ip(self):
-        button_plus = super().wait_element_to_be_clickable("/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[3]/button")
+        sleep(2)
+        button_plus = super().wait_load_element(
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["button_plus"])
+
         button_plus.click()
+
         Logging().reportDebugStep(self, "Click plus ip")
 
     def select_allowed_methods(self, method):
-        methods_drop_down = super().wait_element_to_be_clickable("/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[5]/div[2]")
+        methods_drop_down = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["methods_drop_down"])
         methods_drop_down.click()
-        input_methods = super().wait_load_element("/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
+        input_methods = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["input_methods"])
         input_methods.send_keys(method)
         methods = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["methods"]
             % method)
@@ -61,19 +65,16 @@ class AffiliatePage(CRMBasePage):
         Logging().reportDebugStep(self, "Select allowed methods %s" % method)
 
     def select_blocked_country(self, country):
-        country_drop_down = super().wait_element_to_be_clickable(
-            "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[6]/div[2]")
+        country_drop_down = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["blocked_country_drop_down"])
         country_drop_down.click()
         sleep(1)
-
-        input_country = super().wait_load_element(
-            "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
+        input_country = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["input_country"])
         input_country.send_keys(country)
         sleep(3)
         countrys = super().wait_load_element(
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["countrys"]
             % country)
-        countrys.click()
+        self.driver.execute_script("arguments[0].click();", countrys)
 
         Logging().reportDebugStep(self, "Select blocked country %s" % country)
 
