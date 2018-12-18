@@ -135,18 +135,18 @@ if __name__ == "__main__":
         # Join all results in one excel
         all_excel = "C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx"
         writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
+        f_short_name = "result"
 
-        workbook = xlsxwriter.Workbook(all_excel)
 
         all_file_frames = []
         for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/*.xlsx'):
             tab = pd.read_excel(filename)
             all_file_frames.append(tab)
             all_frame = pd.concat(all_file_frames, axis=1)
-            worksheet = workbook.add_worksheet()
-            all_frame.to_excel('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
-
-
+            # all_frame.to_excel('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
+            all_frame.to_excel(writer, f_short_name, index=False)
+            workbook = writer.book
+            worksheet = writer.sheets[f_short_name]
             format1 = workbook.add_format({'bg_color': '#FFC7CE',
                                            'font_color': '#9C0006'})
 
@@ -285,10 +285,13 @@ if __name__ == "__main__":
             for i in range(825, 839):
                 worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-        # writer.save()
+        writer.save()
+
+
+
+
         Send_ALL_XLS(all_excel)
 
-        # os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
 
     else:
         print("TURN ON VPN")
