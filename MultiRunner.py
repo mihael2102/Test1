@@ -169,6 +169,7 @@ if __name__ == "__main__":
             for i in range(35, 51):
                 worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
+            writer.save()
 
         Send_ALL_XLS(all_excel)
 
