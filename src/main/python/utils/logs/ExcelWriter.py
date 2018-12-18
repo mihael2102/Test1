@@ -222,7 +222,7 @@ class ExcelWriter:
 
         workbook.close()
 
-        Send_Email_XLS(filepath)
+        # Send_Email_XLS(filepath)
 
     @staticmethod
     def get_test_pretty_name(test):
