@@ -134,7 +134,7 @@ if __name__ == "__main__":
         import xlsxwriter
         # Join all results in one excel
         all_excel = "C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx"
-        writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
+        # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
 
 
@@ -143,11 +143,10 @@ if __name__ == "__main__":
             tab = pd.read_excel(filename)
             all_file_frames.append(tab)
             all_frame = pd.concat(all_file_frames, axis=1)
-            all_frame.to_excel('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
-
-        workbook = writer.book
-        worksheets = writer.book.worksheets()
-        for worksheet in worksheets:
+            writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
+            all_frame.to_excel(writer, sheet_name='Sheet1')
+            workbook = writer.book
+            worksheet = writer.sheets['Sheet1']
             format1 = workbook.add_format({'bg_color': '#FFC7CE',
                                            'font_color': '#9C0006'})
 
@@ -166,7 +165,10 @@ if __name__ == "__main__":
             for i in range(3, 33):
                 worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-        writer.save()
+            worksheet.set_row(34, None, None, {'level': 1, 'hidden': True})
+            for i in range(35, 51):
+                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
 
         Send_ALL_XLS(all_excel)
 
