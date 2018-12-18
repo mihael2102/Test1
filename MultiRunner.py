@@ -146,24 +146,26 @@ if __name__ == "__main__":
             all_frame.to_excel('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
         workbook = writer.book
-        worksheet = writer.book.worksheets()
-        format1 = workbook.add_format({'bg_color': '#FFC7CE',
-                                       'font_color': '#9C0006'})
+        worksheets = writer.book.worksheets()
+        for worksheet in worksheets:
+            format1 = workbook.add_format({'bg_color': '#FFC7CE',
+                                           'font_color': '#9C0006'})
 
-        format2 = workbook.add_format({'bg_color': '#C4D79B',
-                                       'font_color': '#000000'})
-        worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
-                                                     'criteria': 'beginsWith',
-                                                     'value': 'PASS',
-                                                     'format': format2})
+            format2 = workbook.add_format({'bg_color': '#C4D79B',
+                                           'font_color': '#000000'})
+            worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
+                                                         'criteria': 'beginsWith',
+                                                         'value': 'PASS',
+                                                         'format': format2})
 
-        worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
-                                                     'criteria': 'beginsWith',
-                                                     'value': 'ERROR',
-                                                     'format': format1})
-        worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
-        for i in range(3, 33):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+            worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
+                                                         'criteria': 'beginsWith',
+                                                         'value': 'ERROR',
+                                                         'format': format1})
+            worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
+            for i in range(3, 33):
+                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
         writer.save()
 
         Send_ALL_XLS(all_excel)
