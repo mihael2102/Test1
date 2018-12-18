@@ -1,6 +1,8 @@
 brands:
 
-#- name: 24fxm
-#  config_file: 24fxm.yml
-- name: gmo
-  config_file: gmo.yml
+#- name: gmo
+#  config_file: gmo.yml
+- name: oinvestsa
+  config_file: oinvestsa.yml
+- name: triomarkets
+  config_file: triomarkets.yml
