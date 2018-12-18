@@ -143,8 +143,8 @@ if __name__ == "__main__":
             tab = pd.read_excel(filename)
             all_file_frames.append(tab)
             all_frame = pd.concat(all_file_frames, axis=1)
-            worksheet = workbook.add_worksheet('RESULTS')
-            all_frame.to_excel('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx', sheet_name='RESULTS')
+            worksheet = workbook.add_worksheet()
+            all_frame.to_excel('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
 
             format1 = workbook.add_format({'bg_color': '#FFC7CE',
