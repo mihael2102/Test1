@@ -140,10 +140,9 @@ if __name__ == "__main__":
             tab = pd.read_excel(filename)
             all_file_frames.append(tab)
             all_frame = pd.concat(all_file_frames, axis=1)
-            f_short_name = "Page"
-            all_frame.to_excel('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx', f_short_name)
+            all_frame.to_excel('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
             workbook = writer.book
-            worksheet = writer.sheets[f_short_name]
+            worksheet = writer.sheets
             format1 = workbook.add_format({'bg_color': '#FFC7CE',
                                            'font_color': '#9C0006'})
 
