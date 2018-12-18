@@ -134,7 +134,10 @@ if __name__ == "__main__":
         # Join all results in one excel
         all_excel = "C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx"
 
+        import xlsxwriter
 
+        workbook = xlsxwriter.Workbook(all_excel)
+        worksheet = workbook.add_worksheet()
         all_file_frames = []
         for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/*.xlsx'):
             tab = pd.read_excel(filename)
@@ -142,9 +145,7 @@ if __name__ == "__main__":
             all_frame = pd.concat(all_file_frames, axis=1)
             all_frame.to_excel('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
-        import xlsxwriter
-        workbook = xlsxwriter.Workbook(all_excel)
-        worksheet = workbook.add_worksheet()
+
         format1 = workbook.add_format({'bg_color': '#FFC7CE',
                                        'font_color': '#9C0006'})
 
