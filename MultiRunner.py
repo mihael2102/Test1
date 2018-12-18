@@ -146,7 +146,7 @@ if __name__ == "__main__":
             all_frame.to_excel('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
         workbook = writer.book
-        worksheet = writer.book.worksheets()[0]
+        worksheet = writer.book.worksheets()
         format1 = workbook.add_format({'bg_color': '#FFC7CE',
                                        'font_color': '#9C0006'})
 
