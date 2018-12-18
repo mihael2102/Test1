@@ -1,30 +1,30 @@
 tests_config:
 
   #General
-#- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
-#  class: FilterModulesTest
-#  tests:
-#    - test_create_filter_clients_module
-#    - test_create_filter_documents_module
-#    - test_create_filter_leads_module
-#    - test_create_filter_help_desk
-#    - test_create_filter_trading_account_module
-###  #Leads
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
-#  class: TabLeadsModuleCRM
-#  tests:
-#    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
+- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
+  class: FilterModulesTest
+  tests:
+    - test_create_filter_clients_module
+    - test_create_filter_documents_module
+    - test_create_filter_leads_module
+    - test_create_filter_help_desk
+    - test_create_filter_trading_account_module
+##  #Leads
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
+  class: TabLeadsModuleCRM
+  tests:
+    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
 #- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
 #  directive: reload_configuration
 #  class: LeadModuleTest
 #  tests:
 #    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
 #    - test_edit_lead
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_perform_convert_lead   # Creates a lead and converts it to a client
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+#  directive: reload_configuration
+#  class: LeadModuleTest
+#  tests:
+#    - test_perform_convert_lead   # Creates a lead and converts it to a client
 ####Clients
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
 #  class: SearchingClientsTestCRM
@@ -64,10 +64,10 @@ tests_config:
 #  class: CreditInTestCRM
 #  tests:
 #    - test_make_credit_in_from_crm
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_edit_trading_account  # edit trading account
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+#  class: TradingAccountCrmTest
+#  tests:
+#    - test_crm_edit_trading_account  # edit trading account
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
 #  class: AffiliateModule
