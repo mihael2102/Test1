@@ -6,6 +6,7 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from time import sleep
 import pyotp
 from selenium.webdriver.support.select import Select
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class CALoginPage(CRMBasePage):
 
@@ -15,7 +16,8 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def click_sign_up(self):
-        sign_up_button = super().wait_load_element("//button[contains (text(), 'Sign Up')]")
+        sign_up_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["sign_up"])
         sign_up_button.click()
         Logging().reportDebugStep(self, "Click Sign Up")
         return CALoginPage(self.driver)
@@ -57,7 +59,8 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def check_box_accept(self):
-        check_box = super().wait_load_element("//span[contains (text(), 'Terms and Conditions')]")
+        check_box = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["check_box_accept"])
         check_box.click()
         Logging().reportDebugStep(self, "Check 'By checking this box I accept the Terms and Conditions and confirm that I am over 18 year of age'")
         return CALoginPage(self.driver)
@@ -107,7 +110,7 @@ class CALoginPage(CRMBasePage):
     def choose_citizenship(self, citizenship):
         data = self.driver.find_element_by_xpath("//custom-select[@name='citizenship']//span[text()='%s']" % citizenship)
         self.driver.execute_script("arguments[0].click();", data)
-        d = self.driver.find_element_by_xpath("/html/body/div[3]/panda-forex-personal-profile/div/personal-popup/div/div[2]/div[2]/div/h1")
+        d = self.driver.find_element_by_xpath("//label[contains (text(), 'First Name')]")
         d.click()
         Logging().reportDebugStep(self, "Select currency : " + citizenship)
         return CALoginPage(self.driver)
@@ -140,12 +143,16 @@ class CALoginPage(CRMBasePage):
         sleep(10)
         elems = self.driver.find_elements_by_xpath("//a[@href]")
         i = 0
+
         for elem in elems:
             link = elem.get_attribute("href")
             if 'trading-platform' in link:
                 i += 1
         if i > 1:
             Logging().reportDebugStep(self, "You are on the Webtrader page")
+        else:
+            Logging().reportDebugStep(self, "You are not on the Webtrader page")
+
         return CALoginPage(self.driver)
 
     def click_hi_user(self, user_name):
@@ -160,28 +167,25 @@ class CALoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click Sign Out")
         return CALoginPage(self.driver)
 
-    def verify_start_page(self):
-        sleep(3)
-        start_page = self.driver.find_element_by_xpath("//*[@id='Content']//h3[contains(text(), 'Join us')]")
-        Logging().reportDebugStep(self, "Verify start page")
-        return CALoginPage(self.driver)
-
     def login(self):
-        login_button = super().wait_load_element("//button[contains(text(), 'Login')]")
-        login_button.click()
+        login_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["login_btn"])
+        self.driver.execute_script("arguments[0].click();", login_button)
         Logging().reportDebugStep(self, "Click Login")
         return CALoginPage(self.driver)
 
     def enter_email(self, email):
-        input_email = super().wait_load_element("//input[@name='login']")
+        input_email = self.driver.find_element_by_xpath("//input[@name='login']")
+        self.driver.execute_script("arguments[0].click();", input_email)
         input_email.send_keys(email)
         Logging().reportDebugStep(self, "Enter Email")
         return CALoginPage(self.driver)
 
     def enter_password(self, password):
-        input_email = super().wait_load_element("//input[@name='password']")
-        input_email.send_keys(password)
-        Logging().reportDebugStep(self, "Enter Email")
+        input_password = self.driver.find_element_by_xpath("//input[@name='password']")
+        self.driver.execute_script("arguments[0].click();", input_password)
+        input_password.send_keys(password)
+        Logging().reportDebugStep(self, "Enter Password")
         return CALoginPage(self.driver)
 
     def click_login(self):

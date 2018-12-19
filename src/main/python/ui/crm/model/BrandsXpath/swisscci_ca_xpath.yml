@@ -1,0 +1,2 @@
+CALoginPage:
+  login_btn: "//*[@id='u10031']/panda-forex-login/div/div/button"

@@ -1,9 +1,8 @@
 brands:
 
-- name: firstindex
-  config_file: firstindex.yml
-- name: coinstec
-  config_file: coinstec.yml
-- name: 24btcmarket
-  config_file: 24btcmarket.yml
+- name: firstindex_ca
+  config_file: firstindex_ca.yml
+- name: sitalix_ca
+  config_file: sitalix_ca.yml
+
 

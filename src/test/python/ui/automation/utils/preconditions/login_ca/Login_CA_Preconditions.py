@@ -55,7 +55,6 @@ class Login_CA_Precondition(object):
                                 .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME])\
                                 .sign_out() \
-                                .verify_start_page()\
                                 .login()\
                                 .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])\

@@ -1,0 +1,3 @@
+CALoginPage:
+  sign_up: "//*[@id='Top_bar']/div/div/div/div[2]/ul/li[4]/panda-forex-signup/div/button"
+  check_box_accept: "//*[@id='Top_bar']/div/div/div/div[2]/ul/li[4]/panda-forex-signup/div/div/div[2]/div/div[3]/signup-long/div/form/div[5]/label/span[1]"

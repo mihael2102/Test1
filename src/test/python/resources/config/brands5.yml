@@ -1,8 +1,6 @@
 brands:
 
-- name: jonesmutual
-  config_file: jonesmutual.yml
-- name: uft
-  config_file: uft.yml
-- name: brokerz
-  config_file: brokerz.yml
+- name: firstindex_ca
+  config_file: firstindex_ca.yml
+- name: sitalix_ca
+  config_file: sitalix_ca.yml

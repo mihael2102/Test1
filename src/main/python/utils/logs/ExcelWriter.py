@@ -95,131 +95,6 @@ class ExcelWriter:
 
             col += 1
 
-
-        # worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
-        # for i in range(3,33):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(34, None, None, {'level': 1, 'hidden': True})
-        # for i in range(35,51):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(52, None, None, {'level': 1, 'hidden': True})
-        # for i in range(53, 77):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(78, None, None, {'level': 1, 'hidden': True})
-        # for i in range(79, 107):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(108, None, None, {'level': 1, 'hidden': True})
-        # for i in range(109, 139):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(140, None, None, {'level': 1, 'hidden': True})
-        # for i in range(141, 181):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(182, None, None, {'level': 1, 'hidden': True})
-        # for i in range(183, 234):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(235, None, None, {'level': 1, 'hidden': True})
-        # for i in range(236, 333):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(334, None, None, {'level': 1, 'hidden': True})
-        # for i in range(335, 384):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(385, None, None, {'level': 1, 'hidden': True})
-        # for i in range(386, 403):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(404, None, None, {'level': 1, 'hidden': True})
-        # for i in range(405, 434):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(435, None, None, {'level': 1, 'hidden': True})
-        # for i in range(436, 446):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(447, None, None, {'level': 1, 'hidden': True})
-        # for i in range(448, 467):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(468, None, None, {'level': 1, 'hidden': True})
-        # for i in range(469, 487):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(488, None, None, {'level': 1, 'hidden': True})
-        # for i in range(489, 506):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(507, None, None, {'level': 1, 'hidden': True})
-        # for i in range(508, 525):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(526, None, None, {'level': 1, 'hidden': True})
-        # for i in range(527, 546):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(547, None, None, {'level': 1, 'hidden': True})
-        # for i in range(548, 565):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(566, None, None, {'level': 1, 'hidden': True})
-        # for i in range(567, 596):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(597, None, None, {'level': 1, 'hidden': True})
-        # for i in range(598, 633):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(634, None, None, {'level': 1, 'hidden': True})
-        # for i in range(635, 654):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(655, None, None, {'level': 1, 'hidden': True})
-        # for i in range(656, 692):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(693, None, None, {'level': 1, 'hidden': True})
-        # for i in range(694, 720):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(721, None, None, {'level': 1, 'hidden': True})
-        # for i in range(722, 738):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(739, None, None, {'level': 1, 'hidden': True})
-        # for i in range(740, 760):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(761, None, None, {'level': 1, 'hidden': True})
-        # for i in range(762, 770):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(771, None, None, {'level': 1, 'hidden': True})
-        # for i in range(772, 786):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(787, None, None, {'level': 1, 'hidden': True})
-        # for i in range(788, 795):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(796, None, None, {'level': 1, 'hidden': True})
-        # for i in range(797, 808):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(809, None, None, {'level': 1, 'hidden': True})
-        # for i in range(810, 823):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(824, None, None, {'level': 1, 'hidden': True})
-        # for i in range(825, 839):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
         workbook.close()
 
         # Send_Email_XLS(filepath)
@@ -233,6 +108,43 @@ class ExcelWriter:
         return test['class'] + ': ' + test['method'].replace('_', ' ')
 
     def steps_for_test(self, test):
+
+
+        #CA TESTS
+        if self.get_test_pretty_name_new(test) == "SignUpTest: test check sign up":
+            step_suit = ["Open first tabs page:",
+                        "Click Sign Up",
+                        "Fill First Name : testqaQRMAXD",
+                        "Fill Last Name : Doe",
+                        "Fill email : pandaqa+20181219142916@pandats.com",
+                        "Fill phone : 7777777",
+                        "Fill password : as1as2",
+                        "Fill confirm : as1as2",
+                        "Check 'By checking this box I accept the Terms and Conditions and confirm that I am over 18 year of age'",
+                        "Click submit",
+                        "You are on the Webtrader page",
+                        "Click Hi, Guest",
+                        "Click Transaction History",
+                        "Select data birth : 10",
+                        "Select month birth : January",
+                        "Select year birth : 1995",
+                        "Select currency : EUR",
+                        "Select currency : German",
+                        "Fill city : Berlin",
+                        "Fill zip_code : 123",
+                        "Fill address : Street10",
+                        "Click Next",
+                        "You are on the Webtrader page",
+                        "Click Hi, testqaQRMAXD",
+                        "Click Sign Out",
+                        "Verify start page",
+                        "Click Login",
+                        "Enter Email",
+                        "Enter Email",
+                        "Click Login in pop up",
+                        "You are on the Webtrader page",
+                        "Verify testqaQRMAXD"]
+
 
         # CalendarView
 
