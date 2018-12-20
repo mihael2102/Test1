@@ -23,13 +23,16 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def fill_first_name(self, first_name):
-        input_first_name = super().wait_load_element("//input[@name = 'firstName']")
+        input_first_name = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["input_first_name"])
+
         input_first_name.send_keys(first_name)
         Logging().reportDebugStep(self, "Fill First Name : " + first_name)
         return CALoginPage(self.driver)
 
     def fill_last_name(self, last_name):
-        input_last_name = super().wait_load_element("//input[@name = 'lastName']")
+        input_last_name = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["input_last_name"])
         input_last_name.send_keys(last_name)
         Logging().reportDebugStep(self, "Fill Last Name : " + last_name)
         return CALoginPage(self.driver)
@@ -53,7 +56,8 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def fill_confirm_password(self, password):
-        input_password = super().wait_load_element("//input[@name = 'passwordConfirm']")
+        input_password = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["input_confirm_password"])
         input_password.send_keys(password)
         Logging().reportDebugStep(self, "Fill confirm : " + password)
         return CALoginPage(self.driver)
@@ -66,7 +70,8 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def click_submit(self):
-        submit_button = super().wait_load_element("//button[contains (text(), 'Submit')]")
+        submit_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["submit_btn"])
         submit_button.click()
         Logging().reportDebugStep(self, "Click submit")
         return CALoginPage(self.driver)
@@ -108,7 +113,8 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def choose_citizenship(self, citizenship):
-        data = self.driver.find_element_by_xpath("//custom-select[@name='citizenship']//span[text()='%s']" % citizenship)
+        data = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["citizenship"] % citizenship)
         self.driver.execute_script("arguments[0].click();", data)
         d = self.driver.find_element_by_xpath("//label[contains (text(), 'First Name')]")
         d.click()
@@ -131,6 +137,12 @@ class CALoginPage(CRMBasePage):
         input_address = super().wait_load_element("//input[@name = 'address']")
         input_address.send_keys(address)
         Logging().reportDebugStep(self, "Fill address : " + address)
+        return CALoginPage(self.driver)
+
+    def account_type(self, type):
+        data = self.driver.find_element_by_xpath("//custom-select[@name='customerType']//span[text()='%s']" % type)
+        self.driver.execute_script("arguments[0].click();", data)
+        Logging().reportDebugStep(self, "Select type : " + type)
         return CALoginPage(self.driver)
 
     def click_next(self):
@@ -175,21 +187,27 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def enter_email(self, email):
-        input_email = self.driver.find_element_by_xpath("//input[@name='login']")
+        sleep(1)
+        input_email = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["login_email_input"])
         self.driver.execute_script("arguments[0].click();", input_email)
+        sleep(1)
         input_email.send_keys(email)
         Logging().reportDebugStep(self, "Enter Email")
         return CALoginPage(self.driver)
 
     def enter_password(self, password):
+        sleep(1)
         input_password = self.driver.find_element_by_xpath("//input[@name='password']")
         self.driver.execute_script("arguments[0].click();", input_password)
+        sleep(1)
         input_password.send_keys(password)
         Logging().reportDebugStep(self, "Enter Password")
         return CALoginPage(self.driver)
 
     def click_login(self):
-        login_button = super().wait_load_element("//button[@class = 'forex-button-pandats short-button-pandats login-button-pandats'][contains(text(), 'Login')]")
+        login_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["login_btn_2"])
         login_button.click()
         Logging().reportDebugStep(self, "Click Login in pop up")
         return CALoginPage(self.driver)
@@ -199,3 +217,22 @@ class CALoginPage(CRMBasePage):
         client = verify_client.text
         Logging().reportDebugStep(self, "Verify " + client)
         return client
+
+    def click_my_account(self):
+        sleep(5)
+        my_account_brn = super().wait_load_element("/html/body/header/div/div[2]/div[1]/label/div[1]/span")
+        my_account_brn.click()
+        Logging().reportDebugStep(self, "My account button click")
+        return CALoginPage(self.driver)
+
+    def logout(self):
+        logout_btn = super().wait_load_element("/html/body/header/div/div[2]/div[1]/label/div[2]/div/span")
+        self.driver.execute_script("arguments[0].click();", logout_btn)
+        Logging().reportDebugStep(self, "Logout click")
+        return CALoginPage(self.driver)
+
+    def account_details(self):
+        logout_btn = super().wait_load_element("/html/body/header/div/div[2]/div[1]/label/div[2]/div/a[6]")
+        self.driver.execute_script("arguments[0].click();", logout_btn)
+        Logging().reportDebugStep(self, "Account details click")
+        return CALoginPage(self.driver)

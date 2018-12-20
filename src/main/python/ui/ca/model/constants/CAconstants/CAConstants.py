@@ -12,4 +12,5 @@ class CAConstants(object):
     CITY = "Berlin"
     ZIP_CODE = "123"
     ADDRESS = "Street10"
-    CITIZENSHIP = "German"
+    CITIZENSHIP = "Albanian"
+    ACCOUNT_TYPE = "Pro"

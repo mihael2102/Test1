@@ -4,8 +4,8 @@ brands:
 #  config_file: royal_cfd_ca.yml
 #- name: coinstec_ca
 #  config_file: coinstec_ca.yml
-- name: swisscci_ca
-  config_file: swisscci_ca.yml
+#- name: swisscci_ca
+#  config_file: swisscci_ca.yml
 #- name: tradospot_ca
 #  config_file: tradospot_ca.yml
 #- name: 4xfx_ca
@@ -28,8 +28,8 @@ brands:
 #
 #- name: firstindex_ca
 #  config_file: firstindex_ca.yml
-#- name: sitalix_ca
-#  config_file: sitalix_ca.yml
+- name: sitalix_ca
+  config_file: sitalix_ca.yml
 
 
 

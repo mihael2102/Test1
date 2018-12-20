@@ -32,6 +32,26 @@ def get_xpath_for_current_brand_element(page_name):
         if page_name == "CALoginPage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
+    elif current_brand_name == "sitalix_ca":
+        if page_name == "CALoginPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
+    elif current_brand_name == "tradospot_ca":
+        if page_name == "CALoginPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
+    elif current_brand_name == "firstindex_ca":
+        if page_name == "CALoginPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
+    elif current_brand_name == "ptbanc_ca":
+        if page_name == "CALoginPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
+    elif current_brand_name == "q8trade_ca":
+        if page_name == "CALoginPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
     elif current_brand_name == "mpcrypto":
         if page_name == "TasksPage":
             return __get_xpath_of_elements_of_current_page(page_name)
