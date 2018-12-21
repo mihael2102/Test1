@@ -1,7 +1,7 @@
 brands:
 
-#- name: gmo
-#  config_file: gmo.yml
+- name: gmo
+  config_file: gmo.yml
 - name: oinvestsa
   config_file: oinvestsa.yml
 - name: triomarkets
