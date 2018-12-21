@@ -1,20 +1,20 @@
 brands:
 
-#- name: swiftcfd
-#  config_file: swiftcfd.yml
-#- name: goldenmarkets
-#  config_file: goldenmarkets.yml
+- name: swiftcfd
+  config_file: swiftcfd.yml
+- name: goldenmarkets
+  config_file: goldenmarkets.yml
 - name: safemarkets
   config_file: safemarkets.yml
 
 
 
-#- name: b-finance
-#  config_file: b-finance.yml
-#- name: eafx
-#  config_file: eafx.yml
-#- name: gxfx
-#  config_file: gxfx.yml
+- name: b-finance
+  config_file: b-finance.yml
+- name: eafx
+  config_file: eafx.yml
+- name: gxfx
+  config_file: gxfx.yml
 
 
 
