@@ -1,6 +1,6 @@
 brands:
 
-- name: stoxmarket
-  config_file: stoxmarket.yml
+#- name: stoxmarket
+#  config_file: stoxmarket.yml
 - name: kbcapitals
   config_file: kbcapitals.yml
