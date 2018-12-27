@@ -25,203 +25,66 @@ from selenium.common.exceptions import NoSuchElementException
 class DepositTestCRM(BaseTest):
 
     def test_make_deposit_crm(self):
-        try:
-            client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
-            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                           self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
-            CRMHomePage(self.driver).open_client_module()\
-                                    .select_filter(self.config.get_value(
-                                                                TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-                                    .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
-            # Create LIVE account for client using MT4 Actions
-            crm_client_profile = ClientProfilePage(self.driver)
-            crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+        CRMHomePage(self.driver).open_client_module()\
+                                .select_filter(self.config.get_value(
+                                                            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+                                .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
 
-            if global_var.current_brand_name == "finmarket":
-                MT4CreateAccountModule(self.driver) \
-                    .create_account(
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE_FINMARKET),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
-                    .click_close()
+        # Create LIVE account for client using MT4 Actions
+        crm_client_profile = ClientProfilePage(self.driver)
+        crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-            else:
-                MT4CreateAccountModule(self.driver) \
-                    .create_account(
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                          TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
-                    .click_close()
+        if global_var.current_brand_name == "finmarket":
+            MT4CreateAccountModule(self.driver) \
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE_FINMARKET),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
+                .click_close()
 
-
-            account_number = crm_client_profile \
-                .perform_scroll_down() \
-                .open_trading_accounts_tab() \
-                .get_client_account()
-            # Make deposit for account number using MT4 Actions
-            crm_client_profile.perform_scroll_up()
-            # MT4DropDown(self.driver).mt4_actions(CRMConstants.DEPOSIT)
-            crm_client_profile.open_mt4_actions(CRMConstants.DEPOSIT)
-            MT4DepositModule(self.driver).make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
-                                                       CRMConstants.PAYMENT_METHOD_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT)
-
-            # Check confirmation message
-            confirmation_message = crm_client_profile.get_confirm_message()
-            self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULL_OLD_FOREX)
-
-            # Close popup
-            crm_client_profile.click_ok()\
-                              .refresh_page()
-
-            deposit_amount_text = crm_client_profile.click_trading_accounts_tab() \
-                                                    .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
-
-            self.assertEqual(
-                        CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, deposit_amount_text, "Wrong deposit sum is displayed")
-        except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                ClientProfilePage(self.driver).Sign_Out()
-                # lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
-                client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
-                CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                               self.config.get_value(TestDataConstants.CRM_PASSWORD))
-
-                CRMHomePage(self.driver).open_client_module() \
-                    .select_filter(self.config.get_value(
-                    TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-                    .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
-
-                # Create LIVE account for client using MT4 Actions
-                crm_client_profile = ClientProfilePage(self.driver)
-                crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
-
-                if global_var.current_brand_name == "finmarket":
-                    MT4CreateAccountModule(self.driver) \
-                        .create_account(
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_CURRENCY_LIVE),
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_GROUP_LIVE_FINMARKET),
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_LEVERAGE_LIVE)) \
-                        .click_close()
-
-                else:
-                    MT4CreateAccountModule(self.driver) \
-                        .create_account(
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_CURRENCY_LIVE),
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_GROUP_LIVE),
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_LEVERAGE_LIVE)) \
-                        .click_close()
+        else:
+            MT4CreateAccountModule(self.driver) \
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
+                                      TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
+                .click_close()
 
 
-                account_number = crm_client_profile \
-                    .perform_scroll_down() \
-                    .open_trading_accounts_tab() \
-                    .get_client_account()
-                # Make deposit for account number using MT4 Actions
-                crm_client_profile.perform_scroll_up()
-                MT4DropDown(self.driver).mt4_actions(CRMConstants.DEPOSIT)
+        account_number = crm_client_profile \
+            .perform_scroll_down() \
+            .open_trading_accounts_tab() \
+            .get_client_account()
+        # Make deposit for account number using MT4 Actions
+        crm_client_profile.perform_scroll_up()
+        # MT4DropDown(self.driver).mt4_actions(CRMConstants.DEPOSIT)
+        crm_client_profile.open_mt4_actions(CRMConstants.DEPOSIT)
+        MT4DepositModule(self.driver).make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
+                                                   CRMConstants.PAYMENT_METHOD_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT)
 
-                MT4DepositModule(self.driver).make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
-                                                           CRMConstants.PAYMENT_METHOD_DEPOSIT,
-                                                           CRMConstants.DESCRIPTION_DEPOSIT)
+        # Check confirmation message
+        confirmation_message = crm_client_profile.get_confirm_message()
+        self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULL_OLD_FOREX)
 
-                # Check confirmation message
-                confirmation_message = crm_client_profile.get_confirm_message()
-                self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULL_OLD_FOREX)
+        # Close popup
+        crm_client_profile.click_ok()\
+                          .refresh_page()
 
-                # Close popup
-                crm_client_profile.click_ok() \
-                    .refresh_page()
+        deposit_amount_text = crm_client_profile.click_trading_accounts_tab() \
+                                                .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
 
-                deposit_amount_text = crm_client_profile.click_trading_accounts_tab() \
-                    .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
-
-                self.assertEqual(
+        self.assertEqual(
                     CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, deposit_amount_text, "Wrong deposit sum is displayed")
-            except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                ClientProfilePage(self.driver).Sign_Out()
-                # lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
-                client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
-                CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                               self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
-                CRMHomePage(self.driver).open_client_module() \
-                    .select_filter(self.config.get_value(
-                    TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-                    .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
-
-                # Create LIVE account for client using MT4 Actions
-                crm_client_profile = ClientProfilePage(self.driver)
-                crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
-
-                if global_var.current_brand_name == "finmarket":
-                    MT4CreateAccountModule(self.driver) \
-                        .create_account(
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_CURRENCY_LIVE),
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_GROUP_LIVE_FINMARKET),
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_LEVERAGE_LIVE)) \
-                        .click_close()
-
-                else:
-                    MT4CreateAccountModule(self.driver) \
-                        .create_account(
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_CURRENCY_LIVE),
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_GROUP_LIVE),
-                        self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                              TestDataConstants.TRADING_LEVERAGE_LIVE)) \
-                        .click_close()
-
-                account_number = crm_client_profile \
-                    .perform_scroll_down() \
-                    .open_trading_accounts_tab() \
-                    .get_client_account()
-                # Make deposit for account number using MT4 Actions
-                crm_client_profile.perform_scroll_up()
-                MT4DropDown(self.driver).mt4_actions(CRMConstants.DEPOSIT)
-
-                MT4DepositModule(self.driver).make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
-                                                           CRMConstants.PAYMENT_METHOD_DEPOSIT,
-                                                           CRMConstants.DESCRIPTION_DEPOSIT)
-
-                # Check confirmation message
-                confirmation_message = crm_client_profile.get_confirm_message()
-                self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULL_OLD_FOREX)
-
-                # Close popup
-                crm_client_profile.click_ok() \
-                    .refresh_page()
-
-                deposit_amount_text = crm_client_profile.click_trading_accounts_tab() \
-                    .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
-
-                self.assertEqual(
-                    CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, deposit_amount_text, "Wrong deposit sum is displayed")
 
 
     def test_make_deposit_for_client_crm(self):
