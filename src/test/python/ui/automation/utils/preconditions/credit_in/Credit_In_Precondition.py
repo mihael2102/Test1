@@ -65,7 +65,7 @@ class CreditInPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400))
 
-        elif (global_var.current_brand_name == "xtraderfx"):
+        elif (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "gxfx") or (global_var.current_brand_name == "optionstars"):
             crm_client_profile = MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),

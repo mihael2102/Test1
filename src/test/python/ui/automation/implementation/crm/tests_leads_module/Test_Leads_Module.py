@@ -360,11 +360,14 @@ class LeadModuleTest(BaseTest):
         elif global_var.current_brand_name == "gxfx":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_B_TEST])
 
+        elif global_var.current_brand_name == "solocapitlas":
+            self.assertEqual(po_box, lead_data[LeadsModuleConstants.PO_BOX])
+
         else:
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS])
 
-        if global_var.current_brand_name != "marketsplus":
-            self.assertEqual(language, lead_data[LeadsModuleConstants.FIRST_LANGUAGE])
+        # if global_var.current_brand_name != "marketsplus":
+        #     self.assertEqual(language, lead_data[LeadsModuleConstants.FIRST_LANGUAGE])
         # if lead_data[LeadsModuleConstants.BRAND]:
         #     self.assertEqual(brand, lead_data[LeadsModuleConstants.BRAND])
         self.assertEqual(po_box, lead_data[LeadsModuleConstants.PO_BOX])

@@ -82,7 +82,8 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400))
             return self
 
-        elif (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "safemarkets"):
+        elif (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "safemarkets") or (global_var.current_brand_name == "gxfx") \
+                or (global_var.current_brand_name == "optionstars"):
             MT4CreateAccountModule(self.driver) \
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),

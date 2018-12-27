@@ -244,7 +244,7 @@ class LeadPrecondition(object):
 
     def edit_lead_profile(self, new_lead_data):
 
-        if global_var.current_brand_name == "safemarkets":
+        if global_var.current_brand_name == "safemarkets" or global_var.current_brand_name == "solocapitlas":
             LeadDetailViewInfo(self.driver).open_edit_lead_profile().perform_edit_lead(
                 new_lead_data[LeadsModuleConstants.FIRST_NAME],
                 new_lead_data[LeadsModuleConstants.FIRST_LAST_NAME],
