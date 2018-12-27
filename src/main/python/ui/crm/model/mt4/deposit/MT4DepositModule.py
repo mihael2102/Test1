@@ -36,8 +36,9 @@ class MT4DepositModule(CRMBasePage):
     '''
 
     def select_payment_method(self, payment_method):
-        WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//select[@name='payment_type']")))
+        # WebDriverWait(self.driver, 10).until(
+        #     EC.element_to_be_clickable((By.XPATH, "//select[@name='payment_type']")))
+        time.sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='payment_type']"))
         select.select_by_visible_text(payment_method)
         Logging().reportDebugStep(self, "The payment method of deposit module was selected: " + payment_method)

@@ -15,7 +15,8 @@ class CalendarViewModule(CRMBasePage):
     def add_new_task(self):
         sleep(2)
         add_new_task_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add New Task')]")
-        add_new_task_button.click()
+        self.driver.execute_script("arguments[0].click();", add_new_task_button)
+        # add_new_task_button.click()
         Logging().reportDebugStep(self, "The add new task module was opened")
         return AddEventModule(self.driver)
 
@@ -43,20 +44,23 @@ class CalendarViewModule(CRMBasePage):
         return CalendarViewModule(self.driver)
 
     def open_month_tab(self):
-        month_tab_button = super().wait_element_to_be_clickable("//button[contains(text(),'Month')]")
-        month_tab_button.click()
+        month_tab_button = self.driver.find_element(By.XPATH,"//button[contains(text(),'Month')]")
+        self.driver.execute_script("arguments[0].click();", month_tab_button)
+        # month_tab_button.click()
         Logging().reportDebugStep(self, "The Month tab was opened")
         return CalendarViewModule(self.driver)
 
     def open_week_tab(self):
-        week_tab_button = super().wait_element_to_be_clickable("//button[contains(text(),'Week')]")
-        week_tab_button.click()
+        week_tab_button = self.driver.find_element(By.XPATH,"//button[contains(text(),'Week')]")
+        # week_tab_button.click()
+        self.driver.execute_script("arguments[0].click();", week_tab_button)
         Logging().reportDebugStep(self, "The Week tab was opened")
         return CalendarViewModule(self.driver)
 
     def open_day_tab(self):
-        day_tab_button = super().wait_element_to_be_clickable("//button[contains(text(),'Day')]")
-        day_tab_button.click()
+        day_tab_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Day')]")
+        # day_tab_button.click()
+        self.driver.execute_script("arguments[0].click();", day_tab_button)
         Logging().reportDebugStep(self, "The Day tab was opened")
         return CalendarViewModule(self.driver)
 

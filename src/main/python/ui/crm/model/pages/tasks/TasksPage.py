@@ -268,7 +268,9 @@ class TasksPage(CRMBasePage):
         event_type = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["event_type"])
         event_type.click()
         title = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[1]/div/button-block/div[1]/h3")
-        title.click()
+        # title.click()
+        self.driver.execute_script("arguments[0].click();", title)
+
         return TasksPage(self.driver)
 
     def open_phone_actions(self):
