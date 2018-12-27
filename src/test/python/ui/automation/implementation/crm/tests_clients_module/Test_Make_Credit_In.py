@@ -56,7 +56,7 @@ class CreditInTestCRM(BaseTest):
             .get_client_account()
 
         ClientProfilePage(self.driver).perform_scroll_up()
-        ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.DEPOSIT)
+        ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREDIT_IN)
         # MT4DropDown(self.driver).mt4_actions(CRMConstants.CREDIT_IN)
 
         MT4CreditInModule(self.driver).make_credit_in(account_number, CRMConstants.AMOUNT_CREDIT_IN,
