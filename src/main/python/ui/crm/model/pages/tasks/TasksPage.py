@@ -138,8 +138,9 @@ class TasksPage(CRMBasePage):
 
     def open_add_event_module(self):
         sleep(3)
-        event_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Event')]")
-        event_button.click()
+        event_button = self.driver.find_element(By.XPATH,"//button[contains(text(),'Add Event')]")
+        self.driver.execute_script("arguments[0].click();", event_button)
+        # event_button.click()
         Logging().reportDebugStep(self, "The event  module was opened")
         return AddEventModule(self.driver)
 
@@ -147,7 +148,8 @@ class TasksPage(CRMBasePage):
         self.wait_element_to_be_clickable("//button[contains(text(),'Calendar View')]")
         calendar_view_button = self.driver.find_element(By.XPATH,
                                                         "//button[contains(text(),'Calendar View')]")
-        calendar_view_button.click()
+        self.driver.execute_script("arguments[0].click();", calendar_view_button)
+        # calendar_view_button.click()
         Logging().reportDebugStep(self, "The calendar view module was opened")
         return CalendarViewModule(self.driver)
 
@@ -312,7 +314,8 @@ class TasksPage(CRMBasePage):
         sleep(5)
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         refresh_icon = self.driver.find_element(By.XPATH, "//a[@class='fa fa-refresh']")
-        refresh_icon.click()
+        self.driver.execute_script("arguments[0].click();", refresh_icon)
+        # refresh_icon.click()
         sleep(8)
         result_count_xpath = "//*[contains(text(), 'Showing Records')]"
         self.wait_visible_of_element(result_count_xpath)

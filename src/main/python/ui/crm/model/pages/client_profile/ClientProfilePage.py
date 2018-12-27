@@ -121,8 +121,9 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_trading_accounts_tab(self):
-        trading_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_TradingAccounts']")
-        trading_tab.click()
+        trading_tab = self.driver.find_element(By.XPATH,"//a[@id='show_Accounts_TradingAccounts']")
+        self.driver.execute_script("arguments[0].click();", trading_tab)
+        # trading_tab.click()
         Logging().reportDebugStep(self, "Open the trading account tab ")
         return ClientProfilePage(self.driver)
 
@@ -132,8 +133,9 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_financial_transactions_tab(self):
-        trading_tab = super().wait_load_element("//a[@id='show_Accounts_FinancialTransactions']")
-        trading_tab.click()
+        trading_tab = self.driver.find_element(By.XPATH,"//a[@id='show_Accounts_FinancialTransactions']")
+        self.driver.execute_script("arguments[0].click();", trading_tab)
+        # trading_tab.click()
         Logging().reportDebugStep(self, "Open the financial transactions tab ")
         return ClientProfilePage()
 
