@@ -35,7 +35,7 @@ class MT4CreditInModule(CRMBasePage):
 
     def select_account(self, account):
         time.sleep(3)
-        drop_down = self.wait_element_to_be_clickable("//*[@id='loginserver']")
+        drop_down = self.driver.find_element(By.XPATH, "//*[@id='loginserver']")
         self.driver.execute_script("arguments[0].click();", drop_down)
         # drop_down.click()
 
