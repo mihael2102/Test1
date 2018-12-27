@@ -66,8 +66,8 @@ class DepositTestCRM(BaseTest):
                 .get_client_account()
             # Make deposit for account number using MT4 Actions
             crm_client_profile.perform_scroll_up()
-            MT4DropDown(self.driver).mt4_actions(CRMConstants.DEPOSIT)
-
+            # MT4DropDown(self.driver).mt4_actions(CRMConstants.DEPOSIT)
+            crm_client_profile.open_mt4_actions(CRMConstants.DEPOSIT)
             MT4DepositModule(self.driver).make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
                                                        CRMConstants.PAYMENT_METHOD_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT)
 
