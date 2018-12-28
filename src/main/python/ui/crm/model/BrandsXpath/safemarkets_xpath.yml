@@ -16,3 +16,11 @@ FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[11])[%s]"
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
+AffiliatePage:
+  countrys: "//div[@class = 'select-options options-enabled']//span[contains(text(),'%s')]"
+  methods: "//span[@class = 'hovered-option ng-star-inserted'][contains(text(),'%s')]"
+  button_plus: "//button[contains(text(), ' +')]"
+  methods_drop_down: "//div[@class = 'multi-select']/div[@class = 'multi-select-holder']"
+  input_methods: "//div[@class = 'select-options options-enabled']//input[@class = 'button-span ng-untouched ng-pristine ng-valid glyphicon-minus-sign']"
+  blocked_country_drop_down: "//div[@class = 'multi-select margin-top-10']/div[@class = 'multi-select-holder']"
+  input_country: "//div[@class = 'select-options options-enabled']//input[@class = 'button-span ng-untouched ng-pristine ng-valid glyphicon-minus-sign']"

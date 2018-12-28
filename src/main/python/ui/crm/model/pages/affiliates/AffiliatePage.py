@@ -67,7 +67,7 @@ class AffiliatePage(CRMBasePage):
         sleep(1)
         input_country = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["input_country"])
         input_country.send_keys(country)
-        sleep(3)
+        sleep(5)
         countrys = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["countrys"]
             % country)
         countrys.click()
