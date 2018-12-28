@@ -46,11 +46,9 @@ class AffiliatePage(CRMBasePage):
         Logging().reportDebugStep(self, "Enter allowed IP")
 
     def click_plus_ip(self):
-        sleep(2)
+        sleep(5)
         button_plus = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["button_plus"])
-
         button_plus.click()
-
         Logging().reportDebugStep(self, "Click plus ip")
 
     def select_allowed_methods(self, method):
