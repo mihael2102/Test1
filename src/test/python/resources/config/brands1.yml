@@ -1,7 +1,7 @@
 brands:
 - name: oinvestsa
   config_file: oinvestsa.yml
-#- name: highfx
-#  config_file: highfx.yml
-#- name: urf
-#  config_file: urf_financial.yml
+- name: highfx
+  config_file: highfx.yml
+- name: urf
+  config_file: urf_financial.yml

@@ -1,5 +1,4 @@
 brands:
 
-
 - name: brokerxp
   config_file: brokerxp.yml

@@ -1,7 +1,7 @@
 brands:
 - name: rimarkets
   config_file: rimarkets.yml
-#- name: gmo
-#  config_file: gmo.yml
-#- name: oinvestsa
-#  config_file: oinvestsa.yml
+- name: gmo
+  config_file: gmo.yml
+- name: oinvestsa
+  config_file: oinvestsa.yml
