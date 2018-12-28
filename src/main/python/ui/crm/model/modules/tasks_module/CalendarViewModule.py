@@ -44,6 +44,7 @@ class CalendarViewModule(CRMBasePage):
         return CalendarViewModule(self.driver)
 
     def open_month_tab(self):
+        sleep(5)
         month_tab_button = self.driver.find_element(By.XPATH,"//button[contains(text(),'Month')]")
         self.driver.execute_script("arguments[0].click();", month_tab_button)
         # month_tab_button.click()
@@ -51,6 +52,7 @@ class CalendarViewModule(CRMBasePage):
         return CalendarViewModule(self.driver)
 
     def open_week_tab(self):
+        sleep(5)
         week_tab_button = self.driver.find_element(By.XPATH,"//button[contains(text(),'Week')]")
         # week_tab_button.click()
         self.driver.execute_script("arguments[0].click();", week_tab_button)
@@ -58,6 +60,7 @@ class CalendarViewModule(CRMBasePage):
         return CalendarViewModule(self.driver)
 
     def open_day_tab(self):
+        sleep(5)
         day_tab_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Day')]")
         # day_tab_button.click()
         self.driver.execute_script("arguments[0].click();", day_tab_button)

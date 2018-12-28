@@ -1,7 +1,27 @@
 brands:
+
+- name: ogtrade
+  config_file: ogtrade.yml
+- name: fm-fx
+  config_file: fm-fx.yml
+- name: finmarket
+  config_file: finmarket.yml
+- name: fxpmarkets
+  config_file: fxpmarkets.yml
+- name: gmo
+  config_file: gmo.yml
+- name: stoxmarket
+  config_file: stoxmarket.yml
 - name: oinvestsa
   config_file: oinvestsa.yml
-- name: highfx
-  config_file: highfx.yml
+- name: itrader
+  config_file: itrader.yml
+- name: otcapital
+  config_file: otcapital.yml
 - name: urf
   config_file: urf_financial.yml
+- name: rimarkets
+  config_file: rimarkets.yml
+- name: kayafx
+  config_file: kaya_fx.yml
+
