@@ -2,5 +2,5 @@ brands:
 
 - name: oinvestsa
   config_file: oinvestsa.yml
-- name: itrader
-  config_file: itrader.yml
+#- name: itrader
+#  config_file: itrader.yml
