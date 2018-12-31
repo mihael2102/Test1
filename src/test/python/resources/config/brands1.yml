@@ -1,3 +1,5 @@
 brands:
 #- name: highfx
 #  config_file: highfx.yml
+- name: mlnfx
+  config_file: mlnfx.yml
