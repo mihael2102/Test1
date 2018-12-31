@@ -1,12 +1,12 @@
 brands:
 
-#- name: goldenmarkets
-#  config_file: goldenmarkets.yml
+- name: goldenmarkets
+  config_file: goldenmarkets.yml
 #- name: safemarkets
 #  config_file: safemarkets.yml
 
-- name: b-finance
-  config_file: b-finance.yml
+#- name: b-finance
+#  config_file: b-finance.yml
 
 #- name: q8
 #  config_file: q8.yml
