@@ -95,7 +95,7 @@ class CRMConstants(object):
     CHECK_CLIENT_PASSWORD = "Check Client Password"
     CHECK_CLIENT_PASSWORD_OLD_FOREX = "Check MT4 Password"
     CHANGE_CLIENT_PASSWORD = "Change Client Area Password"
-    INTERACTION_SUCCESSFULLY = "Interraction successfully created"
+    INTERACTION_SUCCESSFULLY = "Interaction successfully created"
     SHORT_E_MAIL = "short_email"
     SHORT_SECOND_E_MAIL = "short_second_email"
     SHORT_CLIENT_NAME = "short_client_name"
