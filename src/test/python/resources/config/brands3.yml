@@ -2,5 +2,5 @@ brands:
 
 - name: itrader_global
   config_file: itrader_global.yml
-#- name: otcapital
-#  config_file: otcapital.yml
+- name: otcapital
+  config_file: otcapital.yml

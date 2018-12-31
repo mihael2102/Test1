@@ -149,7 +149,7 @@ class ClientProfilePage(CRMBasePage):
         # Use it after deposit etc. because we need to wait some time
         # while deposit will be applied and displayed at the page
         Logging().reportDebugStep(self, "Returns the amount you placed on the deposit page \n" + total_amount_crm)
-        return self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+        return super().wait_until_element_present(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["deposit_sum"], total_amount_crm)
 
     '''
@@ -172,7 +172,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_amount_of_credit_in(self, credit_in):
         Logging().reportDebugStep(self, "Returns the amount you placed on the credit_in page \n" + credit_in)
-        return self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+        return super().wait_until_element_present(global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["credit_in_sum"], credit_in)
 
         #

@@ -14,7 +14,7 @@ FinancialTransactionsPage:
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
-  credit_in_sum: "//*[@id='rld_table_content']/tbody/tr[3]/td[6]/span[1]"
+  credit_in_sum: "//*[@id='rld_table_content']/tbody/tr[4]/td[6]/span[1]"
   i_confirm_checkbox: "//*[@name='confirm']"
   choose_account_drop_down: "//*[@id='ClientDepositConfirmation']/div[2]/div[2]/div/button"
   choose_number: "//form[@id = 'ClientDepositConfirmation']//span[contains(text(), '%s')]"
