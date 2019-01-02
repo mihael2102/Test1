@@ -26,29 +26,43 @@ class Login_CA_Precondition(object):
     def sign_up_ca(self):
 ###REGISTRACTIONS FORM
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))\
-                                .click_sign_up()\
-                                .select_country(CAConstants.CITIZENSHIP)\
-                                .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.FIRST_NAME])\
-                                .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.FIRST_LAST_NAME])\
-                                .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])\
-                                .fill_area_code(CAConstants.AREA_CODE)\
-                                .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.PHONE])\
-                                .fill_password(CAConstants.PASSWORD)\
-                                .fill_confirm_password(CAConstants.PASSWORD)\
-                                .check_box_accept()\
-                                .click_submit() \
+                                .click_sign_up()
+
+        if global_var.current_brand_name == "itraderglob_ca":
+            CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP_AUS)
+        elif global_var.current_brand_name == "oinvest_ca":
+            CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP_SOUTH_A)
+        else:
+            CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP)
+
+        CALoginPage(self.driver).fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                    LeadsModuleConstants.FIRST_NAME])\
+                            .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                    LeadsModuleConstants.FIRST_LAST_NAME])\
+                            .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                    LeadsModuleConstants.EMAIL])\
+                            .fill_area_code(CAConstants.AREA_CODE)\
+                            .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                    LeadsModuleConstants.PHONE])\
+                            .fill_password(CAConstants.PASSWORD)\
+                            .fill_confirm_password(CAConstants.PASSWORD)\
+                            .check_box_accept()\
+
+        if global_var.current_brand_name == "triomarkets_ca" or global_var.current_brand_name == "kayafx_ca" or global_var.current_brand_name == "oinvest_ca":
+            CALoginPage(self.driver).check_box_accept_new()
+
+        CALoginPage(self.driver).click_submit()\
                                 .select_data_birth_day(CAConstants.DAY_BIRTH) \
                                 .select_data_birth_month(CAConstants.MONTH_BIRTH) \
-                                .select_data_birth_year(CAConstants.YEAR_BIRTH) \
-                                .choose_currency(CAConstants.CURRENCY) \
-                                .fill_city(CAConstants.CITY) \
-                                .fill_zip_code(CAConstants.ZIP_CODE) \
-                                .fill_address(CAConstants.ADDRESS) \
-                                .sign_out()
+                                .select_data_birth_year(CAConstants.YEAR_BIRTH)
+
+        if global_var.current_brand_name != "itraderglob_ca":
+            CALoginPage(self.driver).choose_currency(CAConstants.CURRENCY)
+
+        CALoginPage(self.driver).fill_city(CAConstants.CITY) \
+                            .fill_zip_code(CAConstants.ZIP_CODE) \
+                            .fill_address(CAConstants.ADDRESS) \
+                            .sign_out()
 
         if global_var.current_brand_name == "gmo_ca":
             CALoginPage(self.driver).open_first_tab_page("https://my.gmotrading.com/en-us/login.aspx") \

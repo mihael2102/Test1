@@ -1,0 +1,4 @@
+CALoginPage:
+  city: "//*[@id='txtCity']"
+  zip_code: "//*[@id='txtZipCode']"
+  address: "//*[@id='addr1']"

@@ -16,70 +16,90 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def click_sign_up(self):
-        sign_up_button = super().wait_load_element("//*[@id='dnn_ctr517_Login_Login_DNN_registerLink']")
+        sign_up_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["sign_up"])
         sign_up_button.click()
         Logging().reportDebugStep(self, "Click Sign Up")
         return CALoginPage(self.driver)
 
     def select_country(self, country):
-        country_drop_down = self.driver.find_element_by_xpath("//select[@id = 'ddlCountries']")
+        country_drop_down = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["country_registr"])
         country_drop_down.click()
-        country = self.driver.find_element_by_xpath("//*[@id='ddlCountries']/option[contains(text(), '%s')]" % country)
+        country = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["select_country"] % country)
         country.click()
         Logging().reportDebugStep(self, "Select country")
         return CALoginPage(self.driver)
 
     def fill_first_name(self, first_name):
-        input_first_name = super().wait_load_element("//*[@id='dnn_ctr480_View_txtFirstName']")
+        input_first_name = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["first_name"])
 
         input_first_name.send_keys(first_name)
         Logging().reportDebugStep(self, "Fill First Name : " + first_name)
         return CALoginPage(self.driver)
 
     def fill_last_name(self, last_name):
-        input_last_name = super().wait_load_element("//*[@id='dnn_ctr480_View_txtLastName']")
+        input_last_name = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["last_name"])
         input_last_name.send_keys(last_name)
         Logging().reportDebugStep(self, "Fill Last Name : " + last_name)
         return CALoginPage(self.driver)
 
     def fill_email(self, email):
-        input_email = super().wait_load_element("//*[@id='dnn_ctr480_View_txtEmail']")
+        input_email = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["email"])
         input_email.send_keys(email)
         Logging().reportDebugStep(self, "Fill email : " + email)
         return CALoginPage(self.driver)
 
     def fill_area_code(self, area):
-        input_phone = super().wait_load_element("//input[@class = 'phone_area_code']")
+        input_phone = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["phone_area"])
         input_phone.send_keys(area)
         Logging().reportDebugStep(self, "Fill phone : " + area)
         return CALoginPage(self.driver)
 
     def fill_phone(self, phone):
-        input_phone = super().wait_load_element("//input[@class = 'phone_number']")
+        input_phone = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["phone"])
         input_phone.send_keys(phone)
         Logging().reportDebugStep(self, "Fill phone : " + phone)
         return CALoginPage(self.driver)
 
     def fill_password(self, password):
-        input_password = super().wait_load_element("//*[@id='dnn_ctr480_View_txtPassword']")
+        input_password = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["password"])
         input_password.send_keys(password)
         Logging().reportDebugStep(self, "Fill password : " + password)
         return CALoginPage(self.driver)
 
     def fill_confirm_password(self, password):
-        input_password = super().wait_load_element("//*[@id='dnn_ctr480_View_txtConfirmPassword']")
+        input_password = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["confirm_password"])
         input_password.send_keys(password)
         Logging().reportDebugStep(self, "Fill confirm : " + password)
         return CALoginPage(self.driver)
 
     def check_box_accept(self):
-        check_box = super().wait_load_element("//*[@id='chbAgreeWithTerms']")
+        check_box = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["terms_conditions"])
         check_box.click()
         Logging().reportDebugStep(self, "Check 'By checking this box I accept the Terms and Conditions and confirm that I am over 18 year of age'")
         return CALoginPage(self.driver)
 
+    def check_box_accept_new(self):
+        check_box = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["check_box_2"])
+        self.driver.execute_script("arguments[0].click();", check_box)
+        Logging().reportDebugStep(self,
+                                  "Check box in registration form 2")
+        return CALoginPage(self.driver)
+
     def click_submit(self):
-        submit_button = super().wait_load_element("//*[@id='btnSubmit']")
+        submit_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["submit"])
         submit_button.click()
         Logging().reportDebugStep(self, "Click submit")
         return CALoginPage(self.driver)
@@ -136,19 +156,22 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def fill_city(self, city):
-        input_city = super().wait_load_element("//*[@id='cty']")
+        input_city = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["city"])
         input_city.send_keys(city)
         Logging().reportDebugStep(self, "Fill city : " + city)
         return CALoginPage(self.driver)
 
     def fill_zip_code(self, zip_code):
-        input_zip_code = super().wait_load_element("//*[@id='zip']")
+        input_zip_code = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["zip_code"])
         input_zip_code.send_keys(zip_code)
         Logging().reportDebugStep(self, "Fill zip_code : " + zip_code)
         return CALoginPage(self.driver)
 
     def fill_address(self, address):
-        input_address = super().wait_load_element("//*[@id='addr1']")
+        input_address = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["address"])
         input_address.send_keys(address)
         Logging().reportDebugStep(self, "Fill address : " + address)
         return CALoginPage(self.driver)

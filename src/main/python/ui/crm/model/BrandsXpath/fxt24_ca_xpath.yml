@@ -1,0 +1,13 @@
+CALoginPage:
+  sign_up: "//*[@id='wrapper']/div[1]/div/div/div[2]/form/fieldset/div[5]/span/a"
+  country_registr: "//*[@id='registerCountry']"
+  select_country: "//*[@id='registerCountry']/option[contains(text(), '%s')]"
+  first_name: "//*[@id='firstname']"
+  last_name: "//*[@id='lastname']"
+  phone: "//*[@id='telephone']"
+  password: "//*[@id='password']"
+  confirm_password: "//*[@id='confirmpwd']"
+  terms_conditions: "//*[@id='terms']"
+  submit: "//input[@class= 'btn btn-warning btn-block register-btn']"
+  email: "//*[@id='email']"
+  phone_area: "//*[@id='ccode']"

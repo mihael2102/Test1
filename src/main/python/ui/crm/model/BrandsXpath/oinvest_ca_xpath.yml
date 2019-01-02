@@ -1,0 +1,3 @@
+CALoginPage:
+  terms_conditions: "//*[@id='pnlSignUpInfo']/div[7]/div[1]/div/div[2]/label"
+  check_box_2: "//*[@id='cbxAgeConfirm']"

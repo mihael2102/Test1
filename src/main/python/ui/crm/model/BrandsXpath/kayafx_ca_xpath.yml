@@ -1,0 +1,2 @@
+CALoginPage:
+  check_box_2: "//*[@id='dnn_ctr480_View_chbNotUSCitizen']"
