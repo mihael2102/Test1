@@ -1,33 +1,33 @@
 brands:
 
-#- name: royal_cfds_ca
-#  config_file: royal_cfd_ca.yml
-#- name: coinstec_ca
-#  config_file: coinstec_ca.yml
-#- name: swisscci_ca
-#  config_file: swisscci_ca.yml
-#- name: tradospot_ca
-#  config_file: tradospot_ca.yml
-#- name: 4xfx_ca
-#  config_file: 4xfx_ca.yml
-#- name: axamarkets_ca
-#  config_file: axamarkets_ca.yml
-#- name: ptbanc_ca
-#  config_file: ptbanc_ca.yml
-#- name: 2mercados_ca
-#  config_file: 2mercados_ca.yml
-#- name: goldenmrks_ca
-#  config_file: goldenmrks_ca.yml
-#
-#- name: safemarkets_ca
-#  config_file: safemarkets_ca.yml
-#- name: optionstarsglobal_ca
-#  config_file: optionstarsglobal_ca.yml
-#- name: q8trade_ca
-#  config_file: q8trade_ca.yml
-#
-#- name: firstindex_ca
-#  config_file: firstindex_ca.yml
+- name: royal_cfds_ca
+  config_file: royal_cfd_ca.yml
+- name: coinstec_ca
+  config_file: coinstec_ca.yml
+- name: swisscci_ca
+  config_file: swisscci_ca.yml
+- name: tradospot_ca
+  config_file: tradospot_ca.yml
+- name: 4xfx_ca
+  config_file: 4xfx_ca.yml
+- name: axamarkets_ca
+  config_file: axamarkets_ca.yml
+- name: ptbanc_ca
+  config_file: ptbanc_ca.yml
+- name: 2mercados_ca
+  config_file: 2mercados_ca.yml
+- name: goldenmrks_ca
+  config_file: goldenmrks_ca.yml
+
+- name: safemarkets_ca
+  config_file: safemarkets_ca.yml
+- name: optionstarsglobal_ca
+  config_file: optionstarsglobal_ca.yml
+- name: q8trade_ca
+  config_file: q8trade_ca.yml
+
+- name: firstindex_ca
+  config_file: firstindex_ca.yml
 - name: sitalix_ca
   config_file: sitalix_ca.yml
 
