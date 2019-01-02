@@ -4,11 +4,3 @@ brands:
   config_file: goldenmarkets.yml
 - name: safemarkets
   config_file: safemarkets.yml
-
-
-
-
-
-
-
-

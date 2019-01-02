@@ -17,7 +17,7 @@ FinancialTransactionsPage:
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
 AffiliatePage:
-  countrys: "//span[@class = 'hovered-option'][contains(text(),'%s')]"
+  countrys: "//span[@option-value= 'AL'][contains(text(), '%s')]"
   methods: "//span[@class = 'hovered-option ng-star-inserted'][contains(text(),'%s')]"
   button_plus: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[3]/button"
   methods_drop_down: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]"
