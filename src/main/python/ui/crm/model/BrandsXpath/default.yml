@@ -41,3 +41,7 @@ CALoginPage:
   input_first_name: "//input[@name = 'firstName']"
   input_last_name: "//input[@name = 'lastName']"
   input_confirm_password: "//input[@name = 'passwordConfirm']"
+  city: "//input[@name = 'city']"
+  address: "//input[@name = 'address']"
+  zip_code: "//input[@name = 'postCode']"
+  next_btn: "//button[contains (text(), 'Next')]"

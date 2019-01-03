@@ -25,7 +25,6 @@ class CALoginPage(CRMBasePage):
     def fill_first_name(self, first_name):
         input_first_name = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["input_first_name"])
-
         input_first_name.send_keys(first_name)
         Logging().reportDebugStep(self, "Fill First Name : " + first_name)
         return CALoginPage(self.driver)
@@ -122,19 +121,45 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def fill_city(self, city):
-        input_city = super().wait_load_element("//input[@name = 'city']")
+        input_city = super().wait_load_element(
+            global_var.get_xpath_for_current_brand_element(
+                self.__class__.__name__)["city"])
         input_city.send_keys(city)
         Logging().reportDebugStep(self, "Fill city : " + city)
         return CALoginPage(self.driver)
 
+    def select_pt_b(self):
+        btn_data = super().wait_load_element("/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[2]/form/div[1]/div[2]/custom-select[1]/div/div[1]")
+        btn_data.click()
+        btn_data_s = super().wait_load_element("/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[2]/form/div[1]/div[2]/custom-select[1]/div/div[2]/perfect-scrollbar/div/div[1]/div/span[3]")
+        btn_data_s.click()
+        btn_month = super().wait_load_element("/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[2]/form/div[1]/div[2]/custom-select[2]/div/div[1]")
+        btn_month.click()
+        btn_month_s = super().wait_load_element("/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[2]/form/div[1]/div[2]/custom-select[2]/div/div[2]/perfect-scrollbar/div/div[1]/div/span[2]")
+        btn_month_s.click()
+        btn_year = super().wait_load_element("/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[2]/form/div[1]/div[2]/custom-select[3]/div/div[1]")
+        btn_year.click()
+        btn_year_s = super().wait_load_element("/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[2]/form/div[1]/div[2]/custom-select[3]/div/div[2]/perfect-scrollbar/div/div[1]/div/span[4]")
+        btn_year_s.click()
+        btn_citiz = super().wait_load_element("/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[2]/form/div[2]/custom-select/div/div[1]")
+        btn_citiz.click()
+        btn_citiz_s = super().wait_load_element("/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[2]/form/div[2]/custom-select/div/div[2]/perfect-scrollbar/div/div[1]/div/span[3]")
+        btn_citiz_s.click()
+        btn_curr = super().wait_load_element("/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[2]/form/div[2]/div[2]/div/custom-select/div/div[1]")
+        btn_curr.click()
+        Logging().reportDebugStep(self, "Fill all fields")
+        return CALoginPage(self.driver)
+
     def fill_zip_code(self, zip_code):
-        input_zip_code = super().wait_load_element("//input[@name = 'postCode']")
+        input_zip_code = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                self.__class__.__name__)["zip_code"])
         input_zip_code.send_keys(zip_code)
         Logging().reportDebugStep(self, "Fill zip_code : " + zip_code)
         return CALoginPage(self.driver)
 
     def fill_address(self, address):
-        input_address = super().wait_load_element("//input[@name = 'address']")
+        input_address = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                self.__class__.__name__)["address"])
         input_address.send_keys(address)
         Logging().reportDebugStep(self, "Fill address : " + address)
         return CALoginPage(self.driver)
@@ -146,7 +171,8 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def click_next(self):
-        submit_button = super().wait_load_element("//button[contains (text(), 'Next')]")
+        submit_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                self.__class__.__name__)["next_btn"])
         submit_button.click()
         Logging().reportDebugStep(self, "Click Next")
         return CALoginPage(self.driver)

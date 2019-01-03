@@ -1,0 +1,4 @@
+CALoginPage:
+  input_first_name: "//input[@class='required-field ng-pristine ng-invalid ng-touched ng-valid form-control']"
+  input_last_name: "//*[@id='block-songUp']/div[1]/div[2]/div/input"
+  input_confirm_password: "//*[@id='block-songUp']/div[4]/div[2]/div/input"
