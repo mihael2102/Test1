@@ -1,3 +1,4 @@
 brands:
-- name: safemarkets_ca
-  config_file: safemarkets_ca.yml
+
+- name: optionstarsglobal_ca
+  config_file: optionstarsglobal_ca.yml

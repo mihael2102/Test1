@@ -1,3 +1,4 @@
 brands:
-- name: q8trade_ca
-  config_file: q8trade_ca.yml
+
+- name: firstindex_ca
+  config_file: firstindex_ca.yml
