@@ -1,0 +1,2 @@
+CALoginPage:
+  sign_up: "//*[@id='Top_bar']/div/div/div/div[2]/ul/li[4]/panda-forex-signup/div/button"

@@ -1,0 +1,6 @@
+CALoginPage:
+  citizenship: "//custom-select[@name = 'citizenship']//span[contains (text(), '%s')]"
+  city: "/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[2]/form/div[1]/div[4]/input"
+  address: "/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[2]/form/div[1]/div[5]/input"
+  zip_code: "/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[2]/form/div[2]/div[3]/input"
+  next_btn: "/html/body/panda-forex-personal-profile[2]/div/personal-popup/div/div[2]/div[3]/button[2]"
