@@ -1,4 +1,5 @@
 brands:
-
-- name: kayafx_ca
-  config_file: kayafx_ca.yml
+- name: mlnfx_ca
+  config_file: mlnfx_ca.yml
+- name: kbcapitals_ca
+  config_file: kbcapitals_ca.yml

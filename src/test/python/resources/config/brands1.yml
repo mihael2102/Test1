@@ -1,7 +1,8 @@
 brands:
-
 - name: gmo_ca
   config_file: gmo_ca.yml
+- name: capitalmarketbanc_ca
+  config_file: capitalmarketbanc_ca.yml
 
 
 

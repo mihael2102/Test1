@@ -1,5 +1,6 @@
 brands:
-
-- name: stoxmarket_ca
-  config_file: stoxmarket_ca.yml
+- name: itraderglob_ca
+  config_file: itraderglob_ca.yml
+- name: soarfx_ca
+  config_file: soarfx_ca.yml
 

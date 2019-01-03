@@ -1,4 +1,5 @@
 brands:
-
-- name: capitalmarketbanc_ca
-  config_file: capitalmarketbanc_ca.yml
+- name: itrader_ca
+  config_file: itrader_ca.yml
+- name: stoxmarket_ca
+  config_file: stoxmarket_ca.yml

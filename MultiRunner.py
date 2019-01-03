@@ -121,11 +121,10 @@ if __name__ == "__main__":
 
         # Form input list where each parameter is filename of TestSuite file
         input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-                      path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12, path_to_brands_suite_13, path_to_brands_suite_14]
+                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7]
         # input_list = [path_to_brands_suite_1]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=14)
+        pool = multiprocessing.Pool(processes=7)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -139,7 +138,7 @@ if __name__ == "__main__":
 
         # Join all results in one excel
         all_excel = "C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/final_file.xlsx"
-        writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/final_file.xlsx')
+        # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
         all_file_frames = []
         for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/*.xlsx'):
@@ -148,25 +147,23 @@ if __name__ == "__main__":
             all_frame = pd.concat(all_file_frames, axis=1)
             writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/final_file.xlsx')
             all_frame.to_excel(writer, sheet_name='Sheet1')
+            workbook = writer.book
+            worksheet = writer.sheets['Sheet1']
+            format1 = workbook.add_format({'bg_color': '#FFC7CE',
+                                           'font_color': '#9C0006'})
+
+            format2 = workbook.add_format({'bg_color': '#C4D79B',
+                                           'font_color': '#000000'})
+            worksheet.conditional_format(0, 0, 200, 200, {'type': 'text',
+                                                         'criteria': 'beginsWith',
+                                                         'value': 'PASS',
+                                                         'format': format2})
+
+            worksheet.conditional_format(0, 0, 200, 200, {'type': 'text',
+                                                         'criteria': 'beginsWith',
+                                                         'value': 'ERROR',
+                                                         'format': format1})
             writer.save()
-
-        workbook = writer.book
-        worksheet = writer.sheets['Sheet1']
-        format1 = workbook.add_format({'bg_color': '#FFC7CE',
-                                       'font_color': '#9C0006'})
-
-        format2 = workbook.add_format({'bg_color': '#C4D79B',
-                                       'font_color': '#000000'})
-        worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
-                                                     'criteria': 'beginsWith',
-                                                     'value': 'PASS',
-                                                     'format': format2})
-
-        worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
-                                                     'criteria': 'beginsWith',
-                                                     'value': 'ERROR',
-                                                     'format': format1})
-        writer.save()
 
         Send_ALL_XLS(all_excel)
 
