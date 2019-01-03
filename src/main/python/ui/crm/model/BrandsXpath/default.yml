@@ -47,3 +47,4 @@ CALoginPage:
   zip_code: "//*[@id='zip']"
   address: "//*[@id='addr1']"
   check_box_2: "//*[@id='GDPR']"
+

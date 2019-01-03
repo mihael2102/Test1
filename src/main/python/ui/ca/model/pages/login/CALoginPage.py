@@ -100,7 +100,7 @@ class CALoginPage(CRMBasePage):
     def click_submit(self):
         submit_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["submit"])
-        submit_button.click()
+        self.driver.execute_script("arguments[0].click();", submit_button)
         Logging().reportDebugStep(self, "Click submit")
         return CALoginPage(self.driver)
 
@@ -114,6 +114,18 @@ class CALoginPage(CRMBasePage):
         transactions_history_button = super().wait_load_element("//li[contains (text(), 'Transaction History ')]")
         transactions_history_button.click()
         Logging().reportDebugStep(self, "Click Transaction History")
+        return CALoginPage(self.driver)
+
+    def enter_data_birth(self, data):
+        enter_data_birth = super().wait_load_element("//input[@class = 'form-control hasDatepicker']")
+        enter_data_birth.send_keys(data)
+        Logging().reportDebugStep(self, "Fill data birth : " + data)
+        return CALoginPage(self.driver)
+
+    def close_welcome_message(self):
+        btn_continue = super().wait_load_element("//*[@id='welcome_continue']")
+        btn_continue.click()
+        Logging().reportDebugStep(self, "Click Continue button")
         return CALoginPage(self.driver)
 
     def select_data_birth_day(self, data_birth_day):
