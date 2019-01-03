@@ -1,1 +1,3 @@
 brands:
+- name: fxpmarkets_ca
+  config_file: fxpmarkets_ca.yml

@@ -3,16 +3,11 @@ brands:
   config_file: gmo_ca.yml
 - name: capitalmarketbanc_ca
   config_file: capitalmarketbanc_ca.yml
-- name: itrader_ca
-  config_file: itrader_ca.yml
-- name: stoxmarket_ca
-  config_file: stoxmarket_ca.yml
-- name: triomarkets_ca
-  config_file: triomarkets_ca.yml
-- name: kayafx_ca
-  config_file: kayafx_ca.yml
-- name: oinvest_ca
-  config_file: oinvest_ca.yml
+
+
+
+
+
 
 
 

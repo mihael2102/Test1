@@ -1,3 +1,4 @@
 brands:
-
+- name: kbcapitals_ca
+  config_file: kbcapitals_ca.yml
 

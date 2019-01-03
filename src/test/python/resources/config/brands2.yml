@@ -3,13 +3,8 @@ brands:
   config_file: itraderglob_ca.yml
 - name: soarfx_ca
   config_file: soarfx_ca.yml
-- name: brokerxp_ca
-  config_file: brokerxp_ca.yml
-- name: fxpmarkets_ca
-  config_file: fxpmarkets_ca.yml
-- name: mlnfx_ca
-  config_file: mlnfx_ca.yml
-- name: kbcapitals_ca
-  config_file: kbcapitals_ca.yml
-- name: finmarket_ca
-  config_file: finmarket_ca.yml
+
+
+
+
+
