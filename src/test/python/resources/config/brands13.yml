@@ -1,0 +1,3 @@
+brands:
+- name: mlnfx_ca
+  config_file: mlnfx_ca.yml

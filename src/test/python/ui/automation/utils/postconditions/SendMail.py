@@ -7,7 +7,7 @@ from email import encoders
 
 def Send_Email_XML(filepath, content):
 
-    fromaddr = "anna.p@pandats.com"
+    fromaddr = "jonathan.albalak@pandats.com"
     # toaddr = "Niv.s@pandats.com"
     toaddr = "ann.poimenova@gmail.com"
 
@@ -48,7 +48,7 @@ def Send_Email_XML(filepath, content):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
 ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/%s" % filepath, "rb")
+    attachment = open("C:/Program Files (x86)/Jenkins/workspace/Old forex CA/%s" % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -71,7 +71,7 @@ def Send_Email_XML(filepath, content):
     s.starttls()
 
     # Authentication
-    s.login(fromaddr, "3@brodA6861")
+    s.login(fromaddr, "9U&AU=bm")
 
     # Converts the Multipart msg into a string
     text = msg.as_string()
@@ -84,7 +84,7 @@ def Send_Email_XML(filepath, content):
 
 def Send_Email_XLS(filepath):
 
-    fromaddr = "anna.p@pandats.com"
+    fromaddr = "jonathan.albalak@pandats.com"
     # toaddr = "Niv.s@pandats.com"
     toaddr = "ann.poimenova@gmail.com"
 
@@ -111,7 +111,7 @@ def Send_Email_XLS(filepath):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
     ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/%s" % filepath, "rb")
+    attachment = open("C:/Program Files (x86)/Jenkins/workspace/Old forex CA/%s" % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -134,7 +134,7 @@ def Send_Email_XLS(filepath):
     s.starttls()
 
     # Authentication
-    s.login(fromaddr, "3@brodA6861")
+    s.login(fromaddr, "9U&AU=bm")
 
     # Converts the Multipart msg into a string
     text = msg.as_string()
@@ -147,7 +147,7 @@ def Send_Email_XLS(filepath):
 
 def Send_ALL_XLS(filepath):
 
-    fromaddr = "anna.p@pandats.com"
+    fromaddr = "jonathan.albalak@pandats.com"
     # toaddr = "Niv.s@pandats.com"
     toaddr = "ann.poimenova@gmail.com"
 
@@ -197,7 +197,7 @@ def Send_ALL_XLS(filepath):
     s.starttls()
 
     # Authentication
-    s.login(fromaddr, "3@brodA6861")
+    s.login(fromaddr, "9U&AU=bm")
 
     # Converts the Multipart msg into a string
     text = msg.as_string()

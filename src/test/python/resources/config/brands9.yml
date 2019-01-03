@@ -1,6 +1,4 @@
 brands:
 
-- name: oinvestsa
-  config_file: oinvestsa.yml
-- name: itrader
-  config_file: itrader.yml
+- name: soarfx_ca
+  config_file: soarfx_ca.yml

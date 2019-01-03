@@ -1,6 +1,4 @@
 brands:
 
-- name: triomarkets
-  config_file: triomarkets.yml
-- name: ogtrade
-  config_file: ogtrade.yml
+- name: kayafx_ca
+  config_file: kayafx_ca.yml

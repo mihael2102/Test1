@@ -1,38 +1,16 @@
 brands:
 
-#- name: gmo_ca
-#  config_file: gmo_ca.yml
-#- name: capitalmarketbanc_ca
-#  config_file: capitalmarketbanc_ca.yml
-#- name: fxt24_ca
-#  config_file: fxt24_ca.yml
-#- name: itrader_ca
-#  config_file: itrader_ca.yml
-#- name: stoxmarket_ca
-#  config_file: stoxmarket_ca.yml
-#- name: triomarkets_ca
-#  config_file: triomarkets_ca.yml
-#- name: tradefintech_ca
-#  config_file: tradefintech_ca.yml
-#- name: kayafx_ca
-#  config_file: kayafx_ca.yml
-#- name: europefx_ca
-#  config_file: europefx_ca.yml
-#- name: finmarket_ca
-#  config_file: finmarket_ca.yml
-#- name: itraderglob_ca
-#  config_file: itraderglob_ca.yml
-#- name: soarfx_ca
-#  config_file: soarfx_ca.yml
-#- name: brokerxp_ca
-#  config_file: brokerxp_ca.yml
-#- name: fxpmarkets_ca
-#  config_file: fxpmarkets_ca.yml
-#- name: startfx_ca
-#  config_file: startfx_ca.yml
-#- name: kbcapitals_ca
-#  config_file: kbcapitals_ca.yml
-#- name: mlnfx_ca
-#  config_file: mlnfx_ca.yml
-#- name: oinvest_ca
-#  config_file: oinvest_ca.yml
+- name: gmo_ca
+  config_file: gmo_ca.yml
+
+
+
+
+
+
+
+
+
+
+
+

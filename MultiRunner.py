@@ -114,14 +114,18 @@ if __name__ == "__main__":
         path_to_brands_suite_8 = "brands8.yml"
         path_to_brands_suite_9 = "brands9.yml"
         path_to_brands_suite_10 = "brands10.yml"
+        path_to_brands_suite_11 = "brands11.yml"
+        path_to_brands_suite_12 = "brands12.yml"
+        path_to_brands_suite_13 = "brands13.yml"
+        path_to_brands_suite_14 = "brands14.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-        #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-        #               path_to_brands_suite_9, path_to_brands_suite_10]
-        input_list = [path_to_brands_suite_1]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+                      path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12, path_to_brands_suite_13, path_to_brands_suite_14]
+        # input_list = [path_to_brands_suite_1]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=1)
+        pool = multiprocessing.Pool(processes=14)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -131,16 +135,18 @@ if __name__ == "__main__":
 
         import xlsxwriter
 
+        import xlsxwriter
+
         # Join all results in one excel
-        all_excel = "D:/automation-newforexqa/result/final_file.xlsx"
+        all_excel = "C:/Program Files (x86)/Jenkins/workspace/Old forex CA/result/final_file.xlsx"
         # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
         all_file_frames = []
-        for filename in glob.glob('D:/automation-newforexqa/result/*.xlsx'):
+        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/Old forex CA/result/*.xlsx'):
             tab = pd.read_excel(filename)
             all_file_frames.append(tab)
             all_frame = pd.concat(all_file_frames, axis=1)
-            writer = EX('D:/automation-newforexqa/result/final_file.xlsx')
+            writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex CA/result/final_file.xlsx')
             all_frame.to_excel(writer, sheet_name='Sheet1')
             workbook = writer.book
             worksheet = writer.sheets['Sheet1']
@@ -158,7 +164,6 @@ if __name__ == "__main__":
                                                          'criteria': 'beginsWith',
                                                          'value': 'ERROR',
                                                          'format': format1})
-
             writer.save()
 
         Send_ALL_XLS(all_excel)
