@@ -48,7 +48,7 @@ def Send_Email_XML(filepath, content):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
 ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/Old forex CA/%s" % filepath, "rb")
+    attachment = open("C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/%s" % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -111,7 +111,7 @@ def Send_Email_XLS(filepath):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
     ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/Old forex CA/%s" % filepath, "rb")
+    attachment = open("C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/%s" % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
