@@ -1,5 +1,1 @@
 brands:
-- name: triomarkets_ca
-  config_file: triomarkets_ca.yml
-- name: kayafx_ca
-  config_file: kayafx_ca.yml

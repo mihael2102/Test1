@@ -1,5 +1,1 @@
 brands:
-- name: finmarket_ca
-  config_file: finmarket_ca.yml
-- name: oinvest_ca
-  config_file: oinvest_ca.yml

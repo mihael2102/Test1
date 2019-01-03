@@ -1,6 +1,3 @@
 brands:
-- name: itraderglob_ca
-  config_file: itraderglob_ca.yml
-- name: soarfx_ca
-  config_file: soarfx_ca.yml
+
 
