@@ -1,8 +1,3 @@
 brands:
-
-- name: herdos
-  config_file: herdos.yml
-- name: hizlifx
-  config_file: hizlifx.yml
-#- name: libramarkets
-#  config_file: libramarkets.yml
+- name: goldenmrks_ca
+  config_file: goldenmrks_ca.yml

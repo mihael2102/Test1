@@ -1,8 +1,3 @@
 brands:
-
-- name: newrichmarkets
-  config_file: newrichmarkets.yml
-- name: swiftcfd
-  config_file: swiftcfd.yml
-- name: tfxgo
-  config_file: tfxgo.yml
+- name: ptbanc_ca
+  config_file: ptbanc_ca.yml

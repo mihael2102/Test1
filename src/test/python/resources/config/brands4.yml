@@ -1,8 +1,5 @@
 brands:
-
-- name: firstindex_ca
-  config_file: firstindex_ca.yml
-- name: sitalix_ca
-  config_file: sitalix_ca.yml
+- name: tradospot_ca
+  config_file: tradospot_ca.yml
 
 

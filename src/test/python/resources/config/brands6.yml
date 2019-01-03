@@ -1,8 +1,3 @@
 brands:
-
-- name: forexbestmarket
-  config_file: forexbestmarket.yml
-- name: marketsplus
-  config_file: marketsplus.yml
-- name: optionstars
-  config_file: optionstars.yml
+- name: axamarkets_ca
+  config_file: axamarkets_ca.yml
