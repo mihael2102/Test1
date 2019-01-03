@@ -139,7 +139,7 @@ if __name__ == "__main__":
 
         # Join all results in one excel
         all_excel = "C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/final_file.xlsx"
-        # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
+        writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/final_file.xlsx')
 
         all_file_frames = []
         for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/*.xlsx'):
@@ -148,23 +148,25 @@ if __name__ == "__main__":
             all_frame = pd.concat(all_file_frames, axis=1)
             writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/final_file.xlsx')
             all_frame.to_excel(writer, sheet_name='Sheet1')
-            workbook = writer.book
-            worksheet = writer.sheets['Sheet1']
-            format1 = workbook.add_format({'bg_color': '#FFC7CE',
-                                           'font_color': '#9C0006'})
-
-            format2 = workbook.add_format({'bg_color': '#C4D79B',
-                                           'font_color': '#000000'})
-            worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
-                                                         'criteria': 'containsText',
-                                                         'value': 'PASS',
-                                                         'format': format2})
-
-            worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
-                                                         'criteria': 'containsText',
-                                                         'value': 'ERROR',
-                                                         'format': format1})
             writer.save()
+
+        workbook = writer.book
+        worksheet = writer.sheets['Sheet1']
+        format1 = workbook.add_format({'bg_color': '#FFC7CE',
+                                       'font_color': '#9C0006'})
+
+        format2 = workbook.add_format({'bg_color': '#C4D79B',
+                                       'font_color': '#000000'})
+        worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
+                                                     'criteria': 'beginsWith',
+                                                     'value': 'PASS',
+                                                     'format': format2})
+
+        worksheet.conditional_format(0, 0, 841, 10, {'type': 'text',
+                                                     'criteria': 'beginsWith',
+                                                     'value': 'ERROR',
+                                                     'format': format1})
+        writer.save()
 
         Send_ALL_XLS(all_excel)
 
