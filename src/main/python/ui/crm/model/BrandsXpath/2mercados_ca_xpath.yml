@@ -1,0 +1,2 @@
+CALoginPage:
+  sign_up: "//*[@id='u795-4']/p"

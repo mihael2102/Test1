@@ -52,6 +52,10 @@ def get_xpath_for_current_brand_element(page_name):
         if page_name == "CALoginPage":
             return __get_xpath_of_elements_of_current_page(page_name)
 
+    elif current_brand_name == "2mercados_ca":
+        if page_name == "CALoginPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
+
     elif current_brand_name == "mpcrypto":
         if page_name == "TasksPage":
             return __get_xpath_of_elements_of_current_page(page_name)

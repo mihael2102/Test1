@@ -88,6 +88,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def select_data_birth_day(self, data_birth_day):
+        sleep(2)
         data = self.driver.find_element_by_xpath("//custom-select[@name='day']//span[text()='%s']" % data_birth_day)
         self.driver.execute_script("arguments[0].click();", data)
         Logging().reportDebugStep(self, "Select data birth : " + data_birth_day)

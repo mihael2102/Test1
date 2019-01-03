@@ -1,7 +1,8 @@
 brands:
-
-- name: royal_cfds_ca
-  config_file: royal_cfd_ca.yml
+- name: 2mercados_ca
+  config_file: 2mercados_ca.yml
+#- name: royal_cfds_ca
+#  config_file: royal_cfd_ca.yml
 
 
 
