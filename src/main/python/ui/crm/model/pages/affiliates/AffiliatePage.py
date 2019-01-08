@@ -57,6 +57,7 @@ class AffiliatePage(CRMBasePage):
         sleep(2)
         input_methods = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["input_methods"])
         input_methods.send_keys(method)
+
         sleep(2)
         methods = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["methods"]
             % method)
