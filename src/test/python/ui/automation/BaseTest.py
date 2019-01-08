@@ -24,6 +24,7 @@ class BaseTest(unittest.TestCase):
         allure.MASTER_HELPER.environment(BROWSER="CHROME", URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
         if self.driver_type is None or self.driver_type == 'Chrome':
             # #for opened browser
+            Logging().reportDebugStep(self, "Browser opened")
             self.driver = webdriver.Chrome(Config.chrome_driver)
             self.driver.maximize_window()
             #for closed browser
