@@ -7,6 +7,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
 
 class AffiliatesPrecondition(object):
 
@@ -49,9 +50,37 @@ class AffiliatesPrecondition(object):
         CRMHomePage(self.driver).refresh_page()
         affiliate_list_view_page.search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME])
+        AffiliatePage(self.driver).click_on_affiliate(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                        LeadsModuleConstants.FIRST_NAME])
+
+
         affiliate_name = affiliate_list_view_page.check_name_on_affiliate_details()
         assert affiliate_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME]
+
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
+
+        CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(
+            AffiliateModuleConstants.AFFILIATES_MODULE)
+        AffiliatePage(self.driver).search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                              LeadsModuleConstants.FIRST_NAME])
+        AffiliatePage(self.driver).delete_affiliate()\
+                                  .confirm_delete_affiliate()
+
+        CRMHomePage(self.driver).refresh_page()
+        AffiliatePage(self.driver).search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                                LeadsModuleConstants.FIRST_NAME])
+
+        AffiliatePage(self.driver).check_data_not_found()
+
+
+
+
+
+
+
+
+
 
 
 
