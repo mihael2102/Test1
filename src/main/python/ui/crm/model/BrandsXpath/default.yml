@@ -25,8 +25,8 @@ CRMClientDeposit:
 AffiliatePage:
   countrys: "//span[@class = 'hovered-option'][contains(text(),'%s')]"
   methods: "//span[@class = 'hovered-option ng-star-inserted'][contains(text(),'%s')]"
-  button_plus: "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[3]/button"
-  methods_drop_down: "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[5]/div[2]"
-  input_methods: "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[1]/input"
-  blocked_country_drop_down: "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[6]/div[2]"
-  input_country: "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[1]/input"
+  button_plus: "//div[@class='form-group']/button[@class='btn btn-primary']"
+  methods_drop_down: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[1]"
+  input_methods: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[1]/input"
+  blocked_country_drop_down: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[6]/div[2]"
+  input_country: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[1]/input"

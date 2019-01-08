@@ -47,15 +47,17 @@ class AffiliatePage(CRMBasePage):
 
     def click_plus_ip(self):
         sleep(5)
-        button_plus = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["button_plus"])
+        button_plus = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["button_plus"])
         button_plus.click()
         Logging().reportDebugStep(self, "Click plus ip")
 
     def select_allowed_methods(self, method):
         methods_drop_down = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["methods_drop_down"])
         methods_drop_down.click()
+        sleep(2)
         input_methods = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["input_methods"])
         input_methods.send_keys(method)
+        sleep(2)
         methods = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["methods"]
             % method)
         methods.click()
@@ -64,7 +66,7 @@ class AffiliatePage(CRMBasePage):
     def select_blocked_country(self, country):
         country_drop_down = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["blocked_country_drop_down"])
         country_drop_down.click()
-        sleep(1)
+        sleep(2)
         input_country = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["input_country"])
         input_country.send_keys(country)
         sleep(3)
@@ -93,6 +95,7 @@ class AffiliatePage(CRMBasePage):
         Logging().reportDebugStep(self, "Search partner name and go to affiliate details page")
 
     def click_on_affiliate(self, name):
+        sleep(2)
         affiliate_name = super().wait_load_element("//a[contains(text(), '%s')]" % name)
         affiliate_name.click()
         Logging().reportDebugStep(self, "Go to affiliate details page")
