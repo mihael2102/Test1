@@ -97,12 +97,32 @@ class AffiliatePage(CRMBasePage):
     def search_affiliate_by_name(self, name):
         input_partner_name = super().wait_load_element("//td[3]//input")
         input_partner_name.send_keys(name)
-        sleep(2)
-        affiliate_name = super().wait_load_element("//a[contains(text(),'testqa')]")
-        self.driver.execute_script("arguments[0].click();", affiliate_name)
         Logging().reportDebugStep(self, "Search partner name and go to affiliate details page")
+
+    def click_on_affiliate(self, name):
+        affiliate_name = super().wait_load_element("//a[contains(text(), '%s')]" % name)
+        self.driver.execute_script("arguments[0].click();", affiliate_name)
+        Logging().reportDebugStep(self, "Go to affiliate details page")
 
     def check_name_on_affiliate_details(self):
         title_details = super().wait_load_element("/html/body/app-root/affiliate-details/div/div[1]/div/div[1]/h1").text
         Logging().reportDebugStep(self, "Affiliate details page")
         return title_details
+
+    def delete_affiliate(self):
+        trash_button = super().wait_element_to_be_clickable(
+            "//span[@class = 'glyphicon glyphicon-trash cursor-pointer ng-star-inserted']")
+        trash_button.click()
+        Logging().reportDebugStep(self, "Delete button was clicked")
+        return AffiliatePage(self.driver)
+
+    def confirm_delete_affiliate(self):
+        confirm_button = super().wait_element_to_be_clickable("//button[contains (text(), 'Confirm')]")
+        confirm_button.click()
+        Logging().reportDebugStep(self, "Confirm delete button was clicked")
+        return AffiliatePage(self.driver)
+
+    def check_data_not_found(self):
+        super().wait_visible_of_element("//td[contains (text(), 'Data not found')]")
+        Logging().reportDebugStep(self, "Data not found")
+        return AffiliatePage(self.driver)

@@ -1,4 +1,17 @@
 brands:
+#- name: kayafx
+#  config_file: kaya_fx.yml
+#- name: itrader
+#  config_file: itrader.yml
+#- name: stoxmarket
+#  config_file: stoxmarket.yml
+#- name: otcapital
+#  config_file: otcapital.yml
+#- name: gmo
+#  config_file: gmo.yml
+
+
+
 #- name: highfx
 #  config_file: highfx.yml
 #- name: triomarkets
@@ -17,7 +30,7 @@ brands:
 #  config_file: soarfx.yml
 #- name: kbcapitals
 #  config_file: kbcapitals.yml
-- name: oinvestsa
-  config_file: oinvestsa.yml
+#- name: oinvestsa
+#  config_file: oinvestsa.yml
 #- name: brokerxp
 #  config_file: brokerxp.yml
