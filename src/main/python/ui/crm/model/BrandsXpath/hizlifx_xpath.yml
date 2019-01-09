@@ -6,7 +6,7 @@ FinancialTransactionsPage:
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
   modified_time_element: "(//*[@id='listBody']//tr/td[12])[%s]"
 AffiliatePage:
-  countrys: "//span[@class = 'hovered-option'][contains(text(),'%s')]"
+  countrys: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]"
   methods: "//span[@class = 'hovered-option ng-star-inserted'][contains(text(),'%s')]"
   button_plus: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[3]/button"
   methods_drop_down: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]"

@@ -48,6 +48,7 @@ class AffiliatePage(CRMBasePage):
     def click_plus_ip(self):
         sleep(5)
         button_plus = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["button_plus"])
+        sleep(1)
         button_plus.click()
         Logging().reportDebugStep(self, "Click plus ip")
 

@@ -14,10 +14,6 @@ brands:
 #  config_file: newrichmarkets.yml
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
-- name: goldenmarkets
-  config_file: goldenmarkets.yml
-#- name: safemarkets
-#  config_file: safemarkets.yml
 #- name: optionstars
 #  config_file: optionstars.yml
 #- name: uft
@@ -34,8 +30,6 @@ brands:
 #  config_file: q8.yml
 #- name: 2mercados
 #  config_file: 2mercados.yml
-#- name: axa_markets
-#  config_file: axa_markets.yml
 #- name: aztrades
 #  config_file: aztrades.yml
 #- name: bots
@@ -63,8 +57,8 @@ brands:
 #  config_file: eafx.yml
 #- name: gxfx
 #  config_file: gxfx.yml
-#- name: hizlifx
-#  config_file: hizlifx.yml
+- name: hizlifx
+  config_file: hizlifx.yml
 #- name: libramarkets
 #  config_file: libramarkets.yml
 #- name: olympusmarkets
