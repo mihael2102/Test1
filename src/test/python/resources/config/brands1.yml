@@ -14,8 +14,8 @@ brands:
 #  config_file: newrichmarkets.yml
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
-#- name: goldenmarkets
-#  config_file: goldenmarkets.yml
+- name: goldenmarkets
+  config_file: goldenmarkets.yml
 #- name: safemarkets
 #  config_file: safemarkets.yml
 #- name: optionstars
@@ -50,8 +50,8 @@ brands:
 #  config_file: coinstec.yml
 #- name: tradospot
 #  config_file: tradospot.yml
-- name: 24btcmarket
-  config_file: 24btcmarket.yml
+#- name: 24btcmarket
+#  config_file: 24btcmarket.yml
 #- name: marketsplus
 #  config_file: marketsplus.yml
 #

@@ -52,6 +52,7 @@ class AffiliatePage(CRMBasePage):
         Logging().reportDebugStep(self, "Click plus ip")
 
     def select_allowed_methods(self, method):
+        sleep(1)
         methods_drop_down = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["methods_drop_down"])
         methods_drop_down.click()
         sleep(2)
@@ -119,12 +120,14 @@ class AffiliatePage(CRMBasePage):
         return AffiliatePage(self.driver)
 
     def delete_affiliate(self):
+        sleep(2)
         trash_button = super().wait_element_to_be_clickable("//span[@class = 'glyphicon glyphicon-trash cursor-pointer ng-star-inserted']")
         trash_button.click()
         Logging().reportDebugStep(self, "Delete button was clicked")
         return AffiliatePage(self.driver)
 
     def confirm_delete_affiliate(self):
+        sleep(2)
         confirm_button = super().wait_element_to_be_clickable("//button[contains (text(), 'Confirm')]")
         confirm_button.click()
         Logging().reportDebugStep(self, "Confirm delete button was clicked")
