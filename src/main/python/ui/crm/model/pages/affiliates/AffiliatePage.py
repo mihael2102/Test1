@@ -122,7 +122,8 @@ class AffiliatePage(CRMBasePage):
 
     def delete_affiliate(self):
         sleep(2)
-        trash_button = super().wait_element_to_be_clickable("//span[@class = 'glyphicon glyphicon-trash cursor-pointer ng-star-inserted']")
+        trash_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["trash_button"])
+        sleep(1)
         trash_button.click()
         Logging().reportDebugStep(self, "Delete button was clicked")
         return AffiliatePage(self.driver)

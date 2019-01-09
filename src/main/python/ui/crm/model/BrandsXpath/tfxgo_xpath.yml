@@ -5,5 +5,5 @@ FinancialTransactionsPage:
   transaction_type_drop_down: "//td[5]/div/div[1]/button"
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
   modified_time_element: "(//*[@id='listBody']//tr/td[12])[%s]"
-AffiliatePage:
-  countrys: "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]"
+#AffiliatePage:
+#  countrys: "/html/body/bs-modal[2]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]"
