@@ -1,9 +1,9 @@
 brands:
 
-#- name: goldenmarkets
-#  config_file: goldenmarkets.yml
-#- name: safemarkets
-#  config_file: safemarkets.yml
+- name: goldenmarkets
+  config_file: goldenmarkets.yml
+- name: safemarkets
+  config_file: safemarkets.yml
 #- name: royal_cfds
 #  config_file: royal_cfds.yml
 #- name: jonesmutual
@@ -14,8 +14,8 @@ brands:
 #  config_file: newrichmarkets.yml
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
-- name: goldenmarkets
-  config_file: goldenmarkets.yml
+#- name: goldenmarkets
+#  config_file: goldenmarkets.yml
 #- name: safemarkets
 #  config_file: safemarkets.yml
 #- name: optionstars
