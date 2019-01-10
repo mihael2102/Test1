@@ -70,8 +70,15 @@ class CreditInTestCRM(BaseTest):
         MT4CreditInModule(self.driver).refresh_page()
         # Check the Credit In amount
         ClientProfilePage(self.driver).perform_scroll_down()
-        credit_in_amount = ClientProfilePage(self.driver).get_amount_of_credit_in(CRMConstants.AMOUNT_CREDIT_IN)     # Get amount from block 'Trading Accounts'
+        ClientProfilePage(self.driver).click_trading_accounts_tab() \
+                                      .open_trading_account_page(account_number)
+        time.sleep(10)
+        MT4CreditInModule(self.driver).refresh_page()
+        time.sleep(10)
+        MT4CreditInModule(self.driver).refresh_page()
+        credit_in = ClientProfilePage(self.driver).get_credit_in_trading_account()
 
-        assert CRMConstants.AMOUNT_CREDIT_IN == credit_in_amount
+        self.assertEqual(
+            CRMConstants.AMOUNT_CREDIT_IN, credit_in, "Wrong credit sum is displayed")
 
 

@@ -79,11 +79,14 @@ class DepositTestCRM(BaseTest):
         crm_client_profile.click_ok()\
                           .refresh_page()
 
-        deposit_amount_text = crm_client_profile.click_trading_accounts_tab() \
-                                                .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
+        crm_client_profile.click_trading_accounts_tab() \
+                          .open_trading_account_page(account_number)
+
+        balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
+
 
         self.assertEqual(
-                    CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, deposit_amount_text, "Wrong deposit sum is displayed")
+                    CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, balance, "Wrong deposit sum is displayed")
 
 
 

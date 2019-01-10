@@ -25,6 +25,14 @@ class ClientProfilePage(CRMBasePage):
         returns Manage Accounts Module  instance    
     '''
 
+
+
+    def get_credit_in_trading_account(self):
+        balance = super().wait_load_element("//*[@id='tblTradingAccountsInformation']/table/tbody/tr[7]/td[2]").text
+        Logging().reportDebugStep(self, "Verify credit")
+        return balance
+
+
     def perform_scroll_down(self):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         Logging().reportDebugStep(self, "Perform scroll down ")
@@ -36,9 +44,24 @@ class ClientProfilePage(CRMBasePage):
         returns Manage Accounts Module  instance    
     '''
 
+    def open_trading_account_page(self, account_number):
+        sleep(2)
+        link_trading_account = super().wait_load_element("//tr[@class='lvtColData']/td/span/a[contains(text(), '%s')]" % account_number)
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", link_trading_account)
+        Logging().reportDebugStep(self, "Open the trading account page ")
+        return ClientProfilePage(self.driver)
+
+    def get_balance_in_trading_account(self):
+        balance = super().wait_load_element("//*[@id='dtlview_Balance']").text
+        Logging().reportDebugStep(self, "Verify balance")
+        return balance
+
+
     def click_trading_accounts_tab(self):
         trading_account_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'Trading Accounts')][1]")
-        trading_account_tab.click()
+        self.driver.execute_script("arguments[0].click();", trading_account_tab)
+        # trading_account_tab.click()
         Logging().reportDebugStep(self, "Open the trading account tab ")
         return ClientProfilePage(self.driver)
 
@@ -144,6 +167,7 @@ class ClientProfilePage(CRMBasePage):
     '''
         :returns client amount from Trading Accounts tabs 
     '''
+
 
     def get_amount_text(self, total_amount_crm):
         # Use it after deposit etc. because we need to wait some time
