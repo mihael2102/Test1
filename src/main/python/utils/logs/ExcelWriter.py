@@ -204,21 +204,21 @@ class ExcelWriter:
         for i in range(772, 786):
             worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-        worksheet.set_row(787, None, None, {'level': 1, 'hidden': True})
-        for i in range(788, 795):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(796, None, None, {'level': 1, 'hidden': True})
-        for i in range(797, 808):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(809, None, None, {'level': 1, 'hidden': True})
-        for i in range(810, 823):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(824, None, None, {'level': 1, 'hidden': True})
-        for i in range(825, 839):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+        # worksheet.set_row(787, None, None, {'level': 1, 'hidden': True})
+        # for i in range(788, 795):
+        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+        #
+        # worksheet.set_row(796, None, None, {'level': 1, 'hidden': True})
+        # for i in range(797, 808):
+        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+        #
+        # worksheet.set_row(809, None, None, {'level': 1, 'hidden': True})
+        # for i in range(810, 823):
+        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+        #
+        # worksheet.set_row(824, None, None, {'level': 1, 'hidden': True})
+        # for i in range(825, 839):
+        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
         workbook.close()
 
@@ -1032,9 +1032,9 @@ class ExcelWriter:
                         ,"Returns a confirmation message  Transaction created successfully"
                         ,"The Ok button was clicked"
                         ,"Click 'ok' button"
-                        ,"The page is refreshed"
                         ,"Open the trading account tab"
-                        ,"Returns the amount you placed on the deposit page" ]
+                        ,"Open the trading account page"
+                        ,"Verify balance" ]
 
         if self.get_test_pretty_name_new(test) == "DepositTestCRM: test make deposit for client crm":
             step_suit = [ "Open first tabs page"
@@ -1093,10 +1093,10 @@ class ExcelWriter:
                         ,"The create withdraw button of deposit module was clicked"
                         ,"The Ok button was clicked "
                         ,"Click 'ok' button "
-                        ,"The page is refreshed"
-                        ,"The page is refreshed"
-                        ,"he page is refreshed"
-                        ,"Perform scroll down "
+                        ,"Perform scroll down"
+                        ,"Open the trading account tab"
+                        ,"Open the trading account page"
+                        ,"Verify credit"
                         ,"Returns the amount you placed on the credit_in page" ]
 
         if self.get_test_pretty_name_new(test) == "TradingAccountCrmTest: test crm edit trading account":
@@ -1145,9 +1145,15 @@ class ExcelWriter:
                             ,"Select blocked country Albania"
                             ,"Click Submit"
                             ,"Text from 'Update' popup has been got  Success"
-                            ,"The page is refreshed"
                             ,"Search partner name and go to affiliate details page"
-                            ,"Affiliate details page"]
+                            ,"Affiliate details page"
+                            ,"Delete affiliate"
+                            ,"Affiliates page was opened"
+                            ,"Search partner name and go to affiliate details page"
+                            ,"Delete button was clicked"
+                            ,"Confirm delete button was clicked"
+                            ,"Search partner name and go to affiliate details page"
+                            ,"Data not found"]
 
         return step_suit
 
