@@ -220,7 +220,7 @@ class LeadModuleTest(BaseTest):
             convert_verified = False
             try:
                 confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
-                assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+                assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE or CRMConstants().CONVERT_SUCCESSFUL_MESSAGE_EMPTY
                 lead_view_profile_page.click_ok()
                 convert_verified = True
             except TimeoutException:

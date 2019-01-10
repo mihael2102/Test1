@@ -118,3 +118,4 @@ class CRMConstants(object):
     CREATE_AFFILIATE_SUCCCESS = "Success"
     EASY_SEARCH_CLIENT_TEST = "test"
     EASY_SEARCH_CLIENT_TEST_TEST = "test test"
+    CONVERT_SUCCESSFUL_MESSAGE_EMPTY = ""
