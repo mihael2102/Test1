@@ -1,8 +1,9 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-
+from time import sleep
 from src.main.python.utils.logs.Loging import Logging
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class FilterPage(CRMBasePage):
@@ -171,3 +172,155 @@ class FilterPage(CRMBasePage):
         # save_button.click()
         Logging().reportDebugStep(self, "The filter was crated: ")
         return FilterPage(self.driver)
+
+    def click_delete_filter_button(self):
+        current_filter = super().wait_load_element("//span[@class='filter-option pull-left']").text
+        if (current_filter == 'TestFilterClientsModule'):
+            delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
+            sleep(1)
+            delete_filter_button.click()
+            sleep(1)
+            deleting_button_confirmation = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
+            sleep(1)
+            deleting_button_confirmation.click()
+            Logging().reportDebugStep(self, "The filter was deleted")
+            return FilterPage(self.driver)
+        else:
+            filter_picklist = super().wait_element_to_be_clickable("//span[@class='filter-option pull-left']")
+            sleep(1)
+            filter_picklist.click()
+            test_filter = super().wait_element_to_be_clickable("//span[contains(text(),'TestFilterClientsModule')]")
+            sleep(1)
+            test_filter.click()
+            sleep(2)
+            delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
+            sleep(1)
+            delete_filter_button.click()
+            sleep(1)
+            deleting_button_confirmation = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
+            sleep(1)
+            deleting_button_confirmation.click()
+            Logging().reportDebugStep(self, "The Clients filter was deleted")
+            return FilterPage(self.driver)
+
+    def delete_documents_filter(self):
+        current_filter = super().wait_load_element("//span[@class='filter-option pull-left']").text
+        if (current_filter == 'TestFilterDocumentsModule'):
+            delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
+            sleep(1)
+            hoverer = ActionChains(self.driver).move_to_element(delete_filter_button).move_by_offset(20, 0)
+            hoverer.perform()
+            delete_filter_button.click()
+            sleep(1)
+            deleting_button_confirmation = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
+            sleep(1)
+            deleting_button_confirmation.click()
+            Logging().reportDebugStep(self, "The Documents filter was deleted")
+            return FilterPage(self.driver)
+        else:
+            filter_picklist = super().wait_element_to_be_clickable("//span[@class='filter-option pull-left']")
+            sleep(1)
+            filter_picklist.click()
+            test_filter = super().wait_element_to_be_clickable("//span[contains(text(),'TestFilterDocumentsModule')]")
+            sleep(1)
+            test_filter.click()
+            sleep(2)
+            delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
+            sleep(1)
+            delete_filter_button.click()
+            sleep(1)
+            deleting_button_confirmation = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
+            sleep(1)
+            deleting_button_confirmation.click()
+            Logging().reportDebugStep(self, "The Documents filter was deleted")
+            return FilterPage(self.driver)
+
+    def delete_leads_filter(self):
+        current_filter = super().wait_load_element("//span[@class='filter-option pull-left']").text
+        if (current_filter == 'TestFilterLeadModule'):
+            delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
+            sleep(1)
+            delete_filter_button.click()
+            sleep(1)
+            deleting_button_confirmation = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
+            sleep(1)
+            deleting_button_confirmation.click()
+            Logging().reportDebugStep(self, "The Leads filter was deleted")
+            return FilterPage(self.driver)
+        else:
+            filter_picklist = super().wait_element_to_be_clickable("//span[@class='filter-option pull-left']")
+            sleep(1)
+            filter_picklist.click()
+            test_filter = super().wait_element_to_be_clickable("//span[contains(text(),'TestFilterLeadsModule')]")
+            sleep(1)
+            test_filter.click()
+            sleep(2)
+            delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
+            sleep(1)
+            delete_filter_button.click()
+            sleep(1)
+            deleting_button_confirmation = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
+            sleep(1)
+            deleting_button_confirmation.click()
+            Logging().reportDebugStep(self, "The Leads filter was deleted")
+            return FilterPage(self.driver)
+
+    def delete_help_desk_filter(self):
+        current_filter = super().wait_load_element("//span[@class='filter-option pull-left']").text
+        if (current_filter == 'TestFilterHelpDeskModule'):
+            delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
+            sleep(1)
+            delete_filter_button.click()
+            sleep(1)
+            deleting_button_confirmation = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
+            sleep(1)
+            deleting_button_confirmation.click()
+            Logging().reportDebugStep(self, "The Help Desk filter was deleted")
+            return FilterPage(self.driver)
+        else:
+            filter_picklist = super().wait_element_to_be_clickable("//span[@class='filter-option pull-left']")
+            sleep(1)
+            filter_picklist.click()
+            test_filter = super().wait_element_to_be_clickable("//span[contains(text(),'TestFilterHelpDeskModule')]")
+            sleep(1)
+            test_filter.click()
+            sleep(2)
+            delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
+            sleep(1)
+            delete_filter_button.click()
+            sleep(1)
+            deleting_button_confirmation = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
+            sleep(1)
+            deleting_button_confirmation.click()
+            Logging().reportDebugStep(self, "The Help Desk filter was deleted")
+            return FilterPage(self.driver)
+
+    def delete_trading_account_filter(self):
+        current_filter = super().wait_load_element("//span[@class='filter-option pull-left']").text
+        if (current_filter == 'TestFilterTradingAccountModule'):
+            delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
+            sleep(1)
+            delete_filter_button.click()
+            sleep(1)
+            deleting_button_confirmation = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
+            sleep(1)
+            deleting_button_confirmation.click()
+            Logging().reportDebugStep(self, "The TradingAccount filter was deleted")
+            return FilterPage(self.driver)
+        else:
+            filter_picklist = super().wait_element_to_be_clickable("//span[@class='filter-option pull-left']")
+            sleep(1)
+            filter_picklist.click()
+            test_filter = super().wait_element_to_be_clickable("//span[contains(text(),'TestFilterTradingAccountModule')]")
+            sleep(1)
+            test_filter.click()
+            sleep(2)
+            delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
+            sleep(1)
+            delete_filter_button.click()
+            sleep(1)
+            deleting_button_confirmation = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
+            sleep(1)
+            deleting_button_confirmation.click()
+            Logging().reportDebugStep(self, "The TradingAccount filter was deleted")
+            return FilterPage(self.driver)

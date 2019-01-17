@@ -1,9 +1,11 @@
 brands:
 
-- name: goldenmarkets
-  config_file: goldenmarkets.yml
-- name: safemarkets
-  config_file: safemarkets.yml
+#- name: goldenmarkets
+#  config_file: goldenmarkets.yml
+#- name: safemarkets
+#  config_file: safemarkets.yml
+- name: B-TraderFX
+  config_file: b-traderfx.yml
 #- name: royal_cfds
 #  config_file: royal_cfds.yml
 #- name: jonesmutual
