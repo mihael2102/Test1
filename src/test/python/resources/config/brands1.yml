@@ -9,12 +9,12 @@ brands:
 #  config_file: otcapital.yml
 #- name: gmo
 #  config_file: gmo.yml
-- name: highfx
-  config_file: highfx.yml
+#- name: highfx
+#  config_file: highfx.yml
 
 
-#- name: triomarkets
-#  config_file: triomarkets.yml
+- name: triomarkets
+  config_file: triomarkets.yml
 #- name: rimarkets
 #  config_file: rimarkets.yml
 #- name: itrader_global
