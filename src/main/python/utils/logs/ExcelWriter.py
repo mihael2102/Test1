@@ -1145,9 +1145,15 @@ class ExcelWriter:
                             ,"Select blocked country Albania"
                             ,"Click Submit"
                             ,"Text from 'Update' popup has been got  Success"
-                            ,"The page is refreshed"
                             ,"Search partner name and go to affiliate details page"
-                            ,"Affiliate details page"]
+                            ,"Affiliate details page"
+                            ,"Delete affiliate"
+                            ,"Affiliates page was opened"
+                            ,"Search partner name and go to affiliate details page"
+                            ,"Delete button was clicked"
+                            ,"Confirm delete button was clicked"
+                            ,"Search partner name and go to affiliate details page"
+                            ,"Data not found"]
 
         return step_suit
 
