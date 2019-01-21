@@ -52,9 +52,10 @@ class ConfigProvider:
         if "Jenkins" in fileDir:
             self.path_to_data_provider = "C:/Program Files (x86)/Jenkins/workspace/%s/src/test/python/resources/test-data/" % Config.test
             # # If tests are run locally, set local DataProvider path
+
         elif ("C:/Users/Panda102/automation-newforexqa" in fileDir) or (
                 "C:\\Users\\Panda102\\automation-newforexqa" in fileDir):
-            self.path_to_data_provider = "C:/Users/Panda102/automation-newforexqa/src/test/python/resources/test-data"
+            self.path_to_data_provider = "C:/Users/Panda102/automation-newforexqa/src/test/python/resources/test-data/"
 
         elif ("D:/automation-newforexqa" in fileDir) or ("D:\\automation-newforexqa" in fileDir):
             self.path_to_data_provider = "D:/automation-newforexqa/src/test/python/resources/test-data/"

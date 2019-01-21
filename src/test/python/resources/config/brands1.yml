@@ -1,10 +1,10 @@
 brands:
 
-- name: goldenmarkets
-  config_file: goldenmarkets.yml
+#- name: goldenmarkets
+#  config_file: goldenmarkets.yml
 #- name: safemarkets
 #  config_file: safemarkets.yml
-#- name: B-TraderFX
+#- name: b-traderfx
 #  config_file: b-traderfx.yml
 #- name: royal_cfds
 #  config_file: royal_cfds.yml
@@ -42,8 +42,8 @@ brands:
 #  config_file: aztrades.yml
 #- name: bots
 #  config_file: bots.yml
-#- name: kontofx
-#  config_file: kontofx.yml
+- name: kontofx
+  config_file: kontofx.yml
 #- name: xtraderfx
 #  config_file: xtraderfx.yml
 #- name: firstindex

@@ -94,7 +94,7 @@ client_1:
   first_password: "Abcd1234"
   first_referral:
   first_source_name: "source 1"
-  first_currency: "USD"
+  first_currency: "EUR"
   first_currency_BCH: "BCH"
   new_password: "Panda123456"
 event_1:
