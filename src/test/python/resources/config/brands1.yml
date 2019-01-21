@@ -13,14 +13,14 @@ brands:
 #  config_file: highfx.yml
 
 
-- name: triomarkets
-  config_file: triomarkets.yml
+#- name: triomarkets
+#  config_file: triomarkets.yml
 #- name: rimarkets
 #  config_file: rimarkets.yml
 #- name: itrader_global
 #  config_file: itrader_global.yml
-#- name: finmarket
-#  config_file: finmarket.yml
+- name: finmarket
+  config_file: finmarket.yml
 #- name: mlnfx
 #  config_file: mlnfx.yml
 #- name: fxpmarkets

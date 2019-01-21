@@ -480,7 +480,7 @@ class LeadModuleTest(BaseTest):
 
         self.assertEqual(street, lead_data[LeadsModuleConstants.STREET])
         self.assertEqual(postal_code, lead_data[LeadsModuleConstants.POSTAL_CODE])
-        if global_var.current_brand_name != "ogtrade":
+        if (global_var.current_brand_name != "ogtrade") and (global_var.current_brand_name != "itrader") and (global_var.current_brand_name != "itrader_global"):
             self.assertEqual(country, lead_data[LeadsModuleConstants.FIRST_COUNTRY])
             self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])
             if lead_data[LeadsModuleConstants.PANDA_PARTNER]:
@@ -502,6 +502,8 @@ class LeadModuleTest(BaseTest):
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW_LEAD])
         elif global_var.current_brand_name == "fxpmarkets":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_C_NEW])
+        elif global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "itrader":
+            self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NO_INTRS])
         else:
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS])
 

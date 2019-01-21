@@ -25,7 +25,7 @@ class SearchingClientsTestCRM(BaseTest):
             # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
             # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
-        if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "itrader"):
+        if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds"):
                 sleep(15)
                 ClientsPage(self.driver).perform_searching(
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
@@ -44,7 +44,7 @@ class SearchingClientsTestCRM(BaseTest):
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
-        elif global_var.current_brand_name == "q8":
+        elif (global_var.current_brand_name == "q8") or (global_var.current_brand_name == "itrader"):
                 ClientsPage(self.driver).perform_searching(
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_TEST),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),

@@ -53,6 +53,7 @@ class LeadsModuleConstants(object):
     PHONE_AREA_CODE = "phone_area_code"
     FIRST_TITTLE = "first_tittle"
     FIRST_LEAD_SOURCE = "first_lead_source"
+    FIRST_LEAD_STATUS_NO_INTRS = "first_lead_status_no_interest"
     FIRST_LEAD_STATUS = "first_lead_status"
     FIRST_LEAD_STATUS_NEW = "first_lead_status_new"
     FIRST_LEAD_STATUS_NEW_LEAD = "first_lead_status_new_lead"
