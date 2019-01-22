@@ -7,10 +7,10 @@ brands:
 #  config_file: stoxmarket.yml
 #- name: otcapital
 #  config_file: otcapital.yml
-#- name: gmo
-#  config_file: gmo.yml
-#- name: highfx
-#  config_file: highfx.yml
+- name: gmo
+  config_file: gmo.yml
+- name: highfx
+  config_file: highfx.yml
 
 
 #- name: triomarkets
@@ -19,8 +19,8 @@ brands:
 #  config_file: rimarkets.yml
 #- name: itrader_global
 #  config_file: itrader_global.yml
-- name: finmarket
-  config_file: finmarket.yml
+#- name: finmarket
+#  config_file: finmarket.yml
 #- name: mlnfx
 #  config_file: mlnfx.yml
 #- name: fxpmarkets
@@ -33,3 +33,5 @@ brands:
 #  config_file: oinvestsa.yml
 #- name: brokerxp
 #  config_file: brokerxp.yml
+#- name: fm-fx
+#  config_file: fm-fx.yml

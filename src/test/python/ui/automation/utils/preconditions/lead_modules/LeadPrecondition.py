@@ -26,7 +26,7 @@ class LeadPrecondition(object):
             .open_create_lead_module()\
 
 
-        if global_var.current_brand_name == "safemarkets" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "itrader":
+        if global_var.current_brand_name == "safemarkets" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "fm-fx":
             CreateLeadsProfilePage(self.driver).perform_create_lead(
             lead[LeadsModuleConstants.FIRST_NAME],
             lead[LeadsModuleConstants.FIRST_LAST_NAME],
@@ -283,9 +283,8 @@ class LeadPrecondition(object):
                 new_lead_data[LeadsModuleConstants.CITY],
                 new_lead_data[LeadsModuleConstants.FIRST_STATE])
 
-        elif (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "gmo-dev") or (global_var.current_brand_name == "oinvestsa") \
-                or (global_var.current_brand_name == "otcapital") or (global_var.current_brand_name == "urf") or \
-                (global_var.current_brand_name == "rimarkets"):
+        elif (global_var.current_brand_name == "gmo-dev")\
+                 or (global_var.current_brand_name == "urf"):
 
             LeadDetailViewInfo(self.driver).open_edit_lead_profile().perform_edit_lead_without_reff(
                 new_lead_data[LeadsModuleConstants.FIRST_NAME],
@@ -311,6 +310,31 @@ class LeadPrecondition(object):
                 new_lead_data[LeadsModuleConstants.CITY],
                 new_lead_data[LeadsModuleConstants.FIRST_STATE])
 
+        elif (global_var.current_brand_name == "rimarkets") or (global_var.current_brand_name == "oinvestsa") or (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "otcapital") or (global_var.current_brand_name == "fm-fx"):
+
+            LeadDetailViewInfo(self.driver).open_edit_lead_profile().perform_edit_lead_without_reff(
+                new_lead_data[LeadsModuleConstants.FIRST_NAME],
+                new_lead_data[LeadsModuleConstants.FIRST_LAST_NAME],
+                new_lead_data[LeadsModuleConstants.FIRST_MOBILE],
+                new_lead_data[LeadsModuleConstants.FAX],
+                new_lead_data[LeadsModuleConstants.EMAIL],
+                new_lead_data[LeadsModuleConstants.SECONDARY_EMAIL],
+                new_lead_data[LeadsModuleConstants.FIRST_LANGUAGE],
+                new_lead_data[LeadsModuleConstants.PANDA_PARTNER],
+                new_lead_data[LeadsModuleConstants.STREET],
+                new_lead_data[LeadsModuleConstants.POSTAL_CODE],
+                new_lead_data[LeadsModuleConstants.FIRST_COUNTRY],
+                new_lead_data[LeadsModuleConstants.FIRST_DESCRIPTION],
+                new_lead_data[LeadsModuleConstants.PHONE],
+                new_lead_data[LeadsModuleConstants.FIRST_TITTLE],
+                new_lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE],
+                new_lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_TEST],
+                new_lead_data[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+                new_lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                new_lead_data[LeadsModuleConstants.BRAND],
+                new_lead_data[LeadsModuleConstants.PO_BOX],
+                new_lead_data[LeadsModuleConstants.CITY],
+                new_lead_data[LeadsModuleConstants.FIRST_STATE])
 
         elif (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "itrader_global"):
 
