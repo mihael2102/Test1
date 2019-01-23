@@ -377,31 +377,31 @@ class ClientsPage(CRMBasePage):
     def get_first_client_email(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Email')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Returns the first client: " + client_email.text)
+        Logging().reportDebugStep(self, "Verified the client email: " + client_email.text)
         return client_email.text
 
     def get_client_country(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Country')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Returns the first client: " + client_email.text)
+        Logging().reportDebugStep(self, "Verified the client country: " + client_email.text)
         return client_email.text
 
     def get_client_first_name(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'First Name')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Returns the first client: " + client_email.text)
+        Logging().reportDebugStep(self, "Verified the first name: " + client_email.text)
         return client_email.text
 
     def get_client_last_name(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Last Name')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Returns the first client: " + client_email.text)
+        Logging().reportDebugStep(self, "Verified last name: " + client_email.text)
         return client_email.text
 
     def get_client_phone(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Phone')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Returns the first client: " + client_email.text)
+        Logging().reportDebugStep(self, "Verified phone: " + client_email.text)
         return client_email.text
 
     def get_second_client_email(self):
