@@ -33,8 +33,8 @@ brands:
 #  config_file: herdos.yml
 #- name: ptbanc
 #  config_file: ptbanc.yml
-- name: q8
-  config_file: q8.yml
+#- name: q8
+#  config_file: q8.yml
 #- name: 2mercados
 #  config_file: 2mercados.yml
 #- name: axa_markets
@@ -74,8 +74,8 @@ brands:
 #  config_file: olympusmarkets.yml
 #- name: privat-trade
 #  config_file: privat-trade.yml
-#- name: swiftcfd
-#  config_file: swiftcfd.yml
+- name: swiftcfd
+  config_file: swiftcfd.yml
 #- name: tfxgo
 #  config_file: tfxgo.yml
 #- name: uprofx
