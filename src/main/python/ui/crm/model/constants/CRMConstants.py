@@ -108,3 +108,4 @@ class CRMConstants(object):
     CREATE_AFFILIATE_SUCCCESS = "Success"
     EASY_SEARCH_CLIENT_TEST = "test"
 
+

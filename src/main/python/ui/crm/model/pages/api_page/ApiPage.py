@@ -1,0 +1,140 @@
+from time import sleep
+
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.modules.document.CreateDocumentModule import CreateDocumentModule
+from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
+from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
+from src.main.python.utils.logs.Loging import Logging
+from selenium.common.exceptions import NoSuchElementException
+import autoit
+import os
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+
+class ApiPage(CRMBasePage):
+
+    def check_create_customer_token(self):
+        sleep(5)
+        check_token = self.driver.find_element(By.XPATH,
+                                               "//*[@id='api-Customers-createCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
+        Logging().reportDebugStep(self, "Check token")
+        return check_token
+
+    def enter_email(self, email):
+        sleep(2)
+        input = self.driver.find_element(By.XPATH,
+                                                   "//*[@id='sample-request-param-field-email-Customers-createCustomer-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.send_keys(email)
+        Logging().reportDebugStep(self, "Enter email")
+        return ApiPage(self.driver)
+
+    def enter_password(self, password):
+        input = self.driver.find_element(By.XPATH,
+                                         "//*[@id='sample-request-param-field-password-Customers-createCustomer-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.send_keys(password)
+        Logging().reportDebugStep(self, "Enter password")
+        return ApiPage(self.driver)
+
+    def enter_country(self, country):
+        input = self.driver.find_element(By.XPATH,
+                                         "//*[@id='sample-request-param-field-country-Customers-createCustomer-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.send_keys(country)
+        Logging().reportDebugStep(self, "Enter country")
+        return ApiPage(self.driver)
+
+    def enter_firstName(self, firstName):
+        input = self.driver.find_element(By.XPATH,
+                                         "//*[@id='sample-request-param-field-firstName-Customers-createCustomer-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.send_keys(firstName)
+        Logging().reportDebugStep(self, "Enter firstName")
+        return ApiPage(self.driver)
+
+    def enter_lastName(self, lastName):
+        input = self.driver.find_element(By.XPATH,
+                                         "//*[@id='sample-request-param-field-lastName-Customers-createCustomer-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.send_keys(lastName)
+        Logging().reportDebugStep(self, "Enter lastName")
+        return ApiPage(self.driver)
+
+    def enter_phone(self, phone):
+        input = self.driver.find_element(By.XPATH,
+                                         "//*[@id='sample-request-param-field-phone-Customers-createCustomer-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.send_keys(phone)
+        Logging().reportDebugStep(self, "Enter phone")
+        return ApiPage(self.driver)
+
+    def send_create_customer(self):
+        sleep(2)
+        send = self.driver.find_element(By.XPATH,
+                                        "//*[@id='api-Customers-createCustomer-0.0.0']/form/fieldset/div[4]/div/button")
+        self.driver.execute_script("arguments[0].scrollIntoView();", send)
+        send.click()
+        Logging().reportDebugStep(self, "Click send")
+        return ApiPage(self.driver)
+
+    def create_customer_module(self):
+        sleep(2)
+        customer_module = self.driver.find_element(By.XPATH,"//*[@id='scrollingNav']/ul/li[7]/a")
+        customer_module.click()
+        Logging().reportDebugStep(self, "Open customer module")
+        return ApiPage(self.driver)
+
+    def enter_secret_key(self, partnerSecretKey):
+        sleep(5)
+        input_secret_key = self.driver.find_element(By.XPATH, "//*[@id='partnerSecretKey']")
+        input_secret_key.send_keys(partnerSecretKey)
+        Logging().reportDebugStep(self, "Enter Secret Key")
+        return ApiPage(self.driver)
+
+    def authorization_module(self):
+        sleep(2)
+        authorization_module = self.driver.find_element(By.XPATH,"//a[contains(text(), 'Authorization')]")
+        authorization_module.click()
+        Logging().reportDebugStep(self, "Open Authorization module")
+        return ApiPage(self.driver)
+
+    def input_partner_id(self, partnerId):
+        sleep(2)
+        input_partnarId = self.driver.find_element(By.XPATH,"//*[@id='sample-request-param-field-partnerId-Authorization-Authorization-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input_partnarId)
+        input_partnarId.send_keys(partnerId)
+        Logging().reportDebugStep(self, "Enter partnerId")
+        return ApiPage(self.driver)
+
+    def generate_time(self):
+        sleep(2)
+        time = self.driver.find_element(By.XPATH,"//*[@id='time-generator']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", time)
+        time.click()
+        Logging().reportDebugStep(self, "Generate time")
+        return ApiPage(self.driver)
+
+    def generate_accessKey(self):
+        sleep(2)
+        accessKey = self.driver.find_element(By.XPATH,"//*[@id='accessKey-generator']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", accessKey)
+        accessKey.click()
+        Logging().reportDebugStep(self, "Generate accessKey")
+        return ApiPage(self.driver)
+
+    def send_authorization(self):
+        sleep(2)
+        send = self.driver.find_element(By.XPATH, "//*[@id='api-Authorization-Authorization-0.0.0']/form/fieldset/div[3]/div/button")
+        self.driver.execute_script("arguments[0].scrollIntoView();", send)
+        send.click()
+        Logging().reportDebugStep(self, "Click send")
+        return ApiPage(self.driver)
+
+    def check_token(self):
+        sleep(5)
+        check_token = self.driver.find_element(By.XPATH, "//*[@id='api-Authorization-Authorization-0.0.0']/form/fieldset/div[4]/pre/code").text
+        Logging().reportDebugStep(self, "Check token")
+        return check_token

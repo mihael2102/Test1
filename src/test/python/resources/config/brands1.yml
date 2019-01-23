@@ -1,8 +1,7 @@
 brands:
-#- name: mpcrypto
-#  config_file: mpcrypto.yml
-#- name: goldenmarkets
-#  config_file: goldenmarkets.yml
+
+- name: goldenmarkets
+  config_file: goldenmarkets.yml
 #- name: safemarkets
 #  config_file: safemarkets.yml
 #- name: b-traderfx
@@ -74,9 +73,11 @@ brands:
 #  config_file: olympusmarkets.yml
 #- name: privat-trade
 #  config_file: privat-trade.yml
-- name: swiftcfd
-  config_file: swiftcfd.yml
+#- name: swiftcfd
+#  config_file: swiftcfd.yml
 #- name: tfxgo
 #  config_file: tfxgo.yml
 #- name: uprofx
 #  config_file: uprofx.yml
+#- name: mpcrypto
+#  config_file: mpcrypto.yml

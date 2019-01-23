@@ -12,8 +12,17 @@ from selenium.common.exceptions import NoSuchElementException
 import autoit
 import os
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
 
 class AffiliatePage(CRMBasePage):
+
+
+    def get_link_api(self):
+        sleep(5)
+        api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+        # api_link.click()
+        Logging().reportDebugStep(self, "Get link API")
+        return api_link
 
     def add_new_affiliate(self):
         add_new_affiliate_button = super().wait_element_to_be_clickable(
