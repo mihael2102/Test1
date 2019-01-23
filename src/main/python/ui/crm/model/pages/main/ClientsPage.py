@@ -395,13 +395,13 @@ class ClientsPage(CRMBasePage):
     def get_client_last_name(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Last Name')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified last name: " + client_email.text)
+        Logging().reportDebugStep(self, "Verified the last name: " + client_email.text)
         return client_email.text
 
     def get_client_phone(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Phone')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified phone: " + client_email.text)
+        Logging().reportDebugStep(self, "Verified the phone: " + client_email.text)
         return client_email.text
 
     def get_second_client_email(self):
