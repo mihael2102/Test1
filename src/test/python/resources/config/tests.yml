@@ -5,10 +5,15 @@ tests_config:
 #  tests:
 #    - test_autorization_process
 
-- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Create_New_Customer
-  class: CreateNewCustomer
+#- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Create_New_Customer
+#  class: CreateNewCustomer
+#  tests:
+#    - test_create_new_customer
+
+- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Refferal_field
+  class: RefferalField
   tests:
-    - test_create_new_customer
+    - test_refferal_field
 
   ###General
 #- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter

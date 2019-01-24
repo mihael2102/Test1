@@ -98,6 +98,13 @@ class ApiPrecondition(object):
 
         assert APIConstants.STATUS_OK in check_create_customer_token
 
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
+        ClientsPage(self.driver).select_filter(self.config.get_data_client(
+            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                      LeadsModuleConstants.EMAIL])
+        client_email = ClientsPage(self.driver).get_first_client_email()
+
 
 
 
