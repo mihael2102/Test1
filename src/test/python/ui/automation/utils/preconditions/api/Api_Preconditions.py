@@ -80,6 +80,25 @@ class ApiPrecondition(object):
         assert client_last_name == APIConstants.LASTNAME
         assert client_phone == APIConstants.PHONE_CRM
 
+    def test_refferal_field(self):
+        self.autorization_process()
+        ApiPage(self.driver).create_customer_module()
+        ApiPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                             LeadsModuleConstants.EMAIL])
+        ApiPage(self.driver).enter_password(APIConstants.PASSWORD)
+        ApiPage(self.driver).enter_country(APIConstants.COUNTRY)
+        ApiPage(self.driver).enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                 LeadsModuleConstants.FIRST_NAME])
+        ApiPage(self.driver).enter_lastName(APIConstants.LASTNAME)
+        ApiPage(self.driver).enter_phone(APIConstants.PHONE)
+        ApiPage(self.driver).enter_refferal(APIConstants.REFFERAL)
+        ApiPage(self.driver).send_create_customer()
+
+        check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+
+        assert APIConstants.STATUS_OK in check_create_customer_token
+
+
 
 
 

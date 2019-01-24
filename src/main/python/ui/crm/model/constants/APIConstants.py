@@ -13,3 +13,4 @@ class APIConstants(object):
     STATUS_OK = "ok"
     COUNTRY_CRM = "Germany"
     PHONE_CRM = "+34 53453"
+    REFFERAL = "langref=hebrew"

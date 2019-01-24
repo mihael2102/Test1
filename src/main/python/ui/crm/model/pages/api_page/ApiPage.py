@@ -15,6 +15,15 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class ApiPage(CRMBasePage):
 
+    def enter_refferal(self, refferal):
+        sleep(2)
+        input = self.driver.find_element(By.XPATH,
+                                         "//*[@id='sample-request-param-field-referral-Customers-createCustomer-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.send_keys(refferal)
+        Logging().reportDebugStep(self, "Enter refferal")
+        return ApiPage(self.driver)
+
     def check_create_customer_token(self):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
