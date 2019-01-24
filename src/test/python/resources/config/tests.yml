@@ -10,10 +10,26 @@ tests_config:
 #  tests:
 #    - test_create_new_customer
 
-- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Refferal_field
-  class: RefferalField
+#- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Read_Customer_Details
+#  class: ReadCustomerDetails
+#  tests:
+#    - test_read_customer_details
+#
+#- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Read_Customers_Details
+#  class: ReadCustomersDetails
+#  tests:
+#    - test_read_customers_details
+
+
+#- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Update_Customer
+#  class: UpdateCustomer
+#  tests:
+#    - test_update_customer
+
+- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Create_Lead
+  class: CreateLead
   tests:
-    - test_refferal_field
+    - test_create_lead_api
 
   ###General
 #- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
