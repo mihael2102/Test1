@@ -10,6 +10,7 @@ def Send_Email_XML(filepath, content):
     fromaddr = "jonathan.albalak@pandats.com"
     # toaddr = "Niv.s@pandats.com"
     # toaddr = "ann.poimenova@gmail.com"
+    # toaddr = "michael.oryshchenko@pandats.com"
 
     # instance of MIMEMultipart
     msg = MIMEMultipart()
