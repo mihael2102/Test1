@@ -4,10 +4,14 @@ from src.main.python.ui.crm.model.constants.HelpDeskConstants import HelpDeskCon
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.utils.config import Config
+
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
+from selenium.webdriver.common.by import By
+from time import sleep
 
 class FilterPrecondition(object):
 
@@ -19,8 +23,16 @@ class FilterPrecondition(object):
         self.config = config
 
     def create_filter_clients_module(self):
-        CRMHomePage(self.driver).open_client_module() \
-            .open_create_filter_pop_up() \
+        CRMHomePage(self.driver).open_client_module() #\
+            # .open_create_filter_pop_up() \
+        # sleep(3)
+        # test = self.driver.find_element(By.XPATH, "//span[contains(text(),'TestFilterClientsModule')]")
+        # print(test)
+        # while (self.driver.find_element(By.XPATH, "//span[contains(text(),'TestFilterClientsModule')]")):
+        #     sleep(5)
+        #     FilterPage(self.driver).click_delete_filter_button()
+        # else:
+        ClientsPage(self.driver).open_create_filter_pop_up()\
 
         if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "intelligent_capital"):
             FilterPage(self.driver).perform_create_filter_client_module(
@@ -139,3 +151,18 @@ class FilterPrecondition(object):
             self.config.get_data_columns_trading_module(TradingAccountConstants.EIGHTH_COLUMN)) \
             .click_save_button()
         return FilterPrecondition(self.driver, self.config)
+
+    def delete_clients_module_filter(self):
+        FilterPage(self.driver).click_delete_filter_button()
+
+    def delete_documents_module_filter(self):
+        FilterPage(self.driver).delete_documents_filter()
+
+    def delete_leads_module_filter(self):
+        FilterPage(self.driver).delete_leads_filter()
+
+    def delete_help_desk_module_filter(self):
+        FilterPage(self.driver).delete_help_desk_filter()
+
+    def delete_trading_account_module_filter(self):
+        FilterPage(self.driver).delete_trading_account_filter()

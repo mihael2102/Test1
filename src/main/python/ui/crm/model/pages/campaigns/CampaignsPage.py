@@ -8,8 +8,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 
 class CampaignsPage(CRMBasePage):
-    def __init__(self) -> None:
-        super().__init__()
 
     def open_add_campaign_module(self):
         add_campaign_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Campaign')]")
@@ -25,6 +23,11 @@ class CampaignsPage(CRMBasePage):
         Logging().reportDebugStep(self, "The campaign_name was entered: " + campaign_name)
         return CampaignsPage()
 
+    def campaign_exist(self):
+        campaign = super().wait_load_element("//*[@id='row0ListGrid0']/div[2]/div/a").text
+        Logging().reportDebugStep(self, "Verify campaign name")
+        return campaign
+
     def perform_searching_campaign_by_columns(self, campaign_name, activity, start_date, cpa):
         self.set_campaign_name(campaign_name)
         self.set_activity(activity)
@@ -33,8 +36,9 @@ class CampaignsPage(CRMBasePage):
         return CampaignsPage()
 
     def open_campaign_view(self, campaign_name):
-        campaign_name_link = super().wait_visible_of_element(
+        campaign_name_link = super().wait_element_to_be_clickable(
             "//a[contains(text(),'%s')]" % campaign_name)
+        sleep(2)
         campaign_name_link.click()
         Logging().reportDebugStep(self, "The campaign_name was entered: " + campaign_name)
         return EditCampaignModule()
@@ -43,6 +47,7 @@ class CampaignsPage(CRMBasePage):
         delete_element = super().wait_visible_of_element("//div[@role='row'][1]//div[@title='Delete']")
         hoverer = ActionChains(self.driver).move_to_element(delete_element).move_by_offset(20, 0)
         hoverer.perform()
+        delete_element.click()
         Logging().reportDebugStep(self, "The campaign was deleted ")
         return CampaignsPage()
 
@@ -82,6 +87,37 @@ class CampaignsPage(CRMBasePage):
         today_field.click()
         Logging().reportDebugStep(self, "The today  was clicked: " + start_date)
         return CampaignsPage()
+
+    def get_start_date(self):
+        actual_start_date = super().wait_load_element("//*[@id='start_date']").get_attribute("value")
+        Logging().reportDebugStep(self, "Current start date is: " + actual_start_date)
+        return actual_start_date
+
+    def get_end_date(self):
+        actual_end_date = super().wait_load_element("//*[@id='end_date']").get_attribute("value")
+        Logging().reportDebugStep(self, "Current end date is: " + actual_end_date)
+        return actual_end_date
+
+    def click_cancel_button(self):
+        cancel_button = super().wait_load_element("//*[@id='Cancel']")
+        sleep(2)
+        cancel_button.click()
+        Logging().reportDebugStep(self, "The Cancel button is clicked")
+        return CampaignsPage()
+
+    def deleting_confirmation(self):
+        super().wait_visible_of_element("//div[contains(text(),'Confirm Delete')]")     #deleting confirmation popup is appear
+        deleting_confirmation_button = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
+        sleep(1)
+        deleting_confirmation_button.click()
+        Logging().reportDebugStep(self, "The deleting confirmation button is clicked")
+        return CampaignsPage()
+
+    def check_campaign_deleted(self):
+        super().wait_visible_of_element("//span[contains(text(), 'No data to display')]")
+        Logging().reportDebugStep(self, "Campaign not found")
+        return CampaignsPage()
+
 
     # def set_assigned_to(self, assigned_to):
     #     assigned_to_field = super().wait_visible_of_element(
