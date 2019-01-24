@@ -205,3 +205,5 @@ class FilterPrecondition(object):
 
     def delete_trading_account_module_filter(self):
         FilterPage(self.driver).delete_trading_account_filter()
+
+
