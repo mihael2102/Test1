@@ -2,5 +2,3 @@ brands:
 
 - name: fxpmarkets
   config_file: fxpmarkets.yml
-- name: soarfx
-  config_file: soarfx.yml

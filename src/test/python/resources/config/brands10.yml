@@ -1,4 +1,5 @@
 brands:
-
-- name: brokerxp
-  config_file: brokerxp.yml
+- name: soarfx
+  config_file: soarfx.yml
+#- name: brokerxp
+#  config_file: brokerxp.yml
