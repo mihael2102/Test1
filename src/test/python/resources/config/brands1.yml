@@ -7,8 +7,8 @@ brands:
 #  config_file: stoxmarket.yml
 #- name: otcapital
 #  config_file: otcapital.yml
-- name: gmo
-  config_file: gmo.yml
+#- name: gmo
+#  config_file: gmo.yml
 - name: highfx
   config_file: highfx.yml
 
