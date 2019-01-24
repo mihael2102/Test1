@@ -63,6 +63,8 @@ class FilterModulesTest(BaseTest):
                                                CRMConstants.ELEVENTH_COLUMN) or self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER,
                                                CRMConstants.ELEVENTH_COLUMN_NEW) == eleventh_name_column
 
+            FilterPrecondition(self.driver, self.config).delete_clients_module_filter()
+
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             try:
                 ClientProfilePage(self.driver).Sign_Out()
@@ -105,6 +107,7 @@ class FilterModulesTest(BaseTest):
                 assert CRMConstants.TENTH_COLUMN_OTHER_TYPE == tenth_name_column
                 assert self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER,
                                              CRMConstants.ELEVENTH_COLUMN) == eleventh_name_column
+                FilterPrecondition(self.driver, self.config).delete_clients_module_filter()
             except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
                 ClientProfilePage(self.driver).Sign_Out()
                 clients_module_page = CRMLoginPage(self.driver) \
@@ -146,6 +149,7 @@ class FilterModulesTest(BaseTest):
                 assert CRMConstants.TENTH_COLUMN_OTHER_TYPE == tenth_name_column
                 assert self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER,
                                              CRMConstants.ELEVENTH_COLUMN) == eleventh_name_column
+                FilterPrecondition(self.driver, self.config).delete_clients_module_filter()
 
 
     def test_create_filter_documents_module(self):
@@ -178,6 +182,8 @@ class FilterModulesTest(BaseTest):
             # for_old_forex Comments changed to Size
             self.assertEqual(fourth_name_column, DocumentModuleConstants.FOURTH_COLUMN_TEXT,
                                                                     "Filter columns are different in Documents module")
+
+            FilterPrecondition(self.driver, self.config).delete_documents_module_filter()
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             try:
                 ClientProfilePage(self.driver).Sign_Out()
@@ -274,6 +280,8 @@ class FilterModulesTest(BaseTest):
 
             else:
                 assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN) == eighth_name_column
+
+            FilterPrecondition(self.driver, self.config).delete_leads_module_filter()
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             try:
                 ClientProfilePage(self.driver).Sign_Out()
@@ -386,6 +394,7 @@ class FilterModulesTest(BaseTest):
                                                   HelpDeskConstants.EIGHTH_COLUMN) == eighth_name_column   #for_old_forex brand changed to Currency
             assert HelpDeskConstants.DESCRIPTION == tenth_name_column #for_old_forex delete *
             assert HelpDeskConstants.ACCOUNT_NAME == eleventh_name_column  #for_old_forex delete *
+            FilterPrecondition(self.driver, self.config).delete_help_desk_module_filter()
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             try:
                 ClientProfilePage(self.driver).Sign_Out()
@@ -430,6 +439,8 @@ class FilterModulesTest(BaseTest):
                                                       HelpDeskConstants.EIGHTH_COLUMN) == eighth_name_column  # for_old_forex brand changed to Currency
                 assert HelpDeskConstants.DESCRIPTION == tenth_name_column  # for_old_forex delete *
                 assert HelpDeskConstants.ACCOUNT_NAME == eleventh_name_column  # for_old_forex delete *
+
+                FilterPrecondition(self.driver, self.config).delete_help_desk_module_filter()
 
             except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
                 ClientProfilePage(self.driver).Sign_Out()
@@ -476,6 +487,8 @@ class FilterModulesTest(BaseTest):
                 assert HelpDeskConstants.DESCRIPTION == tenth_name_column  # for_old_forex delete *
                 assert HelpDeskConstants.ACCOUNT_NAME == eleventh_name_column  # for_old_forex delete *
 
+                FilterPrecondition(self.driver, self.config).delete_help_desk_module_filter()
+
 
     def test_create_filter_trading_account_module(self):
         try:
@@ -512,6 +525,7 @@ class FilterModulesTest(BaseTest):
                              seventh_name_column, "Name of the column is wrong")
             self.assertEqual(self.config.get_data_columns_trading_module(TradingAccountConstants.EIGHTH_COLUMN)[:-2],
                              eighth_name_column, "Name of the column is wrong")
+            FilterPrecondition(self.driver, self.config).delete_trading_account_module_filter()
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             try:
                 ClientProfilePage(self.driver).Sign_Out()
@@ -548,6 +562,7 @@ class FilterModulesTest(BaseTest):
                                  seventh_name_column, "Name of the column is wrong")
                 self.assertEqual(self.config.get_data_columns_trading_module(TradingAccountConstants.EIGHTH_COLUMN)[:-2],
                                  eighth_name_column, "Name of the column is wrong")
+                FilterPrecondition(self.driver, self.config).delete_trading_account_module_filter()
             except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
                 ClientProfilePage(self.driver).Sign_Out()
                 CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \

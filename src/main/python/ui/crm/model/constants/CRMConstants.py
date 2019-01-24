@@ -119,3 +119,12 @@ class CRMConstants(object):
     EASY_SEARCH_CLIENT_TEST = "test"
     EASY_SEARCH_CLIENT_TEST_TEST = "test test"
     CONVERT_SUCCESSFUL_MESSAGE_EMPTY = ""
+    CAMPAIGN_NAME = "TestCampaign" + str(random.randrange(1, 9999))
+    FIST_ASSIGNED_TO = "pandaqa pandaqa"
+    START_DATE = "2019-12-31"
+    START_DATE2 = "2020-02-03"
+    END_DATE = "2021-12-30"
+    END_DATE2 = "2022-11-11"
+    FIST_DEAL = "CPA"
+    SECOND_DEAL = "CPL"
+    RATE = "111"

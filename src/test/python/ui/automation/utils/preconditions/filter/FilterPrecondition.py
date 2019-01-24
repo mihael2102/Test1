@@ -190,3 +190,18 @@ class FilterPrecondition(object):
             self.config.get_data_columns_trading_module(TradingAccountConstants.EIGHTH_COLUMN)) \
             .click_save_button()
         return FilterPrecondition(self.driver, self.config)
+
+    def delete_clients_module_filter(self):
+        FilterPage(self.driver).click_delete_filter_button()
+
+    def delete_documents_module_filter(self):
+        FilterPage(self.driver).delete_documents_filter()
+
+    def delete_leads_module_filter(self):
+        FilterPage(self.driver).delete_leads_filter()
+
+    def delete_help_desk_module_filter(self):
+        FilterPage(self.driver).delete_help_desk_filter()
+
+    def delete_trading_account_module_filter(self):
+        FilterPage(self.driver).delete_trading_account_filter()

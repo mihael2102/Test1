@@ -4,12 +4,15 @@ from selenium.webdriver.support.select import Select
 
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from time import sleep
+
+from selenium.webdriver import ActionChains
+from src.main.python.ui.crm.model.modules.campaigns_module.EditCampaignModule import EditCampaignModule
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.utils.logs.Loging import Logging
 
 
 class AddCampaignsModule(CRMBasePage):
-
-    def __init__(self):
-        super().__init__()
 
     def perform_add_new_campaign(self, name, assigned_to, start_date, end_date, deal, rate):
         self.set_name(name)
@@ -37,19 +40,28 @@ class AddCampaignsModule(CRMBasePage):
 
     def set_start_date(self, start_date):
         start_date_button = super().wait_element_to_be_clickable("//input[@name='start_date']")
-        start_date_button.clear()
+        sleep(1)
+        start_date_button.send_keys(Keys.CONTROL + "a")
+        start_date_button.send_keys(Keys.DELETE)
+        # start_date_button.clear()
+        sleep(1)
         start_date_button.send_keys(start_date)
         start_date_button.send_keys(Keys.ENTER)
-        start_date_button.click()
+        sleep(1)
+        # start_date_button.click()
         Logging().reportDebugStep(self, "The start date was set: " + start_date)
         return AddCampaignsModule()
 
     def set_end_date(self, end_date):
         search_button = super().wait_element_to_be_clickable("//input[@name='end_date']")
-        search_button.clear()
+        sleep(1)
+        search_button.send_keys(Keys.CONTROL + "a")
+        search_button.send_keys(Keys.DELETE)
+        sleep(1)
+        # search_button.clear()
         search_button.send_keys(end_date)
         search_button.send_keys(Keys.ENTER)
-        search_button.click()
+        # search_button.click()
         Logging().reportDebugStep(self, "The end date was set: " + end_date)
         return AddCampaignsModule()
 
@@ -61,6 +73,7 @@ class AddCampaignsModule(CRMBasePage):
 
     def click_save_button(self):
         save_button = super().wait_element_to_be_clickable("//button[@id='Save']")
+        sleep(1)
         save_button.click()
         Logging().reportDebugStep(self, "The save button was clicked ")
         return AddCampaignsModule()
