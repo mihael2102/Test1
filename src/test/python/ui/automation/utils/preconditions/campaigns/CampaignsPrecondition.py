@@ -44,6 +44,17 @@ class CampaignsPrecondition(object):
 
     """edit campaign"""
     def edit_campaign(self):
+        """ Login to CRM """
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        """ Open Campaign page """
+        CRMHomePage(self.driver).open_more_list_modules() \
+            .select_campaigns_module_more_list(CampaignsConstants.MODULE)
+        CampaignsPage(self.driver).perform_searching_campaign_by_name(self.camp_name)
+        sleep(2)
         CampaignsPage(self.driver).open_campaign_view(self.camp_name)
         sleep(2)
         AddCampaignsModule(self.driver).set_start_date(CRMConstants.START_DATE2)
@@ -53,7 +64,8 @@ class CampaignsPrecondition(object):
         sleep(2)
         CampaignsPage(self.driver).open_campaign_view(self.camp_name)
         sleep(2)
-        assert CampaignsPage(self.driver).get_start_date() == CRMConstants.START_DATE2
+        actual_start_date = CampaignsPage(self.driver).get_start_date()
+        assert actual_start_date == CRMConstants.START_DATE2
         sleep(2)
         assert CampaignsPage(self.driver).get_end_date() == CRMConstants.END_DATE2
 
