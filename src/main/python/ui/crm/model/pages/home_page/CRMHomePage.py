@@ -138,3 +138,19 @@ class CRMHomePage(CRMBasePage):
         home_page_element.click()
         Logging().reportDebugStep(self, "The client module was opened")
         return TradingAccountsPage(self.driver)
+
+    def get_first_leads(self):
+        sleep(5)
+        lead1 = self.driver.find_element(By.XPATH,
+                                           "//tr[1]/td[9]/a/div").text
+        lead2 = self.driver.find_element(By.XPATH,
+                                           "//tr[2]/td[9]/a/div").text
+        lead3 = self.driver.find_element(By.XPATH,
+                                           "//tr[3]/td[9]/a/div").text
+        lead4 = self.driver.find_element(By.XPATH,
+                                           "//tr[4]/td[9]/a/div").text
+        lead5 = self.driver.find_element(By.XPATH,
+                                           "//tr[5]/td[9]/a/div").text
+        Logging().reportDebugStep(self, "Check first leads")
+        return lead1, lead2, lead3, lead4, lead5
+

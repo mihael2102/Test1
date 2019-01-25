@@ -15,6 +15,85 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class ApiPage(CRMBasePage):
 
+    def check_page_from_token(self):
+        sleep(5)
+        payment_details = self.driver.find_element(By.XPATH,
+                                               "//h1[contains(text(),'Payment Details')]").text
+        Logging().reportDebugStep(self, "Check login token")
+        return payment_details
+
+    def check_login_token(self):
+        sleep(5)
+        check_token = self.driver.find_element(By.XPATH,
+                                               "//*[@id='api-System-LoginToken-0.0.0']/form/fieldset/div[5]/pre/code").text
+        Logging().reportDebugStep(self, "Check login token")
+        return check_token
+
+    def send_login_token(self):
+        sleep(2)
+        customer_module = self.driver.find_element(By.XPATH,
+                                                   "//*[@id='api-System-LoginToken-0.0.0']/form/fieldset/div[4]/div/button")
+        customer_module.click()
+        Logging().reportDebugStep(self, "Click Send")
+        return ApiPage(self.driver)
+
+    def enter_email_for_login_token(self, email):
+        sleep(2)
+        input = self.driver.find_element(By.XPATH,
+                                         "//*[@id='sample-request-param-field-email-System-LoginToken-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.send_keys(email)
+        Logging().reportDebugStep(self, "Enter email")
+        return ApiPage(self.driver)
+
+    def login_token_module(self):
+        sleep(2)
+        read_leads_module = self.driver.find_element(By.XPATH, "//*[@id='scrollingNav']/ul/li[24]/a")
+        read_leads_module.click()
+        Logging().reportDebugStep(self, "Open login token module")
+        return ApiPage(self.driver)
+
+
+    def check_read_leads_token(self):
+        sleep(5)
+        check_token = self.driver.find_element(By.XPATH,
+                                               "//*[@id='api-Leads-readLeads-0.0.0']/form/fieldset/div[5]/pre/code").text
+        Logging().reportDebugStep(self, "Check token read leads details")
+        return check_token
+
+    def send_leads_read(self):
+        sleep(2)
+        customer_module = self.driver.find_element(By.XPATH,
+                                                   "//*[@id='api-Leads-readLeads-0.0.0']/form/fieldset/div[4]/div/button")
+        customer_module.click()
+        Logging().reportDebugStep(self, "Click Send")
+        return ApiPage(self.driver)
+
+    def enter_leads_limit(self, limit):
+        sleep(2)
+        input = self.driver.find_element(By.XPATH,
+                                         "//*[@id='sample-request-param-field-limit-Leads-readLeads-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.send_keys(limit)
+        Logging().reportDebugStep(self, "Enter limit")
+        return ApiPage(self.driver)
+
+    def enter_leads_page(self, page):
+        sleep(2)
+        input = self.driver.find_element(By.XPATH,
+                                         "//*[@id='sample-request-param-field-page-Leads-readLeads-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.send_keys(page)
+        Logging().reportDebugStep(self, "Enter page")
+        return ApiPage(self.driver)
+
+    def read_leads_module(self):
+        sleep(2)
+        read_leads_module = self.driver.find_element(By.XPATH, "//*[@id='scrollingNav']/ul/li[22]/a")
+        read_leads_module.click()
+        Logging().reportDebugStep(self, "Open read leads module")
+        return ApiPage(self.driver)
+
     def create_lead_module(self):
         sleep(2)
         customer_module = self.driver.find_element(By.XPATH, "//*[@id='scrollingNav']/ul/li[21]/a")

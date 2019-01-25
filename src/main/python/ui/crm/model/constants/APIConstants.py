@@ -24,3 +24,5 @@ class APIConstants(object):
     LEAD_LNAME = "LeadLName"
     LEAD_PHONE = "3523233"
     LEAD_PHONE_CRM = "+352 3233"
+    API_filter = "API"
+    PAYMENT_DETAILS = "Payment Details"

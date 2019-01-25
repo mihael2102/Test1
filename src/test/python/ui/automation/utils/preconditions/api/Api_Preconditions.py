@@ -109,8 +109,7 @@ class ApiPrecondition(object):
         ApiPage(self.driver).send_read_customers()
         token = ApiPage(self.driver).check_reads_customer_details()
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
-        ClientsPage(self.driver).select_filter(self.config.get_data_client(
-            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        ClientsPage(self.driver).select_filter(APIConstants.API_filter)
         client1, client2, client3, client4, client5 = ClientsPage(self.driver).get_first_clients()
 
         assert client1 in token
@@ -182,6 +181,62 @@ class ApiPrecondition(object):
         assert fname == APIConstants.LEAD_FNAME
         assert lname == APIConstants.LEAD_LNAME
         assert phone == APIConstants.LEAD_PHONE_CRM
+
+
+    def test_read_leads(self):
+
+        self.autorization_process()
+        ApiPage(self.driver).read_leads_module()
+        ApiPage(self.driver).enter_leads_page(APIConstants.PAGE)
+        ApiPage(self.driver).enter_leads_limit(APIConstants.LIMIT)
+        ApiPage(self.driver).send_leads_read()
+        token = ApiPage(self.driver).check_read_leads_token()
+
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
+
+        lead_module = CRMHomePage(self.driver) \
+            .open_lead_module()
+
+        lead_module.select_filter(APIConstants.API_filter)
+
+        lead1, lead2, lead3, lead4, lead5 = CRMHomePage(self.driver).get_first_leads()
+
+        assert lead1 in token
+        assert lead2 in token
+        assert lead3 in token
+        assert lead4 in token
+        assert lead5 in token
+
+    def login_token(self):
+
+        self.autorization_process()
+        ApiPage(self.driver).login_token_module()
+        ApiPage(self.driver).enter_email_for_login_token(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                        LeadsModuleConstants.EMAIL])
+        ApiPage(self.driver).send_login_token()
+        token = ApiPage(self.driver).check_login_token()
+        token_new = token.replace(' ','')
+        token_new_1 = token_new.replace('{\n"data":{\n"url":"','')
+        token_new_2 = token_new_1.replace('"\n}\n}', '')
+
+        CRMLoginPage(self.driver).open_first_tab_page(token_new_2)
+
+        payment_details = ApiPage(self.driver).check_page_from_token()
+
+        assert payment_details == APIConstants.PAYMENT_DETAILS
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
