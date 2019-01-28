@@ -29,7 +29,7 @@ class ClientsPage(CRMBasePage):
         #     self.enter_client_name(name)
         if country:
             self.enter_country(country)
-
+        sleep(2)
         # if brand:
         #     self.select_brand(brand)
         self.click_search_button()

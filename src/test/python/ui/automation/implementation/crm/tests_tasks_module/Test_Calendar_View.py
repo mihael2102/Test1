@@ -222,7 +222,7 @@ class CalendarView(BaseTest):
                                                     TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
         assert task_module.get_confirm_message_task_module() == TaskModuleConstants.MESSAGE_CREATE_EVENT
-
+        sleep(2)
         assert task_module.get_task_subject(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME]) == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME]

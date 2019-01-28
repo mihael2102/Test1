@@ -31,6 +31,7 @@ class AddCampaignsModule(CRMBasePage):
         return AddCampaignsModule()
 
     def set_assigned_to(self, assigned_to):
+        sleep(2)
         assigned_to_drop_down = super().wait_element_to_be_clickable("//span[@dir='ltr']")
         assigned_to_drop_down.click()
         element = super().wait_element_to_be_clickable("//li[contains(text(),'%s')]" % assigned_to)
