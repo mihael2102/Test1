@@ -50,7 +50,7 @@ class TabFinancialTransaction(BaseTest):
                 FinancialTransactionsModuleConstants.SECOND_TAB)
             assert credit_out_name == self.config.get_data_financial_transactions_info(
                 FinancialTransactionsModuleConstants.THIRD_TAB)
-            if global_var.current_brand_name != "goldenmarkets":
+            if global_var.current_brand_name != "goldenmarkets" and  global_var.current_brand_name != "newrichmarkets":
                 assert demo_accounts_name == self.config.get_data_financial_transactions_info(
                     FinancialTransactionsModuleConstants.FOURTH_TAB)
                 assert deposit_name == self.config.get_data_financial_transactions_info(
