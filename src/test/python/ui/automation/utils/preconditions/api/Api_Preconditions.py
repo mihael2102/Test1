@@ -11,6 +11,7 @@ from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import Affiliat
 from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
 from src.main.python.ui.crm.model.constants.APIConstants import APIConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+import re
 
 class ApiPrecondition(object):
 
@@ -108,15 +109,18 @@ class ApiPrecondition(object):
         ApiPage(self.driver).enter_limit(APIConstants.LIMIT)
         ApiPage(self.driver).send_read_customers()
         token = ApiPage(self.driver).check_reads_customer_details()
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
-        ClientsPage(self.driver).select_filter(APIConstants.API_filter)
-        client1, client2, client3, client4, client5 = ClientsPage(self.driver).get_first_clients()
 
-        assert client1 in token
-        assert client2 in token
-        assert client3 in token
-        assert client4 in token
-        assert client5 in token
+        assert len(re.findall(r'\b{}\b'.format(APIConstants.PANDATS_EMAIL), token)) == 5
+
+        # CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
+        # ClientsPage(self.driver).select_filter(APIConstants.API_filter)
+        # client1, client2, client3, client4, client5 = ClientsPage(self.driver).get_first_clients()
+        #
+        # assert client1 in token
+        # assert client2 in token
+        # assert client3 in token
+        # assert client4 in token
+        # assert client5 in token
 
     def test_update_customer(self):
         self.autorization_process()
@@ -192,20 +196,22 @@ class ApiPrecondition(object):
         ApiPage(self.driver).send_leads_read()
         token = ApiPage(self.driver).check_read_leads_token()
 
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
+        assert len(re.findall(r'\b{}\b'.format(APIConstants.PANDATS_EMAIL), token)) == 5
 
-        lead_module = CRMHomePage(self.driver) \
-            .open_lead_module()
-
-        lead_module.select_filter(APIConstants.API_filter)
-
-        lead1, lead2, lead3, lead4, lead5 = CRMHomePage(self.driver).get_first_leads()
-
-        assert lead1 in token
-        assert lead2 in token
-        assert lead3 in token
-        assert lead4 in token
-        assert lead5 in token
+        # CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
+        #
+        # lead_module = CRMHomePage(self.driver) \
+        #     .open_lead_module()
+        #
+        # lead_module.select_filter(APIConstants.API_filter)
+        #
+        # lead1, lead2, lead3, lead4, lead5 = CRMHomePage(self.driver).get_first_leads()
+        #
+        # assert lead1 in token
+        # assert lead2 in token
+        # assert lead3 in token
+        # assert lead4 in token
+        # assert lead5 in token
 
     def login_token(self):
 

@@ -26,3 +26,4 @@ class APIConstants(object):
     LEAD_PHONE_CRM = "+352 3233"
     API_filter = "API"
     PAYMENT_DETAILS = "Payment Details"
+    PANDATS_EMAIL = "pandats.com"
