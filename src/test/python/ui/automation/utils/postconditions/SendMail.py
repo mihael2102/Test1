@@ -8,8 +8,8 @@ from email import encoders
 def Send_Email_XML(filepath, content):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    toaddr = "Niv.s@pandats.com"
-    # toaddr = "ann.poimenova@gmail.com"
+    # toaddr = "Niv.s@pandats.com"
+    toaddr = "ann.poimenova@gmail.com"
 
     # instance of MIMEMultipart
     msg = MIMEMultipart()
@@ -47,7 +47,7 @@ def Send_Email_XML(filepath, content):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
 ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/New forex job 1/%s" % filepath, "rb")
+    attachment = open("C:/Program Files (x86)/Jenkins/workspace/API New Forex/%s" % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -84,8 +84,8 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    toaddr = "Niv.s@pandats.com"
-    # toaddr = "ann.poimenova@gmail.com"
+    # toaddr = "Niv.s@pandats.com"
+    toaddr = "ann.poimenova@gmail.com"
 
     # instance of MIMEMultipart
     msg = MIMEMultipart()
@@ -110,7 +110,7 @@ def Send_Email_XLS(filepath):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
     ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/New forex job 1/%s" % filepath, "rb")
+    attachment = open("C:/Program Files (x86)/Jenkins/workspace/API New Forex/%s" % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -148,8 +148,8 @@ def Send_Email_XLS(filepath):
 def Send_ALL_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    toaddr = "Niv.s@pandats.com"
-    # toaddr = "ann.poimenova@gmail.com"
+    # toaddr = "Niv.s@pandats.com"
+    toaddr = "ann.poimenova@gmail.com"
 
     # instance of MIMEMultipart
     msg = MIMEMultipart()

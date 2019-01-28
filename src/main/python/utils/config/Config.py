@@ -1,4 +1,4 @@
-test = "New forex job 1"
+test = "API New Forex"
 timeout = 4
 data = None
 url_client_area = ""

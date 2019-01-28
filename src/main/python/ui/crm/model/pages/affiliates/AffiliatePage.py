@@ -19,7 +19,17 @@ class AffiliatePage(CRMBasePage):
 
     def get_link_api(self):
         sleep(5)
-        api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+        try:
+            api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+        except NoSuchElementException:
+            try:
+                CRMBasePage(self.driver).refresh_page()
+                sleep(1)
+                api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+            except NoSuchElementException:
+                CRMBasePage(self.driver).refresh_page()
+                sleep(1)
+                api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
         # api_link.click()
         Logging().reportDebugStep(self, "Get link API")
         return api_link
