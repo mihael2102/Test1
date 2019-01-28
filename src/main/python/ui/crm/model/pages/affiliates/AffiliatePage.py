@@ -15,6 +15,23 @@ import os
 
 class AffiliatePage(CRMBasePage):
 
+    def get_link_api(self):
+        sleep(5)
+        try:
+            api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+        except NoSuchElementException:
+            try:
+                CRMBasePage(self.driver).refresh_page()
+                sleep(1)
+                api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+            except NoSuchElementException:
+                CRMBasePage(self.driver).refresh_page()
+                sleep(1)
+                api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+        # api_link.click()
+        Logging().reportDebugStep(self, "Get link API")
+        return api_link
+
     def add_new_affiliate(self):
         add_new_affiliate_button = super().wait_element_to_be_clickable(
             "//button[contains(text(), 'Add new affiliate')]")

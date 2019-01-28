@@ -96,129 +96,7 @@ class ExcelWriter:
             col += 1
 
 
-        worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
-        for i in range(3,33):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-        worksheet.set_row(34, None, None, {'level': 1, 'hidden': True})
-        for i in range(35,51):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(52, None, None, {'level': 1, 'hidden': True})
-        for i in range(53, 77):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(78, None, None, {'level': 1, 'hidden': True})
-        for i in range(79, 107):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(108, None, None, {'level': 1, 'hidden': True})
-        for i in range(109, 139):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(140, None, None, {'level': 1, 'hidden': True})
-        for i in range(141, 181):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(182, None, None, {'level': 1, 'hidden': True})
-        for i in range(183, 234):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(235, None, None, {'level': 1, 'hidden': True})
-        for i in range(236, 333):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(334, None, None, {'level': 1, 'hidden': True})
-        for i in range(335, 384):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(385, None, None, {'level': 1, 'hidden': True})
-        for i in range(386, 403):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(404, None, None, {'level': 1, 'hidden': True})
-        for i in range(405, 434):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(435, None, None, {'level': 1, 'hidden': True})
-        for i in range(436, 446):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(447, None, None, {'level': 1, 'hidden': True})
-        for i in range(448, 467):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(468, None, None, {'level': 1, 'hidden': True})
-        for i in range(469, 487):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(488, None, None, {'level': 1, 'hidden': True})
-        for i in range(489, 506):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(507, None, None, {'level': 1, 'hidden': True})
-        for i in range(508, 525):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(526, None, None, {'level': 1, 'hidden': True})
-        for i in range(527, 546):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(547, None, None, {'level': 1, 'hidden': True})
-        for i in range(548, 565):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(566, None, None, {'level': 1, 'hidden': True})
-        for i in range(567, 596):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(597, None, None, {'level': 1, 'hidden': True})
-        for i in range(598, 633):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(634, None, None, {'level': 1, 'hidden': True})
-        for i in range(635, 654):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(655, None, None, {'level': 1, 'hidden': True})
-        for i in range(656, 692):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(693, None, None, {'level': 1, 'hidden': True})
-        for i in range(694, 720):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(721, None, None, {'level': 1, 'hidden': True})
-        for i in range(722, 738):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(739, None, None, {'level': 1, 'hidden': True})
-        for i in range(740, 760):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(761, None, None, {'level': 1, 'hidden': True})
-        for i in range(762, 770):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        worksheet.set_row(771, None, None, {'level': 1, 'hidden': True})
-        for i in range(772, 786):
-            worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-        # worksheet.set_row(787, None, None, {'level': 1, 'hidden': True})
-        # for i in range(788, 795):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(796, None, None, {'level': 1, 'hidden': True})
-        # for i in range(797, 808):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(809, None, None, {'level': 1, 'hidden': True})
-        # for i in range(810, 823):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-        #
-        # worksheet.set_row(824, None, None, {'level': 1, 'hidden': True})
-        # for i in range(825, 839):
-        #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
         workbook.close()
 
@@ -233,6 +111,261 @@ class ExcelWriter:
         return test['class'] + ': ' + test['method'].replace('_', ' ')
 
     def steps_for_test(self, test):
+
+        if self.get_test_pretty_name_new(test) == "UpdateCustomer: test update customer":
+            step_suit = ["Open first tabs page"
+                , "Setting the user name in the field :"
+
+                , "Setting the user name in the password:"
+
+                , "Click the login button"
+
+                , "No OTP authentication is required"
+                , "'What's new' popup isn't displayed"
+                , "he Affiliates page was opened"
+                , "Get link API"
+                , "Open first tabs page"
+                , "Enter Secret Key"
+                , "Open Authorization module"
+                , "Enter partnerId"
+                , "Generate time"
+                , "Generate accessKey"
+                , "Click send"
+                , "Check token"
+                , "Open update customer module"
+                , "Enter email"
+                , "Change first name"
+                , "Change postal code"
+                , "Change phone"
+                , "Click Send"
+                , "Check token read customers details"
+                , "Open first tabs page: "
+                , "Click the  drop down filter"
+                , "The field found is : Test Clients"
+                , "Click the selected filter"
+                , "Setting  the user's email in the email field"
+                , "Click the search button"
+                , "Click user email"
+                , "Verified the client email"
+                , "Verified the first name: test"
+                , "Verified the phone: +352 3233"
+                , "Click Custom Information"
+                , "Verified the code: 777"]
+
+        if self.get_test_pretty_name_new(test) == "LoginToken: test login token":
+            step_suit = ["Open first tabs page"
+                , "Setting the user name in the field :"
+
+                , "Setting the user name in the password:"
+
+                , "Click the login button"
+
+                , "No OTP authentication is required"
+
+                , "'What's new' popup isn't displayed"
+                , "The Affiliates page was opened"
+                , "Get link API"
+                , "Open first tabs page"
+                , "Enter Secret Key"
+                , "Open Authorization module"
+                , "Enter partnerId"
+                , "Generate time"
+                , "Generate accessKey"
+                , "Click send"
+                , "Check token"
+                , "Open login token module"
+                , "Enter email"
+                , "Click Send"
+                , "Check login token"
+                , "Open first tabs page"
+                , "Check login token"]
+        if self.get_test_pretty_name_new(test) == "ReadLeads: test read leads api":
+            step_suit = ["Open first tabs page"
+                , "Setting the user name in the field :"
+
+                , "Setting the user name in the password:"
+
+                , "Click the login button"
+
+                , "No OTP authentication is required"
+
+                , "'What's new' popup isn't displayed "
+                , "The Affiliates page was opened"
+                , "Get link API"
+                , "Open first tabs page: https://goldenmarkets.pandats-api.io"
+                , "Enter Secret Key"
+                , "Open Authorization module"
+                , "Enter partnerId"
+                , "Generate time"
+                , "Generate accessKey"
+                , "Click send"
+                , "Check token"
+                , "Open read leads module"
+                , "Enter page"
+                , "Enter limit"
+                , "Click Send"
+                , "Check token read leads details"]
+
+        if self.get_test_pretty_name_new(test) == "CreateLead: test create lead api":
+            step_suit = ["Open first tabs page"
+                , "Setting the user name in the field : "
+
+                , "Setting the user name in the password: "
+
+                , "Click the login button"
+
+                , "No OTP authentication is required"
+
+                , "'What's new' popup isn't displayed "
+                , "The Affiliates page was opened"
+                , "Get link API"
+                , "Open first tabs page: https://goldenmarkets.pandats-api.io"
+                , "Enter Secret Key"
+                , "Open Authorization module"
+                , "Enter partnerId"
+                , "Generate time"
+                , "Generate accessKey"
+                , "Click send"
+                , "Check token"
+                , "Open create lead module"
+                , "Enter email"
+                , "Enter first name"
+                , "Enter last name"
+                , "Enter phone"
+                , "Click Send"
+                , "Check token read customers details"
+                , "Open first tabs page"
+                , "Leads module was opened"
+                , "Click the  drop down filter"
+                , "The field found is : Test Leads"
+                , "Click the selected filter"
+                , "The first name was entered : LeadFName"
+                , "The last name was entered : LeadLName"
+                , "The email was entered : pandaqa+20190128152425@pandats.com"
+                , "The search button was clicked"
+                , "Go to personal details lead"
+                , "Verified the lead email: pandaqa+20190128152425@pandats.com"
+                , "Verified the lead first name: LeadFName"
+                , "Verified the lead last name: LeadLName"
+                , "Verified the lead phone: +352 3233"]
+
+        if self.get_test_pretty_name_new(test) == "ReadCustomersDetails: test read customers details":
+            step_suit = ["Open CRM", "Setting the user name in the field : "
+
+                , "Setting the user name in the password: "
+
+                , "Click the login button"
+
+                , "No OTP authentication is required"
+
+                , "'What's new' popup isn't displayed ", "The Affiliates page was opened"
+                , "Get link API"
+                , "Open first tabs page: https://goldenmarkets.pandats-api.io"
+                , "Enter Secret Key"
+                , "Open Authorization module"
+                , "Enter partnerId"
+                , "Generate time"
+                , "Generate accessKey"
+                , "Click send"
+                , "Check token"
+                , "Open read customers module"
+                , "Enter page"
+                , "Enter page"
+                , "Click Send"
+                , "Check token read customers details"]
+
+        if self.get_test_pretty_name_new(test) == "ReadCustomerDetails: test read customer details":
+            step_suit = ["Open CRM", "Setting the user name in the field : "
+
+                , "Setting the user name in the password: "
+
+                , "Click the login button"
+
+                , "No OTP authentication is required"
+
+                , "'What's new' popup isn't displayed "
+                , "The Affiliates page was opened"
+                , "Get link API"
+                , "Open first tabs page: https://goldenmarkets.pandats-api.io"
+                , "Enter Secret Key"
+                , "Open Authorization module"
+                , "Enter partnerId"
+                , "Generate time"
+                , "Generate accessKey"
+                , "Click send"
+                , "Check token"
+                , "Open read customer module"
+                , "Enter email"
+                , "Click Send"
+                , "Check token read customer details"]
+
+        if self.get_test_pretty_name_new(test) == "AutorizationProcess: test autorization process":
+            step_suit = ["Open CRM"
+                , "Setting the user name in the field : "
+
+                , "ge - Setting the user name in the password: "
+
+                , "ge - Click the login button"
+
+                , "No OTP authentication is required"
+
+                , "'What's new' popup isn't displayed "
+                , "e - The Affiliates page was opened"
+                , "age - Get link API"
+                , "Open api"
+                , "Enter Secret Key"
+                , "Open Authorization module"
+                , "Enter partnerId"
+                , "Generate time"
+                , "Generate accessKey"
+                , "Click send"
+                , "Check token"]
+
+        if self.get_test_pretty_name_new(test) == "CreateNewCustomer: test create new customer":
+            step_suit = ["Open CRM"
+                , "Setting the user name in the field"
+
+                , "Setting the user name in the password:"
+
+                , "Click the login button"
+
+                , "No OTP authentication is required"
+
+                , "'What's new' popup isn't displayed"
+                , "he Affiliates page was opened"
+                , "Get link API"
+                , "Open first tabs page: https://goldenmarkets.pandats-api.io"
+                , "Enter Secret Key"
+                , "Open Authorization module"
+                , "Enter partnerId"
+                , "Generate time"
+                , "Generate accessKey"
+                , "Click send"
+                , "Check token"
+                , "Open customer module"
+                , "Enter email"
+                , "Enter password"
+                , "Enter country"
+                , "Enter firstName"
+                , "Enter lastName"
+                , "Enter phone"
+                , "Enter refferal"
+                , "Click send"
+                , "Check token"
+                , "Open CRM,"
+                , "Click the  drop down filter "
+                , "The field found is : Test Clients"
+                , "Click the selected filter"
+                , "Setting  the user's email in the email field"
+                , "Click the search button"
+                , "Click user email: pandaqa+20190128152425@pandats.com"
+                , "Verified the client email: pandaqa+20190128152425@pandats.com"
+                , "Verified the client country: Germany"
+                , "Verified the first name: testqaYNXVJB"
+                , "Verified the last name: testAPI"
+                , "Verified the phone: +34 53453"
+                , "Click Custom Information"
+                , "Verified the client email: langref=hebrew"]
 
         # CalendarView
 

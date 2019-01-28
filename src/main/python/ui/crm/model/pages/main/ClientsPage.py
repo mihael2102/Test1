@@ -20,6 +20,58 @@ from src.main.python.utils.config import Config
 
 class ClientsPage(CRMBasePage):
 
+    def click_custom_information(self):
+        sleep(2)
+        button = super().wait_element_to_be_clickable("//span[@class = 'glyphicons CustomInformation']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", button)
+        self.driver.execute_script("arguments[0].click();", button)
+        Logging().reportDebugStep(self, "Click Custom Information")
+        return ClientsPage(self.driver)
+
+    def get_refferal_client(self):
+        refferal_client = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Refferal')]//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Verified the client email: " + refferal_client.text)
+        return refferal_client.text
+
+    def get_first_client_email(self):
+        client_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Email')]//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Verified the client email: " + client_email.text)
+        return client_email.text
+
+    def get_client_country(self):
+        client_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Country')]//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Verified the client country: " + client_email.text)
+        return client_email.text
+
+    def get_client_first_name(self):
+        client_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located(
+                (By.XPATH, "//td[contains(text(),'First Name')]//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Verified the first name: " + client_email.text)
+        return client_email.text
+
+    def get_client_last_name(self):
+        client_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located(
+                (By.XPATH, "//td[contains(text(),'Last Name')]//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Verified the last name: " + client_email.text)
+        return client_email.text
+
+    def get_client_phone(self):
+        client_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Phone')]//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Verified the phone: " + client_email.text)
+        return client_email.text
+
+    def get_client_postalCode(self):
+        client_postalCode = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Code')]//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Verified the code: " + client_postalCode.text)
+        return client_postalCode.text
+
     def perform_searching(self, client_status, email, country):
         if client_status:
             self.select_client_status(client_status)
@@ -419,3 +471,18 @@ class ClientsPage(CRMBasePage):
         mass_sms_module.click()
         Logging().reportDebugStep(self, "The send sms module was opened")
         return SendSMSClientsModule(self.driver)
+
+    def get_first_clients(self):
+        sleep(5)
+        client1 = self.driver.find_element(By.XPATH,
+                                           "//tr[1]/td[5]/a/div").text
+        client2 = self.driver.find_element(By.XPATH,
+                                           "//tr[2]/td[5]/a/div").text
+        client3 = self.driver.find_element(By.XPATH,
+                                           "//tr[3]/td[5]/a/div").text
+        client4 = self.driver.find_element(By.XPATH,
+                                           "//tr[4]/td[5]/a/div").text
+        client5 = self.driver.find_element(By.XPATH,
+                                           "//tr[5]/td[5]/a/div").text
+        Logging().reportDebugStep(self, "Check first clients")
+        return client1, client2, client3, client4, client5
