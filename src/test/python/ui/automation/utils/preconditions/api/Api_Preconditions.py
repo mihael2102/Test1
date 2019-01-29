@@ -76,8 +76,9 @@ class ApiPrecondition(object):
         ClientsPage(self.driver).click_custom_information()
         refferal = ClientsPage(self.driver).get_refferal_client()
 
-        assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL]
+        if global_var.current_brand_name != "royal_cfds":
+            assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                            LeadsModuleConstants.EMAIL]
         assert client_country == APIConstants.COUNTRY_CRM
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME]

@@ -4,8 +4,8 @@ from dateutil.relativedelta import relativedelta
 
 
 class APIConstants(object):
-    API_SECRET_KEY = "7d24e3d34692f10881a62762673ef741e337d056f7a04722b32978532812930b"
-    PARTNER_ID = "1000"
+    API_SECRET_KEY = "5fb7b2998ef7c9223cf14b4db93f7a4cbf79c58749def28ebf1032165888c5f5"
+    PARTNER_ID = "3898"
     PASSWORD = "as1as2"
     COUNTRY = "de"
     LASTNAME = "testAPI"
