@@ -8,6 +8,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class TradingAccountCrmTest(BaseTest):
 
@@ -39,6 +40,24 @@ class TradingAccountCrmTest(BaseTest):
             .add_live_account_from_crm()
         confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
         self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+
+    def test_crm_open_demo_mt5(self):
+        if (global_var.current_brand_name == "q8"):
+            TradingAccountPrecondition(self.driver, self.config) \
+                .add_mt5_demo_account_from_crm()
+            confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
+            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+        else:
+            return self
+
+    def test_crm_open_live_mt5(self):
+        if (global_var.current_brand_name == "q8"):
+            TradingAccountPrecondition(self.driver, self.config) \
+                .add_live_mt5_from_crm()
+            confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
+            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+        else:
+            return self
 
     def test_crm_edit_trading_account(self):
         try:
