@@ -227,9 +227,11 @@ class ApiPrecondition(object):
 
         CRMLoginPage(self.driver).open_first_tab_page(token_new_2)
 
-        payment_details = ApiPage(self.driver).check_page_from_token()
+        assert APIConstants.FOREX_DEPOSIT in token_new_2
 
-        assert payment_details == APIConstants.PAYMENT_DETAILS
+        # payment_details = ApiPage(self.driver).check_page_from_token()
+        #
+        # assert payment_details == APIConstants.PAYMENT_DETAILS
 
 
 

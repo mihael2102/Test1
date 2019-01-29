@@ -1,7 +1,7 @@
 brands:
 
-- name: goldenmarkets
-  config_file: goldenmarkets.yml
+#- name: goldenmarkets
+#  config_file: goldenmarkets.yml
 #- name: safemarkets
 #  config_file: safemarkets.yml
 #- name: b-traderfx
@@ -59,8 +59,8 @@ brands:
 #
 #
 ##new brands - never testing before
-#- name: b-finance
-#  config_file: b-finance.yml
+- name: b-finance
+  config_file: b-finance.yml
 #- name: eafx
 #  config_file: eafx.yml
 #- name: gxfx
