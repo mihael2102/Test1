@@ -416,4 +416,13 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Client first name is: " + client_first_name)
         return client_first_name
 
+    def get_client_last_name(self):
+        client_last_name = super().wait_load_element("//span[@id='dtlview_Last Name']").text
+        Logging().reportDebugStep(self, "Client last name is: " + client_last_name)
+        return client_last_name
+
+    def get_client_phone(self):
+        client_phone = super().wait_load_element("//div[@title='Click to Call'][@class='actions_btn']").text
+        Logging().reportDebugStep(self, "Client phone is: " + client_phone)
+        return client_phone
 

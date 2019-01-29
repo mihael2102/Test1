@@ -137,7 +137,7 @@ class Login_CA_Precondition(object):
                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
 
     def client_exist_in_crm(self):
-        """ Login to CRM """
+        #Login to CRM
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url_crm')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
@@ -146,7 +146,13 @@ class Login_CA_Precondition(object):
         sleep(2)
         ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
-
+        sleep(2)
+        assert ClientsPage(self.driver).get_client_first_name() == self.load_lead_from_config(
+                                                                TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+        assert ClientsPage(self.driver).get_client_last_name() == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                                LeadsModuleConstants.FIRST_LAST_NAME]
+        assert ClientsPage(self.driver).get_client_phone() == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                        LeadsModuleConstants.PHONE]
 
 
 
