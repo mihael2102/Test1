@@ -5,6 +5,7 @@ tests_config:
   class: SignUpTest
   tests:
     - test_check_sign_up
+    - test_registred_client_exist_in_crm
 
 
 

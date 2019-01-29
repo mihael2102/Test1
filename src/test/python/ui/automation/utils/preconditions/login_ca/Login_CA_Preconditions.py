@@ -8,7 +8,9 @@ from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsMod
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+from time import sleep
 
 class Login_CA_Precondition(object):
 
@@ -133,6 +135,19 @@ class Login_CA_Precondition(object):
             assert CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                               LeadsModuleConstants.FIRST_NAME]) == \
                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+
+    def client_exist_in_crm(self):
+        """ Login to CRM """
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url_crm')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                        LeadsModuleConstants.EMAIL])
+
+
 
 
 

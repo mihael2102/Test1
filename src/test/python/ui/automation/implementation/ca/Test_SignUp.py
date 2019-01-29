@@ -14,6 +14,9 @@ class SignUpTest(BaseTest):
 
         Login_CA_Precondition(self.driver, self.config).sign_up_ca()
 
+    def test_registred_client_exist_in_crm(self):
+        Login_CA_Precondition(self.driver, self.config).client_exist_in_crm()
+
 
 
 

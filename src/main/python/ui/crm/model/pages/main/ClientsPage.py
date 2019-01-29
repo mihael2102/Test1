@@ -411,4 +411,9 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "The send sms module was opened")
         return SendSMSClientsModule(self.driver)
 
+    def get_client_first_name(self):
+        client_first_name = super().wait_load_element("//span[@id='dtlview_First Name']").text
+        Logging().reportDebugStep(self, "Client first name is: " + client_first_name)
+        return client_first_name
+
 
