@@ -27,7 +27,7 @@ class Login_CA_Precondition(object):
 
     def sign_up_ca(self):
 ###REGISTRACTIONS FORM
-        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))\
+        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))\
                                 .click_sign_up()\
                                 .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME])\
@@ -138,7 +138,7 @@ class Login_CA_Precondition(object):
 
     def client_exist_in_crm(self):
         #Login to CRM
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url_crm')) \
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
@@ -151,8 +151,14 @@ class Login_CA_Precondition(object):
                                                                 TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
         assert ClientsPage(self.driver).get_client_last_name() == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                                 LeadsModuleConstants.FIRST_LAST_NAME]
-        assert ClientsPage(self.driver).get_client_phone() == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.PHONE]
+        assert ClientsPage(self.driver).get_client_phone() == '+49 7777 777'
+        assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS
+        assert ClientsPage(self.driver).get_client_city() == CAConstants.CITY
+        assert ClientsPage(self.driver).get_client_code() == CAConstants.ZIP_CODE
+        assert ClientsPage(self.driver).get_client_country() == 'Germany'
+        assert ClientsPage(self.driver).get_client_date_of_birth() == '1995-01-10'
+        assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY
+
 
 
 

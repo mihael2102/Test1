@@ -426,3 +426,32 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Client phone is: " + client_phone)
         return client_phone
 
+    def get_client_address(self):
+        client_address = super().wait_load_element("//span[@id='dtlview_Address']").text
+        Logging().reportDebugStep(self, "Client address is: " + client_address)
+        return client_address
+
+    def get_client_city(self):
+        client_city = super().wait_load_element("//span[@id='dtlview_City']").text
+        Logging().reportDebugStep(self, "Client city is: " + client_city)
+        return client_city
+
+    def get_client_code(self):
+        client_code = super().wait_load_element("//span[@id='dtlview_Code']").text
+        Logging().reportDebugStep(self, "Client code is: " + client_code)
+        return client_code
+
+    def get_client_country(self):
+        client_country = super().wait_load_element("//span[@id='dtlview_Country']").text
+        Logging().reportDebugStep(self, "Client country is: " + client_country)
+        return client_country
+
+    def get_client_date_of_birth(self):
+        client_date_of_birth = super().wait_load_element("//td[@class='dvtCellInfo'][contains(text(),'1995')]").text
+        Logging().reportDebugStep(self, "Client date_of_birth is: " + client_date_of_birth)
+        return client_date_of_birth
+
+    def get_client_currency(self):
+        client_currency = super().wait_load_element("//td[@class='dvtCellInfo'][contains(text(),'EUR')]").text
+        Logging().reportDebugStep(self, "Client currency is: " + client_currency)
+        return client_currency
