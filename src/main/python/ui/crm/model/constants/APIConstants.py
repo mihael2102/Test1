@@ -27,3 +27,4 @@ class APIConstants(object):
     API_filter = "API"
     PAYMENT_DETAILS = "Payment Details"
     PANDATS_EMAIL = "pandats.com"
+    FOREX_DEPOSIT = "forexDeposit"

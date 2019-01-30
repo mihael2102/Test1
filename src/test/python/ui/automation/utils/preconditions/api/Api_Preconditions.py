@@ -241,7 +241,7 @@ class ApiPrecondition(object):
         token_new_2 = token_new_1.replace('"\n}\n}', '')
 
         CRMLoginPage(self.driver).open_first_tab_page(token_new_2)
-
-        payment_details = ApiPage(self.driver).check_page_from_token()
-
-        assert payment_details == APIConstants.PAYMENT_DETAILS
+        assert APIConstants.FOREX_DEPOSIT in token_new_2
+        # payment_details = ApiPage(self.driver).check_page_from_token()
+        #
+        # assert payment_details == APIConstants.PAYMENT_DETAILS
