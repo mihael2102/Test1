@@ -29,8 +29,8 @@ class AffiliatePage(CRMBasePage):
         return selected_number
 
     def search_by_partner_id(self, partner_id):
-        sleep(2)
-        input = self.driver.find_element(By.XPATH, "//*[@id='host-element']/input")
+        sleep(3)
+        input = self.driver.find_element(By.XPATH, "//td[2]//input")
         input.send_keys(partner_id)
         Logging().reportDebugStep(self, "Enter partner ID %s" % partner_id)
         return AffiliatePage(self.driver)
