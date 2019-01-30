@@ -113,18 +113,24 @@ class ExcelWriter:
     def steps_for_test(self, test):
 
         if self.get_test_pretty_name_new(test) == "UpdateCustomer: test update customer":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field :"
+            step_suit = ["Open CRM"
+                , "Setting the user name in the field : "
 
-                , "Setting the user name in the password:"
+                , " Setting the user name in the password: "
 
-                , "Click the login button"
+                , " Click the login button"
 
                 , "No OTP authentication is required"
-                , "'What's new' popup isn't displayed"
-                , "he Affiliates page was opened"
-                , "Get link API"
-                , "Open first tabs page"
+
+                , "'What's new' popup isn't displayed ", "Affiliates page was opened",""
+                ,"Enter partner ID 3898"
+                ,"Click edit affiliate"
+                ,"Check selected methods"
+                ,"Select all methods and click submit"
+                ,"Check selected methods"
+                ,"Copy key"
+                ,"Get link API"
+                , "Open api"
                 , "Enter Secret Key"
                 , "Open Authorization module"
                 , "Enter partnerId"
@@ -153,19 +159,24 @@ class ExcelWriter:
                 , "Verified the code: 777"]
 
         if self.get_test_pretty_name_new(test) == "LoginToken: test login token":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field :"
+            step_suit = ["Open CRM"
+                , "Setting the user name in the field : "
 
-                , "Setting the user name in the password:"
+                , " Setting the user name in the password: "
 
-                , "Click the login button"
+                , " Click the login button"
 
                 , "No OTP authentication is required"
 
-                , "'What's new' popup isn't displayed"
-                , "The Affiliates page was opened"
-                , "Get link API"
-                , "Open first tabs page"
+                , "'What's new' popup isn't displayed ", "Affiliates page was opened",""
+                ,"Enter partner ID 3898"
+                ,"Click edit affiliate"
+                ,"Check selected methods"
+                ,"Select all methods and click submit"
+                ,"Check selected methods"
+                ,"Copy key"
+                ,"Get link API"
+                , "Open api"
                 , "Enter Secret Key"
                 , "Open Authorization module"
                 , "Enter partnerId"
@@ -180,19 +191,24 @@ class ExcelWriter:
                 , "Open first tabs page"
                 , "Check login token"]
         if self.get_test_pretty_name_new(test) == "ReadLeads: test read leads api":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field :"
+            step_suit = ["Open CRM"
+                , "Setting the user name in the field : "
 
-                , "Setting the user name in the password:"
+                , " Setting the user name in the password: "
 
-                , "Click the login button"
+                , " Click the login button"
 
                 , "No OTP authentication is required"
 
-                , "'What's new' popup isn't displayed "
-                , "The Affiliates page was opened"
-                , "Get link API"
-                , "Open first tabs page: https://goldenmarkets.pandats-api.io"
+                , "'What's new' popup isn't displayed ", "Affiliates page was opened",""
+                ,"Enter partner ID 3898"
+                ,"Click edit affiliate"
+                ,"Check selected methods"
+                ,"Select all methods and click submit"
+                ,"Check selected methods"
+                ,"Copy key"
+                ,"Get link API"
+                , "Open api"
                 , "Enter Secret Key"
                 , "Open Authorization module"
                 , "Enter partnerId"
@@ -207,19 +223,24 @@ class ExcelWriter:
                 , "Check token read leads details"]
 
         if self.get_test_pretty_name_new(test) == "CreateLead: test create lead api":
-            step_suit = ["Open first tabs page"
+            step_suit = ["Open CRM"
                 , "Setting the user name in the field : "
 
-                , "Setting the user name in the password: "
+                , " Setting the user name in the password: "
 
-                , "Click the login button"
+                , " Click the login button"
 
                 , "No OTP authentication is required"
 
-                , "'What's new' popup isn't displayed "
-                , "The Affiliates page was opened"
-                , "Get link API"
-                , "Open first tabs page: https://goldenmarkets.pandats-api.io"
+                , "'What's new' popup isn't displayed ", "Affiliates page was opened",""
+                ,"Enter partner ID 3898"
+                ,"Click edit affiliate"
+                ,"Check selected methods"
+                ,"Select all methods and click submit"
+                ,"Check selected methods"
+                ,"Copy key"
+                ,"Get link API"
+                , "Open api"
                 , "Enter Secret Key"
                 , "Open Authorization module"
                 , "Enter partnerId"
@@ -250,17 +271,24 @@ class ExcelWriter:
                 , "Verified the lead phone: +352 3233"]
 
         if self.get_test_pretty_name_new(test) == "ReadCustomersDetails: test read customers details":
-            step_suit = ["Open CRM", "Setting the user name in the field : "
+            step_suit = ["Open CRM"
+                , "Setting the user name in the field : "
 
-                , "Setting the user name in the password: "
+                , " Setting the user name in the password: "
 
-                , "Click the login button"
+                , " Click the login button"
 
                 , "No OTP authentication is required"
 
-                , "'What's new' popup isn't displayed ", "The Affiliates page was opened"
-                , "Get link API"
-                , "Open first tabs page: https://goldenmarkets.pandats-api.io"
+                , "'What's new' popup isn't displayed ", "Affiliates page was opened",""
+                ,"Enter partner ID 3898"
+                ,"Click edit affiliate"
+                ,"Check selected methods"
+                ,"Select all methods and click submit"
+                ,"Check selected methods"
+                ,"Copy key"
+                ,"Get link API"
+                , "Open api"
                 , "Enter Secret Key"
                 , "Open Authorization module"
                 , "Enter partnerId"
@@ -275,18 +303,24 @@ class ExcelWriter:
                 , "Check token read customers details"]
 
         if self.get_test_pretty_name_new(test) == "ReadCustomerDetails: test read customer details":
-            step_suit = ["Open CRM", "Setting the user name in the field : "
+            step_suit = ["Open CRM"
+                , "Setting the user name in the field : "
 
-                , "Setting the user name in the password: "
+                , " Setting the user name in the password: "
 
-                , "Click the login button"
+                , " Click the login button"
 
                 , "No OTP authentication is required"
 
-                , "'What's new' popup isn't displayed "
-                , "The Affiliates page was opened"
-                , "Get link API"
-                , "Open first tabs page: https://goldenmarkets.pandats-api.io"
+                , "'What's new' popup isn't displayed ", "Affiliates page was opened",""
+                ,"Enter partner ID 3898"
+                ,"Click edit affiliate"
+                ,"Check selected methods"
+                ,"Select all methods and click submit"
+                ,"Check selected methods"
+                ,"Copy key"
+                ,"Get link API"
+                , "Open api"
                 , "Enter Secret Key"
                 , "Open Authorization module"
                 , "Enter partnerId"
@@ -303,15 +337,20 @@ class ExcelWriter:
             step_suit = ["Open CRM"
                 , "Setting the user name in the field : "
 
-                , "ge - Setting the user name in the password: "
+                , " Setting the user name in the password: "
 
-                , "ge - Click the login button"
+                , " Click the login button"
 
                 , "No OTP authentication is required"
 
-                , "'What's new' popup isn't displayed "
-                , "e - The Affiliates page was opened"
-                , "age - Get link API"
+                , "'What's new' popup isn't displayed ", "Affiliates page was opened",""
+                ,"Enter partner ID 3898"
+                ,"Click edit affiliate"
+                ,"Check selected methods"
+                ,"Select all methods and click submit"
+                ,"Check selected methods"
+                ,"Copy key"
+                ,"Get link API"
                 , "Open api"
                 , "Enter Secret Key"
                 , "Open Authorization module"
@@ -323,18 +362,23 @@ class ExcelWriter:
 
         if self.get_test_pretty_name_new(test) == "CreateNewCustomer: test create new customer":
             step_suit = ["Open CRM"
-                , "Setting the user name in the field"
+                , "Setting the user name in the field : "
 
-                , "Setting the user name in the password:"
+                , " Setting the user name in the password: "
 
-                , "Click the login button"
+                , " Click the login button"
 
                 , "No OTP authentication is required"
 
-                , "'What's new' popup isn't displayed"
-                , "he Affiliates page was opened"
-                , "Get link API"
-                , "Open first tabs page: https://goldenmarkets.pandats-api.io"
+                , "'What's new' popup isn't displayed ", "Affiliates page was opened",""
+                ,"Enter partner ID 3898"
+                ,"Click edit affiliate"
+                ,"Check selected methods"
+                ,"Select all methods and click submit"
+                ,"Check selected methods"
+                ,"Copy key"
+                ,"Get link API"
+                , "Open api"
                 , "Enter Secret Key"
                 , "Open Authorization module"
                 , "Enter partnerId"
