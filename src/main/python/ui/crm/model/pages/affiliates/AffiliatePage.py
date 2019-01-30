@@ -88,7 +88,8 @@ class AffiliatePage(CRMBasePage):
     def copy_secret_key(self):
         sleep(5)
         copy_button = super().wait_element_to_be_clickable("//button[contains(text(), 'Copy')]")
-        copy_button.click()
+        # copy_button.click()
+        self.driver.execute_script("arguments[0].click();", copy_button)
         sleep(3)
         key = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-body/div/span").text
         button_ok = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-footer/div/button")

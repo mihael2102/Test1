@@ -33,8 +33,12 @@ class ApiPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
-
-        AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID)
+        if global_var.current_brand_name == "eafx":
+            AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_EAFX)
+        elif global_var.current_brand_name == "uft":
+            AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_UFT)
+        else:
+            AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID)
         AffiliatePage(self.driver).open_edit_affiliate()
         selected_methods = AffiliatePage(self.driver).check_selected_methods()
         if "Selected" in selected_methods:
@@ -63,13 +67,19 @@ class ApiPrecondition(object):
         CRMLoginPage(self.driver).open_first_tab_page(api)
         ApiPage(self.driver).enter_secret_key(secret_key)
         ApiPage(self.driver).authorization_module()
-        ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID)
+        if global_var.current_brand_name == "eafx":
+            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID_EAFX)
+        elif global_var.current_brand_name == "uft":
+            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID_UFT)
+        else:
+            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID)
         ApiPage(self.driver).generate_time()
         ApiPage(self.driver).generate_accessKey()
         ApiPage(self.driver).send_authorization()
         check_token = ApiPage(self.driver).check_token()
 
-        assert APIConstants.PARTNER_ID in check_token
+        # assert APIConstants.PARTNER_ID or APIConstants.PARTNER_ID_EAFX in check_token
+        assert APIConstants.STATUS_OK in check_token
 
     def test_create_new_customer(self):
         self.autorization_process()
