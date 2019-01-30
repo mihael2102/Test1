@@ -34,9 +34,19 @@ class ApiPrecondition(object):
 
         affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
 
+        AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID)
+        AffiliatePage(self.driver).open_edit_affiliate()
+        selected_methods = AffiliatePage(self.driver).check_selected_methods()
+        if selected_methods != "11 Selected":
+            AffiliatePage(self.driver).add_all_methods()
+        else:
+            AffiliatePage(self.driver).click_cancel()
+
+        secret_key = AffiliatePage(self.driver).copy_secret_key()
+
         api = affiliate_list_view_page.get_link_api()
         CRMLoginPage(self.driver).open_first_tab_page(api)
-        ApiPage(self.driver).enter_secret_key(APIConstants.API_SECRET_KEY)
+        ApiPage(self.driver).enter_secret_key(secret_key)
         ApiPage(self.driver).authorization_module()
         ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID)
         ApiPage(self.driver).generate_time()
