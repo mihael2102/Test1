@@ -12,12 +12,43 @@ from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import Crea
 from src.main.python.ui.crm.model.pages.leads.ImportLeadPage import ImportLeadPage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
-
+from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class LeadsModule(CRMBasePage):
 
-    def perform_searching_lead_module(self, first_name, last_name, email, assigned_to, tittle, lead_source, lead_status,
-                                      language):
+    def get_lead_email(self):
+        lead_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Email']")))
+        Logging().reportDebugStep(self, "Verified the lead email: " + lead_email.text)
+        return lead_email.text
+
+    def get_lead_fname(self):
+        lead_fname = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_First Name']")))
+        Logging().reportDebugStep(self, "Verified the lead first name: " + lead_fname.text)
+        return lead_fname.text
+
+    def get_lead_lname(self):
+        lead_lname = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Last Name']")))
+        Logging().reportDebugStep(self, "Verified the lead last name: " + lead_lname.text)
+        return lead_lname.text
+
+    def get_lead_phone(self):
+        lead_phone = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Phone']")))
+        Logging().reportDebugStep(self, "Verified the lead phone: " + lead_phone.text)
+        return lead_phone.text
+
+    def open_personal_details_lead(self):
+        lead = super().wait_element_to_be_clickable("//a[contains(text(),'LEA')]")
+        lead.click()
+        Logging().reportDebugStep(self, "Go to personal details lead")
+        return LeadsModule(self.driver)
+
+    def perform_searching_lead_module(self, first_name, last_name, email):
         self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
         self.enter_first_name(first_name)
         self.enter_last_name(last_name)
