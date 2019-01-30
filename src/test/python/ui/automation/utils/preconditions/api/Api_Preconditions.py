@@ -44,6 +44,19 @@ class ApiPrecondition(object):
                 AffiliatePage(self.driver).add_all_methods()
         else:
             AffiliatePage(self.driver).add_all_methods()
+
+        selected_countries = AffiliatePage(self.driver).check_selected_countries()
+        if "Selected" in selected_countries:
+            AffiliatePage(self.driver).add_none_selected_countries()
+            selected_countries_new = AffiliatePage(self.driver).check_selected_countries()
+            if "None selected" in selected_countries_new:
+                AffiliatePage(self.driver).click_submit()
+            else:
+                AffiliatePage(self.driver).add_none_selected_countries()
+                AffiliatePage(self.driver).click_submit()
+        else:
+            AffiliatePage(self.driver).click_submit()
+
         secret_key = AffiliatePage(self.driver).copy_secret_key()
 
         api = affiliate_list_view_page.get_link_api()
