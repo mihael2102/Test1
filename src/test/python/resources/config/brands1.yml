@@ -1,10 +1,10 @@
 brands:
 #- name: kayafx
 #  config_file: kaya_fx.yml
-#- name: itrader
-#  config_file: itrader.yml
-#- name: stoxmarket
-#  config_file: stoxmarket.yml
+- name: itrader
+  config_file: itrader.yml
+- name: stoxmarket
+  config_file: stoxmarket.yml
 #- name: otcapital
 #  config_file: otcapital.yml
 #- name: gmo
@@ -19,8 +19,8 @@ brands:
 #  config_file: finmarket.yml
 #- name: mlnfx
 #  config_file: mlnfx.yml
-- name: fxpmarkets
-  config_file: fxpmarkets.yml
+#- name: fxpmarkets
+#  config_file: fxpmarkets.yml
 #- name: soarfx
 #  config_file: soarfx.yml
 #- name: kbcapitals
