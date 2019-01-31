@@ -12,6 +12,8 @@ from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
 from src.main.python.ui.crm.model.constants.APIConstants import APIConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 import re
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+import time
 
 class ApiPrecondition(object):
 
@@ -36,7 +38,15 @@ class ApiPrecondition(object):
         affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(
             AffiliateModuleConstants.AFFILIATES_MODULE)
 
-        AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID)
+        if global_var.current_brand_name == "gmo":
+            AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_GMO)
+        elif global_var.current_brand_name == "kbcapitals":
+            AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_KB)
+        elif global_var.current_brand_name == "oinvestsa":
+            AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_OI)
+        else:
+            AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID)
+
         AffiliatePage(self.driver).open_edit_affiliate()
         selected_methods = AffiliatePage(self.driver).check_selected_methods()
         if "Selected" in selected_methods:
@@ -66,13 +76,21 @@ class ApiPrecondition(object):
         CRMLoginPage(self.driver).open_first_tab_page(api)
         ApiPage(self.driver).enter_secret_key(secret_key)
         ApiPage(self.driver).authorization_module()
-        ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID)
+        if global_var.current_brand_name == "gmo":
+            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID_GMO)
+        elif global_var.current_brand_name == "kbcapitals":
+            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID_KB)
+        elif global_var.current_brand_name == "oinvestsa":
+            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID_OI)
+        else:
+            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID)
+
         ApiPage(self.driver).generate_time()
         ApiPage(self.driver).generate_accessKey()
         ApiPage(self.driver).send_authorization()
         check_token = ApiPage(self.driver).check_token()
-
-        assert APIConstants.PARTNER_ID in check_token
+        time.sleep(10)
+        assert APIConstants.STATUS_OK in check_token
 
     def test_create_new_customer(self):
         self.autorization_process()
@@ -89,7 +107,7 @@ class ApiPrecondition(object):
         ApiPage(self.driver).send_create_customer()
 
         check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
-
+        time.sleep(10)
         assert APIConstants.STATUS_OK in check_create_customer_token
 
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
