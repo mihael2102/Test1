@@ -16,8 +16,10 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def click_sign_up(self):
-        sign_up_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+        sleep(3)
+        sign_up_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["sign_up"])
+        sleep(1)
         sign_up_button.click()
         Logging().reportDebugStep(self, "Click Sign Up")
         return CALoginPage(self.driver)
@@ -262,4 +264,11 @@ class CALoginPage(CRMBasePage):
         logout_btn = super().wait_load_element("/html/body/header/div/div[2]/div[1]/label/div[2]/div/a[6]")
         self.driver.execute_script("arguments[0].click();", logout_btn)
         Logging().reportDebugStep(self, "Account details click")
+        return CALoginPage(self.driver)
+
+    def click_regulatory_confirmation(self):
+        sleep(2)
+        ok_btn = super().wait_load_element("//button[@class='forex-button-pandats simple-button-pandats'][contains(text(), 'OK')]")
+        ok_btn.click()
+        Logging().reportDebugStep(self, "Regulatory message is confirmed")
         return CALoginPage(self.driver)

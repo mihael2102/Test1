@@ -28,8 +28,10 @@ class Login_CA_Precondition(object):
     def sign_up_ca(self):
 ###REGISTRACTIONS FORM
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))\
-                                .click_sign_up()\
-                                .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                .click_sign_up()
+        if global_var.current_brand_name == "xtraderfx":
+                CALoginPage(self.driver).click_regulatory_confirmation()
+        CALoginPage(self.driver).fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME])\
                                 .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_LAST_NAME])\
@@ -108,6 +110,38 @@ class Login_CA_Precondition(object):
             assert CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                               LeadsModuleConstants.FIRST_NAME]) == \
                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+
+        elif global_var.current_brand_name == "xtraderfx":
+
+            CALoginPage(self.driver).verify() \
+                .click_hi_guest() \
+                .click_transactions_history() \
+                .select_data_birth_day(CAConstants.DAY_BIRTH) \
+                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
+                .select_data_birth_year(CAConstants.YEAR_BIRTH) \
+                .choose_currency(CAConstants.CURRENCY) \
+                .choose_citizenship(CAConstants.CITIZENSHIP) \
+                .fill_city(CAConstants.CITY) \
+                .fill_zip_code(CAConstants.ZIP_CODE) \
+                .fill_address(CAConstants.ADDRESS) \
+                .click_next() \
+                .verify() \
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                           LeadsModuleConstants.FIRST_NAME]) \
+                .sign_out() \
+                .login() \
+                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                         LeadsModuleConstants.EMAIL]) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .verify()
+            sleep(2)
+            existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                                 LeadsModuleConstants.FIRST_NAME])
+            expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+            expected_client.upper()
+            assert existing_client == expected_client
+
         else:
 
             CALoginPage(self.driver).verify() \
@@ -132,9 +166,12 @@ class Login_CA_Precondition(object):
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
-            assert CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                              LeadsModuleConstants.FIRST_NAME]) == \
-                   self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+            sleep(2)
+            existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                              LeadsModuleConstants.FIRST_NAME])
+            expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+
+            assert existing_client == expected_client
 
     def client_exist_in_crm(self):
         #Login to CRM

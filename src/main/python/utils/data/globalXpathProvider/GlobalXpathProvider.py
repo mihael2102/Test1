@@ -333,6 +333,8 @@ def get_xpath_for_current_brand_element(page_name):
     elif current_brand_name == "olympusmarkets":
         if page_name == "FinancialTransactionsPage":
            return __get_xpath_of_elements_of_current_page(page_name)
+        elif page_name == "CALoginPage":
+            return __get_xpath_of_elements_of_current_page(page_name)
 
     elif current_brand_name == "privat-trade":
         if page_name == "FinancialTransactionsPage":
