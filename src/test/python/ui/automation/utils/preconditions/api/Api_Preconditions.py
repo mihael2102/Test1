@@ -98,7 +98,12 @@ class ApiPrecondition(object):
         ApiPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
         ApiPage(self.driver).enter_password(APIConstants.PASSWORD)
-        ApiPage(self.driver).enter_country(APIConstants.COUNTRY)
+        if global_var.current_brand_name == "oinvestsa":
+            ApiPage(self.driver).enter_country(APIConstants.COUNTRY_SA)
+        elif global_var.current_brand_name == "itrader_global":
+            ApiPage(self.driver).enter_country(APIConstants.COUNTRY_MX)
+        else:
+            ApiPage(self.driver).enter_country(APIConstants.COUNTRY)
         ApiPage(self.driver).enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME])
         ApiPage(self.driver).enter_lastName(APIConstants.LASTNAME)
@@ -121,16 +126,23 @@ class ApiPrecondition(object):
         client_last_name = ClientsPage(self.driver).get_client_last_name()
         client_phone = ClientsPage(self.driver).get_client_phone()
         ClientsPage(self.driver).click_custom_information()
-        refferal = ClientsPage(self.driver).get_refferal_client()
+        if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "oinvestsa":
+            refferal = ClientsPage(self.driver).get_refferal_client()
 
         assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL]
-        assert client_country == APIConstants.COUNTRY_CRM
+        if global_var.current_brand_name == "oinvestsa":
+            assert client_country == APIConstants.COUNTRY_CRM_SA
+        elif global_var.current_brand_name == "itrader_global":
+            assert client_country == APIConstants.COUNTRY_MX
+        else:
+            assert client_country == APIConstants.COUNTRY_CRM
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME]
         assert client_last_name == APIConstants.LASTNAME
         assert client_phone == APIConstants.PHONE_CRM
-        assert APIConstants.REFFERAL in refferal
+        if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "oinvestsa":
+            assert APIConstants.REFFERAL in refferal
 
 
     def test_read_customer_details(self):
@@ -228,12 +240,14 @@ class ApiPrecondition(object):
         email = lead_module.get_lead_email()
         fname = lead_module.get_lead_fname()
         lname = lead_module.get_lead_lname()
-        phone = lead_module.get_lead_phone()
+        if global_var.current_brand_name != "stoxmarket":
+            phone = lead_module.get_lead_phone()
 
         assert email == self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]
         assert fname == APIConstants.LEAD_FNAME
         assert lname == APIConstants.LEAD_LNAME
-        assert phone == APIConstants.LEAD_PHONE_CRM
+        if global_var.current_brand_name != "stoxmarket":
+            assert phone == APIConstants.LEAD_PHONE_CRM
 
 
     def test_read_leads(self):
