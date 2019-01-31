@@ -1,9 +1,9 @@
 brands:
 
-- name: coinstec_ca
-  config_file: coinstec_ca.yml
-
-
+- name: 4xfx
+  config_file: 4xfx.yml
+- name: coinstec
+  config_file: coinstec.yml
 
 
 

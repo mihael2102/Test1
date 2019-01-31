@@ -1,8 +1,9 @@
 brands:
 
-- name: swisscci_ca
-  config_file: swisscci_ca.yml
-
+- name: firstindex
+  config_file: firstindex.yml
+- name: mpcrypto
+  config_file: mpcrypto.yml
 
 
 

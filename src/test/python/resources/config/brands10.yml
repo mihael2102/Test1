@@ -1,4 +1,4 @@
 brands:
 
-- name: optionstarsglobal_ca
-  config_file: optionstarsglobal_ca.yml
+- name: jonesmutual
+  config_file: jonesmutual.yml

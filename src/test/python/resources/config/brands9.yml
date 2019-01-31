@@ -1,3 +1,3 @@
 brands:
-- name: safemarkets_ca
-  config_file: safemarkets_ca.yml
+- name: olympusmarkets
+  config_file: olympusmarkets.yml

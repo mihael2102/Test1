@@ -1,3 +1,6 @@
 brands:
-- name: 4xfx_ca
-  config_file: 4xfx_ca.yml
+
+- name: brokerz
+  config_file: brokerz.yml
+- name: eafx
+  config_file: eafx.yml

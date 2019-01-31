@@ -1,5 +1,7 @@
 brands:
-- name: tradospot_ca
-  config_file: tradospot_ca.yml
 
+- name: b-finance
+  config_file: b-finance.yml
+- name: aztrades
+  config_file: aztrades.yml
 

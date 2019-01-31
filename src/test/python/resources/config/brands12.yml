@@ -1,4 +1,4 @@
 brands:
 
-- name: firstindex_ca
-  config_file: firstindex_ca.yml
+- name: swiftcfd
+  config_file: swiftcfd.yml
