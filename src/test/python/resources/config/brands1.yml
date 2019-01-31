@@ -1,9 +1,10 @@
 brands:
-
-- name: goldenmarkets
-  config_file: goldenmarkets.yml
-- name: safemarkets
-  config_file: safemarkets.yml
+#- name: swisscci
+#  config_file: swisscci.yml
+#- name: goldenmarkets
+#  config_file: goldenmarkets.yml
+#- name: safemarkets
+#  config_file: safemarkets.yml
 #- name: b-traderfx
 #  config_file: b-traderfx.yml
 #- name: royal_cfds
@@ -12,8 +13,8 @@ brands:
 #  config_file: jonesmutual.yml
 #- name: forexbestmarket
 #  config_file: forexbestmarket.yml
-#- name: newrichmarkets
-#  config_file: newrichmarkets.yml
+- name: newrichmarkets
+  config_file: newrichmarkets.yml
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
 #- name: goldenmarkets
@@ -61,8 +62,8 @@ brands:
 ##new brands - never testing before
 #- name: b-finance
 #  config_file: b-finance.yml
-#- name: eafx
-#  config_file: eafx.yml
+- name: eafx
+  config_file: eafx.yml
 #- name: gxfx
 #  config_file: gxfx.yml
 #- name: hizlifx

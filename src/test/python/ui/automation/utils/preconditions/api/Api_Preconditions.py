@@ -12,6 +12,7 @@ from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
 from src.main.python.ui.crm.model.constants.APIConstants import APIConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 import re
+import time
 
 class ApiPrecondition(object):
 
@@ -30,7 +31,8 @@ class ApiPrecondition(object):
         """ Login to CRM """
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
         if global_var.current_brand_name == "eafx":
@@ -145,6 +147,7 @@ class ApiPrecondition(object):
         ApiPage(self.driver).enter_page(APIConstants.PAGE)
         ApiPage(self.driver).enter_limit(APIConstants.LIMIT)
         ApiPage(self.driver).send_read_customers()
+        time.sleep(7)
         token = ApiPage(self.driver).check_reads_customer_details()
         assert APIConstants.PANDATS_EMAIL in token
         # assert len(re.findall(r'\b{}\b'.format(APIConstants.PANDATS_EMAIL), token)) == 5
