@@ -44,6 +44,7 @@ class LeadsModule(CRMBasePage):
 
     def open_personal_details_lead(self):
         lead = super().wait_element_to_be_clickable("//a[contains(text(),'LEA')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", lead)
         lead.click()
         Logging().reportDebugStep(self, "Go to personal details lead")
         return LeadsModule(self.driver)

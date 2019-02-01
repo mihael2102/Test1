@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class APIConstants(object):
+    COUNTRY_MX_CRM = "Mexico"
     COUNTRY_MX = "mx"
     COUNTRY_CRM_SA = "South Africa"
     COUNTRY_SA = "za"

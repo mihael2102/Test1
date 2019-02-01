@@ -1,5 +1,4 @@
 brands:
-
 - name: triomarkets
   config_file: triomarkets.yml
 - name: ogtrade

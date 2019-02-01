@@ -134,7 +134,7 @@ class ApiPrecondition(object):
         if global_var.current_brand_name == "oinvestsa":
             assert client_country == APIConstants.COUNTRY_CRM_SA
         elif global_var.current_brand_name == "itrader_global":
-            assert client_country == APIConstants.COUNTRY_MX
+            assert client_country == APIConstants.COUNTRY_MX_CRM
         else:
             assert client_country == APIConstants.COUNTRY_CRM
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
