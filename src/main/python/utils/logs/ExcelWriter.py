@@ -1209,6 +1209,48 @@ class ExcelWriter:
                 , "The deleted campaign was searched"
                 , "Deleted Campaign not found"]
 
+        if self.get_test_pretty_name_new(test) == "TradingAccountCrmTest: test crm open live mt5":
+            step_suit = ["Open first tabs page"
+                , "Setting the user name"
+                , "Setting the user password"
+                , "Click the login button"
+                , "No OTP authentication is required"
+                , "'What's new' popup isn't displayed"
+                , "Click the  drop down filter"
+                , "The field found is : Test Clients"
+                , "Click the selected filter"
+                , "Setting  the user's email in the email field"
+                , "Click the search button"
+                , "Click user email"
+                , "Open mt4 actions"
+                , "Trading account server was selected: live"
+                , "Trading account currency was selected"
+                , "Trading account group was selected"
+                , "Trading account leverage was selected"
+                , "The Save button was clicked"
+                , "New MT5 Live Account was created successfully"]
+
+        if self.get_test_pretty_name_new(test) == "TradingAccountCrmTest: test crm open demo mt5":
+            step_suit = ["Open first tabs page"
+                , "Setting the user name"
+                , "Setting the user password"
+                , "Click the login button"
+                , "No OTP authentication is required"
+                , "'What's new' popup isn't displayed"
+                , "Click the  drop down filter"
+                , "The field found is : Test Clients"
+                , "Click the selected filter"
+                , "Setting  the user's email in the email field"
+                , "Click the search button"
+                , "Click user email"
+                , "Open mt4 actions"
+                , "Trading account server was selected: live"
+                , "Trading account currency was selected"
+                , "Trading account group was selected"
+                , "Trading account leverage was selected"
+                , "The Save button was clicked"
+                , "New MT5 Demo Account was created successfully"]
+
         return step_suit
 
 
