@@ -1,7 +1,7 @@
 pretty_name: "Default"
 url: ""
 user_name: pandaqa
-crm_password: ET3ULrC4Qcp8
+crm_password: ehCcCaLSsjh6Ebn6
 otp_secret:
 FirstLeadInfo:
   EVAL_first_name: "'testqa' + (''.join(random.sample(string.ascii_uppercase*6, 6)))"
