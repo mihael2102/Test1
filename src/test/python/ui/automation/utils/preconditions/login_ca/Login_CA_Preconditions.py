@@ -29,7 +29,7 @@ class Login_CA_Precondition(object):
 ###REGISTRACTIONS FORM
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))\
                                 .click_sign_up()
-        if global_var.current_brand_name == "xtraderfx":
+        if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "b-finance"):
                 CALoginPage(self.driver).click_regulatory_confirmation()
         CALoginPage(self.driver).fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME])\
@@ -58,7 +58,7 @@ class Login_CA_Precondition(object):
                 .click_my_account() \
                 .account_details()
 
-        elif global_var.current_brand_name == "firstindex_ca":
+        elif global_var.current_brand_name == "firstindex":
 
             CALoginPage(self.driver).verify() \
                 .click_hi_guest() \
@@ -111,7 +111,39 @@ class Login_CA_Precondition(object):
                                                               LeadsModuleConstants.FIRST_NAME]) == \
                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
 
-        elif global_var.current_brand_name == "xtraderfx":
+        elif global_var.current_brand_name == "jonesmutual":
+
+            CALoginPage(self.driver).verify() \
+                .click_hi_guest() \
+                .click_transactions_history() \
+                .select_data_birth_day(CAConstants.DAY_BIRTH) \
+                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
+                .select_data_birth_year(CAConstants.YEAR_BIRTH) \
+                .choose_currency(CAConstants.CURRENCY) \
+                .choose_citizenship(CAConstants.CITIZENSHIP2) \
+                .fill_city(CAConstants.CITY) \
+                .fill_zip_code(CAConstants.ZIP_CODE) \
+                .fill_address(CAConstants.ADDRESS) \
+                .click_next() \
+                .verify() \
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                   LeadsModuleConstants.FIRST_NAME]) \
+                .sign_out() \
+                .login() \
+                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                 LeadsModuleConstants.EMAIL]) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .verify()
+            sleep(2)
+            existing_client = CALoginPage(self.driver).verify_client(
+                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                    LeadsModuleConstants.FIRST_NAME])
+            expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+            print(expected_client, existing_client)
+            assert existing_client == expected_client
+
+        elif (global_var.current_brand_name == "xtraderfx")or(global_var.current_brand_name == "solocapitals"):
 
             CALoginPage(self.driver).verify() \
                 .click_hi_guest() \
@@ -140,6 +172,39 @@ class Login_CA_Precondition(object):
                                                                  LeadsModuleConstants.FIRST_NAME])
             expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
             expected_client.upper()
+            print(expected_client, existing_client)
+            assert existing_client == expected_client.upper()
+
+        elif global_var.current_brand_name == "mpcrypto":
+
+            CALoginPage(self.driver).verify() \
+                .click_hi_guest() \
+                .click_transactions_history() \
+                .select_data_birth_day(CAConstants.DAY_BIRTH) \
+                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
+                .select_data_birth_year(CAConstants.YEAR_BIRTH) \
+                .choose_currency(CAConstants.CURRENCY_CRYPTO) \
+                .choose_citizenship(CAConstants.CITIZENSHIP) \
+                .fill_city(CAConstants.CITY) \
+                .fill_zip_code(CAConstants.ZIP_CODE) \
+                .fill_address(CAConstants.ADDRESS) \
+                .click_next() \
+                .verify() \
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                           LeadsModuleConstants.FIRST_NAME]) \
+                .sign_out() \
+                .login() \
+                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                         LeadsModuleConstants.EMAIL]) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .verify()
+            sleep(2)
+            existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                                 LeadsModuleConstants.FIRST_NAME])
+            expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+
+            print(expected_client, existing_client)
             assert existing_client == expected_client
 
         else:

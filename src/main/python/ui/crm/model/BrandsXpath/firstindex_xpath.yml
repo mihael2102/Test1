@@ -13,3 +13,5 @@ AffiliatePage:
   input_methods: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[1]/input"
   blocked_country_drop_down: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[6]/div[2]"
   input_country: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[1]/input"
+CALoginPage:
+  check_box_accept: "//*[@id='Top_bar']/div/div/div[1]/div[3]/ul/li[3]/panda-forex-signup/div/div/div[2]/div/div[3]/signup-long/div/form/div[5]/label/span[1]"
