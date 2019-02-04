@@ -73,7 +73,10 @@ class DepositTestCRM(BaseTest):
 
         # Check confirmation message
         confirmation_message = crm_client_profile.get_confirm_message()
-        self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULL_OLD_FOREX)
+        if global_var.current_brand_name == "fxpmarkets":
+            self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULL_OLD_FOREX_FXP)
+        else:
+            self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULL_OLD_FOREX)
 
         # Close popup
         crm_client_profile.click_ok()\

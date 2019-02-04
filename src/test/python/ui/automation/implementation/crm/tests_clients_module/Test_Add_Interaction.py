@@ -30,7 +30,7 @@ class AddInteraction(BaseTest):
                 #                    self.config.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.FIRST_COUNTRY))
 
             if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds") or \
-                     (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "finmarket"):
+                     (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "finmarket") or (global_var.current_brand_name == "rimarkets"):
                 ClientsPage(self.driver).perform_searching(
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),

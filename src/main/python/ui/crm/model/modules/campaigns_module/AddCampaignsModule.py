@@ -5,7 +5,7 @@ from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
-
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from selenium.webdriver import ActionChains
 from src.main.python.ui.crm.model.modules.campaigns_module.EditCampaignModule import EditCampaignModule
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
@@ -34,7 +34,10 @@ class AddCampaignsModule(CRMBasePage):
         sleep(2)
         assigned_to_drop_down = super().wait_element_to_be_clickable("//span[@dir='ltr']")
         assigned_to_drop_down.click()
-        element = super().wait_element_to_be_clickable("//li[contains(text(),'%s')]" % assigned_to)
+        if global_var.current_brand_name == "stoxmarket":
+            element = super().wait_element_to_be_clickable("//li[contains(text(),'pandaqaa pandaqa')]")
+        else:
+            element = super().wait_element_to_be_clickable("//li[contains(text(),'%s')]" % assigned_to)
         element.click()
         Logging().reportDebugStep(self, "The assigned to was set: " + assigned_to)
         return AddCampaignsModule()
