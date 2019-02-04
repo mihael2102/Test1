@@ -422,7 +422,8 @@ class ClientsPage(CRMBasePage):
         return client_last_name
 
     def get_client_phone(self):
-        client_phone = super().wait_load_element("//div[@title='Click to Call'][@class='actions_btn']").text
+        client_phone = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["client_phone"]).text
         Logging().reportDebugStep(self, "Client phone is: " + client_phone)
         return client_phone
 
@@ -452,6 +453,7 @@ class ClientsPage(CRMBasePage):
         return client_date_of_birth
 
     def get_client_currency(self):
-        client_currency = super().wait_load_element("//td[@class='dvtCellInfo'][contains(text(),'EUR')]").text
+        client_currency = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["client_currency"]).text
         Logging().reportDebugStep(self, "Client currency is: " + client_currency)
         return client_currency
