@@ -9,6 +9,11 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+from time import sleep
 
 class Login_CA_Precondition(object):
 
@@ -23,9 +28,35 @@ class Login_CA_Precondition(object):
         lead = self.config.get_value(lead_key)
         return lead
 
+
+    def client_exist_in_crm(self):
+        # Login to CRM
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                          LeadsModuleConstants.EMAIL])
+        sleep(2)
+        assert ClientsPage(self.driver).get_client_first_name() == self.load_lead_from_config(
+            TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+        assert ClientsPage(self.driver).get_client_last_name() == \
+               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                   LeadsModuleConstants.FIRST_LAST_NAME]
+        assert ClientsPage(self.driver).get_client_phone() == '+49 5554 562456245'
+        assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS
+        assert ClientsPage(self.driver).get_client_city() == CAConstants.CITY
+        assert ClientsPage(self.driver).get_client_code() == CAConstants.ZIP_CODE
+        assert ClientsPage(self.driver).get_client_country() == 'Germany'
+        assert ClientsPage(self.driver).get_client_date_of_birth() == '1995-01-10'
+        assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY
+
+
     def sign_up_ca(self):
 ###REGISTRACTIONS FORM
-        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))\
+        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))\
                                 .click_sign_up()
 
         if global_var.current_brand_name == "itraderglob_ca":

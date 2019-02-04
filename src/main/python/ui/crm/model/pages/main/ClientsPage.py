@@ -417,3 +417,48 @@ class ClientsPage(CRMBasePage):
         mass_sms_module.click()
         Logging().reportDebugStep(self, "The send sms module was opened")
         return SendSMSClientsModule(self.driver)
+
+    def get_client_first_name(self):
+        client_first_name = super().wait_load_element("//span[@id='dtlview_First Name']").text
+        Logging().reportDebugStep(self, "Client first name is: " + client_first_name)
+        return client_first_name
+
+    def get_client_last_name(self):
+        client_last_name = super().wait_load_element("//span[@id='dtlview_Last Name']").text
+        Logging().reportDebugStep(self, "Client last name is: " + client_last_name)
+        return client_last_name
+
+    def get_client_phone(self):
+        client_phone = super().wait_load_element("//div[@title='Click to Call'][@class='actions_btn']").text
+        Logging().reportDebugStep(self, "Client phone is: " + client_phone)
+        return client_phone
+
+    def get_client_address(self):
+        client_address = super().wait_load_element("//span[@id='dtlview_Address']").text
+        Logging().reportDebugStep(self, "Client address is: " + client_address)
+        return client_address
+
+    def get_client_city(self):
+        client_city = super().wait_load_element("//span[@id='dtlview_City']").text
+        Logging().reportDebugStep(self, "Client city is: " + client_city)
+        return client_city
+
+    def get_client_code(self):
+        client_code = super().wait_load_element("//span[@id='dtlview_Code']").text
+        Logging().reportDebugStep(self, "Client code is: " + client_code)
+        return client_code
+
+    def get_client_country(self):
+        client_country = super().wait_load_element("//span[@id='dtlview_Country']").text
+        Logging().reportDebugStep(self, "Client country is: " + client_country)
+        return client_country
+
+    def get_client_date_of_birth(self):
+        client_date_of_birth = super().wait_load_element("//td[@class='dvtCellInfo'][contains(text(),'1995')]").text
+        Logging().reportDebugStep(self, "Client date_of_birth is: " + client_date_of_birth)
+        return client_date_of_birth
+
+    def get_client_currency(self):
+        client_currency = super().wait_load_element("//td[@class='dvtCellInfo'][contains(text(),'EUR')]").text
+        Logging().reportDebugStep(self, "Client currency is: " + client_currency)
+        return client_currency

@@ -1,3 +1,6 @@
 brands:
-- name: finmarket_ca
-  config_file: finmarket_ca.yml
+- name: soarfx
+  config_file: soarfx.yml
+- name: finmarket
+  config_file: finmarket.yml
+

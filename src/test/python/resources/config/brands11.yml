@@ -1,3 +1,4 @@
 brands:
-- name: stoxmarket_ca
-  config_file: stoxmarket_ca.yml
+- name: stoxmarket
+  config_file: stoxmarket.yml
+

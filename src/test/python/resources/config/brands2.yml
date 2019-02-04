@@ -1,9 +1,8 @@
 brands:
-- name: itraderglob_ca
-  config_file: itraderglob_ca.yml
-- name: soarfx_ca
-  config_file: soarfx_ca.yml
-
+- name: capitalmarketbanc
+  config_file: capitalmarketbanc.yml
+- name: itrader_global
+  config_file: itrader_global.yml
 
 
 

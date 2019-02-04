@@ -1,3 +1,3 @@
 brands:
-- name: brokerxp_ca
-  config_file: brokerxp_ca.yml
+- name: brokerxp
+  config_file: brokerxp.yml

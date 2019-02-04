@@ -8,8 +8,8 @@ from email import encoders
 def Send_Email_XML(filepath, content):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    to = "Niv.s@pandats.com"
-    # to = "ann.poimenova@gmail.com"
+    # to = "Niv.s@pandats.com"
+    to = "ann.poimenova@gmail.com"
     cc = "anna.p@pandats.com"
     bcc = "anna.poimenova@globallogic.com"
     # instance of MIMEMultipart
@@ -87,8 +87,8 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    to = "Niv.s@pandats.com"
-    # to = "ann.poimenova@gmail.com"
+    # to = "Niv.s@pandats.com"
+    to = "ann.poimenova@gmail.com"
     cc = "anna.p@pandats.com"
     bcc = "anna.poimenova@globallogic.com"
     # instance of MIMEMultipart
@@ -152,8 +152,8 @@ def Send_Email_XLS(filepath):
 def Send_ALL_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    to = "Niv.s@pandats.com"
-    # to = "ann.poimenova@gmail.com"
+    # to = "Niv.s@pandats.com"
+    to = "ann.poimenova@gmail.com"
     cc = "anna.p@pandats.com"
     bcc = "anna.poimenova@globallogic.com"
     # instance of MIMEMultipart
