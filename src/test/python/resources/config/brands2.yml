@@ -1,6 +1,6 @@
 brands:
-- name: capitalmarketbanc
-  config_file: capitalmarketbanc.yml
+- name: capitalmarketsbanc
+  config_file: capitalmarketsbanc.yml
 - name: itrader_global
   config_file: itrader_global.yml
 
