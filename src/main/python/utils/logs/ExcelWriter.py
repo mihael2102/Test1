@@ -110,6 +110,29 @@ class ExcelWriter:
         return test['class'] + ': ' + test['method'].replace('_', ' ')
 
     def steps_for_test(self, test):
+
+        if self.get_test_pretty_name_new(test) == "SignUpTest: test registred client exist in crm":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "No What's new"
+                , "Click the  drop down filter"
+                , "The field found is: Test Clients"
+                , "Click the selected filter"
+                , "Setting the user's email in the email field"
+                , "Click the search button "
+                , "Click user email"
+                , "Client first name is approved"
+                , "Client last name is approved"
+                , "Client phone is approved"
+                , "Client address is approved"
+                , "Client city is approved"
+                , "Client code is approved"
+                , "Client country is approved"
+                , "Client date of birth is approved"
+                , "Client currency is approved"]
         # CA TESTS
         if self.get_test_pretty_name_new(test) == "SignUpTest: test check sign up":
             step_suit = ["Open first tabs page:",
