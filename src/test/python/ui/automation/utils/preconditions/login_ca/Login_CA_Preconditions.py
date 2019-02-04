@@ -59,9 +59,9 @@ class Login_CA_Precondition(object):
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))\
                                 .click_sign_up()
 
-        if global_var.current_brand_name == "itraderglob_ca":
+        if global_var.current_brand_name == "itrader_global":
             CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP_AUS)
-        elif global_var.current_brand_name == "oinvest_ca":
+        elif global_var.current_brand_name == "oinvestsa":
             CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP_SOUTH_A)
         else:
             CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP)
@@ -78,15 +78,15 @@ class Login_CA_Precondition(object):
                             .fill_confirm_password(CAConstants.PASSWORD)\
                             .check_box_accept()
 
-        if global_var.current_brand_name == "triomarkets_ca" or global_var.current_brand_name == "kayafx_ca" or global_var.current_brand_name == "oinvest_ca":
+        if global_var.current_brand_name == "triomarkets" or global_var.current_brand_name == "kaya_fx" or global_var.current_brand_name == "oinvestsa":
             CALoginPage(self.driver).check_box_accept_new()
 
         CALoginPage(self.driver).click_submit()
 
-        if global_var.current_brand_name == "oinvest_ca":
+        if global_var.current_brand_name == "oinvestsa":
             CALoginPage(self.driver).close_welcome_message()
 
-        if global_var.current_brand_name == "finmarket_ca":
+        if global_var.current_brand_name == "finmarket":
             CALoginPage(self.driver).enter_data_birth(CAConstants.DATA_MONTH_YEAR)
 
         else:
@@ -94,9 +94,9 @@ class Login_CA_Precondition(object):
                                 .select_data_birth_month(CAConstants.MONTH_BIRTH) \
                                 .select_data_birth_year(CAConstants.YEAR_BIRTH)
 
-        if global_var.current_brand_name != "itraderglob_ca" and global_var.current_brand_name != "oinvest_ca" and global_var.current_brand_name != "finmarket_ca":
+        if global_var.current_brand_name != "itrader_global" and global_var.current_brand_name != "oinvestsa" and global_var.current_brand_name != "finmarket":
             CALoginPage(self.driver).choose_currency(CAConstants.CURRENCY)
-        if global_var.current_brand_name == "oinvest_ca":
+        if global_var.current_brand_name == "oinvestsa":
             CALoginPage(self.driver).choose_currency(CAConstants.CURRENCY_USD)
 
 
@@ -104,12 +104,12 @@ class Login_CA_Precondition(object):
                             .fill_zip_code(CAConstants.ZIP_CODE) \
                             .fill_address(CAConstants.ADDRESS)
 
-        if global_var.current_brand_name == "finmarket_ca":
+        if global_var.current_brand_name == "finmarket":
             CALoginPage(self.driver).click_submit()
 
         CALoginPage(self.driver).sign_out()
 
-        if global_var.current_brand_name == "gmo_ca":
+        if global_var.current_brand_name == "gmo":
             CALoginPage(self.driver).open_first_tab_page("https://my.gmotrading.com/en-us/login.aspx") \
 
 

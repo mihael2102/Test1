@@ -15,3 +15,6 @@ ClientProfilePage:
   i_confirm_checkbox: "//*[@name='confirm']"
   choose_account_drop_down: "//*[@id='ClientDepositConfirmation']/div[2]/div[2]/div/button"
   choose_number: "//div[@class='btn-group bootstrap-select open']//li/a/span[contains(text(), '%s')]"
+CALoginPage:
+  terms_conditions: "//*[@id='pnlSignUpInfo']/div[7]/div[1]/div/div[2]/label"
+  check_box_2: "//*[@id='cbxAgeConfirm']"

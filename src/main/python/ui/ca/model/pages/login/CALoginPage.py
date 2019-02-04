@@ -85,7 +85,8 @@ class CALoginPage(CRMBasePage):
     def check_box_accept(self):
         check_box = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["terms_conditions"])
-        check_box.click()
+        self.driver.execute_script("arguments[0].click();", check_box)
+        # check_box.click()
         Logging().reportDebugStep(self, "Check 'By checking this box I accept the Terms and Conditions and confirm that I am over 18 year of age'")
         return CALoginPage(self.driver)
 

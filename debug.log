@@ -8,3 +8,4 @@
 [1023/141845.303:ERROR:exception_snapshot_win.cc(88)] thread ID 143364 not found in process
 [1031/151408.758:ERROR:exception_handler_server.cc(526)] ConnectNamedPipe: The pipe is being closed. (0xE8)
 [1108/105800.388:ERROR:exception_handler_server.cc(526)] ConnectNamedPipe: The pipe is being closed. (0xE8)
+[0204/164253.349:ERROR:exception_handler_server.cc(526)] ConnectNamedPipe: The pipe is being closed. (0xE8)
