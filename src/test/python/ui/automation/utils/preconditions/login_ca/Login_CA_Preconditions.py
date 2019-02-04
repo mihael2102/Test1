@@ -262,7 +262,10 @@ class Login_CA_Precondition(object):
         assert ClientsPage(self.driver).get_client_code() == CAConstants.ZIP_CODE
         assert ClientsPage(self.driver).get_client_country() == 'Germany'
         assert ClientsPage(self.driver).get_client_date_of_birth() == '1995-01-10'
-        assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY
+        if global_var.current_brand_name == "mpcrypto":
+            assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY_CRYPTO
+        else:
+            assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY
 
 
 
