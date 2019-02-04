@@ -1,18 +1,16 @@
 brands:
-#- name: 2mercados
-#  config_file: 2mercados.yml
-#- name: royal_cfds
-#  config_file: royal_cfds.yml
+- name: 2mercados
+  config_file: 2mercados.yml
+- name: royal_cfds
+  config_file: royal_cfds.yml
 #- name: 4xfx
 #  config_file: 4xfx.yml
 #- name: coinstec
 #  config_file: coinstec.yml
-#- name: firstindex
-#  config_file: firstindex.yml
 #- name: mpcrypto
 #  config_file: mpcrypto.yml
-- name: b-finance
-  config_file: b-finance.yml
+#- name: b-finance
+#  config_file: b-finance.yml
 #- name: aztrades
 #  config_file: aztrades.yml
 #- name: brokerz
@@ -27,8 +25,6 @@ brands:
 #  config_file: solocapitlas.yml
 #- name: tradospot
 #  config_file: tradospot.yml
-#- name: olympusmarkets
-#  config_file: olympusmarkets.yml
 #- name: jonesmutual
 #  config_file: jonesmutual.yml
 #- name: xtraderfx
@@ -39,6 +35,8 @@ brands:
 #  config_file: newrichmarkets.yml
 #- name: q8
 #  config_file: q8.yml
+#- name: firstindex
+#  config_file: firstindex.yml
 
 
 

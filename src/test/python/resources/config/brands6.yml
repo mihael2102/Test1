@@ -1,5 +1,3 @@
 brands:
 - name: goldenmarkets
   config_file: goldenmarkets.yml
-- name: herdos
-  config_file: herdos.yml

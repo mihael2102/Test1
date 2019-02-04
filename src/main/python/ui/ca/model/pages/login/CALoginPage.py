@@ -273,3 +273,9 @@ class CALoginPage(CRMBasePage):
         ok_btn.click()
         Logging().reportDebugStep(self, "Regulatory message is confirmed")
         return CALoginPage(self.driver)
+
+    def click_customer_policy(self):
+        customer_policy_checkbox = super().wait_load_element("//span[contains(text(),'I have read and agree')]")
+        customer_policy_checkbox.click()
+        Logging().reportDebugStep(self, "Customer Policy is confirmed")
+        return CALoginPage(self.driver)

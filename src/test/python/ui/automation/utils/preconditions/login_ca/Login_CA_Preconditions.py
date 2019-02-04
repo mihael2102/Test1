@@ -29,7 +29,8 @@ class Login_CA_Precondition(object):
 ###REGISTRACTIONS FORM
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))\
                                 .click_sign_up()
-        if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "b-finance"):
+        if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "b-finance") \
+                or (global_var.current_brand_name == "eafx"):
                 CALoginPage(self.driver).click_regulatory_confirmation()
         CALoginPage(self.driver).fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME])\
@@ -42,8 +43,9 @@ class Login_CA_Precondition(object):
                                 .fill_password(CAConstants.PASSWORD)
         if global_var.current_brand_name != "q8trade_ca":
                 CALoginPage(self.driver).fill_confirm_password(CAConstants.PASSWORD)\
-                                .check_box_accept()\
-
+                                .check_box_accept()
+        if global_var.current_brand_name == "goldenmarkets":
+                CALoginPage(self.driver).click_customer_policy()
         CALoginPage(self.driver).click_submit() \
 
 ###PERSONAL DETAILS FORM
@@ -143,7 +145,8 @@ class Login_CA_Precondition(object):
             print(expected_client, existing_client)
             assert existing_client == expected_client
 
-        elif (global_var.current_brand_name == "xtraderfx")or(global_var.current_brand_name == "solocapitals"):
+        elif (global_var.current_brand_name == "xtraderfx")or(global_var.current_brand_name == "solocapitals") \
+                or (global_var.current_brand_name == "b-finance"):
 
             CALoginPage(self.driver).verify() \
                 .click_hi_guest() \

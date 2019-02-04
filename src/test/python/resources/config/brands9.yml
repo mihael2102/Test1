@@ -1,3 +1,5 @@
 brands:
-- name: olympusmarkets
-  config_file: olympusmarkets.yml
+#- name: olympusmarkets
+#  config_file: olympusmarkets.yml
+- name: herdos
+  config_file: herdos.yml
