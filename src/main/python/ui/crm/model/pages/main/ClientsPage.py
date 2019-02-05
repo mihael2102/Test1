@@ -443,7 +443,8 @@ class ClientsPage(CRMBasePage):
         return client_code
 
     def get_client_country(self):
-        client_country = super().wait_load_element("//span[@id='dtlview_Country']").text
+        client_country = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["client_country"]).text
         Logging().reportDebugStep(self, "Client country is: " + client_country)
         return client_country
 

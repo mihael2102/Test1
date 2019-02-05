@@ -41,7 +41,7 @@ class Login_CA_Precondition(object):
                                 .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.PHONE])\
                                 .fill_password(CAConstants.PASSWORD)
-        if global_var.current_brand_name != "q8trade_ca":
+        if global_var.current_brand_name != "q8":
                 CALoginPage(self.driver).fill_confirm_password(CAConstants.PASSWORD)\
                                 .check_box_accept()
         if global_var.current_brand_name == "goldenmarkets":
@@ -49,7 +49,7 @@ class Login_CA_Precondition(object):
         CALoginPage(self.driver).click_submit() \
 
 ###PERSONAL DETAILS FORM
-        if global_var.current_brand_name == "q8trade_ca":
+        if global_var.current_brand_name == "q8":
 
             CALoginPage(self.driver).click_my_account() \
                 .logout() \
@@ -256,12 +256,15 @@ class Login_CA_Precondition(object):
                                                                 TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
         assert ClientsPage(self.driver).get_client_last_name() == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                                 LeadsModuleConstants.FIRST_LAST_NAME]
-        assert ClientsPage(self.driver).get_client_phone() == '+49 7777 777'
-        assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS
-        assert ClientsPage(self.driver).get_client_city() == CAConstants.CITY
-        assert ClientsPage(self.driver).get_client_code() == CAConstants.ZIP_CODE
+        if (global_var.current_brand_name != "newrichmarkets") and (global_var.current_brand_name != "brokerz"):
+                assert ClientsPage(self.driver).get_client_phone() == '+49 7777 777'
+
+        if global_var.current_brand_name != "q8":
+            assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS
+            assert ClientsPage(self.driver).get_client_city() == CAConstants.CITY
+            assert ClientsPage(self.driver).get_client_code() == CAConstants.ZIP_CODE
+            assert ClientsPage(self.driver).get_client_date_of_birth() == '1995-01-10'
         assert ClientsPage(self.driver).get_client_country() == 'Germany'
-        assert ClientsPage(self.driver).get_client_date_of_birth() == '1995-01-10'
         if global_var.current_brand_name == "mpcrypto":
             assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY_CRYPTO
         else:

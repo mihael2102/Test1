@@ -289,8 +289,8 @@ class ExcelWriter:
                         ,"Client address is approved"
                         ,"Client city is approved"
                         ,"Client code is approved"
+                        , "Client date of birth is approved"
                         ,"Client country is approved"
-                        ,"Client date of birth is approved"
                         ,"Client currency is approved"]
 
         #

@@ -1,2 +1,4 @@
+ClientsPage:
+  client_phone: "//span[@id='dtlview_Phone']/div[@class='actions_btn']"
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][2]//td[3]"

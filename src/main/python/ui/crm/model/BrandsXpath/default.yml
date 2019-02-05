@@ -7,6 +7,7 @@ ClientsPage:
   country_click: "//label[contains(text(),'%s')]"
   client_currency: "//td[@class='dvtCellInfo'][contains(text(),'EUR')]"
   client_phone: "//div[@title='Click to Call'][@class='actions_btn']"
+  client_country: "//span[@id='dtlview_Country']"
 TasksPage:
   pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
   subject_input: "//tr[@class='tableFilters']//td[15]//input"
