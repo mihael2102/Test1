@@ -145,7 +145,7 @@ if __name__ == "__main__":
         import xlsxwriter
 
         # Join all results in one excel
-        all_excel = "C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/final_file.xlsx"
+        all_excel = "C:/Program Files (x86)/Jenkins/workspace/New Forex Stage/result/final_file.xlsx"
         # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
         all_file_frames = []
