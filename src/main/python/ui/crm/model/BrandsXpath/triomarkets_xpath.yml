@@ -4,3 +4,7 @@ FinancialTransactionsPage:
   transaction_type_element: "(//*[@id='listBody']//tr/td[7])[%s]"
 LeadDetailViewInfo:
     referral: "//td[contains(text(),'Referral')]//following-sibling::td[1]"
+CALoginPage:
+  city: "//*[@id='txtCity']"
+  zip_code: "//*[@id='txtZipCode']"
+  address: "//*[@id='addr1']"

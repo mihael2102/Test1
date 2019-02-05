@@ -1,8 +1,8 @@
 brands:
 #- name: gmo
 #  config_file: gmo.yml
-#- name: capitalmarketbanc
-#  config_file: capitalmarketbanc.yml
+#- name: capitalmarketsbanc
+#  config_file: capitalmarketsbanc.yml
 #- name: itrader_global
 #  config_file: itrader_global.yml
 #- name: soarfx
@@ -21,10 +21,10 @@ brands:
 #  config_file: oinvestsa.yml
 #- name: kaya_fx
 #  config_file: kaya_fx.yml
-- name: triomarkets
-  config_file: triomarkets.yml
-#- name: stoxmarket
-#  config_file: stoxmarket.yml
+#- name: triomarkets
+#  config_file: triomarkets.yml
+- name: stoxmarket
+  config_file: stoxmarket.yml
 #- name: itrader
 #  config_file: itrader.yml
 

@@ -429,7 +429,7 @@ class ClientsPage(CRMBasePage):
         return client_last_name
 
     def get_client_phone(self):
-        client_phone = super().wait_load_element("//div[@title='Click to Call'][@class='actions_btn']").text
+        client_phone = super().wait_load_element("//td[contains(text(),'Phone')]//following-sibling::td[1]").text
         Logging().reportDebugStep(self, "Client phone is: " + client_phone)
         return client_phone
 

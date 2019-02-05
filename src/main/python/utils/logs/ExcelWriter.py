@@ -126,13 +126,7 @@ class ExcelWriter:
                 , "Click user email"
                 , "Client first name is approved"
                 , "Client last name is approved"
-                , "Client phone is approved"
-                , "Client address is approved"
-                , "Client city is approved"
-                , "Client code is approved"
-                , "Client country is approved"
-                , "Client date of birth is approved"
-                , "Client currency is approved"]
+                , "Client phone is approved"]
         # CA TESTS
         if self.get_test_pretty_name_new(test) == "SignUpTest: test check sign up":
             step_suit = ["Open first tabs page:",
