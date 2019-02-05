@@ -10,12 +10,12 @@ TasksPage:
   subject_input: "//tr[@class='tableFilters']//td[15]//input"
   account_name_input: "//*[@id='host-element']/input"
 FinancialTransactionsPage:
-  client_name_element:  "(//td[3]/div/a)[%s]"
+  client_name_element:  "(//td[4]/div/a)[%s]"
   transaction_type_element : "(//*[@id='listBody']//tr/td[5])[%s]"
   transaction_type_field: "(//div/div[1]/ul/li[1]/div/input)[1]"
   transaction_type_drop_down: "//td[5]/div/div[1]/button"
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
-  modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
+  modified_time_element: "(//*[@id='listBody']//tr/td[12])[%s]"
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
   i_confirm_checkbox: "//*[@name='confirm']"
