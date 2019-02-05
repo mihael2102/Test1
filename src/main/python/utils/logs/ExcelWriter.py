@@ -544,6 +544,7 @@ class ExcelWriter:
                 ,"Scroll Up"
                 ,"Click 'Save'"
                 ,"Lead was created"
+                ,"Page refreshed"
                 ,"Go to CRM home page"
                 ,"Go to Leads module"
                 ,"Click the 'Filters' drop down"
