@@ -8,17 +8,39 @@ from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsInformati
     TradingAccountsInformationPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
+from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 
 
 @pytest.mark.run(order=5)
-class AddNewLiveAccountTestCA(BaseTest):
+class AddNewLiveAccountTestCA(object):
+
+    driver = None
+    config = None
+
+    def __init__(self, driver, config):
+        self.driver = driver
+        self.config = config
+
+    def load_lead_from_config(self, lead_key):
+        lead = self.config.get_value(lead_key)
+        return lead
 
     def test_check_add_live_account_eur_currency(self):
-        BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
-            .set_fields(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
-            .click_login_button() \
-            .open_drop_down_menu() \
+        # BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
+        #     .set_fields(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
+        #                 Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
+        #     .click_login_button()
+        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
+            .login() \
+            .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                             LeadsModuleConstants.EMAIL]) \
+            .enter_password(CAConstants.PASSWORD) \
+            .click_login() \
+            .verify()
+        BrandHomePage().open_drop_down_menu() \
             .select_module(CaConstants.MANAGE_ACCOUNTS)
 
         brand_manage_accounts = CaManageAccounts() \

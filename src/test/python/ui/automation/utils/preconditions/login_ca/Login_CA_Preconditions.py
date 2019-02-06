@@ -26,7 +26,7 @@ class Login_CA_Precondition(object):
         return lead
 
     def sign_up_ca(self):
-###REGISTRACTIONS FORM
+###REGISTRATION FORM
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))\
                                 .click_sign_up()
         if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "b-finance") \
