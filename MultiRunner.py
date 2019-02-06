@@ -150,7 +150,7 @@ if __name__ == "__main__":
 
         all_file_frames = []
         for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/*.xlsx'):
-            if filename.startswith('test_results'):
+            if filename.startswith('C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/test_results'):
                 tab = pd.read_excel(filename)
                 all_file_frames.append(tab)
                 all_frame = pd.concat(all_file_frames, axis=1)
@@ -213,7 +213,7 @@ if __name__ == "__main__":
 
         short_file_frames = []
         for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/*.xlsx'):
-            if filename.startswith('short_results'):
+            if filename.startswith('C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_results'):
                 tab = pd.read_excel(filename)
                 short_file_frames.append(tab)
                 short_frame = pd.concat(short_file_frames, axis=1)
