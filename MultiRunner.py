@@ -4,6 +4,8 @@ import importlib
 import xmlrunner
 import multiprocessing
 import os
+import os
+import win32com.client as win32
 from pandas import ExcelWriter as EX
 import glob
 import pandas as pd
@@ -127,13 +129,13 @@ if __name__ == "__main__":
         # Form input list where each parameter is filename of TestSuite file
 
 
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-                      path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
-                      path_to_brands_suite_13]
-        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2]
+        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+        #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+        #               path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
+        #               path_to_brands_suite_13]
+        input_list = [path_to_brands_suite_1]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=13)
+        pool = multiprocessing.Pool(processes=1)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -142,106 +144,50 @@ if __name__ == "__main__":
         pool.close()
         pool.join()
 
-        import xlsxwriter
+        path = "D:\\automation-newforexqa\\result"
+        file_name = "merge"
+        merged_file_name = file_name + ".xlsx"
 
-        # Join all results in one excel
-        all_excel = "C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/final_file.xlsx"
-        # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
+        try:
+            # INITIALIZE EXCEL COM APP
+            xlapp = win32.gencache.EnsureDispatch('Excel.Application')
 
-        all_file_frames = []
-        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/*.xlsx'):
-            if "test_results" in filename:
-                tab = pd.read_excel(filename)
-                all_file_frames.append(tab)
-                all_frame = pd.concat(all_file_frames, axis=1)
-                writer = EX('C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/final_file.xlsx')
-                all_frame.to_excel(writer, sheet_name='Sheet1')
-                workbook = writer.book
-                worksheet = writer.sheets['Sheet1']
-                format1 = workbook.add_format({'bg_color': '#FFC7CE',
-                                               'font_color': '#9C0006'})
+            # ASSIGN CONSTANTS
+            xlPasteValues = -4163; lPasteFormats = -4122; xlWorkbookDefault = 51
 
-                format2 = workbook.add_format({'bg_color': '#C4D79B',
-                                               'font_color': '#000000'})
-                worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
-                                                             'criteria': 'beginsWith',
-                                                             'value': 'PASS',
-                                                             'format': format2})
+            # CREATE NEW WOKRBOOK (PROMPTS IF EXISTS)
+            new_wb = xlapp.Workbooks.Add()
+            new_wb.SaveAs(Filename='MasterMerge.xlsx', FileFormat=xlWorkbookDefault)
 
-                worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
-                                                             'criteria': 'beginsWith',
-                                                             'value': 'ERROR',
-                                                             'format': format1})
-                worksheet.freeze_panes(1, 1)
-                worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
-                for i in range(3, 25):
-                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+            # LOOP THROUGH WORKBOOKS
+            xl_files = [f for f in os.listdir(path) if f.endswith('.xls') or f.endswith('.xlsx')]
 
-                worksheet.set_row(26, None, None, {'level': 1, 'hidden': True})
-                for i in range(27, 73):
-                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+            for wb in xl_files:
+                xlwb = xlapp.Workbooks.Open(os.path.join(path, wb))
 
-                worksheet.set_row(74, None, None, {'level': 1, 'hidden': True})
-                for i in range(75, 101):
-                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+                # LOOP THROUGH EVERY WORKSHEET, COPYING TO NEW WORKSHEET
+                for xlsh in xlwb.Worksheets:
+                    new_sh = new_wb.Worksheets.Add()
+                    new_sh.Name = xlsh.Name
+                    new_wb.Save()
+                    new_sh.Move(After=new_wb.Worksheets(new_wb.Worksheets.Count))
 
-                worksheet.set_row(102, None, None, {'level': 1, 'hidden': True})
-                for i in range(103, 130):
-                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+                    xlsh.Cells.Copy(new_sh.Cells)
+                    new_sh = None
 
-                worksheet.set_row(131, None, None, {'level': 1, 'hidden': True})
-                for i in range(132, 173):
-                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+                xlwb.Close(False)
+                xlwb = None
 
-                worksheet.set_row(174, None, None, {'level': 1, 'hidden': True})
-                for i in range(175, 218):
-                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+            # REMOVNIG DEFAULT SHEET AND LAUNCHING TO SCREEN
+            new_wb.Worksheets('Sheet1').Delete()
+            new_wb.Save()
+            xlapp.Visible = True
 
-                worksheet.set_row(219, None, None, {'level': 1, 'hidden': True})
-                for i in range(220, 247):
-                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+        except Exception as e:
+            print(e)
 
-                worksheet.set_row(248, None, None, {'level': 1, 'hidden': True})
-                for i in range(249, 277):
-                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-                writer.save()
-
-            # Join all results in one excel
-        short_excel = "C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_final_file.xlsx"
-        # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
-
-        short_file_frames = []
-        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/*.xlsx'):
-            if "short_results" in filename:
-                tab = pd.read_excel(filename)
-                short_file_frames.append(tab)
-                short_frame = pd.concat(short_file_frames, axis=1)
-                writer = EX('C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_final_file.xlsx')
-                short_frame.to_excel(writer, sheet_name='Sheet1')
-                workbook = writer.book
-                worksheet = writer.sheets['Sheet1']
-                worksheet.freeze_panes(1, 1)
-                format1 = workbook.add_format({'bg_color': '#FFC7CE',
-                                               'font_color': '#9C0006'})
-
-                format2 = workbook.add_format({'bg_color': '#C4D79B',
-                                               'font_color': '#000000'})
-                worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
-                                                              'criteria': 'beginsWith',
-                                                              'value': 'PASS',
-                                                              'format': format2})
-
-                worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
-                                                              'criteria': 'beginsWith',
-                                                              'value': 'ERROR',
-                                                              'format': format1})
-
-
-                writer.save()
-
-        # Send_ALL_XLS(all_excel)
-        # Send_ALL_XLS(short_excel)
+        finally:# RELEASE RESOURCES
+            xlsh = None; new_sh = None; xlwb = None; new_wb = None; xlapp = None
 
 
 
