@@ -206,16 +206,16 @@ if __name__ == "__main__":
             writer.save()
 
             # Join all results in one excel
-        all_excel = "C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_result/final_file.xlsx"
+        short_excel = "C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_result/final_file.xlsx"
         # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
-        all_file_frames = []
+        short_file_frames = []
         for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_result/*.xlsx'):
             tab = pd.read_excel(filename)
-            all_file_frames.append(tab)
-            all_frame = pd.concat(all_file_frames, axis=1)
+            short_file_frames.append(tab)
+            short_frame = pd.concat(short_file_frames, axis=1)
             writer = EX('C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_result/final_file.xlsx')
-            all_frame.to_excel(writer, sheet_name='Sheet1')
+            short_frame.to_excel(writer, sheet_name='Sheet1')
             workbook = writer.book
             worksheet = writer.sheets['Sheet1']
             format1 = workbook.add_format({'bg_color': '#FFC7CE',
@@ -232,41 +232,12 @@ if __name__ == "__main__":
                                                           'criteria': 'beginsWith',
                                                           'value': 'ERROR',
                                                           'format': format1})
-            # worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
-            # for i in range(3, 25):
-            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-            #
-            # worksheet.set_row(26, None, None, {'level': 1, 'hidden': True})
-            # for i in range(27, 73):
-            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-            #
-            # worksheet.set_row(74, None, None, {'level': 1, 'hidden': True})
-            # for i in range(75, 101):
-            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-            #
-            # worksheet.set_row(102, None, None, {'level': 1, 'hidden': True})
-            # for i in range(103, 130):
-            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-            #
-            # worksheet.set_row(131, None, None, {'level': 1, 'hidden': True})
-            # for i in range(132, 173):
-            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-            #
-            # worksheet.set_row(174, None, None, {'level': 1, 'hidden': True})
-            # for i in range(175, 218):
-            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-            #
-            # worksheet.set_row(219, None, None, {'level': 1, 'hidden': True})
-            # for i in range(220, 247):
-            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-            #
-            # worksheet.set_row(248, None, None, {'level': 1, 'hidden': True})
-            # for i in range(249, 277):
-            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
 
             writer.save()
 
         Send_ALL_XLS(all_excel)
+        Send_ALL_XLS(short_excel)
 
 
 
