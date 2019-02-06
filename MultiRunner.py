@@ -73,7 +73,7 @@ class MultiRunner:
             content_fail_err = content_fail_err.replace(']]>	</system-err','')
             content_fail_err = content_fail_err.replace('</testsuite>', '')
             content_fail_err = content_fail_err.replace('>', '')
-            content_fail_err = content_fail_err.replace(' ', '')
+            # content_fail_err = content_fail_err.replace(' ', '')
             #test_passed = False
             if not result or result.errors:
                 results[test_name] = "ERROR" + content_fail_err
@@ -131,9 +131,9 @@ if __name__ == "__main__":
         #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
         #               path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
         #               path_to_brands_suite_13]
-        input_list = [path_to_brands_suite_1]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=1)
+        pool = multiprocessing.Pool(processes=2)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)

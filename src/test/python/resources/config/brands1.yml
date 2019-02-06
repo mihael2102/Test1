@@ -76,8 +76,8 @@ brands:
 #  config_file: privat-trade.yml
 #- name: swiftcfd
 #  config_file: swiftcfd.yml
-- name: tfxgo
-  config_file: tfxgo.yml
+#- name: tfxgo
+#  config_file: tfxgo.yml
 #- name: uprofx
 #  config_file: uprofx.yml
 #- name: mpcrypto
