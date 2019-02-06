@@ -8,7 +8,7 @@ class ExcelWriter:
     def write_test_results(self, brands, tests, results):
         # Create a workbook and add a worksheet.
         # os.mkdir("C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_result")
-        workbook = xlsxwriter.Workbook("result/short_test_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx")
+        workbook = xlsxwriter.Workbook("result/short_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx")
         worksheet = workbook.add_worksheet()
 
         # create styles for the PASS/FAIL results
@@ -19,7 +19,7 @@ class ExcelWriter:
         worksheet.write(0, 0, "Brand \ Test")
         worksheet.set_column(0, 0, 60)
         worksheet.set_column(1, len(brands), 20)
-
+        worksheet.freeze_panes(1, 1)
         # Write the test names
         row = 1
         for test in tests:
@@ -62,7 +62,7 @@ class ExcelWriter:
         worksheet.write(0, 0, "Brand \ Test")
         worksheet.set_column(0, 0, 60)
         worksheet.set_column(1, len(brands), 20)
-
+        worksheet.freeze_panes(1, 1)
         # Write the test names
         row = 1
         for test in tests:
