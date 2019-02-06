@@ -7,8 +7,8 @@ class ExcelWriter:
 
     def write_test_results(self, brands, tests, results):
         # Create a workbook and add a worksheet.
-        os.mkdir("C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_result")
-        workbook = xlsxwriter.Workbook("result/short_result/test_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx")
+        # os.mkdir("C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_result")
+        workbook = xlsxwriter.Workbook("result/short_test_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx")
         worksheet = workbook.add_worksheet()
 
         # create styles for the PASS/FAIL results
