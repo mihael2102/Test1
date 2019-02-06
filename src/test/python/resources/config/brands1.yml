@@ -1,6 +1,7 @@
 brands:
 - name: new_forex_staging
-  config_file: new_forex_staging.yml
+#  config_file: C:/Users/Panda102/Desktop/Test.yml
+  config_file: C:\Users\Administrator\Desktop\Brand.yml
 
 #- name: mpcrypto
 #  config_file: mpcrypto.yml
