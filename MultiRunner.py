@@ -171,37 +171,37 @@ if __name__ == "__main__":
                                                          'criteria': 'beginsWith',
                                                          'value': 'ERROR',
                                                          'format': format1})
-            worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
-            for i in range(3, 25):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-            worksheet.set_row(26, None, None, {'level': 1, 'hidden': True})
-            for i in range(27, 73):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-            worksheet.set_row(74, None, None, {'level': 1, 'hidden': True})
-            for i in range(75, 101):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-            worksheet.set_row(102, None, None, {'level': 1, 'hidden': True})
-            for i in range(103, 130):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-            worksheet.set_row(131, None, None, {'level': 1, 'hidden': True})
-            for i in range(132, 173):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-            worksheet.set_row(174, None, None, {'level': 1, 'hidden': True})
-            for i in range(175, 218):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-            worksheet.set_row(219, None, None, {'level': 1, 'hidden': True})
-            for i in range(220, 247):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
-
-            worksheet.set_row(248, None, None, {'level': 1, 'hidden': True})
-            for i in range(249, 277):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+            # worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
+            # for i in range(3, 25):
+            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+            #
+            # worksheet.set_row(26, None, None, {'level': 1, 'hidden': True})
+            # for i in range(27, 73):
+            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+            #
+            # worksheet.set_row(74, None, None, {'level': 1, 'hidden': True})
+            # for i in range(75, 101):
+            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+            #
+            # worksheet.set_row(102, None, None, {'level': 1, 'hidden': True})
+            # for i in range(103, 130):
+            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+            #
+            # worksheet.set_row(131, None, None, {'level': 1, 'hidden': True})
+            # for i in range(132, 173):
+            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+            #
+            # worksheet.set_row(174, None, None, {'level': 1, 'hidden': True})
+            # for i in range(175, 218):
+            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+            #
+            # worksheet.set_row(219, None, None, {'level': 1, 'hidden': True})
+            # for i in range(220, 247):
+            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+            #
+            # worksheet.set_row(248, None, None, {'level': 1, 'hidden': True})
+            # for i in range(249, 277):
+            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
             writer.save()
 
