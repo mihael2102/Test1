@@ -2,5 +2,3 @@ brands:
 
 - name: brokerz
   config_file: brokerz.yml
-- name: eafx
-  config_file: eafx.yml

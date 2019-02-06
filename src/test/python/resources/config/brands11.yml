@@ -1,3 +1,5 @@
 brands:
-- name: xtraderfx
-  config_file: xtraderfx.yml
+#- name: xtraderfx
+#  config_file: xtraderfx.yml
+- name: q8
+  config_file: q8.yml
