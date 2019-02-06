@@ -1,6 +1,7 @@
 import xlsxwriter
 from time import gmtime, strftime
 import os
+from src.test.python.ui.automation.utils.postconditions.SendMail import Send_Email_XLS
 
 
 class ExcelWriter:
@@ -8,7 +9,8 @@ class ExcelWriter:
     def write_test_results(self, brands, tests, results):
         # Create a workbook and add a worksheet.
         # os.mkdir("C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_result")
-        workbook = xlsxwriter.Workbook("result/short_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx")
+        filepath = "result/short_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx"
+        workbook = xlsxwriter.Workbook(filepath)
         worksheet = workbook.add_worksheet()
 
         # create styles for the PASS/FAIL results
@@ -45,6 +47,7 @@ class ExcelWriter:
             col += 1
 
         workbook.close()
+        Send_Email_XLS(filepath)
 
     def write_test_results_all_report(self, brands, tests, results):
         # Create a workbook and add a worksheet.
@@ -257,7 +260,7 @@ class ExcelWriter:
 
         workbook.close()
 
-        # Send_Email_XLS(filepath)
+
 
     @staticmethod
     def get_test_pretty_name(test):
