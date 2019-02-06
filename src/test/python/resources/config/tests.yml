@@ -9,7 +9,7 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Live_Accounts
   class: AddNewLiveAccountTestCA
   tests:
-    - test_check_add_live_account_eur_currency
+    - test_add_live_account_ca
 #    - test_registred_client_exist_in_crm
 
 

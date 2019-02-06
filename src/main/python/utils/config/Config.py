@@ -2,6 +2,7 @@ test = "New Forex CA"
 timeout = 4
 data = None
 url_client_area = ""
+url_ca = ""
 url_crm = ""
 url_gmail = "https://mail.google.com"
 window_after = None
