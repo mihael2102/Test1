@@ -116,13 +116,13 @@ if __name__ == "__main__":
         path_to_brands_suite_10 = "brands10.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-                      path_to_brands_suite_9, path_to_brands_suite_10]
-        # input_list = [path_to_brands_suite_1]
+        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+        #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+        #               path_to_brands_suite_9, path_to_brands_suite_10]
+        input_list = [path_to_brands_suite_1]
                       # Init multiprocess
 
-        pool = multiprocessing.Pool(processes=10)
+        pool = multiprocessing.Pool(processes=1)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -162,7 +162,37 @@ if __name__ == "__main__":
                                                           'criteria': 'beginsWith',
                                                           'value': 'ERROR',
                                                           'format': format1})
+            worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
+            for i in range(3, 25):
+                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
+            worksheet.set_row(26, None, None, {'level': 1, 'hidden': True})
+            for i in range(27, 73):
+                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
+            worksheet.set_row(74, None, None, {'level': 1, 'hidden': True})
+            for i in range(75, 101):
+                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
+            worksheet.set_row(102, None, None, {'level': 1, 'hidden': True})
+            for i in range(103, 130):
+                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
+            worksheet.set_row(131, None, None, {'level': 1, 'hidden': True})
+            for i in range(132, 173):
+                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
+            worksheet.set_row(174, None, None, {'level': 1, 'hidden': True})
+            for i in range(175, 218):
+                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
+            worksheet.set_row(219, None, None, {'level': 1, 'hidden': True})
+            for i in range(220, 247):
+                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
+            # worksheet.set_row(248, None, None, {'level': 1, 'hidden': True})
+            # for i in range(249, 277):
+            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
             writer.save()
 

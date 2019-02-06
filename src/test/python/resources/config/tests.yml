@@ -35,10 +35,10 @@ tests_config:
   tests:
     - test_read_leads_api
 
-- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Login_Token
-  class: LoginToken
-  tests:
-    - test_login_token
+#- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Login_Token
+#  class: LoginToken
+#  tests:
+#    - test_login_token
 
 
   ###General
