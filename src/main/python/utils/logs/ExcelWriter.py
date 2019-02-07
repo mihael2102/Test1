@@ -6,6 +6,49 @@ class ExcelWriter:
 
     def write_test_results(self, brands, tests, results):
         # Create a workbook and add a worksheet.
+        # os.mkdir("C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_result")
+        filepath = "result/short_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx"
+        workbook = xlsxwriter.Workbook(filepath)
+        worksheet = workbook.add_worksheet()
+
+        # create styles for the PASS/FAIL results
+        cell_format_pass = workbook.add_format({'align': 'center', 'bg_color': '#C4D79B'})
+        cell_format_fail = workbook.add_format({'align': 'center', 'bg_color': 'red'})
+
+        # set column widths
+        worksheet.write(0, 0, "Brand \ Test")
+        worksheet.set_column(0, 0, 60)
+        worksheet.set_column(1, len(brands), 20)
+        worksheet.freeze_panes(1, 1)
+        # Write the test names
+        row = 1
+        for test in tests:
+            worksheet.write(row, 0, self.get_test_pretty_name_new(test))
+            row += 1
+
+        # write the test results per brand
+        col = 1
+        for brand in brands:
+            row = 0
+            worksheet.write(row, col, brand)
+            for test in tests:
+                row += 1
+                test_result = results[brand][self.get_test_pretty_name(test)] \
+                    if self.get_test_pretty_name(test) in results[brand] else ""
+                if test_result == 'PASS':
+                    worksheet.write(row, col, test_result, cell_format_pass)
+                else:
+                    test_result_error = "ERROR"
+                    worksheet.write(row, col, test_result_error, cell_format_fail)
+                    worksheet.write_comment(row, col, test_result,
+                                            {'width': 250, 'height': 400})
+            col += 1
+
+        workbook.close()
+        Send_Email_XLS(filepath)
+
+    def write_test_results_all_report(self, brands, tests, results):
+        # Create a workbook and add a worksheet.
         filepath = "result/test_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx"
         workbook = xlsxwriter.Workbook(filepath)
         worksheet = workbook.add_worksheet()
@@ -544,6 +587,7 @@ class ExcelWriter:
                 ,"Scroll Up"
                 ,"Click 'Save'"
                 ,"Lead was created"
+                ,"Page refreshed"
                 ,"Go to CRM home page"
                 ,"Go to Leads module"
                 ,"Click the 'Filters' drop down"
@@ -595,7 +639,6 @@ class ExcelWriter:
                 ,"Verify 'Email' is 'pandaqa+***@pandats.com'"
                 ,"Verify 'Secondary Email' is 'pandaqa+***@pandats.com'"
                 ,"Verify 'Source Name is Test"
-                ,"Verify 'Panda Partner ID' exists"
                 ,"Verify 'Referral' exists"
                 ,"Verify 'Street'"
                 ,"Verify 'Postal Code' is '***'"
@@ -697,8 +740,6 @@ class ExcelWriter:
                 ,"Verify 'Fax' is '***'"
                 ,"Verify 'Email' is 'pandaqa+***@pandats.com'"
                 ,"Verify 'Secondary Email' is 'pandaqa+***@pandats.com'"
-                ,"Verify 'Source Name is 'Second SN Test'"
-                ,"Verify 'Panda Partner ID' is '***'"
                 ,"Verify 'Referral' is '***'"
                 ,"Verify 'Street' is Second Street test'"
                 ,"Verify 'Postal Code' is '***'"
@@ -746,6 +787,7 @@ class ExcelWriter:
                 ,"Scroll Up"
                 ,"Click 'Save'"
                 ,"Lead was created"
+                ,"Side bar is not present"
                 ,"Go to lead's details view"
                 ,"Click 'Convert Lead'"
                 ,"Verify 'First Name' is ***"
@@ -794,101 +836,101 @@ class ExcelWriter:
                 , "No OTP"
                 , "'What's new' popup isn't displayed"
                 , "Click the  drop down filter"
-                , "The field found is : Test Clients"
+                , "Select Test Clients"
                 , "Click the selected filter"
-                , "The client status was selected "
-                , "Email was entered "
-                , "The country was entered"
-                , "The search button was clicked"
-                , "Perform scroll up"
-                , "Perform scroll up"
+                , "Select client status"
+                , "Set 'Email' to ***"
+                , "Set 'Country' to ****"
+                , "Click search button"
+                , "Scroll up"
+                , "Update page"
                 , "Click user name by email :"
                 , "Side bar is not present"
-                , "The event module was opened"
-                , "The event status is set Not Started"
-                , "The event type is set Meeting"
-                , "The duration  is set 30M"
-                , "The time is set "
-                , "The date is set"
-                , "The  assign to is set pandaqa pandaqa"
-                , "The priority is set Medium"
-                , "The comments is set Event Description"
-                , "The subject is set to Test interaction:"
+                , "Open event module"
+                , "Set event status 'Not Started'"
+                , "Set event type 'Meeting'"
+                , "Set '30M'"
+                , "Set time"
+                , "Set date"
+                , "Set  assign to 'pandaqa pandaqa'"
+                , "Set priority 'Medium'"
+                , "Set comments 'Event Description'"
+                , "Set subject 'Test interaction'"
                 , "Click the 'save' button"
-                , "Returns a confirmation message: Interraction successfully created"
+                , "Verify a confirmation message: Interraction successfully created"
                 , "The Ok button was clicked"
                 , "Click 'ok' button"]
 
         if self.get_test_pretty_name_new(test) == "AddInteraction: test interaction search":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name"
-                , "Setting the user password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "'What's new' popup isn't displayed"
-                , "Task module is opened"
-                , "The all tab was opened"
-                , "The subject was set: Meeting"
-                , "The subject was set: Meeting"
-                , "Results found text:"
+                , "Open Task module"
+                , "Open all tab"
+                , "Set subject: Meeting"
+                , "Search Meeting"
+                , "Results found text: Meeting"
                 , "Got search results"]
 
         if self.get_test_pretty_name_new(test) == "AddEventTaskModule: test add event":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name"
-                , "Setting the user password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "'What's new' popup isn't displayed"
-                , "Task module is opened"
-                , "The event  module was opened"
-                , "The event status was set In Progress"
-                , "The event type is set Meeting"
-                , "The date  was set"
-                , "The time  was set"
-                , "The duration  was set 30M"
-                , "The priority was set Medium"
-                , "The  assign to was set pandaqa pandaqa"
-                , "The account was set"
-                , "The subject was set Testing43434"
-                , "The comments was set Description Add Event"
+                , "Open Task module"
+                , "Open event module"
+                , "Set event status 'In Progress'"
+                , "Set event type 'Meeting'"
+                , "Set date"
+                , "Set time"
+                , "Set duration '30M'"
+                , "Set priority 'Medium'"
+                , "Set  assign to 'pandaqa pandaqa'"
+                , "Set account name"
+                , "Set subject 'Testing43434'"
+                , "Set comments 'Description Add Event'"
                 , "Click the 'save' button"
-                , "The all tab was opened"
-                , "The all tab was opened and check event"]
+                , "Open all tab"
+                , "Check event"]
 
         if self.get_test_pretty_name_new(test) == "AddEventTaskModule: test edit event":
-            step_suit = ["Open first tabs page:"
-                , "Setting the user name"
-                , "Setting the user password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "'What's new' popup isn't displayed"
-                , "Task module is opened"
-                , "The all tab was opened"
-                , "Edit popup was opened"
-                , "The event status was set Planned"
-                , "The event type is set Call"
-                , "The date  is set"
-                , "The time  is set"
-                , "The duration  is set 15M"
-                , "The priority is set High"
-                , "The assign to is set Default User"
-                , "The subject is set Testing28246"
-                , "The comments is set Description Add Event"
+                , "Open Task module"
+                , "Open all tab"
+                , "Click Edit"
+                , "Set event status 'Planned'"
+                , "Set event type 'Call'"
+                , "Set date"
+                , "Set time"
+                , "Set duration '15M'"
+                , "Set priority 'High'"
+                , "Set assign to 'Default User'"
+                , "Set subject 'Testing'"
+                , "Set comments 'Description Add Event'"
                 , "Click the 'save' button"
                 , "Text from 'Update' popup has been got: Task was updated"]
 
         if self.get_test_pretty_name_new(test) == "TradingAccountCrmTest: test crm open trading account":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name"
-                , "Setting the user password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "'What's new' popup isn't displayed"
                 , "Click the  drop down filter"
-                , "The field found is : Test Clients"
+                , "Select filter : Test Clients"
                 , "Click the selected filter"
-                , "Setting  the user's email in the email field"
+                , "Set the user's email in the email field"
                 , "Click the search button"
                 , "Click user email"
                 , "Open mt4 actions"
@@ -900,16 +942,16 @@ class ExcelWriter:
                 , "Returns a confirmation message: New User Account was created successfully"]
 
         if self.get_test_pretty_name_new(test) == "CheckPasswordTestCRM: test check client password crm":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name"
-                , "Setting the user password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "'What's new' popup isn't displayed"
                 , "Click the  drop down filter"
-                , "The field found is   Test Clients"
+                , "Select filter: Test Clients"
                 , "Click the selected filter"
-                , "Setting  the user's email in the email field"
+                , "Set the user's email in the email field"
                 , "Click the search button"
                 , "Click user email"
                 , "Perform scroll up"
@@ -921,11 +963,11 @@ class ExcelWriter:
                 , "Click 'ok' button"]
 
         if self.get_test_pretty_name_new(test) == "CheckPasswordTestCRM: test check mt4 password crm":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field"
-                , "Setting the user name in the password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "'What's new' popup isn't displayed"
                 , "Click the  drop down filter"
                 , "The field found is   Test Clients"
@@ -944,11 +986,11 @@ class ExcelWriter:
                 , "Click 'ok' button"]
 
         if self.get_test_pretty_name_new(test) == "ChangePasswordTestCRM: test change client password from crm":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field"
-                , "Setting the user name in the password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "'What's new' popup isn't displayed"
                 , "Click the  drop down filter"
                 , "The field found is   Test Clients"
@@ -965,11 +1007,11 @@ class ExcelWriter:
                 , "Click 'ok' button"]
 
         if self.get_test_pretty_name_new(test) == "ChangePasswordTestCRM: test change mt4 password from crm":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field"
-                , "Setting the user name in the password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "'What's new' popup isn't displayed"
                 , "Click the  drop down filter "
                 , "The field found is   Test Clients"
@@ -998,11 +1040,11 @@ class ExcelWriter:
                 , "Click 'ok' butto"]
 
         if self.get_test_pretty_name_new(test) == "DepositTestCRM: test make deposit crm":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field"
-                , "Setting the user name in the password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "Whats new popup isnt displayed"
                 , "The client module was opened"
                 , "Click the  drop down filter"
@@ -1037,11 +1079,11 @@ class ExcelWriter:
                 , "Returns the amount you placed on the deposit page"]
 
         if self.get_test_pretty_name_new(test) == "DepositTestCRM: test make deposit for client crm":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field"
-                , "Setting the user name in the password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "Whats new popup isnt displayed "
                 , "Click the  drop down filter "
                 , "The field found is   Test Clients"
@@ -1060,11 +1102,11 @@ class ExcelWriter:
                 , "Click OK in Client Deposit pop"]
 
         if self.get_test_pretty_name_new(test) == "CreditInTestCRM: test make credit in from crm":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field"
-                , "Setting the user name in the password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "Whats new popup isnt displayed "
                 , "The client module was opened"
                 , "Click the  drop down filter "
@@ -1100,11 +1142,11 @@ class ExcelWriter:
                 , "Returns the amount you placed on the credit_in page"]
 
         if self.get_test_pretty_name_new(test) == "TradingAccountCrmTest: test crm edit trading account":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field"
-                , "Setting the user name in the password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "Whats new popup isnt displayed"
                 , "Click the  drop down filter "
                 , "The field found is   Test Clients"
@@ -1130,13 +1172,13 @@ class ExcelWriter:
                 , "Returns a confirmation message  User successfully update"]
 
         if self.get_test_pretty_name_new(test) == "AffiliateModule: test create affiliate":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field "
-                , "Setting the user name in the password"
-                , "lick the login button"
-                , "OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "What's new' popup isn't displayed"
-                , "Affiliates page was opened"
+                , "Open Affiliates module"
                 , "Open 'Add new affiliate' popup"
                 , "Enter partner name"
                 , "Enter allowed IP"
@@ -1147,7 +1189,7 @@ class ExcelWriter:
                 , "Text from 'Update' popup has been got  Success"
                 , "Search partner name and go to affiliate details page"
                 , "Go to affiliate details page"
-                , "Affiliate details page"
+                , "Open Affiliates module"
                 , "Open first tabs page"
                 , "The Affiliates page was opened"
                 , "Search partner name and go to affiliate details page"
@@ -1157,96 +1199,96 @@ class ExcelWriter:
                 , "Data not found"]
 
         if self.get_test_pretty_name_new(test) == "CampaignsModuleTest: test create campaign":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field "
-                , "Setting the user name in the password"
-                , "lick the login button"
-                , "OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "What's new' popup isn't displayed"
-                , "The campaigns module was opened"
-                , "The Add campaign module was opened"
-                , "The campaign name was set"
-                , "The assigned to was set"
-                , "The start date was set"
-                , "The end date was set"
-                , "The deal was set"
-                , "The rate was set"
-                , "The active check box was set"
-                , "The save button was clicked"
-                , "The campaign_name was entered to search field"
-                , "Campaign name verified"]
+                , "Open campaigns module"
+                , "Open 'Add campaign' module"
+                , "Set campaign name"
+                , "Set assigned to"
+                , "Set start date"
+                , "Set end date"
+                , "Set deal"
+                , "Set rate"
+                , "Set active check box"
+                , "Click save button"
+                , "Search by campaign_name"
+                , "Verified campaign name"]
 
         if self.get_test_pretty_name_new(test) == "CampaignsModuleTest: test edit campaign":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field "
-                , "Setting the user name in the password"
-                , "lick the login button"
-                , "OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "What's new' popup isn't displayed"
-                , "The campaigns module was opened"
-                , "The campaign_name was found"
-                , "The campaign view was opened"
-                , "The new start date was set"
-                , "The new end date was set"
-                , "The save button was clicked"
-                , "The campaign view was opened"
+                , "Open campaigns module"
+                , "Select campaign name"
+                , "Open campaign view"
+                , "Set new start date"
+                , "Set new end date"
+                , "Click save button"
+                , "Open campaign view"
                 , "Current start date is updated"
                 , "Current end date is updated"]
 
         if self.get_test_pretty_name_new(test) == "CampaignsModuleTest: test delete campaign":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name in the field "
-                , "Setting the user name in the password"
-                , "lick the login button"
-                , "OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "What's new' popup isn't displayed"
-                , "The campaigns module was opened"
-                , "The campaign_name was found"
-                , "The campaign was deleted"
-                , "The deleting confirmation button is clicked"
-                , "The deleted campaign was searched"
+                , "Open campaigns module"
+                , "Select campaign name"
+                , "Delete campaign"
+                , "Click Confirmation button"
+                , "Search deleted campaign"
                 , "Deleted Campaign not found"]
 
         if self.get_test_pretty_name_new(test) == "TradingAccountCrmTest: test crm open live mt5":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name"
-                , "Setting the user password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "'What's new' popup isn't displayed"
                 , "Click the  drop down filter"
                 , "The field found is : Test Clients"
                 , "Click the selected filter"
-                , "Setting  the user's email in the email field"
+                , "Set the user's email in the email field"
                 , "Click the search button"
                 , "Click user email"
                 , "Open mt4 actions"
-                , "Trading account server was selected: live"
-                , "Trading account currency was selected"
-                , "Trading account group was selected"
-                , "Trading account leverage was selected"
-                , "The Save button was clicked"
+                , "Select trading account server: live"
+                , "Select trading account currency"
+                , "Select trading account group"
+                , "Select trading account leverage"
+                , "Click 'Save'"
                 , "New MT5 Live Account was created successfully"]
 
         if self.get_test_pretty_name_new(test) == "TradingAccountCrmTest: test crm open demo mt5":
-            step_suit = ["Open first tabs page"
-                , "Setting the user name"
-                , "Setting the user password"
-                , "Click the login button"
-                , "No OTP authentication is required"
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
                 , "'What's new' popup isn't displayed"
-                , "Click the  drop down filter"
-                , "The field found is : Test Clients"
+                , "Click the drop down filter"
+                , "Set name filter: Test Clients"
                 , "Click the selected filter"
-                , "Setting  the user's email in the email field"
+                , "Set the user's email in the email field"
                 , "Click the search button"
                 , "Click user email"
                 , "Open mt4 actions"
-                , "Trading account server was selected: live"
-                , "Trading account currency was selected"
-                , "Trading account group was selected"
-                , "Trading account leverage was selected"
-                , "The Save button was clicked"
+                , "Select trading account server: live"
+                , "Select trading account currency"
+                , "Select trading account group"
+                , "Select trading account leverage"
+                , "Click 'Save'"
                 , "New MT5 Demo Account was created successfully"]
 
         return step_suit
