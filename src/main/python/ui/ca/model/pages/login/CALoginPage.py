@@ -201,6 +201,12 @@ class CALoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click Next")
         return CALoginPage(self.driver)
 
+    def click_next_open_live_account(self):
+        submit_button = super().wait_load_element("//*[@id='Next']")
+        submit_button.click()
+        Logging().reportDebugStep(self, "Click Next")
+        return CALoginPage(self.driver)
+
     def verify(self):
         sleep(10)
         elems = self.driver.find_elements_by_xpath("//a[@href]")

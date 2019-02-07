@@ -8,10 +8,16 @@ from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsInformati
     TradingAccountsInformationPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-
+from src.test.python.ui.automation.utils.preconditions.create_accounts_ca.Create_Accounts_Precondition import Create_Accounts_Precondition
 
 @pytest.mark.run(order=5)
 class AddNewLiveAccountTestCA(BaseTest):
+
+    def test_add_new_live_account_ca(self):
+        Create_Accounts_Precondition(self.driver, self.config).create_live_account()
+
+    def test_add_new_demo_account_ca(self):
+        Create_Accounts_Precondition(self.driver,self.config).create_demo_account()
 
     def test_check_add_live_account_eur_currency(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \

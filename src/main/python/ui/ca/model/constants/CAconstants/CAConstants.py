@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class CAConstants(object):
+    LEVERAGE = "1:100"
     PASSWORD = "as1as2as1as2"
     DAY_BIRTH = "10"
     MONTH_BIRTH = "12"
