@@ -8,9 +8,12 @@ import pyotp
 from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
-class CACreateAccount(CRMBasePage):
+class CAPage(CRMBasePage):
 
-    def create_account(self):
-        self.wait_load_element_present("//div[@class='button-pandats']")
-        drop_down_panda = self.driver.find_element(By.XPATH, "//div[@class='button-pandats']")
-        drop_down_panda.click()
+    def open_manage_accounts(self):
+        manage_accounts_button = super().wait_element_to_be_clickable \
+                    ("//li[@class='ng-star-inserted'][contains(text(), 'Manage Accounts')]")
+        sleep(1)
+        manage_accounts_button.click()
+        Logging().reportDebugStep(self, "Click Manage Accounts button")
+        return CAPage(self.driver)

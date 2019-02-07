@@ -12,6 +12,7 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
 
 
 
@@ -35,8 +36,10 @@ class TradingAccountPrecondition(object):
                                                  LeadsModuleConstants.EMAIL]) \
                                 .enter_password(CAConstants.PASSWORD) \
                                 .click_login() \
-                                .verify()
-        BrandHomePage().open_drop_down_menu()
+                                .verify() \
+                                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                   LeadsModuleConstants.FIRST_NAME])
+        CAPage(self.driver).open_manage_accounts()
             # BrandHomePage().open_first_tab_page(self.config.get_value('url_ca')).login() \
         #     .set_fields(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
         #                 Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
