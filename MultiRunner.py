@@ -143,30 +143,64 @@ if __name__ == "__main__":
 
         all_file_frames = []
         for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/*.xlsx'):
-            tab = pd.read_excel(filename)
-            all_file_frames.append(tab)
-            all_frame = pd.concat(all_file_frames, axis=1)
-            writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/final_file.xlsx')
-            all_frame.to_excel(writer, sheet_name='Sheet1')
-            workbook = writer.book
-            worksheet = writer.sheets['Sheet1']
-            format1 = workbook.add_format({'bg_color': '#FFC7CE',
-                                           'font_color': '#9C0006'})
+            if "test_results" in filename:
+                tab = pd.read_excel(filename)
+                all_file_frames.append(tab)
+                all_frame = pd.concat(all_file_frames, axis=1)
+                writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/final_file.xlsx')
+                all_frame.to_excel(writer, sheet_name='Sheet1')
+                workbook = writer.book
+                worksheet = writer.sheets['Sheet1']
+                format1 = workbook.add_format({'bg_color': '#FFC7CE',
+                                               'font_color': '#9C0006'})
 
-            format2 = workbook.add_format({'bg_color': '#C4D79B',
-                                           'font_color': '#000000'})
-            worksheet.conditional_format(0, 0, 200, 200, {'type': 'text',
-                                                         'criteria': 'beginsWith',
-                                                         'value': 'PASS',
-                                                         'format': format2})
+                format2 = workbook.add_format({'bg_color': '#C4D79B',
+                                               'font_color': '#000000'})
+                worksheet.conditional_format(0, 0, 200, 200, {'type': 'text',
+                                                             'criteria': 'beginsWith',
+                                                             'value': 'PASS',
+                                                             'format': format2})
 
-            worksheet.conditional_format(0, 0, 200, 200, {'type': 'text',
-                                                         'criteria': 'beginsWith',
-                                                         'value': 'ERROR',
-                                                         'format': format1})
-            writer.save()
+                worksheet.conditional_format(0, 0, 200, 200, {'type': 'text',
+                                                             'criteria': 'beginsWith',
+                                                             'value': 'ERROR',
+                                                             'format': format1})
+                worksheet.freeze_panes(1, 1)
+                writer.save()
+
+        short_excel = "C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/short_final_file.xlsx"
+        # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
+
+        short_file_frames = []
+        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/*.xlsx'):
+            if "short_results" in filename:
+                tab = pd.read_excel(filename)
+                short_file_frames.append(tab)
+                short_frame = pd.concat(short_file_frames, axis=1)
+                writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/short_final_file.xlsx')
+                short_frame.to_excel(writer, sheet_name='Sheet1')
+                workbook = writer.book
+                worksheet = writer.sheets['Sheet1']
+                worksheet.freeze_panes(1, 1)
+                format1 = workbook.add_format({'bg_color': '#FFC7CE',
+                                               'font_color': '#9C0006'})
+
+                format2 = workbook.add_format({'bg_color': '#C4D79B',
+                                               'font_color': '#000000'})
+                worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'PASS',
+                                                              'format': format2})
+
+                worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'ERROR',
+                                                              'format': format1})
+
+                writer.save()
 
         Send_ALL_XLS(all_excel)
+        Send_ALL_XLS(short_excel)
 
 
 
