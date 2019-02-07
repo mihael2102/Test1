@@ -6,6 +6,49 @@ class ExcelWriter:
 
     def write_test_results(self, brands, tests, results):
         # Create a workbook and add a worksheet.
+        # os.mkdir("C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_result")
+        filepath = "result/short_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx"
+        workbook = xlsxwriter.Workbook(filepath)
+        worksheet = workbook.add_worksheet()
+
+        # create styles for the PASS/FAIL results
+        cell_format_pass = workbook.add_format({'align': 'center', 'bg_color': '#C4D79B'})
+        cell_format_fail = workbook.add_format({'align': 'center', 'bg_color': 'red'})
+
+        # set column widths
+        worksheet.write(0, 0, "Brand \ Test")
+        worksheet.set_column(0, 0, 60)
+        worksheet.set_column(1, len(brands), 20)
+        worksheet.freeze_panes(1, 1)
+        # Write the test names
+        row = 1
+        for test in tests:
+            worksheet.write(row, 0, self.get_test_pretty_name_new(test))
+            row += 1
+
+        # write the test results per brand
+        col = 1
+        for brand in brands:
+            row = 0
+            worksheet.write(row, col, brand)
+            for test in tests:
+                row += 1
+                test_result = results[brand][self.get_test_pretty_name(test)] \
+                    if self.get_test_pretty_name(test) in results[brand] else ""
+                if test_result == 'PASS':
+                    worksheet.write(row, col, test_result, cell_format_pass)
+                else:
+                    test_result_error = "ERROR"
+                    worksheet.write(row, col, test_result_error, cell_format_fail)
+                    worksheet.write_comment(row, col, test_result,
+                                            {'width': 250, 'height': 400})
+            col += 1
+
+        workbook.close()
+        Send_Email_XLS(filepath)
+
+    def write_test_results_all_report(self, brands, tests, results):
+        # Create a workbook and add a worksheet.
         filepath = "result/test_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx"
         workbook = xlsxwriter.Workbook(filepath)
         worksheet = workbook.add_worksheet()
