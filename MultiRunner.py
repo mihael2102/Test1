@@ -42,7 +42,7 @@ class MultiRunner:
         # write the results to an Excel file
         result_writer = ExcelWriter()
         result_writer.write_test_results(brand_pretty_names, test_list, overall_results)
-
+        result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
 
 
 
@@ -119,10 +119,10 @@ if __name__ == "__main__":
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
         #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
         #               path_to_brands_suite_9, path_to_brands_suite_10]
-        input_list = [path_to_brands_suite_1]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3]
                       # Init multiprocess
 
-        pool = multiprocessing.Pool(processes=1)
+        pool = multiprocessing.Pool(processes=3)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -141,64 +141,96 @@ if __name__ == "__main__":
 
         all_file_frames = []
         for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/API Old Forex/result/*.xlsx'):
-            tab = pd.read_excel(filename)
-            all_file_frames.append(tab)
-            all_frame = pd.concat(all_file_frames, axis=1)
-            writer = EX('C:/Program Files (x86)/Jenkins/workspace/API Old Forex/result/final_file.xlsx')
-            all_frame.to_excel(writer, sheet_name='Sheet1')
-            workbook = writer.book
-            worksheet = writer.sheets['Sheet1']
-            format1 = workbook.add_format({'bg_color': '#FFC7CE',
-                                           'font_color': '#9C0006'})
+            if "test_results" in filename:
+                tab = pd.read_excel(filename)
+                all_file_frames.append(tab)
+                all_frame = pd.concat(all_file_frames, axis=1)
+                writer = EX('C:/Program Files (x86)/Jenkins/workspace/API Old Forex/result/final_file.xlsx')
+                all_frame.to_excel(writer, sheet_name='Sheet1')
+                workbook = writer.book
+                worksheet = writer.sheets['Sheet1']
+                format1 = workbook.add_format({'bg_color': '#FFC7CE',
+                                               'font_color': '#9C0006'})
 
-            format2 = workbook.add_format({'bg_color': '#C4D79B',
-                                           'font_color': '#000000'})
-            worksheet.conditional_format(0, 0, 896, 200, {'type': 'text',
-                                                          'criteria': 'beginsWith',
-                                                          'value': 'PASS',
-                                                          'format': format2})
+                format2 = workbook.add_format({'bg_color': '#C4D79B',
+                                               'font_color': '#000000'})
+                worksheet.conditional_format(0, 0, 896, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'PASS',
+                                                              'format': format2})
 
-            worksheet.conditional_format(0, 0, 896, 200, {'type': 'text',
-                                                          'criteria': 'beginsWith',
-                                                          'value': 'ERROR',
-                                                          'format': format1})
-            worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
-            for i in range(3, 25):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+                worksheet.conditional_format(0, 0, 896, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'ERROR',
+                                                              'format': format1})
+                worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
+                for i in range(3, 25):
+                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-            worksheet.set_row(26, None, None, {'level': 1, 'hidden': True})
-            for i in range(27, 73):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+                worksheet.set_row(26, None, None, {'level': 1, 'hidden': True})
+                for i in range(27, 73):
+                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-            worksheet.set_row(74, None, None, {'level': 1, 'hidden': True})
-            for i in range(75, 101):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+                worksheet.set_row(74, None, None, {'level': 1, 'hidden': True})
+                for i in range(75, 101):
+                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-            worksheet.set_row(102, None, None, {'level': 1, 'hidden': True})
-            for i in range(103, 130):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+                worksheet.set_row(102, None, None, {'level': 1, 'hidden': True})
+                for i in range(103, 130):
+                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-            worksheet.set_row(131, None, None, {'level': 1, 'hidden': True})
-            for i in range(132, 173):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+                worksheet.set_row(131, None, None, {'level': 1, 'hidden': True})
+                for i in range(132, 173):
+                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-            worksheet.set_row(174, None, None, {'level': 1, 'hidden': True})
-            for i in range(175, 218):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+                worksheet.set_row(174, None, None, {'level': 1, 'hidden': True})
+                for i in range(175, 218):
+                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-            worksheet.set_row(219, None, None, {'level': 1, 'hidden': True})
-            for i in range(220, 247):
-                worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+                worksheet.set_row(219, None, None, {'level': 1, 'hidden': True})
+                for i in range(220, 247):
+                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-            # worksheet.set_row(248, None, None, {'level': 1, 'hidden': True})
-            # for i in range(249, 277):
-            #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+                # worksheet.set_row(248, None, None, {'level': 1, 'hidden': True})
+                # for i in range(249, 277):
+                #     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
-            writer.save()
+                writer.save()
+
+        # Join all results in one excel
+        short_excel = "C:/Program Files (x86)/Jenkins/workspace/API Old Forex/result/short_final_file.xlsx"
+        # writer = EX('C:/Program Files (x86)/Jenkins/workspace/API Old Forex/result/final_file.xlsx')
+
+        short_file_frames = []
+        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/API Old Forex/result/*.xlsx'):
+            if "short_results" in filename:
+                tab = pd.read_excel(filename)
+                short_file_frames.append(tab)
+                short_frame = pd.concat(short_file_frames, axis=1)
+                writer = EX('C:/Program Files (x86)/Jenkins/workspace/API Old Forex/result/short_final_file.xlsx')
+                short_frame.to_excel(writer, sheet_name='Sheet1')
+                workbook = writer.book
+                worksheet = writer.sheets['Sheet1']
+                worksheet.freeze_panes(1, 1)
+                format1 = workbook.add_format({'bg_color': '#FFC7CE',
+                                               'font_color': '#9C0006'})
+
+                format2 = workbook.add_format({'bg_color': '#C4D79B',
+                                               'font_color': '#000000'})
+                worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'PASS',
+                                                              'format': format2})
+
+                worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'ERROR',
+                                                              'format': format1})
+
+                writer.save()
 
         Send_ALL_XLS(all_excel)
-
-        # os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
+        Send_ALL_XLS(short_excel)
 
     else:
         print("TURN ON VPN")

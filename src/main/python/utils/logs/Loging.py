@@ -15,7 +15,7 @@ class Logging(object):
         self.ch.setLevel(logging.DEBUG)
 
         # create formatter
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        formatter = logging.Formatter('%(message)s')
 
         # add formatter to ch
         self.ch.setFormatter(formatter)
@@ -23,5 +23,5 @@ class Logging(object):
         # add ch to logger
         self.logger.addHandler(self.ch)
         with allure.step(message):
-            self.logger.debug(class_name.__class__.__name__ + " - " + message)
+           self.logger.debug(message)
         self.logger.removeHandler(self.ch)
