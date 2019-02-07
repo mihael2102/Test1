@@ -1,8 +1,8 @@
 brands:
-#- name: goldenmarkets
-#  config_file: goldenmarkets.yml
-#- name: b-traderfx
-#  config_file: b-traderfx.yml
+- name: goldenmarkets
+  config_file: goldenmarkets.yml
+- name: b-traderfx
+  config_file: b-traderfx.yml
 #- name: mpcrypto
 #  config_file: mpcrypto.yml
 #- name: safemarkets
@@ -13,8 +13,8 @@ brands:
 #  config_file: jonesmutual.yml
 #- name: forexbestmarket
 #  config_file: forexbestmarket.yml
-- name: newrichmarkets
-  config_file: newrichmarkets.yml
+#- name: newrichmarkets
+#  config_file: newrichmarkets.yml
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
 #- name: goldenmarkets
