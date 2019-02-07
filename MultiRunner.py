@@ -163,6 +163,7 @@ if __name__ == "__main__":
                                                               'criteria': 'beginsWith',
                                                               'value': 'ERROR',
                                                               'format': format1})
+                worksheet.freeze_panes(1, 1)
                 worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
                 for i in range(3, 25):
                     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
