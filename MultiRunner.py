@@ -144,52 +144,14 @@ if __name__ == "__main__":
         pool.close()
         pool.join()
 
-        path = "D:\\automation-newforexqa\\result"
-        file_name = "merge"
-        merged_file_name = file_name + ".xlsx"
+        df1 = pd.read_excel('C:/Users/anna.poimenova/Desktop/API/short_results_20190206_165632.xlsx', 'Sheet1')
+        df2 = pd.read_excel('C:/Users/anna.poimenova/Desktop/API/short_results_20190206_165656.xlsx', 'Sheet1')
 
-        try:
-            # INITIALIZE EXCEL COM APP
-            xlapp = win32.gencache.EnsureDispatch('Excel.Application')
+        writer = pd.ExcelWriter('C:/Users/anna.poimenova/Desktop/API/CM.xlsx', engine='xlsxwriter')
+        df1.to_excel(writer, 'Sheet1')
+        df2.to_excel(writer, 'Sheet2')
 
-            # ASSIGN CONSTANTS
-            xlPasteValues = -4163; lPasteFormats = -4122; xlWorkbookDefault = 51
-
-            # CREATE NEW WOKRBOOK (PROMPTS IF EXISTS)
-            new_wb = xlapp.Workbooks.Add()
-            new_wb.SaveAs(Filename='MasterMerge.xlsx', FileFormat=xlWorkbookDefault)
-
-            # LOOP THROUGH WORKBOOKS
-            xl_files = [f for f in os.listdir(path) if f.endswith('.xls') or f.endswith('.xlsx')]
-
-            for wb in xl_files:
-                xlwb = xlapp.Workbooks.Open(os.path.join(path, wb))
-
-                # LOOP THROUGH EVERY WORKSHEET, COPYING TO NEW WORKSHEET
-                for xlsh in xlwb.Worksheets:
-                    new_sh = new_wb.Worksheets.Add()
-                    new_sh.Name = xlsh.Name
-                    new_wb.Save()
-                    new_sh.Move(After=new_wb.Worksheets(new_wb.Worksheets.Count))
-
-                    xlsh.Cells.Copy(new_sh.Cells)
-                    new_sh = None
-
-                xlwb.Close(False)
-                xlwb = None
-
-            # REMOVNIG DEFAULT SHEET AND LAUNCHING TO SCREEN
-            new_wb.Worksheets('Sheet1').Delete()
-            new_wb.Save()
-            xlapp.Visible = True
-
-        except Exception as e:
-            print(e)
-
-        finally:# RELEASE RESOURCES
-            xlsh = None; new_sh = None; xlwb = None; new_wb = None; xlapp = None
-
-
+        writer.save()
 
     else:
         print("TURN ON VPN")
