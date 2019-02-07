@@ -11,7 +11,7 @@ from src.test.python.ui.automation.BaseTest import BaseTest
 class BrandBasePage(object):
 
     def __init__(self):
-        self.driver = BaseTest().get_driver
+        self.driver = BaseTest().setUp()
 
     def open_second_tab_page(self, url):
         self.driver.execute_script("window.open()")

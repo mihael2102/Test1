@@ -10,6 +10,9 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
+from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+
 
 
 class TradingAccountPrecondition(object):
@@ -21,9 +24,19 @@ class TradingAccountPrecondition(object):
         self.driver = driver
         self.config = config
 
+    def load_lead_from_config(self, lead_key):
+        lead = self.config.get_value(lead_key)
+        return lead
+
     def add_live_account(self):
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
-                                .login()
+                                .login() \
+                                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                 LeadsModuleConstants.EMAIL]) \
+                                .enter_password(CAConstants.PASSWORD) \
+                                .click_login() \
+                                .verify()
+        BrandHomePage().open_drop_down_menu()
             # BrandHomePage().open_first_tab_page(self.config.get_value('url_ca')).login() \
         #     .set_fields(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
         #                 Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
