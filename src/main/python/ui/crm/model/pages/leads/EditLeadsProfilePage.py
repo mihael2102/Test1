@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 class EditLeadsProfilePage(CRMBasePage):
@@ -207,7 +208,10 @@ class EditLeadsProfilePage(CRMBasePage):
 
     def set_assigned_to(self, assigned_to):
         assigned_to_list = Select(self.driver.find_element(By.XPATH, "//select[@name='assigned_user_id']"))
-        assigned_to_list.select_by_visible_text(assigned_to)
+        if global_var.current_brand_name == "capitalmarketsbanc":
+            assigned_to_list.select_by_visible_text("testpanda")
+        else:
+            assigned_to_list.select_by_visible_text(assigned_to)
         Logging().reportDebugStep(self, "The assign to was set: " + assigned_to)
         return EditLeadsProfilePage()
 

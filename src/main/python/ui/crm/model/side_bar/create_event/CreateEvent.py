@@ -4,6 +4,7 @@ from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 class CreateEvent(CRMBasePage):
@@ -61,7 +62,11 @@ class CreateEvent(CRMBasePage):
     def set_assign_to(self, assign_to):
         assign_to_element = self.driver.find_element(By.XPATH, "//form[@name='new_interaction']//select[@id='tks_assigned_user_id']")
         select = Select(assign_to_element)
-        select.select_by_visible_text(assign_to)
+        # select.select_by_visible_text(assign_to)
+        if global_var.current_brand_name == "capitalmarketsbanc":
+            select.select_by_visible_text("testpanda")
+        else:
+            select.select_by_visible_text(assign_to)
         Logging().reportDebugStep(self, "The  assign to is set " + assign_to)
         return CreateEvent(self.driver)
 

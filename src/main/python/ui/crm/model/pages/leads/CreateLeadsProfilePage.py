@@ -5,6 +5,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.utils.logs.Loging import Logging
 from selenium.common.exceptions import NoSuchElementException
 from time import sleep
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 class CreateLeadsProfilePage(CRMBasePage):
@@ -151,7 +152,10 @@ class CreateLeadsProfilePage(CRMBasePage):
 
     def set_assigned_to(self, assigned_to):
         assigned_to_list = Select(self.driver.find_element(By.XPATH, "//select[@name='assigned_user_id']"))
-        assigned_to_list.select_by_visible_text(assigned_to)
+        if global_var.current_brand_name == "capitalmarketsbanc":
+            assigned_to_list.select_by_visible_text("testpanda")
+        else:
+            assigned_to_list.select_by_visible_text(assigned_to)
         Logging().reportDebugStep(self, "The lead status was set: " + assigned_to)
         return CreateLeadsProfilePage(self.driver)
 
