@@ -44,37 +44,43 @@ class CAPage(CRMBasePage):
     def open_demo_account(self):
         confirm = super().wait_load_element("//*[@id='btnNewPracticeAccount']")
         confirm.click()
+        sleep(7)
         Logging().reportDebugStep(self, "Click add new demo account")
         return CAPage(self.driver)
 
     def select_currency(self):
-        select = super().wait_load_element("//*[@id='NewDemoAccountCurrency']")
-        select.click()
-        usd_currency = super().wait_load_element("//*[@id='NewDemoAccountCurrency']/option[1]")
-        usd_currency.click()
+        sleep(4)
+        select = self.driver.find_element(By.XPATH, "//select[@name = 'dnn$ctr472$View$NewDemoAccountCurrency']")
+        self.driver.execute_script("arguments[0].click();", select)
+        usd_currency = self.driver.find_element(By.XPATH, "//select[@name = 'dnn$ctr472$View$NewDemoAccountCurrency']/option[1]")
+        self.driver.execute_script("arguments[0].click();", usd_currency)
         Logging().reportDebugStep(self, "Select USD currency")
         return CAPage(self.driver)
 
     def select_leverage(self):
-        select = Select(self.driver.find_element(By.XPATH, "//*[@id='SelLeverageP']"))
-        select.select_by_visible_text("1:100")
+        sleep(4)
+        select = self.driver.find_element(By.XPATH, "//select[@name = 'dnn$ctr472$View$SelLeverageP']")
+        self.driver.execute_script("arguments[0].click();", select)
+        select_leverage = self.driver.find_element(By.XPATH, "//select[@name = 'dnn$ctr472$View$SelLeverageP']/option[1]")
+        self.driver.execute_script("arguments[0].click();", select_leverage)
         Logging().reportDebugStep(self, "Select USD currency")
         return CAPage(self.driver)
 
     def select_deposit(self):
-        input = super().wait_load_element("//*[@id='TextInitialDepositP']")
+        sleep(3)
+        input = self.driver.find_element(By.XPATH, "//input[@name = 'InitialDepositP']")
         input.send_keys("1000")
         Logging().reportDebugStep(self, "Select Deposit")
         return CAPage(self.driver)
 
     def click_submit(self):
-        click_submit = super().wait_load_element("//*[@id='SubmitFinal']")
+        click_submit = self.driver.find_element(By.XPATH, "//button[@class= 'blue_btn popup_mod_btn']")
         click_submit.click()
         Logging().reportDebugStep(self, "Click Submit")
         return CAPage(self.driver)
 
     def finish_button(self):
-        click_submit = super().wait_load_element("//*[@id='btnFinish']")
+        click_submit = self.driver.find_element(By.XPATH, "//input[@class= 'green_btn popup_mod_btn centered']")
         click_submit.click()
         Logging().reportDebugStep(self, "Click Finish")
         return CAPage(self.driver)
