@@ -1,8 +1,9 @@
 brands:
-
-- name: forexbestmarket
-  config_file: forexbestmarket.yml
-- name: marketsplus
-  config_file: marketsplus.yml
-- name: optionstars
-  config_file: optionstars.yml
+- name: kontofx
+  config_file: kontofx.yml
+#- name: forexbestmarket
+#  config_file: forexbestmarket.yml
+#- name: marketsplus
+#  config_file: marketsplus.yml
+#- name: optionstars
+#  config_file: optionstars.yml
