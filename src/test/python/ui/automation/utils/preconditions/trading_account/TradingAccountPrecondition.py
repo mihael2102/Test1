@@ -39,7 +39,15 @@ class TradingAccountPrecondition(object):
                                 .verify() \
                                 .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                    LeadsModuleConstants.FIRST_NAME])
-        CAPage(self.driver).open_manage_accounts()
+        CAPage(self.driver).open_manage_accounts() \
+                           .open_new_account_btn() \
+                           .select_account_type(CAConstants.ACCOUNT_LIVE) \
+                           .select_currency(CAConstants.CURRENCY)
+
+
+
+
+
             # BrandHomePage().open_first_tab_page(self.config.get_value('url_ca')).login() \
         #     .set_fields(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
         #                 Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \

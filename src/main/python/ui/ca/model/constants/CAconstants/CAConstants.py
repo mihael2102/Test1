@@ -16,3 +16,4 @@ class CAConstants(object):
     CITIZENSHIP = "Albanian"
     CITIZENSHIP2 = "Andorran"
     ACCOUNT_TYPE = "Pro"
+    ACCOUNT_LIVE = "Live"
