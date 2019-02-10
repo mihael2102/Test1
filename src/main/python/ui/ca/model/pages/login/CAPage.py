@@ -27,8 +27,8 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def select_account_type(self, account_type):
-        ac_type = self.driver.find_element_by_xpath("//span[@class='frx-currentvalue-pandats ng-star-inserted'] \
-                                                    [contains(text(), '%s']" % account_type)
+        ac_type = self.driver.find_element_by_xpath("//span[@class='itemLabel'][contains(text(), '%s']" % account_type)
+        print(ac_type)
         self.driver.execute_script("arguments[0].click();", ac_type)
         Logging().reportDebugStep(self, "Select currency : " + account_type)
         return CAPage(self.driver)
