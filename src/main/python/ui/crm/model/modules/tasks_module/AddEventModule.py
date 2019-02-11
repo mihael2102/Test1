@@ -5,7 +5,7 @@ from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.side_bar.create_event.CreateEvent import CreateEvent
 from src.main.python.utils.logs.Loging import Logging
-
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class AddEventModule(CRMBasePage):
 
@@ -64,7 +64,11 @@ class AddEventModule(CRMBasePage):
     def set_assign_to(self, assign_to):
         assign_to_element = self.driver.find_element(By.XPATH, "//select[@id='smownerid']")
         select = Select(assign_to_element)
-        select.select_by_visible_text(assign_to)
+        if global_var.current_brand_name == "capitalmarketsbanc":
+            select.select_by_visible_text("pandaqatest pandaqa")
+        else:
+            select.select_by_visible_text(assign_to)
+        # select.select_by_visible_text(assign_to)
         Logging().reportDebugStep(self, "The  assign to was set " + assign_to)
         return AddEventModule()
 
