@@ -65,7 +65,7 @@ class MultiRunner:
             # content = runner.run()
             test_name = test_data['class'] + '.' + test_data['method']
             content_fail_err = content.decode("utf-8")
-            temp = content_fail_err.find('Open first tabs page')
+            temp = content_fail_err.find('Sign Out\nOpen first tabs page')
             index = temp
             content_fail_err = content_fail_err[index:]
             content_fail_err = content_fail_err[1:]
@@ -131,10 +131,11 @@ if __name__ == "__main__":
         #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
         #               path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
         #               path_to_brands_suite_13]
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-                      path_to_brands_suite_5, path_to_brands_suite_6]
+        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+        #               path_to_brands_suite_5, path_to_brands_suite_6]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=6)
+        pool = multiprocessing.Pool(processes=3)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
