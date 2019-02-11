@@ -73,7 +73,7 @@ class MultiRunner:
             content_fail_err = content_fail_err.replace(']]>	</system-err','')
             content_fail_err = content_fail_err.replace('</testsuite>', '')
             content_fail_err = content_fail_err.replace('>', '')
-            # content_fail_err = content_fail_err.replace(' ', '')
+            content_fail_err = content_fail_err.replace(' ', '')
             #test_passed = False
             if not result or result.errors:
                 results[test_name] = "ERROR" + content_fail_err
