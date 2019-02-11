@@ -17,3 +17,4 @@ class CAConstants(object):
     CITIZENSHIP2 = "Andorran"
     ACCOUNT_TYPE = "Pro"
     ACCOUNT_LIVE = "Live"
+    LEVERAGE_LEVEL = "1:100"

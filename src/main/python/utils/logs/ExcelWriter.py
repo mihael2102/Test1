@@ -336,6 +336,22 @@ class ExcelWriter:
                         ,"Client country is approved"
                         ,"Client currency is approved"]
 
+        if self.get_test_pretty_name_new(test) == "AddNewLiveAccountTestCA: test add live account ca":
+            step_suit = ["Open first tabs page"
+                        ,"Click Login"
+                        ,"Enter Email"
+                        ,"Enter Password"
+                        ,"Click Login in pop up"
+                        ,"You are on the Webtrader page"
+                        ,"Click Hi, User"
+                        ,"Click Manage Accounts button"
+                        ,"Click Open New Account button"
+                        ,"Select account type"
+                        ,"Select currency"
+                        ,"Select leverage level"
+                        ,"Click Create Account button"
+                        ,"Additional account was created successfully"]
+
         #
         # # CalendarView
         #

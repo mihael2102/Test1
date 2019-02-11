@@ -42,7 +42,10 @@ class TradingAccountPrecondition(object):
         CAPage(self.driver).open_manage_accounts() \
                            .open_new_account_btn() \
                            .select_account_type(CAConstants.ACCOUNT_LIVE) \
-                           .select_currency(CAConstants.CURRENCY)
+                           .select_currency(CAConstants.CURRENCY) \
+                           .select_leverage_level(CAConstants.LEVERAGE_LEVEL) \
+                           .click_create_account() \
+                           .additional_account_created()
 
 
 
@@ -59,7 +62,7 @@ class TradingAccountPrecondition(object):
         #     .select_account_currency(
         #     Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_USD)) \
         #     .create_account_button()
-        return TradingAccountPrecondition()
+        # return TradingAccountPrecondition()
 
     def add_demo_account_from_crm(self):
         crm_client_profile = CRMLoginPage(self.driver) \

@@ -128,13 +128,13 @@ if __name__ == "__main__":
         # Form input list where each parameter is filename of TestSuite file
 
 
-        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-        #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-        #               path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
-        #               path_to_brands_suite_13]
-        input_list = [path_to_brands_suite_1]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+                      path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
+                      path_to_brands_suite_13]
+        # input_list = [path_to_brands_suite_1]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=1)
+        pool = multiprocessing.Pool(processes=13)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -164,12 +164,12 @@ if __name__ == "__main__":
 
                 format2 = workbook.add_format({'bg_color': '#C4D79B',
                                                'font_color': '#000000'})
-                worksheet.conditional_format(0, 0, 54, 200, {'type': 'text',
+                worksheet.conditional_format(0, 0, 68, 200, {'type': 'text',
                                                               'criteria': 'beginsWith',
                                                               'value': 'PASS',
                                                               'format': format2})
 
-                worksheet.conditional_format(0, 0, 54, 200, {'type': 'text',
+                worksheet.conditional_format(0, 0, 68, 200, {'type': 'text',
                                                               'criteria': 'beginsWith',
                                                               'value': 'ERROR',
                                                               'format': format1})
@@ -180,6 +180,10 @@ if __name__ == "__main__":
 
                 worksheet.set_row(34, None, None, {'level': 1, 'hidden': True})
                 for i in range(35, 54):
+                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
+                worksheet.set_row(55, None, None, {'level': 1, 'hidden': True})
+                for i in range(56, 68):
                     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
 
