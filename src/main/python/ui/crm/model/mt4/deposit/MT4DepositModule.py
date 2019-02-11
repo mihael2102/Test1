@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
-
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class MT4DepositModule(CRMBasePage):
 
@@ -25,6 +25,8 @@ class MT4DepositModule(CRMBasePage):
         self.select_account(account_number)
         self.set_amount(amount)
         self.set_description(description_deposit)
+        if global_var.current_brand_name == "kontofx":
+            self.select_cleared_by()
         self.create_deposit()
         return ClientProfilePage(self.driver)
 
@@ -33,6 +35,16 @@ class MT4DepositModule(CRMBasePage):
          :parameter payment method the method of deposit  in the drop down
         :returns MT4 Deposit instance
     '''
+
+
+    def select_cleared_by(self):
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@name='cleared_by']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='cleared_by']"))
+        select.select_by_visible_text("BTC")
+        Logging().reportDebugStep(self, "The payment method of deposit module was selected: BTC")
+        return MT4DepositModule()
+
 
     def select_payment_method(self, payment_method):
         WebDriverWait(self.driver, 10).until(

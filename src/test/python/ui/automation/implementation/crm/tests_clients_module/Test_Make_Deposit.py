@@ -107,7 +107,8 @@ class DepositTestCRM(BaseTest):
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400)) \
                     .click_ok()
 
-            elif (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "optionstars") or (global_var.current_brand_name == "gxfx") or (global_var.current_brand_name == "b-traderfx"):
+            elif (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "optionstars") or (global_var.current_brand_name == "gxfx") or (global_var.current_brand_name == "b-traderfx") \
+                    or (global_var.current_brand_name == "kontofx"):
                 MT4CreateAccountModule(self.driver)\
                     .create_account(
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
@@ -248,7 +249,8 @@ class DepositTestCRM(BaseTest):
                         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400)) \
                         .click_ok()
 
-                elif (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "gxfx") or (global_var.current_brand_name == "b-traderfx"):
+                elif (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "gxfx") or (global_var.current_brand_name == "b-traderfx") \
+                        or (global_var.current_brand_name == "kontofx"):
                     MT4CreateAccountModule(self.driver) \
                         .create_account(
                         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
