@@ -1,10 +1,10 @@
 brands:
-- name: goldenmarkets
-  config_file: goldenmarkets.yml
-#- name: firstindex
-#  config_file: firstindex.yml
-#- name: coinstec
-#  config_file: coinstec.yml
-#- name: 24btcmarket
-#  config_file: 24btcmarket.yml
+#- name: goldenmarkets
+#  config_file: goldenmarkets.yml
+- name: firstindex
+  config_file: firstindex.yml
+- name: coinstec
+  config_file: coinstec.yml
+- name: 24btcmarket
+  config_file: 24btcmarket.yml
 

@@ -127,14 +127,14 @@ if __name__ == "__main__":
         # Form input list where each parameter is filename of TestSuite file
 
 
-        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-        #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-        #               path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
-        #               path_to_brands_suite_13]
         input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-                      path_to_brands_suite_5, path_to_brands_suite_6]
+                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+                      path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
+                      path_to_brands_suite_13]
+        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+        #               path_to_brands_suite_5, path_to_brands_suite_6]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=6)
+        pool = multiprocessing.Pool(processes=13)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -145,16 +145,16 @@ if __name__ == "__main__":
 
         import xlsxwriter
         # Join all results in one excel
-        all_excel = "C:/Program Files (x86)/Jenkins/workspace/New forex special job/result/final_file.xlsx"
+        all_excel = "C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/final_file.xlsx"
         # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
         all_file_frames = []
-        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/New forex special job/result/*.xlsx'):
+        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/*.xlsx'):
             if "test_results" in filename:
                 tab = pd.read_excel(filename)
                 all_file_frames.append(tab)
                 all_frame = pd.concat(all_file_frames, axis=1)
-                writer = EX('C:/Program Files (x86)/Jenkins/workspace/New forex special job/result/final_file.xlsx')
+                writer = EX('C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/final_file.xlsx')
                 all_frame.to_excel(writer, sheet_name='Sheet1')
                 workbook = writer.book
                 worksheet = writer.sheets['Sheet1']
@@ -321,16 +321,16 @@ if __name__ == "__main__":
 
 
             # Join all results in one excel
-        short_excel = "C:/Program Files (x86)/Jenkins/workspace/New forex special job/result/short_final_file.xlsx"
+        short_excel = "C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/short_final_file.xlsx"
         # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
         short_file_frames = []
-        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/New forex special job/result/*.xlsx'):
+        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/*.xlsx'):
             if "short_results" in filename:
                 tab = pd.read_excel(filename)
                 short_file_frames.append(tab)
                 short_frame = pd.concat(short_file_frames, axis=1)
-                writer = EX('C:/Program Files (x86)/Jenkins/workspace/New forex special job/result/short_final_file.xlsx')
+                writer = EX('C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/short_final_file.xlsx')
                 short_frame.to_excel(writer, sheet_name='Sheet1')
                 workbook = writer.book
                 worksheet = writer.sheets['Sheet1']
