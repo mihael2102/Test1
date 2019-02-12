@@ -11,8 +11,10 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 class CAPage(CRMBasePage):
 
     def open_live_account(self):
-        button = super().wait_load_element("//*[@id='dnn_ctl02_lblText']")
-        button.click()
+        sleep(2)
+        button = super().wait_load_element("//*[@value='OPEN NEW ACCOUNT']")
+        # button.click()
+        self.driver.execute_script("arguments[0].click();", button)
         Logging().reportDebugStep(self, "Click Open Live Account")
         return CAPage(self.driver)
 
@@ -42,45 +44,49 @@ class CAPage(CRMBasePage):
         return leverage
 
     def open_demo_account(self):
-        confirm = super().wait_load_element("//*[@id='btnNewPracticeAccount']")
-        confirm.click()
-        sleep(7)
+        confirm = super().wait_load_element("//*[@value='NEW PRACTICE ACCOUNT']")
+        self.driver.execute_script("arguments[0].click();", confirm)
+        # confirm.click()
+        sleep(2)
         Logging().reportDebugStep(self, "Click add new demo account")
         return CAPage(self.driver)
 
     def select_currency(self):
-        sleep(4)
-        select = self.driver.find_element(By.XPATH, "//select[@name = 'dnn$ctr472$View$NewDemoAccountCurrency']")
+        sleep(3)
+        select = super().wait_load_element("//*[@name='dnn$ctr472$View$NewDemoAccountCurrency']")
+        # select.click()
         self.driver.execute_script("arguments[0].click();", select)
-        usd_currency = self.driver.find_element(By.XPATH, "//select[@name = 'dnn$ctr472$View$NewDemoAccountCurrency']/option[1]")
+        usd_currency = super().wait_load_element("//*[@class='popup_mod_select']/option[1]")
         self.driver.execute_script("arguments[0].click();", usd_currency)
         Logging().reportDebugStep(self, "Select USD currency")
         return CAPage(self.driver)
 
     def select_leverage(self):
-        sleep(4)
-        select = self.driver.find_element(By.XPATH, "//select[@name = 'dnn$ctr472$View$SelLeverageP']")
-        self.driver.execute_script("arguments[0].click();", select)
-        select_leverage = self.driver.find_element(By.XPATH, "//select[@name = 'dnn$ctr472$View$SelLeverageP']/option[1]")
+        sleep(3)
+        select = super().wait_load_element("//*[@id='SelLeverageP']")
+        select.click()
+        select_leverage = super().wait_load_element("//select[@id='SelLeverageP']/option[1]")
         self.driver.execute_script("arguments[0].click();", select_leverage)
         Logging().reportDebugStep(self, "Select USD currency")
         return CAPage(self.driver)
 
     def select_deposit(self):
         sleep(3)
-        input = self.driver.find_element(By.XPATH, "//input[@name = 'InitialDepositP']")
+        input = super().wait_load_element("//*[@id='TextInitialDepositP']")
         input.send_keys("1000")
         Logging().reportDebugStep(self, "Select Deposit")
         return CAPage(self.driver)
 
     def click_submit(self):
-        click_submit = self.driver.find_element(By.XPATH, "//button[@class= 'blue_btn popup_mod_btn']")
+        sleep(3)
+        click_submit = super().wait_load_element("//button[@class= 'blue_btn popup_mod_btn']")
         click_submit.click()
         Logging().reportDebugStep(self, "Click Submit")
         return CAPage(self.driver)
 
     def finish_button(self):
-        click_submit = self.driver.find_element(By.XPATH, "//input[@class= 'green_btn popup_mod_btn centered']")
+        sleep(3)
+        click_submit = super().wait_load_element("//input[@class= 'green_btn popup_mod_btn centered']")
         click_submit.click()
         Logging().reportDebugStep(self, "Click Finish")
         return CAPage(self.driver)

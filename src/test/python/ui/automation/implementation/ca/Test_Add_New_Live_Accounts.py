@@ -17,7 +17,7 @@ class AddNewLiveAccountTestCA(BaseTest):
         Create_Accounts_Precondition(self.driver, self.config).create_live_account()
 
     def test_add_new_demo_account_ca(self):
-        Create_Accounts_Precondition(self.driver,self.config).create_demo_account()
+        Create_Accounts_Precondition(self.driver, self.config).create_demo_account()
 
     def test_check_add_live_account_eur_currency(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \

@@ -207,6 +207,13 @@ class CALoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click Next")
         return CALoginPage(self.driver)
 
+    def my_account_link(self):
+        sleep(2)
+        link = super().wait_load_element("//a[contains(text(), 'MY ACCOUNT')]")
+        link.click()
+        Logging().reportDebugStep(self, "Click MY ACCOUNT")
+        return CALoginPage(self.driver)
+
     def verify(self):
         sleep(10)
         elems = self.driver.find_elements_by_xpath("//a[@href]")
