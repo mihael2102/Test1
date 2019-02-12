@@ -108,7 +108,7 @@ class DepositTestCRM(BaseTest):
                     .click_ok()
 
             elif (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "optionstars") or (global_var.current_brand_name == "gxfx") or (global_var.current_brand_name == "b-traderfx") \
-                    or (global_var.current_brand_name == "kontofx"):
+                    or (global_var.current_brand_name == "kontofx") or (global_var.current_brand_name == "uprofx") or (global_var.current_brand_name == "safemarkets"):
                 MT4CreateAccountModule(self.driver)\
                     .create_account(
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
@@ -147,11 +147,13 @@ class DepositTestCRM(BaseTest):
             crm_client_profile.click_ok()\
                               .refresh_page()
 
-            deposit_amount_text = crm_client_profile.click_trading_accounts_tab() \
-                                                    .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
+            if global_var.current_brand_name != "safemarkets":
 
-            self.assertEqual(
-                        CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, deposit_amount_text, "Wrong deposit sum is displayed")
+                deposit_amount_text = crm_client_profile.click_trading_accounts_tab() \
+                                                        .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
+
+                self.assertEqual(
+                            CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, deposit_amount_text, "Wrong deposit sum is displayed")
 
         except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             try:

@@ -30,7 +30,7 @@ class AddInteraction(BaseTest):
                 #                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                 #                    self.config.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.FIRST_COUNTRY))
 
-            if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "swiftcfd"):
+            if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "swiftcfd"):
                 ClientsPage(self.driver).perform_searching(
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
@@ -59,6 +59,11 @@ class AddInteraction(BaseTest):
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
+
+            elif (global_var.current_brand_name == "uprofx") or (global_var.current_brand_name == "xtraderfx"):
+                ClientsPage(self.driver).enter_email(
+                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+
             else:
                 ClientsPage(self.driver).perform_searching(
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS),

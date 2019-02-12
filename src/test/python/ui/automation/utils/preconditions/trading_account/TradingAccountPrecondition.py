@@ -84,7 +84,8 @@ class TradingAccountPrecondition(object):
             return self
 
         elif (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "safemarkets") or (global_var.current_brand_name == "gxfx") \
-                or (global_var.current_brand_name == "optionstars") or (global_var.current_brand_name == "b-traderfx") or (global_var.current_brand_name == "kontofx"):
+                or (global_var.current_brand_name == "optionstars") or (global_var.current_brand_name == "b-traderfx") or (global_var.current_brand_name == "kontofx") \
+                or (global_var.current_brand_name == "uprofx"):
             MT4CreateAccountModule(self.driver) \
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),

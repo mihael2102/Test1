@@ -62,7 +62,10 @@ class MT4DepositModule(CRMBasePage):
 
     def select_status(self, deposit_status):
         select = Select(self.driver.find_element(By.XPATH, "//select[@id='transaction_status_id']"))
-        select.select_by_visible_text(deposit_status)
+        if global_var.current_brand_name == "safemarkets":
+            select.select_by_visible_text("Pending")
+        else:
+            select.select_by_visible_text(deposit_status)
         Logging().reportDebugStep(self, "The status of deposit module was selected:  " + deposit_status)
         return MT4DepositModule()
 
