@@ -90,7 +90,7 @@ class TradingAccountPrecondition(object):
             CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT0) \
                                .verify_init_deposit_error() \
                                .set_initial_deposit(CAConstants.INITIAL_DEPOSIT1) \
-                               .verify_init_deposit_error()
+                               .verify_init_deposit_error() \
 
             CAPage(self.driver).click_create_account() \
                                .additional_account_created()
