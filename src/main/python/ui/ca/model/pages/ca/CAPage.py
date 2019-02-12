@@ -5,6 +5,15 @@ from src.main.python.utils.logs.Loging import Logging
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from time import sleep
 import pyotp
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
+from src.main.python.utils.logs.Loging import Logging
+import time
+
 from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
@@ -53,12 +62,11 @@ class CAPage(CRMBasePage):
 
     def select_currency(self):
         sleep(3)
-        select = super().wait_load_element("//*[@name='dnn$ctr472$View$NewDemoAccountCurrency']")
-        # select.click()
-        self.driver.execute_script("arguments[0].click();", select)
-        usd_currency = super().wait_load_element("//*[@class='popup_mod_select']/option[1]")
-        self.driver.execute_script("arguments[0].click();", usd_currency)
-        Logging().reportDebugStep(self, "Select USD currency")
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id='NewDemoAccountCurrency']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id='NewDemoAccountCurrency']"))
+        select.select_by_visible_text("EUR")
+        Logging().reportDebugStep(self, "Select currency")
         return CAPage(self.driver)
 
     def select_leverage(self):
@@ -79,8 +87,9 @@ class CAPage(CRMBasePage):
 
     def click_submit(self):
         sleep(3)
-        click_submit = super().wait_load_element("//button[@class= 'blue_btn popup_mod_btn']")
-        click_submit.click()
+        click_submit = super().wait_load_element("//button[@id='SubmitFinal']")
+        self.driver.execute_script("arguments[0].click();", click_submit)
+        # click_submit.click()
         Logging().reportDebugStep(self, "Click Submit")
         return CAPage(self.driver)
 

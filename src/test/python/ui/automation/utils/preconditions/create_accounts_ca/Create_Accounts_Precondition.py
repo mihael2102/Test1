@@ -56,8 +56,8 @@ class Create_Accounts_Precondition(object):
 
         CALoginPage(self.driver).click_next_open_live_account()
         CALoginPage(self.driver).my_account_link()
-        # CAPage(self.driver).click_check_box_confirm()
-        # CAPage(self.driver).click_confirm()
+        CAPage(self.driver).click_check_box_confirm()
+        CAPage(self.driver).click_confirm()
         currency = CAPage(self.driver).verify_relevant_currency()
         assert currency == CAConstants.CURRENCY
         data = CAPage(self.driver).verify_correct_data()

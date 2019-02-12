@@ -11,7 +11,7 @@ tests_config:
   tests:
     - test_add_new_live_account_ca
     - test_add_new_demo_account_ca
-
+#    - test_check_demo_in_crm
 
 
   #General
