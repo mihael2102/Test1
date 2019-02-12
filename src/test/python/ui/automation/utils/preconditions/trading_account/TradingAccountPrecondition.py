@@ -60,6 +60,42 @@ class TradingAccountPrecondition(object):
         else:
             return self
 
+    def add_demo_account(self):
+        if global_var.current_brand_name != "q8":
+            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
+                                    .login() \
+                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                 LeadsModuleConstants.EMAIL]) \
+                                    .enter_password(CAConstants.PASSWORD) \
+                                    .click_login() \
+                                    .verify() \
+                                    .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                    LeadsModuleConstants.FIRST_NAME])
+            CAPage(self.driver).open_manage_accounts() \
+                               .open_demo_section() \
+                               .open_new_account_btn() \
+                               .select_account_type(CAConstants.ACCOUNT_DEMO)
+
+            if global_var.current_brand_name == "mpcrypto":
+                CAPage(self.driver).select_currency(CAConstants.CURRENCY_CRYPTO)
+            else:
+                CAPage(self.driver).select_currency(CAConstants.CURRENCY)
+
+            if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual")\
+                    or (global_var.current_brand_name == "royal_cfds"):
+                CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL2)
+            else:
+                CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL)
+
+            CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT0) \
+                               .verify_init_deposit_error() \
+                               .set_initial_deposit(CAConstants.INITIAL_DEPOSIT1) \
+                               .verify_init_deposit_error()
+
+            CAPage(self.driver).click_create_account() \
+                               .additional_account_created()
+        else:
+            return self
 
 
 

@@ -19,3 +19,6 @@ class CAConstants(object):
     ACCOUNT_LIVE = "Live"
     LEVERAGE_LEVEL = "1:100"
     LEVERAGE_LEVEL2 = "1:200"
+    ACCOUNT_DEMO = "Demo"
+    INITIAL_DEPOSIT0 = "0"
+    INITIAL_DEPOSIT1 = "1000000"

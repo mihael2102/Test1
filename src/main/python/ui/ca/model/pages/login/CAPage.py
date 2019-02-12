@@ -66,3 +66,23 @@ class CAPage(CRMBasePage):
             Logging().reportDebugStep(self, "Additional account was created successfully")
 
         return CAPage(self.driver)
+
+    def open_demo_section(self):
+        demo_btn = super().wait_load_element("//span[contains(text(), 'Demo')]")
+        self.driver.execute_script("arguments[0].click();", demo_btn)
+        Logging().reportDebugStep(self, "Click Demo accounts section")
+        return CAPage(self.driver)
+
+    def set_initial_deposit(self, in_deposit):
+        input_initial_deposit = super().wait_load_element("//input[@name = 'deposit']")
+        input_initial_deposit.send_keys(in_deposit)
+        Logging().reportDebugStep(self, "Fill Initial Deposit : " + phone)
+        return CAPage(self.driver)
+
+    def verify_init_deposit_error(self):
+        sleep(1)
+        message = self.driver.find_elements_by_xpath("//div[contains(text(), 'Minimum initial deposit is ')]")
+        if len(message) == 0:
+            Logging().reportDebugStep(self, "Validation message does not appear")
+        else:
+            Logging().reportDebugStep(self, "Validation message is displayed")

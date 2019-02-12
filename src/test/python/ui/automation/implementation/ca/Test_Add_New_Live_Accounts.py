@@ -18,6 +18,11 @@ class AddNewLiveAccountTestCA(BaseTest):
 
         TradingAccountPrecondition(self.driver, self.config).add_live_account()
 
+    def test_add_demo_account_ca(self):
+
+        TradingAccountPrecondition(self.driver, self.config).add_demo_account()
+
+
     # def test_check_add_live_account_eur_currency(self):
     #     BrandHomePage().open_first_tab_page(self.config.get_value('url_ca')).login() \
     #         .set_fields(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
