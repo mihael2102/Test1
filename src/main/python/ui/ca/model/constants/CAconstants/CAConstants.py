@@ -18,3 +18,4 @@ class CAConstants(object):
     ACCOUNT_TYPE = "Pro"
     ACCOUNT_LIVE = "Live"
     LEVERAGE_LEVEL = "1:100"
+    LEVERAGE_LEVEL2 = "1:200"

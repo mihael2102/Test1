@@ -35,7 +35,7 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def select_currency(self, currency):
-        data = self.driver.find_element_by_xpath("//span[@class='frx-currentvalue-pandats ng-star-inserted'] \
+        data = self.driver.find_element_by_xpath("//span[@class='itemLabel'] \
                                                     [contains(text(), '%s')]" % currency)
         self.driver.execute_script("arguments[0].click();", data)
         Logging().reportDebugStep(self, "Select currency : " + currency)
@@ -44,6 +44,7 @@ class CAPage(CRMBasePage):
     def select_leverage_level(self, leverage_level):
         data = self.driver.find_element_by_xpath("//span[@class='itemLabel'] \
                                                     [contains(text(), '%s')]" % leverage_level)
+        sleep(1)
         self.driver.execute_script("arguments[0].click();", data)
         Logging().reportDebugStep(self, "Select leverage level : " + leverage_level)
         return CAPage(self.driver)
@@ -63,15 +64,5 @@ class CAPage(CRMBasePage):
             Logging().reportDebugStep(self, "Additional account was not created")
         else:
             Logging().reportDebugStep(self, "Additional account was created successfully")
-        # i = 0
-        #
-        # for elem in accounts:
-        #     link = elem.get_attribute("href")
-        #     if 'trading-platform' in link:
-        #         i += 1
-        # if i > 1:
-        #     Logging().reportDebugStep(self, "You are on the Webtrader page")
-        # else:
-        #     Logging().reportDebugStep(self, "You are not on the Webtrader page")
 
         return CAPage(self.driver)
