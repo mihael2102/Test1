@@ -62,9 +62,9 @@ class CAPage(CRMBasePage):
 
     def select_currency(self):
         sleep(3)
-        WebDriverWait(self.driver, 10).until(
-            EC.element_to_be_clickable((By.XPATH, "//select[@id='NewDemoAccountCurrency']")))
-        select = Select(self.driver.find_element(By.XPATH, "//select[@id='NewDemoAccountCurrency']"))
+        # WebDriverWait(self.driver, 10).until(
+        #     EC.element_to_be_clickable((By.XPATH, "//select[@id='NewDemoAccountCurrency']")))
+        select = Select(self.driver.find_element_by_css_selector("#NewDemoAccountCurrency"))
         select.select_by_visible_text("EUR")
         Logging().reportDebugStep(self, "Select currency")
         return CAPage(self.driver)

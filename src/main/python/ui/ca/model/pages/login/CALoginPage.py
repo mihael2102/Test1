@@ -272,6 +272,36 @@ class CALoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click Login in pop up")
         return CALoginPage(self.driver)
 
+    def click_personal_details(self):
+        button = super().wait_load_element("//a[contains(text(), 'Personal Details')]")
+        button.click()
+        Logging().reportDebugStep(self, "Go to Personal Details module")
+        return CALoginPage(self.driver)
+
+    def update_address(self, address):
+        input = super().wait_load_element("//*[@id='txtAddress']")
+        input.send_keys(address)
+        Logging().reportDebugStep(self, "Enter new address")
+        return CALoginPage(self.driver)
+
+    def update_city(self, city):
+        input = super().wait_load_element("//*[@id='txtCity']")
+        input.send_keys(city)
+        Logging().reportDebugStep(self, "Enter new city")
+        return CALoginPage(self.driver)
+
+    def update_code(self, code):
+        input = super().wait_load_element("//*[@id='txtPostalZipCode']")
+        input.send_keys(code)
+        Logging().reportDebugStep(self, "Enter new code")
+        return CALoginPage(self.driver)
+
+    def submit_personal_details(self):
+        submit_personal_details = super().wait_load_element("//*[@id='btnSubmit']")
+        self.driver.execute_script("arguments[0].click();", submit_personal_details)
+        Logging().reportDebugStep(self, "Click submit personal details")
+        return CALoginPage(self.driver)
+
     def verify_client(self, user_name):
         verify_client = super().wait_load_element("//a[contains(text(), '%s')]" % user_name)
         client = verify_client.text

@@ -8,10 +8,15 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfileUpdate impor
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-
+from src.test.python.ui.automation.utils.preconditions.create_accounts_ca.Create_Accounts_Precondition import Create_Accounts_Precondition
 
 @pytest.mark.run(order=12)
 class PersonalDetailsUpdateTestCA(BaseTest):
+
+
+    def test_update_personal_details(self):
+        Create_Accounts_Precondition(self.driver, self.config).update_details()
+
 
     def test_perform_client_update_from_CA(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area) \

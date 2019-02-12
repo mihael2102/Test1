@@ -29,6 +29,36 @@ class Create_Accounts_Precondition(object):
         lead = self.config.get_value(lead_key)
         return lead
 
+    def update_details(self):
+        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
+        CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                 LeadsModuleConstants.EMAIL]) \
+            .enter_password(CAConstants.PASSWORD) \
+            .click_login()\
+            .click_personal_details()\
+            .update_address(CAConstants.NEW_ADDRESS)\
+            .update_city(CAConstants.NEW_CITY)\
+            .update_code(CAConstants.NEW_CODE)\
+            .submit_personal_details()
+
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                          LeadsModuleConstants.EMAIL])
+
+        address = ClientsPage(self.driver).get_client_address()
+        city = ClientsPage(self.driver).get_client_city()
+        code = ClientsPage(self.driver).get_client_code()
+
+        assert address == CAConstants.NEW_ADDRESS
+        assert city == CAConstants.NEW_CITY
+        assert code == CAConstants.NEW_CODE
+
     def create_live_account(self):
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
