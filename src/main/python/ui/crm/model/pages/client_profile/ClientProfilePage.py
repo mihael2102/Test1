@@ -250,7 +250,11 @@ class ClientProfilePage(CRMBasePage):
 
     def open_help_desk_tab(self):
         select_country = super().wait_load_element("//a[@id='show_Accounts_HelpDesk']")
-        select_country.click()
+        self.driver.execute_script("arguments[0].scrollIntoView();", select_country)
+        try:
+            select_country.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", select_country)
         Logging().reportDebugStep(self, "Open help desc tab ")
         return ClientProfilePage(self.driver)
 
@@ -577,4 +581,24 @@ class ClientProfilePage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", sign_out)
         Logging().reportDebugStep(self, "Sign Out")
         return ClientProfilePage(self.driver)
+
+    def verify_ticket_number(self):
+        ticket_no = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//tr[2]//td[1]").text
+        Logging().reportDebugStep(self, "Verify ticket number")
+        return ticket_no
+
+    def verify_ticket_status(self):
+        status = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//tr[2]//td[4]").text
+        Logging().reportDebugStep(self, "Verify ticket status")
+        return status
+
+    def change_status_ticket(self):
+        pencil_button = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//td[12]")
+        try:
+            pencil_button.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", pencil_button)
+        Logging().reportDebugStep(self, "Click Edit Ticket")
+        return ClientProfilePage(self.driver)
+
 

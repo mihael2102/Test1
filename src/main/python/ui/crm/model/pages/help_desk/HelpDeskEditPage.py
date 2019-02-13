@@ -4,10 +4,9 @@ from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 
-
+import time
 class HelpDeskEditPage(CRMBasePage):
-    def __init__(self):
-        super().__init__()
+
 
     def perform_edit_ticket(self, tittle, related_to, assigned_to, status, priority, category, ticket_source,
                             description,
@@ -60,18 +59,21 @@ class HelpDeskEditPage(CRMBasePage):
         return HelpDeskEditPage()
 
     def select_status(self, status):
-        assigned_to_field = Select(self.driver.find_element(By.XPATH, "//select[@name='ticket_statuses']"))
+        time.sleep(3)
+        assigned_to_field = Select(self.driver.find_element(By.XPATH, "//select[@name='ticketstatus']"))
         assigned_to_field.select_by_visible_text(status)
         Logging().reportDebugStep(self, "The status was edited: " + status)
         return HelpDeskEditPage()
 
     def set_priority(self, priority):
+        time.sleep(3)
         priority_pick_list = Select(self.driver.find_element(By.XPATH, "//select[@name='ticketpriorities']"))
         priority_pick_list.select_by_visible_text(priority)
         Logging().reportDebugStep(self, "The priority was edited: " + priority)
         return HelpDeskEditPage()
 
     def set_category(self, category):
+        time.sleep(3)
         category_pick_list = Select(self.driver.find_element(By.XPATH, "//select[@name='ticket_types']"))
         category_pick_list.select_by_visible_text(category)
         Logging().reportDebugStep(self, "The category was edited: " + category)

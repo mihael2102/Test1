@@ -4,6 +4,18 @@ from dateutil.relativedelta import relativedelta
 
 
 class CAConstants(object):
+    TICKET_CLOSED_CA = "CLOSED"
+    TICKET_AA = "Awaiting Agent"
+    TICKET_AC = "Awaiting Client"
+    TICKET_CLOSED_BY_CLIENT = "Closed by Client"
+    TICKET_CLOSED = "Closed"
+    TICKET_IN_PROGRESS = "In Progress"
+    TICKET_IN_PROGRESS_CA = "IN PROGRESS"
+    TICKET_OPEN = "OPEN"
+    TICKET_OPEN_CRM = "Open"
+    TICKET_SUBJECT = "Tichet Subject" + str(random.randrange(1, 999))
+    TICKET_DESCRIPTION = "this is ticket description"
+    TICKET_CATEGORY = "Login Problem"
     DEMO = "demo"
     NEW_ADDRESS = "THISISNEWADDRESS"
     NEW_CITY = "THISISNEWCITY"

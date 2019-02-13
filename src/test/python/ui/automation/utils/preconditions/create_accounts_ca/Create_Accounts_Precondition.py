@@ -16,6 +16,7 @@ from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 from time import sleep
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
+from src.main.python.ui.crm.model.pages.help_desk.HelpDeskEditPage import HelpDeskEditPage
 
 class Create_Accounts_Precondition(object):
 
@@ -29,6 +30,112 @@ class Create_Accounts_Precondition(object):
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)
         return lead
+
+    def open_ticket_ca(self):
+
+        ##CREATE NEW TICKET
+
+        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
+        CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                 LeadsModuleConstants.EMAIL]) \
+            .enter_password(CAConstants.PASSWORD) \
+            .click_login()
+
+        CAPage(self.driver).open_service_desk()
+        CAPage(self.driver).open_new_ticket()\
+                           .enter_subject(CAConstants.TICKET_SUBJECT)\
+                           .enter_description(CAConstants.TICKET_DESCRIPTION)\
+                           .select_category(CAConstants.TICKET_CATEGORY)\
+                           .click_submit_ticket()
+
+        ca_ticket_number_v1 = CAPage(self.driver).get_ticket_number()
+        ca_ticket_number_v2 = ca_ticket_number_v1.replace(' Was Submitted Successfuly','')
+        ca_ticket_number = ca_ticket_number_v2.replace('Ticket No. ', '')
+        CAPage(self.driver).close_popup_create()
+        ca_ticket_status = CAPage(self.driver).verify_ticket_status()
+
+        ##VERIFY AND CHANGE STATUS TO IN PROGRESS IN CRM
+
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                          LeadsModuleConstants.EMAIL])
+
+        ClientProfilePage(self.driver).open_help_desk_tab()
+        crm_ticket_number = ClientProfilePage(self.driver).verify_ticket_number()
+        crm_ticket_status = ClientProfilePage(self.driver).verify_ticket_status()
+        ClientProfilePage(self.driver).change_status_ticket()
+
+        HelpDeskEditPage(self.driver).select_status(CAConstants.TICKET_IN_PROGRESS)
+        HelpDeskEditPage(self.driver).click_save_button()
+
+        crm_ticket_status_upper = crm_ticket_status.upper()
+
+        ##VERIFY STATUS IN CA
+
+        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
+        CAPage(self.driver).open_service_desk()
+        # ca_ticket_status_in_progress = CAPage(self.driver).verify_ticket_status()
+
+        ##VERIFY AND CHANGE STATUS TO CLOSED IN CRM
+
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
+        ClientsPage(self.driver).select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                          LeadsModuleConstants.EMAIL])
+        ClientProfilePage(self.driver).open_help_desk_tab()
+        sleep(2)
+        ClientProfilePage(self.driver).change_status_ticket()
+        sleep(2)
+        HelpDeskEditPage(self.driver).select_status(CAConstants.TICKET_CLOSED)
+        sleep(2)
+        HelpDeskEditPage(self.driver).click_save_button()
+
+        ##VERIFY STATUS IN CA
+
+        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
+        CAPage(self.driver).open_service_desk()
+        sleep(2)
+        ca_ticket_status_in_closed = CAPage(self.driver).verify_ticket_status_closed()
+
+        ##VERIFY AND CHANGE STATUS TO OPEN IN CRM
+
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
+        ClientsPage(self.driver).select_filter(
+            self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                          LeadsModuleConstants.EMAIL])
+        sleep(2)
+        ClientProfilePage(self.driver).open_help_desk_tab()
+        sleep(2)
+        ClientProfilePage(self.driver).change_status_ticket()
+        sleep(2)
+        HelpDeskEditPage(self.driver).select_status(CAConstants.TICKET_OPEN)
+        sleep(2)
+        HelpDeskEditPage(self.driver).click_save_button()
+
+        ##VERIFY STATUS IN CA
+
+        # CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
+        # CAPage(self.driver).open_service_desk()
+
+        assert ca_ticket_status == CAConstants.TICKET_OPEN
+        assert crm_ticket_number == ca_ticket_number
+        assert crm_ticket_status_upper == ca_ticket_status
+        # assert ca_ticket_status_in_progress == CAConstants.TICKET_IN_PROGRESS_CA
+        assert ca_ticket_status_in_closed == CAConstants.TICKET_CLOSED_CA
+
+
+
+
+
 
 
     def check_demo_in_crm(self):

@@ -19,6 +19,74 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class CAPage(CRMBasePage):
 
+    def verify_ticket_status_closed(self):
+        status = super().wait_load_element("//*[@id='closedTickets']/tbody/tr/td[4]").text
+        Logging().reportDebugStep(self, "Check status")
+        return status
+
+    def verify_ticket_status(self):
+        status = super().wait_load_element("//*[@id='openTickets']/tbody/tr/td[4]").text
+        Logging().reportDebugStep(self, "Check status")
+        return status
+
+    def get_ticket_number(self):
+        ticket_number = super().wait_load_element("//*[@id='lblSuccessMessage']").text
+        Logging().reportDebugStep(self, "Check ticket number")
+        return ticket_number
+
+    def click_submit_ticket(self):
+        submit = super().wait_load_element("//*[@id='btnSubmit']")
+        submit.click()
+        Logging().reportDebugStep(self, "Click submit")
+        return CAPage(self.driver)
+
+    def close_popup_create(self):
+        submit = super().wait_load_element("//*[@id='btnCloseSubmitWindow']")
+        submit.click()
+        Logging().reportDebugStep(self, "Click submit")
+        return CAPage(self.driver)
+
+    def enter_subject(self, subject):
+        try:
+            self.driver.switch_to.frame(self.driver.find_element_by_xpath("//iframe[@id='iPopUp']"))
+            subject_input = super().wait_load_element("//*[@id='txtSubject']")
+            subject_input.send_keys(subject)
+            Logging().reportDebugStep(self, "Enter subject")
+            return CAPage(self.driver)
+        except Exception as e:
+            print("Error: ", e)
+            return CAPage(self.driver)
+
+    def enter_description(self, description):
+        description_input = super().wait_load_element("//textarea[@class='new_ticket_text']")
+        description_input.send_keys(description)
+        Logging().reportDebugStep(self, "Enter description")
+        return CAPage(self.driver)
+
+    def select_category(self, category):
+        select = super().wait_load_element("//*[@id='ddlCategory']")
+        select.click()
+        select_category = super().wait_load_element("//*[@id='ddlCategory']/option[contains(text(), '%s')]" % category)
+        select_category.click()
+        # self.driver.execute_script("arguments[0].click();", select_category)
+        Logging().reportDebugStep(self, "Select category")
+        return CAPage(self.driver)
+
+
+    def open_new_ticket(self):
+        sleep(2)
+        service_desk = super().wait_load_element("//*[@id='btnTicketInfoNewTicket']")
+        service_desk.click()
+        Logging().reportDebugStep(self, "Click Open New Ticket")
+        return CAPage(self.driver)
+
+    def open_service_desk(self):
+        sleep(2)
+        service_desk = super().wait_load_element("//*[@id='mainmenu']/li[2]/a")
+        service_desk.click()
+        Logging().reportDebugStep(self, "Click Open Service Desk")
+        return CAPage(self.driver)
+
     def open_live_account(self):
         sleep(2)
         button = super().wait_load_element("//*[@value='OPEN NEW ACCOUNT']")
