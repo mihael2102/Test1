@@ -62,9 +62,9 @@ class CAPage(CRMBasePage):
                                                       div[2]/div[2]/manage/div[2]/accounts/div/div/perfect-scrollbar/ \
                                                       div/div[1]/div/table/tbody/tr[2]")
         if len(accounts) == 0:
-            Logging().reportDebugStep(self, "Additional account was not created")
+            Logging().reportDebugStep(self, "Additional live account was not created")
         else:
-            Logging().reportDebugStep(self, "Additional account was created successfully")
+            Logging().reportDebugStep(self, "Additional live account was created successfully")
 
         return CAPage(self.driver)
 
@@ -108,4 +108,17 @@ class CAPage(CRMBasePage):
                                                                     div/div[1]/div/table/tbody/tr/td[1]").text
         print(CAConstants.DEMO_ACCOUNT_NUMBER)
         Logging().reportDebugStep(self, "Demo account number is " + CAConstants.DEMO_ACCOUNT_NUMBER)
+        return CAPage(self.driver)
+
+    def open_live_section(self):
+        live_btn = super().wait_load_element("//span[contains(text(), 'Live')]")
+        self.driver.execute_script("arguments[0].click();", live_btn)
+        Logging().reportDebugStep(self, "Click Live account's section")
+        return CAPage(self.driver)
+
+    def get_live_account_number(self):
+        CAConstants.LIVE_ACCOUNT_NUMBER = super().wait_load_element("//accounts/div/div/perfect-scrollbar/div/ \
+                                                                        div[1]/div/table/tbody/tr[2]/td[1]").text
+        print(CAConstants.LIVE_ACCOUNT_NUMBER)
+        Logging().reportDebugStep(self, "Live account number is " + CAConstants.LIVE_ACCOUNT_NUMBER)
         return CAPage(self.driver)

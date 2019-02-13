@@ -95,7 +95,9 @@ class TradingAccountPrecondition(object):
                                .click_create_account() \
                                .verify_demo_account_created() \
                                .open_demo_section() \
-                               .get_demo_account_number()
+                               .get_demo_account_number() \
+                               .open_live_section() \
+                               .get_live_account_number()
         else:
             return self
 

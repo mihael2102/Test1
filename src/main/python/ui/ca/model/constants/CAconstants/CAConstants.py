@@ -24,3 +24,4 @@ class CAConstants(object):
     INITIAL_DEPOSIT1 = "1000000"
     INITIAL_DEPOSIT = "10000"
     DEMO_ACCOUNT_NUMBER = ""
+    LIVE_ACCOUNT_NUMBER = ""
