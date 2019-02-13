@@ -121,8 +121,11 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_trading_accounts_tab(self):
+
         trading_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_TradingAccounts']")
-        trading_tab.click()
+        # trading_tab.click()
+        self.driver.execute_script("arguments[0].scrollIntoView();", trading_tab)
+        self.driver.execute_script("arguments[0].click();", trading_tab)
         Logging().reportDebugStep(self, "Open the trading account tab ")
         return ClientProfilePage(self.driver)
 

@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class CAConstants(object):
+    DEMO = "demo"
     NEW_ADDRESS = "THISISNEWADDRESS"
     NEW_CITY = "THISISNEWCITY"
     NEW_CODE = "999"

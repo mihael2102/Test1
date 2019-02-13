@@ -15,6 +15,7 @@ from src.main.python.ui.ca.model.pages.ca.CAPage import CAPage
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 from time import sleep
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 
 class Create_Accounts_Precondition(object):
 
@@ -28,6 +29,23 @@ class Create_Accounts_Precondition(object):
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)
         return lead
+
+
+    def check_demo_in_crm(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                          LeadsModuleConstants.EMAIL])
+        ClientProfilePage(self.driver).open_trading_accounts_tab()
+        demo = ClientsPage(self.driver).check_demo_account()
+
+        assert demo == CAConstants.DEMO
+
 
     def update_details(self):
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
@@ -55,9 +73,9 @@ class Create_Accounts_Precondition(object):
         city = ClientsPage(self.driver).get_client_city()
         code = ClientsPage(self.driver).get_client_code()
 
-        assert address == CAConstants.NEW_ADDRESS
-        assert city == CAConstants.NEW_CITY
-        assert code == CAConstants.NEW_CODE
+        assert CAConstants.NEW_ADDRESS in address
+        assert CAConstants.NEW_CITY in city
+        assert CAConstants.NEW_CODE in code
 
     def create_live_account(self):
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
@@ -85,7 +103,7 @@ class Create_Accounts_Precondition(object):
                             .fill_address(CAConstants.ADDRESS)
 
         CALoginPage(self.driver).click_next_open_live_account()
-        CALoginPage(self.driver).my_account_link()
+        # CALoginPage(self.driver).my_account_link()
         CAPage(self.driver).click_check_box_confirm()
         CAPage(self.driver).click_confirm()
         currency = CAPage(self.driver).verify_relevant_currency()
