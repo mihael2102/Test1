@@ -91,9 +91,11 @@ class TradingAccountPrecondition(object):
                                .verify_init_deposit_error() \
                                .set_initial_deposit(CAConstants.INITIAL_DEPOSIT1) \
                                .verify_init_deposit_error() \
-
-            CAPage(self.driver).click_create_account() \
-                               .additional_account_created()
+                               .set_initial_deposit(CAConstants.INITIAL_DEPOSIT) \
+                               .click_create_account() \
+                               .verify_demo_account_created() \
+                               .open_demo_section() \
+                               .get_demo_account_number()
         else:
             return self
 

@@ -7,6 +7,7 @@ from time import sleep
 import pyotp
 from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 
 class CAPage(CRMBasePage):
 
@@ -75,8 +76,9 @@ class CAPage(CRMBasePage):
 
     def set_initial_deposit(self, in_deposit):
         input_initial_deposit = super().wait_load_element("//input[@name = 'deposit']")
+        input_initial_deposit.clear()
         input_initial_deposit.send_keys(in_deposit)
-        Logging().reportDebugStep(self, "Fill Initial Deposit : " + phone)
+        Logging().reportDebugStep(self, "Fill Initial Deposit : " + in_deposit)
         return CAPage(self.driver)
 
     def verify_init_deposit_error(self):
@@ -86,3 +88,24 @@ class CAPage(CRMBasePage):
             Logging().reportDebugStep(self, "Validation message does not appear")
         else:
             Logging().reportDebugStep(self, "Validation message is displayed")
+
+        return CAPage(self.driver)
+
+    def verify_demo_account_created(self):
+        sleep(2)
+        accounts = self.driver.find_elements_by_xpath("//panda-forex-client-area/div/div/client-area-popup/div/div[2]/ \
+                                                              div[2]/div[2]/manage/div[2]/accounts/div/div/perfect-scrollbar/ \
+                                                              div/div[1]/div/table/tbody/tr[1]")
+        if len(accounts) == 0:
+            Logging().reportDebugStep(self, "Demo account was not created")
+        else:
+            Logging().reportDebugStep(self, "Demo account was created successfully")
+
+        return CAPage(self.driver)
+
+    def get_demo_account_number(self):
+        CAConstants.DEMO_ACCOUNT_NUMBER = super().wait_load_element("//accounts/div/div/perfect-scrollbar/ \
+                                                                    div/div[1]/div/table/tbody/tr/td[1]").text
+        print(CAConstants.DEMO_ACCOUNT_NUMBER)
+        Logging().reportDebugStep(self, "Demo account number is " + CAConstants.DEMO_ACCOUNT_NUMBER)
+        return CAPage(self.driver)
