@@ -458,3 +458,9 @@ class ClientsPage(CRMBasePage):
                                                            self.__class__.__name__)["client_currency"]).text
         Logging().reportDebugStep(self, "Client currency is: " + client_currency)
         return client_currency
+
+    def trading_account_exist(self, trading_account):
+        self.driver.find_elements_by_xpath("//a[@class='before_nw'][contains(@href, 'Tradingaccount')] \
+                                            [contains(text(), '%s')]" % trading_account)
+        Logging().reportDebugStep(self, "Trading account is found: " + trading_account)
+        return ClientsPage(self.driver)

@@ -74,6 +74,18 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click Demo accounts section")
         return CAPage(self.driver)
 
+    def get_leverage(self):
+        leverage = super().wait_load_element("//accounts/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/td[2]") \
+                                                .text
+        Logging().reportDebugStep(self, "The Leverage is " + leverage)
+        return leverage
+
+    def get_currency(self):
+        currency = super().wait_load_element("//accounts/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/td[3]") \
+                                                .text
+        Logging().reportDebugStep(self, "The Leverage is " + currency)
+        return currency
+
     def set_initial_deposit(self, in_deposit):
         input_initial_deposit = super().wait_load_element("//input[@name = 'deposit']")
         input_initial_deposit.clear()
@@ -111,12 +123,13 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def open_live_section(self):
-        live_btn = super().wait_load_element("//span[contains(text(), 'Live')]")
+        live_btn = super().wait_load_element("//li[@class='header-menu-pandats']/span[contains(text(), 'Live')]")
         self.driver.execute_script("arguments[0].click();", live_btn)
         Logging().reportDebugStep(self, "Click Live account's section")
         return CAPage(self.driver)
 
     def get_live_account_number(self):
+        sleep(2)
         CAConstants.LIVE_ACCOUNT_NUMBER = super().wait_load_element("//accounts/div/div/perfect-scrollbar/div/ \
                                                                         div[1]/div/table/tbody/tr[2]/td[1]").text
         print(CAConstants.LIVE_ACCOUNT_NUMBER)

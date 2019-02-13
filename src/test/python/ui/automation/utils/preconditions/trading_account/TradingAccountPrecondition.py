@@ -13,6 +13,8 @@ from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
+from time import sleep
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 
 
 
@@ -94,12 +96,46 @@ class TradingAccountPrecondition(object):
                                .set_initial_deposit(CAConstants.INITIAL_DEPOSIT) \
                                .click_create_account() \
                                .verify_demo_account_created() \
-                               .open_demo_section() \
-                               .get_demo_account_number() \
+                               .open_demo_section()
+            if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual") \
+                    or (global_var.current_brand_name == "royal_cfds"):
+                actual_leverage = CAPage(self.driver).get_leverage()
+                expected_leverage = CAConstants.LEVERAGE_LEVEL2
+                assert actual_leverage == expected_leverage
+            else:
+                actual_leverage = CAPage(self.driver).get_leverage()
+                expected_leverage = CAConstants.LEVERAGE_LEVEL
+                assert actual_leverage == expected_leverage
+
+            if global_var.current_brand_name == "mpcrypto":
+                actual_currency = CAPage(self.driver).get_currency()
+                expected_currency = CAConstants.CURRENCY_CRYPTO
+                assert actual_currency == expected_currency
+            else:
+                actual_currency = CAPage(self.driver).get_currency()
+                expected_currency = CAConstants.CURRENCY
+                assert actual_currency == expected_currency
+
+            CAPage(self.driver).get_demo_account_number() \
                                .open_live_section() \
                                .get_live_account_number()
         else:
             return self
+
+    def verify_account_in_crm(self):
+        # Login to CRM
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                            LeadsModuleConstants.EMAIL])
+        sleep(2)
+        ClientProfilePage(self.driver).open_trading_accounts_tab()
+        ClientsPage(self.driver).trading_account_exist(CAConstants.DEMO_ACCOUNT_NUMBER)
+        ClientsPage(self.driver).trading_account_exist(CAConstants.LIVE_ACCOUNT_NUMBER)
 
 
 
