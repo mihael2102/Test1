@@ -4,6 +4,9 @@ from dateutil.relativedelta import relativedelta
 
 
 class CAConstants(object):
+    STATUS_DOCUMENTS_APPROVED_CA = "Document Verified"
+    STATUS_DOCUMENTS_APPROVED = "Approved"
+    DOCUMENTS = "Bear.jpg"
     TICKET_CLOSED_CA = "CLOSED"
     TICKET_AA = "Awaiting Agent"
     TICKET_AC = "Awaiting Client"

@@ -13,11 +13,32 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 import time
-
+import autoit
 from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class CAPage(CRMBasePage):
+
+    def verify_status_documents(self):
+        status = super().wait_load_element("//*[@id='trIdentityFront']/td[3]/span").text
+        Logging().reportDebugStep(self, "Verify status documents")
+        return status
+
+    def browse_documents(self):
+        button = super().wait_load_element("//*[@id='fileUploadItentity']")
+        button.click()
+        autoit.win_wait_active("Open")
+        autoit.send("Bear.jpg")
+        autoit.send("{ENTER}")
+        Logging().reportDebugStep(self, "Click browse Documents")
+        return CAPage(self.driver)
+
+    def open_upload_document_module(self):
+        sleep(5)
+        button = super().wait_load_element("//a[contains(text(), 'Upload Documents')]")
+        button.click()
+        Logging().reportDebugStep(self, "Click Upload Documents")
+        return CAPage(self.driver)
 
     def verify_ticket_status_closed(self):
         status = super().wait_load_element("//*[@id='closedTickets']/tbody/tr/td[4]").text

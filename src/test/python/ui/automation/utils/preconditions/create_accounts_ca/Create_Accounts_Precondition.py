@@ -17,6 +17,7 @@ from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CACons
 from time import sleep
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskEditPage import HelpDeskEditPage
+from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
 
 class Create_Accounts_Precondition(object):
 
@@ -30,6 +31,44 @@ class Create_Accounts_Precondition(object):
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)
         return lead
+
+    def verify_upload_document(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                          LeadsModuleConstants.EMAIL])
+        ClientProfilePage(self.driver).open_document_tab()
+        documents = ClientProfilePage(self.driver).verify_documents()
+        assert documents == CAConstants.DOCUMENTS
+        ClientProfilePage(self.driver).documents_page()
+        sleep(3)
+        DocumentsPage(self.driver).edit_documents()
+        DocumentsPage(self.driver).select_document_status(CAConstants.STATUS_DOCUMENTS_APPROVED)
+        DocumentsPage(self.driver).save_document()
+        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
+        sleep(3)
+        CAPage(self.driver).open_upload_document_module()
+        status = CAPage(self.driver).verify_status_documents()
+        assert status == CAConstants.STATUS_DOCUMENTS_APPROVED_CA
+
+    def upload_document(self):
+
+        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
+        CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                 LeadsModuleConstants.EMAIL]) \
+            .enter_password(CAConstants.PASSWORD) \
+            .click_login()
+
+        CAPage(self.driver).open_upload_document_module()
+        CAPage(self.driver).browse_documents()
+        sleep(5)
+
+
 
     def open_ticket_ca(self):
 

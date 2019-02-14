@@ -83,9 +83,27 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_document_tab(self):
+        sleep(3)
         document_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_Documents']")
-        document_tab.click()
+        self.driver.execute_script("arguments[0].scrollIntoView();", document_tab)
+        try:
+            document_tab.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", document_tab)
         Logging().reportDebugStep(self, "Open the document tab ")
+        return ClientProfilePage()
+
+    def verify_documents(self):
+        sleep(3)
+        verify_documents = super().wait_load_element("//td[@class='rld_table_td_bordered']/div[@id='tbl_Accounts_Documents']//tr[2]//td[1]")
+        Logging().reportDebugStep(self, "Verify documents" + verify_documents.text)
+        return verify_documents.text
+
+    def documents_page(self):
+        sleep(3)
+        documents_page = super().wait_load_element("//td[@class='rld_table_td_bordered']/div[@id='tbl_Accounts_Documents']//tr[2]//td[1]")
+        documents_page.click()
+        Logging().reportDebugStep(self, "Click documents name")
         return ClientProfilePage()
 
     '''

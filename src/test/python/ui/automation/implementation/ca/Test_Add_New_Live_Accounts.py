@@ -25,6 +25,10 @@ class AddNewLiveAccountTestCA(BaseTest):
     def test_open_ticket_ca(self):
         Create_Accounts_Precondition(self.driver, self.config).open_ticket_ca()
 
+    def test_upload_document(self):
+        Create_Accounts_Precondition(self.driver, self.config).upload_document()
+        Create_Accounts_Precondition(self.driver, self.config).verify_upload_document()
+
 
     def test_check_add_live_account_eur_currency(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \

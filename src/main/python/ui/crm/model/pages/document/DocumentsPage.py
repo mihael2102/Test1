@@ -17,6 +17,14 @@ class DocumentsPage(CRMBasePage):
     # def __init__(self):
     #     super().__init__()
 
+    def edit_documents(self):
+        sleep(3)
+        edit_documents = super().wait_element_to_be_clickable("/html/body/table[2]/tbody/tr/td/table/tbody/tr/td/div/table/tbody/tr[3]/td/table/tbody/tr/td[2]/input")
+        edit_documents.click()
+        Logging().reportDebugStep(self, "Open Edit documents")
+        return DocumentsPage(self.driver)
+
+
     def open_create_filter_pop_up(self):
         element = super().wait_element_to_be_clickable("//a[contains(text(),'Create Filter')]")
         self.driver.execute_script("arguments[0].click();", element)
@@ -116,7 +124,7 @@ class DocumentsPage(CRMBasePage):
         # window_after = self.driver.window_handles[0]
         # self.driver.switch_to_window(window_after)
         # sleep(2)
-        button_save = self.driver.find_element(By.XPATH, "//*[@id='basicTab']/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[1]/td/div/input[1]")
+        button_save = self.driver.find_element(By.XPATH, "//*[@id='massedit_form']/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[1]/td/div/input[1]")
         button_save.click()
         Logging().reportDebugStep(self, "Save document")
         return DocumentsPage()
