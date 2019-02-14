@@ -164,12 +164,12 @@ if __name__ == "__main__":
 
                 format2 = workbook.add_format({'bg_color': '#C4D79B',
                                                'font_color': '#000000'})
-                worksheet.conditional_format(0, 0, 68, 200, {'type': 'text',
+                worksheet.conditional_format(0, 0, 111, 200, {'type': 'text',
                                                               'criteria': 'beginsWith',
                                                               'value': 'PASS',
                                                               'format': format2})
 
-                worksheet.conditional_format(0, 0, 68, 200, {'type': 'text',
+                worksheet.conditional_format(0, 0, 111, 200, {'type': 'text',
                                                               'criteria': 'beginsWith',
                                                               'value': 'ERROR',
                                                               'format': format1})
