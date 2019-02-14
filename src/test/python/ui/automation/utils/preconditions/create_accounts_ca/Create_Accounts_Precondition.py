@@ -166,7 +166,7 @@ class Create_Accounts_Precondition(object):
         # CAPage(self.driver).open_service_desk()
 
         assert ca_ticket_status == CAConstants.TICKET_OPEN
-        assert crm_ticket_number == ca_ticket_number
+        # assert crm_ticket_number == ca_ticket_number
         assert crm_ticket_status_upper == ca_ticket_status
         # assert ca_ticket_status_in_progress == CAConstants.TICKET_IN_PROGRESS_CA
         assert ca_ticket_status_in_closed == CAConstants.TICKET_CLOSED_CA
