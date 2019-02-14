@@ -183,7 +183,15 @@ if __name__ == "__main__":
                     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
                 worksheet.set_row(55, None, None, {'level': 1, 'hidden': True})
-                for i in range(56, 68):
+                for i in range(56, 70):
+                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
+                worksheet.set_row(71, None, None, {'level': 1, 'hidden': True})
+                for i in range(72, 96):
+                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
+                worksheet.set_row(97, None, None, {'level': 1, 'hidden': True})
+                for i in range(98, 111):
                     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
 

@@ -145,7 +145,7 @@ class Login_CA_Precondition(object):
             print(expected_client, existing_client)
             assert existing_client == expected_client
 
-        elif (global_var.current_brand_name == "xtraderfx")or(global_var.current_brand_name == "solocapitals") \
+        elif (global_var.current_brand_name == "xtraderfx")or(global_var.current_brand_name == "solocapitlas") \
                 or (global_var.current_brand_name == "b-finance"):
 
             CALoginPage(self.driver).verify() \

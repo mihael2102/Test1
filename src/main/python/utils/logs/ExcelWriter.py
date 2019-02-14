@@ -336,7 +336,7 @@ class ExcelWriter:
                         ,"Client country is approved"
                         ,"Client currency is approved"]
 
-        if self.get_test_pretty_name_new(test) == "AddNewLiveAccountTestCA: test add live account ca":
+        if self.get_test_pretty_name_new(test) == "AddNewAccountTestCA: test add live account ca":
             step_suit = ["Open first tabs page"
                         ,"Click Login"
                         ,"Enter Email"
@@ -350,7 +350,54 @@ class ExcelWriter:
                         ,"Select currency"
                         ,"Select leverage level"
                         ,"Click Create Account button"
-                        ,"Additional account was created successfully"]
+                        ,"Additional account was created successfully"
+                        ,"Open Live account section"
+                        ,"Get Live account number"]
+
+        if self.get_test_pretty_name_new(test) == "AddNewAccountTestCA: test add demo account ca":
+            step_suit = ["Open first tabs page"
+                        ,"Click Login"
+                        ,"Enter Email"
+                        ,"Enter Password"
+                        ,"Click Login in pop up"
+                        ,"You are on the Webtrader page"
+                        ,"Click Hi, User"
+                        ,"Click Manage Accounts button"
+                        ,"Switch to Demo section"
+                        ,"Click Open New Account button"
+                        ,"Select account type"
+                        ,"Select currency"
+                        ,"Select leverage level"
+                        ,"Set initial deposit: 0"
+                        ,"Click Create Account button"
+                        ,"Validation message appear"
+                        ,"Set initial deposit: 1000000"
+                        ,"Click Create Account button"
+                        ,"Validation message appear"
+                        ,"Set initial deposit: 10000"
+                        ,"Click Create Account button"
+                        ,"Additional account was created successfully"
+                        ,"Open Demo section"
+                        ,"Leverage of demo account is verified"
+                        ,"Currency of demo account is verified"
+                        ,"Get Demo account number"]
+
+        if self.get_test_pretty_name_new(test) == "AddNewAccountTestCA: test verify accounts in crm":
+            step_suit = ["Open CRM"
+                        ,"Enter Username"
+                        ,"Enter Password"
+                        ,"Click Login"
+                        ,"No OTP"
+                        ,"No What's new"
+                        ,"Click the  drop down filter"
+                        ,"Search the filter Test Clients"
+                        ,"Open Test Clients filter"
+                        ,"Set client email in the email field"
+                        ,"Click the search button"
+                        ,"Open client details"
+                        ,"Open the trading account tab"
+                        ,"DEMO Trading account is found"
+                        ,"LIVE Trading account is found"]
 
         #
         # # CalendarView

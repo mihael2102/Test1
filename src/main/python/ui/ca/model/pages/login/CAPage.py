@@ -123,13 +123,14 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def open_live_section(self):
+        sleep(1)
         live_btn = super().wait_load_element("//li[@class='header-menu-pandats']/span[contains(text(), 'Live')]")
         self.driver.execute_script("arguments[0].click();", live_btn)
-        Logging().reportDebugStep(self, "Click Live account's section")
+        Logging().reportDebugStep(self, "Open Live account's section")
         return CAPage(self.driver)
 
     def get_live_account_number(self):
-        sleep(2)
+        sleep(1)
         CAConstants.LIVE_ACCOUNT_NUMBER = super().wait_load_element("//accounts/div/div/perfect-scrollbar/div/ \
                                                                         div[1]/div/table/tbody/tr[2]/td[1]").text
         print(CAConstants.LIVE_ACCOUNT_NUMBER)

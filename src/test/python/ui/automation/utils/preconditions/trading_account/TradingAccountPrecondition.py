@@ -58,7 +58,9 @@ class TradingAccountPrecondition(object):
                 CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL)
 
             CAPage(self.driver).click_create_account() \
-                               .additional_account_created()
+                               .additional_account_created() \
+                               .open_live_section() \
+                               .get_live_account_number()
         else:
             return self
 
@@ -104,7 +106,10 @@ class TradingAccountPrecondition(object):
                 assert actual_leverage == expected_leverage
             else:
                 actual_leverage = CAPage(self.driver).get_leverage()
-                expected_leverage = CAConstants.LEVERAGE_LEVEL
+                lev = CAConstants.LEVERAGE_LEVEL
+                leverage = lev.split(':')
+                expected_leverage = leverage[1]
+                print(expected_leverage, actual_leverage)
                 assert actual_leverage == expected_leverage
 
             if global_var.current_brand_name == "mpcrypto":
@@ -116,9 +121,7 @@ class TradingAccountPrecondition(object):
                 expected_currency = CAConstants.CURRENCY
                 assert actual_currency == expected_currency
 
-            CAPage(self.driver).get_demo_account_number() \
-                               .open_live_section() \
-                               .get_live_account_number()
+            CAPage(self.driver).get_demo_account_number()
         else:
             return self
 

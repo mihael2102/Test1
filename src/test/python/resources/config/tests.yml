@@ -6,8 +6,8 @@ tests_config:
   tests:
     - test_check_sign_up
     - test_registred_client_exist_in_crm
-- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Live_Accounts
-  class: AddNewLiveAccountTestCA
+- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
+  class: AddNewAccountTestCA
   tests:
     - test_add_live_account_ca
     - test_add_demo_account_ca

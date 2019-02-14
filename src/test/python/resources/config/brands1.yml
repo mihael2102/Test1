@@ -21,7 +21,7 @@ brands:
 #  config_file: goldenmarkets.yml
 #- name: herdos
 #  config_file: herdos.yml
-#- name: solocapitals
+#- name: solocapitlas
 #  config_file: solocapitlas.yml
 #- name: tradospot
 #  config_file: tradospot.yml

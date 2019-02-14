@@ -12,7 +12,7 @@ from src.test.python.ui.automation.utils.preconditions.trading_account.TradingAc
 
 
 @pytest.mark.run(order=5)
-class AddNewLiveAccountTestCA(BaseTest):
+class AddNewAccountTestCA(BaseTest):
 
     def test_add_live_account_ca(self):
 

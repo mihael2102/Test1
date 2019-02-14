@@ -1,5 +1,5 @@
 from src.test.python.ui.automation.implementation.ca.Test_Add_Demo_Accounts import AddDemoAccountsTestCA
-from src.test.python.ui.automation.implementation.ca.Test_Add_New_Live_Accounts import AddNewLiveAccountTestCA
+from src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts import AddNewLiveAccountTestCA
 from src.test.python.ui.automation.implementation.ca.Test_Change_Password import ChangePasswordTestCA
 from src.test.python.ui.automation.implementation.ca.Test_Download_Documents import DownloadDocumentsTestCA
 from src.test.python.ui.automation.implementation.ca.Test_Make_Deposit import DepositTestCa
