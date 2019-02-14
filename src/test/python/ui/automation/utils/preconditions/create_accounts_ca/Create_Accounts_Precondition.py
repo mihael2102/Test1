@@ -86,22 +86,22 @@ class Create_Accounts_Precondition(object):
 
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
         ClientsPage(self.driver).select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
-        sleep(2)
+        sleep(3)
         ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                           LeadsModuleConstants.EMAIL])
-        ClientProfilePage(self.driver).open_help_desk_tab()
-        sleep(2)
+        # ClientProfilePage(self.driver).open_help_desk_tab()
+        sleep(3)
         ClientProfilePage(self.driver).change_status_ticket()
-        sleep(2)
+        sleep(3)
         HelpDeskEditPage(self.driver).select_status(CAConstants.TICKET_CLOSED)
-        sleep(2)
+        sleep(3)
         HelpDeskEditPage(self.driver).click_save_button()
 
         ##VERIFY STATUS IN CA
 
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
         CAPage(self.driver).open_service_desk()
-        sleep(2)
+        sleep(3)
         ca_ticket_status_in_closed = CAPage(self.driver).verify_ticket_status_closed()
 
         ##VERIFY AND CHANGE STATUS TO OPEN IN CRM
@@ -109,16 +109,16 @@ class Create_Accounts_Precondition(object):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
         ClientsPage(self.driver).select_filter(
             self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
-        sleep(2)
+        sleep(3)
         ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                           LeadsModuleConstants.EMAIL])
-        sleep(2)
-        ClientProfilePage(self.driver).open_help_desk_tab()
-        sleep(2)
+        sleep(3)
+        # ClientProfilePage(self.driver).open_help_desk_tab()
+        sleep(3)
         ClientProfilePage(self.driver).change_status_ticket()
-        sleep(2)
-        HelpDeskEditPage(self.driver).select_status(CAConstants.TICKET_OPEN)
-        sleep(2)
+        sleep(3)
+        HelpDeskEditPage(self.driver).select_status(CAConstants.TICKET_OPEN_CRM)
+        sleep(3)
         HelpDeskEditPage(self.driver).click_save_button()
 
         ##VERIFY STATUS IN CA

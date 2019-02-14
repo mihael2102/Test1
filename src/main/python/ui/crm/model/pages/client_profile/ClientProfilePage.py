@@ -249,7 +249,8 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_help_desk_tab(self):
-        select_country = super().wait_load_element("//a[@id='show_Accounts_HelpDesk']")
+        sleep(7)
+        select_country = super().wait_load_element("//*[@id='show_Accounts_HelpDesk']/span")
         self.driver.execute_script("arguments[0].scrollIntoView();", select_country)
         try:
             select_country.click()
@@ -593,7 +594,9 @@ class ClientProfilePage(CRMBasePage):
         return status
 
     def change_status_ticket(self):
+        sleep(3)
         pencil_button = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//td[12]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", pencil_button)
         try:
             pencil_button.click()
         except:
