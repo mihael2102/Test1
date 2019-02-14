@@ -14,8 +14,8 @@ brands:
 #  config_file: forexbestmarket.yml
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
-#- name: solocapitlas
-#  config_file: solocapitlas.yml
+#- name: solocapitals
+#  config_file: solocapitals.yml
 #- name: goldenmarkets
 #  config_file: goldenmarkets.yml
 #- name: safemarkets
