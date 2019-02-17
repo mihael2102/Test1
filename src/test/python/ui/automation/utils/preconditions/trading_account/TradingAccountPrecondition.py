@@ -94,9 +94,12 @@ class TradingAccountPrecondition(object):
             CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT0) \
                                .verify_init_deposit_error() \
                                .set_initial_deposit(CAConstants.INITIAL_DEPOSIT1) \
-                               .verify_init_deposit_error() \
-                               .set_initial_deposit(CAConstants.INITIAL_DEPOSIT) \
-                               .click_create_account() \
+                               .verify_init_deposit_error()
+            if global_var.current_brand_name == "mpcrypto":
+                CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT_BTC)
+            else:
+                CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT)
+            CAPage(self.driver).click_create_account() \
                                .verify_demo_account_created() \
                                .open_demo_section()
             if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual") \

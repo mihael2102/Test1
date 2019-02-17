@@ -50,3 +50,5 @@ CALoginPage:
   next_btn: "//button[contains (text(), 'Next')]"
 CAPage:
   create_account_btn: "//button[@class='forex-button-pandats'][contains(text(), 'Create Account')]"
+  actual_leverage: "//accounts/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/td[2]"
+  actual_currency: "//accounts/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/td[3]"

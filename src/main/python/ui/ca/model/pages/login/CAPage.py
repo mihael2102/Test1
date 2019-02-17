@@ -75,15 +75,15 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def get_leverage(self):
-        leverage = super().wait_load_element("//accounts/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/td[2]") \
-                                                .text
+        leverage = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                    self.__class__.__name__)["actual_leverage"]).text
         Logging().reportDebugStep(self, "The Leverage is " + leverage)
         return leverage
 
     def get_currency(self):
-        currency = super().wait_load_element("//accounts/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/td[3]") \
-                                                .text
-        Logging().reportDebugStep(self, "The Leverage is " + currency)
+        currency = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                    self.__class__.__name__)["actual_currency"]).text
+        Logging().reportDebugStep(self, "The Currency is " + currency)
         return currency
 
     def set_initial_deposit(self, in_deposit):
@@ -137,17 +137,49 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Live account number is " + CAConstants.LIVE_ACCOUNT_NUMBER)
         return CAPage(self.driver)
 
-    def open_accounts_list(self):
+    def open_accounts_list(self, server):
         sleep(1)
         accounts_list = super().wait_load_element("//span[@class='account-type-pandats ng-star-inserted'] \
-                                                [contains(text(), 'Live')]")
+                                                [contains(text(), '%s')]" % server)
         self.driver.execute_script("arguments[0].click();", accounts_list)
         Logging().reportDebugStep(self, "Open list accounts")
         return CAPage(self.driver)
 
-    def switch_to_live_account(self, account_number):
-        live_account = super().wait_load_element("//div[@class='account-title-pandats roboto-pandats'] \
+    def switch_to_account(self, account_number, account_server):
+        sleep(1)
+        account = super().wait_element_to_be_clickable("//div[@class='account-title-pandats roboto-pandats'] \
                                                         [contains(text(), '%s')]" % account_number)
-        self.driver.execute_script("arguments[0].click();", live_account)
-        Logging().reportDebugStep(self, "Switch to Live account")
+        self.driver.execute_script("arguments[0].click();", account)
+        Logging().reportDebugStep(self, "Switch to " + account_server + " account")
         return CAPage(self.driver)
+
+    def verify_active_account_currency(self, expected_currency):
+        actual_currency = ''
+        if expected_currency == 'EUR':
+            if self.driver.find_element_by_xpath("//li[@class='account-pandats active-pandats'] \
+                                                            /div[@class='account-wrapper-pandats'] \
+                                                            /div[@class='account-details-pandats'] \
+                                                            /div[@class='tr-row-pandats account-data-pandats'] \
+                                                            /div[contains(text(), '€')]"):
+                actual_currency = 'EUR'
+            assert expected_currency == actual_currency
+            Logging().reportDebugStep(self, "Currency of active account is: " + actual_currency)
+        else:
+            if self.driver.find_element_by_xpath("//li[@class='account-pandats active-pandats'] \
+                                                            /div[@class='account-wrapper-pandats'] \
+                                                            /div[@class='account-details-pandats'] \
+                                                            /div[@class='tr-row-pandats account-data-pandats'] \
+                                                            /div[contains(text(), 'BTC')]"):
+                actual_currency = 'BTC'
+            assert expected_currency == actual_currency
+            Logging().reportDebugStep(self, "Currency of active account is: " + actual_currency)
+
+        return CAPage(self.driver)
+
+    def verify_active_account_number(self, expected_acc_number):
+        actual_acc_number = self.driver.find_element_by_xpath("//div[@class='login-pandats'][contains(text(), '%s')]" \
+                                                              % expected_acc_number).text
+        if len(actual_acc_number) != 0:
+            Logging().reportDebugStep(self, "Active account number is verified")
+        else:
+            Logging().reportDebugStep(self, "Active account number was not verified")

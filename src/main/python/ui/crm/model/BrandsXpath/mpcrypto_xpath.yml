@@ -18,3 +18,6 @@ FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[11])[%s]"
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
+CAPage:
+  actual_leverage: "//accounts/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/td[3]"
+  actual_currency: "//accounts/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/td[4]"

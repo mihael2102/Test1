@@ -36,8 +36,22 @@ class Page_CA_Precondition(object):
                                     .enter_password(CAConstants.PASSWORD) \
                                     .click_login() \
                                     .verify()
-            CAPage(self.driver).open_accounts_list() \
-                               .switch_to_live_account(CAConstants.ACCOUNT_LIVE)
+            CAPage(self.driver).open_accounts_list(CAConstants.ACCOUNT_LIVE) \
+                               .switch_to_account(CAConstants.LIVE_ACCOUNT_NUMBER, CAConstants.ACCOUNT_LIVE) \
+                               .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
+                               .verify_active_account_number(CAConstants.LIVE_ACCOUNT_NUMBER)
+            if global_var.current_brand_name == "mpcrypto":
+                CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
+            else:
+                CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY)
+
+            CAPage(self.driver).switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
+                               .open_accounts_list(CAConstants.ACCOUNT_DEMO) \
+                               .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
+            if global_var.current_brand_name == "mpcrypto":
+                CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
+            else:
+                CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY)
 
         else:
             return self
