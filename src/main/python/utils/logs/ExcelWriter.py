@@ -399,6 +399,23 @@ class ExcelWriter:
                         ,"DEMO Trading account is found"
                         ,"LIVE Trading account is found"]
 
+        if self.get_test_pretty_name_new(test) == "AddNewAccountTestCA: test switch between accounts ca":
+            step_suit = ["Open first tabs page"
+                        ,"Click Login"
+                        ,"Enter Email"
+                        ,"Enter Password"
+                        ,"Click Login in pop up"
+                        ,"You are on the Webtrader page"
+                        ,"Open list accounts"
+                        ,"Switch to Live account"
+                        ,"Open list accounts"
+                        ,"Active live account number is verified"
+                        ,"Currency of active account is verified"
+                        ,"Switch to Demo account"
+                        ,"Open list accounts"
+                        ,"Active demo account number is verified"
+                        ,"Currency of active account is verified"]
+
         #
         # # CalendarView
         #

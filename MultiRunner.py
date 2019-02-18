@@ -164,12 +164,12 @@ if __name__ == "__main__":
 
                 format2 = workbook.add_format({'bg_color': '#C4D79B',
                                                'font_color': '#000000'})
-                worksheet.conditional_format(0, 0, 111, 200, {'type': 'text',
+                worksheet.conditional_format(0, 0, 126, 200, {'type': 'text',
                                                               'criteria': 'beginsWith',
                                                               'value': 'PASS',
                                                               'format': format2})
 
-                worksheet.conditional_format(0, 0, 111, 200, {'type': 'text',
+                worksheet.conditional_format(0, 0, 126, 200, {'type': 'text',
                                                               'criteria': 'beginsWith',
                                                               'value': 'ERROR',
                                                               'format': format1})
@@ -192,6 +192,10 @@ if __name__ == "__main__":
 
                 worksheet.set_row(97, None, None, {'level': 1, 'hidden': True})
                 for i in range(98, 111):
+                    worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
+
+                worksheet.set_row(112, None, None, {'level': 1, 'hidden': True})
+                for i in range(113, 126):
                     worksheet.set_row(i, None, None, {'level': 2, 'hidden': True})
 
 
