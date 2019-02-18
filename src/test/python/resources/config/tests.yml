@@ -13,7 +13,7 @@ tests_config:
     - test_add_new_demo_account_ca
     - test_check_demo_in_crm
     - test_open_ticket_ca
-    - test_upload_document
+#    - test_upload_document
 
 
 #- module: src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update
