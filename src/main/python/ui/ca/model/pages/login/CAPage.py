@@ -183,3 +183,91 @@ class CAPage(CRMBasePage):
             Logging().reportDebugStep(self, "Active account number is verified")
         else:
             Logging().reportDebugStep(self, "Active account number was not verified")
+
+    def open_personal_details(self):
+        personal_details_btn = super().wait_element_to_be_clickable("//li[@class='ng-star-inserted'] \
+                                                                    [contains(text(), 'Personal Details')]")
+        self.driver.execute_script("arguments[0].click();", personal_details_btn)
+        sleep(1)
+        Logging().reportDebugStep(self, "Open Personal Details")
+        return CAPage(self.driver)
+
+    def edit_first_name(self, first_name):
+        first_name_field = super().wait_load_element("//input[@name='firstName']")
+        first_name_field.clear()
+        first_name_field.send_keys(first_name)
+        Logging().reportDebugStep(self, "Edit First Name")
+        return CAPage(self.driver)
+
+    def edit_last_name(self, last_name):
+        last_name_field = super().wait_load_element("//input[@name='lastName']")
+        last_name_field.clear()
+        last_name_field.send_keys(last_name)
+        Logging().reportDebugStep(self, "Edit Last Name")
+        return CAPage(self.driver)
+
+    def edit_citizenship(self, citizenship):
+        citizenship_field = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+                                                    self.__class__.__name__)["citizenship"] % citizenship)
+        self.driver.execute_script("arguments[0].click();", citizenship_field)
+        d = self.driver.find_element_by_xpath("//label[contains (text(), 'First Name')]")
+        d.click()
+        Logging().reportDebugStep(self, "Edit citizenship : " + citizenship)
+        return CAPage(self.driver)
+
+    def edit_city(self, city):
+        city_field = super().wait_load_element("//input[@name='city']")
+        city_field.clear()
+        city_field.send_keys(city)
+        Logging().reportDebugStep(self, "Edit City field")
+        return CAPage(self.driver)
+
+    def edit_zip(self, zipcode):
+        zip_field = super().wait_load_element("//input[@name='postCode']")
+        zip_field.clear()
+        zip_field.send_keys(zipcode)
+        Logging().reportDebugStep(self, "Edit Zip code field")
+        return CAPage(self.driver)
+
+    def edit_address(self, address):
+        address_field = super().wait_load_element("//input[@name='address']")
+        address_field.clear()
+        address_field.send_keys(address)
+        Logging().reportDebugStep(self, "Edit Address field")
+        return CAPage(self.driver)
+
+    def click_save_changes_btn(self):
+        save_changes_btn = super().wait_element_to_be_clickable("//button[contains (text(), 'Save Changes')]")
+        self.driver.execute_script("arguments[0].click();", save_changes_btn)
+        Logging().reportDebugStep(self, "Click Save Changes button")
+        return CAPage(self.driver)
+
+    def get_first_name(self):
+        first_name = super().wait_load_element("//input[@name='firstName']").text
+        Logging().reportDebugStep(self, "Client's First Name is " + first_name)
+        return first_name
+
+    def get_last_name(self):
+        last_name = super().wait_load_element("//input[@name='lastName']").text
+        Logging().reportDebugStep(self, "Client's Last Name is " + last_name)
+        return last_name
+
+    def get_citizenship(self):
+        citizenship = super().wait_load_element("//custom-select[@name='citizenship']").text
+        Logging().reportDebugStep(self, "Client's citizenship : " + citizenship)
+        return citizenship
+
+    def get_city(self):
+        city = super().wait_load_element("//input[@name='city']").text
+        Logging().reportDebugStep(self, "Client's City : " + city)
+        return city
+
+    def get_zipcode(self):
+        postalcode = super().wait_load_element("//input[@name='postCode']").text
+        Logging().reportDebugStep(self, "Client's Zip code is : " + postalcode)
+        return postalcode
+
+    def get_address(self):
+        address = super().wait_load_element("//input[@name='address']").text
+        Logging().reportDebugStep(self, "Client's Address is : " + address)
+        return address

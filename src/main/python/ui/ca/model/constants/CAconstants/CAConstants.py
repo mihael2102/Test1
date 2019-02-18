@@ -1,4 +1,5 @@
 import random
+import string
 from datetime import *
 from dateutil.relativedelta import relativedelta
 
@@ -11,10 +12,14 @@ class CAConstants(object):
     CURRENCY = "EUR"
     CURRENCY_CRYPTO = "BTC"
     CITY = "Berlin"
+    UPDATE_CITY = "Toronto"
     ZIP_CODE = "123"
+    UPDATE_ZIP_CODE = "567"
     ADDRESS = "Street10"
+    UPDATE_ADDRESS = "Lenin25"
     CITIZENSHIP = "Albanian"
     CITIZENSHIP2 = "Andorran"
+    UPDATE_CITIZENSHIP = "Australian"
     ACCOUNT_TYPE = "Pro"
     ACCOUNT_LIVE = "Live"
     LEVERAGE_LEVEL = "1:100"
@@ -26,3 +31,5 @@ class CAConstants(object):
     INITIAL_DEPOSIT_BTC = "10"
     DEMO_ACCOUNT_NUMBER = ""
     LIVE_ACCOUNT_NUMBER = ""
+    UPDATE_FIRST_NAME = "pandatest" + (''.join(random.sample(string.ascii_uppercase*6, 6)))
+    UPDATE_LAST_NAME = "Test"

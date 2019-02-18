@@ -22,3 +22,6 @@ CALoginPage:
   submit_btn: "/html/body/div[2]/div/div/form/input[2]"
   login_email_input: "//input[@name='email']"
   login_btn_2: "/html/body/div[2]/div/div[1]/form/input"
+  login_btn: "//span[contains(text(), 'Login')]"
+CAPage:
+  edit_first_name: "//input[@name='firstName']"

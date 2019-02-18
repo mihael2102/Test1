@@ -459,8 +459,70 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Client currency is: " + client_currency)
         return client_currency
 
+    def get_citizenship(self):
+        client_citizenship = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["client_citizenship"]).text
+        Logging().reportDebugStep(self, "Client citizenship is: " + client_citizenship)
+        return client_citizenship
+
     def trading_account_exist(self, trading_account):
         self.driver.find_elements_by_xpath("//a[@class='before_nw'][contains(@href, 'Tradingaccount')] \
                                             [contains(text(), '%s')]" % trading_account)
         Logging().reportDebugStep(self, "Trading account is found: " + trading_account)
+        return ClientsPage(self.driver)
+
+    def click_edit_btn(self):
+        edit_btn = super().wait_element_to_be_clickable("//input[contains(@title ,'Edit')]")
+        self.driver.execute_script("arguments[0].click();", edit_btn)
+        Logging().reportDebugStep(self, "Click Edit button")
+        return ClientsPage(self.driver)
+
+    def edit_first_name(self, first_name):
+        first_name_field = super().wait_load_element("//input[@id='first_name']")
+        first_name_field.clear()
+        first_name_field.send_keys(first_name)
+        Logging().reportDebugStep(self, "Edit First Name")
+        return ClientsPage(self.driver)
+
+    def edit_last_name(self, last_name):
+        last_name_field = super().wait_load_element("//input[@id='last_name']")
+        last_name_field.clear()
+        last_name_field.send_keys(last_name)
+        Logging().reportDebugStep(self, "Edit Last Name")
+        return ClientsPage(self.driver)
+
+    def edit_citizenship(self, citizenship):
+        citizenship_field = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+                                                    self.__class__.__name__)["citizenship"] % citizenship)
+        self.driver.execute_script("arguments[0].click();", citizenship_field)
+        d = self.driver.find_element_by_xpath("//label[contains (text(), 'First Name')]")
+        d.click()
+        Logging().reportDebugStep(self, "Edit citizenship : " + citizenship)
+        return ClientsPage(self.driver)
+
+    def edit_city(self, city):
+        city_field = super().wait_load_element("//input[@id='city']")
+        city_field.clear()
+        city_field.send_keys(city)
+        Logging().reportDebugStep(self, "Edit City field")
+        return ClientsPage(self.driver)
+
+    def edit_zip(self, zipcode1):
+        zip_field = super().wait_load_element("//input[@id='postcode']")
+        zip_field.clear()
+        zip_field.send_keys(zipcode1)
+        Logging().reportDebugStep(self, "Edit Zip code field")
+        return ClientsPage(self.driver)
+
+    def edit_address(self, address):
+        address_field = super().wait_load_element("//input[@id='address']")
+        address_field.clear()
+        address_field.send_keys(address)
+        Logging().reportDebugStep(self, "Edit Address field")
+        return ClientsPage(self.driver)
+
+    def click_save_changes_btn(self):
+        save_changes_btn = super().wait_element_to_be_clickable("//input[@value='Save']")
+        self.driver.execute_script("arguments[0].click();", save_changes_btn)
+        Logging().reportDebugStep(self, "Click Save button")
         return ClientsPage(self.driver)

@@ -120,7 +120,7 @@ class CALoginPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", data)
         d = self.driver.find_element_by_xpath("//label[contains (text(), 'First Name')]")
         d.click()
-        Logging().reportDebugStep(self, "Select currency : " + citizenship)
+        Logging().reportDebugStep(self, "Select citizenship : " + citizenship)
         return CALoginPage(self.driver)
 
     def fill_city(self, city):

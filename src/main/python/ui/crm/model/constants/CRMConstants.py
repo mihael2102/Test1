@@ -1,6 +1,7 @@
 import random
 from datetime import *
 from dateutil.relativedelta import relativedelta
+import string
 
 
 class CRMConstants(object):
@@ -107,4 +108,10 @@ class CRMConstants(object):
     BLOCKED_COUNTRY = "Albania"
     CREATE_AFFILIATE_SUCCCESS = "Success"
     EASY_SEARCH_CLIENT_TEST = "test"
+    EDIT_FIRST_NAME = "test_CRM" + (''.join(random.sample(string.ascii_uppercase*6, 6)))
+    EDIT_LAST_NAME = "Test_CRM"
+    EDIT_CITIZENSHIP = "American"
+    EDIT_CITY = "London"
+    EDIT_ZIP_CODE = "789"
+    EDIT_ADDRESS = "BenGurion48"
 

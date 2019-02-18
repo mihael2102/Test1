@@ -55,3 +55,94 @@ class Page_CA_Precondition(object):
 
         else:
             return self
+
+    def update_personal_details_in_ca(self):
+        if global_var.current_brand_name != "q8":
+            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
+                                    .login() \
+                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                 LeadsModuleConstants.EMAIL]) \
+                                    .enter_password(CAConstants.PASSWORD) \
+                                    .click_login() \
+                                    .verify() \
+                                    .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                        LeadsModuleConstants.FIRST_NAME])
+            CAPage(self.driver).open_personal_details() \
+                               .edit_first_name(CAConstants.UPDATE_FIRST_NAME) \
+                               .edit_last_name(CAConstants.UPDATE_LAST_NAME) \
+                               .edit_citizenship(CAConstants.UPDATE_CITIZENSHIP) \
+                               .edit_city(CAConstants.UPDATE_CITY) \
+                               .edit_zip(CAConstants.UPDATE_ZIP_CODE) \
+                               .edit_address(CAConstants.UPDATE_ADDRESS) \
+                               .click_save_changes_btn()
+        else:
+            return self
+
+    def check_personal_details_in_crm(self):
+        # Login to CRM
+        if global_var.current_brand_name != "q8":
+            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+                                     .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                                                self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
+                                     .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, \
+                                                                                TestDataConstants.FILTER))
+
+            sleep(2)
+            ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                          LeadsModuleConstants.EMAIL])
+            sleep(2)
+            assert ClientsPage(self.driver).get_client_first_name() == CAConstants.UPDATE_FIRST_NAME
+            assert ClientsPage(self.driver).get_client_last_name() == CAConstants.UPDATE_LAST_NAME
+            assert ClientsPage(self.driver).get_citizenship() == CAConstants.UPDATE_CITIZENSHIP
+            assert ClientsPage(self.driver).get_client_address() == CAConstants.UPDATE_ADDRESS
+            assert ClientsPage(self.driver).get_client_city() == CAConstants.UPDATE_CITY
+            assert ClientsPage(self.driver).get_client_code() == CAConstants.UPDATE_ZIP_CODE
+        else:
+            return self
+
+    def update_personal_details_in_crm(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                                            self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
+                                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, \
+                                                                           TestDataConstants.FILTER))
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                          LeadsModuleConstants.EMAIL])
+        ClientsPage(self.driver).click_edit_btn() \
+                                .edit_first_name(CRMConstants.EDIT_FIRST_NAME) \
+                                .edit_last_name(CRMConstants.EDIT_LAST_NAME) \
+                                .edit_citizenship(CRMConstants.EDIT_CITIZENSHIP) \
+                                .edit_city(CRMConstants.EDIT_CITY) \
+                                .edit_zip(CRMConstants.EDIT_ZIP_CODE) \
+                                .edit_address(CRMConstants.EDIT_ADDRESS) \
+                                .click_save_changes_btn()
+
+    def check_personal_details_in_ca(self):
+        if global_var.current_brand_name == "q8":
+
+            CALoginPage(self.driver).open_second_tab_page(self.config.get_value('url_ca')) \
+                                    .login() \
+                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                    LeadsModuleConstants.EMAIL]) \
+                                    .enter_password(CAConstants.PASSWORD) \
+                                    .click_login() \
+                                    .click_my_account() \
+                                    .account_details()
+        else:
+            self.config.get_value('url_ca')
+            CALoginPage(self.driver).login() \
+                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                    LeadsModuleConstants.EMAIL]) \
+                                    .enter_password(CAConstants.PASSWORD) \
+                                    .click_login() \
+                                    .verify() \
+                                    .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                    LeadsModuleConstants.FIRST_NAME])
+            CAPage(self.driver).open_personal_details()
+            assert CRMConstants.EDIT_FIRST_NAME == CAPage(self.driver).get_first_name()
+            assert CRMConstants.EDIT_LAST_NAME == CAPage(self.driver).get_last_name()
+            assert CRMConstants.EDIT_CITIZENSHIP == CAPage(self.driver).get_citizenship()
+            assert CRMConstants.EDIT_CITY == CAPage(self.driver).get_city()
+            assert CRMConstants.EDIT_ZIP_CODE == CAPage(self.driver).get_zipcode()
+            assert CRMConstants.EDIT_ADDRESS == CAPage(self.driver).get_address()
