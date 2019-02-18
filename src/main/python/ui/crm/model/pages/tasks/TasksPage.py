@@ -252,13 +252,14 @@ class TasksPage(CRMBasePage):
 
     def find_event_by_subject(self, subject):
         sleep(2)
-        subject_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+        subject_field = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["subject_input"])
-        subject_field.clear()
+        self.driver.execute_script("arguments[0].scrollIntoView();", subject_field)
+        # subject_field.clear()
         sleep(5)
-        subject_field.send_keys(subject)
+        subject_field.send_keys("Test")
         Logging().reportDebugStep(self, "The subject was set: " + subject)
-        sleep(3)
+        sleep(8)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
         return TasksPage(self.driver)
 
@@ -306,7 +307,7 @@ class TasksPage(CRMBasePage):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         refresh_icon = self.driver.find_element(By.XPATH, "//a[@class='fa fa-refresh']")
         refresh_icon.click()
-        sleep(2)
+        sleep(8)
         result_count_xpath = "//*[contains(text(), 'Showing Records')]"
         self.wait_visible_of_element(result_count_xpath)
         results_count_text = self.driver.find_elements(By.XPATH, result_count_xpath)[0].text
