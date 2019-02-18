@@ -119,7 +119,7 @@ class Create_Accounts_Precondition(object):
 
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
         CAPage(self.driver).open_service_desk()
-        # ca_ticket_status_in_progress = CAPage(self.driver).verify_ticket_status()
+        ca_ticket_status_in_progress = CAPage(self.driver).verify_ticket_status()
 
         ##VERIFY AND CHANGE STATUS TO CLOSED IN CRM
 
@@ -166,9 +166,9 @@ class Create_Accounts_Precondition(object):
         # CAPage(self.driver).open_service_desk()
 
         assert ca_ticket_status == CAConstants.TICKET_OPEN
-        # assert crm_ticket_number == ca_ticket_number
+        assert crm_ticket_number == ca_ticket_number
         assert crm_ticket_status_upper == ca_ticket_status
-        # assert ca_ticket_status_in_progress == CAConstants.TICKET_IN_PROGRESS_CA
+        assert ca_ticket_status_in_progress == CAConstants.TICKET_IN_PROGRESS_CA
         assert ca_ticket_status_in_closed == CAConstants.TICKET_CLOSED_CA
 
 
@@ -249,14 +249,27 @@ class Create_Accounts_Precondition(object):
                             .fill_address(CAConstants.ADDRESS)
 
         CALoginPage(self.driver).click_next_open_live_account()
+        if global_var.current_brand_name == "triomarkets":
+            CAPage(self.driver).fill_questionarie_triomarket(CAConstants.AMOUNT, CAConstants.PURPOSE,CAConstants.ANTICIPATED, CAConstants.EXPERIENCE, CAConstants.LEVEL, CAConstants.GLOSS, CAConstants.EMPLOYMENT, CAConstants.WORTH, CAConstants.SOURCE, CAConstants.WORK, CAConstants.RELATE)
+        if global_var.current_brand_name == "oinvestsa":
+            CAPage(self.driver).fill_questionarie(CAConstants.KNOWLEDGE, CAConstants.SOURCE, CAConstants.FUNDS, CAConstants.CITIZEN, CAConstants.COUNTRY, CAConstants.TIN, CAConstants.PEP)
         # CALoginPage(self.driver).my_account_link()
-        CAPage(self.driver).click_check_box_confirm()
-        CAPage(self.driver).click_confirm()
+        if global_var.current_brand_name == "mlnfx":
+            CAPage(self.driver).click_check_box_confirm()
+            CAPage(self.driver).click_confirm()
         currency = CAPage(self.driver).verify_relevant_currency()
-        assert currency == CAConstants.CURRENCY
         data = CAPage(self.driver).verify_correct_data()
+        if global_var.current_brand_name == "oinvestsa":
+            assert data == CAConstants.LEVERAGE_OINVESTSA
+            assert currency == CAConstants.CURRENCY_USD
+        elif global_var.current_brand_name == "soarfx":
+            assert data == CAConstants.LEVERAGE_SOARFX
+            assert currency == CAConstants.CURRENCY
+        else:
+            assert data == CAConstants.LEVERAGE
+            assert currency == CAConstants.CURRENCY
 
-        assert data == CAConstants.LEVERAGE
+
 
 
     def create_demo_account(self):

@@ -19,6 +19,109 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class CAPage(CRMBasePage):
 
+    def fill_questionarie_triomarket(self,amount, purpose,anticipated, expirience, level, gloss, employment, worth, source, work, relate):
+        self.enter_amount(amount)
+        self.enter_purpose(purpose)
+        self.enter_anticipated(anticipated)
+        self.enter_expirience(expirience)
+        self.enter_level(level)
+        self.enter_gloss(gloss)
+        self.enter_employment(employment)
+        self.enter_worth(worth)
+        self.enter_source(source)
+        self.enter_work(work)
+        self.enter_relate(relate)
+        self.continue_click()
+        Logging().reportDebugStep(self, "Finished fill questionarie")
+        return CAPage(self.driver)
+
+    def fill_questionarie(self, knowledge, source, funds, citizen, country, tin, pep):
+        self.enter_knowledge(knowledge)
+        self.enter_source(source)
+        self.enter_funds(funds)
+        self.enter_citizen(citizen)
+        self.enter_country(country)
+        self.enter_tin(tin)
+        self.enter_pep(pep)
+        self.next_questionarie()
+        self.continue_click()
+        Logging().reportDebugStep(self, "Finished fill questionarie")
+        return CAPage(self.driver)
+
+    def continue_click(self):
+        sleep(5)
+        submit = super().wait_load_element("//*[@id='welcome_continue']")
+        # submit.click()
+        self.driver.execute_script("arguments[0].click();", submit)
+        Logging().reportDebugStep(self, "Click Continue")
+        return CAPage(self.driver)
+
+    def next_questionarie(self):
+        sleep(3)
+        submit = super().wait_load_element("//*[@id='Next']")
+        submit.click()
+        Logging().reportDebugStep(self, "Click Next")
+        return CAPage(self.driver)
+
+    def enter_knowledge(self, knowledge):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlRelevantExperience']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlRelevantExperience']"))
+        select.select_by_visible_text(knowledge)
+        Logging().reportDebugStep(self, "Enter knowledge")
+        return CAPage(self.driver)
+
+    def enter_source(self, source):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlSourceOfFunds']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlSourceOfFunds']"))
+        select.select_by_visible_text(source)
+        Logging().reportDebugStep(self, "Enter source")
+        return CAPage(self.driver)
+
+    def enter_funds(self, funds):
+        sleep(3)
+        funds_input = self.driver.find_element(By.XPATH, "//*[@id='txtSourceOfFundsOther']")
+        funds_input.send_keys(funds)
+        Logging().reportDebugStep(self, "Enter funds")
+        return CAPage(self.driver)
+
+    def enter_citizen(self, citizen):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlUsCitizenTax']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlUsCitizenTax']"))
+        select.select_by_visible_text(citizen)
+        Logging().reportDebugStep(self, "Enter citizen")
+        return CAPage(self.driver)
+
+    def enter_country(self, country):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlTaxResidenceCountry_1']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlTaxResidenceCountry_1']"))
+        select.select_by_visible_text(country)
+        Logging().reportDebugStep(self, "Enter country")
+        return CAPage(self.driver)
+
+    def enter_tin(self, tin):
+        sleep(3)
+        tin_input = self.driver.find_element(By.XPATH, "//*[@id='dnn_ctr608_View_txtTaxTinNumber_1']")
+        tin_input.send_keys(tin)
+        Logging().reportDebugStep(self, "Enter knowledge")
+        return CAPage(self.driver)
+
+    def enter_pep(self, pep):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlPoliticallyPerson']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlPoliticallyPerson']"))
+        select.select_by_visible_text(pep)
+        Logging().reportDebugStep(self, "Enter knowledge")
+        return CAPage(self.driver)
+
     def verify_status_documents(self):
         status = super().wait_load_element("//*[@id='trIdentityFront']/td[3]/span").text
         Logging().reportDebugStep(self, "Verify status documents")

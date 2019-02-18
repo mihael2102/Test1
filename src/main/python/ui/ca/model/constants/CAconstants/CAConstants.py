@@ -4,6 +4,14 @@ from dateutil.relativedelta import relativedelta
 
 
 class CAConstants(object):
+    LEVERAGE_OINVESTSA = "1:50"
+    KNOWLEDGE = "Both"
+    SOURCE = "Other"
+    FUNDS = "other source"
+    CITIZEN = "No"
+    COUNTRY = "South Africa"
+    TIN = "1234567890"
+    PEP = "No"
     STATUS_DOCUMENTS_APPROVED_CA = "Document Verified"
     STATUS_DOCUMENTS_APPROVED = "Approved"
     DOCUMENTS = "Bear.jpg"
@@ -24,6 +32,7 @@ class CAConstants(object):
     NEW_CITY = "THISISNEWCITY"
     NEW_CODE = "999"
     LEVERAGE = "1:100"
+    LEVERAGE_SOARFX = "1:200"
     PASSWORD = "as1as2as1as2"
     DAY_BIRTH = "10"
     MONTH_BIRTH = "12"

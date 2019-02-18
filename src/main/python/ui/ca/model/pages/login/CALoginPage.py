@@ -202,7 +202,10 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def click_next_open_live_account(self):
-        submit_button = super().wait_load_element("//*[@id='Next']")
+        if global_var.current_brand_name == "oinvestsa" or global_var.current_brand_name == "triomarkets":
+            submit_button = super().wait_load_element("//*[@id='continueToEmploymentQ']")
+        else:
+            submit_button = super().wait_load_element("//*[@id='Next']")
         submit_button.click()
         Logging().reportDebugStep(self, "Click Next")
         return CALoginPage(self.driver)
