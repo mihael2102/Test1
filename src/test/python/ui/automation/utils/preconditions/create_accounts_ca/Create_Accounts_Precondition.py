@@ -235,9 +235,8 @@ class Create_Accounts_Precondition(object):
             .click_login()
         if global_var.current_brand_name != "itrader":
             CAPage(self.driver).open_live_account()
-        if global_var.current_brand_name == "finmarket":
+        elif global_var.current_brand_name == "finmarket":
             CALoginPage(self.driver).enter_data_birth(CAConstants.DATA_MONTH_YEAR)
-
         else:
             CALoginPage(self.driver).select_data_birth_day(CAConstants.DAY_BIRTH) \
                                 .select_data_birth_month(CAConstants.MONTH_BIRTH) \

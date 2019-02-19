@@ -50,6 +50,33 @@ class CAPage(CRMBasePage):
         self.select_us(no)
         self.enter_tin_itrader(tin)
         self.select_leverage_itrader(leverage)
+        self.click_next()
+
+    def question_financial_instrument(self, yes):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlTradingKnowledge']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlTradingKnowledge']"))
+        select.select_by_visible_text(yes)
+        Logging().reportDebugStep(self, "Enter status")
+        return CAPage(self.driver)
+
+    def select_industry(self, industry):
+        sleep(5)
+        submit = super().wait_load_element("//*[@id='cblIndustry_0']")
+        # submit.click()
+        self.driver.execute_script("arguments[0].click();", submit)
+        Logging().reportDebugStep(self, "Click check box " + industry)
+        return CAPage(self.driver)
+
+    def select_employment_status(self, status):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlEmploymentStatus']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlEmploymentStatus']"))
+        select.select_by_visible_text(status)
+        Logging().reportDebugStep(self, "Enter status")
+        return CAPage(self.driver)
 
     def fill_questionarie_triomarket(self,amount, purpose,anticipated, expirience, level,
                                      gloss, employment, worth, source, work, relate, yes, no,
