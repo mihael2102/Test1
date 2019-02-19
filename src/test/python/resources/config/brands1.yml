@@ -23,13 +23,13 @@ brands:
 #  config_file: mlnfx.yml
 #- name: fxpmarkets
 #  config_file: fxpmarkets.yml
-- name: soarfx
-  config_file: soarfx.yml
+#- name: soarfx
+#  config_file: soarfx.yml
 #- name: kbcapitals
 #  config_file: kbcapitals.yml
 #- name: oinvestsa
 #  config_file: oinvestsa.yml
-#- name: brokerxp
-#  config_file: brokerxp.yml
+- name: brokerxp
+  config_file: brokerxp.yml
 #- name: fm-fx
 #  config_file: fm-fx.yml
