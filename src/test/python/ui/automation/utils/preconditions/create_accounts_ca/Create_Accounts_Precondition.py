@@ -108,7 +108,11 @@ class Create_Accounts_Precondition(object):
         ClientProfilePage(self.driver).open_help_desk_tab()
         crm_ticket_number = ClientProfilePage(self.driver).verify_ticket_number()
         crm_ticket_status = ClientProfilePage(self.driver).verify_ticket_status()
-        ClientProfilePage(self.driver).change_status_ticket()
+        if global_var.current_brand_name == "capitalmarketsbanc":
+            ClientProfilePage(self.driver).change_status_ticket_cmb()
+        else:
+            ClientProfilePage(self.driver).change_status_ticket()
+
 
         HelpDeskEditPage(self.driver).select_status(CAConstants.TICKET_IN_PROGRESS)
         HelpDeskEditPage(self.driver).click_save_button()
@@ -229,7 +233,8 @@ class Create_Accounts_Precondition(object):
                                                  LeadsModuleConstants.EMAIL]) \
             .enter_password(CAConstants.PASSWORD) \
             .click_login()
-        CAPage(self.driver).open_live_account()
+        if global_var.current_brand_name != "itrader":
+            CAPage(self.driver).open_live_account()
         if global_var.current_brand_name == "finmarket":
             CALoginPage(self.driver).enter_data_birth(CAConstants.DATA_MONTH_YEAR)
 
@@ -249,10 +254,62 @@ class Create_Accounts_Precondition(object):
                             .fill_address(CAConstants.ADDRESS)
 
         CALoginPage(self.driver).click_next_open_live_account()
+        if global_var.current_brand_name == "itrader":
+            CAPage(self.driver).fill_questionarie_itrader(CAConstants.ITRADER_EMPLOYMENT_STATUS,
+                                                          CAConstants.ITRADER_INDUSTRY,
+                                                          CAConstants.YES,
+                                                          CAConstants.ITRADER_SOURCE,
+                                                          CAConstants.ESTIMATED_INCOME,
+                                                          CAConstants.ESTIMATED_WORTH,
+                                                          CAConstants.ITRADER_PURPOSE,
+                                                          CAConstants.ESTIMATED_AMOUNT,
+                                                          CAConstants.INCOMING_FUNDS,
+                                                          CAConstants.ITRADER_LEVEL,
+                                                          CAConstants.TIME_INVESTING,
+                                                          CAConstants.TIME_LAST_TRADE,
+                                                          CAConstants.INSTRUMENTS,
+                                                          CAConstants.TIME_EXPERIENCE,
+                                                          CAConstants.TRADE_SIZE,
+                                                          CAConstants.APPLIES,
+                                                          CAConstants.PRICE,
+                                                          CAConstants.FB_PRICE,
+                                                          CAConstants.INITIAL_DEPOSIT,
+                                                          CAConstants.RESULT_OF_TRADING,
+                                                          CAConstants.INVESTMENT_OBJECTIVES,
+                                                          CAConstants.NO,
+                                                          CAConstants.TIN,
+                                                          CAConstants.LEVERAGE_ITRADER)
+
+
         if global_var.current_brand_name == "triomarkets":
-            CAPage(self.driver).fill_questionarie_triomarket(CAConstants.AMOUNT, CAConstants.PURPOSE,CAConstants.ANTICIPATED, CAConstants.EXPERIENCE, CAConstants.LEVEL, CAConstants.GLOSS, CAConstants.EMPLOYMENT, CAConstants.WORTH, CAConstants.SOURCE, CAConstants.WORK, CAConstants.RELATE)
+            CAPage(self.driver).fill_questionarie_triomarket(CAConstants.AMOUNT,
+                                                             CAConstants.PURPOSE,
+                                                             CAConstants.ANTICIPATED,
+                                                             CAConstants.EXPERIENCE,
+                                                             CAConstants.LEVEL,
+                                                             CAConstants.GLOSS,
+                                                             CAConstants.EMPLOYMENT,
+                                                             CAConstants.WORTH,
+                                                             CAConstants.SOURCE_TRIO,
+                                                             CAConstants.WORK,
+                                                             CAConstants.RELATE,
+                                                             CAConstants.YES,
+                                                             CAConstants.NO,
+                                                             CAConstants.LAST_TRANSACTION,
+                                                             CAConstants.AMOUNT_SELECT,
+                                                             CAConstants.INVESTED_VOLUME,
+                                                             CAConstants.KNOWLEDGE_TRIO,
+                                                             CAConstants.ACCOUNT,
+                                                             CAConstants.RISK,
+                                                             CAConstants.TIN)
         if global_var.current_brand_name == "oinvestsa":
-            CAPage(self.driver).fill_questionarie(CAConstants.KNOWLEDGE, CAConstants.SOURCE, CAConstants.FUNDS, CAConstants.CITIZEN, CAConstants.COUNTRY, CAConstants.TIN, CAConstants.PEP)
+            CAPage(self.driver).fill_questionarie(CAConstants.KNOWLEDGE,
+                                                  CAConstants.SOURCE,
+                                                  CAConstants.FUNDS,
+                                                  CAConstants.CITIZEN,
+                                                  CAConstants.COUNTRY,
+                                                  CAConstants.TIN,
+                                                  CAConstants.PEP)
         # CALoginPage(self.driver).my_account_link()
         if global_var.current_brand_name == "mlnfx":
             CAPage(self.driver).click_check_box_confirm()
@@ -264,6 +321,12 @@ class Create_Accounts_Precondition(object):
             assert currency == CAConstants.CURRENCY_USD
         elif global_var.current_brand_name == "soarfx":
             assert data == CAConstants.LEVERAGE_SOARFX
+            assert currency == CAConstants.CURRENCY
+        elif global_var.current_brand_name == "capitalmarketsbanc":
+            assert data == CAConstants.LEVERAGE_CMB
+            assert currency == CAConstants.CURRENCY
+        elif global_var.current_brand_name == "kbcapitals":
+            assert data == CAConstants.LEVERAGE_KB
             assert currency == CAConstants.CURRENCY
         else:
             assert data == CAConstants.LEVERAGE
@@ -284,5 +347,6 @@ class Create_Accounts_Precondition(object):
         CAPage(self.driver).select_leverage()
         CAPage(self.driver).select_deposit()
         CAPage(self.driver).click_submit()
-        CAPage(self.driver).finish_button()
+        if global_var.current_brand_name != "triomarkets":
+            CAPage(self.driver).finish_button()
 

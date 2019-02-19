@@ -12,7 +12,7 @@ tests_config:
     - test_add_new_live_account_ca
 #    - test_add_new_demo_account_ca
 #    - test_check_demo_in_crm
-    - test_open_ticket_ca
+#    - test_open_ticket_ca
 #    - test_upload_document
 
 

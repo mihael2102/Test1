@@ -144,6 +144,7 @@ class ClientProfilePage(CRMBasePage):
         # trading_tab.click()
         self.driver.execute_script("arguments[0].scrollIntoView();", trading_tab)
         self.driver.execute_script("arguments[0].click();", trading_tab)
+        sleep(7)
         Logging().reportDebugStep(self, "Open the trading account tab ")
         return ClientProfilePage(self.driver)
 
@@ -612,8 +613,21 @@ class ClientProfilePage(CRMBasePage):
         return status
 
     def change_status_ticket(self):
-        sleep(3)
+        sleep(6)
         pencil_button = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//td[12]")
+        # pencil_button = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//td[12]/div/div/a[1]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", pencil_button)
+        try:
+            pencil_button.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", pencil_button)
+        Logging().reportDebugStep(self, "Click Edit Ticket")
+        return ClientProfilePage(self.driver)
+
+    def change_status_ticket_cmb(self):
+        sleep(6)
+        # pencil_button = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//td[12]")
+        pencil_button = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//td[12]/div/div/a[1]")
         self.driver.execute_script("arguments[0].scrollIntoView();", pencil_button)
         try:
             pencil_button.click()
