@@ -8,6 +8,7 @@ import pyotp
 from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+import re
 
 class CAPage(CRMBasePage):
 
@@ -279,3 +280,52 @@ class CAPage(CRMBasePage):
         address = self.driver.find_element_by_xpath("//input[@name='address']").get_attribute("value")
         Logging().reportDebugStep(self, "Client's Address is : " + address)
         return address
+
+    def open_service_desk(self):
+        personal_details_btn = super().wait_element_to_be_clickable("//li[@class='ng-star-inserted'] \
+                                                                            [contains(text(), 'Service Desk')]")
+        self.driver.execute_script("arguments[0].click();", personal_details_btn)
+        sleep(1)
+        Logging().reportDebugStep(self, "Open Service Desk")
+        return CAPage(self.driver)
+
+    def click_create_new_ticket(self):
+        create_ticket_button = super().wait_visible_of_element("//button[contains(text(),'Create New Ticket')]")
+        create_ticket_button.click()
+        Logging().reportDebugStep(self, "The Create ticket button was clicked")
+        return CAPage(self.driver)
+
+    def set_subject_field(self, subject):
+        subject_field = self.driver.find_element(By.XPATH, "//input[@name='subject']")
+        subject_field.clear()
+        subject_field.send_keys(subject)
+        Logging().reportDebugStep(self, "Subject is set: " + subject)
+        return CAPage(self.driver)
+
+    def set_category_drop_down(self, category):
+        category_drop_down = self.driver.find_element(By.XPATH, "//custom-select[@name='category']")
+        category_drop_down.click()
+        select_category = self.driver.find_element(By.XPATH, "//custom-select[@name='category']//"
+                                                             "following-sibling::*[contains(text(),'%s')]" % category)
+        select_category.click()
+        Logging().reportDebugStep(self, "The category was selected : " + category)
+        return CAPage(self.driver)
+
+    def set_description(self, description):
+        description_field = self.driver.find_element(By.XPATH, "//textarea[@name='description']")
+        description_field.clear()
+        description_field.send_keys(description)
+        Logging().reportDebugStep(self, "Description  was set in the field : : " + description)
+        return CAPage(self.driver)
+
+    def open_new_ticket_button(self):
+        open_new_ticket_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Open new ticket')]")
+        open_new_ticket_button.click()
+        Logging().reportDebugStep(self, "The Open ticket button was clicked")
+        return CAPage(self.driver)
+
+    def get_ca_ticket_id(self):
+        ca_id = super().wait_load_element("//td[@class='td-20-pandats']//div[1]")
+        new_ca_id = re.sub('#', "", ca_id.text)
+        Logging().reportDebugStep(self, "The ticket number is: " + new_ca_id)
+        return new_ca_id

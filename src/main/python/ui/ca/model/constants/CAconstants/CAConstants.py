@@ -33,3 +33,6 @@ class CAConstants(object):
     LIVE_ACCOUNT_NUMBER = ""
     UPDATE_FIRST_NAME = "pandatest" + (''.join(random.sample(string.ascii_uppercase*6, 6)))
     UPDATE_LAST_NAME = "Test"
+    TICKET_SUBJECT = "QAtest"
+    CATEGORY = "General Question"
+    TICKET_DESCRIPTION = "test"
