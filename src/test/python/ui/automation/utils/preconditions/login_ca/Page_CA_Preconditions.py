@@ -116,12 +116,12 @@ class Page_CA_Precondition(object):
                                 .edit_city(CRMConstants.EDIT_CITY) \
                                 .edit_zip(CRMConstants.EDIT_ZIP_CODE) \
                                 .edit_address(CRMConstants.EDIT_ADDRESS) \
+                                .fill_birthday(CRMConstants.BIRTHDAY) \
                                 .click_save_changes_btn()
 
     def check_personal_details_in_ca(self):
         if global_var.current_brand_name == "q8":
-
-            CALoginPage(self.driver).open_second_tab_page(self.config.get_value('url_ca')) \
+            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
                                     .login() \
                                     .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                     LeadsModuleConstants.EMAIL]) \
@@ -129,16 +129,20 @@ class Page_CA_Precondition(object):
                                     .click_login() \
                                     .click_my_account() \
                                     .account_details()
+            assert CRMConstants.EDIT_FIRST_NAME == CAPage(self.driver).get_first_name()
+            assert CRMConstants.EDIT_LAST_NAME == CAPage(self.driver).get_last_name()
+            assert CRMConstants.EDIT_CITY == CAPage(self.driver).get_city()
+            assert CRMConstants.EDIT_ADDRESS == CAPage(self.driver).get_address()
+
         else:
-            self.config.get_value('url_ca')
+            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
             CALoginPage(self.driver).login() \
                                     .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                     LeadsModuleConstants.EMAIL]) \
                                     .enter_password(CAConstants.PASSWORD) \
                                     .click_login() \
                                     .verify() \
-                                    .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                    LeadsModuleConstants.FIRST_NAME])
+                                    .click_hi_user(CRMConstants.EDIT_FIRST_NAME)
             CAPage(self.driver).open_personal_details()
             assert CRMConstants.EDIT_FIRST_NAME == CAPage(self.driver).get_first_name()
             assert CRMConstants.EDIT_LAST_NAME == CAPage(self.driver).get_last_name()

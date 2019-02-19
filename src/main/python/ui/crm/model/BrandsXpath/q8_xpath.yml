@@ -25,3 +25,4 @@ CALoginPage:
   login_btn: "//span[contains(text(), 'Login')]"
 CAPage:
   edit_first_name: "//input[@name='firstName']"
+  get_first_name: "//input[@name='firstName']"

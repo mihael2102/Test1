@@ -494,6 +494,7 @@ class ClientsPage(CRMBasePage):
     def edit_citizenship(self, citizenship):
         citizenship_field = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
                                                     self.__class__.__name__)["citizenship"] % citizenship)
+        citizenship_field.click()
         self.driver.execute_script("arguments[0].click();", citizenship_field)
         d = self.driver.find_element_by_xpath("//label[contains (text(), 'First Name')]")
         d.click()
@@ -525,4 +526,10 @@ class ClientsPage(CRMBasePage):
         save_changes_btn = super().wait_element_to_be_clickable("//input[@value='Save']")
         self.driver.execute_script("arguments[0].click();", save_changes_btn)
         Logging().reportDebugStep(self, "Click Save button")
+        return ClientsPage(self.driver)
+
+    def fill_birthday(self, date):
+        birthday_field = super().wait_load_element("//input[@id='birthday']")
+        birthday_field.send_keys(date)
+        Logging().reportDebugStep(self, "Fill birthday field")
         return ClientsPage(self.driver)

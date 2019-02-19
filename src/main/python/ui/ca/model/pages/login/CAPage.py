@@ -243,31 +243,39 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def get_first_name(self):
-        first_name = super().wait_load_element("//input[@name='firstName']").text
+        sleep(1)
+        first_name = ''
+        try:
+            first_name = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+                                                    self.__class__.__name__)["get_first_name"]).get_attribute("value")
+            # v = first_name.get_attribute("value")
+            # p = first_name.get_property("value")
+        except Exception as e:
+            print(e)
         Logging().reportDebugStep(self, "Client's First Name is " + first_name)
         return first_name
 
     def get_last_name(self):
-        last_name = super().wait_load_element("//input[@name='lastName']").text
+        last_name = self.driver.find_element_by_xpath("//input[@name='lastName']").get_attribute("value")
         Logging().reportDebugStep(self, "Client's Last Name is " + last_name)
         return last_name
 
     def get_citizenship(self):
-        citizenship = super().wait_load_element("//custom-select[@name='citizenship']").text
+        citizenship = self.driver.find_element_by_xpath("//custom-select[@name='citizenship']").text
         Logging().reportDebugStep(self, "Client's citizenship : " + citizenship)
         return citizenship
 
     def get_city(self):
-        city = super().wait_load_element("//input[@name='city']").text
+        city = self.driver.find_element_by_xpath("//input[@name='city']").get_attribute("value")
         Logging().reportDebugStep(self, "Client's City : " + city)
         return city
 
     def get_zipcode(self):
-        postalcode = super().wait_load_element("//input[@name='postCode']").text
+        postalcode = self.driver.find_element_by_xpath("//input[@name='postCode']").get_attribute("value")
         Logging().reportDebugStep(self, "Client's Zip code is : " + postalcode)
         return postalcode
 
     def get_address(self):
-        address = super().wait_load_element("//input[@name='address']").text
+        address = self.driver.find_element_by_xpath("//input[@name='address']").get_attribute("value")
         Logging().reportDebugStep(self, "Client's Address is : " + address)
         return address

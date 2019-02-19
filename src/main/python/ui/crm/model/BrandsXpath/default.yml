@@ -56,3 +56,4 @@ CAPage:
   actual_currency: "//accounts/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/td[3]"
   citizenship: "//custom-select[@name='citizenship']//span[text()='%s']"
   edit_first_name: "//input[@name='firstName']"
+  get_first_name: "//input[@name='firstName']"

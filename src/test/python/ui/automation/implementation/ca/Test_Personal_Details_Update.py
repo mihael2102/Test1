@@ -17,10 +17,14 @@ class PersonalDetailsUpdateTestCA(BaseTest):
 
     def test_update_personal_details_in_ca(self):
         Page_CA_Precondition(self.driver, self.config).update_personal_details_in_ca()
+
+    def test_personal_details_were_updated_in_crm(self):
         Page_CA_Precondition(self.driver, self.config).check_personal_details_in_crm()
 
     def test_update_personal_details_in_crm(self):
         Page_CA_Precondition(self.driver, self.config).update_personal_details_in_crm()
+
+    def test_personal_details_were_updated_in_ca(self):
         Page_CA_Precondition(self.driver, self.config).check_personal_details_in_ca()
 
 

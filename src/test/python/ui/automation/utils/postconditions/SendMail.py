@@ -99,7 +99,7 @@ def Send_Email_XLS(filepath):
     msg['To'] = toaddr
 
     # storing the subject
-    msg['Subject'] = "Subject of the Mail"
+    msg['Subject'] = "Integration tests"
 
     # string to store the body of the mail
     body = "Body_of_the_mail"
@@ -164,7 +164,7 @@ def Send_ALL_XLS(filepath):
     msg['To'] = toaddr
 
     # storing the subject
-    msg['Subject'] = "Subject of the Mail"
+    msg['Subject'] = "Integration tests"
 
     # string to store the body of the mail
     body = "Body_of_the_mail"

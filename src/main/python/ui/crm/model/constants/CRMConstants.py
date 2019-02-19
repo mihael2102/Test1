@@ -114,4 +114,5 @@ class CRMConstants(object):
     EDIT_CITY = "London"
     EDIT_ZIP_CODE = "789"
     EDIT_ADDRESS = "BenGurion48"
+    BIRTHDAY = "1999-02-19"
 

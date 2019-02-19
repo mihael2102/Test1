@@ -416,6 +416,82 @@ class ExcelWriter:
                         ,"Active demo account number is verified"
                         ,"Currency of active account is verified"]
 
+        if self.get_test_pretty_name_new(test) == "PersonalDetailsUpdateTestCA: test update personal details in ca":
+            step_suit = ["Open first tabs page"
+                        ,"Click Login"
+                        ,"Enter Email"
+                        ,"Enter Password"
+                        ,"Click Login in pop up"
+                        ,"You are on the Webtrader page"
+                        ,"Click Hi, client"
+                        ,"Open Personal Details"
+                        ,"Edit First Name field"
+                        ,"Edit Last Name field"
+                        ,"Edit Citizenship field"
+                        ,"Edit City field"
+                        ,"Edit Zip code field"
+                        ,"Edit Address field"
+                        ,"Click Save Changes button"]
+
+        if self.get_test_pretty_name_new(test) == "PersonalDetailsUpdateTestCA: test personal details were updated in crm":
+            step_suit = ["Open CRM"
+                        ,"Enter Username"
+                        ,"Enter Password"
+                        ,"Click Login"
+                        ,"No OTP"
+                        ,"No What's new"
+                        ,"Click the  drop down filter"
+                        ,"Search the filter Test Clients"
+                        ,"Open Test Clients filter"
+                        ,"Set client email in the email field"
+                        ,"Click the search button"
+                        ,"Open client details"
+                        ,"Client first name is verified"
+                        ,"Client last name is verified"
+                        ,"Client citizenship is verified"
+                        ,"Client address is verified"
+                        ,"Client city is verified"
+                        ,"Client postal code is verified"]
+
+        if self.get_test_pretty_name_new(test) == "PersonalDetailsUpdateTestCA: test update personal details in crm":
+            step_suit = ["Open CRM"
+                        ,"Enter Username"
+                        ,"Enter Password"
+                        ,"Click Login"
+                        ,"No OTP"
+                        ,"No What's new"
+                        ,"Click the  drop down filter"
+                        ,"Search the filter Test Clients"
+                        ,"Open Test Clients filter"
+                        ,"Set client email in the email field"
+                        ,"Click the search button"
+                        ,"Open client details"
+                        ,"Click Edit button"
+                        ,"Edit First Name"
+                        ,"Edit Last Name"
+                        ,"Edit citizenship"
+                        ,"Edit City field"
+                        ,"Edit Zip code field"
+                        ,"Edit Address field"
+                        ,"Fill birthday field"
+                        ,"Click Save button"]
+
+        if self.get_test_pretty_name_new(test) == "PersonalDetailsUpdateTestCA: test personal details were updated in ca":
+            step_suit = ["Open first tabs page"
+                        ,"Click Login"
+                        ,"Enter Email"
+                        ,"Enter Password"
+                        ,"Click Login in pop up"
+                        ,"You are on the Webtrader page"
+                        ,"Click Hi, client"
+                        ,"Open Personal Details"
+                        ,"Client first name is verified"
+                        ,"Client last name is verified"
+                        ,"Client citizenship is verified"
+                        ,"Client address is verified"
+                        ,"Client city is verified"
+                        ,"Client postal code is verified"]
+
         #
         # # CalendarView
         #
