@@ -235,7 +235,9 @@ class Create_Accounts_Precondition(object):
             .click_login()
         if global_var.current_brand_name != "itrader":
             CAPage(self.driver).open_live_account()
-        elif global_var.current_brand_name == "finmarket":
+
+
+        if global_var.current_brand_name == "finmarket":
             CALoginPage(self.driver).enter_data_birth(CAConstants.DATA_MONTH_YEAR)
         else:
             CALoginPage(self.driver).select_data_birth_day(CAConstants.DAY_BIRTH) \
@@ -247,12 +249,15 @@ class Create_Accounts_Precondition(object):
         if global_var.current_brand_name == "oinvestsa":
             CALoginPage(self.driver).choose_currency(CAConstants.CURRENCY_USD)
 
+        if global_var.current_brand_name != "finmarket":
+            CALoginPage(self.driver).fill_city(CAConstants.CITY) \
+                                .fill_zip_code(CAConstants.ZIP_CODE) \
+                                .fill_address(CAConstants.ADDRESS)
+            CALoginPage(self.driver).click_next_open_live_account()
+        else:
+            CAPage(self.driver).open_finmarket()
 
-        CALoginPage(self.driver).fill_city(CAConstants.CITY) \
-                            .fill_zip_code(CAConstants.ZIP_CODE) \
-                            .fill_address(CAConstants.ADDRESS)
 
-        CALoginPage(self.driver).click_next_open_live_account()
         if global_var.current_brand_name == "itrader":
             CAPage(self.driver).fill_questionarie_itrader(CAConstants.ITRADER_EMPLOYMENT_STATUS,
                                                           CAConstants.ITRADER_INDUSTRY,
@@ -278,6 +283,7 @@ class Create_Accounts_Precondition(object):
                                                           CAConstants.NO,
                                                           CAConstants.TIN,
                                                           CAConstants.LEVERAGE_ITRADER)
+            CAPage(self.driver).close_popup_itrader()
 
 
         if global_var.current_brand_name == "triomarkets":
@@ -313,23 +319,31 @@ class Create_Accounts_Precondition(object):
         if global_var.current_brand_name == "mlnfx":
             CAPage(self.driver).click_check_box_confirm()
             CAPage(self.driver).click_confirm()
-        currency = CAPage(self.driver).verify_relevant_currency()
-        data = CAPage(self.driver).verify_correct_data()
-        if global_var.current_brand_name == "oinvestsa":
-            assert data == CAConstants.LEVERAGE_OINVESTSA
-            assert currency == CAConstants.CURRENCY_USD
-        elif global_var.current_brand_name == "soarfx":
-            assert data == CAConstants.LEVERAGE_SOARFX
-            assert currency == CAConstants.CURRENCY
-        elif global_var.current_brand_name == "capitalmarketsbanc":
-            assert data == CAConstants.LEVERAGE_CMB
-            assert currency == CAConstants.CURRENCY
-        elif global_var.current_brand_name == "kbcapitals":
-            assert data == CAConstants.LEVERAGE_KB
-            assert currency == CAConstants.CURRENCY
-        else:
-            assert data == CAConstants.LEVERAGE
-            assert currency == CAConstants.CURRENCY
+        if global_var.current_brand_name != "itrader":
+            currency = CAPage(self.driver).verify_relevant_currency()
+            data = CAPage(self.driver).verify_correct_data()
+
+            if global_var.current_brand_name == "oinvestsa":
+                assert data == CAConstants.LEVERAGE_OINVESTSA
+                assert currency == CAConstants.CURRENCY_USD
+            elif global_var.current_brand_name == "soarfx":
+                assert data == CAConstants.LEVERAGE_SOARFX
+                assert currency == CAConstants.CURRENCY
+            elif global_var.current_brand_name == "capitalmarketsbanc":
+                assert data == CAConstants.LEVERAGE_CMB
+                assert currency == CAConstants.CURRENCY
+            elif global_var.current_brand_name == "kbcapitals":
+                assert data == CAConstants.LEVERAGE_KB
+                assert currency == CAConstants.CURRENCY
+            elif global_var.current_brand_name == "finmarket":
+                assert data == CAConstants.LEVERAGE_FIN
+                assert currency == CAConstants.CURRENCY_USD
+            elif global_var.current_brand_name == "itrader_global":
+                assert data == CAConstants.LEVERAGE_IG
+                assert currency == CAConstants.CURRENCY_USD
+            else:
+                assert data == CAConstants.LEVERAGE
+                assert currency == CAConstants.CURRENCY
 
 
 
@@ -344,8 +358,9 @@ class Create_Accounts_Precondition(object):
         CAPage(self.driver).open_demo_account()
         CAPage(self.driver).select_currency()
         CAPage(self.driver).select_leverage()
-        CAPage(self.driver).select_deposit()
+        if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "finmarket" and global_var.current_brand_name != "itrader_global":
+            CAPage(self.driver).select_deposit()
         CAPage(self.driver).click_submit()
-        if global_var.current_brand_name != "triomarkets":
+        if global_var.current_brand_name != "triomarkets" and global_var.current_brand_name != "itrader" and global_var.current_brand_name != "finmarket":
             CAPage(self.driver).finish_button()
 

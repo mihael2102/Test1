@@ -19,6 +19,31 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class CAPage(CRMBasePage):
 
+
+    def open_finmarket(self):
+        sleep(3)
+        check_box = self.driver.find_element(By.XPATH, "//*[@id='chbChangePersonalDetails']")
+        check_box.click()
+        sleep(3)
+        check_box = self.driver.find_element(By.XPATH, "//*[@id='chbConfirm']")
+        check_box.click()
+        sleep(3)
+        button = self.driver.find_element(By.XPATH, "//*[@id='btnSubmit']")
+        button.click()
+        Logging().reportDebugStep(self, "OPEN AN ADDITIONAL ACCOUNT")
+        return CAPage(self.driver)
+
+    def close_popup_itrader(self):
+        sleep(7)
+        check_box = self.driver.find_element(By.XPATH, "//*[@id='chbAgreeNegative']")
+        check_box.click()
+        sleep(3)
+        button = self.driver.find_element(By.XPATH, "//*[@id='btnRiskNextNeg']")
+        button.click()
+        Logging().reportDebugStep(self, "Close Risk Warning pop up")
+        return CAPage(self.driver)
+
+
     def fill_questionarie_itrader(self, status ,industry,yes,source,
                                   estimate_income,estimate_worth,purpose,amount,
                                   incoming_fund, level,time_investing,time_last_trade,instrument,
@@ -50,7 +75,195 @@ class CAPage(CRMBasePage):
         self.select_us(no)
         self.enter_tin_itrader(tin)
         self.select_leverage_itrader(leverage)
+        self.select_pep(no)
         self.click_next()
+
+    def select_pep(self, no):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlPep']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlPep']"))
+        select.select_by_visible_text(no)
+        Logging().reportDebugStep(self, "Select pep No")
+        return CAPage(self.driver)
+
+    def click_next(self):
+        sleep(3)
+        click_next = self.driver.find_element(By.XPATH, "//*[@id='Next']")
+        click_next.click()
+        Logging().reportDebugStep(self, "Click next")
+        return CAPage(self.driver)
+
+    def select_leverage_itrader(self, leverage):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlLeverages']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlLeverages']"))
+        select.select_by_visible_text(leverage)
+        Logging().reportDebugStep(self, "Select leverage itrader")
+        return CAPage(self.driver)
+
+    def enter_tin_itrader(self, tin):
+        sleep(3)
+        select = self.driver.find_element(By.XPATH, "//*[@id='dnn_ctr608_View_txtTaxTinNumber_1']")
+        select.send_keys(tin)
+        Logging().reportDebugStep(self, "Enter tin")
+        return CAPage(self.driver)
+
+    def select_us(self, no):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlUsaCitizen']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlUsaCitizen']"))
+        select.select_by_visible_text(no)
+        Logging().reportDebugStep(self, "Enter No US.res")
+        return CAPage(self.driver)
+
+    def select_investment_obj(self, investment_obj):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlInvestmentObjectivesStrategy']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlInvestmentObjectivesStrategy']"))
+        select.select_by_visible_text(investment_obj)
+        Logging().reportDebugStep(self, "Enter investment obj")
+        return CAPage(self.driver)
+
+
+    def select_result_of_trading(self, result_of_trading):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlFeelLostDepositedCapital']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlFeelLostDepositedCapital']"))
+        select.select_by_visible_text(result_of_trading)
+        Logging().reportDebugStep(self, "Enter  result of trading")
+        return CAPage(self.driver)
+
+
+    def select_inital_deposit(self, inital_deposit):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlBuyingPower']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlBuyingPower']"))
+        select.select_by_visible_text(inital_deposit)
+        Logging().reportDebugStep(self, "Enter  inital deposit")
+        return CAPage(self.driver)
+
+    def select_fb_price(self, fb_price):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlFacebookShareDrop']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlFacebookShareDrop']"))
+        select.select_by_visible_text(fb_price)
+        Logging().reportDebugStep(self, "Enter fb price")
+        return CAPage(self.driver)
+
+
+    def select_price(self, price):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlPositiveFinancialReportAffect']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlPositiveFinancialReportAffect']"))
+        select.select_by_visible_text(price)
+        Logging().reportDebugStep(self, "Enter price")
+        return CAPage(self.driver)
+
+    def select_applies(self, applies):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlTradingWithLeverage']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlTradingWithLeverage']"))
+        select.select_by_visible_text(applies)
+        Logging().reportDebugStep(self, "Enter applies")
+        return CAPage(self.driver)
+
+
+    def select_trade_size(self, trade_size):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlLastYearTotalVolume']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlLastYearTotalVolume']"))
+        select.select_by_visible_text(trade_size)
+        Logging().reportDebugStep(self, "Enter trade size")
+        return CAPage(self.driver)
+
+
+    def select_time_experience(self, time_experience):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlExperienceInDerivativeProducts']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlExperienceInDerivativeProducts']"))
+        select.select_by_visible_text(time_experience)
+        Logging().reportDebugStep(self, "Enter time experience")
+        return CAPage(self.driver)
+
+
+    def select_instrument(self, instrument):
+        sleep(5)
+        submit = super().wait_load_element(
+            "//*[@id='cblTradesInPast']/li[1]/label[contains(text(), 'Stocks/Shares, Indices, Commodities ')]")
+        # submit.click()
+        self.driver.execute_script("arguments[0].click();", submit)
+        Logging().reportDebugStep(self, "Click check box " + instrument)
+        return CAPage(self.driver)
+
+
+    def select_time_last_trade(self, time_last_trade):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlLastTradeCarriedOut']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlLastTradeCarriedOut']"))
+        select.select_by_visible_text(time_last_trade)
+        Logging().reportDebugStep(self, "Enter time last trade")
+        return CAPage(self.driver)
+
+
+    def select_time_investing(self, time_investing):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlTimeOfInvesting']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlTimeOfInvesting']"))
+        select.select_by_visible_text(time_investing)
+        Logging().reportDebugStep(self, "Enter time investing")
+        return CAPage(self.driver)
+
+
+    def select_level(self, level):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlLevelOfEducation']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlLevelOfEducation']"))
+        select.select_by_visible_text(level)
+        Logging().reportDebugStep(self, "Enter level")
+        return CAPage(self.driver)
+
+
+    def select_incoming_funds(self, incoming_fund):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlExpectedOriginOfIncomingFunds']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlExpectedOriginOfIncomingFunds']"))
+        select.select_by_visible_text(incoming_fund)
+        Logging().reportDebugStep(self, "Enter incoming fund")
+        return CAPage(self.driver)
+
+
+    def select_estimate_amount(self, amount):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlEstimateAmountInvestYearly']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlEstimateAmountInvestYearly']"))
+        select.select_by_visible_text(amount)
+        Logging().reportDebugStep(self, "Enter amount")
+        return CAPage(self.driver)
+
+    def select_purpose(self, purpose):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlRequestingTradingAccount']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlRequestingTradingAccount']"))
+        select.select_by_visible_text(purpose)
+        Logging().reportDebugStep(self, "Enter purpose")
+        return CAPage(self.driver)
 
 
     def select_estimate_worth(self, estimate_worth):
@@ -573,7 +786,8 @@ class CAPage(CRMBasePage):
 
     def verify_relevant_currency(self):
         my_account_button = super().wait_load_element("//*[@id='mainmenu']/li[1]/a")
-        my_account_button.click()
+        self.driver.execute_script("arguments[0].click();", my_account_button)
+        # my_account_button.click()
         sleep(8)
         currency = super().wait_load_element("//*[@id='RealAccountListBody']/tr/td[3]").text
         Logging().reportDebugStep(self, "Click My Account and check currency")
@@ -615,7 +829,8 @@ class CAPage(CRMBasePage):
     def select_leverage(self):
         sleep(3)
         select = super().wait_load_element("//*[@id='SelLeverageP']")
-        select.click()
+        # select.click()
+        self.driver.execute_script("arguments[0].click();", select)
         select_leverage = super().wait_load_element("//select[@id='SelLeverageP']/option[1]")
         self.driver.execute_script("arguments[0].click();", select_leverage)
         Logging().reportDebugStep(self, "Select USD currency")

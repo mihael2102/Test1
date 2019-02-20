@@ -130,6 +130,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def select_data_birth_day(self, data_birth_day):
+        sleep(3)
         data = self.driver.find_element_by_xpath("//select[@id='dobday']")
         data.click()
         datad = self.driver.find_element_by_xpath("//select[@id='dobday']//option[text()='%s']" % data_birth_day)
@@ -138,6 +139,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def select_data_birth_month(self, data_birth_month):
+        sleep(3)
         data = self.driver.find_element_by_xpath("//select[@id='dobmonth']")
         data.click()
         datad = self.driver.find_element_by_xpath("//select[@id='dobmonth']//option[text()='%s']" % data_birth_month)
@@ -146,6 +148,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def select_data_birth_year(self, data_birth_year):
+        sleep(3)
         data = self.driver.find_element_by_xpath("//select[@id='dobyear']")
         data.click()
         datad = self.driver.find_element_by_xpath("//select[@id='dobyear']//option[text()='%s']" % data_birth_year)
@@ -169,6 +172,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def fill_city(self, city):
+        sleep(3)
         input_city = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["city"])
         input_city.send_keys(city)
@@ -176,6 +180,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def fill_zip_code(self, zip_code):
+        sleep(3)
         input_zip_code = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["zip_code"])
         input_zip_code.send_keys(zip_code)
@@ -183,6 +188,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def fill_address(self, address):
+        sleep(3)
         input_address = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["address"])
         input_address.send_keys(address)
