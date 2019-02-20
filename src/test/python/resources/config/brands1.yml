@@ -1,4 +1,6 @@
 brands:
+- name: mlnfx
+  config_file: mlnfx.yml
 - name: gmo
   config_file: gmo.yml
 - name: capitalmarketsbanc
@@ -13,8 +15,6 @@ brands:
   config_file: kbcapitals.yml
 - name: fxpmarkets
   config_file: fxpmarkets.yml
-- name: mlnfx
-  config_file: mlnfx.yml
 - name: brokerxp
   config_file: brokerxp.yml
 - name: oinvestsa
