@@ -52,6 +52,44 @@ class CAPage(CRMBasePage):
         self.select_leverage_itrader(leverage)
         self.click_next()
 
+
+    def select_estimate_worth(self, estimate_worth):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlEstimatedNetWorth']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlEstimatedNetWorth']"))
+        select.select_by_visible_text(estimate_worth)
+        Logging().reportDebugStep(self, "Enter estimate worth")
+        return CAPage(self.driver)
+
+
+    def select_estimate_income(self, estimate_income):
+        sleep(3)
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlEstimatedAnnualIncome']")))
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlEstimatedAnnualIncome']"))
+        select.select_by_visible_text(estimate_income)
+        Logging().reportDebugStep(self, "Enter estimate income")
+        return CAPage(self.driver)
+
+
+    def check_box_source_total(self, source):
+        sleep(5)
+        submit = super().wait_load_element("//*[@id='cblTotalWealth']/li[1]/label[contains(text(), 'Savings and investments ')]")
+        # submit.click()
+        self.driver.execute_script("arguments[0].click();", submit)
+        Logging().reportDebugStep(self, "Click check box " + source)
+        return CAPage(self.driver)
+
+
+    def check_box_source(self, source):
+        sleep(5)
+        submit = super().wait_load_element("//*[@id='cblSourceOfFunds']/li[1]/label[contains(text(), 'Savings and investments ')]")
+        # submit.click()
+        self.driver.execute_script("arguments[0].click();", submit)
+        Logging().reportDebugStep(self, "Click check box " + source)
+        return CAPage(self.driver)
+
     def question_financial_instrument(self, yes):
         sleep(3)
         WebDriverWait(self.driver, 10).until(
