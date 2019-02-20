@@ -18,6 +18,12 @@ class CreateSupportTicketTestCa(BaseTest):
     def test_create_ticket(self):
         Support_Ticket_Preconditions(self.driver, self.config).create_support_ticket()
 
+    def test_check_and_update_ticket_in_crm(self):
+        Support_Ticket_Preconditions(self.driver, self.config).check_and_update_ticket_in_crm()
+
+    def test_check_updated_ticket_in_ca(self):
+        Support_Ticket_Preconditions(self.driver, self.config).check_updated_ticket_in_ca()
+
 
 
         # BrandHomePage().open_first_tab_page(Config.url_client_area) \

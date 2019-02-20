@@ -24,6 +24,8 @@ tests_config:
   class: CreateSupportTicketTestCa
   tests:
     - test_create_ticket
+    - test_check_and_update_ticket_in_crm
+    - test_check_updated_ticket_in_ca
 
 
 

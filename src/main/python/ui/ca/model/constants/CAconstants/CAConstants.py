@@ -36,3 +36,4 @@ class CAConstants(object):
     TICKET_SUBJECT = "QAtest"
     CATEGORY = "General Question"
     TICKET_DESCRIPTION = "test"
+    TICKET_NUMBER_CA = ""

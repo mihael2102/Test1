@@ -327,5 +327,33 @@ class CAPage(CRMBasePage):
     def get_ca_ticket_id(self):
         ca_id = super().wait_load_element("//td[@class='td-20-pandats']//div[1]")
         new_ca_id = re.sub('#', "", ca_id.text)
-        Logging().reportDebugStep(self, "The ticket number is: " + new_ca_id)
+        CAConstants.TICKET_NUMBER_CA = new_ca_id
+        Logging().reportDebugStep(self, "The ticket number is: " + CAConstants.TICKET_NUMBER_CA)
         return new_ca_id
+
+    def open_closed_tickets_tab(self):
+        closed_tickets_tab = super().wait_element_to_be_clickable("//li[@class='header-menu-pandats'] \
+                                                                    /span[contains(text(), 'Closed Tickets')]")
+        closed_tickets_tab.click()
+        Logging().reportDebugStep(self, "The Closed Tickets tab was opened")
+        return CAPage(self.driver)
+
+    def found_closed_ticket(self, expected_ticket_number):
+        ca_id = super().wait_load_element("//td[@class='td-20-pandats']//div[1]")
+        actual_ticket_number = re.sub('#', "", ca_id.text)
+        assert expected_ticket_number == actual_ticket_number
+        Logging().reportDebugStep(self, "The ticket " + expected_ticket_number + " is found")
+        return CAPage(self.driver)
+
+    def verify_closed_ticket_title(self, expected_ticket_title):
+        ticket_title = super().wait_load_element("//div[@class='subtitle-pandats']")
+        actual_ticket_title = re.sub('Subject: ', "", ticket_title.text)
+        assert expected_ticket_title == actual_ticket_title
+        Logging().reportDebugStep(self, "The ticket subject " + expected_ticket_title + " is found")
+        return CAPage(self.driver)
+
+    def check_ticket_status(self, expected_status):
+        actual_ticket_status = self.driver.find_element_by_xpath("(//td[@class='td-20-pandats'])[2]").text
+        assert expected_status == actual_ticket_status
+        Logging().reportDebugStep(self, "The ticket status is " + expected_status)
+        return CAPage(self.driver)

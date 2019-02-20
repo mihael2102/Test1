@@ -533,3 +533,4 @@ class ClientsPage(CRMBasePage):
         birthday_field.send_keys(date)
         Logging().reportDebugStep(self, "Fill birthday field")
         return ClientsPage(self.driver)
+

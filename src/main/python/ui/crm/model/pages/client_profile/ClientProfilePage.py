@@ -16,6 +16,7 @@ from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import D
 from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsInformationPage import \
     TradingAccountsInformationPage
 from src.main.python.utils.logs.Loging import Logging
+from selenium.webdriver.support.select import Select
 
 
 class ClientProfilePage(CRMBasePage):
@@ -242,11 +243,11 @@ class ClientProfilePage(CRMBasePage):
         returns Client Profile instance    
     '''
 
-    def open_help_desk_tab(self):
-        select_country = super().wait_load_element("//a[@id='show_Accounts_HelpDesk']")
-        select_country.click()
-        Logging().reportDebugStep(self, "Open help desc tab ")
-        return ClientProfilePage(self.driver)
+    # def open_help_desk_tab(self):
+    #     select_country = super().wait_load_element("//a[@id='show_Accounts_HelpDesk']")
+    #     select_country.click()
+    #     Logging().reportDebugStep(self, "Open help desk tab ")
+    #     return ClientProfilePage(self.driver)
 
     '''
          Open the action of the ticket number
@@ -551,4 +552,47 @@ class ClientProfilePage(CRMBasePage):
         sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
         self.driver.execute_script("arguments[0].click();", sign_out)
         Logging().reportDebugStep(self, "Sign Out")
+        return ClientProfilePage(self.driver)
+
+    def check_help_desk_ticket_exist(self, ca_ticket_number):
+        sleep(2)
+        ticket = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[2]/td[1] \
+                                                    [contains(text(), '%s')]" % ca_ticket_number).text
+        if len(ticket) != 0:
+            Logging().reportDebugStep(self, "Ticket " + ca_ticket_number + " is found")
+        else:
+            Logging().reportDebugStep(self, "Ticket " + ca_ticket_number + " was not found")
+        return ClientProfilePage(self.driver)
+
+    def open_help_desk_tab(self):
+        sleep(3)
+        help_desk_tab = super().wait_element_to_be_clickable("//a[contains(@id, 'show_Accounts_HelpDesk')]")
+        self.driver.execute_script("arguments[0].click();", help_desk_tab)
+        Logging().reportDebugStep(self, "Open the help desk tab")
+        return ClientProfilePage(self.driver)
+
+    def click_edit_help_desk_ticket(self):
+        edit_help_desk = super().wait_element_to_be_clickable("//*[@id='rld_table_content']/tbody/tr[2]/td[11]/div/div/a")
+        self.driver.execute_script("arguments[0].click();", edit_help_desk)
+        Logging().reportDebugStep(self, "Click Edit help desk ticket")
+        return ClientProfilePage(self.driver)
+
+    def set_help_desk_title(self, title):
+        sleep(2)
+        tittle_field = super().wait_load_element("//textarea[@name='subject']")
+        tittle_field.clear()
+        tittle_field.send_keys(title)
+        Logging().reportDebugStep(self, "The tittle was edited: " + title)
+        return ClientProfilePage(self.driver)
+
+    def set_help_desk_status(self, status):
+        assigned_to_field = Select(self.driver.find_element(By.XPATH, "//select[@name='ticket_statuses']"))
+        assigned_to_field.select_by_visible_text(status)
+        Logging().reportDebugStep(self, "The status was edited: " + status)
+        return ClientProfilePage(self.driver)
+
+    def click_save_button(self):
+        save_button = self.driver.find_element_by_xpath("//input[@title='Save [Alt+S]']")
+        save_button.click()
+        Logging().reportDebugStep(self, "The save button was clicked")
         return ClientProfilePage(self.driver)

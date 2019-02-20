@@ -48,3 +48,4 @@ class HelpDeskConstants(object):
     FOURTH_COLUMN = "fourth_column"
     FIFTH_COLUMN = "fifth_column"
     SIXTH_COLUMN = "sixth_column"
+    EDIT_HT_STATUS = "Closed"
