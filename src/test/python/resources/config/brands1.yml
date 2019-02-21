@@ -3,8 +3,8 @@ brands:
 #  config_file: swisscci.yml
 - name: goldenmarkets
   config_file: goldenmarkets.yml
-#- name: safemarkets
-#  config_file: safemarkets.yml
+- name: safemarkets
+  config_file: safemarkets.yml
 #- name: b-traderfx
 #  config_file: b-traderfx.yml
 #- name: royal_cfds
