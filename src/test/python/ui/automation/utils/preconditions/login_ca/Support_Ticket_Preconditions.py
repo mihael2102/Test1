@@ -39,8 +39,7 @@ class Support_Ticket_Preconditions(object):
                                     .enter_password(CAConstants.PASSWORD) \
                                     .click_login() \
                                     .verify() \
-                                    .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                        LeadsModuleConstants.FIRST_NAME])
+                                    .open_ca_menu()
             CAPage(self.driver).open_service_desk() \
                                .click_create_new_ticket() \
                                .set_subject_field(CAConstants.TICKET_SUBJECT) \
@@ -81,8 +80,7 @@ class Support_Ticket_Preconditions(object):
                                     .enter_password(CAConstants.PASSWORD) \
                                     .click_login() \
                                     .verify() \
-                                    .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                        LeadsModuleConstants.FIRST_NAME])
+                                    .open_ca_menu()
             CAPage(self.driver).open_service_desk() \
                                .open_closed_tickets_tab() \
                                .found_closed_ticket(CAConstants.TICKET_NUMBER_CA) \

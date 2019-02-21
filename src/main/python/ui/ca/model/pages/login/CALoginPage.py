@@ -280,3 +280,11 @@ class CALoginPage(CRMBasePage):
         customer_policy_checkbox.click()
         Logging().reportDebugStep(self, "Customer Policy is confirmed")
         return CALoginPage(self.driver)
+
+    def open_ca_menu(self):
+        click_hi_user = super().wait_load_element("//span[@class='first-last-name-pandats ng-star-inserted'] \
+                                                    [contains(text(),'Hi, ')]")
+        sleep(7)
+        self.driver.execute_script("arguments[0].click();", click_hi_user)
+        Logging().reportDebugStep(self, "Open main menu")
+        return CALoginPage(self.driver)
