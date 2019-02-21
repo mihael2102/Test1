@@ -1,4 +1,4 @@
-test = "API New Forex"
+test = "API Xtrader"
 timeout = 4
 data = None
 url_client_area = ""
