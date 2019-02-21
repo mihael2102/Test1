@@ -552,3 +552,44 @@ class ClientProfilePage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", sign_out)
         Logging().reportDebugStep(self, "Sign Out")
         return ClientProfilePage(self.driver)
+
+    def click_activities_tab(self):
+        activities_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'Activities')][1]")
+        activities_tab.click()
+        Logging().reportDebugStep(self, "Open the activities tab")
+        return ClientProfilePage(self.driver)
+
+    def open_activities_tab(self):
+        sleep(1)
+        activities_tab = super().wait_load_element("//a[@id='show_Accounts_Activities']")
+        self.driver.execute_script("arguments[0].click();", activities_tab)
+        Logging().reportDebugStep(self, "Open Activities tab ")
+        return ClientProfilePage(self.driver)
+
+    def click_delete_interaction(self):
+        sleep(1)
+        delete_interaction = super().wait_element_to_be_clickable("//*[@id='rld_table_content']/tbody/tr[2]/td[13]/div/div/a[2]")
+        self.driver.execute_script("arguments[0].click();", delete_interaction)
+        Logging().reportDebugStep(self, "Press Delete button")
+        return ClientProfilePage(self.driver)
+
+    def verify_delete_interaction_message(self, expected_message):
+        delete_interaction_message = self.driver.find_element_by_xpath("//div[@class='bootstrap-dialog-message']").text
+        assert expected_message == delete_interaction_message
+        Logging().reportDebugStep(self, "Delete interaction message is verified")
+        return ClientProfilePage(self.driver)
+
+    def confirm_delete_interaction(self):
+        delete_interaction_btn = super().wait_load_element("//button[contains(text(), 'OK')]")
+        delete_interaction_btn.click()
+        Logging().reportDebugStep(self, "Delete interaction is confirmed")
+        return ClientProfilePage(self.driver)
+
+    def interaction_successfully_deleted_message(self, expected_message):
+        sleep(1)
+        delete_interaction_message = self.driver.find_element_by_xpath("//div[@class='bootstrap-dialog-message']").text
+        assert expected_message == delete_interaction_message
+        ok_btn = self.driver.find_element_by_xpath("//button[contains(text(), 'OK')]")
+        self.driver.execute_script("arguments[0].click();", ok_btn)
+        Logging().reportDebugStep(self, "Interaction was deleted successfully")
+        return ClientProfilePage(self.driver)
