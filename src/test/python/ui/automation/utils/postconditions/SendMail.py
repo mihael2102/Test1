@@ -9,8 +9,8 @@ def Send_Email_XML(filepath, content):
 
     fromaddr = "jonathan.albalak@pandats.com"
     # to = "Niv.s@pandats.com"
-    to = "ann.poimenova@gmail.com"
-    # to = "michael.oryshchenko@pandats.com"
+    # to = "ann.poimenova@gmail.com"
+    to = "michael.oryshchenko@pandats.com"
     cc = "anna.p@pandats.com"
     bcc = "anna.poimenova@globallogic.com"
     # instance of MIMEMultipart
