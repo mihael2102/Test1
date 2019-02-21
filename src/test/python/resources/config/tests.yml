@@ -20,13 +20,16 @@ tests_config:
 #    - test_personal_details_were_updated_in_crm
 #    - test_update_personal_details_in_crm
 #    - test_personal_details_were_updated_in_ca
-- module: src.test.python.ui.automation.implementation.ca.Test_Support_Ticket
-  class: CreateSupportTicketTestCa
+#- module: src.test.python.ui.automation.implementation.ca.Test_Support_Ticket
+#  class: CreateSupportTicketTestCa
+#  tests:
+#    - test_create_ticket
+#    - test_check_and_update_ticket_in_crm
+#    - test_check_updated_ticket_in_ca
+- module: src.test.python.ui.automation.implementation.ca.Test_Download_Documents
+  class: DownloadDocumentsTestCA
   tests:
-    - test_create_ticket
-    - test_check_and_update_ticket_in_crm
-    - test_check_updated_ticket_in_ca
-
+    - test_make_dowload_documents
 
 
   #General
