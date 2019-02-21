@@ -150,3 +150,19 @@ class Page_CA_Precondition(object):
             assert CRMConstants.EDIT_CITY == CAPage(self.driver).get_city()
             assert CRMConstants.EDIT_ZIP_CODE == CAPage(self.driver).get_zipcode()
             assert CRMConstants.EDIT_ADDRESS == CAPage(self.driver).get_address()
+
+    def upload_document_ca(self):
+        if global_var.current_brand_name != "q8":
+            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
+                .login() \
+                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                 LeadsModuleConstants.EMAIL]) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .verify() \
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                   LeadsModuleConstants.FIRST_NAME])
+            CAPage(self.driver).open_verification_center() \
+                               .select_document_type() \
+                               .cklick_upload_btn()\
+                               .browse_documents()

@@ -492,6 +492,56 @@ class ExcelWriter:
                         ,"Client city is verified"
                         ,"Client postal code is verified"]
 
+        if self.get_test_pretty_name_new(test) == "CreateSupportTicketTestCa: test create ticket":
+            step_suit = ["Open first tabs page"
+                        ,"Click Login"
+                        ,"Enter Email"
+                        ,"Enter Password"
+                        ,"Click Login in pop up"
+                        ,"You are on the Webtrader page"
+                        ,"Click Hi, client"
+                        ,"Open Service Desk"
+                        ,"The Create ticket button was clicked"
+                        ,"Subject is set"
+                        ,"The category was selected"
+                        ,"Description  was set"
+                        ,"The Open ticket button was clicked"
+                        ,"The ticket is created"]
+
+        if self.get_test_pretty_name_new(test) == "CreateSupportTicketTestCa: test check and update ticket in crm":
+            step_suit = ["Open CRM"
+                        ,"Enter Username"
+                        ,"Enter Password"
+                        ,"Click Login"
+                        ,"No OTP"
+                        ,"No What's new"
+                        ,"Click the  drop down filter"
+                        ,"Search the filter Test Clients"
+                        ,"Open Test Clients filter"
+                        ,"Set client email in the email field"
+                        ,"Click the search button"
+                        ,"Open client details"
+                        ,"Open the help desk tab"
+                        ,"Ticket is found"
+                        ,"Click Edit help desk ticket button"
+                        ,"The tittle was edited"
+                        ,"The status was edited"
+                        ,"The save button was clicked"]
+
+        if self.get_test_pretty_name_new(test) == "CreateSupportTicketTestCa: test check updated ticket in ca":
+            step_suit = ["Open first tabs page"
+                        ,"Click Login"
+                        ,"Enter Email"
+                        ,"Enter Password"
+                        ,"Click Login in pop up"
+                        ,"You are on the Webtrader page"
+                        ,"Click Hi, client"
+                        ,"Open Service Desk"
+                        ,"The Closed Tickets tab was opened"
+                        ,"The ticket is found"
+                        ,"The ticket subject is verified"
+                        ,"The ticket status is verified"]
+
         #
         # # CalendarView
         #

@@ -9,6 +9,7 @@ from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 import re
+import autoit
 
 class CAPage(CRMBasePage):
 
@@ -315,7 +316,7 @@ class CAPage(CRMBasePage):
         description_field = self.driver.find_element(By.XPATH, "//textarea[@name='description']")
         description_field.clear()
         description_field.send_keys(description)
-        Logging().reportDebugStep(self, "Description  was set in the field : : " + description)
+        Logging().reportDebugStep(self, "Description  was set in the field : " + description)
         return CAPage(self.driver)
 
     def open_new_ticket_button(self):
@@ -356,4 +357,35 @@ class CAPage(CRMBasePage):
         actual_ticket_status = self.driver.find_element_by_xpath("(//td[@class='td-20-pandats'])[2]").text
         assert expected_status == actual_ticket_status
         Logging().reportDebugStep(self, "The ticket status is " + expected_status)
+        return CAPage(self.driver)
+
+    def open_verification_center(self):
+        verification_center_btn = super().wait_element_to_be_clickable("//li[@class='ng-star-inserted'] \
+                                                                            [contains(text(), 'Verification Center')]")
+        self.driver.execute_script("arguments[0].click();", verification_center_btn)
+        sleep(1)
+        Logging().reportDebugStep(self, "Open Verification Center")
+        return CAPage(self.driver)
+
+    def select_document_type(self):
+        document_type = super().wait_element_to_be_clickable("//label[contains(text(), 'Passport')]")
+        self.driver.execute_script("arguments[0].click();", document_type)
+        sleep(1)
+        Logging().reportDebugStep(self, "Selected document type is : Passport")
+        return CAPage(self.driver)
+
+    def cklick_upload_btn(self):
+        upload_btn = super().wait_element_to_be_clickable("//label[@for='upload_passport'][contains(text(),'Upload')]")
+        self.driver.execute_script("arguments[0].click();", upload_btn)
+        Logging().reportDebugStep(self, "Press Upload button")
+        return CAPage(self.driver)
+
+    def browse_documents(self):
+        sleep(3)
+        # button = super().wait_load_element("//*[@id='fileUploadItentity']")
+        # button.click()
+        autoit.win_wait_active("Open")
+        autoit.send("Copy.jpg")
+        autoit.send("{ENTER}")
+        Logging().reportDebugStep(self, "Click browse Documents")
         return CAPage(self.driver)

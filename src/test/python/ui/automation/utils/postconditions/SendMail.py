@@ -8,18 +8,20 @@ from email import encoders
 def Send_Email_XML(filepath, content):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    # toaddr = "Niv.s@pandats.com"
-    # toaddr = "ann.poimenova@gmail.com"
-    toaddr = "jonathan.albalak@pandats.com"
-
+    # to = "Niv.s@pandats.com"
+    to = "ann.poimenova@gmail.com"
+    cc = "anna.p@pandats.com"
+    bcc = "michael.oryshchenko@pandats.com"
     # instance of MIMEMultipart
-    msg = MIMEMultipart()
+    msg = MIMEMultipart('alternative')
 
     # storing the senders email address
     msg['From'] = fromaddr
-
+    rcpt = cc.split(",") + bcc.split(",") + [to]
     # storing the receivers email address
-    msg['To'] = toaddr
+    msg['To'] = to
+    msg['Cc'] = cc
+    msg['Bcc'] = bcc
     subject_name_test = filepath.replace('result\\TEST-', '')
     subject_name_test = subject_name_test.replace('.xml', '')
     subject_name_test = subject_name_test.replace('_', ' ')
@@ -77,7 +79,7 @@ def Send_Email_XML(filepath, content):
     text = msg.as_string()
 
     # sending the mail
-    s.sendmail(fromaddr, toaddr, text)
+    s.sendmail(fromaddr, rcpt, text)
 
     # terminating the session
     s.quit()
@@ -85,21 +87,22 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    # toaddr = "Niv.s@pandats.com"
-    # toaddr = "ann.poimenova@gmail.com"
-    toaddr = "michael.oryshchenko@pandats.com"
-
+    to = "Niv.s@pandats.com"
+    # to = "ann.poimenova@gmail.com"
+    cc = "anna.p@pandats.com"
+    bcc = "michael.oryshchenko@pandats.com"
     # instance of MIMEMultipart
-    msg = MIMEMultipart()
+    msg = MIMEMultipart('alternative')
 
     # storing the senders email address
     msg['From'] = fromaddr
-
+    rcpt = cc.split(",") + bcc.split(",") + [to]
     # storing the receivers email address
-    msg['To'] = toaddr
-
+    msg['To'] = to
+    msg['Cc'] = cc
+    msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "Integration tests"
+    msg['Subject'] = "New Forex CA report"
 
     # string to store the body of the mail
     body = "Body_of_the_mail"
@@ -141,30 +144,30 @@ def Send_Email_XLS(filepath):
     text = msg.as_string()
 
     # sending the mail
-    s.sendmail(fromaddr, toaddr, text)
+    s.sendmail(fromaddr, rcpt, text)
 
     # terminating the session
     s.quit()
 
-
 def Send_ALL_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    # toaddr = "Niv.s@pandats.com"
-    # toaddr = "ann.poimenova@gmail.com"
-    toaddr = "michael.oryshchenko@pandats.com"
-
+    to = "Niv.s@pandats.com"
+    # to = "ann.poimenova@gmail.com"
+    cc = "anna.p@pandats.com"
+    bcc = "michael.oryshchenko@pandats.com"
     # instance of MIMEMultipart
-    msg = MIMEMultipart()
+    msg = MIMEMultipart('alternative')
 
     # storing the senders email address
     msg['From'] = fromaddr
-
+    rcpt = cc.split(",") + bcc.split(",") + [to]
     # storing the receivers email address
-    msg['To'] = toaddr
-
+    msg['To'] = to
+    msg['Cc'] = cc
+    msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "Integration tests"
+    msg['Subject'] = "New Forex CA report"
 
     # string to store the body of the mail
     body = "Body_of_the_mail"
@@ -206,7 +209,7 @@ def Send_ALL_XLS(filepath):
     text = msg.as_string()
 
     # sending the mail
-    s.sendmail(fromaddr, toaddr, text)
+    s.sendmail(fromaddr, rcpt, text)
 
     # terminating the session
     s.quit()
