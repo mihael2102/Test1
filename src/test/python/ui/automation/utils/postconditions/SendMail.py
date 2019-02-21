@@ -87,10 +87,10 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    # to = "Niv.s@pandats.com"
-    to = "ann.poimenova@gmail.com"
+    to = "Niv.s@pandats.com"
+    # to = "ann.poimenova@gmail.com"
     cc = "anna.p@pandats.com"
-    bcc = "anna.poimenova@globallogic.com"
+    bcc = "michael.oryshchenko@pandats.com"
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
@@ -102,10 +102,10 @@ def Send_Email_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "Subject of the Mail"
+    msg['Subject'] = "All Brands: Old Forex CA"
 
     # string to store the body of the mail
-    body = "Body_of_the_mail"
+    body = "All Brands: Old Forex CA"
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
@@ -152,10 +152,10 @@ def Send_Email_XLS(filepath):
 def Send_ALL_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    # to = "Niv.s@pandats.com"
-    to = "ann.poimenova@gmail.com"
+    to = "Niv.s@pandats.com"
+    # to = "ann.poimenova@gmail.com"
     cc = "anna.p@pandats.com"
-    bcc = "anna.poimenova@globallogic.com"
+    bcc = "michael.oryshchenko@pandats.com"
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
@@ -167,10 +167,10 @@ def Send_ALL_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "Subject of the Mail"
+    msg['Subject'] = "All Brands: Old Forex CA"
 
     # string to store the body of the mail
-    body = "Body_of_the_mail"
+    body = "All Brands: Old Forex CA"
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
