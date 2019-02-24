@@ -555,8 +555,9 @@ class ClientProfilePage(CRMBasePage):
 
     def click_activities_tab(self):
         activities_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'Activities')][1]")
-        activities_tab.click()
-        Logging().reportDebugStep(self, "Open the activities tab")
+        # activities_tab.click()
+        self.driver.execute_script("arguments[0].click();", activities_tab)
+        Logging().reportDebugStep(self, "Scroll to activities tab")
         return ClientProfilePage(self.driver)
 
     def open_activities_tab(self):
@@ -574,6 +575,7 @@ class ClientProfilePage(CRMBasePage):
         return ClientProfilePage(self.driver)
 
     def verify_delete_interaction_message(self, expected_message):
+        sleep(1)
         delete_interaction_message = self.driver.find_element_by_xpath("//div[@class='bootstrap-dialog-message']").text
         assert expected_message == delete_interaction_message
         Logging().reportDebugStep(self, "Delete interaction message is verified")
@@ -593,3 +595,13 @@ class ClientProfilePage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", ok_btn)
         Logging().reportDebugStep(self, "Interaction was deleted successfully")
         return ClientProfilePage(self.driver)
+
+    def check_event_exist(self):
+        sleep(1)
+        super().refresh_page()
+        sleep(3)
+        activities_counter = self.driver.find_element_by_xpath("//span[@class='amount amount_Activities']").text
+        if (int(activities_counter) != 0):
+            return True
+        else:
+            return False

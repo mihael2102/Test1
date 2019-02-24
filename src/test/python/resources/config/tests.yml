@@ -35,12 +35,12 @@ tests_config:
   tests:
     - test_add_interaction  # Adds an interaction for a client
 #    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+  class: AddEventTaskModule
+  tests:
+    - test_add_event
+    - test_edit_event
     - test_delete_interaction
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-#  class: AddEventTaskModule
-#  tests:
-#    - test_add_event
-#    - test_edit_event
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
 #  class: TradingAccountCrmTest
 #  tests:
