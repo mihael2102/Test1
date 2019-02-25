@@ -9,7 +9,7 @@ tests_config:
     - test_create_filter_leads_module
     - test_create_filter_help_desk
     - test_create_filter_trading_account_module
-  #Leads
+#  #Leads
 - module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
   class: TabLeadsModuleCRM
   tests:
@@ -30,21 +30,23 @@ tests_config:
   class: SearchingClientsTestCRM
   tests:
     - test_make_searching_client_module   # Searches for a client.
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
-  class: AddInteraction
-  tests:
-    - test_add_interaction  # Adds an interaction for a client
-    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-  class: AddEventTaskModule
-  tests:
-    - test_add_event
-    - test_edit_event
-###MT4
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
+#  class: AddInteraction
+#  tests:
+#    - test_add_interaction  # Adds an interaction for a client
+#    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
+#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+#  class: AddEventTaskModule
+#  tests:
+#    - test_add_event
+#    - test_edit_event
+#    - test_delete_interaction
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
   class: TradingAccountCrmTest
   tests:
     - test_crm_open_trading_account  # open a new trading account
+    - test_crm_open_live_mt5
+    - test_crm_open_demo_mt5
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
   class: CheckPasswordTestCRM
   tests:
@@ -68,7 +70,6 @@ tests_config:
   class: TradingAccountCrmTest
   tests:
     - test_crm_edit_trading_account  # edit trading account
-
 - module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
   class: AffiliateModule
   tests:
@@ -86,7 +87,7 @@ tests_config:
     - test_check_all_tab_from_financial_transactions
     - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
     - test_check_search_via_button # Check search using search button
-#Campaign module
+###Campaign module
 - module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
   class: CampaignsModuleTest
   tests:

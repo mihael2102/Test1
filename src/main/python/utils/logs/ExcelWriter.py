@@ -136,6 +136,29 @@ class ExcelWriter:
 
     def steps_for_test(self, test):
 
+        if self.get_test_pretty_name_new(test) == "AddEventTaskModule: test delete interaction":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                , "Click the  drop down filter"
+                , "Select Test Clients"
+                , "Click the selected filter"
+                , "Set email of client"
+                , "Click search button"
+                , "Open client's details"
+                ,"Client's page contain events"
+                ,"Scroll to activities tab"
+                ,"Open Activities tab"
+                ,"Press Delete button"
+                ,"Client's page contain events"
+                ,"Scroll to activities tab"
+                ,"Press Delete button"
+                ,"Client's page does not contain events"
+                ,"Verify activities"]
+
         # CalendarView
 
         if self.get_test_pretty_name_new(test) == "CalendarView: test check add tasks calendar view":

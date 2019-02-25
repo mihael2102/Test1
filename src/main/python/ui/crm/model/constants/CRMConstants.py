@@ -4,6 +4,9 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    NONE_INCLUDED = "None Included"
+    DELETE_INTERACTION_MESSAGE = "Are You Sure You want to Delete?"
+    INTERACTION_DELETED_MESSAGE = "Successfully deleted"
     DEPOSIT_SUCCESSFULL_OLD_FOREX_FXP = "Transaction created"
     SECOND_COUNTRY = "country_two"
     PHONE = "Phone"
