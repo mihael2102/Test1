@@ -602,6 +602,8 @@ class ClientProfilePage(CRMBasePage):
         sleep(3)
         activities_counter = self.driver.find_element_by_xpath("//span[@class='amount amount_Activities']").text
         if (int(activities_counter) != 0):
+            Logging().reportDebugStep(self, "Client's page contain events")
             return True
         else:
+            Logging().reportDebugStep(self, "Client's page does not contain events")
             return False

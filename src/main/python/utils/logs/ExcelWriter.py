@@ -920,6 +920,35 @@ class ExcelWriter:
                 , "Click the 'save' button"
                 , "Text from 'Update' popup has been got: Task was updated"]
 
+        if self.get_test_pretty_name_new(test) == "AddEventTaskModule: test delete interaction":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                , "Click the  drop down filter"
+                , "Select Test Clients"
+                , "Click the selected filter"
+                , "Set email of client"
+                , "Click search button"
+                , "Open client's details"
+                , "Client's page contain events"
+                , "Scroll to activities tab"
+                , "Open Activities tab"
+                , "Press Delete event button"
+                , "Delete interaction message is verified"
+                , "Delete interaction is confirmed"
+                , "Interaction was deleted successfully"
+                , "Client's page contain events"
+                , "Scroll to activities tab"
+                , "Open Activities tab"
+                , "Press Delete event button"
+                , "Delete interaction message is verified"
+                , "Delete interaction is confirmed"
+                , "Interaction was deleted successfully"
+                , "Client's page does not contain events"]
+
         if self.get_test_pretty_name_new(test) == "TradingAccountCrmTest: test crm open trading account":
             step_suit = ["Open CRM"
                 , "Enter Username"

@@ -1,8 +1,8 @@
 brands:
 - name: mpcrypto
   config_file: mpcrypto.yml
-#- name: goldenmarkets
-#  config_file: goldenmarkets.yml
+- name: goldenmarkets
+  config_file: goldenmarkets.yml
 #- name: safemarkets
 #  config_file: safemarkets.yml
 #- name: b-traderfx
