@@ -104,10 +104,10 @@ def Send_Email_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "All Brands: API Old Forex"
+    msg['Subject'] = "OF - All Brands - API"
 
     # string to store the body of the mail
-    body = "API Old Forex"
+    body = "OF - All Brands - API"
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
@@ -170,10 +170,10 @@ def Send_ALL_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "All Brands: API Old Forex"
+    msg['Subject'] = "OF - All Brands - API"
 
     # string to store the body of the mail
-    body = "API Old Forex"
+    body = "OF - All Brands - API"
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
