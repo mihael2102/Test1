@@ -13,4 +13,5 @@ class UploadDocumentTestCa(BaseTest):
     def test_upload_document_ca(self):
         Page_CA_Precondition(self.driver, self.config).upload_document_ca()
 
-
+    def test_check_document_exist_in_crm(self):
+        Page_CA_Precondition(self.driver, self.config).check_document_exist_in_crm()

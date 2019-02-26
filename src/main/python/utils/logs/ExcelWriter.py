@@ -542,6 +542,19 @@ class ExcelWriter:
                         ,"The ticket subject is verified"
                         ,"The ticket status is verified"]
 
+        if self.get_test_pretty_name_new(test) == "UploadDocumentTestCa: test upload document ca":
+            step_suit = ["Open first tabs page"
+                        , "Click Login"
+                        , "Enter Email"
+                        , "Enter Password"
+                        , "Click Login in pop up"
+                        , "You are on the Webtrader page"
+                        , "Click Hi, client"
+                        , "Open Verification Center"
+                        , "Selected document type is : Passport"
+                        , "Press Upload button"
+                        , "Click browse Documents"]
+
         #
         # # CalendarView
         #

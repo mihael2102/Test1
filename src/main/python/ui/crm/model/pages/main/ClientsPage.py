@@ -115,6 +115,7 @@ class ClientsPage(CRMBasePage):
     '''
 
     def open_help_desk_module(self):
+        sleep(2)
         help_desc_module = super().wait_load_element("//a[contains(text(), 'Help Desk')]")
         help_desc_module.click()
         Logging().reportDebugStep(self, "Open  the help desk module ")

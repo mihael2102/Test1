@@ -375,8 +375,10 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def cklick_upload_btn(self):
+        sleep(1)
         upload_btn = super().wait_element_to_be_clickable("//label[@for='upload_passport'][contains(text(),'Upload')]")
-        self.driver.execute_script("arguments[0].click();", upload_btn)
+        # self.driver.execute_script("arguments[0].click();", upload_btn)
+        upload_btn.click()
         Logging().reportDebugStep(self, "Press Upload button")
         return CAPage(self.driver)
 
