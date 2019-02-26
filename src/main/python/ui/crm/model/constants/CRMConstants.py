@@ -4,6 +4,12 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    STATUS_ASSIGN = "R - New"
+    PANDAQA_ASSIGN = "pandaqa pandaqa"
+    SHORT_EMAIL = "pandaqa+"
+    SORTING_EXIST = "no"
+    SORTING_LEAD_NO = 1
+    SORTING_EMAIL = 1
     NONE_INCLUDED = "None Included"
     DELETE_INTERACTION_MESSAGE = "Are You Sure You want to Delete?"
     INTERACTION_DELETED_MESSAGE = "Successfully deleted"

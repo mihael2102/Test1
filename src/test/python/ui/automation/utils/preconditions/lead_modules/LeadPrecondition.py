@@ -6,6 +6,9 @@ from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
+from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
+from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+from time import sleep
 
 class LeadPrecondition(object):
 
@@ -15,6 +18,58 @@ class LeadPrecondition(object):
     def __init__(self, driver, config):
         self.driver = driver
         self.config = config
+
+
+    def mass_assign_leads(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        CRMHomePage(self.driver).open_lead_module()
+        LeadsModule(self.driver).select_filter(
+            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
+        LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
+        LeadsModule(self.driver).click_search_button_leads_module()
+        LeadsModule(self.driver).click_check_box_all_leads()
+        LeadsModule(self.driver).click_mass_assign()
+        LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN)
+        LeadsModule(self.driver).select_user_assign()
+        LeadsModule(self.driver).click_status()
+        LeadsModule(self.driver).select_status(CRMConstants.STATUS_ASSIGN)
+        LeadsModule(self.driver).click_assign()
+        LeadsModule(self.driver).mass_assign_result()
+        status = LeadsModule(self.driver).check_status_leads()
+        assert status == CRMConstants.STATUS_ASSIGN
+        assign_leads = LeadsModule(self.driver).check_assign_leads()
+        assert assign_leads == CRMConstants.PANDAQA_ASSIGN
+
+
+
+    def sorting_leads(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        CRMHomePage(self.driver).open_lead_module()
+        LeadsModule(self.driver).select_filter(
+            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
+        sleep(8)
+        LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
+        LeadsModule(self.driver).click_search_button_leads_module()
+
+        LeadsModule(self.driver).sorting_lead_by_leads_no()
+        lead_no = LeadsModule(self.driver).check_first_line_leads_no()
+        LeadsModule(self.driver).sorting_lead_by_email()
+        email = LeadsModule(self.driver).check_first_line_email()
+        LeadsModule(self.driver).sorting_lead_by_exist()
+        exist = LeadsModule(self.driver).check_first_line_exist()
+
+        assert lead_no >= CRMConstants.SORTING_LEAD_NO
+        assert email < CRMConstants.SORTING_EMAIL
+        assert exist == CRMConstants.SORTING_EXIST
+
 
     def create_lead(self, lead):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \

@@ -8,6 +8,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 
+
 @pytest.mark.run(order=26)
 class TabLeadsModuleCRM(BaseTest):
 
@@ -19,6 +20,17 @@ class TabLeadsModuleCRM(BaseTest):
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)
         return lead
+
+    def sorting_lead_module(self):
+        LeadPrecondition(self.driver, self.config).sorting_leads()
+
+    def test_mass_assign_leads(self):
+        LeadPrecondition(self.driver, self.config).mass_assign_leads()
+    # def test_mass_edit_leads(self):
+    # def export_full_list(self):
+    #
+    # def export_select_records(self):
+    # def import_leads(self):
 
     def test_searching_lead_modules(self):
         try:

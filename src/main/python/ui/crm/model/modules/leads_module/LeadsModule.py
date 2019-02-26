@@ -1,6 +1,7 @@
 from time import sleep
 from datetime import *
 import allure
+from selenium.webdriver.support.select import Select
 from allure_commons.types import AttachmentType
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
@@ -12,9 +13,130 @@ from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import Crea
 from src.main.python.ui.crm.model.pages.leads.ImportLeadPage import ImportLeadPage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
+from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 
 
 class LeadsModule(CRMBasePage):
+
+    def check_assign_leads(self):
+        assign_leads = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[10]/td[13]").text
+        Logging().reportDebugStep(self, "Verify assign")
+        return assign_leads
+
+    def check_status_leads(self):
+        status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[10]/td[6]").text
+        Logging().reportDebugStep(self, "Verify status")
+        return status
+
+    def select_status(self, select_status):
+        sleep(4)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id='leadstatus']"))
+        select.select_by_visible_text(select_status)
+        Logging().reportDebugStep(self, "The status was selected: " + select_status)
+        return LeadsModule(self.driver)
+
+    def click_status(self):
+        sleep(4)
+        click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='leadstatus_mass_edit_check']")
+        click_mass_assign.click()
+        Logging().reportDebugStep(self, "Click check box Status")
+        return LeadsModule(self.driver)
+
+    def mass_assign_result(self):
+        sleep(4)
+        mass_assign_result = self.driver.find_element(By.XPATH,
+                                                     "//div[contains(text(), 'accounts assigned to pandaqa pandaqa')]")
+
+        btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
+        btn_ok.click()
+        Logging().reportDebugStep(self, "Close succsesfull result pop ups")
+        return LeadsModule(self.driver)
+
+    def click_assign(self):
+        sleep(4)
+        click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='massassignform_action_button']")
+        click_mass_assign.click()
+        Logging().reportDebugStep(self, "Click assign pop ups")
+        return LeadsModule(self.driver)
+
+    def select_user_assign(self):
+        sleep(4)
+        click_mass_assign = self.driver.find_element(By.XPATH, "//div[2][contains (text(), 'pandaqa')]")
+        click_mass_assign.click()
+        Logging().reportDebugStep(self, "Click user")
+        return LeadsModule(self.driver)
+
+    def input_mass_assign(self, user):
+        sleep(4)
+        input_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='searchstring']")
+        input_mass_assign.send_keys(user)
+        Logging().reportDebugStep(self, "Enter user name")
+        return LeadsModule(self.driver)
+
+    def click_mass_assign(self):
+        sleep(4)
+        click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='list_action_buttons']/input[3]")
+        click_mass_assign.click()
+        Logging().reportDebugStep(self, "Click mass assign btn")
+        return LeadsModule(self.driver)
+
+    def click_check_box_all_leads(self):
+        sleep(4)
+        click_check_box_all_leads = self.driver.find_element(By.XPATH, "//*[@id='selectCurrentPageRec']")
+        click_check_box_all_leads.click()
+        Logging().reportDebugStep(self, "Click check box all leads")
+        return LeadsModule(self.driver)
+
+    def check_first_line_exist(self):
+        check_first_line_exist = super().wait_element_to_be_clickable("//tbody[@id = 'listBody']/tr[1]/td[10]").text
+        Logging().reportDebugStep(self, "Verify sorting by Exist")
+        return check_first_line_exist
+
+    def check_first_line_email(self):
+        check_first_line_email_1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[8]").text
+        email_1 = check_first_line_email_1.replace('pandaqa+','')
+        number_email__str1 = email_1.replace('@pandats.com','')
+        number_email_1 = int(number_email__str1)
+        check_first_line_email_2 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[2]/td[8]").text
+        email_2 = check_first_line_email_2.replace('pandaqa+', '')
+        number_email_str2 = email_2.replace('@pandats.com', '')
+        number_email_2 = int(number_email_str2)
+        number_email_diff = number_email_1 - number_email_2
+        Logging().reportDebugStep(self, "Verify sorting by Email")
+        return number_email_diff
+
+    def check_first_line_leads_no(self):
+        check_first_line_leads_no = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[2]").text
+        number_str_1 = check_first_line_leads_no.replace('LEA', '')
+        number_1 = int(number_str_1)
+        check_first_line_leads_no = self.driver.find_element(By.XPATH,
+            "//tbody[@id = 'listBody']/tr[2]/td[2]").text
+        number_str_2 = check_first_line_leads_no.replace('LEA', '')
+        number_2 = int(number_str_2)
+        number_diff = number_1 - number_2
+        Logging().reportDebugStep(self, "Verify sorting by Leads no")
+        return number_diff
+
+    def sorting_lead_by_leads_no(self):
+        sleep(4)
+        sorting_lead_by_leads_no = self.driver.find_element(By.XPATH,"//a[contains(text(), 'Lead No')]")
+        sorting_lead_by_leads_no.click()
+        Logging().reportDebugStep(self, "Click sorting by Leads no")
+        return LeadsModule(self.driver)
+
+    def sorting_lead_by_email(self):
+        sleep(4)
+        sorting_lead_by_email = self.driver.find_element(By.XPATH,"//*[@id='listHeaderemail']")
+        sorting_lead_by_email.click()
+        Logging().reportDebugStep(self, "Click sorting by Email")
+        return LeadsModule(self.driver)
+
+    def sorting_lead_by_exist(self):
+        sleep(4)
+        sorting_lead_by_exist = self.driver.find_element(By.XPATH,"//*[@id='listHeaderalreadyexists']")
+        sorting_lead_by_exist.click()
+        Logging().reportDebugStep(self, "Click sorting by Exist")
+        return LeadsModule(self.driver)
 
     def perform_searching_lead_module(self, first_name, last_name, email, assigned_to, tittle, lead_source, lead_status,
                                       language):
