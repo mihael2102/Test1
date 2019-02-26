@@ -81,11 +81,12 @@ class Page_CA_Precondition(object):
     def check_personal_details_in_crm(self):
         # Login to CRM
         if global_var.current_brand_name != "q8":
-            CRMLoginPage().open_first_tab_page('url') \
-                .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                           self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                           self.config.get_value(TestDataConstants.OTP_SECRET)) \
-                .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+                                     .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                                                self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                                                self.config.get_value(TestDataConstants.OTP_SECRET)) \
+                                     .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                                                TestDataConstants.FILTER))
 
             sleep(2)
             ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -101,11 +102,12 @@ class Page_CA_Precondition(object):
             return self
 
     def update_personal_details_in_crm(self):
-        CRMLoginPage().open_first_tab_page('url') \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                                            self.config.get_value(TestDataConstants.OTP_SECRET)) \
+                                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                                            TestDataConstants.FILTER))
         sleep(2)
         ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                           LeadsModuleConstants.EMAIL])
@@ -163,21 +165,29 @@ class Page_CA_Precondition(object):
                 .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                    LeadsModuleConstants.FIRST_NAME])
             CAPage(self.driver).open_verification_center() \
-                               .select_document_type() \
+                               .select_document_type(TestDataConstants.DOCUMENT_TYPE1) \
                                .cklick_upload_btn()\
                                .browse_documents()
 
-    def check_document_exist_in_crm(self):
-        CRMLoginPage().open_first_tab_page('url') \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+    def check_and_update_document_in_crm(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                                            self.config.get_value(TestDataConstants.OTP_SECRET)) \
+                                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                                                TestDataConstants.FILTER))
 
         sleep(2)
         ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL]) \
-                                .open_help_desk_tab() \
-                                .open_action_help_desk()
+                                .scroll_to_documents_section() \
+                                .open_document_tab() \
+                                .verify_document_name() \
+                                .verify_document_type(TestDataConstants.DOCUMENT_TYPE1) \
+                                .verify_document_status() \
+                                .open_document_preview() \
+                                .upade_document_status(TestDataConstants.DOCUMENT_STATUS)\
+                                .click_save_document_btn()
+
 
 

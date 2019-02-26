@@ -30,6 +30,7 @@ tests_config:
   class: UploadDocumentTestCa
   tests:
     - test_upload_document_ca
+    - test_check_and_update_document_in_crm
 
 
 

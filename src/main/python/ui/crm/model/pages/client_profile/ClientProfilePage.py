@@ -262,7 +262,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_name_document(self):
         document_name = super().wait_load_element("//tr[@class='lvtColData']//td[3]//a[contains(text(),'Bear.jpg')]")
-        Logging().reportDebugStep(self, "Returns the client status: " + document_name.text)
+        Logging().reportDebugStep(self, "Document is found: " + document_name.text)
         return document_name.text
 
     '''
@@ -595,4 +595,47 @@ class ClientProfilePage(CRMBasePage):
         save_button = self.driver.find_element_by_xpath("//input[@title='Save [Alt+S]']")
         save_button.click()
         Logging().reportDebugStep(self, "The save button was clicked")
+        return ClientProfilePage(self.driver)
+
+    def scroll_to_documents_section(self):
+        sleep(1)
+        documents_section = super().wait_element_to_be_clickable("//a[@href='#header_Accounts_Documents']")
+        documents_section.click()
+        Logging().reportDebugStep(self, "Scroll to Documents section")
+        return ClientProfilePage(self.driver)
+
+    def open_document_preview(self):
+        document_preview_btn = super().wait_element_to_be_clickable("//a[@class='glyphicons eye_open cntrl'] \
+                                                                        [@title='Document preview']")
+        document_preview_btn.click()
+        Logging().reportDebugStep(self, "Open Document's preview")
+        return ClientProfilePage(self.driver)
+
+    def verify_document_name(self):
+        document_name = super().wait_load_element("//tr[@class='lvtColData']//td[3]//a[contains(text(),'Bear.jpg')]")
+        Logging().reportDebugStep(self, "Document is found: " + document_name.text)
+        return ClientProfilePage(self.driver)
+
+    def verify_document_type(self, doc_type):
+        document_type = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[2]/td[2] \
+                                                            [contains(text(), '%s')]" % doc_type)
+        Logging().reportDebugStep(self, "Document type is: " + document_type.text)
+        return ClientProfilePage(self.driver)
+
+    def verify_document_status(self):
+        self.driver.find_element_by_xpath("//td[contains(text(), 'Pending')]/span[@vtfieldname='document_statuses']")
+        Logging().reportDebugStep(self, "Document status is Pending")
+        return ClientProfilePage(self.driver)
+
+    def upade_document_status(self, status):
+        sleep(2)
+        document_status = super().wait_load_element("//option[contains(text(), '%s')]" % status)
+        self.driver.execute_script("arguments[0].click();", document_status)
+        Logging().reportDebugStep(self, "Selected document status is " + status)
+        return ClientProfilePage(self.driver)
+
+    def click_save_document_btn(self):
+        save_document_btn = super().wait_element_to_be_clickable("//button [@id='save_document']")
+        save_document_btn.click()
+        Logging().reportDebugStep(self, "Click Save Document button")
         return ClientProfilePage(self.driver)

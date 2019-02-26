@@ -367,8 +367,8 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Open Verification Center")
         return CAPage(self.driver)
 
-    def select_document_type(self):
-        document_type = super().wait_element_to_be_clickable("//label[contains(text(), 'Passport')]")
+    def select_document_type(self, doc_type):
+        document_type = super().wait_element_to_be_clickable("//label[contains(text(), '%s')]" % doc_type)
         self.driver.execute_script("arguments[0].click();", document_type)
         sleep(1)
         Logging().reportDebugStep(self, "Selected document type is : Passport")
@@ -387,7 +387,7 @@ class CAPage(CRMBasePage):
         # button = super().wait_load_element("//*[@id='fileUploadItentity']")
         # button.click()
         autoit.win_wait_active("Open")
-        autoit.send("Copy.jpg")
+        autoit.send("Bear.jpg")
         autoit.send("{ENTER}")
         Logging().reportDebugStep(self, "Click browse Documents")
         return CAPage(self.driver)
