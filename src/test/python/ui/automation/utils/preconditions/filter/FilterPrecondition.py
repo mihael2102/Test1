@@ -36,7 +36,7 @@ class FilterPrecondition(object):
 
         if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "intelligent_capital"):
             FilterPage(self.driver).perform_create_filter_client_module(
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FILTER_NAME),
+                       TestDataConstants.CLIENTS_FILTER_NAME,
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SECOND_COLUMN),
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
@@ -51,18 +51,18 @@ class FilterPrecondition(object):
 
         else:
             FilterPage(self.driver).perform_create_filter_client_module(
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FILTER_NAME),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SECOND_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FOURTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIFTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SIXTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SEVENTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.EIGHTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.NINTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN),
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN))
+                        TestDataConstants.CLIENTS_FILTER_NAME,
+                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
+                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SECOND_COLUMN),
+                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
+                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FOURTH_COLUMN),
+                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIFTH_COLUMN),
+                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SIXTH_COLUMN),
+                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SEVENTH_COLUMN),
+                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.EIGHTH_COLUMN),
+                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.NINTH_COLUMN),
+                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN),
+                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN))
 
         FilterPage(self.driver).click_save_button()
         return FilterPrecondition(self.driver, self.config)
@@ -73,7 +73,7 @@ class FilterPrecondition(object):
             .open_help_desk_page() \
             .open_create_filter_pop_up() \
             .perform_create_filter_help_desk_module(
-            self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME),
+            TestDataConstants.HELP_DESK_FILTER_NAME,
             self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIRST_COLUMN),
             self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SECOND_COLUMN),
             self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.THIRD_COLUMN),
@@ -91,7 +91,7 @@ class FilterPrecondition(object):
         CRMHomePage(self.driver).open_lead_module() \
             .open_create_filter_pop_up() \
             .perform_create_filter_lead_module(
-            self.config.get_data_lead_info_from_json(LeadsModuleConstants.FILTER_NAME),
+            TestDataConstants.LEADS_FILTER_NAME,
             self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIRST_COLUMN),
             self.config.get_data_lead_info_from_json(LeadsModuleConstants.SECOND_COLUMN),
             self.config.get_data_lead_info_from_json(LeadsModuleConstants.THIRD_COLUMN),
@@ -123,8 +123,7 @@ class FilterPrecondition(object):
             .select_document_module_more_list(DocumentModuleConstants.DOCUMENT) \
             .open_create_filter_pop_up() \
             .perform_create_filter_documents_module(
-            self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
-                                                 DocumentModuleConstants.FILTER_NAME),
+            TestDataConstants.DOCUMENTS_FILTER_NAME,
             self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                  DocumentModuleConstants.FIRST_COLUMN),
             self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
@@ -140,7 +139,7 @@ class FilterPrecondition(object):
         CRMHomePage(self.driver).open_trading_account_module() \
             .open_create_filter_pop_up() \
             .perform_create_filter_trading_accounts_module(
-            self.config.get_data_columns_trading_module(TradingAccountConstants.FILTER_NAME),
+            TestDataConstants.TRADING_ACCOUNTS_FILTER_NAME,
             self.config.get_data_columns_trading_module(TradingAccountConstants.FIRST_COLUMN),
             self.config.get_data_columns_trading_module(TradingAccountConstants.SECOND_COLUMN),
             self.config.get_data_columns_trading_module(TradingAccountConstants.THIRD_COLUMN),

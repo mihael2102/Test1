@@ -138,7 +138,7 @@ trading_account_1_live:
   leverage_400: "400"
   trading_account_live_1_200: "200"
 module_clients_filter:
-  test_filter: "TestFilterClientsModule"
+  EVAL_test_filter: "'TestFilterClientsModule' + (datetime.now()).strftime('%d-%m-%Y')"
   first_column: "CRM Id"
   second_column: "Client Status"
   third_column: "Lead Exist"
