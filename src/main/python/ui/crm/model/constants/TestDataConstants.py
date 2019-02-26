@@ -1,5 +1,11 @@
-class TestDataConstants(object):
+from datetime import date
 
+class TestDataConstants(object):
+    FILTER_NAME_CLIENT = "TestFilterClientsModule" + str(date.today())
+    FILTER_NAME_DOCUMENTS = "TestFilterDocumentsModule" + str(date.today())
+    FILTER_NAME_LEADS = "TestFilterLeadModule" + str(date.today())
+    FILTER_NAME_HELP_DESK = "TestFilterHelpDeskModule" + str(date.today())
+    FILTER_NAME_TRADING_ACCOUNT = "TestFilterTradingAccountModule" + str(date.today())
     DESCRIPTION = "Open a new ticket"
     CATEGORY_FIRST = "Login Problem"
     SUBJECT = "QA"

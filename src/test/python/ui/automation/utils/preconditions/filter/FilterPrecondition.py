@@ -24,7 +24,7 @@ class FilterPrecondition(object):
 
         if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "intelligent_capital"):
             FilterPage(self.driver).perform_create_filter_client_module(
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FILTER_NAME),
+                       TestDataConstants.FILTER_NAME_CLIENT,
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SECOND_COLUMN),
                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
@@ -39,7 +39,7 @@ class FilterPrecondition(object):
 
         elif (global_var.current_brand_name == "stoxmarket") or (global_var.current_brand_name == "urf") or (global_var.current_brand_name == "itrader_global"):
             FilterPage(self.driver).perform_create_filter_client_module(
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FILTER_NAME),
+                TestDataConstants.FILTER_NAME_CLIENT,
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SECOND_COLUMN),
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
@@ -53,7 +53,7 @@ class FilterPrecondition(object):
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN_NEW))
         else:
             FilterPage(self.driver).perform_create_filter_client_module(
-                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FILTER_NAME),
+                TestDataConstants.FILTER_NAME_CLIENT,
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SECOND_COLUMN),
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
@@ -79,7 +79,7 @@ class FilterPrecondition(object):
             (global_var.current_brand_name == "oinvestsa") or (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "otcapital") or \
                 (global_var.current_brand_name == "urf") or (global_var.current_brand_name == "itrader_global"):
             FilterPage(self.driver).perform_create_filter_help_desk_module(
-                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME),
+                TestDataConstants.FILTER_NAME_HELP_DESK,
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIRST_COLUMN),
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SECOND_COLUMN),
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.THIRD_COLUMN),
@@ -94,7 +94,7 @@ class FilterPrecondition(object):
 
         else:
             FilterPage(self.driver).perform_create_filter_help_desk_module(
-                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME),
+                TestDataConstants.FILTER_NAME_HELP_DESK,
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIRST_COLUMN),
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SECOND_COLUMN),
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.THIRD_COLUMN),
@@ -114,7 +114,7 @@ class FilterPrecondition(object):
 
         if (global_var.current_brand_name == "ogtrade"):
             FilterPage(self.driver).perform_create_filter_lead_module(
-                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.FILTER_NAME),
+                    TestDataConstants.FILTER_NAME_LEADS,
                     self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIRST_COLUMN),
                     self.config.get_data_lead_info_from_json(LeadsModuleConstants.SECOND_COLUMN),
                     self.config.get_data_lead_info_from_json(LeadsModuleConstants.THIRD_COLUMN),
@@ -127,7 +127,7 @@ class FilterPrecondition(object):
 
         else:
             FilterPage(self.driver).perform_create_filter_lead_module(
-                self.config.get_data_lead_info_from_json(LeadsModuleConstants.FILTER_NAME),
+                TestDataConstants.FILTER_NAME_LEADS,
                 self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIRST_COLUMN),
                 self.config.get_data_lead_info_from_json(LeadsModuleConstants.SECOND_COLUMN),
                 self.config.get_data_lead_info_from_json(LeadsModuleConstants.THIRD_COLUMN),
@@ -147,8 +147,7 @@ class FilterPrecondition(object):
 
         if (global_var.current_brand_name == "ogtrade"):
             FilterPage(self.driver).perform_create_filter_documents_module(
-                       self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
-                                                 DocumentModuleConstants.FILTER_NAME),
+                        TestDataConstants.FILTER_NAME_DOCUMENTS,
                        self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                  DocumentModuleConstants.FIRST_COLUMN),
                        self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
@@ -161,8 +160,7 @@ class FilterPrecondition(object):
 
         else:
             FilterPage(self.driver).perform_create_filter_documents_module(
-                self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
-                                                     DocumentModuleConstants.FILTER_NAME),
+                TestDataConstants.FILTER_NAME_DOCUMENTS,
                 self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                      DocumentModuleConstants.FIRST_COLUMN),
                 self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
@@ -179,7 +177,7 @@ class FilterPrecondition(object):
         CRMHomePage(self.driver).open_trading_account_module() \
             .open_create_filter_pop_up() \
             .perform_create_filter_trading_accounts_module(
-            self.config.get_data_columns_trading_module(TradingAccountConstants.FILTER_NAME),
+            TestDataConstants.FILTER_NAME_TRADING_ACCOUNT,
             self.config.get_data_columns_trading_module(TradingAccountConstants.FIRST_COLUMN),
             self.config.get_data_columns_trading_module(TradingAccountConstants.SECOND_COLUMN),
             self.config.get_data_columns_trading_module(TradingAccountConstants.THIRD_COLUMN),
