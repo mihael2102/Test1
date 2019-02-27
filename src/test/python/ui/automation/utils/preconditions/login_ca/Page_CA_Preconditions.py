@@ -184,10 +184,28 @@ class Page_CA_Precondition(object):
                                 .open_document_tab() \
                                 .verify_document_name() \
                                 .verify_document_type(TestDataConstants.DOCUMENT_TYPE1) \
-                                .verify_document_status() \
+                                .verify_document_status(TestDataConstants.DOCUMENT_STATUS1) \
                                 .open_document_preview() \
-                                .upade_document_status(TestDataConstants.DOCUMENT_STATUS)\
-                                .click_save_document_btn()
+                                .update_document_status(TestDataConstants.DOCUMENT_STATUS)\
+                                .click_save_document_btn() \
+                                .verify_doc_saved_message(TestDataConstants.DOCUMENT_SUCCESSFUL_MESSAGE) \
+                                .scroll_to_documents_section() \
+                                .verify_document_status(TestDataConstants.DOCUMENT_STATUS)
+
+    def check_document_status_in_ca(self):
+        if global_var.current_brand_name != "q8":
+            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
+                .login() \
+                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                 LeadsModuleConstants.EMAIL]) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .verify() \
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                   LeadsModuleConstants.FIRST_NAME])
+            CAPage(self.driver).open_verification_center() \
+                               .select_document_type(TestDataConstants.DOCUMENT_TYPE1) \
+                               .verify_document_status_ca(CAConstants.DOCUMENT_STATUS_CA)
 
 
 

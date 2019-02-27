@@ -84,10 +84,11 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_document_tab(self):
+        sleep(1)
         document_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_Documents']")
         document_tab.click()
         Logging().reportDebugStep(self, "Open the document tab ")
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     '''
         Open the Documents module
@@ -137,7 +138,7 @@ class ClientProfilePage(CRMBasePage):
         trading_tab = super().wait_load_element("//a[@id='show_Accounts_FinancialTransactions']")
         trading_tab.click()
         Logging().reportDebugStep(self, "Open the financial transactions tab ")
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     '''
         :returns client amount from Trading Accounts tabs 
@@ -600,7 +601,8 @@ class ClientProfilePage(CRMBasePage):
     def scroll_to_documents_section(self):
         sleep(1)
         documents_section = super().wait_element_to_be_clickable("//a[@href='#header_Accounts_Documents']")
-        documents_section.click()
+        # documents_section.click()
+        self.driver.execute_script("arguments[0].click();", documents_section)
         Logging().reportDebugStep(self, "Scroll to Documents section")
         return ClientProfilePage(self.driver)
 
@@ -612,6 +614,7 @@ class ClientProfilePage(CRMBasePage):
         return ClientProfilePage(self.driver)
 
     def verify_document_name(self):
+        sleep(2)
         document_name = super().wait_load_element("//tr[@class='lvtColData']//td[3]//a[contains(text(),'Bear.jpg')]")
         Logging().reportDebugStep(self, "Document is found: " + document_name.text)
         return ClientProfilePage(self.driver)
@@ -622,15 +625,20 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Document type is: " + document_type.text)
         return ClientProfilePage(self.driver)
 
-    def verify_document_status(self):
-        self.driver.find_element_by_xpath("//td[contains(text(), 'Pending')]/span[@vtfieldname='document_statuses']")
-        Logging().reportDebugStep(self, "Document status is Pending")
+    def verify_document_status(self, expected_status):
+        self.driver.find_element_by_xpath("//td[contains(text(), '%s')]/span[@vtfieldname='document_statuses']"
+                                            % expected_status)
+        Logging().reportDebugStep(self, "Document status is " + expected_status)
         return ClientProfilePage(self.driver)
 
-    def upade_document_status(self, status):
-        sleep(2)
-        document_status = super().wait_load_element("//option[contains(text(), '%s')]" % status)
-        self.driver.execute_script("arguments[0].click();", document_status)
+    def update_document_status(self, status):
+        sleep(3)
+        pick_list = super().wait_load_element("//select[@id='doc_status']")
+        pick_list.click()
+        document_status = self.driver.find_element_by_xpath("//select[@id='doc_status']/option[contains(text(), '%s')]"
+                                                            % status)
+        document_status.click()
+        # self.driver.execute_script("arguments[0].click();", document_status)
         Logging().reportDebugStep(self, "Selected document status is " + status)
         return ClientProfilePage(self.driver)
 
@@ -638,4 +646,13 @@ class ClientProfilePage(CRMBasePage):
         save_document_btn = super().wait_element_to_be_clickable("//button [@id='save_document']")
         save_document_btn.click()
         Logging().reportDebugStep(self, "Click Save Document button")
+        return ClientProfilePage(self.driver)
+
+    def verify_doc_saved_message(self, expected_msg):
+        sleep(2)
+        actual_msg = self.driver.find_element_by_xpath("//div[@class='bootstrap-dialog-message']")
+        assert expected_msg == actual_msg.text
+        ok_btn = super().wait_element_to_be_clickable("//button[@class='btn btn-primary'][contains(text(),'OK')]")
+        ok_btn.click()
+        Logging().reportDebugStep(self, "Document status is updated successfully")
         return ClientProfilePage(self.driver)

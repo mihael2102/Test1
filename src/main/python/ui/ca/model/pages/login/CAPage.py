@@ -389,5 +389,11 @@ class CAPage(CRMBasePage):
         autoit.win_wait_active("Open")
         autoit.send("Bear.jpg")
         autoit.send("{ENTER}")
+        sleep(1)
         Logging().reportDebugStep(self, "Click browse Documents")
+        return CAPage(self.driver)
+
+    def verify_document_status_ca(self, expected_status):
+        self.driver.find_element_by_xpath("//span[@class='approved'][contains(text(),'%s')]" % expected_status)
+        Logging().reportDebugStep(self, "Document is " + expected_status)
         return CAPage(self.driver)

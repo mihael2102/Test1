@@ -31,6 +31,7 @@ tests_config:
   tests:
     - test_upload_document_ca
     - test_check_and_update_document_in_crm
+    - test_check_document_status_in_ca
 
 
 

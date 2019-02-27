@@ -16,3 +16,10 @@ FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[12])[%s]"
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
+CALoginPage:
+  city: "(//input[@name = 'city'])[2]"
+  zip_code: "(//input[@name = 'postCode'])[2]"
+  address: "(//input[@name = 'address'])[2]"
+  next_btn: "(//button[contains (text(), 'Next')])[2]"
+
+

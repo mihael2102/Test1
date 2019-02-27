@@ -37,3 +37,4 @@ class CAConstants(object):
     CATEGORY = "General Question"
     TICKET_DESCRIPTION = "test"
     TICKET_NUMBER_CA = ""
+    DOCUMENT_STATUS_CA = "Verified"

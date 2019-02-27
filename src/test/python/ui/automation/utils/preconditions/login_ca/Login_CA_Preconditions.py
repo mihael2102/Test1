@@ -89,29 +89,29 @@ class Login_CA_Precondition(object):
                                                               LeadsModuleConstants.FIRST_NAME]) == \
                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
 
-        elif global_var.current_brand_name == "ptbanc_ca":
-
-            CALoginPage(self.driver).verify() \
-                .click_hi_guest() \
-                .click_transactions_history() \
-                .select_pt_b()\
-                .fill_city(CAConstants.CITY) \
-                .fill_zip_code(CAConstants.ZIP_CODE) \
-                .fill_address(CAConstants.ADDRESS) \
-                .click_next() \
-                .verify() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                   LeadsModuleConstants.FIRST_NAME]) \
-                .sign_out() \
-                .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL]) \
-                .enter_password(CAConstants.PASSWORD) \
-                .click_login() \
-                .verify()
-            assert CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                              LeadsModuleConstants.FIRST_NAME]) == \
-                   self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+        # elif global_var.current_brand_name == "ptbanc":
+        #
+        #     CALoginPage(self.driver).verify() \
+        #         .click_hi_guest() \
+        #         .click_transactions_history() \
+        #         .select_pt_b()\
+        #         .fill_city(CAConstants.CITY) \
+        #         .fill_zip_code(CAConstants.ZIP_CODE) \
+        #         .fill_address(CAConstants.ADDRESS) \
+        #         .click_next() \
+        #         .verify() \
+        #         .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+        #                            LeadsModuleConstants.FIRST_NAME]) \
+        #         .sign_out() \
+        #         .login() \
+        #         .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+        #                          LeadsModuleConstants.EMAIL]) \
+        #         .enter_password(CAConstants.PASSWORD) \
+        #         .click_login() \
+        #         .verify()
+        #     assert CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+        #                                                       LeadsModuleConstants.FIRST_NAME]) == \
+        #            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
 
         elif global_var.current_brand_name == "jonesmutual":
 

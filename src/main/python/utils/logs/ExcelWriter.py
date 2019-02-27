@@ -544,16 +544,53 @@ class ExcelWriter:
 
         if self.get_test_pretty_name_new(test) == "UploadDocumentTestCa: test upload document ca":
             step_suit = ["Open first tabs page"
-                        , "Click Login"
-                        , "Enter Email"
-                        , "Enter Password"
-                        , "Click Login in pop up"
-                        , "You are on the Webtrader page"
-                        , "Click Hi, client"
-                        , "Open Verification Center"
-                        , "Selected document type is : Passport"
-                        , "Press Upload button"
-                        , "Click browse Documents"]
+                        ,"Click Login"
+                        ,"Enter Email"
+                        ,"Enter Password"
+                        ,"Click Login in pop up"
+                        ,"You are on the Webtrader page"
+                        ,"Click Hi, client"
+                        ,"Open Verification Center"
+                        ,"Selected document type is : Passport"
+                        ,"Press Upload button"
+                        ,"Click browse Documents"]
+
+        if self.get_test_pretty_name_new(test) == "UploadDocumentTestCa: test check and update document in crm":
+            step_suit = ["Open CRM"
+                        ,"Enter Username"
+                        ,"Enter Password"
+                        ,"Click Login"
+                        ,"No OTP"
+                        ,"No What's new"
+                        ,"Click the  drop down filter"
+                        ,"Search the filter Test Clients"
+                        ,"Open Test Clients filter"
+                        ,"Set client email in the email field"
+                        ,"Click the search button"
+                        ,"Open client details"
+                        ,"Scroll to Documents section"
+                        ,"Open the document tab"
+                        ,"Document name is verified"
+                        ,"Document type is verified"
+                        ,"Document status is verified"
+                        ,"Open Document's preview"
+                        ,"Document status was changed to Approved"
+                        ,"Click Save Document button"
+                        ,"Document status is updated successfully"
+                        ,"Scroll to Documents section"
+                        ,"Document status is Approved"]
+
+        if self.get_test_pretty_name_new(test) == "UploadDocumentTestCa: test check document status in ca":
+            step_suit = ["Open first tabs page"
+                        ,"Click Login"
+                        ,"Enter Email"
+                        ,"Enter Password"
+                        ,"Click Login in pop up"
+                        ,"You are on the Webtrader page"
+                        ,"Click Hi, client"
+                        ,"Open Verification Center"
+                        ,"Selected document type is : Passport"
+                        ,"Document is Verified"]
 
         #
         # # CalendarView

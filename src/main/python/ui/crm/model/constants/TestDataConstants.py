@@ -90,4 +90,6 @@ class TestDataConstants(object):
     DOCUMENT_TYPE = "document_type"
     DOCUMENT_TYPE1 = "Passport"
     DOCUMENT_STATUS = "Approved"
+    DOCUMENT_SUCCESSFUL_MESSAGE = "Document saved successfully"
+    DOCUMENT_STATUS1 = "Pending"
 
