@@ -14,19 +14,198 @@ from src.main.python.ui.crm.model.pages.leads.ImportLeadPage import ImportLeadPa
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+import autoit
 
 
 class LeadsModule(CRMBasePage):
 
-    def check_assign_leads(self):
-        assign_leads = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[10]/td[13]").text
-        Logging().reportDebugStep(self, "Verify assign")
+    def check_third_step(self):
+        sleep(4)
+        check_third_step = self.driver.find_element(By.XPATH, "//div[@class='steps']/h1").text
+        Logging().reportDebugStep(self, "Click NEXT import leads")
+        return check_third_step
+
+    def click_next_second_step(self):
+        sleep(4)
+        click_import_leads = self.driver.find_element(By.XPATH, "//*[@id='importAdvanced']/div[2]/input[1]")
+        click_import_leads.click()
+        Logging().reportDebugStep(self, "Click NEXT import leads")
+        return LeadsModule(self.driver)
+
+    def select_import_status(self):
+        sleep(4)
+        status = self.driver.find_element(By.XPATH, "//*[@id='default_values']/div[3]/div[2]/button")
+        try:
+            status.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", status)
+        status_leads = self.driver.find_element(By.XPATH, "//*[@id='default_values']/div[3]/div[2]/div/ul/li[6]/a")
+        try:
+            status_leads.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", status_leads)
+        Logging().reportDebugStep(self, "Select status leads")
+        return LeadsModule(self.driver)
+
+    def select_import_source_name(self, name):
+        sleep(4)
+        click_import_leads = self.driver.find_element(By.XPATH, "//input[@id='source_name']")
+        click_import_leads.send_keys(name)
+        Logging().reportDebugStep(self, "Enter source name")
+        return LeadsModule(self.driver)
+
+    def select_import_source(self):
+        sleep(4)
+        source = self.driver.find_element(By.XPATH, "//*[@id='default_values']/div[1]/div[2]/button")
+        try:
+            source.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", source)
+        source_leads = self.driver.find_element(By.XPATH, "//*[@id='default_values']/div[1]/div[2]/div/ul/li[7]/a/span")
+        try:
+            source_leads.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", source_leads)
+        Logging().reportDebugStep(self, "Select source leads")
+        return LeadsModule(self.driver)
+
+    def click_next_import_leads(self):
+        sleep(4)
+        click_import_leads = self.driver.find_element(By.XPATH, "/html/body/div[12]/form/div[2]/input")
+        click_import_leads.click()
+        Logging().reportDebugStep(self, "Click NEXT import leads")
+        return LeadsModule(self.driver)
+
+    def click_browse_import_leads(self):
+        sleep(5)
+        browse_documents = self.driver.find_element(By.XPATH, "/html/body/div[12]/form/div[1]/div[1]/div/div[1]/a")
+        browse_documents.click()
+        autoit.win_wait_active("Open")
+        autoit.send("Leads_Import.csv")
+        autoit.send("{ENTER}")
+        Logging().reportDebugStep(self, "Click on button Choose File")
+        return LeadsModule(self.driver)
+
+    def click_import_leads(self):
+        sleep(4)
+        click_import_leads = self.driver.find_element(By.XPATH, "/html/body/table[2]/tbody/tr/td[1]/div/button[5]")
+        click_import_leads.click()
+        Logging().reportDebugStep(self, "Click import leads")
+        return LeadsModule(self.driver)
+
+
+    def click_check_box_leads(self, i):
+        check_box = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[1]/input")
+        self.driver.execute_script("arguments[0].scrollIntoView();", check_box)
+        try:
+            check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box)
+        if i == 4:
+            Logging().reportDebugStep(self, "Click check box leads")
+        return LeadsModule(self.driver)
+
+
+    def get_email_lead(self, i):
+        email_lead = super().wait_element_to_be_clickable("//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[8]").text
+        if i == 29:
+            Logging().reportDebugStep(self, "Verify email leads")
+        return email_lead
+
+    def get_first_name_lead(self, i):
+        first_name_lead = super().wait_element_to_be_clickable("//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[4]").text
+        if i == 29:
+            Logging().reportDebugStep(self, "Verify first name leads")
+        return first_name_lead
+
+    def click_export_pop_ups(self):
+        sleep(4)
+        click_export_leads = self.driver.find_element(By.XPATH, "//button[contains(text(), 'Export Leads')]")
+        click_export_leads.click()
+        sleep(10)
+        click_close = self.driver.find_element(By.XPATH, "//button[@class = 'close new-close']")
+        click_close.click()
+        Logging().reportDebugStep(self, "Click 'Export Leads' in pop ups")
+        return LeadsModule(self.driver)
+
+    def click_export_leads(self):
+        sleep(4)
+        click_export_leads = self.driver.find_element(By.XPATH, "/html/body/table[2]/tbody/tr/td[1]/div/button[6]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", click_export_leads)
+        try:
+            click_export_leads.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", click_export_leads)
+        Logging().reportDebugStep(self, "Click 'Export Leads'")
+        return LeadsModule(self.driver)
+
+    def click_save_mass_edit(self):
+        sleep(4)
+        click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='massassignform_action_button']")
+        click_mass_assign.click()
+        Logging().reportDebugStep(self, "Click 'Save'")
+        return LeadsModule(self.driver)
+
+    def edit_country(self, country):
+        sleep(4)
+        click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='country_mass_edit_check']/div[1]/div")
+        click_mass_assign.click()
+        sleep(2)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='country']"))
+        select.select_by_visible_text(country)
+        Logging().reportDebugStep(self, "Click 'country' check box and select country")
+        return LeadsModule(self.driver)
+
+    def edit_source(self, source):
+        sleep(4)
+        click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='leadsource_mass_edit_check']/div[1]/div")
+        click_mass_assign.click()
+        sleep(2)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='leadsource']"))
+        select.select_by_visible_text(source)
+        Logging().reportDebugStep(self, "Click 'source' check box and select source")
+        return LeadsModule(self.driver)
+
+    def edit_status(self, status):
+        sleep(4)
+        click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='leadstatus_mass_edit_check']/div[1]/div")
+        click_mass_assign.click()
+        sleep(2)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='leadstatus']"))
+        select.select_by_visible_text(status)
+        Logging().reportDebugStep(self, "Click 'Status' check box and select status")
+        return LeadsModule(self.driver)
+
+    def mass_edit_leads(self):
+        sleep(4)
+        click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='list_action_buttons']/input[2]")
+        click_mass_assign.click()
+        Logging().reportDebugStep(self, "Click Mass Edit Leads")
+        return LeadsModule(self.driver)
+
+    def check_assign_leads(self, i):
+        assign_leads = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[13]").text
+        if i == 19:
+            Logging().reportDebugStep(self, "Verify assign")
         return assign_leads
 
-    def check_status_leads(self):
-        status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[10]/td[6]").text
-        Logging().reportDebugStep(self, "Verify status")
+    def check_status_leads(self, i):
+        status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]").text
+        if i == 19:
+            Logging().reportDebugStep(self, "Verify status")
         return status
+
+    def check_country_leads(self, i):
+        country = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[7]").text
+        if i == 19:
+            Logging().reportDebugStep(self, "Verify country")
+        return country
+
+    def check_source_leads(self, i):
+        source = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[16]").text
+        if i == 19:
+            Logging().reportDebugStep(self, "Verify source")
+        return source
 
     def select_status(self, select_status):
         sleep(4)
@@ -83,7 +262,10 @@ class LeadsModule(CRMBasePage):
     def click_check_box_all_leads(self):
         sleep(4)
         click_check_box_all_leads = self.driver.find_element(By.XPATH, "//*[@id='selectCurrentPageRec']")
-        click_check_box_all_leads.click()
+        try:
+            click_check_box_all_leads.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", click_check_box_all_leads)
         Logging().reportDebugStep(self, "Click check box all leads")
         return LeadsModule(self.driver)
 
@@ -401,7 +583,10 @@ class LeadsModule(CRMBasePage):
 
     def click_search_button_leads_module(self):
         search_button = super().wait_element_to_be_clickable("//td[@class='txt_al_c']")
-        search_button.click()
+        try:
+            search_button.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", search_button)
         Logging().reportDebugStep(self, "The search button was clicked ")
         return LeadsModule(self.driver)
 

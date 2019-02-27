@@ -26,11 +26,18 @@ class TabLeadsModuleCRM(BaseTest):
 
     def test_mass_assign_leads(self):
         LeadPrecondition(self.driver, self.config).mass_assign_leads()
-    # def test_mass_edit_leads(self):
-    # def export_full_list(self):
-    #
-    # def export_select_records(self):
-    # def import_leads(self):
+
+    def test_mass_edit_leads(self):
+        LeadPrecondition(self.driver, self.config).mass_edit_leads()
+
+    def export_full_list(self):
+        LeadPrecondition(self.driver, self.config).export_full_list()
+
+    def export_select_records(self):
+        LeadPrecondition(self.driver, self.config).export_select_records()
+
+    def import_leads(self):
+        LeadPrecondition(self.driver, self.config).import_leads()
 
     def test_searching_lead_modules(self):
         try:
