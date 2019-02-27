@@ -1,9 +1,11 @@
 brands:
 
-- name: 4xfx
-  config_file: 4xfx.yml
-- name: coinstec
-  config_file: coinstec.yml
+#- name: 4xfx
+#  config_file: 4xfx.yml
+#- name: coinstec
+#  config_file: coinstec.yml
+- name: ptbanc
+  config_file: ptbanc.yml
 
 
 

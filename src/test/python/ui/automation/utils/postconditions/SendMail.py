@@ -10,8 +10,8 @@ def Send_Email_XML(filepath, content):
     fromaddr = "jonathan.albalak@pandats.com"
     # to = "Niv.s@pandats.com"
     to = "ann.poimenova@gmail.com"
-    # cc = "anna.p@pandats.com"
-    # bcc = "michael.oryshchenko@pandats.com"
+    cc = "jonathan.albalak@pandats.com"
+    bcc = "jonathan.albalak@pandats.com"
 
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
@@ -51,7 +51,7 @@ def Send_Email_XML(filepath, content):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
 ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/New Forex CA/%s" % filepath, "rb")
+    attachment = open("C:/Program Files (x86)/Jenkins/workspace/New Forex CA special/%s" % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -103,7 +103,7 @@ def Send_Email_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "New Forex CA report"
+    msg['Subject'] = "NF Special Brands CA"
 
     # string to store the body of the mail
     body = "Body_of_the_mail"
@@ -116,7 +116,7 @@ def Send_Email_XLS(filepath):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
     ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/New Forex CA/%s" % filepath, "rb")
+    attachment = open("C:/Program Files (x86)/Jenkins/workspace/New Forex CA special/%s" % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -168,7 +168,7 @@ def Send_ALL_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "New Forex CA report"
+    msg['Subject'] = "NF Special Brands CA"
 
     # string to store the body of the mail
     body = "Body_of_the_mail"
