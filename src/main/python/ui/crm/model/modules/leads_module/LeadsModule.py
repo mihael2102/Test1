@@ -71,14 +71,14 @@ class LeadsModule(CRMBasePage):
 
     def click_next_import_leads(self):
         sleep(4)
-        click_import_leads = self.driver.find_element(By.XPATH, "/html/body/div[12]/form/div[2]/input")
+        click_import_leads = self.driver.find_element(By.XPATH, "//input[@value='Next Step']")
         click_import_leads.click()
         Logging().reportDebugStep(self, "Click NEXT import leads")
         return LeadsModule(self.driver)
 
     def click_browse_import_leads(self):
         sleep(5)
-        browse_documents = self.driver.find_element(By.XPATH, "/html/body/div[12]/form/div[1]/div[1]/div/div[1]/a")
+        browse_documents = self.driver.find_element(By.XPATH, "//a[contains(text(), 'Browse')]")
         browse_documents.click()
         autoit.win_wait_active("Open")
         autoit.send("Leads_Import.csv")
@@ -95,6 +95,7 @@ class LeadsModule(CRMBasePage):
 
 
     def click_check_box_leads(self, i):
+        sleep(4)
         check_box = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[1]/input")
         self.driver.execute_script("arguments[0].scrollIntoView();", check_box)
         try:
@@ -107,6 +108,7 @@ class LeadsModule(CRMBasePage):
 
 
     def get_email_lead(self, i):
+        sleep(4)
         email_lead = super().wait_element_to_be_clickable("//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[8]").text
         if i == 29:
             Logging().reportDebugStep(self, "Verify email leads")
@@ -143,6 +145,7 @@ class LeadsModule(CRMBasePage):
         sleep(4)
         click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='massassignform_action_button']")
         click_mass_assign.click()
+        sleep(10)
         Logging().reportDebugStep(self, "Click 'Save'")
         return LeadsModule(self.driver)
 
@@ -190,18 +193,21 @@ class LeadsModule(CRMBasePage):
         return assign_leads
 
     def check_status_leads(self, i):
+        sleep(4)
         status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]").text
         if i == 19:
             Logging().reportDebugStep(self, "Verify status")
         return status
 
     def check_country_leads(self, i):
+        sleep(4)
         country = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[7]").text
         if i == 19:
             Logging().reportDebugStep(self, "Verify country")
         return country
 
     def check_source_leads(self, i):
+        sleep(4)
         source = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[16]").text
         if i == 19:
             Logging().reportDebugStep(self, "Verify source")
@@ -288,7 +294,9 @@ class LeadsModule(CRMBasePage):
         return number_email_diff
 
     def check_first_line_leads_no(self):
-        check_first_line_leads_no = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[2]").text
+        check_first_line_leads_no1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[2]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", check_first_line_leads_no1)
+        check_first_line_leads_no = check_first_line_leads_no1.text
         number_str_1 = check_first_line_leads_no.replace('LEA', '')
         number_1 = int(number_str_1)
         check_first_line_leads_no = self.driver.find_element(By.XPATH,
@@ -302,21 +310,30 @@ class LeadsModule(CRMBasePage):
     def sorting_lead_by_leads_no(self):
         sleep(4)
         sorting_lead_by_leads_no = self.driver.find_element(By.XPATH,"//a[contains(text(), 'Lead No')]")
-        sorting_lead_by_leads_no.click()
+        try:
+            sorting_lead_by_leads_no.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", sorting_lead_by_leads_no)
         Logging().reportDebugStep(self, "Click sorting by Leads no")
         return LeadsModule(self.driver)
 
     def sorting_lead_by_email(self):
         sleep(4)
         sorting_lead_by_email = self.driver.find_element(By.XPATH,"//*[@id='listHeaderemail']")
-        sorting_lead_by_email.click()
+        try:
+            sorting_lead_by_email.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", sorting_lead_by_email)
         Logging().reportDebugStep(self, "Click sorting by Email")
         return LeadsModule(self.driver)
 
     def sorting_lead_by_exist(self):
         sleep(4)
         sorting_lead_by_exist = self.driver.find_element(By.XPATH,"//*[@id='listHeaderalreadyexists']")
-        sorting_lead_by_exist.click()
+        try:
+            sorting_lead_by_exist.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", sorting_lead_by_exist)
         Logging().reportDebugStep(self, "Click sorting by Exist")
         return LeadsModule(self.driver)
 

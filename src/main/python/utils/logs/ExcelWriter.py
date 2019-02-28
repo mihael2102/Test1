@@ -44,7 +44,7 @@ class ExcelWriter:
             col += 1
 
         workbook.close()
-        Send_Email_XLS(filepath)
+        # Send_Email_XLS(filepath)
 
     def write_test_results_all_report(self, brands, tests, results):
         # Create a workbook and add a worksheet.
@@ -135,6 +135,134 @@ class ExcelWriter:
         return test['class'] + ': ' + test['method'].replace('_', ' ')
 
     def steps_for_test(self, test):
+
+        if self.get_test_pretty_name_new(test) == "TabLeadsModuleCRM: import leads":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"Leads module was opened"
+                ,"Click import leads"
+                ,"Click on button Choose File"
+                ,"Click NEXT import leads"
+                ,"Select source leads"
+                ,"Enter source name"
+                ,"Select status leads"
+                ,"Click NEXT import leads"
+                ,"Click NEXT import leads"
+                ,"Leads module was opened"
+                ,"Click the  drop down filter "
+                ,"The field found is : Test Leads"
+                ,"Click the selected filter"
+                , "Check"]
+
+
+        if self.get_test_pretty_name_new(test) == "TabLeadsModuleCRM: export select records":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"Leads module was opened"
+                ,"Click the  drop down filter"
+                ,"The field found is : Test Leads"
+                ,"Click the selected filter"
+                ,"The email was entered : pandaqa+"
+                ,"The search button was clicked "
+                ,"Click check box all leads"
+                ,"Click 'Export Leads'"
+                ,"Click 'Export Leads' in pop ups"
+                ,"Check"]
+
+        if self.get_test_pretty_name_new(test) == "TabLeadsModuleCRM: export full list":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"Leads module was opened"
+                ,"Click the  drop down filter"
+                ,"The field found is : Test Leads"
+                ,"Click the selected filter"
+                ,"The email was entered : pandaqa+"
+                ,"The search button was clicked "
+                ,"Click check box all leads"
+                ,"Click 'Export Leads'"
+                ,"Click 'Export Leads' in pop ups"
+                ,"Check"]
+
+        if self.get_test_pretty_name_new(test) == "TabLeadsModuleCRM: test mass edit leads":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"Leads module was opened"
+                ,"Click the  drop down filter"
+                ,"The field found is : Test Leads"
+                ,"Click the selected filter"
+                ,"The email was entered : pandaqa+"
+                ,"The search button was clicked"
+                ,"Click check box all leads"
+                ,"Click Mass Edit Leads"
+                ,"Click 'Status' check box and select status"
+                ,"Click 'source' check box and select source"
+                ,"Click 'country' check box and select country"
+                ,"Click 'Save'"
+                ,"The email was entered : pandaqa+"
+                ,"The search button was clicked"
+                ,"Verify status"
+                ,"Verify country"
+                ,"Verify source"]
+
+        if self.get_test_pretty_name_new(test) == "TabLeadsModuleCRM: test mass assign leads":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"Leads module was opened"
+                ,"Click the  drop down filter "
+                ,"The field found is : Test Leads"
+                ,"Click the selected filter"
+                ,"The email was entered : pandaqa+"
+                ,"The search button was clicked"
+                ,"Click check box all leads"
+                ,"Click mass assign btn"
+                ,"Enter user name"
+                ,"Click user"
+                ,"Click check box Status"
+                ,"The status was selected: R - New"
+                ,"Click assign pop ups"
+                ,"Close succsesfull result pop ups"
+                ,"Verify status"
+                ,"Verify assign"]
+
+        if self.get_test_pretty_name_new(test) == "TabLeadsModuleCRM: sorting lead module":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                , "Leads module was opened"
+                ,"Click the  drop down filter"
+                ,"The field found is : Test Leads"
+                ,"Click the selected filter"
+                ,"The email was entered : pandaqa+"
+                ,"The search button was clicked"
+                ,"Click sorting by Leads no"
+                ,"Verify sorting by Leads no"
+                ,"Click sorting by Email"
+                ,"Verify sorting by Email"
+                ,"Click sorting by Exist"
+                ,"Verify sorting by Exist"]
 
         if self.get_test_pretty_name_new(test) == "AddEventTaskModule: test delete interaction":
             step_suit = ["Open CRM"

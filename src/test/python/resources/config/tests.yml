@@ -1,25 +1,27 @@
 tests_config:
 
   ###General
-#- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
-#  class: FilterModulesTest
-#  tests:
-#    - test_create_filter_clients_module
-#    - test_create_filter_documents_module
-#    - test_create_filter_leads_module
-#    - test_create_filter_help_desk
-#    - test_create_filter_trading_account_module
-  #Leads
+- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
+  class: FilterModulesTest
+  tests:
+    - test_create_filter_clients_module
+    - test_create_filter_documents_module
+    - test_create_filter_leads_module
+    - test_create_filter_help_desk
+    - test_create_filter_trading_account_module
+  Leads
 - module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
   class: TabLeadsModuleCRM
   tests:
-#    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
+    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
+
+#NEW TESTS
 #    - sorting_lead_module
 #    - test_mass_assign_leads
 #    - test_mass_edit_leads
-#    - export_full_list
-#    - export_select_records
-    - import_leads
+#    - export_full_list #only for one process
+#    - export_select_records #only for one process
+#    - import_leads #only for one process
 - module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
   directive: reload_configuration
   class: LeadModuleTest
@@ -82,7 +84,7 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
   class: CalendarView
   tests:
-     - test_check_add_tasks_calendar_view #preconditions convert lead
+#     - test_check_add_tasks_calendar_view #preconditions convert lead
      - test_check_day_tab
      - test_check_month_tab
      - test_check_week_tab
@@ -92,7 +94,7 @@ tests_config:
     - test_check_all_tab_from_financial_transactions
     - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
     - test_check_search_via_button # Check search using search button
-#Campaign module
+Campaign module
 - module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
   class: CampaignsModuleTest
   tests:

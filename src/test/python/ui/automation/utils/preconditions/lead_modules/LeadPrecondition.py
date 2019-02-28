@@ -72,7 +72,7 @@ class LeadPrecondition(object):
                     if lead_first_name and lead_email in line:
                         count = count + 1
 
-            assert count == 1
+            assert count >= 1
 
 
     def export_select_records(self):
@@ -113,7 +113,7 @@ class LeadPrecondition(object):
                     if lead_first_name and lead_email in line:
                         count = count + 1
 
-            assert count == 1
+            assert count >= 1
 
 
 
@@ -152,7 +152,7 @@ class LeadPrecondition(object):
                     if lead_first_name and lead_email in line:
                         count = count + 1
 
-            assert count == 1
+            assert count >= 1
 
 
     def mass_edit_leads(self):
