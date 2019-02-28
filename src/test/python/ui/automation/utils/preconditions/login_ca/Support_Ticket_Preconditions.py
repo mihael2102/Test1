@@ -15,6 +15,7 @@ from time import sleep
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskEditPage import HelpDeskEditPage
 from src.main.python.ui.crm.model.constants.HelpDeskConstants import HelpDeskConstants
+from src.main.python.utils.logs.Loging import Logging
 
 
 class Support_Ticket_Preconditions(object):
@@ -31,7 +32,7 @@ class Support_Ticket_Preconditions(object):
         return lead
 
     def create_support_ticket(self):
-        if global_var.current_brand_name != "q8":
+        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
             CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
                                     .login() \
                                     .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -48,11 +49,12 @@ class Support_Ticket_Preconditions(object):
                                .open_new_ticket_button() \
                                .get_ca_ticket_id()
         else:
+            Logging().reportDebugStep(self, "Test is not running")
             return self
 
     def check_and_update_ticket_in_crm(self):
         # Login to CRM
-        if global_var.current_brand_name != "q8":
+        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
             CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                            self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
@@ -62,17 +64,19 @@ class Support_Ticket_Preconditions(object):
             ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                               LeadsModuleConstants.EMAIL])
             sleep(2)
-            ClientProfilePage(self.driver).open_help_desk_tab() \
+            ClientProfilePage(self.driver).scroll_to_help_desk_section() \
+                                          .open_help_desk_tab() \
                                           .check_help_desk_ticket_exist(CAConstants.TICKET_NUMBER_CA) \
                                           .click_edit_help_desk_ticket() \
                                           .set_help_desk_title(HelpDeskConstants.FIRST_TITTLE) \
                                           .set_help_desk_status(HelpDeskConstants.EDIT_HT_STATUS) \
                                           .click_save_button()
         else:
+            Logging().reportDebugStep(self, "Test is not running")
             return self
 
     def check_updated_ticket_in_ca(self):
-        if global_var.current_brand_name != "q8":
+        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
             CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
                                     .login() \
                                     .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -87,6 +91,5 @@ class Support_Ticket_Preconditions(object):
                                .verify_closed_ticket_title(HelpDeskConstants.FIRST_TITTLE) \
                                .check_ticket_status(HelpDeskConstants.EDIT_HT_STATUS)
         else:
+            Logging().reportDebugStep(self, "Test is not running")
             return self
-
-

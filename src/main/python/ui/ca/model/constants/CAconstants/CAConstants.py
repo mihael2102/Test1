@@ -29,6 +29,7 @@ class CAConstants(object):
     INITIAL_DEPOSIT1 = "1000000"
     INITIAL_DEPOSIT = "10000"
     INITIAL_DEPOSIT_BTC = "10"
+    INITIAL_DEPOSIT_PTBANC = "250"
     DEMO_ACCOUNT_NUMBER = ""
     LIVE_ACCOUNT_NUMBER = ""
     UPDATE_FIRST_NAME = "pandatest" + (''.join(random.sample(string.ascii_uppercase*6, 6)))

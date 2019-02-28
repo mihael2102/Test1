@@ -123,8 +123,13 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def choose_currency(self, currency):
-        data = self.driver.find_element_by_xpath("//custom-select[@name='currency']//span[text()='%s']" % currency)
-        self.driver.execute_script("arguments[0].click();", data)
+        if global_var.current_brand_name == "ptbanc":
+            super().wait_load_element("(//custom-select[@name='currency'])[2]").click()
+            self.driver.find_element_by_xpath("(//custom-select[@name='currency']//span[text()='%s'])[2]" % currency) \
+                                                .click()
+        else:
+            data = self.driver.find_element_by_xpath("//custom-select[@name='currency']//span[text()='%s']" % currency)
+            self.driver.execute_script("arguments[0].click();", data)
         Logging().reportDebugStep(self, "Select currency : " + currency)
         return CALoginPage(self.driver)
 

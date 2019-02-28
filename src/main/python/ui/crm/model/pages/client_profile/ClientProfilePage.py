@@ -572,6 +572,13 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Open the help desk tab")
         return ClientProfilePage(self.driver)
 
+    def scroll_to_help_desk_section(self):
+        sleep(1)
+        help_desk_section = super().wait_element_to_be_clickable("//a[@href='#header_Accounts_HelpDesk']")
+        self.driver.execute_script("arguments[0].click();", help_desk_section)
+        Logging().reportDebugStep(self, "Scroll to Help Desk section")
+        return ClientProfilePage(self.driver)
+
     def click_edit_help_desk_ticket(self):
         edit_help_desk = super().wait_element_to_be_clickable("//*[@id='rld_table_content']/tbody/tr[2]/td[11]/div/div/a")
         self.driver.execute_script("arguments[0].click();", edit_help_desk)

@@ -15,6 +15,7 @@ from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CACons
 from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
 from time import sleep
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from src.main.python.utils.logs.Loging import Logging
 
 
 
@@ -65,7 +66,7 @@ class TradingAccountPrecondition(object):
             return self
 
     def add_demo_account(self):
-        if global_var.current_brand_name != "q8":
+        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
             CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
                                     .login() \
                                     .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -97,6 +98,8 @@ class TradingAccountPrecondition(object):
                                .verify_init_deposit_error()
             if global_var.current_brand_name == "mpcrypto":
                 CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT_BTC)
+            elif global_var.current_brand_name == "ptbanc":
+                CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT_PTBANC)
             else:
                 CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT)
             CAPage(self.driver).click_create_account() \
@@ -126,6 +129,7 @@ class TradingAccountPrecondition(object):
 
             CAPage(self.driver).get_demo_account_number()
         else:
+            Logging().reportDebugStep(self, "Test is not running")
             return self
 
     def verify_account_in_crm(self):

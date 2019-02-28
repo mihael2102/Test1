@@ -6,7 +6,7 @@ ClientsPage:
   country_field: "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']"
   country_click: "//label[contains(text(),'%s')]"
   client_currency: "//td[@class='dvtCellInfo'][contains(text(),'EUR')]"
-  client_phone: "//div[@title='Click to Call'][@class='actions_btn']"
+  client_phone: "//span[@id='dtlview_Phone']/div[@class='actions_btn']"
   client_country: "//span[@id='dtlview_Country']"
   client_citizenship: "//span[@id='dtlview_Citizenship']"
   citizenship: "//select[@id='citizenship']/option[contains(text(), '%s')]"
