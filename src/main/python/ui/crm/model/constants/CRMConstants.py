@@ -4,6 +4,8 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    STATUS_EDIT_STOX = "R - New"
+    STATUS_EDIT_ITRADER = "Test"
     THIRD_STEP_IMPORT_LEADS = "File successfully uploaded."
     STATUS_EDIT = "B - Test"
     SOURCE_EDIT = "Other"

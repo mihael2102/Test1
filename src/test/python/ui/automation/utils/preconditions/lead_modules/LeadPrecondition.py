@@ -166,22 +166,34 @@ class LeadPrecondition(object):
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
         LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
         LeadsModule(self.driver).click_search_button_leads_module()
+        sleep(40)
         LeadsModule(self.driver).click_check_box_all_leads()
         LeadsModule(self.driver).mass_edit_leads()
-        LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT)
+        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets":
+            LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_ITRADER)
+        elif global_var.current_brand_name == "stoxmarket":
+            LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_STOX)
+        else:
+            LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT)
         LeadsModule(self.driver).edit_source(CRMConstants.SOURCE_EDIT)
         LeadsModule(self.driver).edit_country(CRMConstants.COUNTRY_EDIT)
         LeadsModule(self.driver).click_save_mass_edit()
+        sleep(40)
         LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
         LeadsModule(self.driver).click_search_button_leads_module()
         i = 1
-        for i in range(1, 20):
+        for i in range(1, 10):
             status = LeadsModule(self.driver).check_status_leads(i)
-            assert status == CRMConstants.STATUS_EDIT
+            if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets":
+                assert status == CRMConstants.STATUS_EDIT_ITRADER
+            elif global_var.current_brand_name == "stoxmarket":
+                assert status == CRMConstants.STATUS_EDIT_STOX
+            else:
+                assert status == CRMConstants.STATUS_EDIT
             country = LeadsModule(self.driver).check_country_leads(i)
             assert country == CRMConstants.COUNTRY_EDIT
-            source = LeadsModule(self.driver).check_source_leads(i)
-            assert source == CRMConstants.SOURCE_EDIT
+            # source = LeadsModule(self.driver).check_source_leads(i)
+            # assert source == CRMConstants.SOURCE_EDIT
 
 
     def mass_assign_leads(self):

@@ -5,6 +5,7 @@ from selenium.webdriver.support.select import Select
 from allure_commons.types import AttachmentType
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from src.main.python.ui.crm.model.modules.leads_module.MassAssignLeadModule import MassAssignLeadModule
@@ -180,22 +181,28 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def mass_edit_leads(self):
-        sleep(4)
+        sleep(5)
         click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='list_action_buttons']/input[2]")
-        click_mass_assign.click()
+        try:
+            click_mass_assign.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", click_mass_assign)
+        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "stoxmarket":
+            click_mass_assign.click()
         Logging().reportDebugStep(self, "Click Mass Edit Leads")
+        sleep(20)
         return LeadsModule(self.driver)
 
     def check_assign_leads(self, i):
         assign_leads = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[13]").text
-        if i == 19:
+        if i == 10:
             Logging().reportDebugStep(self, "Verify assign")
         return assign_leads
 
     def check_status_leads(self, i):
         sleep(4)
         status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]").text
-        if i == 19:
+        if i == 10:
             Logging().reportDebugStep(self, "Verify status")
         return status
 

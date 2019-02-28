@@ -14,8 +14,8 @@ tests_config:
   class: TabLeadsModuleCRM
   tests:
 #    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
-    - sorting_lead_module
-    - test_mass_assign_leads
+#    - sorting_lead_module
+#    - test_mass_assign_leads
     - test_mass_edit_leads
 #    - export_full_list #only for one process
 #    - export_select_records #only for one process
