@@ -26,12 +26,12 @@ tests_config:
     - test_create_ticket
     - test_check_and_update_ticket_in_crm
     - test_check_updated_ticket_in_ca
-- module: src.test.python.ui.automation.implementation.ca.Test_Upload_Documents
-  class: UploadDocumentTestCa
-  tests:
-    - test_upload_document_ca
-    - test_check_and_update_document_in_crm
-    - test_check_document_status_in_ca
+#- module: src.test.python.ui.automation.implementation.ca.Test_Upload_Documents
+#  class: UploadDocumentTestCa
+#  tests:
+#    - test_upload_document_ca
+#    - test_check_and_update_document_in_crm
+#    - test_check_document_status_in_ca
 
 
 
