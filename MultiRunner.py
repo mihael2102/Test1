@@ -335,8 +335,8 @@ if __name__ == "__main__":
 
                 writer.save()
 
-        Send_ALL_XLS(all_excel)
-        # Send_ALL_XLS(short_excel)
+        # Send_ALL_XLS(all_excel)
+        Send_ALL_XLS(short_excel)
 
         # os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
 
