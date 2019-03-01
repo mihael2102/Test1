@@ -174,7 +174,7 @@ class LeadPrecondition(object):
         elif global_var.current_brand_name == "stoxmarket":
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_STOX)
         else:
-            LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT)
+             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT)
         LeadsModule(self.driver).edit_source(CRMConstants.SOURCE_EDIT)
         LeadsModule(self.driver).edit_country(CRMConstants.COUNTRY_EDIT)
         LeadsModule(self.driver).click_save_mass_edit()

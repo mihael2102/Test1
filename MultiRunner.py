@@ -117,10 +117,10 @@ if __name__ == "__main__":
         path_to_brands_suite_10 = "brands10.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-        #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-        #               path_to_brands_suite_9, path_to_brands_suite_10]
-        input_list = [path_to_brands_suite_1]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+                      path_to_brands_suite_9, path_to_brands_suite_10]
+        # input_list = [path_to_brands_suite_1]
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3]
                       # Init multiprocess
 
@@ -335,7 +335,7 @@ if __name__ == "__main__":
 
                 writer.save()
 
-        # Send_ALL_XLS(all_excel)
+        Send_ALL_XLS(all_excel)
         # Send_ALL_XLS(short_excel)
 
         # os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
