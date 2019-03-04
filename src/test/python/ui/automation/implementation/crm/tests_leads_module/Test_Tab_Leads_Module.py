@@ -20,6 +20,15 @@ class TabLeadsModuleCRM(BaseTest):
         lead = self.config.get_value(lead_key)
         return lead
 
+    def sorting_lead_module(self):
+        LeadPrecondition(self.driver, self.config).sorting_leads()
+
+    def test_mass_assign_leads(self):
+        LeadPrecondition(self.driver, self.config).mass_assign_leads()
+
+    def test_mass_edit_leads(self):
+        LeadPrecondition(self.driver, self.config).mass_edit_leads()
+
     def test_searching_lead_modules(self):
         try:
             LeadPrecondition(self.driver, self.config).create_lead(self.lead1)

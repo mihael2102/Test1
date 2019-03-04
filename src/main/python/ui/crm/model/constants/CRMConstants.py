@@ -4,6 +4,19 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    STATUS_EDIT_STOX = "R - New"
+    STATUS_EDIT_ITRADER = "Test"
+    THIRD_STEP_IMPORT_LEADS = "File successfully uploaded."
+    STATUS_EDIT = "B - Test"
+    SOURCE_EDIT = "Other"
+    COUNTRY_EDIT = "Albania"
+    STATUS_ASSIGN = "R - New"
+    PANDAQA_ASSIGN = "pandaqa pandaqa"
+    PANDAQA_ASSIGN_CMB = "pandaqatest pandaqa"
+    SHORT_EMAIL = "pandaqa+"
+    SORTING_EXIST = "no"
+    SORTING_LEAD_NO = 1
+    SORTING_EMAIL = 1
     SECOND_COUNTRY = "country_two"
     PHONE = "Phone"
     SEND_SMS_MESSAGE = "Message was sent successfully"

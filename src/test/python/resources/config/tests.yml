@@ -10,21 +10,24 @@ tests_config:
 #    - test_create_filter_help_desk
 #    - test_create_filter_trading_account_module
 ##  #Leads
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
-#  class: TabLeadsModuleCRM
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
+  class: TabLeadsModuleCRM
+  tests:
 #    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
+    - sorting_lead_module
+    - test_mass_assign_leads
+    - test_mass_edit_leads
 #- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
 #  directive: reload_configuration
 #  class: LeadModuleTest
 #  tests:
 #    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
 #    - test_edit_lead
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_perform_convert_lead   # Creates a lead and converts it to a client
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+#  directive: reload_configuration
+#  class: LeadModuleTest
+#  tests:
+#    - test_perform_convert_lead   # Creates a lead and converts it to a client
 ###Clients
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
 #  class: SearchingClientsTestCRM
@@ -57,15 +60,15 @@ tests_config:
 #  tests:
 #    - test_change_client_password_from_crm  # change a client account password from the crm
 #    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
-  class: DepositTestCRM
-  tests:
-    - test_make_deposit_crm  # make a deposit into a trading account from the crm
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+#  class: DepositTestCRM
+#  tests:
+#    - test_make_deposit_crm  # make a deposit into a trading account from the crm
 #    - test_make_deposit_for_client_crm
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-  class: WithdrawTest
-  tests:
-    - test_withdraw   #preconditions: convert lead, make deposit
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
+#  class: WithdrawTest
+#  tests:
+#    - test_withdraw   #preconditions: convert lead, make deposit
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
 #  class: CreditInTestCRM
 #  tests:
