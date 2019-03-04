@@ -169,7 +169,7 @@ class LeadPrecondition(object):
         sleep(40)
         LeadsModule(self.driver).click_check_box_all_leads()
         LeadsModule(self.driver).mass_edit_leads()
-        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets":
+        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "itrader_global":
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_ITRADER)
         elif global_var.current_brand_name == "stoxmarket":
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_STOX)
@@ -184,7 +184,7 @@ class LeadPrecondition(object):
         i = 1
         for i in range(1, 10):
             status = LeadsModule(self.driver).check_status_leads(i)
-            if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets":
+            if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "itrader_global":
                 assert status == CRMConstants.STATUS_EDIT_ITRADER
             elif global_var.current_brand_name == "stoxmarket":
                 assert status == CRMConstants.STATUS_EDIT_STOX
