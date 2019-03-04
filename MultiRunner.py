@@ -240,8 +240,8 @@ if __name__ == "__main__":
 
                 writer.save()
 
-        Send_ALL_XLS(all_excel)
-        Send_ALL_XLS(short_excel)
+        # Send_ALL_XLS(all_excel)
+        # Send_ALL_XLS(short_excel)
 
 
 
