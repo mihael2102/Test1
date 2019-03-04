@@ -237,8 +237,7 @@ class LeadsModule(CRMBasePage):
     def mass_assign_result(self):
         sleep(4)
         mass_assign_result = self.driver.find_element(By.XPATH,
-                                                     "//div[contains(text(), 'accounts assigned to pandaqa pandaqa')]")
-
+                                                     "//div[contains(text(), 'accounts assigned to pandaqa')]")
         btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
         btn_ok.click()
         Logging().reportDebugStep(self, "Close succsesfull result pop ups")
@@ -288,6 +287,7 @@ class LeadsModule(CRMBasePage):
         return check_first_line_exist
 
     def check_first_line_email(self):
+        sleep(7)
         check_first_line_email_1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[8]").text
         email_1 = check_first_line_email_1.replace('pandaqa+','')
         number_email__str1 = email_1.replace('@pandats.com','')
@@ -304,11 +304,17 @@ class LeadsModule(CRMBasePage):
         check_first_line_leads_no1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[2]")
         self.driver.execute_script("arguments[0].scrollIntoView();", check_first_line_leads_no1)
         check_first_line_leads_no = check_first_line_leads_no1.text
-        number_str_1 = check_first_line_leads_no.replace('LEA', '')
+        if global_var.current_brand_name == "stoxmarket":
+            number_str_1 = check_first_line_leads_no.replace('LEAD', '')
+        else:
+            number_str_1 = check_first_line_leads_no.replace('LEA', '')
         number_1 = int(number_str_1)
         check_first_line_leads_no = self.driver.find_element(By.XPATH,
             "//tbody[@id = 'listBody']/tr[2]/td[2]").text
-        number_str_2 = check_first_line_leads_no.replace('LEA', '')
+        if global_var.current_brand_name == "stoxmarket":
+            number_str_2 = check_first_line_leads_no.replace('LEAD', '')
+        else:
+            number_str_2 = check_first_line_leads_no.replace('LEA', '')
         number_2 = int(number_str_2)
         number_diff = number_1 - number_2
         Logging().reportDebugStep(self, "Verify sorting by Leads no")
@@ -331,6 +337,7 @@ class LeadsModule(CRMBasePage):
             sorting_lead_by_email.click()
         except:
             self.driver.execute_script("arguments[0].click();", sorting_lead_by_email)
+        sleep(9)
         Logging().reportDebugStep(self, "Click sorting by Email")
         return LeadsModule(self.driver)
 

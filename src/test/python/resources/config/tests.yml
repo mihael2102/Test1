@@ -16,7 +16,7 @@ tests_config:
 #    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
 
     ##NEW TESTS - NEED DEBUG FOR ALL BRANDS
-    - sorting_lead_module
+#    - sorting_lead_module
     - test_mass_assign_leads
     - test_mass_edit_leads
 #    - export_full_list #only for one process

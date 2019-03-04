@@ -12,6 +12,7 @@ class CRMConstants(object):
     COUNTRY_EDIT = "Albania"
     STATUS_ASSIGN = "R - New"
     PANDAQA_ASSIGN = "pandaqa pandaqa"
+    PANDAQA_ASSIGN_CMB = "pandaqatest pandaqa"
     SHORT_EMAIL = "pandaqa+"
     SORTING_EXIST = "no"
     SORTING_LEAD_NO = 1

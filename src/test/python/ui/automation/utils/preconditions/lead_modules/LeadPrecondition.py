@@ -169,7 +169,7 @@ class LeadPrecondition(object):
         sleep(40)
         LeadsModule(self.driver).click_check_box_all_leads()
         LeadsModule(self.driver).mass_edit_leads()
-        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "itrader_global":
+        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "fm-fx":
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_ITRADER)
         elif global_var.current_brand_name == "stoxmarket":
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_STOX)
@@ -184,7 +184,7 @@ class LeadPrecondition(object):
         i = 1
         for i in range(1, 10):
             status = LeadsModule(self.driver).check_status_leads(i)
-            if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "itrader_global":
+            if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "fm-fx":
                 assert status == CRMConstants.STATUS_EDIT_ITRADER
             elif global_var.current_brand_name == "stoxmarket":
                 assert status == CRMConstants.STATUS_EDIT_STOX
@@ -209,18 +209,35 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).click_search_button_leads_module()
         LeadsModule(self.driver).click_check_box_all_leads()
         LeadsModule(self.driver).click_mass_assign()
-        LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN)
+        if global_var.current_brand_name == "capitalmarketsbanc":
+            LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN_CMB)
+        else:
+            LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN)
         LeadsModule(self.driver).select_user_assign()
         LeadsModule(self.driver).click_status()
-        LeadsModule(self.driver).select_status(CRMConstants.STATUS_ASSIGN)
+
+        if global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx":
+            LeadsModule(self.driver).select_status(CRMConstants.STATUS_EDIT_ITRADER)
+        elif global_var.current_brand_name == "stoxmarket":
+            LeadsModule(self.driver).select_status(CRMConstants.STATUS_EDIT_STOX)
+        else:
+            LeadsModule(self.driver).select_status(CRMConstants.STATUS_ASSIGN)
         LeadsModule(self.driver).click_assign()
         LeadsModule(self.driver).mass_assign_result()
         i = 1
         for i in range(1,20):
             status = LeadsModule(self.driver).check_status_leads(i)
-            assert status == CRMConstants.STATUS_ASSIGN
+            if global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx":
+                assert status == CRMConstants.STATUS_EDIT_ITRADER
+            elif global_var.current_brand_name == "stoxmarket":
+                assert status == CRMConstants.STATUS_EDIT_STOX
+            else:
+                assert status == CRMConstants.STATUS_ASSIGN
             assign_leads = LeadsModule(self.driver).check_assign_leads(i)
-            assert assign_leads == CRMConstants.PANDAQA_ASSIGN
+            if global_var.current_brand_name == "capitalmarketsbanc":
+                assert assign_leads == CRMConstants.PANDAQA_ASSIGN_CMB
+            else:
+                assert assign_leads == CRMConstants.PANDAQA_ASSIGN
 
 
 
@@ -233,10 +250,11 @@ class LeadPrecondition(object):
         CRMHomePage(self.driver).open_lead_module()
         LeadsModule(self.driver).select_filter(
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
-        sleep(8)
+        sleep(10)
         LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
+        sleep(5)
         LeadsModule(self.driver).click_search_button_leads_module()
-
+        sleep(15)
         LeadsModule(self.driver).sorting_lead_by_leads_no()
         lead_no = LeadsModule(self.driver).check_first_line_leads_no()
         LeadsModule(self.driver).sorting_lead_by_email()
