@@ -193,21 +193,21 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def check_assign_leads(self, i):
-        assign_leads = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[14]").text
+        assign_leads = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[13]").text
         if i == 10:
             Logging().reportDebugStep(self, "Verify assign")
         return assign_leads
 
     def check_status_leads(self, i):
         sleep(4)
-        status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[7]").text
+        status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]").text
         if i == 10:
             Logging().reportDebugStep(self, "Verify status")
         return status
 
     def check_country_leads(self, i):
         sleep(4)
-        country = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[8]").text
+        country = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[7]").text
         if i == 19:
             Logging().reportDebugStep(self, "Verify country")
         return country
@@ -281,17 +281,17 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def check_first_line_exist(self):
-        check_first_line_exist = super().wait_element_to_be_clickable("//tbody[@id = 'listBody']/tr[1]/td[11]").text
+        check_first_line_exist = super().wait_element_to_be_clickable("//tbody[@id = 'listBody']/tr[1]/td[10]").text
         Logging().reportDebugStep(self, "Verify sorting by Exist")
         return check_first_line_exist
 
     def check_first_line_email(self):
         sleep(7)
-        check_first_line_email_1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[9]").text
+        check_first_line_email_1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[8]").text
         email_1 = check_first_line_email_1.replace('pandaqa+','')
         number_email__str1 = email_1.replace('@pandats.com','')
         number_email_1 = int(number_email__str1)
-        check_first_line_email_2 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[2]/td[9]").text
+        check_first_line_email_2 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[2]/td[8]").text
         email_2 = check_first_line_email_2.replace('pandaqa+', '')
         number_email_str2 = email_2.replace('@pandats.com', '')
         number_email_2 = int(number_email_str2)
@@ -300,7 +300,7 @@ class LeadsModule(CRMBasePage):
         return number_email_diff
 
     def check_first_line_leads_no(self):
-        check_first_line_leads_no1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[3]")
+        check_first_line_leads_no1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[2]")
         self.driver.execute_script("arguments[0].scrollIntoView();", check_first_line_leads_no1)
         check_first_line_leads_no = check_first_line_leads_no1.text
         if global_var.current_brand_name == "stoxmarket":
@@ -309,7 +309,7 @@ class LeadsModule(CRMBasePage):
             number_str_1 = check_first_line_leads_no.replace('LEA', '')
         number_1 = int(number_str_1)
         check_first_line_leads_no = self.driver.find_element(By.XPATH,
-            "//tbody[@id = 'listBody']/tr[2]/td[3]").text
+            "//tbody[@id = 'listBody']/tr[2]/td[2]").text
         if global_var.current_brand_name == "stoxmarket":
             number_str_2 = check_first_line_leads_no.replace('LEAD', '')
         else:
@@ -531,7 +531,6 @@ class LeadsModule(CRMBasePage):
     def enter_email(self, email):
         first_name_field = self.driver.find_element(By.XPATH,
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_email']")
-        self.driver.execute_script("arguments[0].scrollIntoView();", first_name_field)
         first_name_field.clear()
         first_name_field.send_keys(email)
         Logging().reportDebugStep(self, "The email was entered : " + email)
@@ -611,12 +610,8 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def click_search_button_leads_module(self):
-        search_button = self.driver.find_element(By.XPATH,"//td[@class='txt_al_c']")
-        self.driver.execute_script("arguments[0].scrollIntoView();", search_button)
-        try:
-            search_button.click()
-        except:
-            self.driver.execute_script("arguments[0].click();", search_button)
+        search_button = super().wait_element_to_be_clickable("//td[@class='txt_al_c']")
+        search_button.click()
         Logging().reportDebugStep(self, "The search button was clicked ")
         return LeadsModule(self.driver)
 
