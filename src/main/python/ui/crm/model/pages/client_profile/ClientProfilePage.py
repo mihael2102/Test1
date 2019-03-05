@@ -667,3 +667,16 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Sign Out")
         return ClientProfilePage(self.driver)
 
+    def scroll_to_financial_transactions_section(self):
+        sleep(1)
+        documents_section = super().wait_element_to_be_clickable("//a[@href='#header_Accounts_FinancialTransactions']")
+        self.driver.execute_script("arguments[0].click();", documents_section)
+        Logging().reportDebugStep(self, "Scroll to Financial Transactions section")
+        return ClientProfilePage(self.driver)
+
+    def get_trading_account_number(self):
+        sleep(1)
+        trading_account = self.driver.find_element_by_xpath("//*[contains(@id,'related_MTTransactions')]/td[3]")
+        trading_account_number = trading_account.text
+        Logging().reportDebugStep(self, "Account number is " + trading_account_number)
+        return trading_account_number
