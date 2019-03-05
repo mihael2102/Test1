@@ -171,8 +171,9 @@ class LeadsModule(CRMBasePage):
 
     def edit_status(self, status):
         sleep(4)
-        click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='leadstatus_mass_edit_check']/div[1]/div")
-        click_mass_assign.click()
+        edit_status = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["edit_status"])
+        edit_status.click()
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='leadstatus']"))
         select.select_by_visible_text(status)
@@ -181,33 +182,44 @@ class LeadsModule(CRMBasePage):
 
     def mass_edit_leads(self):
         sleep(5)
-        click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='list_action_buttons']/input[2]")
+        mass_edit_leads = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["mass_edit_leads"])
         try:
-            click_mass_assign.click()
+            mass_edit_leads.click()
         except:
-            self.driver.execute_script("arguments[0].click();", click_mass_assign)
+            self.driver.execute_script("arguments[0].click();", mass_edit_leads)
         if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "stoxmarket":
-            click_mass_assign.click()
+            mass_edit_leads.click()
         Logging().reportDebugStep(self, "Click Mass Edit Leads")
         sleep(20)
         return LeadsModule(self.driver)
 
     def check_assign_leads(self, i):
-        assign_leads = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[13]").text
+        if global_var.current_brand_name == "swiftcfd" or global_var.current_brand_name == "royal_cfds" or global_var.current_brand_name == "brokerz" or global_var.current_brand_name == "ptbanc" or global_var.current_brand_name == "aztrades" or global_var.current_brand_name == "tradospot" or global_var.current_brand_name == "24btcmarket":
+            assign_leads = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[13]").text
+        else:
+            assign_leads = self.driver.find_element(By.XPATH,
+                                                    "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[14]").text
         if i == 10:
             Logging().reportDebugStep(self, "Verify assign")
         return assign_leads
 
     def check_status_leads(self, i):
         sleep(4)
-        status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]").text
+        if global_var.current_brand_name == "swiftcfd" or global_var.current_brand_name == "royal_cfds" or global_var.current_brand_name == "brokerz" or global_var.current_brand_name == "ptbanc" or global_var.current_brand_name == "aztrades" or global_var.current_brand_name == "tradospot" or global_var.current_brand_name == "24btcmarket":
+            status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]").text
+        else:
+            status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[7]").text
         if i == 10:
             Logging().reportDebugStep(self, "Verify status")
         return status
 
     def check_country_leads(self, i):
         sleep(4)
-        country = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[7]").text
+        if global_var.current_brand_name == "swiftcfd" or global_var.current_brand_name == "royal_cfds" or global_var.current_brand_name == "brokerz" or global_var.current_brand_name == "ptbanc" or global_var.current_brand_name == "aztrades" or global_var.current_brand_name == "tradospot" or global_var.current_brand_name == "24btcmarket":
+            country = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[7]").text
+        else:
+            country = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[8]").text
         if i == 19:
             Logging().reportDebugStep(self, "Verify country")
         return country
@@ -257,7 +269,7 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def input_mass_assign(self, user):
-        sleep(4)
+        sleep(10)
         input_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='searchstring']")
         input_mass_assign.send_keys(user)
         Logging().reportDebugStep(self, "Enter user name")
@@ -265,7 +277,10 @@ class LeadsModule(CRMBasePage):
 
     def click_mass_assign(self):
         sleep(4)
-        click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='list_action_buttons']/input[3]")
+        if global_var.current_brand_name == "aztrades":
+            click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='list_action_buttons']/input[2]")
+        else:
+            click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='list_action_buttons']/input[3]")
         click_mass_assign.click()
         Logging().reportDebugStep(self, "Click mass assign btn")
         return LeadsModule(self.driver)
@@ -281,17 +296,23 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def check_first_line_exist(self):
-        check_first_line_exist = super().wait_element_to_be_clickable("//tbody[@id = 'listBody']/tr[1]/td[10]").text
+        # check_first_line_exist = super().wait_element_to_be_clickable("//tbody[@id = 'listBody']/tr[1]/td[11]").text
+        check_first_line_exist = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["check_first_line_exist"]).text
         Logging().reportDebugStep(self, "Verify sorting by Exist")
         return check_first_line_exist
 
     def check_first_line_email(self):
         sleep(7)
-        check_first_line_email_1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[8]").text
+        # check_first_line_email_1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[9]").text
+        check_first_line_email_1 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["check_first_line_email_1"]).text
         email_1 = check_first_line_email_1.replace('pandaqa+','')
         number_email__str1 = email_1.replace('@pandats.com','')
         number_email_1 = int(number_email__str1)
-        check_first_line_email_2 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[2]/td[8]").text
+        # check_first_line_email_2 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[2]/td[9]").text
+        check_first_line_email_2 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["check_first_line_email_2"]).text
         email_2 = check_first_line_email_2.replace('pandaqa+', '')
         number_email_str2 = email_2.replace('@pandats.com', '')
         number_email_2 = int(number_email_str2)
@@ -300,20 +321,23 @@ class LeadsModule(CRMBasePage):
         return number_email_diff
 
     def check_first_line_leads_no(self):
-        check_first_line_leads_no1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[2]")
-        self.driver.execute_script("arguments[0].scrollIntoView();", check_first_line_leads_no1)
+
+        check_first_line_leads_no1 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["check_first_line_leads_no1"])
+        if global_var.current_brand_name != "brokerz":
+            self.driver.execute_script("arguments[0].scrollIntoView();", check_first_line_leads_no1)
         check_first_line_leads_no = check_first_line_leads_no1.text
         if global_var.current_brand_name == "stoxmarket":
             number_str_1 = check_first_line_leads_no.replace('LEAD', '')
         else:
             number_str_1 = check_first_line_leads_no.replace('LEA', '')
         number_1 = int(number_str_1)
-        check_first_line_leads_no = self.driver.find_element(By.XPATH,
-            "//tbody[@id = 'listBody']/tr[2]/td[2]").text
+        check_first_line_leads_no2 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["check_first_line_leads_no2"]).text
         if global_var.current_brand_name == "stoxmarket":
-            number_str_2 = check_first_line_leads_no.replace('LEAD', '')
+            number_str_2 = check_first_line_leads_no2.replace('LEAD', '')
         else:
-            number_str_2 = check_first_line_leads_no.replace('LEA', '')
+            number_str_2 = check_first_line_leads_no2.replace('LEA', '')
         number_2 = int(number_str_2)
         number_diff = number_1 - number_2
         Logging().reportDebugStep(self, "Verify sorting by Leads no")
@@ -610,8 +634,12 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def click_search_button_leads_module(self):
-        search_button = super().wait_element_to_be_clickable("//td[@class='txt_al_c']")
-        search_button.click()
+        search_button = self.driver.find_element(By.XPATH, "//td[@class='txt_al_c']")
+        self.driver.execute_script("arguments[0].click();", search_button)
+        try:
+            search_button.click()
+        except:
+            self.driver.execute_script("arguments[0].scrollIntoView();", search_button)
         Logging().reportDebugStep(self, "The search button was clicked ")
         return LeadsModule(self.driver)
 

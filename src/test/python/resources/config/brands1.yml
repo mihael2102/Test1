@@ -27,8 +27,8 @@ brands:
 #  config_file: uft.yml
 #- name: brokerz
 #  config_file: brokerz.yml
-- name: 4xfx
-  config_file: 4xfx.yml
+#- name: 4xfx
+#  config_file: 4xfx.yml
 #- name: herdos
 #  config_file: herdos.yml
 #- name: ptbanc
@@ -74,9 +74,9 @@ brands:
 #  config_file: olympusmarkets.yml
 #- name: privat-trade
 #  config_file: privat-trade.yml
-#- name: swiftcfd
-#  config_file: swiftcfd.yml
-#- name: tfxgo
-#  config_file: tfxgo.yml
-#- name: uprofx
-#  config_file: uprofx.yml
+- name: swiftcfd
+  config_file: swiftcfd.yml
+- name: tfxgo
+  config_file: tfxgo.yml
+- name: uprofx
+  config_file: uprofx.yml
