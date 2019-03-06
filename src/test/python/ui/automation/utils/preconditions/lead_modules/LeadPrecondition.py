@@ -40,6 +40,24 @@ class LeadPrecondition(object):
             .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
 
         ClientProfilePage(self.driver).click_fill_questionnaire_btn()
+        ClientProfilePage(self.driver).fill_questionnaire(CRMConstants.STATUS,
+                                                          CRMConstants.INCOME,
+                                                          CRMConstants.ESTIMATE,
+                                                          CRMConstants.PURPOSE,
+                                                          CRMConstants.ESTIMATE_YEAR,
+                                                          CRMConstants.INCOMING_FUNDS,
+                                                          CRMConstants.LEVEL_EDUCATION,
+                                                          CRMConstants.TIME_INVESTING,
+                                                          CRMConstants.LAST_TRADE,
+                                                          CRMConstants.LEVEL_EXPERIENCE,
+                                                          CRMConstants.VOLUME,
+                                                          CRMConstants.LEVERAGE,
+                                                          CRMConstants.APPLE,
+                                                          CRMConstants.FACEBOOK,
+                                                          CRMConstants.INITIAL_DEPOSIT,
+                                                          CRMConstants.RESULT_TRADING,
+                                                          CRMConstants.INVESTMENT_OBJECTIVES,
+                                                          CRMConstants.COUNTRY)
 
 
 

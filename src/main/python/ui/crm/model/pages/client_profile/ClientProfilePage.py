@@ -20,6 +20,30 @@ from src.main.python.utils.logs.Loging import Logging
 
 class ClientProfilePage(CRMBasePage):
 
+    def fill_questionnaire(self, status,income,estimate,purpose,estimate_year,incoming_funds,level_education,time_inv,
+                           last_trade,level_exp,volume,leverage,apple,facebook,initial_deposit,result_trading,investment_obj,
+                           county):
+        self.select_status(status)
+        self.select_income(income)
+        self.select_estimate(estimate)
+        self.select_purpose(purpose)
+        self.select_estimate_year(estimate_year)
+        self.select_incoming_funds(incoming_funds)
+        self.select_level_education(level_education)
+        self.select_time_inv(time_inv)
+        self.select_last_trade(last_trade)
+        self.select_level_exp(level_exp)
+        self.select_volume(volume)
+        self.select_leverage(leverage)
+        self.select_apple(apple)
+        self.select_facebook(facebook)
+        self.select_initial_deposit(initial_deposit)
+        self.select_result_trading(result_trading)
+        self.select_investment_obj(investment_obj)
+        self.select_county(county)
+
+
+
     def click_fill_questionnaire_btn(self):
         sleep(3)
         fill_questionnaire_btn = super().wait_load_element("//*[@id='sidebar']/table[1]/tbody/tr[5]/td/a")
