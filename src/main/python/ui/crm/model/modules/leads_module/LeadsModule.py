@@ -39,7 +39,10 @@ class LeadsModule(CRMBasePage):
             status.click()
         except:
             self.driver.execute_script("arguments[0].click();", status)
-        status_leads = self.driver.find_element(By.XPATH, "//*[@id='default_values']/div[3]/div[2]/div/ul/li[6]/a")
+        if global_var.current_brand_name == "tradospot":
+            status_leads = self.driver.find_element(By.XPATH, "//*[@id='default_values']/div[3]/div[2]/div/ul/li[3]/a")
+        else:
+            status_leads = self.driver.find_element(By.XPATH, "//*[@id='default_values']/div[3]/div[2]/div/ul/li[6]/a")
         try:
             status_leads.click()
         except:

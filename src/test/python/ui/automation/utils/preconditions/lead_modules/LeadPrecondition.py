@@ -9,6 +9,14 @@ from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import Crea
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from time import sleep
+import glob
+import os
+import csv
+from datetime import *
+from requests import get
+import random
+import xlrd
+from src.main.python.utils.logs.Loging import Logging
 
 class LeadPrecondition(object):
 
@@ -18,6 +26,138 @@ class LeadPrecondition(object):
     def __init__(self, driver, config):
         self.driver = driver
         self.config = config
+
+    def import_leads(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        CRMHomePage(self.driver).open_lead_module()
+        LeadsModule(self.driver).click_import_leads()
+        ##Create new leads for import
+        with open('D:/Leads_Import.csv', mode='w') as csvfile:
+            filewriter = csv.writer(csvfile, delimiter=',',
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+            first_import_lead = str(random.randrange(1, 999))
+            second_import_lead = str(random.randrange(1, 999))
+            third_import_lead = str(random.randrange(1, 999))
+
+            filewriter.writerow(
+                ["Lead No", "Language", "First Name", "Last Name", "Lead Status", "Country", "Email", "Phone", "Exists",
+                 "Client Exist", "Lead Source", "Assigned To", "Department of assigned user", "Last Comment"])
+            filewriter.writerow(["LEA8149237", "English", "testqaIMPORT", "DoeA", "R - New", "Germany",
+                                 "pandaqa+" + first_import_lead + "@pandats.com", "***", "1", "testqaIWNNKA Doe",
+                                 "Conference", "pandaqa pandaqa", "Retention", ""])
+            filewriter.writerow(["LEA8149236", "English", "testqaIMPORT", "DoeA", "R - New", "Germany",
+                                 "pandaqa+" + second_import_lead + "@pandats.com", "***", "0", "", "Conference",
+                                 "pandaqa pandaqa", "Retention", ""])
+            filewriter.writerow(["LEA8149235", "English", "testqaIMPORT", "DoeA", "R - New", "Germany",
+                                 "pandaqa+" + third_import_lead + "@pandats.com", "***", "0", "", "Conference",
+                                 "pandaqa pandaqa", "Retention", ""])
+
+        LeadsModule(self.driver).click_browse_import_leads()
+        LeadsModule(self.driver).click_next_import_leads()
+        LeadsModule(self.driver).select_import_source()
+        LeadsModule(self.driver).select_import_source_name(CRMConstants.PANDAQA_ASSIGN)
+        LeadsModule(self.driver).select_import_status()
+        LeadsModule(self.driver).click_next_second_step()
+        check_third_step = LeadsModule(self.driver).check_third_step()
+        assert check_third_step == CRMConstants.THIRD_STEP_IMPORT_LEADS
+        sleep(120)
+        CRMHomePage(self.driver).open_lead_module()
+        LeadsModule(self.driver).select_filter(
+            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
+        i = 1
+        for i in range(1, 3):
+            lead_first_name = LeadsModule(self.driver).get_first_name_lead(i)
+            lead_email = LeadsModule(self.driver).get_email_lead(i)
+            path_to_latest_file = 'D:/Leads_Import.csv'
+            count = 0
+            with open(path_to_latest_file) as f_obj:
+                reader = csv.reader(f_obj, delimiter=',')
+                for line in reader:
+                    if lead_first_name and lead_email in line:
+                        count = count + 1
+
+            assert count >= 1
+
+    def export_select_records(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        CRMHomePage(self.driver).open_lead_module()
+        LeadsModule(self.driver).select_filter(
+            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
+        LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
+        LeadsModule(self.driver).click_search_button_leads_module()
+        i = 1
+        for i in range(1, 5):
+            LeadsModule(self.driver).click_check_box_leads(i)
+
+        LeadsModule(self.driver).click_export_leads()
+        LeadsModule(self.driver).click_export_pop_ups()
+        i = 1
+        for i in range(1, 5):
+            lead_first_name = LeadsModule(self.driver).get_first_name_lead(i)
+            lead_email = LeadsModule(self.driver).get_email_lead(i)
+
+            sleep(10)
+            ip = get('https://api.ipify.org').text
+            if ip == '35.158.30.212':
+                list_of_files = glob.glob('C:/Users/anna.poimenova/Downloads/*')
+            if ip == '35.158.90.50':
+                list_of_files = glob.glob('C:/Users/Administrator/Downloads/*')
+
+            latest_file = max(list_of_files, key=os.path.getctime)
+            path_to_latest_file = "%s" % latest_file
+            count = 0
+            with open(path_to_latest_file) as f_obj:
+                reader = csv.reader(f_obj, delimiter=',')
+                for line in reader:
+                    if lead_first_name and lead_email in line:
+                        count = count + 1
+
+            assert count >= 1
+
+    def export_full_list(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        CRMHomePage(self.driver).open_lead_module()
+        LeadsModule(self.driver).select_filter(
+            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
+        LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
+        LeadsModule(self.driver).click_search_button_leads_module()
+        LeadsModule(self.driver).click_check_box_all_leads()
+        LeadsModule(self.driver).click_export_leads()
+        LeadsModule(self.driver).click_export_pop_ups()
+        i = 1
+        for i in range(1, 20):
+            lead_first_name = LeadsModule(self.driver).get_first_name_lead(i)
+            lead_email = LeadsModule(self.driver).get_email_lead(i)
+
+            sleep(10)
+            ip = get('https://api.ipify.org').text
+            if ip == '35.158.30.212':
+                list_of_files = glob.glob('C:/Users/anna.poimenova/Downloads/*')
+            if ip == '35.158.90.50':
+                list_of_files = glob.glob('C:/Users/Administrator/Downloads/*')
+
+            latest_file = max(list_of_files, key=os.path.getctime)
+            path_to_latest_file = "%s" % latest_file
+            count = 0
+            with open(path_to_latest_file) as f_obj:
+                reader = csv.reader(f_obj, delimiter=',')
+                for line in reader:
+                    if lead_first_name and lead_email in line:
+                        count = count + 1
+
+            assert count >= 1
 
     def mass_edit_leads(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
