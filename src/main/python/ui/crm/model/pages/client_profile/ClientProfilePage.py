@@ -16,6 +16,8 @@ from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import D
 from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsInformationPage import \
     TradingAccountsInformationPage
 from src.main.python.utils.logs.Loging import Logging
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class ClientProfilePage(CRMBasePage):
@@ -37,9 +39,12 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def click_trading_accounts_tab(self):
-        trading_account_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'Trading Accounts')][1]")
-        trading_account_tab.click()
-        Logging().reportDebugStep(self, "Open the trading account tab ")
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//li//a[contains(text(),'Trading Accounts')][1]")))
+        trading_account_tab = super().wait_load_element("//li//a[contains(text(),'Trading Accounts')][1]")
+        # trading_account_tab.click()
+        self.driver.execute_script("arguments[0].click();", trading_account_tab)
+        Logging().reportDebugStep(self, "Scroll to trading account section")
         return ClientProfilePage(self.driver)
 
     def get_client_status(self):
@@ -133,6 +138,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_financial_transactions_tab(self):
+        sleep(1)
         trading_tab = super().wait_load_element("//a[@id='show_Accounts_FinancialTransactions']")
         trading_tab.click()
         Logging().reportDebugStep(self, "Open the financial transactions tab ")
@@ -607,3 +613,31 @@ class ClientProfilePage(CRMBasePage):
         else:
             Logging().reportDebugStep(self, "Client's page does not contain events")
             return False
+
+    def scroll_to_financial_transactions_section(self):
+        sleep(1)
+        financial_transactions_section = super().wait_element_to_be_clickable("//a[@href='#header_Accounts_FinancialTransactions']")
+        self.driver.execute_script("arguments[0].click();", financial_transactions_section)
+        Logging().reportDebugStep(self, "Scroll to Financial Transactions section")
+        return ClientProfilePage(self.driver)
+
+    def get_trading_account_number(self):
+        sleep(1)
+        trading_account = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[2]/td[2]")
+        trading_account_number = trading_account.text
+        Logging().reportDebugStep(self, "Account number is " + trading_account_number)
+        return trading_account_number
+
+    def get_balance_in_trading_account(self):
+        balance = super().wait_load_element("//*[@id='dtlview_Balance']").text
+        Logging().reportDebugStep(self, "Verify balance")
+        return balance
+
+    def open_trading_account_page(self, account_number):
+        sleep(2)
+        link_trading_account = super().wait_load_element(
+            "//tr[@class='lvtColData']/td/span/a[contains(text(), '%s')]" % account_number)
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", link_trading_account)
+        Logging().reportDebugStep(self, "Open the trading account page ")
+        return ClientProfilePage(self.driver)

@@ -8,5 +8,5 @@ from src.test.python.ui.automation.utils.preconditions.withdraw_crm.WithdrawPrec
 @pytest.mark.run(order=35)
 class WithdrawTest(BaseTest):
 
-    def test_withdraw(self):
+    def test_withdraw_crm(self):
         WithdrawPreconditionCRM(self.driver, self.config).create_withdraw()

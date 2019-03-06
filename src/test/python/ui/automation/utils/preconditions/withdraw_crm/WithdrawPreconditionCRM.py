@@ -7,6 +7,10 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from time import sleep
+import pytest
+from src.test.python.ui.automation.BaseTest import *
+from src.main.python.ui.crm.model.mt4.withdraw.MT4WithdrawModule import MT4WithdrawModule
+
 
 class WithdrawPreconditionCRM(object):
     driver = None
@@ -30,5 +34,22 @@ class WithdrawPreconditionCRM(object):
         sleep(2)
         ClientsPage(self.driver).find_client_by_email(client1[LeadsModuleConstants.EMAIL])
         sleep(2)
-        ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREATE_MT4_WITHDRAW)
+        ClientProfilePage(self.driver).scroll_to_financial_transactions_section() \
+                                      .open_financial_transactions_tab()
+        account_number = ClientProfilePage(self.driver).get_trading_account_number()
+        ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.WITHDRAW)
+        MT4WithdrawModule(self.driver).select_payment_method(CRMConstants.PAYMENT_METHOD_WITHDRAW) \
+                                      .select_account(account_number) \
+                                      .set_amount(CRMConstants.AMOUNT_WITHDRAW) \
+                                      .set_description(CRMConstants.DESCRIPTION_WITHDRAW) \
+                                      .select_status(CRMConstants.STATUS_WITHDRAW) \
+                                      .create_withdraw_button()
+        CRMLoginPage(self.driver).perform_scroll_up()
+        ClientProfilePage(self.driver).click_trading_accounts_tab() \
+                                      .open_trading_accounts_tab() \
+                                      .open_trading_account_page(account_number)
+        balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
+        actual_balance = int((balance.split('.'))[0])
+        expected_balance = int(((CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT).split('.'))[0]) - int(CRMConstants.AMOUNT_WITHDRAW)
+        assert actual_balance == expected_balance
 
