@@ -126,7 +126,7 @@ class ClientProfilePage(CRMBasePage):
         trading_account_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'Trading Accounts')][1]")
         self.driver.execute_script("arguments[0].click();", trading_account_tab)
         # trading_account_tab.click()
-        Logging().reportDebugStep(self, "Open the trading account tab ")
+        Logging().reportDebugStep(self, "Scroll to trading account section")
         return ClientProfilePage(self.driver)
 
     def get_client_status(self):
@@ -225,7 +225,7 @@ class ClientProfilePage(CRMBasePage):
         trading_tab = self.driver.find_element(By.XPATH,"//a[@id='show_Accounts_FinancialTransactions']")
         self.driver.execute_script("arguments[0].click();", trading_tab)
         # trading_tab.click()
-        Logging().reportDebugStep(self, "Open the financial transactions tab ")
+        Logging().reportDebugStep(self, "Open the financial transactions tab")
         return ClientProfilePage()
 
     '''

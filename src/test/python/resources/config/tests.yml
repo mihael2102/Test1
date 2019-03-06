@@ -72,10 +72,6 @@ tests_config:
   tests:
     - test_make_deposit_crm  # make a deposit into a trading account from the crm
 #    - test_make_deposit_for_client_crm
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-  class: WithdrawTest
-  tests:
-    - test_withdraw   #preconditions: convert lead, make deposit
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
 #  class: CreditInTestCRM
 #  tests:
@@ -109,3 +105,7 @@ tests_config:
 #    - test_create_campaign
 #    - test_edit_campaign
 #    - test_delete_campaign
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
+  class: WithdrawTest
+  tests:
+    - test_withdraw_crm   #preconditions: convert lead, make deposit
