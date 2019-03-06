@@ -104,12 +104,12 @@ class LeadPrecondition(object):
             lead_first_name = LeadsModule(self.driver).get_first_name_lead(i)
             lead_email = LeadsModule(self.driver).get_email_lead(i)
 
-            sleep(10)
-            ip = get('https://api.ipify.org').text
-            if ip == '35.158.30.212':
-                list_of_files = glob.glob('C:/Users/anna.poimenova/Downloads/*')
-            if ip == '35.158.90.50':
-                list_of_files = glob.glob('C:/Users/Administrator/Downloads/*')
+            # sleep(10)
+            # ip = get('https://api.ipify.org').text
+            # if ip == '35.158.30.212':
+            #     list_of_files = glob.glob('C:/Users/anna.poimenova/Downloads/*')
+            # if ip == '35.158.90.50':
+            list_of_files = glob.glob('C:/Users/Administrator/Downloads/*')
 
             latest_file = max(list_of_files, key=os.path.getctime)
             path_to_latest_file = "%s" % latest_file
@@ -142,11 +142,11 @@ class LeadPrecondition(object):
             lead_email = LeadsModule(self.driver).get_email_lead(i)
 
             sleep(10)
-            ip = get('https://api.ipify.org').text
-            if ip == '35.158.30.212':
-                list_of_files = glob.glob('C:/Users/anna.poimenova/Downloads/*')
-            if ip == '35.158.90.50':
-                list_of_files = glob.glob('C:/Users/Administrator/Downloads/*')
+            # ip = get('https://api.ipify.org').text
+            # if ip == '35.158.30.212':
+            #     list_of_files = glob.glob('C:/Users/anna.poimenova/Downloads/*')
+            # if ip == '35.158.90.50':
+            list_of_files = glob.glob('C:/Users/Administrator/Downloads/*')
 
             latest_file = max(list_of_files, key=os.path.getctime)
             path_to_latest_file = "%s" % latest_file
