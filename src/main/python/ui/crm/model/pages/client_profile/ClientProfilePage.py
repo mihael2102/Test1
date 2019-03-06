@@ -2,6 +2,7 @@ import re
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from _decimal import Decimal
 from time import sleep
+from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
@@ -22,27 +23,328 @@ class ClientProfilePage(CRMBasePage):
 
     def fill_questionnaire(self, status,income,estimate,purpose,estimate_year,incoming_funds,level_education,time_inv,
                            last_trade,level_exp,volume,leverage,apple,facebook,initial_deposit,result_trading,investment_obj,
-                           county):
+                           county, tin):
+        ##Economic Profile
         self.select_status(status)
+        self.check_box_industry()
+        self.radio_btn_financial_instruments()
+        self.check_box_sourse()
+        self.check_box_sourse_total()
         self.select_income(income)
         self.select_estimate(estimate)
         self.select_purpose(purpose)
         self.select_estimate_year(estimate_year)
         self.select_incoming_funds(incoming_funds)
+        ##Knowledge and experience
+        self.click_knowledge_and_experience()
         self.select_level_education(level_education)
         self.select_time_inv(time_inv)
         self.select_last_trade(last_trade)
+        self.last_financial_instruments()
         self.select_level_exp(level_exp)
         self.select_volume(volume)
         self.select_leverage(leverage)
         self.select_apple(apple)
         self.select_facebook(facebook)
         self.select_initial_deposit(initial_deposit)
+        ##Risk Tolerance
+        self.click_risk_tolerance()
         self.select_result_trading(result_trading)
         self.select_investment_obj(investment_obj)
+        ##FATCA & CRS information
+        self.click_fatca()
         self.select_county(county)
+        self.enter_tin(tin)
+        self.check_box_us_resident()
+
+        self.click_save_questionnaire()
 
 
+    def click_save_questionnaire(self):
+        sleep(1)
+        questionnaire_save_button = super().wait_element_to_be_clickable(
+            "//*[@id='Questionnaire_save_button']")
+        try:
+            questionnaire_save_button.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", questionnaire_save_button)
+        Logging().reportDebugStep(self, "Click Save questionnaire")
+        return ClientProfilePage(self.driver)
+
+
+    def check_box_us_resident(self):
+        sleep(1)
+        check_box_us_resident = super().wait_element_to_be_clickable(
+            "//*[@id='collapseFour']/div/div[1]/div/label[2]/input")
+        try:
+            check_box_us_resident.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box_us_resident)
+        Logging().reportDebugStep(self, "Are you a citizen of the United States or a resident for tax purposes?: No")
+        return ClientProfilePage(self.driver)
+
+
+    def enter_tin(self, tin):
+        tin_input = self.driver.find_element(By.XPATH, "//*[@id='collapseFour']/div/div[2]/div/div/div/div[1]/input")
+        tin_input.send_keys(tin)
+        Logging().reportDebugStep(self,
+                                  "Enter tin : " + tin)
+        return ClientProfilePage(self.driver)
+
+
+    def select_county(self, county):
+        sleep(2)
+        select = Select(
+            self.driver.find_element(By.XPATH, "//select[@name='country1']"))
+        select.select_by_visible_text(county)
+        Logging().reportDebugStep(self,
+                                  "Select What are your investment objectives? : " + county)
+        return ClientProfilePage(self.driver)
+
+
+    def click_fatca(self):
+        sleep(1)
+        check_box_sourse = super().wait_element_to_be_clickable(
+            "//*[@id='headingFour']")
+        try:
+            check_box_sourse.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box_sourse)
+        Logging().reportDebugStep(self, "Press FATCA & CRS information")
+        return ClientProfilePage(self.driver)
+
+
+
+    def select_investment_obj(self, investment_obj):
+        sleep(2)
+        select = Select(
+            self.driver.find_element(By.XPATH, "//select[@name='new_investment_objectives_strategy']"))
+        select.select_by_visible_text(investment_obj)
+        Logging().reportDebugStep(self,
+                                  "Select What are your investment objectives? : " + investment_obj)
+        return ClientProfilePage(self.driver)
+
+
+    def select_result_trading(self, result_trading):
+        sleep(2)
+        select = Select(
+            self.driver.find_element(By.XPATH, "//select[@name='new_feel_lost_deposited_capital']"))
+        select.select_by_visible_text(result_trading)
+        Logging().reportDebugStep(self,
+                                  "Select How would you feel if you lost your deposited capital as a result of trading? : " + result_trading)
+        return ClientProfilePage(self.driver)
+
+    def click_risk_tolerance(self):
+        sleep(1)
+        check_box_sourse = super().wait_element_to_be_clickable(
+            "//*[@id='headingThree']")
+        try:
+            check_box_sourse.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box_sourse)
+        Logging().reportDebugStep(self, "Press Risk tolerance")
+        return ClientProfilePage(self.driver)
+
+
+    def select_initial_deposit(self, initial_deposit):
+        sleep(2)
+        select = Select(
+            self.driver.find_element(By.XPATH, "//select[@name='new_buying_power']"))
+        select.select_by_visible_text(initial_deposit)
+        Logging().reportDebugStep(self,
+                                  "Select With an initial deposit of €1,000 and 1:100 leverage, what would your buying power be? : " + initial_deposit)
+        return ClientProfilePage(self.driver)
+
+
+    def select_facebook(self, facebook):
+        sleep(2)
+        select = Select(
+            self.driver.find_element(By.XPATH, "//select[@name='new_facebook_share_drop']"))
+        select.select_by_visible_text(facebook)
+        Logging().reportDebugStep(self,
+                                  "Select If Facebook shares traded on the NASDAQ exchange drops significantly, the price of your Facebook CFD would…: " + facebook)
+        return ClientProfilePage(self.driver)
+
+    def select_apple(self, apple):
+        sleep(2)
+        select = Select(
+            self.driver.find_element(By.XPATH, "//select[@name='new_positive_financial_report_affect']"))
+        select.select_by_visible_text(apple)
+        Logging().reportDebugStep(self,
+                                  "Select How might a positive financial report related to Apple affect the company's CFD price?: " + apple)
+        return ClientProfilePage(self.driver)
+
+
+    def select_leverage(self, leverage):
+        sleep(2)
+        select = Select(
+            self.driver.find_element(By.XPATH, "//select[@name='new_trading_with_leverage']"))
+        select.select_by_visible_text(leverage)
+        Logging().reportDebugStep(self, "Select When trading with leverage, which one of the following applies?: " + leverage)
+        return ClientProfilePage(self.driver)
+
+
+    def select_volume(self, volume):
+        sleep(2)
+        select = Select(
+            self.driver.find_element(By.XPATH, "//select[@name='new_last_year_total_volume']"))
+        select.select_by_visible_text(volume)
+        Logging().reportDebugStep(self, "Select What is your annual average trade size (volume) of your past 40 leveraged transactions? : " + volume)
+        return ClientProfilePage(self.driver)
+
+
+    def select_level_exp(self, level_exp):
+        sleep(2)
+        select = Select(
+            self.driver.find_element(By.XPATH, "//select[@name='new_experience_in_derivative_products']"))
+        select.select_by_visible_text(level_exp)
+        Logging().reportDebugStep(self, "Select What is your level of experience in derivative products such as CFD's on Stocks/Shares, Indices, Commodities, FX Pairs, and Cryptocurrencies?" + level_exp)
+        return ClientProfilePage(self.driver)
+
+
+    def last_financial_instruments(self):
+        sleep(1)
+        check_box_sourse = super().wait_element_to_be_clickable(
+            "//*[@id='new_trade_stocks']")
+        try:
+            check_box_sourse.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box_sourse)
+        Logging().reportDebugStep(self, "Press Traded in Stocks/Shares, Indices, Commodities")
+        return ClientProfilePage(self.driver)
+
+
+    def select_last_trade(self, last_trade):
+        sleep(2)
+        select = Select(
+            self.driver.find_element(By.XPATH, "//select[@name='new_last_trade_carried_out']"))
+        select.select_by_visible_text(last_trade)
+        Logging().reportDebugStep(self, "Select When was your last trade carried out?: " + last_trade)
+        return ClientProfilePage(self.driver)
+
+
+    def select_time_inv(self, time_inv):
+        sleep(2)
+        select = Select(
+            self.driver.find_element(By.XPATH, "//select[@name='new_time_of_investing']"))
+        select.select_by_visible_text(time_inv)
+        Logging().reportDebugStep(self, "Select How long have you been investing in the financial markets?: " + time_inv)
+        return ClientProfilePage(self.driver)
+
+
+    def select_level_education(self, level_education):
+        sleep(2)
+        select = Select(
+            self.driver.find_element(By.XPATH, "//select[@name='new_level_of_education']"))
+        select.select_by_visible_text(level_education)
+        Logging().reportDebugStep(self, "Select level education: " + level_education)
+        return ClientProfilePage(self.driver)
+
+
+    def click_knowledge_and_experience(self):
+        sleep(1)
+        check_box_sourse = super().wait_element_to_be_clickable(
+            "//*[@id='headingTwo']")
+        try:
+            check_box_sourse.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box_sourse)
+        Logging().reportDebugStep(self, "Press click knowledge and experience")
+        return ClientProfilePage(self.driver)
+
+
+    def select_incoming_funds(self, incoming_funds):
+        sleep(2)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='new_expected_originof_incoming_funds']"))
+        select.select_by_visible_text(incoming_funds)
+        Logging().reportDebugStep(self, "Select incoming funds: " + incoming_funds)
+        return ClientProfilePage(self.driver)
+
+
+    def select_estimate_year(self, estimate_year):
+        sleep(2)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='new_estimate_amount_invest_yearly']"))
+        select.select_by_visible_text(estimate_year)
+        Logging().reportDebugStep(self, "Select estimate year: " + estimate_year)
+        return ClientProfilePage(self.driver)
+
+    def select_purpose(self, purpose):
+        sleep(2)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='new_requesting_trading_account']"))
+        select.select_by_visible_text(purpose)
+        Logging().reportDebugStep(self, "Select purpose: " + purpose)
+        return ClientProfilePage(self.driver)
+
+    def select_estimate(self, estimate):
+        sleep(2)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='new_estimate_net_worth']"))
+        select.select_by_visible_text(estimate)
+        Logging().reportDebugStep(self, "Select income: " + estimate)
+        return ClientProfilePage(self.driver)
+
+
+
+    def select_income(self, income):
+        sleep(2)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='new_estimated_annual_income']"))
+        select.select_by_visible_text(income)
+        Logging().reportDebugStep(self, "Select income: " + income)
+        return ClientProfilePage(self.driver)
+
+
+    def check_box_sourse_total(self):
+        sleep(1)
+        check_box_sourse = super().wait_element_to_be_clickable(
+            "//*[@id='new_wealth_savings']")
+        try:
+            check_box_sourse.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box_sourse)
+        Logging().reportDebugStep(self, "Press check box sourse: Wealth from Savings and investments")
+        return ClientProfilePage(self.driver)
+
+
+    def check_box_sourse(self):
+        sleep(1)
+        check_box_sourse = super().wait_element_to_be_clickable(
+            "//*[@id='new_funds_from_saving']")
+        try:
+            check_box_sourse.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box_sourse)
+        Logging().reportDebugStep(self, "Press check box sourse: Funds from Savings and investments")
+        return ClientProfilePage(self.driver)
+
+
+    def radio_btn_financial_instruments(self):
+        sleep(1)
+        radio_btn = super().wait_element_to_be_clickable(
+            "//*[@id='collapseOne']/div[2]/div/label[1]/input")
+        try:
+            radio_btn.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", radio_btn)
+        Logging().reportDebugStep(self, "Press radio button: Yes")
+        return ClientProfilePage(self.driver)
+
+    def check_box_industry(self):
+        sleep(1)
+        check_box_industry = super().wait_element_to_be_clickable(
+            "//*[@id='Unemployed']")
+        try:
+            check_box_industry.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box_industry)
+        Logging().reportDebugStep(self, "Press check box industry: Financial services, banking, accounting")
+        return ClientProfilePage(self.driver)
+
+
+    def select_status(self, status):
+        sleep(2)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='new_employment_status']"))
+        select.select_by_visible_text(status)
+        Logging().reportDebugStep(self, "Select status: " + status)
+        return ClientProfilePage(self.driver)
 
     def click_fill_questionnaire_btn(self):
         sleep(3)

@@ -57,12 +57,10 @@ class LeadPrecondition(object):
                                                           CRMConstants.INITIAL_DEPOSIT,
                                                           CRMConstants.RESULT_TRADING,
                                                           CRMConstants.INVESTMENT_OBJECTIVES,
-                                                          CRMConstants.COUNTRY)
+                                                          CRMConstants.COUNTRY,
+                                                          CRMConstants.TIN)
 
-
-
-
-
+        ClientProfilePage(self.driver).click_ok()
 
     def import_leads(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \

@@ -26,7 +26,10 @@ class LeadModuleTest(BaseTest):
 
 
     def fill_questioner_new_client(self):
-        LeadPrecondition(self.driver, self.config).fill_questioner_new_client()
+        if (global_var.current_brand_name == "itrader"):
+            LeadPrecondition(self.driver, self.config).fill_questioner_new_client()
+        else:
+            return self
 
     def test_create_lead(self):
         try:

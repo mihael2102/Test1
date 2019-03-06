@@ -4,6 +4,8 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    SUCCESS_QUESTIONNAIRE_UPDATE = "Questionnaire was updated"
+    TIN = "213123123"
     STATUS = "Self-employed"
     INCOME = "€12,001 - €100,000"
     ESTIMATE = "€500,001 - €1,000,000"
