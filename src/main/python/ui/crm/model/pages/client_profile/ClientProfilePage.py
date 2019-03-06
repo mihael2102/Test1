@@ -20,6 +20,13 @@ from src.main.python.utils.logs.Loging import Logging
 
 class ClientProfilePage(CRMBasePage):
 
+    def click_fill_questionnaire_btn(self):
+        sleep(3)
+        fill_questionnaire_btn = super().wait_load_element("//*[@id='sidebar']/table[1]/tbody/tr[5]/td/a")
+        fill_questionnaire_btn.click()
+        Logging().reportDebugStep(self, "Click fill questionnaire btn")
+        return ClientProfilePage(self.driver)
+
     def verify_activities(self):
         close = super().wait_load_element("//*[@id='rld_table_content']/tbody/tr[2]/td/i").text
         Logging().reportDebugStep(self, "Verify activities")

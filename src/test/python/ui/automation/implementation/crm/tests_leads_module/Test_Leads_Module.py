@@ -24,6 +24,10 @@ class LeadModuleTest(BaseTest):
         self.lead2 = self.load_lead_from_config(LeadsModuleConstants.SECOND_LEAD_INFO)
         self.client1 = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
 
+
+    def fill_questioner_new_client(self):
+        LeadPrecondition(self.driver, self.config).fill_questioner_new_client()
+
     def test_create_lead(self):
         try:
             LeadPrecondition(self.driver, self.config).create_lead(self.lead1)

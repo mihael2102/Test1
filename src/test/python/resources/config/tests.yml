@@ -34,6 +34,7 @@ tests_config:
   class: LeadModuleTest
   tests:
     - test_perform_convert_lead   # Creates a lead and converts it to a client
+    - fill_questioner_new_client
 ####Clients
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
 #  class: SearchingClientsTestCRM

@@ -17,6 +17,7 @@ from requests import get
 import random
 import xlrd
 from src.main.python.utils.logs.Loging import Logging
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 
 class LeadPrecondition(object):
 
@@ -26,6 +27,24 @@ class LeadPrecondition(object):
     def __init__(self, driver, config):
         self.driver = driver
         self.config = config
+
+    def fill_questioner_new_client(self):
+        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        CRMHomePage(self.driver).open_client_module() \
+            .select_filter(self.config.get_value(
+            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+
+        ClientProfilePage(self.driver).click_fill_questionnaire_btn()
+
+
+
+
+
 
     def import_leads(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
