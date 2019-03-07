@@ -1447,6 +1447,34 @@ class ExcelWriter:
                 , "Click 'Save'"
                 , "New MT5 Demo Account was created successfully"]
 
+        if self.get_test_pretty_name_new(test) == "WithdrawTest: test withdraw crm":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "Whats new popup isnt displayed "
+                , "The client module was opened"
+                , "Click the  drop down filter "
+                , "The field found is Test Clients"
+                , "Click the selected filter"
+                , "Setting the user's email in the email field"
+                , "Click the search button "
+                , "Click user email"
+                , "Scroll to Financial Transactions section"
+                , "Open the financial transactions tab"
+                , "Get trading account number"
+                , "Open mt4 actions"
+                , "The payment method was selected"
+                , "The account number was selected"
+                , "The amount was set"
+                , "The  description was set"
+                , "The Create withdraw button was clicked"
+                , "Scroll to trading account section"
+                , "Open the trading account tab"
+                , "Open the trading account page"
+                , "Verify balance of account"]
+
         return step_suit
 
 
