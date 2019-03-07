@@ -7,7 +7,7 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from time import sleep
-import pytest
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.mt4.withdraw.MT4WithdrawModule import MT4WithdrawModule
 
@@ -42,9 +42,12 @@ class WithdrawPreconditionCRM(object):
                                       .select_account(account_number) \
                                       .set_amount(CRMConstants.AMOUNT_WITHDRAW) \
                                       .set_description(CRMConstants.DESCRIPTION_WITHDRAW) \
-                                      .select_status(CRMConstants.STATUS_WITHDRAW) \
-                                      .select_cleared_by(CRMConstants.CLEAREDBY_WITHDRAW) \
-                                      .create_withdraw_button()
+                                      .select_status(CRMConstants.STATUS_WITHDRAW)
+        if global_var.current_brand_name == "q8":
+            MT4WithdrawModule(self.driver).select_cleared_by(CRMConstants.CLEAREDBY_WITHDRAW1)
+        else:
+            MT4WithdrawModule(self.driver).select_cleared_by(CRMConstants.CLEAREDBY_WITHDRAW)
+        MT4WithdrawModule(self.driver).create_withdraw_button()
         CRMLoginPage(self.driver).perform_scroll_up()
         ClientProfilePage(self.driver).click_trading_accounts_tab() \
                                       .open_trading_accounts_tab() \

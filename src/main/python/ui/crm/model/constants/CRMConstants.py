@@ -80,6 +80,7 @@ class CRMConstants(object):
     CREDIT_OUT = "10"
     DESCRIPTION_WITHDRAW = "Test"
     CLEAREDBY_WITHDRAW = "PRAXIS"
+    CLEAREDBY_WITHDRAW1 = "Wire Transfer"
     STATUS_WITHDRAW = "Approved"
     PAYMENT_METHOD_WITHDRAW = "Credit card"
     DESCRIPTION_DEPOSIT = "Description Deposit"
