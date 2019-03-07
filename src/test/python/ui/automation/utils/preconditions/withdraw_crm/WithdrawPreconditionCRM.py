@@ -43,6 +43,7 @@ class WithdrawPreconditionCRM(object):
                                       .set_amount(CRMConstants.AMOUNT_WITHDRAW) \
                                       .set_description(CRMConstants.DESCRIPTION_WITHDRAW) \
                                       .select_status(CRMConstants.STATUS_WITHDRAW) \
+                                      .select_cleared_by(CRMConstants.CLEAREDBY_WITHDRAW) \
                                       .create_withdraw_button()
         CRMLoginPage(self.driver).perform_scroll_up()
         ClientProfilePage(self.driver).click_trading_accounts_tab() \

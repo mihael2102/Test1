@@ -110,3 +110,10 @@ class MT4WithdrawModule(CRMBasePage):
         create_button.click()
         Logging().reportDebugStep(self, "The Create withdraw button was clicked")
         return ClientProfilePage(self.driver)
+
+    def select_cleared_by(self, provider):
+        super().wait_element_to_be_clickable("//*[@id='cleared_by']")
+        select = Select(self.driver.find_element_by_xpath("//*[@id='cleared_by']"))
+        select.select_by_visible_text(provider)
+        Logging().reportDebugStep(self, "The payment method of withdraw module was selected: " + provider)
+        return MT4WithdrawModule(self.driver)
