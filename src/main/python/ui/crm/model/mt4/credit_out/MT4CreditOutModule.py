@@ -6,20 +6,21 @@ from src.main.python.utils.logs.Loging import Logging
 
 class MT4CreditOutModule(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
+    # def __init__(self):
+    #     super().__init__()
+    #
+    # '''
+    #      Make credit out from CRM
+    #      :parameter account number,the account of client
+    #      :parameter amount, the amount of establishing a deposit
+    #      :parameter description deposit the description set in the field
+    #      :returns MT4 Credit Out instance
+    # '''
 
-    '''
-         Make credit out from CRM   
-         :parameter account number,the account of client 
-         :parameter amount, the amount of establishing a deposit
-         :parameter description deposit the description set in the field 
-         :returns MT4 Credit Out instance   
-    '''
-
-    def make_credit_out(self, account_number, amount, comment):
+    def make_credit_out(self, account_number, amount, granted_by, comment):
         self.select_account(account_number)
         self.set_amount(amount)
+        self.set_granted_by(granted_by)
         self.set_description(comment)
         self.perform_create_credit_out()
         return ClientProfilePage()
@@ -34,11 +35,11 @@ class MT4CreditOutModule(CRMBasePage):
         drop_down = super().wait_element_to_be_clickable("//select[@name='loginserver']")
         drop_down.click()
 
-        select_account = self.driver.find_element(By.XPATH, "//select[@name='loginserver']//"
-                                                            "following-sibling::*[contains(text(),'%s')]" % account)
+        select_account = self.driver.find_element(By.XPATH, "//select[@name='loginserver']// \
+                                                            following-sibling::*[contains(text(),'%s')]" % account)
         select_account.click()
-        Logging().reportDebugStep(self, "The account of deposit out module was selected:  " + account)
-        return MT4CreditOutModule()
+        Logging().reportDebugStep(self, "The account for credit out was selected: " + account)
+        return MT4CreditOutModule(self.driver)
 
     '''
         Set the amount in the field for deposit
@@ -50,8 +51,8 @@ class MT4CreditOutModule(CRMBasePage):
         amount_filed = self.driver.find_element(By.XPATH, "//input[@id='amount']")
         amount_filed.clear()
         amount_filed.send_keys(amount)
-        Logging().reportDebugStep(self, "The amount of credit out module was set:  " + amount)
-        return MT4CreditOutModule()
+        Logging().reportDebugStep(self, "The amount of credit out was set:  " + amount)
+        return MT4CreditOutModule(self.driver)
 
     '''
         Set the description out the field 
@@ -60,20 +61,32 @@ class MT4CreditOutModule(CRMBasePage):
     '''
 
     def set_description(self, description_credit_in):
-        amount_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_comment']")
-        amount_filed.clear()
-        amount_filed.send_keys(description_credit_in)
-        Logging().reportDebugStep(self, "The description of credit out module was set in the description field:  " +
-                                  description_credit_in)
-        return MT4CreditOutModule()
+        comment_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_comment']")
+        comment_filed.clear()
+        comment_filed.send_keys(description_credit_in)
+        Logging().reportDebugStep(self, "The Comment of credit out was set: " + description_credit_in)
+        return MT4CreditOutModule(self.driver)
 
     '''
         Perform  credit out button 
         :returns MT4 Credit Out instance
     '''
 
+    def set_granted_by(self, granted_by_text):
+        granted_by_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_grantedBy']")
+        granted_by_filed.clear()
+        granted_by_filed.send_keys(granted_by_text)
+        Logging().reportDebugStep(self, "The Granted by of credit out was set: " + granted_by_text)
+        return MT4CreditOutModule(self.driver)
+
     def perform_create_credit_out(self):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
         create_button.click()
-        Logging().reportDebugStep(self, "Perform the create of credit out module was clicked")
-        return ClientProfilePage()
+        Logging().reportDebugStep(self, "Create of credit out button was clicked")
+        return ClientProfilePage(self.driver)
+
+    def get_credit_int (self):
+        credit_text = self.driver.find_element_by_xpath("//span[@id='dtlview_Credit']").text
+        credit = int((credit_text.split('.'))[0])
+        Logging().reportDebugStep(self, "Actual credit amount is " + credit_text)
+        return credit
