@@ -5,13 +5,46 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from time import sleep
+from src.test.python.ui.automation.BaseTest import *
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
+from src.main.python.ui.crm.model.mt4.credit_out.MT4CreditOutModule import MT4CreditOutModule
 from src.main.python.utils.config import Config
 
 
 class CreditOutPrecondition(object):
+    driver = None
+    config = None
 
-    def __init__(self) -> None:
-        super().__init__()
+    def __init__(self, driver, config):
+        self.driver = driver
+        self.config = config
+
+    def credit_out_crm(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                       TestDataConstants.FILTER)) \
+            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                              TestDataConstants.E_MAIL))
+        sleep(2)
+        ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREDIT_OUT)
+        MT4CreditOutModule(self.driver).make_credit_out(CRMConstants.CREDIT_ACCOUNT, CRMConstants.AMOUNT_CREDIT_OUT,
+                                                        CRMConstants.CREDIT_OUT_COMMENT)
+        sleep(3)
+        ClientProfilePage(self.driver).refresh_page() \
+            .click_trading_accounts_tab() \
+            .open_trading_accounts_tab() \
+            .open_trading_account_page(CRMConstants.CREDIT_ACCOUNT)
+        actual_credit = MT4CreditOutModule(self.driver).get_credit_int()
+        expected_credit = int(((CRMConstants.AMOUNT_CREDIT_IN).split('.'))[0]) - int(
+            ((CRMConstants.AMOUNT_CREDIT_OUT).split('.'))[0])
+        assert actual_credit == expected_credit
 
     def add_live_account(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
