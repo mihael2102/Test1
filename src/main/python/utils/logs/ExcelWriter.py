@@ -1453,7 +1453,7 @@ class ExcelWriter:
                 , "Enter Password"
                 , "Click Login"
                 , "No OTP"
-                , "Whats new popup isnt displayed "
+                , "Whats new popup isn't displayed "
                 , "The client module was opened"
                 , "Click the  drop down filter "
                 , "The field found is Test Clients"
@@ -1474,6 +1474,31 @@ class ExcelWriter:
                 , "Open the trading account tab"
                 , "Open the trading account page"
                 , "Verify balance of account"]
+
+        if self.get_test_pretty_name_new(test) == "CreditOutTestCRM: test make credit out crm":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "Whats new popup isn't displayed "
+                , "The client module was opened"
+                , "Click the  drop down filter"
+                , "The field found is Test Clients"
+                , "Click the selected filter"
+                , "Setting the user's email in the email field"
+                , "Click the search button"
+                , "Click user email"
+                , "Open mt4 actions: Credit Out"
+                , "The account for credit out was selected"
+                , "The amount of credit out was set"
+                , "The Granted by of credit out was set"
+                , "The Comment of credit out was set"
+                , "Create of credit out button was clicked"
+                , "Scroll to trading account section"
+                , "Open the trading account tab"
+                , "Open the trading account page"
+                , "Credit balance is verified"]
 
         return step_suit
 
