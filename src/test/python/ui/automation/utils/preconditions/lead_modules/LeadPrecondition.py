@@ -35,8 +35,7 @@ class LeadPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         CRMHomePage(self.driver).open_client_module() \
-            .select_filter(self.config.get_value(
-            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
 
         ClientProfilePage(self.driver).click_fill_questionnaire_btn()

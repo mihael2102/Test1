@@ -79,7 +79,7 @@ class MT4CreditOutModule(CRMBasePage):
         return MT4CreditOutModule(self.driver)
 
     def perform_create_credit_out(self):
-        create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
+        create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Save')]")
         create_button.click()
         Logging().reportDebugStep(self, "Create of credit out button was clicked")
         return ClientProfilePage(self.driver)
