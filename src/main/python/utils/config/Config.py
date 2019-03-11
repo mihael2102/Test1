@@ -1,4 +1,4 @@
-test = "API Xtrader"
+test = "NF_ForexBestMarket_API"
 timeout = 4
 data = None
 url_client_area = ""

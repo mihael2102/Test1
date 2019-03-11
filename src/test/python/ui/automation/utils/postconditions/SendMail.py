@@ -9,10 +9,10 @@ def Send_Email_XML(filepath, content):
 
     fromaddr = "jonathan.albalak@pandats.com"
     # to = "Niv.s@pandats.com"
-    to = "ann.poimenova@gmail.com"
+    to = "jonathan.albalak@pandats.com"
     # to = "michael.oryshchenko@pandats.com"
-    cc = "anna.p@pandats.com"
-    bcc = "anna.poimenova@globallogic.com"
+    cc = "jonathan.albalak@pandats.com"
+    bcc = "jonathan.albalak@pandats.com"
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
@@ -51,7 +51,7 @@ def Send_Email_XML(filepath, content):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
 ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/API Xtrader/%s" % filepath, "rb")
+    attachment = open("C:/Program Files (x86)/Jenkins/workspace/NF_ForexBestMarket_API/%s" % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -88,11 +88,11 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    to = "Niv.s@pandats.com"
-    # to = "michael.oryshchenko@pandats.com"
+    # to = "Niv.s@pandats.com"
+    to = "michael.oryshchenko@pandats.com"
     # to = "ann.poimenova@gmail.com"
     cc = "anna.p@pandats.com"
-    bcc = "michael.oryshchenko@pandats.com"
+    bcc = "ann.poimenova@gmail.com"
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
@@ -104,7 +104,7 @@ def Send_Email_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "API Xtrader"
+    msg['Subject'] = "NF_ForexBestMarket_API"
 
     # string to store the body of the mail
     body = "API Xtrader New Forex"
@@ -117,7 +117,7 @@ def Send_Email_XLS(filepath):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
     ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/API Xtrader/%s" % filepath, "rb")
+    attachment = open("C:/Program Files (x86)/Jenkins/workspace/NF_ForexBestMarket_API/%s" % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -154,11 +154,11 @@ def Send_Email_XLS(filepath):
 def Send_ALL_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    to = "Niv.s@pandats.com"
-    # to = "michael.oryshchenko@pandats.com"
+    # to = "Niv.s@pandats.com"
+    to = "michael.oryshchenko@pandats.com"
     # to = "ann.poimenova@gmail.com"
     cc = "anna.p@pandats.com"
-    bcc = "michael.oryshchenko@pandats.com"
+    bcc = "ann.poimenova@gmail.com"
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
@@ -170,7 +170,7 @@ def Send_ALL_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "API Xtrader API New Forex"
+    msg['Subject'] = "NF_ForexBestMarket_API"
 
     # string to store the body of the mail
     body = "API Xtrader New Forex"
