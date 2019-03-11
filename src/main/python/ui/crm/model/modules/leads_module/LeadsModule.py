@@ -43,9 +43,13 @@ class LeadsModule(CRMBasePage):
         return lead_phone.text
 
     def open_personal_details_lead(self):
-        lead = super().wait_element_to_be_clickable("//a[contains(text(),'LEA')]")
+        sleep(7)
+        lead = self.driver.find_element(By.XPATH, "//a[contains(text(),'LEA')]")
         self.driver.execute_script("arguments[0].scrollIntoView();", lead)
-        lead.click()
+        try:
+            lead.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", lead)
         Logging().reportDebugStep(self, "Go to personal details lead")
         return LeadsModule(self.driver)
 
