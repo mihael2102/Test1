@@ -11,8 +11,8 @@ brands:
 #  config_file: royal_cfds.yml
 #- name: jonesmutual
 #  config_file: jonesmutual.yml
-#- name: forexbestmarket
-#  config_file: forexbestmarket.yml
+- name: forexbestmarket
+  config_file: forexbestmarket.yml
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
 #- name: solocapitlas
@@ -45,8 +45,8 @@ brands:
 #  config_file: bots.yml
 #- name: kontofx
 #  config_file: kontofx.yml
-- name: xtraderfx
-  config_file: xtraderfx.yml
+#- name: xtraderfx
+#  config_file: xtraderfx.yml
 #- name: firstindex
 #  config_file: firstindex.yml
 #- name: coinstec
