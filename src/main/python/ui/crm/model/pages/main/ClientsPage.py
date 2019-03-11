@@ -97,13 +97,14 @@ class ClientsPage(CRMBasePage):
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
         Logging().reportDebugStep(self, "Click the search button ")
-        sleep(5)
+        sleep(15)
         client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
         sleep(5)
         try:
-            self.driver.execute_script("arguments[0].click();", client_id)
-        except:
             client_id.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", client_id)
+
         sleep(1)
         Logging().reportDebugStep(self, "Click user email: " + email)
         return ClientProfilePage(self.driver)
