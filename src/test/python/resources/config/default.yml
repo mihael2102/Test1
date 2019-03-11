@@ -73,7 +73,7 @@ client_1:
   client_status_N: ""
   # EVAL_first_name: "'John_' + (datetime.utcnow().strftime('%Y%m%d_%H%M%S'))"
 #  first_name: "John-test" # manual config
-  EVAL_first_name: "'testqa' + (''.join(random.sample(string.ascii_uppercase*6, 6)))"
+  first_name: "John"
   last_name: "Doe"
   EVAL_email: "'pandaqa+' + (datetime.utcnow().strftime('%Y%m%d%H%M%S')) + '@pandats.com'"
 #  email: "john_doe_20180823_131412@pandats.com" # manual config
