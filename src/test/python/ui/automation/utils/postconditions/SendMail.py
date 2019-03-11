@@ -88,8 +88,8 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    to = "Niv.s@pandats.com"
-    # to = "michael.oryshchenko@pandats.com"
+    # to = "Niv.s@pandats.com"
+    to = "michael.oryshchenko@pandats.com"
     # to = "ann.poimenova@gmail.com"
     cc = "anna.p@pandats.com"
     bcc = "michael.oryshchenko@pandats.com"

@@ -28,16 +28,16 @@ class LeadPrecondition(object):
         self.driver = driver
         self.config = config
 
-    def fill_questioner_new_client(self):
-        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
+    def fill_questioner_new_client(self, client):
+
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+
         CRMHomePage(self.driver).open_client_module() \
             .select_filter(self.config.get_value(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+            .find_client_by_email(client)
 
         ClientProfilePage(self.driver).click_fill_questionnaire_btn()
         ClientProfilePage(self.driver).fill_questionnaire(CRMConstants.STATUS,

@@ -9,8 +9,19 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 import time
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
+from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondition import LeadPrecondition
 
 class TradingAccountCrmTest(BaseTest):
+
+    def fill_questioner_new_client(self):
+        if (global_var.current_brand_name == "itrader"):
+            client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
+            LeadPrecondition(self.driver, self.config).fill_questioner_new_client(client1[LeadsModuleConstants.EMAIL])
+        else:
+            return self
 
     def test_crm_open_trading_account(self):
         try:
