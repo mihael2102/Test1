@@ -92,9 +92,9 @@ class CALoginPage(CRMBasePage):
     def select_data_birth_day(self, data_birth_day):
         sleep(2)
         if global_var.current_brand_name == "ptbanc":
-            pick_list = super().wait_load_element("(//span[contains(text(),'Day')])[2]")
+            pick_list = super().wait_load_element("//span[contains(text(),'Day')]")
             pick_list.click()
-            day = super().wait_load_element("(//custom-select[@name='day']//span[text()='%s'])[2]" % data_birth_day)
+            day = super().wait_load_element("//custom-select[@name='day']//span[text()='%s']" % data_birth_day)
             day.click()
         else:
             data = self.driver.find_element_by_xpath("//custom-select[@name='day']//span[text()='%s']" % data_birth_day)
@@ -104,8 +104,8 @@ class CALoginPage(CRMBasePage):
 
     def select_data_birth_month(self, data_birth_month):
         if global_var.current_brand_name == "ptbanc":
-            super().wait_load_element("(//span[contains(text(),'Month')])[2]").click()
-            super().wait_load_element("(//custom-select[@name='month']//span[text()='%s'])[2]" % data_birth_month).click()
+            super().wait_load_element("//span[contains(text(),'Month')]").click()
+            super().wait_load_element("//custom-select[@name='month']//span[text()='%s']" % data_birth_month).click()
         else:
             data = self.driver.find_element_by_xpath("//custom-select[@name='month']//span[text()='%s']" % data_birth_month)
             self.driver.execute_script("arguments[0].click();", data)
@@ -114,8 +114,8 @@ class CALoginPage(CRMBasePage):
 
     def select_data_birth_year(self, data_birth_year):
         if global_var.current_brand_name == "ptbanc":
-            super().wait_load_element("(//span[contains(text(),'Year')])[2]").click()
-            super().wait_load_element("(//custom-select[@name='year']//span[text()='%s'])[2]" % data_birth_year).click()
+            super().wait_load_element("//span[contains(text(),'Year')]").click()
+            super().wait_load_element("//custom-select[@name='year']//span[text()='%s']" % data_birth_year).click()
         else:
             data = self.driver.find_element_by_xpath("//custom-select[@name='year']//span[text()='%s']" % data_birth_year)
             self.driver.execute_script("arguments[0].click();", data)
@@ -124,8 +124,8 @@ class CALoginPage(CRMBasePage):
 
     def choose_currency(self, currency):
         if global_var.current_brand_name == "ptbanc":
-            super().wait_load_element("(//custom-select[@name='currency'])[2]").click()
-            self.driver.find_element_by_xpath("(//custom-select[@name='currency']//span[text()='%s'])[2]" % currency) \
+            super().wait_load_element("//custom-select[@name='currency']").click()
+            self.driver.find_element_by_xpath("//custom-select[@name='currency']//span[text()='%s']" % currency) \
                                                 .click()
         else:
             data = self.driver.find_element_by_xpath("//custom-select[@name='currency']//span[text()='%s']" % currency)
@@ -135,10 +135,10 @@ class CALoginPage(CRMBasePage):
 
     def choose_citizenship(self, citizenship):
         if global_var.current_brand_name == "ptbanc":
-            pick_list_citizenship = super().wait_load_element("(//span[contains(text(),'Please select')])[2]")
+            pick_list_citizenship = super().wait_load_element("//span[contains(text(),'Please select')]")
             pick_list_citizenship.click()
-            select_citizenship = self.driver.find_element_by_xpath("(//custom-select[@name='citizenship'] \
-                                                                    //span[text()='%s'])[2]" % citizenship)
+            select_citizenship = self.driver.find_element_by_xpath("//custom-select[@name='citizenship'] \
+                                                                    //span[text()='%s']" % citizenship)
             select_citizenship.click()
         else:
             data = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
@@ -203,9 +203,9 @@ class CALoginPage(CRMBasePage):
         submit_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                 self.__class__.__name__)["next_btn"])
         submit_button.click()
-        if global_var.current_brand_name == "ptbanc":
-            sleep(7)
-            super().wait_load_element("//div[@class='close-pandats cmicon-close4']").click()
+        # if global_var.current_brand_name == "ptbanc":
+        #     sleep(7)
+        #     super().wait_load_element("//div[@class='close-pandats cmicon-close4']").click()
         Logging().reportDebugStep(self, "Click Next")
         return CALoginPage(self.driver)
 
@@ -292,7 +292,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def account_details(self):
-        logout_btn = super().wait_load_element("/html/body/header/div/div[2]/div[1]/label/div[2]/div/a[6]")
+        logout_btn = super().wait_load_element("/html/body/header/div/div[2]/div[1]/label/div[2]/div/a[5]")
         self.driver.execute_script("arguments[0].click();", logout_btn)
         Logging().reportDebugStep(self, "Account details click")
         return CALoginPage(self.driver)

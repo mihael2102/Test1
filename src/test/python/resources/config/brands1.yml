@@ -31,8 +31,8 @@ brands:
 #  config_file: swiftcfd.yml
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
-#- name: q8
-#  config_file: q8.yml
+- name: q8
+  config_file: q8.yml
 #- name: firstindex
 #  config_file: firstindex.yml
 #- name: b-finance
@@ -45,8 +45,8 @@ brands:
 #  config_file: q8.yml
 #- name: kontofx
 #  config_file: kontofx.yml
-- name: ptbanc
-  config_file: ptbanc.yml
+#- name: ptbanc
+#  config_file: ptbanc.yml
 
 
 
