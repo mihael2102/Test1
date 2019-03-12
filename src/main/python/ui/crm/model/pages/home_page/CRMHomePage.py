@@ -22,6 +22,7 @@ from src.main.python.ui.crm.model.modules.user_management.UserManagement import 
 from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsPage import TradingAccountsPage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
+from src.main.python.ui.crm.model.pages.dashboard.DashboardPage import DashboardPage
 
 class CRMHomePage(CRMBasePage):
 
@@ -100,6 +101,11 @@ class CRMHomePage(CRMBasePage):
         # return AffiliateListViewPage(self.driver)
         return AffiliatePage(self.driver)
 
+    def select_dashboard_module_more_list(self, module):
+        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+        module_element.click()
+        Logging().reportDebugStep(self, "Dashboard  module was opened")
+        return DashboardPage(self.driver)
 
     def refresh_page(self):
         super().refresh_page()
