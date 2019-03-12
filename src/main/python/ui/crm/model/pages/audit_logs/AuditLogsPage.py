@@ -13,8 +13,8 @@ from datetime import *
 
 class AuditLogsPage(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
+    # def __init__(self):
+    #     super().__init__()
 
     def get_all_tab_text(self):
         all_tab = super().wait_element_to_be_clickable("//button[contains(text(),'All')]")
@@ -161,3 +161,10 @@ class AuditLogsPage(CRMBasePage):
 
         ac.move_by_offset(250, 250).click().perform()
         return AuditLogsPage()
+
+    def check_audit_logs_loaded(self):
+        sleep(2)
+        self.driver.find_element_by_xpath("/html/body/app-root/audit-trails-list/div/grid/div/div/div[1] \
+                                                /table/tbody/tr[2]")
+        Logging().reportDebugStep(self, "Audit Logs module is loaded")
+        return AuditLogsPage(self.driver)

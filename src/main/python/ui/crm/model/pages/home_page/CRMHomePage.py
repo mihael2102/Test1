@@ -22,6 +22,7 @@ from src.main.python.ui.crm.model.modules.user_management.UserManagement import 
 from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsPage import TradingAccountsPage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
+from selenium.common.exceptions import TimeoutException
 
 class CRMHomePage(CRMBasePage):
 
@@ -69,9 +70,12 @@ class CRMHomePage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def select_audit_logs_module_more_list(self, module):
-        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
-        module_element.click()
-        Logging().reportDebugStep(self, "The audit logs module was opened")
+        try:
+            module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+            module_element.click()
+            Logging().reportDebugStep(self, "The audit logs module was opened")
+        except TimeoutException:
+            Logging().reportDebugStep(self, "There are no module")
         return AuditLogsPage(self.driver)
 
     def select_auto_assign_module_more_list(self, module):
@@ -87,9 +91,12 @@ class CRMHomePage(CRMBasePage):
         return HelpDeskPage(self.driver)
 
     def select_my_dashboard_module_more_list(self, module):
-        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
-        module_element.click()
-        Logging().reportDebugStep(self, "The my dashboard  module was opened")
+        try:
+            module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+            module_element.click()
+            Logging().reportDebugStep(self, "The my dashboard  module was opened")
+        except TimeoutException:
+            Logging().reportDebugStep(self, "There are no module")
         return MyDashBoardModule(self.driver)
 
     def select_affiliates_module_more_list(self, module):
@@ -138,3 +145,12 @@ class CRMHomePage(CRMBasePage):
         home_page_element.click()
         Logging().reportDebugStep(self, "The client module was opened")
         return TradingAccountsPage(self.driver)
+
+    def open_crm_configuration(self, module):
+        try:
+            module_element = self.driver.find_element_by_xpath("//a[contains(text(),'%s')]" % module)
+            self.driver.execute_script("arguments[0].click();", module_element)
+            Logging().reportDebugStep(self, "The CRM Configuration module was opened")
+        except TimeoutException:
+            Logging().reportDebugStep(self, "There are no module")
+        return AuditLogsPage(self.driver)

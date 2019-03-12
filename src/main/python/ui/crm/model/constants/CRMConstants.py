@@ -136,3 +136,6 @@ class CRMConstants(object):
     RATE = "111"
     DELETE_INTERACTION_MESSAGE = "Are You Sure You want to Delete?"
     INTERACTION_DELETED_MESSAGE = "Successfully deleted"
+    MYDASHBOARD_MODULE = "My Dashboard"
+    AUDITLOGS_MODULE = "Audit Logs"
+    CRM_CONFIGURATION = "CRM Configuration"
