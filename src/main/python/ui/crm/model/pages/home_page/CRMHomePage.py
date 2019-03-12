@@ -25,6 +25,7 @@ from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import Affiliat
 from src.main.python.ui.crm.model.pages.dashboard.DashboardPage import DashboardPage
 from src.main.python.ui.crm.model.pages.leaderboard.LeaderboardPage import LeaderboardPage
 from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class CRMHomePage(CRMBasePage):
 
@@ -42,7 +43,11 @@ class CRMHomePage(CRMBasePage):
 
     def select_user_management(self):
         sleep(5)
-        user_settings = super().wait_element_to_be_clickable("/html/body/table[1]/tbody/tr/td[3]/table/tbody/tr/td[3]/img")
+        if global_var.current_brand_name == "brokerxp" or global_var.current_brand_name == "capitalmarketsbanc":
+            user_settings = super().wait_element_to_be_clickable("/html/body/table[1]/tbody/tr/td[3]/table/tbody/tr/td[4]/img")
+        else:
+            user_settings = super().wait_element_to_be_clickable(
+                "/html/body/table[1]/tbody/tr/td[3]/table/tbody/tr/td[3]/img")
         user_settings.click()
         user_management = super().wait_element_to_be_clickable("//a[contains(text(), 'User Management')]")
         try:

@@ -29,7 +29,7 @@ class UserManagementPrecondition(object):
         tab_name = user_management.check_user_management_tab()
         email = user_management.check_table_loaded()
         assert tab_name == UserManagementConstants.USER_MANAGEMENT_TAB
-        assert UserManagementConstants.EMAIL in email
+        assert UserManagementConstants.EMAIL in email or UserManagementConstants.EMAIL_NET in email or UserManagementConstants.EMAIL_CO in email
 
 
 
