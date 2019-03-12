@@ -15,8 +15,16 @@ from selenium.common.exceptions import TimeoutException
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.test.python.ui.automation.utils.preconditions.dashboard.DashboardPrecondition import DashboardPrecondition
+from src.test.python.ui.automation.utils.preconditions.leaderboard.LeaderboardPrecondition import LeaderboardPrecondition
+from src.test.python.ui.automation.utils.preconditions.usermanagement.UserManagementPrecondition import UserManagementPrecondition
 
 class CheckModules(BaseTest):
 
     def test_check_dashboard(self):
         DashboardPrecondition(self.driver, self.config).check_dashboard()
+
+    def test_check_leaderboard(self):
+        LeaderboardPrecondition(self.driver, self.config).check_leaderboard()
+
+    def test_check_user_management(self):
+        UserManagementPrecondition(self.driver, self.config).check_user_management()

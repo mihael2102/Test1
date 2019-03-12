@@ -6,6 +6,7 @@ from dateutil.relativedelta import relativedelta
 class DashboardConstants(object):
     DASHBOARD_MODULE = "Dashboard"
     TOTAL_PORTFOLIO = "Total Portfolio"
-    BALANCE = "Balance"
-    CREDIT = "Credit"
-    OPENPL = "Open P&L"
+    BALANCE = "BALANCE"
+    CREDIT = "CREDIT"
+    OPENPL = "OPEN P&L"
+    LEADERBOARD_MODULE = "Leader Board"

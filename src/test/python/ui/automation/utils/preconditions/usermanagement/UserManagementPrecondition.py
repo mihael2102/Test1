@@ -7,9 +7,10 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
-from src.main.python.ui.crm.model.constants.DashboardConstants import DashboardConstants
+from src.main.python.ui.crm.model.constants.LeaderboardConstants import LeaderboardConstants
+from src.main.python.ui.crm.model.constants.UserManagementConstants import UserManagementConstants
 
-class DashboardPrecondition(object):
+class UserManagementPrecondition(object):
 
     driver = None
     config = None
@@ -18,25 +19,17 @@ class DashboardPrecondition(object):
         self.driver = driver
         self.config = config
 
-    def check_dashboard(self):
+    def check_user_management(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        dashboard_page = CRMHomePage(self.driver).open_more_list_modules().select_dashboard_module_more_list(DashboardConstants.DASHBOARD_MODULE)
-        # total_portfolio = dashboard_page.check_total_portfolio()
-        balance = dashboard_page.check_balance()
-        credit = dashboard_page.check_credit()
-        openpandl = dashboard_page.check_openpandl()
-
-        # assert total_portfolio == DashboardConstants.TOTAL_PORTFOLIO
-        assert balance == DashboardConstants.BALANCE
-        assert credit == DashboardConstants.CREDIT
-        assert openpandl == DashboardConstants.OPENPL
-
-
-
+        user_management = CRMHomePage(self.driver).select_user_management()
+        tab_name = user_management.check_user_management_tab()
+        email = user_management.check_table_loaded()
+        assert tab_name == UserManagementConstants.USER_MANAGEMENT_TAB
+        assert UserManagementConstants.EMAIL in email
 
 
 

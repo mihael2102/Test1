@@ -136,6 +136,42 @@ class ExcelWriter:
 
     def steps_for_test(self, test):
 
+        if self.get_test_pretty_name_new(test) == "CheckModules: test check user management":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"Go to User Management"
+                ,"Check name tab User Management"
+                ,"Check table loaded"]
+
+        if self.get_test_pretty_name_new(test) == "CheckModules: test check leaderboard":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"Dashboard  module was opened"
+                ,"Click select all"
+                ,"Enter name group"
+                ,"Click Go"]
+
+
+        if self.get_test_pretty_name_new(test) == "CheckModules: test check dashboard":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"Dashboard  module was opened"
+                ,"Check balance"
+                ,"Check credit"
+                ,"Check open p and l"]
+
 
         if self.get_test_pretty_name_new(test) == "LeadModuleTest: fill questioner new client":
             step_suit = ["Open CRM"

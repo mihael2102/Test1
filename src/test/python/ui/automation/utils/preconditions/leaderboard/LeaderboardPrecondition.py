@@ -7,9 +7,9 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
-from src.main.python.ui.crm.model.constants.DashboardConstants import DashboardConstants
+from src.main.python.ui.crm.model.constants.LeaderboardConstants import LeaderboardConstants
 
-class DashboardPrecondition(object):
+class LeaderboardPrecondition(object):
 
     driver = None
     config = None
@@ -18,25 +18,15 @@ class DashboardPrecondition(object):
         self.driver = driver
         self.config = config
 
-    def check_dashboard(self):
+    def check_leaderboard(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        dashboard_page = CRMHomePage(self.driver).open_more_list_modules().select_dashboard_module_more_list(DashboardConstants.DASHBOARD_MODULE)
-        # total_portfolio = dashboard_page.check_total_portfolio()
-        balance = dashboard_page.check_balance()
-        credit = dashboard_page.check_credit()
-        openpandl = dashboard_page.check_openpandl()
-
-        # assert total_portfolio == DashboardConstants.TOTAL_PORTFOLIO
-        assert balance == DashboardConstants.BALANCE
-        assert credit == DashboardConstants.CREDIT
-        assert openpandl == DashboardConstants.OPENPL
-
-
-
-
-
+        leaderboard = CRMHomePage(self.driver).open_more_list_modules().select_leaderboard_module_more_list(
+            LeaderboardConstants.LEADERBOARD_MODULE)
+        leaderboard.choose_group()
+        leaderboard.enter_name_group(LeaderboardConstants.NAME_GROUP)
+        leaderboard.click_button_go()
 

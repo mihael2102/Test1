@@ -1,8 +1,8 @@
 brands:
 - name: kayafx
   config_file: kaya_fx.yml
-- name: rimarkets
-  config_file: rimarkets.yml
-- name: gmo
-  config_file: gmo.yml
+#- name: rimarkets
+#  config_file: rimarkets.yml
+#- name: gmo
+#  config_file: gmo.yml
 

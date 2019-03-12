@@ -1,7 +1,7 @@
 brands:
 - name: capitalmarketsbanc
   config_file: capitalmarketsbanc.yml
-- name: itrader_global
-  config_file: itrader_global.yml
-- name: otcapital
-  config_file: otcapital.yml
+#- name: itrader_global
+#  config_file: itrader_global.yml
+#- name: otcapital
+#  config_file: otcapital.yml

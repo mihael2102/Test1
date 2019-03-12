@@ -4,6 +4,8 @@ tests_config:
   class: CheckModules
   tests:
     - test_check_dashboard
+    - test_check_leaderboard
+    - test_check_user_management
 
   ###General
 #- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter

@@ -27,33 +27,33 @@ class DashboardPage(CRMBasePage):
 
     def check_total_portfolio(self):
         sleep(20)
-        total_portfolio = super().wait_load_element("//*[@id='main-dashboard']/div[2]/div[1]/div/div[1]/div/div[1]/div/h4")
+        total_portfolio = super().wait_load_element("")
         Logging().reportDebugStep(self, "Check total portfolio")
         return total_portfolio.text
 
     def check_balance(self):
         sleep(3)
-        check_balance = self.driver.find_element(By.XPATH,
-            "//*[@id='main-dashboard']/div[2]/div[1]/div/div[1]/div/div[2]/div[1]/div/div[1]")
+        self.driver.switch_to.frame(self.driver.find_element(By.XPATH, "//iframe[@name='tradeChartFrame']"))
+        check_balance = super().wait_load_element(
+            "//body//div[@class='col-lg-12 dashboard-box total']/div[2]/div[1]//div[@class='stats-label']")
         Logging().reportDebugStep(self, "Check balance")
         return check_balance.text
 
     def check_credit(self):
         sleep(3)
-        check_credit = self.driver.find_element(By.XPATH,
-            "//*[@id='main-dashboard']/div[2]/div[1]/div/div[1]/div/div[2]/div[2]/div/div[1]")
+        check_credit = super().wait_load_element(
+            "//body//div[@class='col-lg-12 dashboard-box total']/div[2]/div[2]//div[@class='stats-label']")
         Logging().reportDebugStep(self, "Check credit")
         return check_credit.text
 
     def check_openpandl(self):
         sleep(3)
-        check_openpandl = self.driver.find_element(By.XPATH,
-            "//*[@id='main-dashboard']/div[2]/div[1]/div/div[1]/div/div[2]/div[3]/div/div[1]")
+        check_openpandl = super().wait_load_element(
+            "//body//div[@class='col-lg-12 dashboard-box total']//div[3]//div[@class='stats-label']")
         Logging().reportDebugStep(self, "Check open p and l")
         return check_openpandl.text
 
     def click_week_button(self):
-        sleep(7)
         today_btn = super().wait_element_to_be_clickable("//a[contains(text(), 'Week')]")
         today_btn.click()
         Logging().reportDebugStep(self, "Click week btn")

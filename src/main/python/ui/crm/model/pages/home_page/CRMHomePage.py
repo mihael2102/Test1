@@ -23,6 +23,8 @@ from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsPage impo
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
 from src.main.python.ui.crm.model.pages.dashboard.DashboardPage import DashboardPage
+from src.main.python.ui.crm.model.pages.leaderboard.LeaderboardPage import LeaderboardPage
+from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
 
 class CRMHomePage(CRMBasePage):
 
@@ -37,6 +39,18 @@ class CRMHomePage(CRMBasePage):
         Logging().reportDebugStep(self, "Task module is opened")
         self.wait_crm_loading_to_finish()
         return TasksPage(self.driver)
+
+    def select_user_management(self):
+        sleep(5)
+        user_settings = super().wait_element_to_be_clickable("/html/body/table[1]/tbody/tr/td[3]/table/tbody/tr/td[3]/img")
+        user_settings.click()
+        user_management = super().wait_element_to_be_clickable("//a[contains(text(), 'User Management')]")
+        try:
+            user_management.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", user_management)
+        Logging().reportDebugStep(self, "Go to User Management")
+        return UserManagementPage(self.driver)
 
     def open_more_list_modules(self):
         hover_mouse = ActionChains(self.driver)
@@ -106,6 +120,12 @@ class CRMHomePage(CRMBasePage):
         module_element.click()
         Logging().reportDebugStep(self, "Dashboard  module was opened")
         return DashboardPage(self.driver)
+
+    def select_leaderboard_module_more_list(self, module):
+        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+        module_element.click()
+        Logging().reportDebugStep(self, "Dashboard  module was opened")
+        return LeaderboardPage(self.driver)
 
     def refresh_page(self):
         super().refresh_page()
