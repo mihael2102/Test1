@@ -27,7 +27,7 @@ class DashboardPage(CRMBasePage):
 
     def check_total_portfolio(self):
         sleep(20)
-        total_portfolio = self.driver.find_element(By.XPATH, "//*[@id='main-dashboard']/div[2]/div[1]/div/div[1]/div/div[1]/div/h4")
+        total_portfolio = super().wait_load_element("//*[@id='main-dashboard']/div[2]/div[1]/div/div[1]/div/div[1]/div/h4")
         Logging().reportDebugStep(self, "Check total portfolio")
         return total_portfolio.text
 
