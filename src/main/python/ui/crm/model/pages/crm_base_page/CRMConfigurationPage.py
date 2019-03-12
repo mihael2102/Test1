@@ -64,7 +64,7 @@ class CRMConfigurationPage(CRMBasePage):
     def check_cashier_loaded(self):
         sleep(1)
         try:
-            self.driver.find_element_by_accessibility_id("//a[contains(text(),'Cashier')]")
+            self.driver.find_element(By.XPATH, "//a[contains(text(),'Cashier')]")
             brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Cashier')]")
             brand_configuration_btn.click()
             self.driver.find_element_by_xpath("//div[contains(text(),'Cashier')]")
