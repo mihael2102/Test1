@@ -172,6 +172,49 @@ class ExcelWriter:
                 ,"Check credit"
                 ,"Check open p and l"]
 
+        if self.get_test_pretty_name_new(test) == "CheckModules: test my dashboard loading":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"The my dashboard  module was opened"
+                ,"Latest Sales Insights is loaded"
+                ,"Your Tasks section contain records"
+                ,"Client Segmentation section contain records"]
+
+        if self.get_test_pretty_name_new(test) == "CheckModules: test audit logs loading":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"The Audit Logs module was opened"
+                ,"Audit Logs module is loaded"]
+
+        if self.get_test_pretty_name_new(test) == "CRMConfigurationsTest: test crm configurations pages loading":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"The CRM Configuration module was opened"
+                ,"Common configuration is loaded"
+                ,"Brand Configuration module is loaded"
+                ,"SMS Configuration is loaded"
+                ,"SMTP Configuration is loaded"
+                ,"Minimum Deposit is loaded"
+                ,"Cashier is loaded"
+                ,"Manage PSP is loaded"
+                ,"Click2Call Configuration is loaded"
+                ,"Referral Configuration is loaded"
+                ,"Workflows is loaded"
+                ,"Sharing Access is loaded"
+                ,"List Row Colors is loaded"
+                ,"EMAIL Maker is loaded"]
 
         if self.get_test_pretty_name_new(test) == "LeadModuleTest: fill questioner new client":
             step_suit = ["Open CRM"

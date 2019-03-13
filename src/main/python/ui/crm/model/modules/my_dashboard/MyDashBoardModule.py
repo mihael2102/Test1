@@ -13,8 +13,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 class MyDashBoardModule(CRMBasePage):
-    def __init__(self) -> None:
-        super().__init__()
+    # def __init__(self) -> None:
+    #     super().__init__()
 
     def open_show_all_tab(self):
         sleep(1)

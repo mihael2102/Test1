@@ -167,3 +167,6 @@ class CRMConstants(object):
     FIST_DEAL = "CPA"
     SECOND_DEAL = "CPL"
     RATE = "111"
+    MYDASHBOARD_MODULE = "My Dashboard"
+    AUDITLOGS_MODULE = "Audit Logs"
+    CRM_CONFIGURATION = "CRM Configuration"

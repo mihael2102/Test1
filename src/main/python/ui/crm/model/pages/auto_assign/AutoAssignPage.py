@@ -9,8 +9,8 @@ from src.main.python.utils.logs.Loging import Logging
 
 
 class AutoAssignPage(CRMBasePage):
-    def __init__(self) -> None:
-        super().__init__()
+    # def __init__(self) -> None:
+    #     super().__init__()
 
     def open_add_rule_module(self):
         add_rule_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Rule')]")

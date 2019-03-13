@@ -4,8 +4,8 @@ from src.main.python.utils.logs.Loging import Logging
 
 
 class UserManagement(CRMBasePage):
-    def __init__(self) -> None:
-        super().__init__()
+    # def __init__(self) -> None:
+    #     super().__init__()
 
     def click_new_user_module(self):
         new_user_button = super().wait_element_to_be_clickable("//button[contains(text(),'New User')]")
