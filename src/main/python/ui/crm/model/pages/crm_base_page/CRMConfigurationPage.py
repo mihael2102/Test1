@@ -2,7 +2,7 @@ import re
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from _decimal import Decimal
 from time import sleep
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.pages.edit_ticket.BrandEditionTicketInfoPage import EditionTicketInfoPage
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
@@ -64,23 +64,30 @@ class CRMConfigurationPage(CRMBasePage):
     def check_cashier_loaded(self):
         sleep(1)
         try:
-            self.driver.find_element(By.XPATH, "//a[contains(text(),'Cashier')]")
+            self.driver.find_element_by_xpath("//a[contains(text(),'Cashier')]")
             brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Cashier')]")
             brand_configuration_btn.click()
             self.driver.find_element_by_xpath("//div[contains(text(),'Cashier')]")
             Logging().reportDebugStep(self, "Cashier is loaded")
             return CRMConfigurationPage(self.driver)
-        except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+        except (TimeoutException, NoSuchElementException):
+            pass
             Logging().reportDebugStep(self, "There is no Cashier module")
             return CRMConfigurationPage(self.driver)
 
     def check_manage_psp_loaded(self):
         sleep(1)
-        brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Manage PSP')]")
-        brand_configuration_btn.click()
-        self.driver.find_element_by_xpath("//div[contains(text(),'Manage PSP')]")
-        Logging().reportDebugStep(self, "Manage PSP is loaded")
-        return CRMConfigurationPage(self.driver)
+        try:
+            self.driver.find_element_by_xpath("//a[contains(text(),'Manage PSP')]")
+            brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Manage PSP')]")
+            brand_configuration_btn.click()
+            self.driver.find_element_by_xpath("//div[contains(text(),'Manage PSP')]")
+            Logging().reportDebugStep(self, "Manage PSP is loaded")
+            return CRMConfigurationPage(self.driver)
+        except (TimeoutException, NoSuchElementException):
+            pass
+            Logging().reportDebugStep(self, "There is no Manage PSP module")
+            return CRMConfigurationPage(self.driver)
 
     def check_click2call_loaded(self):
         sleep(1)
@@ -108,17 +115,31 @@ class CRMConfigurationPage(CRMBasePage):
 
     def check_sharing_access_loaded(self):
         sleep(1)
-        brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Sharing Access Rules')]")
-        brand_configuration_btn.click()
-        self.driver.find_element_by_xpath("//div[contains(text(),'Sharing Access Rules')]")
-        Logging().reportDebugStep(self, "Sharing Access Rules is loaded")
-        return CRMConfigurationPage(self.driver)
+        try:
+            self.driver.find_element_by_xpath("//a[contains(text(),'Sharing Access Rules')]")
+            brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Sharing Access Rules')]")
+            brand_configuration_btn.click()
+            self.driver.find_element_by_xpath("//div[contains(text(),'Sharing Access Rules')]")
+            Logging().reportDebugStep(self, "Sharing Access Rules is loaded")
+            return CRMConfigurationPage(self.driver)
+        except (TimeoutException, NoSuchElementException):
+            pass
+            Logging().reportDebugStep(self, "There is no Sharing Access module")
+            return CRMConfigurationPage(self.driver)
 
     def check_email_templates_loaded(self):
         sleep(1)
-        brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Email Templates')]")
-        brand_configuration_btn.click()
-        sleep(1)
-        self.driver.find_element_by_xpath("//table[@id='emailmakerЗ']")
-        Logging().reportDebugStep(self, "EMAIL Maker is loaded")
-        return CRMConfigurationPage(self.driver)
+        try:
+            self.driver.find_element_by_xpath("//a[contains(text(),'Email Templates')]")
+            brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Email Templates')]")
+            brand_configuration_btn.click()
+            sleep(1)
+            self.driver.find_element_by_xpath("//table[@id='emailmakerЗ']")
+            Logging().reportDebugStep(self, "EMAIL Maker is loaded")
+            return CRMConfigurationPage(self.driver)
+        except (TimeoutException, NoSuchElementException):
+            pass
+            self.driver.find_element_by_xpath("//span[contains(text(), \
+                                        'Please note that you do not have sufficient priveleges to access this page')]")
+            Logging().reportDebugStep(self, "There is no sufficient priveleges to access EMAIL Maker page")
+            return CRMConfigurationPage(self.driver)
