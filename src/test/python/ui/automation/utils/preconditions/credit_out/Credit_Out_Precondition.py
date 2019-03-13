@@ -15,6 +15,7 @@ from src.main.python.ui.crm.model.mt4.credit_out.MT4CreditOutModule import MT4Cr
 from src.main.python.utils.config import Config
 
 
+
 class CreditOutPrecondition(object):
     driver = None
     config = None
@@ -35,15 +36,25 @@ class CreditOutPrecondition(object):
         sleep(2)
         ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREDIT_OUT)
         MT4CreditOutModule(self.driver).make_credit_out(CRMConstants.CREDIT_ACCOUNT, CRMConstants.AMOUNT_CREDIT_OUT,
-                                                        CRMConstants.CREDIT_OUT_COMMENT)
+                                                        CRMConstants.CREDIT_OUT_COMMENT,
+                                                        CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE))
         sleep(3)
         ClientProfilePage(self.driver).refresh_page() \
             .click_trading_accounts_tab() \
             .open_trading_accounts_tab() \
             .open_trading_account_page(CRMConstants.CREDIT_ACCOUNT)
+
         actual_credit = MT4CreditOutModule(self.driver).get_credit_int()
         expected_credit = int(((CRMConstants.AMOUNT_CREDIT_IN).split('.'))[0]) - int(
             ((CRMConstants.AMOUNT_CREDIT_OUT).split('.'))[0])
+        count = 0
+        while (actual_credit != expected_credit):
+            sleep(2)
+            CRMHomePage(self.driver).refresh_page()
+            actual_credit = MT4CreditOutModule(self.driver).get_credit_int()
+            count += 1
+            if count == 5:
+                break
         assert actual_credit == expected_credit
 
     def add_live_account(self):

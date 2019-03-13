@@ -37,9 +37,9 @@ class CreditInPrecondition(object):
         CRMHomePage(self.driver).open_client_module()
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
                                                             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-                                            .find_client_by_email(self.config.get_data_client(
-                                                                TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))\
-                                            .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+                                .find_client_by_email(self.config.get_data_client(
+                                                            TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))\
+                                .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
         # crm_client_profile = MT4CreateAccountModule(self.driver) \
         #     .create_account(
         #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER),
@@ -48,11 +48,11 @@ class CreditInPrecondition(object):
         #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE))
         crm_client_profile = MT4CreateAccountModule(self.driver) \
             .create_account(
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                  TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
+                                      TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
             .click_close()
         return crm_client_profile
 

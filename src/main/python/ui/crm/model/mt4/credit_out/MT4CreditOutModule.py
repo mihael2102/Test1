@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
+from time import sleep
+from selenium.webdriver.common.keys import Keys
 
 
 class MT4CreditOutModule(CRMBasePage):
@@ -17,10 +19,11 @@ class MT4CreditOutModule(CRMBasePage):
     #      :returns MT4 Credit Out instance
     # '''
 
-    def make_credit_out(self, account_number, amount, comment):
+    def make_credit_out(self, account_number, amount, comment, date):
         self.select_account(account_number)
         self.set_amount(amount)
         self.set_description(comment)
+        self.set_expire_date(date)
         self.perform_create_credit_out()
         return ClientProfilePage()
 
@@ -79,7 +82,7 @@ class MT4CreditOutModule(CRMBasePage):
         return MT4CreditOutModule(self.driver)
 
     def perform_create_credit_out(self):
-        create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Save')]")
+        create_button = self.driver.find_element_by_xpath("(//button[contains(text(),'Save')])[3]")
         create_button.click()
         Logging().reportDebugStep(self, "Create of credit out button was clicked")
         return ClientProfilePage(self.driver)
@@ -89,3 +92,13 @@ class MT4CreditOutModule(CRMBasePage):
         credit = int((credit_text.split('.'))[0])
         Logging().reportDebugStep(self, "Actual credit amount is " + credit_text)
         return credit
+
+    def set_expire_date(self, date):
+        sleep(3)
+        date_drop_down = self.driver.find_element(By.XPATH, "//input[@id='expire_date']")
+        date_drop_down.clear()
+        date_drop_down.send_keys(date)
+        sleep(0.5)
+        date_drop_down.send_keys(Keys.ENTER)
+        Logging().reportDebugStep(self, "The expire date of credit out module was set:  " + date)
+        return ClientProfilePage(self.driver)
