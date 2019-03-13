@@ -15,6 +15,7 @@ from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsInformationPage import \
     TradingAccountsInformationPage
+from selenium.webdriver.support.select import Select
 from src.main.python.utils.logs.Loging import Logging
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -641,4 +642,26 @@ class ClientProfilePage(CRMBasePage):
         sleep(1)
         self.driver.execute_script("arguments[0].click();", link_trading_account)
         Logging().reportDebugStep(self, "Open the trading account page ")
+        return ClientProfilePage(self.driver)
+
+    def change_client_status_with_pencil(self, status):
+        sleep(2)
+        edit_personal_details = super().wait_load_element("//*[@id='mouseArea_Client Status']")
+        edit_personal_details.click()
+        sleep(1)
+        pencil = super().wait_load_element("//*[@id='crmspanid']/a/span")
+        try:
+            pencil.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", pencil)
+        sleep(1)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id='txtbox_Client Status']"))
+        select.select_by_visible_text(status)
+        sleep(1)
+        save_personal_details = super().wait_load_element("//*[@id='editarea_Client Status']/div/a[1]/span")
+        try:
+            save_personal_details.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", save_personal_details)
+        Logging().reportDebugStep(self, "Click Edit")
         return ClientProfilePage(self.driver)
