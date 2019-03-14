@@ -419,3 +419,30 @@ class ClientsPage(CRMBasePage):
         mass_sms_module.click()
         Logging().reportDebugStep(self, "The send sms module was opened")
         return SendSMSClientsModule(self.driver)
+
+    def get_client_first_name(self):
+        client_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located(
+                (By.XPATH, "//td[contains(text(),'First Name')]//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Verified the first name: " + client_email.text)
+        return client_email.text
+
+    def get_client_phone(self):
+        client_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Phone')]//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Verified the phone: " + client_email.text)
+        return client_email.text
+
+    def click_custom_information(self):
+        sleep(2)
+        button = super().wait_element_to_be_clickable("//span[@class = 'glyphicons CustomInformation']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", button)
+        self.driver.execute_script("arguments[0].click();", button)
+        Logging().reportDebugStep(self, "Click Custom Information")
+        return ClientsPage(self.driver)
+
+    def get_client_postalCode(self):
+        client_postalCode = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Code')]//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Verified the code: " + client_postalCode.text)
+        return client_postalCode.text

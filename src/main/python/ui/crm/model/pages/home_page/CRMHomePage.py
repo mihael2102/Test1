@@ -27,6 +27,7 @@ from src.main.python.ui.crm.model.pages.leaderboard.LeaderboardPage import Leade
 from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 
 class CRMHomePage(CRMBasePage):
 
@@ -100,10 +101,15 @@ class CRMHomePage(CRMBasePage):
         return AuditLogsPage(self.driver)
 
     def select_auto_assign_module_more_list(self, module):
-        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
-        module_element.click()
-        Logging().reportDebugStep(self, "The audit logs module was opened")
-        return AutoAssignPage(self.driver)
+        try:
+            module_element = self.driver.find_element_by_xpath("//a[@name='%s']" % module)
+            self.driver.execute_script("arguments[0].click();", module_element)
+            Logging().reportDebugStep(self, "The AutoAssign module was opened")
+            return AutoAssignPage(self.driver)
+        except NoSuchElementException:
+            pass
+            Logging().reportDebugStep(self, "The AutoAssign module does not exist")
+            return AutoAssignPage(self.driver)
 
     def select_service_desk_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)

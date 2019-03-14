@@ -11,8 +11,8 @@ class AutoAssignConstants(object):
     AUTO_ASSIGN_MODULE = "Auto Assign Config"
     AUTO_ASSIGN_INFO = "AutoAssign_info_1"
     TODAY_DATE = datetime.now()
-    RULE_NAME = "Rule name: " + random_number
-    SECOND_RULE_NAME = "Second Rule name: 111 " + random_number
+    RULE_NAME = "Leads_test: " + random_number
+    SECOND_RULE_NAME = "Client_test " + random_number
     FIRST_BRAND = "first_brand"
     SECOND_BRAND = "second_brand"
     FIRST_RULE_TYPE = "first_rule_type"
@@ -31,3 +31,7 @@ class AutoAssignConstants(object):
     FIRST_MODULE = "first_module"
     SECOND_MODULE = "second_module"
     FIRST_SELECTION = "first_selection"
+    USER = "pandaqa pandaqa"
+    RULE_TYPE1 = "Country"
+    COUNTRY = "Liechtenstein"
+    COUNTRY1 = "Afghanistan"

@@ -16,7 +16,7 @@ class AutoAssignPage(CRMBasePage):
         add_rule_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Rule')]")
         add_rule_button.click()
         Logging().reportDebugStep(self, "The Add rule module was opened")
-        return AddRuleModule()
+        return AddRuleModule(self.driver)
 
     def get_successfull_message(self):
         message = super().wait_visible_of_element("//div[@class='bootstrap-dialog-message']")
@@ -32,8 +32,8 @@ class AutoAssignPage(CRMBasePage):
             "//div[@id='filterrow.ListGrid0']//div[3]/preceding-sibling::div[1]//input")
         add_campaign_button.clear()
         add_campaign_button.send_keys(rule_name)
-        Logging().reportDebugStep(self, "The campaign_name was entered: " + rule_name)
-        return AutoAssignPage()
+        Logging().reportDebugStep(self, "The rule name was entered: " + rule_name)
+        return AutoAssignPage(self.driver)
 
     def make_delete_rule(self):
         sleep(2)

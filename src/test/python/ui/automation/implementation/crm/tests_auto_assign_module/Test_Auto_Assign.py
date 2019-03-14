@@ -14,8 +14,15 @@ from src.test.python.ui.automation.utils.preconditions.campaigns.CampaignsPrecon
 @pytest.mark.run(order=34)
 class AutoAssignModuleTest(BaseTest):
 
-    def test_add_auto_assign_rule(self):
-        AutoAssignPrecondition(self.driver)
+    def test_add_auto_assign_rule_lead(self):
+        AutoAssignPrecondition(self.driver, self.config).perform_add_lead_rule()
+
+    def test_add_auto_assign_rule_client(self):
+        AutoAssignPrecondition(self.driver, self.config).perform_add_client_rule()
+
+
+
+
 
 
 
