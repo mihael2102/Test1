@@ -4,8 +4,12 @@ from src.main.python.utils.config import Config
 
 
 class AutoAssignPrecondition(object):
-    def __init__(self) -> None:
-        super().__init__()
+    driver = None
+    config = None
+
+    def __init__(self, driver, config):
+        self.driver = driver
+        self.config = config
 
     def perform_add_rule(self, campaign):
         CRMHomePage().open_more_list_modules() \
