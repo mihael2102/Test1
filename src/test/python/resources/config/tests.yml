@@ -123,6 +123,7 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
   class: WorkflowsModulesTest
   tests:
-#    - test_create_workflows
+    - test_create_workflows
     - test_check_workflow_by_status
-#    - test_delete_workflow
+    - test_check_workflow_by_country
+    - test_delete_workflow

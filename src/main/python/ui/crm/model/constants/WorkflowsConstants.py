@@ -4,6 +4,8 @@ from dateutil.relativedelta import relativedelta
 
 
 class WorkflowsConstants(object):
+    CONDITION_OR = "OR"
+    COUNTRY_AUSTRIA = "Austria"
     STATUS_B_TEST = "B - Test"
     NAME_WORKFLOW = "Test_workflow"
     PRIORITY_WORKFLOW = ""

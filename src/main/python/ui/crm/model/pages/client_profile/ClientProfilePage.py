@@ -19,6 +19,7 @@ from selenium.webdriver.support.select import Select
 from src.main.python.utils.logs.Loging import Logging
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.select import Select
 
 
 class ClientProfilePage(CRMBasePage):
@@ -664,4 +665,38 @@ class ClientProfilePage(CRMBasePage):
         except:
             self.driver.execute_script("arguments[0].click();", save_personal_details)
         Logging().reportDebugStep(self, "Click Edit")
+        return ClientProfilePage(self.driver)
+
+
+    def click_edit_personal_detail(self):
+        sleep(2)
+        btn_edit = self.driver.find_element(By.XPATH, "/html/body/table[2]/tbody/tr/td/table[1]/tbody/tr/td/div/table[2]/tbody/tr[1]/td/table/tbody/tr/td[2]/input")
+        btn_edit.click()
+        Logging().reportDebugStep(self, "Click Edit")
+        return ClientProfilePage(self.driver)
+
+    def select_country(self, country):
+        sleep(2)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='countries_popup']"))
+        select.select_by_visible_text(country)
+        Logging().reportDebugStep(self, "Select country" + country)
+        return ClientProfilePage(self.driver)
+
+
+    def click_save(self):
+        sleep(2)
+        btn_save = self.driver.find_element(By.XPATH,
+                                            "//*[@id='updateBLform']/div[3]/input[2]")
+        btn_save.click()
+        Logging().reportDebugStep(self, "Click Save")
+        return ClientProfilePage(self.driver)
+
+    def enter_date_birth(self, date):
+        sleep(2)
+        if global_var.current_brand_name != "q8":
+            btn_save = self.driver.find_element(By.XPATH,
+                                                "//*[@id='birthday']")
+            btn_save.clear()
+            btn_save.send_keys(date)
+        Logging().reportDebugStep(self, "Enter b-day")
         return ClientProfilePage(self.driver)

@@ -277,6 +277,56 @@ class ExcelWriter:
 
     def steps_for_test(self, test):
 
+
+        if self.get_test_pretty_name_new(test) == "WorkflowsModulesTest: test check workflow by status":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"The client module was opened"
+                ,"Click the  drop down filter "
+                ,"The field found is : Test Clients"
+                ,"Click the selected filter"
+                ,"Setting  the user's email in the email field  is : @pandats.com"
+                ,"Click the search button "
+                ,"Click user email: @pandats.com"
+                ,"Click Edit"
+                ,"Returns the country: Albania"
+                ,"Returns the address :Test_addressThe client module was opened"
+                ,"Click the  drop down filter "
+                ,"The field found is : Test Clients"
+                ,"Click the selected filter"
+                ,"Setting  the user's email in the email field  is : @pandats.com"
+                ,"Click the search button "
+                ,"Click user email: @pandats.com"
+                ,"Click Edit"
+                ,"Returns the country: Albania"
+                ,"Returns the address :Test_address"]
+
+        if self.get_test_pretty_name_new(test) == "WorkflowsModulesTest: test check workflow by country":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"The client module was opened"
+                ,"Click the  drop down filter"
+                ,"The field found is : Test Clients"
+                ,"Click the selected filter"
+                ,"Setting  the user's email in the email field  is : @pandats.com"
+                ,"Click the search button "
+                ,"Click user email: @pandats.com"
+                ,"Click Edit"
+                ,"Select countryAustria"
+                ,"Click Save"
+                ,"Enter b-day"
+                ,"Returns the country"
+                ,"Returns the address"]
+
+
         if self.get_test_pretty_name_new(test) == "WorkflowsModulesTest: test delete workflow":
             step_suit = ["Open CRM"
                 , "Enter Username"

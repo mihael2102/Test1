@@ -54,13 +54,18 @@ class WorkflowsPrecondition(object):
 
 
         WorkflowsPage(self.driver).click_add_condition() \
-                                  .select_second_accept_promotions(WorkflowsConstants.EMAIl) \
-                                  .select_second_condition(WorkflowsConstants.CONDITION_CONTAINS) \
-                                  .click_enter_email()\
-                                  .enter_email(WorkflowsConstants.PANDATS_EMAIL)\
-                                  .click_save_value()\
-                                  .select_condition_between(WorkflowsConstants.CONDITION_AND)\
-                                  .click_next()\
+                                  .select_second_accept_promotions(WorkflowsConstants.COUNTRY) \
+                                  .select_second_condition(WorkflowsConstants.CONDITION_IS) \
+                                  .select_second_country(WorkflowsConstants.COUNTRY_AUSTRIA)\
+                                  .select_condition_between(WorkflowsConstants.CONDITION_OR)\
+                                  .click_add_condition()\
+                                  .select_third_accept_promotions(WorkflowsConstants.EMAIl) \
+                                  .select_third_conditions(WorkflowsConstants.CONDITION_CONTAINS) \
+                                  .click_enter_email() \
+                                  .enter_email(WorkflowsConstants.PANDATS_EMAIL) \
+                                  .click_save_value() \
+                                  .select_second_condition_between(WorkflowsConstants.CONDITION_AND) \
+                                  .click_next() \
                                   .select_add_task(WorkflowsConstants.UPDATE_FIELD)\
                                   .enter_task_title(WorkflowsConstants.TASK_TITLE)\
                                   .click_add_field()\
@@ -86,7 +91,15 @@ class WorkflowsPrecondition(object):
             .select_filter(self.config.get_value(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_first_client_by_email(WorkflowsConstants.PANDATS_EMAIL)
-        ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_B_TEST)
+        if global_var.current_brand_name == "q8":
+            ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_TEST)
+        else:
+            ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_B_TEST)
+        CRMHomePage(self.driver).refresh_page()
+        country = ClientProfilePage(self.driver).get_country_text()
+        assert country == WorkflowsConstants.COUNTRY_ALBANIA
+        address = ClientProfilePage(self.driver).get_address_text()
+        assert address == WorkflowsConstants.TEST_ADDRESS
 
 
 
@@ -98,7 +111,16 @@ class WorkflowsPrecondition(object):
         CRMHomePage(self.driver).open_client_module() \
             .select_filter(self.config.get_value(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(WorkflowsConstants.PANDATS_EMAIL)
+            .find_second_client_by_email(WorkflowsConstants.PANDATS_EMAIL)
+        ClientProfilePage(self.driver).click_edit_personal_detail()
+        ClientProfilePage(self.driver).select_country(WorkflowsConstants.COUNTRY_AUSTRIA)
+        ClientProfilePage(self.driver).enter_date_birth(CRMConstants.DATE_BIRTH)
+        ClientProfilePage(self.driver).click_save()
+        CRMHomePage(self.driver).refresh_page()
+        country = ClientProfilePage(self.driver).get_country_text()
+        assert country == WorkflowsConstants.COUNTRY_ALBANIA
+        address = ClientProfilePage(self.driver).get_address_text()
+        assert address == WorkflowsConstants.TEST_ADDRESS
 
 
     def delete_workflow(self):
