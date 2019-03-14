@@ -172,8 +172,7 @@ class Page_CA_Precondition(object):
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                   LeadsModuleConstants.FIRST_NAME])
+                .open_ca_menu()
             CAPage(self.driver).open_verification_center() \
                                .select_document_type(TestDataConstants.DOCUMENT_TYPE1) \
                                .cklick_upload_btn()\
@@ -211,8 +210,7 @@ class Page_CA_Precondition(object):
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                   LeadsModuleConstants.FIRST_NAME])
+                .open_ca_menu()
             CAPage(self.driver).open_verification_center() \
                                .select_document_type(TestDataConstants.DOCUMENT_TYPE1) \
                                .verify_document_status_ca(CAConstants.DOCUMENT_STATUS_CA)
