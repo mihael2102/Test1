@@ -27,6 +27,25 @@ class LeadPrecondition(object):
         self.driver = driver
         self.config = config
 
+
+    def test_edit_lead_pencil_icon(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        CRMHomePage(self.driver).open_lead_module()
+        LeadsModule(self.driver).select_filter(
+            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
+        LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)\
+                                .click_search_button_leads_module()\
+                                .open_first_lead()\
+                                .change_personal_info_pencil_icon(CRMConstants.CHANGE_PHONE_LEAD)
+
+        changed_phone = LeadsModule(self.driver).get_mobile_text()
+        assert changed_phone == CRMConstants.CHANGE_PHONE_LEAD
+
+
     def import_leads(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),

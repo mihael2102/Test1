@@ -24,6 +24,12 @@ class LeadModuleTest(BaseTest):
         self.lead2 = self.load_lead_from_config(LeadsModuleConstants.SECOND_LEAD_INFO)
         self.client1 = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
 
+
+    def test_edit_lead_pencil_icon(self):
+        LeadPrecondition(self.driver, self.config).test_edit_lead_pencil_icon()
+
+
+
     def test_create_lead(self):
         try:
             LeadPrecondition(self.driver, self.config).create_lead(self.lead1)

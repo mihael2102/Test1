@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    CHANGE_PHONE_LEAD = "0534431234"
     DATE_BIRTH = "1999-02-19"
     STATUS_EDIT_STOX = "R - New"
     STATUS_EDIT_ITRADER = "Test"

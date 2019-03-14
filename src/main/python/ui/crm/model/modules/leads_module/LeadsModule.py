@@ -646,6 +646,40 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "The search button was clicked ")
         return LeadsModule(self.driver)
 
+    def change_personal_info_pencil_icon(self, phone):
+        sleep(2)
+        edit_personal_details = super().wait_load_element("//*[@id='mouseArea_Mobile']")
+        edit_personal_details.click()
+        sleep(1)
+        pencil = super().wait_load_element("//*[@id='crmspanid']/a/span")
+        try:
+            pencil.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", pencil)
+        sleep(1)
+        input = self.driver.find_element(By.XPATH, "//input[@id= 'txtbox_Mobile']")
+        input.clear()
+        input.send_keys(phone)
+        sleep(1)
+        save_personal_details = super().wait_load_element("//*[@id='editarea_Mobile']/div/a[1]/span")
+        try:
+            save_personal_details.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", save_personal_details)
+        Logging().reportDebugStep(self, "Click phone: " + phone)
+        return LeadsModule(self.driver)
+
+    def open_first_lead(self):
+        sleep(3)
+        first_lead = self.driver.find_element(By.XPATH, "//tr[1]//a[contains(text(), 'LEA')]")
+        sleep(1)
+        try:
+            first_lead.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", first_lead)
+        Logging().reportDebugStep(self, "Click first lead")
+        return LeadsModule(self.driver)
+
     def get_results_count(self):
         refresh_icon = self.driver.find_elements(By.XPATH, "//span[@class='fa fa-refresh']")[0]
         refresh_icon.click()
@@ -703,3 +737,9 @@ class LeadsModule(CRMBasePage):
                                                       "//table[@id='resizeble_cols']//td[9]")
         Logging().reportDebugStep(self, "Seventh column name : " + name_eighth_column.text)
         return name_eighth_column.text
+
+    def get_mobile_text(self):
+        get_mobile_text = self.driver.find_element(By.XPATH,
+                                                      "//*[@id='dtlview_Mobile']")
+        Logging().reportDebugStep(self, "Mobile changed : " + get_mobile_text.text)
+        return get_mobile_text.text
