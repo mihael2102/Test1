@@ -18,6 +18,34 @@ import autoit
 
 class LeadsModule(CRMBasePage):
 
+    def click_save(self):
+        sleep(4)
+        click_save = self.driver.find_element(By.XPATH, "//*[@id='mailcomposeform']/div[2]/input[3]")
+        click_save.click()
+        Logging().reportDebugStep(self, "Click save")
+        return LeadsModule(self.driver)
+
+    def enter_body_mail(self, body):
+        sleep(4)
+        self.driver.switch_to_frame(self.driver.find_element(By.XPATH, "//*[@id='cke_1_contents']/iframe"))
+        enter_body_mail = self.driver.find_element(By.XPATH, "/html/body/p")
+        enter_body_mail.send_keys(body)
+        Logging().reportDebugStep(self, "Enter body mail")
+        return LeadsModule(self.driver)
+
+    def enter_subject_mail(self, subject):
+        sleep(4)
+        enter_subject_mail = self.driver.find_element(By.XPATH, "//*[@id='subject']")
+        enter_subject_mail.send_keys(subject)
+        Logging().reportDebugStep(self, "Enter subject mail")
+        return LeadsModule(self.driver)
+
+    def get_lead_email_pop_up(self):
+        sleep(7)
+        first_lead_email = self.driver.find_element(By.XPATH, "//input[@id='parent_name']").get_attribute("value")
+        Logging().reportDebugStep(self, "Get lead email pop up")
+        return first_lead_email
+
 
     def check_third_step(self):
         sleep(4)
@@ -634,6 +662,24 @@ class LeadsModule(CRMBasePage):
         first_name_field.clear()
         first_name_field.send_keys(language)
         Logging().reportDebugStep(self, "The language was entered : " + language)
+        return LeadsModule(self.driver)
+
+
+    def get_first_lead_email(self):
+        first_lead_email = self.driver.find_element(By.XPATH, "//tr[2]//a//div[contains(text(), 'pandaqa')]")
+        Logging().reportDebugStep(self, "Get first lead email")
+        return first_lead_email.text
+
+
+    def click_first_lead_email(self):
+        sleep(3)
+        first_lead_email = self.driver.find_element(By.XPATH, "//tr[2]//a//div[contains(text(), 'pandaqa')]")
+        sleep(1)
+        try:
+            first_lead_email.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", first_lead_email)
+        Logging().reportDebugStep(self, "Click first lead email")
         return LeadsModule(self.driver)
 
     def click_search_button_leads_module(self):

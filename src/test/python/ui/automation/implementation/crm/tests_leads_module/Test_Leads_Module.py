@@ -28,6 +28,9 @@ class LeadModuleTest(BaseTest):
     def test_edit_lead_pencil_icon(self):
         LeadPrecondition(self.driver, self.config).test_edit_lead_pencil_icon()
 
+    def test_check_email_popup(self):
+        LeadPrecondition(self.driver, self.config).check_email_popup()
+
 
 
     def test_create_lead(self):
