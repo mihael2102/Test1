@@ -42,7 +42,10 @@ class ClientProfilePage(CRMBasePage):
         sleep(2)
         btn_save = self.driver.find_element(By.XPATH,
                                             "//*[@id='massedit_form']/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[1]/td/div/input[1]")
-        btn_save.click()
+        try:
+            btn_save.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", btn_save)
         Logging().reportDebugStep(self, "Click Save")
         return ClientProfilePage(self.driver)
 
@@ -843,7 +846,10 @@ class ClientProfilePage(CRMBasePage):
 
     def get_address_text(self):
         self.driver.execute_script("scroll(0, 300);")
-        address = self.driver.find_element(By.XPATH, "//td[contains(text(),'Address')]//following-sibling::td[1]")
+        if global_var.current_brand_name == "itrader":
+            address = self.driver.find_element(By.XPATH, "//td[1][contains(text(),'Address')]//following-sibling::td[1]")
+        else:
+            address = self.driver.find_element(By.XPATH, "//td[contains(text(),'Address')]//following-sibling::td[1]")
         parser_address_text = re.sub('[" "]', '', address.text)
         Logging().reportDebugStep(self, "Returns the address :" + parser_address_text)
         return parser_address_text
@@ -881,7 +887,10 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_country_text(self):
-        country = self.driver.find_element(By.XPATH, "//td[contains(text(),'Country')]//following-sibling::td[1]")
+        if global_var.current_brand_name == "itrader":
+            country = self.driver.find_element(By.XPATH, "//td[3][contains(text(),'Country')]//following-sibling::td[1]")
+        else:
+            country = self.driver.find_element(By.XPATH, "//td[contains(text(),'Country')]//following-sibling::td[1]")
         Logging().reportDebugStep(self, "Returns the country: " + country.text)
         return country.text
 

@@ -54,7 +54,7 @@ class WorkflowsPage(CRMBasePage):
         return WorkflowsPage(self.driver)
 
     def click_add_new_workflow(self):
-        sleep(2)
+        sleep(5)
         btn_add_new_workflow = self.driver.find_element_by_xpath("//button[contains(text(), 'New Workflow')]")
         btn_add_new_workflow.click()
         Logging().reportDebugStep(self, "Click add new workflow")
@@ -164,7 +164,11 @@ class WorkflowsPage(CRMBasePage):
             "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[2]/div/div[1]/select-search/div/div[2]/span[1]/input")
         clients.send_keys(name)
         sleep(3)
-        select = self.driver.find_element_by_xpath("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[2]/div/div[1]/select-search/div/div[2]/span[2][contains(text(), '%s')]" % name)
+        if global_var.current_brand_name == "itrader":
+            select = self.driver.find_element_by_xpath("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[2]/div/div[1]/select-search/div/div[2]/span[3][contains(text(), '%s')]" % name)
+        else:
+            select = self.driver.find_element_by_xpath(
+                "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[2]/div/div[1]/select-search/div/div[2]/span[2][contains(text(), '%s')]" % name)
         try:
             select.click()
         except:

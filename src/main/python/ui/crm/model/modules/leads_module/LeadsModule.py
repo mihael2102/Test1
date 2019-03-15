@@ -95,7 +95,7 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def open_lead_personal_details(self):
-        sleep(10)
+        sleep(60)
         lead = self.driver.find_element(By.XPATH, "//a[contains(text(), 'LEA')]")
         try:
             lead.click()

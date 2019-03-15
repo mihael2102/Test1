@@ -91,10 +91,12 @@ class WorkflowsPrecondition(object):
             .select_filter(self.config.get_value(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_first_client_by_email(WorkflowsConstants.PANDATS_EMAIL)
-        if global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8" or global_var.current_brand_name == "itrader":
             ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_TEST)
         else:
             ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_B_TEST)
+        CRMHomePage(self.driver).refresh_page()
+        sleep(3)
         CRMHomePage(self.driver).refresh_page()
         country = ClientProfilePage(self.driver).get_country_text()
         assert country == WorkflowsConstants.COUNTRY_ALBANIA
