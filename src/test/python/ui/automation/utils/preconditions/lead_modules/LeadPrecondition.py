@@ -47,6 +47,19 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).enter_subject_mail(CRMConstants.SUBJECT_LEAD_MAIL)
         LeadsModule(self.driver).enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         LeadsModule(self.driver).click_save()
+        CRMHomePage(self.driver).click_ok()
+        sleep(7)
+        CRMHomePage(self.driver).open_lead_module()
+        LeadsModule(self.driver).select_filter(
+            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
+        LeadsModule(self.driver).enter_email(lead_email) \
+            .click_search_button_leads_module()\
+            .open_lead_personal_details()\
+            .open_email_section()
+        mail = LeadsModule(self.driver).get_saved_mail_lead(CRMConstants.SUBJECT_LEAD_MAIL)
+        assert mail == CRMConstants.SUBJECT_LEAD_MAIL
+
+
 
     def test_edit_lead_pencil_icon(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \

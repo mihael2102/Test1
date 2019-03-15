@@ -4,7 +4,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
-    SUBJECT_LEAD_MAIL = "Test"
+    SUBJECT_LEAD_MAIL = "Test MAIL" + str(random.randrange(1, 9999999))
     BODY_LEAD_MAIL = "Test"
     CHANGE_PHONE_LEAD = "0534431234"
     DATE_BIRTH = "1999-02-19"

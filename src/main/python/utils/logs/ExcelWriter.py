@@ -277,6 +277,37 @@ class ExcelWriter:
 
     def steps_for_test(self, test):
 
+
+        if self.get_test_pretty_name_new(test) == "LeadModuleTest: test_check_email_popup":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"Leads module was opened"
+                ,"Click the  drop down filter "
+                ,"The field found is : Test Leads"
+                ,"Click the selected filter"
+                ,"The email was entered : pandaqa+"
+                ,"The search button was clicked "
+                ,"Get first lead email"
+                ,"Click first lead email"
+                ,"Get lead email pop up"
+                ,"Enter subject mail"
+                ,"Enter body mail"
+                ,"Click save"
+                ,"The Ok button was clicked "
+                ,"Leads module was opened"
+                ,"Click the  drop down filter "
+                ,"The field found is : Test Leads"
+                ,"Click the selected filter"
+                ,"The email was entered :"
+                ,"The search button was clicked "
+                ,"Open lead personal details"
+                ,"Open lead email section"
+                ,"Open lead email section"]
+
         if self.get_test_pretty_name_new(test) == "LeadModuleTest: test edit lead pencil icon":
             step_suit = ["Open CRM"
                 , "Enter Username"

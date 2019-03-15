@@ -18,10 +18,41 @@ import autoit
 
 class LeadsModule(CRMBasePage):
 
+    def get_saved_mail_lead(self, mail):
+        sleep(4)
+        mail_lead = self.driver.find_element(By.XPATH,
+                                                 "//*[@id='rld_table_content']//a[contains(text(), '%s')]" % mail)
+        Logging().reportDebugStep(self, "Open lead email section")
+        return mail_lead.text
+
+    def open_email_section(self):
+        email_section = self.driver.find_element(By.XPATH, "//a[@id='show_Leads_Emails']/span[@class='glyphicons collapse']")
+        try:
+            email_section.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", email_section)
+        Logging().reportDebugStep(self, "Open lead email section")
+        return LeadsModule(self.driver)
+
+    def open_lead_personal_details(self):
+        sleep(10)
+        lead = self.driver.find_element(By.XPATH, "//a[contains(text(), 'LEA')]")
+        try:
+            lead.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", lead)
+        Logging().reportDebugStep(self, "Open lead personal details")
+        return LeadsModule(self.driver)
+
+
     def click_save(self):
         sleep(4)
-        click_save = self.driver.find_element(By.XPATH, "//*[@id='mailcomposeform']/div[2]/input[3]")
-        click_save.click()
+        self.driver.switch_to.default_content()
+        click_save = self.driver.find_element(By.XPATH, "//div[@class='modal-footer new-modal-footer']/input[3]")
+        try:
+            click_save.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", click_save)
         Logging().reportDebugStep(self, "Click save")
         return LeadsModule(self.driver)
 
@@ -29,7 +60,8 @@ class LeadsModule(CRMBasePage):
         sleep(4)
         self.driver.switch_to_frame(self.driver.find_element(By.XPATH, "//*[@id='cke_1_contents']/iframe"))
         enter_body_mail = self.driver.find_element(By.XPATH, "/html/body/p")
-        enter_body_mail.send_keys(body)
+        self.driver.execute_script("arguments[0].textContent = arguments[1];", enter_body_mail, body)
+        # enter_body_mail.send_keys(body)
         Logging().reportDebugStep(self, "Enter body mail")
         return LeadsModule(self.driver)
 
@@ -666,6 +698,7 @@ class LeadsModule(CRMBasePage):
 
 
     def get_first_lead_email(self):
+        sleep(4)
         first_lead_email = self.driver.find_element(By.XPATH, "//tr[2]//a//div[contains(text(), 'pandaqa')]")
         Logging().reportDebugStep(self, "Get first lead email")
         return first_lead_email.text

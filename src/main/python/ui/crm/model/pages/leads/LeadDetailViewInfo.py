@@ -10,6 +10,8 @@ from src.main.python.utils.logs.Loging import Logging
 
 class LeadDetailViewInfo(CRMBasePage):
 
+
+
     def click_delete_button(self):
         task_module = super().wait_load_element("//input[@name='Delete']")
         task_module.click()
