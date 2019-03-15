@@ -15,7 +15,7 @@ class WorkflowsConstants(object):
     STATUS_TEST = "Test"
     EMAIl = "Email"
     CONDITION_CONTAINS = "contains"
-    PANDATS_EMAIL = "@pandats.com"
+    PANDATS_EMAIL = "pandaqa+"
     CONDITION_AND = "AND"
     UPDATE_FIELD = "Update Field"
     TASK_TITLE = "Test_title"
