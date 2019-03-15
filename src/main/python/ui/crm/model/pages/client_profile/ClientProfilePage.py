@@ -21,6 +21,61 @@ from src.main.python.utils.logs.Loging import Logging
 
 class ClientProfilePage(CRMBasePage):
 
+    def enter_date_birth(self, date):
+        sleep(2)
+        if global_var.current_brand_name != "q8":
+            btn_save = self.driver.find_element(By.XPATH,
+                                                "//*[@id='birthday']")
+            btn_save.clear()
+            btn_save.send_keys(date)
+        Logging().reportDebugStep(self, "Enter b-day")
+        return ClientProfilePage(self.driver)
+
+    def select_country(self, country):
+        sleep(2)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@name='bill_country']"))
+        select.select_by_visible_text(country)
+        Logging().reportDebugStep(self, "Select country" + country)
+        return ClientProfilePage(self.driver)
+
+    def click_save(self):
+        sleep(2)
+        btn_save = self.driver.find_element(By.XPATH,
+                                            "//*[@id='massedit_form']/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[1]/td/div/input[1]")
+        btn_save.click()
+        Logging().reportDebugStep(self, "Click Save")
+        return ClientProfilePage(self.driver)
+
+    def click_edit_personal_detail(self):
+        sleep(2)
+        btn_edit = self.driver.find_element(By.XPATH,
+                                            "/html/body/table[2]/tbody/tr/td/table/tbody/tr/td/div/table[2]/tbody/tr[1]/td/table/tbody/tr[2]/td/input[1]")
+        btn_edit.click()
+        Logging().reportDebugStep(self, "Click Edit")
+        return ClientProfilePage(self.driver)
+
+    def change_client_status_with_pencil(self, status):
+        sleep(2)
+        edit_personal_details = super().wait_load_element("//*[@id='mouseArea_Client Status']")
+        edit_personal_details.click()
+        sleep(1)
+        pencil = super().wait_load_element("//*[@id='crmspanid']/a/span")
+        try:
+            pencil.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", pencil)
+        sleep(1)
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id='txtbox_Client Status']"))
+        select.select_by_visible_text(status)
+        sleep(1)
+        save_personal_details = super().wait_load_element("//*[@id='editarea_Client Status']/div/a[1]/span")
+        try:
+            save_personal_details.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", save_personal_details)
+        Logging().reportDebugStep(self, "Click Edit")
+        return ClientProfilePage(self.driver)
+
     def fill_questionnaire(self, status,income,estimate,purpose,estimate_year,incoming_funds,level_education,time_inv,
                            last_trade,level_exp,volume,leverage,apple,facebook,initial_deposit,result_trading,investment_obj,
                            county, tin):

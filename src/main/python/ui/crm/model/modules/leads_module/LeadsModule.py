@@ -20,6 +20,123 @@ import autoit
 
 class LeadsModule(CRMBasePage):
 
+    def change_personal_info_pencil_icon(self, phone):
+        sleep(2)
+        edit_personal_details = super().wait_load_element("//*[@id='mouseArea_Mobile']")
+        edit_personal_details.click()
+        sleep(1)
+        pencil = super().wait_load_element("//*[@id='crmspanid']/a/span")
+        try:
+            pencil.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", pencil)
+        sleep(1)
+        input = self.driver.find_element(By.XPATH, "//input[@id= 'txtbox_Mobile']")
+        input.clear()
+        input.send_keys(phone)
+        sleep(1)
+        save_personal_details = super().wait_load_element("//*[@id='editarea_Mobile']/div/a[1]/span")
+        try:
+            save_personal_details.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", save_personal_details)
+        Logging().reportDebugStep(self, "Click phone: " + phone)
+        return LeadsModule(self.driver)
+
+    def open_first_lead(self):
+        sleep(3)
+        first_lead = self.driver.find_element(By.XPATH, "//tr[1]//a[contains(text(), 'LEA')]")
+        sleep(1)
+        try:
+            first_lead.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", first_lead)
+        Logging().reportDebugStep(self, "Click first lead")
+        return LeadsModule(self.driver)
+
+    def get_mobile_text(self):
+        get_mobile_text = self.driver.find_element(By.XPATH,
+                                                   "//*[@id='dtlview_Mobile']")
+        Logging().reportDebugStep(self, "Mobile changed : " + get_mobile_text.text)
+        return get_mobile_text.text
+
+    def click_first_lead_email(self):
+        sleep(3)
+        first_lead_email = self.driver.find_element(By.XPATH, "//tr[2]//a//div[contains(text(), 'pandaqa')]")
+        sleep(1)
+        try:
+            first_lead_email.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", first_lead_email)
+        Logging().reportDebugStep(self, "Click first lead email")
+        return LeadsModule(self.driver)
+
+    def get_first_lead_email(self):
+        sleep(4)
+        first_lead_email = self.driver.find_element(By.XPATH, "//tr[2]//a//div[contains(text(), 'pandaqa')]")
+        Logging().reportDebugStep(self, "Get first lead email")
+        return first_lead_email.text
+
+    def get_saved_mail_lead(self, mail):
+        sleep(4)
+        mail_lead = self.driver.find_element(By.XPATH,
+                                             "//*[@id='rld_table_content']//a[contains(text(), '%s')]" % mail)
+        Logging().reportDebugStep(self, "Open lead email section")
+        return mail_lead.text
+
+    def open_email_section(self):
+        email_section = self.driver.find_element(By.XPATH,
+                                                 "//a[@id='show_Leads_Emails']/span[@class='glyphicons collapse']")
+        try:
+            email_section.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", email_section)
+        Logging().reportDebugStep(self, "Open lead email section")
+        return LeadsModule(self.driver)
+
+    def open_lead_personal_details(self):
+        sleep(10)
+        lead = self.driver.find_element(By.XPATH, "//a[contains(text(), 'LEA')]")
+        try:
+            lead.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", lead)
+        Logging().reportDebugStep(self, "Open lead personal details")
+        return LeadsModule(self.driver)
+
+    def click_save(self):
+        sleep(4)
+        self.driver.switch_to.default_content()
+        click_save = self.driver.find_element(By.XPATH, "//div[@class='modal-footer new-modal-footer']/input[3]")
+        try:
+            click_save.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", click_save)
+        Logging().reportDebugStep(self, "Click save")
+        return LeadsModule(self.driver)
+
+    def enter_body_mail(self, body):
+        sleep(4)
+        self.driver.switch_to_frame(self.driver.find_element(By.XPATH, "//*[@id='cke_1_contents']/iframe"))
+        enter_body_mail = self.driver.find_element(By.XPATH, "/html/body/p")
+        self.driver.execute_script("arguments[0].textContent = arguments[1];", enter_body_mail, body)
+        # enter_body_mail.send_keys(body)
+        Logging().reportDebugStep(self, "Enter body mail")
+        return LeadsModule(self.driver)
+
+    def enter_subject_mail(self, subject):
+        sleep(4)
+        enter_subject_mail = self.driver.find_element(By.XPATH, "//*[@id='subject']")
+        enter_subject_mail.send_keys(subject)
+        Logging().reportDebugStep(self, "Enter subject mail")
+        return LeadsModule(self.driver)
+
+    def get_lead_email_pop_up(self):
+        sleep(7)
+        first_lead_email = self.driver.find_element(By.XPATH, "//input[@id='parent_name']").get_attribute("value")
+        Logging().reportDebugStep(self, "Get lead email pop up")
+        return first_lead_email
+
     def check_third_step(self):
         sleep(4)
         check_third_step = self.driver.find_element(By.XPATH, "//div[@class='steps']/h1").text
