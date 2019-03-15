@@ -136,7 +136,7 @@ class ExcelWriter:
 
     def steps_for_test(self, test):
 
-        if self.get_test_pretty_name_new(test) == "LeadModuleTest: test_check_email_popup":
+        if self.get_test_pretty_name_new(test) == "LeadModuleTest: test check email popup":
             step_suit = ["Open CRM"
                 , "Enter Username"
                 , "Enter Password"
