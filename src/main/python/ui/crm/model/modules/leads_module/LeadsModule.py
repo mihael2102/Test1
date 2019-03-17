@@ -16,6 +16,8 @@ from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 import autoit
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class LeadsModule(CRMBasePage):
@@ -468,11 +470,10 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Click sorting by Exist")
         return LeadsModule(self.driver)
 
-    def perform_searching_lead_module(self, first_name, last_name, email, assigned_to, tittle, lead_source, lead_status,
-                                      language):
+    def perform_searching_lead_module(self, email):
         self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
-        self.enter_first_name(first_name)
-        self.enter_last_name(last_name)
+        # self.enter_first_name(first_name)
+        # self.enter_last_name(last_name)
         self.enter_email(email)
         # self.enter_assigned_to(assigned_to)
         # self.enter_tittle(tittle)
@@ -550,6 +551,8 @@ class LeadsModule(CRMBasePage):
         sleep(10)
         sleep(10)
         Logging().reportDebugStep(self, "Click the selected filter")
+        if global_var.current_brand_name == "itrader":
+            sleep(30)
         self.wait_crm_loading_to_finish()
         return LeadsModule(self.driver)
 
@@ -795,3 +798,33 @@ class LeadsModule(CRMBasePage):
                                                       "//table[@id='resizeble_cols']//td[9]")
         Logging().reportDebugStep(self, "Seventh column name : " + name_eighth_column.text)
         return name_eighth_column.text
+
+    def get_lead_email(self):
+        lead_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Email']")))
+        Logging().reportDebugStep(self, "Verified the lead email: " + lead_email.text)
+        return lead_email.text
+
+    def get_lead_fname(self):
+        lead_fname = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_First Name']")))
+        Logging().reportDebugStep(self, "Verified the lead first name: " + lead_fname.text)
+        return lead_fname.text
+
+    def get_lead_lname(self):
+        lead_lname = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Last Name']")))
+        Logging().reportDebugStep(self, "Verified the lead last name: " + lead_lname.text)
+        return lead_lname.text
+
+    def get_lead_phone(self):
+        lead_phone = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Phone']")))
+        Logging().reportDebugStep(self, "Verified the lead phone: " + lead_phone.text)
+        return lead_phone.text
+
+    def get_lead_assignedto(self):
+        lead_assigned = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='dtlview_Assigned To']")))
+        Logging().reportDebugStep(self, "Lead assigned to: " + lead_assigned.text)
+        return lead_assigned.text

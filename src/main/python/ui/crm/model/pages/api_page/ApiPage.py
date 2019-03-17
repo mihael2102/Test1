@@ -318,6 +318,15 @@ class ApiPage(CRMBasePage):
         input = self.driver.find_element(By.XPATH,
                                          "//*[@id='sample-request-param-field-country-Customers-createCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.clear()
+        input.send_keys(country)
+        Logging().reportDebugStep(self, "Enter country")
+        return ApiPage(self.driver)
+
+    def set_lead_country(self, country):
+        input = self.driver.find_element(By.XPATH,
+                                         "//*[@id='sample-request-param-field-country-Leads-Leads-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(country)
         Logging().reportDebugStep(self, "Enter country")
         return ApiPage(self.driver)

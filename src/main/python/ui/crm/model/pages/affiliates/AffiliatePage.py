@@ -139,7 +139,7 @@ class AffiliatePage(CRMBasePage):
     def open_edit_affiliate(self):
         sleep(3)
         edit_button = self.driver.find_element(By.XPATH,
-                                               "/html/body/app-root/affiliate-list/div[2]/div[2]/grid/div/div/div[1]/table/tbody/tr[2]/td[10]/div/span")
+                                        "//span[@class='glyphicon glyphicon-pencil cursor-pointer ng-star-inserted']")
         edit_button.click()
         Logging().reportDebugStep(self, "Click edit affiliate")
         return AffiliatePage(self.driver)
@@ -199,3 +199,20 @@ class AffiliatePage(CRMBasePage):
         button_ok.click()
         Logging().reportDebugStep(self, "Copy key")
         return key
+
+    def get_link_api(self):
+        sleep(5)
+        try:
+            api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+        except NoSuchElementException:
+            try:
+                CRMBasePage(self.driver).refresh_page()
+                sleep(1)
+                api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+            except NoSuchElementException:
+                CRMBasePage(self.driver).refresh_page()
+                sleep(1)
+                api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+        # api_link.click()
+        Logging().reportDebugStep(self, "Get link API")
+        return api_link

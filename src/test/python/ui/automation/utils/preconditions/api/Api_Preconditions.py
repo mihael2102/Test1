@@ -5,6 +5,7 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
+from src.main.python.ui.crm.model.constants.AutoAssignConstants import AutoAssignConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
@@ -13,6 +14,7 @@ from src.main.python.ui.crm.model.constants.APIConstants import APIConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 import re
 import time
+from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 
 class ApiPrecondition(object):
 
@@ -94,19 +96,41 @@ class ApiPrecondition(object):
         ApiPage(self.driver).enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME])
         ApiPage(self.driver).enter_lastName(APIConstants.LASTNAME)
-        ApiPage(self.driver).enter_phone(APIConstants.PHONE)
-        ApiPage(self.driver).enter_refferal(APIConstants.REFFERAL)
         ApiPage(self.driver).send_create_customer()
 
         check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
 
         assert APIConstants.STATUS_OK in check_create_customer_token
 
-        # CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
-        # ClientsPage(self.driver).select_filter(self.config.get_data_client(
-        #     TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-        #     .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                                                 LeadsModuleConstants.EMAIL])
+        ApiPage(self.driver).create_customer_module()
+        ApiPage(self.driver).enter_email(APIConstants.EMAIL)
+        ApiPage(self.driver).enter_password(APIConstants.PASSWORD)
+        ApiPage(self.driver).enter_country(APIConstants.COUNTRY1)
+        ApiPage(self.driver).enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                 LeadsModuleConstants.FIRST_NAME])
+        ApiPage(self.driver).enter_lastName(APIConstants.LASTNAME)
+        ApiPage(self.driver).send_create_customer()
+
+        check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+
+        assert APIConstants.STATUS_OK in check_create_customer_token
+
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
+        ClientsPage(self.driver).select_filter(self.config.get_data_client(
+            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                        LeadsModuleConstants.EMAIL])
+        assigned = ClientsPage(self.driver).get_client_assigned_to()
+        assert assigned == AutoAssignConstants.USER
+
+        CRMHomePage(self.driver).open_client_module()
+        ClientsPage(self.driver).select_filter(self.config.get_data_client(
+            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(APIConstants.EMAIL)
+        assigned = ClientsPage(self.driver).get_client_assigned_to()
+        assert assigned == AutoAssignConstants.USER
+
+
         # client_email = ClientsPage(self.driver).get_first_client_email()
         # client_country = ClientsPage(self.driver).get_client_country()
         # client_first_name = ClientsPage(self.driver).get_client_first_name()
@@ -114,7 +138,7 @@ class ApiPrecondition(object):
         # client_phone = ClientsPage(self.driver).get_client_phone()
         # ClientsPage(self.driver).click_custom_information()
         # refferal = ClientsPage(self.driver).get_refferal_client()
-        #
+
         # if global_var.current_brand_name != "royal_cfds":
         #     assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
         #                                                     LeadsModuleConstants.EMAIL]
@@ -199,10 +223,12 @@ class ApiPrecondition(object):
     def test_create_lead(self):
         self.autorization_process()
         ApiPage(self.driver).create_lead_module()
-        ApiPage(self.driver).enter_email_lead(self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL])
+        ApiPage(self.driver).enter_email_lead(self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)
+                                                                                [LeadsModuleConstants.EMAIL])
         ApiPage(self.driver).enter_firstName_lead(APIConstants.LEAD_FNAME)
         ApiPage(self.driver).enter_lastName_lead(APIConstants.LEAD_LNAME)
         ApiPage(self.driver).enter_phone_lead(APIConstants.LEAD_PHONE)
+        ApiPage(self.driver).set_lead_country(APIConstants.COUNTRY_LEAD)
         ApiPage(self.driver).send_create_lead()
         token = ApiPage(self.driver).check_create_lead_token()
         assert APIConstants.STATUS_OK in token
@@ -215,14 +241,18 @@ class ApiPrecondition(object):
         lead_module.select_filter(
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
 
-        lead_module.perform_searching_lead_module(APIConstants.LEAD_FNAME, APIConstants.LEAD_LNAME, self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL])
+        lead_module.perform_searching_lead_module(self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)
+                                                                                        [LeadsModuleConstants.EMAIL])
         lead_module.open_personal_details_lead()
-        email = lead_module.get_lead_email()
-        fname = lead_module.get_lead_fname()
-        lname = lead_module.get_lead_lname()
-        phone = lead_module.get_lead_phone()
 
-        assert email == self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]
-        assert fname == APIConstants.LEAD_FNAME
-        assert lname == APIConstants.LEAD_LNAME
-        assert phone == APIConstants.LEAD_PHONE_CRM
+        assign = LeadsModule(self.driver).get_lead_assignedto()
+        assert assign == AutoAssignConstants.USER
+        # email = lead_module.get_lead_email()
+        # fname = lead_module.get_lead_fname()
+        # lname = lead_module.get_lead_lname()
+        # phone = lead_module.get_lead_phone()
+        #
+        # assert email == self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]
+        # assert fname == APIConstants.LEAD_FNAME
+        # assert lname == APIConstants.LEAD_LNAME
+        # assert phone == APIConstants.LEAD_PHONE_CRM
