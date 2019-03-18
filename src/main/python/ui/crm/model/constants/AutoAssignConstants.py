@@ -34,4 +34,5 @@ class AutoAssignConstants(object):
     USER = "pandaqa pandaqa"
     RULE_TYPE1 = "Country"
     COUNTRY = "Liechtenstein"
+    COUNTRY0 = "Bulgaria"
     COUNTRY1 = "Afghanistan"

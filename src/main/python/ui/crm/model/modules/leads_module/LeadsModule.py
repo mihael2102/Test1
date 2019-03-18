@@ -481,6 +481,8 @@ class LeadsModule(CRMBasePage):
         # self.enter_lead_status(lead_status)
         # self.enter_language(language)
         self.click_search_button_leads_module()
+        if global_var.current_brand_name == "itrader":
+            sleep(40)
         self.wait_crm_loading_to_finish()
         return LeadsModule()
 
@@ -828,3 +830,9 @@ class LeadsModule(CRMBasePage):
             EC.visibility_of_element_located((By.XPATH, "//*[@id='dtlview_Assigned To']")))
         Logging().reportDebugStep(self, "Lead assigned to: " + lead_assigned.text)
         return lead_assigned.text
+
+    def open_personal_details_lead(self):
+        lead = super().wait_element_to_be_clickable("//a[contains(text(),'LEA')]")
+        lead.click()
+        Logging().reportDebugStep(self, "Go to personal details lead")
+        return LeadsModule(self.driver)

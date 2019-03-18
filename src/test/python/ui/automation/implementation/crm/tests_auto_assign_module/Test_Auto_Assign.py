@@ -20,6 +20,9 @@ class AutoAssignModuleTest(BaseTest):
     def test_add_auto_assign_rule_client(self):
         AutoAssignPrecondition(self.driver, self.config).perform_add_client_rule()
 
+    def test_perform_delete_rule(self):
+        AutoAssignPrecondition(self.driver, self.config).test_perform_delete_rule()
+
 
 
 

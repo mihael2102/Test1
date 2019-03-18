@@ -36,6 +36,11 @@ class ApiPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
+        autoassign_module = CRMHomePage(self.driver).select_auto_assign_module_more_list(
+                                                                AutoAssignConstants.AUTO_ASSIGN_MODULE)
+        if autoassign_module == False:
+            return
+
         affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules()\
             .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
         if global_var.current_brand_name == "eafx":
@@ -44,27 +49,27 @@ class ApiPrecondition(object):
             AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_UFT)
         else:
             AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID)
-        AffiliatePage(self.driver).open_edit_affiliate()
-        selected_methods = AffiliatePage(self.driver).check_selected_methods()
-        if "Selected" in selected_methods:
-            AffiliatePage(self.driver).add_all_methods()
-            selected_methods_new = AffiliatePage(self.driver).check_selected_methods()
-            if "None selected" in selected_methods_new:
-                AffiliatePage(self.driver).add_all_methods()
-        else:
-            AffiliatePage(self.driver).add_all_methods()
-
-        selected_countries = AffiliatePage(self.driver).check_selected_countries()
-        if "Selected" in selected_countries:
-            AffiliatePage(self.driver).add_none_selected_countries()
-            selected_countries_new = AffiliatePage(self.driver).check_selected_countries()
-            if "None selected" in selected_countries_new:
-                AffiliatePage(self.driver).click_submit()
-            else:
-                AffiliatePage(self.driver).add_none_selected_countries()
-                AffiliatePage(self.driver).click_submit()
-        else:
-            AffiliatePage(self.driver).click_submit()
+        # AffiliatePage(self.driver).open_edit_affiliate()
+        # selected_methods = AffiliatePage(self.driver).check_selected_methods()
+        # if "Selected" in selected_methods:
+        #     AffiliatePage(self.driver).add_all_methods()
+        #     selected_methods_new = AffiliatePage(self.driver).check_selected_methods()
+        #     if "None selected" in selected_methods_new:
+        #         AffiliatePage(self.driver).add_all_methods()
+        # else:
+        #     AffiliatePage(self.driver).add_all_methods()
+        #
+        # selected_countries = AffiliatePage(self.driver).check_selected_countries()
+        # if "Selected" in selected_countries:
+        #     AffiliatePage(self.driver).add_none_selected_countries()
+        #     selected_countries_new = AffiliatePage(self.driver).check_selected_countries()
+        #     if "None selected" in selected_countries_new:
+        #         AffiliatePage(self.driver).click_submit()
+        #     else:
+        #         AffiliatePage(self.driver).add_none_selected_countries()
+        #         AffiliatePage(self.driver).click_submit()
+        # else:
+        #     AffiliatePage(self.driver).click_submit()
 
         secret_key = AffiliatePage(self.driver).copy_secret_key()
 
@@ -120,15 +125,17 @@ class ApiPrecondition(object):
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
+        expected_assign = AutoAssignConstants.USER
         assigned = ClientsPage(self.driver).get_client_assigned_to()
-        assert assigned == AutoAssignConstants.USER
+        assert expected_assign in assigned
 
         CRMHomePage(self.driver).open_client_module()
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(APIConstants.EMAIL)
+        expected_assign = AutoAssignConstants.USER
         assigned = ClientsPage(self.driver).get_client_assigned_to()
-        assert assigned == AutoAssignConstants.USER
+        assert expected_assign not in assigned
 
 
         # client_email = ClientsPage(self.driver).get_first_client_email()
@@ -245,8 +252,9 @@ class ApiPrecondition(object):
                                                                                         [LeadsModuleConstants.EMAIL])
         lead_module.open_personal_details_lead()
 
+        expected_assign = AutoAssignConstants.USER
         assign = LeadsModule(self.driver).get_lead_assignedto()
-        assert assign == AutoAssignConstants.USER
+        assert expected_assign in assign
         # email = lead_module.get_lead_email()
         # fname = lead_module.get_lead_fname()
         # lname = lead_module.get_lead_lname()

@@ -40,13 +40,13 @@ class AutoAssignPage(CRMBasePage):
         delete_button = super().wait_visible_of_element("//div[@title='Delete']")
         delete_button.click()
         Logging().reportDebugStep(self, "The edit pencil was clicked")
-        return AutoAssignPage()
+        return AutoAssignPage(self.driver)
 
     def confirm_delete_rule(self):
         confirm_delete_button = super().wait_visible_of_element("//button[contains(text(),'OK')]")
         confirm_delete_button.click()
         Logging().reportDebugStep(self, "Confirm delete button was clicked")
-        return AutoAssignPage()
+        return AutoAssignPage(self.driver)
 
     def click_edit_by_pencil(self):
         sleep(2)

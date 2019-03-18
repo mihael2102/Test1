@@ -302,6 +302,7 @@ class ApiPage(CRMBasePage):
         input = self.driver.find_element(By.XPATH,
                                                    "//*[@id='sample-request-param-field-email-Customers-createCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.clear()
         input.send_keys(email)
         Logging().reportDebugStep(self, "Enter email")
         return ApiPage(self.driver)
@@ -310,6 +311,7 @@ class ApiPage(CRMBasePage):
         input = self.driver.find_element(By.XPATH,
                                          "//*[@id='sample-request-param-field-password-Customers-createCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.clear()
         input.send_keys(password)
         Logging().reportDebugStep(self, "Enter password")
         return ApiPage(self.driver)
@@ -335,6 +337,7 @@ class ApiPage(CRMBasePage):
         input = self.driver.find_element(By.XPATH,
                                          "//*[@id='sample-request-param-field-firstName-Customers-createCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.clear()
         input.send_keys(firstName)
         Logging().reportDebugStep(self, "Enter firstName")
         return ApiPage(self.driver)
@@ -343,6 +346,7 @@ class ApiPage(CRMBasePage):
         input = self.driver.find_element(By.XPATH,
                                          "//*[@id='sample-request-param-field-lastName-Customers-createCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.clear()
         input.send_keys(lastName)
         Logging().reportDebugStep(self, "Enter lastName")
         return ApiPage(self.driver)

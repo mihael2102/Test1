@@ -109,7 +109,7 @@ class CRMHomePage(CRMBasePage):
         except NoSuchElementException:
             pass
             Logging().reportDebugStep(self, "The AutoAssign module does not exist")
-            return AutoAssignPage(self.driver)
+            return False
 
     def select_service_desk_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)

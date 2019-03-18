@@ -9,8 +9,8 @@ class APIConstants(object):
     API_SECRET_KEY = "5fb7b2998ef7c9223cf14b4db93f7a4cbf79c58749def28ebf1032165888c5f5"
     PARTNER_ID = "3898"
     PASSWORD = "as1as2"
-    COUNTRY = "li"
-    COUNTRY1 = "dz"
+    COUNTRY = "bg"
+    COUNTRY1 = "fi"
     COUNTRY_LEAD = "li"
     LASTNAME = "Doe"
     PHONE = "3453453"
@@ -32,4 +32,4 @@ class APIConstants(object):
     PAYMENT_DETAILS = "Payment Details"
     PANDATS_EMAIL = "pandats.com"
     FOREX_DEPOSIT = "forexDeposit"
-    EMAIL = "pandaqa" + str(random.randrange(1, 9999999))
+    EMAIL = "pandaqa" + str(random.randrange(1, 9999999)) + "@pandats.com"

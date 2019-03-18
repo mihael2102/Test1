@@ -124,16 +124,20 @@ tests_config:
 #    - test_create_campaign
 #    - test_edit_campaign
 #    - test_delete_campaign
-#- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
-#  class: AutoAssignModuleTest
-#  tests:
-#    - test_add_auto_assign_rule_lead
-#    - test_add_auto_assign_rule_client
+- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
+  class: AutoAssignModuleTest
+  tests:
+    - test_add_auto_assign_rule_lead
+    - test_add_auto_assign_rule_client
 - module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
   class: CreateNewCustomer
   tests:
     - test_create_new_lead
-#    - test_create_new_customer
+    - test_create_new_customer
+- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
+  class: AutoAssignModuleTest
+  tests:
+    - test_perform_delete_rule
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
 #  class: WorkflowsModulesTest

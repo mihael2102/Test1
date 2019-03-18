@@ -43,11 +43,27 @@ class AutoAssignPrecondition(object):
                                 .set_assign_to_check_box() \
                                 .select_destination_user(AutoAssignConstants.USER) \
                                 .select_rule_type(AutoAssignConstants.RULE_TYPE1) \
-                                .select_item(AutoAssignConstants.COUNTRY) \
+                                .select_item(AutoAssignConstants.COUNTRY0) \
                                 .select_item(AutoAssignConstants.COUNTRY1) \
                                 .perform_submit()
         AutoAssignPage(self.driver).perform_searching_auto_assign_module_by_name(AutoAssignConstants.SECOND_RULE_NAME) \
                                    .get_rule_name_status(AutoAssignConstants.RULE_NAME)
+
+    def test_perform_delete_rule(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        CRMHomePage(self.driver).select_auto_assign_module_more_list(AutoAssignConstants.AUTO_ASSIGN_MODULE)
+        AutoAssignPage(self.driver).perform_searching_auto_assign_module_by_name(AutoAssignConstants.RULE_NAME) \
+                                   .get_rule_name_status(AutoAssignConstants.RULE_NAME)
+
+        AutoAssignPage(self.driver).make_delete_rule() \
+                                   .confirm_delete_rule()
+        AutoAssignPage(self.driver).perform_searching_auto_assign_module_by_name(AutoAssignConstants.SECOND_RULE_NAME) \
+            .get_rule_name_status(AutoAssignConstants.SECOND_RULE_NAME) \
+            .make_delete_rule() \
+            .confirm_delete_rule()
 
 
 
