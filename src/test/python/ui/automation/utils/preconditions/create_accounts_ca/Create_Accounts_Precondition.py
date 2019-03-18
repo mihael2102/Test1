@@ -281,8 +281,8 @@ class Create_Accounts_Precondition(object):
                                                           CAConstants.RESULT_OF_TRADING,
                                                           CAConstants.INVESTMENT_OBJECTIVES,
                                                           CAConstants.NO,
-                                                          CAConstants.TIN,
-                                                          CAConstants.LEVERAGE_ITRADER)
+                                                          CAConstants.TIN)
+                                                          # CAConstants.LEVERAGE_ITRADER)
             CAPage(self.driver).close_popup_itrader()
 
 

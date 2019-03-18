@@ -48,7 +48,7 @@ class CAPage(CRMBasePage):
                                   estimate_income,estimate_worth,purpose,amount,
                                   incoming_fund, level,time_investing,time_last_trade,instrument,
                                    time_experience,trade_size,applies,price,fb_price,inital_deposit,result_of_trading,
-                                    investment_obj,no,tin,leverage):
+                                    investment_obj,no,tin):
 
         self.select_employment_status(status)
         self.select_industry(industry)
@@ -74,7 +74,7 @@ class CAPage(CRMBasePage):
         self.select_investment_obj(investment_obj)
         self.select_us(no)
         self.enter_tin_itrader(tin)
-        self.select_leverage_itrader(leverage)
+        # self.select_leverage_itrader(leverage)
         self.select_pep(no)
         self.click_next()
 
