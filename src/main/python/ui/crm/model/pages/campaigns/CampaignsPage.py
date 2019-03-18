@@ -98,6 +98,23 @@ class CampaignsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Current end date is: " + actual_end_date)
         return actual_end_date
 
+    def get_deal(self):
+        deal_index = super().wait_load_element("//*[@id='deal']").get_attribute("selectedIndex")
+        deal = ""
+        if int(deal_index) == 0:
+            deal = "CPA"
+        elif int(deal_index) == 1:
+            deal = "CPL"
+        elif int(deal_index) == 2:
+            deal = "FIX"
+        Logging().reportDebugStep(self, "Current end date is: " + deal)
+        return deal
+
+    def get_rate(self):
+        rate = super().wait_load_element("//input[@name='deal_value']").get_attribute("value")
+        Logging().reportDebugStep(self, "Current end date is: " + rate)
+        return rate
+
     def click_cancel_button(self):
         cancel_button = super().wait_load_element("//*[@id='Cancel']")
         sleep(2)

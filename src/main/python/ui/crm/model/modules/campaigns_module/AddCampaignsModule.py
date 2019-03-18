@@ -13,14 +13,14 @@ from src.main.python.utils.logs.Loging import Logging
 
 class AddCampaignsModule(CRMBasePage):
 
-    def perform_add_new_campaign(self, name, assigned_to, start_date, end_date, deal, rate):
+    def perform_add_new_campaign(self, name, assigned_to, deal, rate):
         self.set_name(name)
         self.set_assigned_to(assigned_to)
-        self.set_start_date(start_date)
-        self.set_end_date(end_date)
+        # self.set_start_date(start_date)
+        # self.set_end_date(end_date)
         self.set_deal(deal)
         self.set_rate(rate)
-        self.set_active_check_box()
+        # self.set_active_check_box()
         self.click_save_button()
 
     def set_name(self, name):
@@ -68,6 +68,7 @@ class AddCampaignsModule(CRMBasePage):
 
     def set_rate(self, rate):
         rate_field = super().wait_element_to_be_clickable("//input[@name='deal_value']")
+        rate_field.clear()
         rate_field.send_keys(rate)
         Logging().reportDebugStep(self, "The rate was set: " + rate)
         return AddCampaignsModule()

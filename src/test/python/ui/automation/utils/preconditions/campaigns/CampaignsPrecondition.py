@@ -30,8 +30,8 @@ class CampaignsPrecondition(object):
             .open_add_campaign_module()
         AddCampaignsModule(self.driver).perform_add_new_campaign(self.camp_name,
                                                                  CRMConstants.FIST_ASSIGNED_TO,
-                                                                 CRMConstants.START_DATE,
-                                                                 CRMConstants.END_DATE,
+                                                                 # CRMConstants.START_DATE,
+                                                                 # CRMConstants.END_DATE,
                                                                  CRMConstants.FIST_DEAL,
                                                                  CRMConstants.RATE)
         CampaignsPage(self.driver).perform_searching_campaign_by_name(self.camp_name)
@@ -57,17 +57,17 @@ class CampaignsPrecondition(object):
         sleep(2)
         CampaignsPage(self.driver).open_campaign_view(self.camp_name)
         sleep(2)
-        AddCampaignsModule(self.driver).set_start_date(CRMConstants.START_DATE2)
-        AddCampaignsModule(self.driver).set_end_date(CRMConstants.END_DATE2)
+        AddCampaignsModule(self.driver).set_deal(CRMConstants.SECOND_DEAL)
+        AddCampaignsModule(self.driver).set_rate(CRMConstants.RATE1)
         sleep(2)
         AddCampaignsModule(self.driver).click_save_button()
         sleep(2)
         CampaignsPage(self.driver).open_campaign_view(self.camp_name)
         sleep(2)
-        actual_start_date = CampaignsPage(self.driver).get_start_date()
-        assert actual_start_date == CRMConstants.START_DATE2
+        actual_deal = CampaignsPage(self.driver).get_deal()
+        assert actual_deal == CRMConstants.SECOND_DEAL
         sleep(2)
-        assert CampaignsPage(self.driver).get_end_date() == CRMConstants.END_DATE2
+        assert CampaignsPage(self.driver).get_rate() == CRMConstants.RATE1
 
     """delete campaign"""
     def delete_campaign(self):
