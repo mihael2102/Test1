@@ -27,6 +27,7 @@ from src.main.python.ui.crm.model.pages.dashboard.DashboardPage import Dashboard
 from src.main.python.ui.crm.model.pages.leaderboard.LeaderboardPage import LeaderboardPage
 from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from selenium.common.exceptions import NoSuchElementException
 
 class CRMHomePage(CRMBasePage):
 
@@ -79,14 +80,20 @@ class CRMHomePage(CRMBasePage):
             module_element.click()
             Logging().reportDebugStep(self, "The audit logs module was opened")
         except TimeoutException:
-            Logging().reportDebugStep(self, "There are no module")
+            pass
+            Logging().reportDebugStep(self, "Audit Logs module does not exist")
         return AuditLogsPage(self.driver)
 
     def select_auto_assign_module_more_list(self, module):
-        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
-        module_element.click()
-        Logging().reportDebugStep(self, "The audit logs module was opened")
-        return AutoAssignPage(self.driver)
+        try:
+            module_element = self.driver.find_element_by_xpath("//a[@name='%s']" % module)
+            self.driver.execute_script("arguments[0].click();", module_element)
+            Logging().reportDebugStep(self, "The AutoAssign module was opened")
+            return AutoAssignPage(self.driver)
+        except NoSuchElementException:
+            pass
+            Logging().reportDebugStep(self, "The AutoAssign module does not exist")
+            return False
 
     def select_service_desk_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
@@ -100,7 +107,7 @@ class CRMHomePage(CRMBasePage):
             module_element.click()
             Logging().reportDebugStep(self, "The my dashboard  module was opened")
         except TimeoutException:
-            Logging().reportDebugStep(self, "There are no module")
+            Logging().reportDebugStep(self, "My Dashboard module does not exist")
         return MyDashBoardModule(self.driver)
 
     def select_affiliates_module_more_list(self, module):
@@ -156,7 +163,7 @@ class CRMHomePage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", module_element)
             Logging().reportDebugStep(self, "The CRM Configuration module was opened")
         except TimeoutException:
-            Logging().reportDebugStep(self, "There are no module")
+            Logging().reportDebugStep(self, "CRM Configuration module does not exist")
         return AuditLogsPage(self.driver)
 
     def select_user_management(self):

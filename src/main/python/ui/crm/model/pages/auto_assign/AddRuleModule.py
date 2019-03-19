@@ -1,13 +1,15 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from time import sleep
 
 
 class AddRuleModule(CRMBasePage):
-    def __init__(self):
-        super().__init__()
+    # def __init__(self):
+    #     super().__init__()
 
     def perform_add_rule(self, rule_name, brand, rule_type, campaign, role):
         self.set_rule_name(rule_name)
@@ -36,7 +38,7 @@ class AddRuleModule(CRMBasePage):
         rule_name_field.clear()
         rule_name_field.send_keys(rule_name)
         Logging().reportDebugStep(self, "The rule name field was entered: " + rule_name)
-        return AddRuleModule()
+        return AddRuleModule(self.driver)
 
     def set_set_assign_to_role_checkbox(self):
         rol_name_field = super().wait_visible_of_element(
@@ -46,42 +48,61 @@ class AddRuleModule(CRMBasePage):
         return AddRuleModule()
 
     def set_brand(self, brand):
-        campaign_name_link = Select(super().wait_visible_of_element("//select[@name='brand_id']"))
-        campaign_name_link.select_by_visible_text(brand)
-        Logging().reportDebugStep(self, "The brand was set: " + brand)
-        return AddRuleModule()
+        try:
+            campaign_name_link = Select(super().wait_visible_of_element("//select[@name='brand_id']"))
+            campaign_name_link.select_by_visible_text(brand)
+            Logging().reportDebugStep(self, "The brand was set: " + brand)
+            return AddRuleModule(self.driver)
+        except NoSuchElementException:
+            pass
+            Logging().reportDebugStep(self, "There is no Brand field")
+            return AddRuleModule(self.driver)
+
+    def select_brand_by_number(self):
+        try:
+            campaign_name_link = super().wait_visible_of_element("//select[@name='brand_id']")
+            campaign_name_link.click()
+            first_option = self.driver.find_element_by_xpath("//*[@id='brand_id']/option[2]")
+            # self.driver.execute_script("arguments[0].click();", first_option)
+            first_option.click()
+            Logging().reportDebugStep(self, "The brand was set")
+            return AddRuleModule(self.driver)
+        except NoSuchElementException:
+            pass
+            Logging().reportDebugStep(self, "There is no Brand field")
+            return AddRuleModule(self.driver)
 
     def set_lead_module_check_box(self):
         campaign_name_link = self.driver.find_element(By.XPATH, "//input[@name='leadrule']")
         campaign_name_link.click()
         Logging().reportDebugStep(self, "The lead module checkbox was set")
-        return AddRuleModule()
+        return AddRuleModule(self.driver)
 
     def set_clients_module_check_box(self):
         campaign_name_link = self.driver.find_element(By.XPATH, "//input[@name='clientrule']")
         campaign_name_link.click()
         Logging().reportDebugStep(self, "The clients module checkbox was set")
-        return AddRuleModule()
+        return AddRuleModule(self.driver)
 
     def set_assign_to_check_box(self):
         assign_to_check_box = self.driver.find_element(By.XPATH,
-                                                       "//div[@class='col-md-12 p-l-0 p-r-0 text-center']//input[@value='1']")
+                                                "//div[@class='col-md-12 p-l-0 p-r-0 text-center']//input[@value='1']")
         assign_to_check_box.click()
         Logging().reportDebugStep(self, "The assign to checkbox was set")
-        return AddRuleModule()
+        return AddRuleModule(self.driver)
 
     def perform_submit(self):
         submit_button = self.driver.find_element(By.XPATH,
                                                  "//button[contains(text(),'Submit')]")
         submit_button.click()
         Logging().reportDebugStep(self, "The submit button was set")
-        return AddRuleModule()
+        return AddRuleModule(self.driver)
 
     def select_rule_type(self, rule_type):
         rule_type_button = Select(super().wait_visible_of_element("//select[@name='ruletype']"))
         rule_type_button.select_by_visible_text(rule_type)
         Logging().reportDebugStep(self, "The rule_type was selected")
-        return AddRuleModule()
+        return AddRuleModule(self.driver)
 
     def select_item(self, item):
         campaign_drop_down = self.driver.find_element(By.XPATH,
@@ -89,13 +110,14 @@ class AddRuleModule(CRMBasePage):
         campaign_drop_down.click()
         campaign_field = self.driver.find_element(By.XPATH,
                                                   "//input[@placeholder='Search']")
+        campaign_field.clear()
         campaign_field.send_keys(item)
         item = super().wait_visible_of_element("//label[contains(text(),'%s')]" % item)
         item.click()
         campaign_drop_down.click()
 
         Logging().reportDebugStep(self, "The rule_type was selected")
-        return AddRuleModule()
+        return AddRuleModule(self.driver)
 
     def select_role(self, role):
         role_filed = self.driver.find_element(By.XPATH,
@@ -106,3 +128,19 @@ class AddRuleModule(CRMBasePage):
             "//div[contains(text(),'%s')]/preceding-sibling::div[1]//div[1]//div[1]" % role)
         item.click()
         return AddRuleModule()
+
+    def select_destination_user(self, user):
+        search_user_field = super().wait_visible_of_element("//*[@id='jqxTreeUsers']/input[1]")
+        search_user_field.clear()
+        search_user_field.send_keys(user)
+        sleep(1)
+        user_item = self.driver.find_element_by_xpath("//li[@username='pandaqa pandaqa']/div/div/div")
+        user_item.click()
+        Logging().reportDebugStep(self, "User selected")
+        return AddRuleModule(self.driver)
+
+    def click_ok(self):
+        sleep(1)
+        super().click_ok()
+        sleep(1)
+        return AddRuleModule(self.driver)

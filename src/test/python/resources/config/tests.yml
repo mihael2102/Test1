@@ -98,7 +98,7 @@ tests_config:
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
 #  class: CalendarView
 #  tests:
-##     - test_check_add_tasks_calendar_view #preconditions convert lead
+#     - test_check_add_tasks_calendar_view #preconditions convert lead
 #     - test_check_day_tab
 #     - test_check_month_tab
 #     - test_check_week_tab
@@ -109,20 +109,34 @@ tests_config:
 #    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
 #    - test_check_search_via_button # Check search using search button
 ###Campaign module
-- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
-  class: CampaignsModuleTest
-  tests:
-    - test_create_campaign
-    - test_edit_campaign
-    - test_delete_campaign
-#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
-#  class: CheckModulesTest
+#- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
+#  class: CampaignsModuleTest
 #  tests:
-#    - test_my_dashboard_loading
-#    - test_audit_logs_loading
-#    - test_check_dashboard
-#    - test_check_leaderboard
-#    - test_check_user_management
+#    - test_create_campaign
+#    - test_edit_campaign
+#    - test_delete_campaign
+- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
+  class: AutoAssignModuleTest
+  tests:
+    - test_add_auto_assign_rule_lead
+    - test_add_auto_assign_rule_client
+- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
+  class: CreateNewCustomer
+  tests:
+    - test_create_new_lead
+    - test_create_new_customer
+- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
+  class: AutoAssignModuleTest
+  tests:
+    - test_perform_delete_rule
+- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
+  class: CheckModulesTest
+  tests:
+    - test_my_dashboard_loading
+    - test_audit_logs_loading
+    - test_check_dashboard
+    - test_check_leaderboard
+    - test_check_user_management
 #- module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
 #  class: CRMConfigurationsTest
 #  tests:

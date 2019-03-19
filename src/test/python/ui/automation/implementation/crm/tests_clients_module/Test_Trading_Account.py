@@ -1,5 +1,5 @@
 import pytest
-
+from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.test.python.ui.automation.BaseTest import BaseTest
 from src.test.python.ui.automation.utils.preconditions.trading_account.TradingAccountPrecondition import \
@@ -57,6 +57,7 @@ class TradingAccountCrmTest(BaseTest):
             confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
             self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
         else:
+            Logging().reportDebugStep(self, "module does not exist")
             return self
 
     def test_crm_edit_trading_account(self):

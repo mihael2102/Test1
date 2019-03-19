@@ -15,6 +15,8 @@ from src.main.python.ui.crm.model.pages.leads.ImportLeadPage import ImportLeadPa
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 import autoit
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class LeadsModule(CRMBasePage):
 
@@ -437,11 +439,10 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Click sorting by Exist")
         return LeadsModule(self.driver)
 
-    def perform_searching_lead_module(self, first_name, last_name, email, assigned_to, tittle, lead_source, lead_status,
-                                      language):
+    def perform_searching_lead_module(self, email):
         self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
-        self.enter_first_name(first_name)
-        self.enter_last_name(last_name)
+        # self.enter_first_name(first_name)
+        # self.enter_last_name(last_name)
         self.enter_email(email)
         # self.enter_assigned_to(assigned_to)
         # self.enter_tittle(tittle)
@@ -822,3 +823,15 @@ class LeadsModule(CRMBasePage):
                                                       "//*[@id='dtlview_Mobile']")
         Logging().reportDebugStep(self, "Mobile changed : " + get_mobile_text.text)
         return get_mobile_text.text
+
+    def get_lead_assignedto(self):
+        lead_assigned = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='dtlview_Assigned To']")))
+        Logging().reportDebugStep(self, "Lead assigned to: " + lead_assigned.text)
+        return lead_assigned.text
+
+    def open_personal_details_lead(self):
+        lead = super().wait_element_to_be_clickable("//a[contains(text(),'LEA')]")
+        lead.click()
+        Logging().reportDebugStep(self, "Go to personal details lead")
+        return LeadsModule(self.driver)
