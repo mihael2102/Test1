@@ -48,6 +48,18 @@ class AutoAssignPage(CRMBasePage):
         Logging().reportDebugStep(self, "Confirm delete button was clicked")
         return AutoAssignPage(self.driver)
 
+    def check_delete_message(self):
+        sleep(1)
+        message = super().wait_visible_of_element("//div[@class='bootstrap-dialog-message']").text
+        if message == "Record deleted successfully.":
+            self.click_ok()
+            Logging().reportDebugStep(self, "Record deleted successfully")
+            return AutoAssignPage(self.driver)
+        elif message == "You are not permitted to perform this action":
+            self.click_ok()
+            Logging().reportDebugStep(self, "You are not permitted to perform this action")
+            return self
+
     def click_edit_by_pencil(self):
         sleep(2)
         pencil_link = super().wait_visible_of_element("//div[@title='Edit']")

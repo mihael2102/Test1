@@ -129,11 +129,11 @@ tests_config:
   tests:
     - test_add_auto_assign_rule_lead
     - test_add_auto_assign_rule_client
-- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
-  class: CreateNewCustomer
-  tests:
-    - test_create_new_lead
-    - test_create_new_customer
+#- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
+#  class: CreateNewCustomer
+#  tests:
+#    - test_create_new_lead
+#    - test_create_new_customer
 - module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
   class: AutoAssignModuleTest
   tests:
