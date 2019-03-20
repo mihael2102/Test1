@@ -1613,6 +1613,8 @@ class ExcelWriter:
                 , "Search partner name and go to affiliate details page"
                 , "Data not found"]
 
+            #CampaignsModuleTest
+
         if self.get_test_pretty_name_new(test) == "CampaignsModuleTest: test create campaign":
             step_suit = ["Open CRM"
                 , "Enter Username"
@@ -1643,12 +1645,12 @@ class ExcelWriter:
                 , "Open campaigns module"
                 , "Select campaign name"
                 , "Open campaign view"
-                , "Set new start date"
-                , "Set new end date"
+                , "Set new deal"
+                , "Set new rate"
                 , "Click save button"
                 , "Open campaign view"
-                , "Current start date is updated"
-                , "Current end date is updated"]
+                , "Current deal is updated"
+                , "Current rate is updated"]
 
         if self.get_test_pretty_name_new(test) == "CampaignsModuleTest: test delete campaign":
             step_suit = ["Open CRM"
