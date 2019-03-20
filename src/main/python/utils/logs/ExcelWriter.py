@@ -50,7 +50,7 @@ class ExcelWriter:
             col += 1
 
         workbook.close()
-        # Send_Email_XLS(filepath)
+        Send_Email_XLS(filepath)
 
     def write_test_results_all_report(self, brands, tests, results):
         # Create a workbook and add a worksheet.
