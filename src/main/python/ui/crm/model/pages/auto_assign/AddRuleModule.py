@@ -90,7 +90,7 @@ class AddRuleModule(CRMBasePage):
     def select_rule_type(self, rule_type):
         rule_type_button = Select(super().wait_visible_of_element("//select[@name='ruletype']"))
         rule_type_button.select_by_visible_text(rule_type)
-        Logging().reportDebugStep(self, "The rule_type was selected")
+        Logging().reportDebugStep(self, "The rule type was selected")
         return AddRuleModule(self.driver)
 
     def select_item(self, item):
@@ -105,7 +105,7 @@ class AddRuleModule(CRMBasePage):
         item.click()
         campaign_drop_down.click()
 
-        Logging().reportDebugStep(self, "The rule_type was selected")
+        Logging().reportDebugStep(self, "The rule item was selected")
         return AddRuleModule(self.driver)
 
     def select_role(self, role):

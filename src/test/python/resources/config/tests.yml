@@ -107,7 +107,7 @@ tests_config:
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
 #  class: CalendarView
 #  tests:
-##     - test_check_add_tasks_calendar_view #preconditions convert lead
+#     - test_check_add_tasks_calendar_view #preconditions convert lead
 #     - test_check_day_tab
 #     - test_check_month_tab
 #     - test_check_week_tab
@@ -132,8 +132,8 @@ tests_config:
 #- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
 #  class: CreateNewCustomer
 #  tests:
-#    - test_create_new_lead
-#    - test_create_new_customer
+#    - test_autoassign_create_new_lead
+#    - test_autoassign_create_new_customer
 - module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
   class: AutoAssignModuleTest
   tests:

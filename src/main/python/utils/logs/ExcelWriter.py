@@ -199,6 +199,8 @@ class ExcelWriter:
                 , "Click phone: 0534431234"
                 , "Mobile changed : 0534431234"]
 
+            #WorkflowsModulesTests
+
         if self.get_test_pretty_name_new(test) == "WorkflowsModulesTest: test check workflow by status":
             step_suit = ["Open CRM"
                 , "Enter Username"
@@ -302,6 +304,8 @@ class ExcelWriter:
                 , "Click Save"
                 , "Check name workflow in table"]
 
+            #Check Modules are loading
+
         if self.get_test_pretty_name_new(test) == "CheckModules: test check user management":
             step_suit = ["Open CRM"
                 , "Enter Username"
@@ -359,6 +363,8 @@ class ExcelWriter:
                 , "'What's new' popup isn't displayed"
                 ,"The Audit Logs module was opened"
                 ,"Audit Logs module is loaded"]
+
+            #CRMConfigurationsTest
 
         if self.get_test_pretty_name_new(test) == "CRMConfigurationsTest: test crm configurations pages loading":
             step_suit = ["Open CRM"
@@ -1134,11 +1140,8 @@ class ExcelWriter:
                 , "Enter Username"
                 , "Enter Password"
                 , "Click Login"
-
                 , "No OTP"
-
                 , "'What's new' popup isn't displayed"
-
                 , "Click the  drop down filter"
                 , "Select Test Clients"
                 , "Click the selected filter"
@@ -1405,6 +1408,8 @@ class ExcelWriter:
                 , "There is no accounts drop down list"
                 , "Click OK in Client Deposit pop"]
 
+            #CreditIn/CreditOut
+
         if self.get_test_pretty_name_new(test) == "CreditInTestCRM: test make credit in from crm":
             step_suit = ["Open CRM"
                 , "Enter Username"
@@ -1445,6 +1450,33 @@ class ExcelWriter:
                 , "Perform scroll down "
                 , "Returns the amount you placed on the credit_in page"]
 
+        if self.get_test_pretty_name_new(test) == "CreditOutTestCRM: test make credit out crm":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "Whats new popup isnt displayed "
+                , "The client module was opened"
+                , "Click the  drop down filter "
+                , "The filter found is Test Clients"
+                , "Click the selected filter"
+                , "Setting the user's email in the email field"
+                , "Click the search button"
+                , "Click user email"
+                , "Open mt actions: Credit Out"
+                , "The account for credit out was selected"
+                , "The amount of credit out was set"
+                , "The Comment of credit out was set"
+                , "The expire date of credit out module was set"
+                , "Create of credit out button was clicked"
+                , "Scroll to trading account section"
+                , "Open the trading account tab"
+                , "Open the trading account page"
+                , "Actual credit amount is verified"]
+
+            #TradingAccountCrmTest
+
         if self.get_test_pretty_name_new(test) == "TradingAccountCrmTest: test crm edit trading account":
             step_suit = ["Open CRM"
                 , "Enter Username"
@@ -1475,6 +1507,8 @@ class ExcelWriter:
                 , "The Save button was clicked"
                 , "Returns a confirmation message  User successfully update"]
 
+            #AffiliateModule
+
         if self.get_test_pretty_name_new(test) == "AffiliateModule: test create affiliate":
             step_suit = ["Open CRM"
                 , "Enter Username"
@@ -1501,6 +1535,8 @@ class ExcelWriter:
                 , "Confirm delete button was clicked"
                 , "Search partner name and go to affiliate details page"
                 , "Data not found"]
+
+            #CampaignsModuleTest
 
         if self.get_test_pretty_name_new(test) == "CampaignsModuleTest: test create campaign":
             step_suit = ["Open CRM"
@@ -1553,6 +1589,8 @@ class ExcelWriter:
                 , "Search deleted campaign"
                 , "Deleted Campaign not found"]
 
+            #WithdrawTest
+
         if self.get_test_pretty_name_new(test) == "WithdrawTest: test withdraw crm":
             step_suit = ["Open CRM"
                 , "Enter Username"
@@ -1580,5 +1618,157 @@ class ExcelWriter:
                 , "Open the trading account tab"
                 , "Open the trading account page"
                 , "Verify balance of account"]
+
+            #Auto assign tests
+
+        if self.get_test_pretty_name_new(test) == "AutoAssignModuleTest: test add auto assign rule lead":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "Whats new popup isn't displayed"
+                , "The AutoAssign module was opened"
+                , "The Add rule popup was opened"
+                , "The rule name field was entered"
+                , "The lead module checkbox was set"
+                , "The assign to checkbox was set"
+                , "User selected"
+                , "The rule type was selected"
+                , "The rule item(country) was selected"
+                , "The submit button was set"
+                , "Search the rule by title"
+                , "The new rule is displayed"]
+
+        if self.get_test_pretty_name_new(test) == "AutoAssignModuleTest: test add auto assign rule client":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "Whats new popup isn't displayed"
+                , "The AutoAssign module was opened"
+                , "The Add rule popup was opened"
+                , "The rule name field was entered"
+                , "The client module checkbox was set"
+                , "The assign to checkbox was set"
+                , "User selected"
+                , "The rule type was selected"
+                , "The rule item(country) was selected"
+                , "The second rule item(country) was selected"
+                , "The submit button was set"
+                , "Search the rule by title"
+                , "The new rule is displayed"]
+
+        if self.get_test_pretty_name_new(test) == "AutoAssignModuleTest: test perform delete rule":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "Whats new popup isn't displayed"
+                , "The AutoAssign module was opened"
+                , "Search the lead rule by title"
+                , "The rule was found"
+                , "Press Delete button"
+                , "Confirm delete button was clicked"
+                , "Record deleted successfully"
+                , "Search the client rule by title"
+                , "The rule was found"
+                , "Press Delete button"
+                , "Confirm delete button was clicked"
+                , "Record deleted successfully"]
+
+        if self.get_test_pretty_name_new(test) == "CreateNewCustomer: test autoassign create new lead":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "Whats new popup isn't displayed"
+                , "The AutoAssign module exist"
+                , "The Affiliates page was opened"
+                , "Search affiliate by partner ID"
+                , "Copy secret key"
+                , "Get link API"
+                , "Open API"
+                , "Enter Secret Key"
+                , "Open Authorization module"
+                , "Enter partnerId"
+                , "Generate time"
+                , "Generate accessKey"
+                , "Click send"
+                , "Check token"
+                , "Open create lead module"
+                , "Enter email"
+                , "Enter first name"
+                , "Enter last name"
+                , "Enter phone"
+                , "Enter country"
+                , "Click Send"
+                , "Check token"
+                , "Open CRM page"
+                , "Leads module was opened"
+                , "Click the drop down filter"
+                , "The filter Test Leads is found"
+                , "Open selected filter"
+                , "Search by lead's email"
+                , "The search button was clicked"
+                , "Go to lead's personal details"
+                , "Lead is assigned to pandaqa user"]
+
+        if self.get_test_pretty_name_new(test) == "CreateNewCustomer: test autoassign create new customer":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "Whats new popup isn't displayed"
+                , "The AutoAssign module exist"
+                , "The Affiliates page was opened"
+                , "Search affiliate by partner ID"
+                , "Copy secret key"
+                , "Get link API"
+                , "Open API"
+                , "Enter Secret Key"
+                , "Open Authorization module"
+                , "Enter partnerId"
+                , "Generate time"
+                , "Generate accessKey"
+                , "Click send"
+                , "Check token"
+                , "Open create customer module"
+                , "Enter email"
+                , "Enter password"
+                , "Enter country"
+                , "Enter first name"
+                , "Enter last name"
+                , "Click Send"
+                , "Check token"
+                , "Open create customer module"
+                , "Enter email"
+                , "Enter password"
+                , "Enter country"
+                , "Enter first name"
+                , "Enter last name"
+                , "Click Send"
+                , "Check token"
+                , "Open CRM page"
+                , "Clients module was opened"
+                , "Click the drop down filter"
+                , "The filter Test Clients is found"
+                , "Open selected filter"
+                , "Search by client's email"
+                , "The search button was clicked"
+                , "Go to client's personal details"
+                , "Client is assigned to pandaqa user"
+                , "Clients module was opened"
+                , "Click the drop down filter"
+                , "The filter Test Clients is found"
+                , "Open selected filter"
+                , "Search by client's email"
+                , "The search button was clicked"
+                , "Go to client's personal details"
+                , "Client is not assigned to pandaqa user"]
 
         return step_suit

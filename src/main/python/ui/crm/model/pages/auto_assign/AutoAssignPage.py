@@ -15,7 +15,7 @@ class AutoAssignPage(CRMBasePage):
     def open_add_rule_module(self):
         add_rule_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Rule')]")
         add_rule_button.click()
-        Logging().reportDebugStep(self, "The Add rule module was opened")
+        Logging().reportDebugStep(self, "The Add rule popup was opened")
         return AddRuleModule(self.driver)
 
     def get_successfull_message(self):

@@ -828,7 +828,7 @@ class LeadsModule(CRMBasePage):
     def get_lead_assignedto(self):
         lead_assigned = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//*[@id='dtlview_Assigned To']")))
-        Logging().reportDebugStep(self, "Lead assigned to: " + lead_assigned.text)
+        Logging().reportDebugStep(self, "Lead is assigned to: " + lead_assigned.text)
         return lead_assigned.text
 
     def open_personal_details_lead(self):

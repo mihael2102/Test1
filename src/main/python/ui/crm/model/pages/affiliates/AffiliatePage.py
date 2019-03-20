@@ -197,7 +197,7 @@ class AffiliatePage(CRMBasePage):
         key = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-body/div/span").text
         button_ok = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-footer/div/button")
         button_ok.click()
-        Logging().reportDebugStep(self, "Copy key")
+        Logging().reportDebugStep(self, "Copy secret key")
         return key
 
     def get_link_api(self):
