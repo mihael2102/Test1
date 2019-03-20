@@ -29,7 +29,7 @@ class SearchingClientsTestCRM(BaseTest):
                 # self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
             if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "swiftcfd") \
-                    or (global_var.current_brand_name == "ptbanc") or (global_var.current_brand_name == "b-finance"):
+                    or (global_var.current_brand_name == "b-finance"):
                     sleep(15)
                     ClientsPage(self.driver).perform_searching(
                         self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),

@@ -107,11 +107,17 @@ class CRMConfigurationPage(CRMBasePage):
 
     def check_workflows_loaded(self):
         sleep(1)
-        brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Workflows')]")
-        brand_configuration_btn.click()
-        self.driver.find_element_by_xpath("//div[contains(text(),'Workflows')]")
-        Logging().reportDebugStep(self, "Workflows is loaded")
-        return CRMConfigurationPage(self.driver)
+        try:
+            self.driver.find_element_by_xpath("//a[contains(text(),'Workflows')]")
+            brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Workflows')]")
+            brand_configuration_btn.click()
+            self.driver.find_element_by_xpath("//div[contains(text(),'Workflows')]")
+            Logging().reportDebugStep(self, "Workflows is loaded")
+            return CRMConfigurationPage(self.driver)
+        except (TimeoutException, NoSuchElementException):
+            pass
+            Logging().reportDebugStep(self, "Workflows module does not exist")
+            return CRMConfigurationPage(self.driver)
 
     def check_sharing_access_loaded(self):
         sleep(1)

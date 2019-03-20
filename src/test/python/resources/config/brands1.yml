@@ -51,8 +51,8 @@ brands:
 #  config_file: firstindex.yml
 #- name: coinstec
 #  config_file: coinstec.yml
-- name: tradospot
-  config_file: tradospot.yml
+#- name: tradospot
+#  config_file: tradospot.yml
 #- name: 24btcmarket
 #  config_file: 24btcmarket.yml
 #- name: marketsplus

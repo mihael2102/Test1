@@ -439,16 +439,24 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Click sorting by Exist")
         return LeadsModule(self.driver)
 
-    def perform_searching_lead_module(self, email):
+    def perform_searching_lead_module(self, first_name, last_name, email, assigned_to, tittle, lead_source, lead_status,
+                                         language):
         self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
-        # self.enter_first_name(first_name)
-        # self.enter_last_name(last_name)
+        self.enter_first_name(first_name)
+        self.enter_last_name(last_name)
         self.enter_email(email)
         # self.enter_assigned_to(assigned_to)
         # self.enter_tittle(tittle)
         # self.enter_lead_source(lead_source)
         # self.enter_lead_status(lead_status)
         # self.enter_language(language)
+        self.click_search_button_leads_module()
+        self.wait_crm_loading_to_finish()
+        return LeadsModule()
+
+    def perform_searching_lead_by_mail(self, email):
+        self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
+        self.enter_email(email)
         self.click_search_button_leads_module()
         self.wait_crm_loading_to_finish()
         return LeadsModule()
@@ -626,11 +634,11 @@ class LeadsModule(CRMBasePage):
 
     def enter_assigned_to(self, assigned_to):
         country_drop_down = self.driver.find_element(By.XPATH,
-                                                     "//tr[@id='customAdvanceSearch']//td[5]//span[@class='multiselect-selected-text']")
+                                    "//tr[@id='customAdvanceSearch']//td[5]//span[@class='multiselect-selected-text']")
 
         country_drop_down.click()
         search_field = self.driver.find_element(By.XPATH,
-                                                "//tr[@id='customAdvanceSearch']//td[5]//input[@class='form-control multiselect-search']")
+                            "//tr[@id='customAdvanceSearch']//td[5]//input[@class='form-control multiselect-search']")
         search_field.clear()
         search_field.send_keys(assigned_to)
         country_choice = self.driver.find_element(By.XPATH,
@@ -768,6 +776,7 @@ class LeadsModule(CRMBasePage):
         results_count_text = self.driver.find_elements(By.XPATH, result_count_xpath)[0].text
         results_split = results_count_text.split(" ")
         result_count = int(results_split[len(results_split) - 1])
+        Logging().reportDebugStep(self, "Record is found")
         return result_count
 
     def get_first_name_column(self):
