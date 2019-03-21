@@ -43,7 +43,7 @@ class MultiRunner:
         # write the results to an Excel file
         result_writer = ExcelWriter()
         result_writer.write_test_results(brand_pretty_names, test_list, overall_results)
-        result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
+        # result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
 
 
     def single_brand_test(self, brand, test_list):
