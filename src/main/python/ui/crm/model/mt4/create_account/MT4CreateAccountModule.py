@@ -108,7 +108,8 @@ class MT4CreateAccountModule(CRMBasePage):
         drop_down = self.wait_element_to_be_clickable("//select[@name='leverage']")
         self.driver.execute_script("arguments[0].click();", drop_down)
         # drop_down.click()
-        leverage_selection = self.driver.find_element(By.XPATH, "//select[@name='leverage']/option[contains(text(),'%s')]" % leverage)
+        leverage_selection = self.driver.find_element(By.XPATH, "//select[@name='leverage']/option[contains(text(),'%s')]"
+                                                      % leverage)
         # leverage_selection.click()
         self.driver.execute_script("arguments[0].click();", leverage_selection)
         Logging().reportDebugStep(self, "Trading account leverage was selected: " + leverage_selection.text)

@@ -125,7 +125,9 @@ class WorkflowsPage(CRMBasePage):
         module.click()
         sleep(2)
         clients = self.driver.find_element_by_xpath(
-            "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value/div/div[1]/select-search/div/div[2]/span[1]/input")
+            "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/ \
+            workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value/ \
+            div/div[1]/select-search/div/div[2]/span[1]/input")
         clients.send_keys(name)
         sleep(2)
         select = self.driver.find_element_by_xpath("//span[text()=' %s ']" % name)
