@@ -39,11 +39,11 @@ tests_config:
 #  tests:
 #    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
 #    - test_edit_lead
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_perform_convert_lead   # Creates a lead and converts it to a client
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+#  directive: reload_configuration
+#  class: LeadModuleTest
+#  tests:
+#    - test_perform_convert_lead   # Creates a lead and converts it to a client
 #####Clients
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
 #  class: SearchingClientsTestCRM
@@ -78,10 +78,10 @@ tests_config:
 #  tests:
 #    - test_change_client_password_from_crm  # change a client account password from the crm
 #    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
-  class: DepositTestCRM
-  tests:
-    - test_make_deposit_crm  # make a deposit into a trading account from the crm
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+#  class: DepositTestCRM
+#  tests:
+#    - test_make_deposit_crm  # make a deposit into a trading account from the crm
 #    - test_make_deposit_for_client_crm
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
 #  class: WithdrawTest
@@ -124,20 +124,20 @@ tests_config:
 #    - test_create_campaign
 #    - test_edit_campaign
 #    - test_delete_campaign
-#- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
-#  class: AutoAssignModuleTest
-#  tests:
-#    - test_add_auto_assign_rule_lead
-#    - test_add_auto_assign_rule_client
-#- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
-#  class: CreateNewCustomer
-#  tests:
-#    - test_autoassign_create_new_lead
-#    - test_autoassign_create_new_customer
-#- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
-#  class: AutoAssignModuleTest
-#  tests:
-#    - test_perform_delete_rule
+- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
+  class: AutoAssignModuleTest
+  tests:
+    - test_add_auto_assign_rule_lead
+    - test_add_auto_assign_rule_client
+- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
+  class: CreateNewCustomer
+  tests:
+    - test_autoassign_create_new_lead
+    - test_autoassign_create_new_customer
+- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
+  class: AutoAssignModuleTest
+  tests:
+    - test_perform_delete_rule
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
 #  class: WorkflowsModulesTest
