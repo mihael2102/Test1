@@ -13,6 +13,7 @@ class ExcelWriter:
         # create styles for the PASS/FAIL results
         cell_format_pass = workbook.add_format({'align': 'center', 'bg_color': '#C4D79B'})
         cell_format_fail = workbook.add_format({'align': 'center', 'bg_color': 'red'})
+        cell_format_not_runned = workbook.add_format({'align': 'center', 'bg_color': '#a1f1f0'})
 
         # set column widths
         worksheet.write(0, 0, "Brand \ Test")
@@ -36,6 +37,12 @@ class ExcelWriter:
                     if self.get_test_pretty_name(test) in results[brand] else ""
                 if test_result == 'PASS':
                     worksheet.write(row, col, test_result, cell_format_pass)
+                elif ("module does not exist" in test_result) or ("There is no" in test_result) or \
+                        ("There are no" in test_result):
+                    test_result_na = "NOT RUNNED"
+                    worksheet.write(row, col, test_result_na, cell_format_not_runned)
+                    worksheet.write_comment(row, col, test_result,
+                                            {'width': 250, 'height': 400})
                 else:
                     test_result_error = "ERROR"
                     worksheet.write(row, col, test_result_error, cell_format_fail)
@@ -56,6 +63,7 @@ class ExcelWriter:
         cell_format_pass = workbook.add_format({'align': 'center', 'bg_color': '#C4D79B'})
         cell_format_fail = workbook.add_format({'align': 'center', 'bg_color': 'red', 'text_wrap': True})
         cell_format_steps_to_fail = workbook.add_format({'align': 'center', 'bg_color': '#F1F2A2', 'text_wrap': True})
+        cell_format_not_runned = workbook.add_format({'align': 'center', 'bg_color': '#a1f1f0', 'text_wrap': True})
 
         # set column widths
         worksheet.set_default_row(20)
@@ -95,6 +103,15 @@ class ExcelWriter:
                         row += 1
                     if c == count_steps:
                         worksheet.write(row, col, test_result, cell_format_pass)
+
+                elif test_result == 'NOT RUNNED':
+                    c = 1
+                    while c < count_steps:
+                        worksheet.write(row, col, test_result, cell_format_not_runned)
+                        c += 1
+                        row += 1
+                    if c == count_steps:
+                        worksheet.write(row, col, test_result, cell_format_not_runned)
 
                 else:
                     s = "\n"

@@ -116,13 +116,13 @@ if __name__ == "__main__":
         path_to_brands_suite_10 = "brands10.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-                      path_to_brands_suite_9, path_to_brands_suite_10]
-        # input_list = [path_to_brands_suite_1]
+        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+        #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+        #               path_to_brands_suite_9, path_to_brands_suite_10]
+        input_list = [path_to_brands_suite_1]
                       # Init multiprocess
 
-        pool = multiprocessing.Pool(processes=10)
+        pool = multiprocessing.Pool(processes=1)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -154,6 +154,9 @@ if __name__ == "__main__":
 
                 format2 = workbook.add_format({'bg_color': '#C4D79B',
                                                'font_color': '#000000'})
+
+                format3 = workbook.add_format({'bg_color': '#a1f1f0',
+                                               'font_color': '#000000'})
                 worksheet.conditional_format(0, 0, 896, 200, {'type': 'text',
                                                               'criteria': 'beginsWith',
                                                               'value': 'PASS',
@@ -163,6 +166,10 @@ if __name__ == "__main__":
                                                               'criteria': 'beginsWith',
                                                               'value': 'ERROR',
                                                               'format': format1})
+                worksheet.conditional_format(0, 0, 896, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'NOT RUNNED',
+                                                              'format': format3})
                 worksheet.freeze_panes(1, 1)
                 worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
                 for i in range(3, 25):
