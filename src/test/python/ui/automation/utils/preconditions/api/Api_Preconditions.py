@@ -133,6 +133,10 @@ class ApiPrecondition(object):
                                                         LeadsModuleConstants.EMAIL])
         ApiPage(self.driver).send_read_customer()
         token = ApiPage(self.driver).check_read_customer_details()
+        while (self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                        LeadsModuleConstants.EMAIL] not in token):
+            time.sleep(2)
+            token = ApiPage(self.driver).check_read_customer_details()
         assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL] in token
         assert APIConstants.REFFERAL in token
@@ -215,7 +219,8 @@ class ApiPrecondition(object):
         lead_module.select_filter(
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
 
-        lead_module.perform_searching_lead_module(APIConstants.LEAD_FNAME, APIConstants.LEAD_LNAME, self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL])
+        lead_module.perform_searching_lead_by_mail(self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)
+                                                   [LeadsModuleConstants.EMAIL])
         lead_module.open_personal_details_lead()
         email = lead_module.get_lead_email()
         fname = lead_module.get_lead_fname()
