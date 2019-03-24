@@ -13,6 +13,7 @@ from src.main.python.ui.crm.model.constants.APIConstants import APIConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 import re
 import time
+from time import sleep
 
 class ApiPrecondition(object):
 
@@ -98,6 +99,13 @@ class ApiPrecondition(object):
         ApiPage(self.driver).send_create_customer()
 
         check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+        count = 0
+        while(APIConstants.STATUS_OK not in check_create_customer_token):
+            sleep(1)
+            check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+            count += 1
+            if count == 5:
+                break
 
         assert APIConstants.STATUS_OK in check_create_customer_token
 
@@ -133,10 +141,14 @@ class ApiPrecondition(object):
                                                         LeadsModuleConstants.EMAIL])
         ApiPage(self.driver).send_read_customer()
         token = ApiPage(self.driver).check_read_customer_details()
+        count = 0
         while (self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL] not in token):
             time.sleep(2)
             token = ApiPage(self.driver).check_read_customer_details()
+            count += 1
+            if count == 5:
+                break
         assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL] in token
         assert APIConstants.REFFERAL in token
