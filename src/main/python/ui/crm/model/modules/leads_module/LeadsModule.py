@@ -67,6 +67,13 @@ class LeadsModule(CRMBasePage):
         self.wait_crm_loading_to_finish()
         return LeadsModule()
 
+    def perform_searching_lead_by_mail(self, email):
+        self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
+        self.enter_email(email)
+        self.click_search_button_leads_module()
+        self.wait_crm_loading_to_finish()
+        return LeadsModule()
+
     def open_create_lead_module(self):
         task_module = super().wait_load_element("//td[@class='moduleName']//button[1]")
         task_module.click()

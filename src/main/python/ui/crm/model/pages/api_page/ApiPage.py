@@ -49,6 +49,7 @@ class ApiPage(CRMBasePage):
     def login_token_module(self):
         sleep(2)
         try:
+            self.driver.find_element_by_xpath("//a[contains(text(),'Login token')]")
             read_leads_module = self.driver.find_element(By.XPATH, "//*[@id='scrollingNav']/ul/li[24]/a")
             read_leads_module.click()
             Logging().reportDebugStep(self, "Open login token module")
