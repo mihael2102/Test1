@@ -470,10 +470,11 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Click sorting by Exist")
         return LeadsModule(self.driver)
 
-    def perform_searching_lead_module(self, email):
+    def perform_searching_lead_module(self, first_name, last_name, email, assigned_to, tittle, lead_source, lead_status,
+                                         language):
         self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
-        # self.enter_first_name(first_name)
-        # self.enter_last_name(last_name)
+        self.enter_first_name(first_name)
+        self.enter_last_name(last_name)
         self.enter_email(email)
         # self.enter_assigned_to(assigned_to)
         # self.enter_tittle(tittle)
@@ -483,6 +484,13 @@ class LeadsModule(CRMBasePage):
         self.click_search_button_leads_module()
         if global_var.current_brand_name == "itrader":
             sleep(40)
+        self.wait_crm_loading_to_finish()
+        return LeadsModule()
+
+    def perform_searching_lead_by_mail(self, email):
+        self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
+        self.enter_email(email)
+        self.click_search_button_leads_module()
         self.wait_crm_loading_to_finish()
         return LeadsModule()
 

@@ -364,7 +364,9 @@ class LeadPrecondition(object):
             .open_create_lead_module()\
 
 
-        if global_var.current_brand_name == "safemarkets" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "fm-fx":
+        if global_var.current_brand_name == "safemarkets" or global_var.current_brand_name == "itrader_global" or \
+                global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo" or \
+                global_var.current_brand_name == "fm-fx":
             CreateLeadsProfilePage(self.driver).perform_create_lead(
             lead[LeadsModuleConstants.FIRST_NAME],
             lead[LeadsModuleConstants.FIRST_LAST_NAME],

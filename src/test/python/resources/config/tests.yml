@@ -33,12 +33,12 @@ tests_config:
 #    - export_select_records #only for one process
 #    - import_leads #only for one process
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
-#    - test_edit_lead
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
+    - test_edit_lead
 #- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
 #  directive: reload_configuration
 #  class: LeadModuleTest
@@ -124,20 +124,20 @@ tests_config:
 #    - test_create_campaign
 #    - test_edit_campaign
 #    - test_delete_campaign
-- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
-  class: AutoAssignModuleTest
-  tests:
-    - test_add_auto_assign_rule_lead
-    - test_add_auto_assign_rule_client
-- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
-  class: CreateNewCustomer
-  tests:
-    - test_autoassign_create_new_lead
-    - test_autoassign_create_new_customer
-- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
-  class: AutoAssignModuleTest
-  tests:
-    - test_perform_delete_rule
+#- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
+#  class: AutoAssignModuleTest
+#  tests:
+#    - test_add_auto_assign_rule_lead
+#    - test_add_auto_assign_rule_client
+#- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
+#  class: CreateNewCustomer
+#  tests:
+#    - test_autoassign_create_new_lead
+#    - test_autoassign_create_new_customer
+#- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
+#  class: AutoAssignModuleTest
+#  tests:
+#    - test_perform_delete_rule
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
 #  class: WorkflowsModulesTest

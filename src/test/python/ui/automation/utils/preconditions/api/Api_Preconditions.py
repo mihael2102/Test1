@@ -248,7 +248,7 @@ class ApiPrecondition(object):
         lead_module.select_filter(
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
 
-        lead_module.perform_searching_lead_module(self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)
+        lead_module.perform_searching_lead_by_mail(self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)
                                                                                         [LeadsModuleConstants.EMAIL])
         lead_module.open_personal_details_lead()
 

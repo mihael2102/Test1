@@ -169,7 +169,7 @@ class CreateLeadsProfilePage(CRMBasePage):
     def set_brand(self, brand):
         brand_list = Select(self.driver.find_element(By.XPATH, "//select[@name='brands']"))
         brand_list.select_by_visible_text(brand)
-        Logging().reportDebugStep(self, "The lead status was set: " + brand)
+        Logging().reportDebugStep(self, "The brand was set: " + brand)
         return CreateLeadsProfilePage(self.driver)
 
     def set_first_brand(self):
