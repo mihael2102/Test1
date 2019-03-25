@@ -344,13 +344,9 @@ class ExcelWriter:
         if self.get_test_pretty_name_new(test) == "ReadCustomersDetails: test read customers details":
             step_suit = ["Open CRM"
                 , "Setting the user name in the field : "
-
                 , " Setting the user name in the password: "
-
                 , " Click the login button"
-
                 , "No OTP authentication is required"
-
                 , "'What's new' popup isn't displayed "
                 , "The Affiliates page was opened"
                 ,"Enter partner ID 3898"
@@ -379,13 +375,9 @@ class ExcelWriter:
         if self.get_test_pretty_name_new(test) == "ReadCustomerDetails: test read customer details":
             step_suit = ["Open CRM"
                 , "Setting the user name in the field : "
-
                 , " Setting the user name in the password: "
-
                 , " Click the login button"
-
                 , "No OTP authentication is required"
-
                 , "'What's new' popup isn't displayed "
                 , "The Affiliates page was opened"
                 ,"Enter partner ID 3898"
@@ -413,13 +405,9 @@ class ExcelWriter:
         if self.get_test_pretty_name_new(test) == "AutorizationProcess: test autorization process":
             step_suit = ["Open CRM"
                 , "Setting the user name in the field : "
-
                 , " Setting the user name in the password: "
-
                 , " Click the login button"
-
                 , "No OTP authentication is required"
-
                 , "'What's new' popup isn't displayed "
                 , "The Affiliates page was opened"
                 ,"Enter partner ID 3898"
