@@ -1,7 +1,7 @@
 brands:
 
-- name: aztrades
-  config_file: aztrades.yml
+#- name: aztrades
+#  config_file: aztrades.yml
 - name: q8
   config_file: q8.yml
 
