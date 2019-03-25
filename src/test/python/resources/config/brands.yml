@@ -73,6 +73,8 @@ brands:
   config_file: tfxgo.yml
 - name: uprofx
   config_file: uprofx.yml
+- name: gigafx
+  config_file: gigafx.yml
 
 
 

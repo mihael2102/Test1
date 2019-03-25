@@ -6,6 +6,9 @@ brands:
 #  config_file: coinstec.yml
 #- name: 24btcmarket
 #  config_file: 24btcmarket.yml
-- name: tradospot
-  config_file: tradospot.yml
+#- name: tradospot
+#  config_file: tradospot.yml
+- name: gigafx
+  config_file: gigafx.yml
+
 
