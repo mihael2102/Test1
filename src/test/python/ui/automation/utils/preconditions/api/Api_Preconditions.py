@@ -12,7 +12,6 @@ from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
 from src.main.python.ui.crm.model.constants.APIConstants import APIConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 import re
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 import time
 from time import sleep
 
@@ -134,7 +133,9 @@ class ApiPrecondition(object):
         client_last_name = ClientsPage(self.driver).get_client_last_name()
         client_phone = ClientsPage(self.driver).get_client_phone()
         ClientsPage(self.driver).click_custom_information()
-        if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "oinvestsa":
+        refferal = ""
+        if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "oinvestsa" and \
+                global_var.current_brand_name != "gmo":
             refferal = ClientsPage(self.driver).get_refferal_client()
 
         assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -149,7 +150,8 @@ class ApiPrecondition(object):
                                                         LeadsModuleConstants.FIRST_NAME]
         assert client_last_name == APIConstants.LASTNAME
         assert client_phone == APIConstants.PHONE_CRM
-        if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "oinvestsa":
+        if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "oinvestsa" and \
+                global_var.current_brand_name != "gmo":
             assert APIConstants.REFFERAL in refferal
 
 
@@ -262,14 +264,17 @@ class ApiPrecondition(object):
         email = lead_module.get_lead_email()
         fname = lead_module.get_lead_fname()
         lname = lead_module.get_lead_lname()
+        phone =""
+        expected_phone = APIConstants.LEAD_PHONE
+        print(expected_phone)
         if global_var.current_brand_name != "stoxmarket":
             phone = lead_module.get_lead_phone()
-
+        actual_phone = re.sub('[+," "]', '', phone)
         assert email == self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]
         assert fname == APIConstants.LEAD_FNAME
         assert lname == APIConstants.LEAD_LNAME
         if global_var.current_brand_name != "stoxmarket":
-            assert phone == APIConstants.LEAD_PHONE_CRM
+            assert actual_phone == expected_phone
 
 
     def test_read_leads(self):

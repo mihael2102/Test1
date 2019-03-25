@@ -29,7 +29,7 @@ class APIConstants(object):
     CHANGE_POSTAL_CODE = "777"
     LEAD_FNAME = "LeadFName"
     LEAD_LNAME = "LeadLName"
-    LEAD_PHONE = "3523233"
+    LEAD_PHONE = str(random.randrange(1, 9999999))
     LEAD_PHONE_CRM = "+352 3233"
     API_filter = "API"
     PAYMENT_DETAILS = "Payment Details"

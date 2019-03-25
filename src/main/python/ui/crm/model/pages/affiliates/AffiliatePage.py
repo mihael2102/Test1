@@ -51,15 +51,15 @@ class AffiliatePage(CRMBasePage):
         return AffiliatePage(self.driver)
 
     def check_selected_methods(self):
-        sleep(3)
-        selected_number = super().wait_load_element(
+        sleep(5)
+        selected_number = self.driver.find_element_by_xpath(
             "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[1]").text
         Logging().reportDebugStep(self, "Check selected methods")
         return selected_number
 
     def search_by_partner_id(self, partner_id):
-        sleep(3)
-        input = self.driver.find_element(By.XPATH, "//td[2]//input")
+        sleep(4)
+        input = self.driver.find_element_by_xpath("//td[2]//input")
         input.send_keys(partner_id)
         Logging().reportDebugStep(self, "Enter partner ID %s" % partner_id)
         return AffiliatePage(self.driver)

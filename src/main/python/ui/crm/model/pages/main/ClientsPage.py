@@ -145,6 +145,7 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click the search button ")
         sleep(2)
         # client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
+        self.wait_crm_loading_to_finish()
         client_id = super().wait_load_element("//a[contains(text(), 'ACC')]")
         # client_id.click()
         self.driver.execute_script("arguments[0].scrollIntoView();", client_id)
@@ -486,3 +487,6 @@ class ClientsPage(CRMBasePage):
                                            "//tr[5]/td[5]/a/div").text
         Logging().reportDebugStep(self, "Check first clients")
         return client1, client2, client3, client4, client5
+
+    def wait_crm_loading_to_finish(self):
+        self.wait_element_to_be_disappear("//div[@class='loader']")

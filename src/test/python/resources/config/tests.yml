@@ -15,16 +15,11 @@ tests_config:
   tests:
     - test_read_customer_details
 
-- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Read_Customers_Details
-  class: ReadCustomersDetails
-  tests:
-    - test_read_customers_details
-
 - module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Update_Customer
   class: UpdateCustomer
   tests:
     - test_update_customer
-
+#
 - module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Create_Lead
   class: CreateLead
   tests:
@@ -39,7 +34,7 @@ tests_config:
   class: LoginToken
   tests:
     - test_login_token
-
+#
 
   ###General
 #- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter

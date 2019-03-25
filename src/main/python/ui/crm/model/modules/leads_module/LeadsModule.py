@@ -15,6 +15,7 @@ from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class LeadsModule(CRMBasePage):
 
@@ -71,6 +72,8 @@ class LeadsModule(CRMBasePage):
         self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
         self.enter_email(email)
         self.click_search_button_leads_module()
+        if global_var.current_brand_name == "itrader":
+            sleep(40)
         self.wait_crm_loading_to_finish()
         return LeadsModule()
 
