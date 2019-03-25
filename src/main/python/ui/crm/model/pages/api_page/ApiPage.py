@@ -25,14 +25,14 @@ class ApiPage(CRMBasePage):
     def check_login_token(self):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
-                                               "//*[@id='api-System-LoginToken-0.0.0']/form/fieldset/div[5]/pre/code").text
+                                        "//*[@id='api-System-LoginToken-0.0.0']/form/fieldset/div[5]/pre/code").text
         Logging().reportDebugStep(self, "Check login token")
         return check_token
 
     def send_login_token(self):
         sleep(2)
         customer_module = self.driver.find_element(By.XPATH,
-                                                   "//*[@id='api-System-LoginToken-0.0.0']/form/fieldset/div[4]/div/button")
+                                            "//*[@id='api-System-LoginToken-0.0.0']/form/fieldset/div[4]/div/button")
         customer_module.click()
         Logging().reportDebugStep(self, "Click Send")
         return ApiPage(self.driver)
@@ -61,14 +61,14 @@ class ApiPage(CRMBasePage):
     def check_read_leads_token(self):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
-                                               "//*[@id='api-Leads-readLeads-0.0.0']/form/fieldset/div[5]/pre/code").text
+                                            "//*[@id='api-Leads-readLeads-0.0.0']/form/fieldset/div[5]/pre/code").text
         Logging().reportDebugStep(self, "Check token read leads details")
         return check_token
 
     def send_leads_read(self):
         sleep(2)
         customer_module = self.driver.find_element(By.XPATH,
-                                                   "//*[@id='api-Leads-readLeads-0.0.0']/form/fieldset/div[4]/div/button")
+                                                "//*[@id='api-Leads-readLeads-0.0.0']/form/fieldset/div[4]/div/button")
         customer_module.click()
         Logging().reportDebugStep(self, "Click Send")
         return ApiPage(self.driver)
@@ -159,14 +159,14 @@ class ApiPage(CRMBasePage):
     def check_update_token(self):
         sleep(15)
         check_token = self.driver.find_element(By.XPATH,
-                                               "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
+                                    "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
         Logging().reportDebugStep(self, "Check token read customers details")
         return check_token
 
     def send_update_customer(self):
         sleep(2)
         customer_module = self.driver.find_element(By.XPATH,
-                                                   "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[4]/div/button")
+                                        "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[4]/div/button")
         customer_module.click()
         Logging().reportDebugStep(self, "Click Send")
         return ApiPage(self.driver)
@@ -183,7 +183,7 @@ class ApiPage(CRMBasePage):
     def change_first_name(self, name):
         sleep(2)
         input = self.driver.find_element(By.XPATH,
-                                         "//*[@id='sample-request-param-field-firstName-Customers-updateCustomer-0_0_0']")
+                                    "//*[@id='sample-request-param-field-firstName-Customers-updateCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(name)
         Logging().reportDebugStep(self, "Change first name")
@@ -192,7 +192,7 @@ class ApiPage(CRMBasePage):
     def change_postalCode(self, code):
         sleep(2)
         input = self.driver.find_element(By.XPATH,
-                                         "//*[@id='sample-request-param-field-postalCode-Customers-updateCustomer-0_0_0']")
+                                    "//*[@id='sample-request-param-field-postalCode-Customers-updateCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(code)
         Logging().reportDebugStep(self, "Change postal code")
@@ -217,14 +217,14 @@ class ApiPage(CRMBasePage):
     def check_reads_customer_details(self):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
-                                               "//*[@id='api-Customers-readCustomers-0.0.0']/form/fieldset/div[5]/pre/code").text
+                                    "//*[@id='api-Customers-readCustomers-0.0.0']/form/fieldset/div[5]/pre/code").text
         Logging().reportDebugStep(self, "Check token read customers details")
         return check_token
 
     def send_read_customers(self):
         sleep(2)
         customer_module = self.driver.find_element(By.XPATH,
-                                                   "//*[@id='api-Customers-readCustomers-0.0.0']/form/fieldset/div[4]/div/button")
+                                        "//*[@id='api-Customers-readCustomers-0.0.0']/form/fieldset/div[4]/div/button")
         customer_module.click()
         Logging().reportDebugStep(self, "Click Send")
         return ApiPage(self.driver)
@@ -257,13 +257,14 @@ class ApiPage(CRMBasePage):
     def check_read_customer_details(self):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
-                                               "//*[@id='api-Customers-readCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
+                                    "//*[@id='api-Customers-readCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
         Logging().reportDebugStep(self, "Check token read customer details")
         return check_token
 
     def send_read_customer(self):
         sleep(2)
-        customer_module = self.driver.find_element(By.XPATH, "//*[@id='api-Customers-readCustomer-0.0.0']/form/fieldset/div[4]/div/button")
+        customer_module = self.driver.find_element(By.XPATH,
+                                        "//*[@id='api-Customers-readCustomer-0.0.0']/form/fieldset/div[4]/div/button")
         customer_module.click()
         Logging().reportDebugStep(self, "Click Send")
         return ApiPage(self.driver)

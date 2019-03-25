@@ -114,10 +114,13 @@ class ApiPrecondition(object):
 
         check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
         sleep(3)
-
+        count = 0
         while (APIConstants.STATUS_OK  not in check_create_customer_token):
             sleep(2)
             check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+            count += 1
+            if count == 5:
+                break
         assert APIConstants.STATUS_OK in check_create_customer_token
 
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
@@ -157,10 +160,14 @@ class ApiPrecondition(object):
                                                         LeadsModuleConstants.EMAIL])
         ApiPage(self.driver).send_read_customer()
         token = ApiPage(self.driver).check_read_customer_details()
+        count = 0
         while (self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL] not in token):
             sleep(2)
             token = ApiPage(self.driver).check_read_customer_details()
+            count += 1
+            if count == 5:
+                break
         assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL] in token
         assert APIConstants.REFFERAL in token
@@ -232,6 +239,13 @@ class ApiPrecondition(object):
         ApiPage(self.driver).enter_phone_lead(APIConstants.LEAD_PHONE)
         ApiPage(self.driver).send_create_lead()
         token = ApiPage(self.driver).check_create_lead_token()
+        count = 0
+        while(APIConstants.STATUS_OK not in token):
+            sleep(1)
+            token = ApiPage(self.driver).check_create_lead_token()
+            count += 1
+            if count == 5:
+                break
         assert APIConstants.STATUS_OK in token
 
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
