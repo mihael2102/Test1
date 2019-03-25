@@ -35,7 +35,9 @@ class AddRuleModule(CRMBasePage):
         self.perform_submit()
 
     def set_rule_name(self, rule_name):
+        sleep(3)
         rule_name_field = super().wait_visible_of_element("//input[@name='rule_name']")
+        sleep(3)
         rule_name_field.clear()
         rule_name_field.send_keys(rule_name)
         Logging().reportDebugStep(self, "The rule name field was entered: " + rule_name)
