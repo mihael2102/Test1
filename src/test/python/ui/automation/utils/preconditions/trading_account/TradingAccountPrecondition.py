@@ -53,7 +53,7 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
 
-        elif global_var.current_brand_name == "itrader":
+        elif global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
             MT4CreateAccountModule(self.driver) \
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
@@ -103,7 +103,7 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO_GROUP),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO_LEVERAGE))
 
-        elif global_var.current_brand_name == "itrader":
+        elif global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
             MT4CreateAccountModule(self.driver)\
                 .update_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO),

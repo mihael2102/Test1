@@ -46,7 +46,7 @@ class CreditInPrecondition(object):
         #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY),
         #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),
         #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE))
-        if global_var.current_brand_name == "itrader":
+        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
             MT4CreateAccountModule(self.driver) \
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
