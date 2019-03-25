@@ -29,7 +29,7 @@ class CRMConstants(object):
     RESULT_TRADING = "I would be upset for a while but the loss will not affect my financial situation to a large extent"
     INVESTMENT_OBJECTIVES = ""
     COUNTRY = "Albania"
-    STATUS_EDIT_STOX = "R - New"
+    STATUS_EDIT_STOX = "B - Test"
     STATUS_EDIT_ITRADER = "Test"
     THIRD_STEP_IMPORT_LEADS = "File successfully uploaded."
     STATUS_EDIT = "B - Test"
