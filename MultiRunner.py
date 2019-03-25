@@ -42,7 +42,7 @@ class MultiRunner:
         # write the results to an Excel file
         result_writer = ExcelWriter()
         result_writer.write_test_results(brand_pretty_names, test_list, overall_results)
-        result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
+        # result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
 
 
 
@@ -226,6 +226,9 @@ if __name__ == "__main__":
 
                 format2 = workbook.add_format({'bg_color': '#C4D79B',
                                                'font_color': '#000000'})
+
+                format3 = workbook.add_format({'bg_color': '#a1f1f0',
+                                               'font_color': '#000000'})
                 worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
                                                               'criteria': 'beginsWith',
                                                               'value': 'PASS',
@@ -236,9 +239,14 @@ if __name__ == "__main__":
                                                               'value': 'ERROR',
                                                               'format': format1})
 
+                worksheet.conditional_format(0, 0, 896, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'NOT RUNNED',
+                                                              'format': format3})
+
                 writer.save()
 
-        Send_ALL_XLS(all_excel)
+        # Send_ALL_XLS(all_excel)
         Send_ALL_XLS(short_excel)
 
     else:
