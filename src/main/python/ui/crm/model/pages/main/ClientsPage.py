@@ -92,6 +92,7 @@ class ClientsPage(CRMBasePage):
         search_button.click()
         Logging().reportDebugStep(self, "Click the search button ")
         sleep(2)
+        self.wait_crm_loading_to_finish()
         client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
         sleep(1)
         self.driver.execute_script("arguments[0].click();", client_id)
@@ -386,7 +387,7 @@ class ClientsPage(CRMBasePage):
         sleep(5)
         refferal_client = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Refferal')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the client email: " + refferal_client.text)
+        Logging().reportDebugStep(self, "Verified the client refferal: " + refferal_client.text)
         return refferal_client.text
 
     def get_first_client_email(self):

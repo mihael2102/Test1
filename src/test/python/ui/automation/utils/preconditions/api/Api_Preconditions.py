@@ -130,7 +130,8 @@ class ApiPrecondition(object):
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME]
         assert client_last_name == APIConstants.LASTNAME
-        assert client_phone == APIConstants.PHONE_CRM
+        if global_var.current_brand_name != "brokerz":
+            assert client_phone == APIConstants.PHONE_CRM
         assert refferal == APIConstants.REFFERAL
 
 
