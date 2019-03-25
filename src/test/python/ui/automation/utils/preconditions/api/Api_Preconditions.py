@@ -221,6 +221,13 @@ class ApiPrecondition(object):
         ApiPage(self.driver).enter_phone_lead(APIConstants.LEAD_PHONE)
         ApiPage(self.driver).send_create_lead()
         token = ApiPage(self.driver).check_create_lead_token()
+        count = 0
+        while (APIConstants.STATUS_OK not in token):
+            sleep(1)
+            token = ApiPage(self.driver).check_create_lead_token()
+            count += 1
+            if count == 5:
+                break
         assert APIConstants.STATUS_OK in token
 
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
