@@ -17,9 +17,9 @@ tests_config:
     - sorting_lead_module
     - test_mass_assign_leads
     - test_mass_edit_leads
-    - export_full_list #only for one process
-    - export_select_records #only for one process
-    - import_leads #only for one process
+#    - export_full_list #only for one process
+#    - export_select_records #only for one process
+#    - import_leads #only for one process
 - module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
   directive: reload_configuration
   class: LeadModuleTest
@@ -43,17 +43,18 @@ tests_config:
   class: SearchingClientsTestCRM
   tests:
     - test_make_searching_client_module   # Searches for a client.
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
-  class: AddInteraction
-  tests:
-    - test_add_interaction  # Adds an interaction for a client
-    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-  class: AddEventTaskModule
-  tests:
-    - test_add_event
-    - test_edit_event
-    - test_delete_interaction
+### NOT RUN (there is no permissions to delete task)
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
+#  class: AddInteraction
+#  tests:
+#    - test_add_interaction  # Adds an interaction for a client
+#    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
+#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+#  class: AddEventTaskModule
+#  tests:
+#    - test_add_event
+#    - test_edit_event
+#    - test_delete_interaction
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
   class: TradingAccountCrmTest
   tests:
