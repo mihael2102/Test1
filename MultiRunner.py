@@ -123,9 +123,10 @@ if __name__ == "__main__":
         # Form input list where each parameter is filename of TestSuite file
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2,path_to_brands_suite_3,path_to_brands_suite_4,path_to_brands_suite_5,path_to_brands_suite_6,
         #               path_to_brands_suite_7,path_to_brands_suite_8,path_to_brands_suite_9,path_to_brands_suite_10,path_to_brands_suite_11,path_to_brands_suite_12]
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2,path_to_brands_suite_3,path_to_brands_suite_4,path_to_brands_suite_5,path_to_brands_suite_6]
+        input_list = [path_to_brands_suite_1]
+        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2,path_to_brands_suite_3,path_to_brands_suite_4,path_to_brands_suite_5,path_to_brands_suite_6]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=6)
+        pool = multiprocessing.Pool(processes=1)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -136,7 +137,22 @@ if __name__ == "__main__":
         import xlsxwriter
 
         import xlsxwriter
+        from pandas import ExcelWriter
+        import glob
+        import os
+        import pandas as pd
 
+        writer = ExcelWriter("C:\excel\output.xlsx")
+
+        for filename in glob.glob("C:\excel\*.xlsx"):
+            excel_file = pd.ExcelFile(filename)
+            (_, f_name) = os.path.split(filename)
+            (f_short_name, _) = os.path.splitext(f_name)
+            for sheet_name in excel_file.sheet_names:
+                df_excel = pd.read_excel(filename, sheet_name=sheet_name)
+                df_excel.to_excel(writer, f_short_name + '_' + sheet_name, index=False)
+
+        writer.save()
         # Join all results in one excel
         all_excel = "C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/final_file.xlsx"
         # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
