@@ -7,8 +7,8 @@ brands:
 #  config_file: safemarkets.yml
 #- name: b-traderfx
 #  config_file: b-traderfx.yml
-#- name: royal_cfds
-#  config_file: royal_cfds.yml
+- name: royal_cfds
+  config_file: royal_cfds.yml
 #- name: jonesmutual
 #  config_file: jonesmutual.yml
 #- name: forexbestmarket
@@ -43,8 +43,8 @@ brands:
 #  config_file: aztrades.yml
 #- name: bots
 #  config_file: bots.yml
-#- name: kontofx
-#  config_file: kontofx.yml
+- name: kontofx
+  config_file: kontofx.yml
 #- name: xtraderfx
 #  config_file: xtraderfx.yml
 #- name: firstindex
@@ -82,5 +82,5 @@ brands:
 #  config_file: uprofx.yml
 #- name: mpcrypto
 #  config_file: mpcrypto.yml
-- name: gigafx
-  config_file: gigafx.yml
+#- name: gigafx
+#  config_file: gigafx.yml
