@@ -1,3 +1,5 @@
 brands:
-- name: mlnfx
-  config_file: mlnfx.yml
+- name: itrader
+  config_file: itrader.yml
+#- name: mlnfx
+#  config_file: mlnfx.yml

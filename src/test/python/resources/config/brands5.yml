@@ -1,3 +1,5 @@
 brands:
-- name: fxpmarkets
-  config_file: fxpmarkets.yml
+- name: capitalmarketsbanc
+  config_file: capitalmarketsbanc.yml
+#- name: fxpmarkets
+#  config_file: fxpmarkets.yml
