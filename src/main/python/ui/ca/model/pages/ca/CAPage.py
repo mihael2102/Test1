@@ -124,7 +124,10 @@ class CAPage(CRMBasePage):
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlInvestmentObjectivesStrategy']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlInvestmentObjectivesStrategy']"))
-        select.select_by_visible_text(investment_obj)
+        if global_var.current_brand_name == "gmo":
+            select.select_by_visible_text("I invest only in secured financial assets that carry no risk")
+        else:
+            select.select_by_visible_text(investment_obj)
         Logging().reportDebugStep(self, "Enter investment obj")
         return CAPage(self.driver)
 
@@ -134,7 +137,10 @@ class CAPage(CRMBasePage):
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlFeelLostDepositedCapital']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlFeelLostDepositedCapital']"))
-        select.select_by_visible_text(result_of_trading)
+        if global_var.current_brand_name == "gmo":
+            select.select_by_visible_text("I would be very upset. I can’t afford to lose the funds I use for trading")
+        else:
+            select.select_by_visible_text(result_of_trading)
         Logging().reportDebugStep(self, "Enter  result of trading")
         return CAPage(self.driver)
 
@@ -182,7 +188,10 @@ class CAPage(CRMBasePage):
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlLastYearTotalVolume']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlLastYearTotalVolume']"))
-        select.select_by_visible_text(trade_size)
+        if global_var.current_brand_name == "gmo":
+            select.select_by_visible_text("Less than €3,000 in Stocks/Cryptos and/or €12,500 in Forex/Commodities")
+        else:
+            select.select_by_visible_text(trade_size)
         Logging().reportDebugStep(self, "Enter trade size")
         return CAPage(self.driver)
 
@@ -261,7 +270,10 @@ class CAPage(CRMBasePage):
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlRequestingTradingAccount']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlRequestingTradingAccount']"))
-        select.select_by_visible_text(purpose)
+        if global_var.current_brand_name == "gmo":
+            select.select_by_visible_text("Long-term investment")
+        else:
+            select.select_by_visible_text(purpose)
         Logging().reportDebugStep(self, "Enter purpose")
         return CAPage(self.driver)
 

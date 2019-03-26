@@ -233,7 +233,7 @@ class Create_Accounts_Precondition(object):
                                                  LeadsModuleConstants.EMAIL]) \
             .enter_password(CAConstants.PASSWORD) \
             .click_login()
-        if global_var.current_brand_name != "itrader":
+        if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "gmo":
             CAPage(self.driver).open_live_account()
 
 
@@ -258,7 +258,7 @@ class Create_Accounts_Precondition(object):
             CAPage(self.driver).open_finmarket()
 
 
-        if global_var.current_brand_name == "itrader":
+        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
             CAPage(self.driver).fill_questionarie_itrader(CAConstants.ITRADER_EMPLOYMENT_STATUS,
                                                           CAConstants.ITRADER_INDUSTRY,
                                                           CAConstants.YES,
@@ -319,7 +319,7 @@ class Create_Accounts_Precondition(object):
         if global_var.current_brand_name == "mlnfx":
             CAPage(self.driver).click_check_box_confirm()
             CAPage(self.driver).click_confirm()
-        if global_var.current_brand_name != "itrader":
+        if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "gmo":
             currency = CAPage(self.driver).verify_relevant_currency()
             data = CAPage(self.driver).verify_correct_data()
 
