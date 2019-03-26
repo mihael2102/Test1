@@ -3,8 +3,8 @@ brands:
 #  config_file: 2mercados.yml
 #- name: royal_cfds
 #  config_file: royal_cfds.yml
-#- name: 4xfx
-#  config_file: 4xfx.yml
+- name: 4xfx
+  config_file: 4xfx.yml
 #- name: coinstec
 #  config_file: coinstec.yml
 #- name: mpcrypto
@@ -31,8 +31,8 @@ brands:
 #  config_file: swiftcfd.yml
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
-- name: q8
-  config_file: q8.yml
+#- name: q8
+#  config_file: q8.yml
 #- name: firstindex
 #  config_file: firstindex.yml
 #- name: b-finance

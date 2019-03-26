@@ -1,4 +1,4 @@
-test = "New Forex CA special"
+test = "New Forex CA"
 timeout = 4
 data = None
 url_client_area = ""
