@@ -74,6 +74,8 @@ class LeadsModule(CRMBasePage):
         self.click_search_button_leads_module()
         if global_var.current_brand_name == "itrader":
             sleep(40)
+        else:
+            sleep(20)
         self.wait_crm_loading_to_finish()
         return LeadsModule()
 
