@@ -1,5 +1,5 @@
 import pytest
-
+from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.test.python.ui.automation.BaseTest import BaseTest
@@ -21,6 +21,7 @@ class TradingAccountCrmTest(BaseTest):
             client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
             LeadPrecondition(self.driver, self.config).fill_questioner_new_client(client1[LeadsModuleConstants.EMAIL])
         else:
+            Logging().reportDebugStep(self, "Brand doesnt contains questioner")
             return self
 
     def test_crm_open_trading_account(self):
