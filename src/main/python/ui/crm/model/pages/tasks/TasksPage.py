@@ -1,5 +1,6 @@
 from time import sleep
-
+import poplib
+from email import parser
 from allure_commons.types import AttachmentType
 from selenium.webdriver.common.by import By
 
@@ -108,12 +109,22 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "The sms module was opened")
         return MassSMSModule(self.driver)
 
+    def enter_body_mail(self, body):
+        sleep(4)
+        self.driver.switch_to_frame(self.driver.find_element(By.XPATH, "//*[@id='cke_1_contents']/iframe"))
+        enter_body_mail = self.driver.find_element(By.XPATH, "/html/body/p")
+        enter_body_mail.click()
+        self.driver.execute_script("arguments[0].textContent = arguments[1];", enter_body_mail, body)
+        # enter_body_mail.send_keys(body)
+        Logging().reportDebugStep(self, "Enter body mail")
+        return TasksPage(self.driver)
+
     def open_email_actions_section(self):
         first_check_box = super().wait_element_to_be_clickable(
-            "//td[@class='grid-actions-cell']//div[1]")
+            "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[1]")
         first_check_box.click()
-        Logging().reportDebugStep(self, "The sms module was opened")
-        return SendEmailModuleActions(self.driver)
+        Logging().reportDebugStep(self, "The email module was opened")
+        return TasksPage(self.driver)
 
     def open_mass_edit_task(self):
         mass_edit_module = super().wait_element_to_be_clickable("//button[contains(text(),'Mass Edit')]")
@@ -327,6 +338,51 @@ class TasksPage(CRMBasePage):
         result_count = int(results_split[len(results_split) - 1])
         Logging().reportDebugStep(self, "Got %d search results" % result_count)
         return result_count
+
+
+    def enter_subject_mail(self, subject):
+        sleep(4)
+        subject_mail = super().wait_load_element("//input[@id='subject']")
+        subject_mail.send_keys(subject)
+        Logging().reportDebugStep(self, "Enter subject mail" + subject)
+        return TasksPage(self.driver)
+
+    def enter_cc_mail(self, cc_mail):
+        self.driver.switch_to.default_content()
+        sleep(3)
+        subject_mail = super().wait_load_element("//*[@id='email_cc']")
+        subject_mail.send_keys(cc_mail)
+        Logging().reportDebugStep(self, "Enter cc mail" + cc_mail)
+        return TasksPage(self.driver)
+
+    def click_send(self):
+        self.driver.switch_to.default_content()
+        sleep(10)
+        click_send = super().wait_load_element("/html/body/bs-modal[7]/div/div/div/div[3]/span/button[4]")
+        click_send.click()
+        Logging().reportDebugStep(self, "Click Send")
+        return TasksPage(self.driver)
+
+    def check_email(self):
+        pop_conn = poplib.POP3_SSL('pop.gmail.com')
+        pop_conn.user('jonathan.albalak@pandats.com')
+        pop_conn.pass_('9U&AU=bm')
+        # Get messages from server:
+        messages = [pop_conn.retr(i) for i in range(1, len(pop_conn.list()[1]) + 1)]
+        # Concat message pieces:
+        messages = ["\n".join(m.decode() for m in mssg[1]) for mssg in messages]
+        # Parse message intom an email object:
+        messages = [parser.Parser().parsestr(mssg) for mssg in messages]
+        for message in messages:
+            if "TASK_MAIL" in message:
+                Logging().reportDebugStep(self, message['subject'])
+        pop_conn.quit()
+
+    def get_first_account_name(self):
+        sleep(10)
+        account_name = super().wait_load_element("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[6]/grid-cell/div/span[2]/a").text
+        Logging().reportDebugStep(self, "Check Account name" + account_name)
+        return account_name
 
     def search_account_name(self, first_name):
         input_account_name = super().wait_element_to_be_clickable("//*[@id='host-element']/input", timeout=10)

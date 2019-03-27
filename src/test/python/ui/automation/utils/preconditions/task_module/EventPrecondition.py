@@ -20,6 +20,27 @@ class EventPrecondition(object):
         self.driver = driver
         self.config = config
 
+    def test_email_icon(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+
+        task_module = CRMHomePage(self.driver).open_task_module()
+        task_module.search_account_name(CRMConstants.TESTQA)
+        first_account_name = task_module.get_first_account_name()
+        task_module.open_email_actions_section()
+        task_module.enter_subject_mail(CRMConstants.SUBJECT_TASK_MAIL)
+        task_module.enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
+        task_module.enter_cc_mail(CRMConstants.CC_EMAIL)
+        task_module.enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
+        task_module.click_send()
+        sleep(60)
+        task_module.check_email()
+
+
+
+
+
 
     def create_first_event(self):
 

@@ -4,6 +4,8 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    CC_EMAIL = "jonathan.albalak@pandats.com"
+    SUBJECT_TASK_MAIL = "SUBJECT_TASK_MAIL" + str(random.randrange(1, 9999999))
     TRADING_LEVERAGE_ITRADER = "30"
     SUBJECT_LEAD_MAIL = "Test MAIL" + str(random.randrange(1, 9999999))
     BODY_LEAD_MAIL = "Test"
@@ -39,6 +41,7 @@ class CRMConstants(object):
     PANDAQA_ASSIGN = "pandaqa pandaqa"
     PANDAQA_ASSIGN_CMB = "pandaqatest pandaqa"
     SHORT_EMAIL = "pandaqa+"
+    TESTQA = "testqa"
     SORTING_EXIST = "no"
     SORTING_LEAD_NO = 1
     SORTING_EMAIL = 1
