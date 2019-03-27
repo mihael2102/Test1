@@ -37,8 +37,7 @@ class LeadPrecondition(object):
         CRMHomePage(self.driver).open_lead_module()
         LeadsModule(self.driver).select_filter(
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
-        LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL) \
-                                .click_search_button_leads_module()
+        LeadsModule(self.driver).perform_searching_lead_by_mail(CRMConstants.SHORT_EMAIL)
         lead_email = LeadsModule(self.driver).get_first_lead_email()
         LeadsModule(self.driver).click_first_lead_email()
         value = LeadsModule(self.driver).get_lead_email_pop_up()
@@ -52,10 +51,9 @@ class LeadPrecondition(object):
         CRMHomePage(self.driver).open_lead_module()
         LeadsModule(self.driver).select_filter(
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
-        LeadsModule(self.driver).enter_email(lead_email) \
-            .click_search_button_leads_module()\
-            .open_lead_personal_details()\
-            .open_email_section()
+        LeadsModule(self.driver).perform_searching_lead_by_mail(lead_email) \
+                                .open_lead_personal_details()\
+                                .open_email_section()
         mail = LeadsModule(self.driver).get_saved_mail_lead(CRMConstants.SUBJECT_LEAD_MAIL)
         assert mail == CRMConstants.SUBJECT_LEAD_MAIL
 

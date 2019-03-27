@@ -297,7 +297,7 @@ class TabFinancialTransaction(BaseTest):
             financial_transaction_list_page.open_search_form()
             # Search for transaction Id
             transaction_id_after_searching = financial_transaction_list_page.search_for_transaction_id(transaction_number)\
-                                                                                .get_transaction_id_by_position_from_list(1)
+                                                                            .get_transaction_id_by_position_from_list(1)
             self.assertEqual(transaction_number, transaction_id_after_searching, "Wrong transaction ID was found")
 
             # Search for client name. Search form is opened
