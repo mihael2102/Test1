@@ -36,7 +36,7 @@ class MyDashboardPage(CRMBasePage):
         return MyDashboardPage(self.driver)
 
     def check_client_segmentation_contains_record(self):
-        sleep(1)
+        sleep(2)
         self.driver.find_element_by_xpath("/html/body/app-root/sales-dashboard-module/div/div[1]/div[2]/ \
                                                 sales-dashboard-segmentation/div/table[2]/tbody/tr[1]")
         Logging().reportDebugStep(self, "Client Segmentation section contain records")

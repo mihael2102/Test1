@@ -11,6 +11,13 @@ from src.test.python.ui.automation.utils.preconditions.transfer_between_ta.Trans
 @pytest.mark.run(order=3)
 class TransferBetweenTa(BaseTest):
 
+    def test_transfer_between_ta(self):
+        TransferBetweenPrecondition(self.driver, self.config).add_two_usd_currencies()
+
+
+
+
+
     def test_make_transfer_between_ta(self):
         TransferBetweenPrecondition().add_two_usd_currencies().make_deposit()
 

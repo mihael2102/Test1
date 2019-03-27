@@ -44,7 +44,6 @@ class ClientProfilePage(CRMBasePage):
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//li//a[contains(text(),'Trading Accounts')][1]")))
         trading_account_tab = super().wait_load_element("//li//a[contains(text(),'Trading Accounts')][1]")
-        # trading_account_tab.click()
         self.driver.execute_script("arguments[0].click();", trading_account_tab)
         Logging().reportDebugStep(self, "Scroll to trading account section")
         return ClientProfilePage(self.driver)
@@ -700,3 +699,18 @@ class ClientProfilePage(CRMBasePage):
             btn_save.send_keys(date)
         Logging().reportDebugStep(self, "Enter b-day")
         return ClientProfilePage(self.driver)
+
+    def get_trading_account_info(self):
+        info = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[2]").text
+        Logging().reportDebugStep(self, "Get trading account information")
+        return info
+
+    def get_first_account_currency(self):
+        currency = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[2]/td[10]").text
+        Logging().reportDebugStep(self, "First trading account currency: " + currency)
+        return currency
+
+    def get_second_account_currency(self):
+        currency = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[3]/td[10]").text
+        Logging().reportDebugStep(self, "Second trading account currency: " + currency)
+        return currency
