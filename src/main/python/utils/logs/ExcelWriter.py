@@ -7,7 +7,7 @@ class ExcelWriter:
     def write_test_results(self, brands, tests, results):
         # Create a workbook and add a worksheet.
         # os.mkdir("C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_result")
-        filepath = "result/short_results_" + strftime("%Y%m%d_%H%M%S", gmtime()) + ".xlsx"
+        filepath = "result/" + brands[0] + ".xlsx"
         workbook = xlsxwriter.Workbook(filepath)
         worksheet = workbook.add_worksheet()
 
@@ -21,10 +21,10 @@ class ExcelWriter:
         worksheet.set_column(1, len(brands), 20)
         worksheet.freeze_panes(1, 1)
         # Write the test names
-        row = 1
-        for test in tests:
-            worksheet.write(row, 0, self.get_test_pretty_name_new(test))
-            row += 1
+        # row = 1
+        # for test in tests:
+        #     worksheet.write(row, 0, self.get_test_pretty_name_new(test))
+        #     row += 1
 
         # write the test results per brand
         col = 1
@@ -37,11 +37,28 @@ class ExcelWriter:
                     if self.get_test_pretty_name(test) in results[brand] else ""
                 if test_result == 'PASS':
                     worksheet.write(row, col, test_result, cell_format_pass)
+                    worksheet.write(row, 0, self.get_test_pretty_name_new(test))
+                    row += 1
                 else:
+                    worksheet.write(row, 0, self.get_test_pretty_name_new(test))
                     test_result_error = "ERROR"
                     worksheet.write(row, col, test_result_error, cell_format_fail)
-                    worksheet.write_comment(row, col, test_result,
-                                            {'width': 250, 'height': 400})
+                    s = "\n"
+                    if s in test_result:
+                        new_row_data = test_result.split("\n")
+
+                        while '' in new_row_data:
+                            new_row_data.remove('')
+
+                        for data in new_row_data:
+                            worksheet.write(row, col, data, cell_format_fail)
+                            row += 1
+
+
+                    # test_result_error = "ERROR"
+                    # worksheet.write(row, col, test_result_error, cell_format_fail)
+                    # worksheet.write_comment(row, col, test_result,
+                    #                         {'width': 250, 'height': 400})
             col += 1
 
         workbook.close()

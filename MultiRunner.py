@@ -42,7 +42,7 @@ class MultiRunner:
         # write the results to an Excel file
         result_writer = ExcelWriter()
         result_writer.write_test_results(brand_pretty_names, test_list, overall_results)
-        result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
+        # result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
 
 
 
@@ -123,10 +123,10 @@ if __name__ == "__main__":
         # Form input list where each parameter is filename of TestSuite file
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2,path_to_brands_suite_3,path_to_brands_suite_4,path_to_brands_suite_5,path_to_brands_suite_6,
         #               path_to_brands_suite_7,path_to_brands_suite_8,path_to_brands_suite_9,path_to_brands_suite_10,path_to_brands_suite_11,path_to_brands_suite_12]
-        input_list = [path_to_brands_suite_1]
-        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2,path_to_brands_suite_3,path_to_brands_suite_4,path_to_brands_suite_5,path_to_brands_suite_6]
+        # input_list = [path_to_brands_suite_1]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2,path_to_brands_suite_3,path_to_brands_suite_4,path_to_brands_suite_5,path_to_brands_suite_6]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=1)
+        pool = multiprocessing.Pool(processes=6)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -142,17 +142,40 @@ if __name__ == "__main__":
         import os
         import pandas as pd
 
-        writer = ExcelWriter("C:\excel\output.xlsx")
+        writer = ExcelWriter("D:/automation-newforexqa/result/output.xlsx")
 
-        for filename in glob.glob("C:\excel\*.xlsx"):
+        for filename in glob.glob("D:/automation-newforexqa/result/*.xlsx"):
             excel_file = pd.ExcelFile(filename)
             (_, f_name) = os.path.split(filename)
             (f_short_name, _) = os.path.splitext(f_name)
             for sheet_name in excel_file.sheet_names:
                 df_excel = pd.read_excel(filename, sheet_name=sheet_name)
                 df_excel.to_excel(writer, f_short_name + '_' + sheet_name, index=False)
+                workbook = writer.book
+                worksheet = writer.sheets[f_short_name + '_' + sheet_name]
+                format1 = workbook.add_format({'bg_color': '#FFC7CE',
+                                               'font_color': '#9C0006'})
+
+                format2 = workbook.add_format({'bg_color': '#C4D79B',
+                                               'font_color': '#000000'})
+
+                worksheet.conditional_format(0, 0, 200, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'PASS',
+                                                              'format': format2})
+
+                worksheet.conditional_format(0, 0, 200, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'ERROR',
+                                                              'format': format1})
+
+                worksheet.freeze_panes(1, 1)
 
         writer.save()
+
+
+
+
         # Join all results in one excel
         all_excel = "C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/final_file.xlsx"
         # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
