@@ -49,6 +49,17 @@ class DepositTestCRM(BaseTest):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
                 .click_close()
 
+        elif global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
+            MT4CreateAccountModule(self.driver) \
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
+                                      TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
+                CRMConstants.TRADING_LEVERAGE_ITRADER) \
+                .click_close()
+
+
         else:
             MT4CreateAccountModule(self.driver) \
                 .create_account(

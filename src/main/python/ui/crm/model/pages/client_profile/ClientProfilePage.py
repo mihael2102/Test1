@@ -187,7 +187,10 @@ class ClientProfilePage(CRMBasePage):
         sleep(2)
         select = Select(
             self.driver.find_element(By.XPATH, "//select[@name='new_feel_lost_deposited_capital']"))
-        select.select_by_visible_text(result_trading)
+        if global_var.current_brand_name == "gmo":
+            select.select_by_visible_text("I would be upset for a while but it wouldn’t change my financial situation.")
+        else:
+            select.select_by_visible_text(result_trading)
         Logging().reportDebugStep(self,
                                   "Select How would you feel if you lost your deposited capital as a result of trading? : " + result_trading)
         return ClientProfilePage(self.driver)
@@ -246,7 +249,10 @@ class ClientProfilePage(CRMBasePage):
         sleep(2)
         select = Select(
             self.driver.find_element(By.XPATH, "//select[@name='new_last_year_total_volume']"))
-        select.select_by_visible_text(volume)
+        if global_var.current_brand_name == "gmo":
+            select.select_by_visible_text("More than €3,000 in Stocks/Cryptos and/or €12,500 in Forex/Commodities")
+        else:
+            select.select_by_visible_text(volume)
         Logging().reportDebugStep(self, "Select What is your annual average trade size (volume) of your past 40 leveraged transactions? : " + volume)
         return ClientProfilePage(self.driver)
 

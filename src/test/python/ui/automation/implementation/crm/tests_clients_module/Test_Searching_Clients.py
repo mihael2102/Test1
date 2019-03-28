@@ -74,7 +74,7 @@ class SearchingClientsTestCRM(BaseTest):
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY_ME))
 
-        elif global_var.current_brand_name == "itrader":
+        elif global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
                 ClientsPage(self.driver).perform_searching(
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_NEW),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),

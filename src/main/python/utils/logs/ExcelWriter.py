@@ -38,7 +38,7 @@ class ExcelWriter:
                 if test_result == 'PASS':
                     worksheet.write(row, col, test_result, cell_format_pass)
                 elif ("module does not exist" in test_result) or ("There are no" in test_result) or \
-                        ("There is no" in test_result):
+                        ("There is no" in test_result) or ("There is no Workflows module" in test_result) or ("Brand doesnt contains questioner" in test_result):
                     test_result_na = "NOT RUNNED"
                     worksheet.write(row, col, test_result_na, cell_format_not_runned)
                     worksheet.write_comment(row, col, test_result,
@@ -152,6 +152,78 @@ class ExcelWriter:
         return test['class'] + ': ' + test['method'].replace('_', ' ')
 
     def steps_for_test(self, test):
+
+        if self.get_test_pretty_name_new(test) == "AddEventTaskModule: test searching by columns":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                , "Task module is opened"
+                ,"The all tab was opened"
+                ,"Search Account name"
+                ,"Check Account nametestqaEECLID Doe"
+                ,"Check statusPlanned"
+                ,"Check TypeMeeting"
+                ,"Search Account name"
+                ,"Search by status"
+                ,"Search by Type"
+                ,"Check Account nametestqaEECLID Doe"
+                ,"Check statusPlanned"
+                ,"Check TypeMeeting"]
+
+        if self.get_test_pretty_name_new(test) == "AddEventTaskModule: test mass edit tasks":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"Task module is opened"
+                ,"The all tab was opened "
+                ,"Search Account name"
+                ,"Check Account nametestqaEECLID Doe"
+                ,"Select all event"
+                ,"The mass edit module was opened"
+                ,"The event status is set Planned"
+                ,"The event type is set Meeting"
+                ,"The duration  is set 15M"
+                ,"Click the 'save' button "
+                ,"Search Account name"
+                ,"Check statusPlanned"
+                ,"Check TypeMeeting"]
+
+        if self.get_test_pretty_name_new(test) == "AddEventTaskModule: test sms icon":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                ,"Task module is opened"
+                ,"The all tab was opened "
+                ,"Search Account name"
+                ,"The sms module was opened"
+                ,"Server Not Configured?"]
+
+        if self.get_test_pretty_name_new(test) == "AddEventTaskModule: test email icon":
+            step_suit = ["Open CRM"
+                , "Enter Username"
+                , "Enter Password"
+                , "Click Login"
+                , "No OTP"
+                , "'What's new' popup isn't displayed"
+                , "Task module is opened"
+                ,"The all tab was opened"
+                ,"Search Account name"
+                ,"The email module was opened"
+                ,"Enter subject mailSUBJECT_TASK_MAIL"
+                ,"Enter body mail"
+                ,"Enter cc mailjonathan.albalak@pandats.com"
+                ,"Enter body mail"
+                ,"Click Send"
+                ,"Check mail"]
 
         if self.get_test_pretty_name_new(test) == "LeadModuleTest: test check email popup":
             step_suit = ["Open CRM"

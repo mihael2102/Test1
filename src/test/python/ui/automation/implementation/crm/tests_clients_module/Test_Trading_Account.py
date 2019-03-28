@@ -1,5 +1,5 @@
 import pytest
-
+from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.test.python.ui.automation.BaseTest import BaseTest
@@ -17,10 +17,11 @@ from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondi
 class TradingAccountCrmTest(BaseTest):
 
     def fill_questioner_new_client(self):
-        if (global_var.current_brand_name == "itrader"):
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
             client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
             LeadPrecondition(self.driver, self.config).fill_questioner_new_client(client1[LeadsModuleConstants.EMAIL])
         else:
+            Logging().reportDebugStep(self, "Brand doesnt contains questioner")
             return self
 
     def test_crm_open_trading_account(self):

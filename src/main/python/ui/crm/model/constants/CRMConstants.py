@@ -4,6 +4,13 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    STATUS_EVENT = "Planned"
+    TYPE_EVENT = "Meeting"
+    DURATION_EVENT = "15M"
+    SERVER_NOT_CONFIGURATE = "Server Not Configured?"
+    CC_EMAIL = "jonathan.albalak@pandats.com"
+    SUBJECT_TASK_MAIL = "SUBJECT_TASK_MAIL"
+    TRADING_LEVERAGE_ITRADER = "30"
     SUBJECT_LEAD_MAIL = "Test MAIL" + str(random.randrange(1, 9999999))
     BODY_LEAD_MAIL = "Test"
     CHANGE_PHONE_LEAD = "0534431234"
@@ -28,7 +35,7 @@ class CRMConstants(object):
     RESULT_TRADING = "I would be upset for a while but the loss will not affect my financial situation to a large extent"
     INVESTMENT_OBJECTIVES = ""
     COUNTRY = "Albania"
-    STATUS_EDIT_STOX = "R - New"
+    STATUS_EDIT_STOX = "B - Test"
     STATUS_EDIT_ITRADER = "Test"
     THIRD_STEP_IMPORT_LEADS = "File successfully uploaded."
     STATUS_EDIT = "B - Test"
@@ -38,6 +45,7 @@ class CRMConstants(object):
     PANDAQA_ASSIGN = "pandaqa pandaqa"
     PANDAQA_ASSIGN_CMB = "pandaqatest pandaqa"
     SHORT_EMAIL = "pandaqa+"
+    TESTQA = "testqa"
     SORTING_EXIST = "no"
     SORTING_LEAD_NO = 1
     SORTING_EMAIL = 1

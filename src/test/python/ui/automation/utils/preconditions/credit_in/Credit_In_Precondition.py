@@ -9,7 +9,7 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.config import Config
-
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class CreditInPrecondition(object):
 
@@ -46,15 +46,26 @@ class CreditInPrecondition(object):
         #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY),
         #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),
         #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE))
-        crm_client_profile = MT4CreateAccountModule(self.driver) \
-            .create_account(
+        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
+            MT4CreateAccountModule(self.driver) \
+                .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
                                       TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
+                CRMConstants.TRADING_LEVERAGE_ITRADER)\
             .click_close()
-        return crm_client_profile
+
+        else:
+            crm_client_profile = MT4CreateAccountModule(self.driver) \
+                .create_account(
+                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
+                                          TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
+                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
+                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
+                .click_close()
+            return crm_client_profile
 
     def make_credit_in(self):
         crm_client_profile = CRMLoginPage() \

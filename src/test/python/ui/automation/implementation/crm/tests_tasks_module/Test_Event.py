@@ -17,6 +17,18 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 @pytest.mark.run(order=14)
 class AddEventTaskModule(BaseTest):
 
+    def test_email_icon(self):
+        EventPrecondition(self.driver, self.config).test_email_icon()
+
+    def test_sms_icon(self):
+        EventPrecondition(self.driver, self.config).test_sms_icon()
+
+    def test_mass_edit_tasks(self):
+        EventPrecondition(self.driver, self.config).test_mass_edit_tasks()
+
+    def test_searching_by_columns(self):
+        EventPrecondition(self.driver, self.config).test_searching_by_columns()
+
     def test_add_event(self):
         try:
             EventPrecondition(self.driver, self.config).create_first_event()
