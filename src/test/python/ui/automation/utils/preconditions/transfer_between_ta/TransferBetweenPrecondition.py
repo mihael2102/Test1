@@ -130,6 +130,11 @@ class TransferBetweenPrecondition(object):
         amount_transfer = crm_client_profile.click_ok() \
             .click_trading_accounts_tab().get_balance_of_trading_account(CRMConstants.SECOND_TA_NUMBER_FROM_TA_SECTION)
 
+        while amount_transfer != expected_balance:
+            ClientProfilePage(self.driver).refresh_page()
+            sleep(2)
+            amount_transfer = ClientProfilePage(self.driver).get_balance_of_trading_account\
+                (CRMConstants.SECOND_TA_NUMBER_FROM_TA_SECTION)
         assert amount_transfer == expected_balance
 
 

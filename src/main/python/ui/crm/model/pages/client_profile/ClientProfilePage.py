@@ -722,6 +722,7 @@ class ClientProfilePage(CRMBasePage):
         return ta_number
 
     def get_balance_of_trading_account(self, account):
+        sleep(2)
         balance = super().wait_load_element("//*[@id='rld_table_content']/tbody/tr[%s]/td[5]/span[1]" % account)
         total_amount = re.sub('[$£CA€ [ ]', '', balance.text)
         Logging().reportDebugStep(self, "Balance of trading account is: " + total_amount)
