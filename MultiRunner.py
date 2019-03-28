@@ -124,7 +124,7 @@ if __name__ == "__main__":
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3]
                       # Init multiprocess
 
-        pool = multiprocessing.Pool(processes=3)
+        pool = multiprocessing.Pool(processes=1)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)

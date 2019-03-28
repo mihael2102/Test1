@@ -76,7 +76,7 @@ class CRMConstants(object):
     CLIENT_STATUS = "client_status_1"
     BRAND = "brand_one"
     TRANSFER_BETWEEN_TA_MESSAGE = "Funds were transferred successfully"
-    AMOUNT_TRANSFER_BETWEEN_TA = "15.00"
+    AMOUNT_TRANSFER_BETWEEN_TA = "1.00"
     TRANSFER_BETWEEN_TA = "8"
     DESCRIPTION_ADD_INTERACTION = "Description Interaction"
     DATE = datetime.now()
@@ -121,7 +121,7 @@ class CRMConstants(object):
     STATUS_WITHDRAW = "Approved"
     PAYMENT_METHOD_WITHDRAW = "Credit card"
     DESCRIPTION_DEPOSIT = "Description Deposit"
-    DESCRIPTION_TRANSFER_BETWEEN_TA = "Description Transfer Between Ta"
+    DESCRIPTION_TRANSFER_BETWEEN_TA = "test"
     STATUS_DEPOSIT = "Approved"
     PAYMENT_METHOD_DEPOSIT = "Credit card"
     WITHDRAW = "7"
@@ -174,3 +174,5 @@ class CRMConstants(object):
     MYDASHBOARD_MODULE = "My Dashboard"
     AUDITLOGS_MODULE = "Audit Logs"
     CRM_CONFIGURATION = "CRM Configuration"
+    FIRST_TA_NUMBER_FROM_TA_SECTION = "2"
+    SECOND_TA_NUMBER_FROM_TA_SECTION = "3"

@@ -1078,3 +1078,31 @@ class ClientProfilePage(CRMBasePage):
         trading_account_number = trading_account.text
         Logging().reportDebugStep(self, "Account number is " + trading_account_number)
         return trading_account_number
+
+    def get_trading_account_info(self):
+        info = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[2]").text
+        Logging().reportDebugStep(self, "Get trading account information")
+        return info
+
+    def get_first_account_currency(self):
+        currency = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[2]/td[10]").text
+        Logging().reportDebugStep(self, "First trading account currency is: " + currency)
+        return currency
+
+    def get_second_account_currency(self):
+        currency = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[3]/td[10]").text
+        Logging().reportDebugStep(self, "Second trading account currency is: " + currency)
+        return currency
+
+    def get_trading_account_number_from_ta(self, account_number):
+        ta_number = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[%s]/td[1]"
+                                                      % account_number).get_attribute("innerText")
+        Logging().reportDebugStep(self, "Trading account number is: " + ta_number)
+        return ta_number
+
+    def get_balance_of_trading_account(self, account):
+        sleep(2)
+        balance = super().wait_load_element("//*[@id='rld_table_content']/tbody/tr[%s]/td[5]/span[1]" % account)
+        total_amount = re.sub('[$£CA€ [ ]', '', balance.text)
+        Logging().reportDebugStep(self, "Balance of trading account is: " + total_amount)
+        return total_amount
