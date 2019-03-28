@@ -62,9 +62,9 @@ tests_config:
 #    - test_add_event
 #    - test_edit_event
 #    - test_delete_interaction
-#    - test_email_icon
-#    - test_sms_icon
-#    - test_mass_edit_tasks
+    - test_email_icon
+    - test_sms_icon
+    - test_mass_edit_tasks
     - test_searching_by_columns
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
