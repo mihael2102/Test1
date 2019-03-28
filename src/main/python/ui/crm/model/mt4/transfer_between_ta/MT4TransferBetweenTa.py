@@ -6,8 +6,8 @@ from src.main.python.utils.logs.Loging import Logging
 
 
 class MT4TransferBetweenTa(CRMBasePage):
-    def __init__(self):
-        super().__init__()
+    # def __init__(self):
+    #     super().__init__()
 
     def make_transfer_between_ta(self, first_account, second_account, amount, description_transfer):
         self.select_first_account(first_account)
@@ -28,7 +28,7 @@ class MT4TransferBetweenTa(CRMBasePage):
         select_account = self.driver.find_element(By.XPATH, "//select[@name='sourceloginserver']//"
                                                             "following-sibling::*[contains(text(),'%s')]" % first_account)
         select_account.click()
-        return MT4TransferBetweenTa()
+        return MT4TransferBetweenTa(self.driver)
 
     '''
         Select second account from drop down for transfer between
@@ -42,7 +42,7 @@ class MT4TransferBetweenTa(CRMBasePage):
         select_account = self.driver.find_element(By.XPATH, "//select[@name='destinationlogin']//"
                                                             "following-sibling::*[contains(text(),'%s')]" % second_account)
         select_account.click()
-        return MT4TransferBetweenTa()
+        return MT4TransferBetweenTa(self.driver)
 
     '''
         Set the amount in the field for deposit
@@ -55,7 +55,7 @@ class MT4TransferBetweenTa(CRMBasePage):
         amount_filed.clear()
         amount_filed.send_keys(amount)
         Logging().reportDebugStep(self, "The amount of transfer between ta module was set:  " + amount)
-        return MT4TransferBetweenTa()
+        return MT4TransferBetweenTa(self.driver)
 
     '''
        Set the description in the field 
@@ -69,7 +69,7 @@ class MT4TransferBetweenTa(CRMBasePage):
         amount_filed.send_keys(description_deposit)
         Logging().reportDebugStep(self,
                                   "The  description of transfer between ta  module was set in the description field:  " + description_deposit)
-        return MT4TransferBetweenTa()
+        return MT4TransferBetweenTa(self.driver)
 
     '''
         Create deposit button
@@ -80,4 +80,4 @@ class MT4TransferBetweenTa(CRMBasePage):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
         create_button.click()
         Logging().reportDebugStep(self, "The create withdraw button of transfer between ta module was clicked")
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)

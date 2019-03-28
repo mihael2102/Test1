@@ -89,6 +89,12 @@ tests_config:
 #  class: CreditOutTestCRM
 #  tests:
 #    - test_make_credit_out_crm # preconditions: convert lead, make credit in
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
+  class: TransferBetweenTa
+  tests:
+    - test_transfer_between_ta # preconditions: convert lead, deposit crm
+
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
 #  class: TradingAccountCrmTest
 #  tests:
