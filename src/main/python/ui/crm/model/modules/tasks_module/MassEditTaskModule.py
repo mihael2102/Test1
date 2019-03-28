@@ -2,22 +2,23 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
-
+import time
 
 class MassEditTaskModule(CRMBasePage):
-    def __init__(self):
-        super().__init__()
+    # def __init__(self):
+    #     super().__init__()
 
-    def perform_mass_edit(self, status, type, duration, date, time, assign_to, priority,
-                          comments):
+    def perform_mass_edit(self, status, type, duration):
+                          # , date, time, assign_to, priority,
+                          # comments):
         self.set_checkbox()
         self.set_event_status(status)
         self.set_event_type(type)
-        self.set_time(date, time)
+        # self.set_time(date, time)
         self.set_duration(duration)
-        self.set_priority(priority)
-        self.set_assign_to(assign_to)
-        self.set_description(comments)
+        # self.set_priority(priority)
+        # self.set_assign_to(assign_to)
+        # self.set_description(comments)
         self.click_save()
         return MassEditTaskModule()
 
@@ -78,6 +79,7 @@ class MassEditTaskModule(CRMBasePage):
         return MassEditTaskModule()
 
     def set_checkbox(self):
+        time.sleep(5)
         status_check_box = super().wait_element_to_be_clickable(
             "//label[contains(text(),'Status')]//preceding-sibling::span//input")
         status_check_box.click()

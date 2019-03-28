@@ -4,8 +4,12 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    STATUS_EVENT = "Planned"
+    TYPE_EVENT = "Meeting"
+    DURATION_EVENT = "15M"
+    SERVER_NOT_CONFIGURATE = "Server Not Configured?"
     CC_EMAIL = "jonathan.albalak@pandats.com"
-    SUBJECT_TASK_MAIL = "SUBJECT_TASK_MAIL" + str(random.randrange(1, 9999999))
+    SUBJECT_TASK_MAIL = "SUBJECT_TASK_MAIL"
     TRADING_LEVERAGE_ITRADER = "30"
     SUBJECT_LEAD_MAIL = "Test MAIL" + str(random.randrange(1, 9999999))
     BODY_LEAD_MAIL = "Test"

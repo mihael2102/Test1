@@ -26,12 +26,6 @@ class AddEventTaskModule(BaseTest):
     def test_mass_edit_tasks(self):
         EventPrecondition(self.driver, self.config).test_mass_edit_tasks()
 
-    def test_mass_email_tasks(self):
-        EventPrecondition(self.driver, self.config).test_mass_email_tasks()
-
-    def test_sorting_tasks(self):
-        EventPrecondition(self.driver, self.config).test_sorting_tasks()
-
     def test_searching_by_columns(self):
         EventPrecondition(self.driver, self.config).test_searching_by_columns()
 

@@ -3,7 +3,7 @@ import poplib
 from email import parser
 from allure_commons.types import AttachmentType
 from selenium.webdriver.common.by import By
-
+from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.modules.tasks_module.SendEmailModuleActions import SendEmailModuleActions
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.tasks_module.AddEventModule import AddEventModule
@@ -102,12 +102,18 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "The all tab was opened ")
         return TasksPage(self.driver)
 
+    def check_pop_up_send_sms(self):
+        sleep(5)
+        title = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[2]/h3")
+        Logging().reportDebugStep(self, title.text)
+        return title.text
+
     def open_sms_actions_section(self):
         first_check_box = super().wait_element_to_be_clickable(
-            "//tr[@class='tableRow']//div[2]")
+            "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[2]")
         first_check_box.click()
         Logging().reportDebugStep(self, "The sms module was opened")
-        return MassSMSModule(self.driver)
+        return TasksPage(self.driver)
 
     def enter_body_mail(self, body):
         sleep(4)
@@ -120,6 +126,7 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def open_email_actions_section(self):
+        sleep(3)
         first_check_box = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[1]")
         first_check_box.click()
@@ -364,6 +371,7 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def check_email(self):
+        sleep(10)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
         pop_conn.user('jonathan.albalak@pandats.com')
         pop_conn.pass_('9U&AU=bm')
@@ -374,8 +382,8 @@ class TasksPage(CRMBasePage):
         # Parse message intom an email object:
         messages = [parser.Parser().parsestr(mssg) for mssg in messages]
         for message in messages:
-            if "TASK_MAIL" in message:
-                Logging().reportDebugStep(self, message['subject'])
+            Logging().reportDebugStep(self, message['subject'])
+            return message['subject']
         pop_conn.quit()
 
     def get_first_account_name(self):
@@ -388,7 +396,66 @@ class TasksPage(CRMBasePage):
         input_account_name = super().wait_element_to_be_clickable("//*[@id='host-element']/input", timeout=10)
         input_account_name.send_keys(first_name)
         sleep(5)
+        Logging().reportDebugStep(self, "Search Account name")
         return TasksPage(self.driver)
+
+    def search_by_type(self, type):
+        btn_type = super().wait_element_to_be_clickable("//td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+        btn_type.click()
+        sleep(2)
+        input_account_name = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input", timeout=10)
+        input_account_name.send_keys(type)
+        sleep(2)
+        check_box = super().wait_element_to_be_clickable("//ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box.click()
+        sleep(2)
+        Logging().reportDebugStep(self, "Search by Type")
+        return TasksPage(self.driver)
+
+    def search_by_status(self, status):
+        sleep(3)
+        btn_status = super().wait_element_to_be_clickable(
+            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+        try:
+            btn_status.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", btn_status)
+        sleep(2)
+        input_account_name = super().wait_element_to_be_clickable(
+            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
+            timeout=10)
+        input_account_name.send_keys(status)
+        sleep(2)
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box.click()
+        sleep(2)
+        Logging().reportDebugStep(self, "Search by status")
+        return TasksPage(self.driver)
+
+
+    def get_first_type(self):
+        sleep(3)
+        first_type = super().wait_load_element(
+            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[3]/grid-cell/div/span[2]").text
+        Logging().reportDebugStep(self, "Check Type" + first_type)
+        return first_type
+
+    def get_first_status(self):
+        sleep(3)
+        first_status = super().wait_load_element(
+            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[5]/grid-cell/div/span[2]").text
+        Logging().reportDebugStep(self, "Check status" + first_status)
+        return first_status
+
+    def select_all_event(self):
+        check_box = super().wait_load_element("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/thead/tr/th[1]/input")
+        try:
+            check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box)
+        Logging().reportDebugStep(self, "Select all event")
+        return TasksPage(self.driver)
+
 
     def get_account_name(self, first_name):
         sleep(2)

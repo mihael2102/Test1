@@ -10,6 +10,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.modules.tasks_module.EditEventModule import EditEventModule
 from src.test.python.ui.automation.BaseTest import *
 import pytest
+from src.main.python.ui.crm.model.modules.tasks_module.MassEditTaskModule import MassEditTaskModule
 
 class EventPrecondition(object):
 
@@ -26,16 +27,82 @@ class EventPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage(self.driver).open_task_module()
+        task_module.open_show_all_tab()
         task_module.search_account_name(CRMConstants.TESTQA)
-        first_account_name = task_module.get_first_account_name()
+        sleep(10)
         task_module.open_email_actions_section()
         task_module.enter_subject_mail(CRMConstants.SUBJECT_TASK_MAIL)
         task_module.enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         task_module.enter_cc_mail(CRMConstants.CC_EMAIL)
         task_module.enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         task_module.click_send()
-        sleep(60)
-        task_module.check_email()
+        sleep(10)
+        msg = task_module.check_email()
+        assert CRMConstants.SUBJECT_TASK_MAIL in msg
+
+    def test_sms_icon(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+
+        task_module = CRMHomePage(self.driver).open_task_module()
+        task_module.open_show_all_tab()
+        task_module.search_account_name(CRMConstants.TESTQA)
+        sleep(10)
+        task_module.open_sms_actions_section()
+        title = task_module.check_pop_up_send_sms()
+        assert title == CRMConstants.SERVER_NOT_CONFIGURATE
+
+
+    def test_mass_edit_tasks(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+
+        task_module = CRMHomePage(self.driver).open_task_module()
+        task_module.open_show_all_tab()
+        task_module.search_account_name(CRMConstants.TESTQA)
+        sleep(10)
+        task = task_module.get_first_account_name()
+        task_module.select_all_event()
+        task_module.open_mass_edit_task().perform_mass_edit(CRMConstants.STATUS_EVENT, CRMConstants.TYPE_EVENT, CRMConstants.DURATION_EVENT)
+        task_module.refresh_page()
+        task_module.search_account_name(task)
+        sleep(20)
+        status = task_module.get_first_status()
+        type = task_module.get_first_type()
+        assert type == CRMConstants.TYPE_EVENT
+        assert status == CRMConstants.STATUS_EVENT
+
+    def test_searching_by_columns(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+
+        task_module = CRMHomePage(self.driver).open_task_module()
+        task_module.open_show_all_tab()
+        task_module.search_account_name(CRMConstants.TESTQA)
+        sleep(10)
+        task = task_module.get_first_account_name()
+        status = task_module.get_first_status()
+        type = task_module.get_first_type()
+        task_module.refresh_page()
+        task_module.search_account_name(task)
+        task_module.search_by_status(status)
+        task_module.search_by_type(type)
+        verify_task = task_module.get_first_account_name()
+        verify_status = task_module.get_first_status()
+        verify_type = task_module.get_first_type()
+        assert task == verify_task
+        assert status == verify_status
+        assert type == verify_type
+
+
+
+
+
+
+
 
 
 
