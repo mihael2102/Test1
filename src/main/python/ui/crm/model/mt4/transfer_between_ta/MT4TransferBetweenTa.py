@@ -28,6 +28,7 @@ class MT4TransferBetweenTa(CRMBasePage):
         select_account = self.driver.find_element(By.XPATH, "//select[@name='sourceloginserver']//"
                                                             "following-sibling::*[contains(text(),'%s')]" % first_account)
         select_account.click()
+        Logging().reportDebugStep(self, "The first account selected:  " + first_account)
         return MT4TransferBetweenTa(self.driver)
 
     '''
@@ -42,6 +43,7 @@ class MT4TransferBetweenTa(CRMBasePage):
         select_account = self.driver.find_element(By.XPATH, "//select[@name='destinationlogin']//"
                                                             "following-sibling::*[contains(text(),'%s')]" % second_account)
         select_account.click()
+        Logging().reportDebugStep(self, "The second account selected:  " + second_account)
         return MT4TransferBetweenTa(self.driver)
 
     '''
