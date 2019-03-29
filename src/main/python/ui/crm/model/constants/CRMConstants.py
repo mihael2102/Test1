@@ -4,6 +4,14 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    TESTQA = "testqa"
+    STATUS_EVENT = "Planned"
+    TYPE_EVENT = "Meeting"
+    DURATION_EVENT = "15M"
+    SERVER_NOT_CONFIGURATE = "Server Not Configured?"
+    CC_EMAIL = "jonathan.albalak@pandats.com"
+    SUBJECT_TASK_MAIL = "SUBJECT_TASK_MAIL"
+    TRADING_LEVERAGE_ITRADER = "30"
     SUBJECT_LEAD_MAIL = "Test MAIL" + str(random.randrange(1, 9999999))
     BODY_LEAD_MAIL = "Test"
     CHANGE_PHONE_LEAD = "0534431234"
@@ -23,6 +31,7 @@ class CRMConstants(object):
     SORTING_EMAIL = 1
     SECOND_COUNTRY = "country_two"
     PHONE = "Phone"
+    SEND_SMS = "Send SMS to "
     SEND_SMS_MESSAGE = "Message was sent successfully"
     MASS_ASSIGN_MESSAGE = "3 accounts assigned to Panda Support"
     CONVERT_SUCCESSFUL_MESSAGE = "Account created successfully"
