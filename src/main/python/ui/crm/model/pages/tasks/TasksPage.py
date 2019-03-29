@@ -102,18 +102,27 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "The all tab was opened ")
         return TasksPage(self.driver)
 
-    def check_pop_up_send_sms(self):
-        sleep(5)
-        title = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[2]/h3")
-        Logging().reportDebugStep(self, title.text)
-        return title.text
-
     def open_sms_actions_section(self):
-        first_check_box = super().wait_element_to_be_clickable(
-            "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[2]")
+        sleep(6)
+        try:
+            first_check_box = super().wait_element_to_be_clickable(
+                "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[2]")
+        except:
+            first_check_box = super().wait_element_to_be_clickable(
+                "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div/span/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div/span")
         first_check_box.click()
         Logging().reportDebugStep(self, "The sms module was opened")
         return TasksPage(self.driver)
+
+    def check_pop_up_send_sms(self):
+        sleep(5)
+        try:
+            title = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[2]/div[1]/div/span/h4")
+
+        except:
+            title = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[2]/h3")
+        Logging().reportDebugStep(self, title.text)
+        return title.text
 
     def enter_body_mail(self, body):
         sleep(4)

@@ -51,7 +51,10 @@ class EventPrecondition(object):
         sleep(10)
         task_module.open_sms_actions_section()
         title = task_module.check_pop_up_send_sms()
-        assert title == CRMConstants.SERVER_NOT_CONFIGURATE
+        try:
+            assert CRMConstants.SEND_SMS in title
+        except:
+            assert CRMConstants.SERVER_NOT_CONFIGURATE in title
 
 
     def test_mass_edit_tasks(self):
@@ -62,13 +65,13 @@ class EventPrecondition(object):
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
         task_module.search_account_name(CRMConstants.TESTQA)
-        sleep(10)
+        sleep(60)
         task = task_module.get_first_account_name()
         task_module.select_all_event()
         task_module.open_mass_edit_task().perform_mass_edit(CRMConstants.STATUS_EVENT, CRMConstants.TYPE_EVENT, CRMConstants.DURATION_EVENT)
         task_module.refresh_page()
         task_module.search_account_name(task)
-        sleep(20)
+        sleep(60)
         status = task_module.get_first_status()
         type = task_module.get_first_type()
         assert type == CRMConstants.TYPE_EVENT
@@ -82,11 +85,12 @@ class EventPrecondition(object):
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
         task_module.search_account_name(CRMConstants.TESTQA)
-        sleep(10)
+        sleep(60)
         task = task_module.get_first_account_name()
         status = task_module.get_first_status()
         type = task_module.get_first_type()
         task_module.refresh_page()
+        sleep(60)
         task_module.search_account_name(task)
         task_module.search_by_status(status)
         task_module.search_by_type(type)
