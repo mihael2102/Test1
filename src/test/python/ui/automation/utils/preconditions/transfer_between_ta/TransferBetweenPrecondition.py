@@ -137,9 +137,9 @@ class TransferBetweenPrecondition(object):
 
         MT4DepositModule().make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
                                         CRMConstants.PAYMENT_METHOD_DEPOSIT,
-                                        CRMConstants.STATUS_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT) \
-            .click_ok() \
-            .refresh_page()
+                                        CRMConstants.STATUS_DEPOSIT) \
+                          .click_ok() \
+                          .refresh_page()
 
         crm_client_profile.click_trading_accounts_tab().get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
         return TransferBetweenPrecondition()
