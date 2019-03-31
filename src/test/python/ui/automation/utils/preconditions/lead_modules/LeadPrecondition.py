@@ -220,10 +220,10 @@ class LeadPrecondition(object):
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
         LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
         LeadsModule(self.driver).click_search_button_leads_module()
-        sleep(40)
+        sleep(10)
         LeadsModule(self.driver).click_check_box_all_leads()
         LeadsModule(self.driver).mass_edit_leads()
-        if global_var.current_brand_name == "uft" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "fm-fx":
+        if global_var.current_brand_name == "uft":
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_ITRADER)
         elif global_var.current_brand_name == "stoxmarket":
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_STOX)

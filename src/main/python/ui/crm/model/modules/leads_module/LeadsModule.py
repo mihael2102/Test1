@@ -732,6 +732,7 @@ class LeadsModule(CRMBasePage):
             search_button.click()
         except:
             self.driver.execute_script("arguments[0].scrollIntoView();", search_button)
+        self.wait_crm_loading_to_finish()
         Logging().reportDebugStep(self, "The search button was clicked ")
         return LeadsModule(self.driver)
 

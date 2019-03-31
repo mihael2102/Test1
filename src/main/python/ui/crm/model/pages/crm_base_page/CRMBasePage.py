@@ -93,3 +93,7 @@ class CRMBasePage(object):
 
     def get_current_url(self):
         return self.driver.current_url
+
+    def wait_loading_to_finish(self):
+        self.wait_element_to_be_disappear("//div[@class='isloading-overlay'] \
+                                          /span[@class='isloading-wrapper  isloading-show  isloading-overlay']")
