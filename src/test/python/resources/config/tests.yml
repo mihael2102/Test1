@@ -34,11 +34,11 @@ tests_config:
 #    - test_edit_lead_pencil_icon
 #    - test_check_email_popup
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 ##Clients
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
 #  class: SearchingClientsTestCRM
@@ -50,12 +50,16 @@ tests_config:
 #  tests:
 #    - test_add_interaction  # Adds an interaction for a client
 #    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-#  class: AddEventTaskModule
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+  class: AddEventTaskModule
+  tests:
 #    - test_add_event
 #    - test_edit_event
 #    - test_delete_interaction
+#    - test_email_icon
+    - test_sms_icon
+#    - test_mass_edit_tasks
+#    - test_searching_by_columns
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
 #  class: TradingAccountCrmTest
 #  tests:
@@ -149,10 +153,10 @@ tests_config:
 #  class: CRMConfigurationsTest
 #  tests:
 #    - test_crm_configurations_pages_loading
-- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
-  class: WorkflowsModulesTest
-  tests:
-    - test_create_workflows
+#- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
+#  class: WorkflowsModulesTest
+#  tests:
+#    - test_create_workflows
 #    - test_check_workflow_by_status
-    - test_check_workflow_by_country
-    - test_delete_workflow
+#    - test_check_workflow_by_country
+#    - test_delete_workflow

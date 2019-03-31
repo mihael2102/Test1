@@ -5,19 +5,18 @@ from src.main.python.utils.logs.Loging import Logging
 
 
 class MassEditTaskModule(CRMBasePage):
-    def __init__(self):
-        super().__init__()
+    # def __init__(self):
+    #     super().__init__()
 
-    def perform_mass_edit(self, status, type, duration, date, time, assign_to, priority,
-                          comments):
+    def perform_mass_edit(self, status, type, duration):
         self.set_checkbox()
         self.set_event_status(status)
         self.set_event_type(type)
-        self.set_time(date, time)
+        # self.set_time(date, time)
         self.set_duration(duration)
-        self.set_priority(priority)
-        self.set_assign_to(assign_to)
-        self.set_description(comments)
+        # self.set_priority(priority)
+        # self.set_assign_to(assign_to)
+        # self.set_description(comments)
         self.click_save()
         return MassEditTaskModule()
 
