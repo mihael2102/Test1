@@ -35,7 +35,8 @@ class ApiPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
+        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list\
+            (AffiliateModuleConstants.AFFILIATES_MODULE)
         if global_var.current_brand_name == "eafx":
             AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_EAFX)
         elif global_var.current_brand_name == "uft":
