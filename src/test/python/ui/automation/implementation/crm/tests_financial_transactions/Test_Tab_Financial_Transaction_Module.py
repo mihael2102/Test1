@@ -127,9 +127,8 @@ class TabFinancialTransaction(BaseTest):
                            self.config.get_data_client(TestDataConstants.CRM_PASSWORD),
                            self.config.get_data_client(TestDataConstants.OTP_SECRET))
 
-            financial_transaction_list_page = CRMHomePage(self.driver) \
-                                                    .select_financial_transactions_module_more_list(
-                                                        FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
+            financial_transaction_list_page = CRMHomePage(self.driver).select_financial_transactions_module_more_list(
+                                                     FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
 
             # Get data of 3rd transaction (transaction's info will be changed when registration via CA starts to work)
             transaction_number = financial_transaction_list_page.get_transaction_id_by_position_from_list()

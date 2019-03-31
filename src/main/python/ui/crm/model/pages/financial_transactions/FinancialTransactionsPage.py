@@ -52,6 +52,7 @@ class FinancialTransactionsPage(CRMBasePage):
         tab = self.driver.find_element(By.XPATH, "//li[contains(text(),'Deposits')]")
         tab.click()
         sleep(1)
+        self.wait_crm_loading_to_finish()
         tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Deposits')]")
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
@@ -61,6 +62,7 @@ class FinancialTransactionsPage(CRMBasePage):
         tab = self.driver.find_element(By.XPATH, "//li[contains(text(),'Withdraw')]")
         tab.click()
         sleep(1)
+        self.wait_crm_loading_to_finish()
         tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Withdraw')]")
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text
@@ -198,6 +200,7 @@ class FinancialTransactionsPage(CRMBasePage):
 
     def open_first_financial_transaction_in_list(self):
         sleep(2)
+        self.wait_crm_loading_to_finish()
         transaction_number_element = self.driver.find_element(By.XPATH, "//a[contains(text(), 'MTT')]")
         self.scroll_into_view(transaction_number_element)
         sleep(3)

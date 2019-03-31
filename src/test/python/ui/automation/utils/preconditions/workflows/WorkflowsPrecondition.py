@@ -118,6 +118,7 @@ class WorkflowsPrecondition(object):
         ClientProfilePage(self.driver).select_country(WorkflowsConstants.COUNTRY_AUSTRIA)
         ClientProfilePage(self.driver).enter_date_birth(CRMConstants.DATE_BIRTH)
         ClientProfilePage(self.driver).click_save()
+        sleep(2)
         CRMHomePage(self.driver).refresh_page()
         country = ClientProfilePage(self.driver).get_country_text()
         assert country == WorkflowsConstants.COUNTRY_ALBANIA
@@ -137,6 +138,7 @@ class WorkflowsPrecondition(object):
         assert name_workflow == WorkflowsConstants.NAME_WORKFLOW
         WorkflowsPage(self.driver).delete_workflow()\
                                   .confirmation_delete_workflow()
+        sleep(2)
         CRMHomePage(self.driver).refresh_page()
         name_workflow = WorkflowsPage(self.driver).check_name_workflow()
         assert name_workflow != WorkflowsConstants.NAME_WORKFLOW

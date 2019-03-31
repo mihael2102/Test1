@@ -136,6 +136,7 @@ class TasksPage(CRMBasePage):
         input_account_name = super().wait_element_to_be_clickable("//*[@id='host-element']/input", timeout=10)
         input_account_name.send_keys(first_name)
         sleep(5)
+        self.wait_crm_loading_to_finish()
         Logging().reportDebugStep(self, "Search Account name")
         return TasksPage(self.driver)
 

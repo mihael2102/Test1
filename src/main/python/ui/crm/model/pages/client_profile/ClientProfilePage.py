@@ -20,6 +20,7 @@ from src.main.python.utils.logs.Loging import Logging
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.common.keys import Keys
 
 
 class ClientProfilePage(CRMBasePage):
@@ -693,9 +694,9 @@ class ClientProfilePage(CRMBasePage):
     def enter_date_birth(self, date):
         sleep(2)
         if global_var.current_brand_name != "q8":
-            btn_save = self.driver.find_element(By.XPATH,
-                                                "//*[@id='birthday']")
-            btn_save.clear()
+            btn_save = self.driver.find_element_by_xpath("//*[@id='birthday']")
+            btn_save.send_keys(Keys.CONTROL, "a")
+            btn_save.send_keys(Keys.DELETE)
             btn_save.send_keys(date)
         Logging().reportDebugStep(self, "Enter b-day")
         return ClientProfilePage(self.driver)
