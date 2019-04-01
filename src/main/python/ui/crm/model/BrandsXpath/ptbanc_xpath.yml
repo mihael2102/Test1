@@ -1,6 +1,6 @@
 ClientsPage:
-  client_status_button: "//*[@id='customAdvanceSearch']/td[3]/div/div[1]/button"
-  client_status_field: "//*[@id='customAdvanceSearch']/td[3]/div/div[1]/ul/li[1]/div/input"
+  client_status_button: "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/button"
+  client_status_field: "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/ul/li[1]/div/input"
   country_button: "//td[8]/div/div/button"
   country_field: "//td[8]//ul/li/div/input"
   country_click: "//td[8]//label[contains(text(),'%s')]"

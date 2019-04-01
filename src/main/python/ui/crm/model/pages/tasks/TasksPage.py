@@ -100,7 +100,7 @@ class TasksPage(CRMBasePage):
         tab.click()
         self.wait_crm_loading_to_finish()
         sleep(2)
-        Logging().reportDebugStep(self, "The all tab was opened ")
+        Logging().reportDebugStep(self, "The ALL tab was opened ")
         return TasksPage(self.driver)
 
     def open_sms_actions_section(self):

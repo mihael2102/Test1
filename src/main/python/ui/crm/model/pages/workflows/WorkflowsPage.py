@@ -40,7 +40,7 @@ class WorkflowsPage(CRMBasePage):
 
 
     def check_name_workflow(self):
-        sleep(2)
+        sleep(3)
         name_workflow = self.driver.find_element_by_xpath("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-list/div/div/div/div[2]/div/grid-simple/div/div[2]/table/tbody/tr[3]/td[1]/div")
         Logging().reportDebugStep(self, "Check name workflow in table")
         return name_workflow.text
@@ -53,15 +53,8 @@ class WorkflowsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click add new workflow")
         return WorkflowsPage(self.driver)
 
-    def click_add_new_workflow(self):
-        sleep(2)
-        btn_add_new_workflow = self.driver.find_element_by_xpath("//button[contains(text(), 'New Workflow')]")
-        btn_add_new_workflow.click()
-        Logging().reportDebugStep(self, "Click add new workflow")
-        return WorkflowsPage(self.driver)
-
     def enter_workflow_name(self, name):
-        sleep(2)
+        sleep(3)
         input = self.driver.find_element_by_xpath("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-type/div[2]/div/div[1]/div[2]/input")
         input.send_keys(name)
         Logging().reportDebugStep(self, "Enter workflow name")

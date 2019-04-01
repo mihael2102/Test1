@@ -210,7 +210,9 @@ class LeadsModule(CRMBasePage):
         sleep(4)
         click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='massassignform_action_button']")
         click_mass_assign.click()
-        sleep(10)
+        sleep(1)
+        self.wait_loading_to_finish()
+        sleep(1)
         Logging().reportDebugStep(self, "Click 'Save'")
         return LeadsModule(self.driver)
 
@@ -361,7 +363,7 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def check_first_line_exist(self):
-        # check_first_line_exist = super().wait_element_to_be_clickable("//tbody[@id = 'listBody']/tr[1]/td[11]").text
+        sleep(1)
         check_first_line_exist = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["check_first_line_exist"]).text
         Logging().reportDebugStep(self, "Verify sorting by Exist")
