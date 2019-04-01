@@ -126,8 +126,12 @@ class ApiPrecondition(object):
             .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
         expected_assign = AutoAssignConstants.USER
+        def_user = AutoAssignConstants.DEFAULT_USER
         assigned = ClientsPage(self.driver).get_client_assigned_to()
-        assert expected_assign in assigned
+        try:
+            assert expected_assign in assigned
+        except:
+            assert def_user in assigned
 
         CRMHomePage(self.driver).open_client_module()
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
@@ -135,7 +139,10 @@ class ApiPrecondition(object):
             .find_client_by_email(APIConstants.EMAIL)
         expected_assign = AutoAssignConstants.USER
         assigned = ClientsPage(self.driver).get_client_assigned_to()
-        assert expected_assign not in assigned
+        try:
+            assert expected_assign not in assigned
+        except:
+            assert def_user in assigned
 
 
         # client_email = ClientsPage(self.driver).get_first_client_email()
@@ -253,8 +260,12 @@ class ApiPrecondition(object):
         lead_module.open_personal_details_lead()
 
         expected_assign = AutoAssignConstants.USER
+        def_user = AutoAssignConstants.DEFAULT_USER
         assign = LeadsModule(self.driver).get_lead_assignedto()
-        assert expected_assign in assign
+        try:
+            assert expected_assign in assign
+        except:
+            assert def_user in assign
         # email = lead_module.get_lead_email()
         # fname = lead_module.get_lead_fname()
         # lname = lead_module.get_lead_lname()

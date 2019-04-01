@@ -411,7 +411,7 @@ class TasksPage(CRMBasePage):
     def search_by_type(self, type):
         btn_type = super().wait_element_to_be_clickable("//td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
         btn_type.click()
-        sleep(2)
+        sleep(30)
         input_account_name = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input", timeout=10)
         input_account_name.send_keys(type)
         sleep(2)

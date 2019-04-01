@@ -32,6 +32,7 @@ class AutoAssignConstants(object):
     SECOND_MODULE = "second_module"
     FIRST_SELECTION = "first_selection"
     USER = "pandaqa pandaqa"
+    DEFAULT_USER = "Default User"
     RULE_TYPE1 = "Country"
     COUNTRY = "Liechtenstein"
     COUNTRY0 = "Bulgaria"

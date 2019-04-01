@@ -323,6 +323,8 @@ class LeadPrecondition(object):
             assign_leads = LeadsModule(self.driver).check_assign_leads(i)
             if global_var.current_brand_name == "capitalmarketsbanc":
                 assert assign_leads == CRMConstants.PANDAQA_ASSIGN_CMB
+            elif global_var.current_brand_name == "brokerxp":
+                return self
             else:
                 assert assign_leads == CRMConstants.PANDAQA_ASSIGN
 
