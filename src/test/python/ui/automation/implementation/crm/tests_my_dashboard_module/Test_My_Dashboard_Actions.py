@@ -11,10 +11,15 @@ from src.test.python.ui.automation.utils.preconditions.task_module.ActionsTasksP
     ActionsTasksPrecondition
 from src.test.python.ui.automation.utils.preconditions.task_module.MassEmailPrecondition import MassEmailPrecondition
 from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
+from src.test.python.ui.automation.utils.preconditions.mydashboard.MyDashboardPrecondition import MyDashboardPrecondition
 
 
 @pytest.mark.run(order=28)
 class MyDashboardActionsTest(BaseTest):
+
+
+    def test_edit_event_my_dashboard(self):
+        MyDashboardPrecondition(self.driver, self.config).edit_event()
 
     def test_check_send_sms_actions_section(self):
         ActionsTasksPrecondition().create_first_event()

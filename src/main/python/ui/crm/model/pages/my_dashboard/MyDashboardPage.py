@@ -41,3 +41,48 @@ class MyDashboardPage(CRMBasePage):
                                                 sales-dashboard-segmentation/div/table[2]/tbody/tr[1]")
         Logging().reportDebugStep(self, "Client Segmentation section contain records")
         return MyDashboardPage(self.driver)
+
+    def enter_account_name(self, testqa):
+        sleep(1)
+        input = self.driver.find_element_by_xpath("//*[@id='host-element']/input")
+        input.send_keys(testqa)
+        sleep(5)
+        Logging().reportDebugStep(self, "Enter account name")
+        return MyDashboardPage(self.driver)
+
+    def get_account_name(self):
+        sleep(3)
+        account_name = self.driver.find_element_by_xpath("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[6]/grid-cell/div/span[2]/a")
+        Logging().reportDebugStep(self, "Get account name")
+        return account_name.text
+
+
+    def click_pencil_icon(self):
+        sleep(4)
+        pencil_icon = self.driver.find_element_by_xpath("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span")
+        pencil_icon.click()
+        Logging().reportDebugStep(self, "Click pencil icon")
+        return MyDashboardPage(self.driver)
+
+    def get_status(self):
+        sleep(3)
+        get_status = self.driver.find_element_by_xpath(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[5]/grid-cell/div/span[2]")
+        Logging().reportDebugStep(self, "Get status")
+        return get_status.text
+
+
+    def get_type(self):
+        sleep(3)
+        get_type = self.driver.find_element_by_xpath(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[3]/grid-cell/div/span[2]")
+        Logging().reportDebugStep(self, "Get type")
+        return get_type.text
+
+
+    def get_time(self):
+        sleep(3)
+        get_time = self.driver.find_element_by_xpath(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[4]/grid-cell/div/span[2]")
+        Logging().reportDebugStep(self, "Get type")
+        return get_time.text

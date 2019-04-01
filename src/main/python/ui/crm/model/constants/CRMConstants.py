@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    TEST_PANDA = "test"
     SEND_SMS = "Send SMS"
     STATUS_EVENT = "Planned"
     TYPE_EVENT = "Meeting"

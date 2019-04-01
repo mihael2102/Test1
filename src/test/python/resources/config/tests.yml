@@ -1,5 +1,9 @@
 tests_config:
 
+- module: src.test.python.ui.automation.implementation.crm.tests_my_dashboard_module.Test_My_Dashboard_Actions
+  class: MyDashboardActionsTest
+  tests:
+    - test_edit_event_my_dashboard
 #- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
 #  class: CheckModules
 #  tests:
@@ -121,12 +125,12 @@ tests_config:
 #    - test_check_day_tab
 #    - test_check_month_tab
 #    - test_check_week_tab
-- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
-  class: TabFinancialTransaction
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
+#  class: TabFinancialTransaction
+#  tests:
 #    - test_check_all_tab_from_financial_transactions
 #    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
-    - test_check_search_via_button # Check search using search button
+#    - test_check_search_via_button # Check search using search button
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
 #  class: CampaignsModuleTest

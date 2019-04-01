@@ -77,10 +77,13 @@ class EditEventModule(CRMBasePage):
     #     return CRMEditEventModule()
 
     def set_subject(self, subject):
-        description_element = self.driver.find_element(By.XPATH, "//input[@id='subject']")
-        description_element.clear()
-        description_element.send_keys(subject)
-        Logging().reportDebugStep(self, "The subject is set " + subject)
+        try:
+            description_element = self.driver.find_element(By.XPATH, "//input[@id='subject']")
+            description_element.clear()
+            description_element.send_keys(subject)
+            Logging().reportDebugStep(self, "The subject is set " + subject)
+        except:
+            return self
         return EditEventModule()
 
     def set_description(self, comments):
@@ -91,7 +94,10 @@ class EditEventModule(CRMBasePage):
         return EditEventModule()
 
     def click_save(self):
-        save_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Save')]")
-        save_button.click()
+        save_button = self.driver.find_element(By.XPATH, "//html/body/bs-modal[8]/div/div/div/div[2]/form/div[2]/div/div[3]/button[contains(text(),'Save')]")
+        try:
+            save_button.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", save_button)
         Logging().reportDebugStep(self, "Click the 'save' button ")
         return EditEventModule()
