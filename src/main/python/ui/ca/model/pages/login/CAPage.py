@@ -158,11 +158,10 @@ class CAPage(CRMBasePage):
     def verify_active_account_currency(self, expected_currency):
         actual_currency = ''
         if expected_currency == 'EUR':
-            if self.driver.find_element_by_xpath("//li[@class='account-pandats active-pandats'] \
-                                                            /div[@class='account-wrapper-pandats'] \
-                                                            /div[@class='account-details-pandats'] \
-                                                            /div[@class='tr-row-pandats account-data-pandats'] \
-                                                            /div[contains(text(), '€')]"):
+            if self.driver.find_element_by_xpath \
+                ("//li[@class='account-pandats active-pandats']/div[@class='account-wrapper-pandats'] \
+                    /div[@class='account-details-pandats']/div[@class='tr-row-pandats account-data-pandats'] \
+                    /div[contains(text(), '€')]"):
                 actual_currency = 'EUR'
             assert expected_currency == actual_currency
             Logging().reportDebugStep(self, "Currency of active account is: " + actual_currency)

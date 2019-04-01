@@ -39,14 +39,14 @@ brands:
 #  config_file: b-finance.yml
 #- name: aztrades
 #  config_file: aztrades.yml
-- name: brokerz
-  config_file: brokerz.yml
+#- name: brokerz
+#  config_file: brokerz.yml
 #- name: q8
 #  config_file: q8.yml
 #- name: kontofx
 #  config_file: kontofx.yml
-#- name: ptbanc
-#  config_file: ptbanc.yml
+- name: ptbanc
+  config_file: ptbanc.yml
 
 
 
