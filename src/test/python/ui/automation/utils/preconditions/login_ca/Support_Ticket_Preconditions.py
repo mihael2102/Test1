@@ -66,8 +66,8 @@ class Support_Ticket_Preconditions(object):
             sleep(2)
             ClientProfilePage(self.driver).scroll_to_help_desk_section() \
                                           .open_help_desk_tab() \
-                                          .check_help_desk_ticket_exist(CAConstants.TICKET_NUMBER_CA) \
                                           .click_edit_help_desk_ticket() \
+                                          .verify_ticket_number(CAConstants.TICKET_NUMBER_CA) \
                                           .set_help_desk_title(HelpDeskConstants.FIRST_TITTLE) \
                                           .set_help_desk_status(HelpDeskConstants.EDIT_HT_STATUS) \
                                           .click_save_button()

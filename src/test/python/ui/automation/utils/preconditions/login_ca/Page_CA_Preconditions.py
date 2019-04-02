@@ -13,6 +13,8 @@ from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CACons
 from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
 from time import sleep
 from src.main.python.utils.logs.Loging import Logging
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 
 
 class Page_CA_Precondition(object):
@@ -29,7 +31,7 @@ class Page_CA_Precondition(object):
         return lead
 
     def switch_between_accounts(self):
-        if global_var.current_brand_name != "q8":
+        try:
             CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
                                     .login() \
                                     .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -56,12 +58,13 @@ class Page_CA_Precondition(object):
             else:
                 Logging().reportDebugStep(self, "Test is not running")
 
-        else:
-            Logging().reportDebugStep(self, "Test is not running")
+        except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            Logging().reportDebugStep(self, "Module does not exist")
             return self
 
     def update_personal_details_in_ca(self):
-        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "b-finance"):
+        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "b-finance") \
+                and (global_var.current_brand_name != "tradospot"):
             CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
                                     .login() \
                                     .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -69,8 +72,7 @@ class Page_CA_Precondition(object):
                                     .enter_password(CAConstants.PASSWORD) \
                                     .click_login() \
                                     .verify() \
-                                    .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                        LeadsModuleConstants.FIRST_NAME])
+                                    .open_ca_menu()
             CAPage(self.driver).open_personal_details() \
                                .edit_first_name(CAConstants.UPDATE_FIRST_NAME) \
                                .edit_last_name(CAConstants.UPDATE_LAST_NAME) \
@@ -85,7 +87,8 @@ class Page_CA_Precondition(object):
 
     def check_personal_details_in_crm(self):
         # Login to CRM
-        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "b-finance"):
+        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "b-finance") \
+                and (global_var.current_brand_name != "tradospot"):
             CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
                                      .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                                                 self.config.get_value(TestDataConstants.CRM_PASSWORD),
@@ -164,7 +167,7 @@ class Page_CA_Precondition(object):
             assert CRMConstants.EDIT_ADDRESS == CAPage(self.driver).get_address()
 
     def upload_document_ca(self):
-        if global_var.current_brand_name != "q8":
+        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
             CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
                 .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -177,32 +180,39 @@ class Page_CA_Precondition(object):
                                .select_document_type(TestDataConstants.DOCUMENT_TYPE1) \
                                .cklick_upload_btn()\
                                .browse_documents()
+        else:
+            Logging().reportDebugStep(self, "Test is not running")
+            return self
 
     def check_and_update_document_in_crm(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                                            self.config.get_value(TestDataConstants.OTP_SECRET)) \
-                                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                                                TestDataConstants.FILTER))
+        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
+            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+                                     .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                                                self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                                                self.config.get_value(TestDataConstants.OTP_SECRET)) \
+                                     .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                                                    TestDataConstants.FILTER))
 
-        sleep(2)
-        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL]) \
-                                .scroll_to_documents_section() \
-                                .open_document_tab() \
-                                .verify_document_name() \
-                                .verify_document_type(TestDataConstants.DOCUMENT_TYPE1) \
-                                .verify_document_status(TestDataConstants.DOCUMENT_STATUS1) \
-                                .open_document_preview() \
-                                .update_document_status(TestDataConstants.DOCUMENT_STATUS)\
-                                .click_save_document_btn() \
-                                .verify_doc_saved_message(TestDataConstants.DOCUMENT_SUCCESSFUL_MESSAGE) \
-                                .scroll_to_documents_section() \
-                                .verify_document_status(TestDataConstants.DOCUMENT_STATUS)
+            sleep(2)
+            ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                            LeadsModuleConstants.EMAIL]) \
+                                    .scroll_to_documents_section() \
+                                    .open_document_tab() \
+                                    .verify_document_name() \
+                                    .verify_document_type(TestDataConstants.DOCUMENT_TYPE1) \
+                                    .verify_document_status(TestDataConstants.DOCUMENT_STATUS1) \
+                                    .open_document_preview() \
+                                    .update_document_status(TestDataConstants.DOCUMENT_STATUS)\
+                                    .click_save_document_btn() \
+                                    .verify_doc_saved_message(TestDataConstants.DOCUMENT_SUCCESSFUL_MESSAGE) \
+                                    .scroll_to_documents_section() \
+                                    .verify_document_status(TestDataConstants.DOCUMENT_STATUS)
+        else:
+            Logging().reportDebugStep(self, "Test is not running")
+            return self
 
     def check_document_status_in_ca(self):
-        if global_var.current_brand_name != "q8":
+        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
             CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
                 .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -214,6 +224,8 @@ class Page_CA_Precondition(object):
             CAPage(self.driver).open_verification_center() \
                                .select_document_type(TestDataConstants.DOCUMENT_TYPE1) \
                                .verify_document_status_ca(CAConstants.DOCUMENT_STATUS_CA)
-
+        else:
+            Logging().reportDebugStep(self, "Test is not running")
+            return self
 
 

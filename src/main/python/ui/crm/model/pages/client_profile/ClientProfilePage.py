@@ -565,10 +565,20 @@ class ClientProfilePage(CRMBasePage):
             Logging().reportDebugStep(self, "Ticket " + ca_ticket_number + " was not found")
         return ClientProfilePage(self.driver)
 
+    def verify_ticket_number(self, ca_ticket_number):
+        sleep(2)
+        ca_id = self.driver.find_element_by_xpath("//input[@name='bl_id']").get_attribute("value")
+        if ca_ticket_number == ca_id:
+            Logging().reportDebugStep(self, "Ticket, number " + ca_ticket_number + ", is verified")
+        else:
+            Logging().reportDebugStep(self, "Ticket " + ca_ticket_number + " was not found")
+        return ClientProfilePage(self.driver)
+
     def open_help_desk_tab(self):
         sleep(3)
         help_desk_tab = super().wait_element_to_be_clickable("//a[contains(@id, 'show_Accounts_HelpDesk')]")
         self.driver.execute_script("arguments[0].click();", help_desk_tab)
+        sleep(1)
         Logging().reportDebugStep(self, "Open the help desk tab")
         return ClientProfilePage(self.driver)
 
@@ -586,7 +596,7 @@ class ClientProfilePage(CRMBasePage):
         return ClientProfilePage(self.driver)
 
     def set_help_desk_title(self, title):
-        sleep(2)
+        sleep(1)
         tittle_field = super().wait_load_element("//textarea[@name='subject']")
         tittle_field.clear()
         tittle_field.send_keys(title)

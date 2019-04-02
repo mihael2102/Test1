@@ -258,7 +258,8 @@ class Login_CA_Precondition(object):
                                                                 TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
         assert ClientsPage(self.driver).get_client_last_name() == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                                 LeadsModuleConstants.FIRST_LAST_NAME]
-        if (global_var.current_brand_name != "newrichmarkets") and (global_var.current_brand_name != "brokerz"):
+        if (global_var.current_brand_name != "newrichmarkets") and (global_var.current_brand_name != "brokerz") \
+                and (global_var.current_brand_name != "tradospot"):
                 assert ClientsPage(self.driver).get_client_phone() == '+49 7777 777'
 
         if global_var.current_brand_name != "q8":
