@@ -728,3 +728,16 @@ class ClientProfilePage(CRMBasePage):
         total_amount = re.sub('[$£CA€ [ ]', '', balance.text)
         Logging().reportDebugStep(self, "Balance of trading account is: " + total_amount)
         return total_amount
+
+    def scroll_to_emails_section(self):
+        sleep(2)
+        emails_section = super().wait_element_to_be_clickable("//a[@href='#header_Accounts_Emails']")
+        self.driver.execute_script("arguments[0].click();", emails_section)
+        Logging().reportDebugStep(self, "Scroll to Emails section")
+        return ClientProfilePage(self.driver)
+
+    def click_emails_tab(self):
+        emails_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_Emails']")
+        emails_tab.click()
+        Logging().reportDebugStep(self, "Open Email tab ")
+        return ClientProfilePage()

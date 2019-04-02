@@ -34,11 +34,11 @@ tests_config:
 #    - test_edit_lead_pencil_icon
 #    - test_check_email_popup
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 ##Clients
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
 #  class: SearchingClientsTestCRM
@@ -93,6 +93,11 @@ tests_config:
 #  class: CreditOutTestCRM
 #  tests:
 #    - test_make_credit_out_crm # preconditions: convert lead, make credit in
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
+  class: SendEmailTestCRM
+  tests:
+    - test_send_email # preconditions: convert lead
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
 #  class: TransferBetweenTa
