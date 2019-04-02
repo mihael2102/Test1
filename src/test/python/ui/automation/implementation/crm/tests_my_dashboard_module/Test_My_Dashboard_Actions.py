@@ -21,6 +21,12 @@ class MyDashboardActionsTest(BaseTest):
     def test_edit_event_my_dashboard(self):
         MyDashboardPrecondition(self.driver, self.config).edit_event()
 
+    def test_email_icon(self):
+        MyDashboardPrecondition(self.driver, self.config).email_icon()
+
+    def test_sms_icon(self):
+        MyDashboardPrecondition(self.driver, self.config).sms_icon()
+
     def test_check_send_sms_actions_section(self):
         ActionsTasksPrecondition().create_first_event()
         CRMHomePage().refresh_page() \

@@ -4,6 +4,9 @@ tests_config:
   class: MyDashboardActionsTest
   tests:
     - test_edit_event_my_dashboard
+    - test_email_icon
+    - test_sms_icon
+
 #- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
 #  class: CheckModules
 #  tests:
