@@ -107,6 +107,50 @@ class MyDashboardPrecondition(object):
             assert CRMConstants.SERVER_NOT_CONFIGURATE in pop_up
 
 
+    def test_searching_by_columns(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        CRMHomePage(self.driver).open_more_list_modules() \
+            .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
+        MyDashboardPage(self.driver).select_show_all_tab()
+        MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
+        account_name = MyDashboardPage(self.driver).get_account_name()
+        type = MyDashboardPage(self.driver).get_type()
+        status = MyDashboardPage(self.driver).get_status()
+        account_status = MyDashboardPage(self.driver).get_account_status()
+        country = MyDashboardPage(self.driver).get_country()
+        assigned_to = MyDashboardPage(self.driver).get_assigned_to()
+        created_by = MyDashboardPage(self.driver).get_created_by()
+        local_time = MyDashboardPage(self.driver).get_local_time()
+        balance = MyDashboardPage(self.driver).get_balance()
+        total_p_l = MyDashboardPage(self.driver).get_total_p_l()
+        priority = MyDashboardPage(self.driver).get_priority()
+        subject = MyDashboardPage(self.driver).get_subject()
+
+        MyDashboardPage(self.driver).refresh_page()
+
+        MyDashboardPage(self.driver).enter_account_name(account_name)\
+                                    .enter_event_type(type)\
+                                    .enter_status(status)\
+                                    .enter_account_status(account_status)\
+                                    .enter_country(country)\
+                                    .enter_assigned_to(assigned_to)\
+                                    .enter_created_by(created_by)\
+                                    .enter_local_time(local_time)\
+                                    .enter_balance(balance)\
+                                    .enter_total_p_l(total_p_l)\
+                                    .enter_priority(priority)\
+                                    .enter_subject(subject)
+
+        return_account_name = MyDashboardPage(self.driver).get_account_name()
+
+        assert return_account_name == account_name
+
+
+
+
 
 
 

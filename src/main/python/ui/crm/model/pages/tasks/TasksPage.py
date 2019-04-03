@@ -136,8 +136,9 @@ class TasksPage(CRMBasePage):
 
     def open_email_actions_section(self):
         sleep(3)
+
         first_check_box = super().wait_element_to_be_clickable(
-                "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[1]")
+            "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[1]")
         first_check_box.click()
         Logging().reportDebugStep(self, "The email module was opened")
         return TasksPage(self.driver)
@@ -366,10 +367,7 @@ class TasksPage(CRMBasePage):
     def enter_cc_mail(self, cc_mail):
         self.driver.switch_to.default_content()
         sleep(3)
-        try:
-            subject_mail = super().wait_load_element("//*[@id='email_cc']")
-        except:
-            subject_mail = super().wait_load_element("//div[@class = 'modal-dialog modal-lg']//input[@id='email_cc']")
+        subject_mail = super().wait_load_element("//*[@id='email_cc']")
         subject_mail.send_keys(cc_mail)
         Logging().reportDebugStep(self, "Enter cc mail" + cc_mail)
         return TasksPage(self.driver)
@@ -382,7 +380,7 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click Send")
         return TasksPage(self.driver)
 
-    def check_email(self, msg):
+    def check_email(self):
         sleep(10)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
         pop_conn.user('jonathan.albalak@pandats.com')
@@ -394,11 +392,8 @@ class TasksPage(CRMBasePage):
         # Parse message intom an email object:
         messages = [parser.Parser().parsestr(mssg) for mssg in messages]
         for message in messages:
-            if msg in message['subject']:
-                Logging().reportDebugStep(self, message['subject'])
-                return message['subject']
-            else:
-                return "No message"
+            Logging().reportDebugStep(self, message['subject'])
+            return message['subject']
         pop_conn.quit()
 
     def get_first_account_name(self):

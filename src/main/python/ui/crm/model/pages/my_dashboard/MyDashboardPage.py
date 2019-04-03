@@ -22,6 +22,238 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class MyDashboardPage(CRMBasePage):
 
+    def enter_priority(self, assigned_to):
+        sleep(3)
+        btn_status = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[15]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+        try:
+            btn_status.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", btn_status)
+        sleep(2)
+        input_account_name = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[15]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
+            timeout=10)
+        input_account_name.send_keys(assigned_to)
+        sleep(2)
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[15]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box.click()
+        sleep(2)
+        Logging().reportDebugStep(self, "Search by assigned to")
+        return MyDashboardPage(self.driver)
+
+    def enter_subject(self, balance):
+        sleep(15)
+        input = self.driver.find_element_by_xpath("//td[16]//input[@class='ng-untouched ng-pristine ng-valid']")
+        input.send_keys(balance)
+        sleep(50)
+        Logging().reportDebugStep(self, "Enter account name")
+        return MyDashboardPage(self.driver)
+
+    def enter_total_p_l(self, balance):
+        sleep(15)
+        input = self.driver.find_element_by_xpath("//td[13]//input")
+        input.send_keys(balance)
+        sleep(50)
+        Logging().reportDebugStep(self, "Enter account name")
+        return MyDashboardPage(self.driver)
+
+    def enter_balance(self, balance):
+        sleep(15)
+        input = self.driver.find_element_by_xpath("//td[12]//input")
+        input.send_keys(balance)
+        sleep(50)
+        Logging().reportDebugStep(self, "Enter account name")
+        return MyDashboardPage(self.driver)
+
+    def enter_local_time(self, local_time):
+        sleep(15)
+        input = self.driver.find_element_by_xpath("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[11]/filters-factory/time-range-filter/input")
+        input.send_keys(local_time)
+        sleep(50)
+        Logging().reportDebugStep(self, "Enter account name")
+        return MyDashboardPage(self.driver)
+
+    def enter_created_by(self, assigned_to):
+        sleep(3)
+        btn_status = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[10]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+        try:
+            btn_status.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", btn_status)
+        sleep(2)
+        input_account_name = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[10]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
+            timeout=10)
+        input_account_name.send_keys(assigned_to)
+        sleep(2)
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[10]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box.click()
+        sleep(2)
+        Logging().reportDebugStep(self, "Search by assigned to")
+        return MyDashboardPage(self.driver)
+
+    def enter_assigned_to(self, assigned_to):
+        sleep(3)
+        btn_status = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[9]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+        try:
+            btn_status.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", btn_status)
+        sleep(2)
+        input_account_name = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[9]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
+            timeout=10)
+        input_account_name.send_keys(assigned_to)
+        sleep(2)
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[9]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box.click()
+        sleep(2)
+        Logging().reportDebugStep(self, "Search by assigned to")
+        return MyDashboardPage(self.driver)
+
+    def enter_country(self, country):
+        sleep(3)
+        btn_status = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[8]/filters-factory/select-search-filter/select-search/div/div[1]")
+        try:
+            btn_status.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", btn_status)
+        sleep(2)
+        input_account_name = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[8]/filters-factory/select-search-filter/select-search/div/div[2]/span[1]/input",
+            timeout=10)
+        input_account_name.send_keys(country)
+        sleep(2)
+        check_box = super().wait_element_to_be_clickable("//td[@class='table-filters-holder ng-star-inserted']//span[contains(text(), '%s')]" % country)
+        check_box.click()
+        sleep(2)
+        Logging().reportDebugStep(self, "Search by account status")
+        return MyDashboardPage(self.driver)
+
+    def enter_account_status(self, status):
+        sleep(3)
+        btn_status = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+        try:
+            btn_status.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", btn_status)
+        sleep(2)
+        input_account_name = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
+            timeout=10)
+        input_account_name.send_keys(status)
+        sleep(2)
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box.click()
+        sleep(2)
+        Logging().reportDebugStep(self, "Search by account status")
+        return MyDashboardPage(self.driver)
+
+    def enter_status(self, status):
+        sleep(3)
+        btn_status = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+        try:
+            btn_status.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", btn_status)
+        sleep(2)
+        input_account_name = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
+            timeout=10)
+        input_account_name.send_keys(status)
+        sleep(2)
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box.click()
+        sleep(2)
+        Logging().reportDebugStep(self, "Search by status")
+        return MyDashboardPage(self.driver)
+
+
+    def enter_event_type(self, type):
+        btn_type = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+        btn_type.click()
+        sleep(10)
+        input_account_name = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
+            timeout=10)
+        input_account_name.send_keys(type)
+        sleep(2)
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box.click()
+        sleep(2)
+        Logging().reportDebugStep(self, "Search by Type")
+        return MyDashboardPage(self.driver)
+
+    def get_subject(self):
+        sleep(5)
+        subject = self.driver.find_element_by_xpath(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[16]/grid-cell/div/span[2]")
+        Logging().reportDebugStep(self, "Get subject")
+        return subject.text
+
+    def get_priority(self):
+        sleep(5)
+        priority = self.driver.find_element_by_xpath(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[15]/grid-cell/div/span[2]")
+        Logging().reportDebugStep(self, "Get priority")
+        return priority.text
+
+    def get_total_p_l(self):
+        sleep(5)
+        total_p_l = self.driver.find_element_by_xpath(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[13]/grid-cell/div/span[2]/div/i/span[2]")
+        Logging().reportDebugStep(self, "Get total_p_l")
+        return total_p_l.text
+
+    def get_balance(self):
+        sleep(5)
+        balance = self.driver.find_element_by_xpath(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[12]/grid-cell/div/span[2]/div/i/span[2]")
+        Logging().reportDebugStep(self, "Get balance")
+        return balance.text
+
+    def get_local_time(self):
+        sleep(5)
+        local_time = self.driver.find_element_by_xpath(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[11]/grid-cell/div/span[2]")
+        Logging().reportDebugStep(self, "Get local time")
+        return local_time.text
+
+    def get_created_by(self):
+        sleep(5)
+        created_by = self.driver.find_element_by_xpath(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[10]/grid-cell/div/span[2]")
+        Logging().reportDebugStep(self, "Get created by")
+        return created_by.text
+
+    def get_assigned_to(self):
+        sleep(5)
+        assigned_to = self.driver.find_element_by_xpath(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[9]/grid-cell/div/span[2]")
+        Logging().reportDebugStep(self, "Get assigned to")
+        return assigned_to.text
+
+    def get_country(self):
+        sleep(5)
+        country = self.driver.find_element_by_xpath(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[8]/grid-cell/div/span[2]")
+        Logging().reportDebugStep(self, "Get country")
+        return country.text
+
+    def get_account_status(self):
+        sleep(5)
+        account_status = self.driver.find_element_by_xpath(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[7]/grid-cell/div/span[2]")
+        Logging().reportDebugStep(self, "Get account status")
+        return account_status.text
+
     def check_pop_up_send_sms(self):
         sleep(5)
         try:
