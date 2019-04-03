@@ -141,7 +141,6 @@ class MyDashboardPrecondition(object):
                                     .enter_local_time(local_time)\
                                     .enter_balance(balance)\
                                     .enter_total_p_l(total_p_l)\
-                                    .enter_priority(priority)\
                                     .enter_subject(subject)
 
         return_account_name = MyDashboardPage(self.driver).get_account_name()

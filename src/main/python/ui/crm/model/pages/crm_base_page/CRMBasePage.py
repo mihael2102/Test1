@@ -50,7 +50,7 @@ class CRMBasePage(object):
     def wait_until_element_present(self, element, total_amount_crm):
         return WaitingUtils().wait_until_element_present_crm(element, total_amount_crm, self.driver)
 
-    def wait_element_to_be_clickable(self, element, timeout=25):
+    def wait_element_to_be_clickable(self, element, timeout=70):
         return WebDriverWait(self.driver, timeout).until(
             EC.element_to_be_clickable((By.XPATH, element)))
 

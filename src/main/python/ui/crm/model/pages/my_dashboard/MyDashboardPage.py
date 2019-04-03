@@ -25,7 +25,7 @@ class MyDashboardPage(CRMBasePage):
     def enter_priority(self, assigned_to):
         sleep(3)
         btn_status = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[15]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[15]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button", timeout=70)
         try:
             btn_status.click()
         except:
@@ -36,7 +36,7 @@ class MyDashboardPage(CRMBasePage):
             timeout=10)
         input_account_name.send_keys(assigned_to)
         sleep(2)
-        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[15]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[15]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=70)
         check_box.click()
         sleep(2)
         Logging().reportDebugStep(self, "Search by assigned to")
@@ -77,7 +77,7 @@ class MyDashboardPage(CRMBasePage):
     def enter_created_by(self, assigned_to):
         sleep(3)
         btn_status = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[10]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[10]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button", timeout=30)
         try:
             btn_status.click()
         except:
@@ -88,7 +88,7 @@ class MyDashboardPage(CRMBasePage):
             timeout=10)
         input_account_name.send_keys(assigned_to)
         sleep(2)
-        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[10]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[10]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=30)
         check_box.click()
         sleep(2)
         Logging().reportDebugStep(self, "Search by assigned to")
@@ -97,7 +97,7 @@ class MyDashboardPage(CRMBasePage):
     def enter_assigned_to(self, assigned_to):
         sleep(3)
         btn_status = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[9]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[9]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button", timeout=30)
         try:
             btn_status.click()
         except:
@@ -108,7 +108,7 @@ class MyDashboardPage(CRMBasePage):
             timeout=10)
         input_account_name.send_keys(assigned_to)
         sleep(2)
-        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[9]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[9]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=30)
         check_box.click()
         sleep(2)
         Logging().reportDebugStep(self, "Search by assigned to")
@@ -117,7 +117,7 @@ class MyDashboardPage(CRMBasePage):
     def enter_country(self, country):
         sleep(3)
         btn_status = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[8]/filters-factory/select-search-filter/select-search/div/div[1]")
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[8]/filters-factory/select-search-filter/select-search/div/div[1]", timeout=30)
         try:
             btn_status.click()
         except:
@@ -126,10 +126,14 @@ class MyDashboardPage(CRMBasePage):
         input_account_name = super().wait_element_to_be_clickable(
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[8]/filters-factory/select-search-filter/select-search/div/div[2]/span[1]/input",
             timeout=10)
-        input_account_name.send_keys(country)
-        sleep(2)
-        check_box = super().wait_element_to_be_clickable("//td[@class='table-filters-holder ng-star-inserted']//span[contains(text(), '%s')]" % country)
-        check_box.click()
+        country_new = country.replace(' ','')
+        input_account_name.send_keys(country_new)
+        sleep(10)
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[8]/filters-factory/select-search-filter/select-search/div/div[2]//span[contains(text(), 'Germany')]")
+        try:
+            check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box)
         sleep(2)
         Logging().reportDebugStep(self, "Search by account status")
         return MyDashboardPage(self.driver)
@@ -137,7 +141,7 @@ class MyDashboardPage(CRMBasePage):
     def enter_account_status(self, status):
         sleep(3)
         btn_status = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button", timeout=30)
         try:
             btn_status.click()
         except:
@@ -148,7 +152,7 @@ class MyDashboardPage(CRMBasePage):
             timeout=10)
         input_account_name.send_keys(status)
         sleep(2)
-        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=30)
         check_box.click()
         sleep(2)
         Logging().reportDebugStep(self, "Search by account status")
@@ -157,7 +161,7 @@ class MyDashboardPage(CRMBasePage):
     def enter_status(self, status):
         sleep(3)
         btn_status = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button", timeout=30)
         try:
             btn_status.click()
         except:
@@ -167,9 +171,13 @@ class MyDashboardPage(CRMBasePage):
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
             timeout=10)
         input_account_name.send_keys(status)
-        sleep(2)
-        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
-        check_box.click()
+        sleep(20)
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=30)
+        self.driver.execute_script("arguments[0].scrollIntoView();", check_box)
+        try:
+            check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box)
         sleep(2)
         Logging().reportDebugStep(self, "Search by status")
         return MyDashboardPage(self.driver)
@@ -177,7 +185,7 @@ class MyDashboardPage(CRMBasePage):
 
     def enter_event_type(self, type):
         btn_type = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button" , timeout=30)
         btn_type.click()
         sleep(10)
         input_account_name = super().wait_element_to_be_clickable(
@@ -185,7 +193,8 @@ class MyDashboardPage(CRMBasePage):
             timeout=10)
         input_account_name.send_keys(type)
         sleep(2)
-        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=30)
+        self.driver.execute_script("arguments[0].scrollIntoView();", check_box)
         check_box.click()
         sleep(2)
         Logging().reportDebugStep(self, "Search by Type")
