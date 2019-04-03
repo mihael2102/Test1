@@ -155,6 +155,15 @@ class MyDashboardPrecondition(object):
         CRMHomePage(self.driver).open_more_list_modules() \
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).select_show_all_tab()
+        type1 = MyDashboardPage(self.driver).get_type()
+        MyDashboardPage(self.driver).sort_by_type()
+        type2 = MyDashboardPage(self.driver).get_type()
+        assert type1 != type2
+        status1 = MyDashboardPage(self.driver).get_status()
+        MyDashboardPage(self.driver).sort_by_status()
+        status2 = MyDashboardPage(self.driver).get_status()
+        assert status1 != status2
+
 
 
 

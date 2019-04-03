@@ -22,6 +22,23 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class MyDashboardPage(CRMBasePage):
 
+    def sort_by_status(self):
+        sleep(3)
+        sort_by_type = super().wait_load_element(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/thead/tr/th[5]/a")
+        sort_by_type.click()
+        Logging().reportDebugStep(self, "Sort by type")
+        return MyDashboardPage(self.driver)
+
+    def sort_by_type(self):
+        sleep(3)
+        sort_by_type = super().wait_load_element(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/thead/tr/th[3]/a")
+        sort_by_type.click()
+        Logging().reportDebugStep(self, "Sort by type")
+        return MyDashboardPage(self.driver)
+
+
     def enter_priority(self, assigned_to):
         sleep(3)
         btn_status = super().wait_element_to_be_clickable(
