@@ -39,7 +39,7 @@ class MyDashboardPage(CRMBasePage):
         check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[15]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=70)
         check_box.click()
         sleep(2)
-        Logging().reportDebugStep(self, "Search by assigned to")
+        Logging().reportDebugStep(self, "Enter priority")
         return MyDashboardPage(self.driver)
 
     def enter_subject(self, balance):
@@ -47,7 +47,7 @@ class MyDashboardPage(CRMBasePage):
         input = self.driver.find_element_by_xpath("//td[16]//input[@class='ng-untouched ng-pristine ng-valid']")
         input.send_keys(balance)
         sleep(50)
-        Logging().reportDebugStep(self, "Enter account name")
+        Logging().reportDebugStep(self, "Enter subject")
         return MyDashboardPage(self.driver)
 
     def enter_total_p_l(self, balance):
@@ -55,7 +55,7 @@ class MyDashboardPage(CRMBasePage):
         input = self.driver.find_element_by_xpath("//td[13]//input")
         input.send_keys(balance)
         sleep(50)
-        Logging().reportDebugStep(self, "Enter account name")
+        Logging().reportDebugStep(self, "Enter total_p_l")
         return MyDashboardPage(self.driver)
 
     def enter_balance(self, balance):
@@ -63,7 +63,7 @@ class MyDashboardPage(CRMBasePage):
         input = self.driver.find_element_by_xpath("//td[12]//input")
         input.send_keys(balance)
         sleep(50)
-        Logging().reportDebugStep(self, "Enter account name")
+        Logging().reportDebugStep(self, "Enter balance")
         return MyDashboardPage(self.driver)
 
     def enter_local_time(self, local_time):
@@ -71,7 +71,7 @@ class MyDashboardPage(CRMBasePage):
         input = self.driver.find_element_by_xpath("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[11]/filters-factory/time-range-filter/input")
         input.send_keys(local_time)
         sleep(50)
-        Logging().reportDebugStep(self, "Enter account name")
+        Logging().reportDebugStep(self, "Enter local time")
         return MyDashboardPage(self.driver)
 
     def enter_created_by(self, assigned_to):
@@ -91,7 +91,7 @@ class MyDashboardPage(CRMBasePage):
         check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[10]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=30)
         check_box.click()
         sleep(2)
-        Logging().reportDebugStep(self, "Search by assigned to")
+        Logging().reportDebugStep(self, "Enter created by")
         return MyDashboardPage(self.driver)
 
     def enter_assigned_to(self, assigned_to):
@@ -111,7 +111,7 @@ class MyDashboardPage(CRMBasePage):
         check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[9]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=30)
         check_box.click()
         sleep(2)
-        Logging().reportDebugStep(self, "Search by assigned to")
+        Logging().reportDebugStep(self, "Enter assigned to")
         return MyDashboardPage(self.driver)
 
     def enter_country(self, country):
@@ -135,7 +135,7 @@ class MyDashboardPage(CRMBasePage):
         except:
             self.driver.execute_script("arguments[0].click();", check_box)
         sleep(2)
-        Logging().reportDebugStep(self, "Search by account status")
+        Logging().reportDebugStep(self, "Enter country")
         return MyDashboardPage(self.driver)
 
     def enter_account_status(self, status):
@@ -155,7 +155,7 @@ class MyDashboardPage(CRMBasePage):
         check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=30)
         check_box.click()
         sleep(2)
-        Logging().reportDebugStep(self, "Search by account status")
+        Logging().reportDebugStep(self, "Enter account status")
         return MyDashboardPage(self.driver)
 
     def enter_status(self, status):
@@ -179,7 +179,7 @@ class MyDashboardPage(CRMBasePage):
         except:
             self.driver.execute_script("arguments[0].click();", check_box)
         sleep(2)
-        Logging().reportDebugStep(self, "Search by status")
+        Logging().reportDebugStep(self, "Enter status")
         return MyDashboardPage(self.driver)
 
 
@@ -197,7 +197,7 @@ class MyDashboardPage(CRMBasePage):
         self.driver.execute_script("arguments[0].scrollIntoView();", check_box)
         check_box.click()
         sleep(2)
-        Logging().reportDebugStep(self, "Search by Type")
+        Logging().reportDebugStep(self, "Enter event type")
         return MyDashboardPage(self.driver)
 
     def get_subject(self):

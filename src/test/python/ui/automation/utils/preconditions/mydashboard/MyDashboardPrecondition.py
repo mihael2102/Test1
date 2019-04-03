@@ -147,6 +147,16 @@ class MyDashboardPrecondition(object):
 
         assert return_account_name == account_name
 
+    def test_sorting_columns(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        CRMHomePage(self.driver).open_more_list_modules() \
+            .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
+        MyDashboardPage(self.driver).select_show_all_tab()
+
+
 
 
 
