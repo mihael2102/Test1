@@ -737,7 +737,11 @@ class ClientProfilePage(CRMBasePage):
         return ClientProfilePage(self.driver)
 
     def click_emails_tab(self):
+        sleep(1)
         emails_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_Emails']")
-        emails_tab.click()
+        try:
+            emails_tab.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", emails_tab)
         Logging().reportDebugStep(self, "Open Email tab ")
         return ClientProfilePage()
