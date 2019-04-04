@@ -395,8 +395,6 @@ class TasksPage(CRMBasePage):
             if str(message['subject']) == subject:
                 Logging().reportDebugStep(self, str(message['subject']))
                 return str(message['subject'])
-            else:
-                Logging().reportDebugStep(self, message['subject'] + "+++all msg")
         pop_conn.quit()
 
     def get_first_account_name(self):
