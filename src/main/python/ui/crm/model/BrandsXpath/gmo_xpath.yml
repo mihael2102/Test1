@@ -1,5 +1,5 @@
 LeadViewInfo:
-  convert_lead_module: "//div[@id='sidebar']//tr[3]//a"
+  convert_lead_module: "//div[@id='sidebar']//tr[2]//a"
 FinancialTransactionsPage:
   transaction_type_element: "(//*[@id='listBody']//tr/td[7])[%s]"
   transaction_type_drop_down: "//td[7]/div/div[1]/button"

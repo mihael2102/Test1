@@ -28,7 +28,7 @@ FirstLeadInfo:
   first_lead_status_new: "New"
   first_lead_status_new_lead: "New Lead"
   first_lead_status_c_new: "C - New"
-  first_assigned_to: "pandaqa pandaqa"
+  first_assigned_to: "Panda Auto"
   first_source_name: "source name test"
   brand:
   po_box: "po box text"
@@ -117,7 +117,7 @@ event_1:
   duration: "30M"
   EVAL_time: "(datetime.now() + relativedelta(days=1)).strftime('%H:%M:%S')"
   EVAL_date: "(datetime.now() + relativedelta(days=1)).strftime('%d-%m-%Y')"
-  assign_to: "pandaqa pandaqa"
+  assign_to: "Panda Auto"
   priority: "Medium"
   description: "Event Description"
 platforms:

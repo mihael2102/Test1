@@ -31,7 +31,7 @@ class AutoAssignConstants(object):
     FIRST_MODULE = "first_module"
     SECOND_MODULE = "second_module"
     FIRST_SELECTION = "first_selection"
-    USER = "pandaqa pandaqa"
+    USER = "Panda Auto"
     DEFAULT_USER = "Default User"
     RULE_TYPE1 = "Country"
     COUNTRY = "Liechtenstein"
