@@ -1,7 +1,9 @@
 brands:
-- name: aztrades
-  config_file: aztrades.yml
+#- name: aztrades
+#  config_file: aztrades.yml
 #- name: eafx
 #  config_file: eafx.yml
 #- name: goldenmarkets
 #  config_file: goldenmarkets.yml
+- name: q8
+  config_file: q8.yml
