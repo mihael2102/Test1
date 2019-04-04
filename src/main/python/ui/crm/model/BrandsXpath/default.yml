@@ -10,7 +10,7 @@ FinancialTransactionsPage:
   withdraw_tab: "//li[contains(text(),'Withdraw')]"
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
 LeadViewInfo:
-  convert_lead_module: "//div[@id='sidebar']//tr[2]//a"
+  convert_lead_module: "//div[@id='sidebar']//tr[3]//a"
 CRMClientDeposit:
   i_confirm_checkbox: "//*[@name='confirm']"
 ClientProfilePage:

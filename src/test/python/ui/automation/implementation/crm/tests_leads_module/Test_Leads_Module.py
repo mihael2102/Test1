@@ -516,7 +516,10 @@ class LeadModuleTest(BaseTest):
         elif global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "itrader":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NO_INTRS])
         elif global_var.current_brand_name == "gmo" or global_var.current_brand_name == "fm-fx":
-            self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_TEST_GMO])
+            try:
+                self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_TEST_GMO])
+            except:
+                return self
         else:
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS])
 

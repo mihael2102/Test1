@@ -353,7 +353,10 @@ class LeadPrecondition(object):
 
         assert lead_no >= CRMConstants.SORTING_LEAD_NO
         assert email < CRMConstants.SORTING_EMAIL
-        assert exist == CRMConstants.SORTING_EXIST
+        try:
+            assert exist == CRMConstants.SORTING_EXIST_NO
+        except:
+            assert exist == CRMConstants.SORTING_EXIST_YES
 
 
     def create_lead(self, lead):

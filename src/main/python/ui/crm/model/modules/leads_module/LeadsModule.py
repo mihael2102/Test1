@@ -356,7 +356,7 @@ class LeadsModule(CRMBasePage):
     def mass_assign_result(self):
         sleep(4)
         mass_assign_result = self.driver.find_element(By.XPATH,
-                                                     "//div[contains(text(), 'accounts assigned to pandaqa')]")
+                                                     "//div[contains(text(), 'accounts assigned to Panda Auto')]")
         btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
         btn_ok.click()
         Logging().reportDebugStep(self, "Close succsesfull result pop ups")
@@ -371,7 +371,7 @@ class LeadsModule(CRMBasePage):
 
     def select_user_assign(self):
         sleep(4)
-        click_mass_assign = self.driver.find_element(By.XPATH, "//div[2][contains (text(), 'pandaqa')]")
+        click_mass_assign = self.driver.find_element(By.XPATH, "//div[2][contains (text(), 'Panda Auto')]")
         click_mass_assign.click()
         Logging().reportDebugStep(self, "Click user")
         return LeadsModule(self.driver)
