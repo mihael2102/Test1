@@ -1,9 +1,9 @@
 tests_config:
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Autorization_Process
-#  class: AutorizationProcess
-#  tests:
-#    - test_autorization_process
+- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Autorization_Process
+  class: AutorizationProcess
+  tests:
+    - test_autorization_process
 
 - module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Create_New_Customer
   class: CreateNewCustomer
