@@ -380,7 +380,7 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click Send")
         return TasksPage(self.driver)
 
-    def check_email(self):
+    def check_email(self, subject):
         sleep(10)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
         pop_conn.user('jonathan.albalak@pandats.com')
@@ -392,8 +392,11 @@ class TasksPage(CRMBasePage):
         # Parse message intom an email object:
         messages = [parser.Parser().parsestr(mssg) for mssg in messages]
         for message in messages:
-            Logging().reportDebugStep(self, message['subject'])
-            return message['subject']
+            if str(message['subject']) == subject:
+                Logging().reportDebugStep(self, str(message['subject']))
+                return str(message['subject'])
+            else:
+                Logging().reportDebugStep(self, message['subject'] + "+++all msg")
         pop_conn.quit()
 
     def get_first_account_name(self):

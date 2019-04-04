@@ -1,8 +1,8 @@
 brands:
 #- name: kayafx
 #  config_file: kaya_fx.yml
-#- name: itrader
-#  config_file: itrader.yml
+- name: itrader
+  config_file: itrader.yml
 #- name: stoxmarket
 #  config_file: stoxmarket.yml
 #- name: otcapital
@@ -27,8 +27,8 @@ brands:
 #  config_file: kbcapitals.yml
 #- name: oinvestsa
 #  config_file: oinvestsa.yml
-- name: brokerxp
-  config_file: brokerxp.yml
+#- name: brokerxp
+#  config_file: brokerxp.yml
 #- name: fm-fx
 #  config_file: fm-fx.yml
 #- name: capitalmarketsbanc
