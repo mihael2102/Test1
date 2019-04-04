@@ -27,13 +27,36 @@ class SendEmailTestCRM(BaseTest):
         ClientsPage(self.driver).click_send_mail_btn()
         SendEmailClientsModule(self.driver).set_subject(EmailConstants.FIRST_SUBJECT) \
                                            .set_comment(EmailConstants.CLIENTS_COMMENT) \
-                                           .click_save_btn()
+                                           .click_save_btn() \
+                                           .click_ok()
         ClientProfilePage(self.driver).scroll_to_emails_section() \
                                       .click_emails_tab()
         actual_email_subject = SendEmailClientsModule(self.driver).get_email_subject()
         expected_email_subject = EmailConstants.FIRST_SUBJECT
         assert actual_email_subject == expected_email_subject
-        SendEmailClientsModule(self.driver).click_edit_email_btn()
+        SendEmailClientsModule(self.driver).click_edit_email_btn() \
+                                           .click_send_button_clients_module()
+        confirm_message = ClientProfilePage(self.driver).get_confirm_message()
+        assert confirm_message == TaskModuleConstants.EMAIL_CONFIRM_MESSAGE
+
+        email_home_page = EmailSignInPage(self.driver, self.config).open_second_tab_page(Config.url_gmail) \
+            .set_login_email(
+            Config.data.get_data_client(FourthClientConstants.CLIENT_FOURTH, FourthClientConstants.EMAIL_ADDRESS)) \
+            .click_first_next() \
+            .set_password_email(
+            Config.data.get_data_client(FourthClientConstants.CLIENT_FOURTH, FourthClientConstants.EMAIL_PASSWORD)) \
+            .click_second_next()
+
+        comment = email_home_page.enter_subject(EmailConstants.FIRST_SUBJECT) \
+            .click_searching_button() \
+            .click_exist_subject_link(EmailConstants.FIRST_SUBJECT) \
+            .get_comment_text()
+
+        support_email = email_home_page.click_tool_tip() \
+            .get_support_email()
+
+        assert comment == EmailConstants.CLIENTS_COMMENT
+        assert support_email == EmailConstants.FIRST_SUPPORT_EMAIL
 
 
 

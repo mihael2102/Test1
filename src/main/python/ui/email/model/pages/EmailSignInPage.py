@@ -12,10 +12,12 @@ from src.test.python.ui.automation.BaseTest import BaseTest
 
 
 class EmailSignInPage(object):
+    driver = None
+    config = None
 
-    def __init__(self) -> None:
-        super().__init__()
-        self.driver = BaseTest().get_driver
+    def __init__(self, driver, config):
+        self.driver = driver
+        self.config = config
 
     def open_second_tab_page(self, url):
         self.driver.execute_script("window.open()")
@@ -23,7 +25,7 @@ class EmailSignInPage(object):
         self.driver.switch_to_window(Config.window_after)
         self.driver.get(url)
         Logging().reportDebugStep(self, "The second tab was opened")
-        return EmailSignInPage()
+        return EmailSignInPage(self.driver, self.config)
 
     def click_use_another_email(self):
         try:
@@ -37,7 +39,7 @@ class EmailSignInPage(object):
                 self.click_another_method()
             else:
                 raise NoSuchElementException()
-        return EmailSignInPage()
+        return EmailSignInPage(self.driver)
 
     def click_another_method(self):
         another_email = WebDriverWait(self.driver, 50).until(
