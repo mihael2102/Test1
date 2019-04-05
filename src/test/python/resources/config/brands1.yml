@@ -1,6 +1,6 @@
 brands:
-- name: gmo
-  config_file: gmo.yml
+#- name: gmo
+#  config_file: gmo.yml
 #- name: capitalmarketsbanc
 #  config_file: capitalmarketsbanc.yml
 #- name: itrader_global
@@ -25,8 +25,8 @@ brands:
 #  config_file: triomarkets.yml
 #- name: stoxmarket
 #  config_file: stoxmarket.yml
-#- name: itrader
-#  config_file: itrader.yml
+- name: itrader
+  config_file: itrader.yml
 
 
 

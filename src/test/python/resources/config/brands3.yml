@@ -1,6 +1,8 @@
 brands:
-- name: brokerxp
-  config_file: brokerxp.yml
+- name: kaya_fx
+  config_file: kaya_fx.yml
+#- name: brokerxp
+#  config_file: brokerxp.yml
 #- name: soarfx
 #  config_file: soarfx.yml
 #- name: finmarket

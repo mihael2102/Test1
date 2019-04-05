@@ -42,7 +42,7 @@ class MultiRunner:
         # write the results to an Excel file
         result_writer = ExcelWriter()
         result_writer.write_test_results(brand_pretty_names, test_list, overall_results)
-        result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
+        # result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
 
 
 
@@ -123,9 +123,9 @@ if __name__ == "__main__":
         # Form input list where each parameter is filename of TestSuite file
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2,path_to_brands_suite_3,path_to_brands_suite_4,path_to_brands_suite_5,path_to_brands_suite_6,
         #               path_to_brands_suite_7,path_to_brands_suite_8,path_to_brands_suite_9,path_to_brands_suite_10,path_to_brands_suite_11,path_to_brands_suite_12]
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2,path_to_brands_suite_3,path_to_brands_suite_4,path_to_brands_suite_5,path_to_brands_suite_6]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2,path_to_brands_suite_3]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=6)
+        pool = multiprocessing.Pool(processes=3)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -199,7 +199,7 @@ if __name__ == "__main__":
 
                 writer.save()
 
-        Send_ALL_XLS(all_excel)
+        # Send_ALL_XLS(all_excel)
         Send_ALL_XLS(short_excel)
 
 
