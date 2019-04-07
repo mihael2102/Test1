@@ -215,14 +215,14 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def enter_subject_mail(self, subject):
-        sleep(4)
+        sleep(2)
         subject_mail = super().wait_load_element("//input[@id='subject']")
         subject_mail.send_keys(subject)
         Logging().reportDebugStep(self, "Enter subject mail" + subject)
         return TasksPage(self.driver)
 
     def enter_body_mail(self, body):
-        sleep(4)
+        sleep(2)
         self.driver.switch_to_frame(self.driver.find_element(By.XPATH, "//*[@id='cke_1_contents']/iframe"))
         enter_body_mail = self.driver.find_element(By.XPATH, "/html/body/p")
         enter_body_mail.click()
@@ -233,7 +233,7 @@ class TasksPage(CRMBasePage):
 
     def click_send(self):
         self.driver.switch_to.default_content()
-        sleep(10)
+        sleep(5)
         click_send = super().wait_load_element("/html/body/bs-modal[7]/div/div/div/div[3]/span/button[4]")
         click_send.click()
         Logging().reportDebugStep(self, "Click Send")

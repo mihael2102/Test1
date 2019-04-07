@@ -36,7 +36,7 @@ class EventPrecondition(object):
         task_module.enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         task_module.click_send()
         sleep(10)
-        msg = task_module.check_email()
+        msg = task_module.check_email(CRMConstants.SUBJECT_TASK_MAIL)
         assert CRMConstants.SUBJECT_TASK_MAIL in msg
 
     def test_sms_icon(self):

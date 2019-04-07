@@ -211,7 +211,7 @@ class LeadsModule(CRMBasePage):
         click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='massassignform_action_button']")
         click_mass_assign.click()
         sleep(1)
-        self.wait_loading_to_finish()
+        self.wait_loading_to_finish(200)
         sleep(1)
         Logging().reportDebugStep(self, "Click 'Save'")
         return LeadsModule(self.driver)

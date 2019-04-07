@@ -63,13 +63,21 @@ class EmailSignInPage(object):
         return EmailSignInPage(self.driver, self.config)
 
     def click_first_next(self):
-        next_button = self.driver.find_element(By.XPATH, "//span[contains(text(),'Weiter')]")
-        next_button.click()
+        try:
+            next_button = self.driver.find_element(By.XPATH, "//span[contains(text(),'Weiter')]")
+            next_button.click()
+        except:
+            next_button = self.driver.find_element(By.XPATH, "//span[contains(text(),'Next')]")
+            next_button.click()
         Logging().reportDebugStep(self, "The next button was clicked")
         return EmailSignInPage(self.driver, self.config)
 
     def click_second_next(self):
-        next_button = self.driver.find_element(By.XPATH, "//span[contains(text(),'Weiter')]")
-        next_button.click()
+        try:
+            next_button = self.driver.find_element(By.XPATH, "//span[contains(text(),'Weiter')]")
+            next_button.click()
+        except:
+            next_button = self.driver.find_element(By.XPATH, "//span[contains(text(),'Next')]")
+            next_button.click()
         Logging().reportDebugStep(self, "The next button was clicked")
         return EmailHomePage(self.driver, self.config)
