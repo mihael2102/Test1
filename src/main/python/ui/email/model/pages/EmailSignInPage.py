@@ -67,7 +67,7 @@ class EmailSignInPage(object):
             next_button = self.driver.find_element(By.XPATH, "//span[contains(text(),'Weiter')]")
             next_button.click()
         except:
-            next_button = self.driver.find_element(By.XPATH, "//span[contains(text(),'Next')]")
+            next_button = self.driver.find_element(By.XPATH, "//*[@id='identifierNext']/content/span")
             next_button.click()
         Logging().reportDebugStep(self, "The next button was clicked")
         return EmailSignInPage(self.driver, self.config)
@@ -77,7 +77,7 @@ class EmailSignInPage(object):
             next_button = self.driver.find_element(By.XPATH, "//span[contains(text(),'Weiter')]")
             next_button.click()
         except:
-            next_button = self.driver.find_element(By.XPATH, "//span[contains(text(),'Next')]")
+            next_button = self.driver.find_element(By.XPATH, "//*[@id='identifierNext']/content/span")
             next_button.click()
         Logging().reportDebugStep(self, "The next button was clicked")
         return EmailHomePage(self.driver, self.config)

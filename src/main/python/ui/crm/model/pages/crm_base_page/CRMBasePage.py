@@ -96,3 +96,6 @@ class CRMBasePage(object):
 
     def wait_loading_to_finish(self, time):
         self.wait_element_to_be_disappear("//div[@class='isloading-overlay']", time)
+
+    def wait_crm_loading_to_finish_tasks(self, time):
+        self.wait_element_to_be_disappear("//div[@class='spinner']", time)

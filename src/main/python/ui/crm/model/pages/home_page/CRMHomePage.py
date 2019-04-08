@@ -173,7 +173,7 @@ class CRMHomePage(CRMBasePage):
                 "/html/body/table[1]/tbody/tr/td[3]/table/tbody/tr/td[4]/img")
         else:
             user_settings = super().wait_element_to_be_clickable(
-                "/html/body/table[1]/tbody/tr/td[3]/table/tbody/tr/td[3]/img")
+                "/html/body/table[1]/tbody/tr/td[3]/table/tbody/tr/td[4]/img")
         user_settings.click()
         user_management = super().wait_element_to_be_clickable("//a[contains(text(), 'User Management')]")
         try:

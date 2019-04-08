@@ -1,7 +1,7 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
 ClientsPage:
-  client_status_button: "//tr[@id='customAdvanceSearch']//td[4]//span[@class='multiselect-selected-text']"
-  client_status_field: "//tr[@id='customAdvanceSearch']//td[4]//input[@class='form-control multiselect-search']"
+  client_status_button: "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']"
+  client_status_field: "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']"
   country_button: "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']"
   country_field: "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']"
 TasksPage:

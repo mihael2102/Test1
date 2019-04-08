@@ -47,17 +47,19 @@ class MyDashboardPage(CRMBasePage):
         sort_by_type = super().wait_load_element(
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/thead/tr/th[5]/a")
         sort_by_type.click()
-        Logging().reportDebugStep(self, "Sort by type")
+        self.wait_crm_loading_to_finish_tasks(165)
+        Logging().reportDebugStep(self, "Sort by status")
         return MyDashboardPage(self.driver)
 
     def sort_by_type(self):
-        sleep(13)
+        sleep(3)
         sort_by_type = super().wait_load_element(
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/thead/tr/th[3]/a")
         try:
             sort_by_type.click()
         except:
             self.driver.execute_script("arguments[0].click();", sort_by_type)
+        self.wait_crm_loading_to_finish_tasks(180)
         Logging().reportDebugStep(self, "Sort by type")
         return MyDashboardPage(self.driver)
 
@@ -375,7 +377,7 @@ class MyDashboardPage(CRMBasePage):
 
     def click_send(self):
         self.driver.switch_to.default_content()
-        sleep(10)
+        sleep(3)
         click_send = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[3]/span/button[4]")
         click_send.click()
         Logging().reportDebugStep(self, "Click Send")
@@ -402,7 +404,8 @@ class MyDashboardPage(CRMBasePage):
     #     return MyDashboardPage(self.driver)
 
     def select_show_all_tab(self):
-        sleep(20)
+        # sleep(10)
+        self.wait_crm_loading_to_finish_tasks(55)
         select_show_all_tab = self.driver.find_element_by_xpath(
             "//*[@id='main-tabs']/li[1]")
         self.driver.execute_script("arguments[0].scrollIntoView();", select_show_all_tab)
@@ -410,14 +413,17 @@ class MyDashboardPage(CRMBasePage):
             select_show_all_tab.click()
         except:
             self.driver.execute_script("arguments[0].click();", select_show_all_tab)
+        sleep(2)
+        self.wait_crm_loading_to_finish_tasks(55)
         Logging().reportDebugStep(self, "Select show all tab")
         return MyDashboardPage(self.driver)
 
     def enter_account_name(self, testqa):
-        sleep(15)
+        sleep(5)
         input = self.driver.find_element_by_xpath("//*[@id='host-element']/input")
         input.send_keys(testqa)
-        sleep(50)
+        self.wait_crm_loading_to_finish()
+        sleep(2)
         Logging().reportDebugStep(self, "Enter account name")
         return MyDashboardPage(self.driver)
 
@@ -439,20 +445,23 @@ class MyDashboardPage(CRMBasePage):
     def get_status(self):
         sleep(5)
         get_status = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[5]/grid-cell/div/span[2]")
-        Logging().reportDebugStep(self, "Get status")
-        return get_status.text
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[5]/grid-cell/div/span[2]")\
+            .text
+        Logging().reportDebugStep(self, "Get status: " + get_status)
+        return get_status
 
     def get_type(self):
         sleep(5)
         get_type = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[3]/grid-cell/div/span[2]")
-        Logging().reportDebugStep(self, "Get type")
-        return get_type.text
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[3]/grid-cell/div/span[2]")\
+                .text
+        Logging().reportDebugStep(self, "Get type: " + get_type)
+        return get_type
 
     def get_time(self):
         sleep(5)
         get_time = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[4]/grid-cell/div/span[2]")
-        Logging().reportDebugStep(self, "Get type")
-        return get_time.text
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[4]/grid-cell/div/span[2]")\
+            .text
+        Logging().reportDebugStep(self, "Get type: " + get_time)
+        return get_time

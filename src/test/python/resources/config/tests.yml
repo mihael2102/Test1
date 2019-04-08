@@ -42,11 +42,11 @@ tests_config:
 #    - test_check_email_popup
 #
 ####CONVERT LEAD
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_perform_convert_lead   # Creates a lead and converts it to a client
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+#  directive: reload_configuration
+#  class: LeadModuleTest
+#  tests:
+#    - test_perform_convert_lead   # Creates a lead and converts it to a client
 #
 ###CLIENTS
 #
@@ -105,11 +105,11 @@ tests_config:
 #  class: CreditOutTestCRM
 #  tests:
 #    - test_make_credit_out_crm # preconditions: convert lead, make credit in
-#
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
-  class: SendEmailTestCRM
-  tests:
-    - test_send_email # preconditions: convert lead
+##
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
+#  class: SendEmailTestCRM
+#  tests:
+#    - test_send_email # preconditions: convert lead
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
 #  class: TransferBetweenTa
@@ -120,10 +120,10 @@ tests_config:
 #  class: TradingAccountCrmTest
 #  tests:
 #    - test_crm_edit_trading_account  # edit trading account
-#- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
-#  class: AffiliateModule
-#  tests:
-#     - test_create_affiliate
+- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
+  class: AffiliateModule
+  tests:
+     - test_create_affiliate
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
 #  class: CalendarView
 #  tests:

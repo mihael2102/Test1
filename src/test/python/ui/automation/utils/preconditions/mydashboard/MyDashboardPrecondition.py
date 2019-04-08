@@ -153,6 +153,7 @@ class MyDashboardPrecondition(object):
         MyDashboardPage(self.driver).sort_by_type()
         type2 = MyDashboardPage(self.driver).get_type()
         assert type1 != type2
+        MyDashboardPage(self.driver).sort_by_status()
         status1 = MyDashboardPage(self.driver).get_status()
         MyDashboardPage(self.driver).sort_by_status()
         status2 = MyDashboardPage(self.driver).get_status()

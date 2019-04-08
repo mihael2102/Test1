@@ -9,6 +9,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.modules.client_modules.send_email.SendEmailClientsModule import SendEmailClientsModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
+from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 
 
 @pytest.mark.run(order=30)
@@ -40,19 +41,23 @@ class SendEmailTestCRM(BaseTest):
         confirm_message = ClientProfilePage(self.driver).get_confirm_message()
         assert confirm_message == TaskModuleConstants.EMAIL_CONFIRM_MESSAGE
 
-        email_home_page = EmailSignInPage(self.driver, self.config)\
-            .open_second_tab_page(Config.url_gmail) \
-            .set_login_email(EmailConstants.EMAIL_ADDRESS) \
-            .click_first_next() \
-            .set_password_email(EmailConstants.EMAIL_PASSWORD) \
-            .click_second_next()
+        sleep(10)
+        msg = TasksPage(self.driver).check_email(EmailConstants.FIRST_SUBJECT)
+        assert EmailConstants.FIRST_SUBJECT in msg
 
-        comment = email_home_page.enter_subject(EmailConstants.FIRST_SUBJECT) \
-            .click_searching_button() \
-            .click_exist_subject_link(EmailConstants.FIRST_SUBJECT) \
-            .get_comment_text()
-
-        assert comment == EmailConstants.CLIENTS_COMMENT
+        # email_home_page = EmailSignInPage(self.driver, self.config)\
+        #     .open_second_tab_page(Config.url_gmail) \
+        #     .set_login_email(EmailConstants.EMAIL_ADDRESS) \
+        #     .click_first_next() \
+        #     .set_password_email(EmailConstants.EMAIL_PASSWORD) \
+        #     .click_second_next()
+        #
+        # comment = email_home_page.enter_subject(EmailConstants.FIRST_SUBJECT) \
+        #     .click_searching_button() \
+        #     .click_exist_subject_link(EmailConstants.FIRST_SUBJECT) \
+        #     .get_comment_text()
+        #
+        # assert comment == EmailConstants.CLIENTS_COMMENT
 
 
 
