@@ -51,6 +51,8 @@ class CreditOutPrecondition(object):
         while (actual_credit != expected_credit):
             sleep(2)
             CRMHomePage(self.driver).refresh_page()
+            sleep(30)
+            CRMHomePage(self.driver).refresh_page()
             actual_credit = MT4CreditOutModule(self.driver).get_credit_int()
             count += 1
             if count == 5:
