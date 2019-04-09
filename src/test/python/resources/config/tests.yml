@@ -137,12 +137,12 @@ tests_config:
 #    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
 #    - test_check_search_via_button # Check search using search button
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
-#  class: CampaignsModuleTest
-#  tests:
-#    - test_create_campaign
-#    - test_edit_campaign
-#    - test_delete_campaign
+- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
+  class: CampaignsModuleTest
+  tests:
+    - test_create_campaign
+    - test_edit_campaign
+    - test_delete_campaign
 #- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
 #  class: AutoAssignModuleTest
 #  tests:
@@ -165,9 +165,9 @@ tests_config:
 #    - test_check_workflow_by_status
 #    - test_check_workflow_by_country
 #    - test_delete_workflow
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+#  directive: reload_configuration
+#  class: LeadModuleTest
+#  tests:
 #    - test_edit_lead_pencil_icon
-    - test_check_email_popup
+#    - test_check_email_popup

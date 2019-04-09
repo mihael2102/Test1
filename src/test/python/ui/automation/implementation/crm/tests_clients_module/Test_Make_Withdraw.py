@@ -29,7 +29,7 @@ class WithdrawTestCRM(BaseTest):
 
         MT4WithdrawModule().make_withdraw(
             account, CRMConstants.AMOUNT_WITHDRAW, CRMConstants.PAYMENT_METHOD_WITHDRAW, CRMConstants.STATUS_WITHDRAW,
-            CRMConstants.DESCRIPTION_WITHDRAW)
+            CRMConstants.DESCRIPTION_WITHDRAW, CRMConstants.CLEARNED_BY)
 
         confirmation_message = crm_client_profile.get_confirm_message()
         assert confirmation_message == CRMConstants.WITHDRAW_SUCCESSFULLY

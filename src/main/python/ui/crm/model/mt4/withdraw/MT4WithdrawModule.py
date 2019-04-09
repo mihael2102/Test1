@@ -21,12 +21,16 @@ class MT4WithdrawModule(CRMBasePage):
     #     returns  Client Profile  instance
     # '''
 
-    def make_withdraw(self, account_number, amount, payment_method, withdraw_status, description_withdraw):
+    def make_withdraw(self, account_number, amount, payment_method, withdraw_status, description_withdraw, cleared_by):
         self.select_payment_method(payment_method)
         self.select_status(withdraw_status)
         self.select_account(account_number)
         self.set_amount(amount)
         self.set_description(description_withdraw)
+        try:
+            self.set_cleared_by(cleared_by)
+        except:
+            return self
         self.create_withdraw_button()
         return ClientProfilePage(self.driver)
 
@@ -35,6 +39,16 @@ class MT4WithdrawModule(CRMBasePage):
          :parameter payment method the method of withdraw  in the drop down
         :returns MT4 Withdraw instance
     '''
+
+    def set_cleared_by(self, cleared_by):
+        try:
+            amount_filed = self.driver.find_element(By.XPATH, "//input[@id='cleared_by']")
+            amount_filed.clear()
+            amount_filed.send_keys(cleared_by)
+            Logging().reportDebugStep(self, "The cleared by was set:  " + cleared_by)
+        except:
+            return self
+        return MT4WithdrawModule(self.driver)
 
     def select_payment_method(self, payment_method):
         WebDriverWait(self.driver, 10).until(

@@ -37,7 +37,7 @@ class AddCampaignsModule(CRMBasePage):
         if global_var.current_brand_name == "stoxmarket":
             element = super().wait_element_to_be_clickable("//li[contains(text(),'pandaqaa pandaqa')]")
         elif global_var.current_brand_name == "capitalmarketsbanc":
-            element = super().wait_element_to_be_clickable("//li[contains(text(),'pandaqatest pandaqa')]")
+            element = super().wait_element_to_be_clickable("//li[contains(text(),'Panda Auto')]")
         else:
             element = super().wait_element_to_be_clickable("//li[contains(text(),'%s')]" % assigned_to)
         element.click()

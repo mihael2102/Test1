@@ -15,6 +15,23 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 
+from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
+from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.utils.config import Config
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
+from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
+from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
+from src.main.python.ui.crm.model.constants.APIConstants import APIConstants
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+import re
+import time
+from time import sleep
+
 @pytest.mark.run(order=24)
 class LeadModuleTest(BaseTest):
 
@@ -118,127 +135,106 @@ class LeadModuleTest(BaseTest):
         assert confirmation_message == CRMConstants().MASS_ASSIGN_MESSAGE
         lead_module.click_ok().perform_screen_shot_lead_module()
 
-    def test_perform_convert_lead(self):
-        try:
-            LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
-            lead_view_profile_page = LeadViewInfo(self.driver)
+    def autorization_process(self):
+        """ Login to CRM """
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
-            lead_view_profile_page.open_convert_lead_module() \
+        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(
+            AffiliateModuleConstants.AFFILIATES_MODULE)
 
-            if global_var.current_brand_name == "mpcrypto":
-                ConvertLeadModule(self.driver).perform_convert_lead(
-                    self.client1[LeadsModuleConstants.FIRST_NAME],
-                    self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                    self.client1[LeadsModuleConstants.EMAIL],
-                    self.client1[LeadsModuleConstants.PHONE],
-                    self.client1[LeadsModuleConstants.BIRTHDAY],
-                    self.client1[LeadsModuleConstants.CITIZENSHIP],
-                    self.client1[LeadsModuleConstants.STREET],
-                    self.client1[LeadsModuleConstants.POSTAL_CODE],
-                    self.client1[LeadsModuleConstants.CITY],
-                    self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-                    self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                    self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BCH],
-                    self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                    self.client1[LeadsModuleConstants.BRAND],
-                    self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                    self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
-            elif (global_var.current_brand_name == "oinvestsa") :
-                ConvertLeadModule(self.driver).perform_convert_lead(
-                    self.client1[LeadsModuleConstants.FIRST_NAME],
-                    self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                    self.client1[LeadsModuleConstants.EMAIL],
-                    self.client1[LeadsModuleConstants.PHONE],
-                    self.client1[LeadsModuleConstants.BIRTHDAY],
-                    self.client1[LeadsModuleConstants.CITIZENSHIP],
-                    self.client1[LeadsModuleConstants.STREET],
-                    self.client1[LeadsModuleConstants.POSTAL_CODE],
-                    self.client1[LeadsModuleConstants.CITY],
-                    self.client1[LeadsModuleConstants.FIRST_COUNTRY_SA],
-                    self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                    self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-                    self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                    self.client1[LeadsModuleConstants.BRAND],
-                    self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                    self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+        AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID)
 
-            elif (global_var.current_brand_name == "itrader_global"):
+        AffiliatePage(self.driver).open_edit_affiliate()
+        selected_methods = AffiliatePage(self.driver).check_selected_methods()
+        if "Selected" in selected_methods:
+            AffiliatePage(self.driver).add_all_methods()
+            selected_methods_new = AffiliatePage(self.driver).check_selected_methods()
+            if "None selected" in selected_methods_new:
+                AffiliatePage(self.driver).add_all_methods()
+        else:
+            AffiliatePage(self.driver).add_all_methods()
 
-                ConvertLeadModule(self.driver).perform_convert_lead(
-                    self.client1[LeadsModuleConstants.FIRST_NAME],
-                    self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                    self.client1[LeadsModuleConstants.EMAIL],
-                    self.client1[LeadsModuleConstants.PHONE],
-                    self.client1[LeadsModuleConstants.BIRTHDAY],
-                    self.client1[LeadsModuleConstants.CITIZENSHIP],
-                    self.client1[LeadsModuleConstants.STREET],
-                    self.client1[LeadsModuleConstants.POSTAL_CODE],
-                    self.client1[LeadsModuleConstants.CITY],
-                    self.client1[LeadsModuleConstants.FIRST_COUNTRY_ME],
-                    self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                    self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-                    self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                    self.client1[LeadsModuleConstants.BRAND],
-                    self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                    self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-            elif (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "itrader"):
-
-                ConvertLeadModule(self.driver).perform_convert_lead(
-                    self.client1[LeadsModuleConstants.FIRST_NAME],
-                    self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                    self.client1[LeadsModuleConstants.EMAIL],
-                    self.client1[LeadsModuleConstants.PHONE],
-                    self.client1[LeadsModuleConstants.BIRTHDAY],
-                    self.client1[LeadsModuleConstants.CITIZENSHIP],
-                    self.client1[LeadsModuleConstants.STREET],
-                    self.client1[LeadsModuleConstants.POSTAL_CODE],
-                    self.client1[LeadsModuleConstants.CITY],
-                    self.client1[LeadsModuleConstants.FIRST_COUNTRY_GERMANY],
-                    self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                    self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_EUR],
-                    self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                    self.client1[LeadsModuleConstants.BRAND],
-                    self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                    self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
+        selected_countries = AffiliatePage(self.driver).check_selected_countries()
+        if "Selected" in selected_countries:
+            AffiliatePage(self.driver).add_none_selected_countries()
+            selected_countries_new = AffiliatePage(self.driver).check_selected_countries()
+            if "None selected" in selected_countries_new:
+                AffiliatePage(self.driver).click_submit()
             else:
+                AffiliatePage(self.driver).add_none_selected_countries()
+                AffiliatePage(self.driver).click_submit()
+        else:
+            AffiliatePage(self.driver).click_submit()
 
-                ConvertLeadModule(self.driver).perform_convert_lead(
-                    self.client1[LeadsModuleConstants.FIRST_NAME],
-                    self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                    self.client1[LeadsModuleConstants.EMAIL],
-                    self.client1[LeadsModuleConstants.PHONE],
-                    self.client1[LeadsModuleConstants.BIRTHDAY],
-                    self.client1[LeadsModuleConstants.CITIZENSHIP],
-                    self.client1[LeadsModuleConstants.STREET],
-                    self.client1[LeadsModuleConstants.POSTAL_CODE],
-                    self.client1[LeadsModuleConstants.CITY],
-                    self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-                    self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                    self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-                    self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                    self.client1[LeadsModuleConstants.BRAND],
-                    self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                    self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+        secret_key = AffiliatePage(self.driver).copy_secret_key()
 
+        api = affiliate_list_view_page.get_link_api()
+        CRMLoginPage(self.driver).open_first_tab_page(api)
+        ApiPage(self.driver).enter_secret_key(secret_key)
+        ApiPage(self.driver).authorization_module()
+        ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID)
 
-            convert_verified = False
+        ApiPage(self.driver).generate_time()
+        ApiPage(self.driver).generate_accessKey()
+        ApiPage(self.driver).send_authorization()
+        check_token = ApiPage(self.driver).check_token()
+        time.sleep(10)
+        assert APIConstants.STATUS_OK in check_token
+
+    def test_perform_convert_lead(self):
+        if global_var.current_brand_name == "kayafx":
+            self.autorization_process()
+            ApiPage(self.driver).create_customer_module()
+            ApiPage(self.driver).enter_email(self.client1[LeadsModuleConstants.EMAIL])
+            ApiPage(self.driver).enter_password(self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD])
+            ApiPage(self.driver).enter_country(APIConstants.COUNTRY)
+            ApiPage(self.driver).enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                     LeadsModuleConstants.FIRST_NAME])
+            ApiPage(self.driver).enter_lastName(APIConstants.LASTNAME)
+            ApiPage(self.driver).enter_phone(APIConstants.PHONE)
+            ApiPage(self.driver).enter_refferal(APIConstants.REFFERAL)
+            ApiPage(self.driver).send_create_customer()
+
+            check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+            sleep(3)
+            count = 0
+            while (APIConstants.STATUS_OK not in check_create_customer_token):
+                sleep(2)
+                check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+                count += 1
+                if count == 5:
+                    break
+            assert APIConstants.STATUS_OK in check_create_customer_token
+
+            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
+            ClientsPage(self.driver).select_filter(self.config.get_data_client(
+                TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+                .find_client_by_email(self.client1[LeadsModuleConstants.EMAIL])
+            client_email = ClientsPage(self.driver).get_first_client_email()
+            client_country = ClientsPage(self.driver).get_client_country()
+            client_first_name = ClientsPage(self.driver).get_client_first_name()
+            client_last_name = ClientsPage(self.driver).get_client_last_name()
+            client_phone = ClientsPage(self.driver).get_client_phone()
+            ClientsPage(self.driver).click_custom_information()
+            refferal = ""
+            if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "oinvestsa" and \
+                    global_var.current_brand_name != "gmo":
+                refferal = ClientsPage(self.driver).get_refferal_client()
+
+            assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                LeadsModuleConstants.EMAIL]
+            assert client_country == APIConstants.COUNTRY_CRM
+            assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                LeadsModuleConstants.FIRST_NAME]
+            assert client_last_name == APIConstants.LASTNAME
+            assert client_phone == APIConstants.PHONE_CRM
+            assert APIConstants.REFFERAL in refferal
+        else:
             try:
-                confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
-                assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE or CRMConstants().CONVERT_SUCCESSFUL_MESSAGE_EMPTY
-                lead_view_profile_page.click_ok()
-                convert_verified = True
-            except TimeoutException:
-                Logging().reportDebugStep(self, "Lead convert message was not picked up")
-            if not convert_verified:
-                lead_detail_view = LeadDetailViewInfo(self.driver)
-                lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
-                self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                ClientProfilePage(self.driver).Sign_Out()
                 LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
                 lead_view_profile_page = LeadViewInfo(self.driver)
 
@@ -263,7 +259,7 @@ class LeadModuleTest(BaseTest):
                         self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                         self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
-                elif (global_var.current_brand_name == "oinvestsa"):
+                elif (global_var.current_brand_name == "oinvestsa") :
                     ConvertLeadModule(self.driver).perform_convert_lead(
                         self.client1[LeadsModuleConstants.FIRST_NAME],
                         self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
@@ -302,6 +298,26 @@ class LeadModuleTest(BaseTest):
                         self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                         self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
+                elif (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "itrader"):
+
+                    ConvertLeadModule(self.driver).perform_convert_lead(
+                        self.client1[LeadsModuleConstants.FIRST_NAME],
+                        self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                        self.client1[LeadsModuleConstants.EMAIL],
+                        self.client1[LeadsModuleConstants.PHONE],
+                        self.client1[LeadsModuleConstants.BIRTHDAY],
+                        self.client1[LeadsModuleConstants.CITIZENSHIP],
+                        self.client1[LeadsModuleConstants.STREET],
+                        self.client1[LeadsModuleConstants.POSTAL_CODE],
+                        self.client1[LeadsModuleConstants.CITY],
+                        self.client1[LeadsModuleConstants.FIRST_COUNTRY_GERMANY],
+                        self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                        self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_EUR],
+                        self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                        self.client1[LeadsModuleConstants.BRAND],
+                        self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                        self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
                 else:
 
                     ConvertLeadModule(self.driver).perform_convert_lead(
@@ -322,10 +338,11 @@ class LeadModuleTest(BaseTest):
                         self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                         self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
+
                 convert_verified = False
                 try:
                     confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
-                    assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+                    assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE or CRMConstants().CONVERT_SUCCESSFUL_MESSAGE_EMPTY
                     lead_view_profile_page.click_ok()
                     convert_verified = True
                 except TimeoutException:
@@ -334,104 +351,202 @@ class LeadModuleTest(BaseTest):
                     lead_detail_view = LeadDetailViewInfo(self.driver)
                     lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
                     self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
-
             except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                ClientProfilePage(self.driver).Sign_Out()
-                LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
-                lead_view_profile_page = LeadViewInfo(self.driver)
-
-                lead_view_profile_page.open_convert_lead_module() \
-
-                if global_var.current_brand_name == "mpcrypto":
-                    ConvertLeadModule(self.driver).perform_convert_lead(
-                        self.client1[LeadsModuleConstants.FIRST_NAME],
-                        self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                        self.client1[LeadsModuleConstants.EMAIL],
-                        self.client1[LeadsModuleConstants.PHONE],
-                        self.client1[LeadsModuleConstants.BIRTHDAY],
-                        self.client1[LeadsModuleConstants.CITIZENSHIP],
-                        self.client1[LeadsModuleConstants.STREET],
-                        self.client1[LeadsModuleConstants.POSTAL_CODE],
-                        self.client1[LeadsModuleConstants.CITY],
-                        self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-                        self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                        self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BCH],
-                        self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                        self.client1[LeadsModuleConstants.BRAND],
-                        self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                        self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-                elif (global_var.current_brand_name == "oinvestsa"):
-                    ConvertLeadModule(self.driver).perform_convert_lead(
-                        self.client1[LeadsModuleConstants.FIRST_NAME],
-                        self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                        self.client1[LeadsModuleConstants.EMAIL],
-                        self.client1[LeadsModuleConstants.PHONE],
-                        self.client1[LeadsModuleConstants.BIRTHDAY],
-                        self.client1[LeadsModuleConstants.CITIZENSHIP],
-                        self.client1[LeadsModuleConstants.STREET],
-                        self.client1[LeadsModuleConstants.POSTAL_CODE],
-                        self.client1[LeadsModuleConstants.CITY],
-                        self.client1[LeadsModuleConstants.FIRST_COUNTRY_SA],
-                        self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                        self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-                        self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                        self.client1[LeadsModuleConstants.BRAND],
-                        self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                        self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-                elif (global_var.current_brand_name == "itrader_global"):
-
-                    ConvertLeadModule(self.driver).perform_convert_lead(
-                        self.client1[LeadsModuleConstants.FIRST_NAME],
-                        self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                        self.client1[LeadsModuleConstants.EMAIL],
-                        self.client1[LeadsModuleConstants.PHONE],
-                        self.client1[LeadsModuleConstants.BIRTHDAY],
-                        self.client1[LeadsModuleConstants.CITIZENSHIP],
-                        self.client1[LeadsModuleConstants.STREET],
-                        self.client1[LeadsModuleConstants.POSTAL_CODE],
-                        self.client1[LeadsModuleConstants.CITY],
-                        self.client1[LeadsModuleConstants.FIRST_COUNTRY_ME],
-                        self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                        self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-                        self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                        self.client1[LeadsModuleConstants.BRAND],
-                        self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                        self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-                else:
-
-                    ConvertLeadModule(self.driver).perform_convert_lead(
-                        self.client1[LeadsModuleConstants.FIRST_NAME],
-                        self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                        self.client1[LeadsModuleConstants.EMAIL],
-                        self.client1[LeadsModuleConstants.PHONE],
-                        self.client1[LeadsModuleConstants.BIRTHDAY],
-                        self.client1[LeadsModuleConstants.CITIZENSHIP],
-                        self.client1[LeadsModuleConstants.STREET],
-                        self.client1[LeadsModuleConstants.POSTAL_CODE],
-                        self.client1[LeadsModuleConstants.CITY],
-                        self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-                        self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                        self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-                        self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                        self.client1[LeadsModuleConstants.BRAND],
-                        self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                        self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-                convert_verified = False
                 try:
-                    confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
-                    assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
-                    lead_view_profile_page.click_ok()
-                    convert_verified = True
-                except TimeoutException:
-                    Logging().reportDebugStep(self, "Lead convert message was not picked up")
-                if not convert_verified:
-                    lead_detail_view = LeadDetailViewInfo(self.driver)
-                    lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
-                    self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
+                    ClientProfilePage(self.driver).Sign_Out()
+                    LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+                    lead_view_profile_page = LeadViewInfo(self.driver)
+
+                    lead_view_profile_page.open_convert_lead_module() \
+
+                    if global_var.current_brand_name == "mpcrypto":
+                        ConvertLeadModule(self.driver).perform_convert_lead(
+                            self.client1[LeadsModuleConstants.FIRST_NAME],
+                            self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                            self.client1[LeadsModuleConstants.EMAIL],
+                            self.client1[LeadsModuleConstants.PHONE],
+                            self.client1[LeadsModuleConstants.BIRTHDAY],
+                            self.client1[LeadsModuleConstants.CITIZENSHIP],
+                            self.client1[LeadsModuleConstants.STREET],
+                            self.client1[LeadsModuleConstants.POSTAL_CODE],
+                            self.client1[LeadsModuleConstants.CITY],
+                            self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                            self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BCH],
+                            self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                            self.client1[LeadsModuleConstants.BRAND],
+                            self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                            self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+                    elif (global_var.current_brand_name == "oinvestsa"):
+                        ConvertLeadModule(self.driver).perform_convert_lead(
+                            self.client1[LeadsModuleConstants.FIRST_NAME],
+                            self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                            self.client1[LeadsModuleConstants.EMAIL],
+                            self.client1[LeadsModuleConstants.PHONE],
+                            self.client1[LeadsModuleConstants.BIRTHDAY],
+                            self.client1[LeadsModuleConstants.CITIZENSHIP],
+                            self.client1[LeadsModuleConstants.STREET],
+                            self.client1[LeadsModuleConstants.POSTAL_CODE],
+                            self.client1[LeadsModuleConstants.CITY],
+                            self.client1[LeadsModuleConstants.FIRST_COUNTRY_SA],
+                            self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                            self.client1[LeadsModuleConstants.BRAND],
+                            self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                            self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+                    elif (global_var.current_brand_name == "itrader_global"):
+
+                        ConvertLeadModule(self.driver).perform_convert_lead(
+                            self.client1[LeadsModuleConstants.FIRST_NAME],
+                            self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                            self.client1[LeadsModuleConstants.EMAIL],
+                            self.client1[LeadsModuleConstants.PHONE],
+                            self.client1[LeadsModuleConstants.BIRTHDAY],
+                            self.client1[LeadsModuleConstants.CITIZENSHIP],
+                            self.client1[LeadsModuleConstants.STREET],
+                            self.client1[LeadsModuleConstants.POSTAL_CODE],
+                            self.client1[LeadsModuleConstants.CITY],
+                            self.client1[LeadsModuleConstants.FIRST_COUNTRY_ME],
+                            self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                            self.client1[LeadsModuleConstants.BRAND],
+                            self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                            self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+                    else:
+
+                        ConvertLeadModule(self.driver).perform_convert_lead(
+                            self.client1[LeadsModuleConstants.FIRST_NAME],
+                            self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                            self.client1[LeadsModuleConstants.EMAIL],
+                            self.client1[LeadsModuleConstants.PHONE],
+                            self.client1[LeadsModuleConstants.BIRTHDAY],
+                            self.client1[LeadsModuleConstants.CITIZENSHIP],
+                            self.client1[LeadsModuleConstants.STREET],
+                            self.client1[LeadsModuleConstants.POSTAL_CODE],
+                            self.client1[LeadsModuleConstants.CITY],
+                            self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                            self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                            self.client1[LeadsModuleConstants.BRAND],
+                            self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                            self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+                    convert_verified = False
+                    try:
+                        confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
+                        assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+                        lead_view_profile_page.click_ok()
+                        convert_verified = True
+                    except TimeoutException:
+                        Logging().reportDebugStep(self, "Lead convert message was not picked up")
+                    if not convert_verified:
+                        lead_detail_view = LeadDetailViewInfo(self.driver)
+                        lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
+                        self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
+
+                except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+                    ClientProfilePage(self.driver).Sign_Out()
+                    LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+                    lead_view_profile_page = LeadViewInfo(self.driver)
+
+                    lead_view_profile_page.open_convert_lead_module() \
+
+                    if global_var.current_brand_name == "mpcrypto":
+                        ConvertLeadModule(self.driver).perform_convert_lead(
+                            self.client1[LeadsModuleConstants.FIRST_NAME],
+                            self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                            self.client1[LeadsModuleConstants.EMAIL],
+                            self.client1[LeadsModuleConstants.PHONE],
+                            self.client1[LeadsModuleConstants.BIRTHDAY],
+                            self.client1[LeadsModuleConstants.CITIZENSHIP],
+                            self.client1[LeadsModuleConstants.STREET],
+                            self.client1[LeadsModuleConstants.POSTAL_CODE],
+                            self.client1[LeadsModuleConstants.CITY],
+                            self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                            self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BCH],
+                            self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                            self.client1[LeadsModuleConstants.BRAND],
+                            self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                            self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+                    elif (global_var.current_brand_name == "oinvestsa"):
+                        ConvertLeadModule(self.driver).perform_convert_lead(
+                            self.client1[LeadsModuleConstants.FIRST_NAME],
+                            self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                            self.client1[LeadsModuleConstants.EMAIL],
+                            self.client1[LeadsModuleConstants.PHONE],
+                            self.client1[LeadsModuleConstants.BIRTHDAY],
+                            self.client1[LeadsModuleConstants.CITIZENSHIP],
+                            self.client1[LeadsModuleConstants.STREET],
+                            self.client1[LeadsModuleConstants.POSTAL_CODE],
+                            self.client1[LeadsModuleConstants.CITY],
+                            self.client1[LeadsModuleConstants.FIRST_COUNTRY_SA],
+                            self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                            self.client1[LeadsModuleConstants.BRAND],
+                            self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                            self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+                    elif (global_var.current_brand_name == "itrader_global"):
+
+                        ConvertLeadModule(self.driver).perform_convert_lead(
+                            self.client1[LeadsModuleConstants.FIRST_NAME],
+                            self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                            self.client1[LeadsModuleConstants.EMAIL],
+                            self.client1[LeadsModuleConstants.PHONE],
+                            self.client1[LeadsModuleConstants.BIRTHDAY],
+                            self.client1[LeadsModuleConstants.CITIZENSHIP],
+                            self.client1[LeadsModuleConstants.STREET],
+                            self.client1[LeadsModuleConstants.POSTAL_CODE],
+                            self.client1[LeadsModuleConstants.CITY],
+                            self.client1[LeadsModuleConstants.FIRST_COUNTRY_ME],
+                            self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                            self.client1[LeadsModuleConstants.BRAND],
+                            self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                            self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+                    else:
+
+                        ConvertLeadModule(self.driver).perform_convert_lead(
+                            self.client1[LeadsModuleConstants.FIRST_NAME],
+                            self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                            self.client1[LeadsModuleConstants.EMAIL],
+                            self.client1[LeadsModuleConstants.PHONE],
+                            self.client1[LeadsModuleConstants.BIRTHDAY],
+                            self.client1[LeadsModuleConstants.CITIZENSHIP],
+                            self.client1[LeadsModuleConstants.STREET],
+                            self.client1[LeadsModuleConstants.POSTAL_CODE],
+                            self.client1[LeadsModuleConstants.CITY],
+                            self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                            self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+                            self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                            self.client1[LeadsModuleConstants.BRAND],
+                            self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                            self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+                    convert_verified = False
+                    try:
+                        confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
+                        assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+                        lead_view_profile_page.click_ok()
+                        convert_verified = True
+                    except TimeoutException:
+                        Logging().reportDebugStep(self, "Lead convert message was not picked up")
+                    if not convert_verified:
+                        lead_detail_view = LeadDetailViewInfo(self.driver)
+                        lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
+                        self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
 
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)

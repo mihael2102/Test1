@@ -19,11 +19,15 @@ class MT4CreditInModule(CRMBasePage):
         returns  MT4 Credit In instance    
     '''
 
-    def make_credit_in(self, account_number, amount, expire_date, comment):
+    def make_credit_in(self, account_number, amount, expire_date, comment, cleared_by):
         self.select_account(account_number)
         self.set_amount(amount)
         self.set_expire_date(expire_date)
         self.set_description(comment)
+        try:
+            self.set_cleared_by(cleared_by)
+        except:
+            return self
         self.perform_create_credit_in()
         return ClientProfilePage(self.driver)
 
@@ -32,6 +36,14 @@ class MT4CreditInModule(CRMBasePage):
         :parameter account the account of the  client
         :returns MT4 Credit In instance
     '''
+
+    def set_cleared_by(self, cleared_by):
+        sleep(3)
+        amount_filed = self.driver.find_element(By.XPATH, "//input[@id='cleared_by']")
+        amount_filed.clear()
+        amount_filed.send_keys(cleared_by)
+        Logging().reportDebugStep(self, "The cleared by was set:  " + cleared_by)
+        return MT4CreditInModule()
 
     def select_account(self, account):
         time.sleep(3)

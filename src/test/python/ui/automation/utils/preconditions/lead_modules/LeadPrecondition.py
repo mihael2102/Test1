@@ -297,7 +297,7 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).click_check_box_all_leads()
         LeadsModule(self.driver).click_mass_assign()
         if global_var.current_brand_name == "capitalmarketsbanc":
-            LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN_CMB)
+            LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN)
         else:
             LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN)
         LeadsModule(self.driver).select_user_assign()
@@ -322,7 +322,7 @@ class LeadPrecondition(object):
                 assert status == CRMConstants.STATUS_ASSIGN
             assign_leads = LeadsModule(self.driver).check_assign_leads(i)
             if global_var.current_brand_name == "capitalmarketsbanc":
-                assert assign_leads == CRMConstants.PANDAQA_ASSIGN_CMB
+                assert assign_leads == CRMConstants.PANDAQA_ASSIGN
             elif global_var.current_brand_name == "brokerxp":
                 return self
             else:

@@ -39,6 +39,7 @@ class WithdrawPreconditionCRM(object):
         ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.WITHDRAW)
         MT4WithdrawModule(self.driver).select_payment_method(CRMConstants.PAYMENT_METHOD_WITHDRAW) \
                                       .select_account(account_number) \
+                                      .set_cleared_by(CRMConstants.CLEARNED_BY)\
                                       .set_amount(CRMConstants.AMOUNT_WITHDRAW) \
                                       .set_description(CRMConstants.DESCRIPTION_WITHDRAW) \
                                       .create_withdraw_button()

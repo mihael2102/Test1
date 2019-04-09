@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    CLEARNED_BY = "panda"
     TEST_PANDA = "test"
     SEND_SMS = "Send SMS"
     STATUS_EVENT = "Planned"
@@ -46,7 +47,7 @@ class CRMConstants(object):
     STATUS_ASSIGN = "R - New"
     PANDAQA_ASSIGN = "Panda Auto"
     PANDAQA_ASSIGN_CMB = "pandaqatest pandaqa"
-    SHORT_EMAIL = "pandaqa+"
+    SHORT_EMAIL = "pandaauto"
     TESTQA = "testqa"
     SORTING_EXIST_NO = "no"
     SORTING_EXIST_YES = "yes"
