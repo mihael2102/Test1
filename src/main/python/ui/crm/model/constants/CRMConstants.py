@@ -5,6 +5,7 @@ import string
 
 
 class CRMConstants(object):
+    WELCOME_TO = "Welcome to "
     SECOND_COUNTRY = "country_two"
     PHONE = "Phone"
     SEND_SMS_MESSAGE = "Message was sent successfully"

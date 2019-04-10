@@ -11,6 +11,9 @@ from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 from time import sleep
+import poplib
+from email import parser
+from src.main.python.utils.logs.Loging import Logging
 
 class Login_CA_Precondition(object):
 
@@ -24,6 +27,30 @@ class Login_CA_Precondition(object):
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)
         return lead
+
+    def check_email_sign_up(self):
+        sleep(60)
+        pop_conn = poplib.POP3_SSL('pop.gmail.com')
+        pop_conn.user('jonathan.albalak@pandats.com')
+        pop_conn.pass_('9U&AU=bm')
+        # Get messages from server:
+        messages = [pop_conn.retr(i) for i in range(1, len(pop_conn.list()[1]) + 1)]
+        # Concat message pieces:
+        messages = ["\n".join(m.decode() for m in mssg[1]) for mssg in messages]
+        # Parse message intom an email object:
+        messages = [parser.Parser().parsestr(mssg) for mssg in messages]
+        for message in messages:
+            if CRMConstants.WELCOME_TO in str(message['Subject']):
+                link = self.config.get_value('url').replace('https://', '')
+                link1 = link.replace('.ptscrm.com/', '')
+                if link1 in str(message['Subject']).lower().replace(' ', ''):
+                    Logging().reportDebugStep(self, str(message['Subject']))
+                    assert CRMConstants.WELCOME_TO in str(message['Subject'])
+                    # return str(message['Subject'])
+        pop_conn.quit()
+
+
+
 
     def sign_up_ca(self):
 ###REGISTRATION FORM
