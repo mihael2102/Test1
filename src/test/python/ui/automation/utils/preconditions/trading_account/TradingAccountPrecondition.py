@@ -134,20 +134,23 @@ class TradingAccountPrecondition(object):
 
     def verify_account_in_crm(self):
         # Login to CRM
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if (global_var.current_brand_name != "q8"):
+            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+                .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                           self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
+                .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
-        sleep(2)
-        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                            LeadsModuleConstants.EMAIL])
-        sleep(2)
-        ClientProfilePage(self.driver).open_trading_accounts_tab()
-        ClientsPage(self.driver).trading_account_exist(CAConstants.DEMO_ACCOUNT_NUMBER)
-        ClientsPage(self.driver).trading_account_exist(CAConstants.LIVE_ACCOUNT_NUMBER)
+            sleep(2)
+            ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                                LeadsModuleConstants.EMAIL])
+            sleep(2)
+            ClientProfilePage(self.driver).open_trading_accounts_tab()
+            ClientsPage(self.driver).trading_account_exist(CAConstants.DEMO_ACCOUNT_NUMBER)
+            ClientsPage(self.driver).trading_account_exist(CAConstants.LIVE_ACCOUNT_NUMBER)
 
-
+        else:
+            Logging().reportDebugStep(self, "Test is not running")
+            return self
 
 
             # BrandHomePage().open_first_tab_page(self.config.get_value('url_ca')).login() \

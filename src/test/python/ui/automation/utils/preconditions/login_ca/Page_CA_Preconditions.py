@@ -31,37 +31,40 @@ class Page_CA_Precondition(object):
         return lead
 
     def switch_between_accounts(self):
-        try:
-            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
-                                    .login() \
-                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                 LeadsModuleConstants.EMAIL]) \
-                                    .enter_password(CAConstants.PASSWORD) \
-                                    .click_login() \
-                                    .verify()
-            CAPage(self.driver).open_accounts_list(CAConstants.ACCOUNT_LIVE) \
-                               .switch_to_account(CAConstants.LIVE_ACCOUNT_NUMBER, CAConstants.ACCOUNT_LIVE) \
-                               .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
-                               .verify_active_account_number(CAConstants.LIVE_ACCOUNT_NUMBER)
-            if global_var.current_brand_name == "mpcrypto":
-                CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
-            else:
-                CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY)
-            if global_var.current_brand_name != "kontofx":
-                CAPage(self.driver).switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
-                                   .open_accounts_list(CAConstants.ACCOUNT_DEMO) \
-                                   .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
+        if (global_var.current_brand_name != "q8"):
+            try:
+                CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
+                                        .login() \
+                                        .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                     LeadsModuleConstants.EMAIL]) \
+                                        .enter_password(CAConstants.PASSWORD) \
+                                        .click_login() \
+                                        .verify()
+                CAPage(self.driver).open_accounts_list(CAConstants.ACCOUNT_LIVE) \
+                                   .switch_to_account(CAConstants.LIVE_ACCOUNT_NUMBER, CAConstants.ACCOUNT_LIVE) \
+                                   .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
+                                   .verify_active_account_number(CAConstants.LIVE_ACCOUNT_NUMBER)
                 if global_var.current_brand_name == "mpcrypto":
                     CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
                 else:
                     CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY)
-            else:
-                Logging().reportDebugStep(self, "Test is not running")
+                if global_var.current_brand_name != "kontofx":
+                    CAPage(self.driver).switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
+                                       .open_accounts_list(CAConstants.ACCOUNT_DEMO) \
+                                       .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
+                    if global_var.current_brand_name == "mpcrypto":
+                        CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
+                    else:
+                        CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY)
+                else:
+                    Logging().reportDebugStep(self, "Test is not running")
 
-        except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            Logging().reportDebugStep(self, "Module does not exist")
+            except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+                Logging().reportDebugStep(self, "Module does not exist")
+                return self
+        else:
+            Logging().reportDebugStep(self, "Test is not running")
             return self
-
     def update_personal_details_in_ca(self):
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "b-finance") \
                 and (global_var.current_brand_name != "tradospot"):
@@ -73,10 +76,11 @@ class Page_CA_Precondition(object):
                                     .click_login() \
                                     .verify() \
                                     .open_ca_menu()
-            CAPage(self.driver).open_personal_details() \
-                               .edit_first_name(CAConstants.UPDATE_FIRST_NAME) \
-                               .edit_last_name(CAConstants.UPDATE_LAST_NAME) \
-                               .edit_citizenship(CAConstants.UPDATE_CITIZENSHIP) \
+            CAPage(self.driver).open_personal_details()
+            if global_var.current_brand_name != "kontofx":
+                CAPage(self.driver).edit_first_name(CAConstants.UPDATE_FIRST_NAME) \
+                                   .edit_last_name(CAConstants.UPDATE_LAST_NAME)
+            CAPage(self.driver).edit_citizenship(CAConstants.UPDATE_CITIZENSHIP) \
                                .edit_city(CAConstants.UPDATE_CITY) \
                                .edit_zip(CAConstants.UPDATE_ZIP_CODE) \
                                .edit_address(CAConstants.UPDATE_ADDRESS) \
@@ -104,8 +108,9 @@ class Page_CA_Precondition(object):
             assert ClientsPage(self.driver).get_client_address() == CAConstants.UPDATE_ADDRESS
             assert ClientsPage(self.driver).get_client_city() == CAConstants.UPDATE_CITY
             assert ClientsPage(self.driver).get_client_code() == CAConstants.UPDATE_ZIP_CODE
-            assert ClientsPage(self.driver).get_client_first_name() == CAConstants.UPDATE_FIRST_NAME
-            assert ClientsPage(self.driver).get_client_last_name() == CAConstants.UPDATE_LAST_NAME
+            if global_var.current_brand_name != "kontofx":
+                assert ClientsPage(self.driver).get_client_first_name() == CAConstants.UPDATE_FIRST_NAME
+                assert ClientsPage(self.driver).get_client_last_name() == CAConstants.UPDATE_LAST_NAME
             assert ClientsPage(self.driver).get_citizenship() == CAConstants.UPDATE_CITIZENSHIP
             assert ClientsPage(self.driver).get_client_address() == CAConstants.UPDATE_ADDRESS
             assert ClientsPage(self.driver).get_client_city() == CAConstants.UPDATE_CITY

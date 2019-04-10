@@ -17,6 +17,14 @@ class CALoginPage(CRMBasePage):
 
     def click_sign_up(self):
         sleep(3)
+        try:
+            #check bunner exist
+            self.driver.find_element_by_xpath("(//div[@class='Campaign__alphaLayer'])[2]")
+            close_btn = self.driver.find_element_by_xpath("(//button[@title='Close'])[2]")
+            close_btn.click()
+            Logging().reportDebugStep(self, "Campaign bunner is closed")
+        except NoSuchElementException:
+            pass
         sign_up_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["sign_up"])
         sleep(1)
@@ -240,6 +248,14 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def login(self):
+        try:
+            # check bunner exist
+            self.driver.find_element_by_xpath("(//div[@class='Campaign__alphaLayer'])[2]")
+            close_btn = self.driver.find_element_by_xpath("(//button[@title='Close'])[2]")
+            close_btn.click()
+            Logging().reportDebugStep(self, "Campaign bunner is closed")
+        except NoSuchElementException:
+            pass
         login_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["login_btn"])
         self.driver.execute_script("arguments[0].click();", login_button)

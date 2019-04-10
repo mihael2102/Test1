@@ -28,10 +28,6 @@ class PersonalDetailsUpdateTestCA(BaseTest):
         Page_CA_Precondition(self.driver, self.config).check_personal_details_in_ca()
 
 
-
-
-
-
     # def test_perform_client_update_from_CA(self):
     #     BrandHomePage().open_first_tab_page(Config.url_client_area) \
     #         .login() \
