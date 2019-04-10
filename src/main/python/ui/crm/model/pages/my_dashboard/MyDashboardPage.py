@@ -115,7 +115,7 @@ class MyDashboardPage(CRMBasePage):
         input = self.driver.find_element_by_xpath(
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[11]/filters-factory/time-range-filter/input")
         input.send_keys(local_time)
-        sleep(50)
+        sleep(5)
         Logging().reportDebugStep(self, "Enter local time")
         return MyDashboardPage(self.driver)
 
@@ -246,7 +246,7 @@ class MyDashboardPage(CRMBasePage):
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button",
             timeout=30)
         btn_type.click()
-        sleep(10)
+        sleep(2)
         input_account_name = super().wait_element_to_be_clickable(
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
             timeout=10)
@@ -405,7 +405,7 @@ class MyDashboardPage(CRMBasePage):
 
     def select_show_all_tab(self):
         # sleep(10)
-        self.wait_crm_loading_to_finish_tasks(55)
+        self.wait_crm_loading_to_finish_tasks(85)
         select_show_all_tab = self.driver.find_element_by_xpath(
             "//*[@id='main-tabs']/li[1]")
         self.driver.execute_script("arguments[0].scrollIntoView();", select_show_all_tab)
@@ -414,7 +414,7 @@ class MyDashboardPage(CRMBasePage):
         except:
             self.driver.execute_script("arguments[0].click();", select_show_all_tab)
         sleep(2)
-        self.wait_crm_loading_to_finish_tasks(55)
+        self.wait_crm_loading_to_finish_tasks(65)
         Logging().reportDebugStep(self, "Select show all tab")
         return MyDashboardPage(self.driver)
 
@@ -422,17 +422,18 @@ class MyDashboardPage(CRMBasePage):
         sleep(5)
         input = self.driver.find_element_by_xpath("//*[@id='host-element']/input")
         input.send_keys(testqa)
-        self.wait_crm_loading_to_finish()
-        sleep(2)
-        Logging().reportDebugStep(self, "Enter account name")
+        sleep(1)
+        self.wait_crm_loading_to_finish_tasks(55)
+        sleep(3)
+        Logging().reportDebugStep(self, "Enter account name: " + testqa)
         return MyDashboardPage(self.driver)
 
     def get_account_name(self):
-        sleep(3)
+        sleep(4)
         account_name = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[6]/grid-cell/div/span[2]/a")
-        Logging().reportDebugStep(self, "Get account name")
-        return account_name.text
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[6]/grid-cell/div/span[2]/a").text
+        Logging().reportDebugStep(self, "Get account name: " + account_name)
+        return account_name
 
     def click_pencil_icon(self):
         sleep(4)

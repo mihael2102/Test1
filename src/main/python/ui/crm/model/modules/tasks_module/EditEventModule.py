@@ -79,7 +79,7 @@ class EditEventModule(CRMBasePage):
     def set_subject(self, subject):
         time.sleep(5)
         description_element = self.driver.find_element(By.XPATH, "//div[@class='form-group']//input[@id='subject']")
-        # description_element.clear()
+        description_element.clear()
         description_element.send_keys(subject)
         Logging().reportDebugStep(self, "The subject is set " + subject)
         return EditEventModule()

@@ -248,7 +248,7 @@ class TasksPage(CRMBasePage):
         messages = [pop_conn.retr(i) for i in range(1, len(pop_conn.list()[1]) + 1)]
         # Concat message pieces:
         messages = ["\n".join(m.decode() for m in mssg[1]) for mssg in messages]
-        # Parse message intom an email object:
+        # Parse message into an email object:
         messages = [parser.Parser().parsestr(mssg) for mssg in messages]
         for message in messages:
             if str(message['subject']) == subject:

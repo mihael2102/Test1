@@ -9,6 +9,7 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
 from src.main.python.ui.crm.model.constants.LeaderboardConstants import LeaderboardConstants
 from src.main.python.ui.crm.model.constants.UserManagementConstants import UserManagementConstants
+from time import sleep
 
 class UserManagementPrecondition(object):
 
@@ -24,7 +25,7 @@ class UserManagementPrecondition(object):
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
-
+        sleep(3)
         user_management = CRMHomePage(self.driver).select_user_management()
         tab_name = user_management.check_user_management_tab()
         email = user_management.check_table_loaded()

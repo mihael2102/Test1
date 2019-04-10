@@ -104,6 +104,7 @@ class AffiliatePage(CRMBasePage):
         Logging().reportDebugStep(self, "Go to affiliate details page")
 
     def check_name_on_affiliate_details(self):
+        sleep(2)
         title_details = super().wait_load_element("/html/body/app-root/affiliate-details/div/div[1]/div/div[1]/h1").text
         Logging().reportDebugStep(self, "Affiliate details page")
         return title_details
