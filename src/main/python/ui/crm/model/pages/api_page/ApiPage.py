@@ -142,7 +142,7 @@ class ApiPage(CRMBasePage):
         return ApiPage(self.driver)
 
     def check_create_lead_token(self):
-        sleep(5)
+        sleep(15)
         check_token = self.driver.find_element(By.XPATH,
                                                "//*[@id='api-Leads-Leads-0.0.0']/form/fieldset/div[5]/pre/code").text
         Logging().reportDebugStep(self, "Check token read customers details")
