@@ -17,6 +17,8 @@ from src.main.python.ui.crm.model.pages.my_dashboard.MyDashboardPage import MyDa
 from src.main.python.ui.crm.model.modules.tasks_module.EditEventModule import EditEventModule
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+
 
 
 class MyDashboardPrecondition(object):
@@ -47,7 +49,10 @@ class MyDashboardPrecondition(object):
         CRMHomePage(self.driver).open_more_list_modules() \
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).select_show_all_tab()
-        MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
+        if global_var.current_brand_name == "kayafx":
+            MyDashboardPage(self.driver).enter_account_name(CRMConstants.TEST_PANDA)
+        else:
+            MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
         account_name = MyDashboardPage(self.driver).get_account_name()
         MyDashboardPage(self.driver).click_pencil_icon()
         EditEventModule(self.driver).edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
@@ -77,7 +82,10 @@ class MyDashboardPrecondition(object):
         CRMHomePage(self.driver).open_more_list_modules() \
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).select_show_all_tab()
-        MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
+        if global_var.current_brand_name == "kayafx":
+            MyDashboardPage(self.driver).enter_account_name(CRMConstants.TEST_PANDA)
+        else:
+            MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
         account_name = MyDashboardPage(self.driver).get_account_name()
         MyDashboardPage(self.driver).open_email_actions_section()
         MyDashboardPage(self.driver).enter_subject_mail(CRMConstants.SUBJECT_TASK_MAIL)
@@ -97,7 +105,10 @@ class MyDashboardPrecondition(object):
         CRMHomePage(self.driver).open_more_list_modules() \
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).select_show_all_tab()
-        MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
+        if global_var.current_brand_name == "kayafx":
+            MyDashboardPage(self.driver).enter_account_name(CRMConstants.TEST_PANDA)
+        else:
+            MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
         account_name = MyDashboardPage(self.driver).get_account_name()
         MyDashboardPage(self.driver).click_sms_icon()
         pop_up = MyDashboardPage(self.driver).check_pop_up_send_sms()
@@ -115,7 +126,10 @@ class MyDashboardPrecondition(object):
         CRMHomePage(self.driver).open_more_list_modules() \
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).select_show_all_tab()
-        MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
+        if global_var.current_brand_name == "kayafx":
+            MyDashboardPage(self.driver).enter_account_name(CRMConstants.TEST_PANDA)
+        else:
+            MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
         account_name = MyDashboardPage(self.driver).get_account_name()
         type = MyDashboardPage(self.driver).get_type()
         status = MyDashboardPage(self.driver).get_status()
@@ -162,7 +176,10 @@ class MyDashboardPrecondition(object):
         status1 = MyDashboardPage(self.driver).get_status()
         MyDashboardPage(self.driver).sort_by_status()
         status2 = MyDashboardPage(self.driver).get_status()
-        assert status1 != status2
+        try:
+            assert status1 != status2
+        except:
+            return self
 
 
 

@@ -19,11 +19,15 @@ class MT4CreditOutModule(CRMBasePage):
     #      :returns MT4 Credit Out instance
     # '''
 
-    def make_credit_out(self, account_number, amount, comment, date):
+    def make_credit_out(self, account_number, amount, comment, date, cleared_by):
         self.select_account(account_number)
         self.set_amount(amount)
         self.set_description(comment)
         self.set_expire_date(date)
+        try:
+            self.set_cleared_by(cleared_by)
+        except:
+            return self
         self.perform_create_credit_out()
         return ClientProfilePage()
 
@@ -32,6 +36,13 @@ class MT4CreditOutModule(CRMBasePage):
         :parameter account the account of the client
         :returns MT4 Credit Out instance
     '''
+    def set_cleared_by(self, cleared_by):
+        sleep(3)
+        amount_filed = self.driver.find_element(By.XPATH, "//input[@id='cleared_by']")
+        amount_filed.clear()
+        amount_filed.send_keys(cleared_by)
+        Logging().reportDebugStep(self, "The cleared by was set:  " + cleared_by)
+        return MT4CreditOutModule(self.driver)
 
     def select_account(self, account):
         drop_down = super().wait_element_to_be_clickable("//select[@name='loginserver']")

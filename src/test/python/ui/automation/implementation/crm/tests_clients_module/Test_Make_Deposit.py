@@ -79,8 +79,13 @@ class DepositTestCRM(BaseTest):
         crm_client_profile.perform_scroll_up()
         # MT4DropDown(self.driver).mt4_actions(CRMConstants.DEPOSIT)
         crm_client_profile.open_mt4_actions(CRMConstants.DEPOSIT)
-        MT4DepositModule(self.driver).make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
-                                                   CRMConstants.PAYMENT_METHOD_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT)
+        if global_var.current_brand_name == "kayafx":
+            MT4DepositModule(self.driver).make_deposit_kaya(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
+                                                   CRMConstants.PAYMENT_METHOD_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT, CRMConstants.CLEARNED_BY)
+        else:
+            MT4DepositModule(self.driver).make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
+                                                       CRMConstants.PAYMENT_METHOD_DEPOSIT,
+                                                       CRMConstants.DESCRIPTION_DEPOSIT)
 
         # Check confirmation message
         confirmation_message = crm_client_profile.get_confirm_message()

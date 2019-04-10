@@ -269,7 +269,7 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
         LeadsModule(self.driver).click_search_button_leads_module()
         i = 1
-        for i in range(1, 10):
+        for i in range(1, 3):
             status = LeadsModule(self.driver).check_status_leads(i)
             if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "fm-fx":
                 assert status == CRMConstants.STATUS_EDIT_ITRADER
@@ -297,7 +297,7 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).click_check_box_all_leads()
         LeadsModule(self.driver).click_mass_assign()
         if global_var.current_brand_name == "capitalmarketsbanc":
-            LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN_CMB)
+            LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN)
         else:
             LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN)
         LeadsModule(self.driver).select_user_assign()
@@ -312,7 +312,7 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).click_assign()
         LeadsModule(self.driver).mass_assign_result()
         i = 1
-        for i in range(1,20):
+        for i in range(1,3):
             status = LeadsModule(self.driver).check_status_leads(i)
             if global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx":
                 assert status == CRMConstants.STATUS_EDIT_ITRADER
@@ -322,7 +322,7 @@ class LeadPrecondition(object):
                 assert status == CRMConstants.STATUS_ASSIGN
             assign_leads = LeadsModule(self.driver).check_assign_leads(i)
             if global_var.current_brand_name == "capitalmarketsbanc":
-                assert assign_leads == CRMConstants.PANDAQA_ASSIGN_CMB
+                assert assign_leads == CRMConstants.PANDAQA_ASSIGN
             elif global_var.current_brand_name == "brokerxp":
                 return self
             else:

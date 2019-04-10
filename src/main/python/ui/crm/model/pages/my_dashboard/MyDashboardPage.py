@@ -146,7 +146,7 @@ class MyDashboardPage(CRMBasePage):
         country_new = country.replace(' ','')
         input_account_name.send_keys(country_new)
         sleep(10)
-        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[8]/filters-factory/select-search-filter/select-search/div/div[2]//span[contains(text(), 'Germany')]")
+        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[8]/filters-factory/select-search-filter/select-search/div/div[2]//span")
         try:
             check_box.click()
         except:
@@ -286,7 +286,7 @@ class MyDashboardPage(CRMBasePage):
             title = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[2]/div[1]/div/span/h4")
 
         except:
-            title = super().wait_load_element("/html/body/bs-modal[17]/div/div/div/div[2]/h3")
+            title = super().wait_load_element("/html/body/bs-modal[17]/div/div/div/div[2]/div[1]/div/span/h4")
         Logging().reportDebugStep(self, title.text)
         return title.text
 
@@ -365,6 +365,7 @@ class MyDashboardPage(CRMBasePage):
         sleep(4)
         select_show_all_tab = self.driver.find_element_by_xpath(
             "//*[@id='main-tabs']/li[1]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", select_show_all_tab)
         select_show_all_tab.click()
         Logging().reportDebugStep(self, "Select show all tab")
         return MyDashboardPage(self.driver)

@@ -37,7 +37,7 @@ class CreditOutPrecondition(object):
         ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREDIT_OUT)
         MT4CreditOutModule(self.driver).make_credit_out(CRMConstants.CREDIT_ACCOUNT, CRMConstants.AMOUNT_CREDIT_OUT,
                                                         CRMConstants.CREDIT_OUT_COMMENT,
-                                                        CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE))
+                                                        CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE), CRMConstants.CLEARNED_BY)
         sleep(3)
         ClientProfilePage(self.driver).refresh_page() \
             .click_trading_accounts_tab() \
@@ -50,6 +50,8 @@ class CreditOutPrecondition(object):
         count = 0
         while (actual_credit != expected_credit):
             sleep(2)
+            CRMHomePage(self.driver).refresh_page()
+            sleep(30)
             CRMHomePage(self.driver).refresh_page()
             actual_credit = MT4CreditOutModule(self.driver).get_credit_int()
             count += 1

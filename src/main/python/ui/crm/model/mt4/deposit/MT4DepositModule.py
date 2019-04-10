@@ -29,11 +29,28 @@ class MT4DepositModule(CRMBasePage):
         self.create_deposit()
         return ClientProfilePage(self.driver)
 
+    def make_deposit_kaya(self, account_number, amount, payment_method, description_deposit, cleared_by):
+        self.select_payment_method(payment_method)
+        #self.select_status(deposit_status)
+        self.select_account(account_number)
+        self.set_amount(amount)
+        self.set_description(description_deposit)
+        self.set_cleared_by(cleared_by)
+        self.create_deposit()
+        return ClientProfilePage(self.driver)
+
     '''
          Choice a payment method from drop down
          :parameter payment method the method of deposit  in the drop down
         :returns MT4 Deposit instance
     '''
+
+    def set_cleared_by(self, cleared_by):
+        amount_filed = self.driver.find_element(By.XPATH, "//input[@id='cleared_by']")
+        amount_filed.clear()
+        amount_filed.send_keys(cleared_by)
+        Logging().reportDebugStep(self, "The cleared by was set:  " + cleared_by)
+        return MT4DepositModule()
 
     def select_payment_method(self, payment_method):
         time.sleep(10)
