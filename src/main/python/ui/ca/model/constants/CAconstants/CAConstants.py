@@ -4,6 +4,11 @@ from dateutil.relativedelta import relativedelta
 
 
 class CAConstants(object):
+    MARGIN_LVL = "Margin Level"
+    TOTAL_P_L = "Total P/L"
+    ACCOUNT_VALUE = "Account Value"
+    USED_FUNDS = "Used Funds"
+    AVALIABLE_FUNDS = "Available funds"
     LEVERAGE_FIN = "1:30"
     ITRADER_EMPLOYMENT_STATUS = "Self-employed"
     ITRADER_INDUSTRY = "Financial services, banking, accounting"

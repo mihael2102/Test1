@@ -19,6 +19,20 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class CAPage(CRMBasePage):
 
+    def get_balance(self):
+        sleep(5)
+        avaliable_funds = self.driver.find_element_by_xpath(
+            "//*[@id='PracticeAccountListBody']/tr/td[4]").text
+        Logging().reportDebugStep(self, "Check Balance")
+        return avaliable_funds
+
+    def click_actions_launch(self):
+        sleep(5)
+        button = self.driver.find_element(By.XPATH, "//button[contains(text(), 'LAUNCH')]")
+        button.click()
+        Logging().reportDebugStep(self, "Click LAUNCH")
+        return CAPage(self.driver)
+
 
     def open_finmarket(self):
         sleep(3)
