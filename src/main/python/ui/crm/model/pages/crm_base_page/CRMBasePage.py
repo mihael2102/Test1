@@ -67,8 +67,9 @@ class CRMBasePage(object):
         Logging().reportDebugStep(self, "Scroll was performed ")
 
     def refresh_page(self):
-        sleep(13)
+        sleep(11)
         self.driver.refresh()
+        sleep(1)
         self.wait_crm_loading_to_finish_tasks(85)
         Logging().reportDebugStep(self, "The page is refreshed")
 

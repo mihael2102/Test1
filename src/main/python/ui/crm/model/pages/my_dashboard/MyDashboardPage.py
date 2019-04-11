@@ -421,6 +421,8 @@ class MyDashboardPage(CRMBasePage):
     def enter_account_name(self, testqa):
         sleep(5)
         input = self.driver.find_element_by_xpath("//*[@id='host-element']/input")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        sleep(1)
         input.send_keys(testqa)
         sleep(1)
         self.wait_crm_loading_to_finish_tasks(55)

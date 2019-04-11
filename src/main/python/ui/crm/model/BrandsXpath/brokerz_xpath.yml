@@ -19,6 +19,7 @@ ClientProfilePage:
 AffiliatePage:
   countrys: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]"
   methods: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]"
+  trash_button: "//span[@class = 'glyphicon glyphicon-trash cursor-pointer']"
 LeadsModule:
   check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[8]"
   check_first_line_email_2: "//tbody[@id = 'listBody']/tr[2]/td[8]"
