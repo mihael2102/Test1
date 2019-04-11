@@ -33,7 +33,7 @@ class TransferBetweenPrecondition(object):
 
         CRMHomePage(self.driver).open_client_module() \
             .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email("pandaauto+20190411115849@pandats.com")
+            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
 
         # Create LIVE account for client using MT4 Actions
         crm_client_profile = ClientProfilePage(self.driver)
