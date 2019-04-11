@@ -87,9 +87,9 @@ class CRMConstants(object):
     SECOND_FILTER_NAME = "TestFilter" + str(random.randrange(1, 9999))
     CLIENT_STATUS = "client_status_1"
     BRAND = "brand_one"
-    TRANSFER_BETWEEN_TA_MESSAGE = "Funds were transferred successfully"
+    TRANSFER_BETWEEN_TA_MESSAGE = "Transaction created succesfully"
     AMOUNT_TRANSFER_BETWEEN_TA = "1.00"
-    TRANSFER_BETWEEN_TA = "8"
+    TRANSFER_BETWEEN_TA = "10"
     DESCRIPTION_ADD_INTERACTION = "Description Interaction"
     DATE = datetime.now()
     TODAY_DATE = datetime.today().now()

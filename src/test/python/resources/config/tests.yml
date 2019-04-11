@@ -109,10 +109,10 @@ tests_config:
 #  tests:
 #    - test_make_credit_out_crm # preconditions: convert lead, make credit in
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
-#  class: TransferBetweenTa
-#  tests:
-#    - test_transfer_between_ta  # preconditions: convert lead, deposit crm
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
+  class: TransferBetweenTa
+  tests:
+    - test_transfer_between_ta  # preconditions: convert lead, deposit crm
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
 #  class: TradingAccountCrmTest
@@ -137,12 +137,12 @@ tests_config:
 #    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
 #    - test_check_search_via_button # Check search using search button
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
-  class: CampaignsModuleTest
-  tests:
-    - test_create_campaign
-    - test_edit_campaign
-    - test_delete_campaign
+#- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
+#  class: CampaignsModuleTest
+#  tests:
+#    - test_create_campaign
+#    - test_edit_campaign
+#    - test_delete_campaign
 #- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
 #  class: AutoAssignModuleTest
 #  tests:
