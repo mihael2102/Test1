@@ -13,10 +13,12 @@ class TradingProcess(BaseTest):
     def test_trade_with_insufficient_funds(self):
         Trading_Precondition(self.driver, self.config).trade_with_insufficient_funds()
 
-    # def test_open_order_buy_sell(self):
-    #
-    # def test_open_order_stop_loss_take_profit(self):
-    #
+    def test_open_order_buy_sell(self):
+        Trading_Precondition(self.driver, self.config).open_order_buy_sell()
+
+    def test_open_order_stop_loss_take_profit(self):
+        Trading_Precondition(self.driver, self.config).open_order_stop_loss_take_profit()
+
     # def test_edit_order_stop_loss_take_profit(self):
     #
     # def test_close_order(self):

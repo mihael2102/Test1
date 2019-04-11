@@ -25,6 +25,24 @@ class ClientProfilePage(CRMBasePage):
         returns Manage Accounts Module  instance    
     '''
 
+    def get_balance(self):
+        balance = super().wait_load_element(
+            "//*[@id='dtlview_Balance']")
+        Logging().reportDebugStep(self, "balance is " + balance.text)
+        return balance.text
+
+    def get_open_p_l_text(self):
+        open_p_l = super().wait_load_element(
+            "//*[@id='dtlview_Open PNL']")
+        Logging().reportDebugStep(self, "open p l is " + open_p_l.text)
+        return open_p_l.text
+
+    def get_equity_text(self):
+        equity = super().wait_load_element(
+            "//*[@id='dtlview_Equity']")
+        Logging().reportDebugStep(self, "equity is " + equity.text)
+        return equity.text
+
     def perform_scroll_down(self):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         Logging().reportDebugStep(self, "Perform scroll down ")
@@ -146,6 +164,13 @@ class ClientProfilePage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", trading_tab)
         sleep(7)
         Logging().reportDebugStep(self, "Open the trading account tab ")
+        return ClientProfilePage(self.driver)
+
+
+    def click_link_trading_account(self, number):
+        trading_tab = super().wait_load_element("//table[@id='rld_table_content']//div//a[contains(text(), '%s')]" % number)
+        trading_tab.click()
+        Logging().reportDebugStep(self, "Open the financial transactions page")
         return ClientProfilePage(self.driver)
 
     '''

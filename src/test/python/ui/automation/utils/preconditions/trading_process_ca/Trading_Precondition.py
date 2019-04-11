@@ -57,6 +57,59 @@ class Trading_Precondition(object):
         assert account_value == CAConstants.ACCOUNT_VALUE
         assert total_p_l == CAConstants.TOTAL_P_L
         assert margin_level == CAConstants.MARGIN_LVL
+        WebTraderPage(self.driver).select_volume_in_lot()\
+                                  .click_sell()\
+                                  .click_invest()
+        # order = WebTraderPage(self.driver).get_msg_succsessfull_order()
+        # assert CRMConstants.ORDER in order
+        # WebTraderPage(self.driver).click_deposit()
+
+
+    def open_order_buy_sell(self):
+        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
+        CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                 LeadsModuleConstants.EMAIL]) \
+            .enter_password(CAConstants.PASSWORD) \
+            .click_login()
+        ca_balance = CAPage(self.driver).get_balance()
+        CAPage(self.driver).click_actions_launch()
+
+
+        WebTraderPage(self.driver).select_volume_in_lot() \
+            .click_sell() \
+            .click_invest()
+
+        avaliable_funds_number = WebTraderPage(self.driver).check_avaliable_funds_number()
+        used_funds_number = WebTraderPage(self.driver).check_used_funds_number()
+        account_value_number = WebTraderPage(self.driver).check_account_value_number()
+        total_p_l_number = WebTraderPage(self.driver).check_total_p_l_number()
+        margin_level_number = WebTraderPage(self.driver).check_margin_level_number()
+        number = WebTraderPage(self.driver).get_number_account()
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                          LeadsModuleConstants.EMAIL])
+        ClientProfilePage(self.driver).open_trading_accounts_tab()
+        ClientProfilePage(self.driver).click_link_trading_account(number)
+        equity = ClientProfilePage(self.driver).get_equity_text()
+        open_p_l = ClientProfilePage(self.driver).get_open_p_l_text()
+        balance = ClientProfilePage(self.driver).get_balance()
+
+        assert account_value_number in equity
+        assert open_p_l in total_p_l_number
+
+
+
+
+
+
+
+
 
 
 
