@@ -5,6 +5,11 @@ from dateutil.relativedelta import relativedelta
 
 
 class CAConstants(object):
+    MARGIN_LVL = "Margin Level"
+    TOTAL_P_L = "Total P/L"
+    ACCOUNT_VALUE = "Account Value"
+    USED_FUNDS = "Used Funds"
+    AVALIABLE_FUNDS = "Available funds"
     PASSWORD = "as1as2"
     DAY_BIRTH = "10"
     MONTH_BIRTH = "January"

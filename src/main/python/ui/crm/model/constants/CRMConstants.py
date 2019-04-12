@@ -5,6 +5,10 @@ import string
 
 
 class CRMConstants(object):
+    SYMBOL_TRANSACTIONS = "EURUSD#"
+    SIZE_TRANSACTIONS = "0.12"
+    TYPE_TRANSACTIONS = "SELL"
+    ORDER = "Order"
     WELCOME_TO = "Welcome to "
     SECOND_COUNTRY = "country_two"
     PHONE = "Phone"
