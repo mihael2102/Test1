@@ -10,6 +10,22 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class WebTraderPage(CRMBasePage):
 
+    def click_buy(self):
+        sleep(3)
+        btn_deposit = self.driver.find_element(By.XPATH,
+                                               "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div[1]/form/div[3]/div[2]")
+        btn_deposit.click()
+        Logging().reportDebugStep(self, "Choose a different asset from the list to the left")
+        return WebTraderPage(self.driver)
+
+    def choose_asset(self):
+        sleep(3)
+        btn_deposit = self.driver.find_element(By.XPATH,
+                                               "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/ul/li[5]/asset-item/div/div[2]")
+        btn_deposit.click()
+        Logging().reportDebugStep(self, "Choose a different asset from the list to the left")
+        return WebTraderPage(self.driver)
+
     def get_number_account(self):
         sleep(3)
         succsessfull_order = self.driver.find_element(By.XPATH, "//*[@id='header']/div[1]/panda-forex-accounts/div/div[1]/div[2]/span[2]").text
@@ -24,8 +40,8 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def get_msg_succsessfull_order(self):
-        sleep(3)
-        succsessfull_order = self.driver.find_element(By.XPATH, "/popup/div/div[1]/h2").text
+        sleep(1)
+        succsessfull_order = self.driver.find_element(By.XPATH, "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div[1]/form/popup/div/div[1]/h2").text
         Logging().reportDebugStep(self, "Check message")
         return succsessfull_order
 
@@ -40,6 +56,7 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def click_sell(self):
+        sleep(2)
         sell = self.driver.find_element(By.XPATH,
                                                  "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div[1]/form/div[3]/div[1]")
         sell.click()
@@ -47,6 +64,7 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def click_invest(self):
+        sleep(2)
         invest = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div[1]/form/div[5]/button")
         invest.click()
         Logging().reportDebugStep(self, "Click Invest")

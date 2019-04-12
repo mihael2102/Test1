@@ -20,10 +20,10 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 class CAPage(CRMBasePage):
 
     def get_balance(self):
-        sleep(5)
+        sleep(10)
         avaliable_funds = self.driver.find_element_by_xpath(
             "//*[@id='PracticeAccountListBody']/tr/td[4]").text
-        Logging().reportDebugStep(self, "Check Balance")
+        Logging().reportDebugStep(self, "Check Balance " + avaliable_funds)
         return avaliable_funds
 
     def click_actions_launch(self):

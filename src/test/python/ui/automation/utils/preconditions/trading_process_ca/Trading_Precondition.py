@@ -36,6 +36,9 @@ class Trading_Precondition(object):
         return lead
 
 
+    # def open_order_stop_loss_take_profit(self):
+
+
     def trade_with_insufficient_funds(self):
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -60,9 +63,8 @@ class Trading_Precondition(object):
         WebTraderPage(self.driver).select_volume_in_lot()\
                                   .click_sell()\
                                   .click_invest()
-        # order = WebTraderPage(self.driver).get_msg_succsessfull_order()
-        # assert CRMConstants.ORDER in order
-        # WebTraderPage(self.driver).click_deposit()
+        order = WebTraderPage(self.driver).get_msg_succsessfull_order()
+        assert CRMConstants.ORDER in order
 
 
     def open_order_buy_sell(self):
@@ -78,6 +80,14 @@ class Trading_Precondition(object):
         WebTraderPage(self.driver).select_volume_in_lot() \
             .click_sell() \
             .click_invest()
+        order = WebTraderPage(self.driver).get_msg_succsessfull_order()
+        assert CRMConstants.ORDER in order
+        WebTraderPage(self.driver).choose_asset()
+        WebTraderPage(self.driver).select_volume_in_lot() \
+            .click_buy() \
+            .click_invest()
+        order = WebTraderPage(self.driver).get_msg_succsessfull_order()
+        assert CRMConstants.ORDER in order
 
         avaliable_funds_number = WebTraderPage(self.driver).check_avaliable_funds_number()
         used_funds_number = WebTraderPage(self.driver).check_used_funds_number()
@@ -96,12 +106,34 @@ class Trading_Precondition(object):
                                                           LeadsModuleConstants.EMAIL])
         ClientProfilePage(self.driver).open_trading_accounts_tab()
         ClientProfilePage(self.driver).click_link_trading_account(number)
+        ClientProfilePage(self.driver).click_display_open_transactions()
+
+        type_transaction = ClientProfilePage(self.driver).get_type_transaction()
+        size_transaction = ClientProfilePage(self.driver).get_size_transaction()
+        symbol_transaction = ClientProfilePage(self.driver).get_symbol_transaction()
+
+        assert type_transaction == CRMConstants.TYPE_TRANSACTIONS
+        assert size_transaction == CRMConstants.SIZE_TRANSACTIONS
+        assert symbol_transaction == CRMConstants.SYMBOL_TRANSACTIONS
+
+        ClientProfilePage(self.driver).click_close_display_transactions()
+
         equity = ClientProfilePage(self.driver).get_equity_text()
         open_p_l = ClientProfilePage(self.driver).get_open_p_l_text()
         balance = ClientProfilePage(self.driver).get_balance()
 
-        assert account_value_number in equity
-        assert open_p_l in total_p_l_number
+        assert ca_balance.replace('.', '') == balance.replace(',', '').replace('.', '')
+
+        v1 = account_value_number.replace('.','')
+        v2 = v1.replace(',', '')
+        v3 = v2.replace('€','')
+
+        e1 = equity.replace('.','')
+        e2 = e1.replace(',', '')
+
+        result = int(v3) - int(e2)
+
+        assert -5000 <= result <= 5000
 
 
 

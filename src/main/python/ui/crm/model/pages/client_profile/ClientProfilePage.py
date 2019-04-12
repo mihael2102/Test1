@@ -25,6 +25,33 @@ class ClientProfilePage(CRMBasePage):
         returns Manage Accounts Module  instance    
     '''
 
+    def click_close_display_transactions(self):
+        close_display_transactions = super().wait_element_to_be_clickable("//*[@id='docpreviewdiv']/div/div/div[3]/button")
+        try:
+            close_display_transactions.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", close_display_transactions)
+        Logging().reportDebugStep(self, "close display transactions")
+        return ClientProfilePage(self.driver)
+
+    def get_type_transaction(self):
+        type_t = super().wait_load_element(
+            "//*[@id='OpenTransactionsBody']/tr[1]/td[3]")
+        Logging().reportDebugStep(self, "type transaction is " + type_t.text)
+        return type_t.text
+
+    def get_size_transaction(self):
+        type_t = super().wait_load_element(
+            "//*[@id='OpenTransactionsBody']/tr[1]/td[4]")
+        Logging().reportDebugStep(self, "type transaction is " + type_t.text)
+        return type_t.text
+
+    def get_symbol_transaction(self):
+        type_t = super().wait_load_element(
+            "//*[@id='OpenTransactionsBody']/tr[1]/td[5]")
+        Logging().reportDebugStep(self, "type transaction is " + type_t.text)
+        return type_t.text
+
     def get_balance(self):
         balance = super().wait_load_element(
             "//*[@id='dtlview_Balance']")
@@ -36,6 +63,12 @@ class ClientProfilePage(CRMBasePage):
             "//*[@id='dtlview_Open PNL']")
         Logging().reportDebugStep(self, "open p l is " + open_p_l.text)
         return open_p_l.text
+
+    def click_display_open_transactions(self):
+        trading_account_tab = super().wait_element_to_be_clickable("//*[@id='open-transactions']")
+        trading_account_tab.click()
+        Logging().reportDebugStep(self, "Click Display Open Transactions")
+        return ClientProfilePage(self.driver)
 
     def get_equity_text(self):
         equity = super().wait_load_element(
