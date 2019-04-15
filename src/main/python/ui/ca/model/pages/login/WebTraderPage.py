@@ -10,6 +10,18 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class WebTraderPage(CRMBasePage):
 
+    def select_asset(self):
+        forex = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/div/span")
+        forex.click()
+        crypto = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/div/span")
+        crypto.click()
+        sleep(5)
+        click_select_account = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/ul/li[2]/asset-item/div/div[2][contains(text(), 'BTCUSD')]")
+        click_select_account.click()
+        Logging().reportDebugStep(self, "Click select account")
+        return WebTraderPage(self.driver)
+
+
     def click_buy(self):
         sleep(3)
         btn_deposit = self.driver.find_element(By.XPATH,
@@ -19,10 +31,24 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def choose_asset(self):
-        sleep(3)
-        btn_deposit = self.driver.find_element(By.XPATH,
-                                               "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/ul/li[5]/asset-item/div/div[2]")
-        btn_deposit.click()
+        forex = self.driver.find_element(By.XPATH,
+                                         "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/div/span")
+        forex.click()
+        crypto = self.driver.find_element(By.XPATH,
+                                          "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/div/span")
+        crypto.click()
+        sleep(5)
+        click_select_account = self.driver.find_element(By.XPATH,
+                                                        "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/ul/li[2]/asset-item/div/div[2][contains(text(), 'BTCUSD')]")
+        click_select_account.click()
+        # sleep(3)
+        # btn_deposit = self.driver.find_element(By.XPATH,"//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[25]/asset-item/div/div[2][contains(text(), 'BTCGBP.m')]")
+        # btn_deposit.click()
+        # self.driver.execute_script("arguments[0].scrollIntoView();", btn_deposit)
+        # try:
+        #     btn_deposit.click()
+        # except:
+        #     self.driver.execute_script("arguments[0].click();", btn_deposit)
         Logging().reportDebugStep(self, "Choose a different asset from the list to the left")
         return WebTraderPage(self.driver)
 
