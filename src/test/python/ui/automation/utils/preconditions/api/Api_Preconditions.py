@@ -241,6 +241,7 @@ class ApiPrecondition(object):
         ApiPage(self.driver).enter_phone_lead(APIConstants.LEAD_PHONE)
         ApiPage(self.driver).send_create_lead()
         token = ApiPage(self.driver).check_create_lead_token()
+        count1 = 0
         while (APIConstants.STATUS_ERROR in token):
             ApiPage(self.driver).create_lead_module()
             ApiPage(self.driver).enter_email_lead(
@@ -250,6 +251,9 @@ class ApiPrecondition(object):
             ApiPage(self.driver).enter_phone_lead(APIConstants.LEAD_PHONE2)
             ApiPage(self.driver).send_create_lead()
             token = ApiPage(self.driver).check_create_lead_token()
+            count1 +=1
+            if count1 == 5:
+                break
         count = 0
         while(APIConstants.STATUS_OK not in token):
             sleep(1)
