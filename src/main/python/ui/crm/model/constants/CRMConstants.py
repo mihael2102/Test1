@@ -5,9 +5,9 @@ import string
 
 
 class CRMConstants(object):
-    SYMBOL_TRANSACTIONS = "EURUSD#"
-    SIZE_TRANSACTIONS = "0.12"
-    TYPE_TRANSACTIONS = "SELL"
+    SYMBOL_TRANSACTIONS = "BTCGBP.m"
+    SIZE_TRANSACTIONS = "0.1"
+    TYPE_TRANSACTIONS = "BUY"
     ORDER = "Order"
     WELCOME_TO = "Welcome to "
     SECOND_COUNTRY = "country_two"

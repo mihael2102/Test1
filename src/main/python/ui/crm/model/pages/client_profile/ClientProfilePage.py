@@ -23,7 +23,7 @@ class ClientProfilePage(CRMBasePage):
 
     def click_close_display_transactions(self):
         close_display_transactions = super().wait_element_to_be_clickable(
-            "//*[@id='docpreviewdiv']/div/div/div[3]/button")
+            "//*[@id='docpreviewdiv']/div/div/div[5]/div/button")
         try:
             close_display_transactions.click()
         except:
@@ -33,21 +33,23 @@ class ClientProfilePage(CRMBasePage):
 
     def get_type_transaction(self):
         type_t = super().wait_load_element(
-            "//*[@id='OpenTransactionsBody']/tr[1]/td[3]")
-        Logging().reportDebugStep(self, "type transaction is " + type_t.text)
-        return type_t.text
+            "//*[@id='OpenTransactionsBody']/tr[1]/td[3]").text
+        Logging().reportDebugStep(self, "type transaction is " + type_t)
+        return type_t
 
     def get_size_transaction(self):
-        type_t = super().wait_load_element(
-            "//*[@id='OpenTransactionsBody']/tr[1]/td[4]")
-        Logging().reportDebugStep(self, "type transaction is " + type_t.text)
-        return type_t.text
+        sleep(2)
+        type_s = super().wait_load_element(
+            "//*[@id='OpenTransactionsBody']/tr[1]/td[4]").text
+        Logging().reportDebugStep(self, "type transaction is " + type_s)
+        return type_s
 
     def get_symbol_transaction(self):
-        type_t = super().wait_load_element(
-            "//*[@id='OpenTransactionsBody']/tr[1]/td[5]")
-        Logging().reportDebugStep(self, "type transaction is " + type_t.text)
-        return type_t.text
+        sleep(2)
+        type_sy = super().wait_load_element(
+            "//*[@id='OpenTransactionsBody']/tr[1]/td[5]").text
+        Logging().reportDebugStep(self, "type transaction is " + type_sy)
+        return type_sy
 
     def get_balance(self):
         balance = super().wait_load_element(
@@ -62,8 +64,12 @@ class ClientProfilePage(CRMBasePage):
         return open_p_l.text
 
     def click_display_open_transactions(self):
-        trading_account_tab = super().wait_element_to_be_clickable("//*[@id='open-transactions']")
-        trading_account_tab.click()
+        sleep(2)
+        trading_account_tab = super().wait_element_to_be_clickable("//*[@id='RLContents']/input")
+        try:
+            trading_account_tab.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", trading_account_tab)
         Logging().reportDebugStep(self, "Click Display Open Transactions")
         return ClientProfilePage(self.driver)
 
@@ -90,9 +96,13 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def click_link_trading_account(self, number):
+        sleep(3)
         trading_tab = super().wait_load_element(
             "//table[@id='rld_table_content']//div//a[contains(text(), '%s')]" % number)
-        trading_tab.click()
+        try:
+            trading_tab.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", trading_tab)
         Logging().reportDebugStep(self, "Open the financial transactions page")
         return ClientProfilePage(self.driver)
 

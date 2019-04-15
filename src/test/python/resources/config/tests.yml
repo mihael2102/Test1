@@ -5,33 +5,33 @@ tests_config:
   class: SignUpTest
   tests:
     - test_check_sign_up
-    - test_check_email_sign_up
-    - test_registred_client_exist_in_crm
+#    - test_check_email_sign_up
+#    - test_registred_client_exist_in_crm
 - module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
   class: AddNewAccountTestCA
   tests:
     - test_add_live_account_ca
     - test_add_demo_account_ca
-    - test_verify_accounts_in_crm
-    - test_switch_between_accounts_ca
+#    - test_verify_accounts_in_crm
+#    - test_switch_between_accounts_ca
 - module: src.test.python.ui.automation.implementation.ca.Trading_Process
   class: TradingProcess
   tests:
     - test_trade_with_insufficient_funds
     - test_open_order_buy_sell
-- module: src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update
-  class: PersonalDetailsUpdateTestCA
-  tests:
-    - test_update_personal_details_in_ca
-    - test_personal_details_were_updated_in_crm
-    - test_update_personal_details_in_crm
-    - test_personal_details_were_updated_in_ca
-- module: src.test.python.ui.automation.implementation.ca.Test_Support_Ticket
-  class: CreateSupportTicketTestCa
-  tests:
-    - test_create_ticket
-    - test_check_and_update_ticket_in_crm
-    - test_check_updated_ticket_in_ca
+#- module: src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update
+#  class: PersonalDetailsUpdateTestCA
+#  tests:
+#    - test_update_personal_details_in_ca
+#    - test_personal_details_were_updated_in_crm
+#    - test_update_personal_details_in_crm
+#    - test_personal_details_were_updated_in_ca
+#- module: src.test.python.ui.automation.implementation.ca.Test_Support_Ticket
+#  class: CreateSupportTicketTestCa
+#  tests:
+#    - test_create_ticket
+#    - test_check_and_update_ticket_in_crm
+#    - test_check_updated_ticket_in_ca
 #- module: src.test.python.ui.automation.implementation.ca.Test_Upload_Documents
 #  class: UploadDocumentTestCa
 #  tests:

@@ -13,7 +13,7 @@ class WebTraderPage(CRMBasePage):
     def select_asset(self):
         sleep(5)
         click_select_account = self.driver.find_element(By.XPATH,
-                                                        "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[13]/asset-item/div")
+                                                        "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[7]/asset-item/div/div[2][contains(text(), 'BTCUSD.m')]")
         click_select_account.click()
         Logging().reportDebugStep(self, "Click select account")
         return WebTraderPage(self.driver)
@@ -45,14 +45,21 @@ class WebTraderPage(CRMBasePage):
     def choose_asset(self):
         sleep(3)
         btn_deposit = self.driver.find_element(By.XPATH,
-                                               "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[5]/asset-item/div")
-        btn_deposit.click()
+                                               "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[25]/asset-item/div/div[2][contains(text(), 'BTCGBP.m')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", btn_deposit)
+        try:
+            btn_deposit.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", btn_deposit)
         Logging().reportDebugStep(self, "Choose a different asset from the list to the left")
         return WebTraderPage(self.driver)
 
     def get_number_account(self):
         demo = self.driver.find_element(By.XPATH, "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-accounts/div/div/i[2]")
-        demo.click()
+        try:
+            demo.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", demo)
         sleep(3)
         succsessfull_order = self.driver.find_element(By.XPATH, "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-accounts/div/div/div/ul/li/div/div[1]/div/div[2]").text
         succsessfull_order1 = succsessfull_order.replace(' #', '')
