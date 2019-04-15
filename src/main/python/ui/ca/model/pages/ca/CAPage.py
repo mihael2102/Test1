@@ -866,7 +866,7 @@ class CAPage(CRMBasePage):
         sleep(3)
         input = super().wait_load_element("//*[@id='TextInitialDepositP']")
         input.clear()
-        input.send_keys("5000")
+        input.send_keys("500000")
         Logging().reportDebugStep(self, "Select Deposit")
         return CAPage(self.driver)
 
