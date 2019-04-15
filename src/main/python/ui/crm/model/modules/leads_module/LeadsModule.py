@@ -409,11 +409,13 @@ class LeadsModule(CRMBasePage):
         sleep(7)
         check_first_line_email_1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[8]").text
         email_1 = check_first_line_email_1.replace('pandaqa+','')
-        number_email__str1 = email_1.replace('@pandats.com','')
+        number_email__str = email_1.replace('@pandats.com','')
+        number_email__str1 = number_email__str.replace('pandaauto+', '')
         number_email_1 = int(number_email__str1)
         check_first_line_email_2 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[2]/td[8]").text
         email_2 = check_first_line_email_2.replace('pandaqa+', '')
-        number_email_str2 = email_2.replace('@pandats.com', '')
+        number_email_str0 = email_2.replace('@pandats.com', '')
+        number_email_str2 = number_email_str0.replace('pandaauto+', '')
         number_email_2 = int(number_email_str2)
         number_email_diff = number_email_1 - number_email_2
         Logging().reportDebugStep(self, "Verify sorting by Email")
@@ -446,6 +448,8 @@ class LeadsModule(CRMBasePage):
             sorting_lead_by_leads_no.click()
         except:
             self.driver.execute_script("arguments[0].click();", sorting_lead_by_leads_no)
+        sleep(2)
+        self.wait_loading_to_finish(95)
         Logging().reportDebugStep(self, "Click sorting by Leads no")
         return LeadsModule(self.driver)
 
@@ -457,6 +461,7 @@ class LeadsModule(CRMBasePage):
         except:
             self.driver.execute_script("arguments[0].click();", sorting_lead_by_email)
         sleep(9)
+        self.wait_loading_to_finish(75)
         Logging().reportDebugStep(self, "Click sorting by Email")
         return LeadsModule(self.driver)
 
@@ -467,6 +472,7 @@ class LeadsModule(CRMBasePage):
             sorting_lead_by_exist.click()
         except:
             self.driver.execute_script("arguments[0].click();", sorting_lead_by_exist)
+        self.wait_loading_to_finish(65)
         Logging().reportDebugStep(self, "Click sorting by Exist")
         return LeadsModule(self.driver)
 
@@ -749,6 +755,8 @@ class LeadsModule(CRMBasePage):
             search_button.click()
         except:
             self.driver.execute_script("arguments[0].click();", search_button)
+        sleep(1)
+        self.wait_loading_to_finish(75)
         Logging().reportDebugStep(self, "The search button was clicked ")
         return LeadsModule(self.driver)
 

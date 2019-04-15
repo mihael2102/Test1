@@ -91,7 +91,8 @@ class WorkflowsPrecondition(object):
             .select_filter(self.config.get_value(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_first_client_by_email(WorkflowsConstants.PANDATS_EMAIL)
-        if global_var.current_brand_name == "q8" or global_var.current_brand_name == "itrader":
+        if global_var.current_brand_name == "q8" or global_var.current_brand_name == "itrader" or \
+                global_var.current_brand_name == "gmo":
             ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_TEST)
         else:
             ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_B_TEST)

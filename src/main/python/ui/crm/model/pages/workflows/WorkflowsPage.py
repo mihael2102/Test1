@@ -45,14 +45,6 @@ class WorkflowsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Check name workflow in table")
         return name_workflow.text
 
-
-    def click_add_new_workflow(self):
-        sleep(2)
-        btn_add_new_workflow = self.driver.find_element_by_xpath("//button[contains(text(), 'New Workflow')]")
-        btn_add_new_workflow.click()
-        Logging().reportDebugStep(self, "Click add new workflow")
-        return WorkflowsPage(self.driver)
-
     def click_add_new_workflow(self):
         sleep(5)
         btn_add_new_workflow = self.driver.find_element_by_xpath("//button[contains(text(), 'New Workflow')]")
@@ -113,7 +105,7 @@ class WorkflowsPage(CRMBasePage):
         return WorkflowsPage(self.driver)
 
     def click_add_condition(self):
-        sleep(2)
+        sleep(3)
         btn_add_condition = self.driver.find_element_by_xpath("//button[contains(text(), 'Add Condition Group')]")
         btn_add_condition.click()
         Logging().reportDebugStep(self, "Click add condition")

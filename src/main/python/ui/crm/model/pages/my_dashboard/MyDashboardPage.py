@@ -283,7 +283,7 @@ class MyDashboardPage(CRMBasePage):
     def check_pop_up_send_sms(self):
         sleep(5)
         try:
-            title = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[2]/div[1]/div/span/h4")
+            title = super().wait_load_element("/html/body/bs-modal[17]/div/div/div/div[2]/h3")
 
         except:
             title = super().wait_load_element("/html/body/bs-modal[17]/div/div/div/div[2]/div[1]/div/span/h4")

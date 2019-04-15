@@ -96,5 +96,8 @@ class CRMBasePage(object):
     def wait_crm_loading_to_finish(self):
         self.wait_element_to_be_disappear("//div[@class='loader']")
 
+    def wait_loading_to_finish(self, time):
+        self.wait_element_to_be_disappear("//div[@class='loader']", time)
+
     def get_current_url(self):
         return self.driver.current_url
