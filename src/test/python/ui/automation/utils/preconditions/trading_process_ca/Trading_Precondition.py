@@ -97,7 +97,7 @@ class Trading_Precondition(object):
             e2 = e1.replace(',', '')
 
             result = int(v3) - int(e2)
-            result1 = float(open_p_l_number.replace('-€','')) - float(open_p_l.replace('-',''))
+            result1 = float(open_p_l_number.replace('-€','').replace(',','')) - float(open_p_l.replace('-','').replace(',',''))
             result2 = float(margin_level_number.replace('%','').replace(',','')) - float(margin_lvl.replace('%','').replace(',',''))
 
             assert -5000 <= result <= 5000

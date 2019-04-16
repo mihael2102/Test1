@@ -29,12 +29,16 @@ class WebTraderPage(CRMBasePage):
         window_after = self.driver.window_handles[1]
         self.driver.switch_to_window(window_after)
         sleep(5)
-        forex = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/div/span")
-        forex.click()
-        crypto = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/div/span")
-        crypto.click()
+        if global_var.current_brand_name != "brokerxp":
+            forex = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/div/span")
+            forex.click()
+            crypto = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/div/span")
+            crypto.click()
         sleep(5)
-        click_select_account = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/ul/li[2]/asset-item/div/div[2][contains(text(), 'BTCUSD')]")
+        try:
+            click_select_account = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/ul/li[2]/asset-item/div/div[2][contains(text(), 'BTCUSD')]")
+        except:
+            click_select_account = self.driver.find_element(By.XPATH, "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/ul/li[2]/asset-item/div/div[2][contains(text(), 'BTCUSD')]")
         click_select_account.click()
         Logging().reportDebugStep(self, "Click select account")
         return WebTraderPage(self.driver)
@@ -95,7 +99,11 @@ class WebTraderPage(CRMBasePage):
         # self.driver.switch_to_window(window_after)
         sleep(3)
         select_volume = self.driver.find_element(By.XPATH, "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div[1]/form/div[1]/div[2]/input")
-        select_volume.send_keys("2")
+        if global_var.current_brand_name == "brokerxp":
+            select_volume.clear()
+            select_volume.send_keys("1")
+        else:
+            select_volume.send_keys("2")
         Logging().reportDebugStep(self, "Select volume in lot")
         return WebTraderPage(self.driver)
 
