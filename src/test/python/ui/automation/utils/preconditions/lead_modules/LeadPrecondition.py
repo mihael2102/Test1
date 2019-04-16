@@ -303,7 +303,9 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).select_user_assign()
         LeadsModule(self.driver).click_status()
 
-        if global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx":
+        if global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or \
+                global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" or \
+                global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx":
             LeadsModule(self.driver).select_status(CRMConstants.STATUS_EDIT_ITRADER)
         elif global_var.current_brand_name == "fxpmarkets" or global_var.current_brand_name == "stoxmarket":
             LeadsModule(self.driver).select_status(CRMConstants.STATUS_EDIT_STOX)

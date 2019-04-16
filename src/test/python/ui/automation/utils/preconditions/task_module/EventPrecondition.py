@@ -48,7 +48,7 @@ class EventPrecondition(object):
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
         task_module.search_account_name(CRMConstants.TESTQA)
-        sleep(60)
+        sleep(2)
         task_module.open_sms_actions_section()
         title = task_module.check_pop_up_send_sms()
         try:

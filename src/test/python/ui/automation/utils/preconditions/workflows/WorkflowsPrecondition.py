@@ -87,6 +87,9 @@ class WorkflowsPrecondition(object):
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
+        CRMHomePage(self.driver).open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        workflow_module = CRMConfigurationPage(self.driver).check_workflows_loaded()
+        assert workflow_module == True
         CRMHomePage(self.driver).open_client_module() \
             .select_filter(self.config.get_value(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
@@ -111,6 +114,9 @@ class WorkflowsPrecondition(object):
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
+        CRMHomePage(self.driver).open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        workflow_module = CRMConfigurationPage(self.driver).check_workflows_loaded()
+        assert workflow_module == True
         CRMHomePage(self.driver).open_client_module() \
             .select_filter(self.config.get_value(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \

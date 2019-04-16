@@ -93,7 +93,10 @@ class MyDashboardPrecondition(object):
         MyDashboardPage(self.driver).enter_cc_mail(CRMConstants.CC_EMAIL)
         MyDashboardPage(self.driver).enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         MyDashboardPage(self.driver).click_send()
-        sleep(10)
+        if global_var.current_brand_name == "itrader":
+            sleep(15)
+        else:
+            sleep(10)
         msg = TasksPage(self.driver).check_email(CRMConstants.SUBJECT_TASK_MAIL)
         assert CRMConstants.SUBJECT_TASK_MAIL in msg
 

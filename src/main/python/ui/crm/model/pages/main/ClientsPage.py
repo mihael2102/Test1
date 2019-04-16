@@ -507,3 +507,9 @@ class ClientsPage(CRMBasePage):
             EC.visibility_of_element_located((By.XPATH, "//*[@id='dtlview_Assigned To']")))
         Logging().reportDebugStep(self, "Client assigned to: " + client_assigned.text)
         return client_assigned.text
+
+    def click_send_mail_btn(self):
+        send_mail_btn = self.driver.find_element_by_xpath("//*[@id='sidebar']//a[contains(text(),'Send Mail')]")
+        send_mail_btn.click()
+        Logging().reportDebugStep(self, "Click Send Mail button")
+        return ClientsPage(self.driver)

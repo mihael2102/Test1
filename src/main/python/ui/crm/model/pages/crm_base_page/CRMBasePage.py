@@ -101,3 +101,9 @@ class CRMBasePage(object):
 
     def get_current_url(self):
         return self.driver.current_url
+
+    def wait_updating_to_finish(self, time):
+        self.wait_element_to_be_disappear("//div[@class='isloading-overlay']", time)
+
+    def wait_crm_loading_to_finish_tasks(self, time):
+        self.wait_element_to_be_disappear("//div[@class='spinner']", time)

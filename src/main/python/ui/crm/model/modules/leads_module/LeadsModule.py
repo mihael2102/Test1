@@ -97,7 +97,7 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def open_lead_personal_details(self):
-        sleep(60)
+        sleep(2)
         lead = self.driver.find_element(By.XPATH, "//a[contains(text(), 'LEA')]")
         try:
             lead.click()
@@ -360,12 +360,15 @@ class LeadsModule(CRMBasePage):
         btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
         btn_ok.click()
         Logging().reportDebugStep(self, "Close succsesfull result pop ups")
+        self.wait_loading_to_finish(55)
         return LeadsModule(self.driver)
 
     def click_assign(self):
         sleep(4)
         click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='massassignform_action_button']")
         click_mass_assign.click()
+        sleep(3)
+        self.wait_updating_to_finish(55)
         Logging().reportDebugStep(self, "Click assign pop ups")
         return LeadsModule(self.driver)
 
@@ -570,13 +573,13 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Click the selected filter")
         if global_var.current_brand_name == "itrader":
             sleep(30)
-        self.wait_crm_loading_to_finish()
+        self.wait_loading_to_finish(55)
         return LeadsModule(self.driver)
 
     def open_mass_edit_task(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass Edit']")
         mass_edit_module.click()
-        return MassEditLeadModule(self.driver)
+        return MassEditLeadModule()
 
     def open_mass_assign_lead_module(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass assign']")

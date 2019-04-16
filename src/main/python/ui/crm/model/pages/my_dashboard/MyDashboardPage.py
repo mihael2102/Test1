@@ -310,7 +310,7 @@ class MyDashboardPage(CRMBasePage):
         sleep(4)
         subject_mail = super().wait_load_element("//div[@class='modal-dialog modal-lg']//input[@id='subject']")
         subject_mail.send_keys(subject)
-        Logging().reportDebugStep(self, "Enter subject mail" + subject)
+        Logging().reportDebugStep(self, "Enter subject mail: " + subject)
         return MyDashboardPage(self.driver)
 
     def enter_body_mail(self, body):
