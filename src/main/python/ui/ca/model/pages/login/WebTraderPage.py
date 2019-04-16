@@ -10,12 +10,29 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class WebTraderPage(CRMBasePage):
 
+    def check_pips_bottom_panel(self):
+        sleep(3)
+        pips_bottom_panel = self.driver.find_element(By.XPATH,
+                                                    "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/ul[2]/li[1]/span/open-trades/div/div/perfect-scrollbar/div[1]/div/table/tbody/tr[1]/open-trade/td[6]")
+        Logging().reportDebugStep(self, "Check pip in bottom panel" + pips_bottom_panel.text)
+        return pips_bottom_panel.text
+
+    def check_pips_right_panel(self):
+        sleep(3)
+        pips_right_panel = self.driver.find_element(By.XPATH,
+                                               "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div[1]/form/div[2]/div[1]/div[2]")
+        Logging().reportDebugStep(self, "Check pip in right panel" + pips_right_panel.text)
+        return pips_right_panel.text
+
     def select_asset(self):
-        if global_var.current_brand_name != "brokerxp":
-            forex = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/div/span")
-            forex.click()
-            crypto = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/div/span")
-            crypto.click()
+        sleep(10)
+        window_after = self.driver.window_handles[1]
+        self.driver.switch_to_window(window_after)
+        sleep(5)
+        forex = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/div/span")
+        forex.click()
+        crypto = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/div/span")
+        crypto.click()
         sleep(5)
         click_select_account = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/ul/li[2]/asset-item/div/div[2][contains(text(), 'BTCUSD')]")
         click_select_account.click()
@@ -74,8 +91,8 @@ class WebTraderPage(CRMBasePage):
 
     def select_volume_in_lot(self):
         sleep(3)
-        window_after = self.driver.window_handles[1]
-        self.driver.switch_to_window(window_after)
+        # window_after = self.driver.window_handles[1]
+        # self.driver.switch_to_window(window_after)
         sleep(3)
         select_volume = self.driver.find_element(By.XPATH, "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div[1]/form/div[1]/div[2]/input")
         select_volume.send_keys("2")

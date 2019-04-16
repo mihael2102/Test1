@@ -18,8 +18,9 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.ca.Trading_Process
   class: TradingProcess
   tests:
-    - test_trade_with_insufficient_funds
-    - test_open_order_buy_sell
+#    - test_trade_with_insufficient_funds
+#    - test_open_order_buy_sell
+    - test_open_order_stop_loss_take_profit
 
 
 #- module: src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update
