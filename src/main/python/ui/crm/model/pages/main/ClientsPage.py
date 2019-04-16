@@ -91,9 +91,9 @@ class ClientsPage(CRMBasePage):
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
         Logging().reportDebugStep(self, "Click the search button ")
-        sleep(2)
+        sleep(10)
         self.wait_crm_loading_to_finish()
-        client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
+        client_id = self.driver.find_element(By.XPATH, "//div/a[contains(text(), 'ACC')]")
         sleep(1)
         self.driver.execute_script("arguments[0].click();", client_id)
         sleep(1)
@@ -391,8 +391,15 @@ class ClientsPage(CRMBasePage):
         return refferal_client.text
 
     def get_first_client_email(self):
-        client_email = WebDriverWait(self.driver, 50).until(
-            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Email')]//following-sibling::td[1]")))
+        sleep(10)
+        if global_var.current_brand_name == "ptbanc":
+            client_email = WebDriverWait(self.driver, 50).until(
+                EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Email']")))
+        else:
+            client_email = WebDriverWait(self.driver, 50).until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, "//td[contains(text(),'Email')]//following-sibling::td[1]")))
+
         Logging().reportDebugStep(self, "Verified the client email: " + client_email.text)
         return client_email.text
 

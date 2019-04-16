@@ -31,8 +31,8 @@ brands:
 #  config_file: 4xfx.yml
 #- name: herdos
 #  config_file: herdos.yml
-#- name: ptbanc
-#  config_file: ptbanc.yml
+- name: ptbanc
+  config_file: ptbanc.yml
 #- name: q8
 #  config_file: q8.yml
 #- name: 2mercados
@@ -43,8 +43,8 @@ brands:
 #  config_file: aztrades.yml
 #- name: bots
 #  config_file: bots.yml
-- name: kontofx
-  config_file: kontofx.yml
+#- name: kontofx
+#  config_file: kontofx.yml
 #- name: xtraderfx
 #  config_file: xtraderfx.yml
 #- name: firstindex
