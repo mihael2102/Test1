@@ -21,8 +21,14 @@ from src.main.python.utils.logs.Loging import Logging
 
 class ChatPage(CRMBasePage):
 
-    def click_chat_icon(self):
+    def click_chat_icon_vtiger(self):
         chat_icon = self.driver.find_element_by_xpath("//span[@id='chat-icon']")
+        chat_icon.click()
+        Logging().reportDebugStep(self, "The chat icon was clicked")
+        return ChatPage(self.driver)
+
+    def click_chat_icon_laravel(self):
+        chat_icon = self.driver.find_element_by_xpath("//span[@class='glyphicon glyphicon-Comments']")
         chat_icon.click()
         Logging().reportDebugStep(self, "The chat icon was clicked")
         return ChatPage(self.driver)

@@ -6,3 +6,6 @@ class TestChat(BaseTest):
 
     def test_chat_vtiger(self):
         Chat_Precondition(self.driver, self.config).chat_vtiger_test()
+
+    def test_chat_laravel(self):
+        Chat_Precondition(self.driver, self.config).chat_laravel_test()
