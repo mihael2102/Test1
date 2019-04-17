@@ -173,8 +173,13 @@ tests_config:
 #    - test_edit_lead_pencil_icon
 #    - test_check_email_popup
 ###################################Chat########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Chat
-  class: TestChat
+#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Chat
+#  class: TestChat
+#  tests:
+#    - test_chat_vtiger
+#    - test_chat_laravel
+##################################User_Management#########################################
+- module: src.test.python.ui.automation.implementation.crm.user_management.Test_Create_User
+  class: UserTest
   tests:
-    - test_chat_vtiger
-    - test_chat_laravel
+    - test_create_user
