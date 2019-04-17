@@ -10,11 +10,98 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class WebTraderPage(CRMBasePage):
 
-    def select_asset(self):
-        sleep(5)
+    def select_demo_account_by_number(self, number):
+        sleep(3)
         click_select_account = self.driver.find_element(By.XPATH,
-                                                        "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[7]/asset-item/div/div[2][contains(text(), 'BTCUSD.m')]")
-        click_select_account.click()
+                                                        "//div[contains(text(), ' #" + number +" ')]")
+        try:
+            click_select_account.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", click_select_account)
+        Logging().reportDebugStep(self, "Click demo account")
+        return WebTraderPage(self.driver)
+
+    def check_hight_low(self):
+        sleep(3)
+        check_stop_loss_in_table = self.driver.find_element(By.XPATH,
+                                                            "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[1]/div[1]/span")
+        Logging().reportDebugStep(self, "check hight low" + check_stop_loss_in_table.text)
+        return check_stop_loss_in_table.text
+
+
+    def check_stop_loss_in_table(self):
+        sleep(3)
+        check_stop_loss_in_table = self.driver.find_element(By.XPATH,
+                                                     "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/div/div/open-trades/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/open-trade/td[1]")
+        Logging().reportDebugStep(self, "check stop loss in table" + check_stop_loss_in_table.text)
+        return check_stop_loss_in_table.text
+
+    def click_submit_changes(self):
+        sleep(3)
+        click_stop_loss = self.driver.find_element(By.XPATH,
+                                                   "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[3]/div/button")
+        click_stop_loss.click()
+        Logging().reportDebugStep(self, "click submit changes")
+        return WebTraderPage(self.driver)
+
+    def check_pips_stop_loss(self):
+        sleep(3)
+        pips_bottom_panel = self.driver.find_element(By.XPATH,
+                                                     "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[6]/div[1]/div/div")
+        Logging().reportDebugStep(self, "Check pip in bottom panel" + pips_bottom_panel.text)
+        return pips_bottom_panel.text
+
+    def enter_stop_loss(self, stop_loss):
+        sleep(3)
+        enter_stop_loss = self.driver.find_element(By.XPATH,
+                                                   "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[4]/div[1]/custom-input/div/input")
+        enter_stop_loss.clear()
+        enter_stop_loss.send_keys(stop_loss)
+        Logging().reportDebugStep(self, "Enter stop loss")
+        return WebTraderPage(self.driver)
+
+    def click_stop_loss(self):
+        sleep(3)
+        click_stop_loss = self.driver.find_element(By.XPATH,
+                                               "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/div/div/open-trades/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/open-trade/td[9]/button")
+        click_stop_loss.click()
+        Logging().reportDebugStep(self, "Click stop loss")
+        return WebTraderPage(self.driver)
+
+    def check_button_set_stop_loss(self):
+        sleep(3)
+        check_button = self.driver.find_element(By.XPATH,
+                                               "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[3]/div[1]/label")
+        check_button.click()
+        Logging().reportDebugStep(self, "Check button set stop loss")
+        return WebTraderPage(self.driver)
+
+    def check_pips_bottom_panel(self):
+        sleep(3)
+        pips_bottom_panel = self.driver.find_element(By.XPATH,
+                                                    "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/div/div/open-trades/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/open-trade/td[6]")
+        Logging().reportDebugStep(self, "Check pip in bottom panel" + pips_bottom_panel.text)
+        return pips_bottom_panel.text
+
+    def check_pips_right_panel(self):
+        sleep(3)
+        pips_right_panel = self.driver.find_element(By.XPATH,
+                                               "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[2]/div[2]/div[2]")
+        Logging().reportDebugStep(self, "Check pip in right panel" + pips_right_panel.text)
+        return pips_right_panel.text
+
+    def select_asset(self):
+        sleep(10)
+        try:
+            click_select_account = self.driver.find_element(By.XPATH,
+                                                            "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[7]/asset-item/div/div[2][contains(text(), 'BTCUSD.m')]")
+            click_select_account.click()
+        except:
+            self.refresh_page()
+            sleep(7)
+            click_select_account = self.driver.find_element(By.XPATH,
+                                                            "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[7]/asset-item/div/div[2][contains(text(), 'BTCUSD.m')]")
+            click_select_account.click()
         Logging().reportDebugStep(self, "Click select account")
         return WebTraderPage(self.driver)
 
@@ -30,7 +117,10 @@ class WebTraderPage(CRMBasePage):
         sleep(3)
         click_select_account = self.driver.find_element(By.XPATH,
                                                         "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
-        click_select_account.click()
+        try:
+            click_select_account.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", click_select_account)
         Logging().reportDebugStep(self, "Click demo account")
         return WebTraderPage(self.driver)
 

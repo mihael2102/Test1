@@ -21,6 +21,24 @@ from selenium.webdriver.support.select import Select
 
 class ClientProfilePage(CRMBasePage):
 
+    def get_equity_trading_accounts(self):
+        open_p_l = super().wait_load_element(
+            "//tr[2]/td[3]/span[@class='currenrcy']")
+        Logging().reportDebugStep(self, "open p l level " + open_p_l.text)
+        return open_p_l.text
+
+    def get_open_p_l(self):
+        open_p_l = super().wait_load_element(
+            "//tr[2]/td[7]/span[@class='currenrcy']")
+        Logging().reportDebugStep(self, "open p l level " + open_p_l.text)
+        return open_p_l.text
+
+    def get_last_margin_lvl(self):
+        margin_lvl = super().wait_load_element(
+            "//tr[2]/td/span[@class='margin-level']")
+        Logging().reportDebugStep(self, "margin level " + margin_lvl.text)
+        return margin_lvl.text
+
     def click_close_display_transactions(self):
         close_display_transactions = super().wait_element_to_be_clickable(
             "//*[@id='docpreviewdiv']/div/div/div[5]/div/button")
