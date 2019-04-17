@@ -7,8 +7,15 @@ from time import sleep
 import pyotp
 from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 
 class WebTraderPage(CRMBasePage):
+
+    def ptbanc_webtrader(self):
+        CALoginPage(self.driver).open_first_tab_page("https://ptbanc.com/trading.html#/")
+
+        Logging().reportDebugStep(self, "Click TRADING")
+        return WebTraderPage(self.driver)
 
     def select_demo_account_by_number(self, number):
         sleep(3)
@@ -92,31 +99,49 @@ class WebTraderPage(CRMBasePage):
 
     def select_asset(self):
         sleep(10)
-        try:
+        if global_var.current_brand_name == "ptbanc":
             click_select_account = self.driver.find_element(By.XPATH,
-                                                            "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[7]/asset-item/div/div[2][contains(text(), 'BTCUSD.m')]")
+                                                            "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/div/span")
             click_select_account.click()
-        except:
-            self.refresh_page()
-            sleep(7)
-            click_select_account = self.driver.find_element(By.XPATH,
-                                                            "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[7]/asset-item/div/div[2][contains(text(), 'BTCUSD.m')]")
-            click_select_account.click()
+            crypto = self.driver.find_element(By.XPATH, "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[3]/div/span")
+            crypto.click()
+            sleep(2)
+            asset = self.driver.find_element(By.XPATH,"//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[3]/ul/li[2]/asset-item/div/div[2]")
+            asset.click()
+        else:
+            try:
+                click_select_account = self.driver.find_element(By.XPATH,
+                                                                "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[7]/asset-item/div/div[2][contains(text(), 'BTCUSD.m')]")
+                click_select_account.click()
+            except:
+                self.refresh_page()
+                sleep(7)
+                click_select_account = self.driver.find_element(By.XPATH,
+                                                                "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[7]/asset-item/div/div[2][contains(text(), 'BTCUSD.m')]")
+                click_select_account.click()
         Logging().reportDebugStep(self, "Click select account")
         return WebTraderPage(self.driver)
 
     def click_select_account(self):
         sleep(5)
-        click_select_account = self.driver.find_element(By.XPATH,
-                                               "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-accounts/div/div/i[2]")
+        if global_var.current_brand_name == "ptbanc":
+            click_select_account = self.driver.find_element(By.XPATH,
+                                                   "//*[@id='u33171']/panda-forex-accounts/div/div/i[2]")
+        else:
+            click_select_account = self.driver.find_element(By.XPATH,
+                                                            "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-accounts/div/div/i[2]")
+
         click_select_account.click()
         Logging().reportDebugStep(self, "Click select account")
         return WebTraderPage(self.driver)
 
     def select_demo_account(self):
         sleep(3)
-        click_select_account = self.driver.find_element(By.XPATH,
-                                                        "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
+        if global_var.current_brand_name != "ptbanc":
+            click_select_account = self.driver.find_element(By.XPATH,
+                                                            "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
+        else:
+            click_select_account = self.driver.find_element(By.XPATH, "//*[@id='u33171']/panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
         try:
             click_select_account.click()
         except:
@@ -175,7 +200,8 @@ class WebTraderPage(CRMBasePage):
         # window_after = self.driver.window_handles[1]
         # self.driver.switch_to_window(window_after)
         sleep(3)
-        select_volume = self.driver.find_element(By.XPATH, "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[1]/div[2]/input")
+        select_volume = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["volume_in_lot"])
         select_volume.clear()
         select_volume.send_keys("0.1")
         Logging().reportDebugStep(self, "Select volume in lot")
@@ -183,28 +209,31 @@ class WebTraderPage(CRMBasePage):
 
     def click_sell(self):
         sleep(2)
-        sell = self.driver.find_element(By.XPATH,
-                                                 "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[3]/div[1]")
+        sell = self.driver.find_element(By.XPATH,global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["sell"])
         sell.click()
         Logging().reportDebugStep(self, "Click SELL")
         return WebTraderPage(self.driver)
 
     def click_invest(self):
         sleep(2)
-        invest = self.driver.find_element(By.XPATH,"//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[5]/button")
+        invest = self.driver.find_element(By.XPATH,global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["invest"])
         invest.click()
         Logging().reportDebugStep(self, "Click Invest")
         return WebTraderPage(self.driver)
 
     def check_avaliable_funds(self):
         sleep(5)
-        avaliable_funds = self.driver.find_element_by_xpath("//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-account-status/div/ul/li[1]/div[1]").text
+        avaliable_funds = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["avaliable_funds"]).text
         Logging().reportDebugStep(self, "Check avaliable funds")
         return avaliable_funds
 
     def check_used_funds(self):
         used_funds = self.driver.find_element_by_xpath(
-            "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-account-status/div/ul/li[2]/div[1]").text
+            global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["used_funds"]).text
         Logging().reportDebugStep(self, "Check used funds")
         return used_funds
 

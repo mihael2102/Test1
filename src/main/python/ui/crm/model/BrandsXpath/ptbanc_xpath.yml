@@ -21,5 +21,10 @@ CALoginPage:
   zip_code: "//input[@name = 'postCode']"
   address: "//input[@name = 'address']"
   next_btn: "//button[contains (text(), 'Next')]"
-
+WebTraderPage:
+  avaliable_funds: "//*[@id='u8984']/panda-forex-account-status/div/ul/li[1]/div[1]"
+  used_funds: "//*[@id='u8984']/panda-forex-account-status/div/ul/li[2]/div[1]"
+  volume_in_lot: "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[1]/div[2]/input"
+  sell: "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[3]/div[1]"
+  invest: "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[5]/button"
 
