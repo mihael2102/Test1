@@ -17,28 +17,21 @@ class SendEmailClientsModule(CRMBasePage):
         subject_field.clear()
         subject_field.send_keys(subject)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
-        return SendEmailClientsModule()
+        return SendEmailClientsModule(self.driver)
 
     def set_comment(self, comments):
-        try:
-            sleep(5)
-            self.driver.switch_to_frame(super().wait_element_to_be_clickable("//div[@id='cke_description']//iframe"))
-            comment_tag = self.driver.find_element(By.XPATH, "/html/body/p")
-            comment_tag.send_keys(comments)
-            self.driver.switch_to_default_content()
-        except:
-            self.refresh_page()
-            sleep(2)
-            self.click_send_mail_btn()
-            sleep(1)
-            self.driver.switch_to_frame(super().wait_element_to_be_clickable("//div[@id='cke_description']//iframe"))
-            comment_tag = self.driver.find_element(By.XPATH, "//html[@dir='ltr']/body")
-            comment_tag.send_keys(comments)
-            self.driver.switch_to_default_content()
+        sleep(3)
+        self.driver.switch_to_frame(super().wait_element_to_be_clickable("//div[@id='cke_description']//iframe"))
+        comment_tag = self.driver.find_element(By.XPATH, "/html/body/p")
+        comment_tag.click()
+        self.driver.execute_script("arguments[0].textContent = arguments[1];", comment_tag, comments)
+        # comment_tag.send_keys(comments)
+        self.driver.switch_to_default_content()
         Logging().reportDebugStep(self, "The comment was set: " + comments)
         return SendEmailClientsModule(self.driver)
 
     def click_send_button_clients_module(self):
+        sleep(2)
         send_button = super().wait_element_to_be_clickable("//input[@name='Send']")
         send_button.click()
         Logging().reportDebugStep(self, "The send button was clicked")

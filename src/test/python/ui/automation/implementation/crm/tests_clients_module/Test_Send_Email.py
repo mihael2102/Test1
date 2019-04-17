@@ -10,6 +10,8 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 @pytest.mark.run(order=30)
@@ -22,7 +24,8 @@ class SendEmailTestCRM(BaseTest):
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
                                                        TestDataConstants.FILTER)) \
-            .find_client_by_email('pandaauto+20190416151736@pandats.com')
+            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                                                      TestDataConstants.E_MAIL))
         sleep(2)
         ClientsPage(self.driver).click_send_mail_btn()
         SendEmailClientsModule(self.driver).set_subject(EmailConstants.FIRST_SUBJECT) \
@@ -36,11 +39,14 @@ class SendEmailTestCRM(BaseTest):
         expected_email_subject = EmailConstants.FIRST_SUBJECT
         assert actual_email_subject == expected_email_subject
         SendEmailClientsModule(self.driver).click_edit_email_btn() \
-            .click_send_button_clients_module()
+                                           .click_send_button_clients_module()
         confirm_message = ClientProfilePage(self.driver).get_confirm_message()
         assert confirm_message == TaskModuleConstants.EMAIL_CONFIRM_MESSAGE
-
-        sleep(10)
+        CRMBasePage(self.driver).click_ok()
+        if global_var.current_brand_name == "itrader":
+            sleep(25)
+        else:
+            sleep(15)
         msg = TasksPage(self.driver).check_email(EmailConstants.FIRST_SUBJECT)
         assert EmailConstants.FIRST_SUBJECT in msg
 
@@ -53,7 +59,7 @@ class SendEmailTestCRM(BaseTest):
             .open_client_module_clients_module() \
             .open_all_tab_clients_module() \
             .perform_searching_by_email(
-            Config.data.get_data_client(FourthClientConstants.CLIENT_FOURTH, FourthClientConstants.EMAIL_ADDRESS)) \
+                Config.data.get_data_client(FourthClientConstants.CLIENT_FOURTH, FourthClientConstants.EMAIL_ADDRESS)) \
             .click_search_button()
 
         crm_clients_module_page.select_record() \

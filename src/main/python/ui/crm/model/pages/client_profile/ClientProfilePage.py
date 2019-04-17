@@ -925,7 +925,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_confirm_message(self):
         #for_old_forex
-        confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-title']")
+        confirm_message = super().wait_load_element("//*[contains(text(),'Mail was sent successfully')]")
         Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text
 
