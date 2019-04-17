@@ -30,10 +30,44 @@ class Trading_Precondition(object):
         self.driver = driver
         self.config = config
 
-
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)
         return lead
+
+    def edit_order_stop_loss_take_profit(self):
+        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
+        CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                 LeadsModuleConstants.EMAIL]) \
+            .enter_password(CAConstants.PASSWORD) \
+            .click_login()
+
+        CAPage(self.driver).open_demo_account()
+        CAPage(self.driver).select_currency()
+        CAPage(self.driver).select_leverage()
+        if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "finmarket" and global_var.current_brand_name != "itrader_global":
+            CAPage(self.driver).select_deposit()
+        CAPage(self.driver).click_submit()
+        if global_var.current_brand_name != "triomarkets" and global_var.current_brand_name != "itrader" and global_var.current_brand_name != "finmarket":
+            account_number = CAPage(self.driver).get_account_number()
+            CAPage(self.driver).finish_button()
+            CAPage(self.driver).click_actions_launch_by_account(account_number)
+            WebTraderPage(self.driver).select_asset()
+            WebTraderPage(self.driver).select_volume_in_lot()
+            pips_right_panel = WebTraderPage(self.driver).check_pips_right_panel()
+            WebTraderPage(self.driver).click_sell()
+            WebTraderPage(self.driver).click_invest()
+            order = WebTraderPage(self.driver).get_msg_succsessfull_order()
+            assert CRMConstants.ORDER in order
+            WebTraderPage(self.driver).click_stop_loss()
+
+            WebTraderPage(self.driver).check_button_set_stop_loss()
+            WebTraderPage(self.driver).enter_stop_loss(CRMConstants.STOP_LOSS)
+            pips = WebTraderPage(self.driver).check_pips_stop_loss()
+            assert CRMConstants.PIPS_CONTAINS in pips
+            number = WebTraderPage(self.driver).check_hight_low()
+            WebTraderPage(self.driver).click_submit_changes()
+            check_stop_loss_in_table = WebTraderPage(self.driver).check_stop_loss_in_table()
+            assert check_stop_loss_in_table == number
 
 
     def open_order_stop_loss_take_profit(self):

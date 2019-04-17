@@ -10,6 +10,61 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class WebTraderPage(CRMBasePage):
 
+    def check_hight_low(self):
+        sleep(3)
+        check_stop_loss_in_table = self.driver.find_element(By.XPATH,
+                                                            "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[1]/div[1]/span")
+        Logging().reportDebugStep(self, "check hight low" + check_stop_loss_in_table.text)
+        return check_stop_loss_in_table.text
+
+
+    def check_stop_loss_in_table(self):
+        sleep(3)
+        check_stop_loss_in_table = self.driver.find_element(By.XPATH,
+                                                     "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/ul[2]/li[1]/span/open-trades/div/div/perfect-scrollbar/div[1]/div/table/tbody/tr/open-trade/td[1]")
+        Logging().reportDebugStep(self, "check stop loss in table" + check_stop_loss_in_table.text)
+        return check_stop_loss_in_table.text
+
+    def click_submit_changes(self):
+        sleep(3)
+        click_stop_loss = self.driver.find_element(By.XPATH,
+                                                   "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[3]/div/button")
+        click_stop_loss.click()
+        Logging().reportDebugStep(self, "click submit changes")
+        return WebTraderPage(self.driver)
+
+    def check_pips_stop_loss(self):
+        sleep(3)
+        pips_bottom_panel = self.driver.find_element(By.XPATH,
+                                                     "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div/div[6]/div[1]/div/span")
+        Logging().reportDebugStep(self, "Check pip in bottom panel" + pips_bottom_panel.text)
+        return pips_bottom_panel.text
+
+    def enter_stop_loss(self, stop_loss):
+        sleep(3)
+        enter_stop_loss = self.driver.find_element(By.XPATH,
+                                                   "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div/div[4]/div[1]/custom-input/div/input")
+        enter_stop_loss.clear()
+        enter_stop_loss.send_keys(stop_loss)
+        Logging().reportDebugStep(self, "Enter stop loss")
+        return WebTraderPage(self.driver)
+
+    def click_stop_loss(self):
+        sleep(3)
+        click_stop_loss = self.driver.find_element(By.XPATH,
+                                               "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/ul[2]/li[1]/span/open-trades/div/div/perfect-scrollbar/div[1]/div/table/tbody/tr/open-trade/td[9]/button")
+        click_stop_loss.click()
+        Logging().reportDebugStep(self, "Click stop loss")
+        return WebTraderPage(self.driver)
+
+    def check_button_set_stop_loss(self):
+        sleep(3)
+        check_button = self.driver.find_element(By.XPATH,
+                                               "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div/div[3]/div[1]/label")
+        check_button.click()
+        Logging().reportDebugStep(self, "Check button set stop loss")
+        return WebTraderPage(self.driver)
+
     def check_pips_bottom_panel(self):
         sleep(3)
         pips_bottom_panel = self.driver.find_element(By.XPATH,
