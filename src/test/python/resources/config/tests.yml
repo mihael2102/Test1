@@ -158,14 +158,14 @@ tests_config:
 #  class: AutoAssignModuleTest
 #  tests:
 #    - test_perform_delete_rule
-- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
-  class: CheckModulesTest
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
+#  class: CheckModulesTest
+#  tests:
 #    - test_my_dashboard_loading
 #    - test_audit_logs_loading
 #    - test_check_dashboard
 #    - test_check_leaderboard
-    - test_check_user_management
+#    - test_check_user_management
 #- module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
 #  class: CRMConfigurationsTest
 #  tests:
@@ -178,7 +178,7 @@ tests_config:
 #    - test_check_workflow_by_country
 #    - test_delete_workflow
 ###################################Chat########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Chat
+#- module: src.test.python.ui.automation.implementation.crm.tests_chat.Test_Chat
 #  class: TestChat
 #  tests:
 #    - test_chat_vtiger
@@ -188,3 +188,4 @@ tests_config:
   class: UserManagementTest
   tests:
     - test_create_user
+    - test_delete_user

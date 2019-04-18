@@ -17,6 +17,7 @@ from src.main.python.utils.logs.Loging import Logging
 import allure
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
+from selenium.webdriver.common.keys import Keys
 
 class UserManagementPage(CRMBasePage):
 
@@ -107,14 +108,17 @@ class UserManagementPage(CRMBasePage):
         return UserManagementPage(self.driver)
 
     def search_by_username(self, username):
-        sleep(2)
+        sleep(3)
         self.wait_loading_of_user_management_table(25)
         username_field = super().wait_element_to_be_clickable("//div[@id='row00userManagement']/div[3]/div/input")
         username_field.clear()
-        username_field.send_keys(username)
+        username_field.send_keys(username, Keys.ENTER)
         Logging().reportDebugStep(self, "Searching by username: " + username)
         sleep(1)
         self.wait_loading_of_user_management_table(55)
+        return UserManagementPage(self.driver)
+
+    def check_user_found(self, username):
         self.driver.find_element_by_xpath \
             ("//a[contains(@onclick,'userManagementDialog.loadUser')][contains(text(),'%s')]" % username)
         Logging().reportDebugStep(self, "User is found: " + username)
@@ -123,4 +127,26 @@ class UserManagementPage(CRMBasePage):
     def wait_loading_of_user_management_table(self, time):
         super().wait_element_to_be_disappear("//div[@class ='jqx-grid-load']", time)
         Logging().reportDebugStep(self, "The User Management table is loaded")
+        return UserManagementPage(self.driver)
+
+    def click_delete_icon(self):
+        delete_btn = self.driver.find_element_by_xpath("//a[@title='Delete user']")
+        self.driver.execute_script("arguments[0].click();", delete_btn)
+        Logging().reportDebugStep(self, "The Delete User button was clicked")
+        return UserManagementPage(self.driver)
+
+    def click_delete_btn(self):
+        sleep(1)
+        btn = super().wait_element_to_be_clickable("//button[contains(text(),'Delete')]")
+        btn.click()
+        sleep(2)
+        self.wait_element_to_be_disappear("//button[contains(text(),'Delete')]", 60)
+        Logging().reportDebugStep(self, "The Delete Confirmation button was clicked")
+        return UserManagementPage(self.driver)
+
+    def check_data_not_found(self):
+        sleep(1)
+        self.wait_loading_of_user_management_table(25)
+        super().wait_visible_of_element("//span[contains(text(),'No data to display')]")
+        Logging().reportDebugStep(self, "User was not found")
         return UserManagementPage(self.driver)

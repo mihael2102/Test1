@@ -7,11 +7,15 @@ from src.test.python.ui.automation.utils.preconditions.usermanagement.UserManage
     UserManagementPrecondition
 
 
-class UserTest(BaseTest):
+class UserManagementTest(BaseTest):
 
     def test_create_user(self):
 
         UserManagementPrecondition(self.driver, self.config).create_user()
+
+    def test_delete_user(self):
+
+        UserManagementPrecondition(self.driver, self.config).delete_user()
 
 
 

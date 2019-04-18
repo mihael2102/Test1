@@ -4,10 +4,7 @@ from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
-from src.main.python.ui.crm.model.constants.LeaderboardConstants import LeaderboardConstants
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.constants.UserManagementConstants import UserManagementConstants
 from time import sleep
 from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
@@ -38,21 +35,39 @@ class UserManagementPrecondition(object):
 
     def create_user(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                                            self.config.get_value(TestDataConstants.OTP_SECRET))
+        sleep(3)
+        CRMHomePage(self.driver).select_user_management()
+        UserManagementPage(self.driver).click_new_user_module() \
+                                       .set_user_name(UserInformation.FIRST_USER_NAME) \
+                                       .set_email(UserInformation.FIRST_EMAIL) \
+                                       .set_first_name(UserInformation.FIRST_NAME)
+        if global_var.current_brand_name == "brokerz":
+            UserManagementPage(self.driver).set_role(UserInformation.ROLE1)
+        elif global_var.current_brand_name == "ptbanc":
+            UserManagementPage(self.driver).set_role(UserInformation.ROLE2)
+        else:
+            UserManagementPage(self.driver).set_role(UserInformation.ROLE)
+        UserManagementPage(self.driver).set_password(UserInformation.PASSWORD) \
+                                       .set_confirm_password(UserInformation.PASSWORD) \
+                                       .set_last_name(UserInformation.LAST_NAME) \
+                                       .click_save_button_user_module() \
+                                       .search_by_username(UserInformation.FIRST_USER_NAME) \
+                                       .check_user_found(UserInformation.FIRST_USER_NAME)
+
+    def delete_user(self):
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
         CRMHomePage(self.driver).select_user_management()
-        UserManagementPage(self.driver).click_new_user_module() \
-            .set_user_name(UserInformation.FIRST_USER_NAME) \
-            .set_email(UserInformation.FIRST_EMAIL) \
-            .set_first_name(UserInformation.FIRST_NAME) \
-            .set_role(UserInformation.ROLE) \
-            .set_password(UserInformation.PASSWORD) \
-            .set_confirm_password(UserInformation.PASSWORD) \
-            .set_last_name(UserInformation.LAST_NAME) \
-            .click_save_button_user_module() \
-            .search_by_username(UserInformation.FIRST_USER_NAME)
-
-
+        UserManagementPage(self.driver).search_by_username(UserInformation.FIRST_USER_NAME) \
+                                       .check_user_found(UserInformation.FIRST_USER_NAME) \
+                                       .click_delete_icon() \
+                                       .click_delete_btn() \
+                                       .search_by_username(UserInformation.FIRST_USER_NAME) \
+                                       .check_data_not_found()
 

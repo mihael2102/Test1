@@ -27,7 +27,7 @@ class Chat_Precondition(object):
                                             self.config.get_value(TestDataConstants.OTP_SECRET)) \
                                  .open_client_module_clients_module()
         sleep(5)
-        if global_var.current_brand_name != "brokerz" or global_var.current_brand_name == "capitalmarketsbanc":
+        if global_var.current_brand_name != "brokerz":
             ChatPage(self.driver).click_chat_icon_vtiger()
         else:
             return self
@@ -39,7 +39,7 @@ class Chat_Precondition(object):
                                             self.config.get_value(TestDataConstants.OTP_SECRET))
         CRMHomePage(self.driver).open_task_module()
         sleep(5)
-        if global_var.current_brand_name == "brokerxp" or global_var.current_brand_name == "capitalmarketsbanc":
+        if global_var.current_brand_name != "brokerz":
             ChatPage(self.driver).click_chat_icon_laravel()
         else:
             return self
