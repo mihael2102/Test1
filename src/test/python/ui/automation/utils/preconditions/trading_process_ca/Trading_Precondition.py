@@ -230,7 +230,9 @@ class Trading_Precondition(object):
                                   .click_sell()\
                                   .click_invest()
         order = WebTraderPage(self.driver).get_msg_succsessfull_order()
+
         assert CRMConstants.ORDER in order
+
 
 
     def open_order_buy_sell(self):
@@ -249,12 +251,17 @@ class Trading_Precondition(object):
         #     .click_login()
         # ca_balance = CAPage(self.driver).get_balance()
         # CAPage(self.driver).click_actions_launch()
-
+        # WebTraderPage(self.driver).click_select_account() \
+        #     .select_demo_account()
+        if global_var.current_brand_name == "ptbanc":
+            WebTraderPage(self.driver).ptbanc_webtrader()
         WebTraderPage(self.driver).select_asset()
         WebTraderPage(self.driver).select_volume_in_lot() \
             .click_sell() \
             .click_invest()
         order = WebTraderPage(self.driver).get_msg_succsessfull_order()
+
+
         assert CRMConstants.ORDER in order
         WebTraderPage(self.driver).choose_asset()
         WebTraderPage(self.driver).select_volume_in_lot() \
@@ -262,6 +269,8 @@ class Trading_Precondition(object):
             .click_invest()
         order = WebTraderPage(self.driver).get_msg_succsessfull_order()
         assert CRMConstants.ORDER in order
+
+
 
         avaliable_funds_number = WebTraderPage(self.driver).check_avaliable_funds_number()
         used_funds_number = WebTraderPage(self.driver).check_used_funds_number()

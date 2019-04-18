@@ -114,9 +114,10 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def click_link_trading_account(self, number):
-        sleep(3)
+        sleep(8)
         trading_tab = super().wait_load_element(
             "//table[@id='rld_table_content']//div//a[contains(text(), '%s')]" % number)
+        self.driver.execute_script("arguments[0].scrollIntoView();", trading_tab)
         try:
             trading_tab.click()
         except:

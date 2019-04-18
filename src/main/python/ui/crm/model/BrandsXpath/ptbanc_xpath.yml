@@ -27,4 +27,9 @@ WebTraderPage:
   volume_in_lot: "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[1]/div[2]/input"
   sell: "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[3]/div[1]"
   invest: "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[5]/button"
-
+  avaliable_funds_number: "//li[1]/div[@class='value-pandats']"
+  used_funds_number: "//li[2]/div[@class='value-pandats']"
+  account_value_number: "//li[3]/div[@class='value-pandats']"
+  total_p_l_number: "//li[4]/div[@class='value-pandats']"
+  margin_level_number:  "//li[5]/div[@class='value-pandats']"
+  click_buy: "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[3]/div[2]"

@@ -13,6 +13,8 @@ import autoit
 
 class CAPage(CRMBasePage):
 
+
+
     def get_number_account_demo(self):
         sleep(3)
         account_number = self.driver.find_element_by_xpath("//*[@id='Top_bar']/div/div/div/div[2]/panda-forex-client-area/div/div/client-area-popup/div/div[2]/div[2]/div[2]/manage/div[2]/accounts/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr[1]/td[1]").text

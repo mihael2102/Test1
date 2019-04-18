@@ -5,6 +5,7 @@ import string
 
 
 class CRMConstants(object):
+    INSUFFICIENT_FUNDS = "Insufficient Funds"
     PIPS_CONTAINS = "-€"
     STOP_LOSS = "100"
     SYMBOL_TRANSACTIONS = "BTCGBP.m"
