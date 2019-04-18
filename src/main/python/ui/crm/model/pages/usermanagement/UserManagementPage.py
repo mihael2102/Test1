@@ -42,6 +42,7 @@ class UserManagementPage(CRMBasePage):
         new_user_button = super().wait_element_to_be_clickable("//button[contains(text(),'New User')]")
         new_user_button.click()
         Logging().reportDebugStep(self, "The user profile was opened ")
+        self.wait_loading_of_user_management_table(25)
         return UserManagementPage(self.driver)
 
     def set_user_name(self, user_name):
@@ -51,14 +52,14 @@ class UserManagementPage(CRMBasePage):
         Logging().reportDebugStep(self, "The user name was set " + user_name)
         return UserManagementPage(self.driver)
 
-    def email(self, email):
+    def set_email(self, email):
         email_field = self.driver.find_element(By.XPATH, "//input[@name='email1']")
         email_field.clear()
         email_field.send_keys(email)
         Logging().reportDebugStep(self, "The email was set: " + email)
         return UserManagementPage(self.driver)
 
-    def first_name(self, first_name):
+    def set_first_name(self, first_name):
         first_name_field = super().wait_element_to_be_clickable("//input[@name='first_name']")
         first_name_field.clear()
         first_name_field.send_keys(first_name)
@@ -68,6 +69,7 @@ class UserManagementPage(CRMBasePage):
     def set_role(self, role):
         role_field = self.driver.find_element(By.XPATH, "//input[@name='role_name']")
         role_field.click()
+        self.wait_loading_of_user_management_table(25)
         handle = self.driver.window_handles[1]
         self.driver.switch_to_window(handle)
         search_button = super().wait_element_to_be_clickable("//a[contains(text(),'%s')]" % role)
@@ -91,7 +93,7 @@ class UserManagementPage(CRMBasePage):
         Logging().reportDebugStep(self, "The confirm password  was set: " + confirm_password)
         return UserManagementPage(self.driver)
 
-    def last_name(self, last_name):
+    def set_last_name(self, last_name):
         last_name_field = super().wait_element_to_be_clickable("//input[@name='last_name']")
         last_name_field.clear()
         last_name_field.send_keys(last_name)
@@ -102,4 +104,23 @@ class UserManagementPage(CRMBasePage):
         save_button = super().wait_element_to_be_clickable("//button[contains(text(),'Save')]")
         save_button.click()
         Logging().reportDebugStep(self, "The save button was clicked")
+        return UserManagementPage(self.driver)
+
+    def search_by_username(self, username):
+        sleep(2)
+        self.wait_loading_of_user_management_table(25)
+        username_field = super().wait_element_to_be_clickable("//div[@id='row00userManagement']/div[3]/div/input")
+        username_field.clear()
+        username_field.send_keys(username)
+        Logging().reportDebugStep(self, "Searching by username: " + username)
+        sleep(1)
+        self.wait_loading_of_user_management_table(55)
+        self.driver.find_element_by_xpath \
+            ("//a[contains(@onclick,'userManagementDialog.loadUser')][contains(text(),'%s')]" % username)
+        Logging().reportDebugStep(self, "User is found: " + username)
+        return UserManagementPage(self.driver)
+
+    def wait_loading_of_user_management_table(self, time):
+        super().wait_element_to_be_disappear("//div[@class ='jqx-grid-load']", time)
+        Logging().reportDebugStep(self, "The User Management table is loaded")
         return UserManagementPage(self.driver)

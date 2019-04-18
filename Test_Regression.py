@@ -49,7 +49,7 @@ from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Ma
 from src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Mass_Sms import MassSmsTaskModule
 from src.test.python.ui.automation.implementation.crm.tests_trading_account.Test_Trading_Account_Module import \
     TradingAccountModuleTest
-from src.test.python.ui.automation.implementation.crm.user_management.Test_Create_User import UserTest
+from src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management import UserTest
 
 
 class TestRegression(object):
