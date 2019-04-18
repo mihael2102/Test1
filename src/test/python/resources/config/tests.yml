@@ -177,3 +177,14 @@ tests_config:
 #    - test_check_workflow_by_status
 #    - test_check_workflow_by_country
 #    - test_delete_workflow
+###################################Chat########################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Chat
+#  class: TestChat
+#  tests:
+#    - test_chat_vtiger
+#    - test_chat_laravel
+##################################User_Management#########################################
+- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
+  class: UserManagementTest
+  tests:
+    - test_create_user
