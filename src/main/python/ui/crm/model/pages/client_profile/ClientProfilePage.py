@@ -171,7 +171,9 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_difference_amount_text(self, initial_amount, amount_deposit):
-        total_amount = Decimal(initial_amount) - Decimal(amount_deposit)
+        initial_amount1 = initial_amount.replace(',','')
+        amount_deposit1 = amount_deposit.replace(',','')
+        total_amount = Decimal(initial_amount1) - Decimal(amount_deposit1)
         Logging().reportDebugStep(self, "Returns the total amount " + str(total_amount))
         return str(total_amount)
 
