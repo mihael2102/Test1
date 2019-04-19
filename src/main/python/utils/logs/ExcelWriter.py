@@ -14,6 +14,7 @@ class ExcelWriter:
         # create styles for the PASS/FAIL results
         cell_format_pass = workbook.add_format({'align': 'center', 'bg_color': '#C4D79B'})
         cell_format_fail = workbook.add_format({'align': 'center', 'bg_color': 'red'})
+        cell_format_not_runned = workbook.add_format({'align': 'center', 'bg_color': '#a1f1f0'})
 
         # set column widths
         worksheet.write(0, 0, "Brand \ Test")
@@ -35,7 +36,12 @@ class ExcelWriter:
                 row += 1
                 test_result = results[brand][self.get_test_pretty_name(test)] \
                     if self.get_test_pretty_name(test) in results[brand] else ""
-                if test_result == 'PASS':
+                if ("NOT RUNNED" in test_result):
+                    test_result_na = "NOT RUNNED"
+                    worksheet.write(row, col, test_result_na, cell_format_not_runned)
+                    worksheet.write_comment(row, col, test_result,
+                                            {'width': 250, 'height': 400})
+                elif test_result == 'PASS':
                     worksheet.write(row, col, test_result, cell_format_pass)
                 else:
                     test_result_error = "ERROR"

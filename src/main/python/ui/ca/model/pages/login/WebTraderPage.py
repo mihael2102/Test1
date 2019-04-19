@@ -119,13 +119,13 @@ class WebTraderPage(CRMBasePage):
             try:
                 sleep(8)
                 click_select_account = self.driver.find_element(By.XPATH,
-                                                                "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[7]/asset-item/div/div[2][contains(text(), 'BTCUSD.m')]")
+                                                                "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[7]/asset-item/div/div[2][contains(text(), 'BTCUSD.m')]")
                 click_select_account.click()
             except:
                 self.refresh_page()
                 sleep(7)
                 click_select_account = self.driver.find_element(By.XPATH,
-                                                                "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[7]/asset-item/div/div[2][contains(text(), 'BTCUSD.m')]")
+                                                                "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[7]/asset-item/div/div[2][contains(text(), 'BTCUSD.m')]")
                 click_select_account.click()
         Logging().reportDebugStep(self, "Click select account")
         return WebTraderPage(self.driver)
@@ -135,6 +135,11 @@ class WebTraderPage(CRMBasePage):
         if global_var.current_brand_name == "ptbanc":
             click_select_account = self.driver.find_element(By.XPATH,
                                                    "//*[@id='u33171']/panda-forex-accounts/div/div/i[2]")
+
+        elif global_var.current_brand_name == "brokerz":
+            click_select_account = self.driver.find_element(By.XPATH,
+                                                            "//*[@id='panda-buttons']/panda-forex-accounts/div/div/i[2]")
+
         else:
             click_select_account = self.driver.find_element(By.XPATH,
                                                             "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-accounts/div/div/i[2]")
@@ -145,11 +150,17 @@ class WebTraderPage(CRMBasePage):
 
     def select_demo_account(self):
         sleep(8)
-        if global_var.current_brand_name != "ptbanc":
+        if global_var.current_brand_name == "ptbanc":
+            click_select_account = self.driver.find_element(By.XPATH,
+                                                            "//*[@id='u33171']/panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
+        elif global_var.current_brand_name == "brokerz":
+            click_select_account = self.driver.find_element(By.XPATH,
+                                                            "//*[@id='panda-buttons']/panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[2]/div/div[3]/span[contains(text(), 'Demo')]")
+
+        else:
             click_select_account = self.driver.find_element(By.XPATH,
                                                             "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
-        else:
-            click_select_account = self.driver.find_element(By.XPATH, "//*[@id='u33171']/panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
+
         try:
             click_select_account.click()
         except:
