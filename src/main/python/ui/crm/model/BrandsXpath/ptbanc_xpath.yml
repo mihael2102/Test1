@@ -33,3 +33,11 @@ WebTraderPage:
   total_p_l_number: "//li[4]/div[@class='value-pandats']"
   margin_level_number:  "//li[5]/div[@class='value-pandats']"
   click_buy: "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[3]/div[2]"
+  pips_right_panel: "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[2]/div[2]/div[2]"
+  pips_bottom_panel: "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/div/div/open-trades/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr[1]/open-trade/td[6]"
+  click_stop_loss: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/div/div/open-trades/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/open-trade/td[9]/button"
+  check_button: "//label[contains(text(), 'Set Stop Loss')]"
+  enter_stop_loss: "//input[@class='custom-input-field-pandats ng-untouched ng-pristine ng-valid locked-pandats']"
+  pips_bottom_panel_test: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[6]/div[1]/div/div"
+CAPage:
+  click_close:  "/html/body/panda-forex-client-area/div/div/client-area-popup/div/div[2]/div[1]/a/i"

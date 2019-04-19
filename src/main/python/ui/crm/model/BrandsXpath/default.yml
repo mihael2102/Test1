@@ -57,6 +57,7 @@ CAPage:
   citizenship: "//custom-select[@name='citizenship']//span[text()='%s']"
   edit_first_name: "//input[@name='firstName']"
   get_first_name: "//input[@name='firstName']"
+  click_close: "//*[@id='Top_bar']/div/div/div/div[2]/panda-forex-client-area/div/div/client-area-popup/div/div[2]/div[1]/a/i"
 WebTraderPage:
   avaliable_funds: "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-account-status/div/ul/li[1]/div[1]"
   used_funds: "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-account-status/div/ul/li[2]/div[1]"
@@ -69,5 +70,10 @@ WebTraderPage:
   total_p_l_number: "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-account-status/div/ul/li[4]/div[2]"
   margin_level_number:  "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-account-status/div/ul/li[5]/div[2]"
   click_buy: "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[3]/div[2]"
-
+  pips_right_panel: "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[2]/div[2]/div[2]"
+  pips_bottom_panel: "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/div/div/open-trades/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/open-trade/td[6]"
+  click_stop_loss: "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/div/div/open-trades/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/open-trade/td[9]/button"
+  check_button: "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[3]/div[1]/label"
+  enter_stop_loss: "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[4]/div[1]/custom-input/div/input"
+  pips_bottom_panel_test: "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[6]/div[1]/div/div"
 

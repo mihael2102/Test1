@@ -53,15 +53,16 @@ class WebTraderPage(CRMBasePage):
 
     def check_pips_stop_loss(self):
         sleep(3)
-        pips_bottom_panel = self.driver.find_element(By.XPATH,
-                                                     "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[6]/div[1]/div/div")
+
+        pips_bottom_panel = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+                                                        self.__class__.__name__)["pips_bottom_panel_test"])
         Logging().reportDebugStep(self, "Check pip in bottom panel" + pips_bottom_panel.text)
         return pips_bottom_panel.text
 
     def enter_stop_loss(self, stop_loss):
         sleep(3)
-        enter_stop_loss = self.driver.find_element(By.XPATH,
-                                                   "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[4]/div[1]/custom-input/div/input")
+        enter_stop_loss = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+                                                        self.__class__.__name__)["enter_stop_loss"])
         enter_stop_loss.clear()
         enter_stop_loss.send_keys(stop_loss)
         Logging().reportDebugStep(self, "Enter stop loss")
@@ -69,8 +70,8 @@ class WebTraderPage(CRMBasePage):
 
     def click_stop_loss(self):
         sleep(3)
-        click_stop_loss = self.driver.find_element(By.XPATH,
-                                               "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/div/div/open-trades/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/open-trade/td[9]/button")
+        click_stop_loss = self.driver.find_element(By.XPATH,global_var.get_xpath_for_current_brand_element(
+                                                        self.__class__.__name__)["click_stop_loss"])
         click_stop_loss.click()
         Logging().reportDebugStep(self, "Click stop loss")
         return WebTraderPage(self.driver)
@@ -86,27 +87,29 @@ class WebTraderPage(CRMBasePage):
     def check_pips_bottom_panel(self):
         sleep(3)
         pips_bottom_panel = self.driver.find_element(By.XPATH,
-                                                    "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/div/div/open-trades/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr/open-trade/td[6]")
+                                                     global_var.get_xpath_for_current_brand_element(
+                                                         self.__class__.__name__)["pips_bottom_panel"])
         Logging().reportDebugStep(self, "Check pip in bottom panel" + pips_bottom_panel.text)
         return pips_bottom_panel.text
 
     def check_pips_right_panel(self):
         sleep(3)
         pips_right_panel = self.driver.find_element(By.XPATH,
-                                               "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div/div[1]/form/div[2]/div[2]/div[2]")
+                                                    global_var.get_xpath_for_current_brand_element(
+                                                        self.__class__.__name__)["pips_right_panel"])
         Logging().reportDebugStep(self, "Check pip in right panel" + pips_right_panel.text)
         return pips_right_panel.text
 
     def select_asset(self):
-        sleep(5)
+        sleep(15)
         if global_var.current_brand_name == "ptbanc":
             click_select_account = self.driver.find_element(By.XPATH,
-                                                            "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/div/span")
+                                                            "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/div/span")
             click_select_account.click()
-            crypto = self.driver.find_element(By.XPATH, "//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[3]/div/span")
+            crypto = self.driver.find_element(By.XPATH, "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[3]/div/span")
             crypto.click()
             sleep(2)
-            asset = self.driver.find_element(By.XPATH,"//*[@id='u8983']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[3]/ul/li[39]/asset-item/div/div[2]")
+            asset = self.driver.find_element(By.XPATH,"//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[3]/ul/li[39]/asset-item/div/div[2]")
             self.driver.execute_script("arguments[0].scrollIntoView();", asset)
             try:
                 asset.click()
@@ -190,15 +193,16 @@ class WebTraderPage(CRMBasePage):
             succsessfull_order2 = succsessfull_order1.replace(' - ', '')
             Logging().reportDebugStep(self, "Get account number" + succsessfull_order2)
         else:
+            sleep(10)
             demo = self.driver.find_element(By.XPATH,
-                                            "//*[@id='u11394']/panda-forex-accounts/div/div/i[2]")
+                                            "//panda-forex-accounts/div/div/i[2]")
             try:
                 demo.click()
             except:
                 self.driver.execute_script("arguments[0].click();", demo)
             sleep(3)
             succsessfull_order = self.driver.find_element(By.XPATH,
-                                                          "//*[@id='u11394']/panda-forex-accounts/div/div/div/ul/li/div/div[1]/div/div[2]").text
+                                                          "//panda-forex-accounts/div/div/div/ul/li/div/div[1]/div/div[2]").text
             succsessfull_order1 = succsessfull_order.replace(' #', '')
             succsessfull_order2 = succsessfull_order1.replace(' - ', '')
             Logging().reportDebugStep(self, "Get account number" + succsessfull_order2)

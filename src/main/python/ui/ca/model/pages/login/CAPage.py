@@ -24,7 +24,9 @@ class CAPage(CRMBasePage):
 
     def click_close_client_area(self):
         sleep(3)
-        click_close = self.driver.find_element_by_xpath("//*[@id='Top_bar']/div/div/div/div[2]/panda-forex-client-area/div/div/client-area-popup/div/div[2]/div[1]/a/i")
+
+        click_close = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+                                                    self.__class__.__name__)["click_close"])
         try:
             click_close.click()
         except:

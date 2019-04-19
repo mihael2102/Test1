@@ -73,10 +73,12 @@ class Trading_Precondition(object):
             else:
                 CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT)
             CAPage(self.driver).click_create_account()
-            account_number = CAPage(self.driver).get_number_account_demo()
+            account_number = WebTraderPage(self.driver).get_number_account()
+            number1 = account_number.replace('#', '')
+            number2 = number1.replace('DEMO', '')
             CAPage(self.driver).click_close_client_area()
             WebTraderPage(self.driver).click_select_account() \
-                .select_demo_account_by_number(account_number)
+                .select_demo_account_by_number(number2)
             WebTraderPage(self.driver).select_asset()
             WebTraderPage(self.driver).select_volume_in_lot()
             pips_right_panel = WebTraderPage(self.driver).check_pips_right_panel()
@@ -90,10 +92,11 @@ class Trading_Precondition(object):
             WebTraderPage(self.driver).enter_stop_loss(CRMConstants.STOP_LOSS)
             pips = WebTraderPage(self.driver).check_pips_stop_loss()
             assert CRMConstants.PIPS_CONTAINS in pips
-            number = WebTraderPage(self.driver).check_hight_low()
-            WebTraderPage(self.driver).click_submit_changes()
-            check_stop_loss_in_table = WebTraderPage(self.driver).check_stop_loss_in_table()
-            assert check_stop_loss_in_table == number
+            if global_var.current_brand_name != "ptbanc":
+                number = WebTraderPage(self.driver).check_hight_low()
+                WebTraderPage(self.driver).click_submit_changes()
+                check_stop_loss_in_table = WebTraderPage(self.driver).check_stop_loss_in_table()
+                assert check_stop_loss_in_table == number
 
     def open_order_stop_loss_take_profit(self):
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
@@ -133,11 +136,14 @@ class Trading_Precondition(object):
             else:
                 CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT)
             CAPage(self.driver).click_create_account()
-            account_number = CAPage(self.driver).get_number_account_demo()
             CAPage(self.driver).click_close_client_area()
-            WebTraderPage(self.driver).click_select_account() \
-                .select_demo_account_by_number(account_number)
-
+            # WebTraderPage(self.driver).click_select_account() \
+            #     .select_demo_account_by_number(account_number)
+            account_number = WebTraderPage(self.driver).get_number_account()
+            number1 = account_number.replace('#', '')
+            number2 = number1.replace('DEMO', '')
+            if global_var.current_brand_name == "ptbanc":
+                WebTraderPage(self.driver).ptbanc_webtrader()
 
             WebTraderPage(self.driver).select_asset()
             WebTraderPage(self.driver).select_volume_in_lot()
@@ -169,7 +175,7 @@ class Trading_Precondition(object):
             margin_lvl = ClientProfilePage(self.driver).get_last_margin_lvl()
             open_p_l = ClientProfilePage(self.driver).get_open_p_l()
             equity_trading_funds = ClientProfilePage(self.driver).get_equity_trading_accounts()
-            ClientProfilePage(self.driver).click_link_trading_account(account_number)
+            ClientProfilePage(self.driver).click_link_trading_account(number2)
 
             equity = ClientProfilePage(self.driver).get_equity_text()
             open_p_l = ClientProfilePage(self.driver).get_open_p_l_text()
