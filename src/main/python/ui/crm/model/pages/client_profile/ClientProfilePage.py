@@ -489,6 +489,8 @@ class ClientProfilePage(CRMBasePage):
 
 
     def get_credit_in_trading_account(self):
+        sleep(20)
+        self.refresh_page()
         balance = super().wait_load_element("//*[@id='tblTradingAccountsInformation']/table/tbody/tr[7]/td[2]").text
         Logging().reportDebugStep(self, "Verify credit")
         return balance
@@ -923,9 +925,15 @@ class ClientProfilePage(CRMBasePage):
          Returns a confirmation  message if the user entered a valid password
     '''
 
-    def get_confirm_message(self):
+    def get_confirm_message_send_mail(self):
         #for_old_forex
         confirm_message = super().wait_load_element("//*[contains(text(),'Mail was sent successfully')]")
+        Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
+        return confirm_message.text
+
+    def get_confirm_message(self):
+        #for_old_forex
+        confirm_message = super().wait_load_element("//div[@class='modal-content']//div[@class='bootstrap-dialog-title']")
         Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text
 

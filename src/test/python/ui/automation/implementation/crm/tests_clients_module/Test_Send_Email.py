@@ -40,7 +40,7 @@ class SendEmailTestCRM(BaseTest):
         assert actual_email_subject == expected_email_subject
         SendEmailClientsModule(self.driver).click_edit_email_btn() \
                                            .click_send_button_clients_module()
-        confirm_message = ClientProfilePage(self.driver).get_confirm_message()
+        confirm_message = ClientProfilePage(self.driver).get_confirm_message_send_mail()
         assert confirm_message == TaskModuleConstants.EMAIL_CONFIRM_MESSAGE
         CRMBasePage(self.driver).click_ok()
         if global_var.current_brand_name == "itrader":
