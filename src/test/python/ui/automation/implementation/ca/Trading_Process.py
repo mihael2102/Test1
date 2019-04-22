@@ -12,7 +12,8 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 class TradingProcess(BaseTest):
 
     def test_trade_with_insufficient_funds(self):
-        if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "brokerz" and global_var.current_brand_name != "q8":
+        if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "brokerz" \
+                and global_var.current_brand_name != "q8":
             Trading_Precondition(self.driver, self.config).trade_with_insufficient_funds()
         elif global_var.current_brand_name == "q8":
             Logging().reportDebugStep(self, "PASS")

@@ -207,18 +207,10 @@ class Trading_Precondition(object):
                                                  LeadsModuleConstants.EMAIL]) \
                                     .enter_password(CAConstants.PASSWORD) \
                                     .click_login()
-        # CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
-        # CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                                          LeadsModuleConstants.EMAIL]) \
-        #     .enter_password(CAConstants.PASSWORD) \
-        #     .click_login()
-        # ca_balance = CAPage(self.driver).get_balance()
-        # CAPage(self.driver).click_actions_launch()
-        # avaliable_funds_int = WebTraderPage(self.driver).get_avaliable_funds()
-        # avaliable_funds_int1 = avaliable_funds_int.replace('.','')
-        # assert ca_balance.replace('.','') in avaliable_funds_int1.replace(',', '')
-        WebTraderPage(self.driver).click_select_account()\
-                                  .select_demo_account()
+        CAPage(self.driver).open_accounts_list(CAConstants.ACCOUNT_LIVE) \
+                           .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)
+        # WebTraderPage(self.driver).click_select_account()\
+        #                           .select_demo_account()
         if global_var.current_brand_name == "ptbanc":
             WebTraderPage(self.driver).ptbanc_webtrader()
         avaliable_funds = WebTraderPage(self.driver).check_avaliable_funds()
@@ -231,7 +223,7 @@ class Trading_Precondition(object):
         # assert account_value == CAConstants.ACCOUNT_VALUE
         # assert total_p_l == CAConstants.TOTAL_P_L
         # assert margin_level == CAConstants.MARGIN_LVL
-        WebTraderPage(self.driver).select_asset()
+        WebTraderPage(self.driver).select_crypto_asset()
         WebTraderPage(self.driver).select_volume_in_lot()\
                                   .click_sell()\
                                   .click_invest()

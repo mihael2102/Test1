@@ -23,8 +23,8 @@ brands:
 #  config_file: herdos.yml
 #- name: solocapitals
 #  config_file: solocapitals.yml
-#- name: tradospot
-#  config_file: tradospot.yml
+- name: tradospot
+  config_file: tradospot.yml
 #- name: jonesmutual
 #  config_file: jonesmutual.yml
 #- name: swiftcfd
@@ -41,8 +41,8 @@ brands:
 #  config_file: aztrades.yml
 #- name: brokerz
 #  config_file: brokerz.yml
-- name: q8
-  config_file: q8.yml
+#- name: q8
+#  config_file: q8.yml
 #- name: kontofx
 #  config_file: kontofx.yml
 #- name: ptbanc

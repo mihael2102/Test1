@@ -100,11 +100,11 @@ class WebTraderPage(CRMBasePage):
         Logging().reportDebugStep(self, "Check pip in right panel" + pips_right_panel.text)
         return pips_right_panel.text
 
-    def select_asset(self):
+    def select_crypto_asset(self):
         sleep(15)
         if global_var.current_brand_name == "ptbanc":
             click_select_account = self.driver.find_element(By.XPATH,
-                                                            "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/div/span")
+                                                            "//div[@class='name-pandats'][contains(text(),'Crypto')]")
             click_select_account.click()
             crypto = self.driver.find_element(By.XPATH, "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[3]/div/span")
             crypto.click()
@@ -142,7 +142,7 @@ class WebTraderPage(CRMBasePage):
 
         else:
             click_select_account = self.driver.find_element(By.XPATH,
-                                                            "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-accounts/div/div/i[2]")
+                "//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[1]/panda-forex-accounts/div/div/i[2]")
 
         click_select_account.click()
         Logging().reportDebugStep(self, "Click select account")
