@@ -110,10 +110,10 @@ tests_config:
   tests:
     - test_send_email # preconditions: convert lead
 ##
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
-  class: TransferBetweenTa
-  tests:
-    - test_transfer_between_ta  # preconditions: convert lead, deposit crm, credit in
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
+#  class: TransferBetweenTa
+#  tests:
+#    - test_transfer_between_ta  # preconditions: convert lead, deposit crm, credit in
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
 #  class: TradingAccountCrmTest
