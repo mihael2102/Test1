@@ -283,7 +283,7 @@ class TabFinancialTransaction(BaseTest):
             financial_transaction_list_page = CRMHomePage(self.driver) \
                 .open_more_list_modules() \
                 .select_financial_transactions_module_more_list(
-                FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
+                    FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
 
             # Collect data for searching
             transaction_number = financial_transaction_list_page.get_transaction_id_by_position_from_list()

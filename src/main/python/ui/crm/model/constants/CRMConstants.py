@@ -23,7 +23,7 @@ class CRMConstants(object):
     SOURCE_EDIT = "Other"
     COUNTRY_EDIT = "Albania"
     STATUS_ASSIGN = "R - New"
-    PANDAQA_ASSIGN = "pandaqa pandaqa"
+    PANDAQA_ASSIGN = "Panda Auto"
     PANDAQA_ASSIGN_CMB = "pandaqatest pandaqa"
     SHORT_EMAIL = "pandaqa+"
     SORTING_EXIST = "no"
@@ -139,7 +139,7 @@ class CRMConstants(object):
     CREATE_AFFILIATE_SUCCCESS = "Success"
     EASY_SEARCH_CLIENT_TEST = "test"
     CAMPAIGN_NAME = "TestCampaign" + str(random.randrange(1, 9999))
-    FIST_ASSIGNED_TO = "pandaqa pandaqa"
+    FIST_ASSIGNED_TO = "Panda Auto"
     START_DATE = "2019-01-09"
     START_DATE2 = "2020-02-03"
     END_DATE = "2021-12-30"

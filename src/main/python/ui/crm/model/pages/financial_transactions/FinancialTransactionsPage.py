@@ -76,8 +76,9 @@ class FinancialTransactionsPage(CRMBasePage):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
         transaction_number_element = self.driver.find_element(By.XPATH,
-                                                              "(//a[contains(text(), 'MTT')])[%s]" % position_in_list)
-        return transaction_number_element.text
+                                                        "(//a[contains(text(), 'MTT')])[%s]" % position_in_list).text
+        Logging().reportDebugStep(self, "Get existing Transaction No: " + transaction_number_element)
+        return transaction_number_element
 
     def get_client_name_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
@@ -85,25 +86,28 @@ class FinancialTransactionsPage(CRMBasePage):
         client_name_element = self.driver.find_element(By.XPATH,
                                                        global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["client_name_element"]
-                                                       % position_in_list)
-        return client_name_element.text
+                                                       % position_in_list).text
+        Logging().reportDebugStep(self, "Get existing Client Name: " + client_name_element)
+        return client_name_element
 
     def get_transaction_type_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-        transaction_type_element = self.driver.find_element(
-            By.XPATH,
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_element"]
-            % position_in_list)
-        return transaction_type_element.text
+        transaction_type_element = self.driver.find_element(By.XPATH,
+                    global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_element"]
+                    % position_in_list).text
+        Logging().reportDebugStep(self, "Get existing Transaction Type: " + transaction_type_element)
+        return transaction_type_element
 
     def get_modified_time_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
         modified_time_element = self.driver.find_element(
             By.XPATH,
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["modified_time_element"] % position_in_list)
-        return modified_time_element.text
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["modified_time_element"]
+            % position_in_list).text
+        Logging().reportDebugStep(self, "Get existing Modified Time: " + modified_time_element)
+        return modified_time_element
 
     def is_modified_time_in_search_results(self, modified_time):
 
@@ -231,6 +235,7 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text("Transaction No")
         self.__fill_search_field_with_value(transaction_id)
         self.__click_search_now_button()
+        sleep(2)
         Logging().reportDebugStep(self, "Searching for transaction ID: %s was performed" % transaction_id)
         return FinancialTransactionsPage(self.driver)
 
@@ -238,6 +243,7 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text("Client")
         self.__fill_search_field_with_value(client_name)
         self.__click_search_now_button()
+        sleep(2)
         Logging().reportDebugStep(self, "Searching for client name: %s was performed" % client_name)
         return FinancialTransactionsPage(self.driver)
 
@@ -245,6 +251,7 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text("Transaction Type")
         self.__fill_search_field_with_value(transaction_type)
         self.__click_search_now_button()
+        sleep(2)
         Logging().reportDebugStep(self, "Searching for transaction type: %s was performed" % transaction_type)
         return FinancialTransactionsPage(self.driver)
 
@@ -252,6 +259,7 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text("Created Time")
         self.__fill_search_field_with_value(modified_time)
         self.__click_search_now_button()
+        sleep(2)
         Logging().reportDebugStep(self, "Searching for modified time: %s was performed" % modified_time)
         return FinancialTransactionsPage(self.driver)
 

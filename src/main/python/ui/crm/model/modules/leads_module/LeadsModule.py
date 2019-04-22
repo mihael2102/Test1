@@ -312,10 +312,10 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Click check box Status")
         return LeadsModule(self.driver)
 
-    def mass_assign_result(self):
+    def mass_assign_result(self, user):
         sleep(4)
         mass_assign_result = self.driver.find_element(By.XPATH,
-                                                     "//div[contains(text(), 'accounts assigned to pandaqa')]")
+                                                     "//div[contains(text(), 'accounts assigned to %s')]" % user)
         btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
         btn_ok.click()
         Logging().reportDebugStep(self, "Close succsesfull result pop ups")
@@ -328,11 +328,11 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Click assign pop ups")
         return LeadsModule(self.driver)
 
-    def select_user_assign(self):
+    def select_user_assign(self, user):
         sleep(4)
-        click_mass_assign = self.driver.find_element(By.XPATH, "//div[2][contains (text(), 'pandaqa')]")
+        click_mass_assign = self.driver.find_element(By.XPATH, "//div[2][contains (text(), '%s')]" % user)
         click_mass_assign.click()
-        Logging().reportDebugStep(self, "Click user")
+        Logging().reportDebugStep(self, "Select user")
         return LeadsModule(self.driver)
 
     def input_mass_assign(self, user):

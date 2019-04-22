@@ -91,16 +91,17 @@ class TasksPage(CRMBasePage):
         tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[2]")
         tab.click()
         self.wait_crm_loading_to_finish()
-        Logging().reportDebugStep(self, "The mine tab was opened ")
+        Logging().reportDebugStep(self, "The mine tab was opened")
         return TasksPage(self.driver)
 
     def open_show_all_tab(self):
         sleep(2)
         tab = super().wait_element_to_be_clickable("//ul[@id='main-tabs']//li[1]")
         tab.click()
-        self.wait_crm_loading_to_finish()
-        sleep(2)
-        Logging().reportDebugStep(self, "The ALL tab was opened ")
+        sleep(1)
+        self.wait_crm_loading_to_finish_tasks(55)
+        sleep(1)
+        Logging().reportDebugStep(self, "The ALL tab was opened")
         return TasksPage(self.driver)
 
     def open_sms_actions_section(self):
@@ -135,9 +136,10 @@ class TasksPage(CRMBasePage):
     def search_account_name(self, first_name):
         input_account_name = super().wait_element_to_be_clickable("//*[@id='host-element']/input", timeout=10)
         input_account_name.send_keys(first_name)
-        sleep(5)
-        self.wait_crm_loading_to_finish()
-        Logging().reportDebugStep(self, "Search Account name")
+        sleep(1)
+        self.wait_crm_loading_to_finish_tasks(55)
+        sleep(1)
+        Logging().reportDebugStep(self, "Search Account name: " + first_name)
         return TasksPage(self.driver)
 
     def search_by_type(self, type):
@@ -153,7 +155,7 @@ class TasksPage(CRMBasePage):
         check_box = super().wait_element_to_be_clickable("//ss-multiselect-dropdown/div/ul/li[5]/a/input")
         check_box.click()
         sleep(2)
-        Logging().reportDebugStep(self, "Search by Type")
+        Logging().reportDebugStep(self, "Search by Type: " + type)
         return TasksPage(self.driver)
 
     def search_by_status(self, status):
@@ -174,7 +176,7 @@ class TasksPage(CRMBasePage):
             "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
         check_box.click()
         sleep(2)
-        Logging().reportDebugStep(self, "Search by status")
+        Logging().reportDebugStep(self, "Search by status: " + status)
         return TasksPage(self.driver)
 
     def get_first_type(self):

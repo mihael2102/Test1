@@ -264,21 +264,20 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).click_search_button_leads_module()
         LeadsModule(self.driver).click_check_box_all_leads()
         LeadsModule(self.driver).click_mass_assign()
-        if global_var.current_brand_name == "capitalmarketsbanc":
-            LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN_CMB)
-        else:
-            LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN)
-        LeadsModule(self.driver).select_user_assign()
+        LeadsModule(self.driver).input_mass_assign(CRMConstants.PANDAQA_ASSIGN)
+        LeadsModule(self.driver).select_user_assign(CRMConstants.PANDAQA_ASSIGN)
         LeadsModule(self.driver).click_status()
 
-        if global_var.current_brand_name == "uft" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx":
+        if global_var.current_brand_name == "uft" or global_var.current_brand_name == "gmo" or \
+                global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" \
+                or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx":
             LeadsModule(self.driver).select_status(CRMConstants.STATUS_EDIT_ITRADER)
         elif global_var.current_brand_name == "stoxmarket":
             LeadsModule(self.driver).select_status(CRMConstants.STATUS_EDIT_STOX)
         else:
             LeadsModule(self.driver).select_status(CRMConstants.STATUS_ASSIGN)
         LeadsModule(self.driver).click_assign()
-        LeadsModule(self.driver).mass_assign_result()
+        LeadsModule(self.driver).mass_assign_result(CRMConstants.PANDAQA_ASSIGN)
         i = 1
         for i in range(1, 20):
             status = LeadsModule(self.driver).check_status_leads(i)

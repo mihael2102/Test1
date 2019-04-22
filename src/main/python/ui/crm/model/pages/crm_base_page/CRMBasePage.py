@@ -75,11 +75,11 @@ class CRMBasePage(object):
 
     def perform_scroll_down(self):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        Logging().reportDebugStep(self, "Perform scroll down ")
+        Logging().reportDebugStep(self, "Perform scroll down")
 
     def perform_scroll_up(self):
         self.driver.execute_script("window.scrollTo(0, 0);")
-        Logging().reportDebugStep(self, "Perform scroll up ")
+        Logging().reportDebugStep(self, "Perform scroll up")
 
     def scroll_into_view(self, element):
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
@@ -88,7 +88,7 @@ class CRMBasePage(object):
     def click_ok(self):
         button = self.wait_load_element("//button[contains(text(),'OK')]")
         button.click()
-        Logging().reportDebugStep(self, "The Ok button was clicked ")
+        Logging().reportDebugStep(self, "The Ok button was clicked")
 
     def wait_crm_loading_to_finish(self):
         self.wait_element_to_be_disappear("//div[@class='loader']")
