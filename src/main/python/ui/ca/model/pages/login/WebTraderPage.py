@@ -100,7 +100,7 @@ class WebTraderPage(CRMBasePage):
         Logging().reportDebugStep(self, "Check pip in right panel" + pips_right_panel.text)
         return pips_right_panel.text
 
-    def select_crypto_asset(self):
+    def select_asset(self):
         sleep(15)
         if global_var.current_brand_name == "ptbanc":
             click_select_account = self.driver.find_element(By.XPATH,

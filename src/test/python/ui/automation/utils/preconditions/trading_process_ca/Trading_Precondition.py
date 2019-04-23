@@ -223,7 +223,7 @@ class Trading_Precondition(object):
         # assert account_value == CAConstants.ACCOUNT_VALUE
         # assert total_p_l == CAConstants.TOTAL_P_L
         # assert margin_level == CAConstants.MARGIN_LVL
-        WebTraderPage(self.driver).select_crypto_asset()
+        WebTraderPage(self.driver).select_asset()
         WebTraderPage(self.driver).select_volume_in_lot()\
                                   .click_sell()\
                                   .click_invest()
