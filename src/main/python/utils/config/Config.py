@@ -1,5 +1,3 @@
-from requests import get
-
 test = "Old forex job 1"
 timeout = 4
 data = None
@@ -12,10 +10,8 @@ counter = 1
 logger = None
 handler = None
 
-ip = get('https://api.ipify.org').text
-print('My public IP address is: {}'.format(ip))
 
-if ip == '35.158.30.212':
+try:
     chrome_driver = "D:/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
-elif ip == '35.158.90.50':
+except:
     chrome_driver = "C:/Users/Panda102/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
