@@ -25,3 +25,6 @@ class DocumentModuleConstants(object):
     THIRD_COLUMN = "third_column"
     FOURTH_COLUMN = "fourth_column"
     FOURTH_COLUMN_TEXT = "Assigned To"
+    ROW_NUMBER = "1"
+    ROW_NUMBER3 = "3"
+    DOCUMENT_TYPE = "Other"

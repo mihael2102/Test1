@@ -50,7 +50,7 @@ class CRMHomePage(CRMBasePage):
         hover_mouse.perform()
         return CRMHomePage(self.driver)
 
-    def select_document_module_more_list(self, module):
+    def select_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The document module was opened")

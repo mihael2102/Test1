@@ -17,7 +17,7 @@ class TabDocumentModule(BaseTest):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
         document_module = CRMHomePage().open_more_list_modules() \
-            .select_document_module_more_list(DocumentModuleConstants.DOCUMENT)
+            .select_module_more_list(DocumentModuleConstants.DOCUMENT)
 
         all_tab_name = document_module.get_all_tab_text()
         approved_tab_name = document_module.get_approved_tab_name_text()

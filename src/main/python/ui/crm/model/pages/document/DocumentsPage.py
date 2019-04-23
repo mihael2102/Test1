@@ -14,9 +14,6 @@ import os
 
 class DocumentsPage(CRMBasePage):
 
-    # def __init__(self):
-    #     super().__init__()
-
     def open_create_filter_pop_up(self):
         element = super().wait_element_to_be_clickable("//a[contains(text(),'Create Filter')]")
         self.driver.execute_script("arguments[0].click();", element)
@@ -74,7 +71,6 @@ class DocumentsPage(CRMBasePage):
         expiry_date.send_keys(date)
         Logging().reportDebugStep(self, "Fill date")
         return DocumentsPage()
-
 
     def attached_to(self, client_attached):
         user_attached = self.driver.find_element(By.XPATH, "//*[@id='upload_document']/div[2]/div[1]/div/div/img[1]")
@@ -223,8 +219,10 @@ class DocumentsPage(CRMBasePage):
         return DocumentsPage(self.driver)
 
     def search_document_module(self):
+        sleep(1)
         button_search = super().wait_element_to_be_clickable("//input[@id='tks_searchbutton']")
         button_search.click()
+        sleep(2)
         Logging().reportDebugStep(self, "Click Search")
         return DocumentsPage(self.driver)
 
@@ -250,4 +248,35 @@ class DocumentsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Get link from document details page")
         return field_status
 
+    def get_document_no_from_listview(self, row):
+        document_no = super().wait_load_element("(//*[contains(@id,'row_')]//a[contains(text(),'DOC')])[%s]" % row).text
+        Logging().reportDebugStep(self, "Return Document No: " + document_no)
+        return document_no
 
+    def get_document_type_from_listview(self, doc_type, row):
+        document_type = super().wait_load_element("(//*[contains(@id,'row_')]//td[contains(text(),'%s')])[%s]"
+                                                  % (doc_type, row)).text
+        Logging().reportDebugStep(self, "Return Document Type: " + document_type)
+        return document_type
+
+    def get_modified_time_from_listview(self, row):
+        modified_time = super().wait_load_element("(//*[contains(@id,'row_')]//td[contains(text(),':')])[%s]"
+                                                  % row).text
+        Logging().reportDebugStep(self, "Return Modified Time: " + modified_time)
+        return modified_time
+
+    def enter_document_no_listview(self, doc_no):
+        document_no_search_field = super().wait_element_to_be_clickable("//*[@id='tks_note_no']")
+        document_no_search_field.clear()
+        document_no_search_field.send_keys(doc_no)
+        Logging().reportDebugStep(self, "Enter Document No: " + doc_no + "for search in list view")
+        return DocumentsPage(self.driver)
+
+    def enter_document_type_listview(self, doc_type):
+        select = Select(self.driver.find_element_by_xpath("//*[@id='tks_document_types']"))
+        select.select_by_visible_text(doc_type)
+        # document_type_search_field = super().wait_element_to_be_clickable("//*[@id='tks_note_no']")
+        # document_type_search_field.clear()
+        # document_type_search_field.send_keys(doc_type)
+        Logging().reportDebugStep(self, "Enter Document Type: " + doc_type + "for search in list view")
+        return DocumentsPage(self.driver)
