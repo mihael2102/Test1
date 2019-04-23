@@ -40,59 +40,6 @@ class TransferBetweenPrecondition(object):
         sleep(2)
 
         crm_client_profile = ClientProfilePage(self.driver)
-        # crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
-        #
-        # if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "newforexstaging"):
-        #     MT4CreateAccountModule(self.driver) \
-        #         .create_account(
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-        #                               TestDataConstants.TRADING_LEVERAGE_LIVE_1_200)) \
-        #         .click_ok()
-        #
-        # elif (global_var.current_brand_name == "q8"):
-        #     MT4CreateAccountModule(self.driver) \
-        #         .create_account_with_platform(
-        #         self.config.get_value(TestDataConstants.TRADING_PLATFORMS, TestDataConstants.TRADING_PLATFORM_MT4),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-        #                               TestDataConstants.TRADING_LEVERAGE_LIVE_1_200)) \
-        #         .click_ok()
-        #
-        # elif (global_var.current_brand_name == "axa_markets"):
-        #     MT4CreateAccountModule(self.driver) \
-        #         .create_account(
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400)) \
-        #         .click_ok()
-        #
-        # elif (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "optionstars") or (
-        #         global_var.current_brand_name == "gxfx") or (global_var.current_brand_name == "b-traderfx") \
-        #         or (global_var.current_brand_name == "kontofx") or (global_var.current_brand_name == "uprofx") or (
-        #         global_var.current_brand_name == "safemarkets"):
-        #     MT4CreateAccountModule(self.driver) \
-        #         .create_account(
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY_EUR),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_EUR),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-        #                               TestDataConstants.TRADING_LEVERAGE_LIVE_1_200)) \
-        #         .click_ok()
-        #
-        # else:
-        #     MT4CreateAccountModule(self.driver) \
-        #         .create_account(
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
-        #         .click_ok()
 
         ClientProfilePage(self.driver).click_trading_accounts_tab() \
                                       .open_trading_accounts_tab()

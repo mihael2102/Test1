@@ -58,6 +58,10 @@ class CRMBasePage(object):
         return WebDriverWait(self.driver, timeout).until(
             EC.invisibility_of_element_located((By.XPATH, element)))
 
+    def wait_element_to_be_disappear_custom(self, element, timeout):
+        return WebDriverWait(self.driver, timeout).until(
+            EC.invisibility_of_element_located((By.XPATH, element)))
+
     def perform_scroll(self, parameter):
         self.driver.execute_script("scroll(0, '%s');" % parameter)
         Logging().reportDebugStep(self, "Scroll was performed ")
@@ -70,7 +74,7 @@ class CRMBasePage(object):
         sleep(11)
         self.driver.refresh()
         sleep(1)
-        self.wait_crm_loading_to_finish_tasks(85)
+        self.wait_crm_loading_to_finish_tasks(95)
         Logging().reportDebugStep(self, "The page is refreshed")
 
     def perform_scroll_down(self):

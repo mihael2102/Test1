@@ -253,9 +253,9 @@ class LeadPrecondition(object):
 
     def mass_assign_leads(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
+                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                                            self.config.get_value(TestDataConstants.OTP_SECRET))
 
         CRMHomePage(self.driver).open_lead_module()
         LeadsModule(self.driver).select_filter(

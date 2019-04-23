@@ -414,13 +414,13 @@ class MyDashboardPage(CRMBasePage):
         except:
             self.driver.execute_script("arguments[0].click();", select_show_all_tab)
         sleep(2)
-        self.wait_crm_loading_to_finish_tasks(65)
+        self.wait_crm_loading_to_finish_tasks(75)
         Logging().reportDebugStep(self, "Select show all tab")
         return MyDashboardPage(self.driver)
 
     def enter_account_name(self, testqa):
         sleep(5)
-        input = self.driver.find_element_by_xpath("//*[@id='host-element']/input")
+        input = super().wait_load_element("//*[@id='host-element']/input")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         sleep(1)
         input.send_keys(testqa)

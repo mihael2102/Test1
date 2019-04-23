@@ -341,8 +341,10 @@ class LeadModuleTest(BaseTest):
 
         self.assertEqual(first_name, lead_data[LeadsModuleConstants.FIRST_NAME])
         self.assertEqual(last_name, lead_data[LeadsModuleConstants.FIRST_LAST_NAME])
-        self.assertEqual(mobile, lead_data[LeadsModuleConstants.FIRST_MOBILE])
-        self.assertEqual(fax, lead_data[LeadsModuleConstants.FAX])
+        if global_var.current_brand_name != "kontofx":
+            self.assertEqual(mobile, lead_data[LeadsModuleConstants.FIRST_MOBILE])
+            self.assertEqual(fax, lead_data[LeadsModuleConstants.FAX])
+            self.assertEqual(phone, lead_data[LeadsModuleConstants.PHONE])
         self.assertEqual(email, lead_data[LeadsModuleConstants.EMAIL])
         self.assertEqual(secondary_email, lead_data[LeadsModuleConstants.SECONDARY_EMAIL])
         if global_var.current_brand_name != "marketsplus":
@@ -355,7 +357,6 @@ class LeadModuleTest(BaseTest):
         self.assertEqual(postal_code, lead_data[LeadsModuleConstants.POSTAL_CODE])
         self.assertEqual(country, lead_data[LeadsModuleConstants.FIRST_COUNTRY])
         self.assertEqual(description, lead_data[LeadsModuleConstants.FIRST_DESCRIPTION])
-        self.assertEqual(phone, lead_data[LeadsModuleConstants.PHONE])
         self.assertEqual(tittle, lead_data[LeadsModuleConstants.FIRST_TITTLE])
         if global_var.current_brand_name != "marketsplus":
             self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])

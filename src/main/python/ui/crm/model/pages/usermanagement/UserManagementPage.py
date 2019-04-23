@@ -140,7 +140,7 @@ class UserManagementPage(CRMBasePage):
         btn = super().wait_element_to_be_clickable("//button[contains(text(),'Delete')]")
         btn.click()
         sleep(2)
-        self.wait_element_to_be_disappear("//button[contains(text(),'Delete')]", 60)
+        self.wait_element_to_be_disappear_custom("//button[contains(text(),'Delete')]", 75)
         Logging().reportDebugStep(self, "The Delete Confirmation button was clicked")
         return UserManagementPage(self.driver)
 
