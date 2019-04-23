@@ -57,7 +57,7 @@ CAPage:
   citizenship: "//custom-select[@name='citizenship']//span[text()='%s']"
   edit_first_name: "//input[@name='firstName']"
   get_first_name: "//input[@name='firstName']"
-  click_close: "//*[@id='Top_bar']/div/div/div/div[2]/panda-forex-client-area/div/div/client-area-popup/div/div[2]/div[1]/a/i"
+  click_close: "//panda-forex-client-area/div/div/client-area-popup/div/div[2]/div[1]/a/i"
 WebTraderPage:
   avaliable_funds: "//panda-forex-account-status/div/ul/li[1]/div[1]"
   used_funds: "//panda-forex-account-status/div/ul/li[2]/div[1]"

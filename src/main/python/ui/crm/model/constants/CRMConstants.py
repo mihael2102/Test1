@@ -5,13 +5,17 @@ import string
 
 
 class CRMConstants(object):
+    ASSET_M = "BTCUSD.m"
+    ASSET = "BTCUSD"
+    VOLUME_FUNDS = "1"
+    VOLUME_INSUFFICIENT_FUNDS = "10"
     INSUFFICIENT_FUNDS = "Insufficient Funds"
     PIPS_CONTAINS = "-€"
     STOP_LOSS = "100"
     SYMBOL_TRANSACTIONS = "BTCGBP.m"
     SIZE_TRANSACTIONS = "0.1"
     TYPE_TRANSACTIONS = "BUY"
-    ORDER = "Order"
+    ORDER = "Order Successful"
     WELCOME_TO = "Welcome to "
     SECOND_COUNTRY = "country_two"
     PHONE = "Phone"

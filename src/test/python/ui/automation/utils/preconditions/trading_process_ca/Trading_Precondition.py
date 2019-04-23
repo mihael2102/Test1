@@ -79,8 +79,8 @@ class Trading_Precondition(object):
             CAPage(self.driver).click_close_client_area()
             WebTraderPage(self.driver).click_select_account() \
                 .select_demo_account_by_number(number2)
-            WebTraderPage(self.driver).select_asset()
-            WebTraderPage(self.driver).select_volume_in_lot()
+            WebTraderPage(self.driver).select_asset(CRMConstants.ASSET_M)
+            WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_FUNDS)
             pips_right_panel = WebTraderPage(self.driver).check_pips_right_panel()
             WebTraderPage(self.driver).click_sell()
             WebTraderPage(self.driver).click_invest()
@@ -145,13 +145,13 @@ class Trading_Precondition(object):
             if global_var.current_brand_name == "ptbanc":
                 WebTraderPage(self.driver).ptbanc_webtrader()
 
-            WebTraderPage(self.driver).select_asset()
-            WebTraderPage(self.driver).select_volume_in_lot()
+            WebTraderPage(self.driver).select_asset(CRMConstants.ASSET_M)
+            WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_FUNDS)
             pips_right_panel = WebTraderPage(self.driver).check_pips_right_panel()
             WebTraderPage(self.driver).click_sell()
             WebTraderPage(self.driver).click_invest()
-            order = WebTraderPage(self.driver).get_msg_succsessfull_order()
-            assert CRMConstants.ORDER in order
+            # order = WebTraderPage(self.driver).get_msg_succsessfull_order()
+            # assert CRMConstants.ORDER in order
 
             avaliable_funds_number = WebTraderPage(self.driver).check_avaliable_funds_number()
             used_funds_number = WebTraderPage(self.driver).check_used_funds_number()
@@ -195,8 +195,8 @@ class Trading_Precondition(object):
                 margin_lvl.replace('%', '').replace(',', ''))
 
             assert -5000 <= result <= 5000
-            assert -10 <= result1 <= 10
-            assert -10 <= result2 <= 10
+            assert -100 <= result1 <= 100
+            assert -100 <= result2 <= 100
 
     def trade_with_insufficient_funds(self):
 
@@ -223,14 +223,16 @@ class Trading_Precondition(object):
         # assert account_value == CAConstants.ACCOUNT_VALUE
         # assert total_p_l == CAConstants.TOTAL_P_L
         # assert margin_level == CAConstants.MARGIN_LVL
-        WebTraderPage(self.driver).select_asset()
-        WebTraderPage(self.driver).select_volume_in_lot()\
+        WebTraderPage(self.driver).select_asset(CRMConstants.ASSET)
+        WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_INSUFFICIENT_FUNDS)\
                                   .click_sell()\
                                   .click_invest()
-        order = WebTraderPage(self.driver).get_msg_succsessfull_order()
+        # order = WebTraderPage(self.driver).get_msg_succsessfull_order()
 
-        assert CRMConstants.ORDER in order
+        # assert CRMConstants.ORDER in order
 
+        insufficient_funds = WebTraderPage(self.driver).get_msg_insufficient_funds()
+        assert insufficient_funds == CRMConstants.INSUFFICIENT_FUNDS
 
 
     def open_order_buy_sell(self):
@@ -253,20 +255,20 @@ class Trading_Precondition(object):
         #     .select_demo_account()
         if global_var.current_brand_name == "ptbanc":
             WebTraderPage(self.driver).ptbanc_webtrader()
-        WebTraderPage(self.driver).select_asset()
-        WebTraderPage(self.driver).select_volume_in_lot() \
+        WebTraderPage(self.driver).select_asset(CRMConstants.ASSET_M)
+        WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_FUNDS) \
             .click_sell() \
             .click_invest()
         order = WebTraderPage(self.driver).get_msg_succsessfull_order()
 
 
         assert CRMConstants.ORDER in order
-        WebTraderPage(self.driver).choose_asset()
-        WebTraderPage(self.driver).select_volume_in_lot() \
+        WebTraderPage(self.driver).choose_asset(CRMConstants.ASSET_M)
+        WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_FUNDS) \
             .click_buy() \
             .click_invest()
         order = WebTraderPage(self.driver).get_msg_succsessfull_order()
-        assert CRMConstants.ORDER in order
+
 
 
 
@@ -317,7 +319,7 @@ class Trading_Precondition(object):
         result = int(v3) - int(e2)
 
         assert -5000 <= result <= 5000
-
+        assert CRMConstants.ORDER in order
 
 
 
