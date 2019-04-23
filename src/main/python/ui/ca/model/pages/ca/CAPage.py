@@ -42,7 +42,10 @@ class CAPage(CRMBasePage):
 
     def click_actions_launch(self):
         sleep(5)
-        button = self.driver.find_element(By.XPATH, "//button[contains(text(), 'LAUNCH')]")
+        try:
+            button = self.driver.find_element(By.XPATH, "//button[contains(text(), 'LAUNCH')]")
+        except:
+            button = self.driver.find_element(By.XPATH, "//tbody[@id='PracticeAccountListBody']//button[contains(text(), 'FOREX')]")
         button.click()
         Logging().reportDebugStep(self, "Click LAUNCH")
         return CAPage(self.driver)

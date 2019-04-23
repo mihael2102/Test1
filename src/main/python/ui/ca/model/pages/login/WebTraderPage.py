@@ -86,22 +86,31 @@ class WebTraderPage(CRMBasePage):
         Logging().reportDebugStep(self, "Check pip in right panel" + pips_right_panel.text)
         return pips_right_panel.text
 
-    def select_asset(self):
-        sleep(10)
+    def change_windows(self):
         window_after = self.driver.window_handles[1]
         self.driver.switch_to_window(window_after)
+        return WebTraderPage(self.driver)
+
+    def select_asset(self, asset):
+        sleep(10)
+
         sleep(5)
         if global_var.current_brand_name != "brokerxp":
-            forex = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/div/span")
+            forex = self.driver.find_element(By.XPATH,
+                                             "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/div/span")
             forex.click()
-            crypto = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/div/span")
+            crypto = self.driver.find_element(By.XPATH,
+                                              "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/div/span")
             crypto.click()
         sleep(5)
         try:
-            click_select_account = self.driver.find_element(By.XPATH,"//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/ul/li[2]/asset-item/div/div[2][contains(text(), 'BTCUSD')]")
+            click_select_account = self.driver.find_element(By.XPATH,"//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/ul/li/asset-item/div/div[2][(text() = '" + asset + "')]")
         except:
-            click_select_account = self.driver.find_element(By.XPATH, "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/ul/li[2]/asset-item/div/div[2][contains(text(), 'BTCUSD')]")
-        click_select_account.click()
+            click_select_account = self.driver.find_element(By.XPATH, "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/ul/li/asset-item/div/div[2][(text() = '" + asset + "')]")
+        try:
+            click_select_account.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", click_select_account)
         Logging().reportDebugStep(self, "Click select account")
         return WebTraderPage(self.driver)
 
@@ -114,16 +123,16 @@ class WebTraderPage(CRMBasePage):
         Logging().reportDebugStep(self, "Choose a different asset from the list to the left")
         return WebTraderPage(self.driver)
 
-    def choose_asset(self):
+    def choose_asset(self, asset):
         forex = self.driver.find_element(By.XPATH,
-                                         "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/div/span")
+                                         "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[2]/div/span")
         forex.click()
         crypto = self.driver.find_element(By.XPATH,
-                                          "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/div/span")
+                                          "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/div/span")
         crypto.click()
         sleep(5)
         click_select_account = self.driver.find_element(By.XPATH,
-                                                        "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/ul/li[2]/asset-item/div/div[2][contains(text(), 'BTCUSD')]")
+                                                        "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/ul/li/asset-item/div/div[2][(text() = '" + asset + "')]")
         try:
             click_select_account.click()
         except:

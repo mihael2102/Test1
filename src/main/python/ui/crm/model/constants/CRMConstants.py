@@ -4,13 +4,15 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    ASSET_M = "BTCUSD.m"
+    ASSET = "BTCUSD"
     VOLUME_FUNDS = "1"
     VOLUME_INSUFFICIENT_FUNDS = "10"
     INSUFFICIENT_FUNDS = "Insufficient Funds"
     PIPS_CONTAINS = "-€"
     STOP_LOSS = "100"
     SYMBOL_TRANSACTIONS = "BTCUSD"
-    SIZE_TRANSACTIONS = "0.12"
+    SIZE_TRANSACTIONS = "1"
     TYPE_TRANSACTIONS = "SELL"
     ORDER = "Order"
     WELCOME_TO = "Welcome to "
