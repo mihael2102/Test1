@@ -10,6 +10,13 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class WebTraderPage(CRMBasePage):
 
+    def get_msg_insufficient_funds(self):
+        sleep(1)
+        insufficient_funds = self.driver.find_element(By.XPATH,
+                                                      "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div[1]/form/div[6]/div[2]/div[2]").text
+        Logging().reportDebugStep(self, "Check message")
+        return insufficient_funds
+
     def check_hight_low(self):
         sleep(3)
         check_stop_loss_in_table = self.driver.find_element(By.XPATH,
@@ -117,7 +124,10 @@ class WebTraderPage(CRMBasePage):
         sleep(5)
         click_select_account = self.driver.find_element(By.XPATH,
                                                         "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/perfect-scrollbar/div[1]/ul/li[3]/ul/li[2]/asset-item/div/div[2][contains(text(), 'BTCUSD')]")
-        click_select_account.click()
+        try:
+            click_select_account.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", click_select_account)
         # sleep(3)
         # btn_deposit = self.driver.find_element(By.XPATH,"//*[@id='Content']/div/div/div/div[1]/div/div/div/div/div/div/div[2]/panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li[25]/asset-item/div/div[2][contains(text(), 'BTCGBP.m')]")
         # btn_deposit.click()
@@ -148,17 +158,18 @@ class WebTraderPage(CRMBasePage):
         Logging().reportDebugStep(self, "Check message")
         return succsessfull_order
 
-    def select_volume_in_lot(self):
-        sleep(3)
-        # window_after = self.driver.window_handles[1]
-        # self.driver.switch_to_window(window_after)
-        sleep(3)
+    def select_volume_in_lot(self, volume):
+        sleep(10)
+        window_after = self.driver.window_handles[1]
+        self.driver.switch_to_window(window_after)
+
         select_volume = self.driver.find_element(By.XPATH, "//*[@id='platform']/panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div[1]/form/div[1]/div[2]/input")
         if global_var.current_brand_name == "brokerxp":
             select_volume.clear()
-            select_volume.send_keys("1")
+            select_volume.send_keys(volume)
         else:
-            select_volume.send_keys("2")
+            select_volume.clear()
+            select_volume.send_keys(volume)
         Logging().reportDebugStep(self, "Select volume in lot")
         return WebTraderPage(self.driver)
 

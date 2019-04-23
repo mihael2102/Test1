@@ -52,7 +52,7 @@ class Trading_Precondition(object):
             CAPage(self.driver).finish_button()
             CAPage(self.driver).click_actions_launch_by_account(account_number)
             WebTraderPage(self.driver).select_asset()
-            WebTraderPage(self.driver).select_volume_in_lot()
+            WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_FUNDS)
             pips_right_panel = WebTraderPage(self.driver).check_pips_right_panel()
             WebTraderPage(self.driver).click_sell()
             WebTraderPage(self.driver).click_invest()
@@ -88,7 +88,7 @@ class Trading_Precondition(object):
             CAPage(self.driver).finish_button()
             CAPage(self.driver).click_actions_launch_by_account(account_number)
             WebTraderPage(self.driver).select_asset()
-            WebTraderPage(self.driver).select_volume_in_lot()
+            WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_FUNDS)
             pips_right_panel = WebTraderPage(self.driver).check_pips_right_panel()
             WebTraderPage(self.driver).click_sell()
             WebTraderPage(self.driver).click_invest()
@@ -167,11 +167,13 @@ class Trading_Precondition(object):
         assert total_p_l == CAConstants.TOTAL_P_L
         assert margin_level == CAConstants.MARGIN_LVL
         WebTraderPage(self.driver).select_asset()
-        WebTraderPage(self.driver).select_volume_in_lot()\
+        WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_INSUFFICIENT_FUNDS)\
                                   .click_sell()\
                                   .click_invest()
-        order = WebTraderPage(self.driver).get_msg_succsessfull_order()
-        assert CRMConstants.ORDER in order
+        insufficient_funds = WebTraderPage(self.driver).get_msg_insufficient_funds()
+        assert insufficient_funds == CRMConstants.INSUFFICIENT_FUNDS
+        # order = WebTraderPage(self.driver).get_msg_succsessfull_order()
+        # assert CRMConstants.ORDER in order
 
 
     def open_order_buy_sell(self):
@@ -184,13 +186,13 @@ class Trading_Precondition(object):
         CAPage(self.driver).click_actions_launch()
 
 
-        WebTraderPage(self.driver).select_volume_in_lot() \
+        WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_FUNDS) \
             .click_sell() \
             .click_invest()
         order = WebTraderPage(self.driver).get_msg_succsessfull_order()
         assert CRMConstants.ORDER in order
         WebTraderPage(self.driver).choose_asset()
-        WebTraderPage(self.driver).select_volume_in_lot() \
+        WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_FUNDS) \
             .click_buy() \
             .click_invest()
         order = WebTraderPage(self.driver).get_msg_succsessfull_order()
