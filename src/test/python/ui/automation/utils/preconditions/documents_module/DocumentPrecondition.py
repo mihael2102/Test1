@@ -73,16 +73,22 @@ class DocumentPrecondition(object):
         document = DocumentsPage(self.driver)
         #get document's params
         document_number = document.get_document_no_from_listview(DocumentModuleConstants.ROW_NUMBER3)
-        document_type = document.get_document_type_from_listview(DocumentModuleConstants.DOCUMENT_TYPE,
-                                                                 DocumentModuleConstants.ROW_NUMBER)
+        document_type = document.get_document_type_from_listview(DocumentModuleConstants.ROW_NUMBER2)
         modified_time = document.get_modified_time_from_listview(DocumentModuleConstants.ROW_NUMBER3)
 
         #search by Document's list view
         actual_doc_no = document.enter_document_no_listview(document_number) \
                                 .search_document_module() \
                                 .get_document_no_from_listview(DocumentModuleConstants.ROW_NUMBER)
-        assert document_number == actual_doc_no
-        actual_document_type = document.enter_document_type_listview(document_type)
+        document.compare_data(DocumentModuleConstants.DATA_TYPE_DOC_NO, document_number, actual_doc_no)
 
+        document.clear_filter() \
+                .select_document_type_listview(document_type) \
+                .search_document_module() \
+                .global_data_checker(DocumentModuleConstants.DATA_TYPE_DOC_TYPE, document_type)
+        # document.compare_data(DocumentModuleConstants.DATA_TYPE_DOC_TYPE, document_type, actual_document_type)
 
-
+        document.clear_filter() \
+                .select_doc_modified_time(modified_time) \
+                .search_document_module() \
+                .global_data_checker(DocumentModuleConstants.DATA_TYPE_MODIFIED_TIME, modified_time)

@@ -253,15 +253,15 @@ class DocumentsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Return Document No: " + document_no)
         return document_no
 
-    def get_document_type_from_listview(self, doc_type, row):
-        document_type = super().wait_load_element("(//*[contains(@id,'row_')]//td[contains(text(),'%s')])[%s]"
-                                                  % (doc_type, row)).text
+    def get_document_type_from_listview(self, row):
+        document_type = super().wait_load_element("(//*[contains(@id,'row_')]/td[3])[%s]" % row).text
         Logging().reportDebugStep(self, "Return Document Type: " + document_type)
         return document_type
 
     def get_modified_time_from_listview(self, row):
-        modified_time = super().wait_load_element("(//*[contains(@id,'row_')]//td[contains(text(),':')])[%s]"
+        modified_date_time = super().wait_load_element("(//*[contains(@id,'row_')]//td[contains(text(),':')])[%s]"
                                                   % row).text
+        modified_time = modified_date_time.split(" ")[0]
         Logging().reportDebugStep(self, "Return Modified Time: " + modified_time)
         return modified_time
 
@@ -272,11 +272,51 @@ class DocumentsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Enter Document No: " + doc_no + "for search in list view")
         return DocumentsPage(self.driver)
 
-    def enter_document_type_listview(self, doc_type):
-        select = Select(self.driver.find_element_by_xpath("//*[@id='tks_document_types']"))
-        select.select_by_visible_text(doc_type)
-        # document_type_search_field = super().wait_element_to_be_clickable("//*[@id='tks_note_no']")
-        # document_type_search_field.clear()
-        # document_type_search_field.send_keys(doc_type)
-        Logging().reportDebugStep(self, "Enter Document Type: " + doc_type + "for search in list view")
+    def select_document_type_listview(self, doc_type):
+        doc_type_field = super().wait_element_to_be_clickable \
+            ("//*[@id='customAdvanceSearch']/td[3]/div/div[1]/button/span")
+        doc_type_field.click()
+        document_type_search_field = super().wait_element_to_be_clickable \
+            ("//*[@id='customAdvanceSearch']/td[3]/div/div[1]/ul/li[1]/div/input")
+        document_type_search_field.clear()
+        document_type_search_field.send_keys(doc_type)
+        sleep(1)
+        document_type = super().wait_element_to_be_clickable \
+            ("//li/a/label[@class='checkbox'][contains(text(),'%s')]" % doc_type)
+        document_type.click()
+        Logging().reportDebugStep(self, "Enter Document Type: " + doc_type + " for search in list view")
+        return DocumentsPage(self.driver)
+
+    def clear_filter(self):
+        x_btn = super().wait_element_to_be_clickable\
+            ("//*[@id='clearFilter'][@class='glyphicons circle_remove clearFilter red']")
+        x_btn.click()
+        sleep(1)
+        self.wait_element_to_be_disappear_custom\
+            ("//*[@id='clearFilter'][@class='glyphicons circle_remove clearFilter red']", 35)
+        Logging().reportDebugStep(self, "Click Clear Filter button")
+        return DocumentsPage(self.driver)
+
+    def compare_data(self, type_of_data, data1, data2):
+        assert data1 == data2
+        Logging().reportDebugStep(self, type_of_data + " is verified")
+        return DocumentsPage(self.driver)
+
+    def select_doc_modified_time(self, mod_time):
+        modified_time_field = super().wait_element_to_be_clickable("//*[@id='jscal_field_modifiedtime_date1']")
+        modified_time_field.clear()
+        modified_time_field.send_keys(mod_time)
+        sleep(1)
+        apply_btn = super().wait_element_to_be_clickable("/html/body/div[17]/div[3]/div/button[1]")
+        apply_btn.click()
+        Logging().reportDebugStep(self, "Selected Modified Time is: " + mod_time)
+        return DocumentsPage(self.driver)
+
+    def global_data_checker(self, type_of_data, data):
+        table = self.driver.find_element_by_xpath("//*[@id='listBody']")
+        row_count = 0
+        for tr in table.find_elements_by_tag_name("tr"):
+            assert data in tr.text
+            row_count += 1
+        Logging().reportDebugStep(self, type_of_data + " is verified in " + str(row_count) + " rows")
         return DocumentsPage(self.driver)
