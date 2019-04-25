@@ -377,11 +377,20 @@ class ClientsPage(CRMBasePage):
     def select_three_records_clients_module(self):
         sleep(2)
         first_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[1]")
-        first_check_box.click()
+        try:
+            first_check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", first_check_box)
         second_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[2]//td[1]")
-        second_check_box.click()
+        try:
+            second_check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", second_check_box)
         third_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[3]//td[1]")
-        third_check_box.click()
+        try:
+            third_check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", third_check_box)
         Logging().reportDebugStep(self, "The three records were selected")
         return ClientsPage(self.driver)
 
@@ -399,6 +408,7 @@ class ClientsPage(CRMBasePage):
         return SendEmailClientsModule(self.driver)
 
     def open_mass_edit_module(self):
+        sleep(8)
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass Edit']")
         mass_edit_module.click()
         Logging().reportDebugStep(self, "The mass edit module was opened")

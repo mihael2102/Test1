@@ -60,7 +60,7 @@ class CRMConstants(object):
     SECOND_COUNTRY = "country_two"
     PHONE = "Phone"
     SEND_SMS_MESSAGE = "Message was sent successfully"
-    MASS_ASSIGN_MESSAGE = "3 accounts assigned to Panda Support"
+    MASS_ASSIGN_MESSAGE = "3 accounts assigned to Panda Auto"
     CONVERT_SUCCESSFUL_MESSAGE = "Account created successfully"
     FIRST_COLUMN = "first_column"
     SECOND_COLUMN = "second_column"

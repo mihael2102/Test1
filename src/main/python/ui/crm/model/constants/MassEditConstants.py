@@ -1,5 +1,5 @@
 class MassEditConstants(object):
-    USER_ONE = "Panda Support"
+    USER_ONE = "Panda Auto"
     DEPARTMENT_OTHER = "0"
     GENDER_MALE = "gender_male"
     GENDER_FEMALE = "gender_female"
