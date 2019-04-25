@@ -25,7 +25,7 @@ class CRMConstants(object):
     STATUS_ASSIGN = "R - New"
     PANDAQA_ASSIGN = "Panda Auto"
     PANDAQA_ASSIGN_CMB = "pandaqatest pandaqa"
-    SHORT_EMAIL = "pandaqa+"
+    SHORT_EMAIL = "panda"
     SORTING_EXIST = "no"
     SORTING_LEAD_NO = 1
     SORTING_EMAIL = 1
@@ -33,7 +33,7 @@ class CRMConstants(object):
     PHONE = "Phone"
     SEND_SMS = "Send SMS to "
     SEND_SMS_MESSAGE = "Message was sent successfully"
-    MASS_ASSIGN_MESSAGE = "3 accounts assigned to Panda Support"
+    MASS_ASSIGN_MESSAGE = "3 accounts assigned to Panda Auto"
     CONVERT_SUCCESSFUL_MESSAGE = "Account created successfully"
     FIRST_COLUMN = "first_column"
     SECOND_COLUMN = "second_column"

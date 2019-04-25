@@ -46,15 +46,23 @@ class ClientsPage(CRMBasePage):
     '''
 
     def select_filter(self, test_filter):
+        sleep(5)
         drop_down_filter = super().wait_load_element("//span[@class='filter-option pull-left']")
-        drop_down_filter.click()
+        try:
+            drop_down_filter.click()
+        except:
+            self.driver.execute_script("arguments[0].scrollIntoView();", drop_down_filter)
+            self.driver.execute_script("arguments[0].click();", drop_down_filter)
         Logging().reportDebugStep(self, "Click the  drop down filter ")
         field_found = self.driver.find_element(By.XPATH, "//input[@class='input-block-level form-control']")
         field_found.clear()
         field_found.send_keys(test_filter)
         Logging().reportDebugStep(self, "The field found is : " + test_filter)
         select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
-        select_test_filter.click()
+        try:
+            select_test_filter.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", select_test_filter)
         Logging().reportDebugStep(self, "Click the selected filter")
         self.wait_crm_loading_to_finish()
         return ClientsPage(self.driver)
@@ -387,8 +395,13 @@ class ClientsPage(CRMBasePage):
         return SendEmailClientsModule(self.driver)
 
     def open_mass_edit_module(self):
+        sleep(10)
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass Edit']")
-        mass_edit_module.click()
+        self.driver.execute_script("arguments[0].scrollIntoView();", mass_edit_module)
+        try:
+            mass_edit_module.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", mass_edit_module)
         Logging().reportDebugStep(self, "The mass edit module was opened")
         return MassEditClientsModule(self.driver)
 
@@ -402,8 +415,12 @@ class ClientsPage(CRMBasePage):
         return confirm_message.text
 
     def open_mass_assign_module(self):
+        sleep(7)
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass assign']")
-        mass_edit_module.click()
+        try:
+            mass_edit_module.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", mass_edit_module)
         Logging().reportDebugStep(self, "The mass assign module was opened")
         return MassAssignClientsModule(self.driver)
 

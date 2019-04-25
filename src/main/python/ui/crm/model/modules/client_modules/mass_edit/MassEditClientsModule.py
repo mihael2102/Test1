@@ -9,17 +9,16 @@ from src.main.python.utils.logs.Loging import Logging
 
 class MassEditClientsModule(CRMBasePage):
 
-    def perform_mass_edit(self, gender, assigned_to, client_source, compliance_agent, compliance_notes, client_status,
-                          retention_status, description, referral):
+    def perform_mass_edit(self, gender, assigned_to, referral):
         self.set_gender(gender)
         self.set_assigned_to(assigned_to)
-        self.set_client_source(client_source)
-        self.set_compliance_agent(compliance_agent)
-        self.set_compliance_notes(compliance_notes)
-        self.set_terms_conditions()
-        self.set_client_status(client_status)
-        self.set_retention_status(retention_status)
-        self.set_description(description)
+        # self.set_client_source(client_source)
+        # self.set_compliance_agent(compliance_agent)
+        # self.set_compliance_notes(compliance_notes)
+        # self.set_terms_conditions()
+        # self.set_client_status(client_status)
+        # self.set_retention_status(retention_status)
+        # self.set_description(description)
         self.set_referral(referral)
         return MassEditClientsModule()
 
@@ -109,10 +108,10 @@ class MassEditClientsModule(CRMBasePage):
 
     def set_referral(self, referral):
         check_box = self.driver.find_element(By.XPATH,
-                                             "//div[@id='referral_mass_edit_check']//div[1]")
+                                             "//label[contains(text(), 'Refferal')]")
         check_box.click()
         referral_field = self.driver.find_element(By.XPATH,
-                                                  "//textarea[@name='referral']")
+                                                  "//*[@name='referral']")
         referral_field.clear()
         referral_field.send_keys(referral)
         Logging().reportDebugStep(self, "The referral was set: " + referral)

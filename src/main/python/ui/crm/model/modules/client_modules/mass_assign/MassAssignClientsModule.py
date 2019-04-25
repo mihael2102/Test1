@@ -9,17 +9,20 @@ class MassAssignClientsModule(CRMBasePage):
         user_field = super().wait_element_to_be_clickable("//input[@id='searchstring']")
         user_field.clear()
         user_field.send_keys(user_name)
-        return MassAssignClientsModule()
+        return MassAssignClientsModule(self.driver)
 
     def enter_check_box(self):
         check_box = self.driver.find_element(By.XPATH,
-                                             "//li[@userid='122']//div[1]")
-        check_box.click()
+                                             "//div[contains(text(), 'Panda Auto')]")
+        try:
+            check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box)
 
-        return MassAssignClientsModule()
+        return MassAssignClientsModule(self.driver)
 
     def click_save(self):
         save_button = self.driver.find_element(By.XPATH,
                                                "//button[contains(text(),'Assign')]")
         save_button.click()
-        return MassAssignClientsModule()
+        return MassAssignClientsModule(self.driver)
