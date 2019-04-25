@@ -5,6 +5,7 @@ import string
 
 
 class CRMConstants(object):
+    YES = "Yes"
     ASSET_M = "BTCUSD.m"
     ASSET = "BTCUSD"
     VOLUME_FUNDS = "1"

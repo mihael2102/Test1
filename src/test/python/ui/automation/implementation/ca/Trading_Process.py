@@ -35,3 +35,9 @@ class TradingProcess(BaseTest):
             Trading_Precondition(self.driver, self.config).edit_order_stop_loss_take_profit()
         else:
             Logging().reportDebugStep(self, "NOT RUNNER")
+
+    def test_close_order(self):
+        if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "brokerz" and global_var.current_brand_name != "q8":
+            Trading_Precondition(self.driver, self.config).close_order()
+        else:
+            Logging().reportDebugStep(self, "NOT RUNNER")

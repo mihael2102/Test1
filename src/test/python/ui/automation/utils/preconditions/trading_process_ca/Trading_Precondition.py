@@ -35,6 +35,22 @@ class Trading_Precondition(object):
         lead = self.config.get_value(lead_key)
         return lead
 
+    def close_order(self):
+        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
+            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
+                .login() \
+                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                 LeadsModuleConstants.EMAIL]) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login()
+        if global_var.current_brand_name == "ptbanc":
+            WebTraderPage(self.driver).ptbanc_webtrader()
+        first_id_order = WebTraderPage(self.driver).get_id_order()
+        WebTraderPage(self.driver).click_close_order()
+        WebTraderPage(self.driver).close_pop_up_close_trade(CRMConstants.YES)
+        second_id_order = WebTraderPage(self.driver).get_id_order()
+        assert first_id_order != second_id_order
+
     def edit_order_stop_loss_take_profit(self):
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
             CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
