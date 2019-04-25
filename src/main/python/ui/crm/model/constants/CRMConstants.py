@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    YES = "Yes"
     ASSET_M = "BTCUSD.m"
     ASSET = "BTCUSD"
     VOLUME_FUNDS = "1"

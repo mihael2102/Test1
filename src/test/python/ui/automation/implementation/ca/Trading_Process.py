@@ -21,5 +21,6 @@ class TradingProcess(BaseTest):
 
     def test_edit_order_stop_loss_take_profit(self):
         Trading_Precondition(self.driver, self.config).edit_order_stop_loss_take_profit()
-    #
-    # def test_close_order(self):
+
+    def test_close_order(self):
+        Trading_Precondition(self.driver, self.config).close_order()

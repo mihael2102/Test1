@@ -10,6 +10,29 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 
 class WebTraderPage(CRMBasePage):
 
+    def close_pop_up_close_trade(self, condition):
+        sleep(3)
+        click_close_order = self.driver.find_element(By.XPATH,
+                                                     "//button[contains(text(), '" + condition + "')]")
+        click_close_order.click()
+        Logging().reportDebugStep(self, "Close pop up 'Close trade' : " + condition)
+        return WebTraderPage(self.driver)
+
+    def click_close_order(self):
+        sleep(3)
+        click_close_order = self.driver.find_element(By.XPATH,
+                                                   "//tr[1]//span[contains(text(), 'Close')]")
+        click_close_order.click()
+        Logging().reportDebugStep(self, "click close order")
+        return WebTraderPage(self.driver)
+
+    def get_id_order(self):
+        sleep(6)
+        get_id_order = self.driver.find_element(By.XPATH,
+                                                            "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/ul[2]/li[1]/span/open-trades/div/div/perfect-scrollbar/div[1]/div/table/tbody/tr[1]/open-trade/td[1]")
+        Logging().reportDebugStep(self, "get id order" + get_id_order.text)
+        return get_id_order.text
+
     def get_msg_insufficient_funds(self):
         sleep(1)
         insufficient_funds = self.driver.find_element(By.XPATH,

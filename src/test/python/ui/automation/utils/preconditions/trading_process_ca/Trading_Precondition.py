@@ -34,6 +34,20 @@ class Trading_Precondition(object):
         lead = self.config.get_value(lead_key)
         return lead
 
+    def close_order(self):
+        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
+        CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                 LeadsModuleConstants.EMAIL]) \
+            .enter_password(CAConstants.PASSWORD) \
+            .click_login()
+        CAPage(self.driver).click_actions_launch()
+        WebTraderPage(self.driver).change_windows()
+        first_id_order = WebTraderPage(self.driver).get_id_order()
+        WebTraderPage(self.driver).click_close_order()
+        WebTraderPage(self.driver).close_pop_up_close_trade(CRMConstants.YES)
+        second_id_order = WebTraderPage(self.driver).get_id_order()
+        assert first_id_order != second_id_order
+
     def edit_order_stop_loss_take_profit(self):
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
