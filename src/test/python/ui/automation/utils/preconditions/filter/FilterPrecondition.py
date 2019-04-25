@@ -142,7 +142,7 @@ class FilterPrecondition(object):
 
     def create_filter_documents_module(self):
         CRMHomePage(self.driver).open_more_list_modules() \
-            .select_document_module_more_list(DocumentModuleConstants.DOCUMENT) \
+            .select_documents_module_more_list(DocumentModuleConstants.DOCUMENT) \
             .open_create_filter_pop_up()
 
         if (global_var.current_brand_name == "ogtrade"):

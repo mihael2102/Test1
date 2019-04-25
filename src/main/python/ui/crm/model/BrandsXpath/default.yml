@@ -30,3 +30,5 @@ TasksPage:
   subject_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button"
   subject_field: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input"
   event_type: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input"
+DocumentsPage:
+  apply_btn: "/html/body/div[18]/div[3]/div/button[1]"

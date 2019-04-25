@@ -9,13 +9,11 @@ from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.utils.logs.Loging import Logging
 import autoit
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 import os
 
 
 class DocumentsPage(CRMBasePage):
-
-    # def __init__(self):
-    #     super().__init__()
 
     def open_create_filter_pop_up(self):
         element = super().wait_element_to_be_clickable("//a[contains(text(),'Create Filter')]")
@@ -239,8 +237,10 @@ class DocumentsPage(CRMBasePage):
         return DocumentsPage(self.driver)
 
     def search_document_module(self):
+        sleep(1)
         button_search = super().wait_element_to_be_clickable("//input[@id='tks_searchbutton']")
         button_search.click()
+        sleep(5)
         Logging().reportDebugStep(self, "Click Search")
         return DocumentsPage(self.driver)
 
@@ -270,3 +270,79 @@ class DocumentsPage(CRMBasePage):
         field_title = self.driver.find_element(By.XPATH, "//span[@id='dtlview_Title']").text
         Logging().reportDebugStep(self, "Get title from document details page")
         return field_title
+
+    def get_document_no_from_listview(self, row):
+        document_no = super().wait_load_element("(//*[contains(@id,'row_')]//a[contains(text(),'DOC')])[%s]" % row).text
+        Logging().reportDebugStep(self, "Return Document No: " + document_no)
+        return document_no
+
+    def get_document_type_from_listview(self, row):
+        document_type = super().wait_load_element("(//*[contains(@id,'row_')]/td[3])[%s]" % row).text
+        Logging().reportDebugStep(self, "Return Document Type: " + document_type)
+        return document_type
+
+    def get_modified_time_from_listview(self, row):
+        modified_date_time = super().wait_load_element("(//*[contains(@id,'row_')]//td[contains(text(),':')])[%s]"
+                                                       % row).text
+        modified_time = modified_date_time.split(" ")[0]
+        Logging().reportDebugStep(self, "Return Modified Time: " + modified_time)
+        return modified_time
+
+    def enter_document_no_listview(self, doc_no):
+        document_no_search_field = super().wait_element_to_be_clickable("//*[@id='tks_note_no']")
+        document_no_search_field.clear()
+        document_no_search_field.send_keys(doc_no)
+        Logging().reportDebugStep(self, "Enter Document No: " + doc_no + " for search in list view")
+        return DocumentsPage(self.driver)
+
+    def select_document_type_listview(self, doc_type):
+        doc_type_field = super().wait_element_to_be_clickable \
+            ("//*[@id='customAdvanceSearch']/td[3]/div/div[1]/button/span")
+        doc_type_field.click()
+        document_type_search_field = super().wait_element_to_be_clickable \
+            ("//*[@id='customAdvanceSearch']/td[3]/div/div[1]/ul/li[1]/div/input")
+        document_type_search_field.clear()
+        document_type_search_field.send_keys(doc_type)
+        sleep(1)
+        document_type = super().wait_element_to_be_clickable \
+            ("//li/a/label[@class='checkbox'][contains(text(),'%s')]" % doc_type)
+        document_type.click()
+        Logging().reportDebugStep(self, "Enter Document Type: " + doc_type + " for search in list view")
+        return DocumentsPage(self.driver)
+
+    def clear_filter(self):
+        x_btn = super().wait_element_to_be_clickable \
+            ("//*[@id='clearFilter'][@class='glyphicons circle_remove clearFilter red']")
+        x_btn.click()
+        sleep(1)
+        self.wait_element_to_be_disappear_custom \
+            ("//*[@id='clearFilter'][@class='glyphicons circle_remove clearFilter red']", 35)
+        Logging().reportDebugStep(self, "Click Clear Filter button")
+        return DocumentsPage(self.driver)
+
+    def compare_data(self, type_of_data, data1, data2):
+        assert data1 == data2
+        Logging().reportDebugStep(self, type_of_data + " is verified")
+        return DocumentsPage(self.driver)
+
+    def select_doc_modified_time(self, mod_time):
+        modified_time_field = super().wait_element_to_be_clickable("//*[@id='jscal_field_modifiedtime_date1']")
+        modified_time_field.clear()
+        modified_time_field.send_keys(mod_time)
+        sleep(1)
+        apply_btn = super().wait_element_to_be_clickable \
+            (global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["apply_btn"])
+        apply_btn.click()
+        sleep(1)
+        Logging().reportDebugStep(self, "Selected Modified Time is: " + mod_time)
+        return DocumentsPage(self.driver)
+
+    def global_data_checker(self, type_of_data, data):
+        sleep(1)
+        table = self.driver.find_element_by_xpath("//*[@id='listBody']")
+        row_count = 0
+        for tr in table.find_elements_by_tag_name("tr"):
+            assert data in tr.text
+            row_count += 1
+        Logging().reportDebugStep(self, type_of_data + " is verified in all " + str(row_count) + " rows")
+        return DocumentsPage(self.driver)

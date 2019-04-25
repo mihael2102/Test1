@@ -8,3 +8,5 @@ FinancialTransactionsPage:
   deposits_tab: "//li[contains(text(),'Deposits')]"
   withdraw_tab: "//li[contains(text(),'Withdraw')]"
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
+DocumentsPage:
+  apply_btn: "/html/body/div[20]/div[3]/div/button[1]"
