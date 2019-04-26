@@ -1,8 +1,8 @@
 brands:
-- name: brokerxp
-  config_file: brokerxp.yml
-#- name: capitalmarketsbanc
-#  config_file: capitalmarketsbanc.yml
+#- name: brokerxp
+#  config_file: brokerxp.yml
+- name: capitalmarketsbanc
+  config_file: capitalmarketsbanc.yml
 #- name: itrader_global
 #  config_file: itrader_global.yml
 #- name: otcapital
