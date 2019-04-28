@@ -92,10 +92,10 @@ class EditEventModule(CRMBasePage):
         return EditEventModule()
 
     def click_save(self):
-        save_button = self.driver.find_element(By.XPATH, "/html/body/bs-modal[8]/div/div/div/div[2]/form/div[2]/div/div[3]/button")
+        save_button = self.driver.find_element_by_xpath("//button[text()=' Save '][not(contains(@type,'button'))]")
         try:
             save_button.click()
         except:
             self.driver.execute_script("arguments[0].click();", save_button)
-        Logging().reportDebugStep(self, "Click the 'save' button ")
+        Logging().reportDebugStep(self, "Click the 'Save' button ")
         return EditEventModule()

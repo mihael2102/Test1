@@ -45,7 +45,7 @@ class MyDashboardPage(CRMBasePage):
     def sort_by_status(self):
         sleep(3)
         sort_by_type = super().wait_load_element(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/thead/tr/th[5]/a")
+            "//a[@data-column-label='Status']")
         sort_by_type.click()
         self.wait_crm_loading_to_finish_tasks(165)
         Logging().reportDebugStep(self, "Sort by status")
@@ -54,7 +54,7 @@ class MyDashboardPage(CRMBasePage):
     def sort_by_type(self):
         sleep(3)
         sort_by_type = super().wait_load_element(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/thead/tr/th[3]/a")
+            "//a[@data-column-label='Event Type']")
         try:
             sort_by_type.click()
         except:
@@ -168,7 +168,7 @@ class MyDashboardPage(CRMBasePage):
     def enter_country(self, country):
         sleep(3)
         btn_status = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[8]/filters-factory/select-search-filter/select-search/div/div[1]",
+            "//span[@class='pull-left ng-star-inserted']",
             timeout=30)
         try:
             btn_status.click()
@@ -176,25 +176,25 @@ class MyDashboardPage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", btn_status)
         sleep(2)
         input_account_name = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[8]/filters-factory/select-search-filter/select-search/div/div[2]/span[1]/input",
+            "//input[@class='form-control button-span browser-default ng-pristine ng-valid ng-touched']",
             timeout=10)
         country_new = country.replace(' ', '')
         input_account_name.send_keys(country_new)
         sleep(10)
         check_box = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[8]/filters-factory/select-search-filter/select-search/div/div[2]//span[contains(text(), 'Germany')]")
+            "//span[contains(text(), 'Germany')]")
         try:
             check_box.click()
         except:
             self.driver.execute_script("arguments[0].click();", check_box)
         sleep(2)
-        Logging().reportDebugStep(self, "Enter country")
+        Logging().reportDebugStep(self, "Enter country: " + country)
         return MyDashboardPage(self.driver)
 
     def enter_account_status(self, status):
         sleep(3)
         btn_status = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button",
+            "(//button[@class='dropdown-toggle btn-block filter-button'])[3]",
             timeout=30)
         try:
             btn_status.click()
@@ -202,22 +202,22 @@ class MyDashboardPage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", btn_status)
         sleep(2)
         input_account_name = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
+            "//input[@class='form-control ng-pristine ng-valid ng-touched']",
             timeout=10)
         input_account_name.send_keys(status)
         sleep(20)
         check_box = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input",
+            "//input[@class='ng-star-inserted']",
             timeout=30)
         check_box.click()
         sleep(2)
-        Logging().reportDebugStep(self, "Enter account status")
+        Logging().reportDebugStep(self, "Enter account status: " + status)
         return MyDashboardPage(self.driver)
 
     def enter_status(self, status):
         sleep(3)
         btn_status = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button",
+            "(//button[@class='dropdown-toggle btn-block filter-button'])[2]",
             timeout=30)
         try:
             btn_status.click()
@@ -225,12 +225,12 @@ class MyDashboardPage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", btn_status)
         sleep(2)
         input_account_name = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
+            "//input[@class='form-control ng-pristine ng-valid ng-touched']",
             timeout=10)
         input_account_name.send_keys(status)
         sleep(20)
         check_box = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input",
+            "//input[@class='ng-star-inserted']",
             timeout=30)
         self.driver.execute_script("arguments[0].scrollIntoView();", check_box)
         try:
@@ -238,22 +238,22 @@ class MyDashboardPage(CRMBasePage):
         except:
             self.driver.execute_script("arguments[0].click();", check_box)
         sleep(2)
-        Logging().reportDebugStep(self, "Enter status")
+        Logging().reportDebugStep(self, "Enter status: " + status)
         return MyDashboardPage(self.driver)
 
     def enter_event_type(self, type):
         btn_type = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button",
+            "(//button[@class='dropdown-toggle btn-block filter-button'])[1]",
             timeout=30)
         btn_type.click()
         sleep(2)
         input_account_name = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
+            "//input[@class='form-control ng-touched ng-dirty ng-valid']",
             timeout=10)
         input_account_name.send_keys(type)
         sleep(2)
         check_box = super().wait_element_to_be_clickable(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input",
+            "//input[@class='ng-star-inserted']",
             timeout=30)
         self.driver.execute_script("arguments[0].scrollIntoView();", check_box)
         check_box.click()
@@ -292,30 +292,30 @@ class MyDashboardPage(CRMBasePage):
     def get_local_time(self):
         sleep(5)
         local_time = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[11]/grid-cell/div/span[2]")
-        Logging().reportDebugStep(self, "Get local time")
-        return local_time.text
+            "(//span[@class='link_field'])[10]").text
+        Logging().reportDebugStep(self, "Get Local time" + local_time)
+        return local_time
 
     def get_created_by(self):
         sleep(5)
         created_by = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[10]/grid-cell/div/span[2]")
-        Logging().reportDebugStep(self, "Get created by")
-        return created_by.text
+            "(//span[@class='link_field'])[9]").text
+        Logging().reportDebugStep(self, "Get created by" + created_by)
+        return created_by
 
     def get_assigned_to(self):
         sleep(5)
         assigned_to = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[9]/grid-cell/div/span[2]")
-        Logging().reportDebugStep(self, "Get assigned to")
-        return assigned_to.text
+            "(//span[@class='link_field'])[8]").text
+        Logging().reportDebugStep(self, "Get assigned to" + assigned_to)
+        return assigned_to
 
     def get_country(self):
         sleep(5)
         country = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[8]/grid-cell/div/span[2]")
-        Logging().reportDebugStep(self, "Get country")
-        return country.text
+            "(//span[@class='link_field'])[7]").text
+        Logging().reportDebugStep(self, "Get country" + country)
+        return country
 
     def get_account_status(self):
         sleep(5)
@@ -327,17 +327,16 @@ class MyDashboardPage(CRMBasePage):
     def check_pop_up_send_sms(self):
         sleep(5)
         try:
-            title = super().wait_load_element("/html/body/bs-modal[17]/div/div/div/div[2]/div[1]/div/span/h4")
-
+            title = super().wait_load_element("//span[@class='title']/h4[contains(text(),'Send SMS to')]")
         except:
-            title = super().wait_load_element("/html/body/bs-modal[17]/div/div/div/div[2]/h3")
+            title = super().wait_load_element("(//div/h3[text()='Server Not Configured?'])[2]")
         Logging().reportDebugStep(self, title.text)
         return title.text
 
     def click_sms_icon(self):
         sleep(3)
         first_check_box = super().wait_load_element(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div")
+            "(//span[contains(@class, 'glyphicon glyphicon-transfer cursor-pointer ng-star-inserted')])[1]")
         first_check_box.click()
         Logging().reportDebugStep(self, "Click SMS icon")
         return MyDashboardPage(self.driver)
@@ -345,7 +344,7 @@ class MyDashboardPage(CRMBasePage):
     def open_email_actions_section(self):
         sleep(3)
         first_check_box = super().wait_load_element(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[1]/div")
+            "(//span[contains(@class, 'glyphicon glyphicon-envelope cursor-pointer ng-star-inserted')])[1]")
         first_check_box.click()
         Logging().reportDebugStep(self, "The email module was opened")
         return MyDashboardPage(self.driver)
@@ -378,7 +377,7 @@ class MyDashboardPage(CRMBasePage):
     def click_send(self):
         self.driver.switch_to.default_content()
         sleep(3)
-        click_send = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[3]/span/button[4]")
+        click_send = super().wait_load_element("(//button[text()=' Send '])[2]")
         click_send.click()
         Logging().reportDebugStep(self, "Click Send")
         return MyDashboardPage(self.driver)
@@ -432,39 +431,33 @@ class MyDashboardPage(CRMBasePage):
 
     def get_account_name(self):
         sleep(4)
-        account_name = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[6]/grid-cell/div/span[2]/a").text
+        account_name = self.driver.find_element_by_xpath("(//a[contains(text(),'testqa')])[1]").text
         Logging().reportDebugStep(self, "Get account name: " + account_name)
         return account_name
 
     def click_pencil_icon(self):
         sleep(4)
-        pencil_icon = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span")
+        pencil_icon = self.driver.find_element_by_xpath("(//span[contains(@class, 'pencil')])[1]")
         pencil_icon.click()
         Logging().reportDebugStep(self, "Click pencil icon")
         return MyDashboardPage(self.driver)
 
     def get_status(self):
         sleep(5)
-        get_status = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[5]/grid-cell/div/span[2]")\
-            .text
+        get_status = self.driver.find_element_by_xpath("(//span[@class='link_field'])[4]").text
         Logging().reportDebugStep(self, "Get status: " + get_status)
         return get_status
 
     def get_type(self):
         sleep(5)
-        get_type = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[3]/grid-cell/div/span[2]")\
-                .text
+        get_type = self.driver.find_element_by_xpath("(//span[@class='link_field'])[2]").text
         Logging().reportDebugStep(self, "Get type: " + get_type)
         return get_type
 
     def get_time(self):
         sleep(5)
         get_time = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[4]/grid-cell/div/span[2]")\
+            "(//span[@class='link_field' and contains(text(),':')])[2]")\
             .text
-        Logging().reportDebugStep(self, "Get type: " + get_time)
+        Logging().reportDebugStep(self, "Get Local Time: " + get_time)
         return get_time
