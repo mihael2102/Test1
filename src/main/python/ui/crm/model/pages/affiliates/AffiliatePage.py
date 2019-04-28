@@ -53,7 +53,7 @@ class AffiliatePage(CRMBasePage):
     def check_selected_methods(self):
         sleep(5)
         selected_number = self.driver.find_element_by_xpath(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[1]").text
+            "//span[contains(text(),'Selected')]").text
         Logging().reportDebugStep(self, "Check selected methods")
         return selected_number
 
