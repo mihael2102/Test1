@@ -43,7 +43,7 @@ class CAPage(CRMBasePage):
     def click_actions_launch(self):
         sleep(5)
         try:
-            button = self.driver.find_element(By.XPATH, "//button[contains(text(), 'LAUNCH')]")
+            button = super().wait_element_to_be_clickable("//button[contains(text(), 'LAUNCH')]")
         except:
             button = self.driver.find_element(By.XPATH, "//tbody[@id='PracticeAccountListBody']//button[contains(text(), 'FOREX')]")
         button.click()

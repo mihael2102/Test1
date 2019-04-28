@@ -29,7 +29,7 @@ class WebTraderPage(CRMBasePage):
     def get_id_order(self):
         sleep(6)
         get_id_order = self.driver.find_element(By.XPATH,
-                                                            "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/ul[2]/li[1]/span/open-trades/div/div/perfect-scrollbar/div[1]/div/table/tbody/tr[1]/open-trade/td[1]")
+            "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/ul[2]/li[1]/span/open-trades/div/div/perfect-scrollbar/div[1]/div/table/tbody/tr[1]/open-trade/td[1]")
         Logging().reportDebugStep(self, "get id order" + get_id_order.text)
         return get_id_order.text
 
