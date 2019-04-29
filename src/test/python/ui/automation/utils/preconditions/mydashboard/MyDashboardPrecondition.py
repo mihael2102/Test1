@@ -63,7 +63,7 @@ class MyDashboardPrecondition(object):
         MyDashboardPage(self.driver).select_show_all_tab()
         MyDashboardPage(self.driver).enter_account_name(account_name)
         status = MyDashboardPage(self.driver).get_status()
-        type = MyDashboardPage(self.driver).get_type()
+        type = MyDashboardPage(self.driver).get_event_type()
         assert status == TaskModuleConstants.SECOND_EVENT_STATUS
         assert type == TaskModuleConstants.SECOND_EVENT_TYPE
 
@@ -114,7 +114,7 @@ class MyDashboardPrecondition(object):
         MyDashboardPage(self.driver).select_show_all_tab()
         MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
         account_name = MyDashboardPage(self.driver).get_account_name()
-        type = MyDashboardPage(self.driver).get_type()
+        type = MyDashboardPage(self.driver).get_event_type()
         status = MyDashboardPage(self.driver).get_status()
         # account_status = MyDashboardPage(self.driver).get_account_status()
         country = MyDashboardPage(self.driver).get_country()
@@ -129,13 +129,12 @@ class MyDashboardPrecondition(object):
         MyDashboardPage(self.driver).refresh_page()
 
         MyDashboardPage(self.driver).enter_account_name(account_name) \
-            .enter_event_type(type) \
-            .enter_status(status) \
-            .enter_country(country) \
-            .enter_assigned_to(assigned_to) \
-            .enter_created_by(created_by) \
-            .enter_local_time(local_time) \
-
+                                    .enter_event_type(type) \
+                                    .enter_status(status) \
+                                    .enter_country(country) \
+                                    .enter_assigned_to(assigned_to) \
+                                    .enter_created_by(created_by) \
+                                    # .enter_local_time(local_time) \
 
         return_account_name = MyDashboardPage(self.driver).get_account_name()
 
@@ -149,9 +148,9 @@ class MyDashboardPrecondition(object):
         CRMHomePage(self.driver).open_more_list_modules() \
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).select_show_all_tab()
-        type1 = MyDashboardPage(self.driver).get_type()
+        type1 = MyDashboardPage(self.driver).get_event_type()
         MyDashboardPage(self.driver).sort_by_type()
-        type2 = MyDashboardPage(self.driver).get_type()
+        type2 = MyDashboardPage(self.driver).get_event_type()
         assert type1 != type2
         MyDashboardPage(self.driver).sort_by_status()
         status1 = MyDashboardPage(self.driver).get_status()

@@ -11,7 +11,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 class MassAssignTestCRM(BaseTest):
 
 
-    def test_mass_assign(self):
+    def test_clients_mass_assign(self):
         crm_client_profile = CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),

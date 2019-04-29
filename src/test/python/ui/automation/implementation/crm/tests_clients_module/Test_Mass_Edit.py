@@ -10,7 +10,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 @pytest.mark.run(order=8)
 class MassEditTestCRM(BaseTest):
 
-    def test_make_mass_edit(self):
+    def test_clients_mass_edit(self):
 
         crm_clients_module_page = CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -47,8 +47,8 @@ class MassEditTestCRM(BaseTest):
             MassEditConstants.GENDER_FEMALE)
         assert crm_client_profile.get_assigned_to_text() == self.config.get_data_mass_edit(
             MassEditConstants.ASSIGNED_TO_PANDA)
-        assert crm_client_profile.get_client_source_text() == self.config.get_data_mass_edit(
-            MassEditConstants.CLIENT_SOURCE)
+        # assert crm_client_profile.get_client_source_text() == self.config.get_data_mass_edit(
+        #     MassEditConstants.CLIENT_SOURCE)
         # assert crm_client_profile.get_compliance_agent_text() == Config.data.get_data_mass_edit(
         #     MassEditConstants.COMPLIANCE_AGENT)
         # assert crm_client_profile.get_compliance_notes_text() == Config.data.get_data_mass_edit(

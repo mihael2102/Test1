@@ -119,18 +119,17 @@ class TasksPage(CRMBasePage):
     def check_pop_up_send_sms(self):
         sleep(5)
         try:
-            title = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[2]/div[1]/div/span/h4")
+            title = super().wait_load_element("//h4[contains(text(),'Send SMS to')]")
 
         except:
-            title = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[2]/h3")
+            title = super().wait_load_element("//h3[contains(text(),'Server')]")
         Logging().reportDebugStep(self, title.text)
         return title.text
 
     def get_first_account_name(self):
-        sleep(10)
-        account_name = super().wait_load_element(
-            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[6]/grid-cell/div/span[2]/a").text
-        Logging().reportDebugStep(self, "Check Account name" + account_name)
+        sleep(2)
+        account_name = super().wait_load_element("(//a[contains(text(),'testqa')])[1]").text
+        Logging().reportDebugStep(self, "Get Account name" + account_name)
         return account_name
 
     def search_account_name(self, first_name):
@@ -182,20 +181,20 @@ class TasksPage(CRMBasePage):
     def get_first_type(self):
         sleep(3)
         first_type = super().wait_load_element(
-            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[3]/grid-cell/div/span[2]").text
+            "(//span[@class='link_field' and @style='cursor: auto;'])[2]").text
         Logging().reportDebugStep(self, "Check Type" + first_type)
         return first_type
 
     def get_first_status(self):
         sleep(3)
         first_status = super().wait_load_element(
-            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[5]/grid-cell/div/span[2]").text
+            "(//span[@class='link_field' and @style='cursor: auto;'])[4]").text
         Logging().reportDebugStep(self, "Check status" + first_status)
         return first_status
 
     def select_all_event(self):
         check_box = super().wait_load_element(
-            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/thead/tr/th[1]/input")
+            "(//input[@type='checkbox'])[1]")
         try:
             check_box.click()
         except:
@@ -236,7 +235,7 @@ class TasksPage(CRMBasePage):
     def click_send(self):
         self.driver.switch_to.default_content()
         sleep(5)
-        click_send = super().wait_load_element("/html/body/bs-modal[7]/div/div/div/div[3]/span/button[4]")
+        click_send = super().wait_load_element("//button[contains(text(),' Send ')]")
         click_send.click()
         Logging().reportDebugStep(self, "Click Send")
         return TasksPage(self.driver)

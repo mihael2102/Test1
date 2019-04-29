@@ -371,13 +371,11 @@ class LeadsModule(CRMBasePage):
 
     def check_first_line_email(self):
         sleep(7)
-        # check_first_line_email_1 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[1]/td[9]").text
         check_first_line_email_1 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["check_first_line_email_1"]).text
         email_1 = check_first_line_email_1.replace('pandaqa+','')
         number_email__str1 = email_1.replace('@pandats.com','')
         number_email_1 = int(number_email__str1)
-        # check_first_line_email_2 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[2]/td[9]").text
         check_first_line_email_2 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["check_first_line_email_2"]).text
         email_2 = check_first_line_email_2.replace('pandaqa+', '')

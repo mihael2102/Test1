@@ -20,6 +20,7 @@ class MassEditClientsModule(CRMBasePage):
         # self.set_retention_status(retention_status)
         # self.set_description(description)
         self.set_referral(referral)
+        self.click_save()
         return MassEditClientsModule()
 
     def set_gender(self, gender):
