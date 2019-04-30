@@ -25,5 +25,4 @@ class CRMConfigurationsTest(BaseTest):
                                          .check_click2call_loaded() \
                                          .check_referral_configuration_loaded() \
                                          .check_workflows_loaded() \
-                                         .check_sharing_access_loaded() \
-                                         .check_email_templates_loaded()
+                                         .check_sharing_access_loaded()

@@ -164,7 +164,6 @@ class AuditLogsPage(CRMBasePage):
 
     def check_audit_logs_loaded(self):
         sleep(2)
-        self.driver.find_element_by_xpath("/html/body/app-root/audit-trails-list/div/grid/div/div/div[1] \
-                                                /table/tbody/tr[2]")
+        self.driver.find_element_by_xpath("(//tr[contains(@class,'tableRow')])[1]")
         Logging().reportDebugStep(self, "Audit Logs module is loaded")
         return AuditLogsPage(self.driver)

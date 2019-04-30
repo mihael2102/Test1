@@ -35,6 +35,7 @@ class MyDashboardPrecondition(object):
         CRMHomePage(self.driver).open_more_list_modules()\
                                 .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).check_latest_sales_loaded() \
+                                    .select_show_all_tab() \
                                     .check_task_section_contains_record() \
                                     .check_client_segmentation_contains_record()
 

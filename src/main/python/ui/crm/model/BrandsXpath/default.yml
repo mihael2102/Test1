@@ -23,13 +23,13 @@ ClientProfilePage:
 CRMClientDeposit:
   i_confirm_checkbox: "//*[@name='confirm']"
 AffiliatePage:
-  countrys: "//span[@class = 'hovered-option'][contains(text(),'%s')]"
+  countrys: "//span[contains(@class,'hovered-option')][contains(text(),'%s')]"
   methods: "//span[@class = 'hovered-option ng-star-inserted'][contains(text(),'%s')]"
   button_plus: "//div[@class='form-group']/button[@class='btn btn-primary']"
-  methods_drop_down: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[1]"
-  input_methods: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[1]/input"
-  blocked_country_drop_down: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[6]/div[2]"
-  input_country: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[1]/input"
+  methods_drop_down: "(//span[@class='ng-star-inserted' and contains(text(),'elected')])[1]"
+  input_methods: "(//span[@class='filter-search-container active-option']/input[@placeholder='Search...'])[1]"
+  blocked_country_drop_down: "(//span[@class='ng-star-inserted' and contains(text(),'elected')])[2]"
+  input_country: "//div[@class='select-options options-enabled']//input[@placeholder='Search...']"
   trash_button: "//span[@class = 'glyphicon glyphicon-trash cursor-pointer ng-star-inserted']"
 LeadsModule:
   check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[9]"

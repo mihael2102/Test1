@@ -73,7 +73,12 @@ brands:
   config_file: tfxgo.yml
 - name: uprofx
   config_file: uprofx.yml
-
+- name: mpcrypto
+  config_file: mpcrypto.yml
+- name: b-traderfx
+  config_file: b-traderfx.yml
+- name: newforexqa2
+  config_file: newforexqa2.yml
 
 
 

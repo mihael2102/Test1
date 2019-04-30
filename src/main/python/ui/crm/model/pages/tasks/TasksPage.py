@@ -143,15 +143,15 @@ class TasksPage(CRMBasePage):
 
     def search_by_type(self, type):
         btn_type = super().wait_element_to_be_clickable(
-            "//td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+            "(//button[@class='dropdown-toggle btn-block filter-button'])[1]")
         btn_type.click()
         sleep(2)
         input_account_name = super().wait_element_to_be_clickable(
-            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
+            "//div[@class='input-group input-group-sm']/input[@placeholder='Search']",
             timeout=10)
         input_account_name.send_keys(type)
         sleep(2)
-        check_box = super().wait_element_to_be_clickable("//ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box = super().wait_element_to_be_clickable("//input[@class='ng-star-inserted']")
         check_box.click()
         sleep(2)
         Logging().reportDebugStep(self, "Search by Type: " + type)
@@ -160,19 +160,18 @@ class TasksPage(CRMBasePage):
     def search_by_status(self, status):
         sleep(3)
         btn_status = super().wait_element_to_be_clickable(
-            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button")
+            "(//button[@class='dropdown-toggle btn-block filter-button'])[2]")
         try:
             btn_status.click()
         except:
             self.driver.execute_script("arguments[0].click();", btn_status)
         sleep(2)
         input_account_name = super().wait_element_to_be_clickable(
-            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
+            "//div[@class='input-group input-group-sm']/input[@placeholder='Search']",
             timeout=10)
         input_account_name.send_keys(status)
         sleep(2)
-        check_box = super().wait_element_to_be_clickable(
-            "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[5]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input")
+        check_box = super().wait_element_to_be_clickable("//input[@class='ng-star-inserted']")
         check_box.click()
         sleep(2)
         Logging().reportDebugStep(self, "Search by status: " + status)

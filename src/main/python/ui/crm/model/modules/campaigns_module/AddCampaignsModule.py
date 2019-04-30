@@ -76,7 +76,8 @@ class AddCampaignsModule(CRMBasePage):
     def click_save_button(self):
         save_button = super().wait_element_to_be_clickable("//button[@id='Save']")
         sleep(1)
-        save_button.click()
+        self.driver.execute_script("arguments[0].click();", save_button)
+        # save_button.click()
         Logging().reportDebugStep(self, "The save button was clicked ")
         return AddCampaignsModule()
 
@@ -84,7 +85,8 @@ class AddCampaignsModule(CRMBasePage):
         deal_button = Select(self.driver.find_element(By.XPATH, "//select[@name='deal']"))
         deal_button.select_by_visible_text(deal)
         deal_drop_down = self.driver.find_element(By.XPATH, "//select[@name='deal']")
-        deal_drop_down.click()
+        # deal_drop_down.click()
+        self.driver.execute_script("arguments[0].click();", deal_drop_down)
         Logging().reportDebugStep(self, "The deal was set ")
         return AddCampaignsModule()
 

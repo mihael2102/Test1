@@ -25,49 +25,49 @@ class CRMConfigurationPage(CRMBasePage):
 
     def check_common_configuration_loaded(self):
         sleep(2)
-        self.driver.find_element_by_xpath("//div[contains(text(),'Common Configuration')]")
+        self.driver.find_element_by_xpath("//h1[contains(text(),'Common Configuration')]")
         Logging().reportDebugStep(self, "Common configuration is loaded")
         return CRMConfigurationPage(self.driver)
 
     def check_brand_configuration_loaded(self):
         sleep(1)
-        brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Brand Configuration')]")
+        brand_configuration_btn = super().wait_load_element("//div[contains(text(),'Brand Configuration')]")
         brand_configuration_btn.click()
-        self.driver.find_element_by_xpath("//div[contains(text(),'Brand Configuration')]")
+        self.driver.find_element_by_xpath("//h1[contains(text(),'Brand Configuration')]")
         Logging().reportDebugStep(self, "Brand Configuration is loaded")
         return CRMConfigurationPage(self.driver)
 
     def check_sms_configuration_loaded(self):
         sleep(1)
-        brand_configuration_btn = super().wait_load_element("//a[contains(text(),'SMS Configuration')]")
+        brand_configuration_btn = super().wait_load_element("//div[contains(text(),'SMS Configuration')]")
         brand_configuration_btn.click()
-        self.driver.find_element_by_xpath("//div[contains(text(),'SMS Configuration')]")
+        self.driver.find_element_by_xpath("//h1[contains(text(),'SMS Configuration')]")
         Logging().reportDebugStep(self, "SMS Configuration is loaded")
         return CRMConfigurationPage(self.driver)
 
     def check_smtp_configuration_loaded(self):
         sleep(1)
-        brand_configuration_btn = super().wait_load_element("//a[contains(text(),'SMTP Configuration')]")
+        brand_configuration_btn = super().wait_load_element("//div[contains(text(),'SMTP Configuration')]")
         brand_configuration_btn.click()
-        self.driver.find_element_by_xpath("//div[contains(text(),'SMTP Configuration')]")
+        self.driver.find_element_by_xpath("//h1[contains(text(),'SMTP Configuration')]")
         Logging().reportDebugStep(self, "SMTP Configuration is loaded")
         return CRMConfigurationPage(self.driver)
 
     def check_minimum_deposit_loaded(self):
         sleep(1)
-        brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Minimum Deposit')]")
+        brand_configuration_btn = super().wait_load_element("//div[contains(text(),'Minimum Deposit')]")
         brand_configuration_btn.click()
-        self.driver.find_element_by_xpath("//div[contains(text(),'Minimum Deposit')]")
+        self.driver.find_element_by_xpath("//h1[contains(text(),'Minimum Deposit')]")
         Logging().reportDebugStep(self, "Minimum Deposit is loaded")
         return CRMConfigurationPage(self.driver)
 
     def check_cashier_loaded(self):
         sleep(1)
         try:
-            self.driver.find_element_by_xpath("//a[contains(text(),'Cashier')]")
-            brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Cashier')]")
-            brand_configuration_btn.click()
             self.driver.find_element_by_xpath("//div[contains(text(),'Cashier')]")
+            brand_configuration_btn = super().wait_load_element("//div[contains(text(),'Cashier')]")
+            brand_configuration_btn.click()
+            self.driver.find_element_by_xpath("//h1[contains(text(),'Cashier')]")
             Logging().reportDebugStep(self, "Cashier is loaded")
             return CRMConfigurationPage(self.driver)
         except (TimeoutException, NoSuchElementException):
@@ -78,10 +78,10 @@ class CRMConfigurationPage(CRMBasePage):
     def check_manage_psp_loaded(self):
         sleep(1)
         try:
-            self.driver.find_element_by_xpath("//a[contains(text(),'Manage PSP')]")
-            brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Manage PSP')]")
-            brand_configuration_btn.click()
             self.driver.find_element_by_xpath("//div[contains(text(),'Manage PSP')]")
+            brand_configuration_btn = super().wait_load_element("//div[contains(text(),'Manage PSP')]")
+            brand_configuration_btn.click()
+            self.driver.find_element_by_xpath("//h1[contains(text(),'Manage PSP')]")
             Logging().reportDebugStep(self, "Manage PSP is loaded")
             return CRMConfigurationPage(self.driver)
         except (TimeoutException, NoSuchElementException):
@@ -91,27 +91,27 @@ class CRMConfigurationPage(CRMBasePage):
 
     def check_click2call_loaded(self):
         sleep(1)
-        brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Click2Call Configuration')]")
+        brand_configuration_btn = super().wait_load_element("//div[contains(text(),'Click2Call Configuration')]")
         brand_configuration_btn.click()
-        self.driver.find_element_by_xpath("//div[contains(text(),'Click2Call Configuration')]")
+        self.driver.find_element_by_xpath("//h1[contains(text(),'Click2Call Configuration')]")
         Logging().reportDebugStep(self, "Click2Call Configuration is loaded")
         return CRMConfigurationPage(self.driver)
 
     def check_referral_configuration_loaded(self):
         sleep(1)
-        brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Referral Configuration')]")
+        brand_configuration_btn = super().wait_load_element("//div[contains(text(),'Referral Configuration')]")
         brand_configuration_btn.click()
-        self.driver.find_element_by_xpath("//div[contains(text(),'Referral Configuration')]")
+        self.driver.find_element_by_xpath("//h1[contains(text(),'Referral Configuration')]")
         Logging().reportDebugStep(self, "Referral Configuration is loaded")
         return CRMConfigurationPage(self.driver)
 
     def check_workflows_loaded(self):
         sleep(1)
         try:
-            self.driver.find_element_by_xpath("//a[contains(text(),'Workflows')]")
-            brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Workflows')]")
-            brand_configuration_btn.click()
             self.driver.find_element_by_xpath("//div[contains(text(),'Workflows')]")
+            brand_configuration_btn = super().wait_load_element("//div[contains(text(),'Workflows')]")
+            brand_configuration_btn.click()
+            self.driver.find_element_by_xpath("//h1[contains(text(),'Workflows')]")
             Logging().reportDebugStep(self, "Workflows is loaded")
             return CRMConfigurationPage(self.driver)
         except (TimeoutException, NoSuchElementException):
@@ -122,10 +122,10 @@ class CRMConfigurationPage(CRMBasePage):
     def check_sharing_access_loaded(self):
         sleep(1)
         try:
-            self.driver.find_element_by_xpath("//a[contains(text(),'Sharing Access Rules')]")
-            brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Sharing Access Rules')]")
-            brand_configuration_btn.click()
             self.driver.find_element_by_xpath("//div[contains(text(),'Sharing Access Rules')]")
+            brand_configuration_btn = super().wait_load_element("//div[contains(text(),'Sharing Access Rules')]")
+            brand_configuration_btn.click()
+            self.driver.find_element_by_xpath("//h1[contains(text(),'Sharing Access Rules')]")
             Logging().reportDebugStep(self, "Sharing Access Rules is loaded")
             return CRMConfigurationPage(self.driver)
         except (TimeoutException, NoSuchElementException):
@@ -136,8 +136,8 @@ class CRMConfigurationPage(CRMBasePage):
     def check_email_templates_loaded(self):
         sleep(1)
         try:
-            self.driver.find_element_by_xpath("//a[contains(text(),'Email Templates')]")
-            brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Email Templates')]")
+            self.driver.find_element_by_xpath("//div[contains(text(),'Email Templates')]")
+            brand_configuration_btn = super().wait_load_element("//div[contains(text(),'Email Templates')]")
             brand_configuration_btn.click()
             sleep(1)
             self.driver.find_element_by_xpath("//table[@id='emailmakerЗ']")

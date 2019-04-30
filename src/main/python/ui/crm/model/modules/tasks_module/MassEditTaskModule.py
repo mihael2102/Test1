@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from time import sleep
 
 
 class MassEditTaskModule(CRMBasePage):
@@ -21,6 +22,7 @@ class MassEditTaskModule(CRMBasePage):
         return MassEditTaskModule()
 
     def set_event_status(self, status):
+        sleep(1)
         event_element = super().wait_element_to_be_clickable("//select[@id='eventstatus']")
         select_status = Select(event_element)
         select_status.select_by_visible_text(status)
