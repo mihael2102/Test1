@@ -80,7 +80,7 @@ class WorkflowsPrecondition(object):
                                   .select_country(WorkflowsConstants.COUNTRY_ALBANIA)\
                                   .click_save_task()\
                                   .click_save_workflow()
-        name_workflow = WorkflowsPage(self.driver).check_name_workflow()
+        name_workflow = WorkflowsPage(self.driver).check_name_workflow(WorkflowsConstants.NAME_WORKFLOW)
         assert name_workflow == WorkflowsConstants.NAME_WORKFLOW
 
 
@@ -134,11 +134,9 @@ class WorkflowsPrecondition(object):
 
         CRMHomePage(self.driver).open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
         CRMConfigurationPage(self.driver).check_workflows_loaded()
-        name_workflow = WorkflowsPage(self.driver).check_name_workflow()
-        assert name_workflow == WorkflowsConstants.NAME_WORKFLOW
-        WorkflowsPage(self.driver).delete_workflow()\
-                                  .confirmation_delete_workflow()
-        sleep(2)
-        CRMHomePage(self.driver).refresh_page()
-        name_workflow = WorkflowsPage(self.driver).check_name_workflow()
-        assert name_workflow != WorkflowsConstants.NAME_WORKFLOW
+
+        WorkflowsPage(self.driver).search_workflow_by_name(WorkflowsConstants.NAME_WORKFLOW)\
+                                  .delete_workflow()\
+                                  .confirmation_delete_workflow()\
+                                  .search_workflow_by_name(WorkflowsConstants.NAME_WORKFLOW)\
+                                  .check_workflow_not_found()

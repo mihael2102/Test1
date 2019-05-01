@@ -26,22 +26,25 @@ class WorkflowsPage(CRMBasePage):
     def confirmation_delete_workflow(self):
         sleep(2)
         btn_delete_workflow = self.driver.find_element_by_xpath(
-            "/html/body/bs-modal[7]/div/div/div/div[2]/form/div/span/span[1]/button")
+            "//span[text()=' Delete ']")
         btn_delete_workflow.click()
-        Logging().reportDebugStep(self, "Click OK")
+        sleep(1)
+        Logging().reportDebugStep(self, "Click Delete button")
         return WorkflowsPage(self.driver)
 
     def delete_workflow(self):
         sleep(2)
-        btn_delete_workflow = self.driver.find_element_by_xpath("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-list/div/div/div/div[2]/div/grid-simple/div/div[2]/table/tbody/tr[3]/td[6]/div[4]")
+        more_btn = super().wait_element_to_be_clickable("//mat-icon[text()='more_vert']")
+        more_btn.click()
+        btn_delete_workflow = self.driver.find_element_by_xpath("//mat-icon[text()='delete']")
         btn_delete_workflow.click()
         Logging().reportDebugStep(self, "Click delete workflow")
         return WorkflowsPage(self.driver)
 
 
-    def check_name_workflow(self):
+    def check_name_workflow(self, name):
         sleep(3)
-        name_workflow = self.driver.find_element_by_xpath("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-list/div/div/div/div[2]/div/grid-simple/div/div[2]/table/tbody/tr[3]/td[1]/div")
+        name_workflow = self.driver.find_element_by_xpath("//span[text()='%s']" % name)
         Logging().reportDebugStep(self, "Check name workflow in table")
         return name_workflow.text
 
@@ -57,14 +60,14 @@ class WorkflowsPage(CRMBasePage):
         sleep(3)
         input = self.driver.find_element_by_xpath("//input[@id='wf_name']")
         input.send_keys(name)
-        Logging().reportDebugStep(self, "Enter workflow name")
+        Logging().reportDebugStep(self, "Enter workflow name: " + name)
         return WorkflowsPage(self.driver)
 
     def enter_workflow_priority(self, priority):
         sleep(2)
         input = self.driver.find_element_by_xpath("//input[@id='wf_priority']")
         input.send_keys(priority)
-        Logging().reportDebugStep(self, "Enter workflow priority")
+        Logging().reportDebugStep(self, "Enter workflow priority: " + priority)
         return WorkflowsPage(self.driver)
 
     def click_radio_btn_modified(self):
@@ -284,28 +287,28 @@ class WorkflowsPage(CRMBasePage):
 
     def enter_value(self, name):
         sleep(2)
-        textarea = self.driver.find_element_by_xpath("/html/body/bs-modal[8]/div/div/bs-modal-body/div/value-definition/div/div[2]/textarea")
+        textarea = self.driver.find_element_by_xpath("//div[@class='row current-value']/textarea")
         textarea.send_keys(name)
         Logging().reportDebugStep(self, "Enter value " + name)
         return WorkflowsPage(self.driver)
 
     def click_save_value_task(self):
         sleep(2)
-        btn_save = self.driver.find_element_by_xpath("/html/body/bs-modal[8]/div/div/bs-modal-footer/div/button[1]")
+        btn_save = self.driver.find_element_by_xpath("(//button[text()='Save '])[2]")
         btn_save.click()
         Logging().reportDebugStep(self, "Click Save")
         return WorkflowsPage(self.driver)
 
     def select_second_field(self, name):
         sleep(2)
-        select = self.driver.find_element_by_xpath("//field-value[2]//div[@class='select-filter']")
+        select = self.driver.find_element_by_xpath("//span[text()='Select field']")
         select.click()
         clients = self.driver.find_element_by_xpath(
-            "/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[2]/div[3]/field-value[2]/div/div[1]/select-search/div/div[2]/span[1]/input")
+            "(//span/input[@placeholder='Search...'])[2]")
         clients.send_keys(name)
         sleep(3)
         select = self.driver.find_element_by_xpath(
-            "/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[2]/div[3]/field-value[2]/div/div[1]/select-search/div/div[2]/span[text() = ' %s ']" % name)
+            "(//span[text()=' %s '])[2]" % name)
         try:
             select.click()
         except:
@@ -315,27 +318,38 @@ class WorkflowsPage(CRMBasePage):
 
     def select_country(self, name):
         sleep(2)
-        select = Select(self.driver.find_element(By.XPATH,"/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[2]/div[3]/field-value[2]/div/div[2]/select"))
+        select = Select(self.driver.find_element_by_xpath(
+            "//div[@class='col-md-6']/select[contains(@class,'form-control')]"))
         select.select_by_visible_text(name)
         Logging().reportDebugStep(self, "Select condition " + name)
         return WorkflowsPage(self.driver)
 
     def click_save_task(self):
         sleep(2)
-        btn_save = self.driver.find_element_by_xpath("/html/body/bs-modal[6]/div/div/bs-modal-footer/div/button[1]")
+        btn_save = self.driver.find_element_by_xpath("(//button[text()='Save '])[1]")
         btn_save.click()
         Logging().reportDebugStep(self, "Click Save")
         return WorkflowsPage(self.driver)
 
     def click_save_workflow(self):
         sleep(2)
-        btn_save = self.driver.find_element_by_xpath("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[3]/div/button[3]")
+        btn_save = self.driver.find_element_by_xpath("//span[text()=' Save ']")
         btn_save.click()
         Logging().reportDebugStep(self, "Click Save")
         return WorkflowsPage(self.driver)
 
+    def search_workflow_by_name(self, name):
+        sleep(2)
+        name_field = super().wait_element_to_be_clickable(
+            "//div[@class='mat-form-field-infix']/input[@placeholder='Search' and @id='mat-input-4']")
+        name_field.clear()
+        name_field.send_keys(name)
+        sleep(2)
+        Logging().reportDebugStep(self, "Searching by workflow name: " + name)
+        return WorkflowsPage(self.driver)
 
-
-
-
-
+    def check_workflow_not_found(self):
+        sleep(1)
+        super().wait_load_element("//tr[@class='no-results']/td[text()='No results']")
+        Logging().reportDebugStep(self, "'No results' message is displayed")
+        return WorkflowsPage(self.driver)
