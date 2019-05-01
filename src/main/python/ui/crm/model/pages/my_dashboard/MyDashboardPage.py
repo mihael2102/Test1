@@ -375,7 +375,7 @@ class MyDashboardPage(CRMBasePage):
         input = self.driver.find_element_by_xpath("//*[@id='host-element']/input")
         input.send_keys(testqa)
         sleep(50)
-        Logging().reportDebugStep(self, "Enter account name")
+        Logging().reportDebugStep(self, "Enter account name: " + testqa)
         return MyDashboardPage(self.driver)
 
     def get_account_name(self):

@@ -71,6 +71,10 @@ class ClientsPage(CRMBasePage):
 
     def perform_searching_by_email(self, email):
         self.enter_email(email)
+        search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
+        search_button.click()
+        self.wait_loading_to_finish(55)
+        Logging().reportDebugStep(self, "Click the search button ")
         return ClientsPage(self.driver)
 
     ''' 
@@ -266,14 +270,10 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def click_search_button(self):
-        # Need to scroll to 'Filters' button to make 'Search' button visible
-        # drop_down_filter = super().wait_load_element("//span[@class='filter-option pull-left']")
-        # super().scroll_into_view(drop_down_filter)
-        # Click on 'Search'
         search_button_xpath = "//td[@class='txt_al_c']/input"
         search_button = super().wait_element_to_be_clickable(search_button_xpath)
-        # search_button.click()
         self.driver.execute_script("arguments[0].click();", search_button)
+        self.wait_loading_to_finish(55)
         Logging().reportDebugStep(self, "The search button was clicked ")
         return ClientsPage(self.driver)
 
@@ -286,8 +286,7 @@ class ClientsPage(CRMBasePage):
         sleep(1)
         self.perform_scroll_up()
         sleep(1)
-        # client_id.click()
-        Logging().reportDebugStep(self, "Click user name by email : ")
+        Logging().reportDebugStep(self, "Open Client id")
         return ClientProfilePage(self.driver)
 
     def open_create_filter_pop_up(self):

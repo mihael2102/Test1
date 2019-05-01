@@ -47,7 +47,7 @@ class CRMConstants(object):
     STATUS_ASSIGN = "R - New"
     PANDAQA_ASSIGN = "Panda Auto"
     PANDAQA_ASSIGN_CMB = "pandaqatest pandaqa"
-    SHORT_EMAIL = "pandaauto"
+    SHORT_EMAIL = "pandaqa"
     TESTQA = "testqa"
     SORTING_EXIST_NO = "no"
     SORTING_EXIST_YES = "yes"

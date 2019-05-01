@@ -1,7 +1,5 @@
 brands:
 
-#- name: finmarket
-#  config_file: finmarket.yml
 - name: kayafx
   config_file: kaya_fx.yml
 

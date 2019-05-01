@@ -9,8 +9,8 @@ from src.main.python.utils.logs.Loging import Logging
 
 class MassEditClientsModule(CRMBasePage):
 
-    def perform_mass_edit(self, gender, assigned_to, client_source, referral):
-        self.set_gender(gender)
+    def perform_mass_edit(self, assigned_to, client_source):
+        # self.set_gender(gender)
         self.set_assigned_to(assigned_to)
         self.set_client_source(client_source)
         # self.set_compliance_agent(compliance_agent)
@@ -19,7 +19,7 @@ class MassEditClientsModule(CRMBasePage):
         # self.set_client_status(client_status)
         # self.set_retention_status(retention_status)
         # self.set_description(description)
-        self.set_referral(referral)
+        # self.set_referral(referral)
         self.click_save()
         return MassEditClientsModule()
 
@@ -33,7 +33,8 @@ class MassEditClientsModule(CRMBasePage):
         return MassEditClientsModule()
 
     def set_assigned_to(self, assigned_to):
-        check_box = self.driver.find_element(By.XPATH,
+        sleep(3)
+        check_box = super().wait_element_to_be_clickable(
                                              "//div[@id='assigned_user_id_mass_edit_check']//div[1]")
         check_box.click()
         assigned_to_drown = Select(self.driver.find_element(By.XPATH, "//select[@name='assigned_user_id']"))
@@ -119,8 +120,10 @@ class MassEditClientsModule(CRMBasePage):
         return MassEditClientsModule()
 
     def click_save(self):
+        sleep(1)
         save_button = self.driver.find_element(By.XPATH,
                                                "//button[contains(text(),'Save')]")
-        save_button.click()
+        self.driver.execute_script("arguments[0].scrollIntoView();", save_button)
+        self.driver.execute_script("arguments[0].click();", save_button)
         Logging().reportDebugStep(self, "Save was clicked")
         return MassEditClientsModule()
