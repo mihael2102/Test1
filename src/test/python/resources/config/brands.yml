@@ -79,6 +79,8 @@ brands:
   config_file: b-traderfx.yml
 - name: newforexqa2
   config_file: newforexqa2.yml
+- name: stratton
+  config_file: stratton.yml
 
 
 

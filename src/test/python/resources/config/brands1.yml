@@ -15,10 +15,11 @@ brands:
 #- name: 4xfx
 #  config_file: 4xfx.yml
 
-- name: tradospot
-  config_file: tradospot.yml
+#- name: tradospot
+#  config_file: tradospot.yml
 
-
+- name: stratton
+  config_file: stratton.yml
 
 
 
