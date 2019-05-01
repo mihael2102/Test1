@@ -76,8 +76,8 @@ class WorkflowsPage(CRMBasePage):
 
     def select_second_country(self, name):
         sleep(2)
-        select = Select(self.driver.find_element(By.XPATH,
-                                                 "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[2]/div/div[3]/select"))
+        select = Select(self.driver.find_element_by_xpath(
+            "(//div[contains(@class,'select-wrap')]/select[contains(@class,'condition-value')])[2]"))
         select.select_by_visible_text(name)
         Logging().reportDebugStep(self, "Select Clients Country" + name)
         return WorkflowsPage(self.driver)
@@ -143,16 +143,9 @@ class WorkflowsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Select Clients Status" + name)
         return WorkflowsPage(self.driver)
 
-    def click_add_condition(self):
-        sleep(2)
-        btn_next = self.driver.find_element_by_xpath("//button[contains(text(), 'Add Condition')]")
-        btn_next.click()
-        Logging().reportDebugStep(self, "Click Add Condition")
-        return WorkflowsPage(self.driver)
-
     def select_second_accept_promotions(self, name):
         sleep(2)
-        module = self.driver.find_element_by_xpath("//field-condition-value[2]//div[@class='select-filter']")
+        module = self.driver.find_element_by_xpath("//div[@class='multi-select-title']/span[contains(text(),'Accept')]")
         module.click()
         sleep(2)
         clients = self.driver.find_element_by_xpath(
@@ -169,14 +162,15 @@ class WorkflowsPage(CRMBasePage):
 
     def select_second_condition(self, name):
         sleep(2)
-        select = Select(self.driver.find_element(By.XPATH, "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[2]/div/div[2]/select"))
+        select = Select(self.driver.find_element_by_xpath(
+            "(//div[@class='select-wrap']/select[contains(@class,'condition-operator')])[2]"))
         select.select_by_visible_text(name)
         Logging().reportDebugStep(self, "Select condition " + name)
         return WorkflowsPage(self.driver)
 
     def click_enter_email(self):
         sleep(2)
-        btn_next = self.driver.find_element_by_xpath("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[3]/div/div[3]/input")
+        btn_next = self.driver.find_element_by_xpath("//input[contains(@class,'condition-value')]")
         btn_next.click()
         Logging().reportDebugStep(self, "Click enter email")
         return WorkflowsPage(self.driver)
@@ -184,7 +178,7 @@ class WorkflowsPage(CRMBasePage):
     def enter_email(self, email):
         sleep(2)
         clients = self.driver.find_element_by_xpath(
-            "/html/body/bs-modal[8]/div/div/bs-modal-body/div/value-definition/div/div[2]/textarea")
+            "(//textarea[contains(@class,'form-control')])[3]")
         clients.send_keys(email)
         Logging().reportDebugStep(self, "Emaer email: " + email)
         return WorkflowsPage(self.driver)
@@ -192,73 +186,67 @@ class WorkflowsPage(CRMBasePage):
     def click_save_value(self):
         sleep(2)
         btn_next = self.driver.find_element_by_xpath(
-            "/html/body/bs-modal[8]/div/div/bs-modal-footer/div/button[1]")
+            "(//button[text()='Save '])[3]")
         btn_next.click()
         Logging().reportDebugStep(self, "Click Save")
         return WorkflowsPage(self.driver)
 
     def select_second_condition_between(self, name):
         sleep(2)
-        select = Select(self.driver.find_element(By.XPATH,
-                                                 "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[2]/div/div[4]/select"))
+        select = Select(self.driver.find_element_by_xpath(
+            "(//div[contains(@class,'select-wrap')]/select[contains(@class,'form-control')])[6]"))
         select.select_by_visible_text(name)
         Logging().reportDebugStep(self, "Select condition " + name)
         return WorkflowsPage(self.driver)
 
     def select_condition_between(self, name):
         sleep(2)
-        select = Select(self.driver.find_element(By.XPATH,
-                                                 "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[1]/div/div[4]/select"))
+        select = Select(self.driver.find_element_by_xpath(
+            "(//div[contains(@class,'select-wrap')]/select[contains(@class,'form-control')])[3]"))
         select.select_by_visible_text(name)
         Logging().reportDebugStep(self, "Select condition " + name)
         return WorkflowsPage(self.driver)
 
     def select_third_accept_promotions(self, name):
         sleep(2)
-        module = self.driver.find_element_by_xpath("//field-condition-value[3]//div[@class='select-filter']")
+        self.perform_scroll_down()
+        module = self.driver.find_element_by_xpath("//div[@class='multi-select-title']/span[contains(text(),'Accept')]")
         module.click()
         sleep(2)
         clients = self.driver.find_element_by_xpath(
-            "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[3]/div/div[1]/select-search/div/div[2]/span[1]/input")
+            "//div[@class='select-options options-enabled']/span[@class='filter-search-container']/input[@placeholder='Search...']")
         clients.send_keys(name)
         sleep(3)
         select = self.driver.find_element_by_xpath(
-            "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[3]/div/div[1]/select-search/div/div[2]/span[2][contains(text(), '%s')]" % name)
+            "(//span[text()=' %s '])[3]" % name)
         try:
             select.click()
         except:
             self.driver.execute_script("arguments[0].click();", select)
-        Logging().reportDebugStep(self, "Select " + name)
+        Logging().reportDebugStep(self, "Select: " + name)
         return WorkflowsPage(self.driver)
 
     def select_third_conditions(self, name):
         sleep(2)
-        select = Select(self.driver.find_element(By.XPATH,
-                                                 "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[3]/div/div[2]/select"))
+        select = Select(self.driver.find_element_by_xpath(
+            "(//div[@class='select-wrap']/select[contains(@class,'condition-operator')])[3]"))
         select.select_by_visible_text(name)
-        Logging().reportDebugStep(self, "Select condition " + name)
+        Logging().reportDebugStep(self, "Select condition: " + name)
         return WorkflowsPage(self.driver)
-
-    def select_second_condition_between(self, name):
-        Logging().reportDebugStep(self, "Select condition between " + name)
-        return WorkflowsPage(self.driver)
-
-
 
     def select_add_task(self, name):
         sleep(2)
-        btn_add_task = self.driver.find_element_by_xpath(
-            "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-tasks/div[1]/div/button")
+        btn_add_task = self.driver.find_element_by_xpath("//span[text()='Add Task']")
         btn_add_task.click()
         sleep(2)
-        select = self.driver.find_element_by_xpath("//li[contains(text(), '%s')]" % name)
+        select = self.driver.find_element_by_xpath("//span[text()='%s']" % name)
         select.click()
         Logging().reportDebugStep(self, "Click Add Task and select: " + name)
         return WorkflowsPage(self.driver)
 
     def enter_task_title(self, name):
         sleep(2)
-        input = self.driver.find_element_by_xpath("/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[1]/div[2]/input")
+        input = self.driver.find_element_by_xpath("//input[@placeholder='Task Title']")
         input.send_keys(name)
         Logging().reportDebugStep(self, "Enter task title " + name)
         return WorkflowsPage(self.driver)
@@ -272,25 +260,24 @@ class WorkflowsPage(CRMBasePage):
 
     def select_field(self, name):
         sleep(2)
-        module = self.driver.find_element_by_xpath("/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[2]/div[3]/field-value/div/div[1]/select-search/div")
+        module = self.driver.find_element_by_xpath("//span[text()='Select field']")
         module.click()
         sleep(2)
-        clients = self.driver.find_element_by_xpath(
-            "/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[2]/div[3]/field-value/div/div[1]/select-search/div/div[2]/span[1]/input")
+        clients = self.driver.find_element_by_xpath("//span/input[@placeholder='Search...']")
         clients.send_keys(name)
         sleep(3)
         select = self.driver.find_element_by_xpath(
-            "//span[contains(text(), '%s')]" % name)
+            "//span[contains(text(), ' %s ')]" % name)
         try:
             select.click()
         except:
             self.driver.execute_script("arguments[0].click();", select)
-        Logging().reportDebugStep(self, "Select " + name)
+        Logging().reportDebugStep(self, "Select: " + name)
         return WorkflowsPage(self.driver)
 
     def click_enter_value(self):
         sleep(2)
-        btn = self.driver.find_element_by_xpath("/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[2]/div[3]/field-value/div/div[2]/input")
+        btn = self.driver.find_element_by_xpath("//div[@class='col-md-6']/input[contains(@class, 'form-control')]")
         btn.click()
         Logging().reportDebugStep(self, "Click enter value")
         return WorkflowsPage(self.driver)
