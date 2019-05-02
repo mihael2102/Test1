@@ -41,7 +41,7 @@ class AffiliatePage(CRMBasePage):
     def check_selected_countries(self):
         sleep(3)
         selected_number = super().wait_load_element(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[1]/span").text
+            "(//div[@class='multi-select-title']/span[contains(text(),'elected')])[2]").text
         Logging().reportDebugStep(self, "Check selected blocked countries")
         return selected_number
 
@@ -53,7 +53,8 @@ class AffiliatePage(CRMBasePage):
 
     def check_selected_methods(self):
         sleep(3)
-        selected_number = super().wait_load_element("/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[1]").text
+        selected_number = super().wait_load_element(
+            "(//div[@class='multi-select-title']/span[contains(text(),'elected')])[1]").text
         Logging().reportDebugStep(self, "Check selected methods")
         return selected_number
 
@@ -66,33 +67,32 @@ class AffiliatePage(CRMBasePage):
 
     def open_edit_affiliate(self):
         sleep(3)
-        edit_button = self.driver.find_element(By.XPATH, "/html/body/app-root/affiliate-list/div[2]/div[2]/grid/div/div/div[1]/table/tbody/tr[2]/td[10]/div/span")
+        edit_button = self.driver.find_element(By.XPATH, "//span[contains(@class,'pencil')]")
         edit_button.click()
-        Logging().reportDebugStep(self, "Click edit affiliate")
+        Logging().reportDebugStep(self, "Click Edit affiliate")
         return AffiliatePage(self.driver)
 
     def add_all_methods(self):
         sleep(3)
-        methods = super().wait_element_to_be_clickable("/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]")
+        methods = super().wait_element_to_be_clickable(
+            "(//div[@class='multi-select-title']/span[contains(text(),'elected')])[1]")
         methods.click()
         sleep(2)
-        all_methods = super().wait_element_to_be_clickable("/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[2]/span[2]/i")
+        all_methods = super().wait_element_to_be_clickable(
+            "(//span[contains(@class,'selectAll')]/i)[1]")
         all_methods.click()
         sleep(4)
         all_methods.click()
-        # submit = super().wait_element_to_be_clickable("/html/body/bs-modal[3]/div/div/form/bs-modal-footer/div/button[3]")
-        # submit.click()
         Logging().reportDebugStep(self, "Select all methods")
         return AffiliatePage(self.driver)
 
     def copy_secret_key(self):
         sleep(5)
         copy_button = super().wait_element_to_be_clickable("//button[contains(text(), 'Copy')]")
-        # copy_button.click()
         self.driver.execute_script("arguments[0].click();", copy_button)
         sleep(3)
-        key = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-body/div/span").text
-        button_ok = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-footer/div/button")
+        key = super().wait_load_element("//div[@class='modal-body']/span").text
+        button_ok = super().wait_load_element("//div[@class='modal-footer']/button[text()='OK']")
         button_ok.click()
         Logging().reportDebugStep(self, "Copy key")
         return key
@@ -101,17 +101,16 @@ class AffiliatePage(CRMBasePage):
     def get_link_api(self):
         sleep(5)
         try:
-            api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+            api_link = self.driver.find_element(By.XPATH, "//a[contains(@id,'api-link')]").text
         except NoSuchElementException:
             try:
                 CRMBasePage(self.driver).refresh_page()
                 sleep(1)
-                api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+                api_link = self.driver.find_element(By.XPATH, "//a[contains(@id,'api-link')]").text
             except NoSuchElementException:
                 CRMBasePage(self.driver).refresh_page()
                 sleep(1)
-                api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
-        # api_link.click()
+                api_link = self.driver.find_element(By.XPATH, "//a[contains(@id,'api-link')]").text
         Logging().reportDebugStep(self, "Get link API")
         return api_link
 

@@ -1,5 +1,12 @@
 brands:
-
+- name: swisscci
+  config_file: swisscci.yml
+- name: goldenmarkets
+  config_file: goldenmarkets.yml
+- name: safemarkets
+  config_file: safemarkets.yml
+- name: b-traderfx
+  config_file: b-traderfx.yml
 - name: royal_cfds
   config_file: royal_cfds.yml
 - name: jonesmutual
@@ -73,15 +80,7 @@ brands:
   config_file: tfxgo.yml
 - name: uprofx
   config_file: uprofx.yml
+- name: mpcrypto
+  config_file: mpcrypto.yml
 - name: gigafx
   config_file: gigafx.yml
-
-
-
-
-
-
-
-
-
-
