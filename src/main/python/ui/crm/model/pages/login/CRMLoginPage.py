@@ -37,12 +37,12 @@ class CRMLoginPage(CRMBasePage):
         login_button = self.driver.find_element(By.XPATH, "//input[@id='submitButton']")
         user_name_field.clear()
         user_name_field.send_keys(user_name)
-        Logging().reportDebugStep(self, "Setting the user name in the field : " + '\n')
+        Logging().reportDebugStep(self, "Setting the username: " + user_name)
         password__field.clear()
         password__field.send_keys(password)
-        Logging().reportDebugStep(self, "Setting the user name in the password: " + '\n')
+        Logging().reportDebugStep(self, "Setting the password")
         login_button.click()
-        Logging().reportDebugStep(self, "Click the login button" + '\n')
+        Logging().reportDebugStep(self, "Click the login button")
         sleep(1)
         try:
             otp_field = self.driver.find_element(By.XPATH, "//input[@id='otp']")
@@ -55,11 +55,10 @@ class CRMLoginPage(CRMBasePage):
             submit_button.click()
             Logging().reportDebugStep(self, "Click the submit button" + '\n')
         except NoSuchElementException:
-            Logging().reportDebugStep(self, "No OTP authentication is required" + '\n')
+            Logging().reportDebugStep(self, "No OTP authentication is required")
 
         # Wait for News popup at Old forex and close popup if it is shown
         try:
-            # if ("uminvestments" or "ogtrade") in super().get_current_url():
             sleep(8)
             do_not_show_again_checkbox = super().wait_element_to_be_clickable("//*[@id='do_not_show']", timeout=4)
             do_not_show_again_checkbox.click()
