@@ -64,7 +64,7 @@ class LeadsModule(CRMBasePage):
 
     def click_first_lead_email(self):
         sleep(3)
-        first_lead_email = self.driver.find_element(By.XPATH, "//tr[2]//a//div[contains(text(), 'pandaauto')]")
+        first_lead_email = super().wait_load_element("//tr[2]//a//div[contains(text(), 'pandaqa')]")
         sleep(1)
         try:
             first_lead_email.click()
@@ -75,7 +75,7 @@ class LeadsModule(CRMBasePage):
 
     def get_first_lead_email(self):
         sleep(14)
-        first_lead_email = self.driver.find_element(By.XPATH, "//tr[2]//a//div[contains(text(), 'pandaauto')]")
+        first_lead_email = self.driver.find_element(By.XPATH, "//tr[2]//a//div[contains(text(), 'pandaqa')]")
         Logging().reportDebugStep(self, "Get first lead email")
         return first_lead_email.text
 

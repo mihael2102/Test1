@@ -41,7 +41,6 @@ class CampaignsPrecondition(object):
             existing_campaign = CampaignsPage(self.driver).campaign_exist()
             sleep(1)
             assert self.camp_name == existing_campaign
-            # return self.camp_name, existing_campaign
             sleep(2)
 
         """edit campaign"""
@@ -93,6 +92,15 @@ class CampaignsPrecondition(object):
             CampaignsPage(self.driver).perform_searching_campaign_by_name(self.camp_name)
             sleep(1)
             CampaignsPage(self.driver).check_campaign_deleted()
+
+
+
+
+
+
+
+
+
 
 
     # def __init__(self) -> None:

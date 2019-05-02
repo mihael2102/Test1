@@ -47,9 +47,9 @@ class WorkflowsPage(CRMBasePage):
 
     def click_add_new_workflow(self):
         sleep(5)
-        btn_add_new_workflow = self.driver.find_element_by_xpath("//button[contains(text(), 'New Workflow')]")
+        btn_add_new_workflow = super().wait_element_to_be_clickable("//button[contains(text(), 'New Workflow')]")
         btn_add_new_workflow.click()
-        Logging().reportDebugStep(self, "Click add new workflow")
+        Logging().reportDebugStep(self, "Click 'New Workflow' button")
         return WorkflowsPage(self.driver)
 
     def enter_workflow_name(self, name):

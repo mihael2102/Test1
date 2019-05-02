@@ -16,12 +16,12 @@ class AddCampaignsModule(CRMBasePage):
 
     def perform_add_new_campaign(self, name, assigned_to, start_date, end_date, deal, rate):
         self.set_name(name)
-        self.set_assigned_to(assigned_to)
         self.set_start_date(start_date)
         self.set_end_date(end_date)
         self.set_deal(deal)
         self.set_rate(rate)
         self.set_active_check_box()
+        self.set_assigned_to(assigned_to)
         self.click_save_button()
 
     def set_name(self, name):
@@ -49,12 +49,10 @@ class AddCampaignsModule(CRMBasePage):
         sleep(1)
         start_date_button.send_keys(Keys.CONTROL + "a")
         start_date_button.send_keys(Keys.DELETE)
-        # start_date_button.clear()
         sleep(1)
         start_date_button.send_keys(start_date)
         start_date_button.send_keys(Keys.ENTER)
         sleep(1)
-        # start_date_button.click()
         Logging().reportDebugStep(self, "The start date was set: " + start_date)
         return AddCampaignsModule()
 
@@ -64,10 +62,8 @@ class AddCampaignsModule(CRMBasePage):
         search_button.send_keys(Keys.CONTROL + "a")
         search_button.send_keys(Keys.DELETE)
         sleep(1)
-        # search_button.clear()
         search_button.send_keys(end_date)
         search_button.send_keys(Keys.ENTER)
-        # search_button.click()
         Logging().reportDebugStep(self, "The end date was set: " + end_date)
         return AddCampaignsModule()
 
@@ -80,20 +76,20 @@ class AddCampaignsModule(CRMBasePage):
     def click_save_button(self):
         save_button = super().wait_element_to_be_clickable("//button[@id='Save']")
         sleep(1)
-        save_button.click()
-        Logging().reportDebugStep(self, "The save button was clicked ")
+        self.driver.execute_script("arguments[0].click();", save_button)
+        Logging().reportDebugStep(self, "The Save button was clicked")
         return AddCampaignsModule()
 
     def set_deal(self, deal):
         deal_button = Select(self.driver.find_element(By.XPATH, "//select[@name='deal']"))
         deal_button.select_by_visible_text(deal)
         deal_drop_down = self.driver.find_element(By.XPATH, "//select[@name='deal']")
-        deal_drop_down.click()
-        Logging().reportDebugStep(self, "The deal was set ")
+        self.driver.execute_script("arguments[0].click();", deal_drop_down)
+        Logging().reportDebugStep(self, "The Deal was set: " + deal)
         return AddCampaignsModule()
 
     def set_active_check_box(self):
         activity_button = self.driver.find_element(By.XPATH, "//input[@type='checkbox']")
         activity_button.click()
-        Logging().reportDebugStep(self, "The deal was set ")
+        Logging().reportDebugStep(self, "The active check box was set")
         return AddCampaignsModule()

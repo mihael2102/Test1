@@ -608,10 +608,11 @@ class LeadModuleTest(BaseTest):
             self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])
             if lead_data[LeadsModuleConstants.PANDA_PARTNER]:
                 self.assertEqual(panda_partner_id, lead_data[LeadsModuleConstants.PANDA_PARTNER])
-            if (global_var.current_brand_name != "gmo") and (global_var.current_brand_name != "gmo-dev") and (global_var.current_brand_name != "oinvestsa") \
-                    and (global_var.current_brand_name != "itrader") and (global_var.current_brand_name != "otcapital") and (global_var.current_brand_name != "urf") \
-                    and (global_var.current_brand_name != "rimarkets") and (global_var.current_brand_name != "itrader_global") and (global_var.current_brand_name != "ogtrade") \
-                    and (global_var.current_brand_name != "fm-fx"):
+            if (global_var.current_brand_name != "gmo") and (global_var.current_brand_name != "gmo-dev") \
+                    and (global_var.current_brand_name != "oinvestsa") and (global_var.current_brand_name != "itrader") \
+                    and (global_var.current_brand_name != "otcapital") and (global_var.current_brand_name != "urf") \
+                    and (global_var.current_brand_name != "rimarkets") and (global_var.current_brand_name != "itrader_global") \
+                    and (global_var.current_brand_name != "ogtrade") and (global_var.current_brand_name != "fm-fx"):
                 if lead_data[LeadsModuleConstants.FIRST_REFERRAL]:
                     self.assertEqual(referral, lead_data[LeadsModuleConstants.FIRST_REFERRAL])
         else:

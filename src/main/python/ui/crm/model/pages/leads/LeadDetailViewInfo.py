@@ -20,7 +20,7 @@ class LeadDetailViewInfo(CRMBasePage):
         task_module = self.driver.find_element(By.XPATH, "//input[@name='Edit']")
         self.driver.execute_script("arguments[0].click();", task_module)
         # task_module.click()
-        Logging().reportDebugStep(self, "The delete pop-up is displayed")
+        Logging().reportDebugStep(self, "The Edit pop-up is opened")
         return EditLeadsProfilePage(self.driver)
 
     '''

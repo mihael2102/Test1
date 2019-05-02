@@ -24,7 +24,7 @@ class CRMConfigurationsTest(BaseTest):
                                          .check_manage_psp_loaded() \
                                          .check_click2call_loaded() \
                                          .check_referral_configuration_loaded() \
-                                         .check_workflows_loaded() \
-                                         .check_sharing_access_loaded() \
+                                         .check_workflows_loaded()
+        CRMConfigurationPage(self.driver).check_sharing_access_loaded() \
                                          .check_list_row_colors_loaded() \
                                          .check_email_templates_loaded()

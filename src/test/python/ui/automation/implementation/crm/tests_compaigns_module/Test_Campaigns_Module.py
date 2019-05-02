@@ -10,15 +10,31 @@ from src.test.python.ui.automation.utils.preconditions.campaigns.CampaignsPrecon
 class CampaignsModuleTest(BaseTest):
 
     def test_create_campaign(self):
-        # camp_name, existing_campaign =
+
         CampaignsPrecondition(self.driver, self.config).create_new_campaign()
-        # self.assertEqual(camp_name, existing_campaign, "Not equal")\
 
     def test_edit_campaign(self):
+
         CampaignsPrecondition(self.driver, self.config).edit_campaign()
 
     def test_delete_campaign(self):
+
         CampaignsPrecondition(self.driver, self.config).delete_campaign()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     # def test_create_campaigns_module(self):
     #     CampaignsPrecondition().perform_create_new_campaigns()

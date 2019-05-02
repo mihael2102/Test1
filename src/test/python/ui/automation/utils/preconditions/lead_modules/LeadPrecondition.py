@@ -55,9 +55,9 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).select_filter(
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
         LeadsModule(self.driver).enter_email(lead_email) \
-            .click_search_button_leads_module()\
-            .open_lead_personal_details()\
-            .open_email_section()
+                                .click_search_button_leads_module()\
+                                .open_lead_personal_details()\
+                                .open_email_section()
         mail = LeadsModule(self.driver).get_saved_mail_lead(CRMConstants.SUBJECT_LEAD_MAIL)
         assert mail == CRMConstants.SUBJECT_LEAD_MAIL
 
@@ -657,7 +657,9 @@ class LeadPrecondition(object):
                 new_lead_data[LeadsModuleConstants.CITY],
                 new_lead_data[LeadsModuleConstants.FIRST_STATE])
 
-        elif (global_var.current_brand_name == "rimarkets") or (global_var.current_brand_name == "oinvestsa") or (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "otcapital") or (global_var.current_brand_name == "fm-fx"):
+        elif (global_var.current_brand_name == "rimarkets") or (global_var.current_brand_name == "oinvestsa") or \
+                (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "otcapital") or \
+                (global_var.current_brand_name == "fm-fx"):
 
             LeadDetailViewInfo(self.driver).open_edit_lead_profile().perform_edit_lead_without_reff(
                 new_lead_data[LeadsModuleConstants.FIRST_NAME],
