@@ -165,8 +165,8 @@ class Trading_Precondition(object):
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                  LeadsModuleConstants.EMAIL]) \
-            .enter_password(CAConstants.PASSWORD) \
-            .click_login()
+                                .enter_password(CAConstants.PASSWORD) \
+                                .click_login()
         ca_balance = CAPage(self.driver).get_balance()
         CAPage(self.driver).click_actions_launch()
         avaliable_funds_int = WebTraderPage(self.driver).get_avaliable_funds()

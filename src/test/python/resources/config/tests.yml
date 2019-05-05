@@ -1,19 +1,19 @@
 tests_config:
-###CA
+
 - module: src.test.python.ui.automation.implementation.ca.Test_SignUp
   class: SignUpTest
   tests:
     - test_check_sign_up
-    - test_check_email_sign_up
-    - test_registred_client_exist_in_crm
+#    - test_check_email_sign_up
+#    - test_registred_client_exist_in_crm
 
 - module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Live_Accounts
   class: AddNewLiveAccountTestCA
   tests:
     - test_add_new_live_account_ca
     - test_add_new_demo_account_ca
-    - test_check_demo_in_crm
-    - test_open_ticket_ca
+#    - test_check_demo_in_crm
+#    - test_open_ticket_ca
 
 - module: src.test.python.ui.automation.implementation.ca.Trading_Process
   class: TradingProcess
