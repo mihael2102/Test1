@@ -47,7 +47,6 @@ class WebTraderPage(CRMBasePage):
         Logging().reportDebugStep(self, "check hight low" + check_stop_loss_in_table.text)
         return check_stop_loss_in_table.text
 
-
     def check_stop_loss_in_table(self):
         sleep(3)
         check_stop_loss_in_table = self.driver.find_element(By.XPATH,
