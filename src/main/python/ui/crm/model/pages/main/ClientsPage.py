@@ -270,7 +270,8 @@ class ClientsPage(CRMBasePage):
         search_button_xpath = "//td[@class='txt_al_c']/input"
         search_button = super().wait_element_to_be_clickable(search_button_xpath)
         search_button.click()
-        Logging().reportDebugStep(self, "The search button was clicked ")
+        self.wait_loading_to_finish(55)
+        Logging().reportDebugStep(self, "The Search button was clicked")
         return ClientsPage(self.driver)
 
     def open_client_id(self):
@@ -372,12 +373,13 @@ class ClientsPage(CRMBasePage):
 
     def select_three_records_clients_module(self):
         sleep(2)
-        first_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[1]")
-        first_check_box.click()
+        first_check_box = super().wait_load_element("//tbody[@id='listBody']//tr[1]//td[1]", timeout=35)
+        self.driver.execute_script("arguments[0].scrollIntoView();", first_check_box)
+        self.driver.execute_script("arguments[0].click();", first_check_box)
         second_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[2]//td[1]")
-        second_check_box.click()
+        self.driver.execute_script("arguments[0].click();", second_check_box)
         third_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[3]//td[1]")
-        third_check_box.click()
+        self.driver.execute_script("arguments[0].click();", third_check_box)
         Logging().reportDebugStep(self, "The three records were selected")
         return ClientsPage(self.driver)
 
@@ -395,8 +397,8 @@ class ClientsPage(CRMBasePage):
         return SendEmailClientsModule(self.driver)
 
     def open_mass_edit_module(self):
-        sleep(10)
-        mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass Edit']")
+        sleep(2)
+        mass_edit_module = super().wait_load_element("//input[@value='Mass Edit']", 33)
         self.driver.execute_script("arguments[0].scrollIntoView();", mass_edit_module)
         try:
             mass_edit_module.click()
