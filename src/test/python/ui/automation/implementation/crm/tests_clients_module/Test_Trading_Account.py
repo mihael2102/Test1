@@ -17,7 +17,10 @@ class TradingAccountCrmTest(BaseTest):
             TradingAccountPrecondition(self.driver, self.config) \
                 .add_demo_account_from_crm()
             confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
-            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+            try:
+                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+            except:
+                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY_2)
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             try:
 
@@ -26,27 +29,39 @@ class TradingAccountCrmTest(BaseTest):
                 TradingAccountPrecondition(self.driver, self.config) \
                     .add_demo_account_from_crm()
                 confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
-                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+                try:
+                    self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+                except:
+                    self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY_2)
             except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
                 ClientProfilePage(self.driver).Sign_Out()
 
                 TradingAccountPrecondition(self.driver, self.config) \
                     .add_demo_account_from_crm()
                 confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
-                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+                try:
+                    self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+                except:
+                    self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY_2)
 
     def test_crm_open_live_trading_account(self):
         TradingAccountPrecondition(self.driver, self.config) \
             .add_live_account_from_crm()
         confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
-        self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+        try:
+            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+        except:
+            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY_2)
 
     def test_crm_open_demo_mt5(self):
         if (global_var.current_brand_name == "q8"):
             TradingAccountPrecondition(self.driver, self.config) \
                 .add_mt5_demo_account_from_crm()
             confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
-            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+            try:
+                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+            except:
+                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY_2)
         else:
             return self
 
@@ -55,7 +70,10 @@ class TradingAccountCrmTest(BaseTest):
             TradingAccountPrecondition(self.driver, self.config) \
                 .add_live_mt5_from_crm()
             confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
-            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+            try:
+                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+            except:
+                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY_2)
         else:
             Logging().reportDebugStep(self, "module does not exist")
             return self
@@ -71,7 +89,10 @@ class TradingAccountCrmTest(BaseTest):
             TradingAccountPrecondition(self.driver, self.config).update_demo_account_from_crm()
 
             confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
-            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY)
+            try:
+                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY)
+            except:
+                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY_2)
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             try:
 
@@ -84,7 +105,10 @@ class TradingAccountCrmTest(BaseTest):
                 TradingAccountPrecondition(self.driver, self.config).update_demo_account_from_crm()
 
                 confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
-                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY)
+                try:
+                    self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY)
+                except:
+                    self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY_2)
             except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
                 ClientProfilePage(self.driver).Sign_Out()
                 TradingAccountPrecondition(self.driver, self.config) \
@@ -95,7 +119,10 @@ class TradingAccountCrmTest(BaseTest):
                 TradingAccountPrecondition(self.driver, self.config).update_demo_account_from_crm()
 
                 confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
-                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY)
+                try:
+                    self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY)
+                except:
+                    self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY_2)
 
 
 

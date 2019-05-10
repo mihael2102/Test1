@@ -179,7 +179,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_amount_of_credit_in(self):
         # add refresh page
-        credit_in_amount_element = super().wait_visible_of_element("//*[@id='rld_table_content']/tbody/tr[2]/td[6]/span[1]")
+        credit_in_amount_element = super().wait_visible_of_element("//*[@id='rld_table_content']/tbody/tr[2]/td[6]")
         Logging().reportDebugStep(self, "Amount of Credit in is " + credit_in_amount_element.text)
         return credit_in_amount_element.text
 
@@ -726,7 +726,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_balance_of_trading_account(self, account):
         sleep(2)
-        balance = super().wait_load_element("//*[@id='rld_table_content']/tbody/tr[%s]/td[5]/span[1]" % account)
+        balance = super().wait_load_element("//*[@id='rld_table_content']/tbody/tr[%s]/td[5]" % account)
         total_amount = re.sub('[$£CA€ [ ]', '', balance.text)
         Logging().reportDebugStep(self, "Balance of trading account is: " + total_amount)
         return total_amount

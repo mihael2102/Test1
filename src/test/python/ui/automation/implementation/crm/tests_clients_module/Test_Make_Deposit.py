@@ -141,7 +141,10 @@ class DepositTestCRM(BaseTest):
 
             # Check confirmation message
             confirmation_message = crm_client_profile.get_confirm_message()
-            self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY)
+            try:
+                self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY)
+            except:
+                self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY_2)
 
             # Close popup
             crm_client_profile.click_ok()\
@@ -292,7 +295,10 @@ class DepositTestCRM(BaseTest):
 
                 # Check confirmation message
                 confirmation_message = crm_client_profile.get_confirm_message()
-                self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY)
+                try:
+                    self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY)
+                except:
+                    self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY_2)
 
                 # Close popup
                 crm_client_profile.click_ok() \
@@ -443,7 +449,10 @@ class DepositTestCRM(BaseTest):
 
                 # Check confirmation message
                 confirmation_message = crm_client_profile.get_confirm_message()
-                self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY)
+                try:
+                    self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY)
+                except:
+                    self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY_2)
 
                 # Close popup
                 crm_client_profile.click_ok() \
