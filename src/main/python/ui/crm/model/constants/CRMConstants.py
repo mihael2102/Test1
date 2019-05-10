@@ -4,6 +4,9 @@ from dateutil.relativedelta import relativedelta
 
 
 class CRMConstants(object):
+    MT4_ACCOUNT_CREATED_SUCCESFULLY_2 = "MT4 Account created successfully"
+    MT4_ACCOUNT_UPDATED_SUCCESFULLY_2 = "MT4 Account updated successfully"
+    DEPOSIT_SUCCESSFULLY_2 = "Successful MT4 Deposit"
     CLEARNED_BY = "panda"
     TEST_PANDA = "test"
     SEND_SMS = "Send SMS"
