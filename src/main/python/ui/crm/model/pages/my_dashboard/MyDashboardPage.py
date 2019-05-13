@@ -364,7 +364,7 @@ class MyDashboardPage(CRMBasePage):
     def select_show_all_tab(self):
         sleep(4)
         select_show_all_tab = self.driver.find_element_by_xpath(
-            "//*[@id='main-tabs']/li[1]")
+            "//li[contains(text(), 'Show all')]")
         self.driver.execute_script("arguments[0].scrollIntoView();", select_show_all_tab)
         select_show_all_tab.click()
         Logging().reportDebugStep(self, "Select show all tab")
@@ -380,14 +380,14 @@ class MyDashboardPage(CRMBasePage):
 
     def get_account_name(self):
         sleep(3)
-        account_name = self.driver.find_element_by_xpath("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[6]/grid-cell/div/span[2]/a")
+        account_name = self.driver.find_element_by_xpath("//tr[2]/td[6]/grid-cell/div/span[2]/a")
         Logging().reportDebugStep(self, "Get account name")
         return account_name.text
 
 
     def click_pencil_icon(self):
         sleep(4)
-        pencil_icon = self.driver.find_element_by_xpath("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span")
+        pencil_icon = self.driver.find_element_by_xpath("//tbody/tr[2]/td[18]/div[5]/div/span")
         pencil_icon.click()
         Logging().reportDebugStep(self, "Click pencil icon")
         return MyDashboardPage(self.driver)
@@ -395,7 +395,7 @@ class MyDashboardPage(CRMBasePage):
     def get_status(self):
         sleep(5)
         get_status = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[5]/grid-cell/div/span[2]")
+            "//tbody/tr[2]/td[5]/grid-cell/div/span[2]")
         Logging().reportDebugStep(self, "Get status")
         return get_status.text
 
@@ -403,7 +403,7 @@ class MyDashboardPage(CRMBasePage):
     def get_type(self):
         sleep(5)
         get_type = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[3]/grid-cell/div/span[2]")
+            "//tbody/tr[2]/td[3]/grid-cell/div/span[2]")
         Logging().reportDebugStep(self, "Get type")
         return get_type.text
 
@@ -411,6 +411,6 @@ class MyDashboardPage(CRMBasePage):
     def get_time(self):
         sleep(5)
         get_time = self.driver.find_element_by_xpath(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[4]/grid-cell/div/span[2]")
+            "//tbody/tr[2]/td[4]/grid-cell/div/span[2]")
         Logging().reportDebugStep(self, "Get type")
         return get_time.text
