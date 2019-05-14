@@ -155,13 +155,13 @@ tests_config:
 #    - test_create_affiliate
 #
 #########################################FINANCIAL TRANSACTIONS##############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
-  class: TabFinancialTransaction
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
+#  class: TabFinancialTransaction
+#  tests:
 #    - test_check_all_tab_from_financial_transactions
 #    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
 #    - test_check_search_via_button # Check search using search button
-     - test_check_email_popup
+
 
 #
 ############################################CAMPAIGN MODULE###############################################
@@ -201,9 +201,5 @@ tests_config:
 #  tests:
 #    - test_searching_by_columns
 
-#########################################TRADING MODULE###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_trading_account.Test_Trading_Account_Module
-  class: TradingAccountModuleTest
-  tests:
-    - test_sorting_columns
+
 

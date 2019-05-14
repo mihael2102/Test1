@@ -23,6 +23,7 @@ import xlrd
 @pytest.mark.run(order=27)
 class TabFinancialTransaction(BaseTest):
 
+
     def test_check_all_tab_from_financial_transactions(self):
         try:
             CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \

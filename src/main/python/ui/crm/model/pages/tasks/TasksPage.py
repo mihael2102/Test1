@@ -53,7 +53,7 @@ class TasksPage(CRMBasePage):
         sleep(10)
         task_module = super().wait_load_element("//a[contains(text(), 'Account Name')]")
         task_module.click()
-        Logging().reportDebugStep(self, "Click on Assigned To")
+        Logging().reportDebugStep(self, "Click account name")
         return TasksPage(self.driver)
 
     def get_second_column_frow_text(self):
@@ -71,7 +71,7 @@ class TasksPage(CRMBasePage):
         sleep(10)
         task_module = super().wait_load_element("//a[contains(text(), 'Status')]")
         task_module.click()
-        Logging().reportDebugStep(self, "Click on CRM Account Name")
+        Logging().reportDebugStep(self, "Click Status")
         return TasksPage(self.driver)
 
     def get_first_column_frow_text(self):
