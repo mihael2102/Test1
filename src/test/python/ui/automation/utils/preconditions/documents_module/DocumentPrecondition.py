@@ -104,4 +104,4 @@ class DocumentPrecondition(object):
             .select_module_more_list(DocumentModuleConstants.DOCUMENT)
         # open tabs and check data
         document = DocumentsPage(self.driver)
-        document
+        document.open_tab(DocumentModuleConstants.TAB_APPROVED)

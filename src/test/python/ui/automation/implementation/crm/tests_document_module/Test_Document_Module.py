@@ -38,7 +38,7 @@ class DocumentModuleTest(BaseTest):
 
         document_module.click_ok()
 
-        document_view_page = document_module.open_pending_tab().open_document_number()
+        document_view_page = document_module.open_tab().open_document_number()
 
         document_type = document_view_page.get_document_type()
         document_status = document_view_page.get_document_status()
@@ -71,7 +71,7 @@ class DocumentModuleTest(BaseTest):
 
         document_module.click_ok()
 
-        message_delete_document = document_module.open_pending_tab() \
+        message_delete_document = document_module.open_tab() \
             .select_document_by_delete_button() \
             .click_yes_button() \
             .get_successful_message()
