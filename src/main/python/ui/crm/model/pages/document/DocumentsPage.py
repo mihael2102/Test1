@@ -122,8 +122,14 @@ class DocumentsPage(CRMBasePage):
         sleep(2)
         pending_tab_element = super().wait_element_to_be_clickable("//a[contains(text(),'Pending')]")
         pending_tab_element.click()
-        Logging().reportDebugStep(self, "The pending tab was opened ")
+        Logging().reportDebugStep(self, "The Pending tab was opened ")
         return DocumentsPage()
+
+    def open_approved_tab(self):
+        sleep(2)
+        approved_tab = super().wait_element_to_be_clickable("//a[contains(text(),'Approved')]")
+        approved_tab.click()
+        Logging().reportDebugStep(self, "")
 
     def open_document_number(self):
         pending_tab_element = self.driver.find_element(By.XPATH,

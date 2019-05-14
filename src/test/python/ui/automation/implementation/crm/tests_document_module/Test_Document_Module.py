@@ -78,3 +78,7 @@ class DocumentModuleTest(BaseTest):
 
         assert message_delete_document == DocumentModuleConstants.MESSAGE_DELETE_DOCUMENT
         document_module.click_ok()
+
+    def test_open_tabs(self):
+
+        DocumentPrecondition(self.driver, self.config).check_tabs()
