@@ -29,6 +29,9 @@ class AddEventTaskModule(BaseTest):
     def test_searching_by_columns(self):
         EventPrecondition(self.driver, self.config).test_searching_by_columns()
 
+    def test_sorting_columns(self):
+        EventPrecondition(self.driver, self.config).test_sorting_columns()
+
     def test_add_event(self):
         try:
             EventPrecondition(self.driver, self.config).create_first_event()
