@@ -9,6 +9,8 @@ from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.utils.logs.Loging import Logging
 import autoit
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 import os
 
 
@@ -122,8 +124,9 @@ class DocumentsPage(CRMBasePage):
         sleep(2)
         pending_tab_element = super().wait_element_to_be_clickable("//a[contains(text(),'%s')]" % tab)
         pending_tab_element.click()
+        super().wait_load_element("//a[contains(@class,'selected') and contains(text(),'%s')]" % tab, timeout=35)
         Logging().reportDebugStep(self, "The " + tab + " was opened ")
-        return DocumentsPage()
+        return DocumentsPage(self.driver)
 
     def open_document_number(self):
         pending_tab_element = self.driver.find_element(By.XPATH,
@@ -234,7 +237,8 @@ class DocumentsPage(CRMBasePage):
         return DocumentsPage(self.driver)
 
     def get_attached_to(self):
-        field_attached_to = self.driver.find_element(By.XPATH, "//*[@id='tblBasicInformation']/table/tbody/tr[3]/td[4]/a").text
+        field_attached_to = self.driver.find_element\
+            (By.XPATH, "//*[@id='tblBasicInformation']/table/tbody/tr[3]/td[4]/a").text
         Logging().reportDebugStep(self, "Get client name from document details page")
         return field_attached_to
 
@@ -313,10 +317,15 @@ class DocumentsPage(CRMBasePage):
         return DocumentsPage(self.driver)
 
     def global_data_checker(self, type_of_data, data):
-        table = self.driver.find_element_by_xpath("//*[@id='listBody']")
-        row_count = 0
-        for tr in table.find_elements_by_tag_name("tr"):
-            assert data in tr.text
-            row_count += 1
-        Logging().reportDebugStep(self, type_of_data + " is verified in " + str(row_count) + " rows")
+        try:
+            table = self.driver.find_element_by_xpath("//*[@id='listBody']")
+            row_count = 0
+            for tr in table.find_elements_by_tag_name("tr"):
+                assert data in tr.text
+                row_count += 1
+            Logging().reportDebugStep(self, type_of_data + " is verified in " + str(row_count) + " rows")
+        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            super().wait_visible_of_element\
+                ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
+            Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
         return DocumentsPage(self.driver)

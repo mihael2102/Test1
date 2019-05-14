@@ -204,5 +204,5 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
   class: DocumentModuleTest
   tests:
-#    - test_searching_by_columns
+    - test_searching_by_columns
     - test_open_tabs
