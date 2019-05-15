@@ -119,4 +119,11 @@ class DocumentPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
         CRMHomePage(self.driver).open_more_list_modules() \
-            .select_documents_module_more_list(DocumentModuleConstants.DOCUMENT)
+                                .select_documents_module_more_list(DocumentModuleConstants.DOCUMENT)
+
+        # sorting and verifying data
+        document = DocumentsPage(self.driver)
+        document.click_document_no()
+        first_row_doc_number = document.get_row_doc_no(row_number=1)
+        second_row_doc_number = document.get_row_doc_no(row_number=2)
+        document.check_number_is_greater(first_row_doc_number, second_row_doc_number)

@@ -88,7 +88,7 @@ class TasksPage(CRMBasePage):
     def click_event_type(self):
         task_module = super().wait_load_element("//a[contains(text(), 'Event Type')]")
         task_module.click()
-        Logging().reportDebugStep(self, "Click on  Event Type ")
+        Logging().reportDebugStep(self, "Click on Event Type")
         return TasksPage(self.driver)
 
     def open_task_module(self):

@@ -200,7 +200,7 @@ tests_config:
   class: DocumentModuleTest
   tests:
 #    - test_searching_by_columns
-    - test_open_tabs
+#    - test_open_tabs
     - test_sorting
 
 

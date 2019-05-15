@@ -1,5 +1,5 @@
 from time import sleep
-
+import re
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
@@ -356,4 +356,32 @@ class DocumentsPage(CRMBasePage):
             super().wait_visible_of_element \
                 ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
             Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
+        return DocumentsPage(self.driver)
+
+    # click on the title Document No in list view for sorting
+    def click_document_no(self):
+        document_no = super().wait_element_to_be_clickable("//a[text()='Document No']", timeout=55)
+        document_no.click()
+        # check, that chevron is loading
+        super().wait_load_element("//span[@class='glyphicons chevron-left right rotate_90']", timeout=35)
+        sleep(25)
+        Logging().reportDebugStep(self, "Data is sorted by Document No")
+        return DocumentsPage(self.driver)
+
+    # return integer of Document No from list view
+    def get_row_doc_no(self, row_number):
+        doc_no = super().wait_load_element("(//a[contains(@title,'DOC')])[%s]" % row_number).text
+        Logging().reportDebugStep(self, "Document No: " + doc_no)
+        return doc_no
+
+    def check_number_is_greater(self, number1, number2):
+        try:
+            assert number1.isdigit()
+            assert number2.isdigit()
+            assert int(number1) < int(number2)
+        except:
+            number1 = re.findall("\d+", number1)[0]
+            number2 = re.findall("\d+", number2)[0]
+            assert int(number1) < int(number2)
+        Logging().reportDebugStep(self, "Data is sorted correctly")
         return DocumentsPage(self.driver)
