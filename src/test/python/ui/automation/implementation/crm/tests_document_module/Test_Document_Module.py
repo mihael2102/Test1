@@ -15,6 +15,12 @@ class DocumentModuleTest(BaseTest):
 
         DocumentPrecondition(self.driver, self.config).searching_by_columns()
 
+    def test_open_tabs(self):
+        DocumentPrecondition(self.driver, self.config).check_tabs()
+
+    def test_sorting(self):
+        DocumentPrecondition(self.driver, self.config).check_sorting()
+
     def test_create_document(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -38,7 +44,7 @@ class DocumentModuleTest(BaseTest):
 
         document_module.click_ok()
 
-        document_view_page = document_module.open_pending_tab().open_document_number()
+        document_view_page = document_module.open_tab().open_document_number()
 
         document_type = document_view_page.get_document_type()
         document_status = document_view_page.get_document_status()
@@ -71,7 +77,7 @@ class DocumentModuleTest(BaseTest):
 
         document_module.click_ok()
 
-        message_delete_document = document_module.open_pending_tab() \
+        message_delete_document = document_module.open_tab() \
             .select_document_by_delete_button() \
             .click_yes_button() \
             .get_successful_message()

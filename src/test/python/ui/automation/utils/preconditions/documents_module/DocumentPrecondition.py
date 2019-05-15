@@ -92,3 +92,31 @@ class DocumentPrecondition(object):
                 .select_doc_modified_time(modified_time) \
                 .search_document_module() \
                 .global_data_checker(DocumentModuleConstants.DATA_TYPE_MODIFIED_TIME, modified_time)
+
+    def check_tabs(self):
+        # crm login, open Documents module
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                                            self.config.get_value(TestDataConstants.OTP_SECRET))
+        sleep(3)
+        CRMHomePage(self.driver).open_more_list_modules() \
+                                .select_documents_module_more_list(DocumentModuleConstants.DOCUMENT)
+        # open tabs and check data
+        document = DocumentsPage(self.driver)
+        document.open_tab(DocumentModuleConstants.TAB_APPROVED) \
+                .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_APPROVED) \
+                .open_tab(DocumentModuleConstants.TAB_NOT_APPROVED) \
+                .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_NOT_APPROVED) \
+                .open_tab(DocumentModuleConstants.TAB_PENDING) \
+                .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_PENDING)
+
+    def check_sorting(self):
+        # crm login, open Documents module
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        sleep(3)
+        CRMHomePage(self.driver).open_more_list_modules() \
+            .select_documents_module_more_list(DocumentModuleConstants.DOCUMENT)

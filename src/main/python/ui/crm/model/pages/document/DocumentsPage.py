@@ -10,6 +10,8 @@ from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import D
 from src.main.python.utils.logs.Loging import Logging
 import autoit
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 import os
 
 
@@ -31,7 +33,8 @@ class DocumentsPage(CRMBasePage):
         sleep(2)
         browse_documents = self.driver.find_element(By.XPATH, "//*[@id='filename_I__']")
         browse_documents.click()
-        # autoit.control_set_text("Open", "Edit1",r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
+        # autoit.control_set_text
+        # ("Open", "Edit1",r"C:\Users\Administrator\.jenkins\workspace\%s\src\main\python\utils\documents\Bear.jpg" % Config.test)
         # autoit.control_send("Open", "Edit1", "{ENTER}")
         # autoit.win_wait_active("File Upload", 5)
         # autoit.win_wait_active("Открытие")
@@ -104,7 +107,8 @@ class DocumentsPage(CRMBasePage):
         window_after = self.driver.window_handles[0]
         self.driver.switch_to_window(window_after)
         sleep(2)
-        input_title = self.driver.find_element(By.XPATH, "//*[@id='basicTab']/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[3]/td[2]/input")
+        input_title = self.driver.find_element\
+            (By.XPATH, "//*[@id='basicTab']/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[3]/td[2]/input")
         input_title.send_keys(title)
         Logging().reportDebugStep(self, "Fill title")
         return DocumentsPage()
@@ -114,7 +118,8 @@ class DocumentsPage(CRMBasePage):
         # window_after = self.driver.window_handles[0]
         # self.driver.switch_to_window(window_after)
         # sleep(2)
-        button_save = self.driver.find_element(By.XPATH, "//*[@id='basicTab']/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[1]/td/div/input[1]")
+        button_save = self.driver.find_element\
+            (By.XPATH, "//*[@id='basicTab']/table/tbody/tr/td/table/tbody/tr[2]/td/table/tbody/tr[1]/td/div/input[1]")
         button_save.click()
         Logging().reportDebugStep(self, "Save document")
         return DocumentsPage()
@@ -134,12 +139,13 @@ class DocumentsPage(CRMBasePage):
         super().click_ok()
         return DocumentsPage()
 
-    def open_pending_tab(self):
+    def open_tab(self, tab):
         sleep(2)
-        pending_tab_element = super().wait_element_to_be_clickable("//a[contains(text(),'Pending')]")
+        pending_tab_element = super().wait_element_to_be_clickable("//a[contains(text(),'%s')]" % tab)
         pending_tab_element.click()
-        Logging().reportDebugStep(self, "The pending tab was opened ")
-        return DocumentsPage()
+        super().wait_load_element("//a[contains(@class,'selected') and contains(text(),'%s')]" % tab, timeout=55)
+        Logging().reportDebugStep(self, "The " + tab + " was opened ")
+        return DocumentsPage(self.driver)
 
     def open_document_number(self):
         pending_tab_element = self.driver.find_element(By.XPATH,
@@ -252,7 +258,8 @@ class DocumentsPage(CRMBasePage):
         return DocumentsPage(self.driver)
 
     def get_attached_to(self):
-        field_attached_to = self.driver.find_element(By.XPATH, "//*[@id='tblBasicInformation']/table/tbody/tr[3]/td[4]/a").text
+        field_attached_to = self.driver.find_element\
+            (By.XPATH, "//*[@id='tblBasicInformation']/table/tbody/tr[3]/td[4]/a").text
         Logging().reportDebugStep(self, "Get client name from document details page")
         return field_attached_to
 
@@ -338,11 +345,15 @@ class DocumentsPage(CRMBasePage):
         return DocumentsPage(self.driver)
 
     def global_data_checker(self, type_of_data, data):
-        sleep(1)
-        table = self.driver.find_element_by_xpath("//*[@id='listBody']")
-        row_count = 0
-        for tr in table.find_elements_by_tag_name("tr"):
-            assert data in tr.text
-            row_count += 1
-        Logging().reportDebugStep(self, type_of_data + " is verified in all " + str(row_count) + " rows")
+        try:
+            table = self.driver.find_element_by_xpath("//*[@id='listBody']")
+            row_count = 0
+            for tr in table.find_elements_by_tag_name("tr"):
+                assert data in tr.text
+                row_count += 1
+            Logging().reportDebugStep(self, type_of_data + " is verified in " + str(row_count) + " rows")
+        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            super().wait_visible_of_element \
+                ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
+            Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
         return DocumentsPage(self.driver)
