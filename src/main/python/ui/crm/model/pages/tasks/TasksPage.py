@@ -39,6 +39,63 @@ class TasksPage(CRMBasePage):
           return Help Desk instance
       '''
 
+    def get_third_column_frow_text(self):
+        column_text = super().wait_load_element("//tr[2]/td[6]/grid-cell/div/span/a")
+        Logging().reportDebugStep(self, "Returns first column text: " + column_text.text)
+        return column_text.text
+
+    def get_third_column_srow_text(self):
+        column_text = super().wait_load_element("//tr[2]/td[14]/span")
+        Logging().reportDebugStep(self, "Returns second column text: " + column_text.text)
+        return column_text.text
+
+    def click_account_name(self):
+        sleep(10)
+        task_module = super().wait_load_element("//a[contains(text(), 'Account Name')]")
+        task_module.click()
+        Logging().reportDebugStep(self, "Click account name")
+        return TasksPage(self.driver)
+
+    def get_second_column_frow_text(self):
+        sleep(10)
+        column_text = super().wait_load_element("//tr[2]/td[5]/grid-cell/div/span[@class='link_field']")
+        Logging().reportDebugStep(self, "Returns first column text: " + column_text.text)
+        return column_text.text
+
+    def get_second_column_srow_text(self):
+        column_text = super().wait_load_element("//tr[2]/td[3]/div/a")
+        Logging().reportDebugStep(self, "Returns second column text: " + column_text.text)
+        return column_text.text
+
+    def click_status(self):
+        sleep(10)
+        task_module = super().wait_load_element("//a[contains(text(), 'Status')]")
+        task_module.click()
+        Logging().reportDebugStep(self, "Click Status")
+        return TasksPage(self.driver)
+
+    def get_first_column_frow_text(self):
+        sleep(10)
+        column_text = super().wait_load_element("//tr[2]/td[3]/grid-cell/div/span[@class='link_field']")
+        Logging().reportDebugStep(self, "Returns first column text: " + column_text.text)
+        return column_text.text
+
+    def get_first_column_srow_text(self):
+        column_text = super().wait_load_element("//tr[2]/td[2]/div/a")
+        Logging().reportDebugStep(self, "Returns second column text: " + column_text.text)
+        return column_text.text
+
+    def click_event_type(self):
+        sleep(10)
+        click_event_type = super().wait_load_element("//a[contains(text(), 'Event Type')]")
+        self.driver.execute_script("arguments[0].click();", click_event_type)
+        try:
+            self.wait_crm_loading_to_finish_tasks(10)
+        except:
+            sleep(10)
+        Logging().reportDebugStep(self, "Click on  Event Type ")
+        return TasksPage(self.driver)
+
     def open_task_module(self):
         task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Tasks']")
         task_module.click()

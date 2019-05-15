@@ -1,7 +1,7 @@
 brands:
 
-#- name: ptbanc
-#  config_file: ptbanc.yml
+- name: ptbanc
+  config_file: ptbanc.yml
 #
 #- name: q8
 #  config_file: q8.yml
@@ -15,6 +15,6 @@ brands:
 #- name: 4xfx
 #  config_file: 4xfx.yml
 #
-- name: tradospot
-  config_file: tradospot.yml
+#- name: tradospot
+#  config_file: tradospot.yml
 
