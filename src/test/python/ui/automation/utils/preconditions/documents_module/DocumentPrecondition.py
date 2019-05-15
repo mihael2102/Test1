@@ -121,9 +121,16 @@ class DocumentPrecondition(object):
         CRMHomePage(self.driver).open_more_list_modules() \
                                 .select_documents_module_more_list(DocumentModuleConstants.DOCUMENT)
 
-        # sorting and verifying data
         document = DocumentsPage(self.driver)
-        document.click_document_no()
+
+        # sorting and verifying data in 'Document No' column
+        document.sort_by_column(DocumentModuleConstants.DATA_TYPE_DOC_NO)
         first_row_doc_number = document.get_row_doc_no(row_number=1)
         second_row_doc_number = document.get_row_doc_no(row_number=2)
-        document.check_number_is_greater(first_row_doc_number, second_row_doc_number)
+        document.check_doc_number_is_greater(first_row_doc_number, second_row_doc_number)
+
+        # sorting and verifying data in 'Modified Time' column
+        document.sort_by_column(DocumentModuleConstants.DATA_TYPE_MODIFIED_TIME)
+        first_row_modified_time = document.get_row_mod_time(row_number=1)
+        second_row_modified_time = document.get_row_mod_time(row_number=2)
+        document.check_mod_time_is_greater(first_row_modified_time, second_row_modified_time)

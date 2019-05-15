@@ -368,13 +368,29 @@ class DocumentsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Data is sorted by Document No")
         return DocumentsPage(self.driver)
 
+    # click on the title Modified Time in list view for sorting
+    def sort_by_column(self, title):
+        modified_time = super().wait_element_to_be_clickable("//a[text()='%s']" % title, timeout=55)
+        modified_time.click()
+        # check, that chevron is loading
+        super().wait_load_element("//span[@class='glyphicons chevron-left right rotate_90']", timeout=35)
+        sleep(25)
+        Logging().reportDebugStep(self, "Data is sorted by " + title)
+        return DocumentsPage(self.driver)
+
     # return integer of Document No from list view
     def get_row_doc_no(self, row_number):
         doc_no = super().wait_load_element("(//a[contains(@title,'DOC')])[%s]" % row_number).text
         Logging().reportDebugStep(self, "Document No: " + doc_no)
         return doc_no
 
-    def check_number_is_greater(self, number1, number2):
+    # return integer of Modified Time from list view
+    def get_row_mod_time(self, row_number):
+        mod_time = super().wait_load_element("(//td[contains(text(),':')])[%s]" % row_number).text
+        Logging().reportDebugStep(self, "Modified Time: " + mod_time)
+        return mod_time
+
+    def check_doc_number_is_greater(self, number1, number2):
         try:
             assert number1.isdigit()
             assert number2.isdigit()
@@ -383,5 +399,10 @@ class DocumentsPage(CRMBasePage):
             number1 = re.findall("\d+", number1)[0]
             number2 = re.findall("\d+", number2)[0]
             assert int(number1) < int(number2)
-        Logging().reportDebugStep(self, "Data is sorted correctly")
+        Logging().reportDebugStep(self, "Data by Document No is sorted correctly")
+        return DocumentsPage(self.driver)
+
+    def check_mod_time_is_greater(self, date1, date2):
+        assert date1 < date2
+        Logging().reportDebugStep(self, "Data by Modified Time is sorted correctly")
         return DocumentsPage(self.driver)
