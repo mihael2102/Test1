@@ -373,7 +373,7 @@ class DocumentsPage(CRMBasePage):
         modified_time = super().wait_element_to_be_clickable("//a[text()='%s']" % title, timeout=55)
         modified_time.click()
         # check, that chevron is loading
-        super().wait_load_element("//span[@class='glyphicons chevron-left right rotate_90']", timeout=35)
+        # super().wait_load_element("//span[@class='glyphicons chevron-left right rotate_90']", timeout=35)
         sleep(25)
         Logging().reportDebugStep(self, "Data is sorted by " + title)
         return DocumentsPage(self.driver)
@@ -389,6 +389,12 @@ class DocumentsPage(CRMBasePage):
         mod_time = super().wait_load_element("(//td[contains(text(),':')])[%s]" % row_number).text
         Logging().reportDebugStep(self, "Modified Time: " + mod_time)
         return mod_time
+
+    # return integer of Document Type from list view
+    def get_row_doc_type(self, row_number):
+        doc_type = super().wait_load_element("(//tr[@class='lvtColData']/td[3])[%s]" % row_number).text
+        Logging().reportDebugStep(self, "Document type: " + doc_type)
+        return doc_type
 
     def check_doc_number_is_greater(self, number1, number2):
         try:

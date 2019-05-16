@@ -134,3 +134,10 @@ class DocumentPrecondition(object):
         first_row_modified_time = document.get_row_mod_time(row_number=1)
         second_row_modified_time = document.get_row_mod_time(row_number=2)
         document.check_mod_time_is_greater(first_row_modified_time, second_row_modified_time)
+
+        # sorting and verifying data in 'Document Type' column
+        document.sort_by_column(DocumentModuleConstants.DATA_TYPE_DOCUMENT_TYPE)
+        first_row_document_type1 = document.get_row_doc_type(row_number=1)
+        document.sort_by_column(DocumentModuleConstants.DATA_TYPE_DOCUMENT_TYPE)
+        first_row_document_type2 = document.get_row_doc_type(row_number=1)
+        assert first_row_document_type1 != first_row_document_type2

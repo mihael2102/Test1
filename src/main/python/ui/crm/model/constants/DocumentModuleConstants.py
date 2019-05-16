@@ -33,6 +33,7 @@ class DocumentModuleConstants(object):
     DATA_TYPE_DOC_NO = "Document No"
     DATA_TYPE_DOC_TYPE = "Document Type"
     DATA_TYPE_MODIFIED_TIME = "Modified Time"
+    DATA_TYPE_DOCUMENT_TYPE = "Document Type"
     TAB_APPROVED = "Approved"
     TAB_NOT_APPROVED = "Not Approved"
     TAB_PENDING = "Pending"
