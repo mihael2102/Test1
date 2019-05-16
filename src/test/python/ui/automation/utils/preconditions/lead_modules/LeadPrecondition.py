@@ -279,7 +279,7 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).click_assign()
         LeadsModule(self.driver).mass_assign_result(CRMConstants.PANDAQA_ASSIGN)
         i = 1
-        for i in range(1, 20):
+        for i in range(1, 10):
             status = LeadsModule(self.driver).check_status_leads(i)
             if global_var.current_brand_name == "uft" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx":
                 assert status == CRMConstants.STATUS_EDIT_ITRADER

@@ -27,5 +27,8 @@ class MassAssignTestCRM(BaseTest):
             .click_save()
 
         confirmation_message = crm_client_profile.get_confirm_message()
-        assert confirmation_message == CRMConstants().MASS_ASSIGN_MESSAGE
+        try:
+            assert confirmation_message in CRMConstants().MASS_ASSIGN_MESSAGE
+        except:
+            assert confirmation_message in CRMConstants().ONE_ASSIGN_MESSAGE
         crm_client_profile.click_ok()

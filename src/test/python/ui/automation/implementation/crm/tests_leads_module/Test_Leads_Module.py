@@ -341,7 +341,7 @@ class LeadModuleTest(BaseTest):
 
         self.assertEqual(first_name, lead_data[LeadsModuleConstants.FIRST_NAME])
         self.assertEqual(last_name, lead_data[LeadsModuleConstants.FIRST_LAST_NAME])
-        if global_var.current_brand_name != "kontofx":
+        if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "newforexstage2":
             self.assertEqual(mobile, lead_data[LeadsModuleConstants.FIRST_MOBILE])
             self.assertEqual(fax, lead_data[LeadsModuleConstants.FAX])
             self.assertEqual(phone, lead_data[LeadsModuleConstants.PHONE])

@@ -262,7 +262,7 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def check_assign_leads(self, i):
-        if global_var.current_brand_name == "swiftcfd" or global_var.current_brand_name == "royal_cfds" or global_var.current_brand_name == "brokerz" or global_var.current_brand_name == "ptbanc" or global_var.current_brand_name == "aztrades" or global_var.current_brand_name == "tradospot" or global_var.current_brand_name == "24btcmarket":
+        if global_var.current_brand_name == "swiftcfd" or global_var.current_brand_name == "royal_cfds" or global_var.current_brand_name == "brokerz" or global_var.current_brand_name == "ptbanc" or global_var.current_brand_name == "aztrades" or global_var.current_brand_name == "tradospot" or global_var.current_brand_name == "24btcmarket" or global_var.current_brand_name == "newforexstage2":
             assign_leads = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[13]").text
         else:
             assign_leads = self.driver.find_element(By.XPATH,
@@ -283,7 +283,7 @@ class LeadsModule(CRMBasePage):
 
     def check_country_leads(self, i):
         sleep(4)
-        if global_var.current_brand_name == "swiftcfd" or global_var.current_brand_name == "royal_cfds" or global_var.current_brand_name == "brokerz" or global_var.current_brand_name == "ptbanc" or global_var.current_brand_name == "aztrades" or global_var.current_brand_name == "tradospot" or global_var.current_brand_name == "24btcmarket":
+        if global_var.current_brand_name == "swiftcfd" or global_var.current_brand_name == "royal_cfds" or global_var.current_brand_name == "brokerz" or global_var.current_brand_name == "ptbanc" or global_var.current_brand_name == "aztrades" or global_var.current_brand_name == "tradospot" or global_var.current_brand_name == "24btcmarket" or global_var.current_brand_name == "newforexstage2":
             country = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[7]").text
         else:
             country = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[8]").text

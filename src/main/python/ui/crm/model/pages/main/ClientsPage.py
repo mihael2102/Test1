@@ -58,7 +58,10 @@ class ClientsPage(CRMBasePage):
         field_found.clear()
         field_found.send_keys(test_filter)
         Logging().reportDebugStep(self, "The field found is : " + test_filter)
-        select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
+        try:
+            select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
+        except:
+            select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'Test clients')]")
         try:
             select_test_filter.click()
         except:
@@ -181,25 +184,28 @@ class ClientsPage(CRMBasePage):
         return ClientsPage(self.driver)
 
     def enter_country(self, country):
-        country_drop_down = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["country_button"])
+        try:
+            country_drop_down = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                               self.__class__.__name__)["country_button"])
 
-        sleep(5)
-        # country_drop_down.click()
-        self.driver.execute_script("arguments[0].click();", country_drop_down)
-        search_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["country_field"])
-        search_field.clear()
-        search_field.send_keys(country)
-        country_choice = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["country_click"] % country)
-        sleep(5)
-        # country_choice.click()
-        self.driver.execute_script("arguments[0].click();", country_choice)
-        ac = ActionChains(self.driver)
+            sleep(5)
+            # country_drop_down.click()
+            self.driver.execute_script("arguments[0].click();", country_drop_down)
+            search_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                               self.__class__.__name__)["country_field"])
+            search_field.clear()
+            search_field.send_keys(country)
+            country_choice = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+                                                               self.__class__.__name__)["country_click"] % country)
+            sleep(5)
+            # country_choice.click()
+            self.driver.execute_script("arguments[0].click();", country_choice)
+            ac = ActionChains(self.driver)
 
-        ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The country was entered : " + country)
+            ac.move_by_offset(250, 250).click().perform()
+            Logging().reportDebugStep(self, "The country was entered : " + country)
+        except:
+            self
 
         return ClientsPage(self.driver)
 
@@ -375,11 +381,21 @@ class ClientsPage(CRMBasePage):
         sleep(2)
         first_check_box = super().wait_load_element("//tbody[@id='listBody']//tr[1]//td[1]", timeout=35)
         self.driver.execute_script("arguments[0].scrollIntoView();", first_check_box)
-        self.driver.execute_script("arguments[0].click();", first_check_box)
+        try:
+            first_check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", first_check_box)
+
         second_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[2]//td[1]")
-        self.driver.execute_script("arguments[0].click();", second_check_box)
+        try:
+            second_check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", second_check_box)
         third_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[3]//td[1]")
-        self.driver.execute_script("arguments[0].click();", third_check_box)
+        try:
+            second_check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", third_check_box)
         Logging().reportDebugStep(self, "The three records were selected")
         return ClientsPage(self.driver)
 
