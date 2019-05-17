@@ -1,4 +1,4 @@
-test = "Old forex job 1"
+test = "OF Special CRM"
 timeout = 4
 data = None
 url_client_area = ""
