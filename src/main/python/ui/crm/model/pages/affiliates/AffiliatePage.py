@@ -53,7 +53,8 @@ class AffiliatePage(CRMBasePage):
 
     def check_selected_methods(self):
         sleep(3)
-        selected_number = super().wait_load_element("/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[1]").text
+        selected_number = super().wait_load_element\
+            ("/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[1]").text
         Logging().reportDebugStep(self, "Check selected methods")
         return selected_number
 
