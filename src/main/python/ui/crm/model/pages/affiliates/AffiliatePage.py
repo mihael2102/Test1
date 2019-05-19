@@ -92,8 +92,8 @@ class AffiliatePage(CRMBasePage):
         # copy_button.click()
         self.driver.execute_script("arguments[0].click();", copy_button)
         sleep(3)
-        key = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-body/div/span").text
-        button_ok = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-footer/div/button")
+        key = super().wait_load_element("//div[@class='modal-body']/span").text
+        button_ok = super().wait_load_element("//div[@class='modal-footer']/button[text()='OK']")
         button_ok.click()
         Logging().reportDebugStep(self, "Copy key")
         return key
@@ -102,16 +102,16 @@ class AffiliatePage(CRMBasePage):
     def get_link_api(self):
         sleep(5)
         try:
-            api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+            api_link = self.driver.find_element(By.XPATH, "//a[contains(@id,'api-link')]").text
         except NoSuchElementException:
             try:
                 CRMBasePage(self.driver).refresh_page()
                 sleep(1)
-                api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+                api_link = self.driver.find_element(By.XPATH, "//a[contains(@id,'api-link')]").text
             except NoSuchElementException:
                 CRMBasePage(self.driver).refresh_page()
                 sleep(1)
-                api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
+                api_link = self.driver.find_element(By.XPATH, "//a[contains(@id,'api-link')]").text
         # api_link.click()
         Logging().reportDebugStep(self, "Get link API")
         return api_link
