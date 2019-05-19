@@ -8,9 +8,7 @@ from email import encoders
 def Send_Email_XML(filepath, content):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    # to = "Niv.s@pandats.com"
     to = "jonathan.albalak@pandats.com"
-    # to = "michael.oryshchenko@pandats.com"
     cc = "jonathan.albalak@pandats.com"
     bcc = "jonathan.albalak@pandats.com"
     # instance of MIMEMultipart
@@ -88,11 +86,9 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    # to = "Niv.s@pandats.com"
     to = "michael.oryshchenko@pandats.com"
-    # to = "ann.poimenova@gmail.com"
-    cc = "anna.p@pandats.com"
-    bcc = "ann.poimenova@gmail.com"
+    cc = "jonathan.albalak@pandats.com"
+    bcc = "jonathan.albalak@pandats.com"
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
@@ -107,7 +103,7 @@ def Send_Email_XLS(filepath):
     msg['Subject'] = "NF_ForexBestMarket_API"
 
     # string to store the body of the mail
-    body = "API Xtrader New Forex"
+    body = "NF_ForexBestMarket_API"
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
@@ -156,9 +152,8 @@ def Send_ALL_XLS(filepath):
     fromaddr = "jonathan.albalak@pandats.com"
     # to = "Niv.s@pandats.com"
     to = "michael.oryshchenko@pandats.com"
-    # to = "ann.poimenova@gmail.com"
-    cc = "anna.p@pandats.com"
-    bcc = "ann.poimenova@gmail.com"
+    cc = "jonathan.albalak@pandats.com"
+    bcc = "jonathan.albalak@pandats.com"
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
@@ -173,7 +168,7 @@ def Send_ALL_XLS(filepath):
     msg['Subject'] = "NF_ForexBestMarket_API"
 
     # string to store the body of the mail
-    body = "API Xtrader New Forex"
+    body = "NF_ForexBestMarket_API"
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
