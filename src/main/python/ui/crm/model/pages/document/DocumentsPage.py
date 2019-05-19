@@ -1,5 +1,5 @@
 from time import sleep
-
+import re
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
@@ -328,4 +328,51 @@ class DocumentsPage(CRMBasePage):
             super().wait_visible_of_element\
                 ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
             Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
+        return DocumentsPage(self.driver)
+
+        # click on the title of column in list view for sorting
+
+    def sort_by_column(self, title):
+        modified_time = super().wait_element_to_be_clickable("//a[text()='%s']" % title, timeout=55)
+        modified_time.click()
+        sleep(25)
+        Logging().reportDebugStep(self, "Data is sorted by " + title)
+        return DocumentsPage(self.driver)
+
+        # return integer of Document No from list view
+
+    def get_row_doc_no(self, row_number):
+        doc_no = super().wait_load_element("(//a[contains(@title,'DOC')])[%s]" % row_number).text
+        Logging().reportDebugStep(self, "Document No: " + doc_no)
+        return doc_no
+
+        # return integer of Modified Time from list view
+
+    def get_row_mod_time(self, row_number):
+        mod_time = super().wait_load_element("(//td[contains(text(),':')])[%s]" % row_number).text
+        Logging().reportDebugStep(self, "Modified Time: " + mod_time)
+        return mod_time
+
+        # return integer of Document Type from list view
+
+    def get_row_doc_type(self, row_number):
+        doc_type = super().wait_load_element("(//tr[@class='lvtColData']/td[3])[%s]" % row_number).text
+        Logging().reportDebugStep(self, "Document type: " + doc_type)
+        return doc_type
+
+    def check_doc_number_is_greater(self, number1, number2):
+        try:
+            assert number1.isdigit()
+            assert number2.isdigit()
+            assert int(number1) < int(number2)
+        except:
+            number1 = re.findall("\d+", number1)[0]
+            number2 = re.findall("\d+", number2)[0]
+            assert int(number1) < int(number2)
+        Logging().reportDebugStep(self, "Data by Document No is sorted correctly")
+        return DocumentsPage(self.driver)
+
+    def check_mod_time_is_greater_or_equal(self, date1, date2):
+        assert date1 <= date2
+        Logging().reportDebugStep(self, "Data by Modified Time is sorted correctly")
         return DocumentsPage(self.driver)

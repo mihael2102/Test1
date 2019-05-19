@@ -15,6 +15,12 @@ class DocumentModuleTest(BaseTest):
 
         DocumentPrecondition(self.driver, self.config).searching_by_columns()
 
+    def test_open_tabs(self):
+        DocumentPrecondition(self.driver, self.config).check_tabs()
+
+    def test_sorting(self):
+        DocumentPrecondition(self.driver, self.config).check_sorting()
+
     def test_create_document(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -78,7 +84,3 @@ class DocumentModuleTest(BaseTest):
 
         assert message_delete_document == DocumentModuleConstants.MESSAGE_DELETE_DOCUMENT
         document_module.click_ok()
-
-    def test_open_tabs(self):
-
-        DocumentPrecondition(self.driver, self.config).check_tabs()

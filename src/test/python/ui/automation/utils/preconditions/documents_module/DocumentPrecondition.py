@@ -110,3 +110,35 @@ class DocumentPrecondition(object):
                 .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_NOT_APPROVED) \
                 .open_tab(DocumentModuleConstants.TAB_PENDING) \
                 .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_PENDING)
+
+    def check_sorting(self):
+        # crm login, open Documents module
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        sleep(3)
+        CRMHomePage(self.driver).open_more_list_modules() \
+                                .select_module_more_list(DocumentModuleConstants.DOCUMENT)
+
+        document = DocumentsPage(self.driver)
+
+        # sorting and verifying data in 'Document No' column
+        document.sort_by_column(DocumentModuleConstants.DATA_TYPE_DOC_NO)
+        first_row_doc_number = document.get_row_doc_no(row_number=1)
+        second_row_doc_number = document.get_row_doc_no(row_number=2)
+        document.check_doc_number_is_greater(first_row_doc_number, second_row_doc_number)
+
+        # sorting and verifying data in 'Modified Time' column
+        document.sort_by_column(DocumentModuleConstants.DATA_TYPE_MODIFIED_TIME)
+        first_row_modified_time = document.get_row_mod_time(row_number=1)
+        second_row_modified_time = document.get_row_mod_time(row_number=2)
+        document.check_mod_time_is_greater_or_equal(first_row_modified_time, second_row_modified_time)
+
+        # sorting and verifying data in 'Document Type' column
+        document.sort_by_column(DocumentModuleConstants.DATA_TYPE_DOCUMENT_TYPE)
+        first_row_document_type1 = document.get_row_doc_type(row_number=1)
+        document.sort_by_column(DocumentModuleConstants.DATA_TYPE_DOCUMENT_TYPE)
+        first_row_document_type2 = document.get_row_doc_type(row_number=1)
+        assert first_row_document_type1 != first_row_document_type2
+
