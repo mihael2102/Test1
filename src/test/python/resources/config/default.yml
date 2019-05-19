@@ -1,14 +1,14 @@
 pretty_name: "Default"
 url: ""
 user_name: pandaqa
-crm_password: ehCcCaLSsjh6Ebn6
+crm_password: 8UP3PrCWZFw6
 otp_secret:
 FirstLeadInfo:
   EVAL_first_name: "'testqa' + (''.join(random.sample(string.ascii_uppercase*6, 6)))"
   last_name: "DoeA"
   mobile: "8888888"
   fax: "5555"
-  EVAL_email: "'pandaqa+' + (datetime.utcnow().strftime('%Y%m%d%H%M%S')) + '@pandats.com'"
+  EVAL_email: "'test_+' + (datetime.utcnow().strftime('%Y%m%d%H%M%S')) + '@ptscrm.com'"
   secondary_email: "secondarytestqa+1@pandats.com"
   first_language: "English"
   panda_partner_id:

@@ -41,27 +41,27 @@ class ApiPrecondition(object):
             AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_UFT)
         else:
             AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID)
-        AffiliatePage(self.driver).open_edit_affiliate()
-        selected_methods = AffiliatePage(self.driver).check_selected_methods()
-        if "Selected" in selected_methods:
-            AffiliatePage(self.driver).add_all_methods()
-            selected_methods_new = AffiliatePage(self.driver).check_selected_methods()
-            if "None selected" in selected_methods_new:
-                AffiliatePage(self.driver).add_all_methods()
-        else:
-            AffiliatePage(self.driver).add_all_methods()
-
-        selected_countries = AffiliatePage(self.driver).check_selected_countries()
-        if "Selected" in selected_countries:
-            AffiliatePage(self.driver).add_none_selected_countries()
-            selected_countries_new = AffiliatePage(self.driver).check_selected_countries()
-            if "None selected" in selected_countries_new:
-                AffiliatePage(self.driver).click_submit()
-            else:
-                AffiliatePage(self.driver).add_none_selected_countries()
-                AffiliatePage(self.driver).click_submit()
-        else:
-            AffiliatePage(self.driver).click_submit()
+        # AffiliatePage(self.driver).open_edit_affiliate()
+        # selected_methods = AffiliatePage(self.driver).check_selected_methods()
+        # if "Selected" in selected_methods:
+        #     AffiliatePage(self.driver).add_all_methods()
+        #     selected_methods_new = AffiliatePage(self.driver).check_selected_methods()
+        #     if "None selected" in selected_methods_new:
+        #         AffiliatePage(self.driver).add_all_methods()
+        # else:
+        #     AffiliatePage(self.driver).add_all_methods()
+        #
+        # selected_countries = AffiliatePage(self.driver).check_selected_countries()
+        # if "Selected" in selected_countries:
+        #     AffiliatePage(self.driver).add_none_selected_countries()
+        #     selected_countries_new = AffiliatePage(self.driver).check_selected_countries()
+        #     if "None selected" in selected_countries_new:
+        #         AffiliatePage(self.driver).click_submit()
+        #     else:
+        #         AffiliatePage(self.driver).add_none_selected_countries()
+        #         AffiliatePage(self.driver).click_submit()
+        # else:
+        #     AffiliatePage(self.driver).click_submit()
 
         secret_key = AffiliatePage(self.driver).copy_secret_key()
 
