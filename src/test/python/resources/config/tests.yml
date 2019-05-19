@@ -39,4 +39,3 @@ tests_config:
 #  class: LoginToken
 #  tests:
 #    - test_login_token
-
