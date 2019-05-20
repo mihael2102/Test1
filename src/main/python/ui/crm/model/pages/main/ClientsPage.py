@@ -53,11 +53,11 @@ class ClientsPage(CRMBasePage):
         except:
             self.driver.execute_script("arguments[0].scrollIntoView();", drop_down_filter)
             self.driver.execute_script("arguments[0].click();", drop_down_filter)
-        Logging().reportDebugStep(self, "Click the  drop down filter ")
+        Logging().reportDebugStep(self, "Click the drop down Filter")
         field_found = self.driver.find_element(By.XPATH, "//input[@class='input-block-level form-control']")
         field_found.clear()
         field_found.send_keys(test_filter)
-        Logging().reportDebugStep(self, "The field found is : " + test_filter)
+        Logging().reportDebugStep(self, "The field found is: " + test_filter)
         try:
             select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
         except:
@@ -98,10 +98,10 @@ class ClientsPage(CRMBasePage):
         sleep(2)
         email_field = super().wait_load_element("//input[@id='tks_email1']")
         email_field.send_keys(email)
-        Logging().reportDebugStep(self, "Setting  the user's email in the email field  is : " + email)
+        Logging().reportDebugStep(self, "Setting the user's email in the email field is: " + email)
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
-        Logging().reportDebugStep(self, "Click the search button ")
+        Logging().reportDebugStep(self, "Click the Search button")
         sleep(2)
         self.wait_crm_loading_to_finish()
         client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
@@ -118,7 +118,7 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Setting  the user's email in the email field  is : " + email)
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
-        Logging().reportDebugStep(self, "Click the search button ")
+        Logging().reportDebugStep(self, "Click the Search button")
         sleep(2)
         client_id = self.driver.find_element(By.XPATH, "//tr[1]//a[contains(text(), 'ACC')]")
         sleep(1)
@@ -134,7 +134,7 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Setting  the user's email in the email field  is : " + email)
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
-        Logging().reportDebugStep(self, "Click the search button ")
+        Logging().reportDebugStep(self, "Click the Search button")
         sleep(2)
         client_id = self.driver.find_element(By.XPATH, "//tr[2]//a[contains(text(), 'ACC')]")
         sleep(1)
@@ -150,7 +150,7 @@ class ClientsPage(CRMBasePage):
 
     def switch_second_tab_page(self):
         super().switch_second_tab_page()
-        Logging().reportDebugStep(self, "switch the second tab ")
+        Logging().reportDebugStep(self, "Switch the second tab")
         return ClientsPage(self.driver)
 
     ''' 
@@ -161,12 +161,12 @@ class ClientsPage(CRMBasePage):
     def open_help_desk_module(self):
         help_desc_module = super().wait_load_element("//a[contains(text(), 'Help Desk')]")
         help_desc_module.click()
-        Logging().reportDebugStep(self, "Open  the help desk module ")
+        Logging().reportDebugStep(self, "Open the Help Desk module")
         return HelpDeskPage(self.driver)
 
     def refresh(self):
         self.driver.refresh()
-        Logging().reportDebugStep(self, "Perform the refresh ")
+        Logging().reportDebugStep(self, "Perform the refresh")
         return ClientsPage(self.driver)
 
     def enter_email(self, email):
@@ -174,13 +174,13 @@ class ClientsPage(CRMBasePage):
         email_field = super().wait_load_element("//input[@id='tks_email1']")
         email_field.clear()
         email_field.send_keys(email)
-        Logging().reportDebugStep(self, "Email was entered : " + email)
+        Logging().reportDebugStep(self, "Email was entered: " + email)
         return ClientsPage(self.driver)
 
     def enter_client_name(self, name):
         client_name = self.driver.find_element(By.XPATH, "//input[@name='tks_accountname']")
         client_name.send_keys(name)
-        Logging().reportDebugStep(self, "The client name was entered : " + name)
+        Logging().reportDebugStep(self, "The client name was entered: " + name)
         return ClientsPage(self.driver)
 
     def enter_country(self, country):
@@ -203,7 +203,7 @@ class ClientsPage(CRMBasePage):
             ac = ActionChains(self.driver)
 
             ac.move_by_offset(250, 250).click().perform()
-            Logging().reportDebugStep(self, "The country was entered : " + country)
+            Logging().reportDebugStep(self, "The country was entered: " + country)
         except:
             self
 
@@ -213,21 +213,21 @@ class ClientsPage(CRMBasePage):
         first_name_field = self.driver.find_element(By.XPATH, "//input[@name='tks_firstname']")
         first_name_field.clear()
         first_name_field.send_keys(first_name)
-        Logging().reportDebugStep(self, "The first name  was entered : " + first_name)
+        Logging().reportDebugStep(self, "The First Name was entered: " + first_name)
         return ClientsPage(self.driver)
 
     def enter_last_name(self, last_name):
         first_name_field = self.driver.find_element(By.XPATH, "//input[@name='tks_lastname']")
         first_name_field.clear()
         first_name_field.send_keys(last_name)
-        Logging().reportDebugStep(self, "The last name  was entered : " + last_name)
+        Logging().reportDebugStep(self, "The Last Name was entered: " + last_name)
         return ClientsPage(self.driver)
 
     def enter_city(self, city):
         city_field = self.driver.find_element(By.XPATH, "//input[@name='tks_city']")
         city_field.clear()
         city_field.send_keys(city)
-        Logging().reportDebugStep(self, "The city  was entered : " + city)
+        Logging().reportDebugStep(self, "The City was entered: " + city)
         return ClientsPage(self.driver)
 
     def select_brand(self, brand):
@@ -246,7 +246,7 @@ class ClientsPage(CRMBasePage):
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The brand  was selected : " + brand)
+        Logging().reportDebugStep(self, "The Brand was selected: " + brand)
         return ClientsPage(self.driver)
 
     def select_client_status(self, client_status):
@@ -265,7 +265,7 @@ class ClientsPage(CRMBasePage):
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The client status was selected : " + client_status)
+        Logging().reportDebugStep(self, "The Client Status was selected: " + client_status)
         return ClientsPage(self.driver)
 
     def click_search_button(self):
@@ -290,7 +290,7 @@ class ClientsPage(CRMBasePage):
         self.perform_scroll_up()
         sleep(1)
         # client_id.click()
-        Logging().reportDebugStep(self, "Click user name by email : ")
+        Logging().reportDebugStep(self, "Click user name by email: ")
         return ClientProfilePage(self.driver)
 
     def open_create_filter_pop_up(self):
@@ -302,7 +302,7 @@ class ClientsPage(CRMBasePage):
     def get_first_name_column(self):
         name_first_column = super().wait_element_to_be_clickable(
             "//table[@id='resizeble_cols']//td[2]")
-        Logging().reportDebugStep(self, "First column name  : " + name_first_column.text)
+        Logging().reportDebugStep(self, "First column name: " + name_first_column.text)
         return name_first_column.text
 
     def get_second_name_column(self):
@@ -320,43 +320,43 @@ class ClientsPage(CRMBasePage):
     def get_fourth_name_column(self):
         name_fourth_column = self.driver.find_element(By.XPATH,
                                                       "//table[@id='resizeble_cols']//td[5]")
-        Logging().reportDebugStep(self, "Fourth column name : " + name_fourth_column.text)
+        Logging().reportDebugStep(self, "Fourth column name: " + name_fourth_column.text)
         return name_fourth_column.text
 
     def get_fifth_name_column(self):
         name_fifth_column = self.driver.find_element(By.XPATH,
                                                      "//table[@id='resizeble_cols']//td[6]")
-        Logging().reportDebugStep(self, "Fifth column name : " + name_fifth_column.text)
+        Logging().reportDebugStep(self, "Fifth column name: " + name_fifth_column.text)
         return name_fifth_column.text
 
     def get_sixth_name_column(self):
         name_sixth_column = self.driver.find_element(By.XPATH,
                                                      "//table[@id='resizeble_cols']//td[7]")
-        Logging().reportDebugStep(self, "Sixth column name : " + name_sixth_column.text)
+        Logging().reportDebugStep(self, "Sixth column name: " + name_sixth_column.text)
         return name_sixth_column.text
 
     def get_seventh_name_column(self):
         name_seventh_column = self.driver.find_element(By.XPATH,
                                                        "//table[@id='resizeble_cols']//td[8]")
-        Logging().reportDebugStep(self, "Seventh column name : " + name_seventh_column.text)
+        Logging().reportDebugStep(self, "Seventh column name: " + name_seventh_column.text)
         return name_seventh_column.text
 
     def get_eighth_name_column(self):
         name_eighth_column = self.driver.find_element(By.XPATH,
                                                       "//table[@id='resizeble_cols']//td[9]")
-        Logging().reportDebugStep(self, "Eighth column name : " + name_eighth_column.text)
+        Logging().reportDebugStep(self, "Eighth column name: " + name_eighth_column.text)
         return name_eighth_column.text
 
     def get_ninth_name_column(self):
         name_ninth_column = self.driver.find_element(By.XPATH,
                                                      "//table[@id='resizeble_cols']//td[10]")
-        Logging().reportDebugStep(self, "Ninth  column name : " + name_ninth_column.text)
+        Logging().reportDebugStep(self, "Ninth  column name: " + name_ninth_column.text)
         return name_ninth_column.text
 
     def get_tenth_name_column(self):
         name_tenth_column = super().wait_element_to_be_clickable(
             "//table[@id='resizeble_cols']//td[11]")
-        Logging().reportDebugStep(self, "Tenth  column name : " + name_tenth_column.text)
+        Logging().reportDebugStep(self, "Tenth  column name: " + name_tenth_column.text)
         return name_tenth_column.text
 
     def get_eleventh_name_column(self):
@@ -368,7 +368,7 @@ class ClientsPage(CRMBasePage):
     def delete_filter(self):
         delete_filter_button = super().wait_element_to_be_clickable("//a[@title='Delete']")
         delete_filter_button.click()
-        Logging().reportDebugStep(self, "The delete button was clicked")
+        Logging().reportDebugStep(self, "The Delete button was clicked")
         return ClientsPage(self.driver)
 
     def confirm_delete(self):
@@ -379,19 +379,22 @@ class ClientsPage(CRMBasePage):
 
     def select_three_records_clients_module(self):
         sleep(2)
-        first_check_box = super().wait_load_element("//tbody[@id='listBody']//tr[1]//td[1]", timeout=35)
-        self.driver.execute_script("arguments[0].scrollIntoView();", first_check_box)
+        first_check_box = super().wait_load_element\
+            ("//tbody[@id='listBody']//tr[1]//td[1]//input[@type='checkbox']", timeout=35)
+        # self.driver.execute_script("arguments[0].scrollIntoView();", first_check_box)
         try:
             first_check_box.click()
         except:
             self.driver.execute_script("arguments[0].click();", first_check_box)
 
-        second_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[2]//td[1]")
+        second_check_box = self.driver.find_element\
+            (By.XPATH, "//tbody[@id='listBody']//tr[2]//td[1]/input[@type='checkbox']")
         try:
             second_check_box.click()
         except:
             self.driver.execute_script("arguments[0].click();", second_check_box)
-        third_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[3]//td[1]")
+        third_check_box = self.driver.find_element\
+            (By.XPATH, "//tbody[@id='listBody']//tr[3]//td[1]/input[@type='checkbox']")
         try:
             second_check_box.click()
         except:
@@ -409,7 +412,7 @@ class ClientsPage(CRMBasePage):
     def click_send_email_module(self):
         send_email_module = super().wait_element_to_be_clickable("//input[@value='Send Mail']")
         send_email_module.click()
-        Logging().reportDebugStep(self, "The mass edit module was opened")
+        Logging().reportDebugStep(self, "The Send Mail module was opened")
         return SendEmailClientsModule(self.driver)
 
     def open_mass_edit_module(self):
@@ -420,7 +423,7 @@ class ClientsPage(CRMBasePage):
             mass_edit_module.click()
         except:
             self.driver.execute_script("arguments[0].click();", mass_edit_module)
-        Logging().reportDebugStep(self, "The mass edit module was opened")
+        Logging().reportDebugStep(self, "The Mass Edit module was opened")
         return MassEditClientsModule(self.driver)
 
     '''
@@ -429,7 +432,7 @@ class ClientsPage(CRMBasePage):
 
     def get_confirm_message(self):
         confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
-        Logging().reportDebugStep(self, "Returns the message confirmation : " + confirm_message.text)
+        Logging().reportDebugStep(self, "Returns the message confirmation: " + confirm_message.text)
         return confirm_message.text
 
     def open_mass_assign_module(self):
@@ -439,7 +442,7 @@ class ClientsPage(CRMBasePage):
             mass_edit_module.click()
         except:
             self.driver.execute_script("arguments[0].click();", mass_edit_module)
-        Logging().reportDebugStep(self, "The mass assign module was opened")
+        Logging().reportDebugStep(self, "The Mass Assign module was opened")
         return MassAssignClientsModule(self.driver)
 
     def get_first_client_email(self):
@@ -476,7 +479,7 @@ class ClientsPage(CRMBasePage):
     def open_send_sms_module(self):
         mass_sms_module = super().wait_element_to_be_clickable("//input[@value='Send SMS']")
         mass_sms_module.click()
-        Logging().reportDebugStep(self, "The send sms module was opened")
+        Logging().reportDebugStep(self, "The Send SMS module was opened")
         return SendSMSClientsModule(self.driver)
 
     def get_client_assigned_to(self):
@@ -489,13 +492,13 @@ class ClientsPage(CRMBasePage):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located(
                 (By.XPATH, "//td[contains(text(),'First Name')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the first name: " + client_email.text)
+        Logging().reportDebugStep(self, "Verified the First Name: " + client_email.text)
         return client_email.text
 
     def get_client_phone(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Phone')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the phone: " + client_email.text)
+        Logging().reportDebugStep(self, "Verified the Phone: " + client_email.text)
         return client_email.text
 
     def click_custom_information(self):
@@ -509,27 +512,27 @@ class ClientsPage(CRMBasePage):
     def get_client_postalCode(self):
         client_postalCode = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Code')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the code: " + client_postalCode.text)
+        Logging().reportDebugStep(self, "Verified the Code: " + client_postalCode.text)
         return client_postalCode.text
 
     def get_client_country(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Country')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the client country: " + client_email.text)
+        Logging().reportDebugStep(self, "Verified the client Country: " + client_email.text)
         return client_email.text
 
     def get_client_last_name(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located(
                 (By.XPATH, "//td[contains(text(),'Last Name')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the last name: " + client_email.text)
+        Logging().reportDebugStep(self, "Verified the Last Name: " + client_email.text)
         return client_email.text
 
     def get_refferal_client(self):
         sleep(5)
         refferal_client = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Refferal')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the client email: " + refferal_client.text)
+        Logging().reportDebugStep(self, "Verified the client Email: " + refferal_client.text)
         return refferal_client.text
 
     def click_send_mail_btn(self):

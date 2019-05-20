@@ -23,6 +23,7 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
 
 
+
 class ClientProfilePage(CRMBasePage):
 
     '''
@@ -497,20 +498,14 @@ class ClientProfilePage(CRMBasePage):
 
     def get_referral_text(self):
         self.perform_scroll(400)
-        custom_info = self.driver.find_element(By.XPATH,
-                                               "//b[contains(text(),'Custom Information')]")
-        custom_info.click()
-
-        referral = self.driver.find_element(By.XPATH,
-                                            "//td[contains(text(),'Refferal')]//following-sibling::td[1]")
-        parser_client_status_text = re.sub('[" "]', '', referral.text, 3)
-        Logging().reportDebugStep(self, "Returns the referral : " + parser_client_status_text)
+        referral = self.driver.find_element_by_xpath("//span[@id='dtlview_Refferal']").get_attribute("innerText")
+        parser_client_status_text = referral.replace(' ', '').replace('\n', '').replace('\t', '')
+        Logging().reportDebugStep(self, "Returns the referral: " + parser_client_status_text)
         return parser_client_status_text
 
     def open_deposit_for_client_in_menu(self):
         deposit_for_client_element = self.driver.find_element(By.XPATH, "//*[@id='sidebar']/table[1]/tbody/tr[4]/td/a")
         self.driver.execute_script("arguments[0].click();", deposit_for_client_element)
-        # deposit_for_client_element.click()
         Logging().reportDebugStep(self, "Deposit for client popup was opened")
         return ClientProfilePage(self.driver)
 
@@ -672,7 +667,8 @@ class ClientProfilePage(CRMBasePage):
 
     def click_edit_personal_detail(self):
         sleep(2)
-        btn_edit = self.driver.find_element(By.XPATH, "/html/body/table[2]/tbody/tr/td/table[1]/tbody/tr/td/div/table[2]/tbody/tr[1]/td/table/tbody/tr/td[2]/input")
+        btn_edit = self.driver.find_element(By.XPATH,
+                                            "/html/body/table[2]/tbody/tr/td/table[1]/tbody/tr/td/div/table[2]/tbody/tr[1]/td/table/tbody/tr/td[2]/input")
         btn_edit.click()
         Logging().reportDebugStep(self, "Click Edit")
         return ClientProfilePage(self.driver)
