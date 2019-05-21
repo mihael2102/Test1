@@ -69,3 +69,6 @@ class TaskModuleConstants(object):
     EVENT_ASSIGN_TO = "assign_to"
     EVENT_PRIORITY = "priority"
     EVENT_DESCRIPTION = "description"
+    COLUMN_TITLE_ACCOUNT_NAME = "Account Name"
+    COLUMN_TITLE_EVENT_TYPE = "Event Type"
+    COLUMN_TITLE_STATUS = "Status"

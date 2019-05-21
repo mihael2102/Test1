@@ -49,11 +49,12 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns second column text: " + column_text.text)
         return column_text.text
 
-    def click_account_name(self):
-        sleep(10)
-        task_module = super().wait_load_element("//a[contains(text(), 'Account Name')]")
+    def click_column_title(self, column):
+        sleep(1)
+        task_module = super().wait_load_element("//a[contains(text(), '%s')]" % column)
         task_module.click()
-        Logging().reportDebugStep(self, "Click account name")
+        self.wait_crm_loading_to_finish_tasks(155)
+        Logging().reportDebugStep(self, "Click " + column + " column title")
         return TasksPage(self.driver)
 
     def get_second_column_frow_text(self):
@@ -67,13 +68,6 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns second column text: " + column_text.text)
         return column_text.text
 
-    def click_status(self):
-        sleep(10)
-        task_module = super().wait_load_element("//a[contains(text(), 'Status')]")
-        task_module.click()
-        Logging().reportDebugStep(self, "Click Status")
-        return TasksPage(self.driver)
-
     def get_first_column_frow_text(self):
         sleep(10)
         column_text = super().wait_load_element("//tr[2]/td[3]/grid-cell/div/span[@class='link_field']")
@@ -84,12 +78,6 @@ class TasksPage(CRMBasePage):
         column_text = super().wait_load_element("//tr[2]/td[2]/div/a")
         Logging().reportDebugStep(self, "Returns second column text: " + column_text.text)
         return column_text.text
-
-    def click_event_type(self):
-        task_module = super().wait_load_element("//a[contains(text(), 'Event Type')]")
-        task_module.click()
-        Logging().reportDebugStep(self, "Click on Event Type")
-        return TasksPage(self.driver)
 
     def open_task_module(self):
         task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Tasks']")

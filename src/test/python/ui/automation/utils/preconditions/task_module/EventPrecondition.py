@@ -24,30 +24,26 @@ class EventPrecondition(object):
 
     def test_sorting_columns(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                                            self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
-        task_module.click_event_type()
+        task_module.click_column_title(TaskModuleConstants.COLUMN_TITLE_EVENT_TYPE)
         type1 = task_module.get_first_column_frow_text()
-        task_module.click_event_type()
+        task_module.click_column_title(TaskModuleConstants.COLUMN_TITLE_EVENT_TYPE)
         type2 = task_module.get_first_column_frow_text()
         assert type1 != type2
-        task_module.click_status()
+        task_module.click_column_title(TaskModuleConstants.COLUMN_TITLE_STATUS)
         status1 = task_module.get_second_column_frow_text()
-        task_module.click_status()
+        task_module.click_column_title(TaskModuleConstants.COLUMN_TITLE_STATUS)
         status2 = task_module.get_second_column_frow_text()
         assert status1 != status2
-        task_module.click_account_name()
+        task_module.click_column_title(TaskModuleConstants.COLUMN_TITLE_ACCOUNT_NAME)
         account_name1 = task_module.get_third_column_frow_text()
-        task_module.click_account_name()
+        task_module.click_column_title(TaskModuleConstants.COLUMN_TITLE_ACCOUNT_NAME)
         account_name2 = task_module.get_third_column_frow_text()
         assert account_name1 != account_name2
-
-
-
-
 
     def test_email_icon(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
