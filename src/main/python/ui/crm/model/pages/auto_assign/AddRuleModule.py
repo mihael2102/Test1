@@ -65,7 +65,7 @@ class AddRuleModule(CRMBasePage):
             first_option = self.driver.find_element_by_xpath("//*[@id='brand_id']/option[2]")
             # self.driver.execute_script("arguments[0].click();", first_option)
             first_option.click()
-            Logging().reportDebugStep(self, "The brand was set")
+            Logging().reportDebugStep(self, "The Brand was set")
             return AddRuleModule(self.driver)
         except NoSuchElementException:
             pass
@@ -75,27 +75,27 @@ class AddRuleModule(CRMBasePage):
     def set_lead_module_check_box(self):
         campaign_name_link = self.driver.find_element(By.XPATH, "//input[@name='leadrule']")
         campaign_name_link.click()
-        Logging().reportDebugStep(self, "The lead module checkbox was set")
+        Logging().reportDebugStep(self, "The Lead module checkbox was set")
         return AddRuleModule(self.driver)
 
     def set_clients_module_check_box(self):
         campaign_name_link = self.driver.find_element(By.XPATH, "//input[@name='clientrule']")
         campaign_name_link.click()
-        Logging().reportDebugStep(self, "The clients module checkbox was set")
+        Logging().reportDebugStep(self, "The Clients module checkbox was set")
         return AddRuleModule(self.driver)
 
     def set_assign_to_check_box(self):
         assign_to_check_box = self.driver.find_element(By.XPATH,
                                                 "//div[@class='col-md-12 p-l-0 p-r-0 text-center']//input[@value='1']")
         assign_to_check_box.click()
-        Logging().reportDebugStep(self, "The assign to checkbox was set")
+        Logging().reportDebugStep(self, "The Assign to checkbox was set")
         return AddRuleModule(self.driver)
 
     def perform_submit(self):
         submit_button = self.driver.find_element(By.XPATH,
                                                  "//button[contains(text(),'Submit')]")
         submit_button.click()
-        Logging().reportDebugStep(self, "The submit button was set")
+        Logging().reportDebugStep(self, "The Submit button was clicked")
         return AddRuleModule(self.driver)
 
     def select_rule_type(self, rule_type):
@@ -115,18 +115,16 @@ class AddRuleModule(CRMBasePage):
         item = super().wait_visible_of_element("//label[contains(text(),'%s')]" % item)
         item.click()
         campaign_drop_down.click()
-
-        Logging().reportDebugStep(self, "The rule_type was selected")
+        Logging().reportDebugStep(self, "The item was selected")
         return AddRuleModule(self.driver)
 
     def select_role(self, role):
-        role_filed = self.driver.find_element(By.XPATH,
-                                              "//div[@id='role_div']//input[1]")
+        role_filed = self.driver.find_element_by_xpath("//div[@id='role_div']//input[1]")
         role_filed.send_keys(role)
-
         item = super().wait_visible_of_element(
             "//div[contains(text(),'%s')]/preceding-sibling::div[1]//div[1]//div[1]" % role)
         item.click()
+        Logging().reportDebugStep(self, "Role selected: " + role)
         return AddRuleModule()
 
     def select_destination_user(self, user):
@@ -134,9 +132,9 @@ class AddRuleModule(CRMBasePage):
         search_user_field.clear()
         search_user_field.send_keys(user)
         sleep(1)
-        user_item = self.driver.find_element_by_xpath("//li[@username='pandaqa pandaqa']/div/div/div")
+        user_item = self.driver.find_element_by_xpath("//li[@username='%s']/div/div/div" % user)
         user_item.click()
-        Logging().reportDebugStep(self, "User selected")
+        Logging().reportDebugStep(self, "User selected: " + user)
         return AddRuleModule(self.driver)
 
     def click_ok(self):

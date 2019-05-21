@@ -33,7 +33,7 @@ class AutoAssignPage(CRMBasePage):
             "//div[@id='filterrow.ListGrid0']//div[3]/preceding-sibling::div[1]//input")
         add_campaign_button.clear()
         add_campaign_button.send_keys(rule_name)
-        Logging().reportDebugStep(self, "The campaign_name was entered: " + rule_name)
+        Logging().reportDebugStep(self, "The campaign name was entered: " + rule_name)
         return AutoAssignPage(self.driver)
 
     def make_delete_rule(self):
