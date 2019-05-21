@@ -8,7 +8,6 @@ from email import encoders
 def Send_Email_XML(filepath, content):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    # to = "Niv.s@pandats.com"
     to = "jonathan.albalak@pandats.com"
     cc = "jonathan.albalak@pandats.com"
     bcc = "jonathan.albalak@pandats.com"
@@ -102,10 +101,10 @@ def Send_Email_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "OF - All Brands - CRM"
+    msg['Subject'] = "OF - Special Brands - CRM"
 
     # string to store the body of the mail
-    body = "OF - All Brands - CRM"
+    body = "OF - Special Brands - CRM"
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
@@ -167,10 +166,10 @@ def Send_ALL_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "All Brands: Old Forex"
+    msg['Subject'] = "OF - Special Brands - CRM"
 
     # string to store the body of the mail
-    body = "All Brands: Old Forex"
+    body = "OF - Special Brands - CRM"
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))

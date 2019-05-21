@@ -623,7 +623,7 @@ class ClientProfilePage(CRMBasePage):
         trading_tab = self.driver.find_element(By.XPATH,"//a[@id='show_Accounts_FinancialTransactions']")
         self.driver.execute_script("arguments[0].click();", trading_tab)
         # trading_tab.click()
-        Logging().reportDebugStep(self, "Open the financial transactions tab")
+        Logging().reportDebugStep(self, "Open the Financial Transactions tab")
         return ClientProfilePage()
 
     '''
@@ -653,7 +653,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_difference_amount_text(self, initial_amount, amount_deposit):
         total_amount = Decimal(initial_amount) - Decimal(amount_deposit)
-        Logging().reportDebugStep(self, "Returns the total amount " + str(total_amount))
+        Logging().reportDebugStep(self, "Returns the total amount: " + str(total_amount))
         return str(total_amount)
 
     def get_amount_of_credit_in(self, credit_in):
@@ -677,7 +677,7 @@ class ClientProfilePage(CRMBasePage):
         account = self.driver.find_element(By.XPATH,
                                            "//div[@class ='link_field']//a[contains(text(),'%s')]" % account_id)
         account.click()
-        Logging().reportDebugStep(self, "Open client_account ")
+        Logging().reportDebugStep(self, "Open client_account")
         return TradingAccountsInformationPage()
 
     '''
@@ -706,7 +706,7 @@ class ClientProfilePage(CRMBasePage):
     def get_second_client_account(self):
         sleep(3)
         account_number = super().wait_load_element("(//tr[@class='lvtColData'])[2]//td[1]")
-        Logging().reportDebugStep(self, "Return the second client account " + account_number.text)
+        Logging().reportDebugStep(self, "Return the second client account: " + account_number.text)
         return account_number.text
 
     '''
@@ -718,7 +718,7 @@ class ClientProfilePage(CRMBasePage):
     def open_document_number(self):
         select_country = super().wait_load_element("//a[contains(text(),'Bear.jpg')]/../preceding-sibling::td[2]")
         select_country.click()
-        Logging().reportDebugStep(self, "Open the document number ")
+        Logging().reportDebugStep(self, "Open the document number")
         return DocumentDetailViewPage()
 
     '''
@@ -777,7 +777,7 @@ class ClientProfilePage(CRMBasePage):
         sleep(1)
         self.driver.execute_script("arguments[0].click();", mt4_button)
         sleep(5)
-        Logging().reportDebugStep(self, "Open mt4 actions ")
+        Logging().reportDebugStep(self, "Open MT4 Actions")
         MT4DropDown(self.driver).mt4_actions(module)
 
     def close_popup_new_trading_account(self):

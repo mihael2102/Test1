@@ -1,5 +1,4 @@
 brands:
-- name: kayafx
-  config_file: kaya_fx.yml
-#- name: gmo
-#  config_file: gmo.yml
+
+- name: gmo
+  config_file: gmo.yml
