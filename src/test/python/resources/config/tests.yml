@@ -7,21 +7,21 @@ tests_config:
     - test_check_sign_up
 #    - test_check_email_sign_up
 #    - test_registred_client_exist_in_crm
-#- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
-#  class: AddNewAccountTestCA
-#  tests:
-#    - test_add_live_account_ca
-#    - test_add_demo_account_ca
+- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
+  class: AddNewAccountTestCA
+  tests:
+    - test_add_live_account_ca
+    - test_add_demo_account_ca
 #    - test_verify_accounts_in_crm
 #    - test_switch_between_accounts_ca
-#- module: src.test.python.ui.automation.implementation.ca.Trading_Process
-#  class: TradingProcess
-#  tests:
-#    - test_trade_with_insufficient_funds
-#    - test_open_order_buy_sell
-#    - test_open_order_stop_loss_take_profit
-#    - test_edit_order_stop_loss_take_profit
-#    - test_close_order
+- module: src.test.python.ui.automation.implementation.ca.Trading_Process
+  class: TradingProcess
+  tests:
+    - test_trade_with_insufficient_funds
+    - test_open_order_buy_sell
+    - test_open_order_stop_loss_take_profit
+    - test_edit_order_stop_loss_take_profit
+    - test_close_order
 #- module: src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update
 #  class: PersonalDetailsUpdateTestCA
 #  tests:
