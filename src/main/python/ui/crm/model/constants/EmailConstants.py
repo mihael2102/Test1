@@ -10,4 +10,4 @@ class EmailConstants(object):
     FIRST_SUPPORT_EMAIL = "<newforex@pandats.com>"
     SECOND_EMAIL_CONFIRM_MESSAGE = "Email sent"
     EMAIL_ADDRESS = "jonathan.albalak@pandats.com"
-    EMAIL_PASSWORD = "9U&AU=bm"
+    EMAIL_PASSWORD = "xUQ7hrr9VF"
