@@ -27,10 +27,8 @@ class DashboardPrecondition(object):
         dashboard_page = CRMHomePage(self.driver).open_more_list_modules().select_dashboard_module_more_list(DashboardConstants.DASHBOARD_MODULE)
         # total_portfolio = dashboard_page.check_total_portfolio()
         balance = dashboard_page.check_balance()
-        credit = dashboard_page.check_credit()
         openpandl = dashboard_page.check_openpandl()
 
         # assert total_portfolio == DashboardConstants.TOTAL_PORTFOLIO
         assert balance == DashboardConstants.BALANCE
-        assert credit == DashboardConstants.CREDIT
         assert openpandl == DashboardConstants.OPENPL

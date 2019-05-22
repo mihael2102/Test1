@@ -48,9 +48,8 @@ class DashboardPage(CRMBasePage):
 
     def check_openpandl(self):
         sleep(3)
-        check_openpandl = super().wait_load_element(
-            "//body//div[@class='col-lg-12 dashboard-box total']//div[3]//div[@class='stats-label']")
-        Logging().reportDebugStep(self, "Check open p and l")
+        check_openpandl = super().wait_load_element("//div[text()='Open P&L']")
+        Logging().reportDebugStep(self, "Check Open P&L")
         return check_openpandl.text
 
     def click_week_button(self):

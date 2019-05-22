@@ -71,7 +71,7 @@ class CRMHomePage(CRMBasePage):
     def select_financial_transactions_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[contains(text(), '%s')]" % module)
         module_element.click()
-        Logging().reportDebugStep(self, "The financial_transactions_module was selected")
+        Logging().reportDebugStep(self, "The Financial Transactions module was selected")
         return FinancialTransactionsPage(self.driver)
 
     def select_audit_logs_module_more_list(self, module):
