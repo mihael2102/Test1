@@ -1,7 +1,7 @@
 brands:
 
-- name: brokerz
-  config_file: brokerz.yml
+#- name: brokerz
+#  config_file: brokerz.yml
 
 #- name: 4xfx
 #  config_file: 4xfx.yml
@@ -14,3 +14,7 @@ brands:
 #
 #- name: kontofx
 #  config_file: kontofx.yml
+
+- name: newforexstage2
+  config_file: newforexstage2.yml
+
