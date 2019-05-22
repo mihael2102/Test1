@@ -75,7 +75,7 @@ def Send_Email_XML(filepath, content):
     s.starttls()
 
     # Authentication
-    s.login(fromaddr, "9U&AU=bm")
+    s.login(fromaddr, "xUQ7hrr9VF")
 
     # Converts the Multipart msg into a string
     text = msg.as_string()
@@ -140,7 +140,7 @@ def Send_Email_XLS(filepath):
     s.starttls()
 
     # Authentication
-    s.login(fromaddr, "9U&AU=bm")
+    s.login(fromaddr, "xUQ7hrr9VF")
 
     # Converts the Multipart msg into a string
     text = msg.as_string()
@@ -205,7 +205,7 @@ def Send_ALL_XLS(filepath):
     s.starttls()
 
     # Authentication
-    s.login(fromaddr, "9U&AU=bm")
+    s.login(fromaddr, "xUQ7hrr9VF")
 
     # Converts the Multipart msg into a string
     text = msg.as_string()
