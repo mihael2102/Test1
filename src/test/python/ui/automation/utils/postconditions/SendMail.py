@@ -8,7 +8,6 @@ from email import encoders
 def Send_Email_XML(filepath, content):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    # to = "Niv.s@pandats.com"
     to = "jonathan.albalak@pandats.com"
     cc = "jonathan.albalak@pandats.com"
     bcc = "jonathan.albalak@pandats.com"

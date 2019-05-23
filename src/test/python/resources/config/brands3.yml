@@ -1,9 +1,5 @@
 brands:
 
-#- name: firstindex
-#  config_file: firstindex.yml
-#- name: mpcrypto
-#  config_file: mpcrypto.yml
 - name: kontofx
   config_file: kontofx.yml
 
