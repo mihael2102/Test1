@@ -5,6 +5,7 @@ ClientsPage:
   country_button: "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']"
   country_field: "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']"
   client_country: "//*[@id='tblAddressInformation']/table/tbody/tr[2]/td[4]"
+  client_currency: "//td[@class='dvtCellInfo'][contains(text(),'USD')]"
 TasksPage:
   pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
   subject_input: "//tr[@class='tableFilters']//td[15]//input"
@@ -18,10 +19,10 @@ FinancialTransactionsPage:
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
 CALoginPage:
-  sign_up: "/html/body/header/div/div[2]/div[1]/div[1]/a[2]"
-  submit_btn: "/html/body/div[2]/div/div/form/input[2]"
+  sign_up: "//a[contains(text(), 'Sign Up')]"
+  submit_btn: "//button[contains (text(), 'Sign Up')]"
   login_email_input: "//input[@name='email']"
-  login_btn_2: "/html/body/div[2]/div/div[1]/form/input"
+  login_btn_2: "//button[text()='Login']"
   login_btn: "//span[contains(text(), 'Login')]"
 CAPage:
   edit_first_name: "//input[@name='firstName']"

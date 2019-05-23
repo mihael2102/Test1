@@ -296,21 +296,21 @@ class CALoginPage(CRMBasePage):
 
     def click_my_account(self):
         sleep(5)
-        my_account_brn = super().wait_load_element("/html/body/header/div/div[2]/div[1]/label/div[1]/span")
+        my_account_brn = super().wait_load_element("//span[contains(text(),'my account')]")
         my_account_brn.click()
-        Logging().reportDebugStep(self, "My account button click")
+        Logging().reportDebugStep(self, "My Account button is clicked")
         return CALoginPage(self.driver)
 
     def logout(self):
-        logout_btn = super().wait_load_element("/html/body/header/div/div[2]/div[1]/label/div[2]/div/span")
+        logout_btn = super().wait_load_element("//a[contains(text(),'logout')]")
         self.driver.execute_script("arguments[0].click();", logout_btn)
         Logging().reportDebugStep(self, "Logout click")
         return CALoginPage(self.driver)
 
     def account_details(self):
-        logout_btn = super().wait_load_element("/html/body/header/div/div[2]/div[1]/label/div[2]/div/a[5]")
+        logout_btn = super().wait_load_element("//a[text()='account portal']")
         self.driver.execute_script("arguments[0].click();", logout_btn)
-        Logging().reportDebugStep(self, "Account details click")
+        Logging().reportDebugStep(self, "Account Portal is clicked")
         return CALoginPage(self.driver)
 
     def click_regulatory_confirmation(self):

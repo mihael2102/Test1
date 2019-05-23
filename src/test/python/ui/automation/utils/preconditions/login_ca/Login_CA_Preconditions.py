@@ -71,8 +71,6 @@ class Login_CA_Precondition(object):
         if global_var.current_brand_name != "q8":
                 CALoginPage(self.driver).fill_confirm_password(CAConstants.PASSWORD)\
                                 .check_box_accept()
-        if global_var.current_brand_name == "goldenmarkets":
-                CALoginPage(self.driver).click_customer_policy()
         CALoginPage(self.driver).click_submit() \
 
 ###PERSONAL DETAILS FORM
@@ -286,7 +284,7 @@ class Login_CA_Precondition(object):
         assert ClientsPage(self.driver).get_client_last_name() == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                                 LeadsModuleConstants.FIRST_LAST_NAME]
         if (global_var.current_brand_name != "newrichmarkets") and (global_var.current_brand_name != "brokerz") \
-                and (global_var.current_brand_name != "tradospot"):
+                and (global_var.current_brand_name != "kontofx") and (global_var.current_brand_name != "q8"):
                 assert ClientsPage(self.driver).get_client_phone() == '+49 7777 777'
 
         if global_var.current_brand_name != "q8":
@@ -294,6 +292,8 @@ class Login_CA_Precondition(object):
             assert ClientsPage(self.driver).get_client_city() == CAConstants.CITY
             assert ClientsPage(self.driver).get_client_code() == CAConstants.ZIP_CODE
             assert ClientsPage(self.driver).get_client_date_of_birth() == '1995-01-10'
+        if global_var.current_brand_name == "q8":
+            ClientsPage(self.driver).open_address_information_tab()
         assert ClientsPage(self.driver).get_client_country() == 'Germany'
         if global_var.current_brand_name == "mpcrypto":
             assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY_CRYPTO

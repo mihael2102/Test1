@@ -37,12 +37,12 @@ class CRMLoginPage(CRMBasePage):
         login_button = self.driver.find_element(By.XPATH, "//input[@id='submitButton']")
         user_name_field.clear()
         user_name_field.send_keys(user_name)
-        Logging().reportDebugStep(self, "Setting the user name in the field : " + user_name + '\n')
+        Logging().reportDebugStep(self, "Setting the user name: " + user_name)
         password__field.clear()
         password__field.send_keys(password)
-        Logging().reportDebugStep(self, "Setting the user name in the password: " + password + '\n')
+        Logging().reportDebugStep(self, "Setting the password")
         login_button.click()
-        Logging().reportDebugStep(self, "Click the login button" + '\n')
+        Logging().reportDebugStep(self, "Click the Login button")
         sleep(1)
         try:
             otp_field = self.driver.find_element(By.XPATH, "//input[@id='otp']")
@@ -53,9 +53,9 @@ class CRMLoginPage(CRMBasePage):
             otp_field.send_keys(otp)
             Logging().reportDebugStep(self, "Setting the otp token: " + otp + '\n')
             submit_button.click()
-            Logging().reportDebugStep(self, "Click the submit button" + '\n')
+            Logging().reportDebugStep(self, "Click the submit button")
         except NoSuchElementException:
-            Logging().reportDebugStep(self, "No OTP authentication is required" + '\n')
+            Logging().reportDebugStep(self, "No OTP authentication is required")
 
         # Wait for News popup at Old forex and close popup if it is shown
         try:
@@ -69,7 +69,7 @@ class CRMLoginPage(CRMBasePage):
             close_window_button.click()
             Logging().reportDebugStep(self, "'What's new' popup was closed")
         except (NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "'What's new' popup isn't displayed ")
+            Logging().reportDebugStep(self, "'What's new' popup isn't displayed")
         return ClientsPage(self.driver)
 
     '''

@@ -535,3 +535,8 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Fill birthday field")
         return ClientsPage(self.driver)
 
+    def open_address_information_tab(self):
+        address_information_tab = super().wait_load_element("//b[contains(text(),'Address Information')]")
+        self.driver.execute_script("arguments[0].click();", address_information_tab)
+        Logging().reportDebugStep(self, "Address Information tab is opened")
+        return ClientsPage(self.driver)

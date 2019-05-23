@@ -222,7 +222,8 @@ class CAPage(CRMBasePage):
 
     def open_live_section(self):
         sleep(1)
-        live_btn = super().wait_load_element("//li[@class='header-menu-pandats']/span[contains(text(), 'Live')]")
+        live_btn = super().wait_load_element\
+            ("//li[contains(@class,'header-menu-pandats')]/span[contains(text(), 'Live')]")
         self.driver.execute_script("arguments[0].click();", live_btn)
         Logging().reportDebugStep(self, "Open Live account's section")
         return CAPage(self.driver)
