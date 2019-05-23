@@ -79,7 +79,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def click_submit(self):
-        submit_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+        submit_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["submit_btn"])
         submit_button.click()
         Logging().reportDebugStep(self, "Click submit")
