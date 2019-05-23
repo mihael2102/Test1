@@ -1,7 +1,4 @@
 brands:
+
 - name: kaya_fx
   config_file: kaya_fx.yml
-#- name: kbcapitals
-#  config_file: kbcapitals.yml
-
-

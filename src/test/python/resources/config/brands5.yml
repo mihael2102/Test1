@@ -1,5 +1,4 @@
 brands:
-- name: capitalmarketsbanc
-  config_file: capitalmarketsbanc.yml
-#- name: fxpmarkets
-#  config_file: fxpmarkets.yml
+
+- name: gmo
+  config_file: gmo.yml

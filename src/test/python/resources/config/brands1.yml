@@ -6,18 +6,11 @@ brands:
 #- name: capitalmarketsbanc
 #  config_file: capitalmarketsbanc.yml
 
-#- name: brokerxp
-#  config_file: brokerxp.yml
+- name: brokerxp
+  config_file: brokerxp.yml
 
 #- name: kaya_fx
 #  config_file: kaya_fx.yml
 
 #- name: itrader
 #  config_file: itrader.yml
-
-
-
-
-
-
-
