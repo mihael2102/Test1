@@ -1,8 +1,8 @@
 LeadViewInfo:
-  convert_lead_module: "//div[@id='sidebar']//tr[3]//a"
+  convert_lead_module: "//a[contains(text(),'Convert Lead')]"
 FinancialTransactionsPage:
   transaction_type_element: "(//*[@id='listBody']//tr/td[7])[%s]"
   transaction_type_drop_down: "//td[7]/div/div[1]/button"
   modified_time_element: "(//*[@id='listBody']//tr/td[15])[%s]"
 LeadDetailViewInfo:
-    referral: "//td[contains(text(),'Referral')]//following-sibling::td[1]"
+  referral: "//td[contains(text(),'Referral')]//following-sibling::td[1]"
