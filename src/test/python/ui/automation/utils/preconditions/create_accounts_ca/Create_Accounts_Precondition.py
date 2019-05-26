@@ -176,12 +176,7 @@ class Create_Accounts_Precondition(object):
         assert ca_ticket_status_in_closed == CAConstants.TICKET_CLOSED_CA
 
 
-
-
-
-
-
-    def check_demo_in_crm(self):
+    def check_accounts_in_crm(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
@@ -192,10 +187,8 @@ class Create_Accounts_Precondition(object):
         ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                           LeadsModuleConstants.EMAIL])
         ClientProfilePage(self.driver).open_trading_accounts_tab()
-        demo = ClientsPage(self.driver).check_demo_account()
-
-        assert demo == CAConstants.DEMO
-
+        ClientsPage(self.driver).check_account_exist_in_crm(TestDataConstants.SERVER_DEMO) \
+                                .check_account_exist_in_crm(TestDataConstants.SERVER_REAL)
 
     def update_details(self):
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))

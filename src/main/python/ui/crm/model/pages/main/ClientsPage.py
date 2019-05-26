@@ -65,6 +65,13 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Check demo account in Trading Accounts tab")
         return trading_account
 
+    def check_account_exist_in_crm(self, server):
+        sleep(3)
+        trading_account = super().wait_load_element("//div[@id='tbl_Accounts_TradingAccounts']").attribute("innerText")
+        assert server in trading_account
+        Logging().reportDebugStep(self, server + " account exist in Trading Accounts tab")
+        return trading_account
+
     def clear_filter(self):
         filter_lear = super().wait_element_to_be_clickable("//a[@id='clearFilter']")
         filter_lear.click()

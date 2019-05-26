@@ -19,8 +19,8 @@ class AddNewLiveAccountTestCA(BaseTest):
     def test_add_new_demo_account_ca(self):
         Create_Accounts_Precondition(self.driver, self.config).create_demo_account()
 
-    def test_check_demo_in_crm(self):
-        Create_Accounts_Precondition(self.driver, self.config).check_demo_in_crm()
+    def test_check_accounts_in_crm(self):
+        Create_Accounts_Precondition(self.driver, self.config).check_accounts_in_crm()
 
     def test_open_ticket_ca(self):
         Create_Accounts_Precondition(self.driver, self.config).open_ticket_ca()
