@@ -71,8 +71,8 @@ class Login_CA_Precondition(object):
         assert ClientsPage(self.driver).get_client_last_name() == \
                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                    LeadsModuleConstants.FIRST_LAST_NAME]
-        if global_var.current_brand_name != "stoxmarket":
-            assert "245" in ClientsPage(self.driver).get_client_phone()
+        # if global_var.current_brand_name != "stoxmarket":
+        #     assert "245" in ClientsPage(self.driver).get_client_phone()
         # assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS
         # assert ClientsPage(self.driver).get_client_city() == CAConstants.CITY
         # assert ClientsPage(self.driver).get_client_code() == CAConstants.ZIP_CODE
