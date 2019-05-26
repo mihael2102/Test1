@@ -214,7 +214,7 @@ class ClientProfilePage(CRMBasePage):
         self.driver.execute_script("arguments[0].scrollIntoView();", trading_tab)
         self.driver.execute_script("arguments[0].click();", trading_tab)
         sleep(7)
-        Logging().reportDebugStep(self, "Open the trading account tab ")
+        Logging().reportDebugStep(self, "Open the Trading Accounts tab")
         return ClientProfilePage(self.driver)
 
 
@@ -232,7 +232,7 @@ class ClientProfilePage(CRMBasePage):
     def open_financial_transactions_tab(self):
         trading_tab = super().wait_load_element("//a[@id='show_Accounts_FinancialTransactions']")
         trading_tab.click()
-        Logging().reportDebugStep(self, "Open the financial transactions tab ")
+        Logging().reportDebugStep(self, "Open the Financial Transactions tab")
         return ClientProfilePage()
 
     '''

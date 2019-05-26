@@ -59,18 +59,14 @@ class ClientsPage(CRMBasePage):
         self.wait_crm_loading_to_finish()
         return ClientsPage(self.driver)
 
-    def check_demo_account(self):
-        sleep(3)
-        trading_account = self.driver.find_element(By.XPATH, "//table[@id = 'rld_table_content']//tr[2]//td[11]").text
-        Logging().reportDebugStep(self, "Check demo account in Trading Accounts tab")
-        return trading_account
-
     def check_account_exist_in_crm(self, server):
         sleep(3)
-        trading_account = super().wait_load_element("//div[@id='tbl_Accounts_TradingAccounts']").attribute("innerText")
+        trading_account = super().wait_load_element\
+            ("//div[@id='tbl_Accounts_TradingAccounts']/div[@class='rld_table_wrapper']")\
+            .get_attribute("innerText")
         assert server in trading_account
         Logging().reportDebugStep(self, server + " account exist in Trading Accounts tab")
-        return trading_account
+        return ClientsPage(self.driver)
 
     def clear_filter(self):
         filter_lear = super().wait_element_to_be_clickable("//a[@id='clearFilter']")
