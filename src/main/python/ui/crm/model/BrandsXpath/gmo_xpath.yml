@@ -6,3 +6,6 @@ FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[15])[%s]"
 LeadDetailViewInfo:
   referral: "//td[contains(text(),'Referral')]//following-sibling::td[1]"
+ClientsPage:
+  country: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/button"
+  country_input: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/ul/li[1]/div/input"
