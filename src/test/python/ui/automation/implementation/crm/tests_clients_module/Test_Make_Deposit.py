@@ -25,7 +25,6 @@ from selenium.common.exceptions import NoSuchElementException
 class DepositTestCRM(BaseTest):
 
     def test_make_deposit_crm(self):
-
         client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -43,10 +42,14 @@ class DepositTestCRM(BaseTest):
         if global_var.current_brand_name == "finmarket":
             MT4CreateAccountModule(self.driver) \
                 .create_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE_FINMARKET),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
+                self.config.get_value
+                (TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
+                self.config.get_value
+                (TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+                self.config.get_value
+                (TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE_FINMARKET),
+                self.config.get_value
+                (TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
                 .click_close()
 
         elif global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
@@ -58,8 +61,6 @@ class DepositTestCRM(BaseTest):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
                 CRMConstants.TRADING_LEVERAGE_ITRADER) \
                 .click_close()
-
-
         else:
             MT4CreateAccountModule(self.driver) \
                 .create_account(
@@ -67,10 +68,9 @@ class DepositTestCRM(BaseTest):
                                       TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
+                self.config.get_value
+                (TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
                 .click_close()
-
-
         account_number = crm_client_profile \
             .perform_scroll_down() \
             .open_trading_accounts_tab() \
@@ -81,12 +81,13 @@ class DepositTestCRM(BaseTest):
         crm_client_profile.open_mt4_actions(CRMConstants.DEPOSIT)
         if global_var.current_brand_name == "kayafx":
             MT4DepositModule(self.driver).make_deposit_kaya(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
-                                                   CRMConstants.PAYMENT_METHOD_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT, CRMConstants.CLEARNED_BY)
+                                                            CRMConstants.PAYMENT_METHOD_DEPOSIT,
+                                                            CRMConstants.DESCRIPTION_DEPOSIT,
+                                                            CRMConstants.CLEARNED_BY)
         else:
             MT4DepositModule(self.driver).make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
                                                        CRMConstants.PAYMENT_METHOD_DEPOSIT,
                                                        CRMConstants.DESCRIPTION_DEPOSIT)
-
         # Check confirmation message
         confirmation_message = crm_client_profile.get_confirm_message()
         if global_var.current_brand_name == "fxpmarkets":
@@ -107,82 +108,24 @@ class DepositTestCRM(BaseTest):
         self.assertEqual(
                     CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, actual_balance, "Wrong deposit sum is displayed")
 
-
-
     def test_make_deposit_for_client_crm(self):
-        # lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
-        # client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
-        #
-        # # Create new lead and convert him to new client
-        # LeadPrecondition(self.driver, self.config).create_lead(lead1)
-        # lead_view_profile_page = LeadViewInfo(self.driver)
-        #
-        # lead_view_profile_page.open_convert_lead_module() \
-        #     .perform_convert_lead(
-        #     client1[LeadsModuleConstants.FIRST_NAME],
-        #     client1[LeadsModuleConstants.FIRST_LAST_NAME],
-        #     client1[LeadsModuleConstants.EMAIL],
-        #     client1[LeadsModuleConstants.PHONE],
-        #     client1[LeadsModuleConstants.BIRTHDAY],
-        #     client1[LeadsModuleConstants.CITIZENSHIP],
-        #     client1[LeadsModuleConstants.STREET],
-        #     client1[LeadsModuleConstants.POSTAL_CODE],
-        #     client1[LeadsModuleConstants.CITY],
-        #     client1[LeadsModuleConstants.FIRST_COUNTRY],
-        #     client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-        #     client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-        #     client1[LeadsModuleConstants.FIRST_REFERRAL],
-        #     client1[LeadsModuleConstants.BRAND],
-        #     client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-        #     client1[LeadsModuleConstants.PHONE_AREA_CODE])
-        #
-        # convert_verified = False
-        # # Checking that the lead was converted successfully
-        # try:
-        #     confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
-        #     assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
-        #     lead_view_profile_page.click_ok()
-        #     convert_verified = True
-        # except TimeoutException:
-        #     Logging().reportDebugStep(self, "Lead convert message was not picked up")
-        # if not convert_verified:
-        #     lead_detail_view = LeadDetailViewInfo(self.driver)
-        #     lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
-        #     self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state. "
-        #                                                                   "Client was not created")
-        #
-        # # ADD LIVE ACCOUNT IN CRM
-        # # Open clients module. Find created client by email and open his profile
-        # CRMHomePage(self.driver).open_client_module() \
-        #     .select_filter(self.config.get_value(
-        #     TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-        #     .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
-        #
-        # # Create LIVE account for client using MT4 Actions
-        # crm_client_profile = ClientProfilePage(self.driver)
-        # crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
-        #
-        # MT4CreateAccountModule(self.driver) \
-        #     .create_account(
-        #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-        #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-        #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-        #     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
-        #     .click_ok()
+        ### Tests precondition: test_perform_convert_lead, fill_questioner_new_client, test_crm_open_trading_account
+        ###CRM LOGIN
         try:
             crm_client_profile = CRMLoginPage(self.driver) \
                  .open_first_tab_page(self.config.get_value('url')) \
                  .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                            self.config.get_value(TestDataConstants.OTP_SECRET)) \
                  .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-                 .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+                 .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                                   TestDataConstants.E_MAIL))
 
         # Get account number to make deposit in future. And get initial amount
-            account_number = ClientProfilePage(self.driver) \
-                 .perform_scroll_down() \
-                 .open_trading_accounts_tab() \
-                 .get_client_account()
+            account_number = ClientProfilePage(self.driver)\
+                .perform_scroll_down() \
+                .open_trading_accounts_tab() \
+                .get_client_account()
 
             amount_initial = crm_client_profile.get_initial_amount()
 
@@ -193,11 +136,10 @@ class DepositTestCRM(BaseTest):
 
         # Check that CLIENT DEPOSIT CONFIRMATION page is closed and popup is still displayed
             self.assertTrue(CRMClientDeposit(self.driver).is_client_deposit_confirmation_page_not_displayed(),
-                        "CLIENT DEPOSIT CONFIRMATION page is still displayed. But Payment Frame is expected")
-
+                            "CLIENT DEPOSIT CONFIRMATION page is still displayed. But Payment Frame is expected")
             self.assertEqual(CRMConstants.TITLE_OF_CLIENT_DEPOSIT_POPUP,
-                         CRMClientDeposit(self.driver).client_deposit_popup_title_text(),
-                         "Client deposit popup is not displayed, but should")
+                             CRMClientDeposit(self.driver).client_deposit_popup_title_text(),
+                             "Client deposit popup is not displayed, but should")
         except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             try:
                 ClientProfilePage(self.driver).Sign_Out()
@@ -206,26 +148,22 @@ class DepositTestCRM(BaseTest):
                     .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                                self.config.get_value(TestDataConstants.CRM_PASSWORD),
                                self.config.get_value(TestDataConstants.OTP_SECRET)) \
-                    .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+                    .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
                     .find_client_by_email(
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
-
                 # Get account number to make deposit in future. And get initial amount
                 account_number = ClientProfilePage(self.driver) \
                     .perform_scroll_down() \
                     .open_trading_accounts_tab() \
                     .get_client_account()
                 amount_initial = crm_client_profile.get_initial_amount()
-
                 crm_client_profile \
                     .perform_scroll_up() \
                     .open_deposit_for_client_in_menu() \
                     .fill_client_deposit_pop(account_number)
-
                 # Check that CLIENT DEPOSIT CONFIRMATION page is closed and popup is still displayed
                 self.assertTrue(CRMClientDeposit(self.driver).is_client_deposit_confirmation_page_not_displayed(),
                                 "CLIENT DEPOSIT CONFIRMATION page is still displayed. But Payment Frame is expected")
-
                 self.assertEqual(CRMConstants.TITLE_OF_CLIENT_DEPOSIT_POPUP,
                                  CRMClientDeposit(self.driver).client_deposit_popup_title_text(),
                                  "Client deposit popup is not displayed, but should")
@@ -236,31 +174,25 @@ class DepositTestCRM(BaseTest):
                     .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                                self.config.get_value(TestDataConstants.CRM_PASSWORD),
                                self.config.get_value(TestDataConstants.OTP_SECRET)) \
-                    .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+                    .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
                     .find_client_by_email(
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
-
                 # Get account number to make deposit in future. And get initial amount
                 account_number = ClientProfilePage(self.driver) \
                     .perform_scroll_down() \
                     .open_trading_accounts_tab() \
                     .get_client_account()
                 amount_initial = crm_client_profile.get_initial_amount()
-
                 crm_client_profile \
                     .perform_scroll_up() \
                     .open_deposit_for_client_in_menu() \
                     .fill_client_deposit_pop(account_number)
-
                 # Check that CLIENT DEPOSIT CONFIRMATION page is closed and popup is still displayed
                 self.assertTrue(CRMClientDeposit(self.driver).is_client_deposit_confirmation_page_not_displayed(),
                                 "CLIENT DEPOSIT CONFIRMATION page is still displayed. But Payment Frame is expected")
-
                 self.assertEqual(CRMConstants.TITLE_OF_CLIENT_DEPOSIT_POPUP,
                                  CRMClientDeposit(self.driver).client_deposit_popup_title_text(),
                                  "Client deposit popup is not displayed, but should")
-
-
 
 
         # deposit_successful = CRMClientDeposit(self.driver)\
@@ -273,4 +205,3 @@ class DepositTestCRM(BaseTest):
         #     .get_successful_deposit_message()
         #
         # self.assertEqual(CaConstants.SUCCESSFUL_DEPOSIT_MESSAGE, deposit_successful, "Transaction failed")
-

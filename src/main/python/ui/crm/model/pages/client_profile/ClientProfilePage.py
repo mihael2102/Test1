@@ -35,7 +35,7 @@ class ClientProfilePage(CRMBasePage):
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='bill_country']"))
         select.select_by_visible_text(country)
-        Logging().reportDebugStep(self, "Select country" + country)
+        Logging().reportDebugStep(self, "Select Country: " + country)
         return ClientProfilePage(self.driver)
 
     def click_save(self):
@@ -67,6 +67,7 @@ class ClientProfilePage(CRMBasePage):
             pencil.click()
         except:
             self.driver.execute_script("arguments[0].click();", pencil)
+        Logging().reportDebugStep(self, "Click Edit")
         sleep(1)
         select = Select(self.driver.find_element(By.XPATH, "//select[@id='txtbox_Client Status']"))
         select.select_by_visible_text(status)
@@ -76,7 +77,7 @@ class ClientProfilePage(CRMBasePage):
             save_personal_details.click()
         except:
             self.driver.execute_script("arguments[0].click();", save_personal_details)
-        Logging().reportDebugStep(self, "Click Edit")
+        Logging().reportDebugStep(self, "Edit Client Status to " + status)
         return ClientProfilePage(self.driver)
 
     def fill_questionnaire(self, status,income,estimate,purpose,estimate_year,incoming_funds,level_education,time_inv,
@@ -129,7 +130,6 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Click Save questionnaire")
         return ClientProfilePage(self.driver)
 
-
     def check_box_us_resident(self):
         sleep(1)
         check_box_us_resident = super().wait_element_to_be_clickable(
@@ -141,14 +141,12 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Are you a citizen of the United States or a resident for tax purposes?: No")
         return ClientProfilePage(self.driver)
 
-
     def enter_tin(self, tin):
         tin_input = self.driver.find_element(By.XPATH, "//*[@id='collapseFour']/div/div[2]/div/div/div/div[1]/input")
         tin_input.send_keys(tin)
         Logging().reportDebugStep(self,
                                   "Enter tin : " + tin)
         return ClientProfilePage(self.driver)
-
 
     def select_county(self, county):
         sleep(2)
@@ -158,7 +156,6 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self,
                                   "Select What are your investment objectives? : " + county)
         return ClientProfilePage(self.driver)
-
 
     def click_fatca(self):
         sleep(1)
@@ -171,8 +168,6 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Press FATCA & CRS information")
         return ClientProfilePage(self.driver)
 
-
-
     def select_investment_obj(self, investment_obj):
         sleep(2)
         select = Select(
@@ -181,7 +176,6 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self,
                                   "Select What are your investment objectives? : " + investment_obj)
         return ClientProfilePage(self.driver)
-
 
     def select_result_trading(self, result_trading):
         sleep(2)
@@ -206,7 +200,6 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Press Risk tolerance")
         return ClientProfilePage(self.driver)
 
-
     def select_initial_deposit(self, initial_deposit):
         sleep(2)
         select = Select(
@@ -215,7 +208,6 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self,
                                   "Select With an initial deposit of €1,000 and 1:100 leverage, what would your buying power be? : " + initial_deposit)
         return ClientProfilePage(self.driver)
-
 
     def select_facebook(self, facebook):
         sleep(2)
@@ -235,7 +227,6 @@ class ClientProfilePage(CRMBasePage):
                                   "Select How might a positive financial report related to Apple affect the company's CFD price?: " + apple)
         return ClientProfilePage(self.driver)
 
-
     def select_leverage(self, leverage):
         sleep(2)
         select = Select(
@@ -243,7 +234,6 @@ class ClientProfilePage(CRMBasePage):
         select.select_by_visible_text(leverage)
         Logging().reportDebugStep(self, "Select When trading with leverage, which one of the following applies?: " + leverage)
         return ClientProfilePage(self.driver)
-
 
     def select_volume(self, volume):
         sleep(2)
@@ -256,7 +246,6 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Select What is your annual average trade size (volume) of your past 40 leveraged transactions? : " + volume)
         return ClientProfilePage(self.driver)
 
-
     def select_level_exp(self, level_exp):
         sleep(2)
         select = Select(
@@ -264,7 +253,6 @@ class ClientProfilePage(CRMBasePage):
         select.select_by_visible_text(level_exp)
         Logging().reportDebugStep(self, "Select What is your level of experience in derivative products such as CFD's on Stocks/Shares, Indices, Commodities, FX Pairs, and Cryptocurrencies?" + level_exp)
         return ClientProfilePage(self.driver)
-
 
     def last_financial_instruments(self):
         sleep(1)
@@ -277,7 +265,6 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Press Traded in Stocks/Shares, Indices, Commodities")
         return ClientProfilePage(self.driver)
 
-
     def select_last_trade(self, last_trade):
         sleep(2)
         select = Select(
@@ -285,7 +272,6 @@ class ClientProfilePage(CRMBasePage):
         select.select_by_visible_text(last_trade)
         Logging().reportDebugStep(self, "Select When was your last trade carried out?: " + last_trade)
         return ClientProfilePage(self.driver)
-
 
     def select_time_inv(self, time_inv):
         sleep(2)
@@ -295,7 +281,6 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Select How long have you been investing in the financial markets?: " + time_inv)
         return ClientProfilePage(self.driver)
 
-
     def select_level_education(self, level_education):
         sleep(2)
         select = Select(
@@ -303,7 +288,6 @@ class ClientProfilePage(CRMBasePage):
         select.select_by_visible_text(level_education)
         Logging().reportDebugStep(self, "Select level education: " + level_education)
         return ClientProfilePage(self.driver)
-
 
     def click_knowledge_and_experience(self):
         sleep(1)
@@ -316,14 +300,12 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Press click knowledge and experience")
         return ClientProfilePage(self.driver)
 
-
     def select_incoming_funds(self, incoming_funds):
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='new_expected_originof_incoming_funds']"))
         select.select_by_visible_text(incoming_funds)
         Logging().reportDebugStep(self, "Select incoming funds: " + incoming_funds)
         return ClientProfilePage(self.driver)
-
 
     def select_estimate_year(self, estimate_year):
         sleep(2)
@@ -346,15 +328,12 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Select income: " + estimate)
         return ClientProfilePage(self.driver)
 
-
-
     def select_income(self, income):
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='new_estimated_annual_income']"))
         select.select_by_visible_text(income)
         Logging().reportDebugStep(self, "Select income: " + income)
         return ClientProfilePage(self.driver)
-
 
     def check_box_sourse_total(self):
         sleep(1)
@@ -367,7 +346,6 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Press check box sourse: Wealth from Savings and investments")
         return ClientProfilePage(self.driver)
 
-
     def check_box_sourse(self):
         sleep(1)
         check_box_sourse = super().wait_element_to_be_clickable(
@@ -378,7 +356,6 @@ class ClientProfilePage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", check_box_sourse)
         Logging().reportDebugStep(self, "Press check box sourse: Funds from Savings and investments")
         return ClientProfilePage(self.driver)
-
 
     def radio_btn_financial_instruments(self):
         sleep(1)
@@ -401,7 +378,6 @@ class ClientProfilePage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", check_box_industry)
         Logging().reportDebugStep(self, "Press check box industry: Financial services, banking, accounting")
         return ClientProfilePage(self.driver)
-
 
     def select_status(self, status):
         sleep(2)
@@ -494,7 +470,6 @@ class ClientProfilePage(CRMBasePage):
         balance = super().wait_load_element("//*[@id='tblTradingAccountsInformation']/table/tbody/tr[7]/td[2]").text
         Logging().reportDebugStep(self, "Verify credit")
         return balance
-
 
     def perform_scroll_down(self):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -689,7 +664,7 @@ class ClientProfilePage(CRMBasePage):
         account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
         super().scroll_into_view(account_number)
         account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
-        Logging().reportDebugStep(self, "Returns the client_account  text " + account_number.text)
+        Logging().reportDebugStep(self, "Returns the client_account text: " + account_number.text)
         CRMConstants.CREDIT_ACCOUNT = account_number.text
         return account_number.text
 
@@ -834,7 +809,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_last_name(self):
         last_name = self.driver.find_element(By.XPATH, "//td[contains(text(),'Last Name')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the last name:  " + last_name.text)
+        Logging().reportDebugStep(self, "Returns the last name: " + last_name.text)
         return last_name.text
 
     '''
@@ -844,7 +819,7 @@ class ClientProfilePage(CRMBasePage):
     def get_citizenship_text(self):
         citizenship = self.driver.find_element(By.XPATH,
                                                "//td[contains(text(),'Citizenship')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the citizenship " + citizenship.text)
+        Logging().reportDebugStep(self, "Returns the citizenship: " + citizenship.text)
         return citizenship.text
 
     '''
@@ -853,12 +828,13 @@ class ClientProfilePage(CRMBasePage):
 
     def get_address_text(self):
         self.driver.execute_script("scroll(0, 300);")
-        if global_var.current_brand_name == "itrader":
-            address = self.driver.find_element(By.XPATH, "//td[1][contains(text(),'Address')]//following-sibling::td[1]")
+        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
+            address = self.driver.find_element_by_xpath\
+                ("//td[1][contains(text(),'Address')]//following-sibling::td[1]")
         else:
             address = self.driver.find_element(By.XPATH, "//td[contains(text(),'Address')]//following-sibling::td[1]")
         parser_address_text = re.sub('[" "]', '', address.text)
-        Logging().reportDebugStep(self, "Returns the address :" + parser_address_text)
+        Logging().reportDebugStep(self, "Returns the address: " + parser_address_text)
         return parser_address_text
 
     '''
@@ -894,8 +870,9 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_country_text(self):
-        if global_var.current_brand_name == "itrader":
-            country = self.driver.find_element(By.XPATH, "//td[3][contains(text(),'Country')]//following-sibling::td[1]")
+        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
+            country = self.driver.find_element(By.XPATH,
+                                               "//td[3][contains(text(),'Country')]//following-sibling::td[1]")
         else:
             country = self.driver.find_element(By.XPATH, "//td[contains(text(),'Country')]//following-sibling::td[1]")
         Logging().reportDebugStep(self, "Returns the country: " + country.text)
@@ -932,7 +909,8 @@ class ClientProfilePage(CRMBasePage):
 
     def get_confirm_message(self):
         #for_old_forex
-        confirm_message = super().wait_load_element("//div[@class='modal-content']//div[@class='bootstrap-dialog-title']")
+        confirm_message = super().wait_load_element\
+            ("//div[@class='modal-content']//div[@class='bootstrap-dialog-title']")
         Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text
 
@@ -967,16 +945,15 @@ class ClientProfilePage(CRMBasePage):
         return parser_client_source_text
 
     def get_compliance_agent_text(self):
-        compliance_agent = self.driver.find_element(By.XPATH,
-                                                    "//td[contains(text(),'Compliance Agent')]//following-sibling::td[1]")
-
+        compliance_agent = self.driver.find_element_by_xpath(
+            "//td[contains(text(),'Compliance Agent')]//following-sibling::td[1]")
         new_line = compliance_agent.text.strip()
         Logging().reportDebugStep(self, "Returns the compliance_agent source: " + new_line)
         return new_line
 
     def get_compliance_notes_text(self):
-        compliance_notes = self.driver.find_element(By.XPATH,
-                                                    "//td[contains(text(),'Compliance Notes')]//following-sibling::td[1]")
+        compliance_notes = self.driver.find_element_by_xpath(
+            "//td[contains(text(),'Compliance Notes')]//following-sibling::td[1]")
         parser_compliance_notes_text = re.sub('[" "]', '', compliance_notes.text, 1)
         Logging().reportDebugStep(self, "Returns the compliance notes source: " + parser_compliance_notes_text)
         return parser_compliance_notes_text
@@ -988,8 +965,8 @@ class ClientProfilePage(CRMBasePage):
         return client_status.text
 
     def get_retention_status_text(self):
-        retention_status = self.driver.find_element(By.XPATH,
-                                                    "//td[contains(text(),'Retention Status')]//following-sibling::td[1]")
+        retention_status = self.driver.find_element_by_xpath(
+            "//td[contains(text(),'Retention Status')]//following-sibling::td[1]")
         Logging().reportDebugStep(self, "Returns the retention status source: " + retention_status.text)
         return retention_status.text
 
@@ -1019,14 +996,16 @@ class ClientProfilePage(CRMBasePage):
 
     def fill_client_deposit_pop(self, account_number):
         try:
-            trading_account_dropdown_list = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                                      self.__class__.__name__)["choose_account_drop_down"], 10)
+            trading_account_dropdown_list = super().wait_element_to_be_clickable\
+                (global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
+                 ["choose_account_drop_down"], 10)
             sleep(3)
             self.driver.execute_script("arguments[0].click();", trading_account_dropdown_list)
             # trading_account_dropdown_list.click()
             sleep(3)
-            selected_live_trading_account = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
-                                                                      self.__class__.__name__)["choose_number"] % account_number)
+            selected_live_trading_account = self.driver.find_element_by_xpath\
+                (global_var.get_xpath_for_current_brand_element
+                 (self.__class__.__name__)["choose_number"] % account_number)
             super().scroll_into_view(selected_live_trading_account)
             self.driver.execute_script("arguments[0].click();", selected_live_trading_account)
             # selected_live_trading_account.click()
@@ -1041,11 +1020,13 @@ class ClientProfilePage(CRMBasePage):
             super().refresh_page()
             self.open_deposit_for_client_in_menu()
             try:
-                trading_account_dropdown_list = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                                      self.__class__.__name__)["choose_account_drop_down"], 10)
+                trading_account_dropdown_list = super().wait_element_to_be_clickable\
+                    (global_var.get_xpath_for_current_brand_element
+                     (self.__class__.__name__)["choose_account_drop_down"], 10)
                 trading_account_dropdown_list.click()
-                selected_live_trading_account = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
-                                                                      self.__class__.__name__)["choose_number"] % account_number)
+                selected_live_trading_account = self.driver.find_element\
+                    (By.XPATH, global_var.get_xpath_for_current_brand_element
+                    (self.__class__.__name__)["choose_number"] % account_number)
                 super().scroll_into_view(selected_live_trading_account)
                 selected_live_trading_account.click()
             except (NoSuchElementException, TimeoutException) as e:

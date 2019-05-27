@@ -9,3 +9,6 @@ LeadDetailViewInfo:
 ClientsPage:
   country: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/button"
   country_input: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/ul/li[1]/div/input"
+ClientProfilePage:
+  choose_account_drop_down: "//*[@id='ClientDepositConfirmation']//button[@title='Nothing selected']"
+  choose_number: "//form[@id='ClientDepositConfirmation']//span[contains(text(), '%s')]"

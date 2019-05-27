@@ -33,20 +33,23 @@ class WorkflowsPage(CRMBasePage):
 
     def delete_workflow(self):
         sleep(2)
-        btn_delete_workflow = self.driver.find_element_by_xpath("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-list/div/div/div/div[2]/div/grid-simple/div/div[2]/table/tbody/tr[3]/td[6]/div[4]")
+        btn_delete_workflow = self.driver.find_element_by_xpath\
+            ("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-list/div/div/div/div[2]/div/grid-simple/div/div[2]/table/tbody/tr[3]/td[6]/div[4]")
         btn_delete_workflow.click()
         Logging().reportDebugStep(self, "Click delete workflow")
         return WorkflowsPage(self.driver)
 
-
     def check_name_workflow(self):
         sleep(2)
-        name_workflow = self.driver.find_element_by_xpath("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-list/div/div/div/div[2]/div/grid-simple/div/div[2]/table/tbody/tr[3]/td[1]/div")
+        self.wait_element_to_be_disappear("//div[@class='spinner']", timeout=95)
+        name_workflow = self.driver.find_element_by_xpath\
+            ("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-list/div/div/div/div[2]/div/grid-simple/div/div[2]/table/tbody/tr[3]/td[1]/div")
         Logging().reportDebugStep(self, "Check name workflow in table")
         return name_workflow.text
 
     def click_add_new_workflow(self):
         sleep(5)
+        self.wait_element_to_be_disappear("//div[@class='spinner']", timeout=95)
         btn_add_new_workflow = super().wait_element_to_be_clickable("//button[contains(text(), 'New Workflow')]")
         btn_add_new_workflow.click()
         Logging().reportDebugStep(self, "Click 'New Workflow' button")
@@ -246,8 +249,6 @@ class WorkflowsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Select condition between " + name)
         return WorkflowsPage(self.driver)
 
-
-
     def select_add_task(self, name):
         sleep(2)
         btn_add_task = self.driver.find_element_by_xpath(
@@ -340,20 +341,13 @@ class WorkflowsPage(CRMBasePage):
         sleep(2)
         btn_save = self.driver.find_element_by_xpath("/html/body/bs-modal[6]/div/div/bs-modal-footer/div/button[1]")
         btn_save.click()
-        Logging().reportDebugStep(self, "Click Save")
+        Logging().reportDebugStep(self, "Click Save task")
         return WorkflowsPage(self.driver)
 
     def click_save_workflow(self):
         sleep(2)
-        btn_save = self.driver.find_element_by_xpath("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[3]/div/button[3]")
+        btn_save = self.driver.find_element_by_xpath\
+            ("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[3]/div/button[3]")
         btn_save.click()
-        Logging().reportDebugStep(self, "Click Save")
+        Logging().reportDebugStep(self, "Click Save workflow")
         return WorkflowsPage(self.driver)
-
-
-
-
-
-
-
-
