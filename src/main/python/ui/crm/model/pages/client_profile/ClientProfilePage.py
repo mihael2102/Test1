@@ -118,7 +118,6 @@ class ClientProfilePage(CRMBasePage):
 
         self.click_save_questionnaire()
 
-
     def click_save_questionnaire(self):
         sleep(1)
         questionnaire_save_button = super().wait_element_to_be_clickable(

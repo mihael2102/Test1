@@ -41,7 +41,11 @@ class WorkflowsPage(CRMBasePage):
 
     def check_name_workflow(self):
         sleep(2)
-        self.wait_element_to_be_disappear("//div[@class='spinner']", timeout=95)
+        try:
+            self.wait_element_to_be_disappear("//div[@class='spinner']", timeout=95)
+        except TimeoutException:
+            self.refresh_page()
+            self.wait_element_to_be_disappear("//div[@class='spinner']", timeout=95)
         name_workflow = self.driver.find_element_by_xpath\
             ("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-list/div/div/div/div[2]/div/grid-simple/div/div[2]/table/tbody/tr[3]/td[1]/div")
         Logging().reportDebugStep(self, "Check name workflow in table")
@@ -49,7 +53,11 @@ class WorkflowsPage(CRMBasePage):
 
     def click_add_new_workflow(self):
         sleep(5)
-        self.wait_element_to_be_disappear("//div[@class='spinner']", timeout=95)
+        try:
+            self.wait_element_to_be_disappear("//div[@class='spinner']", timeout=95)
+        except TimeoutException:
+            self.refresh_page()
+            self.wait_element_to_be_disappear("//div[@class='spinner']", timeout=95)
         btn_add_new_workflow = super().wait_element_to_be_clickable("//button[contains(text(), 'New Workflow')]")
         btn_add_new_workflow.click()
         Logging().reportDebugStep(self, "Click 'New Workflow' button")
@@ -81,7 +89,7 @@ class WorkflowsPage(CRMBasePage):
         select = Select(self.driver.find_element(By.XPATH,
                                                  "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[2]/div/div[3]/select"))
         select.select_by_visible_text(name)
-        Logging().reportDebugStep(self, "Select Clients Country" + name)
+        Logging().reportDebugStep(self, "Select Client's Country: " + name)
         return WorkflowsPage(self.driver)
 
     def click_next(self):
@@ -107,7 +115,7 @@ class WorkflowsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Select Clients module")
         return WorkflowsPage(self.driver)
 
-    def click_add_condition(self):
+    def click_add_condition_group(self):
         sleep(3)
         btn_add_condition = self.driver.find_element_by_xpath("//button[contains(text(), 'Add Condition Group')]")
         btn_add_condition.click()
@@ -134,15 +142,15 @@ class WorkflowsPage(CRMBasePage):
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value/div/div[2]/select"))
         select.select_by_visible_text(name)
-        Logging().reportDebugStep(self, "Select condition" + name)
+        Logging().reportDebugStep(self, "Select condition: " + name)
         return WorkflowsPage(self.driver)
 
     def select_status(self, name):
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH,
-                                                 "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value/div/div[3]/select"))
+                "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value/div/div[3]/select"))
         select.select_by_visible_text(name)
-        Logging().reportDebugStep(self, "Select Clients Status" + name)
+        Logging().reportDebugStep(self, "Select Clients Status: " + name)
         return WorkflowsPage(self.driver)
 
     def click_add_condition(self):
@@ -243,10 +251,6 @@ class WorkflowsPage(CRMBasePage):
                                                  "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[3]/div/div[2]/select"))
         select.select_by_visible_text(name)
         Logging().reportDebugStep(self, "Select condition " + name)
-        return WorkflowsPage(self.driver)
-
-    def select_second_condition_between(self, name):
-        Logging().reportDebugStep(self, "Select condition between " + name)
         return WorkflowsPage(self.driver)
 
     def select_add_task(self, name):

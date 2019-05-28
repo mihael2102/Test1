@@ -185,8 +185,8 @@ tests_config:
   class: WorkflowsModulesTest
   tests:
     - test_create_workflows
-#    - test_check_workflow_by_status
-#    - test_check_workflow_by_country
+    - test_check_workflow_by_status
+    - test_check_workflow_by_country
     - test_delete_workflow
 #
 ##############################################USER MANAGEMENT############################################

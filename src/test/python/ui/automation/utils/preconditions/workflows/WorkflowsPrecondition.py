@@ -47,7 +47,8 @@ class WorkflowsPrecondition(object):
                                   .select_condition(WorkflowsConstants.CONDITION_IS)
 
         if global_var.current_brand_name == "ptbanc" or global_var.current_brand_name == "kontofx" or \
-                global_var.current_brand_name == "brokerxp" or global_var.current_brand_name == "fxpmarkets":
+                global_var.current_brand_name == "brokerxp" or global_var.current_brand_name == "fxpmarkets" \
+                or global_var.current_brand_name == "kayafx":
             WorkflowsPage(self.driver).select_status(WorkflowsConstants.STATUS_B_TEST)
         else:
             WorkflowsPage(self.driver).select_status(WorkflowsConstants.STATUS_TEST)
