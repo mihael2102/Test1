@@ -9,7 +9,8 @@ class UserInformation(object):
     FIRST_EMAIL = "testing+%s@pandats.com" % random_number
     FIRST_NAME = "first_name"
     LAST_NAME = "last_name"
-    ROLE = "CEO VP"
+    ROLE = "CEO"
+    ROLE1 = "Vice President"
     FIRST_ROLE = "first_role"
     FIRST_PASSWORD = "first_password"
     FIRST_CONFIRM_PASSWORD = "first_confirm_password"

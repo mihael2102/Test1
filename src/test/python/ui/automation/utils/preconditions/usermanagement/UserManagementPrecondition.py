@@ -4,10 +4,7 @@ from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
-from src.main.python.ui.crm.model.constants.LeaderboardConstants import LeaderboardConstants
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.constants.UserManagementConstants import UserManagementConstants
 from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
 from time import sleep
@@ -46,9 +43,12 @@ class UserManagementPrecondition(object):
         UserManagementPage(self.driver).click_new_user_module() \
                                        .set_user_name(UserInformation.FIRST_USER_NAME) \
                                        .set_email(UserInformation.FIRST_EMAIL) \
-                                       .set_first_name(UserInformation.FIRST_NAME) \
-                                       .set_role(UserInformation.ROLE) \
-                                       .set_password(UserInformation.PASSWORD) \
+                                       .set_first_name(UserInformation.FIRST_NAME)
+        if global_var.current_brand_name == "gmo" or global_var.current_brand_name == "itrader":
+            UserManagementPage(self.driver).set_role(UserInformation.ROLE)
+        else:
+            UserManagementPage(self.driver).set_role(UserInformation.ROLE1)
+        UserManagementPage(self.driver).set_password(UserInformation.PASSWORD) \
                                        .set_confirm_password(UserInformation.PASSWORD) \
                                        .set_last_name(UserInformation.LAST_NAME) \
                                        .click_save_button_user_module() \
