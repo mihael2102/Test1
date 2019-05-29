@@ -37,7 +37,7 @@ class CRMLoginPage(CRMBasePage):
         login_button = self.driver.find_element(By.XPATH, "//input[@id='submitButton']")
         user_name_field.clear()
         user_name_field.send_keys(user_name)
-        Logging().reportDebugStep(self, "Setting the user name in the field : " + user_name)
+        Logging().reportDebugStep(self, "Setting the user name: " + user_name)
         password__field.clear()
         password__field.send_keys(password)
         Logging().reportDebugStep(self, "Setting the password")

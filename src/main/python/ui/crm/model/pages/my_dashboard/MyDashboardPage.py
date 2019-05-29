@@ -367,7 +367,7 @@ class MyDashboardPage(CRMBasePage):
             "//li[contains(text(), 'Show all')]")
         self.driver.execute_script("arguments[0].scrollIntoView();", select_show_all_tab)
         select_show_all_tab.click()
-        Logging().reportDebugStep(self, "Select show all tab")
+        Logging().reportDebugStep(self, "Select Show All tab")
         return MyDashboardPage(self.driver)
 
     def enter_account_name(self, testqa):
