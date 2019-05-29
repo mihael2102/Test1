@@ -239,23 +239,18 @@ class ClientsPage(CRMBasePage):
 
     def select_client_status(self, client_status):
         sleep(8)
-        # for_old_forex
         country_drop_down = super().wait_load_element("//*[@id='customAdvanceSearch']/td[4]/div/div[1]/button")
-        # country_drop_down.click()
         self.driver.execute_script("arguments[0].click();", country_drop_down)
         search_field = self.driver.find_element(By.XPATH,
                                                 "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/ul/li[1]/div/input")
-        # for_old_forex
         search_field.clear()
         search_field.send_keys(client_status)
-        country_choice = self.driver.find_element(By.XPATH,
+        status_choice = self.driver.find_element(By.XPATH,
                                                   "//label[contains(text(),'%s')]" % client_status)
-        # for_old_forex
-        # country_choice.click()
-        self.driver.execute_script("arguments[0].click();", country_choice)
+        self.driver.execute_script("arguments[0].click();", status_choice)
         ac = ActionChains(self.driver)
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The client status was selected : " + client_status)
+        Logging().reportDebugStep(self, "The client status was selected: " + client_status)
         return ClientsPage(self.driver)
 
     def click_search_button(self):

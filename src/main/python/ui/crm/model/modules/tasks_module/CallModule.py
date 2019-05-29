@@ -11,8 +11,8 @@ from src.main.python.utils.logs.Loging import Logging
 
 class PhoneActionsModule(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
+    # def __init__(self):
+    #     super().__init__()
 
     def perform_call_section(self, call_outcome, positive_outcome, negative_outcome, comments):
         self.set_call_outcome(call_outcome)

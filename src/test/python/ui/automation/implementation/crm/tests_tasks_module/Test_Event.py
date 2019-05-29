@@ -45,16 +45,8 @@ class AddEventTaskModule(BaseTest):
         # Assert is in method 'create_first_event()'. So need to place it here after refactoring
 
     def test_edit_event(self):
-        try:
-            EventPrecondition(self.driver, self.config).edit_first_event()
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                ClientProfilePage(self.driver).Sign_Out()
-                EventPrecondition(self.driver, self.config).edit_first_event()
-            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                ClientProfilePage(self.driver).Sign_Out()
-                EventPrecondition(self.driver, self.config).edit_first_event()
-        # Assert is in method 'edit_first_event()'. So need to place it here after refactoring
+
+        EventPrecondition(self.driver, self.config).edit_first_event()
 
     def test_delete_interaction(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \

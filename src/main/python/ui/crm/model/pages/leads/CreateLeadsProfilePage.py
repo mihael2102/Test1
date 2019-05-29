@@ -152,10 +152,7 @@ class CreateLeadsProfilePage(CRMBasePage):
 
     def set_assigned_to(self, assigned_to):
         assigned_to_list = Select(self.driver.find_element(By.XPATH, "//select[@name='assigned_user_id']"))
-        if global_var.current_brand_name == "capitalmarketsbanc":
-            assigned_to_list.select_by_visible_text("testpanda")
-        else:
-            assigned_to_list.select_by_visible_text(assigned_to)
+        assigned_to_list.select_by_visible_text(assigned_to)
         Logging().reportDebugStep(self, "The lead status was set: " + assigned_to)
         return CreateLeadsProfilePage(self.driver)
 
@@ -240,6 +237,6 @@ class CreateLeadsProfilePage(CRMBasePage):
         save_button = self.driver.find_element(By.XPATH, "//input[@title='Save [Alt+S]']")
         self.perform_scroll_up()
         save_button.click()
-        Logging().reportDebugStep(self, "The save button was clicked: ")
-        Logging().reportDebugStep(self, "The lead was created: ")
+        Logging().reportDebugStep(self, "The Save button was clicked")
+        Logging().reportDebugStep(self, "The Lead was created")
         return CreateLeadsProfilePage(self.driver)

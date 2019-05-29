@@ -161,7 +161,6 @@ class LeadPrecondition(object):
 
             assert count >= 1
 
-
     def export_select_records(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -368,7 +367,7 @@ class LeadPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
         CRMHomePage(self.driver).open_lead_module() \
-            .open_create_lead_module()\
+                                .open_create_lead_module()\
 
 
         if global_var.current_brand_name == "safemarkets" or global_var.current_brand_name == "itrader_global" or \

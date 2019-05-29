@@ -1,13 +1,11 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
-import time
+from time import sleep
+
 
 class EditEventModule(CRMBasePage):
-    # def __init__(self):
-    #     super().__init__()
 
     def edit_event(self, status, type, duration, date, time, assign_to, subject, priority,
                    comments):
@@ -26,28 +24,28 @@ class EditEventModule(CRMBasePage):
         event_element = super().wait_element_to_be_clickable("//select[@id='eventstatus']")
         select_status = Select(event_element)
         select_status.select_by_visible_text(status)
-        Logging().reportDebugStep(self, "The event status was set " + status)
+        Logging().reportDebugStep(self, "The event status was set: " + status)
         return EditEventModule()
 
     def set_event_type(self, type):
         type_element = self.driver.find_element(By.XPATH, "//select[@id='activitytype']")
         select = Select(type_element)
         select.select_by_visible_text(type)
-        Logging().reportDebugStep(self, "The event type is set " + type)
+        Logging().reportDebugStep(self, "The event type is set: " + type)
         return EditEventModule()
 
     def set_duration(self, duration):
         duration_element = self.driver.find_element(By.XPATH, "//select[@id='duration_minutes']")
         select = Select(duration_element)
         select.select_by_visible_text(duration)
-        Logging().reportDebugStep(self, "The duration  is set " + duration)
+        Logging().reportDebugStep(self, "The duration is set: " + duration)
         return EditEventModule()
 
     def set_priority(self, priority):
         priority_element = super().wait_element_to_be_clickable("//select[@id='priority']")
         select = Select(priority_element)
         select.select_by_visible_text(priority)
-        Logging().reportDebugStep(self, "The priority is set " + priority)
+        Logging().reportDebugStep(self, "The priority is set: " + priority)
         return EditEventModule()
 
     def set_time(self, date, time):
@@ -62,7 +60,7 @@ class EditEventModule(CRMBasePage):
         assign_to_element = self.driver.find_element(By.XPATH, "//select[@id='smownerid']")
         select = Select(assign_to_element)
         select.select_by_visible_text(assign_to)
-        Logging().reportDebugStep(self, "The assign to is set " + assign_to)
+        Logging().reportDebugStep(self, "The assign to is set: " + assign_to)
         return EditEventModule()
 
     # def set_account_name(self, account_name):
@@ -81,7 +79,7 @@ class EditEventModule(CRMBasePage):
             description_element = self.driver.find_element(By.XPATH, "//input[@id='subject']")
             description_element.clear()
             description_element.send_keys(subject)
-            Logging().reportDebugStep(self, "The subject is set " + subject)
+            Logging().reportDebugStep(self, "The subject is set: " + subject)
         except:
             return self
         return EditEventModule()
@@ -90,14 +88,15 @@ class EditEventModule(CRMBasePage):
         description_element = self.driver.find_element(By.XPATH, "//textarea[@id='description']")
         description_element.clear()
         description_element.send_keys(comments)
-        Logging().reportDebugStep(self, "The comments is set " + comments)
+        Logging().reportDebugStep(self, "The comments is set: " + comments)
         return EditEventModule()
 
     def click_save(self):
-        save_button = self.driver.find_element(By.XPATH, "//html/body/bs-modal[8]/div/div/div/div[2]/form/div[2]/div/div[3]/button[contains(text(),'Save')]")
+        sleep(1)
+        save_button = self.driver.find_element(By.XPATH, "//button[text()=' Save '][not(contains(@type,'button'))]")
         try:
             save_button.click()
         except:
             self.driver.execute_script("arguments[0].click();", save_button)
-        Logging().reportDebugStep(self, "Click the 'save' button ")
+        Logging().reportDebugStep(self, "Click the Save button")
         return EditEventModule()

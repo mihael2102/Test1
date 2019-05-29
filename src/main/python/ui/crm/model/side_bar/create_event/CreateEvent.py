@@ -63,10 +63,7 @@ class CreateEvent(CRMBasePage):
         assign_to_element = self.driver.find_element(By.XPATH, "//form[@name='new_interaction']//select[@id='tks_assigned_user_id']")
         select = Select(assign_to_element)
         # select.select_by_visible_text(assign_to)
-        if global_var.current_brand_name == "capitalmarketsbanc":
-            select.select_by_visible_text("testpanda")
-        else:
-            select.select_by_visible_text(assign_to)
+        select.select_by_visible_text(assign_to)
         Logging().reportDebugStep(self, "The  assign to is set " + assign_to)
         return CreateEvent(self.driver)
 

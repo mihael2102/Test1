@@ -53,7 +53,7 @@ class EventPrecondition(object):
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
         task_module.search_account_name(CRMConstants.TESTQA)
-        sleep(60)
+        sleep(1)
         task_module.open_email_actions_section()
         task_module.enter_subject_mail(CRMConstants.SUBJECT_TASK_MAIL)
         task_module.enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
@@ -79,7 +79,6 @@ class EventPrecondition(object):
             assert CRMConstants.SEND_SMS in title
         except:
             assert CRMConstants.SERVER_NOT_CONFIGURATE in title
-
 
     def test_mass_edit_tasks(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
@@ -128,18 +127,6 @@ class EventPrecondition(object):
         assert status == verify_status
         assert type == verify_type
 
-
-
-
-
-
-
-
-
-
-
-
-
     def create_first_event(self):
 
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
@@ -154,7 +141,8 @@ class EventPrecondition(object):
                                                          CRMConstants.DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
                                                          CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.FIRST_ASSIGN_TO,
-                                                         self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
+                                                         self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
+                                                         [LeadsModuleConstants.FIRST_NAME],
                                                          TaskModuleConstants.FOURTH_SUBJECT,
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
@@ -180,17 +168,18 @@ class EventPrecondition(object):
 
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab() \
-            .search_account_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])\
+            .search_account_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
+                                         [LeadsModuleConstants.FIRST_NAME])\
             .open_edit_event()\
             .edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
-                                              TaskModuleConstants.SECOND_EVENT_TYPE,
-                                              TaskModuleConstants.SECOND_DURATION,
-                                              CRMConstants.THIRD_DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
-                                              CRMConstants.THIRD_DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
-                                              TaskModuleConstants.SECOND_ASSIGN_TO,
-                                              TaskModuleConstants.SECOND_SUBJECT,
-                                              TaskModuleConstants.SECOND_PRIORITY,
-                                              TaskModuleConstants.DESCRIPTION_ADD_EVENT)
+                        TaskModuleConstants.SECOND_EVENT_TYPE,
+                        TaskModuleConstants.SECOND_DURATION,
+                        CRMConstants.THIRD_DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
+                        CRMConstants.THIRD_DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
+                        TaskModuleConstants.SECOND_ASSIGN_TO,
+                        TaskModuleConstants.SECOND_SUBJECT,
+                        TaskModuleConstants.SECOND_PRIORITY,
+                        TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
         task_was_updated_text = task_module.task_was_updated()
         text = "Task was updated"

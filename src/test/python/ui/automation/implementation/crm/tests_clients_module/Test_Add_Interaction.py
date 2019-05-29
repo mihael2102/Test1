@@ -25,9 +25,6 @@ class AddInteraction(BaseTest):
                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
                            self.config.get_value(TestDataConstants.OTP_SECRET)) \
                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-                # .perform_searching(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
-                #                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                #                    self.config.get_data_client(TestDataConstants.CLIENT_ONE,TestDataConstants.FIRST_COUNTRY))
 
             if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds") or \
                      (global_var.current_brand_name == "finmarket") or (global_var.current_brand_name == "rimarkets"):
@@ -72,7 +69,7 @@ class AddInteraction(BaseTest):
                         self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                         self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY_ME))
 
-            elif global_var.current_brand_name == "itrader":
+            elif global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
                 ClientsPage(self.driver).perform_searching(
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_NEW),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
@@ -90,24 +87,26 @@ class AddInteraction(BaseTest):
                 .open_create_event_module() \
 
             if global_var.current_brand_name == "4xfx":
-                CreateEvent(self.driver).create_event(self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_STATUS),
-                          self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE_TASK),
-                          self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DURATION),
-                          self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TIME),
-                          self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DATE),
-                          self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_ASSIGN_TO),
-                          self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_PRIORITY),
-                          self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DESCRIPTION))
+                CreateEvent(self.driver).create_event(
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_STATUS),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE_TASK),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DURATION),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TIME),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DATE),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_ASSIGN_TO),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_PRIORITY),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DESCRIPTION))
             else:
 
-                CreateEvent(self.driver).create_event(self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_STATUS),
-                              self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE),
-                              self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DURATION),
-                              self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TIME),
-                              self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DATE),
-                              self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_ASSIGN_TO),
-                              self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_PRIORITY),
-                              self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DESCRIPTION))
+                CreateEvent(self.driver).create_event(
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_STATUS),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DURATION),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TIME),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DATE),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_ASSIGN_TO),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_PRIORITY),
+                            self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DESCRIPTION))
 
             confirmation_message = crm_client_profile.get_confirm_message_body()
             assert confirmation_message == CRMConstants.INTERACTION_SUCCESSFULLY

@@ -140,7 +140,7 @@ class TasksPage(CRMBasePage):
         tab.click()
         self.wait_crm_loading_to_finish()
         sleep(2)
-        Logging().reportDebugStep(self, "The all tab was opened ")
+        Logging().reportDebugStep(self, "The All tab was opened")
         return TasksPage(self.driver)
 
     def open_sms_actions_section(self):
@@ -152,14 +152,13 @@ class TasksPage(CRMBasePage):
             first_check_box = super().wait_element_to_be_clickable(
                 "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div/span/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div/span")
         first_check_box.click()
-        Logging().reportDebugStep(self, "The sms module was opened")
+        Logging().reportDebugStep(self, "The SMS module was opened")
         return TasksPage(self.driver)
 
     def check_pop_up_send_sms(self):
         sleep(5)
         try:
             title = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[2]/div[1]/div/span/h4")
-
         except:
             title = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[2]/h3")
         Logging().reportDebugStep(self, title.text)
@@ -177,7 +176,6 @@ class TasksPage(CRMBasePage):
 
     def open_email_actions_section(self):
         sleep(3)
-
         first_check_box = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[1]")
         first_check_box.click()
@@ -346,7 +344,7 @@ class TasksPage(CRMBasePage):
         first_check_box = super().wait_element_to_be_clickable(
             "//tr[@class='tableRow'][1]//div[3]")
         first_check_box.click()
-        Logging().reportDebugStep(self, "The call phone module was opened: ")
+        Logging().reportDebugStep(self, "The call phone module was opened")
         return PhoneActionsModule(self.driver)
 
     def perform_searching(self, first_name, last_name):
@@ -402,7 +400,7 @@ class TasksPage(CRMBasePage):
         sleep(4)
         subject_mail = super().wait_load_element("//input[@id='subject']")
         subject_mail.send_keys(subject)
-        Logging().reportDebugStep(self, "Enter subject mail" + subject)
+        Logging().reportDebugStep(self, "Enter subject mail: " + subject)
         return TasksPage(self.driver)
 
     def enter_cc_mail(self, cc_mail):
@@ -410,7 +408,7 @@ class TasksPage(CRMBasePage):
         sleep(3)
         subject_mail = super().wait_load_element("//*[@id='email_cc']")
         subject_mail.send_keys(cc_mail)
-        Logging().reportDebugStep(self, "Enter cc mail" + cc_mail)
+        Logging().reportDebugStep(self, "Enter cc mail: " + cc_mail)
         return TasksPage(self.driver)
 
     def click_send(self):
@@ -440,7 +438,8 @@ class TasksPage(CRMBasePage):
 
     def get_first_account_name(self):
         sleep(10)
-        account_name = super().wait_load_element("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[6]/grid-cell/div/span[2]/a").text
+        account_name = super().wait_load_element\
+            ("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[6]/grid-cell/div/span[2]/a").text
         Logging().reportDebugStep(self, "Check Account name" + account_name)
         return account_name
 
@@ -524,7 +523,7 @@ class TasksPage(CRMBasePage):
 
     def task_was_updated(self):
         sleep(0.5)
-        task_was_updated_text = super().wait_load_element("//div[contains(text(),'Task was updated')]").text
+        task_was_updated_text = super().wait_load_element("//div[contains(text(),'Task was updated')]", timeout=35).text
         Logging().reportDebugStep(self, "Text from 'Update' popup has been got: " + task_was_updated_text)
         return task_was_updated_text
 
@@ -539,5 +538,4 @@ class TasksPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", sign_out)
         Logging().reportDebugStep(self, "Sign Out")
         return TasksPage(self.driver)
-
 

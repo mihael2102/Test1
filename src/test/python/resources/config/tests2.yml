@@ -35,7 +35,8 @@ tests_config:
     - test_create_filter_leads_module
     - test_create_filter_help_desk
     - test_create_filter_trading_account_module
-#
+
+#############################################LEADS MODULE###################################################
 - module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
   class: TabLeadsModuleCRM
   tests:
@@ -53,12 +54,22 @@ tests_config:
   tests:
     - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
     - test_edit_lead
+
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_edit_lead_pencil_icon
+    - test_check_email_popup
+
+################################################CONVERT LEAD############################################
 - module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
   directive: reload_configuration
   class: LeadModuleTest
   tests:
     - test_perform_convert_lead   # Creates a lead and converts it to a client
-###Clients
+
+##################################################CLIENTS################################################
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
   class: SearchingClientsTestCRM
   tests:
@@ -70,6 +81,7 @@ tests_config:
   tests:
     - test_add_interaction  # Adds an interaction for a client
     - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
+
 - module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
   class: AddEventTaskModule
   tests:
@@ -82,6 +94,15 @@ tests_config:
     - test_searching_by_columns
     - test_sorting_columns
 
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
+  class: CalendarView
+  tests:
+    - test_check_add_tasks_calendar_view #preconditions convert lead
+    - test_check_day_tab
+    - test_check_month_tab
+    - test_check_week_tab
+
+##################################################CLIENT'S DETAILS##########################################
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
   class: TradingAccountCrmTest
   tests:
@@ -126,17 +147,13 @@ tests_config:
   tests:
     - test_crm_edit_trading_account  # edit trading account
 
+##############################################AFFILIATES MODULE##########################################
 - module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
   class: AffiliateModule
   tests:
     - test_create_affiliate
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
-  class: CalendarView
-  tests:
-    - test_check_add_tasks_calendar_view #preconditions convert lead
-    - test_check_day_tab
-    - test_check_month_tab
-    - test_check_week_tab
+
+#########################################FINANCIAL TRANSACTIONS##############################################
 - module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
   class: TabFinancialTransaction
   tests:
@@ -144,12 +161,15 @@ tests_config:
     - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
     - test_check_search_via_button # Check search using search button
 
+############################################CAMPAIGN MODULE###############################################
 - module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
   class: CampaignsModuleTest
   tests:
     - test_create_campaign
     - test_edit_campaign
     - test_delete_campaign
+
+##########################################AUTOASSIGN MODULE#############################################
 - module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
   class: AutoAssignModuleTest
   tests:
@@ -165,6 +185,7 @@ tests_config:
   tests:
     - test_perform_delete_rule
 
+###########################################WORKFLOWS MODULE##############################################
 - module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
   class: WorkflowsModulesTest
   tests:
@@ -172,19 +193,14 @@ tests_config:
     - test_check_workflow_by_status
     - test_check_workflow_by_country
     - test_delete_workflow
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_edit_lead_pencil_icon
-    - test_check_email_popup
-##################################Chat########################################
+
+####################################################CHAT#################################################
 - module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Chat
   class: TestChat
   tests:
     - test_chat_vtiger
     - test_chat_laravel
-#################################User_Management#########################################
+##############################################USER MANAGEMENT############################################
 - module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
   class: UserManagementTest
   tests:
