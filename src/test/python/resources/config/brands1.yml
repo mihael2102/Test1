@@ -1,7 +1,7 @@
 brands:
 
-- name: kayafx
-  config_file: kaya_fx.yml
+#- name: kayafx
+#  config_file: kaya_fx.yml
 #
 #- name: itrader
 #  config_file: itrader.yml
@@ -9,8 +9,8 @@ brands:
 #- name: gmo
 #  config_file: gmo.yml
 
-#- name: capitalmarketsbanc
-#  config_file: capitalmarketsbanc.yml
+- name: capitalmarketsbanc
+  config_file: capitalmarketsbanc.yml
 #
 #- name: brokerxp
 #  config_file: brokerxp.yml
