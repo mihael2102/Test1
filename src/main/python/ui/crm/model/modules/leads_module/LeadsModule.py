@@ -409,12 +409,13 @@ class LeadsModule(CRMBasePage):
         return number_diff
 
     def sorting_lead_by_leads_no(self):
-        sleep(4)
+        sleep(1)
         sorting_lead_by_leads_no = self.driver.find_element(By.XPATH,"//a[contains(text(), 'Lead No')]")
         try:
             sorting_lead_by_leads_no.click()
         except:
             self.driver.execute_script("arguments[0].click();", sorting_lead_by_leads_no)
+        self.wait_vtiger_loading_to_finish_custom(55)
         Logging().reportDebugStep(self, "Click sorting by Leads no")
         return LeadsModule(self.driver)
 
@@ -425,7 +426,7 @@ class LeadsModule(CRMBasePage):
             sorting_lead_by_email.click()
         except:
             self.driver.execute_script("arguments[0].click();", sorting_lead_by_email)
-        sleep(9)
+        self.wait_vtiger_loading_to_finish_custom(55)
         Logging().reportDebugStep(self, "Click sorting by Email")
         return LeadsModule(self.driver)
 
@@ -436,6 +437,7 @@ class LeadsModule(CRMBasePage):
             sorting_lead_by_exist.click()
         except:
             self.driver.execute_script("arguments[0].click();", sorting_lead_by_exist)
+        self.wait_vtiger_loading_to_finish_custom(55)
         Logging().reportDebugStep(self, "Click sorting by Exist")
         return LeadsModule(self.driver)
 
@@ -732,7 +734,7 @@ class LeadsModule(CRMBasePage):
             search_button.click()
         except:
             self.driver.execute_script("arguments[0].scrollIntoView();", search_button)
-        self.wait_crm_loading_to_finish()
+        self.wait_vtiger_loading_to_finish_custom(55)
         Logging().reportDebugStep(self, "The search button was clicked ")
         return LeadsModule(self.driver)
 

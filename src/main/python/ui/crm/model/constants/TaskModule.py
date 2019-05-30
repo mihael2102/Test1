@@ -22,7 +22,7 @@ class TaskModuleConstants(object):
     SECOND_EVENT_STATUS = "Planned"
     THIRD_EVENT_STATUS = "Deferred"
     FIRST_ASSIGN_TO = "pandaqa pandaqa"
-    SECOND_ASSIGN_TO = "Default User"
+    SECOND_ASSIGN_TO = "Panda Auto"
     THIRD_ASSIGN_TO = "pandaqa pandaqa"
     FIRST_ACCOUNT_NAME = "JohnA"
     SECOND_ACCOUNT_NAME = "Test22222"
