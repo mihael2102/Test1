@@ -660,12 +660,14 @@ class ClientProfilePage(CRMBasePage):
 
     def get_client_account(self):
         sleep(1)
-        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
-        super().scroll_into_view(account_number)
-        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
-        Logging().reportDebugStep(self, "Returns the client_account text: " + account_number.text)
-        CRMConstants.CREDIT_ACCOUNT = account_number.text
-        return account_number.text
+        # account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
+        # super().scroll_into_view(account_number)
+        account_number = super().wait_load_element\
+            ("//div[@id='tbl_Accounts_TradingAccounts']//tr[contains(@id,'related_Tradingaccounts')][1]/td[1]")\
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Returns the client_account text: " + account_number)
+        CRMConstants.CREDIT_ACCOUNT = account_number
+        return account_number
 
     def open_client_account(self):
         account_number = super().wait_visible_of_element("//div[@id='tbl_Accounts_TradingAccounts']//tr[2]//a[2]")
