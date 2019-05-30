@@ -120,14 +120,13 @@ class MyDashboardPrecondition(object):
         except:
             assert CRMConstants.SERVER_NOT_CONFIGURATE in pop_up
 
-
     def test_searching_by_columns(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         CRMHomePage(self.driver).open_more_list_modules() \
-            .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
+                                .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).select_show_all_tab()
         if global_var.current_brand_name == "kayafx":
             MyDashboardPage(self.driver).enter_account_name(CRMConstants.TEST_PANDA)
@@ -143,7 +142,7 @@ class MyDashboardPrecondition(object):
         local_time = MyDashboardPage(self.driver).get_local_time()
         balance = MyDashboardPage(self.driver).get_balance()
         total_p_l = MyDashboardPage(self.driver).get_total_p_l()
-        priority = MyDashboardPage(self.driver).get_priority()
+        # priority = MyDashboardPage(self.driver).get_priority()
         subject = MyDashboardPage(self.driver).get_subject()
 
         MyDashboardPage(self.driver).refresh_page()

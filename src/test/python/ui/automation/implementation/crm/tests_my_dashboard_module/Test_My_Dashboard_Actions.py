@@ -33,6 +33,11 @@ class MyDashboardActionsTest(BaseTest):
     def test_sorting_columns(self):
         MyDashboardPrecondition(self.driver, self.config).test_sorting_columns()
 
+
+
+
+
+
     def test_check_send_sms_actions_section(self):
         ActionsTasksPrecondition().create_first_event()
         CRMHomePage().refresh_page() \
