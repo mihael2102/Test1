@@ -45,11 +45,11 @@ class CAPage(CRMBasePage):
         try:
             button = super().wait_element_to_be_clickable("//button[contains(text(), 'LAUNCH')]")
         except:
-            button = self.driver.find_element(By.XPATH, "//tbody[@id='PracticeAccountListBody']//button[contains(text(), 'FOREX')]")
+            button = self.driver.find_element(By.XPATH,
+                                              "//tbody[@id='PracticeAccountListBody']//button[contains(text(), 'FOREX')]")
         button.click()
         Logging().reportDebugStep(self, "Click LAUNCH")
         return CAPage(self.driver)
-
 
     def open_finmarket(self):
         sleep(3)
@@ -66,14 +66,15 @@ class CAPage(CRMBasePage):
 
     def close_popup_itrader(self):
         sleep(7)
-        check_box = self.driver.find_element(By.XPATH, "//*[@id='chbAgreeNegative']")
-        check_box.click()
-        sleep(3)
-        button = self.driver.find_element(By.XPATH, "//*[@id='btnRiskNextNeg']")
-        button.click()
-        Logging().reportDebugStep(self, "Close Risk Warning pop up")
+        continue_btn = super().wait_element_to_be_clickable("//input[@value='Continue']")
+        continue_btn.click()
+        # check_box = self.driver.find_element(By.XPATH, "//*[@id='chbAgreeNegative']")
+        # check_box.click()
+        # sleep(3)
+        # button = self.driver.find_element(By.XPATH, "//*[@id='btnRiskNextNeg']")
+        # button.click()
+        Logging().reportDebugStep(self, "Close Success pop up")
         return CAPage(self.driver)
-
 
     def fill_questionarie_itrader(self, status ,industry,yes,source,
                                   estimate_income,estimate_worth,purpose,amount,
@@ -156,12 +157,12 @@ class CAPage(CRMBasePage):
             EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlInvestmentObjectivesStrategy']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlInvestmentObjectivesStrategy']"))
         if global_var.current_brand_name == "gmo":
-            select.select_by_visible_text("I invest only in secured financial assets that carry no risk")
+            select.select_by_visible_text\
+                ("I invest in anything I believe will bring high profits even if I risk losing my principal")
         else:
             select.select_by_visible_text(investment_obj)
         Logging().reportDebugStep(self, "Enter investment obj")
         return CAPage(self.driver)
-
 
     def select_result_of_trading(self, result_of_trading):
         sleep(3)
@@ -169,12 +170,11 @@ class CAPage(CRMBasePage):
             EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlFeelLostDepositedCapital']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlFeelLostDepositedCapital']"))
         if global_var.current_brand_name == "gmo":
-            select.select_by_visible_text("I would be very upset. I can’t afford to lose the funds I use for trading")
+            select.select_by_visible_text("I would be upset for a while but it wouldn’t change my financial situation")
         else:
             select.select_by_visible_text(result_of_trading)
         Logging().reportDebugStep(self, "Enter  result of trading")
         return CAPage(self.driver)
-
 
     def select_inital_deposit(self, inital_deposit):
         sleep(3)

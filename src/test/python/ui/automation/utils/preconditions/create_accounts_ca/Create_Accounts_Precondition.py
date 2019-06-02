@@ -224,11 +224,10 @@ class Create_Accounts_Precondition(object):
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                  LeadsModuleConstants.EMAIL]) \
-            .enter_password(CAConstants.PASSWORD) \
-            .click_login()
+                                .enter_password(CAConstants.PASSWORD) \
+                                .click_login()
         if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "gmo":
             CAPage(self.driver).open_live_account()
-
 
         if global_var.current_brand_name == "finmarket":
             CALoginPage(self.driver).enter_data_birth(CAConstants.DATA_MONTH_YEAR)
@@ -237,19 +236,19 @@ class Create_Accounts_Precondition(object):
                                 .select_data_birth_month(CAConstants.MONTH_BIRTH) \
                                 .select_data_birth_year(CAConstants.YEAR_BIRTH)
 
-        if global_var.current_brand_name != "itrader_global" and global_var.current_brand_name != "oinvestsa" and global_var.current_brand_name != "finmarket":
+        if global_var.current_brand_name != "itrader_global" and global_var.current_brand_name != "oinvestsa" and \
+                global_var.current_brand_name != "finmarket":
             CALoginPage(self.driver).choose_currency(CAConstants.CURRENCY)
         if global_var.current_brand_name == "oinvestsa":
             CALoginPage(self.driver).choose_currency(CAConstants.CURRENCY_USD)
 
         if global_var.current_brand_name != "finmarket":
             CALoginPage(self.driver).fill_city(CAConstants.CITY) \
-                                .fill_zip_code(CAConstants.ZIP_CODE) \
-                                .fill_address(CAConstants.ADDRESS)
+                                    .fill_zip_code(CAConstants.ZIP_CODE) \
+                                    .fill_address(CAConstants.ADDRESS)
             CALoginPage(self.driver).click_next_open_live_account()
         else:
             CAPage(self.driver).open_finmarket()
-
 
         if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
             CAPage(self.driver).fill_questionarie_itrader(CAConstants.ITRADER_EMPLOYMENT_STATUS,
@@ -277,7 +276,6 @@ class Create_Accounts_Precondition(object):
                                                           CAConstants.TIN)
                                                           # CAConstants.LEVERAGE_ITRADER)
             CAPage(self.driver).close_popup_itrader()
-
 
         if global_var.current_brand_name == "triomarkets":
             CAPage(self.driver).fill_questionarie_triomarket(CAConstants.AMOUNT,

@@ -96,10 +96,10 @@ class ClientsPage(CRMBasePage):
         sleep(2)
         email_field = super().wait_load_element("//input[@id='tks_email1']")
         email_field.send_keys(email)
-        Logging().reportDebugStep(self, "Setting  the user's email in the email field  is : " + email)
+        Logging().reportDebugStep(self, "Setting the user's email in the email field  is: " + email)
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
-        Logging().reportDebugStep(self, "Click the search button ")
+        Logging().reportDebugStep(self, "Click the Search button")
         sleep(15)
         client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
         sleep(5)
@@ -119,7 +119,7 @@ class ClientsPage(CRMBasePage):
 
     def switch_second_tab_page(self):
         super().switch_second_tab_page()
-        Logging().reportDebugStep(self, "switch the second tab ")
+        Logging().reportDebugStep(self, "Switch the second tab")
         return ClientsPage(self.driver)
 
     ''' 
