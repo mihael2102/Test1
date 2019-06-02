@@ -205,8 +205,8 @@ class ApiPrecondition(object):
         ApiPage(self.driver).enter_email_for_update(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
         ApiPage(self.driver).change_first_name(APIConstants.CHANGE_FIRST_NAME)
-        # ApiPage(self.driver).change_postalCode(APIConstants.CHANGE_POSTAL_CODE)
-        ApiPage(self.driver).change_phone(APIConstants.CHANGE_PHONE)
+        ApiPage(self.driver).change_postalCode(APIConstants.CHANGE_POSTAL_CODE)
+        # ApiPage(self.driver).change_phone(APIConstants.CHANGE_PHONE)
         ApiPage(self.driver).send_update_customer()
         token = ApiPage(self.driver).check_update_token()
 
@@ -219,7 +219,7 @@ class ApiPrecondition(object):
                                                         LeadsModuleConstants.EMAIL])
         client_email = ClientsPage(self.driver).get_first_client_email()
         client_first_name = ClientsPage(self.driver).get_client_first_name()
-        client_phone = ClientsPage(self.driver).get_client_phone()
+        # client_phone = ClientsPage(self.driver).get_client_phone()
         ClientsPage(self.driver).click_custom_information()
         client_postalCode = ClientsPage(self.driver).get_client_postalCode()
 
@@ -228,9 +228,9 @@ class ApiPrecondition(object):
 
         assert client_first_name == APIConstants.CHANGE_FIRST_NAME
 
-        assert client_phone == APIConstants.CHANGE_PHONE_CRM
+        # assert client_phone == APIConstants.CHANGE_PHONE_CRM
 
-        # assert client_postalCode == APIConstants.CHANGE_POSTAL_CODE
+        assert client_postalCode == APIConstants.CHANGE_POSTAL_CODE
 
     def test_create_lead(self):
         self.autorization_process()
