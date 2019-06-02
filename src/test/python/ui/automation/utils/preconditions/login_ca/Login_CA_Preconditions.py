@@ -31,7 +31,6 @@ class Login_CA_Precondition(object):
         lead = self.config.get_value(lead_key)
         return lead
 
-
     def check_email_sign_up(self):
         sleep(60)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
@@ -52,7 +51,6 @@ class Login_CA_Precondition(object):
                     assert CRMConstants.WELCOME_TO in str(message['Subject'])
                     # return str(message['Subject'])
         pop_conn.quit()
-
 
     def client_exist_in_crm(self):
         # Login to CRM
@@ -79,7 +77,6 @@ class Login_CA_Precondition(object):
         # assert ClientsPage(self.driver).get_client_country() == 'Germany'
         # assert ClientsPage(self.driver).get_client_date_of_birth() == '1995-01-10'
         # assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY
-
 
     def sign_up_ca(self):
 ###REGISTRACTIONS FORM
