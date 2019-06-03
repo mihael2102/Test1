@@ -15,12 +15,13 @@ logger = None
 handler = None
 
 
-ip = get('https://api.ipify.org').text
-print('My public IP address is: {}'.format(ip))
+chrome_driver = "C:/Users/Panda102/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver2.exe"
 
-if ip == '35.158.30.212':
-    chrome_driver = "D:/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
-elif ip == '35.158.90.50':
-    chrome_driver = "C:/Users/Panda102/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver2.exe"
-# chrome_driver = "D:/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
-# chrome_driver = "C:/Users/Panda102/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
+
+# ip = get('https://api.ipify.org').text
+# print('My public IP address is: {}'.format(ip))
+#
+# if ip == '35.158.30.212':
+#     chrome_driver = "D:/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
+# elif ip == '35.158.90.50':
+#     chrome_driver = "C:/Users/Panda102/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver2.exe"

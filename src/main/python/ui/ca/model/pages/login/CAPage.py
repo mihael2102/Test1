@@ -13,18 +13,14 @@ import autoit
 
 class CAPage(CRMBasePage):
 
-
-
     def get_number_account_demo(self):
         sleep(3)
         account_number = self.driver.find_element_by_xpath("//*[@id='Top_bar']/div/div/div/div[2]/panda-forex-client-area/div/div/client-area-popup/div/div[2]/div[2]/div[2]/manage/div[2]/accounts/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr[1]/td[1]").text
         Logging().reportDebugStep(self, "Check account_number " + account_number)
         return account_number
 
-
     def click_close_client_area(self):
         sleep(3)
-
         click_close = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
                                                     self.__class__.__name__)["click_close"])
         try:
@@ -33,7 +29,6 @@ class CAPage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", click_close)
         Logging().reportDebugStep(self, "Click close client area")
         return CAPage(self.driver)
-
 
     def click_actions_launch_by_account(self, account_number):
         sleep(3)
@@ -63,25 +58,24 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click add new demo account")
         return CAPage(self.driver)
 
-    def select_currency(self):
-        sleep(5)
+    # def select_currency(self):
+    #     sleep(5)
         # WebDriverWait(self.driver, 10).until(
         #     EC.element_to_be_clickable((By.XPATH, "//select[@id='NewDemoAccountCurrency']")))
         # select = Select(self.dri_text(ver.find_element_by_css_selector("#NewDemoAccountCurrency"))
         # select.select_by_visible"EUR")
-        try:
-            self.driver.switch_to.frame(self.driver.find_element_by_xpath("//iframe[@id='iPopUp']"))
-            select = super().wait_load_element("//select[@id='NewDemoAccountCurrency']")
-            select.click()
-            select_currency = super().wait_load_element("//select[@id='NewDemoAccountCurrency']/option[contains(text(), 'EUR')]")
-            select_currency.click()
-            # self.driver.execute_script("arguments[0].click();", select_currency)
-            Logging().reportDebugStep(self, "Select currency")
-            return CAPage(self.driver)
-        except Exception as e:
-            print("Error: ", e)
-            return CAPage(self.driver)
-
+        # try:
+        #     self.driver.switch_to.frame(self.driver.find_element_by_xpath("//iframe[@id='iPopUp']"))
+        #     select = super().wait_load_element("//select[@id='NewDemoAccountCurrency']")
+        #     select.click()
+        #     select_currency = super().wait_load_element("//select[@id='NewDemoAccountCurrency']/option[contains(text(), 'EUR')]")
+        #     select_currency.click()
+        #     # self.driver.execute_script("arguments[0].click();", select_currency)
+        #     Logging().reportDebugStep(self, "Select currency")
+        #     return CAPage(self.driver)
+        # except Exception as e:
+        #     print("Error: ", e)
+        #     return CAPage(self.driver)
 
     def select_leverage(self):
         sleep(3)
@@ -175,20 +169,20 @@ class CAPage(CRMBasePage):
     def get_leverage(self):
         leverage = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                     self.__class__.__name__)["actual_leverage"]).text
-        Logging().reportDebugStep(self, "The Leverage is " + leverage)
+        Logging().reportDebugStep(self, "The Leverage is: " + leverage)
         return leverage
 
     def get_currency(self):
         currency = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                     self.__class__.__name__)["actual_currency"]).text
-        Logging().reportDebugStep(self, "The Currency is " + currency)
+        Logging().reportDebugStep(self, "The Currency is: " + currency)
         return currency
 
     def set_initial_deposit(self, in_deposit):
         input_initial_deposit = super().wait_load_element("//input[@name = 'deposit']")
         input_initial_deposit.clear()
         input_initial_deposit.send_keys(in_deposit)
-        Logging().reportDebugStep(self, "Fill Initial Deposit : " + in_deposit)
+        Logging().reportDebugStep(self, "Fill Initial Deposit: " + in_deposit)
         return CAPage(self.driver)
 
     def verify_init_deposit_error(self):

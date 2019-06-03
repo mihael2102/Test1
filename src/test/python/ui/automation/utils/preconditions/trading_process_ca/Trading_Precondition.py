@@ -225,31 +225,14 @@ class Trading_Precondition(object):
                                     .click_login()
         CAPage(self.driver).open_accounts_list(CAConstants.ACCOUNT_LIVE) \
                            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)
-        # WebTraderPage(self.driver).click_select_account()\
-        #                           .select_demo_account()
         if global_var.current_brand_name == "ptbanc":
             WebTraderPage(self.driver).ptbanc_webtrader()
-        avaliable_funds = WebTraderPage(self.driver).check_avaliable_funds()
-        used_funds = WebTraderPage(self.driver).check_used_funds()
-        # account_value = WebTraderPage(self.driver).check_account_value()
-        # total_p_l = WebTraderPage(self.driver).check_total_p_l()
-        # margin_level = WebTraderPage(self.driver).check_margin_level()
-        assert avaliable_funds == CAConstants.AVALIABLE_FUNDS
-        assert used_funds == CAConstants.USED_FUNDS
-        # assert account_value == CAConstants.ACCOUNT_VALUE
-        # assert total_p_l == CAConstants.TOTAL_P_L
-        # assert margin_level == CAConstants.MARGIN_LVL
+
         WebTraderPage(self.driver).select_asset(CRMConstants.ASSET)
         WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_INSUFFICIENT_FUNDS)\
                                   .click_sell()\
-                                  .click_invest()
-        # order = WebTraderPage(self.driver).get_msg_succsessfull_order()
-
-        # assert CRMConstants.ORDER in order
-
-        insufficient_funds = WebTraderPage(self.driver).get_msg_insufficient_funds()
-        assert insufficient_funds == CRMConstants.INSUFFICIENT_FUNDS
-
+                                  .click_invest()\
+                                  .check_msg_insufficient_funds()
 
     def open_order_buy_sell(self):
 

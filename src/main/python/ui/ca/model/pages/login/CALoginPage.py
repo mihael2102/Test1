@@ -8,6 +8,7 @@ import pyotp
 from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
+
 class CALoginPage(CRMBasePage):
 
     def open_first_tab_page(self, url):
@@ -16,7 +17,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def click_sign_up(self):
-        sleep(3)
+        sleep(10)
         try:
             #check bunner exist
             self.driver.find_element_by_xpath("(//div[@class='Campaign__alphaLayer'])[2]")
@@ -86,6 +87,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def click_hi_guest(self):
+        sleep(1)
         hi_guest_button = super().wait_load_element("//div[contains (text(), 'Hi, Guest')]")
         hi_guest_button.click()
         Logging().reportDebugStep(self, "Click Hi, Guest")

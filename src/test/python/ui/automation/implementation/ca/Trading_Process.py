@@ -16,28 +16,28 @@ class TradingProcess(BaseTest):
                 and global_var.current_brand_name != "q8":
             Trading_Precondition(self.driver, self.config).trade_with_insufficient_funds()
         else:
-            Logging().reportDebugStep(self, "NOT RUNNER")
+            Logging().reportDebugStep(self, "NOT RUNNED")
 
     def test_open_order_buy_sell(self):
         if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "brokerz" and global_var.current_brand_name != "q8":
             Trading_Precondition(self.driver, self.config).open_order_buy_sell()
         else:
-            Logging().reportDebugStep(self, "NOT RUNNER")
+            Logging().reportDebugStep(self, "NOT RUNNED")
 
     def test_open_order_stop_loss_take_profit(self):
         if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "brokerz" and global_var.current_brand_name != "q8":
             Trading_Precondition(self.driver, self.config).open_order_stop_loss_take_profit()
         else:
-            Logging().reportDebugStep(self, "NOT RUNNER")
+            Logging().reportDebugStep(self, "NOT RUNNED")
 
     def test_edit_order_stop_loss_take_profit(self):
         if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "brokerz" and global_var.current_brand_name != "q8":
             Trading_Precondition(self.driver, self.config).edit_order_stop_loss_take_profit()
         else:
-            Logging().reportDebugStep(self, "NOT RUNNER")
+            Logging().reportDebugStep(self, "NOT RUNNED")
 
     def test_close_order(self):
         if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "brokerz" and global_var.current_brand_name != "q8":
             Trading_Precondition(self.driver, self.config).close_order()
         else:
-            Logging().reportDebugStep(self, "NOT RUNNER")
+            Logging().reportDebugStep(self, "NOT RUNNED")

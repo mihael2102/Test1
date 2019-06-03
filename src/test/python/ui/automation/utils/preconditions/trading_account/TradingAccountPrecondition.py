@@ -110,11 +110,16 @@ class TradingAccountPrecondition(object):
                 actual_leverage = CAPage(self.driver).get_leverage()
                 expected_leverage = CAConstants.LEVERAGE_LEVEL2
                 assert actual_leverage == expected_leverage
-            else:
+            elif global_var.current_brand_name == "brokerz":
                 actual_leverage = CAPage(self.driver).get_leverage()
                 lev = CAConstants.LEVERAGE_LEVEL
                 leverage = lev.split(':')
                 expected_leverage = leverage[1]
+                print(expected_leverage, actual_leverage)
+                assert actual_leverage == expected_leverage
+            else:
+                actual_leverage = CAPage(self.driver).get_leverage()
+                expected_leverage = CAConstants.LEVERAGE_LEVEL
                 print(expected_leverage, actual_leverage)
                 assert actual_leverage == expected_leverage
 
