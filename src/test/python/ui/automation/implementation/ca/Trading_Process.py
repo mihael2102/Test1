@@ -9,6 +9,7 @@ from src.test.python.ui.automation.utils.preconditions.login_ca.Login_CA_Precond
 from src.test.python.ui.automation.utils.preconditions.trading_process_ca.Trading_Precondition import Trading_Precondition
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
+
 class TradingProcess(BaseTest):
 
     def test_trade_with_insufficient_funds(self):

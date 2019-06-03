@@ -37,46 +37,47 @@ class CALoginPage(CRMBasePage):
         input_first_name = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["input_first_name"])
         input_first_name.send_keys(first_name)
-        Logging().reportDebugStep(self, "Fill First Name : " + first_name)
+        Logging().reportDebugStep(self, "Fill First Name: " + first_name)
         return CALoginPage(self.driver)
 
     def fill_last_name(self, last_name):
         input_last_name = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["input_last_name"])
         input_last_name.send_keys(last_name)
-        Logging().reportDebugStep(self, "Fill Last Name : " + last_name)
+        Logging().reportDebugStep(self, "Fill Last Name: " + last_name)
         return CALoginPage(self.driver)
 
     def fill_email(self, email):
         input_email = super().wait_load_element("//input[@name = 'email']")
         input_email.send_keys(email)
-        Logging().reportDebugStep(self, "Fill email : " + email)
+        Logging().reportDebugStep(self, "Fill email: " + email)
         return CALoginPage(self.driver)
 
     def fill_phone(self, phone):
         input_phone = super().wait_load_element("//input[@name = 'phone']")
         input_phone.send_keys(phone)
-        Logging().reportDebugStep(self, "Fill phone : " + phone)
+        Logging().reportDebugStep(self, "Fill phone: " + phone)
         return CALoginPage(self.driver)
 
     def fill_password(self, password):
         input_password = super().wait_load_element("//input[@name = 'password']")
         input_password.send_keys(password)
-        Logging().reportDebugStep(self, "Fill password : " + password)
+        Logging().reportDebugStep(self, "Fill password: " + password)
         return CALoginPage(self.driver)
 
     def fill_confirm_password(self, password):
         input_password = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["input_confirm_password"])
         input_password.send_keys(password)
-        Logging().reportDebugStep(self, "Fill confirm : " + password)
+        Logging().reportDebugStep(self, "Fill confirm: " + password)
         return CALoginPage(self.driver)
 
     def check_box_accept(self):
         check_box = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["check_box_accept"])
         check_box.click()
-        Logging().reportDebugStep(self, "Check 'By checking this box I accept the Terms and Conditions and confirm that I am over 18 year of age'")
+        Logging().reportDebugStep(self,
+                                  "Check 'By checking this box I accept the Terms and Conditions and confirm that I am over 18 year of age'")
         return CALoginPage(self.driver)
 
     def click_submit(self):
@@ -244,6 +245,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def sign_out(self):
+        sleep(1)
         sign_out = super().wait_load_element("//li[contains(text(), 'Sign Out')]")
         self.driver.execute_script("arguments[0].click();", sign_out)
         Logging().reportDebugStep(self, "Click Sign Out")
@@ -265,7 +267,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def enter_email(self, email):
-        sleep(1)
+        sleep(5)
         input_email = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["login_email_input"])
         self.driver.execute_script("arguments[0].click();", input_email)
@@ -334,4 +336,29 @@ class CALoginPage(CRMBasePage):
         sleep(7)
         self.driver.execute_script("arguments[0].click();", click_hi_user)
         Logging().reportDebugStep(self, "Open main menu")
+        return CALoginPage(self.driver)
+
+    def close_payment_popup(self):
+        close_btn = super().wait_element_to_be_clickable("//div[@class='close-pandats cmicon-close4 ng-star-inserted']")
+        close_btn.click()
+        Logging().reportDebugStep(self, "Close the pop up 'Choose a payment method'")
+        return CALoginPage(self.driver)
+
+    def open_account_details_tab(self):
+        account_details_btn = super().wait_element_to_be_clickable("//i[@class='cmicon-person']")
+        account_details_btn.click()
+        Logging().reportDebugStep(self, "Open Account Details tab")
+        return CALoginPage(self.driver)
+
+    def click_save_changes(self):
+        save_changes_btn = super().wait_element_to_be_clickable("//button[text()=' Save Changes ']")
+        save_changes_btn.click()
+        Logging().reportDebugStep(self, "Click 'Save Changes' button")
+        return CALoginPage(self.driver)
+
+    def close_client_area(self):
+        sleep(8)
+        close_btn = super().wait_element_to_be_clickable("//a[@class='close-popup-pandats']")
+        self.driver.execute_script("arguments[0].click();", close_btn)
+        Logging().reportDebugStep(self, "Close Client Area pop up")
         return CALoginPage(self.driver)

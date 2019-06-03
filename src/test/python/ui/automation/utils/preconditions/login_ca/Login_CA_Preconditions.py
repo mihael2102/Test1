@@ -49,15 +49,11 @@ class Login_CA_Precondition(object):
                     # return str(message['Subject'])
         pop_conn.quit()
 
-
-
-
     def sign_up_ca(self):
 ###REGISTRATION FORM
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))\
                                 .click_sign_up()
-        if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "b-finance") \
-                or (global_var.current_brand_name == "eafx"):
+        if (global_var.current_brand_name == "b-finance") or (global_var.current_brand_name == "eafx"):
                 CALoginPage(self.driver).click_regulatory_confirmation()
         CALoginPage(self.driver).fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME])\
@@ -74,6 +70,8 @@ class Login_CA_Precondition(object):
         CALoginPage(self.driver).click_submit() \
 
 ###PERSONAL DETAILS FORM
+        if global_var.current_brand_name == "trade99":
+            CALoginPage(self.driver).close_payment_popup()
         if global_var.current_brand_name == "q8":
 
             CALoginPage(self.driver).click_my_account() \
@@ -170,9 +168,7 @@ class Login_CA_Precondition(object):
             print(expected_client, existing_client)
             assert existing_client == expected_client
 
-        elif (global_var.current_brand_name == "xtraderfx")or(global_var.current_brand_name == "solocapitals") \
-                or (global_var.current_brand_name == "b-finance"):
-
+        elif (global_var.current_brand_name == "solocapitals") or (global_var.current_brand_name == "b-finance"):
             CALoginPage(self.driver).verify() \
                 .click_hi_guest() \
                 .click_transactions_history() \
@@ -235,6 +231,32 @@ class Login_CA_Precondition(object):
             print(expected_client, existing_client)
             assert existing_client == expected_client
 
+        elif global_var.current_brand_name == "trade99":
+
+            CALoginPage(self.driver).verify() \
+                                    .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                                                LeadsModuleConstants.FIRST_NAME]) \
+                                    .click_transactions_history() \
+                                    .open_account_details_tab() \
+                                    .select_data_birth_day(CAConstants.DAY_BIRTH) \
+                                    .select_data_birth_month(CAConstants.MONTH_BIRTH) \
+                                    .select_data_birth_year(CAConstants.YEAR_BIRTH) \
+                                    .choose_citizenship(CAConstants.CITIZENSHIP) \
+                                    .fill_city(CAConstants.CITY) \
+                                    .fill_zip_code(CAConstants.ZIP_CODE) \
+                                    .fill_address(CAConstants.ADDRESS) \
+                                    .click_save_changes() \
+                                    .verify() \
+                                    .close_client_area() \
+                                    .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                       LeadsModuleConstants.FIRST_NAME]) \
+                                    .sign_out() \
+                                    .login() \
+                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                     LeadsModuleConstants.EMAIL]) \
+                                    .enter_password(CAConstants.PASSWORD) \
+                                    .click_login() \
+                                    .verify()
         else:
 
             CALoginPage(self.driver).verify() \
@@ -295,7 +317,7 @@ class Login_CA_Precondition(object):
         if global_var.current_brand_name == "q8":
             ClientsPage(self.driver).open_address_information_tab()
         assert ClientsPage(self.driver).get_client_country() == 'Germany'
-        if global_var.current_brand_name == "mpcrypto":
+        if global_var.current_brand_name == "mpcrypto" or global_var.current_brand_name == "trade99":
             assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY_CRYPTO
         else:
             assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY

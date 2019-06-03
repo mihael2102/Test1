@@ -130,7 +130,6 @@ class WebTraderPage(CRMBasePage):
         return pips_right_panel.text
 
     def select_asset(self, asset):
-        # sleep(15)
         super().wait_load_element("//div[@class='loader__bar']", timeout=15)
         super().wait_element_to_be_disappear("//div[@class='loader__bar']", timeout=35)
         if global_var.current_brand_name == "ptbanc":

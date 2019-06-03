@@ -18,7 +18,6 @@ from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.logs.Loging import Logging
 
 
-
 class TradingAccountPrecondition(object):
 
     driver = None
@@ -47,7 +46,7 @@ class TradingAccountPrecondition(object):
                                .open_new_account_btn() \
                                .select_account_type(CAConstants.ACCOUNT_LIVE)
 
-            if global_var.current_brand_name == "mpcrypto":
+            if global_var.current_brand_name == "mpcrypto" or global_var.current_brand_name == "trade99":
                 CAPage(self.driver).select_currency(CAConstants.CURRENCY_CRYPTO)
             else:
                 CAPage(self.driver).select_currency(CAConstants.CURRENCY)
@@ -81,7 +80,7 @@ class TradingAccountPrecondition(object):
                                .open_new_account_btn() \
                                .select_account_type(CAConstants.ACCOUNT_DEMO)
 
-            if global_var.current_brand_name == "mpcrypto":
+            if global_var.current_brand_name == "mpcrypto" or global_var.current_brand_name == "trade99":
                 CAPage(self.driver).select_currency(CAConstants.CURRENCY_CRYPTO)
             else:
                 CAPage(self.driver).select_currency(CAConstants.CURRENCY)
@@ -96,7 +95,7 @@ class TradingAccountPrecondition(object):
                                .verify_init_deposit_error() \
                                .set_initial_deposit(CAConstants.INITIAL_DEPOSIT1) \
                                .verify_init_deposit_error()
-            if global_var.current_brand_name == "mpcrypto":
+            if global_var.current_brand_name == "mpcrypto" or global_var.current_brand_name == "trade99":
                 CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT_BTC)
             elif global_var.current_brand_name == "ptbanc":
                 CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT_PTBANC)

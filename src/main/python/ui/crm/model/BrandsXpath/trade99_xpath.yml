@@ -1,0 +1,4 @@
+CALoginPage:
+  sign_up: "//div[@class='btn-holder desktop-only']/a[@title='Open a Live Account']"
+ClientsPage:
+  client_currency: "//td[@class='dvtCellInfo'][contains(text(),'BTC')]"

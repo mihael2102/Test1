@@ -167,6 +167,7 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def get_leverage(self):
+        sleep(1)
         leverage = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                     self.__class__.__name__)["actual_leverage"]).text
         Logging().reportDebugStep(self, "The Leverage is: " + leverage)
