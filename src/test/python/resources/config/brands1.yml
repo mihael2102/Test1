@@ -1,13 +1,7 @@
 brands:
 
-#- name: brokerz
-#  config_file: brokerz.yml
-#
 #- name: q8
 #  config_file: q8.yml
-#
-#- name: kontofx
-#  config_file: kontofx.yml
 #
 #- name: ptbanc
 #  config_file: ptbanc.yml

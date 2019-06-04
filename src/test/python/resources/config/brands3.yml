@@ -1,27 +1,4 @@
 brands:
 
-- name: kontofx
-  config_file: kontofx.yml
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- name: ptbanc
+  config_file: ptbanc.yml
