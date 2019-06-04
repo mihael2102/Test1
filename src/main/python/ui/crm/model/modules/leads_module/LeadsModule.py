@@ -366,7 +366,7 @@ class LeadsModule(CRMBasePage):
         sleep(1)
         check_first_line_exist = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["check_first_line_exist"]).text
-        Logging().reportDebugStep(self, "Verify sorting by Exist")
+        Logging().reportDebugStep(self, "Verify sorting by Exist: " + check_first_line_exist)
         return check_first_line_exist
 
     def check_first_line_email(self):
@@ -382,11 +382,11 @@ class LeadsModule(CRMBasePage):
         number_email_str2 = email_2.replace('@pandats.com', '')
         number_email_2 = int(number_email_str2)
         number_email_diff = number_email_1 - number_email_2
-        Logging().reportDebugStep(self, "Verify sorting by Email")
+        Logging().reportDebugStep(self, "Verify sorting by Email: " + str(number_email_diff))
         return number_email_diff
 
     def check_first_line_leads_no(self):
-
+        sleep(2)
         check_first_line_leads_no1 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["check_first_line_leads_no1"])
         if global_var.current_brand_name != "brokerz":
@@ -405,7 +405,7 @@ class LeadsModule(CRMBasePage):
             number_str_2 = check_first_line_leads_no2.replace('LEA', '')
         number_2 = int(number_str_2)
         number_diff = number_1 - number_2
-        Logging().reportDebugStep(self, "Verify sorting by Leads no")
+        Logging().reportDebugStep(self, "Verify sorting by Leads no: " + str(number_diff))
         return number_diff
 
     def sorting_lead_by_leads_no(self):

@@ -28,10 +28,9 @@ class UserManagementPrecondition(object):
         sleep(3)
         user_management = CRMHomePage(self.driver).select_user_management()
         tab_name = user_management.check_user_management_tab()
-        email = user_management.check_table_loaded()
+        UserManagementPage(self.driver).open_crm_users_tab()\
+                                       .check_table_loaded()
         assert tab_name == UserManagementConstants.USER_MANAGEMENT_TAB
-        assert UserManagementConstants.EMAIL in email or UserManagementConstants.EMAIL_NET in email or \
-               UserManagementConstants.EMAIL_CO in email
 
     def create_user(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
@@ -40,7 +39,8 @@ class UserManagementPrecondition(object):
                                             self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
         CRMHomePage(self.driver).select_user_management()
-        UserManagementPage(self.driver).click_new_user_module() \
+        UserManagementPage(self.driver).open_crm_users_tab()\
+                                       .click_new_user_module() \
                                        .set_user_name(UserInformation.FIRST_USER_NAME) \
                                        .set_email(UserInformation.FIRST_EMAIL) \
                                        .set_first_name(UserInformation.FIRST_NAME)
@@ -48,6 +48,8 @@ class UserManagementPrecondition(object):
             UserManagementPage(self.driver).set_role(UserInformation.ROLE1)
         elif global_var.current_brand_name == "ptbanc":
             UserManagementPage(self.driver).set_role(UserInformation.ROLE2)
+        elif global_var.current_brand_name == "trade99":
+            UserManagementPage(self.driver).set_role(UserInformation.ROLE3)
         else:
             UserManagementPage(self.driver).set_role(UserInformation.ROLE)
         UserManagementPage(self.driver).set_password(UserInformation.PASSWORD) \

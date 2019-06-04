@@ -314,7 +314,7 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).sorting_lead_by_exist()
         exist = LeadsModule(self.driver).check_first_line_exist()
 
-        assert lead_no >= CRMConstants.SORTING_LEAD_NO
+        assert lead_no < CRMConstants.SORTING_LEAD_NO
         assert email < CRMConstants.SORTING_EMAIL
         assert exist == CRMConstants.SORTING_EXIST
 

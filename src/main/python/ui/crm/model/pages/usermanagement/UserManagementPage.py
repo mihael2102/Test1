@@ -19,6 +19,7 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.utils.config import Config
 from selenium.webdriver.common.keys import Keys
 
+
 class UserManagementPage(CRMBasePage):
 
     def refresh(self):
@@ -28,21 +29,21 @@ class UserManagementPage(CRMBasePage):
 
     def check_user_management_tab(self):
         sleep(2)
-        tab_name = super().wait_load_element("//*[@id='nav_tab_users']/a")
+        tab_name = super().wait_load_element("//a[contains(text(),'Users Management')]").text
         Logging().reportDebugStep(self, "Check name tab User Management")
-        return tab_name.text
+        return tab_name
 
     def check_table_loaded(self):
         sleep(5)
-        table = super().wait_load_element("//div[@id='row5userManagement']/div[5]//a")
+        super().wait_load_element("//div[@id='row0userManagement']")
         Logging().reportDebugStep(self, "Check table loaded")
-        return table.text
+        return UserManagementPage(self.driver)
 
     def click_new_user_module(self):
         sleep(2)
         new_user_button = super().wait_element_to_be_clickable("//button[contains(text(),'New User')]")
         new_user_button.click()
-        Logging().reportDebugStep(self, "The user profile was opened ")
+        Logging().reportDebugStep(self, "The New User pop up is opened")
         self.wait_loading_of_user_management_table(25)
         return UserManagementPage(self.driver)
 
@@ -50,7 +51,7 @@ class UserManagementPage(CRMBasePage):
         user_name_field = super().wait_element_to_be_clickable("//input[@name='user_name']")
         user_name_field.clear()
         user_name_field.send_keys(user_name)
-        Logging().reportDebugStep(self, "The user name was set " + user_name)
+        Logging().reportDebugStep(self, "The user name was set: " + user_name)
         return UserManagementPage(self.driver)
 
     def set_email(self, email):
@@ -108,7 +109,7 @@ class UserManagementPage(CRMBasePage):
         return UserManagementPage(self.driver)
 
     def search_by_username(self, username):
-        sleep(3)
+        sleep(5)
         self.wait_loading_of_user_management_table(25)
         username_field = super().wait_element_to_be_clickable("//div[@id='row00userManagement']/div[3]/div/input")
         username_field.clear()
@@ -130,6 +131,9 @@ class UserManagementPage(CRMBasePage):
         return UserManagementPage(self.driver)
 
     def click_delete_icon(self):
+        more_btn = super().wait_element_to_be_clickable("//div[@class='text-center action-buttons-dots']/i")
+        more_btn.click()
+        Logging().reportDebugStep(self, "The More button was clicked")
         delete_btn = self.driver.find_element_by_xpath("//a[@title='Delete user']")
         self.driver.execute_script("arguments[0].click();", delete_btn)
         Logging().reportDebugStep(self, "The Delete User button was clicked")
@@ -137,10 +141,11 @@ class UserManagementPage(CRMBasePage):
 
     def click_delete_btn(self):
         sleep(1)
-        btn = super().wait_element_to_be_clickable("//button[contains(text(),'Delete')]")
+        btn = super().wait_element_to_be_clickable("(//button[contains(text(),'Delete')])[1]")
         btn.click()
         sleep(2)
-        self.wait_element_to_be_disappear_custom("//button[contains(text(),'Delete')]", 75)
+        self.wait_load_element("//div[contains(text(),'User was deleted')]", timeout=75)
+        sleep(2)
         Logging().reportDebugStep(self, "The Delete Confirmation button was clicked")
         return UserManagementPage(self.driver)
 
@@ -149,4 +154,10 @@ class UserManagementPage(CRMBasePage):
         self.wait_loading_of_user_management_table(25)
         super().wait_visible_of_element("//span[contains(text(),'No data to display')]")
         Logging().reportDebugStep(self, "User was not found")
+        return UserManagementPage(self.driver)
+
+    def open_crm_users_tab(self):
+        crm_users_tab = super().wait_element_to_be_clickable("//a[contains(text(),'CRM Users')]")
+        crm_users_tab.click()
+        Logging().reportDebugStep(self, "Open CRM Users tab")
         return UserManagementPage(self.driver)

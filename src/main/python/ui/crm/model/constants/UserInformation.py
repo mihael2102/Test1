@@ -11,6 +11,7 @@ class UserInformation(object):
     LAST_NAME = "last_name"
     ROLE = "Support Rep"
     ROLE2 = "Vice President"
+    ROLE3 = "IT Manager"
     ROLE1 = "Panda Success"
     FIRST_ROLE = "first_role"
     FIRST_PASSWORD = "first_password"
