@@ -126,6 +126,11 @@ class TradingAccountPrecondition(object):
                 actual_currency = CAPage(self.driver).get_currency()
                 expected_currency = CAConstants.CURRENCY_CRYPTO
                 assert actual_currency == expected_currency
+            elif global_var.current_brand_name == "trade99":
+                cur = CAPage(self.driver).get_currency()
+                actual_currency = cur.split(':')[0]
+                expected_currency = CAConstants.CURRENCY_CRYPTO
+                assert actual_currency == expected_currency
             else:
                 actual_currency = CAPage(self.driver).get_currency()
                 expected_currency = CAConstants.CURRENCY

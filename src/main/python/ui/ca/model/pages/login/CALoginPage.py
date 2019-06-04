@@ -260,6 +260,7 @@ class CALoginPage(CRMBasePage):
             Logging().reportDebugStep(self, "Campaign bunner is closed")
         except NoSuchElementException:
             pass
+        sleep(1)
         login_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["login_btn"])
         self.driver.execute_script("arguments[0].click();", login_button)

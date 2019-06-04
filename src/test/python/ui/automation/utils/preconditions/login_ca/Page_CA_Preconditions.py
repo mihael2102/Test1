@@ -31,7 +31,7 @@ class Page_CA_Precondition(object):
         return lead
 
     def switch_between_accounts(self):
-        if (global_var.current_brand_name != "q8"):
+        if global_var.current_brand_name != "q8":
             try:
                 CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
                                         .login() \
@@ -65,6 +65,7 @@ class Page_CA_Precondition(object):
         else:
             Logging().reportDebugStep(self, "Test is not running")
             return self
+
     def update_personal_details_in_ca(self):
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "b-finance") \
                 and (global_var.current_brand_name != "tradospot"):
@@ -77,7 +78,7 @@ class Page_CA_Precondition(object):
                                     .verify() \
                                     .open_ca_menu()
             CAPage(self.driver).open_personal_details()
-            if global_var.current_brand_name != "kontofx":
+            if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "trade99":
                 CAPage(self.driver).edit_first_name(CAConstants.UPDATE_FIRST_NAME) \
                                    .edit_last_name(CAConstants.UPDATE_LAST_NAME)
             CAPage(self.driver).edit_citizenship(CAConstants.UPDATE_CITIZENSHIP) \
@@ -108,13 +109,13 @@ class Page_CA_Precondition(object):
             assert ClientsPage(self.driver).get_client_address() == CAConstants.UPDATE_ADDRESS
             assert ClientsPage(self.driver).get_client_city() == CAConstants.UPDATE_CITY
             assert ClientsPage(self.driver).get_client_code() == CAConstants.UPDATE_ZIP_CODE
-            if global_var.current_brand_name != "kontofx":
+            if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "trade99":
                 assert ClientsPage(self.driver).get_client_first_name() == CAConstants.UPDATE_FIRST_NAME
                 assert ClientsPage(self.driver).get_client_last_name() == CAConstants.UPDATE_LAST_NAME
-            assert ClientsPage(self.driver).get_citizenship() == CAConstants.UPDATE_CITIZENSHIP
-            assert ClientsPage(self.driver).get_client_address() == CAConstants.UPDATE_ADDRESS
-            assert ClientsPage(self.driver).get_client_city() == CAConstants.UPDATE_CITY
-            assert ClientsPage(self.driver).get_client_code() == CAConstants.UPDATE_ZIP_CODE
+            # assert ClientsPage(self.driver).get_citizenship() == CAConstants.UPDATE_CITIZENSHIP
+            # assert ClientsPage(self.driver).get_client_address() == CAConstants.UPDATE_ADDRESS
+            # assert ClientsPage(self.driver).get_client_city() == CAConstants.UPDATE_CITY
+            # assert ClientsPage(self.driver).get_client_code() == CAConstants.UPDATE_ZIP_CODE
         else:
             Logging().reportDebugStep(self, "Test is not running")
             return self
