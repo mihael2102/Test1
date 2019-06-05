@@ -66,10 +66,10 @@ class UserManagementPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
         CRMHomePage(self.driver).select_user_management()
-        UserManagementPage(self.driver).search_by_username(UserInformation.FIRST_USER_NAME) \
+        UserManagementPage(self.driver).open_crm_users_tab()\
+                                       .search_by_username(UserInformation.FIRST_USER_NAME) \
                                        .check_user_found(UserInformation.FIRST_USER_NAME) \
                                        .click_delete_icon() \
                                        .click_delete_btn() \
-                                       .search_by_username(UserInformation.FIRST_USER_NAME) \
                                        .check_data_not_found()
 

@@ -71,6 +71,7 @@ class TestDataConstants(object):
     TRADING_CURRENCY = "currency"
     TRADING_CURRENCY_EUR = "currency_EUR"
     TRADING_CURRENCY_BCH = "currency_BCH"
+    TRADING_CURRENCY_BTC = "currency_BTC"
     TRADING_GROUP = "group"
     TRADING_GROUP_DEMO = "demo"
     TRADING_GROUP_LIVE = "live"

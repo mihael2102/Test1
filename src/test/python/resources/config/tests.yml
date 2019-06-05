@@ -44,14 +44,13 @@ tests_config:
 #    - test_check_email_popup
 #
 ##################################### CONVERT LEAD ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 #
 ##################################### CLIENTS ###############################################
-#
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
 #  class: SearchingClientsTestCRM
 #  tests:
@@ -77,19 +76,19 @@ tests_config:
 #    - test_searching_by_columns
 #    - test_sorting_columns
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-#  class: TradingAccountCrmTest
-#  tests:
-#    - test_crm_open_trading_account  # open a new trading account
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - test_crm_open_trading_account  # open a new trading account
 #    - test_crm_open_live_mt5
 #    - test_crm_open_demo_mt5
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
-#  class: CheckPasswordTestCRM
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
+  class: CheckPasswordTestCRM
+  tests:
 #    - test_check_client_password_crm  # check the client account password
-#    - test_check_mt4_password_crm   # check the MT4 account password
-#
+    - test_check_mt4_password_crm   # check the MT4 account password
+
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
 #  class: ChangePasswordTestCRM
 #  tests:
@@ -132,7 +131,7 @@ tests_config:
 #  class: TradingAccountCrmTest
 #  tests:
 #    - test_crm_edit_trading_account  # edit trading account
-#
+
 ######################################## AFFILIATES MODULE ##########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
 #  class: AffiliateModule
@@ -196,11 +195,11 @@ tests_config:
 #    - test_delete_workflow
 #
 ########################################### USER_MANAGEMENT #########################################
-- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
-  class: UserManagementTest
-  tests:
-    - test_create_user
-    - test_delete_user
+#- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
+#  class: UserManagementTest
+#  tests:
+#    - test_create_user
+#    - test_delete_user
 #
 ########################################### DOCUMENTS MODULE ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module

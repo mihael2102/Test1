@@ -294,9 +294,8 @@ class ClientProfilePage(CRMBasePage):
         mt4_button = super().wait_load_element("//div[@class='mt4_act_box']")
         sleep(1)
         self.driver.execute_script("arguments[0].click();", mt4_button)
-        # mt4_button.click()
         sleep(5)
-        Logging().reportDebugStep(self, "Open mt4 actions ")
+        Logging().reportDebugStep(self, "Open MT4 Actions")
         MT4DropDown(self.driver).mt4_actions(module)
 
     def close_popup_new_trading_account(self):

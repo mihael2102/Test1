@@ -51,7 +51,7 @@ class EventPrecondition(object):
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
         task_module.search_account_name(CRMConstants.TESTQA)
-        sleep(10)
+        sleep(1)
         task_module.open_email_actions_section()
         task_module.enter_subject_mail(CRMConstants.SUBJECT_TASK_MAIL)
         task_module.enter_body_mail(CRMConstants.BODY_LEAD_MAIL)

@@ -111,7 +111,8 @@ class UserManagementPage(CRMBasePage):
     def search_by_username(self, username):
         sleep(5)
         self.wait_loading_of_user_management_table(25)
-        username_field = super().wait_element_to_be_clickable("//div[@id='row00userManagement']/div[3]/div/input")
+        username_field = super().wait_element_to_be_clickable("//div[@id='row00userManagement']/div[3]/div/input",
+                                                              timeout=35)
         username_field.clear()
         username_field.send_keys(username, Keys.ENTER)
         Logging().reportDebugStep(self, "Searching by username: " + username)
@@ -131,8 +132,10 @@ class UserManagementPage(CRMBasePage):
         return UserManagementPage(self.driver)
 
     def click_delete_icon(self):
-        more_btn = super().wait_element_to_be_clickable("//div[@class='text-center action-buttons-dots']/i")
-        more_btn.click()
+        sleep(2)
+        more_btn = super().wait_load_element("//div[@class='text-center action-buttons-dots']/i", timeout=35)
+        self.driver.execute_script("arguments[0].scrollIntoView();", more_btn)
+        self.driver.execute_script("arguments[0].click();", more_btn)
         Logging().reportDebugStep(self, "The More button was clicked")
         delete_btn = self.driver.find_element_by_xpath("//a[@title='Delete user']")
         self.driver.execute_script("arguments[0].click();", delete_btn)

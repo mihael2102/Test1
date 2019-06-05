@@ -15,6 +15,7 @@ class LeadsModuleConstants(object):
     FIRST_CURRENCY_LEAD = "first_currency"
     LEAD_BTRADERFX_CURRENCY = "eur"
     FIRST_CURRENCY_LEAD_BCH = "first_currency_BCH"
+    FIRST_CURRENCY_LEAD_BTC = "first_currency_BTC"
     FIRST_PASSWORD_LEAD = "first_password"
     FIRST_COUNTRY_NAME = "first_country"
     FIRST_CITY_LEAD = "first_city_lead"

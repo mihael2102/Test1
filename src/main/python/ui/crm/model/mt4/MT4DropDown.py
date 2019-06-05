@@ -19,3 +19,4 @@ class MT4DropDown(CRMBasePage):
             pass
             Logging().reportDebugStep(self, "Module does not exist")
         time.sleep(1)
+

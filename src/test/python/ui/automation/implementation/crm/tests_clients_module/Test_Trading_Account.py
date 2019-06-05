@@ -18,7 +18,10 @@ class TradingAccountCrmTest(BaseTest):
                 .add_demo_account_from_crm()
             confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
             try:
-                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
+                if global_var.current_brand_name == "trade99":
+                    self.assertEqual(confirmation_message, CRMConstants.TRADING_ACCOUNT_CREATED_SUCCESFULLY)
+                else:
+                    self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
             except:
                 self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY_2)
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):

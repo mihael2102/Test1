@@ -31,8 +31,6 @@ class LeadModuleTest(BaseTest):
     def test_check_email_popup(self):
         LeadPrecondition(self.driver, self.config).check_email_popup()
 
-
-
     def test_create_lead(self):
         try:
             LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
@@ -146,6 +144,25 @@ class LeadModuleTest(BaseTest):
                     self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                     self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
+            elif global_var.current_brand_name == "trade99":
+                ConvertLeadModule(self.driver).perform_convert_lead(
+                    self.client1[LeadsModuleConstants.FIRST_NAME],
+                    self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                    self.client1[LeadsModuleConstants.EMAIL],
+                    self.client1[LeadsModuleConstants.PHONE],
+                    self.client1[LeadsModuleConstants.BIRTHDAY],
+                    self.client1[LeadsModuleConstants.CITIZENSHIP],
+                    self.client1[LeadsModuleConstants.STREET],
+                    self.client1[LeadsModuleConstants.POSTAL_CODE],
+                    self.client1[LeadsModuleConstants.CITY],
+                    self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                    self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                    self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BTC],
+                    self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                    self.client1[LeadsModuleConstants.BRAND],
+                    self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                    self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
             else:
 
                 ConvertLeadModule(self.driver).perform_convert_lead(
@@ -165,7 +182,6 @@ class LeadModuleTest(BaseTest):
                     self.client1[LeadsModuleConstants.BRAND],
                     self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                     self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
 
             convert_verified = False
             try:
@@ -364,7 +380,7 @@ class LeadModuleTest(BaseTest):
         if global_var.current_brand_name == "safemarkets":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW])
 
-        elif global_var.current_brand_name == "uft":
+        elif global_var.current_brand_name == "uft" or global_var.current_brand_name == "trade99":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_UFT])
 
         elif global_var.current_brand_name == "gxfx":
