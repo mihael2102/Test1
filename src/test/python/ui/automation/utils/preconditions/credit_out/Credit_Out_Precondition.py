@@ -42,21 +42,21 @@ class CreditOutPrecondition(object):
                                       .open_trading_accounts_tab() \
                                       .open_trading_account_page(CRMConstants.CREDIT_ACCOUNT)
         actual_credit = MT4CreditOutModule(self.driver).get_credit_int()
-        expected_credit = int(((CRMConstants.AMOUNT_CREDIT_IN).split('.'))[0]) - int(((CRMConstants.AMOUNT_CREDIT_OUT).split('.'))[0])
+        expected_credit = int(((CRMConstants.AMOUNT_CREDIT_IN).split('.'))[0]) - int\
+            (((CRMConstants.AMOUNT_CREDIT_OUT).split('.'))[0])
         assert actual_credit == expected_credit
 
-
     def add_live_account(self):
-        BrandHomePage().open_first_tab_page(Config.url_client_area).login() \
+        BrandHomePage().open_first_tab_page(Config.url_client_area).login()\
             .set_fields(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
-            .click_login_button() \
-            .open_drop_down_menu() \
+                        Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD))\
+            .click_login_button()\
+            .open_drop_down_menu()\
             .select_module(CaConstants.MANAGE_ACCOUNTS)
 
-        CaManageAccounts().open_new_account_button() \
+        CaManageAccounts().open_new_account_button()\
             .select_account_currency(
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_USD)) \
+            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_USD))\
             .create_account_button()
         return CreditOutPrecondition()
 

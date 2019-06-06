@@ -19,6 +19,7 @@ from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondi
 from selenium.common.exceptions import NoSuchElementException
 import time
 
+
 @pytest.mark.run(order=1)
 class CreditInTestCRM(BaseTest):
 
@@ -58,8 +59,8 @@ class CreditInTestCRM(BaseTest):
             MT4CreditInModule(self.driver).make_credit_in(account_number, CRMConstants.AMOUNT_CREDIT_IN,
                                                CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
                                                CRMConstants.CREDIT_IN_COMMENT) \
-                .click_ok() \
-                .refresh_page()
+                                          .click_ok() \
+                                          .refresh_page()
             time.sleep(3)
             MT4CreditInModule(self.driver).refresh_page()
             # Check the Credit In amount

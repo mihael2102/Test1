@@ -5,7 +5,7 @@ brands:
 #
 #- name: ptbanc
 #  config_file: ptbanc.yml
-#
+
 #- name: q8
 #  config_file: q8.yml
 #
@@ -14,7 +14,7 @@ brands:
 #
 #- name: brokerz
 #  config_file: brokerz.yml
-#
+
 #- name: 4xfx
 #  config_file: 4xfx.yml
 

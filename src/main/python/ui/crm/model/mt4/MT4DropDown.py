@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from src.main.python.utils.logs.Loging import Logging
+from time import sleep
+
 
 class MT4DropDown(CRMBasePage):
 
@@ -20,3 +22,19 @@ class MT4DropDown(CRMBasePage):
             Logging().reportDebugStep(self, "Module does not exist")
         time.sleep(1)
 
+    def open_mt4_module(self, module):
+        mt4_button = super().wait_load_element("//div[@class='mt4_act_box']", timeout=35)
+        sleep(1)
+        try:
+            mt4_button.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", mt4_button)
+        Logging().reportDebugStep(self, "Open MT4 Actions")
+        try:
+            selected_module = self.driver.find_element_by_xpath("//a[text()='%s']" % module)
+            sleep(1)
+            self.driver.execute_script("arguments[0].click();", selected_module)
+            Logging().reportDebugStep(self, module + " module is opened")
+        except (TimeoutException, NoSuchElementException):
+            pass
+            Logging().reportDebugStep(self, "Module does not exist")
