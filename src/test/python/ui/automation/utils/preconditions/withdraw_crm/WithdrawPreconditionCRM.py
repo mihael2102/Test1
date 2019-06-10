@@ -51,7 +51,6 @@ class WithdrawPreconditionCRM(object):
         MT4WithdrawModule(self.driver).create_withdraw_button()
         CRMLoginPage(self.driver).perform_scroll_up()
         ClientProfilePage(self.driver).click_trading_accounts_tab() \
-                                      .open_trading_accounts_tab() \
                                       .open_trading_account_page(account_number)
         balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
         actual_balance = int((balance.split('.'))[0])

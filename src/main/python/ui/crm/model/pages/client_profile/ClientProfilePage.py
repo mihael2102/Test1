@@ -635,10 +635,10 @@ class ClientProfilePage(CRMBasePage):
     def open_trading_account_page(self, account_number):
         sleep(2)
         link_trading_account = super().wait_load_element(
-            "//tr[@class='lvtColData']/td/span/a[contains(text(), '%s')]" % account_number)
+            "//tr[@class='lvtColData']/td/span/a[contains(text(), '%s')]" % account_number, timeout=35)
         sleep(1)
         self.driver.execute_script("arguments[0].click();", link_trading_account)
-        Logging().reportDebugStep(self, "Open the trading account page ")
+        Logging().reportDebugStep(self, "Open the trading account page")
         return ClientProfilePage(self.driver)
 
     def change_client_status_with_pencil(self, status):

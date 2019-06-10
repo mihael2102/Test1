@@ -10,6 +10,7 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.config import Config
+from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 
 
 class CreditInPrecondition(object):
@@ -27,9 +28,9 @@ class CreditInPrecondition(object):
             .select_module(CaConstants.MANAGE_ACCOUNTS)
 
         CaManageAccounts().open_new_account_button() \
-            .select_account_currency(
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_USD)) \
-            .create_account_button()
+                          .select_account_currency(
+                    Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_USD)) \
+                          .create_account_button()
 
         return CreditInPrecondition(self.driver)
 
@@ -37,8 +38,8 @@ class CreditInPrecondition(object):
         CRMHomePage(self.driver).open_client_module()
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
                                                             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-                                .find_client_by_email(self.config.get_data_client(
-                                                              TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))\
+                                .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                                                  TestDataConstants.E_MAIL))\
                                 .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
         if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "newforexstaging"):
             crm_client_profile = MT4CreateAccountModule(self.driver) \
@@ -48,7 +49,7 @@ class CreditInPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
 
-        elif (global_var.current_brand_name == "q8"):
+        elif global_var.current_brand_name == "q8":
             crm_client_profile = MT4CreateAccountModule(self.driver) \
                 .create_account_with_platform(
                 self.config.get_value(TestDataConstants.TRADING_PLATFORMS, TestDataConstants.TRADING_PLATFORM_MT4),
@@ -57,7 +58,7 @@ class CreditInPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
 
-        elif (global_var.current_brand_name == "axa_markets"):
+        elif global_var.current_brand_name == "axa_markets":
             crm_client_profile = MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
@@ -65,8 +66,17 @@ class CreditInPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400))
 
-        elif (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "gxfx") or (global_var.current_brand_name == "optionstars")  \
-                or (global_var.current_brand_name == "b-traderfx") or (global_var.current_brand_name == "kontofx") or (global_var.current_brand_name == "uprofx") or (global_var.current_brand_name == "safemarkets"):
+        elif global_var.current_brand_name == "trade99":
+            crm_client_profile = MT4CreateAccountModule(self.driver)\
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
+                MT4ModuleConstants.CURRENCY_BTC,
+                MT4ModuleConstants.GROUP_REAL,
+                MT4ModuleConstants.LEVERAGE_100)
+
+        elif (global_var.current_brand_name == "gxfx") or (global_var.current_brand_name == "optionstars")  \
+                or (global_var.current_brand_name == "b-traderfx") or (global_var.current_brand_name == "kontofx") or \
+                (global_var.current_brand_name == "uprofx") or (global_var.current_brand_name == "safemarkets"):
             crm_client_profile = MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
@@ -98,7 +108,10 @@ class CreditInPrecondition(object):
             .open_trading_accounts_tab() \
             .get_client_account()
 
-        crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN)
+        if global_var.current_brand_name == "trade99":
+            crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN2)
+        else:
+            crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN)
 
         MT4CreditInModule().make_credit_in(account_number, CRMConstants.AMOUNT_CREDIT_IN,
                                            CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),

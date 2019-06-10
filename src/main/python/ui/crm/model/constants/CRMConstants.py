@@ -61,6 +61,7 @@ class CRMConstants(object):
     TRANSFER_BETWEEN_TA_MESSAGE = "Funds were transferred successfully"
     AMOUNT_TRANSFER_BETWEEN_TA = "1.00"
     TRANSFER_BETWEEN_TA = "8"
+    TRANSFER_BETWEEN_TA2 = "5"
     DESCRIPTION_ADD_INTERACTION = "Description Interaction"
     DATE = datetime.now()
     TODAY_DATE = datetime.today().now()
@@ -95,7 +96,9 @@ class CRMConstants(object):
     AMOUNT_CREDIT_IN = "2.00"
     AMOUNT_CREDIT_OUT = "1.00"
     CREDIT_IN = "9"
+    CREDIT_IN2 = "6"
     CREDIT_OUT = "10"
+    CREDIT_OUT2 = "7"
     CREDIT_ACCOUNT = ""
     CREDIT_OUT_GRANTEDBY = "TEST"
     DESCRIPTION_WITHDRAW = "Test"

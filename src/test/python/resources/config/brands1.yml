@@ -20,3 +20,6 @@ brands:
 
 - name: trade99
   config_file: trade99.yml
+
+#- name: coin-bits
+#  config_file: coin-bits.yml

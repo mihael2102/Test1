@@ -33,8 +33,7 @@ class DepositTestCRM(BaseTest):
         CRMHomePage(self.driver).open_client_module()\
                                 .select_filter(self.config.get_value(
                                                             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-                                .find_client_by_email(
-            self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+                                .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
 
         # Create LIVE account for client using MT4 Actions
         crm_client_profile = ClientProfilePage(self.driver)
