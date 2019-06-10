@@ -24,7 +24,7 @@ class DepositTestCRM(BaseTest):
 
     def test_make_deposit_crm(self):
         client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))\
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
@@ -32,7 +32,7 @@ class DepositTestCRM(BaseTest):
         # Open clients module. Find created client by email and open his profile
         CRMHomePage(self.driver).open_client_module()\
                                 .select_filter(self.config.get_value(
-                                                            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+                                                            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
                                 .find_client_by_email(
             self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
@@ -41,12 +41,13 @@ class DepositTestCRM(BaseTest):
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
         if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "newforexstaging"):
-            MT4CreateAccountModule(self.driver) \
+            MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200)) \
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
+                                      TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))\
                 .click_ok()
 
         elif global_var.current_brand_name == "trade99":

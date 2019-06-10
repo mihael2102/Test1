@@ -108,6 +108,7 @@ class CRMConstants(object):
     STATUS_DEPOSIT = "Approved"
     PAYMENT_METHOD_DEPOSIT = "Credit card"
     WITHDRAW = "7"
+    WITHDRAW2 = "4"
     DEPOSIT = "6"
     DEPOSIT2 = "3"
     CREATE_MT4_USER = "1"

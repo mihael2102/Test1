@@ -27,7 +27,7 @@ class WithdrawPreconditionCRM(object):
                                             self.config.get_value(TestDataConstants.CRM_PASSWORD),
                                             self.config.get_value(TestDataConstants.OTP_SECRET)) \
                                  .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                                           TestDataConstants.FILTER))
+                                                                            TestDataConstants.FILTER))
 
         sleep(2)
         ClientsPage(self.driver).find_client_by_email(client1[LeadsModuleConstants.EMAIL])
@@ -35,7 +35,10 @@ class WithdrawPreconditionCRM(object):
         ClientProfilePage(self.driver).scroll_to_financial_transactions_section() \
                                       .open_financial_transactions_tab()
         account_number = ClientProfilePage(self.driver).get_trading_account_number()
-        ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.WITHDRAW)
+        if global_var.current_brand_name == "trade99":
+            ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.WITHDRAW2)
+        else:
+            ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.WITHDRAW)
         MT4WithdrawModule(self.driver).select_payment_method(CRMConstants.PAYMENT_METHOD_WITHDRAW) \
                                       .select_account(account_number) \
                                       .set_amount(CRMConstants.AMOUNT_WITHDRAW) \
