@@ -1,4 +1,4 @@
-test = "API New Forex"
+test = "Coin-bits API"
 timeout = 4
 data = None
 url_client_area = ""

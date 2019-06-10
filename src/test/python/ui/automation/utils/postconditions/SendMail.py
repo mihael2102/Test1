@@ -49,7 +49,7 @@ def Send_Email_XML(filepath, content):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
 ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/API New Forex/%s" % filepath, "rb")
+    attachment = open("C:/Program Files (x86)/Jenkins/workspace/Coin-bits API/%s" % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -101,10 +101,10 @@ def Send_Email_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "All Brands: API New Forex"
+    msg['Subject'] = "Coin-bits API"
 
     # string to store the body of the mail
-    body = "API New Forex"
+    body = "Coin-bits API"
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
@@ -114,7 +114,7 @@ def Send_Email_XLS(filepath):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
     ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/API New Forex/%s" % filepath, "rb")
+    attachment = open("C:/Program Files (x86)/Jenkins/workspace/Coin-bits API/%s" % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -166,10 +166,10 @@ def Send_ALL_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "All Brands: API New Forex"
+    msg['Subject'] = "Coin-bits API"
 
     # string to store the body of the mail
-    body = "API New Forex"
+    body = "Coin-bits API"
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
