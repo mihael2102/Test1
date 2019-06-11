@@ -15,11 +15,11 @@ brands:
 #- name: brokerz
 #  config_file: brokerz.yml
 
-- name: 4xfx
-  config_file: 4xfx.yml
+#- name: 4xfx
+#  config_file: 4xfx.yml
 
-#- name: trade99
-#  config_file: trade99.yml
+- name: trade99
+  config_file: trade99.yml
 
 #- name: coin-bits
 #  config_file: coin-bits.yml

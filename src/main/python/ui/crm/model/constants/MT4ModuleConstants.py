@@ -10,3 +10,4 @@ class MT4ModuleConstants(object):
     CURRENCY_BTC = "BTC"
     GROUP_REAL = "real"
     LEVERAGE_100 = "100"
+    LEVERAGE_50 = "50"

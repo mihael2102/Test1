@@ -33,29 +33,10 @@ class AddEventTaskModule(BaseTest):
         EventPrecondition(self.driver, self.config).test_sorting_columns()
 
     def test_add_event(self):
-        try:
-            EventPrecondition(self.driver, self.config).create_first_event()
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                TasksPage(self.driver).Sign_Out()
-                EventPrecondition(self.driver, self.config).create_first_event()
-            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                TasksPage(self.driver).Sign_Out()
-                EventPrecondition(self.driver, self.config).create_first_event()
-
-        # Assert is in method 'create_first_event()'. So need to place it here after refactoring
+        EventPrecondition(self.driver, self.config).create_first_event()
 
     def test_edit_event(self):
-        try:
-            EventPrecondition(self.driver, self.config).edit_first_event()
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                TasksPage(self.driver).Sign_Out()
-                EventPrecondition(self.driver, self.config).edit_first_event()
-            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                TasksPage(self.driver).Sign_Out()
-                EventPrecondition(self.driver, self.config).edit_first_event()
-        # Assert is in method 'edit_first_event()'. So need to place it here after refactoring
+        EventPrecondition(self.driver, self.config).edit_first_event()
 
     def test_delete_interaction(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
@@ -67,7 +48,7 @@ class AddEventTaskModule(BaseTest):
         ClientsPage(self.driver).find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
                                                                                   TestDataConstants.E_MAIL))
         sleep(2)
-        while (ClientProfilePage(self.driver).check_event_exist()):
+        while ClientProfilePage(self.driver).check_event_exist():
             ClientProfilePage(self.driver).click_activities_tab() \
                                           .open_activities_tab() \
                                           .click_delete_interaction() \

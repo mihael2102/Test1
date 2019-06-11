@@ -10,6 +10,7 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from time import sleep
+from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 
 
 class TradingAccountPrecondition(object):
@@ -33,7 +34,7 @@ class TradingAccountPrecondition(object):
             .select_account_currency(
             Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_USD)) \
             .create_account_button()
-        return TradingAccountPrecondition()
+        return TradingAccountPrecondition(self.driver, self.config)
 
     def add_demo_account_from_crm(self):
         crm_client_profile = CRMLoginPage(self.driver) \
@@ -46,7 +47,7 @@ class TradingAccountPrecondition(object):
 
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-        if (global_var.current_brand_name == "royal_cfds"):
+        if global_var.current_brand_name == "royal_cfds":
             MT4CreateAccountModule(self.driver) \
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
@@ -55,7 +56,7 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_1_200))
             return self
 
-        elif (global_var.current_brand_name == "q8"):
+        elif global_var.current_brand_name == "q8":
             MT4CreateAccountModule(self.driver) \
                 .create_account_with_platform(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT4),
@@ -65,7 +66,7 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
             return self
 
-        elif (global_var.current_brand_name == "mpcrypto"):
+        elif global_var.current_brand_name == "mpcrypto":
             MT4CreateAccountModule(self.driver) \
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
@@ -74,7 +75,7 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
             return self
 
-        elif (global_var.current_brand_name == "trade99"):
+        elif global_var.current_brand_name == "trade99":
             MT4CreateAccountModule(self.driver) \
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
@@ -83,7 +84,7 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
             return self
 
-        elif (global_var.current_brand_name == "axa_markets"):
+        elif global_var.current_brand_name == "axa_markets":
             MT4CreateAccountModule(self.driver) \
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
@@ -141,7 +142,7 @@ class TradingAccountPrecondition(object):
 
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-        if (global_var.current_brand_name == "royal_cfds"):
+        if global_var.current_brand_name == "royal_cfds":
             MT4CreateAccountModule(self.driver) \
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, CRMConstants.TRADING_SERVER_LIVE),
@@ -150,7 +151,7 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_1_200))
             return self
 
-        elif (global_var.current_brand_name == "q8"):
+        elif global_var.current_brand_name == "q8":
             MT4CreateAccountModule(self.driver) \
                 .create_account_with_platform(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT4),
@@ -160,7 +161,7 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
             return self
 
-        elif (global_var.current_brand_name == "mpcrypto"):
+        elif global_var.current_brand_name == "mpcrypto":
             MT4CreateAccountModule(self.driver) \
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, CRMConstants.TRADING_SERVER_LIVE),
@@ -189,7 +190,7 @@ class TradingAccountPrecondition(object):
 
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
         sleep(2)
-        if (global_var.current_brand_name == "q8"):
+        if global_var.current_brand_name == "q8":
             MT4CreateAccountModule(self.driver) \
                 .create_account_with_platform(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT5),
@@ -232,11 +233,22 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED,
                                       TestDataConstants.TRADING_ACCOUNT_DEMO_LEVERAGE_400))
 
+        elif global_var.current_brand_name == "trade99":
+            MT4CreateAccountModule(self.driver).update_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED,
+                                      TestDataConstants.TRADING_ACCOUNT_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED,
+                                      TestDataConstants.TRADING_ACCOUNT_DEMO_GROUP),
+                MT4ModuleConstants.LEVERAGE_50)
+
         else:
             MT4CreateAccountModule(self.driver).update_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO_GROUP),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED, TestDataConstants.TRADING_ACCOUNT_DEMO_LEVERAGE))
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED,
+                                      TestDataConstants.TRADING_ACCOUNT_DEMO),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED,
+                                      TestDataConstants.TRADING_ACCOUNT_DEMO_GROUP),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_UPDATED,
+                                      TestDataConstants.TRADING_ACCOUNT_DEMO_LEVERAGE))
 
         return self
 
@@ -264,4 +276,4 @@ class TradingAccountPrecondition(object):
 
         crm_client_profile.click_trading_accounts_tab() \
             .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
-        return TradingAccountPrecondition()
+        return TradingAccountPrecondition(self.driver, self.config)

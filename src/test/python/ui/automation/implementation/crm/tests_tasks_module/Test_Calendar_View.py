@@ -15,180 +15,60 @@ from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsMod
 class CalendarView(BaseTest):
 
     def test_check_month_tab(self):
-        try:
-            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                           self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                           self.config.get_value(TestDataConstants.OTP_SECRET))
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
-            calendar_module = CRMHomePage(self.driver)\
-                .open_task_module() \
-                .open_calendar_view_module() \
-                .open_month_tab()
+        calendar_module = CRMHomePage(self.driver)\
+            .open_task_module() \
+            .open_calendar_view_module() \
+            .open_month_tab()
 
-            sun_day = calendar_module.get_sunday_text()
-            mon_day = calendar_module.get_monday_text()
-            tue_day = calendar_module.get_tuesday_text()
-            wed_day = calendar_module.get_wednesday_text()
-            thu_day = calendar_module.get_thursday_text()
-            fri_day = calendar_module.get_friday_text()
-            sat_day = calendar_module.get_saturday_text()
+        sun_day = calendar_module.get_sunday_text()
+        mon_day = calendar_module.get_monday_text()
+        tue_day = calendar_module.get_tuesday_text()
+        wed_day = calendar_module.get_wednesday_text()
+        thu_day = calendar_module.get_thursday_text()
+        fri_day = calendar_module.get_friday_text()
+        sat_day = calendar_module.get_saturday_text()
 
-            assert sun_day == TaskModuleConstants.SUNDAY
-            assert mon_day == TaskModuleConstants.MONDAY
-            assert tue_day == TaskModuleConstants.TUESDAY
-            assert wed_day == TaskModuleConstants.WEDNESDAY
-            assert thu_day == TaskModuleConstants.THURSDAY
-            assert fri_day == TaskModuleConstants.FRIDAY
-            assert sat_day == TaskModuleConstants.SATURDAY
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                TasksPage(self.driver).Sign_Out()
-                CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                               self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                               self.config.get_value(TestDataConstants.OTP_SECRET))
-
-                calendar_module = CRMHomePage(self.driver) \
-                    .open_task_module() \
-                    .open_calendar_view_module() \
-                    .open_month_tab()
-
-                sun_day = calendar_module.get_sunday_text()
-                mon_day = calendar_module.get_monday_text()
-                tue_day = calendar_module.get_tuesday_text()
-                wed_day = calendar_module.get_wednesday_text()
-                thu_day = calendar_module.get_thursday_text()
-                fri_day = calendar_module.get_friday_text()
-                sat_day = calendar_module.get_saturday_text()
-
-                assert sun_day == TaskModuleConstants.SUNDAY
-                assert mon_day == TaskModuleConstants.MONDAY
-                assert tue_day == TaskModuleConstants.TUESDAY
-                assert wed_day == TaskModuleConstants.WEDNESDAY
-                assert thu_day == TaskModuleConstants.THURSDAY
-                assert fri_day == TaskModuleConstants.FRIDAY
-                assert sat_day == TaskModuleConstants.SATURDAY
-            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                TasksPage(self.driver).Sign_Out()
-                CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                               self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                               self.config.get_value(TestDataConstants.OTP_SECRET))
-
-                calendar_module = CRMHomePage(self.driver) \
-                    .open_task_module() \
-                    .open_calendar_view_module() \
-                    .open_month_tab()
-
-                sun_day = calendar_module.get_sunday_text()
-                mon_day = calendar_module.get_monday_text()
-                tue_day = calendar_module.get_tuesday_text()
-                wed_day = calendar_module.get_wednesday_text()
-                thu_day = calendar_module.get_thursday_text()
-                fri_day = calendar_module.get_friday_text()
-                sat_day = calendar_module.get_saturday_text()
-
-                assert sun_day == TaskModuleConstants.SUNDAY
-                assert mon_day == TaskModuleConstants.MONDAY
-                assert tue_day == TaskModuleConstants.TUESDAY
-                assert wed_day == TaskModuleConstants.WEDNESDAY
-                assert thu_day == TaskModuleConstants.THURSDAY
-                assert fri_day == TaskModuleConstants.FRIDAY
-                assert sat_day == TaskModuleConstants.SATURDAY
-
+        assert sun_day == TaskModuleConstants.SUNDAY
+        assert mon_day == TaskModuleConstants.MONDAY
+        assert tue_day == TaskModuleConstants.TUESDAY
+        assert wed_day == TaskModuleConstants.WEDNESDAY
+        assert thu_day == TaskModuleConstants.THURSDAY
+        assert fri_day == TaskModuleConstants.FRIDAY
+        assert sat_day == TaskModuleConstants.SATURDAY
 
     def test_check_week_tab(self):
-        try:
-            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                           self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                           self.config.get_value(TestDataConstants.OTP_SECRET))
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
-            CRMHomePage(self.driver)\
-                .open_task_module() \
-                .open_calendar_view_module() \
-                .open_week_tab() \
-                # .perform_screen_shot()
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                TasksPage(self.driver).Sign_Out()
-                CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                               self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                               self.config.get_value(TestDataConstants.OTP_SECRET))
-
-                CRMHomePage(self.driver) \
-                    .open_task_module() \
-                    .open_calendar_view_module() \
-                    .open_week_tab() \
-                    # .perform_screen_shot()
-            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                TasksPage(self.driver).Sign_Out()
-                CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                               self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                               self.config.get_value(TestDataConstants.OTP_SECRET))
-
-                CRMHomePage(self.driver) \
-                    .open_task_module() \
-                    .open_calendar_view_module() \
-                    .open_week_tab() \
-                    # .perform_screen_shot()
-
+        CRMHomePage(self.driver)\
+            .open_task_module() \
+            .open_calendar_view_module() \
+            .open_week_tab() \
+            # .perform_screen_shot()
 
     def test_check_day_tab(self):
-        try:
-            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                           self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                           self.config.get_value(TestDataConstants.OTP_SECRET))
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
-            calendar_module = CRMHomePage(self.driver)\
-                .open_task_module() \
-                .open_calendar_view_module() \
-                .open_day_tab()
+        calendar_module = CRMHomePage(self.driver)\
+            .open_task_module() \
+            .open_calendar_view_module() \
+            .open_day_tab()
 
-            current_day = calendar_module.get_current_date()
-            day_of_week = calendar_module.get_day_of_week()
+        current_day = calendar_module.get_current_date()
+        day_of_week = calendar_module.get_day_of_week()
 
-            assert current_day == CRMConstants.TODAY_DATE.strftime(CRMConstants.THIRD_FORMAT)
-            assert day_of_week == CRMConstants.TODAY_DATE.strftime(CRMConstants.THIRD_FORMAT_DATE)
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                TasksPage(self.driver).Sign_Out()
-                CRMLoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url')) \
-                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                               self.config.get_value(TestDataConstants.CRM_PASSWORD))
-
-                calendar_module = CRMHomePage(self.driver) \
-                    .open_task_module() \
-                    .open_calendar_view_module() \
-                    .open_day_tab()
-
-                current_day = calendar_module.get_current_date()
-                day_of_week = calendar_module.get_day_of_week()
-
-                assert current_day == CRMConstants.TODAY_DATE.strftime(CRMConstants.THIRD_FORMAT)
-                assert day_of_week == CRMConstants.TODAY_DATE.strftime(CRMConstants.THIRD_FORMAT_DATE)
-            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                TasksPage(self.driver).Sign_Out()
-                CRMLoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url')) \
-                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                               self.config.get_value(TestDataConstants.CRM_PASSWORD))
-
-                calendar_module = CRMHomePage(self.driver) \
-                    .open_task_module() \
-                    .open_calendar_view_module() \
-                    .open_day_tab()
-
-                current_day = calendar_module.get_current_date()
-                day_of_week = calendar_module.get_day_of_week()
-
-                assert current_day == CRMConstants.TODAY_DATE.strftime(CRMConstants.THIRD_FORMAT)
-                assert day_of_week == CRMConstants.TODAY_DATE.strftime(CRMConstants.THIRD_FORMAT_DATE)
+        assert current_day == CRMConstants.TODAY_DATE.strftime(CRMConstants.THIRD_FORMAT)
+        assert day_of_week == CRMConstants.TODAY_DATE.strftime(CRMConstants.THIRD_FORMAT_DATE)
 
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)
@@ -222,8 +102,8 @@ class CalendarView(BaseTest):
 
         assert task_module.get_task_subject(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                 LeadsModuleConstants.FIRST_NAME]) == \
-               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                   LeadsModuleConstants.FIRST_NAME]
+                                            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                LeadsModuleConstants.FIRST_NAME]
 
         # calendar_module.add_new_task().create_event(TaskModuleConstants.SECOND_EVENT_STATUS,
         #                                             TaskModuleConstants.SECOND_EVENT_TYPE,

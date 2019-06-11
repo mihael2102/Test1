@@ -69,7 +69,10 @@ class TradingAccountCrmTest(BaseTest):
         TradingAccountPrecondition(self.driver, self.config).update_demo_account_from_crm()
 
         confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
-        try:
-            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY)
-        except:
-            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY_2)
+        if global_var.current_brand_name == "trade99":
+            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY_3)
+        else:
+            try:
+                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY)
+            except:
+                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_UPDATED_SUCCESFULLY_2)
