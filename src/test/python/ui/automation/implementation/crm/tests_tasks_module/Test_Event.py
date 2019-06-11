@@ -14,6 +14,7 @@ from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 
+
 @pytest.mark.run(order=14)
 class AddEventTaskModule(BaseTest):
 
@@ -33,28 +34,12 @@ class AddEventTaskModule(BaseTest):
         EventPrecondition(self.driver, self.config).test_sorting_columns()
 
     def test_add_event(self):
-        try:
-            EventPrecondition(self.driver, self.config).create_first_event()
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                TasksPage(self.driver).Sign_Out()
-                EventPrecondition(self.driver, self.config).create_first_event()
-            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                TasksPage(self.driver).Sign_Out()
-                EventPrecondition(self.driver, self.config).create_first_event()
+        EventPrecondition(self.driver, self.config).create_first_event()
 
         # Assert is in method 'create_first_event()'. So need to place it here after refactoring
 
     def test_edit_event(self):
-        try:
-            EventPrecondition(self.driver, self.config).edit_first_event()
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                TasksPage(self.driver).Sign_Out()
-                EventPrecondition(self.driver, self.config).edit_first_event()
-            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                TasksPage(self.driver).Sign_Out()
-                EventPrecondition(self.driver, self.config).edit_first_event()
+        EventPrecondition(self.driver, self.config).edit_first_event()
         # Assert is in method 'edit_first_event()'. So need to place it here after refactoring
 
     def test_delete_interaction(self):
@@ -67,11 +52,12 @@ class AddEventTaskModule(BaseTest):
         ClientsPage(self.driver).find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
                                                                                   TestDataConstants.E_MAIL))
         sleep(2)
-        while (ClientProfilePage(self.driver).check_event_exist()):
+        while ClientProfilePage(self.driver).check_event_exist():
             ClientProfilePage(self.driver).click_activities_tab() \
                                           .open_activities_tab() \
                                           .click_delete_interaction() \
                                           .verify_delete_interaction_message(CRMConstants.DELETE_INTERACTION_MESSAGE) \
                                           .confirm_delete_interaction() \
-                                          .interaction_successfully_deleted_message(CRMConstants.INTERACTION_DELETED_MESSAGE)
+                                          .interaction_successfully_deleted_message(
+                                                                            CRMConstants.INTERACTION_DELETED_MESSAGE)
 

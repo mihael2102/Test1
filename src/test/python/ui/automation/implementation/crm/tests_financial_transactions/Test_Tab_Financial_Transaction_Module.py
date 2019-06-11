@@ -120,149 +120,58 @@ class TabFinancialTransaction(BaseTest):
                     FinancialTransactionsModuleConstants.SIX_TAB)
 
     def test_check_searching_by_column(self):
+        crm_client_profile = CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_data_client(TestDataConstants.USER_NAME),
+                       self.config.get_data_client(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_data_client(TestDataConstants.OTP_SECRET))
+
+        financial_transaction_list_page = CRMHomePage(self.driver).select_financial_transactions_module_more_list(
+                                                 FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
+
+        # Get data of 3rd transaction (transaction's info will be changed when registration via CA starts to work)
+        transaction_number = financial_transaction_list_page.get_transaction_id_by_position_from_list()
+        client_name = financial_transaction_list_page.get_client_name_by_position_from_list()
+        transaction_type_text = financial_transaction_list_page.get_transaction_type_by_position_from_list()
+        # Check that column exists
         try:
-            crm_client_profile = CRMLoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url')) \
-                .crm_login(self.config.get_data_client(TestDataConstants.USER_NAME),
-                           self.config.get_data_client(TestDataConstants.CRM_PASSWORD),
-                           self.config.get_data_client(TestDataConstants.OTP_SECRET))
+            modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()[:10] + " - " + \
+                                            financial_transaction_list_page.get_modified_time_by_position_from_list()[:10]
+        except NoSuchElementException:
+            modified_time = None
 
-            financial_transaction_list_page = CRMHomePage(self.driver).select_financial_transactions_module_more_list(
-                                                     FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
+        transaction_number_from_its_details_page = financial_transaction_list_page\
+                                            .perform_searching_trading_account_via_filters(transaction_number,
+                                                                                           client_name,
+                                                                                           transaction_type_text,
+                                                                                           modified_time)\
+                                            .open_first_financial_transaction_in_list()\
+                                            .get_transaction_number_text()
 
-            # Get data of 3rd transaction (transaction's info will be changed when registration via CA starts to work)
-            transaction_number = financial_transaction_list_page.get_transaction_id_by_position_from_list()
-            client_name = financial_transaction_list_page.get_client_name_by_position_from_list()
-            transaction_type_text = financial_transaction_list_page.get_transaction_type_by_position_from_list()
-            # Check that column exists
-            try:
-                modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()[:10] + " - " + \
-                                                financial_transaction_list_page.get_modified_time_by_position_from_list()[:10]
-            except NoSuchElementException:
-                modified_time = None
+        self.assertEqual(transaction_number, transaction_number_from_its_details_page,
+                                            "Wrong financial transaction was found. They have diffent transaction ID")
 
-            transaction_number_from_its_details_page = financial_transaction_list_page\
-                                                .perform_searching_trading_account_via_filters(transaction_number,
-                                                                                               client_name,
-                                                                                               transaction_type_text,
-                                                                                               modified_time)\
-                                                .open_first_financial_transaction_in_list()\
-                                                .get_transaction_number_text()
+        # CRMLoginPage().open_first_tab_page(Config.url_crm) \
+        #     .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+        #                self.config.get_value(TestDataConstants.CRM_PASSWORD),
+        #                self.config.get_value(TestDataConstants.OTP_SECRET))
 
-            self.assertEqual(transaction_number, transaction_number_from_its_details_page,
-                                                "Wrong financial transaction was found. They have diffent transaction ID")
-
-            # CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            #     .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-            #                self.config.get_value(TestDataConstants.CRM_PASSWORD),
-            #                self.config.get_value(TestDataConstants.OTP_SECRET))
-
-            # financial_transaction_information = CRMHomePage().open_more_list_modules() \
-            #     .select_financial_transactions_module_more_list(
-            #     FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE) \
-            #     .open_first_transactions()
-            #
-            # trading_account = financial_transaction_information.get_trading_account_text()
-            # login = financial_transaction_information.get_login_text()
-            # client = financial_transaction_information.get_client_text()
-            # amount = financial_transaction_information.get_amount_text()
-            # currency = financial_transaction_information.get_currency_text()
-            # transaction_type = financial_transaction_information.get_transaction_type_text()
-            # transaction_numbe = financial_transaction_information.get_transaction_number_text()
-            # assigned_to = financial_transaction_information.get_assigned_to_text()
-            # get_brand = financial_transaction_information.get_brand_text()
-            # modified_time = financial_transaction_information.get_modified_time()
-            # crm_id = financial_transaction_information.get_crm_id()
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException, WebDriverException):
-
-            try:
-
-                FinancialTransactionsPage(self.driver).Sign_Out()
-
-                crm_client_profile = CRMLoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url')) \
-                    .crm_login(self.config.get_data_client(TestDataConstants.USER_NAME),
-                               self.config.get_data_client(TestDataConstants.CRM_PASSWORD),
-                               self.config.get_data_client(TestDataConstants.OTP_SECRET))
-
-                financial_transaction_list_page = CRMHomePage(self.driver) \
-                    .select_financial_transactions_module_more_list(
-                    FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
-
-                # Get data of 3rd transaction (transaction's info will be changed when registration via CA starts to work)
-                transaction_number = financial_transaction_list_page.get_transaction_id_by_position_from_list()
-                client_name = financial_transaction_list_page.get_client_name_by_position_from_list()
-                transaction_type_text = financial_transaction_list_page.get_transaction_type_by_position_from_list()
-                # Check that column exists
-                try:
-                    modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()[:10] + " - " + \
-                                    financial_transaction_list_page.get_modified_time_by_position_from_list()[:10]
-                except NoSuchElementException:
-                    modified_time = None
-                # Check that column exists
-                # try:
-                #     trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
-                # except NoSuchElementException:
-                #     trading_account = None
-
-                # TIME and Trading Account columns are absent on some brands: 'mpcrypto'.
-                # So we skip this column during searching in this case.
-                # Details of checking please see in search method below
-                transaction_number_from_its_details_page = financial_transaction_list_page \
-                    .perform_searching_trading_account_via_filters(transaction_number,
-                                                                   client_name,
-                                                                   transaction_type_text,
-                                                                   modified_time) \
-                    .open_first_financial_transaction_in_list() \
-                    .get_transaction_number_text()
-
-                self.assertEqual(transaction_number, transaction_number_from_its_details_page,
-                                 "Wrong financial transaction was found. They have diffent transaction ID")
-            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException,
-                   WebDriverException):
-                FinancialTransactionsPage(self.driver).Sign_Out()
-
-                crm_client_profile = CRMLoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url')) \
-                    .crm_login(self.config.get_data_client(TestDataConstants.USER_NAME),
-                               self.config.get_data_client(TestDataConstants.CRM_PASSWORD),
-                               self.config.get_data_client(TestDataConstants.OTP_SECRET))
-
-                financial_transaction_list_page = CRMHomePage(self.driver) \
-                    .select_financial_transactions_module_more_list(
-                    FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
-
-                # Get data of 3rd transaction (transaction's info will be changed when registration via CA starts to work)
-                transaction_number = financial_transaction_list_page.get_transaction_id_by_position_from_list()
-                client_name = financial_transaction_list_page.get_client_name_by_position_from_list()
-                transaction_type_text = financial_transaction_list_page.get_transaction_type_by_position_from_list()
-                # Check that column exists
-                try:
-                    modified_time = financial_transaction_list_page.get_modified_time_by_position_from_list()[
-                                    :10] + " - " + \
-                                    financial_transaction_list_page.get_modified_time_by_position_from_list()[:10]
-                except NoSuchElementException:
-                    modified_time = None
-                # Check that column exists
-                # try:
-                #     trading_account = financial_transaction_list_page.get_trading_account_by_position_from_list()
-                # except NoSuchElementException:
-                #     trading_account = None
-
-                # TIME and Trading Account columns are absent on some brands: 'mpcrypto'.
-                # So we skip this column during searching in this case.
-                # Details of checking please see in search method below
-                transaction_number_from_its_details_page = financial_transaction_list_page \
-                    .perform_searching_trading_account_via_filters(transaction_number,
-                                                                   client_name,
-                                                                   transaction_type_text,
-                                                                   modified_time) \
-                    .open_first_financial_transaction_in_list() \
-                    .get_transaction_number_text()
-
-                self.assertEqual(transaction_number, transaction_number_from_its_details_page,
-                                 "Wrong financial transaction was found. They have diffent transaction ID")
-
+        # financial_transaction_information = CRMHomePage().open_more_list_modules() \
+        #     .select_financial_transactions_module_more_list(
+        #     FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE) \
+        #     .open_first_transactions()
+        #
+        # trading_account = financial_transaction_information.get_trading_account_text()
+        # login = financial_transaction_information.get_login_text()
+        # client = financial_transaction_information.get_client_text()
+        # amount = financial_transaction_information.get_amount_text()
+        # currency = financial_transaction_information.get_currency_text()
+        # transaction_type = financial_transaction_information.get_transaction_type_text()
+        # transaction_numbe = financial_transaction_information.get_transaction_number_text()
+        # assigned_to = financial_transaction_information.get_assigned_to_text()
+        # get_brand = financial_transaction_information.get_brand_text()
+        # modified_time = financial_transaction_information.get_modified_time()
+        # crm_id = financial_transaction_information.get_crm_id()
 
     def test_check_search_via_button(self):
         try:

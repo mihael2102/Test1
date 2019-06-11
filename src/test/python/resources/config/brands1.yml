@@ -1,11 +1,15 @@
 brands:
 
+- name: new_forex_staging
+  config_file: C:/Users/Panda102/Desktop/Test.yml
+#  config_file: C:/Users/Administrator/Desktop/Brand.yml
+
 #- name: newforexstage2
 #  config_file: newforexstage2.yml
 #
 #- name: ptbanc
 #  config_file: ptbanc.yml
-
+#
 #- name: q8
 #  config_file: q8.yml
 #
@@ -14,12 +18,12 @@ brands:
 #
 #- name: brokerz
 #  config_file: brokerz.yml
-
-- name: 4xfx
-  config_file: 4xfx.yml
-
+#
+#- name: 4xfx
+#  config_file: 4xfx.yml
+#
 #- name: trade99
 #  config_file: trade99.yml
-
+#
 #- name: coin-bits
 #  config_file: coin-bits.yml

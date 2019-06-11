@@ -158,7 +158,6 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Click import leads")
         return LeadsModule(self.driver)
 
-
     def click_check_box_leads(self, i):
         sleep(4)
         check_box = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[1]/input")
@@ -171,7 +170,6 @@ class LeadsModule(CRMBasePage):
             Logging().reportDebugStep(self, "Click check box leads")
         return LeadsModule(self.driver)
 
-
     def get_email_lead(self, i):
         sleep(4)
         email_lead = super().wait_element_to_be_clickable("//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[8]").text
@@ -179,11 +177,29 @@ class LeadsModule(CRMBasePage):
             Logging().reportDebugStep(self, "Verify email leads")
         return email_lead
 
+    def get_lead_fname(self):
+        lead_fname = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_First Name']")))
+        Logging().reportDebugStep(self, "Verified the lead first name: " + lead_fname.text)
+        return lead_fname.text
+
+    def get_lead_lname(self):
+        lead_lname = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Last Name']")))
+        Logging().reportDebugStep(self, "Verified the lead last name: " + lead_lname.text)
+        return lead_lname.text
+
     def get_first_name_lead(self, i):
         first_name_lead = super().wait_element_to_be_clickable("//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[4]").text
         if i == 29:
             Logging().reportDebugStep(self, "Verify first name leads")
         return first_name_lead
+
+    def get_lead_email(self):
+        lead_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Email']")))
+        Logging().reportDebugStep(self, "Verified the lead email: " + lead_email.text)
+        return lead_email.text
 
     def click_export_pop_ups(self):
         sleep(4)

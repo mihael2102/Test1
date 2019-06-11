@@ -14,7 +14,9 @@ from src.main.python.ui.crm.model.constants.APIConstants import APIConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 import re
 import time
+from time import sleep
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
+
 
 class ApiPrecondition(object):
 
@@ -36,11 +38,6 @@ class ApiPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        autoassign_module = CRMHomePage(self.driver).select_auto_assign_module_more_list(
-                                                                AutoAssignConstants.AUTO_ASSIGN_MODULE)
-        if autoassign_module == False:
-            return
-
         affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules()\
             .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
         if global_var.current_brand_name == "eafx":
@@ -49,27 +46,6 @@ class ApiPrecondition(object):
             AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_UFT)
         else:
             AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID)
-        # AffiliatePage(self.driver).open_edit_affiliate()
-        # selected_methods = AffiliatePage(self.driver).check_selected_methods()
-        # if "Selected" in selected_methods:
-        #     AffiliatePage(self.driver).add_all_methods()
-        #     selected_methods_new = AffiliatePage(self.driver).check_selected_methods()
-        #     if "None selected" in selected_methods_new:
-        #         AffiliatePage(self.driver).add_all_methods()
-        # else:
-        #     AffiliatePage(self.driver).add_all_methods()
-        #
-        # selected_countries = AffiliatePage(self.driver).check_selected_countries()
-        # if "Selected" in selected_countries:
-        #     AffiliatePage(self.driver).add_none_selected_countries()
-        #     selected_countries_new = AffiliatePage(self.driver).check_selected_countries()
-        #     if "None selected" in selected_countries_new:
-        #         AffiliatePage(self.driver).click_submit()
-        #     else:
-        #         AffiliatePage(self.driver).add_none_selected_countries()
-        #         AffiliatePage(self.driver).click_submit()
-        # else:
-        #     AffiliatePage(self.driver).click_submit()
 
         secret_key = AffiliatePage(self.driver).copy_secret_key()
 
@@ -95,69 +71,49 @@ class ApiPrecondition(object):
         self.autorization_process()
         ApiPage(self.driver).create_customer_module()
         ApiPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
+                                             LeadsModuleConstants.EMAIL])
         ApiPage(self.driver).enter_password(APIConstants.PASSWORD)
-        ApiPage(self.driver).enter_country(APIConstants.COUNTRY_LEAD)
-        ApiPage(self.driver).enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.FIRST_NAME])
-        ApiPage(self.driver).enter_lastName(APIConstants.LASTNAME)
-        ApiPage(self.driver).enter_phone(APIConstants.CLIENT_PHONE)
-        ApiPage(self.driver).send_create_customer()
-
-        check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
-
-        assert APIConstants.STATUS_OK in check_create_customer_token
-
-        ApiPage(self.driver).create_customer_module()
-        ApiPage(self.driver).enter_email(APIConstants.EMAIL)
-        ApiPage(self.driver).enter_password(APIConstants.PASSWORD)
-        ApiPage(self.driver).enter_country(APIConstants.COUNTRY1)
+        ApiPage(self.driver).enter_country(APIConstants.COUNTRY)
         ApiPage(self.driver).enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                  LeadsModuleConstants.FIRST_NAME])
         ApiPage(self.driver).enter_lastName(APIConstants.LASTNAME)
-        ApiPage(self.driver).enter_phone(APIConstants.CLIENT_PHONE)
+        ApiPage(self.driver).enter_phone(APIConstants.PHONE)
+        ApiPage(self.driver).enter_refferal(APIConstants.REFFERAL)
         ApiPage(self.driver).send_create_customer()
 
         check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+        count = 0
+        while APIConstants.STATUS_OK not in check_create_customer_token:
+            sleep(1)
+            check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+            count += 1
+            if count == 5:
+                break
 
         assert APIConstants.STATUS_OK in check_create_customer_token
 
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
-            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
-        expected_assign = AutoAssignConstants.USER
-        assigned = ClientsPage(self.driver).get_client_assigned_to()
-        assert expected_assign in assigned
+                                    TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+                                .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                      LeadsModuleConstants.EMAIL])
+        client_email = ClientsPage(self.driver).get_first_client_email()
+        client_country = ClientsPage(self.driver).get_client_country()
+        client_first_name = ClientsPage(self.driver).get_client_first_name()
+        client_last_name = ClientsPage(self.driver).get_client_last_name()
+        client_phone = ClientsPage(self.driver).get_client_phone()
+        ClientsPage(self.driver).click_custom_information()
+        refferal1 = ClientsPage(self.driver).get_refferal_client()
+        refferal = refferal1.replace('  ', '')
 
-        CRMHomePage(self.driver).open_client_module()
-        ClientsPage(self.driver).select_filter(self.config.get_data_client(
-            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(APIConstants.EMAIL)
-        expected_assign = AutoAssignConstants.USER
-        assigned = ClientsPage(self.driver).get_client_assigned_to()
-        assert expected_assign not in assigned
-
-
-        # client_email = ClientsPage(self.driver).get_first_client_email()
-        # client_country = ClientsPage(self.driver).get_client_country()
-        # client_first_name = ClientsPage(self.driver).get_client_first_name()
-        # client_last_name = ClientsPage(self.driver).get_client_last_name()
-        # client_phone = ClientsPage(self.driver).get_client_phone()
-        # ClientsPage(self.driver).click_custom_information()
-        # refferal = ClientsPage(self.driver).get_refferal_client()
-
-        # if global_var.current_brand_name != "royal_cfds":
-        #     assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                                                     LeadsModuleConstants.EMAIL]
-        # assert client_country == APIConstants.COUNTRY_CRM
-        # assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                                                 LeadsModuleConstants.FIRST_NAME]
-        # assert client_last_name == APIConstants.LASTNAME
-        # assert client_phone == APIConstants.PHONE_CRM
-        # assert refferal == APIConstants.REFFERAL
-
+        if global_var.current_brand_name != "royal_cfds":
+            assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                LeadsModuleConstants.EMAIL]
+        assert client_country == APIConstants.COUNTRY_CRM
+        assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+            LeadsModuleConstants.FIRST_NAME]
+        assert client_last_name == APIConstants.LASTNAME
+        assert refferal == APIConstants.REFFERAL
 
     def test_read_customer_details(self):
         self.autorization_process()
@@ -173,7 +129,6 @@ class ApiPrecondition(object):
         assert APIConstants.LASTNAME in token
         assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME] in token
-
 
     def test_read_customers_details(self):
         self.autorization_process()
@@ -232,14 +187,20 @@ class ApiPrecondition(object):
     def test_create_lead(self):
         self.autorization_process()
         ApiPage(self.driver).create_lead_module()
-        ApiPage(self.driver).enter_email_lead(self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)
-                                                                                [LeadsModuleConstants.EMAIL])
+        ApiPage(self.driver).enter_email_lead(
+            self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL])
         ApiPage(self.driver).enter_firstName_lead(APIConstants.LEAD_FNAME)
         ApiPage(self.driver).enter_lastName_lead(APIConstants.LEAD_LNAME)
         ApiPage(self.driver).enter_phone_lead(APIConstants.LEAD_PHONE)
-        ApiPage(self.driver).set_lead_country(APIConstants.COUNTRY_LEAD)
         ApiPage(self.driver).send_create_lead()
         token = ApiPage(self.driver).check_create_lead_token()
+        count = 0
+        while (APIConstants.STATUS_OK not in token):
+            sleep(1)
+            token = ApiPage(self.driver).check_create_lead_token()
+            count += 1
+            if count == 5:
+                break
         assert APIConstants.STATUS_OK in token
 
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
@@ -251,18 +212,14 @@ class ApiPrecondition(object):
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
 
         lead_module.perform_searching_lead_by_mail(self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)
-                                                                                        [LeadsModuleConstants.EMAIL])
+                                                   [LeadsModuleConstants.EMAIL])
         lead_module.open_personal_details_lead()
-
-        expected_assign = AutoAssignConstants.USER
-        assign = LeadsModule(self.driver).get_lead_assignedto()
-        assert expected_assign in assign
-        # email = lead_module.get_lead_email()
-        # fname = lead_module.get_lead_fname()
-        # lname = lead_module.get_lead_lname()
+        email = lead_module.get_lead_email()
+        fname = lead_module.get_lead_fname()
+        lname = lead_module.get_lead_lname()
         # phone = lead_module.get_lead_phone()
-        #
-        # assert email == self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]
-        # assert fname == APIConstants.LEAD_FNAME
-        # assert lname == APIConstants.LEAD_LNAME
+
+        assert email == self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]
+        assert fname == APIConstants.LEAD_FNAME
+        assert lname == APIConstants.LEAD_LNAME
         # assert phone == APIConstants.LEAD_PHONE_CRM
