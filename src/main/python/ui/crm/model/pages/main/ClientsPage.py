@@ -386,7 +386,7 @@ class ClientsPage(CRMBasePage):
     def get_refferal_client(self):
         sleep(5)
         refferal_client = WebDriverWait(self.driver, 50).until(
-            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Refferal')]//following-sibling::td[1]")))
+            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Referral')]//following-sibling::td[1]")))
         Logging().reportDebugStep(self, "Verified the client refferal: " + refferal_client.text)
         return refferal_client.text
 
