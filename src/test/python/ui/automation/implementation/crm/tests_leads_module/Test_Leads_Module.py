@@ -47,41 +47,15 @@ class LeadModuleTest(BaseTest):
     def test_check_email_popup(self):
         LeadPrecondition(self.driver, self.config).check_email_popup()
 
-
     def test_create_lead(self):
-        try:
-            LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
-            self.verify_lead(self.lead1)
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                ClientProfilePage(self.driver).Sign_Out()
-                LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
-                self.verify_lead(self.lead1)
-            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                ClientProfilePage(self.driver).Sign_Out()
-                LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
-                self.verify_lead(self.lead1)
-
+        LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+        self.verify_lead(self.lead1)
 
     def test_edit_lead(self):
-        try:
-            LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
-            self.verify_lead(self.lead1)
-            LeadPrecondition(self.driver, self.config).edit_lead_profile(self.lead2)
-            self.verify_lead(self.lead2)
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                ClientProfilePage(self.driver).Sign_Out()
-                LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
-                self.verify_lead(self.lead1)
-                LeadPrecondition(self.driver, self.config).edit_lead_profile(self.lead2)
-                self.verify_lead(self.lead2)
-            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                ClientProfilePage(self.driver).Sign_Out()
-                LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
-                self.verify_lead(self.lead1)
-                LeadPrecondition(self.driver, self.config).edit_lead_profile(self.lead2)
-                self.verify_lead(self.lead2)
+        LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+        self.verify_lead(self.lead1)
+        LeadPrecondition(self.driver, self.config).edit_lead_profile(self.lead2)
+        self.verify_lead(self.lead2)
 
     def test_mass_edit_lead(self):
         LeadPrecondition(self.driver, self.config).create_three_leads()
@@ -621,11 +595,14 @@ class LeadModuleTest(BaseTest):
         self.assertEqual(phone, lead_data[LeadsModuleConstants.PHONE])
         self.assertEqual(tittle, lead_data[LeadsModuleConstants.FIRST_TITTLE])
 
-        if global_var.current_brand_name == "safemarkets" :
+        if global_var.current_brand_name == "safemarkets":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW])
+        elif global_var.current_brand_name == "forex_staging":
+            self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS1])
         elif global_var.current_brand_name == "ogtrade":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW_LEAD])
-        elif (global_var.current_brand_name == "rimarkets") or (global_var.current_brand_name == "oinvestsa") or (global_var.current_brand_name == "otcapital"):
+        elif (global_var.current_brand_name == "rimarkets") or (global_var.current_brand_name == "oinvestsa") or \
+                (global_var.current_brand_name == "otcapital"):
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_TEST])
         elif global_var.current_brand_name == "fxpmarkets":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_C_NEW])
