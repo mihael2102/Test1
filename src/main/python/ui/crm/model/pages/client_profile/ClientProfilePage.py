@@ -497,7 +497,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_referral_text(self):
         self.perform_scroll(400)
-        referral = self.driver.find_element_by_xpath("//span[@id='dtlview_Refferal']").get_attribute("innerText")
+        referral = self.driver.find_element_by_xpath("//span[@id='dtlview_Referral']").get_attribute("innerText")
         parser_client_status_text = referral.replace(' ', '').replace('\n', '').replace('\t', '')
         Logging().reportDebugStep(self, "Returns the referral: " + parser_client_status_text)
         return parser_client_status_text

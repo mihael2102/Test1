@@ -109,7 +109,7 @@ class MassEditClientsModule(CRMBasePage):
 
     def set_referral(self, referral):
         check_box = self.driver.find_element(By.XPATH,
-                                             "//label[contains(text(), 'Refferal')]")
+                                             "//label[contains(text(), 'Referral')]")
         check_box.click()
         referral_field = self.driver.find_element(By.XPATH,
                                                   "//*[@name='referral']")
