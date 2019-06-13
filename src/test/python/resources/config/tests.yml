@@ -67,14 +67,14 @@ tests_config:
 #    - test_clients_mass_assign
 #
 ###################################### TASKS ##################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-#  class: AddEventTaskModule
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+  class: AddEventTaskModule
+  tests:
 #    - test_email_icon
 #    - test_sms_icon
 #    - test_mass_edit_tasks
 #    - test_searching_by_columns
-#    - test_sorting_columns
+    - test_sorting_columns
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
 #  class: TradingAccountCrmTest
@@ -202,9 +202,9 @@ tests_config:
 #    - test_delete_user
 #
 ########################################### DOCUMENTS MODULE ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
-  class: DocumentModuleTest
-  tests:
-    - test_searching_by_columns
+#- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
+#  class: DocumentModuleTest
+#  tests:
+#    - test_searching_by_columns
 #    - test_open_tabs
 #    - test_sorting

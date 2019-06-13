@@ -276,7 +276,7 @@ class LeadsModule(CRMBasePage):
         return assign_leads
 
     def check_status_leads(self, i):
-        sleep(4)
+        sleep(1)
         if global_var.current_brand_name == "swiftcfd" or global_var.current_brand_name == "royal_cfds" or \
                 global_var.current_brand_name == "brokerz" or global_var.current_brand_name == "ptbanc" or \
                 global_var.current_brand_name == "aztrades" or global_var.current_brand_name == "24btcmarket" or \
@@ -284,7 +284,7 @@ class LeadsModule(CRMBasePage):
             status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]").text
         else:
             status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[7]").text
-        if i == 10:
+        if i == 9:
             Logging().reportDebugStep(self, "Verify status")
         return status
 
@@ -321,11 +321,11 @@ class LeadsModule(CRMBasePage):
 
     def mass_assign_result(self, user):
         sleep(4)
-        mass_assign_result = self.driver.find_element(By.XPATH,
-                                                     "//div[contains(text(), 'accounts assigned to %s')]" % user)
+        Logging().reportDebugStep(self, "Close successful result pop ups")
+        self.driver.find_element(By.XPATH, "//div[contains(text(), 'accounts assigned to %s')]" % user)
         btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
         btn_ok.click()
-        Logging().reportDebugStep(self, "Close succsesfull result pop ups")
+        self.wait_vtiger_loading_to_finish_custom(35)
         return LeadsModule(self.driver)
 
     def click_assign(self):
@@ -339,14 +339,14 @@ class LeadsModule(CRMBasePage):
         sleep(4)
         click_mass_assign = self.driver.find_element(By.XPATH, "//div[2][contains (text(), '%s')]" % user)
         click_mass_assign.click()
-        Logging().reportDebugStep(self, "Select user")
+        Logging().reportDebugStep(self, "Select User")
         return LeadsModule(self.driver)
 
     def input_mass_assign(self, user):
         sleep(10)
         input_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='searchstring']")
         input_mass_assign.send_keys(user)
-        Logging().reportDebugStep(self, "Enter user name")
+        Logging().reportDebugStep(self, "Enter User name")
         return LeadsModule(self.driver)
 
     def click_mass_assign(self):
@@ -356,7 +356,7 @@ class LeadsModule(CRMBasePage):
         else:
             click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='list_action_buttons']/input[3]")
         click_mass_assign.click()
-        Logging().reportDebugStep(self, "Click mass assign btn")
+        Logging().reportDebugStep(self, "Click Mass Assign button")
         return LeadsModule(self.driver)
 
     def click_check_box_all_leads(self):
@@ -532,10 +532,10 @@ class LeadsModule(CRMBasePage):
         field_found = self.driver.find_element(By.XPATH, "//input[@class='input-block-level form-control']")
         field_found.clear()
         field_found.send_keys(test_filter)
-        Logging().reportDebugStep(self, "The field found is : " + test_filter)
+        Logging().reportDebugStep(self, "The filter found is: " + test_filter)
         select_test_filter = self.driver.find_element(By.XPATH, "//a/span[contains(., '%s')]" % test_filter)
         select_test_filter.click()
-        Logging().reportDebugStep(self, "Click the selected filter")
+        Logging().reportDebugStep(self, "Select the filter")
         self.wait_crm_loading_to_finish()
         return LeadsModule(self.driver)
 
@@ -639,7 +639,7 @@ class LeadsModule(CRMBasePage):
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_email']")
         first_name_field.clear()
         first_name_field.send_keys(email)
-        Logging().reportDebugStep(self, "The email was entered : " + email)
+        Logging().reportDebugStep(self, "The email was entered: " + email)
         return LeadsModule(self.driver)
 
     def enter_assigned_to(self, assigned_to):
@@ -651,14 +651,11 @@ class LeadsModule(CRMBasePage):
                             "//tr[@id='customAdvanceSearch']//td[5]//input[@class='form-control multiselect-search']")
         search_field.clear()
         search_field.send_keys(assigned_to)
-        country_choice = self.driver.find_element(By.XPATH,
-                                                  "//label[contains(text(),'%s')]" % assigned_to)
+        country_choice = self.driver.find_element(By.XPATH, "//label[contains(text(),'%s')]" % assigned_to)
         country_choice.click()
-
         ac = ActionChains(self.driver)
-
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The brand  was selected : " + assigned_to)
+        Logging().reportDebugStep(self, "The assigned to was selected: " + assigned_to)
         return LeadsModule(self.driver)
 
     def enter_tittle(self, tittle):
@@ -666,7 +663,7 @@ class LeadsModule(CRMBasePage):
                                                      "//tr[@name='customAdvanceSearch']//input[@id='tks_designation']")
         tittle_name_field.clear()
         tittle_name_field.send_keys(tittle)
-        Logging().reportDebugStep(self, "The assigned_to was entered : " + tittle)
+        Logging().reportDebugStep(self, "The assigned_to was entered: " + tittle)
         return LeadsModule(self.driver)
 
     def enter_lead_source(self, lead_source):
@@ -742,7 +739,7 @@ class LeadsModule(CRMBasePage):
         except:
             self.driver.execute_script("arguments[0].scrollIntoView();", search_button)
         self.wait_vtiger_loading_to_finish_custom(55)
-        Logging().reportDebugStep(self, "The search button was clicked ")
+        Logging().reportDebugStep(self, "The Search button was clicked")
         return LeadsModule(self.driver)
 
     def change_personal_info_pencil_icon(self, phone):
