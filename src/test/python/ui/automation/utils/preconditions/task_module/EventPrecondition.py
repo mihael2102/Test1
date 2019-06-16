@@ -10,6 +10,8 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.modules.tasks_module.EditEventModule import EditEventModule
 from src.test.python.ui.automation.BaseTest import *
 import pytest
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+
 
 class EventPrecondition(object):
 

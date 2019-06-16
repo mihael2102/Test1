@@ -49,7 +49,7 @@ class CreditOutPrecondition(object):
                              (((CRMConstants.AMOUNT_CREDIT_OUT).split('.'))[0])
         count = 0
         while actual_credit != expected_credit:
-            MT4DepositModule().refresh_page()
+            MT4DepositModule(self.driver).refresh_page()
             actual_credit = MT4CreditOutModule(self.driver).get_credit_int()
             count += 1
             if count == 5:

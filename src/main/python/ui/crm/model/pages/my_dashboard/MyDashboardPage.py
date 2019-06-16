@@ -357,7 +357,7 @@ class MyDashboardPage(CRMBasePage):
         sleep(4)
         subject_mail = super().wait_load_element("//div[@class='modal-dialog modal-lg']//input[@id='subject']")
         subject_mail.send_keys(subject)
-        Logging().reportDebugStep(self, "Enter subject mail" + subject)
+        Logging().reportDebugStep(self, "Enter subject mail: " + subject)
         return MyDashboardPage(self.driver)
 
     def enter_body_mail(self, body):
@@ -367,7 +367,7 @@ class MyDashboardPage(CRMBasePage):
         enter_body_mail.click()
         self.driver.execute_script("arguments[0].textContent = arguments[1];", enter_body_mail, body)
         # enter_body_mail.send_keys(body)
-        Logging().reportDebugStep(self, "Enter body mail")
+        Logging().reportDebugStep(self, "Enter body mail: " + body)
         return MyDashboardPage(self.driver)
 
     def enter_cc_mail(self, cc_mail):
@@ -375,7 +375,7 @@ class MyDashboardPage(CRMBasePage):
         sleep(3)
         subject_mail = super().wait_load_element("//div[@class = 'modal-dialog modal-lg']//input[@id='email_cc']")
         subject_mail.send_keys(cc_mail)
-        Logging().reportDebugStep(self, "Enter cc mail" + cc_mail)
+        Logging().reportDebugStep(self, "Enter cc mail: " + cc_mail)
         return MyDashboardPage(self.driver)
 
     def click_send(self):

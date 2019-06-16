@@ -107,7 +107,7 @@ class LeadDetailViewInfo(CRMBasePage):
 
     def get_referral_text(self):
         referral = self.driver.find_element(By.XPATH,
-                                            "//td[contains(text(),'Refferal')]//following-sibling::td[1]")
+                                            "//td[contains(text(),'Referral')]//following-sibling::td[1]")
 
         parser_referral_text = re.sub('[" "]', '', referral.text, 2)
 

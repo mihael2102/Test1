@@ -157,7 +157,7 @@ class CreateLeadsProfilePage(CRMBasePage):
     def set_assigned_to(self, assigned_to):
         assigned_to_list = Select(self.driver.find_element(By.XPATH, "//select[@name='assigned_user_id']"))
         assigned_to_list.select_by_visible_text(assigned_to)
-        Logging().reportDebugStep(self, "The lead status was set: " + assigned_to)
+        Logging().reportDebugStep(self, "The assigned_to was set: " + assigned_to)
         return CreateLeadsProfilePage(self.driver)
 
     def set_source_name(self, source_name):
@@ -170,7 +170,7 @@ class CreateLeadsProfilePage(CRMBasePage):
     def set_brand(self, brand):
         brand_list = Select(self.driver.find_element(By.XPATH, "//select[@name='brands']"))
         brand_list.select_by_visible_text(brand)
-        Logging().reportDebugStep(self, "The lead status was set: " + brand)
+        Logging().reportDebugStep(self, "The brand was set: " + brand)
         return CreateLeadsProfilePage(self.driver)
 
     def set_first_brand(self):
