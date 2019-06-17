@@ -1,4 +1,9 @@
 test = "New forex job 1"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/New forex job 1/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/short_final_file.xlsx"
+mail_subject = "Something"
 timeout = 4
 data = None
 url_client_area = ""
@@ -13,6 +18,3 @@ handler = None
 
 # chrome_driver = "D:/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
 chrome_driver = "C:/Users/Panda102/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
-
-
-
