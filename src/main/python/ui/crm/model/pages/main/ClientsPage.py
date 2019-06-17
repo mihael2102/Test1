@@ -517,7 +517,7 @@ class ClientsPage(CRMBasePage):
 
     def get_client_country(self):
         client_email = WebDriverWait(self.driver, 50).until(
-            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Country')]//following-sibling::td[1]")))
+            EC.visibility_of_element_located((By.XPATH, "//td[text()='Country']//following-sibling::td[1]")))
         Logging().reportDebugStep(self, "Verified the client Country: " + client_email.text)
         return client_email.text
 

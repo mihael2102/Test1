@@ -114,14 +114,17 @@ class ApiPrecondition(object):
             .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
         client_email = ClientsPage(self.driver).get_first_client_email()
-        client_country = ClientsPage(self.driver).get_client_country()
+        client_country = ""
+        if global_var.current_brand_name != "q8":
+            client_country = ClientsPage(self.driver).get_client_country()
         client_first_name = ClientsPage(self.driver).get_client_first_name()
         client_last_name = ClientsPage(self.driver).get_client_last_name()
 
         if global_var.current_brand_name != "royal_cfds":
             assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                 LeadsModuleConstants.EMAIL]
-        assert client_country == APIConstants.COUNTRY_CRM
+        if global_var.current_brand_name != "q8":
+            assert client_country == APIConstants.COUNTRY_CRM
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
             LeadsModuleConstants.FIRST_NAME]
         assert client_last_name == APIConstants.LASTNAME

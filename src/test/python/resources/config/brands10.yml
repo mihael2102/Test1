@@ -6,5 +6,3 @@ brands:
 - name: grandefex
   config_file: grandefex.yml
 
-#- name: wdcmarkets
-#  config_file: wdcmarkets.yml

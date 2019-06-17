@@ -5,3 +5,6 @@ brands:
 
 - name: alferatrade
   config_file: alferatrade.yml
+
+- name: wdcmarkets
+  config_file: wdcmarkets.yml
