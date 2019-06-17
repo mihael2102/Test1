@@ -1,8 +1,5 @@
 brands:
 
-- name: bit100
-  config_file: bit100.yml
-
 - name: trade99
   config_file: trade99.yml
 

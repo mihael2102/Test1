@@ -209,7 +209,7 @@ class AffiliatePage(CRMBasePage):
         # copy_button.click()
         self.driver.execute_script("arguments[0].click();", copy_button)
         sleep(3)
-        key = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-body/div/span").text
+        key = super().wait_load_element("/html/body/bs-modal[6]/div/div/bs-modal-body/div/span").text
         button_ok = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-footer/div/button")
         button_ok.click()
         Logging().reportDebugStep(self, "Copy key")
