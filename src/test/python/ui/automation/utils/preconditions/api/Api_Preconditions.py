@@ -108,20 +108,6 @@ class ApiPrecondition(object):
 
         assert APIConstants.STATUS_OK in check_create_customer_token
 
-        ApiPage(self.driver).create_customer_module()
-        ApiPage(self.driver).enter_email(APIConstants.EMAIL)
-        ApiPage(self.driver).enter_password(APIConstants.PASSWORD)
-        ApiPage(self.driver).enter_country(APIConstants.COUNTRY1)
-        ApiPage(self.driver).enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                 LeadsModuleConstants.FIRST_NAME])
-        ApiPage(self.driver).enter_lastName(APIConstants.LASTNAME)
-        ApiPage(self.driver).enter_phone(APIConstants.CLIENT_PHONE)
-        ApiPage(self.driver).send_create_customer()
-
-        check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
-
-        assert APIConstants.STATUS_OK in check_create_customer_token
-
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
@@ -131,10 +117,6 @@ class ApiPrecondition(object):
         client_country = ClientsPage(self.driver).get_client_country()
         client_first_name = ClientsPage(self.driver).get_client_first_name()
         client_last_name = ClientsPage(self.driver).get_client_last_name()
-        client_phone = ClientsPage(self.driver).get_client_phone()
-        ClientsPage(self.driver).click_custom_information()
-        refferal1 = ClientsPage(self.driver).get_refferal_client()
-        refferal = refferal1.replace('  ', '')
 
         if global_var.current_brand_name != "royal_cfds":
             assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -143,9 +125,6 @@ class ApiPrecondition(object):
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
             LeadsModuleConstants.FIRST_NAME]
         assert client_last_name == APIConstants.LASTNAME
-        if global_var.current_brand_name != "brokerz":
-            assert client_phone == APIConstants.PHONE_CRM
-        assert refferal == APIConstants.REFFERAL
 
     def test_read_customer_details(self):
         self.autorization_process()
@@ -161,7 +140,6 @@ class ApiPrecondition(object):
         assert APIConstants.LASTNAME in token
         assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME] in token
-
 
     def test_read_customers_details(self):
         self.autorization_process()

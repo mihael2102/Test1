@@ -11,7 +11,7 @@ class APIConstants(object):
     PASSWORD = "as1as2"
     COUNTRY = "bg"
     COUNTRY1 = "fi"
-    COUNTRY_LEAD = "li"
+    COUNTRY_LEAD = "de"
     LASTNAME = "Doe"
     PHONE = "3453453"
     STATUS_OK = "ok"

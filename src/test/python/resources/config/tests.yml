@@ -16,5 +16,5 @@ tests_config:
   class: CreateNewCustomer
   tests:
     - test_create_new_lead
-#    - test_create_new_customer
+    - test_create_new_customer
 
