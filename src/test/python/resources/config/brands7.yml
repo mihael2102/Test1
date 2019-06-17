@@ -1,8 +1,10 @@
 brands:
 
-- name: newrichmarkets
-  config_file: newrichmarkets.yml
-- name: swiftcfd
-  config_file: swiftcfd.yml
-- name: tfxgo
-  config_file: tfxgo.yml
+- name: globalix
+  config_file: globalix.yml
+
+- name: pmt247
+  config_file: pmt247.yml
+
+- name: gigafx
+  config_file: gigafx.yml

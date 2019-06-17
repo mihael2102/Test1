@@ -1,4 +1,10 @@
 brands:
 
+- name: 4xfx
+  config_file: 4xfx.yml
+
+- name: aztrades
+  config_file: aztrades.yml
+
 - name: brokerz
   config_file: brokerz.yml

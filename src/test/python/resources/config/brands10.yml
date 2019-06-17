@@ -1,8 +1,10 @@
 brands:
 
-- name: kontofx
-  config_file: kontofx.yml
-- name: xtraderfx
-  config_file: xtraderfx.yml
-- name: 2mercados
-  config_file: 2mercados.yml
+- name: bfxinternational
+  config_file: bfxinternational.yml
+
+- name: grandefex
+  config_file: grandefex.yml
+
+- name: wdcmarkets
+  config_file: wdcmarkets.yml

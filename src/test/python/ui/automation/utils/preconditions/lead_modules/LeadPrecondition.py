@@ -331,7 +331,6 @@ class LeadPrecondition(object):
         CRMHomePage(self.driver).open_lead_module() \
                                 .open_create_lead_module()\
 
-
         if (global_var.current_brand_name == "safemarkets") or (global_var.current_brand_name == "uft") or \
                 (global_var.current_brand_name == "trade99"):
             CreateLeadsProfilePage(self.driver).perform_create_lead(

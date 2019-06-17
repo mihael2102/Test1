@@ -1,7 +1,10 @@
 brands:
 
-- name: herdos
-  config_file: herdos.yml
-- name: hizlifx
-  config_file: hizlifx.yml
+- name: bit100
+  config_file: bit100.yml
 
+- name: trade99
+  config_file: trade99.yml
+
+- name: any1profit
+  config_file: any1profit.yml
