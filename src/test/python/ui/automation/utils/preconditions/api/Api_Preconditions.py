@@ -127,37 +127,25 @@ class ApiPrecondition(object):
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
-        expected_assign = AutoAssignConstants.USER
-        assigned = ClientsPage(self.driver).get_client_assigned_to()
-        assert expected_assign in assigned
+        client_email = ClientsPage(self.driver).get_first_client_email()
+        client_country = ClientsPage(self.driver).get_client_country()
+        client_first_name = ClientsPage(self.driver).get_client_first_name()
+        client_last_name = ClientsPage(self.driver).get_client_last_name()
+        client_phone = ClientsPage(self.driver).get_client_phone()
+        ClientsPage(self.driver).click_custom_information()
+        refferal1 = ClientsPage(self.driver).get_refferal_client()
+        refferal = refferal1.replace('  ', '')
 
-        CRMHomePage(self.driver).open_client_module()
-        ClientsPage(self.driver).select_filter(self.config.get_data_client(
-            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(APIConstants.EMAIL)
-        expected_assign = AutoAssignConstants.USER
-        assigned = ClientsPage(self.driver).get_client_assigned_to()
-        assert expected_assign not in assigned
-
-
-        # client_email = ClientsPage(self.driver).get_first_client_email()
-        # client_country = ClientsPage(self.driver).get_client_country()
-        # client_first_name = ClientsPage(self.driver).get_client_first_name()
-        # client_last_name = ClientsPage(self.driver).get_client_last_name()
-        # client_phone = ClientsPage(self.driver).get_client_phone()
-        # ClientsPage(self.driver).click_custom_information()
-        # refferal = ClientsPage(self.driver).get_refferal_client()
-
-        # if global_var.current_brand_name != "royal_cfds":
-        #     assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                                                     LeadsModuleConstants.EMAIL]
-        # assert client_country == APIConstants.COUNTRY_CRM
-        # assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                                                 LeadsModuleConstants.FIRST_NAME]
-        # assert client_last_name == APIConstants.LASTNAME
-        # assert client_phone == APIConstants.PHONE_CRM
-        # assert refferal == APIConstants.REFFERAL
-
+        if global_var.current_brand_name != "royal_cfds":
+            assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                LeadsModuleConstants.EMAIL]
+        assert client_country == APIConstants.COUNTRY_CRM
+        assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+            LeadsModuleConstants.FIRST_NAME]
+        assert client_last_name == APIConstants.LASTNAME
+        if global_var.current_brand_name != "brokerz":
+            assert client_phone == APIConstants.PHONE_CRM
+        assert refferal == APIConstants.REFFERAL
 
     def test_read_customer_details(self):
         self.autorization_process()
@@ -254,15 +242,12 @@ class ApiPrecondition(object):
                                                                                         [LeadsModuleConstants.EMAIL])
         lead_module.open_personal_details_lead()
 
-        expected_assign = AutoAssignConstants.USER
-        assign = LeadsModule(self.driver).get_lead_assignedto()
-        assert expected_assign in assign
-        # email = lead_module.get_lead_email()
-        # fname = lead_module.get_lead_fname()
-        # lname = lead_module.get_lead_lname()
+        email = lead_module.get_lead_email()
+        fname = lead_module.get_lead_fname()
+        lname = lead_module.get_lead_lname()
         # phone = lead_module.get_lead_phone()
-        #
-        # assert email == self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]
-        # assert fname == APIConstants.LEAD_FNAME
-        # assert lname == APIConstants.LEAD_LNAME
+
+        assert email == self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]
+        assert fname == APIConstants.LEAD_FNAME
+        assert lname == APIConstants.LEAD_LNAME
         # assert phone == APIConstants.LEAD_PHONE_CRM
