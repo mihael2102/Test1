@@ -1,5 +1,5 @@
 ClientProfilePage:
-  deposit_sum: "//tr[@class='lvtColData'][2]//td[3]"
+  deposit_sum: "//*[@id='rld_table_content']/tbody/tr[2]/td[3]"
 LeadsModule:
   check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[8]"
   check_first_line_email_2: "//tbody[@id = 'listBody']/tr[2]/td[8]"

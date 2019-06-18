@@ -46,7 +46,7 @@ class MT4DepositModule(CRMBasePage):
             EC.element_to_be_clickable((By.XPATH, "//select[@name='cleared_by']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='cleared_by']"))
         select.select_by_visible_text(cleared_by)
-        Logging().reportDebugStep(self, "The payment method of deposit module was selected: BTC")
+        Logging().reportDebugStep(self, "The cleared_by of deposit module was selected: " + cleared_by)
         return MT4DepositModule()
 
     def select_payment_method(self, payment_method):
@@ -69,7 +69,7 @@ class MT4DepositModule(CRMBasePage):
             select.select_by_visible_text("Pending")
         else:
             select.select_by_visible_text(deposit_status)
-        Logging().reportDebugStep(self, "The status of deposit module was selected:  " + deposit_status)
+        Logging().reportDebugStep(self, "The status of deposit module was selected: " + deposit_status)
         return MT4DepositModule()
 
     '''
@@ -86,7 +86,7 @@ class MT4DepositModule(CRMBasePage):
         select_account = self.driver.find_element(By.XPATH, "//select[@name='loginserver']//"
                                                             "following-sibling::*[contains(text(),'%s')]" % account)
         select_account.click()
-        Logging().reportDebugStep(self, "The account of deposit module was selected:  " + account)
+        Logging().reportDebugStep(self, "The account of deposit module was selected: " + account)
         return MT4DepositModule()
 
     '''
@@ -99,7 +99,7 @@ class MT4DepositModule(CRMBasePage):
         amount_filed = self.driver.find_element(By.XPATH, "//input[@id='amount']")
         amount_filed.clear()
         amount_filed.send_keys(amount)
-        Logging().reportDebugStep(self, "The amount of deposit module was set:  " + amount)
+        Logging().reportDebugStep(self, "The amount of deposit module was set: " + amount)
         return MT4DepositModule()
 
     '''
@@ -113,7 +113,8 @@ class MT4DepositModule(CRMBasePage):
         amount_filed.clear()
         amount_filed.send_keys(description_deposit)
         Logging().reportDebugStep(self,
-                                  "The  description of deposit module was set in the description field:  " + description_deposit)
+                                  "The description of deposit module was set in the description field: " +
+                                  description_deposit)
         return MT4DepositModule()
 
     '''
@@ -124,5 +125,5 @@ class MT4DepositModule(CRMBasePage):
     def create_deposit(self):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
         create_button.click()
-        Logging().reportDebugStep(self, "The create withdraw button of deposit module was clicked")
+        Logging().reportDebugStep(self, "The Create button of deposit module was clicked")
         return ClientProfilePage()
