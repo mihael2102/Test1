@@ -95,7 +95,7 @@ class ApiPrecondition(object):
         self.autorization_process()
         ApiPage(self.driver).create_customer_module()
         ApiPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
+                                                        LeadsModuleConstants.EMAIL1])
         ApiPage(self.driver).enter_password(APIConstants.PASSWORD)
         ApiPage(self.driver).enter_country(APIConstants.COUNTRY_LEAD)
         ApiPage(self.driver).enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -112,7 +112,7 @@ class ApiPrecondition(object):
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
+                                                        LeadsModuleConstants.EMAIL1])
         client_email = ClientsPage(self.driver).get_first_client_email()
         client_country = ""
         if global_var.current_brand_name != "q8":
@@ -122,7 +122,7 @@ class ApiPrecondition(object):
 
         if global_var.current_brand_name != "royal_cfds":
             assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                LeadsModuleConstants.EMAIL]
+                LeadsModuleConstants.EMAIL1]
         if global_var.current_brand_name != "q8":
             assert client_country == APIConstants.COUNTRY_CRM
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
