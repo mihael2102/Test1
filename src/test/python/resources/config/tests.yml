@@ -15,6 +15,6 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
   class: CreateNewCustomer
   tests:
-    - test_create_new_lead
+    - test_create_new_lead     # Creates a lead via API and verifying in CRM
     - test_create_new_customer
 

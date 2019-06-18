@@ -78,7 +78,10 @@ class DepositTestCRM(BaseTest):
                 .click_ok()
 
         elif (global_var.current_brand_name == "gxfx") or (global_var.current_brand_name == "b-traderfx") \
-                or (global_var.current_brand_name == "kontofx") or (global_var.current_brand_name == "uprofx"):
+                or (global_var.current_brand_name == "kontofx") or (global_var.current_brand_name == "uprofx") or \
+                (global_var.current_brand_name == "grandefex") or (global_var.current_brand_name == "libramarkets") or \
+                (global_var.current_brand_name == "dax-300") or (global_var.current_brand_name == "olympiamarkets") or \
+                (global_var.current_brand_name == "stox50") or (global_var.current_brand_name == "aztrades"):
             MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),

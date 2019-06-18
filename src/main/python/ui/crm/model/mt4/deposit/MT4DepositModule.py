@@ -25,7 +25,9 @@ class MT4DepositModule(CRMBasePage):
         self.select_account(account_number)
         self.set_amount(amount)
         self.set_description(description_deposit)
-        if global_var.current_brand_name == "kontofx":
+        if global_var.current_brand_name == "kontofx" or global_var.current_brand_name == "libramarkets" or \
+           global_var.current_brand_name == "dax-300" or (global_var.current_brand_name == "olympiamarkets") or \
+           global_var.current_brand_name == "stox50" or global_var.current_brand_name == "aztrades":
             self.select_cleared_by()
         self.create_deposit()
         return ClientProfilePage(self.driver)
