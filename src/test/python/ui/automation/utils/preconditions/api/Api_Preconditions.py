@@ -135,7 +135,6 @@ class ApiPrecondition(object):
             assert client_phone == APIConstants.PHONE_CRM
         assert refferal == APIConstants.REFFERAL
 
-
     def test_read_customer_details(self):
         self.autorization_process()
         ApiPage(self.driver).read_customer_module()
