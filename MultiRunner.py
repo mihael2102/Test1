@@ -45,8 +45,6 @@ class MultiRunner:
         # result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
 
 
-
-
     def single_brand_test(self, brand, test_list):
         runner = xmlrunner.XMLTestRunner(output='result')
         results = {}
@@ -137,18 +135,18 @@ if __name__ == "__main__":
 
         import xlsxwriter
         # Join all results in one excel
-        all_excel = "C:/Program Files (x86)/Jenkins/workspace/OF Special CRM/result/final_file.xlsx"
+        all_excel = Config.file_path_1
         # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex special job/result/final_file.xlsx')
 
 
 
         all_file_frames = []
-        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/OF Special CRM/result/*.xlsx'):
+        for filename in glob.glob(Config.file_path_2):
             if "test_results" in filename:
                 tab = pd.read_excel(filename)
                 all_file_frames.append(tab)
                 all_frame = pd.concat(all_file_frames, axis=1)
-                writer = EX('C:/Program Files (x86)/Jenkins/workspace/OF Special CRM/result/final_file.xlsx')
+                writer = EX(Config.file_path_1)
                 all_frame.to_excel(writer, sheet_name='Sheet1')
                 workbook = writer.book
                 worksheet = writer.sheets['Sheet1']
@@ -309,16 +307,16 @@ if __name__ == "__main__":
 
                 writer.save()
 
-        short_excel = "C:/Program Files (x86)/Jenkins/workspace/OF Special CRM/result/short_final_file.xlsx"
+        short_excel = Config.short_excel_path
         # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex special job/result/final_file.xlsx')
 
         short_file_frames = []
-        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/OF Special CRM/result/*.xlsx'):
+        for filename in glob.glob(Config.file_path_2):
             if "short_results" in filename:
                 tab = pd.read_excel(filename)
                 short_file_frames.append(tab)
                 short_frame = pd.concat(short_file_frames, axis=1)
-                writer = EX('C:/Program Files (x86)/Jenkins/workspace/OF Special CRM/result/short_final_file.xlsx')
+                writer = EX(Config.short_excel_path)
                 short_frame.to_excel(writer, sheet_name='Sheet1')
                 workbook = writer.book
                 worksheet = writer.sheets['Sheet1']

@@ -3,6 +3,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+from src.test.python.ui.automation.BaseTest import *
 
 
 def Send_Email_XML(filepath, content):
@@ -49,7 +50,7 @@ def Send_Email_XML(filepath, content):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
 ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/OF Special CRM/%s" % filepath, "rb")
+    attachment = open(Config.file_path_3 % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -101,10 +102,10 @@ def Send_Email_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "OF - Special Brands - CRM"
+    msg['Subject'] = Config.mail_subject
 
     # string to store the body of the mail
-    body = "OF - Special Brands - CRM"
+    body = Config.mail_subject
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
@@ -114,7 +115,7 @@ def Send_Email_XLS(filepath):
     # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
     ###FOR JENKINS
-    attachment = open("C:/Program Files (x86)/Jenkins/workspace/OF Special CRM/%s" % filepath, "rb")
+    attachment = open(Config.file_path_3 % filepath, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
@@ -166,10 +167,10 @@ def Send_ALL_XLS(filepath):
     msg['Cc'] = cc
     msg['Bcc'] = bcc
     # storing the subject
-    msg['Subject'] = "OF - Special Brands - CRM"
+    msg['Subject'] = Config.mail_subject
 
     # string to store the body of the mail
-    body = "OF - Special Brands - CRM"
+    body = Config.mail_subject
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
