@@ -15,8 +15,8 @@ brands:
 #- name: kontofx
 #  config_file: kontofx.yml
 
-#- name: newforexstage2
-#  config_file: newforexstage2.yml
+- name: newforexstage2
+  config_file: newforexstage2.yml
 
-- name: coin-bits
-  config_file: coin-bits.yml
+#- name: coin-bits
+#  config_file: coin-bits.yml

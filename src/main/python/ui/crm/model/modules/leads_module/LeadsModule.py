@@ -347,7 +347,8 @@ class LeadsModule(CRMBasePage):
         return name_eighth_column.text
 
     def open_personal_details_lead(self):
-        lead = super().wait_element_to_be_clickable("//a[contains(text(),'LEA')]")
+        lead = super().wait_load_element("//a[contains(text(),'LEA')]")
+        self.driver.execute_script("arguments[0].scrollIntoView();", lead)
         lead.click()
         Logging().reportDebugStep(self, "Go to personal details lead")
         return LeadsModule(self.driver)
