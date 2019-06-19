@@ -1,4 +1,9 @@
 test = "API New Forex"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/API New Forex/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/API New Forex/result/short_final_file.xlsx"
+mail_subject = "API New Forex"
 timeout = 4
 data = None
 url_client_area = ""
