@@ -383,6 +383,7 @@ class MyDashboardPage(CRMBasePage):
         sleep(3)
         click_send = super().wait_load_element("(//button[text()=' Send '])[2]")
         click_send.click()
+        self.wait_element_to_be_disappear("(//button[text()=' Send '])[2]")
         Logging().reportDebugStep(self, "Click Send")
         return MyDashboardPage(self.driver)
 

@@ -303,6 +303,7 @@ class TasksPage(CRMBasePage):
         pop_conn.pass_('xUQ7hrr9VF')
         # Get messages from server:
         messages = [pop_conn.retr(i) for i in range(1, len(pop_conn.list()[1]) + 1)]
+        # messages = [pop_conn.retr(i) for i in range(1, 5)]
         # Concat message pieces:
         messages = ["\n".join(m.decode() for m in mssg[1]) for mssg in messages]
         # Parse message into an email object:

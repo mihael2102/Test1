@@ -76,10 +76,10 @@ tests_config:
 #    - test_searching_by_columns
 #    - test_sorting_columns
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-#  class: TradingAccountCrmTest
-#  tests:
-#    - test_crm_open_trading_account  # open a new trading account
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - test_crm_open_trading_account  # open a new trading account
 #    - test_crm_open_live_mt5
 #    - test_crm_open_demo_mt5
 #
@@ -117,10 +117,10 @@ tests_config:
 #    - test_make_credit_out_crm # preconditions: convert lead, make credit in
 #
 ####################################### SEND MAIL FROM CLIENT'S DETAILS ##########################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
-  class: SendEmailTestCRM
-  tests:
-    - test_send_email # preconditions: convert lead
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
+#  class: SendEmailTestCRM
+#  tests:
+#    - test_send_email # preconditions: convert lead
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
 #  class: TransferBetweenTa

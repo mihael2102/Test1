@@ -27,7 +27,6 @@ class LeadPrecondition(object):
         self.driver = driver
         self.config = config
 
-
     def check_email_popup(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -43,7 +42,8 @@ class LeadPrecondition(object):
         value = LeadsModule(self.driver).get_lead_email_pop_up()
         lead_email_pop_up = value.replace(',','')
         assert lead_email == lead_email_pop_up
-        LeadsModule(self.driver).enter_subject_mail(CRMConstants.SUBJECT_LEAD_MAIL)
+        brand = global_var.current_brand_name
+        LeadsModule(self.driver).enter_subject_mail(brand + CRMConstants.SUBJECT_LEAD_MAIL)
         LeadsModule(self.driver).enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         LeadsModule(self.driver).click_save()
         CRMHomePage(self.driver).click_ok()
@@ -54,8 +54,8 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).perform_searching_lead_by_mail(lead_email) \
                                 .open_lead_personal_details()\
                                 .open_email_section()
-        mail = LeadsModule(self.driver).get_saved_mail_lead(CRMConstants.SUBJECT_LEAD_MAIL)
-        assert mail == CRMConstants.SUBJECT_LEAD_MAIL
+        mail = LeadsModule(self.driver).get_saved_mail_lead(brand + CRMConstants.SUBJECT_LEAD_MAIL)
+        assert mail == brand + CRMConstants.SUBJECT_LEAD_MAIL
 
 
 

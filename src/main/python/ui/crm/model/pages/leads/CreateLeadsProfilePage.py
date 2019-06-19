@@ -44,7 +44,6 @@ class CreateLeadsProfilePage(CRMBasePage):
         self.set_state(state)
         self.click_save()
 
-
     def perform_create_lead_new(self, first_name, last_name, mobile, fax, email, secondary_email,
                              referral, street, postal_code, country, description,
                             phone, tittle, lead_source, lead_status, assigned_to, po_box,
@@ -83,7 +82,7 @@ class CreateLeadsProfilePage(CRMBasePage):
         last_name_field = super().wait_load_element("//input[@name='lastname']")
         last_name_field.clear()
         last_name_field.send_keys(last_name)
-        Logging().reportDebugStep(self, "last name was set: " + last_name)
+        Logging().reportDebugStep(self, "Last name was set: " + last_name)
         return CreateLeadsProfilePage(self.driver)
 
     def set_mobile(self, mobile):
@@ -97,14 +96,14 @@ class CreateLeadsProfilePage(CRMBasePage):
         first_name_field = super().wait_load_element("//input[@name='fax']")
         first_name_field.clear()
         first_name_field.send_keys(fax)
-        Logging().reportDebugStep(self, "fax was set: " + fax)
+        Logging().reportDebugStep(self, "Fax was set: " + fax)
         return CreateLeadsProfilePage(self.driver)
 
     def set_email(self, email):
         email_field = super().wait_load_element("//input[@name='email']")
         email_field.clear()
         email_field.send_keys(email)
-        Logging().reportDebugStep(self, "The first name was set: " + email)
+        Logging().reportDebugStep(self, "The email was set: " + email)
         return CreateLeadsProfilePage(self.driver)
 
     def set_secondary_email(self, secondary_email):
@@ -118,7 +117,7 @@ class CreateLeadsProfilePage(CRMBasePage):
         first_name_field = super().wait_load_element("//input[@name='cf_1092']")
         first_name_field.clear()
         first_name_field.send_keys(language)
-        Logging().reportDebugStep(self, "The language  was set: " + language)
+        Logging().reportDebugStep(self, "The language was set: " + language)
         return CreateLeadsProfilePage(self.driver)
 
     def set_panda_partner_id(self, partner_id):

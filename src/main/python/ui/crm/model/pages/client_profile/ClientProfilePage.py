@@ -245,7 +245,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_document_status_text(self):
         document_status = super().wait_load_element("//span[@class ='clientStatusFTD']")
-        Logging().reportDebugStep(self, "Returns the document status text " + document_status.text)
+        Logging().reportDebugStep(self, "Returns the document status text: " + document_status.text)
         return document_status.text
 
     '''
@@ -257,7 +257,7 @@ class ClientProfilePage(CRMBasePage):
     def open_help_desk_tab(self):
         select_country = super().wait_load_element("//a[@id='show_Accounts_HelpDesk']")
         select_country.click()
-        Logging().reportDebugStep(self, "Open help desc tab ")
+        Logging().reportDebugStep(self, "Click help desc tab")
         return ClientProfilePage(self.driver)
 
     '''
@@ -268,7 +268,7 @@ class ClientProfilePage(CRMBasePage):
     def open_action_help_desk(self):
         account = super().wait_load_element("//a[@class='glyphicons pencil cntrl'][1]")
         account.click()
-        Logging().reportDebugStep(self, "Open help desc tab ")
+        Logging().reportDebugStep(self, "Open Help Desk tab")
         return EditionTicketInfoPage()
 
     def get_name_document(self):

@@ -16,9 +16,9 @@ class CRMConstants(object):
     DURATION_EVENT = "15M"
     SERVER_NOT_CONFIGURATE = "Server Not Configured?"
     CC_EMAIL = "jonathan.albalak@pandats.com"
-    SUBJECT_TASK_MAIL = brand + ": SUBJECT_TASK_MAIL" + str(random.randrange(1, 9999999))
+    SUBJECT_TASK_MAIL = ": SUBJECT_TASK_MAIL" + str(random.randrange(1, 9999999))
     TRADING_LEVERAGE_ITRADER = "30"
-    SUBJECT_LEAD_MAIL = brand + ": Test MAIL" + str(random.randrange(1, 9999999))
+    SUBJECT_LEAD_MAIL = ": Test MAIL" + str(random.randrange(1, 9999999))
     BODY_LEAD_MAIL = "Test"
     CHANGE_PHONE_LEAD = "0534431234"
     DATE_BIRTH = "1999-02-19"
