@@ -85,7 +85,7 @@ class MT4CreditOutModule(CRMBasePage):
         Logging().reportDebugStep(self, "Create of credit out button was clicked")
         return ClientProfilePage(self.driver)
 
-    def get_credit_int (self):
+    def get_credit_int(self):
         credit_text = self.driver.find_element_by_xpath("//span[@id='dtlview_Credit']").text
         credit = int((credit_text.split('.'))[0])
         Logging().reportDebugStep(self, "Actual credit amount is " + credit_text)

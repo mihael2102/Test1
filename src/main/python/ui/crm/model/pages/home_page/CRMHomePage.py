@@ -168,7 +168,7 @@ class CRMHomePage(CRMBasePage):
 
     def select_user_management(self):
         sleep(5)
-        if global_var.current_brand_name == "brokerxp" or global_var.current_brand_name == "capitalmarketsbanc":
+        if global_var.current_brand_name == "trade99":
             user_settings = super().wait_element_to_be_clickable(
                 "/html/body/table[1]/tbody/tr/td[3]/table/tbody/tr/td[4]/img")
         else:

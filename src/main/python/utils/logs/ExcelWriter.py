@@ -36,7 +36,7 @@ class ExcelWriter:
                 row += 1
                 test_result = results[brand][self.get_test_pretty_name(test)] \
                     if self.get_test_pretty_name(test) in results[brand] else ""
-                if ("module does not exist" in test_result) or ("There is no" in test_result):
+                if ("does not exist" in test_result) or ("There is no" in test_result):
                     test_result_na = "NOT RUNNED"
                     worksheet.write(row, col, test_result_na, cell_format_not_runned)
                     worksheet.write_comment(row, col, test_result,

@@ -96,6 +96,7 @@ client_1:
   first_source_name: "source 1"
   first_currency: "EUR"
   first_currency_BCH: "BCH"
+  first_currency_BTC: "BTC"
   new_password: "Panda123456"
 event_1:
   type: "Meeting"
@@ -118,6 +119,7 @@ trading_account_1:
   currency: "USD"
   currency_EUR: "EUR"
   currency_BCH: "BCH"
+  currency_BTC: "BTC"
   group: "USD"
   demo: "demo"
   live: "live"

@@ -58,7 +58,10 @@ class TransferBetweenPrecondition(object):
         expected_balance = crm_client_profile \
             .get_difference_amount_text(second_account_balance, CRMConstants.AMOUNT_TRANSFER_BETWEEN_TA)
 
-        crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.TRANSFER_BETWEEN_TA)
+        if global_var.current_brand_name == "trade99":
+            crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.TRANSFER_BETWEEN_TA2)
+        else:
+            crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.TRANSFER_BETWEEN_TA)
 
         MT4TransferBetweenTa(self.driver).make_transfer_between_ta(second_account_number, first_account_number,
                                                         CRMConstants.AMOUNT_TRANSFER_BETWEEN_TA,

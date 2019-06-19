@@ -245,7 +245,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_document_status_text(self):
         document_status = super().wait_load_element("//span[@class ='clientStatusFTD']")
-        Logging().reportDebugStep(self, "Returns the document status text " + document_status.text)
+        Logging().reportDebugStep(self, "Returns the document status text: " + document_status.text)
         return document_status.text
 
     '''
@@ -257,7 +257,7 @@ class ClientProfilePage(CRMBasePage):
     def open_help_desk_tab(self):
         select_country = super().wait_load_element("//a[@id='show_Accounts_HelpDesk']")
         select_country.click()
-        Logging().reportDebugStep(self, "Open help desc tab ")
+        Logging().reportDebugStep(self, "Click help desc tab")
         return ClientProfilePage(self.driver)
 
     '''
@@ -268,7 +268,7 @@ class ClientProfilePage(CRMBasePage):
     def open_action_help_desk(self):
         account = super().wait_load_element("//a[@class='glyphicons pencil cntrl'][1]")
         account.click()
-        Logging().reportDebugStep(self, "Open help desc tab ")
+        Logging().reportDebugStep(self, "Open Help Desk tab")
         return EditionTicketInfoPage()
 
     def get_name_document(self):
@@ -294,9 +294,8 @@ class ClientProfilePage(CRMBasePage):
         mt4_button = super().wait_load_element("//div[@class='mt4_act_box']")
         sleep(1)
         self.driver.execute_script("arguments[0].click();", mt4_button)
-        # mt4_button.click()
         sleep(5)
-        Logging().reportDebugStep(self, "Open mt4 actions ")
+        Logging().reportDebugStep(self, "Open MT4 Actions")
         MT4DropDown(self.driver).mt4_actions(module)
 
     def close_popup_new_trading_account(self):
@@ -498,7 +497,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_referral_text(self):
         self.perform_scroll(400)
-        referral = self.driver.find_element_by_xpath("//span[@id='dtlview_Refferal']").get_attribute("innerText")
+        referral = self.driver.find_element_by_xpath("//span[@id='dtlview_Referral']").get_attribute("innerText")
         parser_client_status_text = referral.replace(' ', '').replace('\n', '').replace('\t', '')
         Logging().reportDebugStep(self, "Returns the referral: " + parser_client_status_text)
         return parser_client_status_text
@@ -635,11 +634,18 @@ class ClientProfilePage(CRMBasePage):
 
     def open_trading_account_page(self, account_number):
         sleep(2)
-        link_trading_account = super().wait_load_element(
-            "//tr[@class='lvtColData']/td/span/a[contains(text(), '%s')]" % account_number)
-        sleep(1)
-        self.driver.execute_script("arguments[0].click();", link_trading_account)
-        Logging().reportDebugStep(self, "Open the trading account page ")
+        try:
+            link_trading_account = super().wait_load_element(
+                "//tr[@class='lvtColData']/td/span/a[contains(text(), '%s')]" % account_number, timeout=15)
+            sleep(1)
+            self.driver.execute_script("arguments[0].click();", link_trading_account)
+        except (NoSuchElementException, TimeoutException):
+            self.open_trading_accounts_tab()
+            link_trading_account = super().wait_load_element(
+                "//tr[@class='lvtColData']/td/span/a[contains(text(), '%s')]" % account_number, timeout=35)
+            sleep(1)
+            self.driver.execute_script("arguments[0].click();", link_trading_account)
+        Logging().reportDebugStep(self, "Open the trading account page")
         return ClientProfilePage(self.driver)
 
     def change_client_status_with_pencil(self, status):

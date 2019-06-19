@@ -17,6 +17,7 @@ from src.main.python.ui.crm.model.pages.my_dashboard.MyDashboardPage import MyDa
 from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.main.python.ui.crm.model.modules.tasks_module.EditEventModule import EditEventModule
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 class MyDashboardPrecondition(object):
@@ -79,17 +80,15 @@ class MyDashboardPrecondition(object):
         MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
         account_name = MyDashboardPage(self.driver).get_account_name()
         MyDashboardPage(self.driver).open_email_actions_section()
-        MyDashboardPage(self.driver).enter_subject_mail(CRMConstants.SUBJECT_TASK_MAIL)
+        brand = global_var.current_brand_name
+        MyDashboardPage(self.driver).enter_subject_mail(brand + CRMConstants.SUBJECT_TASK_MAIL)
         MyDashboardPage(self.driver).enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         MyDashboardPage(self.driver).enter_cc_mail(CRMConstants.CC_EMAIL)
         MyDashboardPage(self.driver).enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         MyDashboardPage(self.driver).click_send()
         sleep(10)
-        msg = TasksPage(self.driver).check_email(CRMConstants.SUBJECT_TASK_MAIL)
-        try:
-            assert CRMConstants.SUBJECT_TASK_MAIL in msg
-        except:
-            self
+        msg = TasksPage(self.driver).check_email(brand + CRMConstants.SUBJECT_TASK_MAIL)
+        assert brand + CRMConstants.SUBJECT_TASK_MAIL in msg
 
     def sms_icon(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
@@ -110,11 +109,11 @@ class MyDashboardPrecondition(object):
 
     def test_searching_by_columns(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
+                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                                            self.config.get_value(TestDataConstants.OTP_SECRET))
         CRMHomePage(self.driver).open_more_list_modules() \
-            .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
+                                .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).select_show_all_tab()
         MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
         account_name = MyDashboardPage(self.driver).get_account_name()
@@ -124,7 +123,7 @@ class MyDashboardPrecondition(object):
         country = MyDashboardPage(self.driver).get_country()
         assigned_to = MyDashboardPage(self.driver).get_assigned_to()
         created_by = MyDashboardPage(self.driver).get_created_by()
-        local_time = MyDashboardPage(self.driver).get_local_time()
+        # local_time = MyDashboardPage(self.driver).get_local_time()
         # balance = MyDashboardPage(self.driver).get_balance()
         # total_p_l = MyDashboardPage(self.driver).get_total_p_l()
         # priority = MyDashboardPage(self.driver).get_priority()

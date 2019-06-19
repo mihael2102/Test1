@@ -1,11 +1,14 @@
 import random
 from datetime import *
 from dateutil.relativedelta import relativedelta
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 class CRMConstants(object):
+    brand = global_var.current_brand_name
     MT4_ACCOUNT_CREATED_SUCCESFULLY_2 = "MT4 Account created successfully"
     MT4_ACCOUNT_UPDATED_SUCCESFULLY_2 = "MT4 Account updated successfully"
+    MT4_ACCOUNT_UPDATED_SUCCESFULLY_3 = "Trading Account updated successfully"
     DEPOSIT_SUCCESSFULLY_2 = "Successful MT4 Deposit"
     TESTQA = "testqa"
     STATUS_EVENT = "Planned"
@@ -13,9 +16,9 @@ class CRMConstants(object):
     DURATION_EVENT = "15M"
     SERVER_NOT_CONFIGURATE = "Server Not Configured?"
     CC_EMAIL = "jonathan.albalak@pandats.com"
-    SUBJECT_TASK_MAIL = "SUBJECT_TASK_MAIL" + str(random.randrange(1, 9999999))
+    SUBJECT_TASK_MAIL = ": SUBJECT_TASK_MAIL" + str(random.randrange(1, 9999999))
     TRADING_LEVERAGE_ITRADER = "30"
-    SUBJECT_LEAD_MAIL = "Test MAIL" + str(random.randrange(1, 9999999))
+    SUBJECT_LEAD_MAIL = ": Test MAIL" + str(random.randrange(1, 9999999))
     BODY_LEAD_MAIL = "Test"
     CHANGE_PHONE_LEAD = "0534431234"
     DATE_BIRTH = "1999-02-19"
@@ -61,6 +64,7 @@ class CRMConstants(object):
     TRANSFER_BETWEEN_TA_MESSAGE = "Funds were transferred successfully"
     AMOUNT_TRANSFER_BETWEEN_TA = "1.00"
     TRANSFER_BETWEEN_TA = "8"
+    TRANSFER_BETWEEN_TA2 = "5"
     DESCRIPTION_ADD_INTERACTION = "Description Interaction"
     DATE = datetime.now()
     TODAY_DATE = datetime.today().now()
@@ -69,6 +73,7 @@ class CRMConstants(object):
     THIRD_DATE = datetime.now() + relativedelta(days=2, minutes=30)
     FOURTH_DATE = datetime.now() + relativedelta(days=3, minutes=45)
     MT4_ACCOUNT_CREATED_SUCCESFULLY = "Account created successfully"
+    TRADING_ACCOUNT_CREATED_SUCCESFULLY = "Trading Account created successfully"
     MT4_ACCOUNT_UPDATED_SUCCESFULLY = "Account updated successfully"
     TRADING_SERVER_LIVE = "server_live"
     WITHDRAW_SUCCESSFULLY = "MT4 Withdraw successfull"
@@ -94,7 +99,9 @@ class CRMConstants(object):
     AMOUNT_CREDIT_IN = "2.00"
     AMOUNT_CREDIT_OUT = "1.00"
     CREDIT_IN = "9"
+    CREDIT_IN2 = "6"
     CREDIT_OUT = "10"
+    CREDIT_OUT2 = "7"
     CREDIT_ACCOUNT = ""
     CREDIT_OUT_GRANTEDBY = "TEST"
     DESCRIPTION_WITHDRAW = "Test"
@@ -107,7 +114,9 @@ class CRMConstants(object):
     STATUS_DEPOSIT = "Approved"
     PAYMENT_METHOD_DEPOSIT = "Credit card"
     WITHDRAW = "7"
+    WITHDRAW2 = "4"
     DEPOSIT = "6"
+    DEPOSIT2 = "3"
     CREATE_MT4_USER = "1"
     CREATE_MT4_WITHDRAW = "7"
     UPDATE_MT4_USER = "2"

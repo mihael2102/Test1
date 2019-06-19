@@ -184,7 +184,7 @@ class MyDashboardPage(CRMBasePage):
             timeout=10)
         country_new = country.replace(' ', '')
         input_country.send_keys(country_new)
-        sleep(10)
+        self.wait_crm_loading_to_finish_tasks(35)
         check_box = super().wait_element_to_be_clickable(
             "//span[contains(text(), 'Germany')]")
         try:
@@ -232,7 +232,7 @@ class MyDashboardPage(CRMBasePage):
             "//div[@class='input-group input-group-sm']/input[@placeholder='Search']",
             timeout=10)
         input_status.send_keys(status)
-        sleep(20)
+        self.wait_crm_loading_to_finish_tasks(55)
         check_box = super().wait_element_to_be_clickable(
             "//input[@class='ng-star-inserted']",
             timeout=30)
@@ -301,21 +301,21 @@ class MyDashboardPage(CRMBasePage):
         return local_time
 
     def get_created_by(self):
-        sleep(5)
+        sleep(1)
         created_by = self.driver.find_element_by_xpath(
             "(//span[@class='link_field'])[9]").text
         Logging().reportDebugStep(self, "Get created by: " + created_by)
         return created_by
 
     def get_assigned_to(self):
-        sleep(5)
+        sleep(1)
         assigned_to = self.driver.find_element_by_xpath(
             "(//span[@class='link_field'])[8]").text
         Logging().reportDebugStep(self, "Get assigned to: " + assigned_to)
         return assigned_to
 
     def get_country(self):
-        sleep(5)
+        sleep(1)
         country = self.driver.find_element_by_xpath(
             "(//span[@class='link_field'])[7]").text
         Logging().reportDebugStep(self, "Get country: " + country)
@@ -357,7 +357,7 @@ class MyDashboardPage(CRMBasePage):
         sleep(4)
         subject_mail = super().wait_load_element("//div[@class='modal-dialog modal-lg']//input[@id='subject']")
         subject_mail.send_keys(subject)
-        Logging().reportDebugStep(self, "Enter subject mail" + subject)
+        Logging().reportDebugStep(self, "Enter subject mail: " + subject)
         return MyDashboardPage(self.driver)
 
     def enter_body_mail(self, body):
@@ -367,7 +367,7 @@ class MyDashboardPage(CRMBasePage):
         enter_body_mail.click()
         self.driver.execute_script("arguments[0].textContent = arguments[1];", enter_body_mail, body)
         # enter_body_mail.send_keys(body)
-        Logging().reportDebugStep(self, "Enter body mail")
+        Logging().reportDebugStep(self, "Enter body mail: " + body)
         return MyDashboardPage(self.driver)
 
     def enter_cc_mail(self, cc_mail):
@@ -375,7 +375,7 @@ class MyDashboardPage(CRMBasePage):
         sleep(3)
         subject_mail = super().wait_load_element("//div[@class = 'modal-dialog modal-lg']//input[@id='email_cc']")
         subject_mail.send_keys(cc_mail)
-        Logging().reportDebugStep(self, "Enter cc mail" + cc_mail)
+        Logging().reportDebugStep(self, "Enter cc mail: " + cc_mail)
         return MyDashboardPage(self.driver)
 
     def click_send(self):
@@ -383,6 +383,7 @@ class MyDashboardPage(CRMBasePage):
         sleep(3)
         click_send = super().wait_load_element("(//button[text()=' Send '])[2]")
         click_send.click()
+        self.wait_element_to_be_disappear("(//button[text()=' Send '])[2]")
         Logging().reportDebugStep(self, "Click Send")
         return MyDashboardPage(self.driver)
 
@@ -417,23 +418,23 @@ class MyDashboardPage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", select_show_all_tab)
         sleep(2)
         self.wait_crm_loading_to_finish_tasks(75)
-        Logging().reportDebugStep(self, "Select show all tab")
+        Logging().reportDebugStep(self, "Select Show All tab")
         return MyDashboardPage(self.driver)
 
     def enter_account_name(self, testqa):
-        sleep(5)
+        sleep(1)
         input = super().wait_load_element("//*[@id='host-element']/input")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         sleep(1)
         input.send_keys(testqa)
-        sleep(1)
+        self.wait_load_element("//div[@class='spinner']", 55)
         self.wait_crm_loading_to_finish_tasks(55)
-        sleep(3)
+        sleep(1)
         Logging().reportDebugStep(self, "Enter account name: " + testqa)
         return MyDashboardPage(self.driver)
 
     def get_account_name(self):
-        sleep(4)
+        sleep(1)
         account_name = self.driver.find_element_by_xpath("(//a[contains(text(),'testqa')])[1]").text
         Logging().reportDebugStep(self, "Get account name: " + account_name)
         return account_name
@@ -446,13 +447,13 @@ class MyDashboardPage(CRMBasePage):
         return MyDashboardPage(self.driver)
 
     def get_status(self):
-        sleep(5)
+        sleep(1)
         get_status = self.driver.find_element_by_xpath("(//span[@class='link_field'])[4]").text
         Logging().reportDebugStep(self, "Get status: " + get_status)
         return get_status
 
     def get_event_type(self):
-        sleep(5)
+        sleep(1)
         get_type = self.driver.find_element_by_xpath("(//span[@class='link_field'])[2]").text
         Logging().reportDebugStep(self, "Get type: " + get_type)
         return get_type

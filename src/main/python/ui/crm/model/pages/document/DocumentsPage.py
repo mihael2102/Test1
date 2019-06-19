@@ -311,7 +311,7 @@ class DocumentsPage(CRMBasePage):
         modified_time_field.clear()
         modified_time_field.send_keys(mod_time)
         sleep(1)
-        apply_btn = super().wait_element_to_be_clickable("/html/body/div[17]/div[3]/div/button[1]")
+        apply_btn = super().wait_element_to_be_clickable("(//button[text()='Apply'])[3]")
         apply_btn.click()
         Logging().reportDebugStep(self, "Selected Modified Time is: " + mod_time)
         return DocumentsPage(self.driver)

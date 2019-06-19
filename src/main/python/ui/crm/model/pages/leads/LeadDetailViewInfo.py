@@ -10,8 +10,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 class LeadDetailViewInfo(CRMBasePage):
 
-
-
     def click_delete_button(self):
         task_module = super().wait_load_element("//input[@name='Delete']")
         task_module.click()
@@ -107,7 +105,7 @@ class LeadDetailViewInfo(CRMBasePage):
 
     def get_referral_text(self):
         referral = self.driver.find_element(By.XPATH,
-                                            "//td[contains(text(),'Refferal')]//following-sibling::td[1]")
+                                            "//td[contains(text(),'Referral')]//following-sibling::td[1]")
 
         parser_referral_text = re.sub('[" "]', '', referral.text, 2)
 
@@ -142,7 +140,7 @@ class LeadDetailViewInfo(CRMBasePage):
     def get_country_text(self):
         country = self.driver.find_element(By.XPATH,
                                            "//td[contains(text(),'Country')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the postal code: " + country.text)
+        Logging().reportDebugStep(self, "Returns the country: " + country.text)
         return country.text
 
     '''
@@ -164,7 +162,7 @@ class LeadDetailViewInfo(CRMBasePage):
         phone = self.driver.find_element(By.XPATH,
                                          "//td[contains(text(),'Phone')]//following-sibling::td[1]")
         parser_phone_text = re.sub('[+," "]', '', phone.text)
-        Logging().reportDebugStep(self, "Returns the description text: " + parser_phone_text)
+        Logging().reportDebugStep(self, "Returns the phone: " + parser_phone_text)
         return parser_phone_text
 
     '''
@@ -174,7 +172,7 @@ class LeadDetailViewInfo(CRMBasePage):
     def get_tittle_text(self):
         title = self.driver.find_element(By.XPATH,
                                          "//td[contains(text(),'Title')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the description text: " + title.text)
+        Logging().reportDebugStep(self, "Returns the title: " + title.text)
         return title.text
 
     '''
@@ -184,7 +182,7 @@ class LeadDetailViewInfo(CRMBasePage):
     def get_lead_source_text(self):
         lead_source = self.driver.find_element(By.XPATH,
                                                "//td[contains(text(),'Lead Source')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the description text: " + lead_source.text)
+        Logging().reportDebugStep(self, "Returns the lead source: " + lead_source.text)
         return lead_source.text
 
     '''
@@ -226,7 +224,7 @@ class LeadDetailViewInfo(CRMBasePage):
     def get_brand_text(self):
         brand = self.driver.find_element(By.XPATH,
                                          "//td[contains(text(),'Brand')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the language text: " + brand.text)
+        Logging().reportDebugStep(self, "Returns the brand text: " + brand.text)
         return brand.text
 
     '''
@@ -236,7 +234,7 @@ class LeadDetailViewInfo(CRMBasePage):
     def get_po_box_text(self):
         po_box = self.driver.find_element(By.XPATH,
                                           "//td[contains(text(),'PO Box')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the language text: " + po_box.text)
+        Logging().reportDebugStep(self, "Returns the po box text: " + po_box.text)
         return po_box.text
 
     '''
@@ -246,7 +244,7 @@ class LeadDetailViewInfo(CRMBasePage):
     def get_city_text(self):
         city = self.driver.find_element(By.XPATH,
                                         "//td[contains(text(),'City')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the language text: " + city.text)
+        Logging().reportDebugStep(self, "Returns the city text: " + city.text)
         return city.text
 
     '''
@@ -256,7 +254,7 @@ class LeadDetailViewInfo(CRMBasePage):
     def get_state_text(self):
         state = self.driver.find_element(By.XPATH,
                                          "//td[contains(text(),'State')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the language text: " + state.text)
+        Logging().reportDebugStep(self, "Returns the state text: " + state.text)
         return state.text
 
     def get_exists_text(self):

@@ -10,6 +10,8 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.modules.tasks_module.EditEventModule import EditEventModule
 from src.test.python.ui.automation.BaseTest import *
 import pytest
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+
 
 class EventPrecondition(object):
 
@@ -51,16 +53,17 @@ class EventPrecondition(object):
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
         task_module.search_account_name(CRMConstants.TESTQA)
-        sleep(10)
+        sleep(1)
         task_module.open_email_actions_section()
-        task_module.enter_subject_mail(CRMConstants.SUBJECT_TASK_MAIL)
+        brand = global_var.current_brand_name
+        task_module.enter_subject_mail(brand + CRMConstants.SUBJECT_TASK_MAIL)
         task_module.enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         task_module.enter_cc_mail(CRMConstants.CC_EMAIL)
         task_module.enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         task_module.click_send()
         sleep(10)
-        msg = task_module.check_email(CRMConstants.SUBJECT_TASK_MAIL)
-        assert CRMConstants.SUBJECT_TASK_MAIL in msg
+        msg = task_module.check_email(brand + CRMConstants.SUBJECT_TASK_MAIL)
+        assert brand + CRMConstants.SUBJECT_TASK_MAIL in msg
 
     def test_sms_icon(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
