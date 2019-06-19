@@ -306,7 +306,8 @@ class LeadPrecondition(object):
                 global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" or \
                 global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx":
             LeadsModule(self.driver).select_status(CRMConstants.STATUS_EDIT_ITRADER)
-        elif global_var.current_brand_name == "fxpmarkets" or global_var.current_brand_name == "stoxmarket":
+        elif global_var.current_brand_name == "fxpmarkets" or global_var.current_brand_name == "stoxmarket" or \
+                global_var.current_brand_name == "forex_staging":
             LeadsModule(self.driver).select_status(CRMConstants.STATUS_EDIT_STOX)
         else:
             LeadsModule(self.driver).select_status(CRMConstants.STATUS_ASSIGN)
@@ -317,7 +318,8 @@ class LeadPrecondition(object):
             status = LeadsModule(self.driver).check_status_leads(i)
             if global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx":
                 assert status == CRMConstants.STATUS_EDIT_ITRADER
-            elif global_var.current_brand_name == "fxpmarkets" or global_var.current_brand_name == "stoxmarket":
+            elif global_var.current_brand_name == "fxpmarkets" or global_var.current_brand_name == "stoxmarket" or \
+                    global_var.current_brand_name == "forex_staging":
                 assert status == CRMConstants.STATUS_EDIT_STOX
             else:
                 assert status == CRMConstants.STATUS_ASSIGN
@@ -359,7 +361,6 @@ class LeadPrecondition(object):
         except:
             assert exist == CRMConstants.SORTING_EXIST_YES
 
-
     def create_lead(self, lead):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -372,7 +373,7 @@ class LeadPrecondition(object):
 
         if global_var.current_brand_name == "safemarkets" or global_var.current_brand_name == "itrader_global" or \
                 global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo" or \
-                global_var.current_brand_name == "fm-fx":
+                global_var.current_brand_name == "fm-fx" or global_var.current_brand_name == "forex_staging":
             CreateLeadsProfilePage(self.driver).perform_create_lead(
             lead[LeadsModuleConstants.FIRST_NAME],
             lead[LeadsModuleConstants.FIRST_LAST_NAME],
