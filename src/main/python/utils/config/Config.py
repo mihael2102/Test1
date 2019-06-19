@@ -1,4 +1,9 @@
 test = "Old Forex CA"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/Old Forex CA/result/short_final_file.xlsx"
+mail_subject = "Old Forex CA"
 timeout = 4
 data = None
 url_client_area = ""
