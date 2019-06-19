@@ -16,22 +16,28 @@ from src.main.python.utils.logs.Loging import Logging
 import allure
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 
 
 class ClientsPage(CRMBasePage):
 
     def click_custom_information(self):
         sleep(2)
-        button = super().wait_element_to_be_clickable("//span[@class = 'glyphicons CustomInformation']")
-        self.driver.execute_script("arguments[0].scrollIntoView();", button)
-        self.driver.execute_script("arguments[0].click();", button)
+        try:
+            self.driver.find_element_by_xpath("//div[@id='tblCustomInformation' and contains(@style,'none')]")
+            button = super().wait_element_to_be_clickable("//span[@class = 'glyphicons CustomInformation']")
+            self.driver.execute_script("arguments[0].scrollIntoView();", button)
+            self.driver.execute_script("arguments[0].click();", button)
+        except (NoSuchElementException, TimeoutException):
+            pass
         Logging().reportDebugStep(self, "Click Custom Information")
         return ClientsPage(self.driver)
 
     def get_refferal_client(self):
         refferal_client = WebDriverWait(self.driver, 50).until(
-            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Refferal')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the client email: " + refferal_client.text)
+            EC.visibility_of_element_located((By.XPATH, "//td[text()='Referral']//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Verified the Referral: " + refferal_client.text)
         return refferal_client.text
 
     def get_first_client_email(self):
@@ -42,8 +48,8 @@ class ClientsPage(CRMBasePage):
 
     def get_client_country(self):
         client_email = WebDriverWait(self.driver, 50).until(
-            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Country')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the client country: " + client_email.text)
+            EC.visibility_of_element_located((By.XPATH, "//td[text()='Country']//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Verified the Country: " + client_email.text)
         return client_email.text
 
     def get_client_first_name(self):

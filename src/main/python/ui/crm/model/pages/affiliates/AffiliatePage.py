@@ -67,19 +67,19 @@ class AffiliatePage(CRMBasePage):
     def open_edit_affiliate(self):
         sleep(3)
         edit_button = self.driver.find_element(By.XPATH,
-                                               "/html/body/app-root/affiliate-list/div[2]/div[2]/grid/div/div/div[1]/table/tbody/tr[2]/td[9]/div/span")
+                "/html/body/app-root/affiliate-list/div[2]/div[2]/grid/div/div/div[1]/table/tbody/tr[2]/td[9]/div/span")
         edit_button.click()
         Logging().reportDebugStep(self, "Click edit affiliate")
         return AffiliatePage(self.driver)
 
     def add_all_methods(self):
         sleep(3)
-        methods = super().wait_element_to_be_clickable(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]")
+        methods = super().wait_load_element(
+            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]", timeout=35)
         methods.click()
         sleep(2)
         all_methods = super().wait_element_to_be_clickable(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[2]/span[2]/i")
+         "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[2]/span[2]/i")
         all_methods.click()
         sleep(4)
         all_methods.click()
