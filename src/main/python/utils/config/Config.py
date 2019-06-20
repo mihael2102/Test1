@@ -1,9 +1,9 @@
-test = "4XFX API"
-file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/4XFX API/result/final_file.xlsx"
-file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/4XFX API/result/*.xlsx'
-file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/4XFX API/%s"
-short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/4XFX API/result/short_final_file.xlsx"
-mail_subject = "4XFX API"
+test = "Trade99 API"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/Trade99 API/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/Trade99 API/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/Trade99 API/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/Trade99 API/result/short_final_file.xlsx"
+mail_subject = "Trade99 API"
 timeout = 4
 data = None
 url_client_area = ""
