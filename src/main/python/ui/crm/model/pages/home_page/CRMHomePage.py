@@ -131,7 +131,8 @@ class CRMHomePage(CRMBasePage):
         sleep(2)
         home_page_element = self.wait_visible_of_element("//span[@class='glyphicon glyphicon-Clients']")
         home_page_element.click()
-        Logging().reportDebugStep(self, "The client module was opened")
+        self.wait_crm_loading_to_finish()
+        Logging().reportDebugStep(self, "The Client module was opened")
         return ClientsPage(self.driver)
 
     def open_financial_transactions_module(self):
@@ -186,11 +187,18 @@ class CRMHomePage(CRMBasePage):
     def select_dashboard_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
-        Logging().reportDebugStep(self, "Dashboard  module was opened")
+        Logging().reportDebugStep(self, "Dashboard module was opened")
         return DashboardPage(self.driver)
 
     def select_leaderboard_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
-        Logging().reportDebugStep(self, "Dashboard  module was opened")
+        Logging().reportDebugStep(self, "Dashboard module was opened")
         return LeaderboardPage(self.driver)
+
+    def get_current_version(self):
+        current_version = super().wait_load_element("/html/body/table[4]/tbody/tr/td", timeout=45).text
+        current_version_number = (current_version.split("."))[1-2]
+        Logging().reportDebugStep(self, "Dashboard module was opened")
+        return current_version_number
+

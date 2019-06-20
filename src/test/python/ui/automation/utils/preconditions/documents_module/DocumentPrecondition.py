@@ -31,7 +31,8 @@ class DocumentPrecondition(object):
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
-        document_module = CRMHomePage(self.driver).open_more_list_modules().select_module_more_list(DocumentModuleConstants.DOCUMENT)
+        document_module = CRMHomePage(self.driver).open_more_list_modules().select_module_more_list\
+            (DocumentModuleConstants.DOCUMENT)
         document_module.open_create_document_module()
         document_module.browse_documents()
         document_module.select_document_type(CRMConstants.DOCUMENT_TYPE)

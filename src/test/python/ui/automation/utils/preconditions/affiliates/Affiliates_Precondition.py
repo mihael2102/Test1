@@ -29,7 +29,8 @@ class AffiliatesPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         """ Open Affiliates page """
-        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
+        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list\
+            (AffiliateModuleConstants.AFFILIATES_MODULE)
 
         '''Open popup and create new affiliate '''
 
