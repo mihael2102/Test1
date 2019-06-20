@@ -1,9 +1,9 @@
-test = "Brokerxp CA"
-file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/Brokerxp CA/result/final_file.xlsx"
-file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/Brokerxp CA/result/*.xlsx'
-file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/Brokerxp CA/%s"
-short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/Brokerxp CA/result/short_final_file.xlsx"
-mail_subject = "Brokerxp CA"
+test = "GMO CA"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/GMO CA/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/GMO CA/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/GMO CA/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/GMO CA/result/short_final_file.xlsx"
+mail_subject = "GMO CA"
 timeout = 4
 data = None
 url_client_area = ""
