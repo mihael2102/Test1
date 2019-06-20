@@ -1,9 +1,9 @@
-test = "GMO API"
-file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/GMO API/result/final_file.xlsx"
-file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/GMO API/result/*.xlsx'
-file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/GMO API/%s"
-short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/GMO API/result/short_final_file.xlsx"
-mail_subject = "GMO API"
+test = "OF Special API"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/OF Special API/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/OF Special API/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/OF Special API/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/OF Special API/result/short_final_file.xlsx"
+mail_subject = "OF Special API"
 timeout = 4
 data = None
 url_client_area = ""

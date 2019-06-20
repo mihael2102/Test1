@@ -1,7 +1,4 @@
 brands:
-#- name: rimarkets
-#  config_file: rimarkets.yml
-#- name: gmo
-#  config_file: gmo.yml
+
 - name: itrader
   config_file: itrader.yml
