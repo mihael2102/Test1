@@ -111,7 +111,8 @@ class MT4DepositModule(CRMBasePage):
         amount_filed.clear()
         amount_filed.send_keys(description_deposit)
         Logging().reportDebugStep(self,
-                                  "The  description of deposit module was set in the description field:  " + description_deposit)
+                                  "The  description of deposit module was set in the description field:  "
+                                  + description_deposit)
         return MT4DepositModule()
 
     '''
@@ -120,8 +121,7 @@ class MT4DepositModule(CRMBasePage):
     '''
 
     def create_deposit(self):
-        #for_old_forex
         create_button = self.wait_element_to_be_clickable("//*[@id='mt_interaction']/div/div[4]/button[2]")
         self.driver.execute_script("arguments[0].click();", create_button)
-        Logging().reportDebugStep(self, "The create withdraw button of deposit module was clicked")
+        Logging().reportDebugStep(self, "The Create button of deposit module was clicked")
         return ClientProfilePage()

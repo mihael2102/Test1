@@ -396,7 +396,8 @@ class ClientsPage(CRMBasePage):
         return confirm_message.text
 
     def open_mass_assign_module(self):
-        mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass assign']")
+        mass_edit_module = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
+                                                                (self.__class__.__name__)["mass_assign_btn"])
         mass_edit_module.click()
         Logging().reportDebugStep(self, "The Mass Assign module was opened")
         return MassAssignClientsModule(self.driver)

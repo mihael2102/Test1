@@ -79,7 +79,7 @@ class DepositTestCRM(BaseTest):
         crm_client_profile.perform_scroll_up()
         # MT4DropDown(self.driver).mt4_actions(CRMConstants.DEPOSIT)
         crm_client_profile.open_mt4_actions(CRMConstants.DEPOSIT)
-        if global_var.current_brand_name == "kayafx":
+        if global_var.current_brand_name == "kayafx" or global_var.current_brand_name == "forex_staging":
             MT4DepositModule(self.driver).make_deposit_kaya(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
                                                             CRMConstants.PAYMENT_METHOD_DEPOSIT,
                                                             CRMConstants.DESCRIPTION_DEPOSIT,
@@ -92,6 +92,9 @@ class DepositTestCRM(BaseTest):
         confirmation_message = crm_client_profile.get_confirm_message()
         if global_var.current_brand_name == "fxpmarkets":
             self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULL_OLD_FOREX_FXP)
+        elif global_var.current_brand_name == "forex_staging":
+            sleep(2)
+            pass
         else:
             self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULL_OLD_FOREX)
 
