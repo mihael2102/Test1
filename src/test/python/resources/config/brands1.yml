@@ -3,8 +3,8 @@ brands:
 #- name: q8
 #  config_file: q8.yml
 #
-- name: ptbanc
-  config_file: ptbanc.yml
+#- name: ptbanc
+#  config_file: ptbanc.yml
 
-#- name: trade99
-#  config_file: trade99.yml
+- name: trade99
+  config_file: trade99.yml
