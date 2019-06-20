@@ -28,6 +28,8 @@ from src.main.python.ui.crm.model.pages.leaderboard.LeaderboardPage import Leade
 from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from selenium.common.exceptions import NoSuchElementException
+import datetime
+
 
 class CRMHomePage(CRMBasePage):
 
@@ -198,7 +200,19 @@ class CRMHomePage(CRMBasePage):
 
     def get_current_version(self):
         current_version = super().wait_load_element("/html/body/table[4]/tbody/tr/td", timeout=45).text
-        current_version_number = (current_version.split("."))[1-2]
-        Logging().reportDebugStep(self, "Dashboard module was opened")
-        return current_version_number
+        current_version_number = current_version.split(".")
+        version = current_version_number[1] + current_version_number[2]
+        Logging().reportDebugStep(self, "The current sprint version is: " + version)
+        return version
 
+    def check_previous_version(self):
+        f = open("C:/version.txt", "r")  # name of file open in read mode
+        lines = f.readlines()  # split file into lines
+        prev_version = lines[0]
+        Logging().reportDebugStep(self, "The previous sprint version is: " + prev_version)
+        return prev_version
+
+    def get_day_of_week(self):
+        today = datetime.datetime.today().weekday()
+        Logging().reportDebugStep(self, "The current day of the week is: " + str(today))
+        return today

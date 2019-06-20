@@ -26,4 +26,9 @@ class BaseCRMPrecondition(object):
 
         CRMHomePage(self.driver).open_client_module()
         current_vtiger_version = CRMHomePage(self.driver).get_current_version()
-        print(current_vtiger_version)
+        prev_vtiger_version = CRMHomePage(self.driver).check_previous_version()
+        day = CRMHomePage(self.driver).get_day_of_week()
+        if day == 6:
+            assert int(current_vtiger_version) == int(prev_vtiger_version) + 1
+        else:
+            assert int(current_vtiger_version) == int(prev_vtiger_version)
