@@ -1,9 +1,9 @@
-test = "API Old Forex"
-file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/API Old Forex/result/final_file.xlsx"
-file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/API Old Forex/result/*.xlsx'
-file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/API Old Forex/%s"
-short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/API Old Forex/result/short_final_file.xlsx"
-mail_subject = "API Old Forex"
+test = "Brokerxp API"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/Brokerxp API/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/Brokerxp API/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/Brokerxp API/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/Brokerxp API/result/short_final_file.xlsx"
+mail_subject = "Brokerxp API"
 timeout = 4
 data = None
 url_client_area = ""
@@ -16,5 +16,5 @@ logger = None
 handler = None
 
 
-chrome_driver = "C:/Users/Panda102/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver2.exe"
+chrome_driver = "C:/Users/Panda102/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
 # chrome_driver = "D:/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
