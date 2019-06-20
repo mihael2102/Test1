@@ -54,6 +54,8 @@ class TasksPage(CRMBasePage):
         task_module = super().wait_load_element("//a[contains(text(), 'Account Name')]")
         task_module.click()
         Logging().reportDebugStep(self, "Click account name")
+        self.wait_load_element("//div[@class='spinner']", timeout=35)
+        self.wait_crm_loading_to_finish_tasks(55)
         return TasksPage(self.driver)
 
     def get_second_column_frow_text(self):
