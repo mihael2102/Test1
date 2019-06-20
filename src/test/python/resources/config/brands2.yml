@@ -1,4 +1,4 @@
 brands:
 
-- name: gmo
-  config_file: gmo.yml
+- name: itrader
+  config_file: itrader.yml
