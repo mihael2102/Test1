@@ -1,9 +1,9 @@
-test = "GMO CA"
-file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/GMO CA/result/final_file.xlsx"
-file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/GMO CA/result/*.xlsx'
-file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/GMO CA/%s"
-short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/GMO CA/result/short_final_file.xlsx"
-mail_subject = "GMO CA"
+test = "OF Special CA"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/OF Special CA/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/OF Special CA/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/OF Special CA/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/OF Special CA/result/short_final_file.xlsx"
+mail_subject = "OF Special CA"
 timeout = 4
 data = None
 url_client_area = ""
