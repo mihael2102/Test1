@@ -1,9 +1,9 @@
-test = "Brokerxp API"
-file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/Brokerxp API/result/final_file.xlsx"
-file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/Brokerxp API/result/*.xlsx'
-file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/Brokerxp API/%s"
-short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/Brokerxp API/result/short_final_file.xlsx"
-mail_subject = "Brokerxp API"
+test = "GMO API"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/GMO API/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/GMO API/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/GMO API/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/GMO API/result/short_final_file.xlsx"
+mail_subject = "GMO API"
 timeout = 4
 data = None
 url_client_area = ""
