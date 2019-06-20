@@ -1,9 +1,9 @@
-test = "Trade99 API"
-file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/Trade99 API/result/final_file.xlsx"
-file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/Trade99 API/result/*.xlsx'
-file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/Trade99 API/%s"
-short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/Trade99 API/result/short_final_file.xlsx"
-mail_subject = "Trade99 API"
+test = "NF Special API"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/NF Special API/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/NF Special API/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/NF Special API/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/NF Special API/result/short_final_file.xlsx"
+mail_subject = "NF Special API"
 timeout = 4
 data = None
 url_client_area = ""
