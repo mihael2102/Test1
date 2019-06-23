@@ -11,7 +11,6 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 class MassEditTestCRM(BaseTest):
 
     def test_clients_mass_edit(self):
-
         crm_clients_module_page = CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
