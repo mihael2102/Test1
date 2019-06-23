@@ -78,17 +78,17 @@ class MyDashboardPrecondition(object):
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).select_show_all_tab()
         MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
-        account_name = MyDashboardPage(self.driver).get_account_name()
         MyDashboardPage(self.driver).open_email_actions_section()
         brand = global_var.current_brand_name
-        MyDashboardPage(self.driver).enter_subject_mail(brand + CRMConstants.SUBJECT_TASK_MAIL)
+        subject = brand + CRMConstants.SUBJECT_TASK_MAIL
+        MyDashboardPage(self.driver).enter_subject_mail(subject)
         MyDashboardPage(self.driver).enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         MyDashboardPage(self.driver).enter_cc_mail(CRMConstants.CC_EMAIL)
         MyDashboardPage(self.driver).enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         MyDashboardPage(self.driver).click_send()
         sleep(10)
-        msg = TasksPage(self.driver).check_email(brand + CRMConstants.SUBJECT_TASK_MAIL)
-        assert brand + CRMConstants.SUBJECT_TASK_MAIL in msg
+        msg = TasksPage(self.driver).check_email(subject)
+        assert subject in msg
 
     def sms_icon(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
@@ -99,7 +99,6 @@ class MyDashboardPrecondition(object):
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).select_show_all_tab()
         MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
-        account_name = MyDashboardPage(self.driver).get_account_name()
         MyDashboardPage(self.driver).click_sms_icon()
         pop_up = MyDashboardPage(self.driver).check_pop_up_send_sms()
         try:
@@ -119,15 +118,9 @@ class MyDashboardPrecondition(object):
         account_name = MyDashboardPage(self.driver).get_account_name()
         type = MyDashboardPage(self.driver).get_event_type()
         status = MyDashboardPage(self.driver).get_status()
-        # account_status = MyDashboardPage(self.driver).get_account_status()
         country = MyDashboardPage(self.driver).get_country()
         assigned_to = MyDashboardPage(self.driver).get_assigned_to()
         created_by = MyDashboardPage(self.driver).get_created_by()
-        # local_time = MyDashboardPage(self.driver).get_local_time()
-        # balance = MyDashboardPage(self.driver).get_balance()
-        # total_p_l = MyDashboardPage(self.driver).get_total_p_l()
-        # priority = MyDashboardPage(self.driver).get_priority()
-        # subject = MyDashboardPage(self.driver).get_subject()
 
         MyDashboardPage(self.driver).refresh_page()
 
@@ -137,7 +130,6 @@ class MyDashboardPrecondition(object):
                                     .enter_country(country) \
                                     .enter_assigned_to(assigned_to) \
                                     .enter_created_by(created_by) \
-                                    # .enter_local_time(local_time) \
 
         return_account_name = MyDashboardPage(self.driver).get_account_name()
 

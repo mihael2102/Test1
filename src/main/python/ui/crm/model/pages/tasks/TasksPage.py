@@ -299,7 +299,7 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def check_email(self, subject):
-        sleep(10)
+        sleep(1)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
         pop_conn.user('jonathan.albalak@pandats.com')
         pop_conn.pass_('xUQ7hrr9VF')

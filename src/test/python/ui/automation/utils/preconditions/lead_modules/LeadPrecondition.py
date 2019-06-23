@@ -57,8 +57,6 @@ class LeadPrecondition(object):
         mail = LeadsModule(self.driver).get_saved_mail_lead(brand + CRMConstants.SUBJECT_LEAD_MAIL)
         assert mail == brand + CRMConstants.SUBJECT_LEAD_MAIL
 
-
-
     def test_edit_lead_pencil_icon(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),

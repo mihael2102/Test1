@@ -139,7 +139,6 @@ class LeadModuleTest(BaseTest):
                 self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
         else:
-
             ConvertLeadModule(self.driver).perform_convert_lead(
                 self.client1[LeadsModuleConstants.FIRST_NAME],
                 self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
