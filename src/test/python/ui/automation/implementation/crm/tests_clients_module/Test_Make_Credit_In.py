@@ -21,6 +21,7 @@ from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 import time
 from selenium.common.exceptions import NoSuchElementException
 
+
 @pytest.mark.run(order=1)
 class CreditInTestCRM(BaseTest):
 

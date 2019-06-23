@@ -3,7 +3,6 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.workflows.WorkflowsPrecondition import WorkflowsPrecondition
 
 
-
 class WorkflowsModulesTest(BaseTest):
 
     def test_create_workflows(self):

@@ -98,6 +98,7 @@ class FinancialTransactionsPage(CRMBasePage):
 
         transaction_number_element = self.driver.find_element(By.XPATH,
                                                               "(//a[contains(text(), 'MTT')])[%s]" % position_in_list)
+        Logging().reportDebugStep(self, "Returns the transaction_id: " + transaction_number_element.text)
         return transaction_number_element.text
 
     def get_client_name_by_position_from_list(self, position_in_list=3):
@@ -107,6 +108,7 @@ class FinancialTransactionsPage(CRMBasePage):
             By.XPATH,
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["client_name_element"]
             % position_in_list)
+        Logging().reportDebugStep(self, "Returns the client name: " + client_name_element.text)
         return client_name_element.text
 
     def get_transaction_type_by_position_from_list(self, position_in_list=3):
@@ -116,6 +118,7 @@ class FinancialTransactionsPage(CRMBasePage):
             By.XPATH,
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_element"]
             % position_in_list)
+        Logging().reportDebugStep(self, "Returns the transaction type: " + transaction_type_element.text)
         return transaction_type_element.text
 
     def get_modified_time_by_position_from_list(self, position_in_list=3):
@@ -125,10 +128,10 @@ class FinancialTransactionsPage(CRMBasePage):
             By.XPATH,
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["modified_time_element"]
             % position_in_list)
+        Logging().reportDebugStep(self, "Returns the modified time: " + modified_time_element.text)
         return modified_time_element.text
 
     def is_modified_time_in_search_results(self, modified_time):
-
         # Get collection of time search results because search does not consider hours/minutes but only date
         sleep(2)
         # current_year = datetime.datetime.now().year
@@ -148,21 +151,21 @@ class FinancialTransactionsPage(CRMBasePage):
     def get_trading_account_by_position_from_list(self, position_in_list=3):
         if position_in_list != 3:
             sleep(2)    # Waiting until page reloading will be finished
-
         if global_var.current_brand_name == "itrader":
             sleep(5)
-
         trading_account_element = self.driver.find_element(
             By.XPATH,
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["trading_account_element"]
             % position_in_list)
+        Logging().reportDebugStep(self, "Returns the trading account: " + trading_account_element.text)
         return trading_account_element.text
 
     def perform_searching_trading_account_via_filters(self, transaction_number, client_name, transaction_type_text,
                                                       trading_account):
         self.enter_transaction_number(transaction_number)
         self.enter_client_name(client_name)
-        self.enter_transaction_type_text(transaction_type_text)
+        if global_var.current_brand_name != "forex_staging":
+            self.enter_transaction_type_text(transaction_type_text)
         # self.enter_modified_time(modified_time)
         self.enter_trading_account(trading_account)
         self.click_search_button()
@@ -184,11 +187,9 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def enter_transaction_type_text(self, transaction_type_text):
-        transaction_type_drop_down = self.driver.find_element(
-            By.XPATH,
+        transaction_type_drop_down = self.driver.find_element(By.XPATH,
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_drop_down"])
         transaction_type_drop_down.click()
-
         transaction_type_field = self.driver.find_element(
             By.XPATH,
             "(//select[contains(@name, 'tks_transactiontype')]//..//input)[1]")
@@ -222,10 +223,8 @@ class FinancialTransactionsPage(CRMBasePage):
 
     def open_first_financial_transaction_in_list(self):
         sleep(2)
-
-        if (global_var.current_brand_name == "rimarkets-staging"):
+        if global_var.current_brand_name == "rimarkets-staging":
             sleep(3)
-
         transaction_number_element = self.driver.find_element(By.XPATH, "//a[contains(text(), 'MTT')]")
         self.scroll_into_view(transaction_number_element)
         transaction_number_element.click()
