@@ -53,7 +53,7 @@ class TasksPage(CRMBasePage):
         sleep(1)
         task_module = super().wait_load_element("//a[contains(text(), '%s')]" % column)
         task_module.click()
-        self.wait_crm_loading_to_finish_tasks(155)
+        self.wait_crm_loading_to_finish_tasks(200)
         Logging().reportDebugStep(self, "Click " + column + " column title")
         return TasksPage(self.driver)
 

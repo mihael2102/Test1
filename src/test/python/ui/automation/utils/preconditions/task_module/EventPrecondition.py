@@ -21,7 +21,6 @@ class EventPrecondition(object):
         self.driver = driver
         self.config = config
 
-
     def test_sorting_columns(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
                                  .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
