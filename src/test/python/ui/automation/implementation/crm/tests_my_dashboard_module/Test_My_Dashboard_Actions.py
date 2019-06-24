@@ -14,7 +14,6 @@ from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecon
 from src.test.python.ui.automation.utils.preconditions.mydashboard.MyDashboardPrecondition import MyDashboardPrecondition
 
 
-
 @pytest.mark.run(order=28)
 class MyDashboardActionsTest(BaseTest):
 

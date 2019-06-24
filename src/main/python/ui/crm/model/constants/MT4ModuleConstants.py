@@ -11,4 +11,3 @@ class MT4ModuleConstants(object):
     GROUP_REAL = "real"
     LEVERAGE_100 = "100"
     LEVERAGE_50 = "50"
-
