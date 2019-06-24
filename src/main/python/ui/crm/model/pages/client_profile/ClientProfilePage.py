@@ -871,11 +871,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_country_text(self):
-        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
-            country = self.driver.find_element(By.XPATH,
-                                               "//td[3][contains(text(),'Country')]//following-sibling::td[1]")
-        else:
-            country = self.driver.find_element(By.XPATH, "//td[contains(text(),'Country')]//following-sibling::td[1]")
+        country = self.driver.find_element_by_xpath("//td[text()='Country']//following-sibling::td[1]")
         Logging().reportDebugStep(self, "Returns the country: " + country.text)
         return country.text
 
