@@ -323,21 +323,22 @@ class TasksPage(CRMBasePage):
         sleep(2)
         # for_old_forex
         self.driver.execute_script("window.scrollTo(0, document.body.scrollWeight);")
-        subject_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["subject_button"])
+        subject_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
+                                                              (self.__class__.__name__)["subject_button"])
         subject_button.click()
-        subject_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["subject_field"])
+        subject_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
+                                                             (self.__class__.__name__)["subject_field"])
         subject_field.clear()
         sleep(5)
         subject_field.send_keys(subject)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
-        sleep(3)
-        Logging().reportDebugStep(self, "The subject was set: " + subject)
-        event_type = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["event_type"])
+        event_type = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
+                                                          (self.__class__.__name__)["event_type"])
         event_type.click()
-        title = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[1]/div/button-block/div[1]/h3")
+        title = super().wait_element_to_be_clickable\
+            ("/html/body/app-root/tasks-list/div/div[1]/div/button-block/div[1]/h3")
         # title.click()
         self.driver.execute_script("arguments[0].click();", title)
-
         return TasksPage(self.driver)
 
     def open_phone_actions(self):
@@ -394,7 +395,6 @@ class TasksPage(CRMBasePage):
         result_count = int(results_split[len(results_split) - 1])
         Logging().reportDebugStep(self, "Got %d search results" % result_count)
         return result_count
-
 
     def enter_subject_mail(self, subject):
         sleep(4)

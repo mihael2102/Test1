@@ -19,6 +19,7 @@ import xlrd
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 
+
 class LeadPrecondition(object):
 
     driver = None
@@ -27,8 +28,6 @@ class LeadPrecondition(object):
     def __init__(self, driver, config):
         self.driver = driver
         self.config = config
-
-
 
     def check_email_popup(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
@@ -42,7 +41,8 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL) \
                                 .click_search_button_leads_module()
         lead_email = LeadsModule(self.driver).get_first_lead_email()
-        LeadsModule(self.driver).click_first_lead_email()
+        LeadsModule(self.driver).check_email_link_is_clickable()\
+                                .click_first_lead_email()
         value = LeadsModule(self.driver).get_lead_email_pop_up()
         lead_email_pop_up = value.replace(',','')
         assert lead_email == lead_email_pop_up
@@ -60,8 +60,6 @@ class LeadPrecondition(object):
                                 .open_email_section()
         mail = LeadsModule(self.driver).get_saved_mail_lead(CRMConstants.SUBJECT_LEAD_MAIL)
         assert mail == CRMConstants.SUBJECT_LEAD_MAIL
-
-
 
     def test_edit_lead_pencil_icon(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \

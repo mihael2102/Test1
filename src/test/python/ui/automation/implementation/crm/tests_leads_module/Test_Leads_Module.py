@@ -32,6 +32,7 @@ import re
 import time
 from time import sleep
 
+
 @pytest.mark.run(order=24)
 class LeadModuleTest(BaseTest):
 
@@ -176,7 +177,7 @@ class LeadModuleTest(BaseTest):
             check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
             sleep(3)
             count = 0
-            while (APIConstants.STATUS_OK not in check_create_customer_token):
+            while APIConstants.STATUS_OK not in check_create_customer_token:
                 sleep(2)
                 check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
                 count += 1
@@ -194,10 +195,6 @@ class LeadModuleTest(BaseTest):
             client_last_name = ClientsPage(self.driver).get_client_last_name()
             client_phone = ClientsPage(self.driver).get_client_phone()
             ClientsPage(self.driver).click_custom_information()
-            refferal = ""
-            if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "oinvestsa" and \
-                    global_var.current_brand_name != "gmo":
-                refferal = ClientsPage(self.driver).get_refferal_client()
 
             assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                 LeadsModuleConstants.EMAIL]
@@ -206,7 +203,6 @@ class LeadModuleTest(BaseTest):
                 LeadsModuleConstants.FIRST_NAME]
             assert client_last_name == APIConstants.LASTNAME
             assert client_phone == APIConstants.PHONE_CRM
-            assert APIConstants.REFFERAL in refferal
 
         else:
 
