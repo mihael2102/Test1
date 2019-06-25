@@ -21,6 +21,7 @@ from src.test.python.ui.automation.utils.preconditions.trading_account.TradingAc
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from selenium.common.exceptions import NoSuchElementException
 
+
 @pytest.mark.run(order=13)
 class DepositTestCRM(BaseTest):
 

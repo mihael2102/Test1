@@ -21,7 +21,6 @@ class EventPrecondition(object):
         self.driver = driver
         self.config = config
 
-
     def test_sorting_columns(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
                                  .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -128,7 +127,6 @@ class EventPrecondition(object):
         assert type == verify_type
 
     def create_first_event(self):
-
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))

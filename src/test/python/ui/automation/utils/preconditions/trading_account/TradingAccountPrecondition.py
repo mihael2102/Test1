@@ -11,6 +11,7 @@ from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
+
 class TradingAccountPrecondition(object):
 
     driver = None
