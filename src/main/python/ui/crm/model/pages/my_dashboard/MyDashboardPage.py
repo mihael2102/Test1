@@ -27,6 +27,7 @@ class MyDashboardPage(CRMBasePage):
         sort_by_type = super().wait_load_element(
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/thead/tr/th[5]/a")
         sort_by_type.click()
+        self.wait_crm_loading_to_finish_tasks(55)
         Logging().reportDebugStep(self, "Sort by type")
         return MyDashboardPage(self.driver)
 
@@ -35,6 +36,7 @@ class MyDashboardPage(CRMBasePage):
         sort_by_type = super().wait_load_element(
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/thead/tr/th[3]/a")
         sort_by_type.click()
+        self.wait_crm_loading_to_finish_tasks(55)
         Logging().reportDebugStep(self, "Sort by type")
         return MyDashboardPage(self.driver)
 

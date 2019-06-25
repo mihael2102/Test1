@@ -5,6 +5,8 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
+from time import sleep
 
 
 class CreateEvent(CRMBasePage):
@@ -26,21 +28,21 @@ class CreateEvent(CRMBasePage):
         event_element = super().wait_element_to_be_clickable("//form[@name='new_interaction']//select[@id='event_status']")
         select_status = Select(event_element)
         select_status.select_by_visible_text(status)
-        Logging().reportDebugStep(self, "The event status is set " + status)
+        Logging().reportDebugStep(self, "The event status is set: " + status)
         return CreateEvent(self.driver)
 
     def set_event_type(self, type):
         type_element = self.driver.find_element(By.XPATH, "//form[@name='new_interaction']//select[@name='event_type']")
         select = Select(type_element)
         select.select_by_visible_text(type)
-        Logging().reportDebugStep(self, "The event type is set " + type)
+        Logging().reportDebugStep(self, "The event type is set: " + type)
         return CreateEvent(self.driver)
 
     def set_duration(self, duration):
         duration_element = self.driver.find_element(By.XPATH, "//form[@name='new_interaction']//select[@name='event_duration']")
         select = Select(duration_element)
         select.select_by_visible_text(duration)
-        Logging().reportDebugStep(self, "The duration  is set " + duration)
+        Logging().reportDebugStep(self, "The duration is set: " + duration)
         return CreateEvent(self.driver)
 
     def set_time(self, time):
@@ -48,7 +50,7 @@ class CreateEvent(CRMBasePage):
         time_element.clear()
         time_element.send_keys(time)
         time_element.send_keys(Keys.ENTER)
-        Logging().reportDebugStep(self, "The time is set " + time)
+        Logging().reportDebugStep(self, "The time is set: " + time)
         return CreateEvent(self.driver)
 
     def set_date(self, date):
@@ -56,7 +58,7 @@ class CreateEvent(CRMBasePage):
         date_element.clear()
         date_element.send_keys(date)
         date_element.send_keys(Keys.ENTER)
-        Logging().reportDebugStep(self, "The date is set " + date)
+        Logging().reportDebugStep(self, "The date is set: " + date)
         return CreateEvent(self.driver)
 
     def set_assign_to(self, assign_to):
@@ -64,21 +66,21 @@ class CreateEvent(CRMBasePage):
         select = Select(assign_to_element)
         # select.select_by_visible_text(assign_to)
         select.select_by_visible_text(assign_to)
-        Logging().reportDebugStep(self, "The  assign to is set " + assign_to)
+        Logging().reportDebugStep(self, "The assign to is set: " + assign_to)
         return CreateEvent(self.driver)
 
     def set_priority(self, priority):
         priority_element = self.driver.find_element(By.XPATH, "//form[@name='new_interaction']//select[@id='priority']")
         select = Select(priority_element)
         select.select_by_visible_text(priority)
-        Logging().reportDebugStep(self, "The priority is set " + priority)
+        Logging().reportDebugStep(self, "The priority is set: " + priority)
         return CreateEvent(self.driver)
 
     def set_description(self, comments):
         description_element = self.driver.find_element(By.XPATH, "//form[@name='new_interaction']//textarea[@name='description']")
         description_element.clear()
         description_element.send_keys(comments)
-        Logging().reportDebugStep(self, "The comments is set " + comments)
+        Logging().reportDebugStep(self, "The comments is set: " + comments)
         return CreateEvent(self.driver)
 
     def set_subject(self, subject):
@@ -86,11 +88,13 @@ class CreateEvent(CRMBasePage):
                                                        "//form[@name='new_interaction']//input[@name='subject']")
         description_element.clear()
         description_element.send_keys(subject)
-        Logging().reportDebugStep(self, "The subject is set to " + subject)
+        TaskModuleConstants.SUBJECT = subject
+        Logging().reportDebugStep(self, "The subject is set: " + subject)
         return CreateEvent(self.driver)
 
     def click_save(self):
-        save_button = self.driver.find_element(By.XPATH, "//form[@name='new_interaction']//button[@id='save_btn']")
+        sleep(1)
+        save_button = super().wait_element_to_be_clickable("//form[@name='new_interaction']//button[@id='save_btn']")
         save_button.click()
-        Logging().reportDebugStep(self, "Click the 'save' button ")
+        Logging().reportDebugStep(self, "Click the Save button")
         return CreateEvent(self.driver)

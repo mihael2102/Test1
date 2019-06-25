@@ -40,7 +40,6 @@ class MyDashboardPrecondition(object):
                                     .check_task_section_contains_record() \
                                     .check_client_segmentation_contains_record()
 
-
     def edit_event(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -72,7 +71,6 @@ class MyDashboardPrecondition(object):
         type = MyDashboardPage(self.driver).get_type()
         assert status == TaskModuleConstants.SECOND_EVENT_STATUS
         assert type == TaskModuleConstants.SECOND_EVENT_TYPE
-
 
     def email_icon(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \

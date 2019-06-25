@@ -223,7 +223,7 @@ class FilterPage(CRMBasePage):
 
     def delete_leads_filter(self):
         current_filter = super().wait_load_element("//span[@class='filter-option pull-left']").text
-        if (current_filter == 'TestFilterLeadModule'):
+        if current_filter == 'TestFilterLeadModule':
             delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
             sleep(1)
             delete_filter_button.click()
@@ -231,13 +231,11 @@ class FilterPage(CRMBasePage):
             deleting_button_confirmation = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
             sleep(1)
             deleting_button_confirmation.click()
-            Logging().reportDebugStep(self, "The Leads filter was deleted")
-            return FilterPage(self.driver)
         else:
             filter_picklist = super().wait_element_to_be_clickable("//span[@class='filter-option pull-left']")
             sleep(1)
             filter_picklist.click()
-            test_filter = super().wait_element_to_be_clickable("//span[contains(text(),'TestFilterLeadsModule')]")
+            test_filter = super().wait_element_to_be_clickable("//span[contains(text(),'TestFilterLeadModule')]")
             sleep(1)
             test_filter.click()
             sleep(2)
@@ -248,12 +246,12 @@ class FilterPage(CRMBasePage):
             deleting_button_confirmation = super().wait_element_to_be_clickable("//button[contains(text(),'OK')]")
             sleep(1)
             deleting_button_confirmation.click()
-            Logging().reportDebugStep(self, "The Leads filter was deleted")
-            return FilterPage(self.driver)
+        Logging().reportDebugStep(self, "The Leads filter was deleted")
+        return FilterPage(self.driver)
 
     def delete_help_desk_filter(self):
         current_filter = super().wait_load_element("//span[@class='filter-option pull-left']").text
-        if (current_filter == 'TestFilterHelpDeskModule'):
+        if current_filter == 'TestFilterHelpDeskModule':
             delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
             sleep(1)
             delete_filter_button.click()
@@ -283,7 +281,7 @@ class FilterPage(CRMBasePage):
 
     def delete_trading_account_filter(self):
         current_filter = super().wait_load_element("//span[@class='filter-option pull-left']").text
-        if (current_filter == 'TestFilterTradingAccountModule'):
+        if current_filter == 'TestFilterTradingAccountModule':
             delete_filter_button = super().wait_element_to_be_clickable("//a[contains(text(),'Delete')]")
             sleep(1)
             delete_filter_button.click()
