@@ -309,7 +309,6 @@ class LeadModuleTest(BaseTest):
                     self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                     self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
-
             convert_verified = False
             try:
                 confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()

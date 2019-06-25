@@ -24,90 +24,24 @@ class AddInteraction(BaseTest):
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-
-        if (global_var.current_brand_name == "xtraderfx") or (global_var.current_brand_name == "royal_cfds") or \
-                 (global_var.current_brand_name == "finmarket") or (global_var.current_brand_name == "rimarkets"):
-            ClientsPage(self.driver).perform_searching(
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
-
-        elif (global_var.current_brand_name == "4xfx") or (global_var.current_brand_name == "fxpmarkets"):
-            ClientsPage(self.driver).perform_searching(
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_C_NEW),
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
-
-        elif global_var.current_brand_name == "safemarkets":
-                ClientsPage(self.driver).perform_searching(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_NEW),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
-
-        elif global_var.current_brand_name == "oinvestsa":
-                ClientsPage(self.driver).perform_searching(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY_SA))
-
-        elif global_var.current_brand_name == "q8":
-            ClientsPage(self.driver).perform_searching(
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_TEST),
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
-
-        elif global_var.current_brand_name == "goldenmarkets":
-            ClientsPage(self.driver).perform_searching(
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_F_NEW),
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
-
-        elif global_var.current_brand_name == "itrader_global":
-                ClientsPage(self.driver).perform_searching(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY_ME))
-
-        elif global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
-            ClientsPage(self.driver).perform_searching(
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_NEW),
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
-        else:
-            ClientsPage(self.driver).perform_searching(
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS),
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
-
-        crm_client_profile.perform_scroll_up()
-        crm_client_profile = crm_client_profile.open_client_id()
-
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(
+            self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
         SidebarModules(self.driver)\
             .open_create_event_module() \
 
-        if global_var.current_brand_name == "4xfx":
-            CreateEvent(self.driver).create_event(
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_STATUS),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE_TASK),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DURATION),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TIME),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DATE),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_ASSIGN_TO),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_PRIORITY),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DESCRIPTION))
-        else:
-            CreateEvent(self.driver).create_event(
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_STATUS),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DURATION),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TIME),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DATE),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_ASSIGN_TO),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_PRIORITY),
-                        self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DESCRIPTION))
+        CreateEvent(self.driver).create_event(
+                    self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_STATUS),
+                    self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE),
+                    self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DURATION),
+                    self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TIME),
+                    self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DATE),
+                    self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_ASSIGN_TO),
+                    self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_PRIORITY),
+                    self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_DESCRIPTION))
 
-        confirmation_message = crm_client_profile.get_confirm_message_body()
+        confirmation_message = ClientProfilePage(self.driver).get_confirm_message_body()
         assert confirmation_message == CRMConstants.INTERACTION_SUCCESSFULLY
         crm_client_profile.click_ok()
 
@@ -119,7 +53,7 @@ class AddInteraction(BaseTest):
         res_count = CRMHomePage(self.driver)\
             .open_task_module()\
             .open_show_all_tab()\
-            .find_event_by_subject(self.config.get_value(TaskModuleConstants.EVENT1, TaskModuleConstants.EVENT_TYPE))\
+            .find_event_by_subject(TaskModuleConstants.SUBJECT)\
             .get_results_count()
 
         self.assertGreaterEqual(res_count, 1)

@@ -38,7 +38,6 @@ class TasksPage(CRMBasePage):
           return Help Desk instance
       '''
 
-
     def get_third_column_frow_text(self):
         column_text = super().wait_load_element("//tr[2]/td[6]/grid-cell/div/span/a")
         Logging().reportDebugStep(self, "Returns first column text: " + column_text.text)
@@ -321,24 +320,13 @@ class TasksPage(CRMBasePage):
 
     def find_event_by_subject(self, subject):
         sleep(2)
-        # for_old_forex
         self.driver.execute_script("window.scrollTo(0, document.body.scrollWeight);")
-        subject_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
-                                                              (self.__class__.__name__)["subject_button"])
-        subject_button.click()
-        subject_field = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
-                                                             (self.__class__.__name__)["subject_field"])
+        subject_field = super().wait_element_to_be_clickable("(//*[@id='host-element']/input)[4]")
         subject_field.clear()
-        sleep(5)
+        sleep(2)
         subject_field.send_keys(subject)
+        self.wait_crm_loading_to_finish_tasks(55)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
-        event_type = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
-                                                          (self.__class__.__name__)["event_type"])
-        event_type.click()
-        title = super().wait_element_to_be_clickable\
-            ("/html/body/app-root/tasks-list/div/div[1]/div/button-block/div[1]/h3")
-        # title.click()
-        self.driver.execute_script("arguments[0].click();", title)
         return TasksPage(self.driver)
 
     def open_phone_actions(self):
@@ -381,20 +369,16 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def get_results_count(self):
-        sleep(5)
+        sleep(2)
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         refresh_icon = self.driver.find_element(By.XPATH, "//a[@class='fa fa-refresh']")
         self.driver.execute_script("arguments[0].click();", refresh_icon)
-        # refresh_icon.click()
-        sleep(8)
-        result_count_xpath = "//*[contains(text(), 'Showing Records')]"
-        self.wait_visible_of_element(result_count_xpath)
-        results_count_text = self.driver.find_elements(By.XPATH, result_count_xpath)[0].text
-        Logging().reportDebugStep(self, "Results found text: %s" % results_count_text)
-        results_split = results_count_text.split(" ")
-        result_count = int(results_split[len(results_split) - 1])
-        Logging().reportDebugStep(self, "Got %d search results" % result_count)
-        return result_count
+        sleep(0.5)
+        self.wait_element_to_be_disappear("//a[@class='fa fa-refresh roll']")
+        results_count_text = self.wait_visible_of_element("//*[contains(text(), 'Showing Records')]").text
+        results_count = results_count_text.split("of ")[1]
+        Logging().reportDebugStep(self, "Results found: " + results_count)
+        return int(results_count)
 
     def enter_subject_mail(self, subject):
         sleep(4)
@@ -483,7 +467,6 @@ class TasksPage(CRMBasePage):
         sleep(2)
         Logging().reportDebugStep(self, "Search by status")
         return TasksPage(self.driver)
-
 
     def get_first_type(self):
         sleep(3)
