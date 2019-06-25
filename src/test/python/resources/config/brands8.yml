@@ -1,6 +1,4 @@
 brands:
 
-- name: stoxmarket
-  config_file: stoxmarket.yml
-- name: kbcapitals
-  config_file: kbcapitals.yml
+- name: finmarket
+  config_file: finmarket.yml

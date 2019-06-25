@@ -1,4 +1,4 @@
 brands:
 
-- name: fxpmarkets
-  config_file: fxpmarkets.yml
+- name: umi
+  config_file: umi.yml
