@@ -12,7 +12,6 @@ from src.test.python.ui.automation.utils.preconditions.documents_module.Document
 class DocumentModuleTest(BaseTest):
 
     def test_searching_by_columns(self):
-
         DocumentPrecondition(self.driver, self.config).searching_by_columns()
 
     def test_open_tabs(self):

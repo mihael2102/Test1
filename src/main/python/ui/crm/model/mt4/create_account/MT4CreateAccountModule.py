@@ -4,6 +4,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 import time
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 class MT4CreateAccountModule(CRMBasePage):
 
@@ -21,7 +22,10 @@ class MT4CreateAccountModule(CRMBasePage):
         if currency:
             self.select_currency(currency)
         if group:
-            self.select_group(group)
+            if global_var.current_brand_name == "forex_staging":
+                self.select_group_forexstaging(group)
+            else:
+                self.select_group(group)
         if leverage:
             self.select_leverage(leverage)
         self.click_update() #for_old_forex
@@ -95,9 +99,24 @@ class MT4CreateAccountModule(CRMBasePage):
         time.sleep(5)
         drop_down = self.wait_element_to_be_clickable("//select[@name='mtGroupSelect']")
         drop_down.click()
-        group_selection = self.driver.find_element(By.XPATH,
-                "//select[@name='mtGroupSelect']/option[contains(text(),'%s')][not(contains(text(),'demo'))]" % group)
+        group_selection = self.driver.find_element_by_xpath(
+                "//select[@name='mtGroupSelect']/option[contains(text(),'%s')]" % group)
         #"//select[@name='group']//following-sibling::*[contains(.,'%s')]"
+        group_selection.click()
+        Logging().reportDebugStep(self, "Trading account group was selected: " + group_selection.text)
+        return self
+
+    def select_group_forexstaging(self, group):
+        time.sleep(5)
+        drop_down = self.wait_element_to_be_clickable("//select[@name='mtGroupSelect']")
+        drop_down.click()
+        if group == "demo":
+            group_selection = self.driver.find_element_by_xpath(
+                "//select[@name='mtGroupSelect']/option[contains(text(),'%s')]" % group)
+        else:
+            group_selection = self.driver.find_element_by_xpath(
+                "//select[@name='mtGroupSelect']/option[contains(text(),'%s')][not(contains(text(),'demo'))]" % group)
+        # "//select[@name='group']//following-sibling::*[contains(.,'%s')]"
         group_selection.click()
         Logging().reportDebugStep(self, "Trading account group was selected: " + group_selection.text)
         return self

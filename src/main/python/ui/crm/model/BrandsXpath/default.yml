@@ -11,6 +11,8 @@ FinancialTransactionsPage:
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
 LeadViewInfo:
   convert_lead_module: "//a[contains(text(),'Convert Lead')]"
+LeadsModule:
+  first_lead_email: "//tr[2]//a//div[contains(text(), 'pandaqa')]"
 CRMClientDeposit:
   i_confirm_checkbox: "//*[@name='confirm']"
 ClientProfilePage:
