@@ -1,11 +1,11 @@
 tests_config:
 
 ###################################### MY DASHBOARD TESTS ########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_my_dashboard_module.Test_My_Dashboard_Actions
-  class: MyDashboardActionsTest
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_my_dashboard_module.Test_My_Dashboard_Actions
+#  class: MyDashboardActionsTest
+#  tests:
 #    - test_edit_event_my_dashboard
-    - test_email_icon
+#    - test_email_icon
 #    - test_sms_icon
 #    - test_sorting_columns
 #    - test_searching_by_columns
@@ -33,8 +33,7 @@ tests_config:
 #  directive: reload_configuration
 #  class: LeadModuleTest
 #  tests:
-#    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
-#    - test_edit_lead
+#    - test_create_edit_lead
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
 #  directive: reload_configuration
@@ -202,9 +201,9 @@ tests_config:
 #    - test_delete_user
 #
 ########################################### DOCUMENTS MODULE ###############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
-#  class: DocumentModuleTest
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
+  class: DocumentModuleTest
+  tests:
 #    - test_searching_by_columns
-#    - test_open_tabs
+    - test_open_tabs
 #    - test_sorting
