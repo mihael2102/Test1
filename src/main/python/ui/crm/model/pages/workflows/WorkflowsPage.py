@@ -60,6 +60,7 @@ class WorkflowsPage(CRMBasePage):
             self.wait_element_to_be_disappear("//div[@class='spinner']", timeout=95)
         btn_add_new_workflow = super().wait_element_to_be_clickable("//button[contains(text(), 'New Workflow')]")
         btn_add_new_workflow.click()
+        self.wait_crm_loading_to_finish_tasks(150)
         Logging().reportDebugStep(self, "Click 'New Workflow' button")
         return WorkflowsPage(self.driver)
 
