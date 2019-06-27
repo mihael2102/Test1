@@ -20,7 +20,6 @@ from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
-
 class MyDashboardPrecondition(object):
     driver = None
     config = None
@@ -55,14 +54,14 @@ class MyDashboardPrecondition(object):
         account_name = MyDashboardPage(self.driver).get_account_name()
         MyDashboardPage(self.driver).click_pencil_icon()
         EditEventModule(self.driver).edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
-                                              TaskModuleConstants.SECOND_EVENT_TYPE,
-                                              TaskModuleConstants.SECOND_DURATION,
-                                              CRMConstants.THIRD_DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
-                                              CRMConstants.THIRD_DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
-                                              TaskModuleConstants.SECOND_ASSIGN_TO,
-                                              TaskModuleConstants.SECOND_SUBJECT,
-                                              TaskModuleConstants.SECOND_PRIORITY,
-                                              TaskModuleConstants.DESCRIPTION_ADD_EVENT)
+                                                TaskModuleConstants.SECOND_EVENT_TYPE,
+                                                TaskModuleConstants.SECOND_DURATION,
+                                                CRMConstants.THIRD_DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
+                                                CRMConstants.THIRD_DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
+                                                TaskModuleConstants.SECOND_ASSIGN_TO,
+                                                TaskModuleConstants.SECOND_SUBJECT,
+                                                TaskModuleConstants.SECOND_PRIORITY,
+                                                TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
         MyDashboardPage(self.driver).refresh_page()
         MyDashboardPage(self.driver).select_show_all_tab()

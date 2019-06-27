@@ -17,7 +17,6 @@ from src.test.python.ui.automation.utils.preconditions.mydashboard.MyDashboardPr
 @pytest.mark.run(order=28)
 class MyDashboardActionsTest(BaseTest):
 
-
     def test_edit_event_my_dashboard(self):
         MyDashboardPrecondition(self.driver, self.config).edit_event()
 
