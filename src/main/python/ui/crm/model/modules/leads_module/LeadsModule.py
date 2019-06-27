@@ -64,9 +64,19 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Mobile changed : " + get_mobile_text.text)
         return get_mobile_text.text
 
+    def check_email_link_is_clickable(self):
+        sleep(1)
+        try:
+            self.driver.find_element_by_xpath("(//a[contains(@href,'javascript:InternalMailer')])[1]")
+            Logging().reportDebugStep(self, "Email address is clickable")
+            return LeadsModule(self.driver)
+        except (TimeoutException, NoSuchElementException):
+            Logging().reportDebugStep(self, "There is no link: Email address is not clickable")
+
     def click_first_lead_email(self):
         sleep(3)
-        first_lead_email = super().wait_load_element("//tr[2]//a//div[contains(text(), 'pandaqa')]")
+        first_lead_email = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                     (self.__class__.__name__)["first_lead_email"])
         sleep(1)
         try:
             first_lead_email.click()
@@ -76,8 +86,9 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def get_first_lead_email(self):
-        sleep(14)
-        first_lead_email = self.driver.find_element(By.XPATH, "//tr[2]//a//div[contains(text(), 'pandaqa')]")
+        sleep(3)
+        first_lead_email = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element
+                                                             (self.__class__.__name__)["first_lead_email"])
         Logging().reportDebugStep(self, "Get first lead email")
         return first_lead_email.text
 
@@ -567,15 +578,14 @@ class LeadsModule(CRMBasePage):
         field_found = self.driver.find_element(By.XPATH, "//input[@class='input-block-level form-control']")
         field_found.clear()
         field_found.send_keys(test_filter)
-        Logging().reportDebugStep(self, "The field found is : " + test_filter)
+        Logging().reportDebugStep(self, "The field found is: " + test_filter)
         select_test_filter = self.driver.find_element(By.XPATH, "//a/span[contains(., '%s')]" % test_filter)
         select_test_filter.click()
-        sleep(10)
-        sleep(10)
+        sleep(2)
         Logging().reportDebugStep(self, "Click the selected filter")
         if global_var.current_brand_name == "itrader":
-            sleep(30)
-        self.wait_loading_to_finish(55)
+            sleep(5)
+        self.wait_loading_to_finish(155)
         return LeadsModule(self.driver)
 
     def open_mass_edit_task(self):
@@ -586,7 +596,7 @@ class LeadsModule(CRMBasePage):
     def open_mass_assign_lead_module(self):
         mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass assign']")
         mass_edit_module.click()
-        return MassAssignLeadModule(self.driver)
+        return MassAssignLeadModule()
 
     '''
             Returns a task was_updated  message if the user entered a valid password
@@ -743,7 +753,7 @@ class LeadsModule(CRMBasePage):
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The lead_status  was selected : " + lead_status)
+        Logging().reportDebugStep(self, "The lead status was selected: " + lead_status)
         return LeadsModule(self.driver)
 
     def enter_language(self, language):
@@ -751,7 +761,7 @@ class LeadsModule(CRMBasePage):
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_cf_1092']")
         first_name_field.clear()
         first_name_field.send_keys(language)
-        Logging().reportDebugStep(self, "The language was entered : " + language)
+        Logging().reportDebugStep(self, "The language was entered: " + language)
         return LeadsModule(self.driver)
 
     def click_search_button_leads_module(self):
@@ -762,7 +772,7 @@ class LeadsModule(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", search_button)
         sleep(1)
         self.wait_loading_to_finish(75)
-        Logging().reportDebugStep(self, "The search button was clicked ")
+        Logging().reportDebugStep(self, "The Search button was clicked")
         return LeadsModule(self.driver)
 
     def get_results_count(self):
