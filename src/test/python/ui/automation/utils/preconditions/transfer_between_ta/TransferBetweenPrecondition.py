@@ -33,32 +33,9 @@ class TransferBetweenPrecondition(object):
 
         CRMHomePage(self.driver).open_client_module() \
             .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+            .find_client_by_email("pandaqa+20190627133207@pandats.com")
 
-        # Create LIVE account for client using MT4 Actions
         crm_client_profile = ClientProfilePage(self.driver)
-        # crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
-        #
-        # if global_var.current_brand_name == "finmarket":
-        #     MT4CreateAccountModule(self.driver) \
-        #         .create_account(
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-        #                               TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-        #                               TestDataConstants.TRADING_GROUP_LIVE_FINMARKET),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
-        #         .click_close()
-        #
-        # else:
-        #     MT4CreateAccountModule(self.driver) \
-        #         .create_account(
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-        #                               TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-        #         self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
-        #         .click_close()
         sleep(2)
         ClientProfilePage(self.driver).click_trading_accounts_tab() \
                                       .open_trading_accounts_tab()

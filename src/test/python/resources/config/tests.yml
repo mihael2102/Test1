@@ -147,10 +147,10 @@ tests_config:
 #  tests:
 #    - test_send_email # preconditions: convert lead
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
-#  class: TransferBetweenTa
-#  tests:
-#    - test_transfer_between_ta  # preconditions: convert lead, deposit crm, credit in
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
+  class: TransferBetweenTa
+  tests:
+    - test_transfer_between_ta  # preconditions: convert lead, deposit crm, credit in
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
 #  class: TradingAccountCrmTest
@@ -188,13 +188,13 @@ tests_config:
 #    - test_perform_delete_rule
 #
 ########################################## WORKFLOWS MODULE ##############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
-  class: WorkflowsModulesTest
-  tests:
-    - test_create_workflows
-    - test_check_workflow_by_status
-    - test_check_workflow_by_country
-    - test_delete_workflow
+#- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
+#  class: WorkflowsModulesTest
+#  tests:
+#    - test_create_workflows
+#    - test_check_workflow_by_status
+#    - test_check_workflow_by_country
+#    - test_delete_workflow
 #
 ############################################ USER MANAGEMENT ############################################
 #- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
