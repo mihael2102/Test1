@@ -44,7 +44,6 @@ class CreateLeadsProfilePage(CRMBasePage):
         self.set_state(state)
         self.click_save()
 
-
     def perform_create_lead_new(self, first_name, last_name, mobile, fax, email, secondary_email,
                              referral, street, postal_code, country, description,
                             phone, tittle, lead_source, lead_status, assigned_to, po_box,
