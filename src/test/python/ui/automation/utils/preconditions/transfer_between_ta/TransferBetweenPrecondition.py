@@ -33,7 +33,7 @@ class TransferBetweenPrecondition(object):
 
         CRMHomePage(self.driver).open_client_module() \
             .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email("pandaqa+20190627133207@pandats.com")
+            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
 
         crm_client_profile = ClientProfilePage(self.driver)
         sleep(2)
