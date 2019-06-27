@@ -121,6 +121,7 @@ class CRMHomePage(CRMBasePage):
         try:
             module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
             module_element.click()
+            self.wait_crm_loading_to_finish_tasks(55)
             Logging().reportDebugStep(self, "The My Dashboard module was opened")
         except TimeoutException:
             Logging().reportDebugStep(self, "There are no module")
