@@ -4,6 +4,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 from selenium.webdriver.support.select import Select
+from time import sleep
 
 
 class MT4TransferBetweenTa(CRMBasePage):
@@ -26,9 +27,9 @@ class MT4TransferBetweenTa(CRMBasePage):
     def select_first_account(self, first_account):
         drop_down = super().wait_element_to_be_clickable("//*[@id='tr_maintab']/div[1]/div/div/button/span[1]")
         drop_down.click()
-        select_account = self.driver.find_element_by_xpath("(//span[@class='text'][contains(text(),'%s')])[2]" % first_account)
+        select_account = self.driver.find_element_by_xpath("(//span[@class='text'][contains(text(),'%s')])[2]"
+                                                           % first_account)
         select_account.click()
-        # self.driver.execute_script("arguments[0].click();", select_account)
         return MT4TransferBetweenTa(self.driver)
 
     '''
@@ -38,9 +39,11 @@ class MT4TransferBetweenTa(CRMBasePage):
     '''
 
     def select_second_account(self, second_account):
-        drop_down = super().wait_element_to_be_clickable("//*[@id='tr_maintab']/div[3]/div/div/button/span[1]")
+        sleep(2)
+        drop_down = super().wait_load_element("//*[@id='tr_maintab']/div[3]/div/div/button/span[1]")
         drop_down.click()
-        select_account = self.driver.find_element(By.XPATH, "(//span[@class='text'][contains(text(),'%s')])[3]" % second_account)
+        select_account = self.driver.find_element(By.XPATH, "(//span[@class='text'][contains(text(),'%s')])[3]"
+                                                  % second_account)
         select_account.click()
         return MT4TransferBetweenTa(self.driver)
 
