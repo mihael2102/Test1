@@ -205,12 +205,22 @@ class CRMHomePage(CRMBasePage):
         Logging().reportDebugStep(self, "The current sprint version is: " + version)
         return version
 
-    def check_previous_version(self):
-        f = open("C:/version.txt", "r")  # name of file open in read mode
+    def check_previous_version(self, brand):
+        path = "C:/version/%s.txt" % brand
+        f = open(path, "r")  # name of file open in read mode
         lines = f.readlines()  # split file into lines
         prev_version = lines[0]
         Logging().reportDebugStep(self, "The previous sprint version is: " + prev_version)
         return prev_version
+
+    def update_version_in_file(self, new_version, brand):
+        path = "C:/version/%s.txt" % brand
+        with open(path, 'a') as f:
+            f.seek(0)
+            f.truncate()
+            f.write(str(new_version))
+            f.close()
+        Logging().reportDebugStep(self, "The current sprint version is updated: " + str(new_version))
 
     def get_day_of_week(self):
         today = datetime.datetime.today().weekday()

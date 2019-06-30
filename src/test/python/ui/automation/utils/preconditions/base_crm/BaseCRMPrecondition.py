@@ -4,8 +4,7 @@ from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.modules.campaigns_module.AddCampaignsModule import AddCampaignsModule
-from src.main.python.ui.crm.model.pages.campaigns.CampaignsPage import CampaignsPage
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from time import sleep
 
 class BaseCRMPrecondition(object):
@@ -25,10 +24,13 @@ class BaseCRMPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
         CRMHomePage(self.driver).open_client_module()
+        brand = global_var.current_brand_name
         current_vtiger_version = CRMHomePage(self.driver).get_current_version()
-        prev_vtiger_version = CRMHomePage(self.driver).check_previous_version()
+        prev_vtiger_version = CRMHomePage(self.driver).check_previous_version(brand)
         day = CRMHomePage(self.driver).get_day_of_week()
         if day == 6:
             assert int(current_vtiger_version) == int(prev_vtiger_version) + 1
+            new_version = int(prev_vtiger_version) + 1
+            CRMHomePage(self.driver).update_version_in_file(new_version, brand)
         else:
             assert int(current_vtiger_version) == int(prev_vtiger_version)
