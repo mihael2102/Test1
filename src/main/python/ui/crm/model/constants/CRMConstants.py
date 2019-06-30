@@ -168,3 +168,5 @@ class CRMConstants(object):
     CRM_CONFIGURATION = "CRM Configuration"
     FIRST_TA_NUMBER_FROM_TA_SECTION = "2"
     SECOND_TA_NUMBER_FROM_TA_SECTION = "3"
+    MODULE_VTIGER = "vtiger"
+    MODULE_LARAVEL = "laravel"
