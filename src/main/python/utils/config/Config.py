@@ -1,9 +1,9 @@
-test = "OF Special CRM"
-file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/OF Special CRM/result/final_file.xlsx"
-file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/OF Special CRM/result/*.xlsx'
-file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/OF Special CRM/%s"
-short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/OF Special CRM/result/short_final_file.xlsx"
-mail_subject = "OF Special CRM"
+test = "OF Sanity"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/OF Sanity/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/OF Sanity/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/OF Sanity/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/OF Sanity/result/short_final_file.xlsx"
+mail_subject = "OF Sanity"
 timeout = 4
 data = None
 url_client_area = ""
