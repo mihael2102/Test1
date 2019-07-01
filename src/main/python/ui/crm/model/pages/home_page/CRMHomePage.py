@@ -209,7 +209,11 @@ class CRMHomePage(CRMBasePage):
             current_version = super().wait_load_element(
                 "/html/body/app-root/mat-sidenav-container/mat-sidenav-content/app-footer/footer/div", timeout=45).text
             current_version_str = current_version.split(" ")
-            current_version_number = current_version_str[1].split(".")
+            # current_version_number = ""
+            if global_var.current_brand_name == "ptbanc":
+                current_version_number = current_version_str[2].split(".")
+            else:
+                current_version_number = current_version_str[1].split(".")
             version = current_version_number[0] + current_version_number[1]
         Logging().reportDebugStep(self, "The current sprint version is: " + version)
         return version
