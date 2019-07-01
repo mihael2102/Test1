@@ -60,10 +60,10 @@ tests_config:
 #  tests:
 #    - test_clients_mass_edit
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign
-  class: MassAssignTestCRM
-  tests:
-    - test_clients_mass_assign
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign
+#  class: MassAssignTestCRM
+#  tests:
+#    - test_clients_mass_assign
 #
 ###################################### TASKS ##################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
@@ -194,11 +194,11 @@ tests_config:
 #    - test_delete_workflow
 #
 ########################################### USER_MANAGEMENT #########################################
-#- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
-#  class: UserManagementTest
-#  tests:
-#    - test_create_user
-#    - test_delete_user
+- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
+  class: UserManagementTest
+  tests:
+    - test_create_user
+    - test_delete_user
 #
 ########################################### DOCUMENTS MODULE ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
