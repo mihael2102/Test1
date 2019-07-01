@@ -36,11 +36,6 @@ class ApiPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        autoassign_module = CRMHomePage(self.driver).select_auto_assign_module_more_list(
-                                                                AutoAssignConstants.AUTO_ASSIGN_MODULE)
-        if autoassign_module == False:
-            return
-
         affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules()\
             .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
         if global_var.current_brand_name == "eafx":

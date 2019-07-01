@@ -130,8 +130,8 @@ class AffiliatePage(CRMBasePage):
         return AffiliatePage(self.driver)
 
     def search_by_partner_id(self, partner_id):
-        sleep(2)
-        input = self.driver.find_element(By.XPATH, "//*[@id='host-element']/input")
+        sleep(4)
+        input = self.driver.find_element_by_xpath("//td[2]//input")
         input.send_keys(partner_id)
         Logging().reportDebugStep(self, "Enter partner ID %s" % partner_id)
         return AffiliatePage(self.driver)
@@ -191,13 +191,12 @@ class AffiliatePage(CRMBasePage):
     def copy_secret_key(self):
         sleep(5)
         copy_button = super().wait_element_to_be_clickable("//button[contains(text(), 'Copy')]")
-        # copy_button.click()
         self.driver.execute_script("arguments[0].click();", copy_button)
         sleep(3)
         key = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-body/div/span").text
         button_ok = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-footer/div/button")
         button_ok.click()
-        Logging().reportDebugStep(self, "Copy secret key")
+        Logging().reportDebugStep(self, "Copy key")
         return key
 
     def get_link_api(self):
