@@ -15,11 +15,8 @@ brands:
 #- name: brokerz
 #  config_file: brokerz.yml
 #
-- name: gigafx
-  config_file: gigafx.yml
+#- name: gigafx
+#  config_file: gigafx.yml
 
-#- name: trade99
-#  config_file: trade99.yml
-#
-#- name: coin-bits
-#  config_file: coin-bits.yml
+- name: trade99
+  config_file: trade99.yml
