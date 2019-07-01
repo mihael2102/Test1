@@ -1,19 +1,19 @@
 tests_config:
 
-########################################## LEADS MODULE ###################################################
+######################################### LEADS MODULE ###################################################
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
-#
-############################################# CLIENTS #####################################################
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
-#  class: DepositTestCRM
-#  tests:
-#    - test_make_deposit_crm  # make a deposit into a trading account from the crm
+############################################ CLIENTS #####################################################
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+  class: DepositTestCRM
+  tests:
+    - test_make_deposit_crm  # make a deposit into a trading account from the crm
 
 ############################################### API #######################################################
 
