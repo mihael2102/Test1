@@ -29,6 +29,7 @@ from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from selenium.common.exceptions import NoSuchElementException
 import datetime
+import re
 
 
 class CRMHomePage(CRMBasePage):
@@ -42,7 +43,7 @@ class CRMHomePage(CRMBasePage):
         task_module = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Tasks']")
         task_module.click()
         Logging().reportDebugStep(self, "Task module is opened")
-        self.wait_crm_loading_to_finish()
+        self.wait_crm_loading_to_finish_tasks(55)
         return TasksPage(self.driver)
 
     def open_more_list_modules(self):
@@ -198,29 +199,45 @@ class CRMHomePage(CRMBasePage):
         Logging().reportDebugStep(self, "Dashboard module was opened")
         return LeaderboardPage(self.driver)
 
-    def get_current_version(self):
-        current_version = super().wait_load_element("/html/body/table[4]/tbody/tr/td", timeout=45).text
-        current_version_number = current_version.split(".")
-        version = current_version_number[1] + current_version_number[2]
+    def get_current_version(self, module):
+        version = ""
+        if module == "vtiger":
+            current_version = super().wait_load_element("/html/body/table[4]/tbody/tr/td", timeout=45).text
+            current_version_number = current_version.split(".")
+            version = current_version_number[1] + current_version_number[2]
+        elif module == "laravel":
+            current_version = super().wait_load_element(
+                "/html/body/app-root/mat-sidenav-container/mat-sidenav-content/app-footer/footer/div", timeout=45).text
+            current_version_str = current_version.split(" ")
+            # current_version_number = ""
+            if global_var.current_brand_name == "ptbanc":
+                current_version_number = current_version_str[2].split(".")
+            else:
+                current_version_number = current_version_str[1].split(".")
+            version = current_version_number[0] + current_version_number[1]
         Logging().reportDebugStep(self, "The current sprint version is: " + version)
         return version
 
-    def check_previous_version(self, brand):
+    def check_previous_version(self, brand, module):
         path = "C:/version/%s.txt" % brand
         f = open(path, "r")  # name of file open in read mode
         lines = f.readlines()  # split file into lines
-        prev_version = lines[0]
-        Logging().reportDebugStep(self, "The previous sprint version is: " + prev_version)
+        if module == "vtiger":
+            prev_version = lines[0]
+        else:
+            prev_version = lines[1]
+        Logging().reportDebugStep(self, "The previous " + module + " sprint version is: " + prev_version)
         return prev_version
 
-    def update_version_in_file(self, new_version, brand):
+    def update_version_in_file(self, new_version, old_version, brand):
         path = "C:/version/%s.txt" % brand
-        with open(path, 'a') as f:
-            f.seek(0)
-            f.truncate()
-            f.write(str(new_version))
-            f.close()
-        Logging().reportDebugStep(self, "The current sprint version is updated: " + str(new_version))
+        with open(path, 'r') as f:
+            lines = f.readlines()
+        with open(path, 'w') as f:
+            for line in lines:
+                line = line.replace(str(old_version), str(new_version) + '\n')
+                f.write(line)
+        Logging().reportDebugStep(self, "The current sprint version is updated to: " + str(new_version))
 
     def get_day_of_week(self):
         today = datetime.datetime.today().weekday()
