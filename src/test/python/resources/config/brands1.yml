@@ -1,4 +1,4 @@
 brands:
 
-- name: urfinancials
-  config_file: urf_financial.yml
+- name: finmarket
+  config_file: finmarket.yml

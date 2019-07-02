@@ -249,7 +249,7 @@ class LeadModuleTest(BaseTest):
                     self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                     self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
-            elif (global_var.current_brand_name == "itrader_global"):
+            elif global_var.current_brand_name == "itrader_global":
 
                 ConvertLeadModule(self.driver).perform_convert_lead(
                     self.client1[LeadsModuleConstants.FIRST_NAME],
@@ -269,7 +269,8 @@ class LeadModuleTest(BaseTest):
                     self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                     self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
-            elif (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "itrader"):
+            elif (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "itrader") or \
+                    (global_var.current_brand_name == "etfinance"):
 
                 ConvertLeadModule(self.driver).perform_convert_lead(
                     self.client1[LeadsModuleConstants.FIRST_NAME],

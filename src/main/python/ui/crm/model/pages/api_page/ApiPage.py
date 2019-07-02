@@ -1,12 +1,9 @@
 from time import sleep
-
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.document.CreateDocumentModule import CreateDocumentModule
-from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
-from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
+from selenium.common.exceptions import TimeoutException
 from src.main.python.utils.logs.Loging import Logging
 from selenium.common.exceptions import NoSuchElementException
 import autoit
@@ -375,12 +372,15 @@ class ApiPage(CRMBasePage):
         Logging().reportDebugStep(self, "Open customer module")
         return ApiPage(self.driver)
 
-    def enter_secret_key(self, partnerSecretKey):
-        sleep(5)
-        input_secret_key = self.driver.find_element(By.XPATH, "//*[@id='partnerSecretKey']")
-        input_secret_key.send_keys(partnerSecretKey)
-        Logging().reportDebugStep(self, "Enter Secret Key")
-        return ApiPage(self.driver)
+    def enter_secret_key(self, partner_secret_key):
+        sleep(3)
+        try:
+            input_secret_key = super().wait_load_element("//*[@id='partnerSecretKey']")
+            input_secret_key.send_keys(partner_secret_key)
+            Logging().reportDebugStep(self, "Enter Secret Key")
+            return ApiPage(self.driver)
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "API does not exist")
 
     def authorization_module(self):
         sleep(2)

@@ -5,6 +5,8 @@ from src.test.python.ui.automation.utils.preconditions.audit_logs.AuditLogsPreco
 from src.test.python.ui.automation.utils.preconditions.dashboard.DashboardPrecondition import DashboardPrecondition
 from src.test.python.ui.automation.utils.preconditions.leaderboard.LeaderboardPrecondition import LeaderboardPrecondition
 from src.test.python.ui.automation.utils.preconditions.usermanagement.UserManagementPrecondition import UserManagementPrecondition
+from src.test.python.ui.automation.utils.preconditions.base_crm.BaseCRMPrecondition import BaseCRMPrecondition
+
 
 class CheckModules(BaseTest):
 
@@ -22,3 +24,6 @@ class CheckModules(BaseTest):
 
     def test_audit_logs_loading(self):
         AuditLogsPrecondition(self.driver, self.config).check_audit_logs_loading()
+
+    def test_check_sprint_version(self):
+        BaseCRMPrecondition(self.driver, self.config).check_sprint_version()

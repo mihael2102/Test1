@@ -1,15 +1,11 @@
 from time import sleep
-
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-
-from src.main.python.ui.crm.model.modules.campaigns_module.AddCampaignsModule import AddCampaignsModule
 from src.main.python.ui.crm.model.pages.auto_assign.AutoAssignPage import AutoAssignPage
 from src.main.python.ui.crm.model.pages.campaigns.CampaignsPage import CampaignsPage
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.audit_logs.AuditLogsPage import AuditLogsPage
 from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
-from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from src.main.python.ui.crm.model.pages.financial_transactions.FinancialTransactionsPage import \
     FinancialTransactionsPage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
@@ -17,7 +13,6 @@ from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsM
 from src.main.python.ui.crm.model.modules.my_dashboard.MyDashBoardModule import MyDashBoardModule
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
-from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
 from src.main.python.ui.crm.model.modules.user_management.UserManagement import UserManagement
 from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsPage import TradingAccountsPage
 from src.main.python.utils.logs.Loging import Logging
@@ -28,6 +23,9 @@ from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
+import datetime
+import re
+
 
 class CRMHomePage(CRMBasePage):
 
@@ -127,11 +125,14 @@ class CRMHomePage(CRMBasePage):
         return MyDashBoardModule(self.driver)
 
     def select_affiliates_module_more_list(self, module):
-        module_element = super().wait_element_to_be_clickable("//*[@name='%s']" % module)
-        module_element.click()
-        Logging().reportDebugStep(self, "The Affiliates page was opened")
-        # return AffiliateListViewPage(self.driver)
-        return AffiliatePage(self.driver)
+        try:
+            module_element = super().wait_element_to_be_clickable("//*[@name='%s']" % module)
+            module_element.click()
+            Logging().reportDebugStep(self, "The Affiliates page was opened")
+            # return AffiliateListViewPage(self.driver)
+            return AffiliatePage(self.driver)
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "The Affiliates module does not exist")
 
     def select_dashboard_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
@@ -195,3 +196,49 @@ class CRMHomePage(CRMBasePage):
         except (TimeoutException, NoSuchElementException):
             Logging().reportDebugStep(self, "There are no module")
         return AuditLogsPage(self.driver)
+
+    def get_current_version(self, module):
+        version = ""
+        if module == "vtiger":
+            current_version = super().wait_load_element("/html/body/table[4]/tbody/tr/td", timeout=45).text
+            current_version_number = current_version.split(".")
+            version = current_version_number[1] + current_version_number[2]
+        elif module == "laravel":
+            current_version = super().wait_load_element(
+                "/html/body/app-root/app-footer/footer/div", timeout=45).text
+            current_version_str = current_version.split(" ")
+            # current_version_number = ""
+            if global_var.current_brand_name == "ptbanc":
+                current_version_number = current_version_str[2].split(".")
+            else:
+                current_version_number = current_version_str[1].split(".")
+            version = current_version_number[0] + current_version_number[1]
+        Logging().reportDebugStep(self, "The current sprint version is: " + version)
+        return version
+
+    def check_previous_version(self, brand, module):
+        path = "C:/version_of/%s.txt" % brand
+        f = open(path, "r")  # name of file open in read mode
+        lines = f.readlines()  # split file into lines
+        if module == "vtiger":
+            prev_version = lines[0]
+        else:
+            prev_version = lines[1]
+        Logging().reportDebugStep(self, "The previous " + module + " sprint version is: " + prev_version)
+        return prev_version
+
+    def update_version_in_file(self, new_version, old_version, brand):
+        path = "C:/version_of/%s.txt" % brand
+        with open(path, 'r') as f:
+            lines = f.readlines()
+        with open(path, 'w') as f:
+            for line in lines:
+                line = line.replace(str(old_version), str(new_version) + '\n')
+                f.write(line)
+        Logging().reportDebugStep(self, "The current sprint version is updated to: " + str(new_version))
+
+    def get_day_of_week(self):
+        today = datetime.datetime.today().weekday()
+        Logging().reportDebugStep(self, "The current day of the week is: " + str(today))
+        return today
+

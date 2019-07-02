@@ -371,7 +371,9 @@ class LeadPrecondition(object):
 
         if global_var.current_brand_name == "safemarkets" or global_var.current_brand_name == "itrader_global" or \
                 global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo" or \
-                global_var.current_brand_name == "fm-fx" or global_var.current_brand_name == "forex_staging":
+                global_var.current_brand_name == "fm-fx" or global_var.current_brand_name == "forex_staging" or \
+                global_var.current_brand_name == "urfinancials" or global_var.current_brand_name == "rimarkets" or \
+                global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "umi":
             CreateLeadsProfilePage(self.driver).perform_create_lead(
             lead[LeadsModuleConstants.FIRST_NAME],
             lead[LeadsModuleConstants.FIRST_LAST_NAME],
@@ -425,7 +427,7 @@ class LeadPrecondition(object):
                 lead[LeadsModuleConstants.FIRST_STATE])
             return LeadPrecondition(self.driver, self.config)
 
-        elif (global_var.current_brand_name == "ogtrade"):
+        elif global_var.current_brand_name == "ogtrade":
             CreateLeadsProfilePage(self.driver).perform_create_lead_ogtrade(
                 lead[LeadsModuleConstants.FIRST_NAME],
                 lead[LeadsModuleConstants.FIRST_LAST_NAME],
