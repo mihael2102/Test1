@@ -1,9 +1,9 @@
-test = "New forex job 1"
-file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/final_file.xlsx"
-file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/*.xlsx'
-file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/New forex job 1/%s"
-short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/New forex job 1/result/short_final_file.xlsx"
-mail_subject = "Something"
+test = "Q8 CRM"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/' + test + '/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/short_final_file.xlsx"
+mail_subject = test
 timeout = 4
 data = None
 url_client_area = ""
