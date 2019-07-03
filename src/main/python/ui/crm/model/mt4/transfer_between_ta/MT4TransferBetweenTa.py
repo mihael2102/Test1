@@ -70,7 +70,7 @@ class MT4TransferBetweenTa(CRMBasePage):
         amount_filed.clear()
         amount_filed.send_keys(description_deposit)
         Logging().reportDebugStep(self,
-                                  "The  description of transfer between ta  module was set in the description field:  " + description_deposit)
+                                  "The description of transfer between ta was set: " + description_deposit)
         return MT4TransferBetweenTa(self.driver)
 
     '''
@@ -81,5 +81,5 @@ class MT4TransferBetweenTa(CRMBasePage):
     def create_transfer(self):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
         create_button.click()
-        Logging().reportDebugStep(self, "The create withdraw button of transfer between ta module was clicked")
+        Logging().reportDebugStep(self, "The Create button was clicked")
         return ClientProfilePage(self.driver)
