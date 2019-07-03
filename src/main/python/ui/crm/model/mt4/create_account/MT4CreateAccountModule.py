@@ -86,7 +86,6 @@ class MT4CreateAccountModule(CRMBasePage):
         return self
 
     def select_currency(self, currency):
-        # for_old_forex
         drop_down = self.wait_element_to_be_clickable("//select[@name='tacurrency']")
         drop_down.click()
         currency_selection = self.driver.find_element(By.XPATH, "//select[@name='tacurrency']/option[contains(text(),'%s')]" % currency)

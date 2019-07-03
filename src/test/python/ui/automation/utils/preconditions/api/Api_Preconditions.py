@@ -116,7 +116,6 @@ class ApiPrecondition(object):
         client_first_name = ClientsPage(self.driver).get_client_first_name()
         client_last_name = ClientsPage(self.driver).get_client_last_name()
         client_phone = ClientsPage(self.driver).get_client_phone()
-        ClientsPage(self.driver).click_custom_information()
 
         assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
             LeadsModuleConstants.EMAIL]
