@@ -184,8 +184,6 @@ class FinancialTransactionsPage(CRMBasePage):
         modified_time_field.clear()
         modified_time_field.send_keys(modified_time)
         sleep(5)
-        # apply_button = self.driver.find_element(By.XPATH, "/html/body/div[11]/div[3]/div/button[1]")
-        # apply_button.click()
         Logging().reportDebugStep(self, "In filter the modified_time was entered: " + modified_time)
         return FinancialTransactionsPage(self.driver)
 

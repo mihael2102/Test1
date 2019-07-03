@@ -14,6 +14,7 @@ class WorkflowsConstants(object):
     CLIENT_STATUS = "Client Status"
     CONDITION_IS = "is"
     STATUS_TEST = "Test"
+    STATUS_R_NO_ANSWER = "R - No Answer"
     EMAIl = "Email"
     CONDITION_CONTAINS = "contains"
     PANDATS_EMAIL = "pandaqa+"
