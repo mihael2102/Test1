@@ -16,6 +16,8 @@ from src.main.python.utils.logs.Loging import Logging
 #import allure
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 
 
 class ClientsPage(CRMBasePage):
@@ -52,7 +54,7 @@ class ClientsPage(CRMBasePage):
         field_found = self.driver.find_element(By.XPATH, "//input[@class='input-block-level form-control']")
         field_found.clear()
         field_found.send_keys(test_filter)
-        Logging().reportDebugStep(self, "The field found is : " + test_filter)
+        Logging().reportDebugStep(self, "The field found is: " + test_filter)
         select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
         select_test_filter.click()
         Logging().reportDebugStep(self, "Click the selected filter")
@@ -90,8 +92,8 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Setting  the user's email in the email field  is : " + email)
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
-        Logging().reportDebugStep(self, "Click the search button ")
-        sleep(10)
+        Logging().reportDebugStep(self, "Click the search button")
+        sleep(5)
         self.wait_crm_loading_to_finish()
         client_id = self.driver.find_element(By.XPATH, "//div/a[contains(text(), 'ACC')]")
         sleep(1)
@@ -377,10 +379,14 @@ class ClientsPage(CRMBasePage):
 
     def click_custom_information(self):
         sleep(2)
-        button = super().wait_element_to_be_clickable("//span[@class = 'glyphicons CustomInformation']")
-        self.driver.execute_script("arguments[0].scrollIntoView();", button)
-        self.driver.execute_script("arguments[0].click();", button)
-        Logging().reportDebugStep(self, "Click Custom Information")
+        try:
+            self.driver.find_element_by_xpath("//*[@id='tblCustomInformation' and contains(@style,'none')]")
+            button = super().wait_element_to_be_clickable("//span[@class = 'glyphicons CustomInformation']")
+            self.driver.execute_script("arguments[0].scrollIntoView();", button)
+            self.driver.execute_script("arguments[0].click();", button)
+            Logging().reportDebugStep(self, "Open Custom Information tab")
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Custom Information tab is already opened")
         return ClientsPage(self.driver)
 
     def get_refferal_client(self):
@@ -479,4 +485,14 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Check first clients")
         return client1, client2, client3, client4, client5
 
-
+    def open_address_information(self):
+        try:
+            self.driver.find_element_by_xpath("//*[@id='tblAddressInformation'][contains(@style,'none')]")
+            address_tab = super().wait_load_element("//*[contains(text(),'Address Information')]")
+            self.driver.execute_script("arguments[0].scrollIntoView();", address_tab)
+            self.driver.execute_script("arguments[0].click();", address_tab)
+            Logging().reportDebugStep(self, "Address Information tab was opened")
+            return ClientsPage(self.driver)
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Address Information tab is already opened")
+            return ClientsPage(self.driver)
