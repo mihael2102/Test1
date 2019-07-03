@@ -99,6 +99,8 @@ class WorkflowsPrecondition(object):
         else:
             ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_B_TEST)
         CRMHomePage(self.driver).refresh_page()
+        if global_var.current_brand_name == "q8":
+            ClientProfilePage(self.driver).open_address_information()
         country = ClientProfilePage(self.driver).get_country_text()
         assert country == WorkflowsConstants.COUNTRY_ALBANIA
         address = ClientProfilePage(self.driver).get_address_text()
