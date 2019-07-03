@@ -23,7 +23,6 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
 
 
-
 class ClientProfilePage(CRMBasePage):
 
     '''
@@ -64,7 +63,7 @@ class ClientProfilePage(CRMBasePage):
     def click_sms_tab(self):
         trading_account_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'SMS')][1]")
         trading_account_tab.click()
-        Logging().reportDebugStep(self, "Open the sms tab ")
+        Logging().reportDebugStep(self, "Click the sms tab")
         return ClientProfilePage()
 
     '''
@@ -75,7 +74,7 @@ class ClientProfilePage(CRMBasePage):
     def open_sms_tab(self):
         trading_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_SMS']")
         trading_tab.click()
-        Logging().reportDebugStep(self, "Open the sms tab ")
+        Logging().reportDebugStep(self, "Open the sms tab")
         return ClientProfilePage()
 
     def open_sms_view_module(self, sms):
@@ -378,6 +377,17 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the address :" + parser_address_text)
         return parser_address_text
 
+    def open_address_information(self):
+        try:
+            self.driver.find_element_by_xpath("//*[@id='tblAddressInformation'][contains(@style,'none')]")
+            address_tab = super().wait_load_element("//*[contains(text(),'Address Information')]")
+            self.driver.execute_script("arguments[0].scrollIntoView();", address_tab)
+            self.driver.execute_script("arguments[0].click();", address_tab)
+            Logging().reportDebugStep(self, "Address Information tab was opened")
+            return ClientProfilePage(self.driver)
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Address Information tab is already opened")
+            return ClientProfilePage(self.driver)
     '''
         Returns the email 
     '''

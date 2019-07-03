@@ -50,12 +50,12 @@ class TasksPage(CRMBasePage):
         return column_text.text
 
     def click_account_name(self):
-        sleep(10)
+        sleep(1)
         task_module = super().wait_load_element("//a[contains(text(), 'Account Name')]")
         task_module.click()
         Logging().reportDebugStep(self, "Click account name")
         self.wait_load_element("//div[@class='spinner']", timeout=35)
-        self.wait_crm_loading_to_finish_tasks(55)
+        self.wait_crm_loading_to_finish_tasks(155)
         return TasksPage(self.driver)
 
     def get_second_column_frow_text(self):
@@ -70,9 +70,11 @@ class TasksPage(CRMBasePage):
         return column_text.text
 
     def click_status(self):
-        sleep(10)
+        sleep(1)
         task_module = super().wait_load_element("//a[contains(text(), 'Status')]")
         task_module.click()
+        self.wait_load_element("//div[@class='spinner']", timeout=35)
+        self.wait_crm_loading_to_finish_tasks(55)
         Logging().reportDebugStep(self, "Click Status")
         return TasksPage(self.driver)
 
@@ -88,14 +90,12 @@ class TasksPage(CRMBasePage):
         return column_text.text
 
     def click_event_type(self):
-        sleep(10)
+        sleep(1)
         click_event_type = super().wait_load_element("//a[contains(text(), 'Event Type')]")
         self.driver.execute_script("arguments[0].click();", click_event_type)
-        try:
-            self.wait_crm_loading_to_finish_tasks(10)
-        except:
-            sleep(10)
-        Logging().reportDebugStep(self, "Click on  Event Type ")
+        self.wait_load_element("//div[@class='spinner']", timeout=35)
+        self.wait_crm_loading_to_finish_tasks(55)
+        Logging().reportDebugStep(self, "Click on Event Type")
         return TasksPage(self.driver)
 
     def open_task_module(self):
@@ -173,7 +173,6 @@ class TasksPage(CRMBasePage):
         first_check_box.click()
         Logging().reportDebugStep(self, "The sms module was opened")
         return TasksPage(self.driver)
-
 
     def check_pop_up_send_sms(self):
         sleep(5)
@@ -299,7 +298,7 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def check_email(self, subject):
-        sleep(10)
+        sleep(1)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
         pop_conn.user('jonathan.albalak@pandats.com')
         pop_conn.pass_('xUQ7hrr9VF')

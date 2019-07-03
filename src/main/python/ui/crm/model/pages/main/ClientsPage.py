@@ -436,8 +436,9 @@ class ClientsPage(CRMBasePage):
         return confirm_message.text
 
     def open_mass_assign_module(self):
-        sleep(7)
-        mass_edit_module = super().wait_element_to_be_clickable("//input[@value='Mass assign']")
+        sleep(2)
+        mass_edit_module = super().wait_load_element("//input[@value='Mass Assign']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", mass_edit_module)
         try:
             mass_edit_module.click()
         except:

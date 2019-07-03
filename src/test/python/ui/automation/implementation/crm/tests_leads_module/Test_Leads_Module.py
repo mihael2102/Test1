@@ -35,7 +35,7 @@ class LeadModuleTest(BaseTest):
         LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
         self.verify_lead(self.lead1)
 
-    def test_edit_lead(self):
+    def test_create_edit_lead(self):
         LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
         self.verify_lead(self.lead1)
         LeadPrecondition(self.driver, self.config).edit_lead_profile(self.lead2)
@@ -139,7 +139,6 @@ class LeadModuleTest(BaseTest):
                 self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
         else:
-
             ConvertLeadModule(self.driver).perform_convert_lead(
                 self.client1[LeadsModuleConstants.FIRST_NAME],
                 self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
@@ -203,9 +202,6 @@ class LeadModuleTest(BaseTest):
         tittle = lead_detail_view.get_tittle_text()
         lead_source = lead_detail_view.get_lead_source_text()
         lead_status = lead_detail_view.get_lead_status_text()
-        if global_var.current_brand_name != "marketsplus":
-            language = lead_detail_view.get_language_text()
-        # brand = lead_detail_view.get_brand_text()
         po_box = lead_detail_view.get_po_box_text()
         city = lead_detail_view.get_city_text()
         state = lead_detail_view.get_state_text()
@@ -244,13 +240,12 @@ class LeadModuleTest(BaseTest):
         elif global_var.current_brand_name == "solocapitlas":
             self.assertEqual(po_box, lead_data[LeadsModuleConstants.PO_BOX])
 
+        elif global_var.current_brand_name == "gigafx":
+            self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_GIGA])
+
         else:
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS])
 
-        # if global_var.current_brand_name != "marketsplus":
-        #     self.assertEqual(language, lead_data[LeadsModuleConstants.FIRST_LANGUAGE])
-        # if lead_data[LeadsModuleConstants.BRAND]:
-        #     self.assertEqual(brand, lead_data[LeadsModuleConstants.BRAND])
         self.assertEqual(po_box, lead_data[LeadsModuleConstants.PO_BOX])
         self.assertEqual(city, lead_data[LeadsModuleConstants.CITY])
         self.assertEqual(state, lead_data[LeadsModuleConstants.FIRST_STATE])

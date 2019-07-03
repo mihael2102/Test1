@@ -37,8 +37,10 @@ class CreditOutPrecondition(object):
             ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREDIT_OUT2)
         else:
             ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREDIT_OUT)
-        MT4CreditOutModule(self.driver).make_credit_out(CRMConstants.CREDIT_ACCOUNT, CRMConstants.AMOUNT_CREDIT_OUT,
-                                                    CRMConstants.CREDIT_OUT_GRANTEDBY, CRMConstants.CREDIT_OUT_COMMENT)
+        MT4CreditOutModule(self.driver).make_credit_out(CRMConstants.CREDIT_ACCOUNT,
+                                                        CRMConstants.AMOUNT_CREDIT_OUT,
+                                                        CRMConstants.CREDIT_OUT_GRANTEDBY,
+                                                        CRMConstants.CREDIT_OUT_COMMENT)
         sleep(3)
         ClientProfilePage(self.driver).refresh_page() \
                                       .click_trading_accounts_tab() \
