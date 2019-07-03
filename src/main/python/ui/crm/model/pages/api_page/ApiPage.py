@@ -104,7 +104,7 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-email-Leads-Leads-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(email)
-        Logging().reportDebugStep(self, "Enter email" + email)
+        Logging().reportDebugStep(self, "Enter email: " + email)
         return ApiPage(self.driver)
 
     def enter_firstName_lead(self, fname):

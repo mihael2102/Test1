@@ -368,7 +368,6 @@ class LeadPrecondition(object):
         CRMHomePage(self.driver).open_lead_module() \
                                 .open_create_lead_module()\
 
-
         if global_var.current_brand_name == "safemarkets" or global_var.current_brand_name == "itrader_global" or \
                 global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo" or \
                 global_var.current_brand_name == "fm-fx" or global_var.current_brand_name == "forex_staging" or \

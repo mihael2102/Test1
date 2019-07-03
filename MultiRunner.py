@@ -118,7 +118,7 @@ if __name__ == "__main__":
         # Form input list where each parameter is filename of TestSuite file
         input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
                       path_to_brands_suite_5]
-        # input_list = [path_to_brands_suite_3]
+        # input_list = [path_to_brands_suite_2]
         # input_list = [path_to_brands_suite_b1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
         #               path_to_brands_suite_5]
         ### Init multiprocess

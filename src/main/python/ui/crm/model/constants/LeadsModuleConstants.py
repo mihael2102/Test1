@@ -38,6 +38,7 @@ class LeadsModuleConstants(object):
     FIRST_MOBILE = "mobile"
     FAX = "fax"
     EMAIL = "email"
+    EMAIL1 = "email1"
     SECONDARY_EMAIL = "secondary_email"
     FIRST_LANGUAGE = "first_language"
     PANDA_PARTNER = "panda_partner_id"

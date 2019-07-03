@@ -81,7 +81,7 @@ class ApiPrecondition(object):
         self.autorization_process()
         ApiPage(self.driver).create_customer_module()
         ApiPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                             LeadsModuleConstants.EMAIL])
+                                             LeadsModuleConstants.EMAIL1])
         ApiPage(self.driver).enter_password(APIConstants.PASSWORD)
         if global_var.current_brand_name == "oinvestsa":
             ApiPage(self.driver).enter_country(APIConstants.COUNTRY_SA)
@@ -110,15 +110,17 @@ class ApiPrecondition(object):
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                      LeadsModuleConstants.EMAIL])
+                                      LeadsModuleConstants.EMAIL1])
         client_email = ClientsPage(self.driver).get_first_client_email()
         client_country = ClientsPage(self.driver).get_client_country()
         client_first_name = ClientsPage(self.driver).get_client_first_name()
         client_last_name = ClientsPage(self.driver).get_client_last_name()
         client_phone = ClientsPage(self.driver).get_client_phone()
+        actual_phone = re.sub('[+," "]', '', client_phone)
+        expected_phone = re.sub('[+," "]', '', APIConstants.PHONE_CRM)
 
         assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-            LeadsModuleConstants.EMAIL]
+            LeadsModuleConstants.EMAIL1]
         if global_var.current_brand_name == "oinvestsa":
             assert client_country == APIConstants.COUNTRY_CRM_SA
         elif global_var.current_brand_name == "itrader_global":
@@ -128,7 +130,7 @@ class ApiPrecondition(object):
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
             LeadsModuleConstants.FIRST_NAME]
         assert client_last_name == APIConstants.LASTNAME
-        assert client_phone == APIConstants.PHONE_CRM
+        assert actual_phone == expected_phone
 
     def test_create_lead(self):
         self.autorization_process()

@@ -688,7 +688,7 @@ class LeadsModule(CRMBasePage):
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_email']")
         first_name_field.clear()
         first_name_field.send_keys(email)
-        Logging().reportDebugStep(self, "The email was entered : " + email)
+        Logging().reportDebugStep(self, "The email was entered: " + email)
         return LeadsModule(self.driver)
 
     def enter_assigned_to(self, assigned_to):
