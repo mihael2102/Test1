@@ -33,8 +33,7 @@ tests_config:
   directive: reload_configuration
   class: LeadModuleTest
   tests:
-    - test_create_lead   # Creates and lead. Included in the test_searching_lead_modules test
-    - test_edit_lead
+    - test_create_edit_lead
 
 - module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
   directive: reload_configuration
