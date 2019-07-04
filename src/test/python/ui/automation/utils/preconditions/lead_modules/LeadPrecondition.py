@@ -223,7 +223,7 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).mass_edit_leads()
         if global_var.current_brand_name == "uft" or global_var.current_brand_name == "trade99":
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_ITRADER)
-        elif global_var.current_brand_name == "stoxmarket":
+        elif global_var.current_brand_name == "stoxmarket" or global_var.current_brand_name == "gigafx":
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_STOX)
         else:
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT)
@@ -241,7 +241,7 @@ class LeadPrecondition(object):
                     global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "fm-fx" or \
                     global_var.current_brand_name == "trade99":
                 assert status == CRMConstants.STATUS_EDIT_ITRADER
-            elif global_var.current_brand_name == "stoxmarket":
+            elif global_var.current_brand_name == "stoxmarket" or global_var.current_brand_name == "gigafx":
                 assert status == CRMConstants.STATUS_EDIT_STOX
             else:
                 assert status == CRMConstants.STATUS_EDIT
@@ -329,7 +329,6 @@ class LeadPrecondition(object):
         CRMHomePage(self.driver).open_lead_module() \
                                 .open_create_lead_module()\
 
-
         if (global_var.current_brand_name == "safemarkets") or (global_var.current_brand_name == "uft") or \
                 (global_var.current_brand_name == "trade99"):
             CreateLeadsProfilePage(self.driver).perform_create_lead(
@@ -358,8 +357,7 @@ class LeadPrecondition(object):
             lead[LeadsModuleConstants.FIRST_STATE])
             return LeadPrecondition(self.driver, self.config)
 
-
-        elif (global_var.current_brand_name == "gxfx"):
+        elif global_var.current_brand_name == "gxfx":
             CreateLeadsProfilePage(self.driver).perform_create_lead(
             lead[LeadsModuleConstants.FIRST_NAME],
             lead[LeadsModuleConstants.FIRST_LAST_NAME],
@@ -386,8 +384,7 @@ class LeadPrecondition(object):
             lead[LeadsModuleConstants.FIRST_STATE])
             return LeadPrecondition(self.driver, self.config)
 
-
-        elif (global_var.current_brand_name == "marketsplus"):
+        elif global_var.current_brand_name == "marketsplus":
             CreateLeadsProfilePage(self.driver).perform_create_lead_new(
             lead[LeadsModuleConstants.FIRST_NAME],
             lead[LeadsModuleConstants.FIRST_LAST_NAME],
@@ -410,8 +407,34 @@ class LeadPrecondition(object):
             lead[LeadsModuleConstants.FIRST_STATE])
             return LeadPrecondition(self.driver, self.config)
 
-        else:
+        elif global_var.current_brand_name == "gigafx":
+            CreateLeadsProfilePage(self.driver).perform_create_lead(
+                lead[LeadsModuleConstants.FIRST_NAME],
+                lead[LeadsModuleConstants.FIRST_LAST_NAME],
+                lead[LeadsModuleConstants.FIRST_MOBILE],
+                lead[LeadsModuleConstants.FAX],
+                lead[LeadsModuleConstants.EMAIL],
+                lead[LeadsModuleConstants.SECONDARY_EMAIL],
+                lead[LeadsModuleConstants.FIRST_LANGUAGE],
+                lead[LeadsModuleConstants.PANDA_PARTNER],
+                lead[LeadsModuleConstants.FIRST_REFERRAL],
+                lead[LeadsModuleConstants.STREET],
+                lead[LeadsModuleConstants.POSTAL_CODE],
+                lead[LeadsModuleConstants.FIRST_COUNTRY],
+                lead[LeadsModuleConstants.FIRST_DESCRIPTION],
+                lead[LeadsModuleConstants.PHONE],
+                lead[LeadsModuleConstants.FIRST_TITTLE],
+                lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
+                lead[LeadsModuleConstants.FIRST_LEAD_STATUS_GIGA],
+                lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+                lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                lead[LeadsModuleConstants.BRAND],
+                lead[LeadsModuleConstants.PO_BOX],
+                lead[LeadsModuleConstants.CITY],
+                lead[LeadsModuleConstants.FIRST_STATE])
+            return LeadPrecondition(self.driver, self.config)
 
+        else:
             CreateLeadsProfilePage(self.driver).perform_create_lead(
             lead[LeadsModuleConstants.FIRST_NAME],
             lead[LeadsModuleConstants.FIRST_LAST_NAME],
@@ -644,6 +667,32 @@ class LeadPrecondition(object):
                 new_lead_data[LeadsModuleConstants.FIRST_TITTLE],
                 new_lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE],
                 new_lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_B_TEST],
+                new_lead_data[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+                new_lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                new_lead_data[LeadsModuleConstants.BRAND],
+                new_lead_data[LeadsModuleConstants.PO_BOX],
+                new_lead_data[LeadsModuleConstants.CITY],
+                new_lead_data[LeadsModuleConstants.FIRST_STATE])
+
+        elif global_var.current_brand_name == "gigafx":
+            LeadDetailViewInfo(self.driver).open_edit_lead_profile().perform_edit_lead(
+                new_lead_data[LeadsModuleConstants.FIRST_NAME],
+                new_lead_data[LeadsModuleConstants.FIRST_LAST_NAME],
+                new_lead_data[LeadsModuleConstants.FIRST_MOBILE],
+                new_lead_data[LeadsModuleConstants.FAX],
+                new_lead_data[LeadsModuleConstants.EMAIL],
+                new_lead_data[LeadsModuleConstants.SECONDARY_EMAIL],
+                new_lead_data[LeadsModuleConstants.FIRST_LANGUAGE],
+                new_lead_data[LeadsModuleConstants.PANDA_PARTNER],
+                new_lead_data[LeadsModuleConstants.FIRST_REFERRAL],
+                new_lead_data[LeadsModuleConstants.STREET],
+                new_lead_data[LeadsModuleConstants.POSTAL_CODE],
+                new_lead_data[LeadsModuleConstants.FIRST_COUNTRY],
+                new_lead_data[LeadsModuleConstants.FIRST_DESCRIPTION],
+                new_lead_data[LeadsModuleConstants.PHONE],
+                new_lead_data[LeadsModuleConstants.FIRST_TITTLE],
+                new_lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE],
+                new_lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_GIGA],
                 new_lead_data[LeadsModuleConstants.FIRST_ASSIGNED_TO],
                 new_lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME],
                 new_lead_data[LeadsModuleConstants.BRAND],
