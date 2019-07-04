@@ -48,7 +48,7 @@ class CreditOutPrecondition(object):
         expected_credit = int(((CRMConstants.AMOUNT_CREDIT_IN).split('.'))[0]) - int(
             ((CRMConstants.AMOUNT_CREDIT_OUT).split('.'))[0])
         count = 0
-        while (actual_credit != expected_credit):
+        while actual_credit != expected_credit:
             sleep(2)
             CRMHomePage(self.driver).refresh_page()
             sleep(30)

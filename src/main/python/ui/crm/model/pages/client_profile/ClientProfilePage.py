@@ -491,9 +491,8 @@ class ClientProfilePage(CRMBasePage):
 
     def get_balance_in_trading_account(self):
         balance = super().wait_load_element("//*[@id='dtlview_Balance']").text
-        Logging().reportDebugStep(self, "Verify balance")
+        Logging().reportDebugStep(self, "Actual balance is: " + balance)
         return balance
-
 
     def click_trading_accounts_tab(self):
         trading_account_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'Trading Accounts')][1]")
