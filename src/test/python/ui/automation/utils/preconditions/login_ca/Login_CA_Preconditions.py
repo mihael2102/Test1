@@ -282,11 +282,11 @@ class Login_CA_Precondition(object):
                 .click_login() \
                 .verify()
             sleep(2)
-            existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                              LeadsModuleConstants.FIRST_NAME])
+            existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(
+                TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])
             expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
 
-            assert existing_client == expected_client
+            assert existing_client.lower() == expected_client.lower()
 
     def client_exist_in_crm(self):
         #Login to CRM

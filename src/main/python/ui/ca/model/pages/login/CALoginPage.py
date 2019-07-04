@@ -274,7 +274,7 @@ class CALoginPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", input_email)
         sleep(1)
         input_email.send_keys(email)
-        Logging().reportDebugStep(self, "Enter Email")
+        Logging().reportDebugStep(self, "Enter Email: " + email)
         return CALoginPage(self.driver)
 
     def enter_password(self, password):
@@ -283,7 +283,7 @@ class CALoginPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", input_password)
         sleep(1)
         input_password.send_keys(password)
-        Logging().reportDebugStep(self, "Enter Password")
+        Logging().reportDebugStep(self, "Enter Password: " + password)
         return CALoginPage(self.driver)
 
     def click_login(self):
@@ -320,7 +320,8 @@ class CALoginPage(CRMBasePage):
 
     def click_regulatory_confirmation(self):
         sleep(2)
-        ok_btn = super().wait_load_element("//button[@class='forex-button-pandats simple-button-pandats'][contains(text(), 'OK')]")
+        ok_btn = super().wait_load_element(
+            "//button[@class='forex-button-pandats simple-button-pandats'][contains(text(), 'OK')]")
         ok_btn.click()
         Logging().reportDebugStep(self, "Regulatory message is confirmed")
         return CALoginPage(self.driver)
