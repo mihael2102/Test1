@@ -36,9 +36,6 @@ class AffiliatePage(CRMBasePage):
             Logging().reportDebugStep(self, "Choose brand")
         except NoSuchElementException:
             Logging().reportDebugStep(self, "Brand select box was not found")
-        # select_drop_down_brand = Select(super().wait_element_to_be_clickable("//*[@id='brand']"))
-        # select_drop_down_brand.select_by_visible_text()
-        # Logging().reportDebugStep(self, "")
 
     def enter_allowed_ip(self, allowed_ip):
         input_ip = super().wait_load_element("//*[@id='allowedIps']")
@@ -46,45 +43,48 @@ class AffiliatePage(CRMBasePage):
         Logging().reportDebugStep(self, "Enter allowed IP")
 
     def click_plus_ip(self):
-        button_plus = super().wait_element_to_be_clickable("/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[2]/button")
-        # button_plus.click()
+        sleep(0.5)
+        button_plus = super().wait_load_element("//button[text()=' +']")
         self.driver.execute_script("arguments[0].click();", button_plus)
         Logging().reportDebugStep(self, "Click plus ip")
 
     def select_allowed_methods(self, method):
         sleep(1)
-        methods_drop_down = super().wait_element_to_be_clickable("/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]")
+        methods_drop_down = super().wait_element_to_be_clickable(
+            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]")
         sleep(1)
         methods_drop_down.click()
         sleep(1)
-        input_methods = super().wait_load_element("/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
+        input_methods = super().wait_load_element(
+            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
         sleep(1)
         input_methods.send_keys(method)
         sleep(1)
-        methods = super().wait_load_element("/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]" % method)
+        methods = super().wait_load_element(
+            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]" % method)
         sleep(1)
         methods.click()
         Logging().reportDebugStep(self, "Select allowed methods %s" % method)
 
     def select_blocked_country(self, country):
-        # title = self.driver.find_element(By.XPATH, "/html/body/bs-modal[2]/div/div/form/bs-modal-header/div/h4")
-        # title.click()
         sleep(1)
-        country_drop_down = super().wait_element_to_be_clickable("/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]")
+        country_drop_down = super().wait_element_to_be_clickable(
+            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]")
         country_drop_down.click()
         sleep(1)
-        input_country = super().wait_load_element("/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
+        input_country = super().wait_load_element(
+            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
         sleep(1)
         input_country.send_keys(country)
         sleep(1)
-        countrys = super().wait_load_element("/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]" % country)
+        countrys = super().wait_load_element(
+            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]" % country)
         sleep(1)
         countrys.click()
         Logging().reportDebugStep(self, "Select blocked country %s" % country)
 
     def click_submit(self):
         button_submit = super().wait_element_to_be_clickable("//button[@class = 'btn btn-success']")
-        # button_submit.click()
         sleep(1)
         self.driver.execute_script("arguments[0].click();", button_submit)
         Logging().reportDebugStep(self, "Click Submit")
@@ -111,7 +111,7 @@ class AffiliatePage(CRMBasePage):
 
     def delete_affiliate(self):
         sleep(3)
-        trash_button = super().wait_element_to_be_clickable(
+        trash_button = super().wait_load_element(
             "//span[@class = 'glyphicon glyphicon-trash cursor-pointer ng-star-inserted']")
         trash_button.click()
         Logging().reportDebugStep(self, "Delete button was clicked")
@@ -162,8 +162,6 @@ class AffiliatePage(CRMBasePage):
         all_methods.click()
         sleep(4)
         all_methods.click()
-        # submit = super().wait_element_to_be_clickable("/html/body/bs-modal[3]/div/div/form/bs-modal-footer/div/button[3]")
-        # submit.click()
         Logging().reportDebugStep(self, "Select all methods")
         return AffiliatePage(self.driver)
 
@@ -183,15 +181,12 @@ class AffiliatePage(CRMBasePage):
         all_methods = super().wait_element_to_be_clickable(
             "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[2]")
         all_methods.click()
-        # sleep(4)
-        # all_methods.click()
         Logging().reportDebugStep(self, "None selected countries")
         return AffiliatePage(self.driver)
 
     def copy_secret_key(self):
         sleep(5)
         copy_button = super().wait_element_to_be_clickable("//button[contains(text(), 'Copy')]")
-        # copy_button.click()
         self.driver.execute_script("arguments[0].click();", copy_button)
         sleep(3)
         key = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-body/div/span").text
@@ -213,6 +208,5 @@ class AffiliatePage(CRMBasePage):
                 CRMBasePage(self.driver).refresh_page()
                 sleep(1)
                 api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
-        # api_link.click()
         Logging().reportDebugStep(self, "Get link API")
         return api_link

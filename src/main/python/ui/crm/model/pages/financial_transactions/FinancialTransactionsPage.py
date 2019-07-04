@@ -79,7 +79,7 @@ class FinancialTransactionsPage(CRMBasePage):
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["withdraw_tab"])
         withdraw_tab.click()
         sleep(1)
-        tab_text = super().wait_element_to_be_clickable(
+        tab_text = super().wait_load_element(
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["withdraw_tab"])
         Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
         return tab_text.text

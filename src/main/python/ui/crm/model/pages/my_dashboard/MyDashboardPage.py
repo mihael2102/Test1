@@ -27,6 +27,7 @@ class MyDashboardPage(CRMBasePage):
         sort_by_type = super().wait_load_element(
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/thead/tr/th[5]/a")
         sort_by_type.click()
+        self.wait_crm_loading_to_finish_tasks(55)
         Logging().reportDebugStep(self, "Sort by type")
         return MyDashboardPage(self.driver)
 
@@ -35,6 +36,7 @@ class MyDashboardPage(CRMBasePage):
         sort_by_type = super().wait_load_element(
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/thead/tr/th[3]/a")
         sort_by_type.click()
+        self.wait_crm_loading_to_finish_tasks(55)
         Logging().reportDebugStep(self, "Sort by type")
         return MyDashboardPage(self.driver)
 
@@ -167,7 +169,8 @@ class MyDashboardPage(CRMBasePage):
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[1]/div/input",
             timeout=10)
         input_account_name.send_keys(status)
-        sleep(2)
+        sleep(1)
+        self.wait_crm_loading_to_finish_tasks(35)
         check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[7]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=30)
         check_box.click()
         sleep(2)
@@ -194,7 +197,7 @@ class MyDashboardPage(CRMBasePage):
             check_box.click()
         except:
             self.driver.execute_script("arguments[0].click();", check_box)
-        sleep(2)
+        self.wait_crm_loading_to_finish_tasks(35)
         Logging().reportDebugStep(self, "Enter Status: " + status)
         return MyDashboardPage(self.driver)
 
@@ -211,7 +214,7 @@ class MyDashboardPage(CRMBasePage):
         check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=30)
         self.driver.execute_script("arguments[0].scrollIntoView();", check_box)
         check_box.click()
-        sleep(2)
+        self.wait_crm_loading_to_finish_tasks(35)
         Logging().reportDebugStep(self, "Enter Event Type: " + type)
         return MyDashboardPage(self.driver)
 

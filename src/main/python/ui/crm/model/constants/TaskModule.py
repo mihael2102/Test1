@@ -35,6 +35,7 @@ class TaskModuleConstants(object):
     FIFTH_SUBJECT = "Testing5" + str(random.randrange(1, 10000))
     SIXTH_SUBJECT = "Testing6" + str(random.randrange(1, 10000))
     SEVENTH_SUBJECT = "Testing7" + str(random.randrange(1, 10000))
+    SUBJECT = ""
     FIRST_PRIORITY = "Medium"
     SECOND_PRIORITY = "High"
     THIRD_PRIORITY = "Low"

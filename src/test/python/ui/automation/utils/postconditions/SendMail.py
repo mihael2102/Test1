@@ -3,6 +3,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+from src.test.python.ui.automation.BaseTest import *
 
 
 def Send_Email_XML(filepath, content):
