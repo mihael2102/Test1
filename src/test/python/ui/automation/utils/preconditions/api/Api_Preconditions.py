@@ -116,6 +116,8 @@ class ApiPrecondition(object):
             .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
         client_email = ClientsPage(self.driver).get_first_client_email()
+        if global_var.current_brand_name == "q8":
+            ClientsPage(self.driver).open_address_information()
         client_country = ClientsPage(self.driver).get_client_country()
         client_first_name = ClientsPage(self.driver).get_client_first_name()
         client_last_name = ClientsPage(self.driver).get_client_last_name()
@@ -201,8 +203,11 @@ class ApiPrecondition(object):
         client_email = ClientsPage(self.driver).get_first_client_email()
         # client_first_name = ClientsPage(self.driver).get_client_first_name()
         # client_phone = ClientsPage(self.driver).get_client_phone()
-        ClientsPage(self.driver).click_custom_information()
-        client_postalCode = ClientsPage(self.driver).get_client_postalCode()
+        if global_var.current_brand_name == "q8":
+            ClientsPage(self.driver).open_address_information()
+        else:
+            ClientsPage(self.driver).click_custom_information()
+        client_postal_code = ClientsPage(self.driver).get_client_postalCode()
 
         assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL]
@@ -211,7 +216,7 @@ class ApiPrecondition(object):
 
         # assert client_phone == APIConstants.CHANGE_PHONE_CRM
 
-        assert client_postalCode == APIConstants.CHANGE_POSTAL_CODE
+        assert client_postal_code == APIConstants.CHANGE_POSTAL_CODE
 
     def test_create_lead(self):
         self.autorization_process()
