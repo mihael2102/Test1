@@ -108,104 +108,49 @@ class DepositTestCRM(BaseTest):
 
         balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
         actual_balance = (balance.split('.'))[0]
+        expected_balance = CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT
 
-        self.assertEqual(
-                    CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, actual_balance, "Wrong deposit sum is displayed")
+        # Check the balance was updated
+        count = 0
+        while actual_balance != expected_balance:
+            sleep(2)
+            CRMHomePage(self.driver).refresh_page()
+            sleep(5)
+            balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
+            actual_balance = (balance.split('.'))[0]
+            count += 1
+            if count == 5:
+                break
+        self.assertEqual(expected_balance, actual_balance, "Wrong deposit sum is displayed")
 
     def test_make_deposit_for_client_crm(self):
         ### Tests precondition: test_perform_convert_lead, fill_questioner_new_client, test_crm_open_trading_account
         ###CRM LOGIN
-        try:
-            crm_client_profile = CRMLoginPage(self.driver) \
-                 .open_first_tab_page(self.config.get_value('url')) \
-                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                            self.config.get_value(TestDataConstants.OTP_SECRET)) \
-                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-                 .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                                   TestDataConstants.E_MAIL))
+        crm_client_profile = CRMLoginPage(self.driver) \
+             .open_first_tab_page(self.config.get_value('url')) \
+             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
+             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+             .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                               TestDataConstants.E_MAIL))
 
         # Get account number to make deposit in future. And get initial amount
-            account_number = ClientProfilePage(self.driver)\
-                .perform_scroll_down() \
-                .open_trading_accounts_tab() \
-                .get_client_account()
+        account_number = ClientProfilePage(self.driver)\
+            .perform_scroll_down() \
+            .open_trading_accounts_tab() \
+            .get_client_account()
 
-            amount_initial = crm_client_profile.get_initial_amount()
+        amount_initial = crm_client_profile.get_initial_amount()
 
-            crm_client_profile \
-                .perform_scroll_up() \
-                .open_deposit_for_client_in_menu()\
-                .fill_client_deposit_pop(account_number)
+        crm_client_profile \
+            .perform_scroll_up() \
+            .open_deposit_for_client_in_menu()\
+            .fill_client_deposit_pop(account_number)
 
         # Check that CLIENT DEPOSIT CONFIRMATION page is closed and popup is still displayed
-            self.assertTrue(CRMClientDeposit(self.driver).is_client_deposit_confirmation_page_not_displayed(),
-                            "CLIENT DEPOSIT CONFIRMATION page is still displayed. But Payment Frame is expected")
-            self.assertEqual(CRMConstants.TITLE_OF_CLIENT_DEPOSIT_POPUP,
-                             CRMClientDeposit(self.driver).client_deposit_popup_title_text(),
-                             "Client deposit popup is not displayed, but should")
-        except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                ClientProfilePage(self.driver).Sign_Out()
-                crm_client_profile = CRMLoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url')) \
-                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                               self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                               self.config.get_value(TestDataConstants.OTP_SECRET)) \
-                    .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-                    .find_client_by_email(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
-                # Get account number to make deposit in future. And get initial amount
-                account_number = ClientProfilePage(self.driver) \
-                    .perform_scroll_down() \
-                    .open_trading_accounts_tab() \
-                    .get_client_account()
-                amount_initial = crm_client_profile.get_initial_amount()
-                crm_client_profile \
-                    .perform_scroll_up() \
-                    .open_deposit_for_client_in_menu() \
-                    .fill_client_deposit_pop(account_number)
-                # Check that CLIENT DEPOSIT CONFIRMATION page is closed and popup is still displayed
-                self.assertTrue(CRMClientDeposit(self.driver).is_client_deposit_confirmation_page_not_displayed(),
-                                "CLIENT DEPOSIT CONFIRMATION page is still displayed. But Payment Frame is expected")
-                self.assertEqual(CRMConstants.TITLE_OF_CLIENT_DEPOSIT_POPUP,
-                                 CRMClientDeposit(self.driver).client_deposit_popup_title_text(),
-                                 "Client deposit popup is not displayed, but should")
-            except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                ClientProfilePage(self.driver).Sign_Out()
-                crm_client_profile = CRMLoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url')) \
-                    .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                               self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                               self.config.get_value(TestDataConstants.OTP_SECRET)) \
-                    .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-                    .find_client_by_email(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
-                # Get account number to make deposit in future. And get initial amount
-                account_number = ClientProfilePage(self.driver) \
-                    .perform_scroll_down() \
-                    .open_trading_accounts_tab() \
-                    .get_client_account()
-                amount_initial = crm_client_profile.get_initial_amount()
-                crm_client_profile \
-                    .perform_scroll_up() \
-                    .open_deposit_for_client_in_menu() \
-                    .fill_client_deposit_pop(account_number)
-                # Check that CLIENT DEPOSIT CONFIRMATION page is closed and popup is still displayed
-                self.assertTrue(CRMClientDeposit(self.driver).is_client_deposit_confirmation_page_not_displayed(),
-                                "CLIENT DEPOSIT CONFIRMATION page is still displayed. But Payment Frame is expected")
-                self.assertEqual(CRMConstants.TITLE_OF_CLIENT_DEPOSIT_POPUP,
-                                 CRMClientDeposit(self.driver).client_deposit_popup_title_text(),
-                                 "Client deposit popup is not displayed, but should")
-
-
-        # deposit_successful = CRMClientDeposit(self.driver)\
-        #     .select_payment_method(CaConstants.VISA) \
-        #     .set_card_number("4444444444444448") \
-        #     .set_expiry_date("092020") \
-        #     .set_cvc("123") \
-        #     .set_amount_deposit(CaConstants.AMOUNT_DEPOSIT) \
-        #     .perform_deposit() \
-        #     .get_successful_deposit_message()
-        #
-        # self.assertEqual(CaConstants.SUCCESSFUL_DEPOSIT_MESSAGE, deposit_successful, "Transaction failed")
+        self.assertTrue(CRMClientDeposit(self.driver).is_client_deposit_confirmation_page_not_displayed(),
+                        "CLIENT DEPOSIT CONFIRMATION page is still displayed. But Payment Frame is expected")
+        self.assertEqual(CRMConstants.TITLE_OF_CLIENT_DEPOSIT_POPUP,
+                         CRMClientDeposit(self.driver).client_deposit_popup_title_text(),
+                         "Client deposit popup is not displayed, but should")
