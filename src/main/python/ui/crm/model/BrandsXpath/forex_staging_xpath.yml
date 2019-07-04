@@ -6,3 +6,5 @@ FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[14])[%s]"
 DocumentsPage:
   apply_btn: "/html/body/div[20]/div[3]/div/button[1]"
+ClientProfilePage:
+  choose_account_drop_down: "//*[@id='ClientDepositConfirmation']//button[@title='Nothing selected']"
