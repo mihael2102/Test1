@@ -10,6 +10,8 @@ from src.main.python.ui.crm.model.mt4.withdraw.MT4WithdrawModule import MT4Withd
 from time import sleep
 import pytest
 from src.test.python.ui.automation.BaseTest import *
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+
 
 class WithdrawPreconditionCRM(object):
     driver = None
@@ -49,4 +51,16 @@ class WithdrawPreconditionCRM(object):
         balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
         actual_balance = int((balance.split('.'))[0])
         expected_balance = int(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT) - int(CRMConstants.AMOUNT_WITHDRAW)
+
+        # Check the balance was updated
+        count = 0
+        while actual_balance != expected_balance:
+            sleep(2)
+            CRMHomePage(self.driver).refresh_page()
+            sleep(5)
+            balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
+            actual_balance = int(balance.split('.'))[0]
+            count += 1
+            if count == 5:
+                break
         assert actual_balance == expected_balance
