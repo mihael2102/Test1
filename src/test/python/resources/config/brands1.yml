@@ -9,8 +9,8 @@ brands:
 #- name: ptbanc
 #  config_file: ptbanc.yml
 #
-- name: q8
-  config_file: q8.yml
+#- name: q8
+#  config_file: q8.yml
 #
 #- name: kontofx
 #  config_file: kontofx.yml
@@ -18,5 +18,5 @@ brands:
 #- name: newforexstage2
 #  config_file: newforexstage2.yml
 
-#- name: coin-bits
-#  config_file: coin-bits.yml
+- name: trade99
+  config_file: trade99.yml
