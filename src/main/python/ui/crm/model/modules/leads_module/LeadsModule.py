@@ -35,7 +35,7 @@ class LeadsModule(CRMBasePage):
         self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
         self.enter_email(email)
         self.click_search_button_leads_module()
-        self.wait_crm_loading_to_finish()
+        self.wait_vtiger_loading(55)
         return LeadsModule()
 
     def open_create_lead_module(self):
@@ -190,7 +190,7 @@ class LeadsModule(CRMBasePage):
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_firstname']")
         first_name_field.clear()
         first_name_field.send_keys(first_name)
-        Logging().reportDebugStep(self, "The first name was entered : " + first_name)
+        Logging().reportDebugStep(self, "The first name was entered: " + first_name)
         return LeadsModule(self.driver)
 
     def enter_last_name(self, last_name):
@@ -198,7 +198,7 @@ class LeadsModule(CRMBasePage):
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_lastname']")
         first_name_field.clear()
         first_name_field.send_keys(last_name)
-        Logging().reportDebugStep(self, "The last name was entered : " + last_name)
+        Logging().reportDebugStep(self, "The last name was entered: " + last_name)
         return LeadsModule(self.driver)
 
     def enter_email(self, email):
@@ -206,16 +206,16 @@ class LeadsModule(CRMBasePage):
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_email']")
         first_name_field.clear()
         first_name_field.send_keys(email)
-        Logging().reportDebugStep(self, "The email was entered : " + email)
+        Logging().reportDebugStep(self, "The email was entered: " + email)
         return LeadsModule(self.driver)
 
     def enter_assigned_to(self, assigned_to):
         country_drop_down = self.driver.find_element(By.XPATH,
-                                                     "//tr[@id='customAdvanceSearch']//td[5]//span[@class='multiselect-selected-text']")
+                                    "//tr[@id='customAdvanceSearch']//td[5]//span[@class='multiselect-selected-text']")
 
         country_drop_down.click()
         search_field = self.driver.find_element(By.XPATH,
-                                                "//tr[@id='customAdvanceSearch']//td[5]//input[@class='form-control multiselect-search']")
+                            "//tr[@id='customAdvanceSearch']//td[5]//input[@class='form-control multiselect-search']")
         search_field.clear()
         search_field.send_keys(assigned_to)
         country_choice = self.driver.find_element(By.XPATH,
@@ -225,7 +225,7 @@ class LeadsModule(CRMBasePage):
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The brand  was selected : " + assigned_to)
+        Logging().reportDebugStep(self, "The brand  was selected: " + assigned_to)
         return LeadsModule(self.driver)
 
     def enter_tittle(self, tittle):
@@ -233,7 +233,7 @@ class LeadsModule(CRMBasePage):
                                                      "//tr[@name='customAdvanceSearch']//input[@id='tks_designation']")
         tittle_name_field.clear()
         tittle_name_field.send_keys(tittle)
-        Logging().reportDebugStep(self, "The assigned_to was entered : " + tittle)
+        Logging().reportDebugStep(self, "The assigned_to was entered: " + tittle)
         return LeadsModule(self.driver)
 
     def enter_lead_source(self, lead_source):
@@ -252,7 +252,7 @@ class LeadsModule(CRMBasePage):
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The brand  was selected : " + lead_source)
+        Logging().reportDebugStep(self, "The brand  was selected: " + lead_source)
         return LeadsModule(self.driver)
 
     def enter_lead_status(self, lead_status):
@@ -271,7 +271,7 @@ class LeadsModule(CRMBasePage):
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The lead_status  was selected : " + lead_status)
+        Logging().reportDebugStep(self, "The lead_status  was selected: " + lead_status)
         return LeadsModule(self.driver)
 
     def enter_language(self, language):
@@ -279,13 +279,13 @@ class LeadsModule(CRMBasePage):
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_cf_1092']")
         first_name_field.clear()
         first_name_field.send_keys(language)
-        Logging().reportDebugStep(self, "The language was entered : " + language)
+        Logging().reportDebugStep(self, "The language was entered: " + language)
         return LeadsModule(self.driver)
 
     def click_search_button_leads_module(self):
         search_button = super().wait_element_to_be_clickable("//td[@class='txt_al_c']")
         search_button.click()
-        Logging().reportDebugStep(self, "The search button was clicked ")
+        Logging().reportDebugStep(self, "The search button was clicked")
         return LeadsModule(self.driver)
 
     def get_results_count(self):
@@ -301,7 +301,7 @@ class LeadsModule(CRMBasePage):
     def get_first_name_column(self):
         name_first_column = super().wait_element_to_be_clickable(
             "//table[@id='resizeble_cols']//td[2]")
-        Logging().reportDebugStep(self, "First column name  : " + name_first_column.text)
+        Logging().reportDebugStep(self, "First column name: " + name_first_column.text)
         return name_first_column.text
 
     def get_second_name_column(self):
@@ -319,31 +319,31 @@ class LeadsModule(CRMBasePage):
     def get_fourth_name_column(self):
         name_fourth_column = self.driver.find_element(By.XPATH,
                                                       "//table[@id='resizeble_cols']//td[5]")
-        Logging().reportDebugStep(self, "Fourth column name : " + name_fourth_column.text)
+        Logging().reportDebugStep(self, "Fourth column name: " + name_fourth_column.text)
         return name_fourth_column.text
 
     def get_fifth_name_column(self):
         name_fifth_column = self.driver.find_element(By.XPATH,
                                                      "//table[@id='resizeble_cols']//td[6]")
-        Logging().reportDebugStep(self, "Fifth column name : " + name_fifth_column.text)
+        Logging().reportDebugStep(self, "Fifth column name: " + name_fifth_column.text)
         return name_fifth_column.text
 
     def get_sixth_name_column(self):
         name_sixth_column = self.driver.find_element(By.XPATH,
                                                      "//table[@id='resizeble_cols']//td[7]")
-        Logging().reportDebugStep(self, "Sixth column name : " + name_sixth_column.text)
+        Logging().reportDebugStep(self, "Sixth column name: " + name_sixth_column.text)
         return name_sixth_column.text
 
     def get_seventh_name_column(self):
         name_seventh_column = self.driver.find_element(By.XPATH,
                                                        "//table[@id='resizeble_cols']//td[8]")
-        Logging().reportDebugStep(self, "Seventh column name : " + name_seventh_column.text)
+        Logging().reportDebugStep(self, "Seventh column name: " + name_seventh_column.text)
         return name_seventh_column.text
 
     def get_eighth_name_column(self):
         name_eighth_column = self.driver.find_element(By.XPATH,
                                                       "//table[@id='resizeble_cols']//td[9]")
-        Logging().reportDebugStep(self, "Seventh column name : " + name_eighth_column.text)
+        Logging().reportDebugStep(self, "Seventh column name: " + name_eighth_column.text)
         return name_eighth_column.text
 
     def open_personal_details_lead(self):
