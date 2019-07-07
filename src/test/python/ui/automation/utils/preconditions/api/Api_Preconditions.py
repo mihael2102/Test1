@@ -228,7 +228,7 @@ class ApiPrecondition(object):
         ApiPage(self.driver).send_create_lead()
         token = ApiPage(self.driver).check_create_lead_token()
         count = 0
-        while (APIConstants.STATUS_OK not in token):
+        while APIConstants.STATUS_OK not in token:
             sleep(1)
             token = ApiPage(self.driver).check_create_lead_token()
             count += 1
