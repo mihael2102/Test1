@@ -37,7 +37,7 @@ class ExcelWriter:
                     if self.get_test_pretty_name(test) in results[brand] else ""
                 if test_result == 'PASS':
                     worksheet.write(row, col, test_result, cell_format_pass)
-                elif ("module does not exist" in test_result) or ("There are no" in test_result) or \
+                elif ("does not exist" in test_result) or ("There are no" in test_result) or \
                         ("There is no" in test_result) or ("Brand doesnt contains questioner" in test_result):
                     test_result_na = "NOT RUNNED"
                     worksheet.write(row, col, test_result_na, cell_format_not_runned)
