@@ -16,6 +16,8 @@ from src.main.python.utils.logs.Loging import Logging
 import allure
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 
 
 class ClientsPage(CRMBasePage):
@@ -489,7 +491,10 @@ class ClientsPage(CRMBasePage):
         return client_assigned.text
 
     def click_send_mail_btn(self):
-        send_mail_btn = self.driver.find_element_by_xpath("//*[@id='sidebar']//a[contains(text(),'Send Mail')]")
-        send_mail_btn.click()
-        Logging().reportDebugStep(self, "Click Send Mail button")
+        try:
+            send_mail_btn = self.driver.find_element_by_xpath("//*[@id='sidebar']//a[contains(text(),'Send Mail')]")
+            send_mail_btn.click()
+            Logging().reportDebugStep(self, "Click Send Mail button")
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Send Mail button does not exist")
         return ClientsPage(self.driver)
