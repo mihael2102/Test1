@@ -16,6 +16,7 @@ from src.main.python.utils.logs.Loging import Logging
 #import allure
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
+from selenium.webdriver.common.keys import Keys
 
 
 class ClientsPage(CRMBasePage):
@@ -482,14 +483,14 @@ class ClientsPage(CRMBasePage):
         first_name_field = super().wait_load_element("//input[@id='first_name']")
         first_name_field.clear()
         first_name_field.send_keys(first_name)
-        Logging().reportDebugStep(self, "Edit First Name")
+        Logging().reportDebugStep(self, "Edit First Name: " + first_name)
         return ClientsPage(self.driver)
 
     def edit_last_name(self, last_name):
         last_name_field = super().wait_load_element("//input[@id='last_name']")
         last_name_field.clear()
         last_name_field.send_keys(last_name)
-        Logging().reportDebugStep(self, "Edit Last Name")
+        Logging().reportDebugStep(self, "Edit Last Name: " + last_name)
         return ClientsPage(self.driver)
 
     def edit_citizenship(self, citizenship):
@@ -513,14 +514,14 @@ class ClientsPage(CRMBasePage):
         zip_field = super().wait_load_element("//input[@id='postcode']")
         zip_field.clear()
         zip_field.send_keys(zipcode1)
-        Logging().reportDebugStep(self, "Edit Zip code field")
+        Logging().reportDebugStep(self, "Edit Zip code field: " + zipcode1)
         return ClientsPage(self.driver)
 
     def edit_address(self, address):
         address_field = super().wait_load_element("//input[@id='address']")
         address_field.clear()
         address_field.send_keys(address)
-        Logging().reportDebugStep(self, "Edit Address field")
+        Logging().reportDebugStep(self, "Edit Address field: " + address)
         return ClientsPage(self.driver)
 
     def click_save_changes_btn(self):
@@ -531,8 +532,11 @@ class ClientsPage(CRMBasePage):
 
     def fill_birthday(self, date):
         birthday_field = super().wait_load_element("//input[@id='birthday']")
+        birthday_field.send_keys(Keys.CONTROL, 'a')
+        birthday_field.send_keys(Keys.BACKSPACE)
+        # birthday_field.clear()
         birthday_field.send_keys(date)
-        Logging().reportDebugStep(self, "Fill birthday field")
+        Logging().reportDebugStep(self, "Fill birthday field: " + date)
         return ClientsPage(self.driver)
 
     def open_address_information_tab(self):
