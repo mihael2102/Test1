@@ -185,13 +185,13 @@ tests_config:
 #    - test_crm_configurations_pages_loading
 #
 ######################################### WORKFLOWS MODULE #############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
-#  class: WorkflowsModulesTest
-#  tests:
-#    - test_create_workflows
-#    - test_check_workflow_by_status
-#    - test_check_workflow_by_country
-#    - test_delete_workflow
+- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
+  class: WorkflowsModulesTest
+  tests:
+    - test_create_workflows
+    - test_check_workflow_by_status
+    - test_check_workflow_by_country
+    - test_delete_workflow
 #
 ########################################### USER_MANAGEMENT #########################################
 #- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
@@ -201,9 +201,9 @@ tests_config:
 #    - test_delete_user
 #
 ########################################### DOCUMENTS MODULE ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
-  class: DocumentModuleTest
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
+#  class: DocumentModuleTest
+#  tests:
 #    - test_searching_by_columns
-    - test_open_tabs
+#    - test_open_tabs
 #    - test_sorting

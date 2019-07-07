@@ -634,12 +634,12 @@ class ClientProfilePage(CRMBasePage):
         sleep(1)
         trading_account = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[2]/td[2]")
         trading_account_number = trading_account.text
-        Logging().reportDebugStep(self, "Account number is " + trading_account_number)
+        Logging().reportDebugStep(self, "Account number is: " + trading_account_number)
         return trading_account_number
 
     def get_balance_in_trading_account(self):
         balance = super().wait_load_element("//*[@id='dtlview_Balance']").text
-        Logging().reportDebugStep(self, "Verify balance")
+        Logging().reportDebugStep(self, "Verify balance: " + balance)
         return balance
 
     def open_trading_account_page(self, account_number):

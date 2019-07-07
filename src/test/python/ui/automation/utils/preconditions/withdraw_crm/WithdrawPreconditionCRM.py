@@ -56,4 +56,3 @@ class WithdrawPreconditionCRM(object):
         actual_balance = int((balance.split('.'))[0])
         expected_balance = int(((CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT).split('.'))[0]) - int(CRMConstants.AMOUNT_WITHDRAW)
         assert actual_balance == expected_balance
-
