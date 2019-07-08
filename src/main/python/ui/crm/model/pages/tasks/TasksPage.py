@@ -143,14 +143,17 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def open_sms_actions_section(self):
-        sleep(6)
+        sleep(1)
         try:
-            first_check_box = super().wait_element_to_be_clickable(
+            sms_btn = super().wait_element_to_be_clickable(
                 "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[2]")
         except:
-            first_check_box = super().wait_element_to_be_clickable(
+            sms_btn = super().wait_element_to_be_clickable(
                 "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div/span/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div/span")
-        first_check_box.click()
+        try:
+            sms_btn.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", sms_btn)
         Logging().reportDebugStep(self, "The SMS module was opened")
         return TasksPage(self.driver)
 
@@ -375,6 +378,7 @@ class TasksPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", refresh_icon)
         sleep(0.5)
         self.wait_element_to_be_disappear("//a[@class='fa fa-refresh roll']")
+        sleep(1)
         results_count_text = self.wait_visible_of_element("//*[contains(text(), 'Showing Records')]").text
         results_count = results_count_text.split("of ")[1]
         Logging().reportDebugStep(self, "Results found: " + results_count)
@@ -430,7 +434,7 @@ class TasksPage(CRMBasePage):
     def search_account_name(self, first_name):
         input_account_name = super().wait_element_to_be_clickable("//*[@id='host-element']/input", timeout=10)
         input_account_name.send_keys(first_name)
-        sleep(5)
+        sleep(2)
         self.wait_crm_loading_to_finish_tasks(85)
         Logging().reportDebugStep(self, "Search Account name")
         return TasksPage(self.driver)

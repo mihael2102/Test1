@@ -79,10 +79,11 @@ class FinancialTransactionsPage(CRMBasePage):
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["withdraw_tab"])
         withdraw_tab.click()
         sleep(1)
+        self.wait_loading_to_finish(35)
         tab_text = super().wait_load_element(
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["withdraw_tab"])
-        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
-        return tab_text.text
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["withdraw_tab"]).text
+        Logging().reportDebugStep(self, "Returns the tab name: " + tab_text)
+        return tab_text
 
     def open_first_transactions(self):
         transaction_number = self.driver.find_element(By.XPATH, "//tr[@class='lvtColData']//td[2]")

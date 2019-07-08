@@ -83,12 +83,12 @@ tests_config:
 #    - test_clients_mass_assign
 #
 ############################################## TASKS ##################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
-#  class: AddInteraction
-#  tests:
-#    - test_add_interaction  # Adds an interaction for a client
-#    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
-#
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
+  class: AddInteraction
+  tests:
+    - test_add_interaction  # Adds an interaction for a client
+    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
+
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
 #  class: AddEventTaskModule
 #  tests:
@@ -109,11 +109,11 @@ tests_config:
 #    - test_check_week_tab
 #
 ############################################### CLIENT'S DETAILS ##########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+#  class: TradingAccountCrmTest
+#  tests:
 #    - fill_questioner_new_client
-    - test_crm_open_trading_account  # open a new trading account
+#    - test_crm_open_trading_account  # open a new trading account
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
 #  class: ChangePasswordTestCRM
@@ -152,10 +152,10 @@ tests_config:
 #  tests:
 #    - test_transfer_between_ta  # preconditions: convert lead, deposit crm, credit in
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_edit_trading_account  # edit trading account
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+#  class: TradingAccountCrmTest
+#  tests:
+#    - test_crm_edit_trading_account  # edit trading account
 #
 ############################################## AFFILIATES MODULE ##########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
