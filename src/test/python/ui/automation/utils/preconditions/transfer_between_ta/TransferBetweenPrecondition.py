@@ -13,9 +13,8 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 from src.main.python.ui.crm.model.mt4.transfer_between_ta.MT4TransferBetweenTa import MT4TransferBetweenTa
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
-from src.main.python.ui.crm.model.modules.leads_module.LeadViewInfo import LeadViewInfo
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 
 
 class TransferBetweenPrecondition(object):
@@ -39,6 +38,7 @@ class TransferBetweenPrecondition(object):
         ClientsPage(self.driver).find_client_by_email(client1[LeadsModuleConstants.EMAIL])
         sleep(2)
 
+        # Get ta accounts info
         crm_client_profile = ClientProfilePage(self.driver)
 
         ClientProfilePage(self.driver).click_trading_accounts_tab() \
@@ -69,16 +69,23 @@ class TransferBetweenPrecondition(object):
 
         confirmation_message = crm_client_profile.get_confirm_message()
 
-        assert confirmation_message == CRMConstants.TRANSFER_BETWEEN_TA_MESSAGE
+        try:
+            assert confirmation_message == CRMConstants.TRANSFER_BETWEEN_TA_MESSAGE
+        except (NoSuchElementException, TimeoutException):
+            pass
 
         amount_transfer = crm_client_profile.click_ok() \
             .click_trading_accounts_tab().get_balance_of_trading_account(CRMConstants.SECOND_TA_NUMBER_FROM_TA_SECTION)
 
+        count = 0
         while amount_transfer != expected_balance:
             ClientProfilePage(self.driver).refresh_page()
             sleep(2)
             amount_transfer = ClientProfilePage(self.driver).get_balance_of_trading_account\
                 (CRMConstants.SECOND_TA_NUMBER_FROM_TA_SECTION)
+            count += 1
+            if count == 5:
+                break
         assert amount_transfer == expected_balance
 
 
