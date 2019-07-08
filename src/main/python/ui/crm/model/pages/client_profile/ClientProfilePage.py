@@ -632,7 +632,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_trading_account_number(self):
         sleep(1)
-        trading_account = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[2]/td[2]")
+        trading_account = super().wait_load_element("//*[@id='rld_table_content']/tbody/tr[2]/td[2]")
         trading_account_number = trading_account.text
         Logging().reportDebugStep(self, "Account number is: " + trading_account_number)
         return trading_account_number
