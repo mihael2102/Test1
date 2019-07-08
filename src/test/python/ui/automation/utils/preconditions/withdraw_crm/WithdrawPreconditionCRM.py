@@ -54,6 +54,15 @@ class WithdrawPreconditionCRM(object):
                                       .open_trading_account_page(account_number)
         balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
         actual_balance = int((balance.split('.'))[0])
-        expected_balance = int(((CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT).split('.'))[0]) - int(CRMConstants.AMOUNT_WITHDRAW)
+        expected_balance = int(((CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT).split('.'))[0]) \
+                           - int(CRMConstants.AMOUNT_WITHDRAW)
+        count = 0
+        while actual_balance != expected_balance:
+            CRMHomePage(self.driver).refresh_page()
+            sleep(2)
+            balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
+            actual_balance = int((balance.split('.'))[0])
+            count += 1
+            if count == 5:
+                break
         assert actual_balance == expected_balance
-

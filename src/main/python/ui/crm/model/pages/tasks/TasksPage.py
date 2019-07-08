@@ -239,14 +239,14 @@ class TasksPage(CRMBasePage):
         sleep(3)
         first_type = super().wait_load_element(
             "(//span[@class='link_field' and @style='cursor: auto;'])[2]").text
-        Logging().reportDebugStep(self, "Check Type" + first_type)
+        Logging().reportDebugStep(self, "Check Type: " + first_type)
         return first_type
 
     def get_first_status(self):
         sleep(3)
         first_status = super().wait_load_element(
             "(//span[@class='link_field' and @style='cursor: auto;'])[4]").text
-        Logging().reportDebugStep(self, "Check status" + first_status)
+        Logging().reportDebugStep(self, "Check status: " + first_status)
         return first_status
 
     def select_all_event(self):
@@ -256,7 +256,7 @@ class TasksPage(CRMBasePage):
             check_box.click()
         except:
             self.driver.execute_script("arguments[0].click();", check_box)
-        Logging().reportDebugStep(self, "Select all event")
+        Logging().reportDebugStep(self, "Select All event")
         return TasksPage(self.driver)
 
     def get_account_name(self, first_name):
@@ -276,7 +276,7 @@ class TasksPage(CRMBasePage):
         sleep(2)
         subject_mail = super().wait_load_element("//input[@id='subject']")
         subject_mail.send_keys(subject)
-        Logging().reportDebugStep(self, "Enter subject mail" + subject)
+        Logging().reportDebugStep(self, "Enter subject mail: " + subject)
         return TasksPage(self.driver)
 
     def enter_body_mail(self, body):
