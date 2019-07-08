@@ -23,7 +23,7 @@ class MassEditTaskModule(CRMBasePage):
 
     def set_event_status(self, status):
         sleep(1)
-        event_element = super().wait_element_to_be_clickable("//select[@id='eventstatus']")
+        event_element = super().wait_load_element("//select[@id='eventstatus']")
         select_status = Select(event_element)
         select_status.select_by_visible_text(status)
         Logging().reportDebugStep(self, "The event status is set " + status)
