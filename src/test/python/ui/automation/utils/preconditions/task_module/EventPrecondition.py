@@ -11,6 +11,8 @@ from src.main.python.ui.crm.model.modules.tasks_module.EditEventModule import Ed
 from src.test.python.ui.automation.BaseTest import *
 import pytest
 from src.main.python.ui.crm.model.modules.tasks_module.MassEditTaskModule import MassEditTaskModule
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+
 
 class EventPrecondition(object):
 
@@ -49,19 +51,20 @@ class EventPrecondition(object):
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
+        mail_subject = global_var.current_brand_name + CRMConstants.SUBJECT_TASK_MAIL
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
         task_module.search_account_name(CRMConstants.TESTQA)
         sleep(1)
         task_module.open_email_actions_section()
-        task_module.enter_subject_mail(CRMConstants.SUBJECT_TASK_MAIL)
+        task_module.enter_subject_mail(mail_subject)
         task_module.enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         task_module.enter_cc_mail(CRMConstants.CC_EMAIL)
         task_module.enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         task_module.click_send()
-        sleep(60)
-        msg = task_module.check_email(CRMConstants.SUBJECT_TASK_MAIL)
-        assert CRMConstants.SUBJECT_TASK_MAIL in msg
+        sleep(10)
+        msg = task_module.check_email(mail_subject)
+        assert mail_subject in msg
 
     def test_sms_icon(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
@@ -87,13 +90,13 @@ class EventPrecondition(object):
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
         task_module.search_account_name(CRMConstants.TESTQA)
-        sleep(60)
+        sleep(2)
         task = task_module.get_first_account_name()
         task_module.select_all_event()
         task_module.open_mass_edit_task().perform_mass_edit(CRMConstants.STATUS_EVENT, CRMConstants.TYPE_EVENT, CRMConstants.DURATION_EVENT)
         task_module.refresh_page()
         task_module.search_account_name(task)
-        sleep(60)
+        sleep(2)
         status = task_module.get_first_status()
         type = task_module.get_first_type()
         assert type == CRMConstants.TYPE_EVENT
@@ -107,18 +110,19 @@ class EventPrecondition(object):
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
         task_module.search_account_name(CRMConstants.TESTQA)
-        sleep(60)
+        sleep(2)
         task = task_module.get_first_account_name()
         status = task_module.get_first_status()
         type = task_module.get_first_type()
         task_module.refresh_page()
-        sleep(30)
+        sleep(2)
+        task_module.wait_crm_loading_to_finish_tasks(55)
         task_module.search_account_name(task)
-        sleep(30)
+        sleep(2)
         task_module.search_by_status(status)
-        sleep(30)
+        sleep(2)
         task_module.search_by_type(type)
-        sleep(30)
+        sleep(2)
         verify_task = task_module.get_first_account_name()
         verify_status = task_module.get_first_status()
         verify_type = task_module.get_first_type()
@@ -182,5 +186,3 @@ class EventPrecondition(object):
         task_was_updated_text = task_module.task_was_updated()
         text = "Task was updated"
         assert text == task_was_updated_text
-
-
