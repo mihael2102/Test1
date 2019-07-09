@@ -12,5 +12,5 @@ brands:
 #- name: gigafx
 #  config_file: gigafx.yml
 
-#- name: strattonmarkets-eu
-#  config_file: strattonmarkets-eu.yml
+- name: strattonmarkets-eu
+  config_file: strattonmarkets-eu.yml

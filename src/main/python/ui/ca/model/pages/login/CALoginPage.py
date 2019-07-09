@@ -365,3 +365,37 @@ class CALoginPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", close_btn)
         Logging().reportDebugStep(self, "Close Client Area pop up")
         return CALoginPage(self.driver)
+
+    def select_us_reportable(self, answer):
+        # us_reportable = super().wait_load_element("//custom-select[@name='isUSCitizen']")
+        # us_reportable.click()
+        yes_btn = super().wait_load_element("//span[text()='Yes']")
+        self.driver.execute_script("arguments[0].click();", yes_btn)
+        Logging().reportDebugStep(self, "I am a US reportable citizen: " + answer)
+        return CALoginPage(self.driver)
+
+    def confirm_us_reportable(self):
+        yes_btn = super().wait_load_element("//button[text()='Yes']")
+        yes_btn.click()
+        Logging().reportDebugStep(self, "Are you sure?: Press Yes")
+        return CALoginPage(self.driver)
+
+    def verify_registration_blocked(self):
+        super().wait_load_element("//div[text()='Registration blocked']")
+        Logging().reportDebugStep(self, "Registration blocked")
+        return CALoginPage(self.driver)
+
+    def confirm_logout(self):
+        sleep(2)
+        logout_btn = super().wait_load_element("//a[text()='log out']")
+        self.driver.execute_script("arguments[0].click();", logout_btn)
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", logout_btn)
+        sleep(1)
+        Logging().reportDebugStep(self, "Confirm logout")
+        return CALoginPage(self.driver)
+
+    def came_back_on_previous_page(self):
+        super().came_back_on_previous_page()
+        Logging().reportDebugStep(self, "Come back on previous page was successfully")
+        return CALoginPage(self.driver)

@@ -571,7 +571,7 @@ class ClientProfilePage(CRMBasePage):
     def get_description_text(self):
         description = self.driver.find_element(By.XPATH,
                                                "//td[contains(text(),'Description')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the description : " + description.text)
+        Logging().reportDebugStep(self, "Returns the description: " + description.text)
         return description.text
 
     def get_referral_text(self):
@@ -583,8 +583,14 @@ class ClientProfilePage(CRMBasePage):
         referral = self.driver.find_element(By.XPATH,
                                             "//td[contains(text(),'Refferal')]//following-sibling::td[1]")
         parser_client_status_text = re.sub('[" "]', '', referral.text, 3)
-        Logging().reportDebugStep(self, "Returns the referral : " + parser_client_status_text)
+        Logging().reportDebugStep(self, "Returns the referral: " + parser_client_status_text)
         return parser_client_status_text
+
+    def get_customer_classification(self):
+        customer_classification = super().wait_load_element(
+            "//td[text()='Customer Classification']//following-sibling::td[1]").text
+        Logging().reportDebugStep(self, "Returns the Customer Classification: " + customer_classification)
+        return customer_classification
 
     def open_deposit_for_client_in_menu(self):
         deposit_for_client_element = self.driver.find_element(By.XPATH, "//*[@id='sidebar']/table[1]/tbody/tr[4]/td/a")
