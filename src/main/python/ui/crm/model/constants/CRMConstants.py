@@ -128,4 +128,5 @@ class CRMConstants(object):
     EDIT_ZIP_CODE = "789"
     EDIT_ADDRESS = "BenGurion48"
     BIRTHDAY = "1999-02-19"
-
+    CUSTOMER_CLASSIFICATION_EMPTY = ""
+    CUSTOMER_CLASSIFICATION_BLOCKED = "Blocked"

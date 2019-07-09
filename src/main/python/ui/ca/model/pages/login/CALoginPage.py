@@ -396,6 +396,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def came_back_on_previous_page(self):
+        sleep(3)
         super().came_back_on_previous_page()
         Logging().reportDebugStep(self, "Come back on previous page was successfully")
         return CALoginPage(self.driver)

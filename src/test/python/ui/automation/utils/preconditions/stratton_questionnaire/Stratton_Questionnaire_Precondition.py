@@ -58,7 +58,7 @@ class StrattonQuestionnairePrecondition(object):
         ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                           LeadsModuleConstants.EMAIL])
         customer_classification = ClientProfilePage(self.driver).get_customer_classification()
-        assert customer_classification.strip() == ""
+        assert customer_classification.strip() == CRMConstants.CUSTOMER_CLASSIFICATION_EMPTY
 
     def customer_classification_blocked(self):
         assert global_var.current_brand_name == "strattonmarkets-eu"
@@ -98,3 +98,20 @@ class StrattonQuestionnairePrecondition(object):
             .enter_password(CAConstants.PASSWORD) \
             .click_login()\
             .verify_registration_blocked()
+
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                       TestDataConstants.FILTER))
+
+        sleep(2)
+        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                          LeadsModuleConstants.EMAIL])
+        customer_classification = ClientProfilePage(self.driver).get_customer_classification()
+
+        assert customer_classification.strip() == CRMConstants.CUSTOMER_CLASSIFICATION_BLOCKED
+
+        # Check MT Actions contain only 9 items (there is no Create MT User)
+        ClientProfilePage(self.driver).wait_element_to_be_disappear("//div[@id='mt4_act_box']/a[10]")
