@@ -829,8 +829,7 @@ class ClientProfilePage(CRMBasePage):
     def get_address_text(self):
         self.driver.execute_script("scroll(0, 300);")
         if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
-            address = self.driver.find_element_by_xpath\
-                ("//td[1][contains(text(),'Address')]//following-sibling::td[1]")
+            address = self.driver.find_element_by_xpath("//td[1][text()='Address']//following-sibling::td[1]")
         else:
             address = self.driver.find_element(By.XPATH, "//td[contains(text(),'Address')]//following-sibling::td[1]")
         parser_address_text = re.sub('[" "]', '', address.text)
