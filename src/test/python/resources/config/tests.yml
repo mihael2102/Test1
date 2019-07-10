@@ -33,5 +33,6 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.ca.Test_Stratton_Questionnaire
   class: StrattonQuestionnaire
   tests:
-#    - test_customer_classification_empty
+    - test_customer_classification_empty
     - test_customer_classification_blocked
+    - test_customer_classification_negative

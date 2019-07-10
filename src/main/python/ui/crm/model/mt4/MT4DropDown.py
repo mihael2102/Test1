@@ -2,6 +2,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 import time
 from selenium.webdriver.common.by import By
 
+
 class MT4DropDown(CRMBasePage):
 
     def mt4_actions(self, module):

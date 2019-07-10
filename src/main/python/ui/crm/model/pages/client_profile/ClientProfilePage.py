@@ -374,7 +374,7 @@ class ClientProfilePage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", mt4_button)
         # mt4_button.click()
         sleep(5)
-        Logging().reportDebugStep(self, "Open mt4 actions ")
+        Logging().reportDebugStep(self, "Open MT4 actions")
         MT4DropDown(self.driver).mt4_actions(module)
 
     def close_popup_new_trading_account(self):
@@ -766,4 +766,19 @@ class ClientProfilePage(CRMBasePage):
         ok_btn = super().wait_element_to_be_clickable("//button[@class='btn btn-primary'][contains(text(),'OK')]")
         ok_btn.click()
         Logging().reportDebugStep(self, "Document status is updated successfully")
+        return ClientProfilePage(self.driver)
+
+    '''
+        Check, that server is not available for account opening 
+    '''
+
+    def verify_server_not_available(self, server):
+        server_pick_list = super().wait_load_element("//select[@id='server']").text
+        assert server not in server_pick_list.upper()
+        Logging().reportDebugStep(self, server + " server is not available for accounts opening")
+        return ClientProfilePage(self.driver)
+
+    def verify_clean_questionnaire_btn_visible(self):
+        super().wait_load_element("//a[text()='Clean Questionnaire']")
+        Logging().reportDebugStep(self, "Clean Questionnaire button is available")
         return ClientProfilePage(self.driver)

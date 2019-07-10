@@ -46,3 +46,4 @@ class CAConstants(object):
     TICKET_NUMBER_CA = ""
     DOCUMENT_STATUS_CA = "Verified"
     US_REPORTABLE_YES = "Yes"
+    US_REPORTABLE_NO = "No"
