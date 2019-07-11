@@ -6,7 +6,6 @@ tests_config:
   class: LeadModuleTest
   tests:
     - test_edit_lead_pencil_icon
-    - test_check_email_popup
 
 #################################### CLIENTS ###############################################
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients

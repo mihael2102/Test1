@@ -14,9 +14,3 @@ tests_config:
   class: CRMConfigurationsTest
   tests:
     - test_crm_configurations_pages_loading
-
-###################################### SEND MAIL FROM CLIENT'S DETAILS ##########################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
-  class: SendEmailTestCRM
-  tests:
-    - test_send_email # preconditions: convert lead
