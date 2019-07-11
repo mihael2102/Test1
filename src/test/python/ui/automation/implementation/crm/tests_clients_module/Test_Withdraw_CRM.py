@@ -5,6 +5,7 @@ from src.main.python.ui.crm.model.pages.campaigns.CampaignsPage import Campaigns
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.withdraw_crm.WithdrawPreconditionCRM import WithdrawPreconditionCRM
 
+
 @pytest.mark.run(order=35)
 class WithdrawTest(BaseTest):
 

@@ -186,7 +186,7 @@ class MyDashboardPage(CRMBasePage):
         input_country.send_keys(country_new)
         self.wait_crm_loading_to_finish_tasks(35)
         check_box = super().wait_element_to_be_clickable(
-            "//span[contains(text(), 'Germany')]")
+            "//span[contains(text(), '%s')]" % country_new)
         try:
             check_box.click()
         except:
