@@ -1,11 +1,11 @@
 from requests import get
 
 test = "New Forex CA"
-file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/New Forex CA/result/final_file.xlsx"
-file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/New Forex CA/result/*.xlsx'
-file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/New Forex CA/%s"
-short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/New Forex CA/result/short_final_file.xlsx"
-mail_subject = "New Forex CA"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/' + test + '/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/short_final_file.xlsx"
+mail_subject = test
 timeout = 4
 data = None
 url_client_area = ""
@@ -30,3 +30,4 @@ chrome_driver = "C:/Users/Panda102/Desktop/drivers/chromedriver2.exe"
 #     chrome_driver = "D:/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
 # elif ip == '35.158.90.50':
 #     chrome_driver = "C:/Users/Panda102/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver2.exe"
+" + test + "
