@@ -41,8 +41,7 @@ class StrattonQuestionnairePrecondition(object):
                                                         LeadsModuleConstants.FIRST_NAME])\
             .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_LAST_NAME])\
-            .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                    LeadsModuleConstants.EMAIL])\
+            .fill_email(QuestionnaireConstants.MAIL_CLIENT_EMPTY)\
             .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                     LeadsModuleConstants.PHONE])\
             .fill_password(CAConstants.PASSWORD)\
@@ -51,6 +50,7 @@ class StrattonQuestionnairePrecondition(object):
             .click_submit()\
             .verify()
 
+        # Check status of customer_classification in CRM
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))\
                                  .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                                             self.config.get_value(TestDataConstants.CRM_PASSWORD),
@@ -59,8 +59,7 @@ class StrattonQuestionnairePrecondition(object):
                                                                             TestDataConstants.FILTER))
 
         sleep(2)
-        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                          LeadsModuleConstants.EMAIL])
+        ClientsPage(self.driver).find_client_by_email(QuestionnaireConstants.MAIL_CLIENT_EMPTY)
         customer_classification = ClientProfilePage(self.driver).get_customer_classification()
         assert customer_classification.strip() == QuestionnaireConstants.CUSTOMER_CLASSIFICATION_EMPTY
 
@@ -77,8 +76,7 @@ class StrattonQuestionnairePrecondition(object):
                                                         LeadsModuleConstants.FIRST_NAME])\
             .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_LAST_NAME])\
-            .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                    LeadsModuleConstants.EMAIL])\
+            .fill_email(QuestionnaireConstants.MAIL_CLIENT_BLOCKED)\
             .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                     LeadsModuleConstants.PHONE])\
             .fill_password(CAConstants.PASSWORD)\
@@ -101,8 +99,7 @@ class StrattonQuestionnairePrecondition(object):
             .confirm_us_reportable() \
             .came_back_on_previous_page() \
             .login() \
-            .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                    LeadsModuleConstants.EMAIL]) \
+            .enter_email(QuestionnaireConstants.MAIL_CLIENT_BLOCKED) \
             .enter_password(CAConstants.PASSWORD) \
             .click_login()\
             .verify_registration_blocked()
@@ -116,8 +113,7 @@ class StrattonQuestionnairePrecondition(object):
                                                        TestDataConstants.FILTER))
 
         sleep(2)
-        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                          LeadsModuleConstants.EMAIL])
+        ClientsPage(self.driver).find_client_by_email(QuestionnaireConstants.MAIL_CLIENT_BLOCKED)
         customer_classification = ClientProfilePage(self.driver).get_customer_classification()
 
         assert customer_classification.strip() == QuestionnaireConstants.CUSTOMER_CLASSIFICATION_BLOCKED
@@ -138,8 +134,7 @@ class StrattonQuestionnairePrecondition(object):
                                      LeadsModuleConstants.FIRST_NAME]) \
                 .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                     LeadsModuleConstants.FIRST_LAST_NAME]) \
-                .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                LeadsModuleConstants.EMAIL]) \
+                .fill_email(QuestionnaireConstants.MAIL_CLIENT_NEGATIVE) \
                 .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                 LeadsModuleConstants.PHONE]) \
                 .fill_password(CAConstants.PASSWORD) \
@@ -205,8 +200,7 @@ class StrattonQuestionnairePrecondition(object):
                                                            TestDataConstants.FILTER))
 
             sleep(2)
-            ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                              LeadsModuleConstants.EMAIL])
+            ClientsPage(self.driver).find_client_by_email(QuestionnaireConstants.MAIL_CLIENT_NEGATIVE)
             customer_classification = ClientProfilePage(self.driver).get_customer_classification()
 
             assert customer_classification.strip() == QuestionnaireConstants.CUSTOMER_CLASSIFICATION_NEGATIVE
@@ -217,5 +211,4 @@ class StrattonQuestionnairePrecondition(object):
                 .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
             ClientProfilePage(self.driver) \
                 .verify_server_not_available(CRMConstants.SERVER_LIVE)
-
 

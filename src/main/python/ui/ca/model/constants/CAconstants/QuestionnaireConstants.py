@@ -5,6 +5,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class QuestionnaireConstants(object):
+    random_number = str(random.randrange(1, 9999999))
     CUSTOMER_CLASSIFICATION_EMPTY = ""
     CUSTOMER_CLASSIFICATION_BLOCKED = "Blocked"
     CUSTOMER_CLASSIFICATION_NEGATIVE = "Negative"
@@ -30,3 +31,6 @@ class QuestionnaireConstants(object):
     REQUIRED_MARGIN_100 = "€100,000"
     LOSS_AMOUNT_800 = "€800"
     MESSAGE_NEGATIVE = "Dear customer, Based on the information you have submitted, please note that you do not appear to posses the appropriate knowledge and experience to deal in the financial instruments and services our company offers, since these are considered as complex products. We are concerned you do not understand the risks involved. Therefore, we do not recommend you proceed with the opening of a live trading account and opened a demo account for you to review and gain some experience in our platform."
+    MAIL_CLIENT_EMPTY = "pandaqa" + random_number + "empty@pandats.com"
+    MAIL_CLIENT_BLOCKED = "pandaqa" + random_number + "blocked@pandats.com"
+    MAIL_CLIENT_NEGATIVE = "pandaqa" + random_number + "negative@pandats.com"
