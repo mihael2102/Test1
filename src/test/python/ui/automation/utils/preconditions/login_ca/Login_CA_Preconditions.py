@@ -50,7 +50,7 @@ class Login_CA_Precondition(object):
         pop_conn.quit()
 
     def sign_up_ca(self):
-###REGISTRATION FORM
+        # REGISTRATION FORM
         CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))\
                                 .click_sign_up()
         if (global_var.current_brand_name == "b-finance") or (global_var.current_brand_name == "eafx"):

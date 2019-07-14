@@ -30,4 +30,3 @@ chrome_driver = "C:/Users/Panda102/Desktop/drivers/chromedriver2.exe"
 #     chrome_driver = "D:/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
 # elif ip == '35.158.90.50':
 #     chrome_driver = "C:/Users/Panda102/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver2.exe"
-" + test + "

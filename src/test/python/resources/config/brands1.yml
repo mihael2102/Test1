@@ -9,8 +9,8 @@ brands:
 #- name: trade99
 #  config_file: trade99.yml
 
-#- name: gigafx
-#  config_file: gigafx.yml
+- name: gigafx
+  config_file: gigafx.yml
 
-- name: strattonmarkets-eu
-  config_file: strattonmarkets-eu.yml
+#- name: strattonmarkets-eu
+#  config_file: strattonmarkets-eu.yml
