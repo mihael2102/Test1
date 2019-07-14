@@ -41,15 +41,15 @@ tests_config:
 #  tests:
 #    - test_edit_lead_pencil_icon
 #    - test_check_email_popup
-#
-##################################### CONVERT LEAD ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
-#
-##################################### CLIENTS ###############################################
+
+#################################### CONVERT LEAD ##########################################
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
+
+#################################### CLIENTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
 #  class: SearchingClientsTestCRM
 #  tests:
@@ -75,10 +75,19 @@ tests_config:
 #    - test_searching_by_columns
 #    - test_sorting_columns
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-#  class: TradingAccountCrmTest
+####################################### TASKS CALENDAR VIEW ########################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
+#  class: CalendarView
 #  tests:
-#    - test_crm_open_trading_account  # open a new trading account
+#     - test_check_day_tab
+#     - test_check_month_tab
+#     - test_check_week_tab
+
+###################################### MT4 ACTIONS ###########################################
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - test_crm_open_trading_account  # open a new trading account
 #    - test_crm_open_live_mt5
 #    - test_crm_open_demo_mt5
 #
@@ -93,29 +102,28 @@ tests_config:
 #  tests:
 #    - test_change_client_password_from_crm  # change a client account password from the crm
 #    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
-#  class: DepositTestCRM
-#  tests:
-#    - test_make_deposit_crm  # make a deposit into a trading account from the crm
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+  class: DepositTestCRM
+  tests:
+    - test_make_deposit_crm  # make a deposit into a trading account from the crm
 #    - test_make_deposit_for_client_crm
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-#  class: WithdrawTest
-#  tests:
-#    - test_withdraw_crm   #preconditions: convert lead, make deposit
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
-#  class: CreditInTestCRM
-#  tests:
-#    - test_make_credit_in_from_crm
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
-#  class: CreditOutTestCRM
-#  tests:
-#    - test_make_credit_out_crm # preconditions: convert lead, make credit in
-#
-####################################### SEND MAIL FROM CLIENT'S DETAILS ##########################
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
+  class: WithdrawTest
+  tests:
+    - test_withdraw_crm   #preconditions: convert lead, make deposit
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
+  class: CreditInTestCRM
+  tests:
+    - test_make_credit_in_from_crm
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
+  class: CreditOutTestCRM
+  tests:
+    - test_make_credit_out_crm # preconditions: convert lead, make credit in
+
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
 #  class: SendEmailTestCRM
 #  tests:
@@ -136,14 +144,6 @@ tests_config:
 #  class: AffiliateModule
 #  tests:
 #     - test_create_affiliate
-#
-####################################### TASKS CALENDAR VIEW ########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
-#  class: CalendarView
-#  tests:
-#     - test_check_day_tab
-#     - test_check_month_tab
-#     - test_check_week_tab
 #
 ####################################### FINANCIAL TRANSACTIONS ######################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
@@ -185,13 +185,13 @@ tests_config:
 #    - test_crm_configurations_pages_loading
 #
 ######################################### WORKFLOWS MODULE #############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
-  class: WorkflowsModulesTest
-  tests:
-    - test_create_workflows
-    - test_check_workflow_by_status
-    - test_check_workflow_by_country
-    - test_delete_workflow
+#- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
+#  class: WorkflowsModulesTest
+#  tests:
+#    - test_create_workflows
+#    - test_check_workflow_by_status
+#    - test_check_workflow_by_country
+#    - test_delete_workflow
 #
 ########################################### USER_MANAGEMENT #########################################
 #- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management

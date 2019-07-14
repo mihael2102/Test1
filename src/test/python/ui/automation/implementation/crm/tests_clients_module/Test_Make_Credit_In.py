@@ -38,15 +38,26 @@ class CreditInTestCRM(BaseTest):
             .get_client_account()
 
         if global_var.current_brand_name == "trade99":
-            ClientProfilePage(self.driver).perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN2)
+            ClientProfilePage(self.driver)\
+                .perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN2)
+            MT4CreditInModule(self.driver)\
+                .make_credit_in(account_number,
+                                CRMConstants.AMOUNT_CREDIT_IN_BTC,
+                                CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
+                                CRMConstants.CREDIT_IN_COMMENT) \
+                .click_ok() \
+                .refresh_page()
         else:
-            ClientProfilePage(self.driver).perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN)
+            ClientProfilePage(self.driver)\
+                .perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN)
 
-        MT4CreditInModule(self.driver).make_credit_in(account_number, CRMConstants.AMOUNT_CREDIT_IN,
-                                                       CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
-                                                       CRMConstants.CREDIT_IN_COMMENT)\
-                                      .click_ok()\
-                                      .refresh_page()
+            MT4CreditInModule(self.driver)\
+                .make_credit_in(account_number,
+                                CRMConstants.AMOUNT_CREDIT_IN,
+                                CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
+                                CRMConstants.CREDIT_IN_COMMENT)\
+                .click_ok()\
+                .refresh_page()
         time.sleep(3)
         MT4CreditInModule(self.driver).refresh_page()
         # Check the Credit In amount
@@ -54,22 +65,22 @@ class CreditInTestCRM(BaseTest):
             .perform_scroll_down()\
             .get_amount_of_credit_in()     # Get amount from block 'Trading Accounts'
 
-        if global_var.current_brand_name == "trade99":
-            credit_in_amount = credit_in_amount[0:4]
         counter = 0
-        while CRMConstants.AMOUNT_CREDIT_IN != credit_in_amount:
+        if global_var.current_brand_name == "trade99":
+            expected_credit = CRMConstants.AMOUNT_CREDIT_IN_BTC
+        else:
+            expected_credit = CRMConstants.AMOUNT_CREDIT_IN
+
+        while expected_credit != credit_in_amount:
             MT4CreditInModule(self.driver).refresh_page()
             credit_in_amount = ClientProfilePage(self.driver) \
                 .perform_scroll_down() \
                 .get_amount_of_credit_in()
-            if global_var.current_brand_name == "trade99":
-                credit_in_amount = credit_in_amount[0:4]
             counter += 1
-            if counter == 5:
+            if counter == 7:
                 break
 
-        # self.assertEqual(CRMConstants.AMOUNT_CREDIT_IN, credit_in_amount, "Wrong Credit In amount is displayed")
-        # self.assertEqual(CRMConstants.AMOUNT_CREDIT_IN, credit_in_amount[1:], "Wrong Credit In amount is displayed")
+        assert expected_credit == credit_in_amount
 
     def test_make_credit_in_crm(self):
         pass
