@@ -15,10 +15,10 @@ tests_config:
 #  tests:
 #    - test_read_customer_details
 
-- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Update_Customer
-  class: UpdateCustomer
-  tests:
-    - test_update_customer
+#- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Update_Customer
+#  class: UpdateCustomer
+#  tests:
+#    - test_update_customer
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Create_Lead
 #  class: CreateLead
