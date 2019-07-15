@@ -2,6 +2,7 @@ import xlsxwriter
 from time import gmtime, strftime
 from src.test.python.ui.automation.utils.postconditions.SendMail import Send_Email_XLS
 
+
 class ExcelWriter:
 
     def write_test_results(self, brands, tests, results):
