@@ -34,30 +34,51 @@ class CreditOutPrecondition(object):
                                                                                    TestDataConstants.E_MAIL))
         sleep(2)
         if global_var.current_brand_name == "trade99":
-            ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREDIT_OUT2)
+            ClientProfilePage(self.driver)\
+                .open_mt4_actions(CRMConstants.CREDIT_OUT2)
+            MT4CreditOutModule(self.driver)\
+                .make_credit_out(CRMConstants.CREDIT_ACCOUNT,
+                                 CRMConstants.AMOUNT_CREDIT_OUT_BTC,
+                                 CRMConstants.CREDIT_OUT_GRANTEDBY,
+                                 CRMConstants.CREDIT_OUT_COMMENT)
         else:
-            ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREDIT_OUT)
-        MT4CreditOutModule(self.driver).make_credit_out(CRMConstants.CREDIT_ACCOUNT,
-                                                        CRMConstants.AMOUNT_CREDIT_OUT,
-                                                        CRMConstants.CREDIT_OUT_GRANTEDBY,
-                                                        CRMConstants.CREDIT_OUT_COMMENT)
+            ClientProfilePage(self.driver)\
+                .open_mt4_actions(CRMConstants.CREDIT_OUT)
+            MT4CreditOutModule(self.driver)\
+                .make_credit_out(CRMConstants.CREDIT_ACCOUNT,
+                                 CRMConstants.AMOUNT_CREDIT_OUT,
+                                 CRMConstants.CREDIT_OUT_GRANTEDBY,
+                                 CRMConstants.CREDIT_OUT_COMMENT)
         sleep(3)
-        ClientProfilePage(self.driver).refresh_page() \
-                                      .click_trading_accounts_tab() \
-                                      .open_trading_accounts_tab() \
-                                      .open_trading_account_page(CRMConstants.CREDIT_ACCOUNT)
-        actual_credit = MT4CreditOutModule(self.driver).get_credit_int()
-        expected_credit = int(((CRMConstants.AMOUNT_CREDIT_IN).split('.'))[0]) - int\
-                             (((CRMConstants.AMOUNT_CREDIT_OUT).split('.'))[0])
-        count = 0
-        while actual_credit != expected_credit:
-            MT4DepositModule(self.driver).refresh_page()
-            actual_credit = MT4CreditOutModule(self.driver).get_credit_int()
-            count += 1
-            if count == 5:
-                break
+        ClientProfilePage(self.driver)\
+            .refresh_page() \
+            .click_trading_accounts_tab() \
+            .open_trading_accounts_tab() \
+            .open_trading_account_page(CRMConstants.CREDIT_ACCOUNT)
 
-        assert actual_credit == expected_credit
+        if global_var.current_brand_name == "trade99":
+            actual_credit_btc = float(MT4CreditOutModule(self.driver).get_credit())
+            expected_credit = float(CRMConstants.AMOUNT_CREDIT_IN_BTC) - float(CRMConstants.AMOUNT_CREDIT_OUT_BTC)
+            count = 0
+            while actual_credit_btc != expected_credit:
+                MT4DepositModule(self.driver).refresh_page()
+                actual_credit_btc = float(MT4CreditOutModule(self.driver).get_credit())
+                count += 1
+                if count == 7:
+                    break
+            assert actual_credit_btc == expected_credit
+        else:
+            actual_credit = MT4CreditOutModule(self.driver).get_credit_int()
+            expected_credit = int(((CRMConstants.AMOUNT_CREDIT_IN).split('.'))[0]) - int\
+                                 (((CRMConstants.AMOUNT_CREDIT_OUT).split('.'))[0])
+            count = 0
+            while actual_credit != expected_credit:
+                MT4DepositModule(self.driver).refresh_page()
+                actual_credit = MT4CreditOutModule(self.driver).get_credit_int()
+                count += 1
+                if count == 5:
+                    break
+            assert actual_credit == expected_credit
 
     def add_live_account(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login()\
@@ -96,4 +117,4 @@ class CreditOutPrecondition(object):
             .refresh_page()
 
         crm_client_profile.click_trading_accounts_tab().get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
-        return CreditOutPrecondition()
+        return CreditOutPrecondition(self.driver, self.config)
