@@ -5,6 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
+from time import sleep
 
 
 class MT4WithdrawModule(CRMBasePage):
@@ -107,6 +108,7 @@ class MT4WithdrawModule(CRMBasePage):
 
     def create_withdraw_button(self):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
+        sleep(1)
         create_button.click()
         Logging().reportDebugStep(self, "The Create withdraw button was clicked")
         return ClientProfilePage(self.driver)

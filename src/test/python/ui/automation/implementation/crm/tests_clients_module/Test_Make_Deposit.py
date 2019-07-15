@@ -24,16 +24,17 @@ class DepositTestCRM(BaseTest):
 
     def test_make_deposit_crm(self):
         client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))\
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url'))\
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         # ADD LIVE ACCOUNT IN CRM
         # Open clients module. Find created client by email and open his profile
-        CRMHomePage(self.driver).open_client_module()\
-                                .select_filter(self.config.get_value(
-                                                            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-                                .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+        CRMHomePage(self.driver)\
+            .open_client_module()\
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
+            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
 
         # Create LIVE account for client using MT4 Actions
         crm_client_profile = ClientProfilePage(self.driver)
@@ -109,9 +110,18 @@ class DepositTestCRM(BaseTest):
         else:
             crm_client_profile.open_mt4_actions(CRMConstants.DEPOSIT)
 
-        MT4DepositModule(self.driver).make_deposit(account_number, CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
-                                                   CRMConstants.PAYMENT_METHOD_DEPOSIT,
-                                                   CRMConstants.STATUS_DEPOSIT, CRMConstants.DESCRIPTION_DEPOSIT)
+        if global_var.current_brand_name == "trade99":
+            MT4DepositModule(self.driver).make_deposit(account_number,
+                                                       CRMConstants.AMOUNT_DEPOSIT_BTC,
+                                                       CRMConstants.PAYMENT_METHOD_DEPOSIT,
+                                                       CRMConstants.STATUS_DEPOSIT,
+                                                       CRMConstants.DESCRIPTION_DEPOSIT)
+        else:
+            MT4DepositModule(self.driver).make_deposit(account_number,
+                                                       CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
+                                                       CRMConstants.PAYMENT_METHOD_DEPOSIT,
+                                                       CRMConstants.STATUS_DEPOSIT,
+                                                       CRMConstants.DESCRIPTION_DEPOSIT)
 
         # Check confirmation message
         confirmation_message = crm_client_profile.get_confirm_message()
@@ -125,16 +135,19 @@ class DepositTestCRM(BaseTest):
                           .refresh_page()
 
         if global_var.current_brand_name == "trade99":
-            deposit_amount_text = crm_client_profile.click_trading_accounts_tab() \
-                .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT + "000")
+            deposit_amount_text = crm_client_profile\
+                .click_trading_accounts_tab() \
+                .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_BTC)
             self.assertEqual(
-                CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT + "000", deposit_amount_text,
+                CRMConstants.AMOUNT_DEPOSIT_BTC, deposit_amount_text,
                 "Wrong deposit sum is displayed")
         else:
-            deposit_amount_text = crm_client_profile.click_trading_accounts_tab() \
-                                                .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
+            deposit_amount_text = crm_client_profile\
+                .click_trading_accounts_tab() \
+                .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
             self.assertEqual(
-                CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, deposit_amount_text, "Wrong deposit sum is displayed")
+                CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, deposit_amount_text,
+                "Wrong deposit sum is displayed")
 
     def test_make_deposit_for_client_crm(self):
         crm_client_profile = CRMLoginPage(self.driver)\
