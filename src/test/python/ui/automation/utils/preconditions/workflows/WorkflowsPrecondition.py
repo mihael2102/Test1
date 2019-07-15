@@ -135,6 +135,7 @@ class WorkflowsPrecondition(object):
         while expected_address != actual_address or expected_country != actual_country:
             CRMHomePage(self.driver).refresh_page()
             sleep(1)
+            ClientProfilePage(self.driver).open_address_information()
             actual_country = ClientProfilePage(self.driver).get_country_text()
             actual_address = ClientProfilePage(self.driver).get_address_text()
             count += 1
