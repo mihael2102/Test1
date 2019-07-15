@@ -1,90 +1,92 @@
 brands:
 
-- name: royal_cfds
-  config_file: royal_cfds.yml
-- name: jonesmutual
-  config_file: jonesmutual.yml
-- name: forexbestmarket
-  config_file: forexbestmarket.yml
-- name: newrichmarkets
-  config_file: newrichmarkets.yml
-- name: solocapitlas
-  config_file: solocapitlas.yml
-- name: goldenmarkets
-  config_file: goldenmarkets.yml
-- name: safemarkets
-  config_file: safemarkets.yml
-- name: optionstars
-  config_file: optionstars.yml
-- name: uft
-  config_file: uft.yml
-- name: brokerz
-  config_file: brokerz.yml
-- name: 4xfx
-  config_file: 4xfx.yml
-- name: herdos
-  config_file: herdos.yml
-- name: ptbanc
-  config_file: ptbanc.yml
-- name: q8
-  config_file: q8.yml
-- name: 2mercados
-  config_file: 2mercados.yml
-- name: axa_markets
-  config_file: axa_markets.yml
-- name: aztrades
-  config_file: aztrades.yml
-- name: bots
-  config_file: bots.yml
-- name: kontofx
-  config_file: kontofx.yml
-- name: xtraderfx
-  config_file: xtraderfx.yml
-- name: firstindex
-  config_file: firstindex.yml
-- name: coinstec
-  config_file: coinstec.yml
-- name: tradospot
-  config_file: tradospot.yml
-- name: 24btcmarket
-  config_file: 24btcmarket.yml
-- name: marketsplus
-  config_file: marketsplus.yml
-
-
-#new brands - never testing before
-- name: b-finance
-  config_file: b-finance.yml
-- name: eafx
-  config_file: eafx.yml
-- name: gxfx
-  config_file: gxfx.yml
-- name: hizlifx
-  config_file: hizlifx.yml
-- name: libramarkets
-  config_file: libramarkets.yml
-- name: olympusmarkets
-  config_file: olympusmarkets.yml
-- name: privat-trade
-  config_file: privat-trade.yml
-- name: swiftcfd
-  config_file: swiftcfd.yml
-- name: tfxgo
-  config_file: tfxgo.yml
-- name: uprofx
-  config_file: uprofx.yml
-- name: mpcrypto
-  config_file: mpcrypto.yml
-- name: b-traderfx
-  config_file: b-traderfx.yml
-- name: newforexqa2
-  config_file: newforexqa2.yml
-
-
-
-
-
-
-
-
-
+- name: trade99
+  config_file: trade99.yml
+#- name: royal_cfds
+#  config_file: royal_cfds.yml
+#- name: jonesmutual
+#  config_file: jonesmutual.yml
+#- name: forexbestmarket
+#  config_file: forexbestmarket.yml
+#- name: newrichmarkets
+#  config_file: newrichmarkets.yml
+#- name: solocapitlas
+#  config_file: solocapitlas.yml
+#- name: goldenmarkets
+#  config_file: goldenmarkets.yml
+#- name: safemarkets
+#  config_file: safemarkets.yml
+#- name: optionstars
+#  config_file: optionstars.yml
+#- name: uft
+#  config_file: uft.yml
+#- name: brokerz
+#  config_file: brokerz.yml
+#- name: 4xfx
+#  config_file: 4xfx.yml
+#- name: herdos
+#  config_file: herdos.yml
+#- name: ptbanc
+#  config_file: ptbanc.yml
+#- name: q8
+#  config_file: q8.yml
+#- name: 2mercados
+#  config_file: 2mercados.yml
+#- name: axa_markets
+#  config_file: axa_markets.yml
+#- name: aztrades
+#  config_file: aztrades.yml
+#- name: bots
+#  config_file: bots.yml
+#- name: kontofx
+#  config_file: kontofx.yml
+#- name: xtraderfx
+#  config_file: xtraderfx.yml
+#- name: firstindex
+#  config_file: firstindex.yml
+#- name: coinstec
+#  config_file: coinstec.yml
+#- name: tradospot
+#  config_file: tradospot.yml
+#- name: 24btcmarket
+#  config_file: 24btcmarket.yml
+#- name: marketsplus
+#  config_file: marketsplus.yml
+#
+#
+##new brands - never testing before
+#- name: b-finance
+#  config_file: b-finance.yml
+#- name: eafx
+#  config_file: eafx.yml
+#- name: gxfx
+#  config_file: gxfx.yml
+#- name: hizlifx
+#  config_file: hizlifx.yml
+#- name: libramarkets
+#  config_file: libramarkets.yml
+#- name: olympusmarkets
+#  config_file: olympusmarkets.yml
+#- name: privat-trade
+#  config_file: privat-trade.yml
+#- name: swiftcfd
+#  config_file: swiftcfd.yml
+#- name: tfxgo
+#  config_file: tfxgo.yml
+#- name: uprofx
+#  config_file: uprofx.yml
+#- name: mpcrypto
+#  config_file: mpcrypto.yml
+#- name: b-traderfx
+#  config_file: b-traderfx.yml
+#- name: newforexqa2
+#  config_file: newforexqa2.yml
+#
+#
+#
+#
+#
+#
+#
+#
+#
