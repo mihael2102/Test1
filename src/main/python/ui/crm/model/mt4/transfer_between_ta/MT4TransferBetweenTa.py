@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
+from time import sleep
 
 
 class MT4TransferBetweenTa(CRMBasePage):
@@ -79,6 +80,7 @@ class MT4TransferBetweenTa(CRMBasePage):
     '''
 
     def create_transfer(self):
+        sleep(1)
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
         create_button.click()
         Logging().reportDebugStep(self, "The Create button was clicked")
