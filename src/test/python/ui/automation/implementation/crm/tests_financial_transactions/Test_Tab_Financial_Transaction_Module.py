@@ -26,7 +26,8 @@ import xlrd
 class TabFinancialTransaction(BaseTest):
 
     def test_check_all_tab_from_financial_transactions(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
@@ -80,12 +81,12 @@ class TabFinancialTransaction(BaseTest):
             modified_time = None
 
         transaction_number_from_its_details_page = financial_transaction_list_page\
-                                            .perform_searching_trading_account_via_filters(transaction_number,
-                                                                                           client_name,
-                                                                                           transaction_type_text,
-                                                                                           modified_time)\
-                                            .open_first_financial_transaction_in_list()\
-                                            .get_transaction_number_text()
+            .perform_searching_trading_account_via_filters(transaction_number,
+                                                           client_name,
+                                                           transaction_type_text,
+                                                           modified_time)\
+            .open_first_financial_transaction_in_list()\
+            .get_transaction_number_text()
 
         self.assertEqual(transaction_number, transaction_number_from_its_details_page,
                                             "Wrong financial transaction was found. They have diffent transaction ID")
