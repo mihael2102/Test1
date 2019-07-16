@@ -124,6 +124,7 @@ class WorkflowsPrecondition(object):
         ClientProfilePage(self.driver).click_save()
         sleep(2)
         CRMHomePage(self.driver).refresh_page()
+        ClientProfilePage(self.driver).open_address_information()
         actual_country = ClientProfilePage(self.driver).get_country_text()
         expected_country = WorkflowsConstants.COUNTRY_ALBANIA
         actual_address = ClientProfilePage(self.driver).get_address_text()
@@ -131,9 +132,10 @@ class WorkflowsPrecondition(object):
 
         # Check Address and Country fields were updated
         count = 0
-        while expected_address != actual_address and expected_country != actual_country:
+        while expected_address != actual_address or expected_country != actual_country:
             CRMHomePage(self.driver).refresh_page()
             sleep(1)
+            ClientProfilePage(self.driver).open_address_information()
             actual_country = ClientProfilePage(self.driver).get_country_text()
             actual_address = ClientProfilePage(self.driver).get_address_text()
             count += 1
