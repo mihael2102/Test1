@@ -69,3 +69,16 @@ class AffiliatesPrecondition(object):
                                                                 LeadsModuleConstants.FIRST_NAME])
 
         AffiliatePage(self.driver).check_data_not_found()
+
+    def delete_affiliate(self):
+        """ Login to CRM """
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        """ Open Affiliates page """
+        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(
+            AffiliateModuleConstants.AFFILIATES_MODULE)
+        affiliate_list_view_page.search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                              LeadsModuleConstants.FIRST_NAME])

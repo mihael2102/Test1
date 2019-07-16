@@ -60,12 +60,9 @@ class CreditInTestCRM(BaseTest):
         ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREDIT_IN)
         # MT4DropDown(self.driver).mt4_actions(CRMConstants.CREDIT_IN)
 
-        MT4CreditInModule(self.driver)\
-            .make_credit_in(account_number,
-                            CRMConstants.AMOUNT_CREDIT_IN,
-                            CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
-                            CRMConstants.CREDIT_IN_COMMENT,
-                            CRMConstants.CLEARNED_BY) \
+        MT4CreditInModule(self.driver).make_credit_in(account_number, CRMConstants.AMOUNT_CREDIT_IN,
+                                           CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
+                                           CRMConstants.CREDIT_IN_COMMENT, CRMConstants.CLEARNED_BY) \
             .click_ok() \
             .refresh_page()\
             .refresh_page()
