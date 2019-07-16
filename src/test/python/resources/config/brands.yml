@@ -1,8 +1,12 @@
 brands:
+
+- name: gmo
+  config_file: gmo.yml
+
 #- name: kayafx
 #  config_file: kaya_fx.yml
-- name: itrader
-  config_file: itrader.yml
+#- name: itrader
+#  config_file: itrader.yml
 #- name: stoxmarket
 #  config_file: stoxmarket.yml
 #- name: otcapital
