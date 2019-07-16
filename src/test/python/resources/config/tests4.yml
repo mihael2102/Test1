@@ -1,0 +1,11 @@
+tests_config:
+
+######################################## FILTERS TESTS ###############################################
+- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
+  class: FilterModulesTest
+  tests:
+    - test_create_filter_clients_module
+    - test_create_filter_documents_module
+    - test_create_filter_leads_module
+    - test_create_filter_help_desk
+    - test_create_filter_trading_account_module
