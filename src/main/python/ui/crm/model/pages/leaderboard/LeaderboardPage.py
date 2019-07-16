@@ -18,6 +18,7 @@ import allure
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
 
+
 class LeaderboardPage(CRMBasePage):
 
     def refresh(self):
@@ -35,12 +36,11 @@ class LeaderboardPage(CRMBasePage):
     def enter_name_group(self, group):
         input_group = super().wait_load_element("//input[@class='select2-search__field']")
         input_group.send_keys(group)
-        Logging().reportDebugStep(self, "Enter name group")
+        Logging().reportDebugStep(self, "Enter name group: " + group)
         return LeaderboardPage(self.driver)
 
     def click_button_go(self):
         element = super().wait_load_element("//input[@class='btn btn-primary']")
-        element.click()
+        self.driver.execute_script("arguments[0].click();", element)
         Logging().reportDebugStep(self, "Click Go")
         return LeaderboardPage(self.driver)
-
