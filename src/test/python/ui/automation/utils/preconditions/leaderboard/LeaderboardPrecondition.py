@@ -9,6 +9,7 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
 from src.main.python.ui.crm.model.constants.LeaderboardConstants import LeaderboardConstants
 
+
 class LeaderboardPrecondition(object):
 
     driver = None
@@ -24,8 +25,9 @@ class LeaderboardPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        leaderboard = CRMHomePage(self.driver).open_more_list_modules().select_leaderboard_module_more_list(
-            LeaderboardConstants.LEADERBOARD_MODULE)
+        leaderboard = CRMHomePage(self.driver)\
+            .open_more_list_modules()\
+            .select_leaderboard_module_more_list(LeaderboardConstants.LEADERBOARD_MODULE)
         leaderboard.choose_group()
         leaderboard.enter_name_group(LeaderboardConstants.NAME_GROUP)
         leaderboard.click_button_go()
