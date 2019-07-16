@@ -693,9 +693,8 @@ class ClientProfilePage(CRMBasePage):
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='countries_popup']"))
         select.select_by_visible_text(country)
-        Logging().reportDebugStep(self, "Select country" + country)
+        Logging().reportDebugStep(self, "Select country: " + country)
         return ClientProfilePage(self.driver)
-
 
     def click_save(self):
         sleep(2)
@@ -712,7 +711,7 @@ class ClientProfilePage(CRMBasePage):
             btn_save.send_keys(Keys.CONTROL, "a")
             btn_save.send_keys(Keys.DELETE)
             btn_save.send_keys(date)
-        Logging().reportDebugStep(self, "Enter b-day")
+        Logging().reportDebugStep(self, "Enter birthday")
         return ClientProfilePage(self.driver)
 
     def get_trading_account_info(self):
