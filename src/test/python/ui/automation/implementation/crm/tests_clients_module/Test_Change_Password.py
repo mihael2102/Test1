@@ -69,8 +69,9 @@ class ChangePasswordTestCRM(BaseTest):
         # check the new password
         crm_client_profile.refresh_page().open_mt4_actions(CRMConstants.CHECK_PASSWORD_OLD_FOREX)
 
-        MT4CheckPasswordModule(self.driver).select_account(account_number) \
-            .enter_password(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.NEW_PASSWORD)) \
+        MT4CheckPasswordModule(self.driver)\
+            .select_account(account_number) \
+            .enter_password(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.NEW_PASSWORD))\
             .click_check_button()
 
         message_confirm = crm_client_profile.get_confirm_message_body()
@@ -81,11 +82,13 @@ class ChangePasswordTestCRM(BaseTest):
         # change the password back to the original password
         crm_client_profile.refresh_page().open_mt4_actions(CRMConstants.CHANGE_PASSWORD)
 
-        MT4UpdatePasswordModule(self.driver).select_account(account_number) \
+        MT4UpdatePasswordModule(self.driver)\
+            .select_account(account_number) \
             .enter_password(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
                                                         LeadsModuleConstants.FIRST_PASSWORD_LEAD)) \
             .click_check_button()
 
         message_confirm = crm_client_profile.get_confirm_message_body()
         crm_client_profile.click_ok()
-        self.assertEqual(message_confirm, CRMConstants.PASSWORD_CHANGE)
+        if message_confirm != "":
+            self.assertEqual(message_confirm, CRMConstants.PASSWORD_CHANGE)

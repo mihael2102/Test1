@@ -884,7 +884,6 @@ class ClientProfilePage(CRMBasePage):
 
     def click_ok(self):
         super().click_ok()
-        Logging().reportDebugStep(self, "Click 'ok' button ")
         return ClientProfilePage(self.driver)
 
     def click_close(self):

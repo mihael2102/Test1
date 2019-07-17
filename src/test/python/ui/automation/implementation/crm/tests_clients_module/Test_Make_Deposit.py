@@ -124,8 +124,8 @@ class DepositTestCRM(BaseTest):
         self.assertEqual(expected_balance, actual_balance, "Wrong deposit sum is displayed")
 
     def test_make_deposit_for_client_crm(self):
-        ### Tests precondition: test_perform_convert_lead, fill_questioner_new_client, test_crm_open_trading_account
-        ###CRM LOGIN
+        # Tests precondition: test_perform_convert_lead, fill_questioner_new_client, test_crm_open_trading_account
+        # CRM Login
         crm_client_profile = CRMLoginPage(self.driver) \
              .open_first_tab_page(self.config.get_value('url')) \
              .crm_login(self.config.get_value(TestDataConstants.USER_NAME),

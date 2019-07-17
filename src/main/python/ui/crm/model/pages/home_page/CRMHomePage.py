@@ -137,13 +137,13 @@ class CRMHomePage(CRMBasePage):
     def select_dashboard_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
-        Logging().reportDebugStep(self, "Dashboard  module was opened")
+        Logging().reportDebugStep(self, "Dashboard module was opened")
         return DashboardPage(self.driver)
 
     def select_leaderboard_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
         module_element.click()
-        Logging().reportDebugStep(self, "Dashboard  module was opened")
+        Logging().reportDebugStep(self, "Dashboard module was opened")
         return LeaderboardPage(self.driver)
 
     def refresh_page(self):
@@ -153,14 +153,14 @@ class CRMHomePage(CRMBasePage):
     def open_help_desk_page(self):
         help_desc_module = super().wait_load_element("//a[contains(text(), 'Help Desk')]")
         help_desc_module.click()
-        Logging().reportDebugStep(self, "Open  help desk module ")
+        Logging().reportDebugStep(self, "Open Help Desk module")
         return HelpDeskPage(self.driver)
 
     def open_client_module(self):
         sleep(2)
         home_page_element = self.wait_visible_of_element("//span[@class='glyphicon glyphicon-Clients']")
         home_page_element.click()
-        Logging().reportDebugStep(self, "The client module was opened")
+        Logging().reportDebugStep(self, "The Client module was opened")
         return ClientsPage(self.driver)
 
     def open_financial_transactions_module(self):
