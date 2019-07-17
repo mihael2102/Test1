@@ -67,13 +67,13 @@ class TransferBetweenPrecondition(object):
         amount_transfer = crm_client_profile.click_ok() \
             .click_trading_accounts_tab().get_balance_of_trading_account(CRMConstants.SECOND_TA_NUMBER_FROM_TA_SECTION)
 
+        # Check the balance updated
         while amount_transfer != expected_balance:
             ClientProfilePage(self.driver).refresh_page()
             sleep(2)
             amount_transfer = ClientProfilePage(self.driver).get_balance_of_trading_account \
                 (CRMConstants.SECOND_TA_NUMBER_FROM_TA_SECTION)
         assert amount_transfer == expected_balance
-
 
     def add_two_usd_currencies(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login() \

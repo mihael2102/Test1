@@ -672,7 +672,7 @@ class LeadsModule(CRMBasePage):
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_firstname']")
         first_name_field.clear()
         first_name_field.send_keys(first_name)
-        Logging().reportDebugStep(self, "The first name was entered : " + first_name)
+        Logging().reportDebugStep(self, "The first name was entered: " + first_name)
         return LeadsModule(self.driver)
 
     def enter_last_name(self, last_name):
@@ -680,7 +680,7 @@ class LeadsModule(CRMBasePage):
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_lastname']")
         first_name_field.clear()
         first_name_field.send_keys(last_name)
-        Logging().reportDebugStep(self, "The last name was entered : " + last_name)
+        Logging().reportDebugStep(self, "The last name was entered: " + last_name)
         return LeadsModule(self.driver)
 
     def enter_email(self, email):
@@ -688,7 +688,7 @@ class LeadsModule(CRMBasePage):
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_email']")
         first_name_field.clear()
         first_name_field.send_keys(email)
-        Logging().reportDebugStep(self, "The email was entered : " + email)
+        Logging().reportDebugStep(self, "The email was entered: " + email)
         return LeadsModule(self.driver)
 
     def enter_assigned_to(self, assigned_to):
@@ -707,7 +707,7 @@ class LeadsModule(CRMBasePage):
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The brand  was selected : " + assigned_to)
+        Logging().reportDebugStep(self, "The brand was selected: " + assigned_to)
         return LeadsModule(self.driver)
 
     def enter_tittle(self, tittle):
@@ -715,7 +715,7 @@ class LeadsModule(CRMBasePage):
                                                      "//tr[@name='customAdvanceSearch']//input[@id='tks_designation']")
         tittle_name_field.clear()
         tittle_name_field.send_keys(tittle)
-        Logging().reportDebugStep(self, "The assigned_to was entered : " + tittle)
+        Logging().reportDebugStep(self, "The title was entered: " + tittle)
         return LeadsModule(self.driver)
 
     def enter_lead_source(self, lead_source):
@@ -734,7 +734,7 @@ class LeadsModule(CRMBasePage):
         ac = ActionChains(self.driver)
 
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The brand  was selected : " + lead_source)
+        Logging().reportDebugStep(self, "The brand was selected: " + lead_source)
         return LeadsModule(self.driver)
 
     def enter_lead_status(self, lead_status):

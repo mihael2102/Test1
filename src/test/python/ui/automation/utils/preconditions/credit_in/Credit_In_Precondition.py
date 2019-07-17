@@ -33,7 +33,6 @@ class CreditInPrecondition(object):
         return CreditInPrecondition(self.driver)
 
     def add_live_account_in_crm(self):
-
         CRMHomePage(self.driver).open_client_module()
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
                                                             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
@@ -54,7 +53,7 @@ class CreditInPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
                 CRMConstants.TRADING_LEVERAGE_ITRADER)\
-            .click_close()
+                .click_close()
 
         else:
             crm_client_profile = MT4CreateAccountModule(self.driver) \

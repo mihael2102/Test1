@@ -20,6 +20,7 @@ from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule impo
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 import time
 from selenium.common.exceptions import NoSuchElementException
+from time import sleep
 
 
 @pytest.mark.run(order=1)
@@ -60,26 +61,31 @@ class CreditInTestCRM(BaseTest):
         ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREDIT_IN)
         # MT4DropDown(self.driver).mt4_actions(CRMConstants.CREDIT_IN)
 
-        MT4CreditInModule(self.driver).make_credit_in(account_number, CRMConstants.AMOUNT_CREDIT_IN,
-                                           CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
-                                           CRMConstants.CREDIT_IN_COMMENT, CRMConstants.CLEARNED_BY) \
+        MT4CreditInModule(self.driver)\
+            .make_credit_in(account_number,
+                            CRMConstants.AMOUNT_CREDIT_IN,
+                            CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
+                            CRMConstants.CREDIT_IN_COMMENT,
+                            CRMConstants.CLEARNED_BY) \
             .click_ok() \
-            .refresh_page()\
             .refresh_page()
-        time.sleep(10)
+        sleep(1)
 
-        MT4CreditInModule(self.driver).refresh_page()
         # Check the Credit In amount
-        ClientProfilePage(self.driver).perform_scroll_down()
-        ClientProfilePage(self.driver).click_trading_accounts_tab() \
-                                      .open_trading_account_page(account_number)
-        time.sleep(10)
-        MT4CreditInModule(self.driver).refresh_page()
-        time.sleep(10)
-        MT4CreditInModule(self.driver).refresh_page()
-        credit_in = ClientProfilePage(self.driver).get_credit_in_trading_account()
+        ClientProfilePage(self.driver)\
+            .perform_scroll_down() \
+            .click_trading_accounts_tab() \
+            .open_trading_account_page(account_number)
+        sleep(2)
+        actual_credit = ClientProfilePage(self.driver).get_credit_in_trading_account()
+        expected_credit = CRMConstants.AMOUNT_CREDIT_IN
+        count = 0
+        while actual_credit != expected_credit:
+            MT4CreditInModule(self.driver).refresh_page()
+            sleep(1)
+            actual_credit = ClientProfilePage(self.driver).get_credit_in_trading_account()
+            count += 1
+            if count == 7:
+                break
 
-        self.assertEqual(
-            CRMConstants.AMOUNT_CREDIT_IN, credit_in, "Wrong credit sum is displayed")
-
-
+        self.assertEqual(expected_credit, actual_credit, "Wrong credit sum is displayed")

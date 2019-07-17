@@ -101,7 +101,7 @@ class MT4CreditOutModule(CRMBasePage):
     def get_credit_int(self):
         credit_text = self.driver.find_element_by_xpath("//span[@id='dtlview_Credit']").text
         credit = int((credit_text.split('.'))[0])
-        Logging().reportDebugStep(self, "Actual credit amount is " + credit_text)
+        Logging().reportDebugStep(self, "Actual credit amount is: " + credit_text)
         return credit
 
     def set_expire_date(self, date):
