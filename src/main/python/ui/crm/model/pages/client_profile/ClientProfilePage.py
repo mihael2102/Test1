@@ -461,14 +461,11 @@ class ClientProfilePage(CRMBasePage):
         returns Manage Accounts Module  instance    
     '''
 
-
-
     def get_credit_in_trading_account(self):
-        sleep(20)
-        self.refresh_page()
-        balance = super().wait_load_element("//*[@id='tblTradingAccountsInformation']/table/tbody/tr[7]/td[2]").text
-        Logging().reportDebugStep(self, "Verify credit")
-        return balance
+        sleep(2)
+        credit = super().wait_load_element("//*[@id='tblTradingAccountsInformation']/table/tbody/tr[7]/td[2]").text
+        Logging().reportDebugStep(self, "Get Credit: " + credit)
+        return credit
 
     def perform_scroll_down(self):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
