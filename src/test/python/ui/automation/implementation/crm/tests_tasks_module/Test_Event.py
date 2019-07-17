@@ -40,22 +40,19 @@ class AddEventTaskModule(BaseTest):
         EventPrecondition(self.driver, self.config).edit_first_event()
 
     def test_delete_interaction(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
         sleep(2)
-        ClientsPage(self.driver).find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                                                  TestDataConstants.E_MAIL))
+        ClientsPage(self.driver).find_client_by_email(CRMConstants.EMAIL_FOR_EVENT)
         sleep(2)
-        while (ClientProfilePage(self.driver).check_event_exist()):
+        while ClientProfilePage(self.driver).check_event_exist():
             ClientProfilePage(self.driver).click_activities_tab()
-            try:
-                ClientProfilePage(self.driver).open_activities_tab()
-                ClientProfilePage(self.driver).click_delete_interaction()
-            except:
-                ClientProfilePage(self.driver).click_delete_interaction()
+            ClientProfilePage(self.driver).open_activities_tab()
+            ClientProfilePage(self.driver).click_delete_interaction()
 
         close_activities = ClientProfilePage(self.driver).verify_activities()
         assert close_activities == CRMConstants.NONE_INCLUDED

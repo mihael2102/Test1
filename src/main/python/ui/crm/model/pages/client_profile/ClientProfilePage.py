@@ -430,15 +430,20 @@ class ClientProfilePage(CRMBasePage):
 
     def open_activities_tab(self):
         sleep(1)
-        activities_tab = super().wait_load_element("//a[@id='show_Accounts_Activities']")
-        activities_tab.click()
-        # self.driver.execute_script("arguments[0].click();", activities_tab)
-        Logging().reportDebugStep(self, "Open Activities tab ")
+        try:
+            # Check tab is closed
+            self.driver.find_element_by_xpath("//*[@id='show_Accounts_Activities'][not(contains(@style,'none'))]")
+            activities_tab = super().wait_load_element("//a[@id='show_Accounts_Activities']")
+            activities_tab.click()
+            Logging().reportDebugStep(self, "Open Activities tab ")
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Activities tab already opened")
         return ClientProfilePage(self.driver)
 
     def click_activities_tab(self):
         sleep(3)
-        activities_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'Activities')][1]")
+        self.wait_crm_loading_to_finish()
+        activities_tab = super().wait_load_element("//li//a[contains(text(),'Activities')][1]")
         activities_tab.click()
         # self.driver.execute_script("arguments[0].click();", activities_tab)
         Logging().reportDebugStep(self, "Scroll to activities tab")

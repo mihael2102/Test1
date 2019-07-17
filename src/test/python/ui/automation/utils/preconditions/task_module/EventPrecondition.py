@@ -143,18 +143,17 @@ class EventPrecondition(object):
                                                          CRMConstants.DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
                                                          CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
                                                          TaskModuleConstants.FIRST_ASSIGN_TO,
-                                                         self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
-                                                         [LeadsModuleConstants.FIRST_NAME],
+                                                         CRMConstants.CLIENT_NAME_FOR_EVENT,
                                                          TaskModuleConstants.FOURTH_SUBJECT,
                                                          TaskModuleConstants.FIRST_PRIORITY,
                                                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
-        task_module.open_show_all_tab() \
-            .search_account_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])
-        search_account_name_text = task_module.open_show_all_tab() \
-                                         .get_account_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])
-        name = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME] + " Doe"
-        assert name == search_account_name_text
+        res_count = task_module\
+            .open_show_all_tab()\
+            .find_event_by_subject(TaskModuleConstants.SUBJECT)\
+            .get_results_count()
+
+        assert res_count >= 1
 
         return EventPrecondition(self.driver, self.config)
 
@@ -170,8 +169,7 @@ class EventPrecondition(object):
 
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab() \
-            .search_account_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
-                                         [LeadsModuleConstants.FIRST_NAME])\
+            .search_account_name(CRMConstants.CLIENT_NAME_FOR_EVENT)\
             .open_edit_event()\
             .edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
                         TaskModuleConstants.SECOND_EVENT_TYPE,
