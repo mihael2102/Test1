@@ -48,7 +48,7 @@ class WorkflowsPage(CRMBasePage):
             self.wait_element_to_be_disappear("//div[@class='spinner']", timeout=95)
         name_workflow = self.driver.find_element_by_xpath\
             ("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-list/div/div/div/div[2]/div/grid-simple/div/div[2]/table/tbody/tr[3]/td[1]/div")
-        Logging().reportDebugStep(self, "Check name workflow in table")
+        Logging().reportDebugStep(self, "Check name of workflow in table: " + name_workflow.text)
         return name_workflow.text
 
     def click_add_new_workflow(self):
