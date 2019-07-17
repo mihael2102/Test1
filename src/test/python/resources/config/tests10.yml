@@ -10,3 +10,16 @@ tests_config:
   class: MassAssignTestCRM
   tests:
     - test_clients_mass_assign
+
+############################################ MT4 ####################################################
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - fill_questioner_new_client
+    - test_crm_open_trading_account  # open a new trading account
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
+  class: ChangePasswordTestCRM
+  tests:
+    - test_change_client_password_from_crm  # change a client account password from the crm
+    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
