@@ -144,7 +144,7 @@ if __name__ == "__main__":
                       path_to_test_suite_9, path_to_test_suite_10]
 
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=3)
+        pool = multiprocessing.Pool(processes=10)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
