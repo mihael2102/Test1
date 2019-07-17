@@ -1,0 +1,18 @@
+tests_config:
+
+######################################### AUTOASSIGN MODULE #############################################
+- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
+  class: AutoAssignModuleTest
+  tests:
+    - test_add_auto_assign_rule_lead
+    - test_add_auto_assign_rule_client
+    - test_perform_delete_rule
+
+######################################### WORKFLOWS MODULE ##############################################
+- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
+  class: WorkflowsModulesTest
+  tests:
+    - test_create_workflows
+    - test_check_workflow_by_status
+    - test_check_workflow_by_country
+    - test_delete_workflow
