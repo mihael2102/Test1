@@ -7,6 +7,9 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from time import sleep
+
 
 class AffiliatesPrecondition(object):
 
@@ -55,10 +58,8 @@ class AffiliatesPrecondition(object):
         assert affiliate_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
             LeadsModuleConstants.FIRST_NAME]
 
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
-
-        CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(
-            AffiliateModuleConstants.AFFILIATES_MODULE)
+        ClientsPage(self.driver).came_back_on_previous_page()
+        sleep(3)
         AffiliatePage(self.driver).search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                                 LeadsModuleConstants.FIRST_NAME])
         AffiliatePage(self.driver).delete_affiliate() \

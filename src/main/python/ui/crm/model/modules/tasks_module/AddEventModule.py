@@ -7,6 +7,7 @@ from src.main.python.ui.crm.model.side_bar.create_event.CreateEvent import Creat
 from src.main.python.utils.logs.Loging import Logging
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
+
 class AddEventModule(CRMBasePage):
 
     # def __init__(self):
