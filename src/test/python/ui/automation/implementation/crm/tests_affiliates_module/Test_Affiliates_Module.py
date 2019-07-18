@@ -11,7 +11,7 @@ from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import 
 @pytest.mark.run(order=32)
 class AffiliateModule(BaseTest):
 
-    def test_create_affiliate(self):
+    def test_create_delete_affiliate(self):
         AffiliatesPrecondition(self.driver, self.config).create_affiliate()
 
     def test_delete_affiliate(self):

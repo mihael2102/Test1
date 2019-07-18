@@ -81,6 +81,7 @@ class CreditInTestCRM(BaseTest):
         expected_credit = CRMConstants.AMOUNT_CREDIT_IN
         count = 0
         while actual_credit != expected_credit:
+            sleep(1)
             MT4CreditInModule(self.driver).refresh_page()
             sleep(1)
             actual_credit = ClientProfilePage(self.driver).get_credit_in_trading_account()
