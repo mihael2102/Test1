@@ -50,9 +50,10 @@ class AddEventTaskModule(BaseTest):
         ClientsPage(self.driver).find_client_by_email(CRMConstants.EMAIL_FOR_EVENT)
         sleep(2)
         while ClientProfilePage(self.driver).check_event_exist():
-            ClientProfilePage(self.driver).click_activities_tab()
-            ClientProfilePage(self.driver).open_activities_tab()
-            ClientProfilePage(self.driver).click_delete_interaction()
+            ClientProfilePage(self.driver)\
+                .click_activities_tab() \
+                .open_activities_tab() \
+                .click_delete_interaction()
 
         close_activities = ClientProfilePage(self.driver).verify_activities()
         assert close_activities == CRMConstants.NONE_INCLUDED

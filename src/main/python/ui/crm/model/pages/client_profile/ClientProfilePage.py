@@ -444,8 +444,8 @@ class ClientProfilePage(CRMBasePage):
         sleep(3)
         self.wait_crm_loading_to_finish()
         activities_tab = super().wait_load_element("//li//a[contains(text(),'Activities')][1]")
-        activities_tab.click()
-        # self.driver.execute_script("arguments[0].click();", activities_tab)
+        # activities_tab.click()
+        self.driver.execute_script("arguments[0].click();", activities_tab)
         Logging().reportDebugStep(self, "Scroll to activities tab")
         return ClientProfilePage(self.driver)
 
