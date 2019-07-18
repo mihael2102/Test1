@@ -141,7 +141,7 @@ class DepositTestCRM(BaseTest):
             .open_trading_accounts_tab() \
             .get_client_account()
 
-        amount_initial = crm_client_profile.get_initial_amount()
+        # amount_initial = crm_client_profile.get_initial_amount()
 
         crm_client_profile \
             .perform_scroll_up() \
