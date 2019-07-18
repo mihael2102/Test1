@@ -40,7 +40,7 @@ class LeaderboardPage(CRMBasePage):
 
     def click_button_go(self):
         element = super().wait_load_element("//input[@class='btn btn-primary']")
-        element.click()
+        # element.click()
+        self.driver.execute_script("arguments[0].click();", element)
         Logging().reportDebugStep(self, "Click Go")
         return LeaderboardPage(self.driver)
-

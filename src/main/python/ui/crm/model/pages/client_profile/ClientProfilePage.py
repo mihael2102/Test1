@@ -997,7 +997,6 @@ class ClientProfilePage(CRMBasePage):
                  ["choose_account_drop_down"], 10)
             sleep(3)
             self.driver.execute_script("arguments[0].click();", trading_account_dropdown_list)
-            # trading_account_dropdown_list.click()
             sleep(3)
             selected_live_trading_account = self.driver.find_element_by_xpath\
                 (global_var.get_xpath_for_current_brand_element
