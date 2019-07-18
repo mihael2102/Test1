@@ -437,7 +437,7 @@ class TasksPage(CRMBasePage):
         input_account_name.send_keys(first_name)
         sleep(2)
         self.wait_crm_loading_to_finish_tasks(155)
-        Logging().reportDebugStep(self, "Search Account name")
+        Logging().reportDebugStep(self, "Search Account name: " + first_name)
         return TasksPage(self.driver)
 
     def search_by_type(self, type):
@@ -498,7 +498,6 @@ class TasksPage(CRMBasePage):
         Logging().reportDebugStep(self, "Select all event")
         return TasksPage(self.driver)
 
-
     def get_account_name(self, first_name):
         sleep(2)
         search_account_name_text = super().wait_load_element("//a[contains(text(),'%s')]" % first_name).text
@@ -528,4 +527,3 @@ class TasksPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", sign_out)
         Logging().reportDebugStep(self, "Sign Out")
         return TasksPage(self.driver)
-
