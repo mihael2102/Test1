@@ -45,7 +45,6 @@ class CreateLeadsProfilePage(CRMBasePage):
         self.set_state(state)
         self.click_save()
 
-
     def perform_create_lead_ogtrade(self, first_name, last_name, mobile, fax, email, secondary_email,
                              street, postal_code, description,
                             phone, tittle, assigned_to, po_box,
@@ -238,5 +237,4 @@ class CreateLeadsProfilePage(CRMBasePage):
         self.perform_scroll_up()
         save_button.click()
         Logging().reportDebugStep(self, "The Save button was clicked")
-        Logging().reportDebugStep(self, "The Lead was created")
         return CreateLeadsProfilePage(self.driver)
