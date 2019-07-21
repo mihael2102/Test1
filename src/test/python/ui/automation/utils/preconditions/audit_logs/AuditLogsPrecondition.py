@@ -28,6 +28,7 @@ class AuditLogsPrecondition(object):
                                  .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                                             self.config.get_value(TestDataConstants.CRM_PASSWORD),
                                             self.config.get_value(TestDataConstants.OTP_SECRET))
-        CRMHomePage(self.driver).open_more_list_modules()\
-                                .select_audit_logs_module_more_list(CRMConstants.AUDITLOGS_MODULE)
-        AuditLogsPage(self.driver).check_audit_logs_loaded()
+        CRMHomePage(self.driver)\
+            .open_more_list_modules()\
+            .select_audit_logs_module_more_list(CRMConstants.AUDITLOGS_MODULE)\
+            .check_audit_logs_loaded()
