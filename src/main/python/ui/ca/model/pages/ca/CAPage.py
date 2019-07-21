@@ -17,6 +17,7 @@ import autoit
 from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
+
 class CAPage(CRMBasePage):
 
     def click_actions_launch_by_account(self, account_number):
@@ -25,7 +26,6 @@ class CAPage(CRMBasePage):
         actions_launch_by_account.click()
         Logging().reportDebugStep(self, "Click LAUNCH")
         return CAPage(self.driver)
-
 
     def get_account_number(self):
         sleep(3)
@@ -76,12 +76,10 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Close Success pop up")
         return CAPage(self.driver)
 
-    def fill_questionarie_itrader(self, status ,industry,yes,source,
-                                  estimate_income,estimate_worth,purpose,amount,
-                                  incoming_fund, level,time_investing,time_last_trade,instrument,
-                                   time_experience,trade_size,applies,price,fb_price,inital_deposit,result_of_trading,
-                                    investment_obj,no,tin):
-
+    def fill_questionarie_itrader(self, status, industry, yes, source, estimate_income, estimate_worth, purpose, amount,
+                                  incoming_fund, level, time_investing, time_last_trade, instrument, time_experience,
+                                  trade_size, applies, price, fb_price, inital_deposit, result_of_trading,
+                                  investment_obj, no, tin):
         self.select_employment_status(status)
         self.select_industry(industry)
         self.question_financial_instrument(yes)
@@ -740,17 +738,17 @@ class CAPage(CRMBasePage):
 
     def verify_ticket_status_closed(self):
         status = super().wait_load_element("//*[@id='closedTickets']/tbody/tr/td[4]").text
-        Logging().reportDebugStep(self, "Check status")
+        Logging().reportDebugStep(self, "Get status: " + status)
         return status
 
     def verify_ticket_status(self):
         status = super().wait_load_element("//*[@id='openTickets']/tbody/tr/td[4]").text
-        Logging().reportDebugStep(self, "Check status")
+        Logging().reportDebugStep(self, "Get status: " + status)
         return status
 
     def get_ticket_number(self):
         ticket_number = super().wait_load_element("//*[@id='lblSuccessMessage']").text
-        Logging().reportDebugStep(self, "Check ticket number")
+        Logging().reportDebugStep(self, "Get ticket number: " + ticket_number)
         return ticket_number
 
     def click_submit_ticket(self):
@@ -790,7 +788,6 @@ class CAPage(CRMBasePage):
         # self.driver.execute_script("arguments[0].click();", select_category)
         Logging().reportDebugStep(self, "Select category")
         return CAPage(self.driver)
-
 
     def open_new_ticket(self):
         sleep(2)
