@@ -48,14 +48,14 @@ class ClientsPage(CRMBasePage):
     def select_filter(self, test_filter):
         drop_down_filter = super().wait_load_element("//span[@class='filter-option pull-left']")
         drop_down_filter.click()
-        Logging().reportDebugStep(self, "Click the  drop down filter ")
+        Logging().reportDebugStep(self, "Click the  drop down filter")
         field_found = self.driver.find_element(By.XPATH, "//input[@class='input-block-level form-control']")
         field_found.clear()
         field_found.send_keys(test_filter)
-        Logging().reportDebugStep(self, "The field found is : " + test_filter)
+        Logging().reportDebugStep(self, "The filter found is: " + test_filter)
         select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
         select_test_filter.click()
-        Logging().reportDebugStep(self, "Click the selected filter")
+        Logging().reportDebugStep(self, "Click selected filter")
         self.wait_crm_loading_to_finish()
         return ClientsPage(self.driver)
 
@@ -100,14 +100,15 @@ class ClientsPage(CRMBasePage):
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
         Logging().reportDebugStep(self, "Click the Search button")
-        sleep(15)
+        sleep(5)
+        self.wait_crm_loading_to_finish()
         client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
         sleep(5)
         try:
             client_id.click()
         except:
             self.driver.execute_script("arguments[0].click();", client_id)
-
+        self.wait_crm_loading_to_finish()
         sleep(1)
         Logging().reportDebugStep(self, "Click user email: " + email)
         return ClientProfilePage(self.driver)

@@ -8,6 +8,7 @@ import pyotp
 from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
+
 class CALoginPage(CRMBasePage):
 
     def open_first_tab_page(self, url):
