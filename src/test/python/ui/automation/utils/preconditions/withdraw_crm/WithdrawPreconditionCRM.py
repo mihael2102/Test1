@@ -70,7 +70,7 @@ class WithdrawPreconditionCRM(object):
             count = 0
             while actual_balance != expected_balance:
                 CRMHomePage(self.driver).refresh_page()
-                sleep(2)
+                sleep(3)
                 balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
                 actual_balance = float(balance)
                 count += 1
