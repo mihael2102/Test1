@@ -344,13 +344,13 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_help_desk_tab(self):
-        sleep(7)
-        select_country = super().wait_load_element("//*[@id='show_Accounts_HelpDesk']/span")
-        self.driver.execute_script("arguments[0].scrollIntoView();", select_country)
+        sleep(2)
+        help_desk_tab = super().wait_load_element("//*[@id='show_Accounts_HelpDesk']/span")
+        self.driver.execute_script("arguments[0].scrollIntoView();", help_desk_tab)
         try:
-            select_country.click()
+            help_desk_tab.click()
         except:
-            self.driver.execute_script("arguments[0].click();", select_country)
+            self.driver.execute_script("arguments[0].click();", help_desk_tab)
         Logging().reportDebugStep(self, "Open help desc tab ")
         return ClientProfilePage(self.driver)
 
@@ -688,9 +688,9 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Verify ticket status")
         return status
 
-    def change_status_ticket(self):
-        sleep(6)
-        pencil_button = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//td[12]")
+    def click_edit_ticket_pensil(self):
+        sleep(1)
+        pencil_button = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//td[12]", timeout=35)
         # pencil_button = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//td[12]/div/div/a[1]")
         self.driver.execute_script("arguments[0].scrollIntoView();", pencil_button)
         try:
