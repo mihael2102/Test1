@@ -6,6 +6,7 @@ from src.test.python.ui.automation.utils.preconditions.dashboard.DashboardPrecon
 from src.test.python.ui.automation.utils.preconditions.leaderboard.LeaderboardPrecondition import LeaderboardPrecondition
 from src.test.python.ui.automation.utils.preconditions.usermanagement.UserManagementPrecondition import UserManagementPrecondition
 
+
 @pytest.mark.run(order=35)
 class CheckModulesTest(BaseTest):
 
