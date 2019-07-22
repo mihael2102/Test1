@@ -98,3 +98,4 @@ class LeadsModuleConstants(object):
     FIRST_CONVERT_LEAD = "FirstConvertLead"
     BIRTHDAY = "birthday"
     CITIZENSHIP = "citizenship"
+    MSG_NO_PERMISSIONS_SEND_MAIL = "You are not permitted to perform this action"
