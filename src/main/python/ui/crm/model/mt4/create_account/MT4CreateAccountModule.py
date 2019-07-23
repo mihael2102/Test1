@@ -5,6 +5,10 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 from src.main.python.utils.logs.Loging import Logging
 import time
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from time import sleep
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
+
 
 class MT4CreateAccountModule(CRMBasePage):
 
@@ -28,7 +32,7 @@ class MT4CreateAccountModule(CRMBasePage):
                 self.select_group(group)
         if leverage:
             self.select_leverage(leverage)
-        self.click_update() #for_old_forex
+        self.click_update()
         return ClientProfilePage(self.driver)
 
     def create_account_with_platform(self, platform, server, currency, group, leverage):
@@ -147,3 +151,16 @@ class MT4CreateAccountModule(CRMBasePage):
         # button.click()
         self.driver.execute_script("arguments[0].click();", button)
         Logging().reportDebugStep(self, "The Save button was clicked")
+
+    def check_create_mt_acc_clickable(self):
+        try:
+            sleep(1)
+            super().wait_load_element("//*[@id='mt4_act_box']/a[@onclick='updateTAfor(true);' and not(@disabled)]")
+            Logging().reportDebugStep(self, "'Create MT User' button is available")
+            return True
+        except(NoSuchElementException, TimeoutException):
+            sleep(1)
+            super().wait_load_element("//*[@id='mt4_act_box']/a[@onclick='updateTAfor(true);' and @disabled]")
+            Logging().reportDebugStep(self,
+                                      "There is no 'Create MT User' button available, due to unfilled Questionnaire")
+            return False

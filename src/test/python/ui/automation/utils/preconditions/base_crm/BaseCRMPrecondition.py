@@ -23,7 +23,8 @@ class BaseCRMPrecondition(object):
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
-        # check version in vtiger module
+
+        # Check version in vtiger module
         CRMHomePage(self.driver).open_client_module()
         brand = global_var.current_brand_name
         current_vtiger_version = CRMHomePage(self.driver).get_current_version(CRMConstants.MODULE_VTIGER)

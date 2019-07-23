@@ -37,8 +37,10 @@ class DepositTestCRM(BaseTest):
                                 .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
 
         # Create LIVE account for client using MT4 Actions
-        crm_client_profile = ClientProfilePage(self.driver)
-        crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+        is_create_acc_btn_clickable = MT4CreateAccountModule(self.driver).check_create_mt_acc_clickable()
+        if is_create_acc_btn_clickable:
+            crm_client_profile = ClientProfilePage(self.driver)
+            crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
         if global_var.current_brand_name == "finmarket":
             MT4CreateAccountModule(self.driver) \
@@ -51,6 +53,18 @@ class DepositTestCRM(BaseTest):
                 (TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE_FINMARKET),
                 self.config.get_value
                 (TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
+                .click_close()
+
+        elif global_var.current_brand_name == "etfinance":
+
+            MT4CreateAccountModule(self.driver) \
+                .create_account(
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
+                                      TestDataConstants.TRADING_SERVER_LIVE_OLD_FOREX),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
+                self.config.get_value
+                (TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE)) \
                 .click_close()
 
         elif global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
