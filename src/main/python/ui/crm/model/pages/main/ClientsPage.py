@@ -93,6 +93,7 @@ class ClientsPage(CRMBasePage):
         search_button.click()
         Logging().reportDebugStep(self, "Click the search button ")
         sleep(2)
+        self.wait_crm_loading_to_finish()
         client_id = self.driver.find_element(By.XPATH, "//div/a[contains(text(), 'ACC')]")
         sleep(1)
         self.driver.execute_script("arguments[0].click();", client_id)
