@@ -20,7 +20,7 @@ class CALoginPage(CRMBasePage):
     def click_sign_up(self):
         sleep(10)
         try:
-            #check bunner exist
+            # Check banner exist
             self.driver.find_element_by_xpath("(//div[@class='Campaign__alphaLayer'])[2]")
             close_btn = self.driver.find_element_by_xpath("(//button[@title='Close'])[2]")
             close_btn.click()
