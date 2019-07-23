@@ -77,10 +77,16 @@ class EventPrecondition(object):
         sleep(2)
         task_module.open_sms_actions_section()
         title = task_module.check_pop_up_send_sms()
-        try:
-            assert CRMConstants.SEND_SMS in title
-        except:
-            assert CRMConstants.SERVER_NOT_CONFIGURATE in title
+
+        # Check, SMS pop up is opened. Else: Check, that appear message "There are no phones"
+        if title:
+            try:
+                assert CRMConstants.SEND_SMS in title
+            except:
+                assert CRMConstants.SERVER_NOT_CONFIGURATE in title
+        else:
+            message = task_module.get_allert_message()
+            assert CRMConstants.ALLERT_MSG_NO_PHONES in message
 
     def test_mass_edit_tasks(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \

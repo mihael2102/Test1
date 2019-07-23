@@ -194,3 +194,4 @@ class CRMConstants(object):
     CRM_CONFIGURATION = "CRM Configuration"
     FIRST_TA_NUMBER_FROM_TA_SECTION = "2"
     SECOND_TA_NUMBER_FROM_TA_SECTION = "3"
+    ALLERT_MSG_NO_PHONES = "There are no phones available"

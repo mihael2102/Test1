@@ -13,4 +13,4 @@ ClientProfilePage:
   choose_account_drop_down: "//*[@id='ClientDepositConfirmation']//button[@title='Nothing selected']"
   choose_number: "//form[@id='ClientDepositConfirmation']//span[contains(text(), '%s')]"
 LeadsModule:
-  first_lead_email: "//tr[2]//div[contains(text(), 'pandaqa')]"
+  first_lead_email: "(//tr[1]//a//div[contains(text(), 'pandaqa')])[1]"
