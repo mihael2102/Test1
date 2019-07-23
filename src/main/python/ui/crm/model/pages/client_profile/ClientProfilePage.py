@@ -374,7 +374,7 @@ class ClientProfilePage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", mt4_button)
         # mt4_button.click()
         sleep(5)
-        Logging().reportDebugStep(self, "Open mt4 actions ")
+        Logging().reportDebugStep(self, "Open MT4 actions")
         MT4DropDown(self.driver).mt4_actions(module)
 
     def close_popup_new_trading_account(self):
@@ -571,7 +571,7 @@ class ClientProfilePage(CRMBasePage):
     def get_description_text(self):
         description = self.driver.find_element(By.XPATH,
                                                "//td[contains(text(),'Description')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the description : " + description.text)
+        Logging().reportDebugStep(self, "Returns the description: " + description.text)
         return description.text
 
     def get_referral_text(self):
@@ -583,8 +583,14 @@ class ClientProfilePage(CRMBasePage):
         referral = self.driver.find_element(By.XPATH,
                                             "//td[contains(text(),'Refferal')]//following-sibling::td[1]")
         parser_client_status_text = re.sub('[" "]', '', referral.text, 3)
-        Logging().reportDebugStep(self, "Returns the referral : " + parser_client_status_text)
+        Logging().reportDebugStep(self, "Returns the referral: " + parser_client_status_text)
         return parser_client_status_text
+
+    def get_customer_classification(self):
+        customer_classification = super().wait_load_element(
+            "//td[text()='Customer Classification']//following-sibling::td[1]").text
+        Logging().reportDebugStep(self, "Returns the Customer Classification: " + customer_classification)
+        return customer_classification
 
     def open_deposit_for_client_in_menu(self):
         deposit_for_client_element = self.driver.find_element(By.XPATH, "//*[@id='sidebar']/table[1]/tbody/tr[4]/td/a")
@@ -760,4 +766,19 @@ class ClientProfilePage(CRMBasePage):
         ok_btn = super().wait_element_to_be_clickable("//button[@class='btn btn-primary'][contains(text(),'OK')]")
         ok_btn.click()
         Logging().reportDebugStep(self, "Document status is updated successfully")
+        return ClientProfilePage(self.driver)
+
+    '''
+        Check, that server is not available for account opening 
+    '''
+
+    def verify_server_not_available(self, server):
+        server_pick_list = super().wait_load_element("//select[@id='server']").text
+        assert server not in server_pick_list.upper()
+        Logging().reportDebugStep(self, server + " server is not available for accounts opening")
+        return ClientProfilePage(self.driver)
+
+    def verify_clean_questionnaire_btn_visible(self):
+        super().wait_load_element("//a[text()='Clean Questionnaire']")
+        Logging().reportDebugStep(self, "Clean Questionnaire button is available")
         return ClientProfilePage(self.driver)

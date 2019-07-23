@@ -24,6 +24,7 @@ class CAConstants(object):
     UPDATE_ADDRESS = "Lenin25"
     CITIZENSHIP = "Albanian"
     CITIZENSHIP2 = "Andorran"
+    CITIZENSHIP3 = "Austrian"
     UPDATE_CITIZENSHIP = "Australian"
     ACCOUNT_TYPE = "Pro"
     ACCOUNT_LIVE = "Live"
@@ -44,3 +45,5 @@ class CAConstants(object):
     TICKET_DESCRIPTION = "test"
     TICKET_NUMBER_CA = ""
     DOCUMENT_STATUS_CA = "Verified"
+    US_REPORTABLE_YES = "Yes"
+    US_REPORTABLE_NO = "No"

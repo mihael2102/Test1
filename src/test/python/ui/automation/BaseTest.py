@@ -3,6 +3,7 @@ from datetime import *
 
 #import allure
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 from src.main.python.utils.config import Config
 from src.main.python.utils.data.providers.ConfigProvider import ConfigProvider
@@ -23,14 +24,17 @@ class BaseTest(unittest.TestCase):
             self.config = ConfigProvider()
         #allure.MASTER_HELPER.environment(BROWSER="CHROME", URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
         if self.driver_type is None or self.driver_type == 'Chrome':
-            #for hidden browser
-            # chrome_options = webdriver.ChromeOptions()
-            # chrome_options.add_argument("--headless")
-            # chrome_options.add_argument("--window-size=1920x1080")
-            # self.driver = webdriver.Chrome(Config.chrome_driver, chrome_options=chrome_options)
-            #for opened chrome
-            self.driver = webdriver.Chrome(Config.chrome_driver)
-            self.driver.maximize_window()
+            # for hidden browser
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.add_argument("user-agent=[panda_bot]")
+            chrome_options.add_argument("--headless")
+            chrome_options.add_argument("--window-size=1920x1080")
+            self.driver = webdriver.Chrome(Config.chrome_driver, chrome_options=chrome_options)
+            # for opened chrome
+            # opts = Options()
+            # opts.add_argument("user-agent=[panda_bot]")
+            # self.driver = webdriver.Chrome(chrome_options=opts, executable_path=Config.chrome_driver)
+            # self.driver.maximize_window()
         elif self.driver_type == 'Remote':
             selenium_grid_url = "http://localhost:5578/wd/hub/"
             options = webdriver.ChromeOptions()

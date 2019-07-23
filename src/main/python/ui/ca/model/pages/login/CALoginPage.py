@@ -7,6 +7,7 @@ from time import sleep
 import pyotp
 from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.main.python.ui.ca.model.pages.ca.QuestionnairePage import QuestionnairePage
 
 
 class CALoginPage(CRMBasePage):
@@ -19,7 +20,7 @@ class CALoginPage(CRMBasePage):
     def click_sign_up(self):
         sleep(10)
         try:
-            #check bunner exist
+            # Check banner exist
             self.driver.find_element_by_xpath("(//div[@class='Campaign__alphaLayer'])[2]")
             close_btn = self.driver.find_element_by_xpath("(//button[@title='Close'])[2]")
             close_btn.click()
@@ -365,3 +366,72 @@ class CALoginPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", close_btn)
         Logging().reportDebugStep(self, "Close Client Area pop up")
         return CALoginPage(self.driver)
+
+    def select_us_reportable(self, answer):
+        answer_btn = super().wait_load_element("//span[text()='%s']" % answer)
+        self.driver.execute_script("arguments[0].click();", answer_btn)
+        Logging().reportDebugStep(self, "I am a US reportable citizen: " + answer)
+        return CALoginPage(self.driver)
+
+    def confirm_us_reportable(self):
+        yes_btn = super().wait_load_element("//button[text()='Yes']")
+        yes_btn.click()
+        Logging().reportDebugStep(self, "Are you sure?: Press Yes")
+        return CALoginPage(self.driver)
+
+    def verify_registration_blocked(self):
+        super().wait_load_element("//div[text()='Registration blocked']")
+        Logging().reportDebugStep(self, "Registration blocked")
+        return CALoginPage(self.driver)
+
+    def confirm_logout(self):
+        sleep(2)
+        logout_btn = super().wait_load_element("//a[text()='log out']")
+        self.driver.execute_script("arguments[0].click();", logout_btn)
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", logout_btn)
+        sleep(1)
+        Logging().reportDebugStep(self, "Confirm logout")
+        return CALoginPage(self.driver)
+
+    def came_back_on_previous_page(self):
+        sleep(3)
+        super().came_back_on_previous_page()
+        Logging().reportDebugStep(self, "Come back on previous page was successfully")
+        return CALoginPage(self.driver)
+
+    def enter_ssn_tin(self, tin):
+        ssn_tin_field = super().wait_load_element("//label[text()='SSN/TIN']//following-sibling::input[@name='tin']")
+        ssn_tin_field.clear()
+        ssn_tin_field.send_keys(tin)
+        Logging().reportDebugStep(self, "SSN/TIN number entered: " + tin)
+        return CALoginPage(self.driver)
+
+    def enter_id(self, id_num):
+        nat_id_field = super().wait_load_element(
+            "//label[text()='National ID']//following-sibling::input[@name='nationalId']")
+        nat_id_field.clear()
+        nat_id_field.send_keys(id_num)
+        Logging().reportDebugStep(self, "National ID number entered: " + id_num)
+        return CALoginPage(self.driver)
+
+    def select_country_tax(self, country):
+        country_item = self.driver.find_element_by_xpath(
+            "//span[@class='item-pandats ng-star-inserted']/span[text()='%s']" % country)
+        self.driver.execute_script("arguments[0].click();", country_item)
+        Logging().reportDebugStep(self, "Select Country of TAX: " + country)
+        return CALoginPage(self.driver)
+
+    def enter_company_name(self, company):
+        company_name_field = super().wait_load_element(
+            "//label[text()='Company Name']//following-sibling::input[@name='companyName']")
+        company_name_field.clear()
+        company_name_field.send_keys(company)
+        Logging().reportDebugStep(self, "Company Name entered: " + company)
+        return CALoginPage(self.driver)
+
+    def click_save_changes_btn(self):
+        save_changes_btn = super().wait_element_to_be_clickable("//button[text()='Save Changes ']")
+        save_changes_btn.click()
+        Logging().reportDebugStep(self, "Save Changes button is clicked")
+        return QuestionnairePage(self.driver)

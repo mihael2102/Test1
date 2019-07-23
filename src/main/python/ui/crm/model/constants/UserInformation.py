@@ -6,7 +6,7 @@ class UserInformation(object):
     random_number = str(random.randrange(1, 9999))
     FIRST_USER = "FirstUser"
     FIRST_USER_NAME = "User_testing+ " + random_number
-    FIRST_EMAIL = "testing+%s@pandats.com" % random_number
+    # FIRST_EMAIL = "testing+%s@pandats.com" % random_number
     FIRST_NAME = "first_name"
     FIRST_ROLE = "first_role"
     FIRST_PASSWORD = "first_password"

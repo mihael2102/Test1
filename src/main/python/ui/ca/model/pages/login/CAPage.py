@@ -233,10 +233,17 @@ class CAPage(CRMBasePage):
 
     def open_accounts_list(self, server):
         sleep(1)
-        accounts_list = super().wait_load_element("//span[@class='account-type-pandats ng-star-inserted'] \
-                                                [contains(text(), '%s')]" % server)
+        accounts_list = super().wait_load_element(
+            "//span[@class='account-type-pandats ng-star-inserted'][contains(text(), '%s')]" % server)
         self.driver.execute_script("arguments[0].click();", accounts_list)
         Logging().reportDebugStep(self, "Open list accounts")
+        return CAPage(self.driver)
+
+    def verify_active_account_server(self, server):
+        sleep(1)
+        active_server = super().wait_load_element("//div[@class='login-pandats']/span").text
+        assert active_server.lower() == server.lower()
+        Logging().reportDebugStep(self, "Active account's server is: " + active_server)
         return CAPage(self.driver)
 
     def switch_to_account(self, account_number, account_server):
