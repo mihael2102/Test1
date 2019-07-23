@@ -29,7 +29,7 @@ class Login_CA_Precondition(object):
         return lead
 
     def check_email_sign_up(self):
-        sleep(60)
+        sleep(30)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
         pop_conn.user('jonathan.albalak@pandats.com')
         pop_conn.pass_('xUQ7hrr9VF')
@@ -41,12 +41,13 @@ class Login_CA_Precondition(object):
         messages = [parser.Parser().parsestr(mssg) for mssg in messages]
         for message in messages:
             if CRMConstants.WELCOME_TO in str(message['Subject']):
-                link = self.config.get_value('url').replace('https://', '')
-                link1 = link.replace('.ptscrm.com/', '')
-                if link1 in str(message['Subject']).lower().replace(' ', ''):
+                brand = global_var.current_brand_name
+                # link = self.config.get_value('url').replace('https://', '')
+                # link1 = link.replace('.ptscrm.com/', '')
+                if brand in str(message['Subject']).lower().replace(' ', ''):
                     Logging().reportDebugStep(self, str(message['Subject']))
                     assert CRMConstants.WELCOME_TO in str(message['Subject'])
-                    # return str(message['Subject'])
+                    return str(message['Subject'])
         pop_conn.quit()
 
     def sign_up_ca(self):
