@@ -1,4 +1,4 @@
 brands:
 
-- name: ptbanc
-  config_file: ptbanc.yml
+- name: kontofx
+  config_file: kontofx.yml
