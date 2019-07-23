@@ -40,7 +40,7 @@ class TasksPage(CRMBasePage):
 
     def get_third_column_frow_text(self):
         column_text = super().wait_load_element("//tr[2]/td[6]/grid-cell/div/span/a")
-        Logging().reportDebugStep(self, "Returns first column text: " + column_text.text)
+        Logging().reportDebugStep(self, "Returns third column text: " + column_text.text)
         return column_text.text
 
     def get_third_column_srow_text(self):
@@ -53,6 +53,7 @@ class TasksPage(CRMBasePage):
         task_module = super().wait_load_element("//a[contains(text(), '%s')]" % column)
         task_module.click()
         self.wait_crm_loading_to_finish_tasks(200)
+        sleep(1)
         Logging().reportDebugStep(self, "Click " + column + " column title")
         return TasksPage(self.driver)
 
@@ -437,7 +438,7 @@ class TasksPage(CRMBasePage):
         input_account_name.send_keys(first_name)
         sleep(2)
         self.wait_crm_loading_to_finish_tasks(155)
-        Logging().reportDebugStep(self, "Search Account name: " + first_name)
+        Logging().reportDebugStep(self, "Search by Account name: " + first_name)
         return TasksPage(self.driver)
 
     def search_by_type(self, type):
@@ -527,3 +528,8 @@ class TasksPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", sign_out)
         Logging().reportDebugStep(self, "Sign Out")
         return TasksPage(self.driver)
+
+    def get_allert_message(self):
+        msg = super().wait_load_element("//div[@role='alertdialog']").text
+        Logging().reportDebugStep(self, "Get allert message: " + msg)
+        return msg
