@@ -889,8 +889,11 @@ class ClientProfilePage(CRMBasePage):
         return ClientProfilePage(self.driver)
 
     def click_close(self):
-        super().click_close()
-        Logging().reportDebugStep(self, "Click 'close' button ")
+        try:
+            super().click_close()
+            Logging().reportDebugStep(self, "Click 'Close' button")
+        except:
+            pass
         return ClientProfilePage(self.driver)
 
     '''

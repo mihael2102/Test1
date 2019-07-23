@@ -43,7 +43,7 @@ class TabFinancialTransaction(BaseTest):
             credit_out_name = financial_transaction_module.get_credit_out_tab_text()
 
         # Decline tab
-        if (global_var.current_brand_name == "fxpmarkets"):
+        if global_var.current_brand_name == "fxpmarkets":
             decline_name = financial_transaction_module.get_decline_tab_text()
         else:
             demo_accounts_name = financial_transaction_module.get_demo_accounts_transactions_tab_text()
@@ -68,7 +68,7 @@ class TabFinancialTransaction(BaseTest):
                 FinancialTransactionsModuleConstants.THIRD_TAB)
 
         # Assert for decline tab
-        if (global_var.current_brand_name == "fxpmarkets"):
+        if global_var.current_brand_name == "fxpmarkets":
             self.assertEqual(decline_name, self.config.get_data_financial_transactions_info(
                 FinancialTransactionsModuleConstants.DECLINE_TAB))
         else:
@@ -81,7 +81,7 @@ class TabFinancialTransaction(BaseTest):
                     FinancialTransactionsModuleConstants.FOURTH_TAB)
 
         # deposit_name
-        if (global_var.current_brand_name == "fxpmarkets"):
+        if global_var.current_brand_name == "fxpmarkets":
             assert deposit_name == self.config.get_data_financial_transactions_info(
                 FinancialTransactionsModuleConstants.FIFTH_TAB_SHORT)
         else:
