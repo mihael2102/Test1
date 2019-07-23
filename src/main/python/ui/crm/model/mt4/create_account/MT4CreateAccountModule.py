@@ -6,6 +6,7 @@ from src.main.python.utils.logs.Loging import Logging
 import time
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
+
 class MT4CreateAccountModule(CRMBasePage):
 
     def create_account(self, server, currency, group, leverage):
@@ -28,7 +29,7 @@ class MT4CreateAccountModule(CRMBasePage):
                 self.select_group(group)
         if leverage:
             self.select_leverage(leverage)
-        self.click_update() #for_old_forex
+        self.click_update()
         return ClientProfilePage(self.driver)
 
     def create_account_with_platform(self, platform, server, currency, group, leverage):

@@ -27,7 +27,7 @@ class AffiliatePage(CRMBasePage):
         sleep(1)
         input_partner_name.send_keys(name)
         sleep(1)
-        Logging().reportDebugStep(self, "Enter partner name")
+        Logging().reportDebugStep(self, "Enter partner name: " + name)
 
     def choose_brand(self):
         try:
@@ -40,7 +40,7 @@ class AffiliatePage(CRMBasePage):
     def enter_allowed_ip(self, allowed_ip):
         input_ip = super().wait_load_element("//*[@id='allowedIps']")
         input_ip.send_keys(allowed_ip)
-        Logging().reportDebugStep(self, "Enter allowed IP")
+        Logging().reportDebugStep(self, "Enter allowed IP: " + allowed_ip)
 
     def click_plus_ip(self):
         sleep(0.5)
@@ -95,9 +95,10 @@ class AffiliatePage(CRMBasePage):
         return success_message
 
     def search_affiliate_by_name(self, name):
+        self.wait_crm_loading_to_finish_tasks(35)
         input_partner_name = super().wait_load_element("//td[3]//input")
         input_partner_name.send_keys(name)
-        Logging().reportDebugStep(self, "Search partner name and go to affiliate details page")
+        Logging().reportDebugStep(self, "Search partner name: " + name)
 
     def click_on_affiliate(self, name):
         affiliate_name = super().wait_load_element("//a[contains(text(), '%s')]" % name)
@@ -106,7 +107,7 @@ class AffiliatePage(CRMBasePage):
 
     def check_name_on_affiliate_details(self):
         title_details = super().wait_load_element("/html/body/app-root/affiliate-details/div/div[1]/div/div[1]/h1").text
-        Logging().reportDebugStep(self, "Affiliate details page")
+        Logging().reportDebugStep(self, "Affiliate name is verified: " + title_details)
         return title_details
 
     def delete_affiliate(self):

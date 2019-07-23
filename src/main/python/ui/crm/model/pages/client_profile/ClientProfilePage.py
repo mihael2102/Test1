@@ -430,17 +430,22 @@ class ClientProfilePage(CRMBasePage):
 
     def open_activities_tab(self):
         sleep(1)
-        activities_tab = super().wait_load_element("//a[@id='show_Accounts_Activities']")
-        activities_tab.click()
-        # self.driver.execute_script("arguments[0].click();", activities_tab)
-        Logging().reportDebugStep(self, "Open Activities tab ")
+        try:
+            # Check tab is closed
+            self.driver.find_element_by_xpath("//*[@id='show_Accounts_Activities'][not(contains(@style,'none'))]")
+            activities_tab = super().wait_load_element("//a[@id='show_Accounts_Activities']")
+            activities_tab.click()
+            Logging().reportDebugStep(self, "Open Activities tab ")
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Activities tab already opened")
         return ClientProfilePage(self.driver)
 
     def click_activities_tab(self):
         sleep(3)
-        activities_tab = super().wait_element_to_be_clickable("//li//a[contains(text(),'Activities')][1]")
-        activities_tab.click()
-        # self.driver.execute_script("arguments[0].click();", activities_tab)
+        self.wait_crm_loading_to_finish()
+        activities_tab = super().wait_load_element("//li//a[contains(text(),'Activities')][1]")
+        # activities_tab.click()
+        self.driver.execute_script("arguments[0].click();", activities_tab)
         Logging().reportDebugStep(self, "Scroll to activities tab")
         return ClientProfilePage(self.driver)
 
@@ -884,8 +889,11 @@ class ClientProfilePage(CRMBasePage):
         return ClientProfilePage(self.driver)
 
     def click_close(self):
-        super().click_close()
-        Logging().reportDebugStep(self, "Click 'close' button ")
+        try:
+            super().click_close()
+            Logging().reportDebugStep(self, "Click 'Close' button")
+        except:
+            pass
         return ClientProfilePage(self.driver)
 
     '''
@@ -992,7 +1000,6 @@ class ClientProfilePage(CRMBasePage):
                  ["choose_account_drop_down"], 10)
             sleep(3)
             self.driver.execute_script("arguments[0].click();", trading_account_dropdown_list)
-            # trading_account_dropdown_list.click()
             sleep(3)
             selected_live_trading_account = self.driver.find_element_by_xpath\
                 (global_var.get_xpath_for_current_brand_element

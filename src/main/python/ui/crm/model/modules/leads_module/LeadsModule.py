@@ -14,7 +14,7 @@ from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import Crea
 from src.main.python.ui.crm.model.pages.leads.ImportLeadPage import ImportLeadPage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
-from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 import autoit
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -147,10 +147,18 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def get_lead_email_pop_up(self):
-        sleep(7)
-        first_lead_email = self.driver.find_element(By.XPATH, "//input[@id='parent_name']").get_attribute("value")
-        Logging().reportDebugStep(self, "Get lead email pop up")
-        return first_lead_email
+        sleep(1)
+        super().wait_load_element("//*[@id='PopUpFormTitle']", timeout=35)
+        try:
+            first_lead_email = self.driver.find_element(By.XPATH, "//input[@id='parent_name']").get_attribute("value")
+            Logging().reportDebugStep(self, "Get lead email from pop up: " + first_lead_email)
+            return first_lead_email
+        except(NoSuchElementException, TimeoutException):
+            sleep(1)
+            message = super().wait_load_element("//*[@id='popupcontent']").text
+            assert LeadsModuleConstants.MSG_NO_PERMISSIONS_SEND_MAIL in message
+            Logging().reportDebugStep(self, "There is no permissions to perform this action")
+            return False
 
     def check_third_step(self):
         sleep(4)

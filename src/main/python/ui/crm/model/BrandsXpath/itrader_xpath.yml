@@ -7,4 +7,4 @@ ClientsPage:
   country: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/button"
   country_input: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/ul/li[1]/div/input"
 LeadsModule:
-  first_lead_email: "//tr[2]//div[contains(text(), 'pandaqa')]"
+  first_lead_email: "//tr[1]//a//div[contains(text(), 'pandaqa')]"

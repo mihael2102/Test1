@@ -49,6 +49,7 @@ class CreditOutPrecondition(object):
             ((CRMConstants.AMOUNT_CREDIT_OUT).split('.'))[0])
         count = 0
         while actual_credit != expected_credit:
+            sleep(1)
             CRMHomePage(self.driver).refresh_page()
             sleep(3)
             actual_credit = MT4CreditOutModule(self.driver).get_credit_int()

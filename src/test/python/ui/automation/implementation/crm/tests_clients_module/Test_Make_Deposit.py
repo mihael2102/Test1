@@ -119,7 +119,7 @@ class DepositTestCRM(BaseTest):
             balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
             actual_balance = (balance.split('.'))[0]
             count += 1
-            if count == 5:
+            if count == 7:
                 break
         self.assertEqual(expected_balance, actual_balance, "Wrong deposit sum is displayed")
 
@@ -141,7 +141,7 @@ class DepositTestCRM(BaseTest):
             .open_trading_accounts_tab() \
             .get_client_account()
 
-        amount_initial = crm_client_profile.get_initial_amount()
+        # amount_initial = crm_client_profile.get_initial_amount()
 
         crm_client_profile \
             .perform_scroll_up() \

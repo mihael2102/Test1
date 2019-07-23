@@ -168,6 +168,7 @@ class MyDashboardPrecondition(object):
         CRMHomePage(self.driver).open_more_list_modules() \
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).select_show_all_tab()
+        MyDashboardPage(self.driver).sort_by_type()
         type1 = MyDashboardPage(self.driver).get_type()
         MyDashboardPage(self.driver).sort_by_type()
         type2 = MyDashboardPage(self.driver).get_type()
