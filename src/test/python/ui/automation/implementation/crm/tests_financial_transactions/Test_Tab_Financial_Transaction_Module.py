@@ -545,7 +545,7 @@ class TabFinancialTransaction(BaseTest):
         if (global_var.current_brand_name == "ogtrade") or (global_var.current_brand_name == "fm-fx") or (
                 global_var.current_brand_name == "stoxmarket") or (global_var.current_brand_name == "itrader") or (
                 global_var.current_brand_name == "gmo") or (
-                global_var.current_brand_name == "kayafx") or (global_var.current_brand_name == "gmo-dev") or (
+                global_var.current_brand_name == "kaya_fx") or (global_var.current_brand_name == "gmo-dev") or (
                 global_var.current_brand_name == "otcapital") or (global_var.current_brand_name == "urf"):
             financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT_TEST)
         # elif global_var.current_brand_name == "highfx":
@@ -600,7 +600,7 @@ class TabFinancialTransaction(BaseTest):
         if (global_var.current_brand_name == "ogtrade") or (global_var.current_brand_name == "fm-fx") or (
                 global_var.current_brand_name == "stoxmarket") or (global_var.current_brand_name == "itrader") or (
                 global_var.current_brand_name == "gmo") or (
-                global_var.current_brand_name == "kayafx") or (global_var.current_brand_name == "gmo-dev") or (
+                global_var.current_brand_name == "kaya_fx") or (global_var.current_brand_name == "gmo-dev") or (
                 global_var.current_brand_name == "otcapital") or (global_var.current_brand_name == "urf"):
             financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT_TEST)
         else:
