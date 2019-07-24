@@ -49,9 +49,10 @@ class Login_CA_Precondition(object):
         messages = [parser.Parser().parsestr(mssg) for mssg in messages]
         for message in messages:
             if CRMConstants.WELCOME_TO in str(message['Subject']):
+                Logging().reportDebugStep(self, str(message['Subject']))
                 if subject in str(message['Subject']).lower():
                     assert subject in str(message['Subject']).lower()
-                    Logging().reportDebugStep(self, str(message['Subject']))
+                    Logging().reportDebugStep(self, "Mail found: " + str(message['Subject']))
                     mail_subject = str(message['Subject']).lower()
                     return mail_subject
         assert subject in mail_subject
