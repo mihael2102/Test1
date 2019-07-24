@@ -24,13 +24,13 @@ class BaseTest(unittest.TestCase):
         if self.driver_type is None or self.driver_type == 'Chrome':
             # For hidden browser
             chrome_options = webdriver.ChromeOptions()
-            chrome_options.add_argument("user-agent=[panda_bot]")
+            chrome_options.add_argument(Config.user_agent)
             chrome_options.add_argument("--headless")
             chrome_options.add_argument("--window-size=1920x1080")
             self.driver = webdriver.Chrome(Config.chrome_driver, chrome_options=chrome_options)
             # For opened chrome
             # opts = Options()
-            # opts.add_argument("user-agent=[panda_bot]")
+            # opts.add_argument(Config.user_agent)
             # self.driver = webdriver.Chrome(chrome_options=opts, executable_path=Config.chrome_driver)
             # self.driver.maximize_window()
         elif self.driver_type == 'Remote':

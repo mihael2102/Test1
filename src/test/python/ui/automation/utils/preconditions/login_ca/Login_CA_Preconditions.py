@@ -18,6 +18,7 @@ import poplib
 from email import parser
 from src.main.python.utils.logs.Loging import Logging
 
+
 class Login_CA_Precondition(object):
 
     driver = None
@@ -53,7 +54,7 @@ class Login_CA_Precondition(object):
         pop_conn.quit()
 
     def client_exist_in_crm(self):
-        # Login to CRM
+        # Login to CRM:
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
@@ -79,9 +80,10 @@ class Login_CA_Precondition(object):
         # assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY
 
     def sign_up_ca(self):
-###REGISTRACTIONS FORM
-        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))\
-                                .click_sign_up()
+        # Registration Form
+        CALoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url_ca'))\
+            .click_sign_up()
 
         if global_var.current_brand_name == "itrader_global":
             CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP_AUS)
@@ -90,17 +92,16 @@ class Login_CA_Precondition(object):
         else:
             CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP)
 
-        CALoginPage(self.driver).fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                    LeadsModuleConstants.FIRST_NAME])\
-                                .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.FIRST_LAST_NAME])\
-                                .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])\
-                                .fill_area_code(CAConstants.AREA_CODE)\
-                                .fill_phone(CAConstants.PHONE)\
-                                .fill_password(CAConstants.PASSWORD)\
-                                .fill_confirm_password(CAConstants.PASSWORD)\
-                                .check_box_accept()
+        CALoginPage(self.driver)\
+            .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])\
+            .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                    LeadsModuleConstants.FIRST_LAST_NAME])\
+            .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.EMAIL])\
+            .fill_area_code(CAConstants.AREA_CODE)\
+            .fill_phone(CAConstants.PHONE)\
+            .fill_password(CAConstants.PASSWORD)\
+            .fill_confirm_password(CAConstants.PASSWORD)\
+            .check_box_accept()
 
         if global_var.current_brand_name == "triomarkets" or global_var.current_brand_name == "kaya_fx" or \
                 global_var.current_brand_name == "oinvestsa":
@@ -115,9 +116,10 @@ class Login_CA_Precondition(object):
             CALoginPage(self.driver).enter_data_birth(CAConstants.DATA_MONTH_YEAR)
 
         else:
-            CALoginPage(self.driver).select_data_birth_day(CAConstants.DAY_BIRTH) \
-                                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
-                                .select_data_birth_year(CAConstants.YEAR_BIRTH)
+            CALoginPage(self.driver)\
+                .select_data_birth_day(CAConstants.DAY_BIRTH) \
+                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
+                .select_data_birth_year(CAConstants.YEAR_BIRTH)
 
         if global_var.current_brand_name != "itrader_global" and global_var.current_brand_name != "oinvestsa" and \
                 global_var.current_brand_name != "finmarket":
