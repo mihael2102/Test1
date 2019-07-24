@@ -1,12 +1,8 @@
-from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
-from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
@@ -33,10 +29,18 @@ class Login_CA_Precondition(object):
         return lead
 
     def check_email_sign_up(self):
-        sleep(15)
+        sleep(8)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
         pop_conn.user('jonathan.albalak@pandats.com')
         pop_conn.pass_('xUQ7hrr9VF')
+        # Get mail subject:
+        if global_var.current_brand_name == "kaya_fx":
+            subject = "kaya"
+        elif global_var.current_brand_name == "capitalmarketsbanc":
+            subject = "cmb"
+        else:
+            subject = global_var.current_brand_name
+        mail_subject = ""
         # Get messages from server:
         messages = [pop_conn.retr(i) for i in range(1, len(pop_conn.list()[1]) + 1)]
         # Concat message pieces:
@@ -45,11 +49,12 @@ class Login_CA_Precondition(object):
         messages = [parser.Parser().parsestr(mssg) for mssg in messages]
         for message in messages:
             if CRMConstants.WELCOME_TO in str(message['Subject']):
-                brand = global_var.current_brand_name
-                assert brand in str(message['Subject']).lower()
-                Logging().reportDebugStep(self, str(message['Subject']))
-                assert CRMConstants.WELCOME_TO in str(message['Subject'])
-                return str(message['Subject'])
+                if subject in str(message['Subject']).lower():
+                    assert subject in str(message['Subject']).lower()
+                    Logging().reportDebugStep(self, str(message['Subject']))
+                    mail_subject = str(message['Subject']).lower()
+                    return mail_subject
+        assert subject in mail_subject
         pop_conn.quit()
 
     def client_exist_in_crm(self):
