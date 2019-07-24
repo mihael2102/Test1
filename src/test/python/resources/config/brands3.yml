@@ -3,5 +3,5 @@ brands:
 - name: aztrades
   config_file: aztrades.yml
 
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: brokerz
+  config_file: brokerz.yml
