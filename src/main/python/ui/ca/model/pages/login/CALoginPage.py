@@ -103,7 +103,7 @@ class CALoginPage(CRMBasePage):
         submit_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["submit"])
         self.driver.execute_script("arguments[0].click();", submit_button)
-        Logging().reportDebugStep(self, "Click submit")
+        Logging().reportDebugStep(self, "Click Submit")
         return CALoginPage(self.driver)
 
     def click_hi_guest(self):
@@ -132,11 +132,11 @@ class CALoginPage(CRMBasePage):
 
     def select_data_birth_day(self, data_birth_day):
         sleep(3)
-        data = self.driver.find_element_by_xpath("//select[@id='dobday']")
+        data = super().wait_load_element("//select[@id='dobday']")
         data.click()
         datad = self.driver.find_element_by_xpath("//select[@id='dobday']//option[text()='%s']" % data_birth_day)
         datad.click()
-        Logging().reportDebugStep(self, "Select data birth : " + data_birth_day)
+        Logging().reportDebugStep(self, "Select day of birth : " + data_birth_day)
         return CALoginPage(self.driver)
 
     def select_data_birth_month(self, data_birth_month):

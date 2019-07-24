@@ -30,7 +30,7 @@ class BaseTest(unittest.TestCase):
             # self.driver = webdriver.Chrome(Config.chrome_driver, chrome_options=chrome_options)
             # For opened chrome
             opts = Options()
-            opts.add_argument("user-agent=[panda_bot]")
+            opts.add_argument(Config.user_agent)
             self.driver = webdriver.Chrome(chrome_options=opts, executable_path=Config.chrome_driver)
             self.driver.maximize_window()
         elif self.driver_type == 'Remote':
