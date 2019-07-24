@@ -95,10 +95,6 @@ def __simple_run(path_to_test_suite):
     client.test_brands()
 
 
-
-
-
-
 if __name__ == "__main__":
 
     from requests import get
@@ -107,7 +103,6 @@ if __name__ == "__main__":
     print('My public IP address is: {}'.format(ip))
 
     if ip == '35.158.30.212' or ip == '35.158.90.50':
-
 
         all_brands_yml = "brands.yml"
         path_to_brands_suite_1 = "brands1.yml"
@@ -125,7 +120,6 @@ if __name__ == "__main__":
         path_to_brands_suite_13 = "brands13.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-
 
         input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
                       path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
