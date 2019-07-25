@@ -1,10 +1,10 @@
 brands:
 
-- name: libramarkets
-  config_file: libramarkets.yml
-
-- name: tfxgo
-  config_file: tfxgo.yml
+#- name: libramarkets
+#  config_file: libramarkets.yml
+#
+#- name: tfxgo
+#  config_file: tfxgo.yml
 
 - name: dax-300
   config_file: dax-300.yml
