@@ -82,14 +82,17 @@ class WorkflowsPrecondition(object):
         assert name_workflow == WorkflowsConstants.NAME_WORKFLOW
 
     def check_workflow_by_status(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
-        CRMHomePage(self.driver).open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        CRMHomePage(self.driver)\
+            .open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
         workflow_module = CRMConfigurationPage(self.driver).check_workflows_loaded()
         assert workflow_module == True
-        CRMHomePage(self.driver).open_client_module() \
+        CRMHomePage(self.driver)\
+            .open_client_module() \
             .select_filter(self.config.get_value(
                 TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_first_client_by_email(WorkflowsConstants.PANDATS_EMAIL)

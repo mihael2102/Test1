@@ -49,22 +49,29 @@ class AutoAssignPrecondition(object):
         AutoAssignPage(self.driver).perform_searching_auto_assign_module_by_name(AutoAssignConstants.SECOND_RULE_NAME) \
                                    .get_rule_name_status(AutoAssignConstants.RULE_NAME)
 
-    def test_perform_delete_rule(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+    def perform_delete_rule(self):
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         CRMHomePage(self.driver).select_auto_assign_module_more_list(AutoAssignConstants.AUTO_ASSIGN_MODULE)
 
-        AutoAssignPage(self.driver).perform_searching_auto_assign_module_by_name(AutoAssignConstants.RULE_NAME) \
+        # Delete Leads rule:
+        AutoAssignPage(self.driver)\
+            .perform_searching_auto_assign_module_by_name(AutoAssignConstants.RULE_NAME) \
             .get_rule_name_status(AutoAssignConstants.RULE_NAME)
-        AutoAssignPage(self.driver).make_delete_rule() \
+        AutoAssignPage(self.driver)\
+            .make_delete_rule() \
             .confirm_delete_rule() \
             .check_delete_message()
 
-        AutoAssignPage(self.driver).perform_searching_auto_assign_module_by_name(AutoAssignConstants.SECOND_RULE_NAME) \
+        # Delete Clients rule:
+        AutoAssignPage(self.driver)\
+            .perform_searching_auto_assign_module_by_name(AutoAssignConstants.SECOND_RULE_NAME) \
             .get_rule_name_status(AutoAssignConstants.SECOND_RULE_NAME)
-        AutoAssignPage(self.driver).make_delete_rule() \
+        AutoAssignPage(self.driver)\
+            .make_delete_rule() \
             .confirm_delete_rule() \
             .check_delete_message()
 
