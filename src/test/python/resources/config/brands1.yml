@@ -1,10 +1,10 @@
 brands:
 
-- name: newrichmarkets
-  config_file: newrichmarkets.yml
-
-- name: solocapitlas
-  config_file: solocapitlas.yml
+#- name: newrichmarkets
+#  config_file: newrichmarkets.yml
+#
+#- name: solocapitlas
+#  config_file: solocapitlas.yml
 
 - name: uprofx
   config_file: uprofx.yml

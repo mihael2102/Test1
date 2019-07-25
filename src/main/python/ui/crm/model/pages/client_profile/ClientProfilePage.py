@@ -23,7 +23,6 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
 
 
-
 class ClientProfilePage(CRMBasePage):
 
     '''
@@ -747,5 +746,14 @@ class ClientProfilePage(CRMBasePage):
             emails_tab.click()
         except:
             self.driver.execute_script("arguments[0].click();", emails_tab)
-        Logging().reportDebugStep(self, "Open Email tab ")
+        Logging().reportDebugStep(self, "Open Email tab")
         return ClientProfilePage()
+
+    def check_create_mt_user_btn(self):
+        try:
+            super().wait_load_element("//*[@id='mt4_act_box']/a[contains(@onclick, 'Create MT')]", timeout=5)
+            Logging().reportDebugStep(self, "Create MT User button is available")
+            return ClientProfilePage()
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "There is no Create MT User button available")
+            return ClientProfilePage()
