@@ -14,8 +14,8 @@ class AffiliateModule(BaseTest):
     def test_create_delete_affiliate(self):
         AffiliatesPrecondition(self.driver, self.config).create_affiliate()
 
-    def test_delete_affiliate(self):
-        AffiliatesPrecondition(self.driver, self.config).delete_affiliate()
+    # def test_delete_affiliate(self):
+    #     AffiliatesPrecondition(self.driver, self.config).delete_affiliate()
 
 
 
