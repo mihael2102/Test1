@@ -25,7 +25,8 @@ class CreditOutPrecondition(object):
         self.config = config
 
     def credit_out_crm(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
@@ -54,7 +55,7 @@ class CreditOutPrecondition(object):
             sleep(3)
             actual_credit = MT4CreditOutModule(self.driver).get_credit_int()
             count += 1
-            if count == 7:
+            if count == 10:
                 break
         assert actual_credit == expected_credit
 
