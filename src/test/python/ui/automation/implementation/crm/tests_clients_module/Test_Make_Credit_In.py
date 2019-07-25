@@ -45,7 +45,8 @@ class CreditInTestCRM(BaseTest):
 
     def test_make_credit_in_from_crm(self):
 
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
@@ -86,7 +87,7 @@ class CreditInTestCRM(BaseTest):
             sleep(1)
             actual_credit = ClientProfilePage(self.driver).get_credit_in_trading_account()
             count += 1
-            if count == 7:
+            if count == 10:
                 break
 
         self.assertEqual(expected_credit, actual_credit, "Wrong credit sum is displayed")

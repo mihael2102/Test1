@@ -286,42 +286,43 @@ class LeadsModule(CRMBasePage):
         sleep(4)
         click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='massassignform_action_button']")
         click_mass_assign.click()
-        sleep(10)
+        sleep(1)
+        self.wait_loading_to_finish(35)
         Logging().reportDebugStep(self, "Click 'Save'")
         return LeadsModule(self.driver)
 
     def edit_country(self, country):
-        sleep(4)
+        sleep(2)
         click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='country_mass_edit_check']/div[1]/div")
         click_mass_assign.click()
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='country']"))
         select.select_by_visible_text(country)
-        Logging().reportDebugStep(self, "Click 'country' check box and select country")
+        Logging().reportDebugStep(self, "Click 'Country' check box and select country: " + country)
         return LeadsModule(self.driver)
 
     def edit_source(self, source):
-        sleep(4)
+        sleep(2)
         click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='leadsource_mass_edit_check']/div[1]/div")
         click_mass_assign.click()
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='leadsource']"))
         select.select_by_visible_text(source)
-        Logging().reportDebugStep(self, "Click 'source' check box and select source")
+        Logging().reportDebugStep(self, "Click 'Source' check box and select source: " + source)
         return LeadsModule(self.driver)
 
     def edit_status(self, status):
-        sleep(4)
+        sleep(2)
         click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='leadstatus_mass_edit_check']/div[1]/div")
         click_mass_assign.click()
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='leadstatus']"))
         select.select_by_visible_text(status)
-        Logging().reportDebugStep(self, "Click 'Status' check box and select status")
+        Logging().reportDebugStep(self, "Click 'Status' check box and select status: " + status)
         return LeadsModule(self.driver)
 
-    def mass_edit_leads(self):
-        sleep(5)
+    def click_mass_edit_leads(self):
+        sleep(3)
         click_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='list_action_buttons']/input[2]")
         try:
             click_mass_assign.click()
@@ -329,35 +330,36 @@ class LeadsModule(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", click_mass_assign)
         if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "stoxmarket":
             click_mass_assign.click()
+        sleep(1)
+        super().wait_load_element("//*[@id='PopUpFormTitle' and contains(text(),'Edit')]")
         Logging().reportDebugStep(self, "Click Mass Edit Leads")
-        sleep(20)
         return LeadsModule(self.driver)
 
     def check_assign_leads(self, i):
         assign_leads = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[13]").text
         if i == 10:
-            Logging().reportDebugStep(self, "Verify assign")
+            Logging().reportDebugStep(self, "Verify assign: " + assign_leads)
         return assign_leads
 
     def check_status_leads(self, i):
         sleep(4)
         status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]").text
         if i == 10:
-            Logging().reportDebugStep(self, "Verify status")
+            Logging().reportDebugStep(self, "Verify status: " + status)
         return status
 
     def check_country_leads(self, i):
         sleep(4)
         country = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[7]").text
         if i == 19:
-            Logging().reportDebugStep(self, "Verify country")
+            Logging().reportDebugStep(self, "Verify country: " + country)
         return country
 
     def check_source_leads(self, i):
         sleep(4)
         source = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[16]").text
         if i == 19:
-            Logging().reportDebugStep(self, "Verify source")
+            Logging().reportDebugStep(self, "Verify source: " + source)
         return source
 
     def select_status(self, select_status):
@@ -381,6 +383,7 @@ class LeadsModule(CRMBasePage):
         btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
         btn_ok.click()
         Logging().reportDebugStep(self, "Close succsesfull result pop ups")
+        sleep(1)
         self.wait_loading_to_finish(55)
         return LeadsModule(self.driver)
 
@@ -415,7 +418,7 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def click_check_box_all_leads(self):
-        sleep(4)
+        sleep(2)
         click_check_box_all_leads = self.driver.find_element(By.XPATH, "//*[@id='selectCurrentPageRec']")
         try:
             click_check_box_all_leads.click()
@@ -779,7 +782,7 @@ class LeadsModule(CRMBasePage):
         except:
             self.driver.execute_script("arguments[0].click();", search_button)
         sleep(1)
-        self.wait_loading_to_finish(75)
+        self.wait_loading_to_finish(95)
         Logging().reportDebugStep(self, "The Search button was clicked")
         return LeadsModule(self.driver)
 
