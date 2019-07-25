@@ -68,7 +68,7 @@ class ClientProfilePage(CRMBasePage):
         except:
             self.driver.execute_script("arguments[0].click();", pencil)
         Logging().reportDebugStep(self, "Click Edit")
-        sleep(1)
+        sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@id='txtbox_Client Status']"))
         select.select_by_visible_text(status)
         sleep(1)
@@ -446,7 +446,7 @@ class ClientProfilePage(CRMBasePage):
         activities_tab = super().wait_load_element("//li//a[contains(text(),'Activities')][1]")
         # activities_tab.click()
         self.driver.execute_script("arguments[0].click();", activities_tab)
-        Logging().reportDebugStep(self, "Scroll to activities tab")
+        Logging().reportDebugStep(self, "Scroll to Activities tab")
         return ClientProfilePage(self.driver)
 
     def check_event_exist(self):
@@ -454,7 +454,7 @@ class ClientProfilePage(CRMBasePage):
         super().refresh_page()
         sleep(3)
         activities_counter = self.driver.find_element_by_xpath("//span[@class='amount amount_Activities']").text
-        if (int(activities_counter) != 0):
+        if int(activities_counter) != 0:
             Logging().reportDebugStep(self, "Client's page contain events")
             return True
         else:
@@ -1065,8 +1065,8 @@ class ClientProfilePage(CRMBasePage):
         return ClientProfilePage(self.driver)
 
     def get_trading_account_number(self):
-        sleep(1)
-        trading_account = self.driver.find_element_by_xpath("//*[contains(@id,'related_MTTransactions')]/td[3]")
+        sleep(2)
+        trading_account = super().wait_load_element("//*[contains(@id,'related_MTTransactions')]/td[3]")
         trading_account_number = trading_account.text
         Logging().reportDebugStep(self, "Account number is " + trading_account_number)
         return trading_account_number
