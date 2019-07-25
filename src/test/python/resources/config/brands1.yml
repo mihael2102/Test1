@@ -1,7 +1,7 @@
 brands:
 
-#- name: newforexstage2
-#  config_file: newforexstage2.yml
+- name: newforexstage2
+  config_file: newforexstage2.yml
 #
 #- name: ptbanc
 #  config_file: ptbanc.yml
@@ -9,8 +9,8 @@ brands:
 #- name: q8
 #  config_file: q8.yml
 #
-- name: kontofx
-  config_file: kontofx.yml
+#- name: kontofx
+#  config_file: kontofx.yml
 #
 #- name: brokerz
 #  config_file: brokerz.yml
