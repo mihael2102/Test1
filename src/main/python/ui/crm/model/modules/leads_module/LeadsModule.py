@@ -383,6 +383,7 @@ class LeadsModule(CRMBasePage):
         btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
         btn_ok.click()
         Logging().reportDebugStep(self, "Close succsesfull result pop ups")
+        sleep(1)
         self.wait_loading_to_finish(55)
         return LeadsModule(self.driver)
 

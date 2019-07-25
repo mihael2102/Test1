@@ -54,7 +54,7 @@ class ChangePasswordTestCRM(BaseTest):
             .open_trading_accounts_tab() \
             .get_client_account()
 
-        # change the password to a new password
+        # Change the password to a new password
         crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CHANGE_PASSWORD)
 
         MT4UpdatePasswordModule(self.driver).select_account(account_number) \
@@ -77,7 +77,8 @@ class ChangePasswordTestCRM(BaseTest):
         message_confirm = crm_client_profile.get_confirm_message_body()
         crm_client_profile.click_ok()
 
-        self.assertEqual(message_confirm, CRMConstants.CUSTOMER_PASSWORD_VALID_MESSAGE)
+        if message_confirm:
+            self.assertEqual(message_confirm, CRMConstants.CUSTOMER_PASSWORD_VALID_MESSAGE)
 
         # change the password back to the original password
         crm_client_profile.refresh_page().open_mt4_actions(CRMConstants.CHANGE_PASSWORD)
