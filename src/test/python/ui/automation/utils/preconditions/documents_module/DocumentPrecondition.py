@@ -74,6 +74,8 @@ class DocumentPrecondition(object):
         # get document's params
         document_number = document.get_document_no_from_listview(DocumentModuleConstants.ROW_NUMBER3)
         document_type = document.get_document_type_from_listview(DocumentModuleConstants.ROW_NUMBER2)
+        if not document_type:
+            document_type = document.get_document_type_from_listview(DocumentModuleConstants.ROW_NUMBER3)
         modified_time = document.get_modified_time_from_listview(DocumentModuleConstants.ROW_NUMBER3)
 
         # search by Document's list view
