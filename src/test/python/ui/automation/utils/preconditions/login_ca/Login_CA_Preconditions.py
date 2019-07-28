@@ -1,12 +1,8 @@
-from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
-from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
@@ -17,6 +13,7 @@ from time import sleep
 import poplib
 from email import parser
 from src.main.python.utils.logs.Loging import Logging
+
 
 class Login_CA_Precondition(object):
 
@@ -32,10 +29,18 @@ class Login_CA_Precondition(object):
         return lead
 
     def check_email_sign_up(self):
-        sleep(60)
+        sleep(8)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
         pop_conn.user('jonathan.albalak@pandats.com')
         pop_conn.pass_('xUQ7hrr9VF')
+        # Get mail subject:
+        if global_var.current_brand_name == "kaya_fx":
+            subject = "kaya"
+        elif global_var.current_brand_name == "capitalmarketsbanc":
+            subject = "cmb"
+        else:
+            subject = global_var.current_brand_name
+        mail_subject = ""
         # Get messages from server:
         messages = [pop_conn.retr(i) for i in range(1, len(pop_conn.list()[1]) + 1)]
         # Concat message pieces:
@@ -44,16 +49,17 @@ class Login_CA_Precondition(object):
         messages = [parser.Parser().parsestr(mssg) for mssg in messages]
         for message in messages:
             if CRMConstants.WELCOME_TO in str(message['Subject']):
-                link = self.config.get_value('url').replace('https://', '')
-                link1 = link.replace('.ptscrm.com/','')
-                if link1 in str(message['Subject']).lower():
-                    Logging().reportDebugStep(self, str(message['Subject']))
-                    assert CRMConstants.WELCOME_TO in str(message['Subject'])
-                    # return str(message['Subject'])
+                Logging().reportDebugStep(self, str(message['Subject']))
+                if subject in str(message['Subject']).lower():
+                    assert subject in str(message['Subject']).lower()
+                    Logging().reportDebugStep(self, "Mail found: " + str(message['Subject']))
+                    mail_subject = str(message['Subject']).lower()
+                    return mail_subject
+        assert subject in mail_subject
         pop_conn.quit()
 
     def client_exist_in_crm(self):
-        # Login to CRM
+        # Login to CRM:
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
@@ -79,9 +85,10 @@ class Login_CA_Precondition(object):
         # assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY
 
     def sign_up_ca(self):
-###REGISTRACTIONS FORM
-        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))\
-                                .click_sign_up()
+        # Registration Form
+        CALoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url_ca'))\
+            .click_sign_up()
 
         if global_var.current_brand_name == "itrader_global":
             CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP_AUS)
@@ -90,17 +97,16 @@ class Login_CA_Precondition(object):
         else:
             CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP)
 
-        CALoginPage(self.driver).fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                    LeadsModuleConstants.FIRST_NAME])\
-                                .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.FIRST_LAST_NAME])\
-                                .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])\
-                                .fill_area_code(CAConstants.AREA_CODE)\
-                                .fill_phone(CAConstants.PHONE)\
-                                .fill_password(CAConstants.PASSWORD)\
-                                .fill_confirm_password(CAConstants.PASSWORD)\
-                                .check_box_accept()
+        CALoginPage(self.driver)\
+            .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])\
+            .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                    LeadsModuleConstants.FIRST_LAST_NAME])\
+            .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.EMAIL])\
+            .fill_area_code(CAConstants.AREA_CODE)\
+            .fill_phone(CAConstants.PHONE)\
+            .fill_password(CAConstants.PASSWORD)\
+            .fill_confirm_password(CAConstants.PASSWORD)\
+            .check_box_accept()
 
         if global_var.current_brand_name == "triomarkets" or global_var.current_brand_name == "kaya_fx" or \
                 global_var.current_brand_name == "oinvestsa":
@@ -115,9 +121,10 @@ class Login_CA_Precondition(object):
             CALoginPage(self.driver).enter_data_birth(CAConstants.DATA_MONTH_YEAR)
 
         else:
-            CALoginPage(self.driver).select_data_birth_day(CAConstants.DAY_BIRTH) \
-                                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
-                                .select_data_birth_year(CAConstants.YEAR_BIRTH)
+            CALoginPage(self.driver)\
+                .select_data_birth_day(CAConstants.DAY_BIRTH) \
+                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
+                .select_data_birth_year(CAConstants.YEAR_BIRTH)
 
         if global_var.current_brand_name != "itrader_global" and global_var.current_brand_name != "oinvestsa" and \
                 global_var.current_brand_name != "finmarket":
@@ -125,29 +132,23 @@ class Login_CA_Precondition(object):
         if global_var.current_brand_name == "oinvestsa":
             CALoginPage(self.driver).choose_currency(CAConstants.CURRENCY_USD)
 
-        CALoginPage(self.driver).fill_city(CAConstants.CITY) \
-                                .fill_zip_code(CAConstants.ZIP_CODE) \
-                                .fill_address(CAConstants.ADDRESS)
+        CALoginPage(self.driver)\
+            .fill_city(CAConstants.CITY) \
+            .fill_zip_code(CAConstants.ZIP_CODE) \
+            .fill_address(CAConstants.ADDRESS)
 
         if global_var.current_brand_name == "finmarket":
             CALoginPage(self.driver).click_submit()
 
-        CALoginPage(self.driver).sign_out()
+        CALoginPage(self.driver)\
+            .sign_out()\
+            .open_first_tab_page(self.config.get_value('url_ca'))\
+            .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.EMAIL]) \
+            .enter_password(CAConstants.PASSWORD) \
+            .click_login()
 
-        if global_var.current_brand_name == "oinvestsa":
-             CALoginPage(self.driver).open_first_tab_page\
-                 ("https://my.oinvest.co.za/Login/tabid/115/language/en-US/Default.aspx?returnurl=%2f")
-
-        if global_var.current_brand_name == "gmo":
-            CALoginPage(self.driver).open_first_tab_page("https://my.gmotrading.com/en-us/login.aspx") \
-
-
-        CALoginPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                     LeadsModuleConstants.EMAIL]) \
-                                .enter_password(CAConstants.PASSWORD) \
-                                .click_login()
-
-        assert CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                          LeadsModuleConstants.FIRST_NAME]).upper() == \
-                                                      self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                          LeadsModuleConstants.FIRST_NAME].upper() + " DOE"
+        # Verify client name:
+        actual_client_name = CALoginPage(self.driver).get_client_name(self.load_lead_from_config(
+            TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]).upper()
+        assert actual_client_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                    LeadsModuleConstants.FIRST_NAME].upper() + " DOE"

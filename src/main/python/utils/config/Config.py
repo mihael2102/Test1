@@ -1,9 +1,11 @@
 test = "GMO CA"
-file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/GMO CA/result/final_file.xlsx"
-file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/GMO CA/result/*.xlsx'
-file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/GMO CA/%s"
-short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/GMO CA/result/short_final_file.xlsx"
-mail_subject = "GMO CA"
+file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/final_file.xlsx"
+file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/' + test + '/result/*.xlsx'
+file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/%s"
+short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/short_final_file.xlsx"
+mail_subject = test
+user_agent = "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) " \
+             "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36/panda_bot"
 timeout = 4
 data = None
 url_client_area = ""
@@ -14,8 +16,6 @@ window_before = None
 counter = 1
 logger = None
 handler = None
-
-
 
 
 # chrome_driver = "D:/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
