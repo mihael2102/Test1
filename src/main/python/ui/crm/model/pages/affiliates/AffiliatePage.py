@@ -95,7 +95,8 @@ class AffiliatePage(CRMBasePage):
         return success_message
 
     def search_affiliate_by_name(self, name):
-        self.wait_crm_loading_to_finish_tasks(35)
+        sleep(1)
+        self.wait_crm_loading_to_finish_tasks(55)
         input_partner_name = super().wait_load_element("//td[3]//input")
         input_partner_name.send_keys(name)
         Logging().reportDebugStep(self, "Search partner name: " + name)

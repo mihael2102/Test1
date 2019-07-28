@@ -24,20 +24,18 @@ class MyDashboardPage(CRMBasePage):
 
     def sort_by_status(self):
         sleep(3)
-        sort_by_type = super().wait_load_element(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/thead/tr/th[5]/a")
+        sort_by_type = super().wait_load_element("//a[@data-column-label='Status']")
         sort_by_type.click()
-        self.wait_crm_loading_to_finish_tasks(55)
-        Logging().reportDebugStep(self, "Sort by type")
+        self.wait_crm_loading_to_finish_tasks(75)
+        Logging().reportDebugStep(self, "Sort by Status")
         return MyDashboardPage(self.driver)
 
     def sort_by_type(self):
         sleep(3)
-        sort_by_type = super().wait_load_element(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/thead/tr/th[3]/a")
+        sort_by_type = super().wait_load_element("//a[@data-column-label='Event Type']")
         sort_by_type.click()
-        self.wait_crm_loading_to_finish_tasks(55)
-        Logging().reportDebugStep(self, "Sort by type")
+        self.wait_crm_loading_to_finish_tasks(75)
+        Logging().reportDebugStep(self, "Sort by Event Type")
         return MyDashboardPage(self.driver)
 
     def enter_priority(self, priority):
@@ -54,7 +52,8 @@ class MyDashboardPage(CRMBasePage):
             timeout=10)
         input_account_name.send_keys(priority)
         sleep(2)
-        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[15]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=70)
+        check_box = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[15]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=70)
         check_box.click()
         sleep(2)
         Logging().reportDebugStep(self, "Enter Priority: " + priority)
@@ -106,7 +105,8 @@ class MyDashboardPage(CRMBasePage):
             timeout=10)
         input_account_name.send_keys(created_by)
         sleep(2)
-        check_box = super().wait_element_to_be_clickable("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[10]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=30)
+        check_box = super().wait_element_to_be_clickable(
+            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[10]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/ul/li[5]/a/input", timeout=30)
         check_box.click()
         sleep(2)
         Logging().reportDebugStep(self, "Enter Created by: " + created_by)
@@ -365,7 +365,7 @@ class MyDashboardPage(CRMBasePage):
             "//li[contains(text(), 'Show all')]")
         self.driver.execute_script("arguments[0].scrollIntoView();", select_show_all_tab)
         select_show_all_tab.click()
-        self.wait_crm_loading_to_finish_tasks(55)
+        self.wait_crm_loading_to_finish_tasks(75)
         Logging().reportDebugStep(self, "Select Show All tab")
         return MyDashboardPage(self.driver)
 
