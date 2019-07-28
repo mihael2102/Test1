@@ -798,10 +798,12 @@ class CAPage(CRMBasePage):
 
     def open_service_desk(self):
         sleep(2)
-        service_desk = super().wait_load_element("//*[@id='mainmenu']/li[2]/a")
-        # service_desk.click()
-        self.driver.execute_script("arguments[0].click();", service_desk)
-        Logging().reportDebugStep(self, "Click Open Service Desk")
+        try:
+            service_desk = super().wait_load_element("//*[@id='mainmenu']/li[2]/a")
+            self.driver.execute_script("arguments[0].click();", service_desk)
+            Logging().reportDebugStep(self, "Click Open Service Desk")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "There is no 'Service Desk' button")
         return CAPage(self.driver)
 
     def open_live_account(self):

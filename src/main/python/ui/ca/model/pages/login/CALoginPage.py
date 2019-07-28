@@ -103,7 +103,7 @@ class CALoginPage(CRMBasePage):
         submit_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["submit"])
         self.driver.execute_script("arguments[0].click();", submit_button)
-        Logging().reportDebugStep(self, "Click submit")
+        Logging().reportDebugStep(self, "Click Submit")
         return CALoginPage(self.driver)
 
     def click_hi_guest(self):
@@ -131,16 +131,16 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def select_data_birth_day(self, data_birth_day):
-        sleep(3)
-        data = self.driver.find_element_by_xpath("//select[@id='dobday']")
+        sleep(1)
+        data = super().wait_load_element("//select[@id='dobday']")
         data.click()
         datad = self.driver.find_element_by_xpath("//select[@id='dobday']//option[text()='%s']" % data_birth_day)
         datad.click()
-        Logging().reportDebugStep(self, "Select data birth : " + data_birth_day)
+        Logging().reportDebugStep(self, "Select day of birth : " + data_birth_day)
         return CALoginPage(self.driver)
 
     def select_data_birth_month(self, data_birth_month):
-        sleep(3)
+        sleep(1)
         data = self.driver.find_element_by_xpath("//select[@id='dobmonth']")
         data.click()
         datad = self.driver.find_element_by_xpath("//select[@id='dobmonth']//option[text()='%s']" % data_birth_month)
@@ -149,7 +149,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def select_data_birth_year(self, data_birth_year):
-        sleep(3)
+        sleep(1)
         data = self.driver.find_element_by_xpath("//select[@id='dobyear']")
         data.click()
         datad = self.driver.find_element_by_xpath("//select[@id='dobyear']//option[text()='%s']" % data_birth_year)
@@ -173,7 +173,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def fill_city(self, city):
-        sleep(3)
+        sleep(1)
         input_city = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["city"])
         input_city.send_keys(city)
@@ -181,7 +181,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def fill_zip_code(self, zip_code):
-        sleep(3)
+        sleep(1)
         input_zip_code = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["zip_code"])
         input_zip_code.send_keys(zip_code)
@@ -189,7 +189,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def fill_address(self, address):
-        sleep(3)
+        sleep(1)
         input_address = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["address"])
         input_address.send_keys(address)
@@ -260,7 +260,7 @@ class CALoginPage(CRMBasePage):
 
     def enter_email(self, email):
         sleep(1)
-        input_email = self.driver.find_element_by_xpath("//*[@id='dnn_ctr517_Login_Login_DNN_txtUsername']")
+        input_email = super().wait_load_element("//*[@id='dnn_ctr517_Login_Login_DNN_txtUsername']")
         self.driver.execute_script("arguments[0].click();", input_email)
         sleep(1)
         input_email.send_keys(email)
@@ -312,10 +312,10 @@ class CALoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click submit personal details")
         return CALoginPage(self.driver)
 
-    def verify_client(self, user_name):
+    def get_client_name(self, user_name):
         verify_client = super().wait_load_element("//a[contains(text(), '%s')]" % user_name)
         client = verify_client.text
-        Logging().reportDebugStep(self, "Verify " + client)
+        Logging().reportDebugStep(self, "Get client name: " + client)
         return client
 
     def click_my_account(self):
