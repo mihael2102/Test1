@@ -58,7 +58,7 @@ SecondLeadInfo:
   first_lead_status: "B - No interest"
   first_lead_status_giga: "R - Not Intrested"
   first_lead_status_new: "Not interested"
-  first_lead_status_uft: "No interest"
+  first_lead_status_uft: "Wrong number"
   first_lead_status_b_test: "B - Test"
   first_assigned_to: "Panda Auto"
   first_source_name: "source name test"

@@ -74,7 +74,7 @@ class WithdrawPreconditionCRM(object):
                 balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
                 actual_balance = float(balance)
                 count += 1
-                if count == 7:
+                if count == 10:
                     break
             assert actual_balance == expected_balance
         else:
@@ -88,6 +88,6 @@ class WithdrawPreconditionCRM(object):
                 balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
                 actual_balance = int((balance.split('.'))[0])
                 count += 1
-                if count == 5:
+                if count == 10:
                     break
             assert actual_balance == expected_balance
