@@ -788,7 +788,7 @@ class LeadsModule(CRMBasePage):
         results_count_text = self.driver.find_elements(By.XPATH, result_count_xpath)[0].text
         results_split = results_count_text.split(" ")
         result_count = int(results_split[len(results_split) - 1])
-        Logging().reportDebugStep(self, "Record is found")
+        Logging().reportDebugStep(self, "Records is found: " + str(result_count))
         return result_count
 
     def get_first_name_column(self):
