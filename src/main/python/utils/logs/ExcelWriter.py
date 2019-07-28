@@ -2,6 +2,7 @@ import xlsxwriter
 from time import gmtime, strftime
 from src.test.python.ui.automation.utils.postconditions.SendMail import Send_Email_XLS
 
+
 class ExcelWriter:
 
     def write_test_results(self, brands, tests, results):
@@ -14,6 +15,7 @@ class ExcelWriter:
         # create styles for the PASS/FAIL results
         cell_format_pass = workbook.add_format({'align': 'center', 'bg_color': '#C4D79B'})
         cell_format_fail = workbook.add_format({'align': 'center', 'bg_color': 'red'})
+        cell_format_not_runned = workbook.add_format({'align': 'center', 'bg_color': '#a1f1f0'})
 
         # set column widths
         worksheet.write(0, 0, "Brand \ Test")
@@ -35,7 +37,12 @@ class ExcelWriter:
                 row += 1
                 test_result = results[brand][self.get_test_pretty_name(test)] \
                     if self.get_test_pretty_name(test) in results[brand] else ""
-                if test_result == 'PASS':
+                if ("NOT RUNNED" in test_result) or ("does not exist" in test_result) or ("There is no" in test_result):
+                    test_result_na = "NOT RUNNED"
+                    worksheet.write(row, col, test_result_na, cell_format_not_runned)
+                    worksheet.write_comment(row, col, test_result,
+                                            {'width': 250, 'height': 400})
+                elif test_result == 'PASS':
                     worksheet.write(row, col, test_result, cell_format_pass)
                 else:
                     test_result_error = "ERROR"
@@ -57,6 +64,7 @@ class ExcelWriter:
         cell_format_pass = workbook.add_format({'align': 'center', 'bg_color': '#C4D79B'})
         cell_format_fail = workbook.add_format({'align': 'center', 'bg_color': 'red', 'text_wrap': True})
         cell_format_steps_to_fail = workbook.add_format({'align': 'center', 'bg_color': '#F1F2A2', 'text_wrap': True})
+        cell_format_not_runned = workbook.add_format({'align': 'center', 'bg_color': '#a1f1f0', 'text_wrap': True})
 
         # set column widths
         worksheet.set_default_row(20)
@@ -96,6 +104,15 @@ class ExcelWriter:
                         row += 1
                     if c == count_steps:
                         worksheet.write(row, col, test_result, cell_format_pass)
+
+                elif test_result == 'NOT RUNNED':
+                    c = 1
+                    while c < count_steps:
+                        worksheet.write(row, col, test_result, cell_format_not_runned)
+                        c += 1
+                        row += 1
+                    if c == count_steps:
+                        worksheet.write(row, col, test_result, cell_format_not_runned)
 
                 else:
                     s = "\n"
