@@ -30,7 +30,7 @@ class BaseCRMPrecondition(object):
         current_vtiger_version = CRMHomePage(self.driver).get_current_version(CRMConstants.MODULE_VTIGER)
         prev_vtiger_version = CRMHomePage(self.driver).check_previous_version(brand, CRMConstants.MODULE_VTIGER)
         day = CRMHomePage(self.driver).get_day_of_week()
-        if day == 6:
+        if day == 0:
             assert int(current_vtiger_version) == int(prev_vtiger_version) + 1
             new_version = int(prev_vtiger_version) + 1
             CRMHomePage(self.driver).update_version_in_file(new_version,
@@ -45,7 +45,7 @@ class BaseCRMPrecondition(object):
         current_laravel_version = CRMHomePage(self.driver).get_current_version(CRMConstants.MODULE_LARAVEL)
         prev_laravel_version = CRMHomePage(self.driver).check_previous_version(brand, CRMConstants.MODULE_LARAVEL)
         day = CRMHomePage(self.driver).get_day_of_week()
-        if day == 6:
+        if day == 0:
             assert int(current_laravel_version) == int(prev_laravel_version) + 1
             new_version = int(prev_laravel_version) + 1
             CRMHomePage(self.driver).update_version_in_file(new_version,
