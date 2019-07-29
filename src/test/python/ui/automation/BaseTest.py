@@ -23,10 +23,10 @@ class BaseTest(unittest.TestCase):
             self.config = ConfigProvider()
         allure.MASTER_HELPER.environment(BROWSER="CHROME", URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
         if self.driver_type is None or self.driver_type == 'Chrome':
-            # #for opened browser
+            ' For opened browser: '
             # self.driver = webdriver.Chrome(Config.chrome_driver)
             # self.driver.maximize_window()
-            #for closed browser
+            ' For closed browser: '
             chrome_options = webdriver.ChromeOptions()
             chrome_options.add_argument("--headless")
             chrome_options.add_argument("--window-size=1920x1080")
