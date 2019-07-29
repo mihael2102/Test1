@@ -10,7 +10,7 @@ class APIConstants(object):
     COUNTRY_SA = "za"
     PARTNER_ID_OI = "22050"
     PARTNER_ID_KB = "97008"
-    PARTNER_ID_GMO = "63345"
+    PARTNER_ID_GMO = "51081"
     API_SECRET_KEY = "5fb7b2998ef7c9223cf14b4db93f7a4cbf79c58749def28ebf1032165888c5f5"
     PARTNER_ID = "3898"
     PASSWORD = "as1as2"
