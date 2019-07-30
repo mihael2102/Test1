@@ -424,12 +424,16 @@ class MyDashboardPage(CRMBasePage):
     def enter_account_name(self, testqa):
         sleep(1)
         self.perform_scroll_down()
+        sleep(0.5)
         input = super().wait_load_element("//*[@id='host-element']/input")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         sleep(1)
         input.send_keys(testqa)
         sleep(1)
-        self.wait_load_element("//div[@class='spinner']", 55)
+        try:
+            self.wait_load_element("//div[@class='spinner']", 55)
+        except(NoSuchElementException, TimeoutException):
+            pass
         self.wait_crm_loading_to_finish_tasks(75)
         sleep(1)
         Logging().reportDebugStep(self, "Enter account name: " + testqa)

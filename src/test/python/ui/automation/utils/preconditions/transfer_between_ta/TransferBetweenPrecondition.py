@@ -27,7 +27,8 @@ class TransferBetweenPrecondition(object):
 
     def transfer_between_accounts(self):
         client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
