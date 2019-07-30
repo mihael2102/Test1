@@ -4,7 +4,6 @@ from datetime import *
 #import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
 from src.main.python.utils.config import Config
 from src.main.python.utils.data.providers.ConfigProvider import ConfigProvider
 from src.main.python.utils.logs.Loging import Logging
