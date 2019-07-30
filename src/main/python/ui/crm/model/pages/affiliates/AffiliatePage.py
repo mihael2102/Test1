@@ -14,6 +14,7 @@ import os
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
 
+
 class AffiliatePage(CRMBasePage):
 
     def click_submit(self):
@@ -96,7 +97,6 @@ class AffiliatePage(CRMBasePage):
         button_ok.click()
         Logging().reportDebugStep(self, "Copy key")
         return key
-
 
     def get_link_api(self):
         sleep(5)
@@ -239,5 +239,9 @@ class AffiliatePage(CRMBasePage):
         Logging().reportDebugStep(self, "Data not found")
         return AffiliatePage(self.driver)
 
-
+    def click_enabled_radio_btn(self):
+        enabled_radio_btn = super().wait_load_element("//label[contains(text(),'Enabled')]/input")
+        enabled_radio_btn.click()
+        Logging().reportDebugStep(self, "Click 'Enabled' radio button")
+        return AffiliatePage(self.driver)
 
