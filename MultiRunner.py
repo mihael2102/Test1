@@ -147,16 +147,16 @@ if __name__ == "__main__":
         import xlsxwriter
 
         # Join all results in one excel
-        all_excel = "C:/Program Files (x86)/Jenkins/workspace/Newforexstage2 API/result/final_file.xlsx"
+        all_excel = Config.file_path_1
         # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
         all_file_frames = []
-        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/Newforexstage2 API/result/*.xlsx'):
+        for filename in glob.glob(Config.file_path_2):
             if "test_results" in filename:
                 tab = pd.read_excel(filename)
                 all_file_frames.append(tab)
                 all_frame = pd.concat(all_file_frames, axis=1)
-                writer = EX('C:/Program Files (x86)/Jenkins/workspace/Newforexstage2 API/result/final_file.xlsx')
+                writer = EX(Config.file_path_1)
                 all_frame.to_excel(writer, sheet_name='Sheet1')
                 workbook = writer.book
                 worksheet = writer.sheets['Sheet1']
@@ -167,7 +167,7 @@ if __name__ == "__main__":
                                                'font_color': '#000000'})
 
                 format3 = workbook.add_format({'bg_color': '#a1f1f0',
-                                               'font_color': '#000000'})
+                                               'font_color': '#1500cf'})
                 worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
                                                              'criteria': 'beginsWith',
                                                              'value': 'PASS',
@@ -217,16 +217,16 @@ if __name__ == "__main__":
                 writer.save()
 
             # Join all results in one excel
-        short_excel = "C:/Program Files (x86)/Jenkins/workspace/Newforexstage2 API/result/short_final_file.xlsx"
+        short_excel = Config.short_excel_path
         # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
         short_file_frames = []
-        for filename in glob.glob('C:/Program Files (x86)/Jenkins/workspace/Newforexstage2 API/result/*.xlsx'):
+        for filename in glob.glob(Config.file_path_2):
             if "short_results" in filename:
                 tab = pd.read_excel(filename)
                 short_file_frames.append(tab)
                 short_frame = pd.concat(short_file_frames, axis=1)
-                writer = EX('C:/Program Files (x86)/Jenkins/workspace/Newforexstage2 API/result/short_final_file.xlsx')
+                writer = EX(Config.short_excel_path)
                 short_frame.to_excel(writer, sheet_name='Sheet1')
                 workbook = writer.book
                 worksheet = writer.sheets['Sheet1']
@@ -236,6 +236,10 @@ if __name__ == "__main__":
 
                 format2 = workbook.add_format({'bg_color': '#C4D79B',
                                                'font_color': '#000000'})
+
+                format3 = workbook.add_format({'bg_color': '#a1f1f0',
+                                               'font_color': '#1500cf'})
+
                 worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
                                                               'criteria': 'beginsWith',
                                                               'value': 'PASS',
@@ -246,6 +250,10 @@ if __name__ == "__main__":
                                                               'value': 'ERROR',
                                                               'format': format1})
 
+                worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'NOT RUNNED',
+                                                              'format': format3})
 
                 writer.save()
 
