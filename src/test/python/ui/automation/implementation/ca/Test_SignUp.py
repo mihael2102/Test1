@@ -6,6 +6,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.test.python.ui.automation.utils.preconditions.login_ca.Login_CA_Preconditions import Login_CA_Precondition
 
+
 @pytest.mark.run(order=2)
 class SignUpTest(BaseTest):
 
