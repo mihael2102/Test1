@@ -23,7 +23,7 @@ class CRMConstants(object):
     CHANGE_PHONE_LEAD = "0534431234"
     DATE_BIRTH = "1999-02-19"
     STATUS_EDIT_STOX = "R - New"
-    STATUS_EDIT_ITRADER = "Test"
+    STATUS_EDIT_1 = "New"
     THIRD_STEP_IMPORT_LEADS = "File successfully uploaded."
     STATUS_EDIT = "B - Test"
     SOURCE_EDIT = "Other"
