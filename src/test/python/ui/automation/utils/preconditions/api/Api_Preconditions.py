@@ -30,7 +30,8 @@ class ApiPrecondition(object):
 
     def autorization_process(self):
         """ Login to CRM """
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
@@ -62,8 +63,10 @@ class ApiPrecondition(object):
             else:
                 AffiliatePage(self.driver).add_none_selected_countries()
                 AffiliatePage(self.driver).click_submit()
-        else:
-            AffiliatePage(self.driver).click_submit()
+
+        AffiliatePage(self.driver)\
+            .click_enabled_radio_btn()\
+            .click_submit()
 
         secret_key = AffiliatePage(self.driver).copy_secret_key()
 
