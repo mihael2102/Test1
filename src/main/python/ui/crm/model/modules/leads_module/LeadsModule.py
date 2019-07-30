@@ -223,7 +223,7 @@ class LeadsModule(CRMBasePage):
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='country']"))
         select.select_by_visible_text(country)
-        Logging().reportDebugStep(self, "Click 'country' check box and select country")
+        Logging().reportDebugStep(self, "Click 'country' check box and select country: " + country)
         return LeadsModule(self.driver)
 
     def edit_source(self, source):
@@ -233,18 +233,18 @@ class LeadsModule(CRMBasePage):
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='leadsource']"))
         select.select_by_visible_text(source)
-        Logging().reportDebugStep(self, "Click 'source' check box and select source")
+        Logging().reportDebugStep(self, "Click 'source' check box and select source: " + source)
         return LeadsModule(self.driver)
 
     def edit_status(self, status):
         sleep(4)
-        edit_status = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
+        edit_status = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["edit_status"])
         edit_status.click()
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='leadstatus']"))
         select.select_by_visible_text(status)
-        Logging().reportDebugStep(self, "Click 'Status' check box and select status")
+        Logging().reportDebugStep(self, "Click 'Status' check box and select status: " + status)
         return LeadsModule(self.driver)
 
     def mass_edit_leads(self):
@@ -742,7 +742,8 @@ class LeadsModule(CRMBasePage):
             search_button.click()
         except:
             self.driver.execute_script("arguments[0].scrollIntoView();", search_button)
-        self.wait_vtiger_loading_to_finish_custom(55)
+        sleep(1)
+        self.wait_vtiger_loading_to_finish_custom(85)
         Logging().reportDebugStep(self, "The Search button was clicked")
         return LeadsModule(self.driver)
 

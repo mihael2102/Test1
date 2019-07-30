@@ -208,7 +208,8 @@ class LeadPrecondition(object):
             assert count >= 1
 
     def mass_edit_leads(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
@@ -218,11 +219,11 @@ class LeadPrecondition(object):
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
         LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
         LeadsModule(self.driver).click_search_button_leads_module()
-        sleep(10)
+        sleep(1)
         LeadsModule(self.driver).click_check_box_all_leads()
         LeadsModule(self.driver).mass_edit_leads()
         if global_var.current_brand_name == "uft" or global_var.current_brand_name == "trade99":
-            LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_ITRADER)
+            LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_1)
         elif global_var.current_brand_name == "stoxmarket" or global_var.current_brand_name == "gigafx":
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_STOX)
         else:
@@ -240,7 +241,7 @@ class LeadPrecondition(object):
                     global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets" or\
                     global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "fm-fx" or \
                     global_var.current_brand_name == "trade99":
-                assert status == CRMConstants.STATUS_EDIT_ITRADER
+                assert status == CRMConstants.STATUS_EDIT_1
             elif global_var.current_brand_name == "stoxmarket" or global_var.current_brand_name == "gigafx":
                 assert status == CRMConstants.STATUS_EDIT_STOX
             else:
@@ -267,11 +268,8 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).select_user_assign(CRMConstants.PANDAQA_ASSIGN)
         LeadsModule(self.driver).click_status()
 
-        if global_var.current_brand_name == "uft" or global_var.current_brand_name == "gmo" or \
-                global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" \
-                or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx" or \
-                global_var.current_brand_name == "trade99":
-            LeadsModule(self.driver).select_status(CRMConstants.STATUS_EDIT_ITRADER)
+        if global_var.current_brand_name == "uft" or global_var.current_brand_name == "trade99":
+            LeadsModule(self.driver).select_status(CRMConstants.STATUS_EDIT_1)
         elif global_var.current_brand_name == "stoxmarket":
             LeadsModule(self.driver).select_status(CRMConstants.STATUS_EDIT_STOX)
         else:
@@ -281,20 +279,16 @@ class LeadPrecondition(object):
         i = 1
         for i in range(1, 10):
             status = LeadsModule(self.driver).check_status_leads(i)
-            if global_var.current_brand_name == "uft" or global_var.current_brand_name == "gmo" or \
-                    global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" or \
-                    global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx" or \
-                    global_var.current_brand_name == "trade99":
-                assert status == CRMConstants.STATUS_EDIT_ITRADER
+            if global_var.current_brand_name == "uft" or \
+               global_var.current_brand_name == "trade99":
+                assert status == CRMConstants.STATUS_EDIT_1
             elif global_var.current_brand_name == "stoxmarket":
                 assert status == CRMConstants.STATUS_EDIT_STOX
             else:
                 assert status == CRMConstants.STATUS_ASSIGN
             assign_leads = LeadsModule(self.driver).check_assign_leads(i)
-            if global_var.current_brand_name == "capitalmarketsbanc":
-                assert assign_leads == CRMConstants.PANDAQA_ASSIGN_CMB
-            else:
-                assert assign_leads == CRMConstants.PANDAQA_ASSIGN
+
+            assert assign_leads == CRMConstants.PANDAQA_ASSIGN
 
     def sorting_leads(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
