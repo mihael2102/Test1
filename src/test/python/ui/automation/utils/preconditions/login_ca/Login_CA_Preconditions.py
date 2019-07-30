@@ -29,7 +29,7 @@ class Login_CA_Precondition(object):
         return lead
 
     def check_email_sign_up(self):
-        sleep(60)
+        sleep(30)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
         pop_conn.user('jonathan.albalak@pandats.com')
         pop_conn.pass_('xUQ7hrr9VF')
@@ -41,12 +41,13 @@ class Login_CA_Precondition(object):
         messages = [parser.Parser().parsestr(mssg) for mssg in messages]
         for message in messages:
             if CRMConstants.WELCOME_TO in str(message['Subject']):
-                link = self.config.get_value('url').replace('https://', '')
-                link1 = link.replace('.ptscrm.com/', '')
-                if link1 in str(message['Subject']).lower().replace(' ', ''):
+                brand = global_var.current_brand_name
+                # link = self.config.get_value('url').replace('https://', '')
+                # link1 = link.replace('.ptscrm.com/', '')
+                if brand in str(message['Subject']).lower().replace(' ', ''):
                     Logging().reportDebugStep(self, str(message['Subject']))
                     assert CRMConstants.WELCOME_TO in str(message['Subject'])
-                    # return str(message['Subject'])
+                    return str(message['Subject'])
         pop_conn.quit()
 
     def sign_up_ca(self):
@@ -289,13 +290,14 @@ class Login_CA_Precondition(object):
             assert existing_client.lower() == expected_client.lower()
 
     def client_exist_in_crm(self):
-        #Login to CRM
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                                            self.config.get_value(TestDataConstants.OTP_SECRET)) \
-                                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                                            TestDataConstants.FILTER))
+        # Login to CRM
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                       TestDataConstants.FILTER))
 
         sleep(2)
         ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -305,9 +307,12 @@ class Login_CA_Precondition(object):
                                                                 TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
         assert ClientsPage(self.driver).get_client_last_name() == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                                 LeadsModuleConstants.FIRST_LAST_NAME]
-        if (global_var.current_brand_name != "newrichmarkets") and (global_var.current_brand_name != "brokerz") \
-                and (global_var.current_brand_name != "kontofx") and (global_var.current_brand_name != "q8"):
-                assert ClientsPage(self.driver).get_client_phone() == '+49 7777 777'
+        if (global_var.current_brand_name != "newrichmarkets") \
+                and (global_var.current_brand_name != "brokerz") \
+                and (global_var.current_brand_name != "kontofx") \
+                and (global_var.current_brand_name != "q8") \
+                and (global_var.current_brand_name != "gigafx"):
+                    assert ClientsPage(self.driver).get_client_phone() == '+49 7777 777'
 
         if global_var.current_brand_name != "q8":
             assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS
@@ -321,14 +326,3 @@ class Login_CA_Precondition(object):
             assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY_CRYPTO
         else:
             assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY
-
-
-
-
-
-
-
-
-
-
-

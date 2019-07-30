@@ -121,12 +121,13 @@ class Page_CA_Precondition(object):
             return self
 
     def update_personal_details_in_crm(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                                            self.config.get_value(TestDataConstants.OTP_SECRET)) \
-                                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                                            TestDataConstants.FILTER))
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                       TestDataConstants.FILTER))
         sleep(2)
         ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                           LeadsModuleConstants.EMAIL])
