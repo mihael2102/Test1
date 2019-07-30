@@ -88,8 +88,8 @@ def Send_Email_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
     to = "michael.oryshchenko@pandats.com"
-    # to = "michael.oryshchenko@pandats.com"
-    cc = "yarin.b@pandats.com"
+    # to = "yarin.b@pandats.com"
+    cc = ""
     bcc = ""
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
