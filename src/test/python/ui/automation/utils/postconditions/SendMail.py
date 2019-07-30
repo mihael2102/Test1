@@ -87,10 +87,10 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    to = "Niv.s@pandats.com"
+    to = "michael.oryshchenko@pandats.com"
     # to = "michael.oryshchenko@pandats.com"
     cc = "yarin.b@pandats.com"
-    bcc = "michael.oryshchenko@pandats.com"
+    bcc = ""
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
