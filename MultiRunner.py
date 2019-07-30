@@ -173,7 +173,9 @@ if __name__ == "__main__":
 
                 format2 = workbook.add_format({'bg_color': '#C4D79B',
                                                'font_color': '#000000'})
-                worksheet.conditional_format(0, 0, 987, 200, {'type': 'text',
+                format3 = workbook.add_format({'bg_color': '#a1f1f0',
+                                               'font_color': '#1500cf'})
+                worksheet.conditional_format(0, 0, 922, 200, {'type': 'text',
                                                               'criteria': 'beginsWith',
                                                               'value': 'PASS',
                                                               'format': format2})
@@ -182,6 +184,11 @@ if __name__ == "__main__":
                                                               'criteria': 'beginsWith',
                                                               'value': 'ERROR',
                                                               'format': format1})
+
+                worksheet.conditional_format(0, 0, 922, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'NOT RUNNED',
+                                                              'format': format3})
                 worksheet.freeze_panes(1, 1)
                 worksheet.set_row(2, None, None, {'level': 1, 'hidden': True})
                 for i in range(3, 34):
@@ -358,6 +365,10 @@ if __name__ == "__main__":
 
                 format2 = workbook.add_format({'bg_color': '#C4D79B',
                                                'font_color': '#000000'})
+
+                format3 = workbook.add_format({'bg_color': '#a1f1f0',
+                                               'font_color': '#1500cf'})
+
                 worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
                                                               'criteria': 'beginsWith',
                                                               'value': 'PASS',
@@ -368,6 +379,10 @@ if __name__ == "__main__":
                                                               'value': 'ERROR',
                                                               'format': format1})
 
+                worksheet.conditional_format(0, 0, 841, 200, {'type': 'text',
+                                                              'criteria': 'beginsWith',
+                                                              'value': 'NOT RUNNED',
+                                                              'format': format3})
 
                 writer.save()
 
