@@ -5,6 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
+from time import sleep
 
 
 class MT4WithdrawModule(CRMBasePage):
@@ -53,7 +54,7 @@ class MT4WithdrawModule(CRMBasePage):
     def select_status(self, withdraw_status):
         select = Select(self.driver.find_element(By.XPATH, "//select[@id='transaction_status_id']"))
         select.select_by_visible_text(withdraw_status)
-        Logging().reportDebugStep(self, "The status of withdraw module was selected:  " + withdraw_status)
+        Logging().reportDebugStep(self, "The status of withdraw was selected: " + withdraw_status)
         return MT4WithdrawModule(self.driver)
 
     '''
@@ -107,6 +108,7 @@ class MT4WithdrawModule(CRMBasePage):
 
     def create_withdraw_button(self):
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
+        sleep(2)
         create_button.click()
         Logging().reportDebugStep(self, "The Create withdraw button was clicked")
         return ClientProfilePage(self.driver)

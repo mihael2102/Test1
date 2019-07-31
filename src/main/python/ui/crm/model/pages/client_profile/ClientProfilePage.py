@@ -372,9 +372,9 @@ class ClientProfilePage(CRMBasePage):
 
     def get_address_text(self):
         self.driver.execute_script("scroll(0, 300);")
-        address = self.driver.find_element(By.XPATH, "//td[contains(text(),'Address')]//following-sibling::td[1]")
+        address = super().wait_load_element("//td[text()='Address']//following-sibling::td[1]")
         parser_address_text = re.sub('[" "]', '', address.text)
-        Logging().reportDebugStep(self, "Returns the address :" + parser_address_text)
+        Logging().reportDebugStep(self, "Returns the address: " + parser_address_text)
         return parser_address_text
 
     def open_address_information(self):
@@ -444,7 +444,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_confirm_message(self):
-        confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
+        confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']", timeout=35)
         Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text
 
@@ -693,9 +693,8 @@ class ClientProfilePage(CRMBasePage):
         sleep(2)
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='countries_popup']"))
         select.select_by_visible_text(country)
-        Logging().reportDebugStep(self, "Select country" + country)
+        Logging().reportDebugStep(self, "Select country: " + country)
         return ClientProfilePage(self.driver)
-
 
     def click_save(self):
         sleep(2)
@@ -712,7 +711,7 @@ class ClientProfilePage(CRMBasePage):
             btn_save.send_keys(Keys.CONTROL, "a")
             btn_save.send_keys(Keys.DELETE)
             btn_save.send_keys(date)
-        Logging().reportDebugStep(self, "Enter b-day")
+        Logging().reportDebugStep(self, "Enter birthday")
         return ClientProfilePage(self.driver)
 
     def get_trading_account_info(self):

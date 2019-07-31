@@ -90,3 +90,8 @@ class MT4CreditOutModule(CRMBasePage):
         credit = int((credit_text.split('.'))[0])
         Logging().reportDebugStep(self, "Actual credit amount is " + credit_text)
         return credit
+
+    def get_credit(self):
+        credit_text = self.driver.find_element_by_xpath("//span[@id='dtlview_Credit']").text
+        Logging().reportDebugStep(self, "Actual credit amount is " + credit_text)
+        return credit_text
