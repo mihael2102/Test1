@@ -14,34 +14,54 @@ class CreateLeadsProfilePage(CRMBasePage):
                             phone, tittle, lead_source, lead_status, assigned_to, source_name, brand, po_box,
                             city, state):
         sleep(2)
-        self.set_first_name(first_name)
-        self.set_last_name(last_name)
-        self.set_mobile(mobile)
-        self.set_fax(fax)
-        self.set_email(email)
-        self.set_secondary_email(secondary_email)
-        self.set_language(language)
+        if first_name:
+            self.set_first_name(first_name)
+        if last_name:
+            self.set_last_name(last_name)
+        if mobile:
+            self.set_mobile(mobile)
+        if fax:
+            self.set_fax(fax)
+        if email:
+            self.set_email(email)
+        if secondary_email:
+            self.set_secondary_email(secondary_email)
+        if language:
+            self.set_language(language)
         if panda_partner_id:
             self.set_panda_partner_id(panda_partner_id)
         if referral:
             self.set_referral(referral)
-        self.set_street(street)
-        self.set_postal_code(postal_code)
-        self.set_country(country)
-        self.set_description(description)
-        self.set_phone(phone)
-        self.set_tittle(tittle)
-        self.set_lead_source(lead_source)
-        self.set_lead_status(lead_status)
-        self.set_assigned_to(assigned_to)
-        self.set_source_name(source_name)
+        if street:
+            self.set_street(street)
+        if postal_code:
+            self.set_postal_code(postal_code)
+        if country:
+            self.set_country(country)
+        if description:
+            self.set_description(description)
+        if phone:
+            self.set_phone(phone)
+        if tittle:
+            self.set_tittle(tittle)
+        if lead_source:
+            self.set_lead_source(lead_source)
+        if lead_status:
+            self.set_lead_status(lead_status)
+        if assigned_to:
+            self.set_assigned_to(assigned_to)
+        if source_name:
+            self.set_source_name(source_name)
         if brand:
             self.set_brand(brand)
         else:
             self.set_first_brand()
-        self.set_po_box(po_box)
-        self.set_city(city)
-        self.set_state(state)
+        if po_box:
+            self.set_po_box(po_box)
+        if city:
+            self.set_city(city)
+        if state:
+            self.set_state(state)
         self.click_save()
 
     def perform_create_lead_new(self, first_name, last_name, mobile, fax, email, secondary_email,

@@ -18,6 +18,7 @@ import random
 import xlrd
 from src.main.python.utils.logs.Loging import Logging
 
+
 class LeadPrecondition(object):
 
     driver = None
