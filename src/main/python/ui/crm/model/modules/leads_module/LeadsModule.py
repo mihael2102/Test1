@@ -18,6 +18,7 @@ import autoit
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class LeadsModule(CRMBasePage):
 
     def get_saved_mail_lead(self, mail):
@@ -37,7 +38,7 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def open_lead_personal_details(self):
-        sleep(10)
+        sleep(1)
         lead = self.driver.find_element(By.XPATH, "//a[contains(text(), 'LEA')]")
         try:
             lead.click()
@@ -45,7 +46,6 @@ class LeadsModule(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", lead)
         Logging().reportDebugStep(self, "Open lead personal details")
         return LeadsModule(self.driver)
-
 
     def click_save(self):
         sleep(4)
@@ -79,7 +79,6 @@ class LeadsModule(CRMBasePage):
         first_lead_email = self.driver.find_element(By.XPATH, "//input[@id='parent_name']").get_attribute("value")
         Logging().reportDebugStep(self, "Get lead email pop up")
         return first_lead_email
-
 
     def check_third_step(self):
         sleep(4)
@@ -158,7 +157,6 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Click import leads")
         return LeadsModule(self.driver)
 
-
     def click_check_box_leads(self, i):
         sleep(4)
         check_box = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[1]/input")
@@ -170,7 +168,6 @@ class LeadsModule(CRMBasePage):
         if i == 4:
             Logging().reportDebugStep(self, "Click check box leads")
         return LeadsModule(self.driver)
-
 
     def get_email_lead(self, i):
         sleep(4)
@@ -472,7 +469,7 @@ class LeadsModule(CRMBasePage):
         self.enter_email(email)
         self.click_search_button_leads_module()
         sleep(4)
-        self.wait_crm_loading_to_finish()
+        self.wait_vtiger_loading_to_finish_custom(55)
         return LeadsModule(self.driver)
 
     def open_create_lead_module(self):
@@ -716,13 +713,11 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "The language was entered : " + language)
         return LeadsModule(self.driver)
 
-
     def get_first_lead_email(self):
         sleep(4)
         first_lead_email = self.driver.find_element(By.XPATH, "(//tr[1]//a//div[contains(text(), 'pandaqa')])[1]")
         Logging().reportDebugStep(self, "Get first lead email")
         return first_lead_email.text
-
 
     def click_first_lead_email(self):
         sleep(3)

@@ -146,6 +146,8 @@ class UserManagementPage(CRMBasePage):
         try:
             login_as_icon = self.driver.find_element_by_xpath("//a[@title='Login As']")
             self.driver.execute_script("arguments[0].click();", login_as_icon)
+            sleep(1)
+            self.wait_loading_to_finish(35)
             Logging().reportDebugStep(self, "The Login As button was clicked")
             return UserManagementPage(self.driver)
         except (NoSuchElementException, TimeoutException):

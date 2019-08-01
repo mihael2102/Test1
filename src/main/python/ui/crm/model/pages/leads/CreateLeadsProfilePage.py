@@ -91,6 +91,14 @@ class CreateLeadsProfilePage(CRMBasePage):
         self.set_state(state)
         self.click_save()
 
+    def perform_create_lead_short(self, last_name, email, assigned_to, phone):
+        sleep(2)
+        self.set_last_name(last_name)
+        self.set_email(email)
+        self.set_phone(phone)
+        self.set_assigned_to(assigned_to)
+        self.click_save()
+
     def set_first_name(self, first_name):
         first_name_field = super().wait_load_element("//input[@name='firstname']")
         first_name_field.clear()

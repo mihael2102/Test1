@@ -227,3 +227,8 @@ class EditLeadsProfilePage(CRMBasePage):
         save_button.click()
         Logging().reportDebugStep(self, "The save button was clicked: ")
         return EditLeadsProfilePage()
+
+    def get_phone_edit_page(self):
+        phone = super().wait_load_element("//*[@id='phone']").get_attribute("value")
+        Logging().reportDebugStep(self, "Get phone from Edit page: ")
+        return phone
