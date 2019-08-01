@@ -9,10 +9,7 @@ from src.test.python.ui.automation.BaseTest import *
 def Send_Email_XML(filepath, content):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    # to = "Niv.s@pandats.com"
     to = "jonathan.albalak@pandats.com"
-    # to = "michael.oryshchenko@pandats.com"
-    # cc = "anna.p@pandats.com"
     cc = "jonathan.albalak@pandats.com"
     bcc = "jonathan.albalak@pandats.com"
     # instance of MIMEMultipart
@@ -90,10 +87,10 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = "jonathan.albalak@pandats.com"
-    to = "Niv.s@pandats.com"
-    # to = "michael.oryshchenko@pandats.com"
-    cc = "yarin.b@pandats.com"
-    bcc = "michael.oryshchenko@pandats.com"
+    to = "michael.oryshchenko@pandats.com"
+    # to = "yarin.b@pandats.com"
+    cc = ""
+    bcc = ""
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
@@ -157,7 +154,7 @@ def Send_ALL_XLS(filepath):
     fromaddr = "jonathan.albalak@pandats.com"
     to = "Niv.s@pandats.com"
     # to = "michael.oryshchenko@pandats.com"
-    cc = "yarin.b@pandats.com"
+    cc = "shmulik@pandats.com"
     bcc = "michael.oryshchenko@pandats.com"
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
