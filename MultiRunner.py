@@ -45,7 +45,6 @@ class MultiRunner:
         result_writer.write_test_results(brand_pretty_names, test_list, overall_results)
         # result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
 
-
     def single_brand_test(self, brand, test_list):
         runner = xmlrunner.XMLTestRunner(output='result')
         results = {}
@@ -154,6 +153,7 @@ if __name__ == "__main__":
 
                 format2 = workbook.add_format({'bg_color': '#C4D79B',
                                                'font_color': '#000000'})
+
                 format3 = workbook.add_format({'bg_color': '#a1f1f0',
                                                'font_color': '#1500cf'})
                 worksheet.conditional_format(0, 0, 922, 200, {'type': 'text',
