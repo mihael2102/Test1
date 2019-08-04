@@ -12,25 +12,23 @@ import datetime
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 import autoit
 
+
 class FinancialTransactionsPage(CRMBasePage):
 
-    # def __init__(self):
-    #     super().__init__()
-
-    def get_all_tab_text(self):
-        tab = self.driver.find_element(By.XPATH, "//li[contains(text(),'All')]")
-        tab.click()
+    def open_tab_listview(self, title):
+        tab = super().wait_load_element("//li[contains(text(),'%s')]" % title)
+        self.driver.execute_script("arguments[0].click();", tab)
         sleep(1)
-        tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'All')]")
-        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
-        return tab_text.text
+        self.wait_loading_to_finish(55)
+        Logging().reportDebugStep(self, "Returns the tab name: " + title)
+        return FinancialTransactionsPage(self.driver)
 
     def get_credit_in_tab_text(self):
         tab = self.driver.find_element(By.XPATH, "//li[contains(text(),'Credit In')]")
         tab.click()
         sleep(1)
         tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Credit In')]")
-        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        Logging().reportDebugStep(self, "Returns the tab name: " + tab_text.text)
         return tab_text.text
 
     def get_credit_out_tab_text(self):
@@ -40,7 +38,7 @@ class FinancialTransactionsPage(CRMBasePage):
         sleep(1)
         tab_text = super().wait_element_to_be_clickable(
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["tab"])
-        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        Logging().reportDebugStep(self, "Returns the tab name: " + tab_text.text)
         return tab_text.text
 
     def get_demo_accounts_transactions_tab_text(self):
@@ -51,7 +49,7 @@ class FinancialTransactionsPage(CRMBasePage):
         sleep(1)
         tab_text = super().wait_element_to_be_clickable(
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["demo_tab"])
-        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        Logging().reportDebugStep(self, "Returns the tab name: " + tab_text.text)
         return tab_text.text
 
     def get_decline_tab_text(self):
@@ -59,18 +57,17 @@ class FinancialTransactionsPage(CRMBasePage):
         decline_tab.click()
         sleep(1)
         tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Decline')]")
-        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        Logging().reportDebugStep(self, "Returns the tab name: " + tab_text.text)
         return tab_text.text
 
     def get_deposits_tab_text(self):
-        deposits_tab = self.driver.find_element(
-            By.XPATH,
+        deposits_tab = super().wait_load_element(
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["deposits_tab"])
         deposits_tab.click()
         sleep(1)
-        tab_text = super().wait_element_to_be_clickable(
+        tab_text = super().wait_load_element(
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["deposits_tab"])
-        Logging().reportDebugStep(self, "Returns the tab name " + tab_text.text)
+        Logging().reportDebugStep(self, "Returns the tab name: " + tab_text.text)
         return tab_text.text
 
     def get_withdraw_tab_text(self):

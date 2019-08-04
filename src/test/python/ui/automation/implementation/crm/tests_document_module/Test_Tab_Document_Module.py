@@ -19,7 +19,7 @@ class TabDocumentModule(BaseTest):
         document_module = CRMHomePage().open_more_list_modules() \
             .select_documents_module_more_list(DocumentModuleConstants.DOCUMENT)
 
-        all_tab_name = document_module.get_all_tab_text()
+        all_tab_name = document_module.open_tab_listview()
         approved_tab_name = document_module.get_approved_tab_name_text()
         not_approved_tab_name = document_module.get_not_approved_text()
         pending_tab_name = document_module.get_pending_tab_text()

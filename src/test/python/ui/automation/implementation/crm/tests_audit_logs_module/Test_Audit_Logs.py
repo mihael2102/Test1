@@ -19,7 +19,7 @@ class AuditLogsModuleTest(BaseTest):
         audit_logs_module = CRMHomePage().open_more_list_modules() \
             .select_audit_logs_module_more_list(AuditLogsConstants.AUDIT_LOGS_MODULE)
 
-        all_tab_name = audit_logs_module.get_all_tab_text()
+        all_tab_name = audit_logs_module.open_tab_listview()
 
         assert all_tab_name == Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_TAB)
         audit_logs_module.open_calendar_view().perform_screen_shot()
