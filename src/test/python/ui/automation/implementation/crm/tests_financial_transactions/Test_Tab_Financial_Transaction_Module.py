@@ -30,71 +30,17 @@ class TabFinancialTransaction(BaseTest):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        financial_transaction_module = CRMHomePage(self.driver).open_more_list_modules() \
+        'Open Financial Transactions module:'
+        CRMHomePage(self.driver)\
+            .open_more_list_modules()\
             .select_financial_transactions_module_more_list(
-            FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
-
-        all_tab_name = financial_transaction_module.get_all_tab_text()
-        credit_in_tab_name = financial_transaction_module.get_credit_in_tab_text()
-
-        if global_var.current_brand_name == "fm-fx":
-            credit_out_name = financial_transaction_module.get_credit_out_tab_text()
-        else:
-            credit_out_name = financial_transaction_module.get_credit_out_tab_text()
-
-        # Decline tab
-        if global_var.current_brand_name == "fxpmarkets":
-            decline_name = financial_transaction_module.get_decline_tab_text()
-        else:
-            demo_accounts_name = financial_transaction_module.get_demo_accounts_transactions_tab_text()
-
-        deposit_name = financial_transaction_module.get_deposits_tab_text()
-        withdraw = financial_transaction_module.get_withdraw_tab_text()
-
-        # all_tab_name
-        assert all_tab_name == self.config.get_data_financial_transactions_info(
-            FinancialTransactionsModuleConstants.FIRST_TAB)
-
-        # credit_in_tab_name
-        assert credit_in_tab_name == self.config.get_data_financial_transactions_info(
-            FinancialTransactionsModuleConstants.SECOND_TAB)
-
-        # credit_out_name
-        if (global_var.current_brand_name == "ogtrade") or (global_var.current_brand_name == "stoxmarket"):
-            assert credit_out_name == self.config.get_data_financial_transactions_info(
-                FinancialTransactionsModuleConstants.THIRD_TAB_LOWERCASE)
-        else:
-            assert credit_out_name == self.config.get_data_financial_transactions_info(
-                FinancialTransactionsModuleConstants.THIRD_TAB)
-
-        # Assert for decline tab
-        if global_var.current_brand_name == "fxpmarkets":
-            self.assertEqual(decline_name, self.config.get_data_financial_transactions_info(
-                FinancialTransactionsModuleConstants.DECLINE_TAB))
-        else:
-            # demo_accounts_name
-            if (global_var.current_brand_name == "ogtrade") or (global_var.current_brand_name == "stoxmarket"):
-                assert demo_accounts_name == self.config.get_data_financial_transactions_info(
-                    FinancialTransactionsModuleConstants.FOURTH_TAB_LONG)
-            else:
-                assert demo_accounts_name == self.config.get_data_financial_transactions_info(
-                    FinancialTransactionsModuleConstants.FOURTH_TAB)
-
-        # deposit_name
-        if global_var.current_brand_name == "fxpmarkets":
-            assert deposit_name == self.config.get_data_financial_transactions_info(
-                FinancialTransactionsModuleConstants.FIFTH_TAB_SHORT)
-        else:
-            assert deposit_name == self.config.get_data_financial_transactions_info(
-                FinancialTransactionsModuleConstants.FIFTH_TAB)
-
-        # withdraw
-        if (global_var.current_brand_name == "ogtrade") or (global_var.current_brand_name == "stoxmarket"):
-            assert withdraw == self.config.get_data_financial_transactions_info(
-                FinancialTransactionsModuleConstants.SIX_TAB_LONG)
-        else:
-            assert withdraw == self.config.get_data_financial_transactions_info(
-                FinancialTransactionsModuleConstants.SIX_TAB)
+                FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)\
+            .open_tab_listview(FinancialTransactionsModuleConstants.ALL_TAB)\
+            .open_tab_listview(FinancialTransactionsModuleConstants.CREDIT_IN_TAB)\
+            .open_tab_listview(FinancialTransactionsModuleConstants.CREDIT_OUT_TAB)\
+            .open_tab_listview(FinancialTransactionsModuleConstants.DEMO_ACCOUNTS_TRANSACTIONS_TAB)\
+            .open_tab_listview(FinancialTransactionsModuleConstants.DEPOSITS_TAB)\
+            .open_tab_listview(FinancialTransactionsModuleConstants.WITHDRAW_TAB)
 
     def test_check_searching_by_column(self):
         CRMLoginPage(self.driver) \

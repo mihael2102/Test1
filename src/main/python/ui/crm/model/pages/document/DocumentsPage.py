@@ -80,7 +80,6 @@ class DocumentsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Fill date")
         return DocumentsPage()
 
-
     def attached_to(self, client_attached):
         user_attached = self.driver.find_element(By.XPATH, "//img[@name='crmid']")
         user_attached.click()
@@ -123,7 +122,6 @@ class DocumentsPage(CRMBasePage):
         button_save.click()
         Logging().reportDebugStep(self, "Save document")
         return DocumentsPage()
-
 
     def get_successful_message(self):
         message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
