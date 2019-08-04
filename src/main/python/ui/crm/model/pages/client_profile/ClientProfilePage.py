@@ -521,7 +521,7 @@ class ClientProfilePage(CRMBasePage):
     def fill_client_deposit_pop(self, account_number):
         try:
             trading_account_dropdown_list = super().wait_element_to_be_clickable(
-                "//*[@id='ClientDepositConfirmation']//button[@title='Choose trading account']", 10)
+                "//*[@id='ClientDepositConfirmation']//button[@title='Nothing selected']", 10)
             trading_account_dropdown_list.click()
             selected_live_trading_account = self.driver.find_element(By.XPATH,
                                                                      "//span[contains(text(), '%s')]" % account_number)

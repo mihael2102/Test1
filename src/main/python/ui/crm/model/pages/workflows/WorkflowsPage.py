@@ -135,7 +135,7 @@ class WorkflowsPage(CRMBasePage):
         select = Select(self.driver.find_element_by_xpath(
             "//div[@class='select-wrap']/select[contains(@class,'condition-operator')]"))
         select.select_by_visible_text(name)
-        Logging().reportDebugStep(self, "Select condition" + name)
+        Logging().reportDebugStep(self, "Select condition: " + name)
         return WorkflowsPage(self.driver)
 
     def select_status(self, name):
@@ -143,7 +143,7 @@ class WorkflowsPage(CRMBasePage):
         select = Select(self.driver.find_element_by_xpath(
                                     "//div[contains(@class,'select-wrap')]/select[contains(@class,'condition-value')]"))
         select.select_by_visible_text(name)
-        Logging().reportDebugStep(self, "Select Clients Status" + name)
+        Logging().reportDebugStep(self, "Select Clients Status: " + name)
         return WorkflowsPage(self.driver)
 
     def select_second_accept_promotions(self, name):
@@ -168,7 +168,7 @@ class WorkflowsPage(CRMBasePage):
         select = Select(self.driver.find_element_by_xpath(
             "(//div[@class='select-wrap']/select[contains(@class,'condition-operator')])[2]"))
         select.select_by_visible_text(name)
-        Logging().reportDebugStep(self, "Select condition " + name)
+        Logging().reportDebugStep(self, "Select condition: " + name)
         return WorkflowsPage(self.driver)
 
     def click_enter_email(self):
@@ -199,7 +199,7 @@ class WorkflowsPage(CRMBasePage):
         select = Select(self.driver.find_element_by_xpath(
             "(//div[contains(@class,'select-wrap')]/select[contains(@class,'form-control')])[6]"))
         select.select_by_visible_text(name)
-        Logging().reportDebugStep(self, "Select condition " + name)
+        Logging().reportDebugStep(self, "Select condition: " + name)
         return WorkflowsPage(self.driver)
 
     def select_condition_between(self, name):
@@ -207,7 +207,7 @@ class WorkflowsPage(CRMBasePage):
         select = Select(self.driver.find_element_by_xpath(
             "(//div[contains(@class,'select-wrap')]/select[contains(@class,'form-control')])[3]"))
         select.select_by_visible_text(name)
-        Logging().reportDebugStep(self, "Select condition " + name)
+        Logging().reportDebugStep(self, "Select condition: " + name)
         return WorkflowsPage(self.driver)
 
     def select_third_accept_promotions(self, name):

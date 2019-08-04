@@ -99,14 +99,22 @@ class UserManagementPage(CRMBasePage):
     def click_save_button_user_module(self):
         save_button = super().wait_element_to_be_clickable("//button[contains(text(),'Save')]")
         save_button.click()
-        Logging().reportDebugStep(self, "The save button was clicked")
+        self.wait_loading_to_finish(35)
+        Logging().reportDebugStep(self, "The Save button was clicked")
+        return UserManagementPage(self.driver)
+
+    def click_remove_filter_btn(self):
+        sleep(1)
+        remove_filter_btn = super().wait_load_element("//button[@id='clearfilteringbutton']/i")
+        remove_filter_btn.click()
+        Logging().reportDebugStep(self, "The Remove Filter button was clicked")
         return UserManagementPage(self.driver)
 
     def search_by_username(self, username):
         sleep(5)
         self.wait_loading_of_user_management_table(25)
         username_field = super().wait_element_to_be_clickable("//div[@id='row00userManagement']/div[3]/div/input",
-                                                              timeout=35)
+                                                              timeout=45)
         username_field.clear()
         username_field.send_keys(username, Keys.ENTER)
         Logging().reportDebugStep(self, "Searching by username: " + username)
@@ -115,7 +123,7 @@ class UserManagementPage(CRMBasePage):
         return UserManagementPage(self.driver)
 
     def check_user_found(self, username):
-        self.driver.find_element_by_xpath \
+        self.driver.find_element_by_xpath\
             ("//a[contains(@onclick,'userManagementDialog.loadUser')][contains(text(),'%s')]" % username)
         Logging().reportDebugStep(self, "User is found: " + username)
         return UserManagementPage(self.driver)
@@ -125,12 +133,28 @@ class UserManagementPage(CRMBasePage):
         Logging().reportDebugStep(self, "The User Management table is loaded")
         return UserManagementPage(self.driver)
 
-    def click_delete_icon(self):
+    def click_more_icon(self):
         sleep(2)
         more_btn = super().wait_load_element("//div[@class='text-center action-buttons-dots']/i", timeout=35)
         self.driver.execute_script("arguments[0].scrollIntoView();", more_btn)
         self.driver.execute_script("arguments[0].click();", more_btn)
         Logging().reportDebugStep(self, "The More button was clicked")
+        return UserManagementPage(self.driver)
+
+    def click_login_as_icon(self):
+        sleep(0.5)
+        try:
+            login_as_icon = self.driver.find_element_by_xpath("//a[@title='Login As']")
+            self.driver.execute_script("arguments[0].click();", login_as_icon)
+            sleep(1)
+            self.wait_loading_to_finish(35)
+            Logging().reportDebugStep(self, "The Login As button was clicked")
+            return UserManagementPage(self.driver)
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "The Login As button does not exist")
+
+    def click_delete_icon(self):
+        sleep(0.5)
         try:
             delete_btn = self.driver.find_element_by_xpath("//a[@title='Delete user']")
             self.driver.execute_script("arguments[0].click();", delete_btn)
@@ -148,6 +172,15 @@ class UserManagementPage(CRMBasePage):
         sleep(2)
         Logging().reportDebugStep(self, "The Delete Confirmation button was clicked")
         return UserManagementPage(self.driver)
+
+    def check_delete_btn_exist(self):
+        sleep(0.5)
+        try:
+            self.driver.find_element_by_xpath("//a[@title='Delete user']")
+            Logging().reportDebugStep(self, "The Delete User button is displayed")
+            return UserManagementPage(self.driver)
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "The Delete User button does not exist")
 
     def check_data_not_found(self):
         sleep(1)

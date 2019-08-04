@@ -18,3 +18,4 @@ class UserInformation(object):
     FIRST_CONFIRM_PASSWORD = "first_confirm_password"
     FIRST_LAST_NAME = "first_last_name"
     PASSWORD = "Test12345"
+    DRAGON_USER_NAME = "DragonTest"
