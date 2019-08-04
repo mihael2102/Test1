@@ -20,7 +20,7 @@ class TabHelpDeskTest(BaseTest):
 
         help_desk_module = CRMHomePage().open_help_desk_page()
 
-        all_tab_name = help_desk_module.get_all_tab_text()
+        all_tab_name = help_desk_module.open_tab_listview()
         closed_tab_name = help_desk_module.get_closed_tab_text()
         in_progress_tab_name = help_desk_module.get_in_progress_tab_text()
         open_tab_name = help_desk_module.get_open_tab_text()
