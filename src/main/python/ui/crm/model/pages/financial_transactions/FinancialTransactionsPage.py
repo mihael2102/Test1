@@ -167,7 +167,6 @@ class FinancialTransactionsPage(CRMBasePage):
             By.XPATH,
             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_drop_down"])
         transaction_type_drop_down.click()
-
         transaction_type_field = self.driver.find_element(
                             By.XPATH,
                             global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["transaction_type_field"])

@@ -21,11 +21,11 @@ tests_config:
 #    - test_create_filter_trading_account_module
 #
 ########################################## LEADS ###################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
-#  class: TabLeadsModuleCRM
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
+  class: TabLeadsModuleCRM
+  tests:
 #    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
-#    - sorting_lead_module
+    - sorting_lead_module
 #    - test_mass_assign_leads
 #    - test_mass_edit_leads
 #
@@ -66,12 +66,12 @@ tests_config:
 #    - test_clients_mass_assign
 #
 ###################################### TASKS ##################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-  class: AddEventTaskModule
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+#  class: AddEventTaskModule
+#  tests:
 #    - test_email_icon
 #    - test_sms_icon
-    - test_mass_edit_tasks
+#    - test_mass_edit_tasks
 #    - test_searching_by_columns
 #    - test_sorting_columns
 #
@@ -209,8 +209,8 @@ tests_config:
 #    - test_sorting
 
 ############################################# DRAGON TESTS ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
-  class: CheckDragonTest
-  tests:
-    - test_dragon_leads
+#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
+#  class: CheckDragonTest
+#  tests:
+#    - test_dragon_leads
 #    - test_dragon_clients
