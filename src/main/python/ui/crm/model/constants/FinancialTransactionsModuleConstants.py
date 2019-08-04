@@ -11,3 +11,10 @@ class FinancialTransactionsModuleConstants(object):
     SIX_TAB = "six_tab"
     SIX_TAB_LONG = "six_tab_long"
     FINANCIAL_TRANSACTIONS_MODULE = "Financial Transactions"
+
+    ALL_TAB = "All"
+    CREDIT_IN_TAB = "Credit In"
+    CREDIT_OUT_TAB = "Credit Out"
+    DEMO_ACCOUNTS_TRANSACTIONS_TAB = "Demo Accounts Transactions"
+    DEPOSITS_TAB = "Deposits"
+    WITHDRAW_TAB = "Withdraw"
