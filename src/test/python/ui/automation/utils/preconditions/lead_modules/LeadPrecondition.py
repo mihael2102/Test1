@@ -18,6 +18,7 @@ import random
 import xlrd
 from src.main.python.utils.logs.Loging import Logging
 
+
 class LeadPrecondition(object):
 
     driver = None
@@ -291,7 +292,8 @@ class LeadPrecondition(object):
             assert assign_leads == CRMConstants.PANDAQA_ASSIGN
 
     def sorting_leads(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))

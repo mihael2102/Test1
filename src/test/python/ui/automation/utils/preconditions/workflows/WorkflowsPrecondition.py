@@ -47,9 +47,11 @@ class WorkflowsPrecondition(object):
                                   .select_accept_promotions(WorkflowsConstants.CLIENT_STATUS)\
                                   .select_condition(WorkflowsConstants.CONDITION_IS)
 
-        if global_var.current_brand_name == "ptbanc" or global_var.current_brand_name == "kontofx" or \
-                global_var.current_brand_name == "newforexstage2" or global_var.current_brand_name == "brokerz" \
-                or global_var.current_brand_name == "4xfx":
+        if global_var.current_brand_name == "ptbanc" or \
+                global_var.current_brand_name == "kontofx" or \
+                global_var.current_brand_name == "newforexstage2" or \
+                global_var.current_brand_name == "brokerz" or \
+                global_var.current_brand_name == "dax-300":
             WorkflowsPage(self.driver).select_status(WorkflowsConstants.STATUS_B_TEST)
         elif global_var.current_brand_name == "gigafx":
             WorkflowsPage(self.driver).select_status(WorkflowsConstants.STATUS_R_NO_ANSWER)

@@ -19,7 +19,7 @@ class LeadDetailViewInfo(CRMBasePage):
     def open_edit_lead_profile(self):
         task_module = super().wait_load_element("//input[@name='Edit']")
         task_module.click()
-        Logging().reportDebugStep(self, "The delete pop-up is displayed")
+        Logging().reportDebugStep(self, "Click Edit button")
         return EditLeadsProfilePage(self.driver)
 
     '''
