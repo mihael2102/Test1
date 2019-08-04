@@ -23,65 +23,6 @@ class FinancialTransactionsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the tab name: " + title)
         return FinancialTransactionsPage(self.driver)
 
-    def get_credit_in_tab_text(self):
-        tab = self.driver.find_element(By.XPATH, "//li[contains(text(),'Credit In')]")
-        tab.click()
-        sleep(1)
-        tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Credit In')]")
-        Logging().reportDebugStep(self, "Returns the tab name: " + tab_text.text)
-        return tab_text.text
-
-    def get_credit_out_tab_text(self):
-        tab = self.driver.find_element(By.XPATH,
-                                       global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["tab"])
-        tab.click()
-        sleep(1)
-        tab_text = super().wait_element_to_be_clickable(
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["tab"])
-        Logging().reportDebugStep(self, "Returns the tab name: " + tab_text.text)
-        return tab_text.text
-
-    def get_demo_accounts_transactions_tab_text(self):
-        demo_tab = self.driver.find_element(
-            By.XPATH,
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["demo_tab"])
-        demo_tab.click()
-        sleep(1)
-        tab_text = super().wait_element_to_be_clickable(
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["demo_tab"])
-        Logging().reportDebugStep(self, "Returns the tab name: " + tab_text.text)
-        return tab_text.text
-
-    def get_decline_tab_text(self):
-        decline_tab = self.driver.find_element(By.XPATH, "//li[contains(text(),'Decline')]")
-        decline_tab.click()
-        sleep(1)
-        tab_text = super().wait_element_to_be_clickable("//li[contains(text(),'Decline')]")
-        Logging().reportDebugStep(self, "Returns the tab name: " + tab_text.text)
-        return tab_text.text
-
-    def get_deposits_tab_text(self):
-        deposits_tab = super().wait_load_element(
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["deposits_tab"])
-        deposits_tab.click()
-        sleep(1)
-        tab_text = super().wait_load_element(
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["deposits_tab"])
-        Logging().reportDebugStep(self, "Returns the tab name: " + tab_text.text)
-        return tab_text.text
-
-    def get_withdraw_tab_text(self):
-        withdraw_tab = self.driver.find_element(
-            By.XPATH,
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["withdraw_tab"])
-        withdraw_tab.click()
-        sleep(1)
-        self.wait_loading_to_finish(35)
-        tab_text = super().wait_load_element(
-            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["withdraw_tab"]).text
-        Logging().reportDebugStep(self, "Returns the tab name: " + tab_text)
-        return tab_text
-
     def open_first_transactions(self):
         transaction_number = self.driver.find_element(By.XPATH, "//tr[@class='lvtColData']//td[2]")
         transaction_number.click()
