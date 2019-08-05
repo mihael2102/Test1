@@ -8,6 +8,7 @@ from selenium.common.exceptions import TimeoutException
 from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
 from selenium.common.exceptions import NoSuchElementException
 
+
 @pytest.mark.run(order=26)
 class TabLeadsModuleCRM(BaseTest):
 

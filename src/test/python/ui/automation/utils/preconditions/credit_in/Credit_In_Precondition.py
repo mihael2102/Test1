@@ -74,9 +74,10 @@ class CreditInPrecondition(object):
                 MT4ModuleConstants.GROUP_REAL,
                 MT4ModuleConstants.LEVERAGE_100)
 
-        elif (global_var.current_brand_name == "gxfx") or (global_var.current_brand_name == "optionstars")  \
-                or (global_var.current_brand_name == "b-traderfx") or (global_var.current_brand_name == "kontofx") or \
-                (global_var.current_brand_name == "uprofx") or (global_var.current_brand_name == "safemarkets"):
+        elif (global_var.current_brand_name == "gxfx") \
+                or (global_var.current_brand_name == "dax-300") \
+                or (global_var.current_brand_name == "kontofx") \
+                or (global_var.current_brand_name == "uprofx"):
             crm_client_profile = MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
