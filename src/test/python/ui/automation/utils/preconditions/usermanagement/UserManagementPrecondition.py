@@ -33,7 +33,7 @@ class UserManagementPrecondition(object):
         assert UserManagementConstants.EMAIL in email or UserManagementConstants.EMAIL_NET in email or \
                UserManagementConstants.EMAIL_CO in email
 
-    def create_user(self):
+    def create_delete_user(self):
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -56,6 +56,9 @@ class UserManagementPrecondition(object):
         UserManagementPage(self.driver)\
             .set_password(UserInformation.PASSWORD) \
             .set_confirm_password(UserInformation.PASSWORD) \
-            .set_last_name(UserInformation.LAST_NAME) \
-            .click_save_button_user_module() \
-            .search_by_username(UserInformation.FIRST_USER_NAME)
+            .set_last_name(UserInformation.LAST_NAME)\
+            .click_save_button_user_module()\
+            .search_by_username(UserInformation.FIRST_USER_NAME)\
+            .click_delete_icon()\
+            .click_delete_btn()\
+            .check_data_not_found(UserInformation.FIRST_USER_NAME)

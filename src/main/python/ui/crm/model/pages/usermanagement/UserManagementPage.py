@@ -18,6 +18,7 @@ import allure
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
 
+
 class UserManagementPage(CRMBasePage):
 
     def refresh(self):
@@ -108,7 +109,7 @@ class UserManagementPage(CRMBasePage):
 
     def search_by_username(self, username):
         sleep(2)
-        self.wait_loading_of_user_management_table(25)
+        self.wait_loading_of_user_management_table(35)
         username_field = super().wait_element_to_be_clickable("//div[@id='row00userManagement']/div[3]/div/input")
         username_field.clear()
         username_field.send_keys(username)
@@ -123,4 +124,34 @@ class UserManagementPage(CRMBasePage):
     def wait_loading_of_user_management_table(self, time):
         super().wait_element_to_be_disappear("//div[@class ='jqx-grid-load']", time)
         Logging().reportDebugStep(self, "The User Management table is loaded")
+        return UserManagementPage(self.driver)
+
+    def click_delete_icon(self):
+        sleep(0.1)
+        delete_btn = super().wait_load_element("//a[@title='Delete user']")
+        self.driver.execute_script("arguments[0].click();", delete_btn)
+        Logging().reportDebugStep(self, "Click Delete icon")
+        return UserManagementPage(self.driver)
+
+    def click_delete_btn(self):
+        sleep(0.2)
+        delete_btn = super().wait_load_element("//button[contains(text(),'Delete')]")
+        delete_btn.click()
+        sleep(0.2)
+        self.wait_element_to_be_disappear("//button[contains(text(),'Delete')]", timeout=35)
+        Logging().reportDebugStep(self, "Click Delete button")
+        self.refresh_page()
+        return UserManagementPage(self.driver)
+
+    def check_data_not_found(self, username):
+        sleep(1)
+        self.wait_loading_of_user_management_table(35)
+        username_field = super().wait_element_to_be_clickable("//div[@id='row00userManagement']/div[3]/div/input")
+        username_field.clear()
+        username_field.send_keys(username)
+        Logging().reportDebugStep(self, "Searching by username: " + username)
+        sleep(0.5)
+        self.wait_loading_of_user_management_table(55)
+        msg = super().wait_load_element("//span[contains(text(),'No data to display')]").text
+        Logging().reportDebugStep(self, msg)
         return UserManagementPage(self.driver)
