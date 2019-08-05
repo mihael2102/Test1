@@ -95,10 +95,6 @@ def __simple_run(path_to_test_suite):
     client.test_brands()
 
 
-
-
-
-
 if __name__ == "__main__":
 
     from requests import get
