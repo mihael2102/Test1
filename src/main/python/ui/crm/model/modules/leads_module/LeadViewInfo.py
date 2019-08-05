@@ -33,6 +33,7 @@ class LeadViewInfo(CRMBasePage):
     '''
 
     def get_confirm_message_lead_view_profile(self):
+        sleep(0.2)
         confirm_message = self.wait_load_element("//div[contains(@class, 'bootstrap-dialog-message')]")
         Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text

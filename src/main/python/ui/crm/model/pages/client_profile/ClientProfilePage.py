@@ -444,6 +444,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_confirm_message(self):
+        sleep(0.2)
         confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']", timeout=35)
         Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text
