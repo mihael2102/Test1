@@ -33,26 +33,32 @@ class UserManagementPrecondition(object):
         assert UserManagementConstants.EMAIL in email or UserManagementConstants.EMAIL_NET in email or \
                UserManagementConstants.EMAIL_CO in email
 
-    def create_user(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+    def create_delete_user(self):
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
-        CRMHomePage(self.driver).select_user_management()
-        UserManagementPage(self.driver).click_new_user_module() \
-                                       .set_user_name(UserInformation.FIRST_USER_NAME) \
-                                       .set_email(UserInformation.FIRST_EMAIL) \
-                                       .set_first_name(UserInformation.FIRST_NAME)
+        CRMHomePage(self.driver)\
+            .select_user_management()
+        UserManagementPage(self.driver)\
+            .click_new_user_module() \
+            .set_user_name(UserInformation.FIRST_USER_NAME) \
+            .set_email(UserInformation.FIRST_EMAIL) \
+            .set_first_name(UserInformation.FIRST_NAME)
         if global_var.current_brand_name == "gmo" or global_var.current_brand_name == "itrader":
-            UserManagementPage(self.driver).set_role(UserInformation.ROLE)
+            UserManagementPage(self.driver)\
+                .set_role(UserInformation.ROLE)
         else:
-            UserManagementPage(self.driver).set_role(UserInformation.ROLE1)
-        UserManagementPage(self.driver).set_password(UserInformation.PASSWORD) \
-                                       .set_confirm_password(UserInformation.PASSWORD) \
-                                       .set_last_name(UserInformation.LAST_NAME) \
-                                       .click_save_button_user_module() \
-                                       .search_by_username(UserInformation.FIRST_USER_NAME)
-
-
-
+            UserManagementPage(self.driver)\
+                .set_role(UserInformation.ROLE1)
+        UserManagementPage(self.driver)\
+            .set_password(UserInformation.PASSWORD) \
+            .set_confirm_password(UserInformation.PASSWORD) \
+            .set_last_name(UserInformation.LAST_NAME)\
+            .click_save_button_user_module()\
+            .search_by_username(UserInformation.FIRST_USER_NAME)\
+            .click_delete_icon()\
+            .click_delete_btn()\
+            .check_data_not_found(UserInformation.FIRST_USER_NAME)
