@@ -197,10 +197,10 @@ tests_config:
 #    - test_delete_workflow
 #
 ############################################ USER MANAGEMENT ############################################
-#- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
-#  class: UserManagementTest
-#  tests:
-#    - test_create_user
+- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
+  class: UserManagementTest
+  tests:
+    - test_create_user
 #
 ############################################# DOCUMENTS MODULE ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
