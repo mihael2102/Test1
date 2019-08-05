@@ -43,18 +43,14 @@ class Login_CA_Precondition(object):
         subjects = []
         for message in messages:
             if CRMConstants.WELCOME_TO in str(message['Subject']):
-                print(str(message['Subject']))
-                # subjects.append(str(message['Subject']).lower().replace(' ', ''))
-                # print(subjects)
-        assert brand in subjects
-        Logging().reportDebugStep(self, 'Mail is found')
+                subjects.append(str(message['Subject']).lower())
+        found_subject = ""
+        for x in subjects:
+            if brand in x:
+                found_subject = x
 
-                # link = self.config.get_value('url').replace('https://', '')
-                # link1 = link.replace('.ptscrm.com/', '')
-                # if brand in str(message['Subject']).lower().replace(' ', ''):
-                #     Logging().reportDebugStep(self, str(message['Subject']))
-                #     assert CRMConstants.WELCOME_TO in str(message['Subject'])
-                #     return str(message['Subject'])
+        assert brand in found_subject
+        Logging().reportDebugStep(self, 'Mail is found: ' + found_subject)
         pop_conn.quit()
 
     def sign_up_ca(self):
