@@ -29,7 +29,7 @@ class Login_CA_Precondition(object):
         return lead
 
     def check_email_sign_up(self):
-        sleep(30)
+        sleep(10)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
         pop_conn.user('jonathan.albalak@pandats.com')
         pop_conn.pass_('xUQ7hrr9VF')
@@ -37,17 +37,20 @@ class Login_CA_Precondition(object):
         messages = [pop_conn.retr(i) for i in range(1, len(pop_conn.list()[1]) + 1)]
         # Concat message pieces:
         messages = ["\n".join(m.decode() for m in mssg[1]) for mssg in messages]
-        # Parse message intom an email object:
+        # Parse message into an email object:
         messages = [parser.Parser().parsestr(mssg) for mssg in messages]
+        brand = global_var.current_brand_name
+        subjects = []
         for message in messages:
             if CRMConstants.WELCOME_TO in str(message['Subject']):
-                brand = global_var.current_brand_name
-                # link = self.config.get_value('url').replace('https://', '')
-                # link1 = link.replace('.ptscrm.com/', '')
-                if brand in str(message['Subject']).lower().replace(' ', ''):
-                    Logging().reportDebugStep(self, str(message['Subject']))
-                    assert CRMConstants.WELCOME_TO in str(message['Subject'])
-                    return str(message['Subject'])
+                subjects.append(str(message['Subject']).lower())
+        found_subject = ""
+        for x in subjects:
+            if brand in x:
+                found_subject = x
+
+        assert brand in found_subject
+        Logging().reportDebugStep(self, 'Mail is found: ' + found_subject)
         pop_conn.quit()
 
     def sign_up_ca(self):
