@@ -18,13 +18,7 @@ class TradingAccountCrmTest(BaseTest):
             .add_demo_account_from_crm()
         confirmation_message = ClientProfilePage(self.driver)\
             .get_confirm_message()
-        try:
-            if global_var.current_brand_name == "trade99":
-                self.assertEqual(confirmation_message, CRMConstants.TRADING_ACCOUNT_CREATED_SUCCESFULLY)
-            else:
-                self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
-        except:
-            self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY_2)
+        assert CRMConstants.MSG_CREATED_SUCCESFULLY in confirmation_message
 
     def test_crm_open_live_trading_account(self):
         TradingAccountPrecondition(self.driver, self.config) \
