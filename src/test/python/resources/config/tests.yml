@@ -60,11 +60,11 @@ tests_config:
 #    - test_check_email_popup
 #
 ############################################ CONVERT LEAD ############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 #
 ############################################# CLIENTS ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
@@ -115,10 +115,10 @@ tests_config:
 #    - fill_questioner_new_client
 #    - test_crm_open_trading_account  # open a new trading account
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
-#  class: ChangePasswordTestCRM
-#  tests:
-#    - test_change_client_password_from_crm  # change a client account password from the crm
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
+  class: ChangePasswordTestCRM
+  tests:
+    - test_change_client_password_from_crm  # change a client account password from the crm
 #    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
@@ -197,10 +197,10 @@ tests_config:
 #    - test_delete_workflow
 #
 ############################################ USER MANAGEMENT ############################################
-- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
-  class: UserManagementTest
-  tests:
-    - test_create_user
+#- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
+#  class: UserManagementTest
+#  tests:
+#    - test_create_user
 #
 ############################################# DOCUMENTS MODULE ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
