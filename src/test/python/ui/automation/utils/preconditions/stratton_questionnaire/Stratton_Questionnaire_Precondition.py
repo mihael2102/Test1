@@ -212,3 +212,64 @@ class StrattonQuestionnairePrecondition(object):
             ClientProfilePage(self.driver) \
                 .verify_server_not_available(CRMConstants.SERVER_LIVE)
 
+    def customer_classification_retail(self):
+        assert global_var.current_brand_name == "strattonmarkets-eu"
+        # Registration
+        CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
+            .click_sign_up() \
+            .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                 LeadsModuleConstants.FIRST_NAME]) \
+            .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                LeadsModuleConstants.FIRST_LAST_NAME]) \
+            .fill_email(QuestionnaireConstants.MAIL_CLIENT_NEGATIVE) \
+            .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                            LeadsModuleConstants.PHONE]) \
+            .fill_password(CAConstants.PASSWORD) \
+            .fill_confirm_password(CAConstants.PASSWORD) \
+            .check_box_accept() \
+            .click_submit() \
+            .verify() \
+            .click_hi_guest() \
+            .click_transactions_history() \
+            .select_data_birth_day(CAConstants.DAY_BIRTH) \
+            .select_data_birth_month(CAConstants.MONTH_BIRTH) \
+            .select_data_birth_year(CAConstants.YEAR_BIRTH) \
+            .choose_currency(CAConstants.CURRENCY) \
+            .choose_citizenship(CAConstants.CITIZENSHIP3) \
+            .fill_city(CAConstants.CITY) \
+            .fill_zip_code(CAConstants.ZIP_CODE) \
+            .fill_address(CAConstants.ADDRESS) \
+            .click_next() \
+            .enter_ssn_tin(QuestionnaireConstants.SSN_TIN) \
+            .enter_id(QuestionnaireConstants.NAT_ID) \
+            .select_country_tax(QuestionnaireConstants.COUNTRY_TAX) \
+            .enter_company_name(QuestionnaireConstants.COMPANY_NAME) \
+            .select_us_reportable(CAConstants.US_REPORTABLE_NO) \
+            .click_save_changes_btn()
+
+        # Questionnaire: Financial Information
+        QuestionnairePage(self.driver) \
+            .select_employment_status(QuestionnaireConstants.EMPLOYMENT_STATUS_STUDENT) \
+            .select_education_level(QuestionnaireConstants.EDUCATION_LEVEL_NO_EDUCATION) \
+            .select_politically_exposed_person(QuestionnaireConstants.POLITICALLY_EXPOSED_PERSON_NO) \
+            .select_total_annual_income(QuestionnaireConstants.TOTAL_ANNUAL_INCOME_UNDER_15) \
+            .select_approximate_net_wealth(QuestionnaireConstants.APPROXIMATE_NET_WEALTH_UNDER_15) \
+            .select_expected_deposit(QuestionnaireConstants.EXPECTED_DEPOSIT_UNDER_10) \
+            .select_source_of_trading_funds(QuestionnaireConstants.SOURCE_TRADING_FUNDS_EMPLOYMENT) \
+            .select_why_want_trade(QuestionnaireConstants.WHY_WANT_TRADE_SPECULATIVE) \
+            .select_react_on_losses(QuestionnaireConstants.REACT_ON_LOSSES_EXPECT_TO_LOSE) \
+            .click_next_btn()
+
+        # Questionnaire: Knowledge and experience
+        QuestionnairePage(self.driver) \
+            .select_instruments_traded_before(QuestionnaireConstants.INSTRUMENTS_TRADED_BEFORE_NO_EXPERIENCE) \
+            .select_if_applicable(QuestionnaireConstants.IF_APPLICABLE_NONE) \
+            .select_correct_regarding_cfd(QuestionnaireConstants.REGARDING_CFD_RETAIL) \
+            .select_factor_affect_prices(QuestionnaireConstants.FACTOR_AFFECT_PRICES_EMPLOYEE_LAYOFFS_RETAIL) \
+            .select_close_bmw_position(QuestionnaireConstants.WHERE_CLOSE_BMW_POSITION_RETAIL) \
+            .select_required_margin(QuestionnaireConstants.REQUIRED_MARGIN_1000) \
+            .select_loss(QuestionnaireConstants.LOSS_AMOUNT_800) \
+            .click_next_btn() \
+            .verify_questionnaire_message(QuestionnaireConstants.MESSAGE_NEGATIVE) \
+            .click_next_btn()

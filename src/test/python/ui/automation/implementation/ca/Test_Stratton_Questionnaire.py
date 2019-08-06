@@ -20,3 +20,6 @@ class StrattonQuestionnaire(BaseTest):
 
     def test_customer_classification_negative(self):
         StrattonQuestionnairePrecondition(self.driver, self.config).customer_classification_negative()
+
+    def test_customer_classification_retail(self):
+        StrattonQuestionnairePrecondition(self.driver, self.config).customer_classification_retail()

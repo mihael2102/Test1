@@ -6,8 +6,8 @@ brands:
 #- name: ptbanc
 #  config_file: ptbanc.yml
 
-- name: trade99
-  config_file: trade99.yml
+#- name: trade99
+#  config_file: trade99.yml
 
 #- name: gigafx
 #  config_file: gigafx.yml
@@ -18,5 +18,5 @@ brands:
 #- name: kontofx
 #  config_file: kontofx.yml
 
-#- name: strattonmarkets-eu
-#  config_file: strattonmarkets-eu.yml
+- name: strattonmarkets-eu
+  config_file: strattonmarkets-eu.yml
