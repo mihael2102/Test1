@@ -11,11 +11,17 @@ from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import Crea
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from time import sleep
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 import glob
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 from src.main.python.ui.crm.model.pages.dragon_page.DragonPage import DragonPage
 from src.main.python.utils.logs.Loging import Logging
+from src.main.python.ui.crm.model.modules.leads_module.LeadViewInfo import LeadViewInfo
 from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
 from src.main.python.ui.crm.model.pages.leads.EditLeadsProfilePage import EditLeadsProfilePage
+from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import ConvertLeadModule
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfileUpdate import ClientProfileUpdate
 
 
 class DragonPrecondition(object):
@@ -54,8 +60,79 @@ class DragonPrecondition(object):
                                        DragonConstants.LEAD_ASSIGNED_TO,
                                        DragonConstants.PHONE_NUMBER_INVALID)
         sleep(1)
-        ' Convert lead: '
 
+        ' Convert lead: '
+        LeadViewInfo(self.driver)\
+            .open_convert_lead_module()
+        ConvertLeadModule(self.driver)\
+            .perform_convert_lead_short(DragonConstants.FIRST_NAME_CONVERT,
+                                        DragonConstants.BIRTHDAY_CONVERT,
+                                        DragonConstants.ADDRESS_CONVERT,
+                                        DragonConstants.POST_CODE_CONVERT,
+                                        DragonConstants.CITY_CONVERT,
+                                        DragonConstants.COUNTRY_CONVERT)
+        try:
+            confirmation_message = LeadViewInfo(self.driver)\
+                .get_confirm_message_lead_view_profile()
+            assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+            LeadViewInfo(self.driver)\
+                .click_ok()
+        except (TimeoutException, AssertionError, NoSuchElementException):
+            Logging().reportDebugStep(self, "Lead convert message was not picked up")
+
+        ' Check phone in Clients list view: '
+        CRMHomePage(self.driver)\
+            .open_client_module()\
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .enter_email(DragonConstants.LEAD_EMAIL)\
+            .click_search_button()
+        DragonPage(self.driver) \
+            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID)
+
+        ' Check phone number in detail view: '
+        ClientsPage(self.driver)\
+            .open_client_id()
+        DragonPage(self.driver) \
+            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID)
+
+        ' Check phone number on edit page: '
+        phone_edit_page = ClientProfileUpdate(self.driver)\
+            .click_edit_client_button()\
+            .get_phone_edit_page()
+        assert phone_edit_page == DragonConstants.PHONE_NUMBER_INVALID
+
+        ' Update phone to another invalid number and verify on details view page: '
+        ClientProfileUpdate(self.driver)\
+            .set_phone(DragonConstants.PHONE_NUMBER_INVALID2)\
+            .click_save()\
+            .refresh_page()
+        DragonPage(self.driver)\
+            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID2)
+        ClientProfileUpdate(self.driver)\
+            .click_edit_client_button()\
+            .set_phone(DragonConstants.PHONE_NUMBER_INVALID3)\
+            .click_save()\
+            .refresh_page()
+        DragonPage(self.driver)\
+            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID3)
+
+        ' Update phone to valid number and verify on details view page: '
+        ClientProfileUpdate(self.driver)\
+            .click_edit_client_button()\
+            .set_phone(DragonConstants.PHONE_NUMBER_VALID)\
+            .click_save()\
+            .refresh_page()
+        DragonPage(self.driver)\
+            .check_valid_phone_leads(DragonConstants.PHONE_NUMBER_HIDDEN)
+
+        ' Check valid number in list view: '
+        CRMHomePage(self.driver) \
+            .open_client_module() \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .enter_email(DragonConstants.LEAD_EMAIL) \
+            .click_search_button()
+        DragonPage(self.driver) \
+            .check_valid_phone_leads(DragonConstants.PHONE_NUMBER_HIDDEN)
 
     def check_dragon_leads(self):
         CRMLoginPage(self.driver)\
@@ -92,12 +169,12 @@ class DragonPrecondition(object):
                 self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))\
             .perform_searching_lead_by_mail(DragonConstants.LEAD_EMAIL)
         DragonPage(self.driver)\
-            .check_invalid_phone_leads(DragonConstants.PHONE_NUMBER_INVALID)\
+            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID)\
             .open_lead_personal_details()
 
         ' Check phone number in detail view: '
         DragonPage(self.driver)\
-            .check_invalid_phone_leads(DragonConstants.PHONE_NUMBER_INVALID)
+            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID)
 
         ' Check phone number on edit page: '
         phone_edit_page = LeadDetailViewInfo(self.driver)\
@@ -110,13 +187,13 @@ class DragonPrecondition(object):
             .set_phone(DragonConstants.PHONE_NUMBER_INVALID2)\
             .click_save()
         DragonPage(self.driver) \
-            .check_invalid_phone_leads(DragonConstants.PHONE_NUMBER_INVALID2)
+            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID2)
         LeadDetailViewInfo(self.driver)\
             .open_edit_lead_profile() \
             .set_phone(DragonConstants.PHONE_NUMBER_INVALID3) \
             .click_save()
         DragonPage(self.driver) \
-            .check_invalid_phone_leads(DragonConstants.PHONE_NUMBER_INVALID3)
+            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID3)
 
         ' Update phone to valid number and verify on details view page: '
         LeadDetailViewInfo(self.driver) \

@@ -11,14 +11,14 @@ from src.main.python.utils.logs.Loging import Logging
 class LeadDetailViewInfo(CRMBasePage):
 
     def click_delete_button(self):
-        task_module = super().wait_load_element("//input[@name='Delete']")
-        task_module.click()
+        delete_button = super().wait_load_element("//input[@name='Delete']")
+        delete_button.click()
         Logging().reportDebugStep(self, "The delete pop-up is displayed")
         return LeadViewInfo()
 
     def open_edit_lead_profile(self):
-        task_module = super().wait_load_element("//input[@name='Edit']")
-        task_module.click()
+        edit_lead = super().wait_load_element("//input[@name='Edit']")
+        edit_lead.click()
         Logging().reportDebugStep(self, "Click Edit button")
         return EditLeadsProfilePage(self.driver)
 

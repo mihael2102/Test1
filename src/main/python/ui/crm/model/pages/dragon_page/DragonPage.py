@@ -8,7 +8,7 @@ class DragonPage(CRMBasePage):
 
     'Check invalid phone number displayed correctly: red number '
 
-    def check_invalid_phone_leads(self, phone):
+    def check_invalid_phone(self, phone):
         # Check number:
         number_text = super().wait_load_element("//div[@title='Click to Call']").get_attribute("innerText")
         actual_number = number_text.replace(' ', '')
