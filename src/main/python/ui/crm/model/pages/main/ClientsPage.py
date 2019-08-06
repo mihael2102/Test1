@@ -287,10 +287,10 @@ class ClientsPage(CRMBasePage):
         sleep(1)
         self.driver.execute_script("arguments[0].click();", client_id)
         sleep(1)
+        self.wait_vtiger_loading_to_finish_custom(35)
         self.perform_scroll_up()
         sleep(1)
-        # client_id.click()
-        Logging().reportDebugStep(self, "Click user name by email: ")
+        Logging().reportDebugStep(self, "Open client's details")
         return ClientProfilePage(self.driver)
 
     def open_create_filter_pop_up(self):

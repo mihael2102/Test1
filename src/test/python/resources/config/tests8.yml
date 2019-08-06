@@ -13,3 +13,10 @@ tests_config:
     - test_check_all_tab_from_financial_transactions
     - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
     - test_check_search_via_button # Check search using search button
+
+############################################# DRAGON TESTS ###############################################
+- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
+  class: CheckDragonTest
+  tests:
+    - test_dragon_leads
+    - test_dragon_clients
