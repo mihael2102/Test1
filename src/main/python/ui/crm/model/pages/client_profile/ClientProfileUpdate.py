@@ -171,7 +171,7 @@ class ClientProfileUpdate(CRMBasePage):
         return ClientProfileUpdate(self.driver)
 
     def click_edit_client_button(self):
-        sleep(0.2)
+        sleep(1)
         edit_lead = super().wait_load_element("//input[@name='Edit']", timeout=35)
         edit_lead.click()
         Logging().reportDebugStep(self, "Click Edit button")

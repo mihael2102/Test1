@@ -19,3 +19,6 @@ class DragonConstants(object):
     POST_CODE_CONVERT = "333"
     CITY_CONVERT = "Test City"
     COUNTRY_CONVERT = "Germany"
+    EMAIL_VALID_LIST_VIEW = "Send mail"
+    EMAIL_VALID_DETAIL_VIEW = "***"
+    EMAIL_VALID_SEND_MAIL_POPUP = "****,"
