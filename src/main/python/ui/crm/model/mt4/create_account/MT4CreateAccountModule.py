@@ -3,6 +3,8 @@ from selenium.webdriver.common.keys import Keys
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
+from selenium.webdriver.support.select import Select
+from time import sleep
 
 
 class MT4CreateAccountModule(CRMBasePage):
@@ -105,6 +107,16 @@ class MT4CreateAccountModule(CRMBasePage):
         Logging().reportDebugStep(self, "Trading account leverage was selected: " + leverage_selection.text)
         return self
 
+    '''
+        Second method for set leverage because of previous method can't be used for selecting 1:30 leverage
+        Please, choose this method for every new test!
+    '''
+    def set_leverage(self, leverage):
+        leverage_list = Select(self.driver.find_element(By.XPATH, "//select[@name='leverage']"))
+        leverage_list.select_by_visible_text(leverage)
+        Logging().reportDebugStep(self, "Trading account leverage was selected: " + leverage)
+        return MT4CreateAccountModule(self.driver)
+
     def click_create(self):
         button = self.wait_load_element("//button[contains(., 'Create')]")
         button.click()
@@ -114,3 +126,44 @@ class MT4CreateAccountModule(CRMBasePage):
         button = self.wait_load_element("//button[contains(., 'Save')]")
         button.click()
         Logging().reportDebugStep(self, "The Save button was clicked")
+
+    '''
+        Check, that server is not available for account opening 
+    '''
+
+    def verify_server_not_available(self, server):
+        server_pick_list = super().wait_load_element("//select[@id='server']").text
+        assert server not in server_pick_list.upper()
+        Logging().reportDebugStep(self, server + " server is not available for accounts opening")
+        return MT4CreateAccountModule(self.driver)
+
+    '''
+        Check, that group is not available
+    '''
+    def verify_group_not_available(self, group):
+        group_pick_list = super().wait_load_element("//select[@name='group']").text
+        assert group.upper() not in group_pick_list.upper()
+        Logging().reportDebugStep(self, group + " group is not available")
+        return MT4CreateAccountModule(self.driver)
+
+    def verify_leverage_not_available(self, leverage):
+        leverage_visibility = super().wait_load_element("//select[@id='leverage']/option[@value='%s']" % leverage)\
+            .get_attribute("data-live")
+        if '0' in leverage_visibility:
+            assert '0' in leverage_visibility
+            Logging().reportDebugStep(self, 'Leverage ' + leverage + " is not available")
+        elif '1' in leverage_visibility:
+            Logging().reportDebugStep(self, 'Warning: Leverage ' + leverage + " is available")
+            assert '0' in leverage_visibility
+        return MT4CreateAccountModule(self.driver)
+
+    def verify_leverage_available(self, leverage):
+        leverage_visibility = super().wait_load_element("//select[@id='leverage']/option[@value='%s']" % leverage)\
+            .get_attribute("data-live")
+        if '1' in leverage_visibility:
+            assert '1' in leverage_visibility
+            Logging().reportDebugStep(self, 'Leverage ' + leverage + " is available")
+        elif '0' in leverage_visibility:
+            Logging().reportDebugStep(self, 'Warning: Leverage ' + leverage + " is not available")
+            assert '1' in leverage_visibility
+        return MT4CreateAccountModule(self.driver)

@@ -114,6 +114,7 @@ class CRMConstants(object):
     DOCUMENT_SUB_TYPE = "Crypto Transfer"
     DOCUMENT_COMMENTS = "Comments"
     DOCUMENT_SUCCESSFUL_MESSAGE = "Upload Document successfull"
+    SUCCESSFUL_MESSAGE = "successfull"
     EASY_SEARCH_CLIENT = "testqa"
     EASY_SEARCH_CLIENT_TEST = "test test"
     ALLOWED_IP = "1.1.1.1"

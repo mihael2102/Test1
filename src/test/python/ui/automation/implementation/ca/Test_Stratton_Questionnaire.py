@@ -23,3 +23,9 @@ class StrattonQuestionnaire(BaseTest):
 
     def test_customer_classification_retail(self):
         StrattonQuestionnairePrecondition(self.driver, self.config).customer_classification_retail()
+
+    def test_customer_classification_professional_eligible(self):
+        StrattonQuestionnairePrecondition(self.driver, self.config).customer_classification_professional_eligible()
+
+    def test_customer_classification_professional_elective(self):
+        StrattonQuestionnairePrecondition(self.driver, self.config).customer_classification_professional_elective()
