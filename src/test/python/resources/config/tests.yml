@@ -36,3 +36,6 @@ tests_config:
     - test_customer_classification_empty
     - test_customer_classification_blocked
     - test_customer_classification_negative
+    - test_customer_classification_retail
+    - test_customer_classification_professional_eligible
+    - test_customer_classification_professional_elective

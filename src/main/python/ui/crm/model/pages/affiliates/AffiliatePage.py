@@ -13,6 +13,7 @@ import autoit
 import os
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
+
 class AffiliatePage(CRMBasePage):
 
     def add_new_affiliate(self):

@@ -94,6 +94,28 @@ class QuestionnairePage(CRMBasePage):
         Logging().reportDebugStep(self, "Which of the following instruments have you traded before?: " + instrument)
         return QuestionnairePage(self.driver)
 
+    def select_average_frequency(self, answer):
+        sleep(1)
+        item = self.driver.find_element_by_xpath(
+            "//span[@class='item-pandats ng-star-inserted']/span[text()='%s']" % answer)
+        self.driver.execute_script("arguments[0].click();", item)
+        Logging().reportDebugStep(self, "Average frequency of your annual past transactions: " + answer)
+        return QuestionnairePage(self.driver)
+
+    def select_trade_size(self, answer):
+        item = self.driver.find_element_by_xpath(
+            "//span[@class='item-pandats ng-star-inserted']/span[text()='%s']" % answer)
+        self.driver.execute_script("arguments[0].click();", item)
+        Logging().reportDebugStep(self, "Average trade size (volume) of your annual past transactions: " + answer)
+        return QuestionnairePage(self.driver)
+
+    def select_common_level(self, answer):
+        item = self.driver.find_element_by_xpath(
+            "//span[@class='item-pandats ng-star-inserted']/span[text()='%s']" % answer)
+        self.driver.execute_script("arguments[0].click();", item)
+        Logging().reportDebugStep(self, "Common level of leverage used: " + answer)
+        return QuestionnairePage(self.driver)
+
     def select_if_applicable(self, answer):
         item = self.driver.find_element_by_xpath(
             "//span[@class='item-pandats ng-star-inserted']/span[text()='%s']" % answer)

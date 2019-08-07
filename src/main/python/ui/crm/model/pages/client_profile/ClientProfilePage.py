@@ -372,7 +372,6 @@ class ClientProfilePage(CRMBasePage):
         mt4_button = super().wait_load_element("//div[@class='mt4_act_box']")
         sleep(1)
         self.driver.execute_script("arguments[0].click();", mt4_button)
-        # mt4_button.click()
         sleep(5)
         Logging().reportDebugStep(self, "Open MT4 actions")
         MT4DropDown(self.driver).mt4_actions(module)
@@ -513,6 +512,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_confirm_message(self):
+        sleep(0.1)
         confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
         Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text
@@ -781,4 +781,31 @@ class ClientProfilePage(CRMBasePage):
     def verify_clean_questionnaire_btn_visible(self):
         super().wait_load_element("//a[text()='Clean Questionnaire']")
         Logging().reportDebugStep(self, "Clean Questionnaire button is available")
+        return ClientProfilePage(self.driver)
+
+    def verify_clean_questionnaire_btn_not_visible(self):
+        sleep(0.1)
+        super().wait_element_to_be_disappear("//a[text()='Clean Questionnaire']", timeout=3)
+        Logging().reportDebugStep(self, "Clean Questionnaire button is available")
+        return ClientProfilePage(self.driver)
+
+    def click_view_edit_questionnaire_btn(self):
+        edit_questionnaire_btn = super().wait_load_element("//a[text()='View/Edit Questionnaire']")
+        edit_questionnaire_btn.click()
+        Logging().reportDebugStep(self, "Click 'View/Edit Questionnaire' button")
+        return ClientProfilePage(self.driver)
+
+    def set_professional_classification(self, professional_classification):
+        sleep(0.2)
+        professional_classification_list = Select(self.driver.find_element(By.XPATH,
+                                                  "//select[@id='professional_classification']"))
+        professional_classification_list.select_by_visible_text(professional_classification)
+        Logging().reportDebugStep(self, "Set Professional Classification: " + professional_classification)
+        return ClientProfilePage(self.driver)
+
+    def click_save_questionnaire_btn(self):
+        sleep(0.2)
+        save_btn = super().wait_load_element("//*[@id='Questionnaire_save_button']")
+        self.driver.execute_script("arguments[0].click();", save_btn)
+        Logging().reportDebugStep(self, "Click 'Save' Questionnaire button")
         return ClientProfilePage(self.driver)
