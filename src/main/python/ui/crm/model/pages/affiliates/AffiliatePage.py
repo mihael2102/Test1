@@ -50,35 +50,33 @@ class AffiliatePage(CRMBasePage):
 
     def select_allowed_methods(self, method):
         sleep(1)
-        methods_drop_down = super().wait_element_to_be_clickable(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]")
+        methods_drop_down = super().wait_element_to_be_clickable("(//span[text()=' None selected '])[1]")
         sleep(1)
         methods_drop_down.click()
         sleep(1)
         input_methods = super().wait_load_element(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
+            "(//input[@placeholder='Search...'][contains(@class,'button-span')])[1]")
         sleep(1)
         input_methods.send_keys(method)
         sleep(1)
         methods = super().wait_load_element(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]" % method)
+            "//span[contains(text(),'%s')]" % method)
         sleep(1)
         methods.click()
-        Logging().reportDebugStep(self, "Select allowed methods %s" % method)
+        Logging().reportDebugStep(self, "Select allowed methods: %s" % method)
 
     def select_blocked_country(self, country):
         sleep(1)
-        country_drop_down = super().wait_element_to_be_clickable(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]")
+        country_drop_down = super().wait_element_to_be_clickable("//span[text()=' None selected ']")
         country_drop_down.click()
         sleep(1)
         input_country = super().wait_load_element(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[1]/input")
+            "(//input[@placeholder='Search...'][contains(@class,'button-span')])[2]")
         sleep(1)
         input_country.send_keys(country)
         sleep(1)
         countrys = super().wait_load_element(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]" % country)
+            "//span[@class='hovered-option'][contains(text(),'%s')]" % country)
         sleep(1)
         countrys.click()
         Logging().reportDebugStep(self, "Select blocked country %s" % country)
