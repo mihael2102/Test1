@@ -15,6 +15,7 @@ import re
 import time
 from time import sleep
 
+
 class ApiPrecondition(object):
 
     driver = None
