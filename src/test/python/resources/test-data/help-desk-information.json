@@ -25,7 +25,7 @@
     "third_column": "Priority",
     "fourth_column": "Assigned To *",
     "fifth_column": "Status *",
-    "sixth_column": "CA Id",
+    "sixth_column": "CRM Id",
     "seventh_column": "Category *",
     "eighth_column": "Brand",
     "tenth_column": "Description *",
