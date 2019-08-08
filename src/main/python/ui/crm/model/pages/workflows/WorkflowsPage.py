@@ -201,16 +201,14 @@ class WorkflowsPage(CRMBasePage):
 
     def enter_email(self, email):
         sleep(2)
-        clients = self.driver.find_element_by_xpath(
-            "/html/body/bs-modal[8]/div/div/bs-modal-body/div/value-definition/div/div[2]/textarea")
+        clients = self.driver.find_element_by_xpath("(//textarea)[3]")
         clients.send_keys(email)
         Logging().reportDebugStep(self, "Emaer email: " + email)
         return WorkflowsPage(self.driver)
 
     def click_save_value(self):
         sleep(2)
-        btn_next = self.driver.find_element_by_xpath(
-            "/html/body/bs-modal[8]/div/div/bs-modal-footer/div/button[1]")
+        btn_next = self.driver.find_element_by_xpath("(//button[text()='Save '])[3]")
         btn_next.click()
         Logging().reportDebugStep(self, "Click Save")
         return WorkflowsPage(self.driver)
@@ -254,7 +252,7 @@ class WorkflowsPage(CRMBasePage):
         select = Select(self.driver.find_element(By.XPATH,
                                                  "/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-conditions/div[3]/groups-conditions/div[1]/div/group-conditions/field-condition-value[3]/div/div[2]/select"))
         select.select_by_visible_text(name)
-        Logging().reportDebugStep(self, "Select condition " + name)
+        Logging().reportDebugStep(self, "Select condition: " + name)
         return WorkflowsPage(self.driver)
 
     def select_add_task(self, name):
@@ -270,9 +268,9 @@ class WorkflowsPage(CRMBasePage):
 
     def enter_task_title(self, name):
         sleep(2)
-        input = self.driver.find_element_by_xpath("/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[1]/div[2]/input")
+        input = self.driver.find_element_by_xpath("//input[@placeholder='Task Title']")
         input.send_keys(name)
-        Logging().reportDebugStep(self, "Enter task title " + name)
+        Logging().reportDebugStep(self, "Enter task title: " + name)
         return WorkflowsPage(self.driver)
 
     def click_add_field(self):
@@ -284,11 +282,10 @@ class WorkflowsPage(CRMBasePage):
 
     def select_field(self, name):
         sleep(2)
-        module = self.driver.find_element_by_xpath("/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[2]/div[3]/field-value/div/div[1]/select-search/div")
+        module = self.driver.find_element_by_xpath("//span[text()='Select field']")
         module.click()
         sleep(2)
-        clients = self.driver.find_element_by_xpath(
-            "/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[2]/div[3]/field-value/div/div[1]/select-search/div/div[2]/span[1]/input")
+        clients = self.driver.find_element_by_xpath("//span/input[@placeholder='Search...']")
         clients.send_keys(name)
         sleep(3)
         select = self.driver.find_element_by_xpath(
@@ -302,21 +299,22 @@ class WorkflowsPage(CRMBasePage):
 
     def click_enter_value(self):
         sleep(2)
-        btn = self.driver.find_element_by_xpath("/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[2]/div[3]/field-value/div/div[2]/input")
+        btn = self.driver.find_element_by_xpath(
+            "//input[@class='form-control ng-untouched ng-pristine ng-valid ng-star-inserted']")
         btn.click()
         Logging().reportDebugStep(self, "Click enter value")
         return WorkflowsPage(self.driver)
 
     def enter_value(self, name):
         sleep(2)
-        textarea = self.driver.find_element_by_xpath("/html/body/bs-modal[8]/div/div/bs-modal-body/div/value-definition/div/div[2]/textarea")
+        textarea = self.driver.find_element_by_xpath("//textarea[@placeholder='Value']")
         textarea.send_keys(name)
-        Logging().reportDebugStep(self, "Enter value " + name)
+        Logging().reportDebugStep(self, "Enter value: " + name)
         return WorkflowsPage(self.driver)
 
     def click_save_value_task(self):
         sleep(2)
-        btn_save = self.driver.find_element_by_xpath("/html/body/bs-modal[8]/div/div/bs-modal-footer/div/button[1]")
+        btn_save = self.driver.find_element_by_xpath("(//button[text()='Save '])[2]")
         btn_save.click()
         Logging().reportDebugStep(self, "Click Save")
         return WorkflowsPage(self.driver)
@@ -325,12 +323,10 @@ class WorkflowsPage(CRMBasePage):
         sleep(2)
         select = self.driver.find_element_by_xpath("//field-value[2]//div[@class='select-filter']")
         select.click()
-        clients = self.driver.find_element_by_xpath(
-            "/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[2]/div[3]/field-value[2]/div/div[1]/select-search/div/div[2]/span[1]/input")
+        clients = self.driver.find_element_by_xpath("(//input[@placeholder='Search...'])[3]")
         clients.send_keys(name)
         sleep(3)
-        select = self.driver.find_element_by_xpath(
-            "/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[2]/div[3]/field-value[2]/div/div[1]/select-search/div/div[2]/span[text() = ' %s ']" % name)
+        select = self.driver.find_element_by_xpath("(//span[text() =' %s '])[2]" % name)
         try:
             select.click()
         except:
@@ -340,14 +336,14 @@ class WorkflowsPage(CRMBasePage):
 
     def select_country(self, name):
         sleep(2)
-        select = Select(self.driver.find_element(By.XPATH,"/html/body/bs-modal[6]/div/div/bs-modal-body/div/workflow-task/div/div[2]/div[3]/field-value[2]/div/div[2]/select"))
+        select = Select(self.driver.find_element(By.XPATH, "(//select)[4]"))
         select.select_by_visible_text(name)
-        Logging().reportDebugStep(self, "Select condition " + name)
+        Logging().reportDebugStep(self, "Select condition: " + name)
         return WorkflowsPage(self.driver)
 
     def click_save_task(self):
         sleep(2)
-        btn_save = self.driver.find_element_by_xpath("/html/body/bs-modal[6]/div/div/bs-modal-footer/div/button[1]")
+        btn_save = self.driver.find_element_by_xpath("(//button[text()='Save '])[1]")
         btn_save.click()
         Logging().reportDebugStep(self, "Click Save task")
         return WorkflowsPage(self.driver)

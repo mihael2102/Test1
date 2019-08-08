@@ -11,3 +11,4 @@ class UserManagementTest(BaseTest):
 
     def test_create_delete_user(self):
         UserManagementPrecondition(self.driver, self.config).create_delete_user()
+
