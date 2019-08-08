@@ -340,8 +340,12 @@ class WorkflowsPage(CRMBasePage):
 
     def search_workflow_by_name(self, name):
         sleep(2)
-        name_field = super().wait_element_to_be_clickable(
-            "//div[@class='mat-form-field-infix']/input[@placeholder='Search' and @id='mat-input-4']")
+        try:
+            name_field = super().wait_element_to_be_clickable(
+                "//div[@class='mat-form-field-infix']/input[@placeholder='Search' and @id='mat-input-4']")
+        except:
+            name_field = super().wait_element_to_be_clickable(
+                "//div[@class='mat-form-field-infix']/input[@id='mat-input-3']")
         name_field.clear()
         name_field.send_keys(name)
         sleep(2)
