@@ -188,19 +188,19 @@ tests_config:
 #    - test_perform_delete_rule
 #
 ########################################## WORKFLOWS MODULE ##############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
-#  class: WorkflowsModulesTest
-#  tests:
-#    - test_create_workflows
+- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
+  class: WorkflowsModulesTest
+  tests:
+    - test_create_workflows
 #    - test_check_workflow_by_status
 #    - test_check_workflow_by_country
 #    - test_delete_workflow
 #
 ############################################ USER MANAGEMENT ############################################
-- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
-  class: UserManagementTest
-  tests:
-    - test_create_delete_user
+#- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
+#  class: UserManagementTest
+#  tests:
+#    - test_create_delete_user
 #
 ############################################# DOCUMENTS MODULE ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
