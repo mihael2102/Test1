@@ -287,7 +287,7 @@ class MyDashboardPage(CRMBasePage):
             title = super().wait_load_element("/html/body/bs-modal[17]/div/div/div/div[2]/h3")
 
         except:
-            title = super().wait_load_element("/html/body/bs-modal[17]/div/div/div/div[2]/div[1]/div/span/h4")
+            title = super().wait_load_element("//span/h4")
         Logging().reportDebugStep(self, title.text)
         return title.text
 
