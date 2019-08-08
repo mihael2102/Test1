@@ -4,6 +4,13 @@ from dateutil.relativedelta import relativedelta
 
 
 class APIConstants(object):
+    COUNTRY_MX_CRM = "Mexico"
+    COUNTRY_MX = "mx"
+    COUNTRY_CRM_SA = "South Africa"
+    COUNTRY_SA = "za"
+    PARTNER_ID_OI = "22050"
+    PARTNER_ID_KB = "97008"
+    PARTNER_ID_GMO = "51081"
     PARTNER_ID_UFT = "54654"
     PARTNER_ID_EAFX = "10551"
     API_SECRET_KEY = "5fb7b2998ef7c9223cf14b4db93f7a4cbf79c58749def28ebf1032165888c5f5"
@@ -13,6 +20,7 @@ class APIConstants(object):
     LASTNAME = "testAPI"
     PHONE = "3453453"
     STATUS_OK = "ok"
+    STATUS_ERROR = "error"
     COUNTRY_CRM = "Germany"
     PHONE_CRM = "+34 53453"
     REFFERAL = "langref=hebrew"
@@ -24,7 +32,8 @@ class APIConstants(object):
     CHANGE_POSTAL_CODE = "777"
     LEAD_FNAME = "LeadFName"
     LEAD_LNAME = "LeadLName"
-    LEAD_PHONE = "3523233"
+    LEAD_PHONE = str(random.randrange(1, 99999999))
+    LEAD_PHONE2 = str(random.randrange(1, 99999999))
     LEAD_PHONE_CRM = "+352 3233"
     API_filter = "API"
     PAYMENT_DETAILS = "Payment Details"

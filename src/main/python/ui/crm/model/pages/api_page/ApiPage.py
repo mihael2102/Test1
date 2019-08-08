@@ -58,7 +58,6 @@ class ApiPage(CRMBasePage):
             Logging().reportDebugStep(self, "Login token module does not exist")
             return ApiPage(self.driver)
 
-
     def check_read_leads_token(self):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
@@ -111,6 +110,7 @@ class ApiPage(CRMBasePage):
         input = self.driver.find_element(By.XPATH,
                                          "//*[@id='sample-request-param-field-email-Leads-Leads-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.clear()
         input.send_keys(email)
         Logging().reportDebugStep(self, "Enter email: " + email)
         return ApiPage(self.driver)
@@ -120,6 +120,7 @@ class ApiPage(CRMBasePage):
         input = self.driver.find_element(By.XPATH,
                                          "//*[@id='sample-request-param-field-firstName-Leads-Leads-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.clear()
         input.send_keys(fname)
         Logging().reportDebugStep(self, "Enter first name: " + fname)
         return ApiPage(self.driver)
@@ -129,6 +130,7 @@ class ApiPage(CRMBasePage):
         input = self.driver.find_element(By.XPATH,
                                          "//*[@id='sample-request-param-field-lastName-Leads-Leads-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.clear()
         input.send_keys(lname)
         Logging().reportDebugStep(self, "Enter last name: " + lname)
         return ApiPage(self.driver)
@@ -138,6 +140,7 @@ class ApiPage(CRMBasePage):
         input = self.driver.find_element(By.XPATH,
                                          "//*[@id='sample-request-param-field-phone-Leads-Leads-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.clear()
         input.send_keys(phone)
         Logging().reportDebugStep(self, "Enter phone: " + phone)
         return ApiPage(self.driver)

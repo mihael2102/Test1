@@ -42,8 +42,15 @@ class ApiPrecondition(object):
             AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_EAFX)
         elif global_var.current_brand_name == "uft":
             AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_UFT)
+        elif global_var.current_brand_name == "gmo":
+           AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_GMO)
+        elif global_var.current_brand_name == "kbcapitals":
+           AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_KB)
+        elif global_var.current_brand_name == "oinvestsa":
+                AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_OI)
         else:
             AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID)
+
         AffiliatePage(self.driver).open_edit_affiliate()
         selected_methods = AffiliatePage(self.driver).check_selected_methods()
         if "Selected" in selected_methods:
@@ -78,8 +85,15 @@ class ApiPrecondition(object):
             ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID_EAFX)
         elif global_var.current_brand_name == "uft":
             ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID_UFT)
+        elif global_var.current_brand_name == "gmo":
+            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID_GMO)
+        elif global_var.current_brand_name == "kbcapitals":
+            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID_KB)
+        elif global_var.current_brand_name == "oinvestsa":
+            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID_OI)
         else:
             ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID)
+
         ApiPage(self.driver).generate_time()
         ApiPage(self.driver).generate_accessKey()
         ApiPage(self.driver).send_authorization()
@@ -94,7 +108,12 @@ class ApiPrecondition(object):
         ApiPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
         ApiPage(self.driver).enter_password(APIConstants.PASSWORD)
-        ApiPage(self.driver).enter_country(APIConstants.COUNTRY)
+        if global_var.current_brand_name == "oinvestsa":
+            ApiPage(self.driver).enter_country(APIConstants.COUNTRY_SA)
+        elif global_var.current_brand_name == "itrader_global":
+            ApiPage(self.driver).enter_country(APIConstants.COUNTRY_MX)
+        else:
+            ApiPage(self.driver).enter_country(APIConstants.COUNTRY)
         ApiPage(self.driver).enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME])
         ApiPage(self.driver).enter_lastName(APIConstants.LASTNAME)
@@ -104,7 +123,7 @@ class ApiPrecondition(object):
 
         check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
         count = 0
-        while(APIConstants.STATUS_OK not in check_create_customer_token):
+        while APIConstants.STATUS_OK not in check_create_customer_token:
             sleep(1)
             check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
             count += 1
