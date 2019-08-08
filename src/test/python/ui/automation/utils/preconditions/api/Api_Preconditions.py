@@ -30,13 +30,14 @@ class ApiPrecondition(object):
 
     def autorization_process(self):
         """ Login to CRM """
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(
-            AffiliateModuleConstants.AFFILIATES_MODULE)
+        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list\
+                (AffiliateModuleConstants.AFFILIATES_MODULE)
 
         if global_var.current_brand_name == "gmo":
             AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_GMO)
