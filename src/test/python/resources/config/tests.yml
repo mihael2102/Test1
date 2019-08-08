@@ -158,10 +158,10 @@ tests_config:
 #    - test_crm_edit_trading_account  # edit trading account
 #
 ############################################## AFFILIATES MODULE ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
-#  class: AffiliateModule
-#  tests:
-#    - test_create_delete_affiliate
+- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
+  class: AffiliateModule
+  tests:
+    - test_create_delete_affiliate
 #
 ############################################# FINANCIAL TRANSACTIONS #######################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
@@ -188,10 +188,10 @@ tests_config:
 #    - test_perform_delete_rule
 #
 ########################################## WORKFLOWS MODULE ##############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
-  class: WorkflowsModulesTest
-  tests:
-    - test_create_workflows
+#- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
+#  class: WorkflowsModulesTest
+#  tests:
+#    - test_create_workflows
 #    - test_check_workflow_by_status
 #    - test_check_workflow_by_country
 #    - test_delete_workflow
