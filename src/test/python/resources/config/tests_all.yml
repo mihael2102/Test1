@@ -204,7 +204,7 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
   class: UserManagementTest
   tests:
-    - test_create_user
+    - test_create_delete_user
 
 #########################################DOCUMENTS MODULE###############################################
 - module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
