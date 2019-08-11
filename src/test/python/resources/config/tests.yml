@@ -66,11 +66,11 @@ tests_config:
 #    - test_clients_mass_assign
 #
 ###################################### TASKS ##################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-  class: AddEventTaskModule
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+#  class: AddEventTaskModule
+#  tests:
 #    - test_email_icon
-    - test_sms_icon
+#    - test_sms_icon
 #    - test_mass_edit_tasks
 #    - test_searching_by_columns
 #    - test_sorting_columns
