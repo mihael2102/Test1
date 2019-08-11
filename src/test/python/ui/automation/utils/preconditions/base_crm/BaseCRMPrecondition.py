@@ -30,7 +30,7 @@ class BaseCRMPrecondition(object):
         current_vtiger_version = CRMHomePage(self.driver).get_current_version(CRMConstants.MODULE_VTIGER)
         prev_vtiger_version = CRMHomePage(self.driver).check_previous_version(brand, CRMConstants.MODULE_VTIGER)
         day = CRMHomePage(self.driver).get_day_of_week()
-        if day == 0:
+        if day == 6:
             assert int(current_vtiger_version) == int(prev_vtiger_version) + 1
             new_version = int(prev_vtiger_version) + 1
             CRMHomePage(self.driver).update_version_in_file(new_version,
@@ -42,14 +42,15 @@ class BaseCRMPrecondition(object):
         # check version in laravel module
         CRMHomePage(self.driver).open_task_module()
         brand = global_var.current_brand_name
+        brand_file = brand + "_laravel"
         current_laravel_version = CRMHomePage(self.driver).get_current_version(CRMConstants.MODULE_LARAVEL)
-        prev_laravel_version = CRMHomePage(self.driver).check_previous_version(brand, CRMConstants.MODULE_LARAVEL)
+        prev_laravel_version = CRMHomePage(self.driver).check_previous_version(brand_file, CRMConstants.MODULE_LARAVEL)
         day = CRMHomePage(self.driver).get_day_of_week()
-        if day == 0:
+        if day == 6:
             assert int(current_laravel_version) == int(prev_laravel_version) + 1
             new_version = int(prev_laravel_version) + 1
             CRMHomePage(self.driver).update_version_in_file(new_version,
                                                             prev_laravel_version,
-                                                            brand)
+                                                            brand_file)
         else:
             assert int(current_laravel_version) == int(prev_laravel_version)
