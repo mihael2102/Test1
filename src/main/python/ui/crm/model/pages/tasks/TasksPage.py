@@ -159,11 +159,11 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def check_pop_up_send_sms(self):
-        sleep(5)
+        sleep(1)
         try:
             title = super().wait_load_element("//span/h4")
         except:
-            title = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[2]/h3")
+            title = super().wait_load_element("//div[@class='modal-body new-modal-body']/h3")
         Logging().reportDebugStep(self, title.text)
         return title.text
 
