@@ -1,7 +1,7 @@
 brands:
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 
 #- name: ptbanc
 #  config_file: ptbanc.yml
