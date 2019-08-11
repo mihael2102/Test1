@@ -220,10 +220,7 @@ class CRMHomePage(CRMBasePage):
         path = "C:/version_of/%s.txt" % brand
         f = open(path, "r")  # name of file open in read mode
         lines = f.readlines()  # split file into lines
-        if module == "vtiger":
-            prev_version = lines[0]
-        else:
-            prev_version = lines[1]
+        prev_version = lines[0]
         Logging().reportDebugStep(self, "The previous " + module + " sprint version is: " + prev_version)
         return prev_version
 
