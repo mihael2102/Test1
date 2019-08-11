@@ -193,10 +193,11 @@ class AffiliatePage(CRMBasePage):
         copy_button = super().wait_element_to_be_clickable("//button[contains(text(), 'Copy')]")
         self.driver.execute_script("arguments[0].click();", copy_button)
         sleep(3)
-        key = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-body/div/span").text
-        button_ok = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-footer/div/button")
-        button_ok.click()
+        key = super().wait_load_element("//bs-modal-body/div/span").text
         Logging().reportDebugStep(self, "Copy key")
+        button_ok = super().wait_load_element("//button[text()='OK']")
+        button_ok.click()
+        Logging().reportDebugStep(self, "Click OK")
         return key
 
     def get_link_api(self):

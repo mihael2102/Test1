@@ -40,16 +40,16 @@ class BaseCRMPrecondition(object):
             assert int(current_vtiger_version) == int(prev_vtiger_version)
 
         # check version in laravel module
-        # CRMHomePage(self.driver).open_task_module()
-        # brand = global_var.current_brand_name
-        # current_laravel_version = CRMHomePage(self.driver).get_current_version(CRMConstants.MODULE_LARAVEL)
-        # prev_laravel_version = CRMHomePage(self.driver).check_previous_version(brand, CRMConstants.MODULE_LARAVEL)
-        # day = CRMHomePage(self.driver).get_day_of_week()
-        # if day == 6:
-        #     assert int(current_laravel_version) == int(prev_laravel_version) + 1
-        #     new_version = int(prev_laravel_version) + 1
-        #     CRMHomePage(self.driver).update_version_in_file(new_version,
-        #                                                     prev_laravel_version,
-        #                                                     brand)
-        # else:
-        #     assert int(current_laravel_version) == int(prev_laravel_version)
+        CRMHomePage(self.driver).open_task_module()
+        brand = global_var.current_brand_name
+        current_laravel_version = CRMHomePage(self.driver).get_current_version(CRMConstants.MODULE_LARAVEL)
+        prev_laravel_version = CRMHomePage(self.driver).check_previous_version(brand, CRMConstants.MODULE_LARAVEL)
+        day = CRMHomePage(self.driver).get_day_of_week()
+        if day == 6:
+            assert int(current_laravel_version) == int(prev_laravel_version) + 1
+            new_version = int(prev_laravel_version) + 1
+            CRMHomePage(self.driver).update_version_in_file(new_version,
+                                                            prev_laravel_version,
+                                                            brand)
+        else:
+            assert int(current_laravel_version) == int(prev_laravel_version)
