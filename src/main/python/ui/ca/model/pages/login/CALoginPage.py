@@ -343,6 +343,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def close_payment_popup(self):
+        sleep(0.2)
         close_btn = super().wait_element_to_be_clickable("//div[@class='close-pandats cmicon-close4 ng-star-inserted']")
         close_btn.click()
         Logging().reportDebugStep(self, "Close the pop up 'Choose a payment method'")

@@ -303,18 +303,20 @@ class Login_CA_Precondition(object):
                                                        TestDataConstants.FILTER))
 
         sleep(2)
-        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+        ClientsPage(self.driver)\
+            .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
         sleep(2)
         assert ClientsPage(self.driver).get_client_first_name() == self.load_lead_from_config(
-                                                                TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
-        assert ClientsPage(self.driver).get_client_last_name() == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                                LeadsModuleConstants.FIRST_LAST_NAME]
+                                                        TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+        assert ClientsPage(self.driver).get_client_last_name() == self.load_lead_from_config(
+            TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]
         if (global_var.current_brand_name != "newrichmarkets") \
                 and (global_var.current_brand_name != "brokerz") \
                 and (global_var.current_brand_name != "kontofx") \
                 and (global_var.current_brand_name != "q8") \
-                and (global_var.current_brand_name != "gigafx"):
+                and (global_var.current_brand_name != "gigafx") \
+                and (global_var.current_brand_name != "trade99"):
                     assert ClientsPage(self.driver).get_client_phone() == '+49 7777 777'
 
         if global_var.current_brand_name != "q8":
