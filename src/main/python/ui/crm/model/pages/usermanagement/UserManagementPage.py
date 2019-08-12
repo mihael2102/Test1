@@ -99,14 +99,18 @@ class UserManagementPage(CRMBasePage):
     def click_save_button_user_module(self):
         save_button = super().wait_element_to_be_clickable("//button[contains(text(),'Save')]")
         save_button.click()
+        sleep(0.5)
         self.wait_loading_to_finish(35)
         Logging().reportDebugStep(self, "The Save button was clicked")
         return UserManagementPage(self.driver)
 
     def click_remove_filter_btn(self):
-        sleep(1)
-        remove_filter_btn = super().wait_load_element("//button[@id='clearfilteringbutton']/i")
-        remove_filter_btn.click()
+        sleep(3)
+        remove_filter_btn = super().wait_element_to_be_clickable("//button[@id='clearfilteringbutton']/i", timeout=35)
+        try:
+            remove_filter_btn.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", remove_filter_btn)
         Logging().reportDebugStep(self, "The Remove Filter button was clicked")
         return UserManagementPage(self.driver)
 
