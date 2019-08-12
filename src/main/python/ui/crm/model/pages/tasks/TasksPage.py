@@ -403,9 +403,9 @@ class TasksPage(CRMBasePage):
     def click_send(self):
         self.driver.switch_to.default_content()
         sleep(10)
-        click_send = super().wait_load_element("/html/body/bs-modal[7]/div/div/div/div[3]/span/button[4]")
+        click_send = super().wait_load_element("//button[text()=' Send ']")
         click_send.click()
-        self.wait_element_to_be_disappear("/html/body/bs-modal[7]/div/div/div/div[3]/span/button[4]", timeout=35)
+        self.wait_element_to_be_disappear("//button[text()=' Send ']", timeout=35)
         Logging().reportDebugStep(self, "Click Send")
         return TasksPage(self.driver)
 
