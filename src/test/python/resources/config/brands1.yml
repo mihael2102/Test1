@@ -12,8 +12,8 @@ brands:
 #- name: kontofx
 #  config_file: kontofx.yml
 #
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: brokerz
+  config_file: brokerz.yml
 #
 #- name: gigafx
 #  config_file: gigafx.yml

@@ -168,12 +168,7 @@ class CRMHomePage(CRMBasePage):
 
     def select_user_management(self):
         sleep(5)
-        if global_var.current_brand_name == "trade99":
-            user_settings = super().wait_element_to_be_clickable(
-                "/html/body/table[1]/tbody/tr/td[3]/table/tbody/tr/td[4]/img")
-        else:
-            user_settings = super().wait_element_to_be_clickable(
-                "/html/body/table[1]/tbody/tr/td[3]/table/tbody/tr/td[3]/img")
+        user_settings = super().wait_element_to_be_clickable("//img[@src='themes/panda/images/mainSettings_white.png']")
         user_settings.click()
         user_management = super().wait_element_to_be_clickable("//a[contains(text(), 'User Management')]")
         try:
