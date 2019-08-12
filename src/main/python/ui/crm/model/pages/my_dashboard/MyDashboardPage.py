@@ -284,10 +284,9 @@ class MyDashboardPage(CRMBasePage):
     def check_pop_up_send_sms(self):
         sleep(1)
         try:
-            title = super().wait_load_element("//div[@class='modal-body new-modal-body']/h3")
-
-        except:
             title = super().wait_load_element("//span/h4")
+        except:
+            title = super().wait_load_element("//div[@class='modal-body new-modal-body']/h3")
         Logging().reportDebugStep(self, title.text)
         return title.text
 
@@ -334,7 +333,7 @@ class MyDashboardPage(CRMBasePage):
     def click_send(self):
         self.driver.switch_to.default_content()
         sleep(10)
-        click_send = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[3]/span/button[4]")
+        click_send = super().wait_load_element("(//button[text()=' Send '])[2]")
         click_send.click()
         Logging().reportDebugStep(self, "Click Send")
         return MyDashboardPage(self.driver)
