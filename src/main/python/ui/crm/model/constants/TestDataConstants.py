@@ -1,5 +1,6 @@
 from datetime import date
 
+
 class TestDataConstants(object):
     FILTER_NAME_CLIENT = "TestFilterClientsModule" + str(date.today())
     FILTER_NAME_DOCUMENTS = "TestFilterDocumentsModule" + str(date.today())

@@ -72,20 +72,26 @@ class MyDashboardPrecondition(object):
         assert type == TaskModuleConstants.SECOND_EVENT_TYPE
 
     def email_icon(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
-        CRMHomePage(self.driver).open_more_list_modules() \
+        CRMHomePage(self.driver)\
+            .open_more_list_modules() \
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
-        MyDashboardPage(self.driver).select_show_all_tab()
+        MyDashboardPage(self.driver)\
+            .select_show_all_tab()
         if global_var.current_brand_name == "kayafx":
-            MyDashboardPage(self.driver).enter_account_name(CRMConstants.TEST_PANDA)
+            MyDashboardPage(self.driver)\
+                .enter_account_name(CRMConstants.TEST_PANDA)
         else:
-            MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
+            MyDashboardPage(self.driver)\
+                .enter_account_name(CRMConstants.TESTQA)
+        subject = global_var.current_brand_name + CRMConstants.SUBJECT_TASK_MAIL
         account_name = MyDashboardPage(self.driver).get_account_name()
         MyDashboardPage(self.driver).open_email_actions_section()
-        MyDashboardPage(self.driver).enter_subject_mail(CRMConstants.SUBJECT_TASK_MAIL)
+        MyDashboardPage(self.driver).enter_subject_mail(subject)
         MyDashboardPage(self.driver).enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
         MyDashboardPage(self.driver).enter_cc_mail(CRMConstants.CC_EMAIL)
         MyDashboardPage(self.driver).enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
@@ -94,8 +100,8 @@ class MyDashboardPrecondition(object):
             sleep(15)
         else:
             sleep(10)
-        msg = TasksPage(self.driver).check_email(CRMConstants.SUBJECT_TASK_MAIL)
-        assert CRMConstants.SUBJECT_TASK_MAIL in msg
+        msg = TasksPage(self.driver).check_email(subject)
+        assert subject in msg
 
     def sms_icon(self):
         CRMLoginPage(self.driver)\
