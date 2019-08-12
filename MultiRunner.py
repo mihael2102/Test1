@@ -121,10 +121,10 @@ if __name__ == "__main__":
         # Form input list where each parameter is filename of TestSuite file
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2,path_to_brands_suite_3,path_to_brands_suite_4,path_to_brands_suite_5,path_to_brands_suite_6,
         #               path_to_brands_suite_7,path_to_brands_suite_8,path_to_brands_suite_9,path_to_brands_suite_10,path_to_brands_suite_11,path_to_brands_suite_12]
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2]
         # input_list = [path_to_brands_suite_1]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=3)
+        pool = multiprocessing.Pool(processes=2)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)

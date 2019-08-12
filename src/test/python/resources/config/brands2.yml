@@ -1,4 +1,4 @@
 brands:
 
-- name: capitalmarketsbanc
-  config_file: capitalmarketsbanc.yml
+- name: itrader
+  config_file: itrader.yml
