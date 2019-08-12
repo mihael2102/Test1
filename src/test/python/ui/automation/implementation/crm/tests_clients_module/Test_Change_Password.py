@@ -37,9 +37,6 @@ class ChangePasswordTestCRM(BaseTest):
 
         self.assertEqual(message_confirm, CRMConstants.CRM_CLIENT_AREA_PASSWORD_CHANGE)
 
-        # check the new password
-        crm_client_profile.refresh_page()
-
     def test_change_mt4_password_from_crm(self):
         crm_client_profile = CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \

@@ -901,20 +901,20 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_confirm_message_send_mail(self):
-        #for_old_forex
+        sleep(0.1)
         confirm_message = super().wait_load_element("//*[contains(text(),'Mail was sent successfully')]")
         Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text
 
     def get_confirm_message(self):
-        #for_old_forex
+        sleep(0.1)
         confirm_message = super().wait_load_element\
             ("//div[@class='modal-content']//div[@class='bootstrap-dialog-title']")
         Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text
 
     def get_confirm_message_body(self):
-        #for_old_forex
+        sleep(0.1)
         confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
         Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
         return confirm_message.text
