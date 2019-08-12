@@ -159,11 +159,11 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def check_pop_up_send_sms(self):
-        sleep(5)
+        sleep(1)
         try:
             title = super().wait_load_element("//span/h4")
         except:
-            title = super().wait_load_element("/html/body/bs-modal[12]/div/div/div/div[2]/h3")
+            title = super().wait_load_element("//div[@class='modal-body new-modal-body']/h3")
         Logging().reportDebugStep(self, title.text)
         return title.text
 
@@ -403,9 +403,9 @@ class TasksPage(CRMBasePage):
     def click_send(self):
         self.driver.switch_to.default_content()
         sleep(10)
-        click_send = super().wait_load_element("/html/body/bs-modal[7]/div/div/div/div[3]/span/button[4]")
+        click_send = super().wait_load_element("//button[text()=' Send ']")
         click_send.click()
-        self.wait_element_to_be_disappear("/html/body/bs-modal[7]/div/div/div/div[3]/span/button[4]", timeout=35)
+        self.wait_element_to_be_disappear("//button[text()=' Send ']", timeout=35)
         Logging().reportDebugStep(self, "Click Send")
         return TasksPage(self.driver)
 

@@ -67,16 +67,22 @@ class EventPrecondition(object):
         assert mail_subject in msg
 
     def test_sms_icon(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
-        task_module = CRMHomePage(self.driver).open_task_module()
-        task_module.open_show_all_tab()
-        task_module.search_account_name(CRMConstants.TESTQA)
+        task_module = CRMHomePage(self.driver)\
+            .open_task_module()
+        task_module\
+            .open_show_all_tab()
+        task_module\
+            .search_account_name(CRMConstants.TESTQA)
         sleep(2)
-        task_module.open_sms_actions_section()
-        title = task_module.check_pop_up_send_sms()
+        task_module\
+            .open_sms_actions_section()
+        title = task_module\
+            .check_pop_up_send_sms()
 
         # Check, SMS pop up is opened. Else: Check, that appear message "There are no phones"
         if title:
