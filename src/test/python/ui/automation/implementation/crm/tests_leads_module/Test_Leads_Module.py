@@ -112,51 +112,69 @@ class LeadModuleTest(BaseTest):
 
     def autorization_process(self):
         """ Login to CRM """
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(
-            AffiliateModuleConstants.AFFILIATES_MODULE)
+        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules()\
+            .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
 
+        AffiliatePage(self.driver)\
+            .search_by_partner_id(APIConstants.PARTNER_ID)
 
-        AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID)
-
-        AffiliatePage(self.driver).open_edit_affiliate()
-        selected_methods = AffiliatePage(self.driver).check_selected_methods()
+        AffiliatePage(self.driver)\
+            .open_edit_affiliate()
+        selected_methods = AffiliatePage(self.driver)\
+            .check_selected_methods()
         if "Selected" in selected_methods:
-            AffiliatePage(self.driver).add_all_methods()
-            selected_methods_new = AffiliatePage(self.driver).check_selected_methods()
+            AffiliatePage(self.driver)\
+                .add_all_methods()
+            selected_methods_new = AffiliatePage(self.driver)\
+                .check_selected_methods()
             if "None selected" in selected_methods_new:
-                AffiliatePage(self.driver).add_all_methods()
+                AffiliatePage(self.driver)\
+                    .add_all_methods()
         else:
-            AffiliatePage(self.driver).add_all_methods()
+            AffiliatePage(self.driver)\
+                .add_all_methods()
 
-        selected_countries = AffiliatePage(self.driver).check_selected_countries()
+        selected_countries = AffiliatePage(self.driver)\
+            .check_selected_countries()
         if "Selected" in selected_countries:
-            AffiliatePage(self.driver).add_none_selected_countries()
-            selected_countries_new = AffiliatePage(self.driver).check_selected_countries()
+            AffiliatePage(self.driver)\
+                .add_none_selected_countries()
+            selected_countries_new = AffiliatePage(self.driver)\
+                .check_selected_countries()
             if "None selected" in selected_countries_new:
-                AffiliatePage(self.driver).click_submit()
+                AffiliatePage(self.driver)\
+                    .click_submit()
             else:
-                AffiliatePage(self.driver).add_none_selected_countries()
-                AffiliatePage(self.driver).click_submit()
+                AffiliatePage(self.driver)\
+                    .add_none_selected_countries()
+                AffiliatePage(self.driver)\
+                    .click_submit()
         else:
-            AffiliatePage(self.driver).click_submit()
+            AffiliatePage(self.driver)\
+                .click_submit()
 
-        secret_key = AffiliatePage(self.driver).copy_secret_key()
+        secret_key = AffiliatePage(self.driver)\
+            .copy_secret_key()
 
-        api = affiliate_list_view_page.get_link_api()
-        CRMLoginPage(self.driver).open_first_tab_page(api)
-        ApiPage(self.driver).enter_secret_key(secret_key)
-        ApiPage(self.driver).authorization_module()
-        ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID)
-
-        ApiPage(self.driver).generate_time()
-        ApiPage(self.driver).generate_accessKey()
-        ApiPage(self.driver).send_authorization()
-        check_token = ApiPage(self.driver).check_token()
+        api = affiliate_list_view_page\
+            .get_link_api()
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(api)
+        ApiPage(self.driver)\
+            .enter_secret_key(secret_key)\
+            .authorization_module()\
+            .input_partner_id(APIConstants.PARTNER_ID)\
+            .generate_time()\
+            .generate_accessKey()\
+            .send_authorization()
+        check_token = ApiPage(self.driver)\
+            .check_token()
         time.sleep(10)
         assert APIConstants.STATUS_OK in check_token
 

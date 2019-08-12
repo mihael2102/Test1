@@ -116,7 +116,7 @@ class CRMHomePage(CRMBasePage):
 
     def select_my_dashboard_module_more_list(self, module):
         try:
-            module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+            module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module, timeout=10)
             module_element.click()
             self.wait_crm_loading_to_finish_tasks(55)
             Logging().reportDebugStep(self, "The My Dashboard module was opened")

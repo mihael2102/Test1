@@ -146,17 +146,23 @@ class WorkflowsPrecondition(object):
         assert actual_address == WorkflowsConstants.TEST_ADDRESS
 
     def delete_workflow(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        CRMHomePage(self.driver).open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
-        CRMConfigurationPage(self.driver).check_workflows_loaded()
-        name_workflow = WorkflowsPage(self.driver).check_name_workflow()
+        CRMHomePage(self.driver)\
+            .open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        CRMConfigurationPage(self.driver)\
+            .check_workflows_loaded()
+        name_workflow = WorkflowsPage(self.driver)\
+            .check_name_workflow()
         assert name_workflow == WorkflowsConstants.NAME_WORKFLOW
-        WorkflowsPage(self.driver).delete_workflow()\
-                                  .confirmation_delete_workflow()
+        WorkflowsPage(self.driver)\
+            .delete_workflow()\
+            .confirmation_delete_workflow()
         # CRMHomePage(self.driver).refresh_page()
-        name_workflow = WorkflowsPage(self.driver).check_name_workflow()
+        name_workflow = WorkflowsPage(self.driver)\
+            .check_name_workflow()
         assert name_workflow != WorkflowsConstants.NAME_WORKFLOW

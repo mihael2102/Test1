@@ -282,9 +282,9 @@ class MyDashboardPage(CRMBasePage):
         return account_status.text
 
     def check_pop_up_send_sms(self):
-        sleep(5)
+        sleep(1)
         try:
-            title = super().wait_load_element("/html/body/bs-modal[17]/div/div/div/div[2]/h3")
+            title = super().wait_load_element("//div[@class='modal-body new-modal-body']/h3")
 
         except:
             title = super().wait_load_element("//span/h4")
