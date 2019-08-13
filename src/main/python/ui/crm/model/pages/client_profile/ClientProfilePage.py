@@ -15,8 +15,12 @@ from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsInformationPage import \
     TradingAccountsInformationPage
-from src.main.python.utils.logs.Loging import Logging
 from selenium.webdriver.support.select import Select
+from src.main.python.utils.logs.Loging import Logging
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.common.keys import Keys
 
 
 class ClientProfilePage(CRMBasePage):

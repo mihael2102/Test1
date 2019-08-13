@@ -22,6 +22,10 @@ from src.main.python.ui.crm.model.modules.user_management.UserManagement import 
 from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsPage import TradingAccountsPage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
+from selenium.common.exceptions import TimeoutException
+from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from selenium.common.exceptions import NoSuchElementException
 
 class CRMHomePage(CRMBasePage):
 
@@ -138,3 +142,36 @@ class CRMHomePage(CRMBasePage):
         home_page_element.click()
         Logging().reportDebugStep(self, "The client module was opened")
         return TradingAccountsPage(self.driver)
+
+    def open_crm_configuration(self, module):
+        try:
+            module_element = self.driver.find_element_by_xpath("//a[contains(text(),'%s')]" % module)
+            self.driver.execute_script("arguments[0].click();", module_element)
+            Logging().reportDebugStep(self, "The CRM Configuration module was opened")
+        except TimeoutException:
+            Logging().reportDebugStep(self, "CRM Configuration module does not exist")
+        return AuditLogsPage(self.driver)
+
+    def select_user_management(self):
+        sleep(5)
+        user_settings = super().wait_element_to_be_clickable("//img[@src='themes/panda/images/mainSettings_white.png']")
+        user_settings.click()
+        user_management = super().wait_element_to_be_clickable("//a[contains(text(), 'User Management')]")
+        try:
+            user_management.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", user_management)
+        Logging().reportDebugStep(self, "Go to User Management")
+        return UserManagementPage(self.driver)
+
+    def select_dashboard_module_more_list(self, module):
+        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+        module_element.click()
+        Logging().reportDebugStep(self, "Dashboard  module was opened")
+        return DashboardPage(self.driver)
+
+    def select_leaderboard_module_more_list(self, module):
+        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+        module_element.click()
+        Logging().reportDebugStep(self, "Dashboard  module was opened")
+        return LeaderboardPage(self.driver)
