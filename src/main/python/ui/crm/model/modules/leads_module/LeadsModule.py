@@ -452,7 +452,7 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def perform_searching_lead_module(self, first_name, last_name, email, assigned_to, tittle, lead_source, lead_status,
-                                         language):
+                                      language):
         self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
         self.enter_first_name(first_name)
         self.enter_last_name(last_name)

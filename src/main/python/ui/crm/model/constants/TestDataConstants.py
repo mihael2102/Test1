@@ -91,6 +91,10 @@ class TestDataConstants(object):
     TRADING_LEVERAGE_LIVE_1_200 = "trading_account_live_1_200"
     DOCUMENT = "document"
     DOCUMENT_TYPE = "document_type"
+    DOCUMENT_TYPE1 = "Passport"
+    DOCUMENT_STATUS = "Approved"
+    DOCUMENT_SUCCESSFUL_MESSAGE = "Document saved successfully"
+    DOCUMENT_STATUS1 = "Pending"
     CLIENTS_FILTER_NAME = "TestFilterClientsModule" + str(date.today())
     DOCUMENTS_FILTER_NAME = "TestFilterDocumentsModule" + str(date.today())
     LEADS_FILTER_NAME = "TestFilterLeadsModule" + str(date.today())
