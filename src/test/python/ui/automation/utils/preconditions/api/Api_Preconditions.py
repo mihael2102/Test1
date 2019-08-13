@@ -15,6 +15,7 @@ import re
 import time
 from time import sleep
 
+
 class ApiPrecondition(object):
 
     driver = None
@@ -36,8 +37,8 @@ class ApiPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list\
-                                              (AffiliateModuleConstants.AFFILIATES_MODULE)
+        affiliate_list_view_page = CRMHomePage(self.driver)\
+            .open_more_list_modules().select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
 
         if global_var.current_brand_name == "gmo":
             AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_GMO)
@@ -57,7 +58,6 @@ class ApiPrecondition(object):
                 AffiliatePage(self.driver).add_all_methods()
         else:
             AffiliatePage(self.driver).add_all_methods()
-
 
         selected_countries = AffiliatePage(self.driver).check_selected_countries()
         if "Selected" in selected_countries:
@@ -93,8 +93,64 @@ class ApiPrecondition(object):
         time.sleep(10)
         assert APIConstants.STATUS_OK in check_token
 
+    def autorization_process_short(self):
+        """ Login to CRM """
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        affiliate_list_view_page = CRMHomePage(self.driver)\
+            .open_more_list_modules()\
+            .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
+
+        if global_var.current_brand_name == "gmo":
+            AffiliatePage(self.driver)\
+                .search_by_partner_id(APIConstants.PARTNER_ID_GMO)
+        elif global_var.current_brand_name == "kbcapitals":
+            AffiliatePage(self.driver)\
+                .search_by_partner_id(APIConstants.PARTNER_ID_KB)
+        elif global_var.current_brand_name == "oinvestsa":
+            AffiliatePage(self.driver)\
+                .search_by_partner_id(APIConstants.PARTNER_ID_OI)
+        else:
+            AffiliatePage(self.driver)\
+                .search_by_partner_id(APIConstants.PARTNER_ID)
+
+        secret_key = AffiliatePage(self.driver)\
+            .copy_secret_key()
+
+        api = affiliate_list_view_page\
+            .get_link_api()
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(api)
+        ApiPage(self.driver)\
+            .enter_secret_key(secret_key)\
+            .authorization_module()
+        if global_var.current_brand_name == "gmo":
+            ApiPage(self.driver)\
+                .input_partner_id(APIConstants.PARTNER_ID_GMO)
+        elif global_var.current_brand_name == "kbcapitals":
+            ApiPage(self.driver)\
+                .input_partner_id(APIConstants.PARTNER_ID_KB)
+        elif global_var.current_brand_name == "oinvestsa":
+            ApiPage(self.driver)\
+                .input_partner_id(APIConstants.PARTNER_ID_OI)
+        else:
+            ApiPage(self.driver)\
+                .input_partner_id(APIConstants.PARTNER_ID)
+
+        ApiPage(self.driver)\
+            .generate_time()\
+            .generate_accessKey()\
+            .send_authorization()
+        check_token = ApiPage(self.driver).check_token()
+        time.sleep(1)
+        assert APIConstants.STATUS_OK in check_token
+
     def test_create_new_customer(self):
-        self.autorization_process()
+        self.autorization_process_short()
         ApiPage(self.driver).create_customer_module()
         ApiPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
@@ -115,7 +171,7 @@ class ApiPrecondition(object):
         check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
         sleep(3)
         count = 0
-        while (APIConstants.STATUS_OK  not in check_create_customer_token):
+        while APIConstants.STATUS_OK not in check_create_customer_token:
             sleep(2)
             check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
             count += 1
@@ -155,9 +211,8 @@ class ApiPrecondition(object):
                 global_var.current_brand_name != "gmo":
             assert APIConstants.REFFERAL in refferal
 
-
     def test_read_customer_details(self):
-        self.autorization_process()
+        self.autorization_process_short()
         ApiPage(self.driver).read_customer_module()
         ApiPage(self.driver).enter_email_for_read_customer(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
@@ -179,9 +234,8 @@ class ApiPrecondition(object):
         assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME] in token
 
-
     def test_read_customers_details(self):
-        self.autorization_process()
+        self.autorization_process_short()
         ApiPage(self.driver).read_customers_module()
         ApiPage(self.driver).enter_page(APIConstants.PAGE)
         ApiPage(self.driver).enter_limit(APIConstants.LIMIT)
@@ -201,7 +255,7 @@ class ApiPrecondition(object):
         # assert client5 in token
 
     def test_update_customer(self):
-        self.autorization_process()
+        self.autorization_process_short()
         ApiPage(self.driver).update_customer_module()
         ApiPage(self.driver).enter_email_for_update(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
@@ -234,7 +288,7 @@ class ApiPrecondition(object):
         assert client_postalCode == APIConstants.CHANGE_POSTAL_CODE
 
     def test_create_lead(self):
-        self.autorization_process()
+        self.autorization_process_short()
         ApiPage(self.driver).create_lead_module()
         ApiPage(self.driver).enter_email_lead(
             self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL])
@@ -253,7 +307,7 @@ class ApiPrecondition(object):
             ApiPage(self.driver).enter_phone_lead(APIConstants.LEAD_PHONE2)
             ApiPage(self.driver).send_create_lead()
             token = ApiPage(self.driver).check_create_lead_token()
-            count1 +=1
+            count1 += 1
             if count1 == 5:
                 break
         count = 0
@@ -295,10 +349,8 @@ class ApiPrecondition(object):
                 expected_phone = APIConstants.LEAD_PHONE2
                 assert actual_phone == expected_phone
 
-
     def test_read_leads(self):
-
-        self.autorization_process()
+        self.autorization_process_short()
         ApiPage(self.driver).read_leads_module()
         ApiPage(self.driver).enter_leads_page(APIConstants.PAGE)
         ApiPage(self.driver).enter_leads_limit(APIConstants.LIMIT)
@@ -323,8 +375,7 @@ class ApiPrecondition(object):
         # assert lead5 in token
 
     def login_token(self):
-
-        self.autorization_process()
+        self.autorization_process_short()
         ApiPage(self.driver).login_token_module()
         ApiPage(self.driver).enter_email_for_login_token(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL])
