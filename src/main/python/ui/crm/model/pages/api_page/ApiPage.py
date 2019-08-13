@@ -26,7 +26,7 @@ class ApiPage(CRMBasePage):
         sleep(1)
         check_token = super().wait_load_element(
             "//*[@id='api-System-LoginToken-0.0.0']/form/fieldset/div[5]/pre/code", timeout=35).text
-        Logging().reportDebugStep(self, "Check login token")
+        Logging().reportDebugStep(self, "Check login token: " + check_token)
         return check_token
 
     def send_login_token(self):
@@ -62,7 +62,7 @@ class ApiPage(CRMBasePage):
         sleep(1)
         check_token = super().wait_load_element(
             "//*[@id='api-Leads-readLeads-0.0.0']/form/fieldset/div[5]/pre/code", timeout=35).text
-        Logging().reportDebugStep(self, "Check token read leads details")
+        Logging().reportDebugStep(self, "Check token read leads details: " + check_token)
         return check_token
 
     def send_leads_read(self):
@@ -149,7 +149,7 @@ class ApiPage(CRMBasePage):
         sleep(1)
         check_token = super().wait_load_element(
             "//*[@id='api-Leads-Leads-0.0.0']/form/fieldset/div[5]/pre/code", timeout=35).text
-        Logging().reportDebugStep(self, "Check token read customers details")
+        Logging().reportDebugStep(self, "Check token read customers details: " + check_token)
         return check_token
 
     def send_create_lead(self):
@@ -164,7 +164,7 @@ class ApiPage(CRMBasePage):
         sleep(1)
         check_token = super().wait_load_element(
             "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[5]/pre/code", timeout=35).text
-        Logging().reportDebugStep(self, "Check token read customers details")
+        Logging().reportDebugStep(self, "Check token read customers details: " + check_token)
         return check_token
 
     def send_update_customer(self):
@@ -222,7 +222,7 @@ class ApiPage(CRMBasePage):
         sleep(1)
         check_token = super().wait_load_element(
             "//*[@id='api-Customers-readCustomers-0.0.0']/form/fieldset/div[5]/pre/code", timeout=35).text
-        Logging().reportDebugStep(self, "Check token read customers details")
+        Logging().reportDebugStep(self, "Check token read customers details: " + check_token)
         return check_token
 
     def send_read_customers(self):
@@ -262,7 +262,7 @@ class ApiPage(CRMBasePage):
         sleep(1)
         check_token = super().wait_load_element(
             "//*[@id='api-Customers-readCustomer-0.0.0']/form/fieldset/div[5]/pre/code", timeout=35).text
-        Logging().reportDebugStep(self, "Check token read customer details")
+        Logging().reportDebugStep(self, "Check token read customer details: " + check_token)
         return check_token
 
     def send_read_customer(self):
@@ -302,7 +302,7 @@ class ApiPage(CRMBasePage):
         sleep(1)
         check_token = super().wait_load_element(
             "//*[@id='api-Customers-createCustomer-0.0.0']/form/fieldset/div[5]/pre/code", timeout=35).text
-        Logging().reportDebugStep(self, "Check token")
+        Logging().reportDebugStep(self, "Check token: " + check_token)
         return check_token
 
     def enter_email(self, email):
@@ -420,5 +420,5 @@ class ApiPage(CRMBasePage):
         sleep(1)
         check_token = super().wait_load_element(
             "//*[@id='api-Authorization-Authorization-0.0.0']/form/fieldset/div[4]/pre/code", timeout=35).text
-        Logging().reportDebugStep(self, "Check token")
+        Logging().reportDebugStep(self, "Check token: " + check_token)
         return check_token
