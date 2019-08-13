@@ -13,6 +13,7 @@ import autoit
 import os
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
+
 class ApiPage(CRMBasePage):
 
     def check_page_from_token(self):
