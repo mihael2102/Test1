@@ -3,6 +3,7 @@ from datetime import *
 
 #import allure
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 from src.main.python.utils.config import Config
 from src.main.python.utils.data.providers.ConfigProvider import ConfigProvider
@@ -25,11 +26,14 @@ class BaseTest(unittest.TestCase):
         if self.driver_type is None or self.driver_type == 'Chrome':
             ' HIDDEN BROWSER: '
             # chrome_options = webdriver.ChromeOptions()
+            # chrome_options.add_argument(Config.user_agent)
             # chrome_options.add_argument("--headless")
             # chrome_options.add_argument("--window-size=1920x1080")
             # self.driver = webdriver.Chrome(Config.chrome_driver, chrome_options=chrome_options)
             ' OPENED BROWSER: '
-            self.driver = webdriver.Chrome(Config.chrome_driver)
+            opts = Options()
+            opts.add_argument(Config.user_agent)
+            self.driver = webdriver.Chrome(chrome_options=opts, executable_path=Config.chrome_driver)
             self.driver.maximize_window()
         elif self.driver_type == 'Remote':
             selenium_grid_url = "http://localhost:5578/wd/hub/"

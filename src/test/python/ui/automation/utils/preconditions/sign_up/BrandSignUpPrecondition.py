@@ -14,7 +14,8 @@ class BrandSignUpPrecondition(object):
         super().__init__()
 
     def perform_first_step(self):
-        BrandHomePage().open_first_tab_page(Config.url_client_area) \
+        BrandHomePage()\
+            .open_first_tab_page(Config.url_client_area) \
             .open_sign_form() \
             .set_first_name(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME)) \
             .set_last_name(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.LAST_NAME)) \
@@ -22,7 +23,7 @@ class BrandSignUpPrecondition(object):
             .set_phone(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PHONE)) \
             .set_password(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
             .set_confirm_password(
-            Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CONFIRMATION_PASSWORD)) \
+                Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CONFIRMATION_PASSWORD)) \
             .set_promo_code(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PROMO_CODE)) \
             .set_check_box() \
             .set_accept_check_box()\
