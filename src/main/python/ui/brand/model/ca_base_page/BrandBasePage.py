@@ -10,8 +10,12 @@ from src.test.python.ui.automation.BaseTest import BaseTest
 
 class BrandBasePage(object):
 
-    def __init__(self):
-        self.driver = BaseTest().get_driver
+    driver = None
+    config = None
+
+    def __init__(self, driver, config):
+        self.driver = driver
+        self.config = config
 
     def open_second_tab_page(self, url):
         self.driver.execute_script("window.open()")
