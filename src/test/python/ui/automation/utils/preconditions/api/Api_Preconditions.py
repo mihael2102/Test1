@@ -115,7 +115,7 @@ class ApiPrecondition(object):
         check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
         sleep(3)
         count = 0
-        while (APIConstants.STATUS_OK  not in check_create_customer_token):
+        while APIConstants.STATUS_OK not in check_create_customer_token:
             sleep(2)
             check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
             count += 1
@@ -154,7 +154,6 @@ class ApiPrecondition(object):
         if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "oinvestsa" and \
                 global_var.current_brand_name != "gmo":
             assert APIConstants.REFFERAL in refferal
-
 
     def test_read_customer_details(self):
         self.autorization_process()
@@ -253,7 +252,7 @@ class ApiPrecondition(object):
             ApiPage(self.driver).enter_phone_lead(APIConstants.LEAD_PHONE2)
             ApiPage(self.driver).send_create_lead()
             token = ApiPage(self.driver).check_create_lead_token()
-            count1 +=1
+            count1 += 1
             if count1 == 5:
                 break
         count = 0
@@ -294,7 +293,6 @@ class ApiPrecondition(object):
             else:
                 expected_phone = APIConstants.LEAD_PHONE2
                 assert actual_phone == expected_phone
-
 
     def test_read_leads(self):
 

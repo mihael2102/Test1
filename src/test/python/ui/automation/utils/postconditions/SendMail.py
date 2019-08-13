@@ -12,6 +12,7 @@ def Send_Email_XML(filepath, content):
     to = "jonathan.albalak@pandats.com"
     cc = "jonathan.albalak@pandats.com"
     bcc = "jonathan.albalak@pandats.com"
+
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
