@@ -1,0 +1,17 @@
+LeadsModule:
+  check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[8]"
+  check_first_line_email_2: "//tbody[@id = 'listBody']/tr[2]/td[8]"
+  check_first_line_exist: "//tbody[@id = 'listBody']/tr[1]/td[10]"
+  check_first_line_leads_no1: "//tbody[@id = 'listBody']/tr[1]/td[2]"
+  check_first_line_leads_no2: "//tbody[@id = 'listBody']/tr[2]/td[2]"
+  edit_status: "//*[@id='leadstatus_mass_edit_check']/div[1]/div"
+  mass_edit_leads: "//*[@id='list_action_buttons']/input[2]"
+ClientsPage:
+  client_status_button: "//*[@id='customAdvanceSearch']/td[9]/div/div[1]/button/span"
+  client_status_field: "//*[@id='customAdvanceSearch']/td[9]/div/div[1]/ul/li[1]/div/input"
+  country_button: "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']"
+  country_field: "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']"
+  country_click: "//label[contains(text(),'%s')]"
+FinancialTransactionsPage:
+  client_name_element:  "(//td[4]/div/a)[%s]"
+  modified_time_element: "(//*[contains(@id,'row')]/td[12])[%s]"

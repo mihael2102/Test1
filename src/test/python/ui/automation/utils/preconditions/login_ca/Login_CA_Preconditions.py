@@ -15,6 +15,7 @@ import poplib
 from email import parser
 from src.main.python.utils.logs.Loging import Logging
 
+
 class Login_CA_Precondition(object):
 
     driver = None
@@ -55,30 +56,35 @@ class Login_CA_Precondition(object):
 
     def sign_up_ca(self):
         # REGISTRATION FORM
-        CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))\
-                                .click_sign_up()
+        CALoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url_ca'))\
+            .click_sign_up()
         if (global_var.current_brand_name == "b-finance") or (global_var.current_brand_name == "eafx"):
-                CALoginPage(self.driver).click_regulatory_confirmation()
-        CALoginPage(self.driver).fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.FIRST_NAME])\
-                                .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.FIRST_LAST_NAME])\
-                                .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])\
-                                .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.PHONE])\
-                                .fill_password(CAConstants.PASSWORD)
+            CALoginPage(self.driver)\
+                .click_regulatory_confirmation()
+        CALoginPage(self.driver)\
+            .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])\
+            .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                        LeadsModuleConstants.FIRST_LAST_NAME])\
+            .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                    LeadsModuleConstants.EMAIL])\
+            .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                    LeadsModuleConstants.PHONE])\
+            .fill_password(CAConstants.PASSWORD)
         if global_var.current_brand_name != "q8":
-                CALoginPage(self.driver).fill_confirm_password(CAConstants.PASSWORD)\
-                                .check_box_accept()
-        CALoginPage(self.driver).click_submit() \
+            CALoginPage(self.driver).fill_confirm_password(CAConstants.PASSWORD)\
+                  .check_box_accept()
+        CALoginPage(self.driver)\
+            .click_submit() \
 
-###PERSONAL DETAILS FORM
+        ###PERSONAL DETAILS FORM
         if global_var.current_brand_name == "trade99":
-            CALoginPage(self.driver).close_payment_popup()
+            CALoginPage(self.driver)\
+                .close_payment_popup()
         if global_var.current_brand_name == "q8":
 
-            CALoginPage(self.driver).click_my_account() \
+            CALoginPage(self.driver)\
+                .click_my_account() \
                 .logout() \
                 .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                  LeadsModuleConstants.EMAIL]) \
@@ -89,7 +95,8 @@ class Login_CA_Precondition(object):
 
         elif global_var.current_brand_name == "firstindex":
 
-            CALoginPage(self.driver).verify() \
+            CALoginPage(self.driver)\
+                .verify() \
                 .click_hi_guest() \
                 .click_transactions_history() \
                 .select_data_birth_day(CAConstants.DAY_BIRTH) \

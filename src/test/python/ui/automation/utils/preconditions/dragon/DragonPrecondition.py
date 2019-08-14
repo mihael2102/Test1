@@ -22,6 +22,8 @@ from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstan
 from src.main.python.ui.crm.model.pages.leads.EditLeadsProfilePage import EditLeadsProfilePage
 from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import ConvertLeadModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfileUpdate import ClientProfileUpdate
+from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
+from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 
 
 class DragonPrecondition(object):
@@ -34,6 +36,27 @@ class DragonPrecondition(object):
         self.config = config
 
     def check_dragon_valid_phone(self):
+        ' Sign up with valid phone: '
+        CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
+            .click_sign_up()
+        if (global_var.current_brand_name == "b-finance") or (global_var.current_brand_name == "eafx"):
+            CALoginPage(self.driver) \
+                .click_regulatory_confirmation()
+        CALoginPage(self.driver) \
+            .fill_first_name(DragonConstants.FIRST_NAME_CONVERT) \
+            .fill_last_name(DragonConstants.LEAD_LAST_NAME) \
+            .fill_email(DragonConstants.LEAD_EMAIL) \
+            .fill_phone(DragonConstants.PHONE_NUMBER_VALID_CA) \
+            .fill_password(CAConstants.PASSWORD)
+        if global_var.current_brand_name != "q8":
+            CALoginPage(self.driver)\
+                .fill_confirm_password(CAConstants.PASSWORD) \
+                .check_box_accept()
+        CALoginPage(self.driver) \
+            .click_submit()
+
+        ' CRM login: '
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -41,10 +64,14 @@ class DragonPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
 
+        ' Assign the client to user, have not permission to see phone numbers: '
+        ClientsPage(self.driver) \
+            .find_client_by_email(DragonConstants.LEAD_EMAIL)\
+
+
         ' Go to User Management and make Login As DragonTest user: '
         CRMHomePage(self.driver)\
-            .select_user_management()
-        UserManagementPage(self.driver) \
+            .select_user_management() \
             .open_crm_users_tab() \
             .click_remove_filter_btn() \
             .search_by_username(UserInformation.DRAGON_USER_NAME) \
@@ -139,7 +166,7 @@ class DragonPrecondition(object):
             .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)\
             .check_email_in_send_mail_popup(DragonConstants.EMAIL_VALID_SEND_MAIL_POPUP)
 
-    def check_dragon_leads(self):
+    def check_dragon_invalid_phone(self):
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
