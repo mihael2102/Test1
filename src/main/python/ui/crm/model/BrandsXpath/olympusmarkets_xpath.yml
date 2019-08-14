@@ -5,3 +5,5 @@ FinancialTransactionsPage:
   transaction_type_drop_down: "//td[5]/div/div[1]/button"
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
   modified_time_element: "(//*[@id='listBody']//tr/td[12])[%s]"
+CALoginPage:
+  sign_up: "//*[@id='hoveringmenu']/div/div/div[2]/div/div[3]/div/div/div[1]/a[1]"

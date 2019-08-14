@@ -2,10 +2,24 @@ import random
 from datetime import *
 from dateutil.relativedelta import relativedelta
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+import string
 
 
 class CRMConstants(object):
     brand = global_var.current_brand_name
+    YES = "Yes"
+    ASSET_M = "BTCUSD.m"
+    ASSET = "BTCUSD"
+    VOLUME_FUNDS = "1"
+    VOLUME_INSUFFICIENT_FUNDS = "10"
+    INSUFFICIENT_FUNDS = "Insufficient Funds"
+    PIPS_CONTAINS = "-€"
+    STOP_LOSS = "100"
+    SYMBOL_TRANSACTIONS = "BTCGBP.m"
+    SIZE_TRANSACTIONS = "0.1"
+    TYPE_TRANSACTIONS = "BUY"
+    ORDER = "Order Successful"
+    WELCOME_TO = "Welcome to "
     MT4_ACCOUNT_CREATED_SUCCESFULLY_2 = "MT4 Account created successfully"
     MT4_ACCOUNT_UPDATED_SUCCESFULLY_2 = "MT4 Account updated successfully"
     MT4_ACCOUNT_UPDATED_SUCCESFULLY_3 = "Trading Account updated successfully"
@@ -150,6 +164,7 @@ class CRMConstants(object):
     DOCUMENT_SUB_TYPE = "Crypto Transfer"
     DOCUMENT_COMMENTS = "Comments"
     DOCUMENT_SUCCESSFUL_MESSAGE = "Upload Document successfull"
+    SUCCESSFUL_MESSAGE = "successfull"
     EASY_SEARCH_CLIENT = "testqa"
     EASY_SEARCH_CLIENT_TEST = "test test"
     ALLOWED_IP = "1.1.1.1"
@@ -174,3 +189,11 @@ class CRMConstants(object):
     CRM_CONFIGURATION = "CRM Configuration"
     FIRST_TA_NUMBER_FROM_TA_SECTION = "2"
     SECOND_TA_NUMBER_FROM_TA_SECTION = "3"
+    EDIT_FIRST_NAME = "test_CRM" + (''.join(random.sample(string.ascii_uppercase * 6, 6)))
+    EDIT_LAST_NAME = "Test_CRM"
+    EDIT_CITIZENSHIP = "American"
+    EDIT_CITY = "London"
+    EDIT_ZIP_CODE = "789"
+    EDIT_ADDRESS = "BenGurion48"
+    BIRTHDAY = "1999-02-19"
+    SERVER_LIVE = "LIVE"

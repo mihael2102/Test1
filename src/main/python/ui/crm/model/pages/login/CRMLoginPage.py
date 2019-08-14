@@ -53,7 +53,7 @@ class CRMLoginPage(CRMBasePage):
             otp_field.send_keys(otp)
             Logging().reportDebugStep(self, "Setting the otp token: " + otp + '\n')
             submit_button.click()
-            Logging().reportDebugStep(self, "Click the submit button" + '\n')
+            Logging().reportDebugStep(self, "Click the submit button")
         except NoSuchElementException:
             Logging().reportDebugStep(self, "No OTP authentication is required")
 
@@ -69,7 +69,7 @@ class CRMLoginPage(CRMBasePage):
             close_window_button.click()
             Logging().reportDebugStep(self, "'What's new' popup was closed")
         except (NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "'What's new' popup isn't displayed ")
+            Logging().reportDebugStep(self, "'What's new' popup isn't displayed")
         return ClientsPage(self.driver)
 
     '''

@@ -16,6 +16,7 @@ from src.main.python.utils.logs.Loging import Logging
 #import allure
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
+from selenium.webdriver.common.keys import Keys
 
 
 class ClientsPage(CRMBasePage):
@@ -496,6 +497,11 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Verified the First Name: " + client_email.text)
         return client_email.text
 
+    def get_client_last_name(self):
+        client_last_name = super().wait_load_element("//span[@id='dtlview_Last Name']").text
+        Logging().reportDebugStep(self, "Client last name is: " + client_last_name)
+        return client_last_name
+
     def get_client_phone(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Phone')]//following-sibling::td[1]")))
@@ -515,6 +521,21 @@ class ClientsPage(CRMBasePage):
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Code')]//following-sibling::td[1]")))
         Logging().reportDebugStep(self, "Verified the Code: " + client_postalCode.text)
         return client_postalCode.text
+
+    def get_client_address(self):
+        client_address = super().wait_load_element("//span[@id='dtlview_Address']").text
+        Logging().reportDebugStep(self, "Client address is: " + client_address)
+        return client_address
+
+    def get_client_city(self):
+        client_city = super().wait_load_element("//span[@id='dtlview_City']").text
+        Logging().reportDebugStep(self, "Client city is: " + client_city)
+        return client_city
+
+    def get_client_code(self):
+        client_code = super().wait_load_element("//span[@id='dtlview_Code']").text
+        Logging().reportDebugStep(self, "Client code is: " + client_code)
+        return client_code
 
     def get_client_country(self):
         client_email = WebDriverWait(self.driver, 50).until(
@@ -542,3 +563,97 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click Send Mail button")
         return ClientsPage(self.driver)
 
+    def get_client_date_of_birth(self):
+        client_date_of_birth = super().wait_load_element("//td[@class='dvtCellInfo'][contains(text(),'1995')]").text
+        Logging().reportDebugStep(self, "Client date_of_birth is: " + client_date_of_birth)
+        return client_date_of_birth
+
+    def get_client_currency(self):
+        client_currency = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["client_currency"]).text
+        Logging().reportDebugStep(self, "Client currency is: " + client_currency)
+        return client_currency
+
+    def get_citizenship(self):
+        client_citizenship = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["client_citizenship"]).text
+        Logging().reportDebugStep(self, "Client citizenship is: " + client_citizenship)
+        return client_citizenship
+
+    def trading_account_exist(self, trading_account):
+        self.driver.find_elements_by_xpath("//a[@class='before_nw'][contains(@href, 'Tradingaccount')] \
+                                            [contains(text(), '%s')]" % trading_account)
+        Logging().reportDebugStep(self, "Trading account is found: " + trading_account)
+        return ClientsPage(self.driver)
+
+    def click_edit_btn(self):
+        edit_btn = super().wait_element_to_be_clickable("//input[contains(@title ,'Edit')]")
+        self.driver.execute_script("arguments[0].click();", edit_btn)
+        Logging().reportDebugStep(self, "Click Edit button")
+        return ClientsPage(self.driver)
+
+    def edit_first_name(self, first_name):
+        first_name_field = super().wait_load_element("//input[@id='first_name']")
+        first_name_field.clear()
+        first_name_field.send_keys(first_name)
+        Logging().reportDebugStep(self, "Edit First Name: " + first_name)
+        return ClientsPage(self.driver)
+
+    def edit_last_name(self, last_name):
+        last_name_field = super().wait_load_element("//input[@id='last_name']")
+        last_name_field.clear()
+        last_name_field.send_keys(last_name)
+        Logging().reportDebugStep(self, "Edit Last Name: " + last_name)
+        return ClientsPage(self.driver)
+
+    def edit_citizenship(self, citizenship):
+        citizenship_field = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+                                                    self.__class__.__name__)["citizenship"] % citizenship)
+        citizenship_field.click()
+        self.driver.execute_script("arguments[0].click();", citizenship_field)
+        d = self.driver.find_element_by_xpath("//label[contains (text(), 'First Name')]")
+        d.click()
+        Logging().reportDebugStep(self, "Edit citizenship : " + citizenship)
+        return ClientsPage(self.driver)
+
+    def edit_city(self, city):
+        city_field = super().wait_load_element("//input[@id='city']")
+        city_field.clear()
+        city_field.send_keys(city)
+        Logging().reportDebugStep(self, "Edit City field")
+        return ClientsPage(self.driver)
+
+    def edit_zip(self, zipcode1):
+        zip_field = super().wait_load_element("//input[@id='postcode']")
+        zip_field.clear()
+        zip_field.send_keys(zipcode1)
+        Logging().reportDebugStep(self, "Edit Zip code field: " + zipcode1)
+        return ClientsPage(self.driver)
+
+    def edit_address(self, address):
+        address_field = super().wait_load_element("//input[@id='address']")
+        address_field.clear()
+        address_field.send_keys(address)
+        Logging().reportDebugStep(self, "Edit Address field: " + address)
+        return ClientsPage(self.driver)
+
+    def click_save_changes_btn(self):
+        save_changes_btn = super().wait_element_to_be_clickable("//input[@value='Save']")
+        self.driver.execute_script("arguments[0].click();", save_changes_btn)
+        Logging().reportDebugStep(self, "Click Save button")
+        return ClientsPage(self.driver)
+
+    def fill_birthday(self, date):
+        birthday_field = super().wait_load_element("//input[@id='birthday']")
+        birthday_field.send_keys(Keys.CONTROL, 'a')
+        birthday_field.send_keys(Keys.BACKSPACE)
+        # birthday_field.clear()
+        birthday_field.send_keys(date)
+        Logging().reportDebugStep(self, "Fill birthday field: " + date)
+        return ClientsPage(self.driver)
+
+    def open_address_information_tab(self):
+        address_information_tab = super().wait_load_element("//b[contains(text(),'Address Information')]")
+        self.driver.execute_script("arguments[0].click();", address_information_tab)
+        Logging().reportDebugStep(self, "Address Information tab is opened")
+        return ClientsPage(self.driver)

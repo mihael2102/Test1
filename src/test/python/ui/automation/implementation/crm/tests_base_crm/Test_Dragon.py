@@ -11,3 +11,10 @@ class CheckDragonTest(BaseTest):
 
     def test_dragon_leads(self):
         DragonPrecondition(self.driver, self.config).check_dragon_leads()
+
+    def test_dragon_valid_phone(self):
+        DragonPrecondition(self.driver, self.config).check_dragon_valid_phone()
+
+    def test_dragon_invalid_phone(self):
+        DragonPrecondition(self.driver, self.config).check_dragon_invalid_phone()
+
