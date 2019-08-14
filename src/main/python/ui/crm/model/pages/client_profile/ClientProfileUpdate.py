@@ -146,7 +146,6 @@ class ClientProfileUpdate(CRMBasePage):
         self.driver.refresh()
         element_field = super().wait_load_element(
             "//td[contains(text(),'Country')]//following-sibling::td[1]")
-
         element_to_move_pencil = self.driver.find_element(By.XPATH, "//span[@class='glyphicons pencil cntrl']")
         hoverer = ActionChains(self.driver).move_to_element(element_field).click(element_to_move_pencil)
         hoverer.perform()
@@ -162,6 +161,27 @@ class ClientProfileUpdate(CRMBasePage):
         hoverer.perform()
         Logging().reportDebugStep(self,
                                   "The country was edited on the " + parameter_update + " from client profile page")
+        return ClientProfileUpdate(self.driver)
+
+    def edit_assign_to_by_pencil(self, user):
+        self.driver.refresh()
+        element_field = super().wait_load_element("//td[text()='Assigned To']//following-sibling::td[1]")
+        element_to_move_pencil = self.driver.find_element(By.XPATH, "//span[@class='glyphicons pencil cntrl']")
+        hoverer = ActionChains(self.driver).move_to_element(element_field).click(element_to_move_pencil)
+        hoverer.perform()
+
+        edit_field = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@name='assigned_user_id']")))
+
+        select = Select(edit_field)
+        select.select_by_visible_text(user)
+
+        save_button = self.driver.find_element(By.XPATH,
+                                               "//div[@id='editarea_Assigned To']//span[@class='glyphicons ok_2']")
+        hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
+        hoverer.perform()
+        Logging().reportDebugStep(self,
+                                  "The Assign To was updated to " + user)
         return ClientProfileUpdate(self.driver)
 
     def perform_scroll(self, parameter):

@@ -17,7 +17,7 @@ class QuestionnairePage(CRMBasePage):
         return QuestionnairePage(self.driver)
 
     def select_employment_status(self, status):
-        sleep(1)
+        sleep(2)
         status_item = self.driver.find_element_by_xpath(
             "//span[@class='item-pandats ng-star-inserted']/span[text()='%s']" % status)
         self.driver.execute_script("arguments[0].click();", status_item)
