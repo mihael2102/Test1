@@ -163,7 +163,7 @@ class DragonPrecondition(object):
             .open_lead_module()\
             .open_create_lead_module()\
             .perform_create_lead_short(DragonConstants.LEAD_LAST_NAME,
-                                       DragonConstants.LEAD_EMAIL,
+                                       DragonConstants.LEAD_EMAIL1,
                                        DragonConstants.LEAD_ASSIGNED_TO,
                                        DragonConstants.PHONE_NUMBER_INVALID)
         sleep(1)
@@ -173,7 +173,7 @@ class DragonPrecondition(object):
             .open_lead_module()\
             .select_filter(
                 self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))\
-            .perform_searching_lead_by_mail(DragonConstants.LEAD_EMAIL)
+            .perform_searching_lead_by_mail(DragonConstants.LEAD_EMAIL1)
         DragonPage(self.driver)\
             .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID)\
             .check_email_address(DragonConstants.EMAIL_VALID_LIST_VIEW)
@@ -218,7 +218,7 @@ class DragonPrecondition(object):
             .open_lead_module() \
             .select_filter(
                 self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME)) \
-            .perform_searching_lead_by_mail(DragonConstants.LEAD_EMAIL)
+            .perform_searching_lead_by_mail(DragonConstants.LEAD_EMAIL1)
         DragonPage(self.driver) \
             .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)\
             .check_email_in_send_mail_popup(DragonConstants.EMAIL_VALID_SEND_MAIL_POPUP)
@@ -234,7 +234,7 @@ class DragonPrecondition(object):
         CALoginPage(self.driver) \
             .fill_first_name(DragonConstants.FIRST_NAME_CONVERT) \
             .fill_last_name(DragonConstants.LEAD_LAST_NAME) \
-            .fill_email(DragonConstants.LEAD_EMAIL) \
+            .fill_email(DragonConstants.LEAD_EMAIL2) \
             .fill_phone(DragonConstants.PHONE_NUMBER_VALID_CA) \
             .fill_password(CAConstants.PASSWORD)
         if global_var.current_brand_name != "q8":
@@ -253,8 +253,10 @@ class DragonPrecondition(object):
         sleep(3)
 
         ' Assign the client to user, have not permission to see phone numbers: '
-        ClientsPage(self.driver) \
-            .find_client_by_email(DragonConstants.LEAD_EMAIL)
+        CRMHomePage(self.driver) \
+            .open_client_module() \
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(DragonConstants.LEAD_EMAIL2)
         ClientProfileUpdate(self.driver)\
             .edit_assign_to_by_pencil(DragonConstants.LEAD_ASSIGNED_TO)
 
@@ -272,7 +274,7 @@ class DragonPrecondition(object):
         CRMHomePage(self.driver)\
             .open_client_module()\
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .enter_email(DragonConstants.LEAD_EMAIL)\
+            .enter_email(DragonConstants.LEAD_EMAIL2)\
             .click_search_button()
         DragonPage(self.driver) \
             .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)
@@ -284,84 +286,65 @@ class DragonPrecondition(object):
             .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)
 
     def check_ca_dragon_invalid_phone(self):
-        CRMLoginPage(self.driver)\
+        # Sign up with valid phone:
+        CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
+            .click_sign_up()
+        if (global_var.current_brand_name == "b-finance") or (global_var.current_brand_name == "eafx"):
+            CALoginPage(self.driver) \
+                .click_regulatory_confirmation()
+        CALoginPage(self.driver) \
+            .fill_first_name(DragonConstants.FIRST_NAME_CONVERT) \
+            .fill_last_name(DragonConstants.LEAD_LAST_NAME) \
+            .fill_email(DragonConstants.LEAD_EMAIL3) \
+            .fill_phone(DragonConstants.PHONE_NUMBER_INVALID_CA) \
+            .fill_password(CAConstants.PASSWORD)
+        if global_var.current_brand_name != "q8":
+            CALoginPage(self.driver) \
+                .fill_confirm_password(CAConstants.PASSWORD) \
+                .check_box_accept()
+        CALoginPage(self.driver) \
+            .click_submit()
+
+        ' CRM login: '
+        CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
 
+        ' Assign the client to user, have not permission to see phone numbers: '
+        CRMHomePage(self.driver) \
+            .open_client_module() \
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(DragonConstants.LEAD_EMAIL3)
+        ClientProfileUpdate(self.driver) \
+            .edit_assign_to_by_pencil(DragonConstants.LEAD_ASSIGNED_TO)
+
         ' Go to User Management and make Login As DragonTest user: '
-        CRMHomePage(self.driver).select_user_management()
-        UserManagementPage(self.driver) \
+        CRMHomePage(self.driver) \
+            .select_user_management() \
             .open_crm_users_tab() \
             .click_remove_filter_btn() \
             .search_by_username(UserInformation.DRAGON_USER_NAME) \
-            .check_user_found(UserInformation.DRAGON_USER_NAME)\
-            .click_more_icon()\
+            .check_user_found(UserInformation.DRAGON_USER_NAME) \
+            .click_more_icon() \
             .click_login_as_icon()
 
-        ' Create Lead with wrong phone number: '
-        CRMHomePage(self.driver)\
-            .open_lead_module()\
-            .open_create_lead_module()\
-            .perform_create_lead_short(DragonConstants.LEAD_LAST_NAME,
-                                       DragonConstants.LEAD_EMAIL,
-                                       DragonConstants.LEAD_ASSIGNED_TO,
-                                       DragonConstants.PHONE_NUMBER_INVALID)
-        sleep(1)
-
-        ' Check phone number and email in list view: '
-        CRMHomePage(self.driver)\
-            .open_lead_module()\
-            .select_filter(
-                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))\
-            .perform_searching_lead_by_mail(DragonConstants.LEAD_EMAIL)
-        DragonPage(self.driver)\
-            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID)\
-            .check_email_address(DragonConstants.EMAIL_VALID_LIST_VIEW)
-        LeadsModule(self.driver)\
-            .open_lead_personal_details()
+        ' Check phone and email in Clients list view: '
+        CRMHomePage(self.driver) \
+            .open_client_module() \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .enter_email(DragonConstants.LEAD_EMAIL3) \
+            .click_search_button()
+        # For validation of number, that comes from CA, should add the country code:
+        expected_number = "49" + DragonConstants.PHONE_NUMBER_INVALID_CA
+        DragonPage(self.driver) \
+            .check_invalid_phone(expected_number)
 
         ' Check phone number and email in detail view: '
-        DragonPage(self.driver)\
-            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID)\
-            .check_email_address(DragonConstants.EMAIL_VALID_DETAIL_VIEW)\
-            .check_email_in_send_mail_popup(DragonConstants.EMAIL_VALID_SEND_MAIL_POPUP)
-
-        ' Check phone number on edit page: '
-        phone_edit_page = LeadDetailViewInfo(self.driver)\
-            .open_edit_lead_profile()\
-            .get_phone_edit_page()
-        assert phone_edit_page == DragonConstants.PHONE_NUMBER_INVALID
-
-        ' Update phone to another invalid number and verify on details view page: '
-        EditLeadsProfilePage(self.driver)\
-            .set_phone(DragonConstants.PHONE_NUMBER_INVALID2)\
-            .click_save()
+        ClientsPage(self.driver) \
+            .open_client_id()
         DragonPage(self.driver) \
-            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID2)
-        LeadDetailViewInfo(self.driver)\
-            .open_edit_lead_profile() \
-            .set_phone(DragonConstants.PHONE_NUMBER_INVALID3) \
-            .click_save()
-        DragonPage(self.driver) \
-            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID3)
-
-        ' Update phone to valid number and verify on details view page: '
-        LeadDetailViewInfo(self.driver) \
-            .open_edit_lead_profile() \
-            .set_phone(DragonConstants.PHONE_NUMBER_VALID) \
-            .click_save()
-        DragonPage(self.driver) \
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)
-
-        ' Check valid number and email in list view: '
-        CRMHomePage(self.driver) \
-            .open_lead_module() \
-            .select_filter(
-                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME)) \
-            .perform_searching_lead_by_mail(DragonConstants.LEAD_EMAIL)
-        DragonPage(self.driver) \
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)\
-            .check_email_in_send_mail_popup(DragonConstants.EMAIL_VALID_SEND_MAIL_POPUP)
+            .check_invalid_phone(expected_number)
