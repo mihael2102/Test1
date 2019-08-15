@@ -49,10 +49,15 @@ class ApiPage(CRMBasePage):
 
     def login_token_module(self):
         sleep(2)
-        read_leads_module = self.driver.find_element(By.XPATH, "//*[@id='scrollingNav']/ul/li[24]/a")
-        read_leads_module.click()
-        Logging().reportDebugStep(self, "Open login token module")
-        return ApiPage(self.driver)
+        try:
+            self.driver.find_element_by_xpath("//a[contains(text(),'Login token')]")
+            read_leads_module = self.driver.find_element(By.XPATH, "//*[@id='scrollingNav']/ul/li[24]/a")
+            read_leads_module.click()
+            Logging().reportDebugStep(self, "Open login token module")
+            return ApiPage(self.driver)
+        except NoSuchElementException:
+            Logging().reportDebugStep(self, "Login token module does not exist")
+            return ApiPage(self.driver)
 
 
     def check_read_leads_token(self):
@@ -108,7 +113,7 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-email-Leads-Leads-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(email)
-        Logging().reportDebugStep(self, "Enter email")
+        Logging().reportDebugStep(self, "Enter email: " + email)
         return ApiPage(self.driver)
 
     def enter_firstName_lead(self, fname):
@@ -117,7 +122,7 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-firstName-Leads-Leads-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(fname)
-        Logging().reportDebugStep(self, "Enter first name")
+        Logging().reportDebugStep(self, "Enter first name: " + fname)
         return ApiPage(self.driver)
 
     def enter_lastName_lead(self, lname):
@@ -126,7 +131,7 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-lastName-Leads-Leads-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(lname)
-        Logging().reportDebugStep(self, "Enter last name")
+        Logging().reportDebugStep(self, "Enter last name: " + lname)
         return ApiPage(self.driver)
 
     def enter_phone_lead(self, phone):
@@ -135,14 +140,14 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-phone-Leads-Leads-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(phone)
-        Logging().reportDebugStep(self, "Enter phone")
+        Logging().reportDebugStep(self, "Enter phone: " + phone)
         return ApiPage(self.driver)
 
     def check_create_lead_token(self):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
                                                "//*[@id='api-Leads-Leads-0.0.0']/form/fieldset/div[5]/pre/code").text
-        Logging().reportDebugStep(self, "Check token read customers details")
+        Logging().reportDebugStep(self, "Check token read customers details: " + check_token)
         return check_token
 
     def send_create_lead(self):
@@ -157,7 +162,7 @@ class ApiPage(CRMBasePage):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
                                                "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
-        Logging().reportDebugStep(self, "Check token read customers details")
+        Logging().reportDebugStep(self, "Check token read customers details: " + check_token)
         return check_token
 
     def send_update_customer(self):
@@ -174,7 +179,7 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-email-Customers-updateCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(email)
-        Logging().reportDebugStep(self, "Enter email")
+        Logging().reportDebugStep(self, "Enter email: " + email)
         return ApiPage(self.driver)
 
     def change_first_name(self, name):
@@ -183,7 +188,7 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-firstName-Customers-updateCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(name)
-        Logging().reportDebugStep(self, "Change first name")
+        Logging().reportDebugStep(self, "Change first name: " + name)
         return ApiPage(self.driver)
 
     def change_postalCode(self, code):
@@ -192,7 +197,7 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-postalCode-Customers-updateCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(code)
-        Logging().reportDebugStep(self, "Change postal code")
+        Logging().reportDebugStep(self, "Change postal code: " + code)
         return ApiPage(self.driver)
 
     def change_phone(self, phone):
@@ -201,7 +206,7 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-phone-Customers-updateCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(phone)
-        Logging().reportDebugStep(self, "Change phone")
+        Logging().reportDebugStep(self, "Change phone: " + phone)
         return ApiPage(self.driver)
 
     def update_customer_module(self):
@@ -214,14 +219,14 @@ class ApiPage(CRMBasePage):
     def check_reads_customer_details(self):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
-                                               "//*[@id='api-Customers-readCustomers-0.0.0']/form/fieldset/div[5]/pre/code").text
-        Logging().reportDebugStep(self, "Check token read customers details")
+                                    "//*[@id='api-Customers-readCustomers-0.0.0']/form/fieldset/div[5]/pre/code").text
+        Logging().reportDebugStep(self, "Check token read customers details: " + check_token)
         return check_token
 
     def send_read_customers(self):
         sleep(2)
         customer_module = self.driver.find_element(By.XPATH,
-                                                   "//*[@id='api-Customers-readCustomers-0.0.0']/form/fieldset/div[4]/div/button")
+                                        "//*[@id='api-Customers-readCustomers-0.0.0']/form/fieldset/div[4]/div/button")
         customer_module.click()
         Logging().reportDebugStep(self, "Click Send")
         return ApiPage(self.driver)
@@ -232,7 +237,7 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-limit-Customers-readCustomers-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(limit)
-        Logging().reportDebugStep(self, "Enter page")
+        Logging().reportDebugStep(self, "Enter page: " + limit)
         return ApiPage(self.driver)
 
     def enter_page(self, page):
@@ -241,7 +246,7 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-page-Customers-readCustomers-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(page)
-        Logging().reportDebugStep(self, "Enter page")
+        Logging().reportDebugStep(self, "Enter page: " + page)
         return ApiPage(self.driver)
 
     def read_customers_module(self):
@@ -254,13 +259,14 @@ class ApiPage(CRMBasePage):
     def check_read_customer_details(self):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
-                                               "//*[@id='api-Customers-readCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
-        Logging().reportDebugStep(self, "Check token read customer details")
+                                    "//*[@id='api-Customers-readCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
+        Logging().reportDebugStep(self, "Check token read customer details: " + check_token)
         return check_token
 
     def send_read_customer(self):
         sleep(2)
-        customer_module = self.driver.find_element(By.XPATH, "//*[@id='api-Customers-readCustomer-0.0.0']/form/fieldset/div[4]/div/button")
+        customer_module = self.driver.find_element(By.XPATH,
+                                        "//*[@id='api-Customers-readCustomer-0.0.0']/form/fieldset/div[4]/div/button")
         customer_module.click()
         Logging().reportDebugStep(self, "Click Send")
         return ApiPage(self.driver)
@@ -271,7 +277,7 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-email-Customers-readCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(email)
-        Logging().reportDebugStep(self, "Enter email")
+        Logging().reportDebugStep(self, "Enter email: " + email)
         return ApiPage(self.driver)
 
     def read_customer_module(self):
@@ -287,7 +293,7 @@ class ApiPage(CRMBasePage):
                                          "//*[@id='sample-request-param-field-referral-Customers-createCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(refferal)
-        Logging().reportDebugStep(self, "Enter refferal")
+        Logging().reportDebugStep(self, "Enter refferal: " + refferal)
         return ApiPage(self.driver)
 
     def check_create_customer_token(self):
@@ -304,7 +310,7 @@ class ApiPage(CRMBasePage):
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.clear()
         input.send_keys(email)
-        Logging().reportDebugStep(self, "Enter email")
+        Logging().reportDebugStep(self, "Enter email: " + email)
         return ApiPage(self.driver)
 
     def enter_password(self, password):
@@ -322,7 +328,7 @@ class ApiPage(CRMBasePage):
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.clear()
         input.send_keys(country)
-        Logging().reportDebugStep(self, "Enter country")
+        Logging().reportDebugStep(self, "Enter country: " + country)
         return ApiPage(self.driver)
 
     def set_lead_country(self, country):
@@ -339,7 +345,7 @@ class ApiPage(CRMBasePage):
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.clear()
         input.send_keys(firstName)
-        Logging().reportDebugStep(self, "Enter firstName")
+        Logging().reportDebugStep(self, "Enter First Name: " + firstName)
         return ApiPage(self.driver)
 
     def enter_lastName(self, lastName):
@@ -348,7 +354,7 @@ class ApiPage(CRMBasePage):
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.clear()
         input.send_keys(lastName)
-        Logging().reportDebugStep(self, "Enter lastName")
+        Logging().reportDebugStep(self, "Enter Last Name: " + lastName)
         return ApiPage(self.driver)
 
     def enter_phone(self, phone):
@@ -357,7 +363,7 @@ class ApiPage(CRMBasePage):
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.clear()
         input.send_keys(phone)
-        Logging().reportDebugStep(self, "Enter phone")
+        Logging().reportDebugStep(self, "Enter phone: " + phone)
         return ApiPage(self.driver)
 
     def send_create_customer(self):
@@ -395,7 +401,7 @@ class ApiPage(CRMBasePage):
         input_partnarId = self.driver.find_element(By.XPATH,"//*[@id='sample-request-param-field-partnerId-Authorization-Authorization-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input_partnarId)
         input_partnarId.send_keys(partnerId)
-        Logging().reportDebugStep(self, "Enter partnerId")
+        Logging().reportDebugStep(self, "Enter Partner ID: " + partnerId)
         return ApiPage(self.driver)
 
     def generate_time(self):

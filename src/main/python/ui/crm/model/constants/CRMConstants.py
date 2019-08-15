@@ -172,6 +172,7 @@ class CRMConstants(object):
     BLOCKED_COUNTRY = "Albania"
     CREATE_AFFILIATE_SUCCCESS = "Success"
     EASY_SEARCH_CLIENT_TEST = "test"
+    EASY_SEARCH_CLIENT_TEST_TEST = "test test"
     CAMPAIGN_NAME = "TestCampaign" + str(random.randrange(1, 9999))
     FIST_ASSIGNED_TO = "Panda Auto"
     START_DATE = "2019-01-09"
@@ -182,6 +183,7 @@ class CRMConstants(object):
     SECOND_DEAL = "CPL"
     RATE = "111"
     RATE1 = "222"
+    CONVERT_SUCCESSFUL_MESSAGE_EMPTY = ""
     DELETE_INTERACTION_MESSAGE = "Are You Sure You want to Delete?"
     INTERACTION_DELETED_MESSAGE = "Successfully deleted"
     MYDASHBOARD_MODULE = "My Dashboard"

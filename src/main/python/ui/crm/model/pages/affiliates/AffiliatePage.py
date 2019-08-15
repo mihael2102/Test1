@@ -12,8 +12,107 @@ from selenium.common.exceptions import NoSuchElementException
 import autoit
 import os
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
+
 
 class AffiliatePage(CRMBasePage):
+
+    def click_submit(self):
+        sleep(3)
+        submit = self.driver.find_element(By.XPATH,
+                                          "/html/body/bs-modal[3]/div/div/form/bs-modal-footer/div/button[3]")
+        submit.click()
+        Logging().reportDebugStep(self, "click submit")
+        return AffiliatePage(self.driver)
+
+    def add_none_selected_countries(self):
+        sleep(3)
+        methods = super().wait_element_to_be_clickable(
+            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[1]/span")
+        methods.click()
+        sleep(2)
+        all_methods = super().wait_element_to_be_clickable(
+            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[2]")
+        all_methods.click()
+        # sleep(4)
+        # all_methods.click()
+        Logging().reportDebugStep(self, "None selected countries")
+        return AffiliatePage(self.driver)
+
+    def check_selected_countries(self):
+        sleep(3)
+        selected_number = super().wait_load_element(
+            "(//div[@class='multi-select-title']/span[contains(text(),'elected')])[2]").text
+        Logging().reportDebugStep(self, "Check selected blocked countries")
+        return selected_number
+
+    def click_cancel(self):
+        cancel = super().wait_load_element("/html/body/bs-modal[3]/div/div/form/bs-modal-footer/div/button[2]")
+        cancel.click()
+        Logging().reportDebugStep(self, "Click cancel")
+        return AffiliatePage(self.driver)
+
+    def check_selected_methods(self):
+        sleep(3)
+        selected_number = super().wait_load_element(
+            "(//div[@class='multi-select-title']/span[contains(text(),'elected')])[1]").text
+        Logging().reportDebugStep(self, "Check selected methods")
+        return selected_number
+
+    def search_by_partner_id(self, partner_id):
+        sleep(2)
+        input = self.driver.find_element(By.XPATH, "//*[@id='host-element']/input")
+        input.send_keys(partner_id)
+        Logging().reportDebugStep(self, "Enter partner ID %s" % partner_id)
+        return AffiliatePage(self.driver)
+
+    def open_edit_affiliate(self):
+        sleep(3)
+        edit_button = self.driver.find_element(By.XPATH, "//span[contains(@class,'pencil')]")
+        edit_button.click()
+        Logging().reportDebugStep(self, "Click Edit affiliate")
+        return AffiliatePage(self.driver)
+
+    def add_all_methods(self):
+        sleep(3)
+        methods = super().wait_element_to_be_clickable(
+            "(//div[@class='multi-select-title']/span[contains(text(),'elected')])[1]")
+        methods.click()
+        sleep(2)
+        all_methods = super().wait_element_to_be_clickable(
+            "(//span[contains(@class,'selectAll')]/i)[1]")
+        all_methods.click()
+        sleep(4)
+        all_methods.click()
+        Logging().reportDebugStep(self, "Select all methods")
+        return AffiliatePage(self.driver)
+
+    def copy_secret_key(self):
+        sleep(5)
+        copy_button = super().wait_element_to_be_clickable("//button[contains(text(), 'Copy')]")
+        self.driver.execute_script("arguments[0].click();", copy_button)
+        sleep(3)
+        key = super().wait_load_element("//div[@class='modal-body']/span").text
+        button_ok = super().wait_load_element("//div[@class='modal-footer']/button[text()='OK']")
+        button_ok.click()
+        Logging().reportDebugStep(self, "Copy key")
+        return key
+
+    def get_link_api(self):
+        sleep(5)
+        try:
+            api_link = self.driver.find_element(By.XPATH, "//a[contains(@id,'api-link')]").text
+        except NoSuchElementException:
+            try:
+                CRMBasePage(self.driver).refresh_page()
+                sleep(1)
+                api_link = self.driver.find_element(By.XPATH, "//a[contains(@id,'api-link')]").text
+            except NoSuchElementException:
+                CRMBasePage(self.driver).refresh_page()
+                sleep(1)
+                api_link = self.driver.find_element(By.XPATH, "//a[contains(@id,'api-link')]").text
+        Logging().reportDebugStep(self, "Get link API")
+        return api_link
 
     def add_new_affiliate(self):
         add_new_affiliate_button = super().wait_element_to_be_clickable(
@@ -144,93 +243,8 @@ class AffiliatePage(CRMBasePage):
         Logging().reportDebugStep(self, "Data not found")
         return AffiliatePage(self.driver)
 
-    def search_by_partner_id(self, partner_id):
-        sleep(2)
-        input = self.driver.find_element(By.XPATH, "//*[@id='host-element']/input")
-        input.send_keys(partner_id)
-        Logging().reportDebugStep(self, "Enter partner ID %s" % partner_id)
+    def click_enabled_radio_btn(self):
+        enabled_radio_btn = super().wait_load_element("//label[contains(text(),'Enabled')]/input")
+        enabled_radio_btn.click()
+        Logging().reportDebugStep(self, "Click 'Enabled' radio button")
         return AffiliatePage(self.driver)
-
-    def open_edit_affiliate(self):
-        sleep(3)
-        edit_button = self.driver.find_element(By.XPATH,
-                                               "//span[@class='glyphicon glyphicon-pencil cursor-pointer ng-star-inserted']")
-        edit_button.click()
-        Logging().reportDebugStep(self, "Click edit affiliate")
-        return AffiliatePage(self.driver)
-
-    def check_selected_methods(self):
-        sleep(3)
-        selected_number = super().wait_load_element(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[1]").text
-        Logging().reportDebugStep(self, "Check selected methods")
-        return selected_number
-
-    def add_all_methods(self):
-        sleep(3)
-        methods = super().wait_element_to_be_clickable(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]")
-        methods.click()
-        sleep(2)
-        all_methods = super().wait_element_to_be_clickable(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[4]/div[2]/filter-multi-select/div/div[2]/span[2]/i")
-        all_methods.click()
-        sleep(4)
-        all_methods.click()
-        # submit = super().wait_element_to_be_clickable("/html/body/bs-modal[3]/div/div/form/bs-modal-footer/div/button[3]")
-        # submit.click()
-        Logging().reportDebugStep(self, "Select all methods")
-        return AffiliatePage(self.driver)
-
-    def check_selected_countries(self):
-        sleep(3)
-        selected_number = super().wait_load_element(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[1]/span").text
-        Logging().reportDebugStep(self, "Check selected blocked countries")
-        return selected_number
-
-    def add_none_selected_countries(self):
-        sleep(3)
-        methods = super().wait_element_to_be_clickable(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[1]/span")
-        methods.click()
-        sleep(2)
-        all_methods = super().wait_element_to_be_clickable(
-            "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[2]")
-        all_methods.click()
-        # sleep(4)
-        # all_methods.click()
-        Logging().reportDebugStep(self, "None selected countries")
-        return AffiliatePage(self.driver)
-
-    def copy_secret_key(self):
-        sleep(5)
-        copy_button = super().wait_element_to_be_clickable("//button[contains(text(), 'Copy')]")
-        # copy_button.click()
-        self.driver.execute_script("arguments[0].click();", copy_button)
-        sleep(3)
-        key = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-body/div/span").text
-        button_ok = super().wait_load_element("/html/body/bs-modal[5]/div/div/bs-modal-footer/div/button")
-        button_ok.click()
-        Logging().reportDebugStep(self, "Copy key")
-        return key
-
-    def get_link_api(self):
-        sleep(5)
-        try:
-            api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
-        except NoSuchElementException:
-            try:
-                CRMBasePage(self.driver).refresh_page()
-                sleep(1)
-                api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
-            except NoSuchElementException:
-                CRMBasePage(self.driver).refresh_page()
-                sleep(1)
-                api_link = self.driver.find_element(By.XPATH, "//a[@class = 'api-link']").text
-        # api_link.click()
-        Logging().reportDebugStep(self, "Get link API")
-        return api_link
-
-
-

@@ -17,6 +17,8 @@ from src.main.python.utils.logs.Loging import Logging
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 
 
 class ClientsPage(CRMBasePage):
@@ -498,11 +500,6 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Verified the First Name: " + client_email.text)
         return client_email.text
 
-    def get_client_last_name(self):
-        client_last_name = super().wait_load_element("//span[@id='dtlview_Last Name']").text
-        Logging().reportDebugStep(self, "Client last name is: " + client_last_name)
-        return client_last_name
-
     def get_client_phone(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Phone')]//following-sibling::td[1]")))
@@ -511,10 +508,14 @@ class ClientsPage(CRMBasePage):
 
     def click_custom_information(self):
         sleep(2)
-        button = super().wait_element_to_be_clickable("//span[@class = 'glyphicons CustomInformation']")
-        self.driver.execute_script("arguments[0].scrollIntoView();", button)
-        self.driver.execute_script("arguments[0].click();", button)
-        Logging().reportDebugStep(self, "Click Custom Information")
+        try:
+            self.driver.find_element_by_xpath("//*[@id='tblCustomInformation' and contains(@style,'none')]")
+            button = super().wait_element_to_be_clickable("//span[@class = 'glyphicons CustomInformation']")
+            self.driver.execute_script("arguments[0].scrollIntoView();", button)
+            self.driver.execute_script("arguments[0].click();", button)
+            Logging().reportDebugStep(self, "Open Custom Information tab")
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Custom Information tab is already opened")
         return ClientsPage(self.driver)
 
     def get_client_postalCode(self):
@@ -554,8 +555,8 @@ class ClientsPage(CRMBasePage):
     def get_refferal_client(self):
         sleep(5)
         refferal_client = WebDriverWait(self.driver, 50).until(
-            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Refferal')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the client Email: " + refferal_client.text)
+            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Referral')]//following-sibling::td[1]")))
+        Logging().reportDebugStep(self, "Get Referral: " + refferal_client.text)
         return refferal_client.text
 
     def click_send_mail_btn(self):
@@ -658,3 +659,15 @@ class ClientsPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", address_information_tab)
         Logging().reportDebugStep(self, "Address Information tab is opened")
         return ClientsPage(self.driver)
+
+    def open_address_information(self):
+        try:
+            self.driver.find_element_by_xpath("//*[@id='tblAddressInformation'][contains(@style,'none')]")
+            address_tab = super().wait_load_element("//*[contains(text(),'Address Information')]")
+            self.driver.execute_script("arguments[0].scrollIntoView();", address_tab)
+            self.driver.execute_script("arguments[0].click();", address_tab)
+            Logging().reportDebugStep(self, "Address Information tab was opened")
+            return ClientsPage(self.driver)
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Address Information tab is already opened")
+            return ClientsPage(self.driver)

@@ -11,8 +11,9 @@ class APIConstants(object):
     PASSWORD = "as1as2"
     COUNTRY = "bg"
     COUNTRY1 = "fi"
+    COUNTRY2 = "de"
     COUNTRY_LEAD = "li"
-    LASTNAME = "Doe"
+    LASTNAME = "testAPI"
     PHONE = "3453453"
     STATUS_OK = "ok"
     COUNTRY_CRM = "Germany"
@@ -24,8 +25,8 @@ class APIConstants(object):
     CHANGE_PHONE = "3523233"
     CHANGE_PHONE_CRM = "+352 3233"
     CHANGE_POSTAL_CODE = "777"
-    LEAD_FNAME = "John"
-    LEAD_LNAME = "Doe"
+    LEAD_FNAME = "LeadFName"
+    LEAD_LNAME = "LeadLName"
     LEAD_PHONE = str(random.randrange(1, 9999999))
     CLIENT_PHONE = str(random.randrange(1, 9999999))
     LEAD_PHONE_CRM = "+352 3233"
