@@ -13,3 +13,4 @@ class EmailConstants(object):
     SECOND_EMAIL_CONFIRM_MESSAGE = "Email sent"
     EMAIL_ADDRESS = "jonathan.albalak@pandats.com"
     EMAIL_PASSWORD = "xUQ7hrr9VF"
+    SUBJECT_WELCOME_TRADE_NERO = "Trade Nero"

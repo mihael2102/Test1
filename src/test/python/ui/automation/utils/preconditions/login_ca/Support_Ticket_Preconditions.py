@@ -55,9 +55,11 @@ class Support_Ticket_Preconditions(object):
     def check_and_update_ticket_in_crm(self):
         # Login to CRM
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
-            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            CRMLoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url')) \
                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                           self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
+                           self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                           self.config.get_value(TestDataConstants.OTP_SECRET)) \
                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
             sleep(2)

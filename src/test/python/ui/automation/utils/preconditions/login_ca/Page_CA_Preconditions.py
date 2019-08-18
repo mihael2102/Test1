@@ -33,29 +33,36 @@ class Page_CA_Precondition(object):
     def switch_between_accounts(self):
         if global_var.current_brand_name != "q8":
             try:
-                CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
-                                        .login() \
-                                        .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                     LeadsModuleConstants.EMAIL]) \
-                                        .enter_password(CAConstants.PASSWORD) \
-                                        .click_login() \
-                                        .verify()
-                CAPage(self.driver).open_accounts_list(CAConstants.ACCOUNT_LIVE) \
-                                   .switch_to_account(CAConstants.LIVE_ACCOUNT_NUMBER, CAConstants.ACCOUNT_LIVE) \
-                                   .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
-                                   .verify_active_account_number(CAConstants.LIVE_ACCOUNT_NUMBER)
+                CALoginPage(self.driver)\
+                    .open_first_tab_page(self.config.get_value('url_ca')) \
+                    .login() \
+                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                 LeadsModuleConstants.EMAIL]) \
+                    .enter_password(CAConstants.PASSWORD) \
+                    .click_login() \
+                    .verify()
+                CAPage(self.driver)\
+                    .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
+                    .switch_to_account(CAConstants.LIVE_ACCOUNT_NUMBER, CAConstants.ACCOUNT_LIVE) \
+                    .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
+                    .verify_active_account_number(CAConstants.LIVE_ACCOUNT_NUMBER)
                 if global_var.current_brand_name == "mpcrypto":
-                    CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
+                    CAPage(self.driver)\
+                        .verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
                 else:
-                    CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY)
+                    CAPage(self.driver)\
+                        .verify_active_account_currency(CAConstants.CURRENCY)
                 if global_var.current_brand_name != "kontofx":
-                    CAPage(self.driver).switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
-                                       .open_accounts_list(CAConstants.ACCOUNT_DEMO) \
-                                       .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
+                    CAPage(self.driver)\
+                        .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
+                        .open_accounts_list(CAConstants.ACCOUNT_DEMO) \
+                        .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
                     if global_var.current_brand_name == "mpcrypto":
-                        CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
+                        CAPage(self.driver)\
+                            .verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
                     else:
-                        CAPage(self.driver).verify_active_account_currency(CAConstants.CURRENCY)
+                        CAPage(self.driver)\
+                            .verify_active_account_currency(CAConstants.CURRENCY)
                 else:
                     Logging().reportDebugStep(self, "Test is not running")
 
@@ -94,12 +101,13 @@ class Page_CA_Precondition(object):
         # Login to CRM
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "b-finance") \
                 and (global_var.current_brand_name != "tradospot"):
-            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                                     .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                                                self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                                                self.config.get_value(TestDataConstants.OTP_SECRET)) \
-                                     .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                                                TestDataConstants.FILTER))
+            CRMLoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url')) \
+                .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                           self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                           self.config.get_value(TestDataConstants.OTP_SECRET)) \
+                .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                               TestDataConstants.FILTER))
 
             sleep(2)
             ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[

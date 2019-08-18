@@ -14,6 +14,7 @@ from time import sleep
 import poplib
 from email import parser
 from src.main.python.utils.logs.Loging import Logging
+from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
 
 
 class Login_CA_Precondition(object):
@@ -40,7 +41,11 @@ class Login_CA_Precondition(object):
         messages = ["\n".join(m.decode() for m in mssg[1]) for mssg in messages]
         # Parse message into an email object:
         messages = [parser.Parser().parsestr(mssg) for mssg in messages]
-        brand = global_var.current_brand_name
+        # Settings for brand name in subjects:
+        if global_var.current_brand_name == "tradenero":
+            brand = EmailConstants.SUBJECT_WELCOME_TRADE_NERO
+        else:
+            brand = global_var.current_brand_name
         subjects = []
         for message in messages:
             if CRMConstants.WELCOME_TO in str(message['Subject']):
