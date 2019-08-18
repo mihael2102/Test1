@@ -26,3 +26,6 @@ brands:
 
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
+
+#- name: tradenero
+#  config_file: tradenero.yml
