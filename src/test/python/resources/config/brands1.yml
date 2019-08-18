@@ -6,8 +6,8 @@ brands:
 #- name: ptbanc
 #  config_file: ptbanc.yml
 
-#- name: q8
-#  config_file: q8.yml
+- name: q8
+  config_file: q8.yml
 #
 #- name: kontofx
 #  config_file: kontofx.yml
@@ -27,5 +27,5 @@ brands:
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
 
-- name: tradenero
-  config_file: tradenero.yml
+#- name: tradenero
+#  config_file: tradenero.yml

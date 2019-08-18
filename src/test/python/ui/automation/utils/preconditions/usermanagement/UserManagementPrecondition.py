@@ -56,7 +56,8 @@ class UserManagementPrecondition(object):
         if global_var.current_brand_name == "brokerz":
             UserManagementPage(self.driver).set_role(UserInformation.ROLE1)
         elif global_var.current_brand_name == "ptbanc" or \
-                global_var.current_brand_name == "dax-300":
+             global_var.current_brand_name == "dax-300" or \
+             global_var.current_brand_name == "q8":
             UserManagementPage(self.driver).set_role(UserInformation.ROLE2)
         elif global_var.current_brand_name == "trade99":
             UserManagementPage(self.driver).set_role(UserInformation.ROLE3)

@@ -1,5 +1,6 @@
 from datetime import date
 
+
 class TestDataConstants(object):
     DESCRIPTION = "Open a new ticket"
     CATEGORY_FIRST = "Login Problem"

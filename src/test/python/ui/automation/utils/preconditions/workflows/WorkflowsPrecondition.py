@@ -157,11 +157,14 @@ class WorkflowsPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        CRMHomePage(self.driver).open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
-        CRMConfigurationPage(self.driver).check_workflows_loaded()
+        CRMHomePage(self.driver)\
+            .open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        CRMConfigurationPage(self.driver)\
+            .check_workflows_loaded()
 
-        WorkflowsPage(self.driver).search_workflow_by_name(WorkflowsConstants.NAME_WORKFLOW)\
-                                  .delete_workflow()\
-                                  .confirmation_delete_workflow()\
-                                  .search_workflow_by_name(WorkflowsConstants.NAME_WORKFLOW)\
-                                  .check_workflow_not_found()
+        WorkflowsPage(self.driver)\
+            .search_workflow_by_name(WorkflowsConstants.NAME_WORKFLOW)\
+            .delete_workflow()\
+            .confirmation_delete_workflow()\
+            .search_workflow_by_name(WorkflowsConstants.NAME_WORKFLOW)\
+            .check_workflow_not_found()

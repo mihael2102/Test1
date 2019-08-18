@@ -184,17 +184,16 @@ class ApiPrecondition(object):
 
     def test_create_new_customer(self):
         self.autorization_process_short()
-        ApiPage(self.driver).create_customer_module()
-        ApiPage(self.driver).enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
-        ApiPage(self.driver).enter_password(APIConstants.PASSWORD)
-        ApiPage(self.driver).enter_country(APIConstants.COUNTRY2)
-        ApiPage(self.driver).enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.FIRST_NAME])
-        ApiPage(self.driver).enter_lastName(APIConstants.LASTNAME)
-        ApiPage(self.driver).enter_phone(APIConstants.PHONE)
-        ApiPage(self.driver).enter_refferal(APIConstants.REFFERAL)
-        ApiPage(self.driver).send_create_customer()
+        ApiPage(self.driver)\
+            .create_customer_module()\
+            .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.EMAIL])\
+            .enter_password(APIConstants.PASSWORD)\
+            .enter_country(APIConstants.COUNTRY2)\
+            .enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])\
+            .enter_lastName(APIConstants.LASTNAME)\
+            .enter_phone(APIConstants.PHONE)\
+            .enter_refferal(APIConstants.REFFERAL)\
+            .send_create_customer()
 
         check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
         count = 0
@@ -230,7 +229,8 @@ class ApiPrecondition(object):
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME]
         assert client_last_name == APIConstants.LASTNAME
-        if global_var.current_brand_name != "brokerz":
+        if global_var.current_brand_name != "brokerz" \
+                and global_var.current_brand_name != "tradenero":
             assert client_phone == APIConstants.PHONE_CRM
         assert refferal == APIConstants.REFFERAL
 
