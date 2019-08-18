@@ -23,9 +23,11 @@ class EventPrecondition(object):
         self.config = config
 
     def test_sorting_columns(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
@@ -48,7 +50,8 @@ class EventPrecondition(object):
     def test_email_icon(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
@@ -68,7 +71,8 @@ class EventPrecondition(object):
     def test_sms_icon(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
@@ -84,7 +88,8 @@ class EventPrecondition(object):
     def test_mass_edit_tasks(self):
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
@@ -104,9 +109,11 @@ class EventPrecondition(object):
         assert status == CRMConstants.STATUS_EVENT
 
     def test_searching_by_columns(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab()
@@ -128,10 +135,11 @@ class EventPrecondition(object):
         assert type == verify_type
 
     def create_first_event(self):
-
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         task_module = CRMHomePage(self.driver).open_task_module()
 
@@ -160,10 +168,11 @@ class EventPrecondition(object):
         return lead
 
     def edit_first_event(self):
-
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         task_module = CRMHomePage(self.driver).open_task_module()
         task_module.open_show_all_tab() \

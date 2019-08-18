@@ -14,6 +14,7 @@ from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 
+
 @pytest.mark.run(order=14)
 class AddEventTaskModule(BaseTest):
 
@@ -39,9 +40,11 @@ class AddEventTaskModule(BaseTest):
         EventPrecondition(self.driver, self.config).edit_first_event()
 
     def test_delete_interaction(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
         sleep(2)

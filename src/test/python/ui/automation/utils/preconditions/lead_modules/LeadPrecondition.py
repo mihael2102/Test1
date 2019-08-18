@@ -333,7 +333,8 @@ class LeadPrecondition(object):
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         CRMHomePage(self.driver)\
             .open_lead_module() \
@@ -473,8 +474,9 @@ class LeadPrecondition(object):
 
     def create_three_leads(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
-            .crm_login(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.USER_NAME),
-                       self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CRM_PASSWORD))
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         home_page = CRMHomePage()
         home_page.open_lead_module() \

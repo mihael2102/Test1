@@ -12,6 +12,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
 
+
 @pytest.mark.run(order=32)
 class AffiliateModule(BaseTest):
 

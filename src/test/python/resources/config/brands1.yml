@@ -12,8 +12,8 @@ brands:
 #- name: kontofx
 #  config_file: kontofx.yml
 #
-- name: brokerz
-  config_file: brokerz.yml
+#- name: brokerz
+#  config_file: brokerz.yml
 #
 #- name: gigafx
 #  config_file: gigafx.yml
@@ -27,5 +27,5 @@ brands:
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
 
-#- name: tradenero
-#  config_file: tradenero.yml
+- name: tradenero
+  config_file: tradenero.yml

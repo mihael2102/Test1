@@ -11,6 +11,7 @@ from selenium.common.exceptions import TimeoutException
 from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 
+
 @pytest.mark.run(order=15)
 class CalendarView(BaseTest):
 

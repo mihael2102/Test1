@@ -27,7 +27,8 @@ class DepositTestCRM(BaseTest):
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url'))\
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         # ADD LIVE ACCOUNT IN CRM
         # Open clients module. Find created client by email and open his profile
