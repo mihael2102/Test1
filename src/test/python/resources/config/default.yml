@@ -5,7 +5,7 @@ crm_password: p4Mq4EEhUyEQ
 otp_secret:
 FirstLeadInfo:
   EVAL_first_name: "'testqa' + (''.join(random.sample(string.ascii_uppercase*6, 6)))"
-  last_name: "DoeA"
+  last_name: "Doe"
   mobile: "8888888"
   fax: "5555"
   EVAL_email: "'pandaqa+' + (datetime.utcnow().strftime('%Y%m%d%H%M%S')) + '@pandats.com'"
@@ -39,8 +39,8 @@ FirstLeadInfo:
   first_currency: "EUR"
   filter_name: "Test Leads"
 SecondLeadInfo:
-  first_name: "Sam"
-  last_name: "White"
+  first_name: "Name"
+  last_name: "Surname"
   mobile: "7777777"
   fax: "6666"
   EVAL_email: "'pandaqa+' + (datetime.utcnow().strftime('%Y%m%d%H%M%S')) + '@pandats.com'"
