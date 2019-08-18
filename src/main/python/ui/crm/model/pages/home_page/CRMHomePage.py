@@ -168,12 +168,7 @@ class CRMHomePage(CRMBasePage):
 
     def select_user_management(self):
         sleep(5)
-        if global_var.current_brand_name == "trade99":
-            user_settings = super().wait_element_to_be_clickable(
-                "/html/body/table[1]/tbody/tr/td[3]/table/tbody/tr/td[4]/img")
-        else:
-            user_settings = super().wait_element_to_be_clickable(
-                "/html/body/table[1]/tbody/tr/td[3]/table/tbody/tr/td[3]/img")
+        user_settings = super().wait_element_to_be_clickable("//img[@src='themes/panda/images/mainSettings_white.png']")
         user_settings.click()
         user_management = super().wait_element_to_be_clickable("//a[contains(text(), 'User Management')]")
         try:
@@ -194,3 +189,18 @@ class CRMHomePage(CRMBasePage):
         module_element.click()
         Logging().reportDebugStep(self, "Dashboard  module was opened")
         return LeaderboardPage(self.driver)
+
+    def get_first_leads(self):
+        sleep(5)
+        lead1 = self.driver.find_element(By.XPATH,
+                                           "//tr[1]/td[9]/a/div").text
+        lead2 = self.driver.find_element(By.XPATH,
+                                           "//tr[2]/td[9]/a/div").text
+        lead3 = self.driver.find_element(By.XPATH,
+                                           "//tr[3]/td[9]/a/div").text
+        lead4 = self.driver.find_element(By.XPATH,
+                                           "//tr[4]/td[9]/a/div").text
+        lead5 = self.driver.find_element(By.XPATH,
+                                           "//tr[5]/td[9]/a/div").text
+        Logging().reportDebugStep(self, "Check first leads")
+        return lead1, lead2, lead3, lead4, lead5

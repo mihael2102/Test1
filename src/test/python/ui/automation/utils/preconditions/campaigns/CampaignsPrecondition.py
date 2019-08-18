@@ -20,9 +20,11 @@ class CampaignsPrecondition(object):
 
     def create_new_campaign(self):
         """ Login to CRM """
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Affiliates page """
         campaign_list_view_page = CRMHomePage(self.driver).open_more_list_modules()\
@@ -74,7 +76,8 @@ class CampaignsPrecondition(object):
         """ Login to CRM """
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Affiliates page """
         CRMHomePage(self.driver).open_more_list_modules() \

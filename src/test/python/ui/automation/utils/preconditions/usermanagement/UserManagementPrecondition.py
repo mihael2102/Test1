@@ -22,13 +22,16 @@ class UserManagementPrecondition(object):
         self.config = config
 
     def check_user_management(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
-        user_management = CRMHomePage(self.driver).select_user_management()
-        tab_name = user_management.check_user_management_tab()
+        user_management = CRMHomePage(self.driver)\
+            .select_user_management()
+        tab_name = user_management\
+            .check_user_management_tab()
         UserManagementPage(self.driver)\
             .open_crm_users_tab()\
             .check_table_loaded()
@@ -53,7 +56,8 @@ class UserManagementPrecondition(object):
         if global_var.current_brand_name == "brokerz":
             UserManagementPage(self.driver).set_role(UserInformation.ROLE1)
         elif global_var.current_brand_name == "ptbanc" or \
-                global_var.current_brand_name == "dax-300":
+             global_var.current_brand_name == "dax-300" or \
+             global_var.current_brand_name == "q8":
             UserManagementPage(self.driver).set_role(UserInformation.ROLE2)
         elif global_var.current_brand_name == "trade99":
             UserManagementPage(self.driver).set_role(UserInformation.ROLE3)

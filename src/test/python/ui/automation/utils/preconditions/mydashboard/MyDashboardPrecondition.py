@@ -70,11 +70,13 @@ class MyDashboardPrecondition(object):
         assert type == TaskModuleConstants.SECOND_EVENT_TYPE
 
     def email_icon(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
-        CRMHomePage(self.driver).open_more_list_modules() \
+        CRMHomePage(self.driver)\
+            .open_more_list_modules() \
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
         MyDashboardPage(self.driver).select_show_all_tab()
         MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)

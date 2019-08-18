@@ -25,6 +25,82 @@ from selenium.webdriver.common.keys import Keys
 
 class ClientProfilePage(CRMBasePage):
 
+    def get_equity_trading_accounts(self):
+        open_p_l = super().wait_load_element(
+            "//tr[2]/td[3]/span[@class='currenrcy']")
+        Logging().reportDebugStep(self, "open p l level " + open_p_l.text)
+        return open_p_l.text
+
+    def get_open_p_l(self):
+        open_p_l = super().wait_load_element(
+            "//tr[2]/td[7]/span[@class='currenrcy']")
+        Logging().reportDebugStep(self, "open p l level " + open_p_l.text)
+        return open_p_l.text
+
+    def get_last_margin_lvl(self):
+        margin_lvl = super().wait_load_element(
+            "//tr[2]/td/span[@class='margin-level']")
+        Logging().reportDebugStep(self, "margin level " + margin_lvl.text)
+        return margin_lvl.text
+
+    def click_close_display_transactions(self):
+        close_display_transactions = super().wait_element_to_be_clickable(
+            "//*[@id='docpreviewdiv']/div/div/div[5]/div/button")
+        try:
+            close_display_transactions.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", close_display_transactions)
+        Logging().reportDebugStep(self, "close display transactions")
+        return ClientProfilePage(self.driver)
+
+    def get_type_transaction(self):
+        type_t = super().wait_load_element(
+            "//*[@id='OpenTransactionsBody']/tr[1]/td[3]").text
+        Logging().reportDebugStep(self, "type transaction is " + type_t)
+        return type_t
+
+    def get_size_transaction(self):
+        sleep(2)
+        type_s = super().wait_load_element(
+            "//*[@id='OpenTransactionsBody']/tr[1]/td[4]").text
+        Logging().reportDebugStep(self, "type transaction is " + type_s)
+        return type_s
+
+    def get_symbol_transaction(self):
+        sleep(2)
+        type_sy = super().wait_load_element(
+            "//*[@id='OpenTransactionsBody']/tr[1]/td[5]").text
+        Logging().reportDebugStep(self, "type transaction is " + type_sy)
+        return type_sy
+
+    def get_balance(self):
+        balance = super().wait_load_element(
+            "//*[@id='dtlview_Balance']")
+        Logging().reportDebugStep(self, "balance is " + balance.text)
+        return balance.text
+
+    def get_open_p_l_text(self):
+        open_p_l = super().wait_load_element(
+            "//*[@id='dtlview_Open PNL']")
+        Logging().reportDebugStep(self, "open p l is " + open_p_l.text)
+        return open_p_l.text
+
+    def click_display_open_transactions(self):
+        sleep(2)
+        trading_account_tab = super().wait_element_to_be_clickable("//*[@id='RLContents']/input")
+        try:
+            trading_account_tab.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", trading_account_tab)
+        Logging().reportDebugStep(self, "Click Display Open Transactions")
+        return ClientProfilePage(self.driver)
+
+    def get_equity_text(self):
+        equity = super().wait_load_element(
+            "//*[@id='dtlview_Equity']")
+        Logging().reportDebugStep(self, "equity is " + equity.text)
+        return equity.text
+
     '''
         Perform scroll_down
         returns Manage Accounts Module  instance    
@@ -40,6 +116,18 @@ class ClientProfilePage(CRMBasePage):
         Perform scroll_down
         returns Manage Accounts Module  instance    
     '''
+
+    def click_link_trading_account(self, number):
+        sleep(8)
+        trading_tab = super().wait_load_element(
+            "//table[@id='rld_table_content']//div//a[contains(text(), '%s')]" % number)
+        self.driver.execute_script("arguments[0].scrollIntoView();", trading_tab)
+        try:
+            trading_tab.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", trading_tab)
+        Logging().reportDebugStep(self, "Open the financial transactions page")
+        return ClientProfilePage(self.driver)
 
     def click_trading_accounts_tab(self):
         WebDriverWait(self.driver, 10).until(
@@ -90,10 +178,11 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_document_tab(self):
+        sleep(1)
         document_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_Documents']")
         document_tab.click()
         Logging().reportDebugStep(self, "Open the document tab ")
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     '''
         Open the Documents module
@@ -144,7 +233,7 @@ class ClientProfilePage(CRMBasePage):
         trading_tab = super().wait_load_element("//a[@id='show_Accounts_FinancialTransactions']")
         trading_tab.click()
         Logging().reportDebugStep(self, "Open the financial transactions tab ")
-        return ClientProfilePage()
+        return ClientProfilePage(self.driver)
 
     '''
         :returns client amount from Trading Accounts tabs 
@@ -272,7 +361,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_name_document(self):
         document_name = super().wait_load_element("//tr[@class='lvtColData']//td[3]//a[contains(text(),'Bear.jpg')]")
-        Logging().reportDebugStep(self, "Returns the client status: " + document_name.text)
+        Logging().reportDebugStep(self, "Document is found: " + document_name.text)
         return document_name.text
 
     '''
@@ -513,6 +602,12 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the referral: " + parser_client_status_text)
         return parser_client_status_text
 
+    def get_customer_classification(self):
+        customer_classification = super().wait_load_element(
+            "//td[text()='Customer Classification']//following-sibling::td[1]").text
+        Logging().reportDebugStep(self, "Returns the Customer Classification: " + customer_classification)
+        return customer_classification
+
     def open_deposit_for_client_in_menu(self):
         deposit_for_client_element = self.driver.find_element(By.XPATH, "//*[@id='sidebar']/table[1]/tbody/tr[4]/td/a")
         self.driver.execute_script("arguments[0].click();", deposit_for_client_element)
@@ -567,6 +662,25 @@ class ClientProfilePage(CRMBasePage):
         sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
         self.driver.execute_script("arguments[0].click();", sign_out)
         Logging().reportDebugStep(self, "Sign Out")
+        return ClientProfilePage(self.driver)
+
+    def check_help_desk_ticket_exist(self, ca_ticket_number):
+        sleep(2)
+        ticket = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[2]/td[1] \
+                                                    [contains(text(), '%s')]" % ca_ticket_number).text
+        if len(ticket) != 0:
+            Logging().reportDebugStep(self, "Ticket " + ca_ticket_number + " is found")
+        else:
+            Logging().reportDebugStep(self, "Ticket " + ca_ticket_number + " was not found")
+        return ClientProfilePage(self.driver)
+
+    def verify_ticket_number(self, ca_ticket_number):
+        sleep(2)
+        ca_id = self.driver.find_element_by_xpath("//input[@name='bl_id']").get_attribute("value")
+        if ca_ticket_number == ca_id:
+            Logging().reportDebugStep(self, "Ticket, number " + ca_ticket_number + ", is verified")
+        else:
+            Logging().reportDebugStep(self, "Ticket " + ca_ticket_number + " was not found")
         return ClientProfilePage(self.driver)
 
     def click_activities_tab(self):
@@ -681,7 +795,6 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Click Edit")
         return ClientProfilePage(self.driver)
 
-
     def click_edit_personal_detail(self):
         sleep(2)
         btn_edit = self.driver.find_element(By.XPATH,
@@ -759,3 +872,145 @@ class ClientProfilePage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", emails_tab)
         Logging().reportDebugStep(self, "Open Email tab ")
         return ClientProfilePage()
+
+    def open_help_desk_tab(self):
+        sleep(3)
+        help_desk_tab = super().wait_element_to_be_clickable("//a[contains(@id, 'show_Accounts_HelpDesk')]")
+        self.driver.execute_script("arguments[0].click();", help_desk_tab)
+        sleep(1)
+        Logging().reportDebugStep(self, "Open the help desk tab")
+        return ClientProfilePage(self.driver)
+
+    def scroll_to_help_desk_section(self):
+        sleep(1)
+        help_desk_section = super().wait_element_to_be_clickable("//a[@href='#header_Accounts_HelpDesk']")
+        self.driver.execute_script("arguments[0].click();", help_desk_section)
+        Logging().reportDebugStep(self, "Scroll to Help Desk section")
+        return ClientProfilePage(self.driver)
+
+    def click_edit_help_desk_ticket(self):
+        edit_help_desk = super().wait_element_to_be_clickable("//*[@id='rld_table_content']/tbody/tr[2]/td[11]/div/div/a")
+        self.driver.execute_script("arguments[0].click();", edit_help_desk)
+        Logging().reportDebugStep(self, "Click Edit help desk ticket")
+        return ClientProfilePage(self.driver)
+
+    def set_help_desk_title(self, title):
+        sleep(1)
+        tittle_field = super().wait_load_element("//textarea[@name='subject']")
+        tittle_field.clear()
+        tittle_field.send_keys(title)
+        Logging().reportDebugStep(self, "The tittle was edited: " + title)
+        return ClientProfilePage(self.driver)
+
+    def set_help_desk_status(self, status):
+        assigned_to_field = Select(self.driver.find_element(By.XPATH, "//select[@name='ticket_statuses']"))
+        assigned_to_field.select_by_visible_text(status)
+        Logging().reportDebugStep(self, "The status was edited: " + status)
+        return ClientProfilePage(self.driver)
+
+    def click_save_button(self):
+        save_button = self.driver.find_element_by_xpath("//input[@title='Save [Alt+S]']")
+        save_button.click()
+        Logging().reportDebugStep(self, "The save button was clicked")
+        return ClientProfilePage(self.driver)
+
+    def scroll_to_documents_section(self):
+        sleep(1)
+        documents_section = super().wait_element_to_be_clickable("//a[@href='#header_Accounts_Documents']")
+        # documents_section.click()
+        self.driver.execute_script("arguments[0].click();", documents_section)
+        Logging().reportDebugStep(self, "Scroll to Documents section")
+        return ClientProfilePage(self.driver)
+
+    def open_document_preview(self):
+        document_preview_btn = super().wait_element_to_be_clickable("//a[@class='glyphicons eye_open cntrl'] \
+                                                                        [@title='Document preview']")
+        document_preview_btn.click()
+        Logging().reportDebugStep(self, "Open Document's preview")
+        return ClientProfilePage(self.driver)
+
+    def verify_document_name(self):
+        sleep(2)
+        document_name = super().wait_load_element("//tr[@class='lvtColData']//td[3]//a[contains(text(),'Bear.jpg')]")
+        Logging().reportDebugStep(self, "Document is found: " + document_name.text)
+        return ClientProfilePage(self.driver)
+
+    def verify_document_type(self, doc_type):
+        document_type = self.driver.find_element_by_xpath("//*[@id='rld_table_content']/tbody/tr[2]/td[2] \
+                                                            [contains(text(), '%s')]" % doc_type)
+        Logging().reportDebugStep(self, "Document type is: " + document_type.text)
+        return ClientProfilePage(self.driver)
+
+    def verify_document_status(self, expected_status):
+        self.driver.find_element_by_xpath("//td[contains(text(), '%s')]/span[@vtfieldname='document_statuses']"
+                                            % expected_status)
+        Logging().reportDebugStep(self, "Document status is " + expected_status)
+        return ClientProfilePage(self.driver)
+
+    def update_document_status(self, status):
+        sleep(3)
+        pick_list = super().wait_load_element("//select[@id='doc_status']")
+        pick_list.click()
+        document_status = self.driver.find_element_by_xpath("//select[@id='doc_status']/option[contains(text(), '%s')]"
+                                                            % status)
+        document_status.click()
+        # self.driver.execute_script("arguments[0].click();", document_status)
+        Logging().reportDebugStep(self, "Selected document status is " + status)
+        return ClientProfilePage(self.driver)
+
+    def click_save_document_btn(self):
+        save_document_btn = super().wait_element_to_be_clickable("//button [@id='save_document']")
+        save_document_btn.click()
+        Logging().reportDebugStep(self, "Click Save Document button")
+        return ClientProfilePage(self.driver)
+
+    def verify_doc_saved_message(self, expected_msg):
+        sleep(2)
+        actual_msg = self.driver.find_element_by_xpath("//div[@class='bootstrap-dialog-message']")
+        assert expected_msg == actual_msg.text
+        ok_btn = super().wait_element_to_be_clickable("//button[@class='btn btn-primary'][contains(text(),'OK')]")
+        ok_btn.click()
+        Logging().reportDebugStep(self, "Document status is updated successfully")
+        return ClientProfilePage(self.driver)
+
+    '''
+        Check, that server is not available for account opening 
+    '''
+
+    def verify_server_not_available(self, server):
+        server_pick_list = super().wait_load_element("//select[@id='server']").text
+        assert server not in server_pick_list.upper()
+        Logging().reportDebugStep(self, server + " server is not available for accounts opening")
+        return ClientProfilePage(self.driver)
+
+    def verify_clean_questionnaire_btn_visible(self):
+        super().wait_load_element("//a[text()='Clean Questionnaire']")
+        Logging().reportDebugStep(self, "Clean Questionnaire button is available")
+        return ClientProfilePage(self.driver)
+
+    def verify_clean_questionnaire_btn_not_visible(self):
+        sleep(0.1)
+        super().wait_element_to_be_disappear("//a[text()='Clean Questionnaire']", timeout=3)
+        Logging().reportDebugStep(self, "Clean Questionnaire button is available")
+        return ClientProfilePage(self.driver)
+
+    def click_view_edit_questionnaire_btn(self):
+        edit_questionnaire_btn = super().wait_load_element("//a[text()='View/Edit Questionnaire']")
+        edit_questionnaire_btn.click()
+        Logging().reportDebugStep(self, "Click 'View/Edit Questionnaire' button")
+        return ClientProfilePage(self.driver)
+
+    def set_professional_classification(self, professional_classification):
+        sleep(0.2)
+        professional_classification_list = Select(self.driver.find_element(By.XPATH,
+                                                  "//select[@id='professional_classification']"))
+        professional_classification_list.select_by_visible_text(professional_classification)
+        Logging().reportDebugStep(self, "Set Professional Classification: " + professional_classification)
+        return ClientProfilePage(self.driver)
+
+    def click_save_questionnaire_btn(self):
+        sleep(0.2)
+        save_btn = super().wait_load_element("//*[@id='Questionnaire_save_button']")
+        self.driver.execute_script("arguments[0].click();", save_btn)
+        Logging().reportDebugStep(self, "Click 'Save' Questionnaire button")
+        return ClientProfilePage(self.driver)
