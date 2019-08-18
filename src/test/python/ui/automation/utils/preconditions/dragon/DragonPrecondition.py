@@ -24,6 +24,9 @@ from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import 
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfileUpdate import ClientProfileUpdate
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+from src.test.python.ui.automation.utils.preconditions.api.Api_Preconditions import ApiPrecondition
+from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
+from src.main.python.ui.crm.model.constants.APIConstants import APIConstants
 
 
 class DragonPrecondition(object):
@@ -270,7 +273,7 @@ class DragonPrecondition(object):
             .click_more_icon() \
             .click_login_as_icon()
 
-        ' Check phone and email in Clients list view: '
+        ' Check phone in Clients list view: '
         CRMHomePage(self.driver)\
             .open_client_module()\
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
@@ -279,7 +282,7 @@ class DragonPrecondition(object):
         DragonPage(self.driver) \
             .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)
 
-        ' Check phone number and email in detail view: '
+        ' Check phone number in detail view: '
         ClientsPage(self.driver)\
             .open_client_id()
         DragonPage(self.driver)\
@@ -332,7 +335,7 @@ class DragonPrecondition(object):
             .click_more_icon() \
             .click_login_as_icon()
 
-        ' Check phone and email in Clients list view: '
+        ' Check phone in Clients list view: '
         CRMHomePage(self.driver) \
             .open_client_module() \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
@@ -343,8 +346,54 @@ class DragonPrecondition(object):
         DragonPage(self.driver) \
             .check_invalid_phone(expected_number)
 
-        ' Check phone number and email in detail view: '
+        ' Check phone number in detail view: '
         ClientsPage(self.driver) \
             .open_client_id()
         DragonPage(self.driver) \
             .check_invalid_phone(expected_number)
+
+    def check_api_dragon_valid_phone(self):
+        # Create new client via API with valid phone:
+        ApiPrecondition(self.driver, self.config)\
+            .autorization_process_short()
+        ApiPage(self.driver)\
+            .create_customer_module()\
+            .enter_email(DragonConstants.API_EMAIL)\
+            .enter_password(APIConstants.PASSWORD)\
+            .enter_country(APIConstants.COUNTRY2)\
+            .enter_firstName(DragonConstants.FIRST_NAME_CONVERT)\
+            .enter_lastName(DragonConstants.DRAGON_LAST_NAME)\
+            .enter_phone(DragonConstants.PHONE_NUMBER_VALID)\
+            .send_create_customer()
+
+        check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+        count = 0
+        while APIConstants.STATUS_OK not in check_create_customer_token:
+            sleep(1)
+            check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+            count += 1
+            if count == 5:
+                break
+
+        assert APIConstants.STATUS_OK in check_create_customer_token
+
+        ' Check valid phone number and Valid Phone icon in Clients list view: '
+        CRMHomePage(self.driver) \
+            .open_client_module() \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .enter_email(DragonConstants.API_EMAIL) \
+            .click_search_button()
+        if_icon_exist = DragonPage(self.driver) \
+            .check_valid_phone(DragonConstants.PHONE_NUMBER_VALID)\
+            .check_valid_phone_icon()
+
+        assert if_icon_exist == True
+
+        ' Check phone number in detail view: '
+        ClientsPage(self.driver) \
+            .open_client_id()
+        DragonPage(self.driver) \
+            .check_valid_phone(DragonConstants.PHONE_NUMBER_VALID)\
+            .check_valid_phone_icon()
+
+        assert if_icon_exist == True

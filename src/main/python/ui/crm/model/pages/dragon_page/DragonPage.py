@@ -1,6 +1,8 @@
 from time import sleep
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 
 
@@ -32,7 +34,20 @@ class DragonPage(CRMBasePage):
         Logging().reportDebugStep(self, "Valid Phone number is displayed: " + phone)
         return DragonPage(self.driver)
 
+    ' Check Valid Phone Icon exist: '
+
+    def check_valid_phone_icon(self):
+        sleep(0.2)
+        try:
+            super().wait_load_element("//span[contains(@class,'phone-valid')]")
+            Logging().reportDebugStep(self, "'Valid Phone Icon' is displayed")
+            return True
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "'Valid Phone Icon' does not displayed")
+            return False
+
     ' Check in list view mail displayed as "Send mail": '
+
     def check_email_address(self, email):
         email_address = super().wait_load_element("//a/div[@title='send mail']").get_attribute('innerText')
         assert email_address == email
