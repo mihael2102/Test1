@@ -1,23 +1,23 @@
 tests_config:
 
 ######################################### API TESTS ##############################################
-- module: src.test.python.ui.automation.implementation.api.Test_API
-  class: TestAPI
-  tests:
-    - test_autorization_process
-    - test_create_new_customer
-    - test_read_customer_details
-    - test_update_customer
-    - test_create_lead_api
-    - test_read_leads_api
-    - test_login_token
+#- module: src.test.python.ui.automation.implementation.api.Test_API
+#  class: TestAPI
+#  tests:
+#    - test_autorization_process
+#    - test_create_new_customer
+#    - test_read_customer_details
+#    - test_update_customer
+#    - test_create_lead_api
+#    - test_read_leads_api
+#    - test_login_token
 
 ########################################## CA TESTS ##############################################
-#- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
-#  class: SignUpTest
-#  tests:
-#    - test_check_sign_up
-#    - test_check_email_sign_up
+- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
+  class: SignUpTest
+  tests:
+    - test_check_sign_up
+    - test_check_email_sign_up
 #    - test_registred_client_exist_in_crm
 #
 #- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts

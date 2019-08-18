@@ -50,6 +50,7 @@ class Login_CA_Precondition(object):
         for message in messages:
             if CRMConstants.WELCOME_TO in str(message['Subject']):
                 subjects.append(str(message['Subject']).lower())
+                Logging().reportDebugStep(self, str(message['Subject']).lower())
         found_subject = ""
         for x in subjects:
             if brand in x:
