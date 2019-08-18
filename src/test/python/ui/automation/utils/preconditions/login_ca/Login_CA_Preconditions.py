@@ -327,7 +327,8 @@ class Login_CA_Precondition(object):
                 and (global_var.current_brand_name != "kontofx") \
                 and (global_var.current_brand_name != "q8") \
                 and (global_var.current_brand_name != "gigafx") \
-                and (global_var.current_brand_name != "trade99"):
+                and (global_var.current_brand_name != "trade99") \
+                and (global_var.current_brand_name != "tradenero"):
                     assert ClientsPage(self.driver).get_client_phone() == '+49 7777 777'
 
         if global_var.current_brand_name != "q8":
