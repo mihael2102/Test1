@@ -1,10 +1,10 @@
 brands:
 
-- name: q8
-  config_file: q8.yml
-
-- name: hizlifx
-  config_file: hizlifx.yml
+#- name: q8
+#  config_file: q8.yml
+#
+#- name: hizlifx
+#  config_file: hizlifx.yml
 
 - name: olympiamarkets
   config_file: olympiamarkets.yml
