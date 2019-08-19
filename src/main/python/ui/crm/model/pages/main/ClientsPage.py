@@ -87,6 +87,7 @@ class ClientsPage(CRMBasePage):
     def open_all_tab_clients_module(self):
         all_tab = super().wait_element_to_be_clickable("//li[contains(text(),'All')]")
         all_tab.click()
+        self.wait_vtiger_loading_to_finish_custom(35)
         Logging().reportDebugStep(self, "The client module was opened")
         return ClientsPage(self.driver)
 
