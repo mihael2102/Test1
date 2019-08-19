@@ -123,7 +123,7 @@ if __name__ == "__main__":
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
         #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
         #               path_to_brands_suite_9, path_to_brands_suite_10]
-        input_list = [path_to_brands_suite_9]
+        input_list = [path_to_brands_suite_8]
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
         #               path_to_brands_suite_5, path_to_brands_suite_6]
         # Init multiprocess
