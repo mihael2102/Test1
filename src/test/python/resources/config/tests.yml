@@ -235,12 +235,12 @@ tests_config:
 #    - test_perform_delete_rule
 #
 ########################################### CHECK MODULES ################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
-#  class: CheckModulesTest
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
+  class: CheckModulesTest
+  tests:
 #    - test_my_dashboard_loading
 #    - test_audit_logs_loading
-#    - test_check_dashboard
+    - test_check_dashboard
 #    - test_check_leaderboard
 #    - test_check_user_management
 #
