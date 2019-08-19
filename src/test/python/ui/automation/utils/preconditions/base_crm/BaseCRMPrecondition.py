@@ -54,3 +54,4 @@ class BaseCRMPrecondition(object):
                                                             brand_file)
         else:
             assert int(current_laravel_version) == int(prev_laravel_version)
+
