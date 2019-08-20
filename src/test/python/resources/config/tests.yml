@@ -19,10 +19,10 @@ tests_config:
 #    - test_api_dragon_invalid_phone
 
 ########################################## CA TESTS ##############################################
-#- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
-#  class: SignUpTest
-#  tests:
-#    - test_check_sign_up
+- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
+  class: SignUpTest
+  tests:
+    - test_check_sign_up
 #    - test_check_email_sign_up
 #    - test_registred_client_exist_in_crm
 #
@@ -274,8 +274,8 @@ tests_config:
 #    - test_sorting
 #
 ############################################# DRAGON TESTS ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
-  class: CheckDragonTest
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
+#  class: CheckDragonTest
+#  tests:
 #    - test_dragon_leads
-    - test_dragon_clients
+#    - test_dragon_clients

@@ -28,6 +28,10 @@ from src.main.python.ui.crm.model.pages.leaderboard.LeaderboardPage import Leade
 from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from selenium.common.exceptions import NoSuchElementException
+import datetime
+import re
+from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+
 
 class CRMHomePage(CRMBasePage):
 
@@ -204,3 +208,38 @@ class CRMHomePage(CRMBasePage):
                                            "//tr[5]/td[9]/a/div").text
         Logging().reportDebugStep(self, "Check first leads")
         return lead1, lead2, lead3, lead4, lead5
+
+    def get_email_from_list(self, row):
+        path = "C:/Users/Panda102/Desktop/Emails.txt"
+        f = open(path, "r")  # name of file open in read mode
+        lines = f.readlines()  # split file into lines
+        email = lines[row]
+        CAConstants.EMAIL_COUNTER = CAConstants.EMAIL_COUNTER + 1
+        Logging().reportDebugStep(self, "Get email: " + email)
+        return email
+
+    def check_previous_version(self, brand, module):
+        path = "C:/version/%s.txt" % brand
+        f = open(path, "r")  # name of file open in read mode
+        lines = f.readlines()  # split file into lines
+        if module == "vtiger":
+            prev_version = lines[0]
+        else:
+            prev_version = lines[1]
+        Logging().reportDebugStep(self, "The previous " + module + " sprint version is: " + prev_version)
+        return prev_version
+
+    def update_version_in_file(self, new_version, old_version, brand):
+        path = "C:/version/%s.txt" % brand
+        with open(path, 'r') as f:
+            lines = f.readlines()
+        with open(path, 'w') as f:
+            for line in lines:
+                line = line.replace(str(old_version), str(new_version) + '\n')
+                f.write(line)
+        Logging().reportDebugStep(self, "The current sprint version is updated to: " + str(new_version))
+
+    def get_day_of_week(self):
+        today = datetime.datetime.today().weekday()
+        Logging().reportDebugStep(self, "The current day of the week is: " + str(today))
+        return today
