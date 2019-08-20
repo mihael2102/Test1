@@ -62,7 +62,7 @@ class Login_CA_Precondition(object):
 
     def sign_up_ca(self):
         # REGISTRATION FORM
-        sleep(CAConstants.NUMBER)
+        # sleep(CAConstants.NUMBER)
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .click_sign_up()
