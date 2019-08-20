@@ -31,6 +31,7 @@ from selenium.common.exceptions import NoSuchElementException
 import datetime
 import re
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+import xlrd
 
 
 class CRMHomePage(CRMBasePage):
@@ -214,9 +215,16 @@ class CRMHomePage(CRMBasePage):
         f = open(path, "r")  # name of file open in read mode
         lines = f.readlines()  # split file into lines
         email = lines[row]
-        CAConstants.EMAIL_COUNTER = CAConstants.EMAIL_COUNTER + 1
+        CAConstants.ROW = CAConstants.ROW + 1
         Logging().reportDebugStep(self, "Get email: " + email)
         return email
+
+    def get_data_from_excel_cell(self, row, column):
+        book = xlrd.open_workbook("C:/Users/Panda102/Desktop/Clients.xlsx")
+        first_sheet = book.sheet_by_index(0)
+        particular_cell_value = first_sheet.cell(row, column).value
+        Logging().reportDebugStep(self, "Get data: " + str(particular_cell_value))
+        return particular_cell_value
 
     def check_previous_version(self, brand, module):
         path = "C:/version/%s.txt" % brand

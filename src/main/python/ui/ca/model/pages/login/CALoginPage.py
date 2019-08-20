@@ -56,21 +56,23 @@ class CALoginPage(CRMBasePage):
 
     def fill_phone(self, phone):
         input_phone = super().wait_load_element("//input[@name = 'phone']")
-        input_phone.send_keys(phone)
-        Logging().reportDebugStep(self, "Fill phone: " + phone)
+        phone = phone.replace(' ','')
+        phone = int(phone)
+        input_phone.send_keys(str(phone))
+        Logging().reportDebugStep(self, "Fill phone: " + str(phone))
         return CALoginPage(self.driver)
 
     def fill_password(self, password):
         input_password = super().wait_load_element("//input[@name = 'password']")
-        input_password.send_keys(password)
-        Logging().reportDebugStep(self, "Fill password: " + password)
+        input_password.send_keys(str(password))
+        Logging().reportDebugStep(self, "Fill password: " + str(password))
         return CALoginPage(self.driver)
 
     def fill_confirm_password(self, password):
         input_password = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["input_confirm_password"])
-        input_password.send_keys(password)
-        Logging().reportDebugStep(self, "Fill confirm: " + password)
+        input_password.send_keys(str(password))
+        Logging().reportDebugStep(self, "Fill confirm: " + str(password))
         return CALoginPage(self.driver)
 
     def check_box_accept(self):
@@ -78,7 +80,7 @@ class CALoginPage(CRMBasePage):
                                                            self.__class__.__name__)["check_box_accept"])
         check_box.click()
         Logging().reportDebugStep(self,
-                                  "Check 'By checking this box I accept the Terms and Conditions and confirm that I am over 18 year of age'")
+            "Check 'By checking this box I accept the Terms and Conditions and confirm that I am over 18 year of age'")
         return CALoginPage(self.driver)
 
     def click_submit(self):
@@ -103,6 +105,8 @@ class CALoginPage(CRMBasePage):
 
     def select_data_birth_day(self, data_birth_day):
         sleep(2)
+        data_birth_day = str(data_birth_day)
+        data_birth_day = (data_birth_day.split('?'))[1]
         if global_var.current_brand_name == "ptbanc":
             pick_list = super().wait_load_element("//span[contains(text(),'Day')]")
             pick_list.click()
@@ -115,6 +119,32 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def select_data_birth_month(self, data_birth_month):
+        data_birth_month = str(data_birth_month)
+        data_birth_month = (data_birth_month.split('?'))[0]
+        if data_birth_month == '1':
+            data_birth_month = 'January'
+        if data_birth_month == '2':
+            data_birth_month = 'February'
+        if data_birth_month == '3':
+            data_birth_month = 'March'
+        if data_birth_month == '4':
+            data_birth_month = 'April'
+        if data_birth_month == '5':
+            data_birth_month = 'May'
+        if data_birth_month == '6':
+            data_birth_month = 'June'
+        if data_birth_month == '7':
+            data_birth_month = 'July'
+        if data_birth_month == '8':
+            data_birth_month = 'August'
+        if data_birth_month == '9':
+            data_birth_month = 'September'
+        if data_birth_month == '10':
+            data_birth_month = 'October'
+        if data_birth_month == '11':
+            data_birth_month = 'November'
+        if data_birth_month == '12':
+            data_birth_month = 'December'
         if global_var.current_brand_name == "ptbanc":
             super().wait_load_element("//span[contains(text(),'Month')]").click()
             super().wait_load_element("//custom-select[@name='month']//span[text()='%s']" % data_birth_month).click()
@@ -125,6 +155,8 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def select_data_birth_year(self, data_birth_year):
+        data_birth_year = str(data_birth_year)
+        data_birth_year = (data_birth_year.split('?'))[2]
         if global_var.current_brand_name == "ptbanc":
             super().wait_load_element("//span[contains(text(),'Year')]").click()
             super().wait_load_element("//custom-select[@name='year']//span[text()='%s']" % data_birth_year).click()
@@ -192,6 +224,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def fill_zip_code(self, zip_code):
+        zip_code = zip_code.replace(' ', '')
         input_zip_code = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                 self.__class__.__name__)["zip_code"])
         input_zip_code.send_keys(zip_code)
@@ -436,3 +469,9 @@ class CALoginPage(CRMBasePage):
         save_changes_btn.click()
         Logging().reportDebugStep(self, "Save Changes button is clicked")
         return QuestionnairePage(self.driver)
+
+    def select_country(self):
+        data = self.driver.find_element_by_xpath("//span[text()='United Kingdom']")
+        self.driver.execute_script("arguments[0].click();", data)
+        Logging().reportDebugStep(self, "Select country")
+        return CALoginPage(self.driver)

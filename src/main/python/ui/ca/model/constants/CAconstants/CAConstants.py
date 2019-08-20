@@ -22,7 +22,7 @@ class CAConstants(object):
     UPDATE_ZIP_CODE = "567"
     ADDRESS = "Street10"
     UPDATE_ADDRESS = "Lenin25"
-    CITIZENSHIP = "Albanian"
+    CITIZENSHIP = "English"
     CITIZENSHIP2 = "Andorran"
     CITIZENSHIP3 = "Austrian"
     UPDATE_CITIZENSHIP = "Australian"
@@ -47,4 +47,15 @@ class CAConstants(object):
     DOCUMENT_STATUS_CA = "Verified"
     US_REPORTABLE_YES = "Yes"
     US_REPORTABLE_NO = "No"
-    EMAIL_COUNTER = 0
+    ROW = 6
+    FNAME_COL = 1
+    LNAME_COL = 2
+    EMAIL_COL = 8
+    PHONE_COL = 9
+    BIRTHDAY_COL = 11
+    PASSWORD_COL = 12
+    ZIP_COL = 6
+    CITY_COL = 5
+    ADDRESS_COL = 4
+    GENDER_COL = 3
+    NUMBER = random.randrange(1, 333)
