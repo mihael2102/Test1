@@ -47,7 +47,7 @@ class CAConstants(object):
     DOCUMENT_STATUS_CA = "Verified"
     US_REPORTABLE_YES = "Yes"
     US_REPORTABLE_NO = "No"
-    ROW = 2
+    ROW = 8
     FNAME_COL = 1
     LNAME_COL = 2
     EMAIL_COL = 8
