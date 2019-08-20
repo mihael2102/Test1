@@ -220,7 +220,7 @@ class CRMHomePage(CRMBasePage):
         return email
 
     def get_data_from_excel_cell(self, row, column):
-        book = xlrd.open_workbook("C:/Users/Panda102/Desktop/Clients.xlsx")
+        book = xlrd.open_workbook("C:/Users/Panda102/Desktop/Clients2.xlsx")
         first_sheet = book.sheet_by_index(0)
         particular_cell_value = first_sheet.cell(row, column).value
         Logging().reportDebugStep(self, "Get data: " + str(particular_cell_value))
