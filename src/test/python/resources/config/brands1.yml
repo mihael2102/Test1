@@ -21,8 +21,8 @@ brands:
 #- name: trade99
 #  config_file: trade99.yml
 #
-#- name: dax-300
-#  config_file: dax-300.yml
+- name: dax-300
+  config_file: dax-300.yml
 
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
@@ -30,5 +30,5 @@ brands:
 #- name: tradenero
 #  config_file: tradenero.yml
 
-- name: any1profit
-  config_file: any1profit.yml
+#- name: any1profit
+#  config_file: any1profit.yml
