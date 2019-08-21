@@ -1,7 +1,7 @@
 brands:
 
-#- name: newforexstage2
-#  config_file: newforexstage2.yml
+- name: newforexstage2
+  config_file: newforexstage2.yml
 
 #- name: ptbanc
 #  config_file: ptbanc.yml
@@ -30,5 +30,5 @@ brands:
 #- name: tradenero
 #  config_file: tradenero.yml
 
-- name: any1profit
-  config_file: any1profit.yml
+#- name: any1profit
+#  config_file: any1profit.yml

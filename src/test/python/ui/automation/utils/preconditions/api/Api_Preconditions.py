@@ -7,6 +7,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.AutoAssignConstants import AutoAssignConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
 from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
@@ -186,7 +187,7 @@ class ApiPrecondition(object):
         self.autorization_process_short()
         ApiPage(self.driver)\
             .create_customer_module()\
-            .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.EMAIL])\
+            .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.EMAIL1])\
             .enter_password(APIConstants.PASSWORD)\
             .enter_country(APIConstants.COUNTRY2)\
             .enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])\
@@ -206,11 +207,12 @@ class ApiPrecondition(object):
 
         assert APIConstants.STATUS_OK in check_create_customer_token
 
+        # CRM verification:
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
+                                                        LeadsModuleConstants.EMAIL1])
         client_email = ClientsPage(self.driver).get_first_client_email()
         if global_var.current_brand_name == "q8":
             ClientsPage(self.driver).open_address_information()
@@ -224,7 +226,7 @@ class ApiPrecondition(object):
 
         if global_var.current_brand_name != "royal_cfds":
             assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                            LeadsModuleConstants.EMAIL]
+                                                            LeadsModuleConstants.EMAIL1]
         assert client_country == APIConstants.COUNTRY_CRM
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME]
@@ -350,7 +352,10 @@ class ApiPrecondition(object):
         lname = lead_module.get_lead_lname()
         # phone = lead_module.get_lead_phone()
 
-        assert email == self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]
+        try:
+            assert email == self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]
+        except:
+            assert email == DragonConstants.EMAIL_VALID_DETAIL_VIEW
         assert fname == APIConstants.LEAD_FNAME
         assert lname == APIConstants.LEAD_LNAME
         # assert phone == APIConstants.LEAD_PHONE_CRM
