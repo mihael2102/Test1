@@ -81,6 +81,24 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Get lead email pop up")
         return first_lead_email
 
+    def get_lead_email(self):
+        lead_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Email']")))
+        Logging().reportDebugStep(self, "Verified the lead email: " + lead_email.text)
+        return lead_email.text
+
+    def get_lead_fname(self):
+        lead_fname = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_First Name']")))
+        Logging().reportDebugStep(self, "Verified the lead first name: " + lead_fname.text)
+        return lead_fname.text
+
+    def get_lead_lname(self):
+        lead_lname = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Last Name']")))
+        Logging().reportDebugStep(self, "Verified the lead last name: " + lead_lname.text)
+        return lead_lname.text
+
     def check_third_step(self):
         sleep(4)
         check_third_step = self.driver.find_element(By.XPATH, "//div[@class='steps']/h1").text

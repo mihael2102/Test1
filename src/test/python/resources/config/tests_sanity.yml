@@ -1,0 +1,23 @@
+tests_config:
+
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+  class: DepositTestCRM
+  tests:
+    - test_make_deposit_crm  # create live account and make a deposit into a trading account from the crm
+
+- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
+  class: TestAPI
+  tests:
+    - test_create_new_lead     # Creates a lead via API and verifying in CRM
+    - test_create_new_customer
+
+- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
+  class: CheckModulesTest
+  tests:
+    - test_check_sprint_version

@@ -94,7 +94,8 @@ class LeadModuleTest(BaseTest):
         lead_module.click_ok().perform_screen_shot_lead_module()
 
     def test_perform_convert_lead(self):
-        LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+        LeadPrecondition(self.driver, self.config)\
+            .create_lead(self.lead1)
         lead_view_profile_page = LeadViewInfo(self.driver)
 
         lead_view_profile_page.open_convert_lead_module() \
