@@ -224,16 +224,21 @@ class ApiPrecondition(object):
         refferal1 = ClientsPage(self.driver).get_refferal_client()
         refferal = refferal1.replace('  ','')
 
-        if global_var.current_brand_name != "royal_cfds":
+        try:
             assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                            LeadsModuleConstants.EMAIL1]
+                                                              LeadsModuleConstants.EMAIL1]
+        except:
+            assert client_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW
         assert client_country == APIConstants.COUNTRY_CRM
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME]
         assert client_last_name == APIConstants.LASTNAME
-        if global_var.current_brand_name != "brokerz" \
-                and global_var.current_brand_name != "tradenero":
-            assert client_phone == APIConstants.PHONE_CRM
+        if global_var.current_brand_name != "brokerz" and \
+                global_var.current_brand_name != "tradenero":
+            try:
+                assert client_phone == APIConstants.PHONE_CRM
+            except:
+                assert client_phone == DragonConstants.PHONE_NUMBER_HIDDEN
         assert refferal == APIConstants.REFFERAL
 
     def test_read_customer_details(self):
