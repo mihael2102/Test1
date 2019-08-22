@@ -14,6 +14,7 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import ConvertLeadModule
 from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
 from selenium.common.exceptions import NoSuchElementException
+from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
 
 
 @pytest.mark.run(order=24)
@@ -206,28 +207,58 @@ class LeadModuleTest(BaseTest):
         city = lead_detail_view.get_city_text()
         state = lead_detail_view.get_state_text()
 
+        # Verify First Name:
         self.assertEqual(first_name, lead_data[LeadsModuleConstants.FIRST_NAME])
+        # Verify Last Name:
         self.assertEqual(last_name, lead_data[LeadsModuleConstants.FIRST_LAST_NAME])
-        if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "newforexstage2":
+        # Verify Mobile:
+        try:
             self.assertEqual(mobile, lead_data[LeadsModuleConstants.FIRST_MOBILE])
+        except(NoSuchElementException, TimeoutException, AssertionError):
+            self.assertEqual(mobile, DragonConstants.PHONE_NUMBER_HIDDEN)
+        # Verify Fax:
+        try:
             self.assertEqual(fax, lead_data[LeadsModuleConstants.FAX])
+        except(NoSuchElementException, TimeoutException, AssertionError):
+            self.assertEqual(fax, DragonConstants.PHONE_NUMBER_HIDDEN)
+        # Verify Phone:
+        try:
             self.assertEqual(phone, lead_data[LeadsModuleConstants.PHONE])
-        self.assertEqual(email, lead_data[LeadsModuleConstants.EMAIL])
-        self.assertEqual(secondary_email, lead_data[LeadsModuleConstants.SECONDARY_EMAIL])
+        except(NoSuchElementException, TimeoutException, AssertionError):
+            self.assertEqual(phone, DragonConstants.PHONE_NUMBER_HIDDEN)
+        # Verify Email:
+        try:
+            self.assertEqual(email, lead_data[LeadsModuleConstants.EMAIL])
+        except(NoSuchElementException, TimeoutException, AssertionError):
+            self.assertEqual(email, DragonConstants.EMAIL_VALID_DETAIL_VIEW)
+        # Verify Secondary Email:
+        try:
+            self.assertEqual(secondary_email, lead_data[LeadsModuleConstants.SECONDARY_EMAIL])
+        except(NoSuchElementException, TimeoutException, AssertionError):
+            self.assertEqual(secondary_email, DragonConstants.EMAIL_VALID_DETAIL_VIEW)
+        # Verify First source name:
         if global_var.current_brand_name != "marketsplus":
             self.assertEqual(source_name, lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME])
+        # Verify Panda Partner:
         if lead_data[LeadsModuleConstants.PANDA_PARTNER] and global_var.current_brand_name != "marketsplus":
             self.assertEqual(panda_partner_id, lead_data[LeadsModuleConstants.PANDA_PARTNER])
+        # Verify First Referral:
         if lead_data[LeadsModuleConstants.FIRST_REFERRAL] and global_var.current_brand_name != "marketsplus":
             self.assertEqual(referral, lead_data[LeadsModuleConstants.FIRST_REFERRAL])
+        # Verify Street:
         self.assertEqual(street, lead_data[LeadsModuleConstants.STREET])
+        # Verify Postal Code:
         self.assertEqual(postal_code, lead_data[LeadsModuleConstants.POSTAL_CODE])
+        # Verify Country:
         self.assertEqual(country, lead_data[LeadsModuleConstants.FIRST_COUNTRY])
+        # Verify Description:
         self.assertEqual(description, lead_data[LeadsModuleConstants.FIRST_DESCRIPTION])
+        # Verify Title:
         self.assertEqual(tittle, lead_data[LeadsModuleConstants.FIRST_TITTLE])
+        # Verify Lead Source:
         if global_var.current_brand_name != "marketsplus":
             self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])
-
+        # Verify Lead Status:
         if global_var.current_brand_name == "safemarkets":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW])
 

@@ -18,6 +18,7 @@ from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 import autoit
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
 
 
 class LeadsModule(CRMBasePage):
@@ -400,19 +401,26 @@ class LeadsModule(CRMBasePage):
 
     def check_first_line_email(self):
         sleep(7)
-        check_first_line_email_1 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
-            self.__class__.__name__)["check_first_line_email_1"]).text
-        email_1 = check_first_line_email_1.replace('pandaqa+','')
-        number_email__str1 = email_1.replace('@pandats.com','')
-        number_email_1 = int(number_email__str1)
-        check_first_line_email_2 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
-            self.__class__.__name__)["check_first_line_email_2"]).text
-        email_2 = check_first_line_email_2.replace('pandaqa+', '')
-        number_email_str2 = email_2.replace('@pandats.com', '')
-        number_email_2 = int(number_email_str2)
-        number_email_diff = number_email_1 - number_email_2
-        Logging().reportDebugStep(self, "Verify sorting by Email: " + str(number_email_diff))
-        return number_email_diff
+        try:
+            check_first_line_email_1 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+                (self.__class__.__name__)["check_first_line_email_1"]).text
+            email_1 = check_first_line_email_1.replace('pandaqa+','')
+            number_email__str1 = email_1.replace('@pandats.com','')
+            number_email_1 = int(number_email__str1)
+            check_first_line_email_2 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+                (self.__class__.__name__)["check_first_line_email_2"]).text
+            email_2 = check_first_line_email_2.replace('pandaqa+', '')
+            number_email_str2 = email_2.replace('@pandats.com', '')
+            number_email_2 = int(number_email_str2)
+            number_email_diff = number_email_1 - number_email_2
+            Logging().reportDebugStep(self, "Verify sorting by Email: " + str(number_email_diff))
+            return number_email_diff
+        except:
+            email = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+                                        (self.__class__.__name__)["check_first_line_email_1"]).text
+            assert email == DragonConstants.EMAIL_VALID_LIST_VIEW
+            Logging().reportDebugStep(self, "Email address is not available: " + email)
+            return email
 
     def check_first_line_leads_no(self):
         sleep(2)
