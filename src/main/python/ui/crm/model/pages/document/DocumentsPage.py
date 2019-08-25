@@ -105,7 +105,6 @@ class DocumentsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Save document")
         return DocumentsPage()
 
-
     def get_successful_message(self):
         message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
         Logging().reportDebugStep(self, "The message is : " + message.text)
