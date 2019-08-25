@@ -245,19 +245,19 @@ class ApiPrecondition(object):
         self.autorization_process_short()
         ApiPage(self.driver).read_customer_module()
         ApiPage(self.driver).enter_email_for_read_customer(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
+                                                        LeadsModuleConstants.EMAIL1])
         ApiPage(self.driver).send_read_customer()
         token = ApiPage(self.driver).check_read_customer_details()
         count = 0
         while (self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL] not in token):
+                                                        LeadsModuleConstants.EMAIL1] not in token):
             time.sleep(2)
             token = ApiPage(self.driver).check_read_customer_details()
             count += 1
             if count == 5:
                 break
         assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL] in token
+                                                        LeadsModuleConstants.EMAIL1] in token
         assert APIConstants.REFFERAL in token
         assert APIConstants.COUNTRY2 in token
         assert APIConstants.LASTNAME in token
@@ -272,8 +272,8 @@ class ApiPrecondition(object):
         ApiPage(self.driver).send_read_customers()
         time.sleep(7)
         token = ApiPage(self.driver).check_reads_customer_details()
-        assert APIConstants.PANDATS_EMAIL in token
-        # assert len(re.findall(r'\b{}\b'.format(APIConstants.PANDATS_EMAIL), token)) == 5
+        assert APIConstants.PANDATS_EMAIL1 in token
+        # assert len(re.findall(r'\b{}\b'.format(APIConstants.PANDATS_EMAIL1), token)) == 5
 
         # CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
         # ClientsPage(self.driver).select_filter(APIConstants.API_filter)
@@ -289,7 +289,7 @@ class ApiPrecondition(object):
         self.autorization_process_short()
         ApiPage(self.driver).update_customer_module()
         ApiPage(self.driver).enter_email_for_update(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
+                                                        LeadsModuleConstants.EMAIL1])
         ApiPage(self.driver).change_first_name(APIConstants.CHANGE_FIRST_NAME)
         ApiPage(self.driver).change_postalCode(APIConstants.CHANGE_POSTAL_CODE)
         ApiPage(self.driver).change_phone(APIConstants.CHANGE_PHONE)
@@ -302,7 +302,7 @@ class ApiPrecondition(object):
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
             TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
+                                                        LeadsModuleConstants.EMAIL1])
         client_email = ClientsPage(self.driver).get_first_client_email()
         # client_first_name = ClientsPage(self.driver).get_client_first_name()
         # client_phone = ClientsPage(self.driver).get_client_phone()
@@ -313,7 +313,7 @@ class ApiPrecondition(object):
         client_postal_code = ClientsPage(self.driver).get_client_postalCode()
 
         assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL]
+                                                        LeadsModuleConstants.EMAIL1]
 
         # assert client_first_name == APIConstants.CHANGE_FIRST_NAME
 
