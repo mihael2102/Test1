@@ -378,8 +378,9 @@ class DragonPrecondition(object):
         assert APIConstants.STATUS_OK in check_create_customer_token
 
         ' Check valid phone number and Valid Phone icon in Clients list view: '
-        CRMHomePage(self.driver) \
-            .open_client_module() \
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url'))
+        ClientsPage(self.driver) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .enter_email(DragonConstants.API_EMAIL) \
             .click_search_button()
