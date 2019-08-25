@@ -43,11 +43,11 @@ tests_config:
 #    - test_check_email_popup
 #
 #################################### CONVERT LEAD ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 #
 #################################### CLIENTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
@@ -66,12 +66,12 @@ tests_config:
 #    - test_clients_mass_assign
 #
 ###################################### TASKS ##################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-  class: AddEventTaskModule
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+#  class: AddEventTaskModule
+#  tests:
 #    - test_email_icon
 #    - test_sms_icon
-    - test_mass_edit_tasks
+#    - test_mass_edit_tasks
 #    - test_searching_by_columns
 #    - test_sorting_columns
 #
