@@ -61,7 +61,7 @@ class Login_CA_Precondition(object):
         pop_conn.quit()
 
     def sign_up_ca(self):
-        # REGISTRATION FORM
+        # Registration form
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .click_sign_up()
@@ -83,7 +83,7 @@ class Login_CA_Precondition(object):
         CALoginPage(self.driver)\
             .click_submit() \
 
-        ###PERSONAL DETAILS FORM
+        # Personal details form
         if global_var.current_brand_name == "trade99":
             CALoginPage(self.driver)\
                 .close_payment_popup()
