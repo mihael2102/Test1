@@ -22,7 +22,8 @@ class MassEditTestCRM(BaseTest):
             .click_search_button()
 
         first_client = crm_clients_module_page\
-            .open_client_id().get_email_text()
+            .open_client_id()\
+            .get_crm_id_client_details()
         crm_clients_module_page\
             .came_back_on_previous_page()\
             .click_search_button()
@@ -36,7 +37,7 @@ class MassEditTestCRM(BaseTest):
         crm_client_profile = crm_clients_module_page\
             .refresh() \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(first_client)
+            .find_client_by_crm_id(first_client)
 
         assert crm_client_profile.get_gender_text() == self.config.get_data_mass_edit(
             MassEditConstants.GENDER_FEMALE)
