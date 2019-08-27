@@ -41,7 +41,8 @@ class CreditInTestCRM(BaseTest):
 
         if global_var.current_brand_name == "trade99":
             ClientProfilePage(self.driver)\
-                .perform_scroll_up().open_mt4_actions(CRMConstants.CREDIT_IN2)
+                .perform_scroll_up()\
+                .open_mt4_actions(CRMConstants.CREDIT_IN2)
             MT4CreditInModule(self.driver)\
                 .make_credit_in(account_number,
                                 CRMConstants.AMOUNT_CREDIT_IN_BTC,

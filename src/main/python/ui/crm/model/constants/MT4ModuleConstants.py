@@ -11,3 +11,5 @@ class MT4ModuleConstants(object):
     GROUP_REAL = "real"
     LEVERAGE_100 = "100"
     LEVERAGE_50 = "50"
+    CLEARED_BY = "BTC"
+    CLEARED_BY1 = "PRAXIS"

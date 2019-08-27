@@ -2,6 +2,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 
 
 class EditLeadsProfilePage(CRMBasePage):
@@ -90,21 +92,29 @@ class EditLeadsProfilePage(CRMBasePage):
         first_name_field = super().wait_load_element("//input[@name='fax']")
         first_name_field.clear()
         first_name_field.send_keys(fax)
-        Logging().reportDebugStep(self, "fax was set: " + fax)
+        Logging().reportDebugStep(self, "Fax was set: " + fax)
         return EditLeadsProfilePage(self.driver)
 
     def set_email(self, email):
-        email_field = super().wait_load_element("//input[@name='email']")
-        email_field.clear()
-        email_field.send_keys(email)
-        Logging().reportDebugStep(self, "The first email was set: " + email)
+        try:
+            email_field = super().wait_load_element("//input[@id='email' and not (@readonly)]")
+            email_field.clear()
+            email_field.send_keys(email)
+            Logging().reportDebugStep(self, "The first email was set: " + email)
+        except(NoSuchElementException, TimeoutException):
+            super().wait_load_element("//input[@id='email' and @readonly]")
+            Logging().reportDebugStep(self, "The First Email field is readonly")
         return EditLeadsProfilePage(self.driver)
 
     def set_secondary_email(self, secondary_email):
-        secondary_email_field = super().wait_load_element("//input[@name='secondaryemail']")
-        secondary_email_field.clear()
-        secondary_email_field.send_keys(secondary_email)
-        Logging().reportDebugStep(self, "The secondary email was set: " + secondary_email)
+        try:
+            secondary_email_field = super().wait_load_element("//input[@name='secondaryemail' and not (@readonly)]")
+            secondary_email_field.clear()
+            secondary_email_field.send_keys(secondary_email)
+            Logging().reportDebugStep(self, "The Secondary Email was set: " + secondary_email)
+        except(NoSuchElementException, TimeoutException):
+            super().wait_load_element("//input[@id='secondaryemail' and @readonly]")
+            Logging().reportDebugStep(self, "The Secondary Email field is readonly")
         return EditLeadsProfilePage(self.driver)
 
     def set_language(self, language):
