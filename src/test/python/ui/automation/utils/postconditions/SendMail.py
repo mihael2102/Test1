@@ -8,11 +8,10 @@ from src.test.python.ui.automation.BaseTest import *
 
 def Send_Email_XML(filepath, content):
 
-    fromaddr = "jonathan.albalak@pandats.com"
-    to = "jonathan.albalak@pandats.com"
-    cc = "jonathan.albalak@pandats.com"
-    bcc = "jonathan.albalak@pandats.com"
-
+    fromaddr = Config.email_address
+    to = "automationtest.sender@gmail.com"
+    cc = ""
+    bcc = ""
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
@@ -74,7 +73,7 @@ def Send_Email_XML(filepath, content):
     s.starttls()
 
     # Authentication
-    s.login(fromaddr, "xUQ7hrr9VF")
+    s.login(fromaddr, Config.email_password)
 
     # Converts the Multipart msg into a string
     text = msg.as_string()
@@ -87,7 +86,7 @@ def Send_Email_XML(filepath, content):
 
 def Send_Email_XLS(filepath):
 
-    fromaddr = "jonathan.albalak@pandats.com"
+    fromaddr = Config.email_address
     to = "michael.oryshchenko@pandats.com"
     # to = "yarin.b@pandats.com"
     cc = ""
@@ -139,7 +138,7 @@ def Send_Email_XLS(filepath):
     s.starttls()
 
     # Authentication
-    s.login(fromaddr, "xUQ7hrr9VF")
+    s.login(fromaddr, Config.email_password)
 
     # Converts the Multipart msg into a string
     text = msg.as_string()
@@ -152,7 +151,7 @@ def Send_Email_XLS(filepath):
 
 def Send_ALL_XLS(filepath):
 
-    fromaddr = "jonathan.albalak@pandats.com"
+    fromaddr = Config.email_address
     to = "Niv.s@pandats.com"
     # to = "michael.oryshchenko@pandats.com"
     cc = "yarin.b@pandats.com"
@@ -204,7 +203,7 @@ def Send_ALL_XLS(filepath):
     s.starttls()
 
     # Authentication
-    s.login(fromaddr, "xUQ7hrr9VF")
+    s.login(fromaddr, Config.email_password)
 
     # Converts the Multipart msg into a string
     text = msg.as_string()
