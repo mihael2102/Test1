@@ -18,6 +18,7 @@ from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
 import autoit
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
 
 
 class LeadsModule(CRMBasePage):
@@ -80,6 +81,24 @@ class LeadsModule(CRMBasePage):
         first_lead_email = self.driver.find_element(By.XPATH, "//input[@id='parent_name']").get_attribute("value")
         Logging().reportDebugStep(self, "Get lead email pop up")
         return first_lead_email
+
+    def get_lead_email(self):
+        lead_email = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Email']")))
+        Logging().reportDebugStep(self, "Verified the lead email: " + lead_email.text)
+        return lead_email.text
+
+    def get_lead_fname(self):
+        lead_fname = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_First Name']")))
+        Logging().reportDebugStep(self, "Verified the lead first name: " + lead_fname.text)
+        return lead_fname.text
+
+    def get_lead_lname(self):
+        lead_lname = WebDriverWait(self.driver, 50).until(
+            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Last Name']")))
+        Logging().reportDebugStep(self, "Verified the lead last name: " + lead_lname.text)
+        return lead_lname.text
 
     def check_third_step(self):
         sleep(4)
@@ -382,19 +401,26 @@ class LeadsModule(CRMBasePage):
 
     def check_first_line_email(self):
         sleep(7)
-        check_first_line_email_1 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
-            self.__class__.__name__)["check_first_line_email_1"]).text
-        email_1 = check_first_line_email_1.replace('pandaqa+','')
-        number_email__str1 = email_1.replace('@pandats.com','')
-        number_email_1 = int(number_email__str1)
-        check_first_line_email_2 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
-            self.__class__.__name__)["check_first_line_email_2"]).text
-        email_2 = check_first_line_email_2.replace('pandaqa+', '')
-        number_email_str2 = email_2.replace('@pandats.com', '')
-        number_email_2 = int(number_email_str2)
-        number_email_diff = number_email_1 - number_email_2
-        Logging().reportDebugStep(self, "Verify sorting by Email: " + str(number_email_diff))
-        return number_email_diff
+        try:
+            check_first_line_email_1 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+                (self.__class__.__name__)["check_first_line_email_1"]).text
+            email_1 = check_first_line_email_1.replace('pandaqa+','')
+            number_email__str1 = email_1.replace('@pandats.com','')
+            number_email_1 = int(number_email__str1)
+            check_first_line_email_2 = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+                (self.__class__.__name__)["check_first_line_email_2"]).text
+            email_2 = check_first_line_email_2.replace('pandaqa+', '')
+            number_email_str2 = email_2.replace('@pandats.com', '')
+            number_email_2 = int(number_email_str2)
+            number_email_diff = number_email_1 - number_email_2
+            Logging().reportDebugStep(self, "Verify sorting by Email: " + str(number_email_diff))
+            return number_email_diff
+        except:
+            email = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+                                        (self.__class__.__name__)["check_first_line_email_1"]).text
+            assert email == DragonConstants.EMAIL_VALID_LIST_VIEW
+            Logging().reportDebugStep(self, "Email address is not available: " + email)
+            return email
 
     def check_first_line_leads_no(self):
         sleep(2)

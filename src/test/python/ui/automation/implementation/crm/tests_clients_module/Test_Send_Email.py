@@ -16,15 +16,14 @@ from src.main.python.ui.crm.model.pages.tasks.TasksPage import TasksPage
 class SendEmailTestCRM(BaseTest):
 
     def test_send_email(self):
-        CRMLoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                       TestDataConstants.FILTER)) \
-            .find_client_by_email(self.config.get_value(TestDataConstants.CLIENT_ONE,
-                                                        TestDataConstants.E_MAIL))
+        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                                            self.config.get_value(TestDataConstants.OTP_SECRET)) \
+                                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                                            TestDataConstants.FILTER)) \
+                                 .find_client_by_email(self.config.get_value(TestDataConstants.CLIENT_ONE,
+                                                                             TestDataConstants.E_MAIL))
         sleep(2)
         ClientsPage(self.driver).click_send_mail_btn()
         SendEmailClientsModule(self.driver).set_subject(EmailConstants.FIRST_SUBJECT) \
