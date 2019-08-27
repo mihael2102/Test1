@@ -208,9 +208,11 @@ class ApiPrecondition(object):
         assert APIConstants.STATUS_OK in check_create_customer_token
 
         # CRM verification:
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
-        ClientsPage(self.driver).select_filter(self.config.get_data_client(
-            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url'))
+        ClientsPage(self.driver)\
+            .select_filter(self.config.get_data_client(
+                TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL1])
         client_email = ClientsPage(self.driver).get_first_client_email()
@@ -272,7 +274,7 @@ class ApiPrecondition(object):
         ApiPage(self.driver).send_read_customers()
         time.sleep(7)
         token = ApiPage(self.driver).check_reads_customer_details()
-        assert APIConstants.PANDATS_EMAIL1 in token
+        assert APIConstants.PANDATS_EMAIL in token
         # assert len(re.findall(r'\b{}\b'.format(APIConstants.PANDATS_EMAIL1), token)) == 5
 
         # CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
@@ -287,38 +289,56 @@ class ApiPrecondition(object):
 
     def test_update_customer(self):
         self.autorization_process_short()
-        ApiPage(self.driver).update_customer_module()
-        ApiPage(self.driver).enter_email_for_update(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL1])
-        ApiPage(self.driver).change_first_name(APIConstants.CHANGE_FIRST_NAME)
-        ApiPage(self.driver).change_postalCode(APIConstants.CHANGE_POSTAL_CODE)
-        ApiPage(self.driver).change_phone(APIConstants.CHANGE_PHONE)
-        ApiPage(self.driver).send_update_customer()
-        token = ApiPage(self.driver).check_update_token()
+        token = ApiPage(self.driver)\
+            .update_customer_module()\
+            .enter_email_for_update(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
+                                            [LeadsModuleConstants.EMAIL1])\
+            .change_first_name(APIConstants.CHANGE_FIRST_NAME)\
+            .change_postalCode(APIConstants.CHANGE_POSTAL_CODE)\
+            .change_phone(APIConstants.CHANGE_PHONE)\
+            .send_update_customer()\
+            .check_update_token()
 
         assert APIConstants.STATUS_OK in token
 
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
-        ClientsPage(self.driver).select_filter(self.config.get_data_client(
-            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL1])
-        client_email = ClientsPage(self.driver).get_first_client_email()
-        # client_first_name = ClientsPage(self.driver).get_client_first_name()
-        # client_phone = ClientsPage(self.driver).get_client_phone()
+        # CRM verification:
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url'))
+        ClientsPage(self.driver)\
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.EMAIL1])
+        client_email = ClientsPage(self.driver)\
+            .get_first_client_email()
+        client_first_name = ClientsPage(self.driver)\
+            .get_client_first_name()
+        client_phone = ClientsPage(self.driver)\
+            .get_client_phone()
         if global_var.current_brand_name == "q8":
-            ClientsPage(self.driver).open_address_information()
+            ClientsPage(self.driver)\
+                .open_address_information()
         else:
-            ClientsPage(self.driver).click_custom_information()
-        client_postal_code = ClientsPage(self.driver).get_client_postalCode()
+            ClientsPage(self.driver)\
+                .click_custom_information()
+        client_postal_code = ClientsPage(self.driver)\
+            .get_client_postalCode()
 
-        assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+        # Email verification:
+        try:
+            assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL1]
+        except AssertionError:
+            assert client_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW
 
-        # assert client_first_name == APIConstants.CHANGE_FIRST_NAME
+        # First name verification:
+        assert client_first_name == APIConstants.CHANGE_FIRST_NAME
 
-        # assert client_phone == APIConstants.CHANGE_PHONE_CRM
+        # Phone verification:
+        try:
+            assert client_phone == APIConstants.CHANGE_PHONE_CRM
+        except AssertionError:
+            assert client_phone == DragonConstants.PHONE_NUMBER_HIDDEN
 
+        # Postal code verification:
         assert client_postal_code == APIConstants.CHANGE_POSTAL_CODE
 
     def test_create_lead(self):
@@ -393,16 +413,18 @@ class ApiPrecondition(object):
 
     def login_token(self):
         self.autorization_process_short()
-        ApiPage(self.driver).login_token_module()
-        ApiPage(self.driver).enter_email_for_login_token(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
-        ApiPage(self.driver).send_login_token()
-        token = ApiPage(self.driver).check_login_token()
+        token = ApiPage(self.driver)\
+            .login_token_module()\
+            .enter_email_for_login_token(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                        LeadsModuleConstants.EMAIL1])\
+            .send_login_token()\
+            .check_login_token()
         token_new = token.replace(' ','')
         token_new_1 = token_new.replace('{\n"data":{\n"url":"','')
         token_new_2 = token_new_1.replace('"\n}\n}', '')
 
-        CRMLoginPage(self.driver).open_first_tab_page(token_new_2)
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(token_new_2)
 
         assert APIConstants.FOREX_DEPOSIT in token_new_2
 
