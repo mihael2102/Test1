@@ -87,6 +87,7 @@ class ClientsPage(CRMBasePage):
     def open_all_tab_clients_module(self):
         all_tab = super().wait_element_to_be_clickable("//li[contains(text(),'All')]")
         all_tab.click()
+        self.wait_vtiger_loading_to_finish_custom(35)
         Logging().reportDebugStep(self, "The client module was opened")
         return ClientsPage(self.driver)
 
@@ -144,6 +145,19 @@ class ClientsPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", client_id)
         sleep(1)
         Logging().reportDebugStep(self, "Click user email: " + email)
+        return ClientProfilePage(self.driver)
+
+    def find_client_by_crm_id(self, crm_id):
+        sleep(0.1)
+        crm_id_field = super().wait_load_element("//*[@id='tks_account_no']")
+        crm_id_field.clear()
+        crm_id_field.send_keys(crm_id)
+        Logging().reportDebugStep(self, "Enter CRM Id to relevant field: " + crm_id)
+        sleep(0.1)
+        self.click_search_button()
+        sleep(0.1)
+        self.wait_vtiger_loading_to_finish_custom(55)
+        self.open_client_id()
         return ClientProfilePage(self.driver)
 
     '''
@@ -276,17 +290,17 @@ class ClientsPage(CRMBasePage):
         drop_down_filter = super().wait_load_element("//span[@class='filter-option pull-left']")
         super().scroll_into_view(drop_down_filter)
         # Click on 'Search'
-        search_button_xpath = "//td[@class='txt_al_c']/input"
-        search_button = super().wait_element_to_be_clickable(search_button_xpath)
+        search_button = super().wait_load_element("//input[@value='Search']")
+        sleep(0.1)
         search_button.click()
-        sleep(0.2)
+        sleep(0.1)
         self.wait_loading_to_finish(55)
         Logging().reportDebugStep(self, "The Search button was clicked")
         return ClientsPage(self.driver)
 
     def open_client_id(self):
         self.wait_crm_loading_to_finish()
-        sleep(3)
+        sleep(0.1)
         client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
         sleep(1)
         self.driver.execute_script("arguments[0].click();", client_id)

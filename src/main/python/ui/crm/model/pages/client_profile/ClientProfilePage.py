@@ -514,6 +514,15 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the country: " + country.text)
         return country.text
 
+    '''
+        Returns CRM ID from Client's details page
+    '''
+
+    def get_crm_id_client_details(self):
+        crm_id = super().wait_load_element("//td[contains(text(),'CRM Id')]//following-sibling::td[1]").text
+        Logging().reportDebugStep(self, "Returns the country: " + crm_id)
+        return crm_id
+
     def perform_scroll(self, parameter):
         Logging().reportDebugStep(self, "Perform  the scroll")
         super().perform_scroll(parameter)
@@ -1014,3 +1023,12 @@ class ClientProfilePage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", save_btn)
         Logging().reportDebugStep(self, "Click 'Save' Questionnaire button")
         return ClientProfilePage(self.driver)
+
+    def check_create_mt_user_btn(self):
+        try:
+            super().wait_load_element("//*[@id='mt4_act_box']/a[contains(@onclick, 'Create MT')]", timeout=5)
+            Logging().reportDebugStep(self, "Create MT User button is available")
+            return ClientProfilePage()
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "There is no Create MT User button available")
+            return ClientProfilePage()
