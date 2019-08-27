@@ -5,6 +5,7 @@ from src.test.python.ui.automation.utils.preconditions.audit_logs.AuditLogsPreco
 from src.test.python.ui.automation.utils.preconditions.dashboard.DashboardPrecondition import DashboardPrecondition
 from src.test.python.ui.automation.utils.preconditions.leaderboard.LeaderboardPrecondition import LeaderboardPrecondition
 from src.test.python.ui.automation.utils.preconditions.usermanagement.UserManagementPrecondition import UserManagementPrecondition
+from src.test.python.ui.automation.utils.preconditions.base_crm.BaseCRMPrecondition import BaseCRMPrecondition
 
 
 @pytest.mark.run(order=35)
@@ -24,3 +25,6 @@ class CheckModulesTest(BaseTest):
 
     def test_check_user_management(self):
         UserManagementPrecondition(self.driver, self.config).check_user_management()
+
+    def test_check_sprint_version(self):
+        BaseCRMPrecondition(self.driver, self.config).check_sprint_version()

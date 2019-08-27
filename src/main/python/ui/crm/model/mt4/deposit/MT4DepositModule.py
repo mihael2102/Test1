@@ -6,6 +6,8 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
+
 
 class MT4DepositModule(CRMBasePage):
 
@@ -25,8 +27,12 @@ class MT4DepositModule(CRMBasePage):
         self.select_account(account_number)
         self.set_amount(amount)
         self.set_description(description_deposit)
-        if global_var.current_brand_name == "kontofx":
-            self.select_cleared_by()
+        if global_var.current_brand_name == "kontofx" or global_var.current_brand_name == "libramarkets" or \
+                global_var.current_brand_name == "olympiamarkets":
+            self.select_cleared_by(MT4ModuleConstants.CLEARED_BY)
+        if global_var.current_brand_name == "dax-300" or global_var.current_brand_name == "stox50" or \
+                global_var.current_brand_name == "aztrades":
+            self.select_cleared_by(MT4ModuleConstants.CLEARED_BY1)
         self.create_deposit()
         return ClientProfilePage(self.driver)
 
@@ -36,13 +42,12 @@ class MT4DepositModule(CRMBasePage):
         :returns MT4 Deposit instance
     '''
 
-
-    def select_cleared_by(self):
+    def select_cleared_by(self, cleared_by):
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//select[@name='cleared_by']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='cleared_by']"))
-        select.select_by_visible_text("BTC")
-        Logging().reportDebugStep(self, "The payment method of deposit module was selected: BTC")
+        select.select_by_visible_text(cleared_by)
+        Logging().reportDebugStep(self, "The cleared_by of deposit module was selected: " + cleared_by)
         return MT4DepositModule()
 
     def select_payment_method(self, payment_method):
@@ -65,7 +70,7 @@ class MT4DepositModule(CRMBasePage):
             select.select_by_visible_text("Pending")
         else:
             select.select_by_visible_text(deposit_status)
-        Logging().reportDebugStep(self, "The status of deposit module was selected:  " + deposit_status)
+        Logging().reportDebugStep(self, "The status of deposit module was selected: " + deposit_status)
         return MT4DepositModule()
 
     '''
@@ -82,7 +87,7 @@ class MT4DepositModule(CRMBasePage):
         select_account = self.driver.find_element(By.XPATH, "//select[@name='loginserver']//"
                                                             "following-sibling::*[contains(text(),'%s')]" % account)
         select_account.click()
-        Logging().reportDebugStep(self, "The account of deposit module was selected:  " + account)
+        Logging().reportDebugStep(self, "The account of deposit module was selected: " + account)
         return MT4DepositModule()
 
     '''
@@ -95,7 +100,7 @@ class MT4DepositModule(CRMBasePage):
         amount_filed = self.driver.find_element(By.XPATH, "//input[@id='amount']")
         amount_filed.clear()
         amount_filed.send_keys(amount)
-        Logging().reportDebugStep(self, "The amount of deposit module was set:  " + amount)
+        Logging().reportDebugStep(self, "The amount of deposit module was set: " + amount)
         return MT4DepositModule()
 
     '''
@@ -109,7 +114,7 @@ class MT4DepositModule(CRMBasePage):
         amount_filed.clear()
         amount_filed.send_keys(description_deposit)
         Logging().reportDebugStep(self,
-                                  "The description of deposit was set:  " + description_deposit)
+                                  "The description of deposit was set: " + description_deposit)
         return MT4DepositModule()
 
     '''

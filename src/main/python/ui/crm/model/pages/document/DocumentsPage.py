@@ -105,7 +105,6 @@ class DocumentsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Save document")
         return DocumentsPage()
 
-
     def get_successful_message(self):
         message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
         Logging().reportDebugStep(self, "The message is : " + message.text)
@@ -330,8 +329,7 @@ class DocumentsPage(CRMBasePage):
             Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
         return DocumentsPage(self.driver)
 
-        # click on the title of column in list view for sorting
-
+    # Click on the title of column in list view for sorting
     def sort_by_column(self, title):
         modified_time = super().wait_element_to_be_clickable("//a[text()='%s']" % title, timeout=55)
         modified_time.click()
@@ -339,22 +337,19 @@ class DocumentsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Data is sorted by " + title)
         return DocumentsPage(self.driver)
 
-        # return integer of Document No from list view
-
+    # Return integer of Document No from list view
     def get_row_doc_no(self, row_number):
         doc_no = super().wait_load_element("(//a[contains(@title,'DOC')])[%s]" % row_number).text
         Logging().reportDebugStep(self, "Document No: " + doc_no)
         return doc_no
 
-        # return integer of Modified Time from list view
-
+    # Return integer of Modified Time from list view
     def get_row_mod_time(self, row_number):
         mod_time = super().wait_load_element("(//td[contains(text(),':')])[%s]" % row_number).text
         Logging().reportDebugStep(self, "Modified Time: " + mod_time)
         return mod_time
 
-        # return integer of Document Type from list view
-
+    # Return integer of Document Type from list view
     def get_row_doc_type(self, row_number):
         doc_type = super().wait_load_element("(//tr[@class='lvtColData']/td[3])[%s]" % row_number).text
         Logging().reportDebugStep(self, "Document type: " + doc_type)

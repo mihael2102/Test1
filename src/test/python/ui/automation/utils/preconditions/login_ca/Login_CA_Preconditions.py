@@ -33,8 +33,8 @@ class Login_CA_Precondition(object):
     def check_email_sign_up(self):
         sleep(10)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
-        pop_conn.user('jonathan.albalak@pandats.com')
-        pop_conn.pass_('xUQ7hrr9VF')
+        pop_conn.user(Config.email_address)
+        pop_conn.pass_(Config.email_password)
         # Get messages from server:
         messages = [pop_conn.retr(i) for i in range(1, len(pop_conn.list()[1]) + 1)]
         # Concat message pieces:
@@ -61,7 +61,7 @@ class Login_CA_Precondition(object):
         pop_conn.quit()
 
     def sign_up_ca(self):
-        # REGISTRATION FORM
+        # Registration form
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .click_sign_up()
@@ -83,7 +83,7 @@ class Login_CA_Precondition(object):
         CALoginPage(self.driver)\
             .click_submit() \
 
-        ###PERSONAL DETAILS FORM
+        # Personal details form
         if global_var.current_brand_name == "trade99":
             CALoginPage(self.driver)\
                 .close_payment_popup()
