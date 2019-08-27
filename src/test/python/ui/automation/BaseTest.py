@@ -3,7 +3,7 @@ from datetime import *
 
 import allure
 from selenium import webdriver
-
+from selenium.webdriver.chrome.options import Options
 from src.main.python.utils.config import Config
 from src.main.python.utils.data.providers.ConfigProvider import ConfigProvider
 from src.main.python.utils.logs.Loging import Logging
@@ -23,11 +23,14 @@ class BaseTest(unittest.TestCase):
             self.config = ConfigProvider()
         allure.MASTER_HELPER.environment(BROWSER="CHROME", URL_BRAND=Config.url_client_area, URL_CRM=Config.url_crm)
         if self.driver_type is None or self.driver_type == 'Chrome':
-            ' For opened browser: '
-            # self.driver = webdriver.Chrome(Config.chrome_driver)
+            ' OPENED BROWSER: '
+            # opts = Options()
+            # opts.add_argument(Config.user_agent)
+            # self.driver = webdriver.Chrome(chrome_options=opts, executable_path=Config.chrome_driver)
             # self.driver.maximize_window()
-            ' For closed browser: '
+            ' CLOSED BROWSER: '
             chrome_options = webdriver.ChromeOptions()
+            chrome_options.add_argument(Config.user_agent)
             chrome_options.add_argument("--headless")
             chrome_options.add_argument("--window-size=1920x1080")
             self.driver = webdriver.Chrome(Config.chrome_driver, chrome_options=chrome_options)
