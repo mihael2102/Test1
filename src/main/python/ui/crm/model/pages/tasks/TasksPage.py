@@ -300,8 +300,8 @@ class TasksPage(CRMBasePage):
     def check_email(self, subject):
         sleep(1)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
-        pop_conn.user('jonathan.albalak@pandats.com')
-        pop_conn.pass_('p4Mq4EEhUyEQ')
+        pop_conn.user(Config.email_address)
+        pop_conn.pass_(Config.email_password)
         # Get messages from server:
         messages = [pop_conn.retr(i) for i in range(1, len(pop_conn.list()[1]) + 1)]
         # Concat message pieces:

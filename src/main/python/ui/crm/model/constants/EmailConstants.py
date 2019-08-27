@@ -1,6 +1,7 @@
 import random
 from datetime import *
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.test.python.ui.automation.BaseTest import *
 
 
 class EmailConstants(object):
@@ -11,6 +12,6 @@ class EmailConstants(object):
     FIRST_SUBJECT = brand + ": Test subject " + str(date.today())
     FIRST_SUPPORT_EMAIL = "<newforex@pandats.com>"
     SECOND_EMAIL_CONFIRM_MESSAGE = "Email sent"
-    EMAIL_ADDRESS = "jonathan.albalak@pandats.com"
-    EMAIL_PASSWORD = "p4Mq4EEhUyEQ"
+    EMAIL_ADDRESS = Config.email_address
+    EMAIL_PASSWORD = Config.email_password
     SUBJECT_WELCOME_TRADE_NERO = "trade nero"
