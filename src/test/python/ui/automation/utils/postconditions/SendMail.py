@@ -9,9 +9,9 @@ from src.test.python.ui.automation.BaseTest import *
 def Send_Email_XML(filepath, content):
 
     fromaddr = Config.email_address
-    to = "jonathan.albalak@pandats.com"
-    cc = "jonathan.albalak@pandats.com"
-    bcc = "jonathan.albalak@pandats.com"
+    to = "automationtest.sender@gmail.com"
+    cc = ""
+    bcc = ""
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
