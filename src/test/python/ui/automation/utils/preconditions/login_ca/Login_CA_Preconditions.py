@@ -13,6 +13,7 @@ from time import sleep
 import poplib
 from email import parser
 from src.main.python.utils.logs.Loging import Logging
+from src.test.python.ui.automation.BaseTest import *
 
 
 class Login_CA_Precondition(object):
@@ -31,8 +32,8 @@ class Login_CA_Precondition(object):
     def check_email_sign_up(self):
         sleep(8)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
-        pop_conn.user('jonathan.albalak@pandats.com')
-        pop_conn.pass_('xUQ7hrr9VF')
+        pop_conn.user(Config.email_address)
+        pop_conn.pass_(Config.email_password)
         # Get mail subject:
         if global_var.current_brand_name == "kaya_fx":
             subject = "kaya"
