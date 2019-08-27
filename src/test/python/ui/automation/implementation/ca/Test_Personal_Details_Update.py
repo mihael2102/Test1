@@ -6,6 +6,7 @@ from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants imp
 from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfileUpdate import ClientProfileUpdate
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.trading_account.TradingAccountPrecondition import TradingAccountPrecondition

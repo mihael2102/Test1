@@ -39,6 +39,7 @@ class CRMConstants(object):
     STATUS_EDIT_STOX = "R - New"
     STATUS_EDIT_1 = "New"
     THIRD_STEP_IMPORT_LEADS = "File successfully uploaded."
+    STATUS_EDIT_ITRADER = "Test"
     STATUS_EDIT = "B - Test"
     SOURCE_EDIT = "Other"
     COUNTRY_EDIT = "Albania"
@@ -199,3 +200,5 @@ class CRMConstants(object):
     EDIT_ADDRESS = "BenGurion48"
     BIRTHDAY = "1999-02-19"
     SERVER_LIVE = "LIVE"
+    MODULE_VTIGER = "vtiger"
+    MODULE_LARAVEL = "laravel"

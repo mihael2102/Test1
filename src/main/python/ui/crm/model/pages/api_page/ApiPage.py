@@ -290,7 +290,7 @@ class ApiPage(CRMBasePage):
     def enter_refferal(self, refferal):
         sleep(2)
         input = self.driver.find_element(By.XPATH,
-                                         "//*[@id='sample-request-param-field-referral-Customers-createCustomer-0_0_0']")
+                                        "//*[@id='sample-request-param-field-referral-Customers-createCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(refferal)
         Logging().reportDebugStep(self, "Enter refferal: " + refferal)
@@ -299,14 +299,14 @@ class ApiPage(CRMBasePage):
     def check_create_customer_token(self):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
-                                               "//*[@id='api-Customers-createCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
-        Logging().reportDebugStep(self, "Check token")
+                                    "//*[@id='api-Customers-createCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
+        Logging().reportDebugStep(self, "Check token: " + check_token)
         return check_token
 
     def enter_email(self, email):
         sleep(2)
         input = self.driver.find_element(By.XPATH,
-                                                   "//*[@id='sample-request-param-field-email-Customers-createCustomer-0_0_0']")
+                                        "//*[@id='sample-request-param-field-email-Customers-createCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.clear()
         input.send_keys(email)
