@@ -8,7 +8,7 @@ from src.test.python.ui.automation.BaseTest import *
 
 def Send_Email_XML(filepath, content):
 
-    fromaddr = "automationtest.sender@gmail.com"
+    fromaddr = Config.email_report_sender
     to = "jonathan.albalak@pandats.com"
     cc = "jonathan.albalak@pandats.com"
     bcc = "jonathan.albalak@pandats.com"
@@ -73,7 +73,7 @@ def Send_Email_XML(filepath, content):
     s.starttls()
 
     # Authentication
-    s.login(fromaddr, "p4Mq4EEhUyEQ")
+    s.login(fromaddr, Config.email_sender_password)
 
     # Converts the Multipart msg into a string
     text = msg.as_string()
@@ -86,7 +86,7 @@ def Send_Email_XML(filepath, content):
 
 def Send_Email_XLS(filepath):
 
-    fromaddr = "automationtest.sender@gmail.com"
+    fromaddr = Config.email_report_sender
     to = "michael.oryshchenko@pandats.com"
     # to = "yarin.b@pandats.com"
     cc = ""
@@ -138,7 +138,7 @@ def Send_Email_XLS(filepath):
     s.starttls()
 
     # Authentication
-    s.login(fromaddr, "p4Mq4EEhUyEQ")
+    s.login(fromaddr, Config.email_sender_password)
 
     # Converts the Multipart msg into a string
     text = msg.as_string()
@@ -151,7 +151,7 @@ def Send_Email_XLS(filepath):
 
 def Send_ALL_XLS(filepath):
 
-    fromaddr = "automationtest.sender@gmail.com"
+    fromaddr = Config.email_report_sender
     to = "Niv.s@pandats.com"
     # to = "michael.oryshchenko@pandats.com"
     cc = "yarin.b@pandats.com"
@@ -203,7 +203,7 @@ def Send_ALL_XLS(filepath):
     s.starttls()
 
     # Authentication
-    s.login(fromaddr, "p4Mq4EEhUyEQ")
+    s.login(fromaddr, Config.email_sender_password)
 
     # Converts the Multipart msg into a string
     text = msg.as_string()
