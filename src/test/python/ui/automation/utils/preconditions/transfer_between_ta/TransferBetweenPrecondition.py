@@ -67,13 +67,17 @@ class TransferBetweenPrecondition(object):
                                                                        CRMConstants.DESCRIPTION_TRANSFER_BETWEEN_TA)
         else:
             expected_balance = crm_client_profile \
-                .get_difference_amount_text(second_account_balance, CRMConstants.AMOUNT_TRANSFER_BETWEEN_TA)
-            crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.TRANSFER_BETWEEN_TA)
+                .get_difference_amount_text(second_account_balance,
+                                            CRMConstants.AMOUNT_TRANSFER_BETWEEN_TA)
+            crm_client_profile\
+                .perform_scroll_up()\
+                .open_mt4_actions(CRMConstants.TRANSFER_BETWEEN_TA)
 
-            MT4TransferBetweenTa(self.driver).make_transfer_between_ta(second_account_number,
-                                                                       first_account_number,
-                                                                       CRMConstants.AMOUNT_TRANSFER_BETWEEN_TA,
-                                                                       CRMConstants.DESCRIPTION_TRANSFER_BETWEEN_TA)
+            MT4TransferBetweenTa(self.driver)\
+                .make_transfer_between_ta(second_account_number,
+                                          first_account_number,
+                                          CRMConstants.AMOUNT_TRANSFER_BETWEEN_TA,
+                                          CRMConstants.DESCRIPTION_TRANSFER_BETWEEN_TA)
 
         confirmation_message = crm_client_profile.get_confirm_message()
 

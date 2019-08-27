@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
@@ -7,8 +8,6 @@ from time import sleep
 
 
 class MT4TransferBetweenTa(CRMBasePage):
-    # def __init__(self):
-    #     super().__init__()
 
     def make_transfer_between_ta(self, first_account, second_account, amount, description_transfer):
         self.select_first_account(first_account)
@@ -67,11 +66,13 @@ class MT4TransferBetweenTa(CRMBasePage):
    '''
 
     def set_description(self, description_deposit):
-        amount_filed = self.driver.find_element(By.XPATH, "//textarea[@id='transfer_comment']")
-        amount_filed.clear()
-        amount_filed.send_keys(description_deposit)
-        Logging().reportDebugStep(self,
-                                  "The description of transfer between ta was set: " + description_deposit)
+        try:
+            amount_filed = self.driver.find_element(By.XPATH, "//textarea[@id='transfer_comment']")
+            amount_filed.clear()
+            amount_filed.send_keys(description_deposit)
+            Logging().reportDebugStep(self, "The description of transfer between ta was set: " + description_deposit)
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "The Description field is not displaying")
         return MT4TransferBetweenTa(self.driver)
 
     '''

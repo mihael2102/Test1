@@ -27,10 +27,8 @@ class AffiliateModule(BaseTest):
                 AffiliatePage(self.driver).Sign_Out()
                 AffiliatesPrecondition(self.driver, self.config).create_affiliate()
 
-
-
     def test_edit_affiliate(self):
-        AffiliatesPrecondition().create_affiliate()
+        AffiliatesPrecondition(self.driver).create_affiliate()
 
         """ Open 'Edit' popup and edit affiliate """
         affiliate_list_view_page = AffiliateListViewPage()
