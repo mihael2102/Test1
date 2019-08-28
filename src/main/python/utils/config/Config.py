@@ -1,10 +1,10 @@
-test = "New forex CRM"
+test = "NF Special CRM"
 file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/final_file.xlsx"
 file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/' + test + '/result/*.xlsx'
 file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/%s"
 short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/short_final_file.xlsx"
 mail_subject = test
-test_list = "tests_api.yml"
+test_list = "tests.yml"
 user_agent = "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) " \
              "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36/panda_bot"
 timeout = 4
