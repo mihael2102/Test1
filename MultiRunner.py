@@ -115,13 +115,12 @@ if __name__ == "__main__":
         path_to_brands_suite_10 = "brands10.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-                      path_to_brands_suite_5]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4]
         # input_list = [path_to_brands_suite_5]
 
         # Init multiprocess
 
-        pool = multiprocessing.Pool(processes=5)
+        pool = multiprocessing.Pool(processes=4)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
