@@ -187,6 +187,8 @@ class LeadPrecondition(object):
                 list_of_files = glob.glob('C:/Users/anna.poimenova/Downloads/*')
             if ip == '35.158.90.50':
                 list_of_files = glob.glob('C:/Users/Administrator/Downloads/*')
+            if ip == '3.123.82.121':
+                list_of_files = glob.glob('C:/Users/Administrator/Downloads/*')
 
             latest_file = max(list_of_files, key=os.path.getctime)
             path_to_latest_file = "%s" % latest_file
@@ -225,6 +227,8 @@ class LeadPrecondition(object):
             if ip == '35.158.30.212':
                 list_of_files = glob.glob('C:/Users/anna.poimenova/Downloads/*')
             if ip == '35.158.90.50':
+                list_of_files = glob.glob('C:/Users/Administrator/Downloads/*')
+            if ip == '3.123.82.121':
                 list_of_files = glob.glob('C:/Users/Administrator/Downloads/*')
 
             latest_file = max(list_of_files, key=os.path.getctime)
