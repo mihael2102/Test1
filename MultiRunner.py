@@ -122,16 +122,14 @@ if __name__ == "__main__":
 
         # Form input list where each parameter is filename of TestSuite file
 
-
-        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-        #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-        #               path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
-        #               path_to_brands_suite_13]
-        input_list = [path_to_brands_suite_1]
+        input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
+                      path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
+                      path_to_brands_suite_9, path_to_brands_suite_10]
+        # input_list = [path_to_brands_suite_9]
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
         #               path_to_brands_suite_5, path_to_brands_suite_6]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=1)
+        pool = multiprocessing.Pool(processes=10)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
@@ -160,6 +158,7 @@ if __name__ == "__main__":
 
                 format2 = workbook.add_format({'bg_color': '#C4D79B',
                                                'font_color': '#000000'})
+
                 format3 = workbook.add_format({'bg_color': '#a1f1f0',
                                                'font_color': '#1500cf'})
                 worksheet.conditional_format(0, 0, 922, 200, {'type': 'text',
