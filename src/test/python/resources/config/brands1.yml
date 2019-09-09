@@ -30,8 +30,11 @@ brands:
 #- name: tradenero
 #  config_file: tradenero.yml
 
-- name: any1profit
-  config_file: any1profit.yml
+#- name: any1profit
+#  config_file: any1profit.yml
 
 #- name: alferatrade
 #  config_file: alferatrade.yml
+
+- name: hizlifx
+  config_file: hizlifx.yml
