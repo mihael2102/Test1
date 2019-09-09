@@ -58,6 +58,7 @@ class LeadsModuleConstants(object):
     FIRST_LEAD_STATUS_NEW = "first_lead_status_new"
     FIRST_LEAD_STATUS_B_TEST = "first_lead_status_b_test"
     FIRST_LEAD_STATUS_UFT = "first_lead_status_uft"
+    FIRST_LEAD_STATUS_NONE = "first_lead_status_none"
     FIRST_ASSIGNED_TO = "first_assigned_to"
     FIRST_SOURCE_NAME = "first_source_name"
     THIRD_LEAD_STATUS = "third_lead_status"
