@@ -100,7 +100,7 @@ class AffiliatePage(CRMBasePage):
 
     def get_link_api(self):
         sleep(5)
-        api_link = self.driver.find_element(By.XPATH, "//a[@class='api-link']").text
+        api_link = self.driver.find_element(By.XPATH, "//a[contains(@class,'api-link')]").text
         Logging().reportDebugStep(self, "Get link API: " + api_link)
         return api_link
 

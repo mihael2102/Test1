@@ -11,13 +11,13 @@ tests_config:
 #  tests:
 #    - test_make_deposit_crm  # create live account and make a deposit into a trading account from the crm
 
-#- module: src.test.python.ui.automation.implementation.api.Test_API
-#  class: TestAPI
-#  tests:
-#    - test_create_lead_api
-#    - test_create_new_customer
-
-- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
-  class: CheckModulesTest
+- module: src.test.python.ui.automation.implementation.api.Test_API
+  class: TestAPI
   tests:
-    - test_check_sprint_version
+#    - test_create_lead_api
+    - test_create_new_customer
+#
+#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
+#  class: CheckModulesTest
+#  tests:
+#    - test_check_sprint_version
