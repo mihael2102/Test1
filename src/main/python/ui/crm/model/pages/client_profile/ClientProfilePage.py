@@ -242,7 +242,7 @@ class ClientProfilePage(CRMBasePage):
     def get_amount_text(self, total_amount_crm):
         # Use it after deposit etc. because we need to wait some time
         # while deposit will be applied and displayed at the page
-        Logging().reportDebugStep(self, "Returns the amount you placed on the deposit page \n" + total_amount_crm)
+        Logging().reportDebugStep(self, "Returns the amount you placed on the deposit page: " + total_amount_crm)
         return super().wait_until_element_present(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["deposit_sum"], total_amount_crm)
 
