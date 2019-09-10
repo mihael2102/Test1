@@ -57,5 +57,5 @@ brands:
 #- name: globalix
 #  config_file: globalix.yml
 
-#- name: libramarkets
-#  config_file: libramarkets.yml
+- name: libramarkets
+  config_file: libramarkets.yml

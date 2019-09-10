@@ -496,7 +496,7 @@ class LeadPrecondition(object):
                 lead[LeadsModuleConstants.PHONE],
                 lead[LeadsModuleConstants.FIRST_TITTLE],
                 lead[LeadsModuleConstants.FIRST_LEAD_SOURCE_EMPTY],
-                lead[LeadsModuleConstants.FIRST_LEAD_STATUS_NONE],
+                lead[LeadsModuleConstants.FIRST_LEAD_STATUS_EMPTY],
                 lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
                 lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
                 lead[LeadsModuleConstants.BRAND],
