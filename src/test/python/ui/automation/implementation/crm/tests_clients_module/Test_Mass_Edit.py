@@ -21,6 +21,10 @@ class MassEditTestCRM(BaseTest):
         self.lead2 = self.load_lead_from_config(LeadsModuleConstants.SECOND_LEAD_INFO)
         self.client1 = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
 
+    def load_lead_from_config(self, lead_key):
+        lead = self.config.get_value(lead_key)
+        return lead
+
     def test_clients_mass_edit(self):
         crm_clients_module_page = CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
@@ -78,6 +82,7 @@ class MassEditTestCRM(BaseTest):
         assert ClientProfilePage(self.driver).get_first_name() == EditClientConstants.FIRST_NAME_UPDATE
 
         # Verify City field was updated:
+        ClientProfilePage(self.driver).open_address_information()
         assert ClientProfilePage(self.driver).get_city_text() == EditClientConstants.CITY_UPDATE
 
         # Verify Country field was updated:
@@ -85,54 +90,18 @@ class MassEditTestCRM(BaseTest):
 
         # Verify other fields was not changed:
         assert ClientProfilePage(self.driver).get_last_name() == self.client1[LeadsModuleConstants.FIRST_LAST_NAME]
-        assert ClientProfilePage(self.driver).get_email_text() == self.client1[LeadsModuleConstants.EMAIL]
         try:
-            assert ClientProfilePage(self.driver).get_phone_text() == self.client1[LeadsModuleConstants.PHONE]
+            assert ClientProfilePage(self.driver).get_email_text() == self.client1[LeadsModuleConstants.EMAIL]
         except:
-            assert ClientProfilePage(self.driver).get_phone_text() == DragonConstants.PHONE_NUMBER_HIDDEN
-        assert ClientProfilePage(self.driver).get_date_birthday() == self.client1[LeadsModuleConstants.BIRTHDAY]
-        # if global_var.current_brand_name == "mpcrypto":
-        #         self.client1[LeadsModuleConstants.CITIZENSHIP],
-        #         self.client1[LeadsModuleConstants.STREET],
-        #         self.client1[LeadsModuleConstants.POSTAL_CODE],
-        #         self.client1[LeadsModuleConstants.CITY],
-        #         self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-        #         self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-        #         self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BCH],
-        #         self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-        #         self.client1[LeadsModuleConstants.BRAND],
-        #         self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-        #         self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-        #
-        # elif global_var.current_brand_name == "trade99":
-        #
-        #         self.client1[LeadsModuleConstants.PHONE],
-        #         self.client1[LeadsModuleConstants.BIRTHDAY],
-        #         self.client1[LeadsModuleConstants.CITIZENSHIP],
-        #         self.client1[LeadsModuleConstants.STREET],
-        #         self.client1[LeadsModuleConstants.POSTAL_CODE],
-        #         self.client1[LeadsModuleConstants.CITY],
-        #         self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-        #         self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-        #         self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BTC],
-        #         self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-        #         self.client1[LeadsModuleConstants.BRAND],
-        #         self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-        #         self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-        #
-        # else:
-        #     ConvertLeadModule(self.driver).perform_convert_lead(
-        #
-        #         self.client1[LeadsModuleConstants.PHONE],
-        #         self.client1[LeadsModuleConstants.BIRTHDAY],
-        #         self.client1[LeadsModuleConstants.CITIZENSHIP],
-        #         self.client1[LeadsModuleConstants.STREET],
-        #         self.client1[LeadsModuleConstants.POSTAL_CODE],
-        #         self.client1[LeadsModuleConstants.CITY],
-        #         self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-        #         self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-        #         self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-        #         self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-        #         self.client1[LeadsModuleConstants.BRAND],
-        #         self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-        #         self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+            assert ClientProfilePage(self.driver).get_email_text() == DragonConstants.EMAIL_VALID_DETAIL_VIEW
+        phone = ClientProfilePage(self.driver).get_phone_text()
+        phone = phone.replace(' ', '').replace('+', '')
+        if phone:
+            try:
+                assert phone == self.client1[LeadsModuleConstants.PHONE]
+            except:
+                assert phone == DragonConstants.PHONE_NUMBER_HIDDEN
+        birthday = self.client1[LeadsModuleConstants.BIRTHDAY]
+        birthday = birthday.replace('-', '')
+        assert ClientProfilePage(self.driver).get_date_birthday() == birthday
+        assert ClientProfilePage(self.driver).get_citizenship_text() == self.client1[LeadsModuleConstants.CITIZENSHIP]

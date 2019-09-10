@@ -6,4 +6,4 @@ class EditClientConstants(object):
 
     FIRST_NAME_UPDATE = "fname_edit"
     CITY_UPDATE = "city_edit"
-    COUNTRY_UPDATE = "Austria"
+    COUNTRY_UPDATE = "Aruba"

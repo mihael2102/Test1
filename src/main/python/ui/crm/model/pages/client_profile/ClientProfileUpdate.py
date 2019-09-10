@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
+from selenium.webdriver.support.select import Select
 
 
 class ClientProfileUpdate(CRMBasePage):
@@ -229,7 +230,8 @@ class ClientProfileUpdate(CRMBasePage):
         return ClientProfileUpdate(self.driver)
 
     def edit_country(self, country):
-        country_field = super().wait_load_element("//*[@id='countries']")
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[@id='countries']")))
+        country_field = Select(self.driver.find_element(By.XPATH, "//*[@id='countries']"))
         country_field.select_by_visible_text(country)
         Logging().reportDebugStep(self, "Set Country: " + country)
         return ClientProfileUpdate(self.driver)
