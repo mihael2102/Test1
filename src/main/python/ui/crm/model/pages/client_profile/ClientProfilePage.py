@@ -806,10 +806,9 @@ class ClientProfilePage(CRMBasePage):
 
     def click_edit_personal_detail(self):
         sleep(2)
-        btn_edit = self.driver.find_element(By.XPATH,
-                                            "/html/body/table[2]/tbody/tr/td/table[1]/tbody/tr/td/div/table[2]/tbody/tr[1]/td/table/tbody/tr/td[2]/input")
+        btn_edit = self.driver.find_element(By.XPATH, "(//input[@name='Edit'])[1]")
         btn_edit.click()
-        Logging().reportDebugStep(self, "Click Edit")
+        Logging().reportDebugStep(self, "Click Edit button")
         return ClientProfilePage(self.driver)
 
     def select_country(self, country):
