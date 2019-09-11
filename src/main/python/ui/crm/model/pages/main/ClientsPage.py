@@ -78,7 +78,7 @@ class ClientsPage(CRMBasePage):
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
         self.wait_loading_to_finish(55)
-        Logging().reportDebugStep(self, "Click the search button ")
+        Logging().reportDebugStep(self, "Click the Search button")
         return ClientsPage(self.driver)
 
     ''' 
@@ -347,21 +347,21 @@ class ClientsPage(CRMBasePage):
 
     def select_three_records_clients_module(self):
         sleep(2)
-        first_check_box = super().wait_element_to_be_clickable("//tbody[@id='listBody']//tr[1]//td[1]")
+        first_check_box = super().wait_load_element("//tbody[@id='listBody']//tr[1]//td[1]/input")
         try:
-            first_check_box.click()
-        except:
             self.driver.execute_script("arguments[0].click();", first_check_box)
-        second_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[2]//td[1]")
-        try:
-            second_check_box.click()
         except:
+            first_check_box.click()
+        second_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[2]//td[1]/input")
+        try:
             self.driver.execute_script("arguments[0].click();", second_check_box)
-        third_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[3]//td[1]")
-        try:
-            third_check_box.click()
         except:
+            second_check_box.click()
+        third_check_box = self.driver.find_element(By.XPATH, "//tbody[@id='listBody']//tr[3]//td[1]/input")
+        try:
             self.driver.execute_script("arguments[0].click();", third_check_box)
+        except:
+            third_check_box.click()
         Logging().reportDebugStep(self, "The three records were selected")
         return ClientsPage(self.driver)
 

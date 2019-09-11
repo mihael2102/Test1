@@ -18,7 +18,8 @@ class MassAssignTestCRM(BaseTest):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .perform_searching_by_email(CRMConstants.SHORT_EMAIL)
 
-        crm_client_profile.select_three_records_clients_module() \
+        crm_client_profile\
+            .select_three_records_clients_module() \
             .open_mass_assign_module() \
             .search_user(MassEditConstants.USER_ONE) \
             .enter_check_box() \
