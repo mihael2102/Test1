@@ -3,8 +3,8 @@ brands:
 #- name: kayafx
 #  config_file: kaya_fx.yml
 
-#- name: itrader
-#  config_file: itrader.yml
+- name: itrader
+  config_file: itrader.yml
 
 - name: gmo
   config_file: gmo.yml
