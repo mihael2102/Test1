@@ -19,7 +19,6 @@ from datetime import *
 import allure
 from src.main.python.utils.config import Config
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.test.python.ui.automation.BaseTest import *
 
 
 class TasksPage(CRMBasePage):
