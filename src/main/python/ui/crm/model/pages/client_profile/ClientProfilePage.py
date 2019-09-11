@@ -791,6 +791,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_first_name(self):
+        sleep(1)
         first_name = self.driver.find_element(By.XPATH, "//td[contains(text(),'First Name')]//following-sibling::td[1]")
         Logging().reportDebugStep(self, "Returns the first name: " + first_name.text)
         return first_name.text
@@ -837,6 +838,18 @@ class ClientProfilePage(CRMBasePage):
         parser_address_text = re.sub('[" "]', '', address.text)
         Logging().reportDebugStep(self, "Returns the address: " + parser_address_text)
         return parser_address_text
+
+    def open_address_information(self):
+        try:
+            self.driver.find_element_by_xpath("//*[@id='tblAddressInformation'][contains(@style,'none')]")
+            address_tab = super().wait_load_element("//*[contains(text(),'Address Information')]")
+            self.driver.execute_script("arguments[0].scrollIntoView();", address_tab)
+            self.driver.execute_script("arguments[0].click();", address_tab)
+            Logging().reportDebugStep(self, "Address Information tab was opened")
+            return ClientProfilePage(self.driver)
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Address Information tab is already opened")
+            return ClientProfilePage(self.driver)
 
     '''
         Returns the email 

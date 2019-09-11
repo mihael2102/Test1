@@ -10,7 +10,6 @@ from time import sleep
 
 class ConvertLeadModule(CRMBasePage):
 
-
     def perform_convert_lead(self, first_name, last_name, email, phone, birthday, citizenship,
                              address, postal_code, city, country, password, currency, referral,
                              brand, source_name, phone_area_code=None):
