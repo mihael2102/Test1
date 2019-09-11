@@ -380,108 +380,114 @@ class LeadPrecondition(object):
             .open_lead_module()\
             .open_create_lead_module()\
 
-        if global_var.current_brand_name == "safemarkets" or global_var.current_brand_name == "itrader_global" or \
-                global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo" or \
-                global_var.current_brand_name == "fm-fx" or global_var.current_brand_name == "forex_staging":
+        if global_var.current_brand_name == "safemarkets" or \
+                global_var.current_brand_name == "itrader_global" or \
+                global_var.current_brand_name == "itrader" or \
+                global_var.current_brand_name == "gmo" or \
+                global_var.current_brand_name == "fm-fx" or \
+                global_var.current_brand_name == "forex_staging":
             CreateLeadsProfilePage(self.driver)\
                 .perform_create_lead(
-                lead[LeadsModuleConstants.FIRST_NAME],
-                lead[LeadsModuleConstants.FIRST_LAST_NAME],
-                lead[LeadsModuleConstants.FIRST_MOBILE],
-                lead[LeadsModuleConstants.FAX],
-                lead[LeadsModuleConstants.EMAIL],
-                lead[LeadsModuleConstants.SECONDARY_EMAIL],
-                lead[LeadsModuleConstants.FIRST_LANGUAGE],
-                lead[LeadsModuleConstants.PANDA_PARTNER],
-                lead[LeadsModuleConstants.FIRST_REFERRAL],
-                lead[LeadsModuleConstants.STREET],
-                lead[LeadsModuleConstants.POSTAL_CODE],
-                lead[LeadsModuleConstants.FIRST_COUNTRY],
-                lead[LeadsModuleConstants.FIRST_DESCRIPTION],
-                lead[LeadsModuleConstants.PHONE],
-                lead[LeadsModuleConstants.FIRST_TITTLE],
-                lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
-                lead[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW],
-                lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-                lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                lead[LeadsModuleConstants.BRAND],
-                lead[LeadsModuleConstants.PO_BOX],
-                lead[LeadsModuleConstants.CITY],
-                lead[LeadsModuleConstants.FIRST_STATE])
+                    lead[LeadsModuleConstants.FIRST_NAME],
+                    lead[LeadsModuleConstants.FIRST_LAST_NAME],
+                    lead[LeadsModuleConstants.FIRST_MOBILE],
+                    lead[LeadsModuleConstants.FAX],
+                    lead[LeadsModuleConstants.EMAIL],
+                    lead[LeadsModuleConstants.SECONDARY_EMAIL],
+                    lead[LeadsModuleConstants.FIRST_LANGUAGE],
+                    lead[LeadsModuleConstants.PANDA_PARTNER],
+                    lead[LeadsModuleConstants.FIRST_REFERRAL],
+                    lead[LeadsModuleConstants.STREET],
+                    lead[LeadsModuleConstants.POSTAL_CODE],
+                    lead[LeadsModuleConstants.FIRST_COUNTRY],
+                    lead[LeadsModuleConstants.FIRST_DESCRIPTION],
+                    lead[LeadsModuleConstants.PHONE],
+                    lead[LeadsModuleConstants.FIRST_TITTLE],
+                    lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
+                    lead[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW],
+                    lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+                    lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                    lead[LeadsModuleConstants.BRAND],
+                    lead[LeadsModuleConstants.PO_BOX],
+                    lead[LeadsModuleConstants.CITY],
+                    lead[LeadsModuleConstants.FIRST_STATE])
             return LeadPrecondition(self.driver, self.config)
 
         elif global_var.current_brand_name == "fxpmarkets":
-            CreateLeadsProfilePage(self.driver).perform_create_lead(
-                lead[LeadsModuleConstants.FIRST_NAME],
-                lead[LeadsModuleConstants.FIRST_LAST_NAME],
-                lead[LeadsModuleConstants.FIRST_MOBILE],
-                lead[LeadsModuleConstants.FAX],
-                lead[LeadsModuleConstants.EMAIL],
-                lead[LeadsModuleConstants.SECONDARY_EMAIL],
-                lead[LeadsModuleConstants.FIRST_LANGUAGE],
-                lead[LeadsModuleConstants.PANDA_PARTNER],
-                lead[LeadsModuleConstants.FIRST_REFERRAL],
-                lead[LeadsModuleConstants.STREET],
-                lead[LeadsModuleConstants.POSTAL_CODE],
-                lead[LeadsModuleConstants.FIRST_COUNTRY],
-                lead[LeadsModuleConstants.FIRST_DESCRIPTION],
-                lead[LeadsModuleConstants.PHONE],
-                lead[LeadsModuleConstants.FIRST_TITTLE],
-                lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
-                lead[LeadsModuleConstants.FIRST_LEAD_STATUS_C_NEW],
-                lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-                lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                lead[LeadsModuleConstants.BRAND],
-                lead[LeadsModuleConstants.PO_BOX],
-                lead[LeadsModuleConstants.CITY],
-                lead[LeadsModuleConstants.FIRST_STATE])
+            CreateLeadsProfilePage(self.driver)\
+                .perform_create_lead(
+                    lead[LeadsModuleConstants.FIRST_NAME],
+                    lead[LeadsModuleConstants.FIRST_LAST_NAME],
+                    lead[LeadsModuleConstants.FIRST_MOBILE],
+                    lead[LeadsModuleConstants.FAX],
+                    lead[LeadsModuleConstants.EMAIL],
+                    lead[LeadsModuleConstants.SECONDARY_EMAIL],
+                    lead[LeadsModuleConstants.FIRST_LANGUAGE],
+                    lead[LeadsModuleConstants.PANDA_PARTNER],
+                    lead[LeadsModuleConstants.FIRST_REFERRAL],
+                    lead[LeadsModuleConstants.STREET],
+                    lead[LeadsModuleConstants.POSTAL_CODE],
+                    lead[LeadsModuleConstants.FIRST_COUNTRY],
+                    lead[LeadsModuleConstants.FIRST_DESCRIPTION],
+                    lead[LeadsModuleConstants.PHONE],
+                    lead[LeadsModuleConstants.FIRST_TITTLE],
+                    lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
+                    lead[LeadsModuleConstants.FIRST_LEAD_STATUS_C_NEW],
+                    lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+                    lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                    lead[LeadsModuleConstants.BRAND],
+                    lead[LeadsModuleConstants.PO_BOX],
+                    lead[LeadsModuleConstants.CITY],
+                    lead[LeadsModuleConstants.FIRST_STATE])
             return LeadPrecondition(self.driver, self.config)
 
         elif global_var.current_brand_name == "ogtrade":
-            CreateLeadsProfilePage(self.driver).perform_create_lead_ogtrade(
-                lead[LeadsModuleConstants.FIRST_NAME],
-                lead[LeadsModuleConstants.FIRST_LAST_NAME],
-                lead[LeadsModuleConstants.FIRST_MOBILE],
-                lead[LeadsModuleConstants.FAX],
-                lead[LeadsModuleConstants.EMAIL],
-                lead[LeadsModuleConstants.SECONDARY_EMAIL],
-                lead[LeadsModuleConstants.STREET],
-                lead[LeadsModuleConstants.POSTAL_CODE],
-                lead[LeadsModuleConstants.FIRST_DESCRIPTION],
-                lead[LeadsModuleConstants.PHONE],
-                lead[LeadsModuleConstants.FIRST_TITTLE],
-                lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-                lead[LeadsModuleConstants.PO_BOX],
-                lead[LeadsModuleConstants.CITY],
-                lead[LeadsModuleConstants.FIRST_STATE])
+            CreateLeadsProfilePage(self.driver)\
+                .perform_create_lead_ogtrade(
+                    lead[LeadsModuleConstants.FIRST_NAME],
+                    lead[LeadsModuleConstants.FIRST_LAST_NAME],
+                    lead[LeadsModuleConstants.FIRST_MOBILE],
+                    lead[LeadsModuleConstants.FAX],
+                    lead[LeadsModuleConstants.EMAIL],
+                    lead[LeadsModuleConstants.SECONDARY_EMAIL],
+                    lead[LeadsModuleConstants.STREET],
+                    lead[LeadsModuleConstants.POSTAL_CODE],
+                    lead[LeadsModuleConstants.FIRST_DESCRIPTION],
+                    lead[LeadsModuleConstants.PHONE],
+                    lead[LeadsModuleConstants.FIRST_TITTLE],
+                    lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+                    lead[LeadsModuleConstants.PO_BOX],
+                    lead[LeadsModuleConstants.CITY],
+                    lead[LeadsModuleConstants.FIRST_STATE])
             return LeadPrecondition(self.driver, self.config)
 
         else:
 
-            CreateLeadsProfilePage(self.driver).perform_create_lead(
-                lead[LeadsModuleConstants.FIRST_NAME],
-                lead[LeadsModuleConstants.FIRST_LAST_NAME],
-                lead[LeadsModuleConstants.FIRST_MOBILE],
-                lead[LeadsModuleConstants.FAX],
-                lead[LeadsModuleConstants.EMAIL],
-                lead[LeadsModuleConstants.SECONDARY_EMAIL],
-                lead[LeadsModuleConstants.FIRST_LANGUAGE],
-                lead[LeadsModuleConstants.PANDA_PARTNER],
-                lead[LeadsModuleConstants.FIRST_REFERRAL],
-                lead[LeadsModuleConstants.STREET],
-                lead[LeadsModuleConstants.POSTAL_CODE],
-                lead[LeadsModuleConstants.FIRST_COUNTRY],
-                lead[LeadsModuleConstants.FIRST_DESCRIPTION],
-                lead[LeadsModuleConstants.PHONE],
-                lead[LeadsModuleConstants.FIRST_TITTLE],
-                lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
-                lead[LeadsModuleConstants.FIRST_LEAD_STATUS],
-                lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-                lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                lead[LeadsModuleConstants.BRAND],
-                lead[LeadsModuleConstants.PO_BOX],
-                lead[LeadsModuleConstants.CITY],
-                lead[LeadsModuleConstants.FIRST_STATE])
+            CreateLeadsProfilePage(self.driver)\
+                .perform_create_lead(
+                    lead[LeadsModuleConstants.FIRST_NAME],
+                    lead[LeadsModuleConstants.FIRST_LAST_NAME],
+                    lead[LeadsModuleConstants.FIRST_MOBILE],
+                    lead[LeadsModuleConstants.FAX],
+                    lead[LeadsModuleConstants.EMAIL],
+                    lead[LeadsModuleConstants.SECONDARY_EMAIL],
+                    lead[LeadsModuleConstants.FIRST_LANGUAGE],
+                    lead[LeadsModuleConstants.PANDA_PARTNER],
+                    lead[LeadsModuleConstants.FIRST_REFERRAL],
+                    lead[LeadsModuleConstants.STREET],
+                    lead[LeadsModuleConstants.POSTAL_CODE],
+                    lead[LeadsModuleConstants.FIRST_COUNTRY],
+                    lead[LeadsModuleConstants.FIRST_DESCRIPTION],
+                    lead[LeadsModuleConstants.PHONE],
+                    lead[LeadsModuleConstants.FIRST_TITTLE],
+                    lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
+                    lead[LeadsModuleConstants.FIRST_LEAD_STATUS],
+                    lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+                    lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                    lead[LeadsModuleConstants.BRAND],
+                    lead[LeadsModuleConstants.PO_BOX],
+                    lead[LeadsModuleConstants.CITY],
+                    lead[LeadsModuleConstants.FIRST_STATE])
             return LeadPrecondition(self.driver, self.config)
 
     def create_three_leads(self):
@@ -495,34 +501,40 @@ class LeadPrecondition(object):
             .open_lead_module() \
             .open_create_lead_module() \
             .perform_create_lead(
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_NAME),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_LAST_NAME),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_MOBILE),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FAX),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.EMAIL),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.SECONDARY_EMAIL),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_LANGUAGE),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.PANDA_PARTNER),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_REFERRAL),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.STREET),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.POSTAL_CODE),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_COUNTRY),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
-                                           LeadsModuleConstants.FIRST_DESCRIPTION),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.PHONE),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_TITTLE),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
-                                           LeadsModuleConstants.FIRST_LEAD_SOURCE),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
-                                           LeadsModuleConstants.FIRST_LEAD_STATUS),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
-                                           LeadsModuleConstants.FIRST_ASSIGNED_TO),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
-                                           LeadsModuleConstants.FIRST_SOURCE_NAME),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.BRAND),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.PO_BOX),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.CITY),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_STATE))
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_NAME),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                               LeadsModuleConstants.FIRST_LAST_NAME),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_MOBILE),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FAX),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.EMAIL),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                               LeadsModuleConstants.SECONDARY_EMAIL),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                               LeadsModuleConstants.FIRST_LANGUAGE),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                               LeadsModuleConstants.PANDA_PARTNER),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                               LeadsModuleConstants.FIRST_REFERRAL),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.STREET),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.POSTAL_CODE),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                               LeadsModuleConstants.FIRST_COUNTRY),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                               LeadsModuleConstants.FIRST_DESCRIPTION),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.PHONE),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_TITTLE),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                               LeadsModuleConstants.FIRST_LEAD_SOURCE),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                               LeadsModuleConstants.FIRST_LEAD_STATUS),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                               LeadsModuleConstants.FIRST_ASSIGNED_TO),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                               LeadsModuleConstants.FIRST_SOURCE_NAME),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.BRAND),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.PO_BOX),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.CITY),
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_STATE))
 
         home_page\
             .refresh_page() \

@@ -5,11 +5,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from time import sleep
 
 
 class ClientProfileUpdate(CRMBasePage):
-    def __init__(self):
-        super().__init__()
 
     def edit_first_name_by_pencil(self, first_name_update):
         self.driver.refresh()
@@ -168,3 +167,71 @@ class ClientProfileUpdate(CRMBasePage):
         Logging().reportDebugStep(self,
                                   "The scroll  was performed on the ")
         return ClientProfileUpdate()
+
+    def edit_assign_to_by_pencil(self, user):
+        self.driver.refresh()
+        element_field = super().wait_load_element("//td[text()='Assigned To']//following-sibling::td[1]")
+        element_to_move_pencil = self.driver.find_element(By.XPATH, "//span[@class='glyphicons pencil cntrl']")
+        hoverer = ActionChains(self.driver).move_to_element(element_field).click(element_to_move_pencil)
+        hoverer.perform()
+
+        edit_field = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, "//select[@name='assigned_user_id']")))
+
+        select = Select(edit_field)
+        select.select_by_visible_text(user)
+
+        save_button = self.driver.find_element(By.XPATH,
+                                               "//div[@id='editarea_Assigned To']//span[@class='glyphicons ok_2']")
+        hoverer = ActionChains(self.driver).move_to_element(save_button).click(save_button)
+        hoverer.perform()
+        Logging().reportDebugStep(self,
+                                  "The Assign To was updated to " + user)
+        return ClientProfileUpdate(self.driver)
+
+    def click_edit_client_button(self):
+        sleep(1)
+        edit_lead = super().wait_load_element("//input[@name='Edit']", timeout=35)
+        edit_lead.click()
+        Logging().reportDebugStep(self, "Click Edit button")
+        return ClientProfileUpdate(self.driver)
+
+    def get_phone_edit_page(self):
+        phone = super().wait_load_element("//*[@id='phone']").get_attribute("value")
+        Logging().reportDebugStep(self, "Get phone from Edit page: " + phone)
+        return phone
+
+    def set_phone(self, phone):
+        phone_field = super().wait_load_element("//input[@name='phone']")
+        phone_field.clear()
+        phone_field.send_keys(phone)
+        Logging().reportDebugStep(self, "The phone number was set: " + phone)
+        return ClientProfileUpdate(self.driver)
+
+    def click_save(self):
+        save_button = self.driver.find_element(By.XPATH, "//input[@title='Save [Alt+S]']")
+        self.perform_scroll_up()
+        save_button.click()
+        Logging().reportDebugStep(self, "The Save button was clicked")
+        return ClientProfileUpdate(self.driver)
+
+    def edit_first_name(self, fname):
+        first_name_field = super().wait_load_element("//*[@name='firstname']")
+        first_name_field.clear()
+        first_name_field.send_keys(fname)
+        Logging().reportDebugStep(self, "Set First Name: " + fname)
+        return ClientProfileUpdate(self.driver)
+
+    def edit_city(self, city):
+        city_field = super().wait_load_element("//*[@id='bill_city']")
+        city_field.clear()
+        city_field.send_keys(city)
+        Logging().reportDebugStep(self, "Set City: " + city)
+        return ClientProfileUpdate(self.driver)
+
+    def edit_country(self, country):
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[@name='bill_country']")))
+        country_field = Select(self.driver.find_element(By.XPATH, "//*[@name='bill_country']"))
+        country_field.select_by_visible_text(country)
+        Logging().reportDebugStep(self, "Set Country: " + country)
+        return ClientProfileUpdate(self.driver)
