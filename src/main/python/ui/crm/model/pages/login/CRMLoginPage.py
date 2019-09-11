@@ -51,9 +51,9 @@ class CRMLoginPage(CRMBasePage):
             otp = time_otp.now()
             otp_field.clear()
             otp_field.send_keys(otp)
-            Logging().reportDebugStep(self, "Setting the otp token: " + otp + '\n')
+            Logging().reportDebugStep(self, "Setting the otp token: " + otp)
             submit_button.click()
-            Logging().reportDebugStep(self, "Click the submit button" + '\n')
+            Logging().reportDebugStep(self, "Click the submit button")
         except NoSuchElementException:
             Logging().reportDebugStep(self, "No OTP authentication is required")
 
