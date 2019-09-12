@@ -50,7 +50,7 @@ class TasksPage(CRMBasePage):
 
     def click_column_title(self, column):
         sleep(1)
-        task_module = super().wait_load_element("//a[contains(text(), '%s')]" % column)
+        task_module = super().wait_load_element("//a[contains(text(), '%s')]" % column, timeout=35)
         task_module.click()
         self.wait_crm_loading_to_finish_tasks(200)
         sleep(1)
