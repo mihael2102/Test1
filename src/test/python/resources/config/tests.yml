@@ -116,22 +116,22 @@ tests_config:
     - fill_questioner_new_client
     - test_crm_open_trading_account  # open a new trading account
 
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
-  class: ChangePasswordTestCRM
-  tests:
-    - test_change_client_password_from_crm  # change a client account password from the crm
-    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
+#  class: ChangePasswordTestCRM
+#  tests:
+#    - test_change_client_password_from_crm  # change a client account password from the crm
+#    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
 
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
-  class: DepositTestCRM
-  tests:
-    - test_make_deposit_crm  # make a deposit into a trading account from the crm
-    - test_make_deposit_for_client_crm
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+#  class: DepositTestCRM
+#  tests:
+#    - test_make_deposit_crm  # make a deposit into a trading account from the crm
+#    - test_make_deposit_for_client_crm
 
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-  class: WithdrawTest
-  tests:
-    - test_withdraw_crm   #preconditions: convert lead, make deposit
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
+#  class: WithdrawTest
+#  tests:
+#    - test_withdraw_crm   #preconditions: convert lead, make deposit
 
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
   class: CreditInTestCRM
@@ -143,20 +143,20 @@ tests_config:
   tests:
     - test_make_credit_out_crm # preconditions: convert lead, make credit in
 
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
-  class: SendEmailTestCRM
-  tests:
-    - test_send_email # preconditions: convert lead
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
-  class: TransferBetweenTa
-  tests:
-    - test_transfer_between_ta  # preconditions: convert lead, deposit crm, credit in
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_edit_trading_account  # edit trading account
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
+#  class: SendEmailTestCRM
+#  tests:
+#    - test_send_email # preconditions: convert lead
+#
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
+#  class: TransferBetweenTa
+#  tests:
+#    - test_transfer_between_ta  # preconditions: convert lead, deposit crm, credit in
+#
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+#  class: TradingAccountCrmTest
+#  tests:
+#    - test_crm_edit_trading_account  # edit trading account
 #
 ############################################## AFFILIATES MODULE ##########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
