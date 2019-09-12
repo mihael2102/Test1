@@ -4,7 +4,7 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
   class: MassEditTestCRM
   tests:
-    - test_update_client_detail
+    - test_update_client_details
     - test_clients_mass_edit
 
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign
