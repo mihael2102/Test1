@@ -60,11 +60,11 @@ tests_config:
 #    - test_check_email_popup
 #
 ############################################ CONVERT LEAD ############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_perform_convert_lead   # Creates a lead and converts it to a client
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+#  directive: reload_configuration
+#  class: LeadModuleTest
+#  tests:
+#    - test_perform_convert_lead   # Creates a lead and converts it to a client
 #
 ############################################# CLIENTS ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
@@ -90,9 +90,9 @@ tests_config:
 #    - test_add_interaction  # Adds an interaction for a client
 #    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-#  class: AddEventTaskModule
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+  class: AddEventTaskModule
+  tests:
 #    - test_add_event
 #    - test_edit_event
 #    - test_delete_interaction
@@ -100,7 +100,7 @@ tests_config:
 #    - test_sms_icon
 #    - test_mass_edit_tasks
 #    - test_searching_by_columns
-#    - test_sorting_columns
+    - test_sorting_columns
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
 #  class: CalendarView
@@ -110,11 +110,11 @@ tests_config:
 #    - test_check_week_tab
 #
 ############################################### CLIENT'S DETAILS ##########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - fill_questioner_new_client
-    - test_crm_open_trading_account  # open a new trading account
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+#  class: TradingAccountCrmTest
+#  tests:
+#    - fill_questioner_new_client
+#    - test_crm_open_trading_account  # open a new trading account
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
 #  class: ChangePasswordTestCRM
@@ -133,15 +133,15 @@ tests_config:
 #  tests:
 #    - test_withdraw_crm   #preconditions: convert lead, make deposit
 
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
-  class: CreditInTestCRM
-  tests:
-    - test_make_credit_in_from_crm
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
-  class: CreditOutTestCRM
-  tests:
-    - test_make_credit_out_crm # preconditions: convert lead, make credit in
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
+#  class: CreditInTestCRM
+#  tests:
+#    - test_make_credit_in_from_crm
+#
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
+#  class: CreditOutTestCRM
+#  tests:
+#    - test_make_credit_out_crm # preconditions: convert lead, make credit in
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
 #  class: SendEmailTestCRM

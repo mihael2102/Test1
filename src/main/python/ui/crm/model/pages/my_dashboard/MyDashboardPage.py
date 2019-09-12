@@ -202,8 +202,9 @@ class MyDashboardPage(CRMBasePage):
         return MyDashboardPage(self.driver)
 
     def enter_event_type(self, type):
-        btn_type = super().wait_element_to_be_clickable(
+        btn_type = super().wait_load_element(
             "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[1]/td[3]/filters-factory/multiple-select-bs-filter/filter-multiple-select-bs/div/ss-multiselect-dropdown/div/button" , timeout=30)
+        self.perform_scroll_down()
         btn_type.click()
         sleep(2)
         input_account_name = super().wait_element_to_be_clickable(
@@ -286,7 +287,7 @@ class MyDashboardPage(CRMBasePage):
         try:
             title = super().wait_load_element("//span/h4")
         except:
-            title = super().wait_load_element("//div[@class='modal-body new-modal-body']/h3")
+            title = super().wait_load_element("(//div[@class='modal-body new-modal-body']/h3)[2]")
         Logging().reportDebugStep(self, title.text)
         return title.text
 
@@ -360,8 +361,7 @@ class MyDashboardPage(CRMBasePage):
 
     def select_show_all_tab(self):
         sleep(4)
-        select_show_all_tab = self.driver.find_element_by_xpath(
-            "//li[contains(text(), 'Show all')]")
+        select_show_all_tab = super().wait_load_element("//li[contains(text(), 'Show all')]", timeout=35)
         self.driver.execute_script("arguments[0].scrollIntoView();", select_show_all_tab)
         select_show_all_tab.click()
         self.wait_crm_loading_to_finish_tasks(75)
@@ -370,7 +370,7 @@ class MyDashboardPage(CRMBasePage):
 
     def enter_account_name(self, testqa):
         sleep(3)
-        input = self.driver.find_element_by_xpath("//*[@id='host-element']/input")
+        input = super().wait_load_element("(//*[@id='host-element']/input)[1]", timeout=35)
         input.send_keys(testqa)
         self.wait_load_element("//div[@class='spinner']")
         self.wait_crm_loading_to_finish_tasks(95)

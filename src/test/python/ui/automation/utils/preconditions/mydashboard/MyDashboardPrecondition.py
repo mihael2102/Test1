@@ -154,26 +154,29 @@ class MyDashboardPrecondition(object):
         # priority = MyDashboardPage(self.driver).get_priority()
         subject = MyDashboardPage(self.driver).get_subject()
 
-        MyDashboardPage(self.driver).refresh_page()
+        MyDashboardPage(self.driver)\
+            .refresh_page()
 
-        MyDashboardPage(self.driver).enter_account_name(account_name)\
-                                    .enter_event_type(type)\
-                                    .enter_status(status)\
-                                    .enter_account_status(account_status)\
-                                    .enter_country(country)\
-                                    .enter_assigned_to(assigned_to)\
-                                    .enter_created_by(created_by)\
-                                    .enter_local_time(local_time)\
-                                    .enter_balance(balance)\
-                                    .enter_total_p_l(total_p_l)\
-                                    .enter_subject(subject)
+        MyDashboardPage(self.driver)\
+            .enter_account_name(account_name)\
+            .enter_event_type(type)\
+            .enter_status(status)\
+            .enter_account_status(account_status)\
+            .enter_country(country)\
+            .enter_assigned_to(assigned_to)\
+            .enter_created_by(created_by)\
+            .enter_local_time(local_time)\
+            .enter_balance(balance)\
+            .enter_total_p_l(total_p_l)\
+            .enter_subject(subject)
 
         return_account_name = MyDashboardPage(self.driver).get_account_name()
 
         assert return_account_name == account_name
 
     def test_sorting_columns(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
@@ -192,17 +195,3 @@ class MyDashboardPrecondition(object):
             assert status1 != status2
         except:
             return self
-
-
-
-
-
-
-
-
-
-
-
-
-
-
