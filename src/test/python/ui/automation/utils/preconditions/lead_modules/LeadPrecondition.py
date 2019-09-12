@@ -448,6 +448,90 @@ class LeadPrecondition(object):
                 lead[LeadsModuleConstants.FIRST_STATE])
             return LeadPrecondition(self.driver, self.config)
 
+        elif global_var.current_brand_name == "hizlifx" or \
+             global_var.current_brand_name == "strattonmarkets-eu" or \
+             global_var.current_brand_name == "any1profit" or \
+             global_var.current_brand_name == "newrichmarkets":
+            CreateLeadsProfilePage(self.driver).perform_create_lead(
+                lead[LeadsModuleConstants.FIRST_NAME],
+                lead[LeadsModuleConstants.FIRST_LAST_NAME],
+                lead[LeadsModuleConstants.FIRST_MOBILE],
+                lead[LeadsModuleConstants.FAX],
+                lead[LeadsModuleConstants.EMAIL],
+                lead[LeadsModuleConstants.SECONDARY_EMAIL],
+                lead[LeadsModuleConstants.FIRST_LANGUAGE],
+                lead[LeadsModuleConstants.PANDA_PARTNER],
+                lead[LeadsModuleConstants.FIRST_REFERRAL],
+                lead[LeadsModuleConstants.STREET],
+                lead[LeadsModuleConstants.POSTAL_CODE],
+                lead[LeadsModuleConstants.FIRST_COUNTRY],
+                lead[LeadsModuleConstants.FIRST_DESCRIPTION],
+                lead[LeadsModuleConstants.PHONE],
+                lead[LeadsModuleConstants.FIRST_TITTLE],
+                lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
+                lead[LeadsModuleConstants.FIRST_LEAD_STATUS_NONE],
+                lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+                lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                lead[LeadsModuleConstants.BRAND],
+                lead[LeadsModuleConstants.PO_BOX],
+                lead[LeadsModuleConstants.CITY],
+                lead[LeadsModuleConstants.FIRST_STATE])
+            return LeadPrecondition(self.driver, self.config)
+
+        elif global_var.current_brand_name == "libramarkets":
+            CreateLeadsProfilePage(self.driver).perform_create_lead(
+                lead[LeadsModuleConstants.FIRST_NAME],
+                lead[LeadsModuleConstants.FIRST_LAST_NAME],
+                lead[LeadsModuleConstants.FIRST_MOBILE],
+                lead[LeadsModuleConstants.FAX],
+                lead[LeadsModuleConstants.EMAIL],
+                lead[LeadsModuleConstants.SECONDARY_EMAIL],
+                lead[LeadsModuleConstants.FIRST_LANGUAGE],
+                lead[LeadsModuleConstants.PANDA_PARTNER],
+                lead[LeadsModuleConstants.FIRST_REFERRAL],
+                lead[LeadsModuleConstants.STREET],
+                lead[LeadsModuleConstants.POSTAL_CODE],
+                lead[LeadsModuleConstants.FIRST_COUNTRY],
+                lead[LeadsModuleConstants.FIRST_DESCRIPTION],
+                lead[LeadsModuleConstants.PHONE],
+                lead[LeadsModuleConstants.FIRST_TITTLE],
+                lead[LeadsModuleConstants.FIRST_LEAD_SOURCE_EMPTY],
+                lead[LeadsModuleConstants.FIRST_LEAD_STATUS_EMPTY],
+                lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+                lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                lead[LeadsModuleConstants.BRAND],
+                lead[LeadsModuleConstants.PO_BOX],
+                lead[LeadsModuleConstants.CITY],
+                lead[LeadsModuleConstants.FIRST_STATE])
+            return LeadPrecondition(self.driver, self.config)
+
+        elif global_var.current_brand_name == "stox50":
+            CreateLeadsProfilePage(self.driver).perform_create_lead(
+                lead[LeadsModuleConstants.FIRST_NAME],
+                lead[LeadsModuleConstants.FIRST_LAST_NAME],
+                lead[LeadsModuleConstants.FIRST_MOBILE],
+                lead[LeadsModuleConstants.FAX],
+                lead[LeadsModuleConstants.EMAIL],
+                lead[LeadsModuleConstants.SECONDARY_EMAIL],
+                lead[LeadsModuleConstants.FIRST_LANGUAGE],
+                lead[LeadsModuleConstants.PANDA_PARTNER],
+                lead[LeadsModuleConstants.FIRST_REFERRAL],
+                lead[LeadsModuleConstants.STREET],
+                lead[LeadsModuleConstants.POSTAL_CODE],
+                lead[LeadsModuleConstants.FIRST_COUNTRY_ALBANIA],
+                lead[LeadsModuleConstants.FIRST_DESCRIPTION],
+                lead[LeadsModuleConstants.PHONE],
+                lead[LeadsModuleConstants.FIRST_TITTLE],
+                lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
+                lead[LeadsModuleConstants.FIRST_LEAD_STATUS_NONE],
+                lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+                lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
+                lead[LeadsModuleConstants.BRAND],
+                lead[LeadsModuleConstants.PO_BOX],
+                lead[LeadsModuleConstants.CITY],
+                lead[LeadsModuleConstants.FIRST_STATE])
+            return LeadPrecondition(self.driver, self.config)
+
         else:
             CreateLeadsProfilePage(self.driver).perform_create_lead(
                 lead[LeadsModuleConstants.FIRST_NAME],

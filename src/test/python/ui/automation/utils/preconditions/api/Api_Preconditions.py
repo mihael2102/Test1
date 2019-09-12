@@ -236,7 +236,9 @@ class ApiPrecondition(object):
                                                         LeadsModuleConstants.FIRST_NAME]
         assert client_last_name == APIConstants.LASTNAME
         if global_var.current_brand_name != "brokerz" and \
-                global_var.current_brand_name != "tradenero":
+                global_var.current_brand_name != "tradenero" and \
+                global_var.current_brand_name != "newrichmarkets" and \
+                global_var.current_brand_name != "globalix":
             try:
                 assert client_phone == APIConstants.PHONE_CRM
             except:
