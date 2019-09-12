@@ -38,7 +38,6 @@ class WorkflowsPrecondition(object):
         CRMConfigurationPage(self.driver).check_workflows_loaded()
         WorkflowsPage(self.driver).click_add_new_workflow()\
                                   .enter_workflow_name(WorkflowsConstants.NAME_WORKFLOW)\
-                                  .enter_workflow_priority(WorkflowsConstants.PRIORITY_WORKFLOW)\
                                   .click_radio_btn_modified()\
                                   .click_next()\
                                   .select_module(WorkflowsConstants.CLIENTS_MODULE)\
