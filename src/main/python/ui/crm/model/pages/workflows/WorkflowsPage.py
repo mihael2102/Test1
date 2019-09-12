@@ -34,7 +34,7 @@ class WorkflowsPage(CRMBasePage):
     def delete_workflow(self):
         sleep(1)
         btn_delete_workflow = super().wait_element_to_be_clickable\
-            ("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-list/div/div/div/div[2]/div/grid-simple/div/div[2]/table/tbody/tr[3]/td[6]/div[4]")
+            ("(//span[@class='glyphicon glyphicon-trash cursor-pointer ng-star-inserted'])[1]")
         btn_delete_workflow.click()
         Logging().reportDebugStep(self, "Click Delete workflow")
         return WorkflowsPage(self.driver)
@@ -80,7 +80,7 @@ class WorkflowsPage(CRMBasePage):
 
     def click_radio_btn_modified(self):
         sleep(2)
-        radio_btn = self.driver.find_element_by_xpath("/html/body/app-root/configuration/div/div/div[2]/div/div/workflow/div/workflow-edit/div[2]/div/workflow-edit-type/div[2]/div/div[3]/div[2]/div[4]/label/input")
+        radio_btn = self.driver.find_element_by_xpath("//span[text()='Every time the record is modified.']")
         radio_btn.click()
         Logging().reportDebugStep(self, "Click Every time the record is modified")
         return WorkflowsPage(self.driver)
