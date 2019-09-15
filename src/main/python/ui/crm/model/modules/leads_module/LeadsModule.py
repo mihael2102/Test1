@@ -808,9 +808,7 @@ class LeadsModule(CRMBasePage):
     def get_results_count(self):
         refresh_icon = self.driver.find_elements(By.XPATH, "//span[@class='fa fa-refresh']")[0]
         refresh_icon.click()
-        result_count_xpath = "//*[contains(text(), 'Showing Records')]"
-        self.wait_visible_of_element(result_count_xpath)
-        results_count_text = self.driver.find_elements(By.XPATH, result_count_xpath)[0].text
+        results_count_text = super().wait_load_element("//*[contains(text(), 'Showing Records')]", timeout=55).text
         results_split = results_count_text.split(" ")
         result_count = int(results_split[len(results_split) - 1])
         Logging().reportDebugStep(self, "Records is found: " + str(result_count))
