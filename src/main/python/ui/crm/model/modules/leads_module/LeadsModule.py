@@ -877,28 +877,14 @@ class LeadsModule(CRMBasePage):
         return lead_assigned.text
 
     def open_personal_details_lead(self):
-        lead = super().wait_element_to_be_clickable("//a[contains(text(),'LEA')]")
-        lead.click()
+        sleep(0.1)
+        lead = super().wait_load_element("//a[contains(text(),'LEA')]")
+        try:
+            lead.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", lead)
         Logging().reportDebugStep(self, "Go to personal details lead")
         return LeadsModule(self.driver)
-
-    def get_lead_email(self):
-        lead_email = WebDriverWait(self.driver, 50).until(
-            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Email']")))
-        Logging().reportDebugStep(self, "Verified the lead email: " + lead_email.text)
-        return lead_email.text
-
-    def get_lead_fname(self):
-        lead_fname = WebDriverWait(self.driver, 50).until(
-            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_First Name']")))
-        Logging().reportDebugStep(self, "Verified the lead first name: " + lead_fname.text)
-        return lead_fname.text
-
-    def get_lead_lname(self):
-        lead_lname = WebDriverWait(self.driver, 50).until(
-            EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Last Name']")))
-        Logging().reportDebugStep(self, "Verified the lead last name: " + lead_lname.text)
-        return lead_lname.text
 
     def get_lead_phone(self):
         lead_phone = WebDriverWait(self.driver, 50).until(
