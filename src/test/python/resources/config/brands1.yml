@@ -18,11 +18,11 @@ brands:
 #- name: gigafx
 #  config_file: gigafx.yml
 
-- name: trade99
-  config_file: trade99.yml
+#- name: trade99
+#  config_file: trade99.yml
 
-#- name: dax-300
-#  config_file: dax-300.yml
+- name: dax-300
+  config_file: dax-300.yml
 
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
