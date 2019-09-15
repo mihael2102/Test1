@@ -45,7 +45,6 @@ class MultiRunner:
         result_writer.write_test_results(brand_pretty_names, test_list, overall_results)
         # result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
 
-
     def single_brand_test(self, brand, test_list):
         runner = xmlrunner.XMLTestRunner(output='result')
         results = {}
@@ -140,7 +139,7 @@ if __name__ == "__main__":
                       path_to_test_suite_5, path_to_test_suite_6, path_to_test_suite_7, path_to_test_suite_8,
                       path_to_test_suite_9, path_to_test_suite_10]
 
-        # input_list = [path_to_test_suite_8]
+        # input_list = [path_to_test_suite_1]
 
         # Init multiprocess
         pool = multiprocessing.Pool(processes=10)
