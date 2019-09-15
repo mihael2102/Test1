@@ -439,7 +439,7 @@ class LeadsModule(CRMBasePage):
         number_email__str = email_1.replace('@pandats.com','')
         number_email__str1 = number_email__str.replace('pandaauto+', '')
         number_email_1 = int(number_email__str1)
-        check_first_line_email_2 = self.driver.find_element(By.XPATH,"//tbody[@id = 'listBody']/tr[2]/td[8]").text
+        check_first_line_email_2 = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[2]/td[8]").text
         email_2 = check_first_line_email_2.replace('pandaqa+', '')
         number_email_str0 = email_2.replace('@pandats.com', '')
         number_email_str2 = number_email_str0.replace('pandaauto+', '')

@@ -10,6 +10,7 @@ import pandas as pd
 from src.test.python.ui.automation.utils.postconditions.SendMail import Send_ALL_XLS
 from requests import get
 
+
 class MultiRunner:
 
     def __init__(self, path_to_test_suite):
