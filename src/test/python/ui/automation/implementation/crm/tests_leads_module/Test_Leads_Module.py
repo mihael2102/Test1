@@ -99,7 +99,8 @@ class LeadModuleTest(BaseTest):
             .create_lead(self.lead1)
         lead_view_profile_page = LeadViewInfo(self.driver)
 
-        lead_view_profile_page.open_convert_lead_module() \
+        lead_view_profile_page\
+            .open_convert_lead_module() \
 
         if global_var.current_brand_name == "mpcrypto":
             ConvertLeadModule(self.driver).perform_convert_lead(
