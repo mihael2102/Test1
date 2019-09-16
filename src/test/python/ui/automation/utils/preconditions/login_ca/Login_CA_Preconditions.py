@@ -15,6 +15,7 @@ import poplib
 from email import parser
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
+from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
 
 
 class Login_CA_Precondition(object):
@@ -322,6 +323,9 @@ class Login_CA_Precondition(object):
                                                         TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
         assert ClientsPage(self.driver).get_client_last_name() == self.load_lead_from_config(
             TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]
+        actual_phone = ClientsPage(self.driver).get_client_phone()
+        actual_phone = actual_phone.replace(' ', '')
+        expected_phone = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE]
         if (global_var.current_brand_name != "newrichmarkets") \
                 and (global_var.current_brand_name != "brokerz") \
                 and (global_var.current_brand_name != "kontofx") \
@@ -329,7 +333,10 @@ class Login_CA_Precondition(object):
                 and (global_var.current_brand_name != "gigafx") \
                 and (global_var.current_brand_name != "trade99") \
                 and (global_var.current_brand_name != "tradenero"):
-                    assert ClientsPage(self.driver).get_client_phone() == '+49 7777 777'
+            try:
+                assert expected_phone in actual_phone
+            except:
+                assert actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN
 
         if global_var.current_brand_name != "q8":
             assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS
