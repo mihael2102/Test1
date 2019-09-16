@@ -292,7 +292,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_client_account(self):
         sleep(1)
-        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
+        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]", timeout=35)
         super().scroll_into_view(account_number)
         account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
         Logging().reportDebugStep(self, "Client_account number: " + account_number.text)
