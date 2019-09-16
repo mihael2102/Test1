@@ -12,8 +12,8 @@ brands:
 #- name: kontofx
 #  config_file: kontofx.yml
 
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: brokerz
+  config_file: brokerz.yml
 
 #- name: gigafx
 #  config_file: gigafx.yml
@@ -21,8 +21,8 @@ brands:
 #- name: trade99
 #  config_file: trade99.yml
 
-- name: dax-300
-  config_file: dax-300.yml
+#- name: dax-300
+#  config_file: dax-300.yml
 
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
