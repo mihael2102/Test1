@@ -111,9 +111,8 @@ class ConfigProvider:
                 except yaml.YAMLError as e:
                     print(e)
 
-
     def load_tests(self):
-        tests_file_path = os.path.join(self.script_dir, self.config_dir, "tests.yml")
+        tests_file_path = os.path.join(self.script_dir, self.config_dir, Config.test_list)
         with open(os.path.realpath(tests_file_path), 'r') as stream:
             try:
                 self.tests_config = yaml.load(stream)
