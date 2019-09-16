@@ -242,7 +242,7 @@ class ClientProfilePage(CRMBasePage):
     def get_amount_text(self, total_amount_crm):
         # Use it after deposit etc. because we need to wait some time
         # while deposit will be applied and displayed at the page
-        Logging().reportDebugStep(self, "Returns the amount you placed on the deposit page \n" + total_amount_crm)
+        Logging().reportDebugStep(self, "Returns the amount you placed on the deposit page: " + total_amount_crm)
         return super().wait_until_element_present(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["deposit_sum"], total_amount_crm)
 
@@ -292,7 +292,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_client_account(self):
         sleep(1)
-        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
+        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]", timeout=35)
         super().scroll_into_view(account_number)
         account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
         Logging().reportDebugStep(self, "Client_account number: " + account_number.text)
@@ -414,7 +414,7 @@ class ClientProfilePage(CRMBasePage):
     def get_date_birthday(self):
         date = self.driver.find_element(By.XPATH, "//td[contains(text(),'Date Of Birth')]//following-sibling::td[1]")
         parser_data = re.sub('[-]', '', date.text)
-        Logging().reportDebugStep(self, "Returns the date birthday:  " + parser_data)
+        Logging().reportDebugStep(self, "Returns the date of birth:  " + parser_data)
         return parser_data
 
     '''
@@ -422,6 +422,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_first_name(self):
+        sleep(1)
         first_name = self.driver.find_element(By.XPATH, "//td[contains(text(),'First Name')]//following-sibling::td[1]")
         Logging().reportDebugStep(self, "Returns the first name: " + first_name.text)
         return first_name.text
@@ -806,10 +807,9 @@ class ClientProfilePage(CRMBasePage):
 
     def click_edit_personal_detail(self):
         sleep(2)
-        btn_edit = self.driver.find_element(By.XPATH,
-                                            "/html/body/table[2]/tbody/tr/td/table[1]/tbody/tr/td/div/table[2]/tbody/tr[1]/td/table/tbody/tr/td[2]/input")
+        btn_edit = self.driver.find_element(By.XPATH, "(//input[@name='Edit'])[1]")
         btn_edit.click()
-        Logging().reportDebugStep(self, "Click Edit")
+        Logging().reportDebugStep(self, "Click Edit button")
         return ClientProfilePage(self.driver)
 
     def select_country(self, country):
