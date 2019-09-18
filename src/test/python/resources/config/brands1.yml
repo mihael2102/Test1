@@ -42,8 +42,8 @@ brands:
 #- name: stox50
 #  config_file: stox50.yml
 
-#- name: strattonmarkets-eu
-#  config_file: strattonmarkets-eu.yml
+- name: strattonmarkets-eu
+  config_file: strattonmarkets-eu.yml
 
 #- name: aztrades
 #  config_file: aztrades.yml
@@ -69,5 +69,5 @@ brands:
 #- name: uprofx
 #  config_file: uprofx.yml
 
-- name: solocapitlas
-  config_file: solocapitlas.yml
+#- name: solocapitlas
+#  config_file: solocapitlas.yml
