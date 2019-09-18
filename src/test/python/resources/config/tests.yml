@@ -10,12 +10,12 @@ tests_config:
   class: DepositTestCRM
   tests:
     - test_make_deposit_crm  # make a deposit into a trading account from the crm
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
-#  class: CreateNewCustomer
-#  tests:
-#    - test_api_create_new_lead
-#    - test_api_create_new_customer
+
+- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_API
+  class: CreateNewCustomer
+  tests:
+    - test_api_create_new_lead
+    - test_api_create_new_customer
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
 #  class: CheckModules
