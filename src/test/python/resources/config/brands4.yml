@@ -1,7 +1,4 @@
 brands:
 
-#- name: kbcapitals
-#  config_file: kbcapitals.yml
-
 - name: etfinance
   config_file: etfinance.yml

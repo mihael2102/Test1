@@ -1,5 +1,5 @@
 LeadViewInfo:
-  convert_lead_module: "//div[@id='sidebar']//tr[2]//a"
+  convert_lead_module: "//a[contains(@onclick,'ConvertLead')]"
 ClientsPage:
   id_client: "//a[contains(text(), 'ACC')]"
 FinancialTransactionsPage:
