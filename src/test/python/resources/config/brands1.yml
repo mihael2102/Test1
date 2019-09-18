@@ -3,8 +3,8 @@ brands:
 #- name: newforexstage2
 #  config_file: newforexstage2.yml
 
-- name: ptbanc
-  config_file: ptbanc.yml
+#- name: ptbanc
+#  config_file: ptbanc.yml
 
 #- name: q8
 #  config_file: q8.yml
@@ -68,3 +68,6 @@ brands:
 
 #- name: uprofx
 #  config_file: uprofx.yml
+
+- name: solocapitlas
+  config_file: solocapitlas.yml
