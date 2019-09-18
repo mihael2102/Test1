@@ -96,10 +96,6 @@ def __simple_run(path_to_test_suite):
     client.test_brands()
 
 
-
-
-
-
 if __name__ == "__main__":
 
     from requests import get
@@ -107,7 +103,7 @@ if __name__ == "__main__":
     ip = get('https://api.ipify.org').text
     print('My public IP address is: {}'.format(ip))
 
-    if ip == '35.158.30.212' or ip == '35.158.90.50':
+    if ip == '35.158.30.212' or ip == '35.158.90.50' or ip == '3.123.82.121':
 
 
         all_brands_yml = "brands.yml"
