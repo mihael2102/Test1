@@ -5,6 +5,3 @@ brands:
 
 - name: ptbanc
   config_file: ptbanc.yml
-
-#- name: 2mercados
-#  config_file: 2mercados.yml

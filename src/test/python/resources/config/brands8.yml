@@ -1,8 +1,5 @@
 brands:
 
-#- name: privat-trade
-#  config_file: privat-trade.yml
-
 - name: stox50
   config_file: stox50.yml
 

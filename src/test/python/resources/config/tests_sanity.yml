@@ -17,7 +17,7 @@ tests_config:
     - test_create_lead_api
     - test_create_new_customer
 
-- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
-  class: CheckModulesTest
-  tests:
-    - test_check_sprint_version
+#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
+#  class: CheckModulesTest
+#  tests:
+#    - test_check_sprint_version

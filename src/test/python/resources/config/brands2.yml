@@ -3,8 +3,5 @@ brands:
 - name: kontofx
   config_file: kontofx.yml
 
-- name: jonesmutual
-  config_file: jonesmutual.yml
-
 - name: swisscci
   config_file: swisscci.yml
