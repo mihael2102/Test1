@@ -55,11 +55,11 @@ tests_config:
 #  tests:
 #    - test_make_searching_client_module   # Searches for a client
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
-#  class: MassEditTestCRM
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
+  class: MassEditTestCRM
+  tests:
 #    - test_update_client_details
-#    - test_clients_mass_edit
+    - test_clients_mass_edit
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign
 #  class: MassAssignTestCRM
@@ -141,10 +141,10 @@ tests_config:
 #    - test_crm_edit_trading_account  # edit trading account
 #
 ######################################## AFFILIATES MODULE ##########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
-  class: AffiliateModule
-  tests:
-     - test_create_affiliate
+#- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
+#  class: AffiliateModule
+#  tests:
+#     - test_create_affiliate
 #
 ####################################### FINANCIAL TRANSACTIONS ######################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
