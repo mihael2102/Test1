@@ -12,5 +12,5 @@ from src.test.python.ui.automation.utils.preconditions.base_pages_ca.Base_Pages_
 @pytest.mark.run(order=2)
 class TestPagesCA(BaseTest):
 
-    def test_transaction_history_page_loading(self):
-        BasePagesCAPrecondition(self.driver, self.config).transaction_history_page_loading()
+    def test_main_menu_pages_loading(self):
+        BasePagesCAPrecondition(self.driver, self.config).main_menu_pages_loading()
