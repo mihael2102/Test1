@@ -242,5 +242,3 @@ class Page_CA_Precondition(object):
         else:
             Logging().reportDebugStep(self, "Test is not running")
             return self
-
-
