@@ -85,10 +85,10 @@ tests_config:
 #     - test_check_week_tab
 
 ###################################### MT4 ACTIONS ###########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-#  class: TradingAccountCrmTest
-#  tests:
-#    - test_crm_open_trading_account  # open a new trading account
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - test_crm_open_trading_account  # open a new trading account
 #    - test_crm_open_live_mt5
 #    - test_crm_open_demo_mt5
 #
@@ -115,15 +115,15 @@ tests_config:
 #  tests:
 #    - test_withdraw_crm   #preconditions: convert lead, make deposit
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
-#  class: CreditInTestCRM
-#  tests:
-#    - test_make_credit_in_from_crm
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
-#  class: CreditOutTestCRM
-#  tests:
-#    - test_make_credit_out_crm # preconditions: convert lead, make credit in
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
+  class: CreditInTestCRM
+  tests:
+    - test_make_credit_in_from_crm
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
+  class: CreditOutTestCRM
+  tests:
+    - test_make_credit_out_crm # preconditions: convert lead, make credit in
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
 #  class: SendEmailTestCRM
