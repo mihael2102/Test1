@@ -302,9 +302,11 @@ class ClientsPage(CRMBasePage):
         self.wait_crm_loading_to_finish()
         sleep(0.1)
         client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC')]")
-        sleep(1)
+        sleep(0.1)
+        self.driver.execute_script("arguments[0].scrollIntoView();", client_id)
+        sleep(0.1)
         self.driver.execute_script("arguments[0].click();", client_id)
-        sleep(1)
+        sleep(0.3)
         self.wait_vtiger_loading_to_finish_custom(35)
         self.perform_scroll_up()
         sleep(1)
@@ -555,7 +557,7 @@ class ClientsPage(CRMBasePage):
 
     def get_client_country(self):
         client_email = WebDriverWait(self.driver, 50).until(
-            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Country')]//following-sibling::td[1]")))
+            EC.visibility_of_element_located((By.XPATH, "//td[text()='Country']//following-sibling::td[1]")))
         Logging().reportDebugStep(self, "Verified the client Country: " + client_email.text)
         return client_email.text
 
