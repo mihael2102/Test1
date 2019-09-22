@@ -162,11 +162,15 @@ class ApiPage(CRMBasePage):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
                                     "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
+        counter = 0
         while APIConstants.STATUS_OK not in check_token:
             sleep(1)
             check_token = self.driver.find_element(By.XPATH,
                                     "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
             Logging().reportDebugStep(self, "Check token read customers details: " + check_token)
+            counter += 1
+            if counter == 3:
+                break
         return check_token
 
     def send_update_customer(self):
