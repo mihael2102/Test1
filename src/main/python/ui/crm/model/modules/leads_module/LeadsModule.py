@@ -300,8 +300,14 @@ class LeadsModule(CRMBasePage):
                 global_var.current_brand_name == "aztrades" or global_var.current_brand_name == "24btcmarket" or \
                 global_var.current_brand_name == "newforexstage2" or global_var.current_brand_name == "gigafx" or \
                 global_var.current_brand_name == "dax-300":
+            status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]")
+            self.driver.execute_script("arguments[0].scrollIntoView();", status)
+            sleep(0.1)
             status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]").text
         else:
+            status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]")
+            self.driver.execute_script("arguments[0].scrollIntoView();", status)
+            sleep(0.1)
             status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[7]").text
         if i == 9:
             Logging().reportDebugStep(self, "Verify status")
