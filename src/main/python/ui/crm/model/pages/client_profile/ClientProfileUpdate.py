@@ -6,11 +6,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
+from selenium.webdriver.support.select import Select
 
 
 class ClientProfileUpdate(CRMBasePage):
-    # def __init__(self):
-    #     super().__init__()
 
     def edit_first_name_by_pencil(self, first_name_update):
         self.driver.refresh()
@@ -214,4 +213,25 @@ class ClientProfileUpdate(CRMBasePage):
         self.perform_scroll_up()
         save_button.click()
         Logging().reportDebugStep(self, "The save button was clicked: ")
+        return ClientProfileUpdate(self.driver)
+
+    def edit_first_name(self, fname):
+        first_name_field = super().wait_load_element("//*[@id='first_name']")
+        first_name_field.clear()
+        first_name_field.send_keys(fname)
+        Logging().reportDebugStep(self, "Set First Name: " + fname)
+        return ClientProfileUpdate(self.driver)
+
+    def edit_city(self, city):
+        city_field = super().wait_load_element("//*[@id='city']")
+        city_field.clear()
+        city_field.send_keys(city)
+        Logging().reportDebugStep(self, "Set City: " + city)
+        return ClientProfileUpdate(self.driver)
+
+    def edit_country(self, country):
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[@id='countries']")))
+        country_field = Select(self.driver.find_element(By.XPATH, "//*[@id='countries']"))
+        country_field.select_by_visible_text(country)
+        Logging().reportDebugStep(self, "Set Country: " + country)
         return ClientProfileUpdate(self.driver)
