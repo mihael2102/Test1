@@ -6,6 +6,7 @@ from dateutil.relativedelta import relativedelta
 class APIConstants(object):
     PARTNER_ID_UFT = "54654"
     PARTNER_ID_EAFX = "10551"
+    PARTNER_ID_ANY1PROFIT = "50291"
     API_SECRET_KEY = "5fb7b2998ef7c9223cf14b4db93f7a4cbf79c58749def28ebf1032165888c5f5"
     PARTNER_ID = "3898"
     PASSWORD = "as1as2"

@@ -109,6 +109,9 @@ class ApiPrecondition(object):
         elif global_var.current_brand_name == "uft":
             AffiliatePage(self.driver)\
                 .search_by_partner_id(APIConstants.PARTNER_ID_UFT)
+        elif global_var.current_brand_name == "any1profit":
+            AffiliatePage(self.driver) \
+                .search_by_partner_id(APIConstants.PARTNER_ID_ANY1PROFIT)
         else:
             AffiliatePage(self.driver)\
                 .search_by_partner_id(APIConstants.PARTNER_ID)
@@ -129,6 +132,9 @@ class ApiPrecondition(object):
         elif global_var.current_brand_name == "uft":
             ApiPage(self.driver)\
                 .input_partner_id(APIConstants.PARTNER_ID_UFT)
+        elif global_var.current_brand_name == "any1profit":
+            ApiPage(self.driver) \
+                .input_partner_id(APIConstants.PARTNER_ID_ANY1PROFIT)
         else:
             ApiPage(self.driver)\
                 .input_partner_id(APIConstants.PARTNER_ID)
@@ -236,7 +242,9 @@ class ApiPrecondition(object):
                                                         LeadsModuleConstants.FIRST_NAME]
         assert client_last_name == APIConstants.LASTNAME
         if global_var.current_brand_name != "brokerz" and \
-                global_var.current_brand_name != "tradenero":
+                global_var.current_brand_name != "tradenero" and \
+                global_var.current_brand_name != "newrichmarkets" and \
+                global_var.current_brand_name != "globalix":
             try:
                 assert client_phone == APIConstants.PHONE_CRM
             except:
