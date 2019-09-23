@@ -215,9 +215,6 @@ class CALoginPage(CRMBasePage):
         submit_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                 self.__class__.__name__)["next_btn"])
         submit_button.click()
-        # if global_var.current_brand_name == "ptbanc":
-        #     sleep(7)
-        #     super().wait_load_element("//div[@class='close-pandats cmicon-close4']").click()
         Logging().reportDebugStep(self, "Click Next")
         return CALoginPage(self.driver)
 
