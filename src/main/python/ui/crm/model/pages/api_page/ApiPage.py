@@ -1,5 +1,5 @@
 from time import sleep
-
+from src.main.python.ui.crm.model.constants.APIConstants import APIConstants
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
@@ -161,14 +161,22 @@ class ApiPage(CRMBasePage):
     def check_update_token(self):
         sleep(5)
         check_token = self.driver.find_element(By.XPATH,
-                                               "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
-        Logging().reportDebugStep(self, "Check token read customers details: " + check_token)
+                                    "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
+        counter = 0
+        while APIConstants.STATUS_OK not in check_token:
+            sleep(1)
+            check_token = self.driver.find_element(By.XPATH,
+                                    "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[5]/pre/code").text
+            Logging().reportDebugStep(self, "Check token read customers details: " + check_token)
+            counter += 1
+            if counter == 3:
+                break
         return check_token
 
     def send_update_customer(self):
         sleep(2)
         customer_module = self.driver.find_element(By.XPATH,
-                                                   "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[4]/div/button")
+                                        "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[4]/div/button")
         customer_module.click()
         Logging().reportDebugStep(self, "Click Send")
         return ApiPage(self.driver)
@@ -185,7 +193,7 @@ class ApiPage(CRMBasePage):
     def change_first_name(self, name):
         sleep(2)
         input = self.driver.find_element(By.XPATH,
-                                         "//*[@id='sample-request-param-field-firstName-Customers-updateCustomer-0_0_0']")
+                                    "//*[@id='sample-request-param-field-firstName-Customers-updateCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(name)
         Logging().reportDebugStep(self, "Change first name: " + name)
@@ -194,7 +202,7 @@ class ApiPage(CRMBasePage):
     def change_postalCode(self, code):
         sleep(2)
         input = self.driver.find_element(By.XPATH,
-                                         "//*[@id='sample-request-param-field-postalCode-Customers-updateCustomer-0_0_0']")
+                                    "//*[@id='sample-request-param-field-postalCode-Customers-updateCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(code)
         Logging().reportDebugStep(self, "Change postal code: " + code)

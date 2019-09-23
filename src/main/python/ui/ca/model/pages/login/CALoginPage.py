@@ -239,10 +239,9 @@ class CALoginPage(CRMBasePage):
 
     def click_hi_user(self, user_name):
         sleep(0.5)
-        click_hi_user = super().wait_load_element("//span[contains(text(), '%s')]" % user_name)
-        sleep(7)
+        click_hi_user = super().wait_load_element("//span[contains(text(), '%s')]" % user_name, timeout=35)
+        sleep(0.7)
         self.driver.execute_script("arguments[0].click();", click_hi_user)
-        # click_hi_user.click()
         Logging().reportDebugStep(self, "Click Hi, " + user_name)
         return CALoginPage(self.driver)
 
