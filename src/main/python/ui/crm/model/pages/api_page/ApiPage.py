@@ -176,7 +176,7 @@ class ApiPage(CRMBasePage):
     def send_update_customer(self):
         sleep(2)
         customer_module = self.driver.find_element(By.XPATH,
-                                                   "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[4]/div/button")
+                                        "//*[@id='api-Customers-updateCustomer-0.0.0']/form/fieldset/div[4]/div/button")
         customer_module.click()
         Logging().reportDebugStep(self, "Click Send")
         return ApiPage(self.driver)
@@ -193,7 +193,7 @@ class ApiPage(CRMBasePage):
     def change_first_name(self, name):
         sleep(2)
         input = self.driver.find_element(By.XPATH,
-                                         "//*[@id='sample-request-param-field-firstName-Customers-updateCustomer-0_0_0']")
+                                    "//*[@id='sample-request-param-field-firstName-Customers-updateCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(name)
         Logging().reportDebugStep(self, "Change first name: " + name)
@@ -202,7 +202,7 @@ class ApiPage(CRMBasePage):
     def change_postalCode(self, code):
         sleep(2)
         input = self.driver.find_element(By.XPATH,
-                                         "//*[@id='sample-request-param-field-postalCode-Customers-updateCustomer-0_0_0']")
+                                    "//*[@id='sample-request-param-field-postalCode-Customers-updateCustomer-0_0_0']")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
         input.send_keys(code)
         Logging().reportDebugStep(self, "Change postal code: " + code)
