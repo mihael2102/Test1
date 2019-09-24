@@ -56,6 +56,8 @@ class TradingAccountPrecondition(object):
         if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual")\
                 or (global_var.current_brand_name == "royal_cfds"):
             CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL2)
+        elif global_var.current_brand_name == "strattonmarkets-eu":
+            CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL3)
         else:
             CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL)
 

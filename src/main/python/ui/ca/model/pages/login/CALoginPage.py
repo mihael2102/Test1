@@ -26,13 +26,15 @@ class CALoginPage(CRMBasePage):
             close_btn.click()
             Logging().reportDebugStep(self, "Campaign bunner is closed")
         except NoSuchElementException:
-            pass
-        sign_up_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["sign_up"])
-        sleep(1)
-        sign_up_button.click()
-        Logging().reportDebugStep(self, "Click Sign Up")
-        return CALoginPage(self.driver)
+            try:
+                sign_up_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                                   self.__class__.__name__)["sign_up"])
+                sleep(1)
+                sign_up_button.click()
+                Logging().reportDebugStep(self, "Click Sign Up")
+            except:
+                Logging().reportDebugStep(self, "There is no panda plugin")
+            return CALoginPage(self.driver)
 
     def fill_first_name(self, first_name):
         input_first_name = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
@@ -257,12 +259,14 @@ class CALoginPage(CRMBasePage):
             close_btn.click()
             Logging().reportDebugStep(self, "Campaign bunner is closed")
         except NoSuchElementException:
-            pass
-        sleep(1)
-        login_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["login_btn"])
-        self.driver.execute_script("arguments[0].click();", login_button)
-        Logging().reportDebugStep(self, "Click Login")
+            try:
+                sleep(1)
+                login_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                                   self.__class__.__name__)["login_btn"])
+                self.driver.execute_script("arguments[0].click();", login_button)
+                Logging().reportDebugStep(self, "Click Login")
+            except:
+                Logging().reportDebugStep(self, "There is no panda's plugin")
         return CALoginPage(self.driver)
 
     def enter_email(self, email):
@@ -417,6 +421,13 @@ class CALoginPage(CRMBasePage):
             "//span[@class='item-pandats ng-star-inserted']/span[text()='%s']" % country)
         self.driver.execute_script("arguments[0].click();", country_item)
         Logging().reportDebugStep(self, "Select Country of TAX: " + country)
+        return CALoginPage(self.driver)
+
+    def select_country_first_step(self, country):
+        country_list = super().wait_element_to_be_clickable("//select[@id='country']")
+        select_status = Select(country_list)
+        select_status.select_by_visible_text(country)
+        Logging().reportDebugStep(self, "Select Country(first step): " + country)
         return CALoginPage(self.driver)
 
     def enter_company_name(self, company):

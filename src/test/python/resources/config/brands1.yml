@@ -24,42 +24,36 @@ brands:
 #- name: dax-300
 #  config_file: dax-300.yml
 
-- name: strattonmarkets-eu
-  config_file: strattonmarkets-eu.yml
-
-#- name: tradenero
-#  config_file: tradenero.yml
-#
-#- name: any1profit
-#  config_file: any1profit.yml
-#
-#- name: alferatrade
-#  config_file: alferatrade.yml
-#
-#- name: hizlifx
-#  config_file: hizlifx.yml
-#
-#- name: stox50
-#  config_file: stox50.yml
-#
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
-#
+
+#- name: any1profit
+#  config_file: any1profit.yml
+
+#- name: alferatrade
+#  config_file: alferatrade.yml
+
+#- name: hizlifx
+#  config_file: hizlifx.yml
+
+#- name: stox50
+#  config_file: stox50.yml
+
 #- name: aztrades
 #  config_file: aztrades.yml
-#
+
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
-#
+
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
-#
+
 #- name: globalix
 #  config_file: globalix.yml
-#
-#- name: libramarkets
-#  config_file: libramarkets.yml
-#
+
+- name: libramarkets
+  config_file: libramarkets.yml
+
 #- name: swisscci
 #  config_file: swisscci.yml
 #
