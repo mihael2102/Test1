@@ -80,7 +80,18 @@ class CALoginPage(CRMBasePage):
                                                            self.__class__.__name__)["check_box_accept"])
         check_box.click()
         Logging().reportDebugStep(self,
-                                  "Check 'By checking this box I accept the Terms and Conditions and confirm that I am over 18 year of age'")
+            "Check 'By checking this box I accept the Terms and Conditions and confirm that I am over 18 year of age'")
+        return CALoginPage(self.driver)
+
+    def risk_check_box_accept(self):
+        try:
+            check_box = super().wait_load_element(
+                "//span[contains(text(),'CFD and Forex trading involves substantial risk')]")
+            check_box.click()
+            Logging().reportDebugStep(self,
+               "Check 'CFD and Forex trading involves substantial risk and may result in the loss of the invested capital'")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "There is no check box")
         return CALoginPage(self.driver)
 
     def click_submit(self):
@@ -167,6 +178,7 @@ class CALoginPage(CRMBasePage):
         input_city = super().wait_load_element(
             global_var.get_xpath_for_current_brand_element(
                 self.__class__.__name__)["city"])
+        input_city.clear()
         input_city.send_keys(city)
         Logging().reportDebugStep(self, "Fill city : " + city)
         return CALoginPage(self.driver)
@@ -196,6 +208,7 @@ class CALoginPage(CRMBasePage):
     def fill_zip_code(self, zip_code):
         input_zip_code = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                 self.__class__.__name__)["zip_code"])
+        input_zip_code.clear()
         input_zip_code.send_keys(zip_code)
         Logging().reportDebugStep(self, "Fill zip_code : " + zip_code)
         return CALoginPage(self.driver)
@@ -203,6 +216,7 @@ class CALoginPage(CRMBasePage):
     def fill_address(self, address):
         input_address = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                 self.__class__.__name__)["address"])
+        input_address.clear()
         input_address.send_keys(address)
         Logging().reportDebugStep(self, "Fill address : " + address)
         return CALoginPage(self.driver)
@@ -281,7 +295,10 @@ class CALoginPage(CRMBasePage):
 
     def enter_password(self, password):
         sleep(1)
-        input_password = self.driver.find_element_by_xpath("//input[@name='password']")
+        try:
+            input_password = self.driver.find_element_by_xpath("(//input[@name='password'])[2]")
+        except(NoSuchElementException, TimeoutException):
+            input_password = self.driver.find_element_by_xpath("//input[@name='password']")
         self.driver.execute_script("arguments[0].click();", input_password)
         sleep(1)
         input_password.send_keys(password)
@@ -343,10 +360,13 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def close_payment_popup(self):
-        sleep(0.2)
-        close_btn = super().wait_element_to_be_clickable("//div[@class='close-pandats cmicon-close4 ng-star-inserted']")
-        close_btn.click()
-        Logging().reportDebugStep(self, "Close the pop up 'Choose a payment method'")
+        try:
+            sleep(0.2)
+            close_btn = super().wait_element_to_be_clickable("//div[@class='close-pandats cmicon-close4 ng-star-inserted']")
+            close_btn.click()
+            Logging().reportDebugStep(self, "Close the pop up 'Choose a payment method'")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Pop up 'Choose a payment method' wasn't opened")
         return CALoginPage(self.driver)
 
     def open_account_details_tab(self):
@@ -424,10 +444,13 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def select_country_first_step(self, country):
-        country_list = super().wait_element_to_be_clickable("//select[@id='country']")
-        select_status = Select(country_list)
-        select_status.select_by_visible_text(country)
-        Logging().reportDebugStep(self, "Select Country(first step): " + country)
+        try:
+            country_list = super().wait_element_to_be_clickable("//select[@id='country']")
+            select_status = Select(country_list)
+            select_status.select_by_visible_text(country)
+            Logging().reportDebugStep(self, "Select Country(first step): " + country)
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "There are no 'Select Country' field on first registration step")
         return CALoginPage(self.driver)
 
     def enter_company_name(self, company):

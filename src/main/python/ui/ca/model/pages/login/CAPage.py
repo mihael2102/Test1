@@ -125,9 +125,10 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def click_create_account(self):
-        create_account_btn = super().wait_load_element("//button[@class='forex-button-pandats'][contains(text(), 'Create Account')]")
+        create_account_btn = super().wait_load_element(
+            "//button[@class='forex-button-pandats'][contains(text(), 'Create Account')]")
         self.driver.execute_script("arguments[0].click();", create_account_btn)
-        Logging().reportDebugStep(self, "Click Create Account")
+        Logging().reportDebugStep(self, "Click Create Account button")
         return CAPage(self.driver)
 
     def additional_account_created(self):

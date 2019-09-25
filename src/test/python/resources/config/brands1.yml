@@ -1,7 +1,60 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+
 brands:
 
-#- name: newforexstage2
-#  config_file: newforexstage2.yml
+#- name: alferatrade
+#  config_file: alferatrade.yml
+
+#- name: any1profit
+#  config_file: any1profit.yml
+
+#- name: aztrades
+#  config_file: aztrades.yml
+
+#- name: bfxinternational
+#  config_file: bfxinternational.yml
+
+#- name: brokerz
+#  config_file: brokerz.yml
+
+#- name: dax-300
+#  config_file: dax-300.yml
+
+#- name: financix
+#  config_file: financix.yml
+
+#- name: globalix
+#  config_file: globalix.yml
+
+#- name: gigafx
+#  config_file: gigafx.yml
+
+#- name: grandefex
+#  config_file: grandefex.yml
+
+#- name: hizlifx
+#  config_file: hizlifx.yml
+
+#- name: jonesmutual
+#  config_file: jonesmutual.yml
+
+#- name: kontofx
+#  config_file: kontofx.yml
+
+#- name: libramarkets
+#  config_file: libramarkets.yml
+
+#- name: newrichmarkets
+#  config_file: newrichmarkets.yml
+
+- name: newforexstage2
+  config_file: newforexstage2.yml
+
+#- name: olympiamarkets
+#  config_file: olympiamarkets.yml
+
+#- name: pmt247
+#  config_file: pmt247.yml
 
 #- name: ptbanc
 #  config_file: ptbanc.yml
@@ -9,59 +62,26 @@ brands:
 #- name: q8
 #  config_file: q8.yml
 
-#- name: kontofx
-#  config_file: kontofx.yml
-
-#- name: brokerz
-#  config_file: brokerz.yml
-
-#- name: gigafx
-#  config_file: gigafx.yml
-
-#- name: trade99
-#  config_file: trade99.yml
-
-#- name: dax-300
-#  config_file: dax-300.yml
-
-#- name: strattonmarkets-eu
-#  config_file: strattonmarkets-eu.yml
-
-#- name: any1profit
-#  config_file: any1profit.yml
-
-#- name: alferatrade
-#  config_file: alferatrade.yml
-
-#- name: hizlifx
-#  config_file: hizlifx.yml
+#- name: solocapitlas
+#  config_file: solocapitlas.yml
 
 #- name: stox50
 #  config_file: stox50.yml
 
-#- name: aztrades
-#  config_file: aztrades.yml
-
-#- name: newrichmarkets
-#  config_file: newrichmarkets.yml
-
-#- name: olympiamarkets
-#  config_file: olympiamarkets.yml
-
-#- name: globalix
-#  config_file: globalix.yml
-
-- name: libramarkets
-  config_file: libramarkets.yml
+#- name: strattonmarkets-eu
+#  config_file: strattonmarkets-eu.yml
 
 #- name: swisscci
 #  config_file: swisscci.yml
-#
-#- name: jonesmutual
-#  config_file: jonesmutual.yml
-#
+
+#- name: tfxgo
+#  config_file: tfxgo.yml
+
+#- name: trade99
+#  config_file: trade99.yml
+
+#- name: uft
+#  config_file: uft.yml
+
 #- name: uprofx
 #  config_file: uprofx.yml
-#
-#- name: solocapitlas
-#  config_file: solocapitlas.yml

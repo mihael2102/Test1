@@ -29,24 +29,40 @@ class CAMainMenuPage(CRMBasePage):
 
     def open_verification_center_tab(self):
         Logging().reportDebugStep(self, "Open Verification Center tab")
-        btn = super().wait_element_to_be_clickable("//i[@class='cmicon-check_box']")
-        btn.click()
+        try:
+            btn = super().wait_element_to_be_clickable("//i[@class='cmicon-check_box']")
+            btn.click()
+        except(NoSuchElementException, TimeoutException):
+            pass
+            Logging().reportDebugStep(self, "There is no Verification Center tab")
         return CAMainMenuPage(self.driver)
 
     def check_verification_center_loaded(self):
-        Logging().reportDebugStep(self, "Verification Center table is loaded")
-        super().wait_load_element("//span[contains(text(),'Proof of Identity')]")
+        try:
+            super().wait_load_element("//span[contains(text(),'Proof of Identity')]")
+            Logging().reportDebugStep(self, "Verification Center table is loaded")
+        except(NoSuchElementException, TimeoutException):
+            pass
+            Logging().reportDebugStep(self, "There is no Verification Center tab")
         return CAMainMenuPage(self.driver)
 
     def open_service_desk_tab(self):
-        Logging().reportDebugStep(self, "Open Service Desk tab")
-        btn = super().wait_element_to_be_clickable("(//i[@class='cmicon-comment'])[1]")
-        btn.click()
+        try:
+            Logging().reportDebugStep(self, "Open Service Desk tab")
+            btn = super().wait_element_to_be_clickable("(//i[@class='cmicon-comment'])[1]")
+            btn.click()
+        except(NoSuchElementException, TimeoutException):
+            pass
+            Logging().reportDebugStep(self, "There is no Service Desk tab")
         return CAMainMenuPage(self.driver)
 
     def check_service_desk_loaded(self):
-        Logging().reportDebugStep(self, "Service Desk table is loaded")
-        super().wait_load_element("//button[text()='Create New Ticket']")
+        try:
+            super().wait_load_element("//button[text()='Create New Ticket']")
+            Logging().reportDebugStep(self, "Service Desk table is loaded")
+        except(NoSuchElementException, TimeoutException):
+            pass
+            Logging().reportDebugStep(self, "There is no Service Desk tab")
         return CAMainMenuPage(self.driver)
 
     def open_withdraw_tab(self):
