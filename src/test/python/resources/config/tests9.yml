@@ -1,5 +1,11 @@
 tests_config:
 
+#################################### CRM CONFIGURATION PAGES ##############################
+- module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
+  class: CRMConfigurationsTest
+  tests:
+    - test_crm_configurations_pages_loading
+
 #################################### CONVERT LEAD ##########################################
 - module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
   directive: reload_configuration
@@ -30,3 +36,7 @@ tests_config:
     - test_change_client_password_from_crm  # change a client account password from the crm
     - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
 
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - test_crm_edit_trading_account  # edit trading account

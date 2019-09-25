@@ -39,8 +39,3 @@ tests_config:
   class: TransferBetweenTa
   tests:
     - test_transfer_between_ta # preconditions: convert lead, deposit crm
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_edit_trading_account  # edit trading account
