@@ -30,6 +30,7 @@ class CAConstants(object):
     ACCOUNT_LIVE = "Live"
     LEVERAGE_LEVEL = "1:100"
     LEVERAGE_LEVEL2 = "1:200"
+    LEVERAGE_LEVEL3 = "1:30"
     ACCOUNT_DEMO = "Demo"
     INITIAL_DEPOSIT0 = "0"
     INITIAL_DEPOSIT1 = "1000000"
@@ -47,3 +48,4 @@ class CAConstants(object):
     DOCUMENT_STATUS_CA = "Verified"
     US_REPORTABLE_YES = "Yes"
     US_REPORTABLE_NO = "No"
+    COUNTRY1 = "Germany"
