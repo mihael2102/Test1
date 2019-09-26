@@ -102,7 +102,7 @@ class CALoginPage(CRMBasePage):
             Logging().reportDebugStep(self,
                "Check 'CFD and Forex trading involves substantial risk and may result in the loss of the invested capital'")
         except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "There is no check box")
+            Logging().reportDebugStep(self, "Risk check box doesn't exist")
         return CALoginPage(self.driver)
 
     def click_submit(self):
