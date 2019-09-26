@@ -3,5 +3,5 @@ brands:
 - name: stox50
   config_file: stox50.yml
 
-- name: strattonmarkets-eu
-  config_file: strattonmarkets-eu.yml
+- name: gigafx
+  config_file: gigafx.yml
