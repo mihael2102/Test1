@@ -1,0 +1,2 @@
+CALoginPage:
+  check_box_accept: "//span[contains (text(), 'I accept the')]"
