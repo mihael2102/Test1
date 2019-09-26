@@ -62,9 +62,10 @@ class TradingAccountPrecondition(object):
             CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL)
 
         CAPage(self.driver)\
-            .click_create_account() \
-            .additional_account_created() \
-            .open_live_section() \
+            .click_create_account()\
+            .get_create_account_message()\
+            .additional_account_created()\
+            .open_live_section()\
             .get_live_account_number()
 
     def add_demo_account(self):

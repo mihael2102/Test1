@@ -17,24 +17,32 @@ class CALoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Open first tabs page: " + url)
         return CALoginPage(self.driver)
 
-    def click_sign_up(self):
-        sleep(10)
+    def close_campaign_banner(self):
+        sleep(1)
         try:
             # Check banner exist
             self.driver.find_element_by_xpath("(//div[@class='Campaign__alphaLayer'])[2]")
             close_btn = self.driver.find_element_by_xpath("(//button[@title='Close'])[2]")
             close_btn.click()
-            Logging().reportDebugStep(self, "Campaign bunner is closed")
-        except NoSuchElementException:
+            Logging().reportDebugStep(self, "Campaign banner is closed")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Campaign banner doesn't appears")
+        return CALoginPage(self.driver)
+
+    def click_sign_up(self):
+        sleep(1)
+        try:
+            sign_up_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                               self.__class__.__name__)["sign_up"])
+            sleep(1)
             try:
-                sign_up_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                                   self.__class__.__name__)["sign_up"])
-                sleep(1)
                 sign_up_button.click()
-                Logging().reportDebugStep(self, "Click Sign Up")
             except:
-                Logging().reportDebugStep(self, "There is no panda plugin")
-            return CALoginPage(self.driver)
+                self.driver.execute_script("arguments[0].click();", sign_up_button)
+            Logging().reportDebugStep(self, "Click Sign Up")
+        except:
+            Logging().reportDebugStep(self, "There is no panda plugin")
+        return CALoginPage(self.driver)
 
     def fill_first_name(self, first_name):
         input_first_name = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
@@ -78,7 +86,10 @@ class CALoginPage(CRMBasePage):
     def check_box_accept(self):
         check_box = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["check_box_accept"])
-        check_box.click()
+        try:
+            check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box)
         Logging().reportDebugStep(self,
             "Check 'By checking this box I accept the Terms and Conditions and confirm that I am over 18 year of age'")
         return CALoginPage(self.driver)
@@ -97,7 +108,10 @@ class CALoginPage(CRMBasePage):
     def click_submit(self):
         submit_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["submit_btn"])
-        submit_button.click()
+        try:
+            submit_button.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", submit_button)
         Logging().reportDebugStep(self, "Click submit")
         return CALoginPage(self.driver)
 
@@ -110,7 +124,10 @@ class CALoginPage(CRMBasePage):
 
     def click_transactions_history(self):
         transactions_history_button = super().wait_load_element("//li[contains (text(), 'Transaction History ')]")
-        transactions_history_button.click()
+        try:
+            transactions_history_button.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", transactions_history_button)
         Logging().reportDebugStep(self, "Click Transaction History")
         return CALoginPage(self.driver)
 
@@ -308,7 +325,10 @@ class CALoginPage(CRMBasePage):
     def click_login(self):
         login_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["login_btn_2"])
-        login_button.click()
+        try:
+            login_button.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", login_button)
         Logging().reportDebugStep(self, "Click Login in pop up")
         return CALoginPage(self.driver)
 

@@ -48,4 +48,6 @@ class CAConstants(object):
     DOCUMENT_STATUS_CA = "Verified"
     US_REPORTABLE_YES = "Yes"
     US_REPORTABLE_NO = "No"
-    COUNTRY1 = "Germany"
+    COUNTRY1 = "Albania"
+    CREATE_LIVE_ACC_MSG_POSITIVE = "Account created successfully"
+    CREATE_LIVE_ACC_MSG_NEGATIVE = "Dear customer, please note you are allowed to have only 1 live accounts"

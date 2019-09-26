@@ -65,6 +65,7 @@ class Login_CA_Precondition(object):
         # Registration form
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca'))\
+            .close_campaign_banner()\
             .click_sign_up()
         if (global_var.current_brand_name == "b-finance") or (global_var.current_brand_name == "eafx"):
             CALoginPage(self.driver)\
@@ -224,7 +225,10 @@ class Login_CA_Precondition(object):
             assert existing_client == expected_client
 
         elif global_var.current_brand_name == "trade99" or \
-                global_var.current_brand_name == "libramarkets":
+                global_var.current_brand_name == "libramarkets" or \
+                global_var.current_brand_name == "uprofx" or \
+                global_var.current_brand_name == "kontofx" or \
+                global_var.current_brand_name == "olympiamarkets":
 
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca'))
