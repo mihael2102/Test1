@@ -89,7 +89,8 @@ class LeadPrecondition(object):
 
         CRMHomePage(self.driver).open_lead_module()
         LeadsModule(self.driver).click_import_leads()
-        ##Create new leads for import
+
+        #Create new leads for import
         with open('D:/Leads_Import.csv', mode='w') as csvfile:
             filewriter = csv.writer(csvfile, delimiter=',',
                                     quotechar='|', quoting=csv.QUOTE_MINIMAL)
@@ -449,9 +450,9 @@ class LeadPrecondition(object):
             return LeadPrecondition(self.driver, self.config)
 
         elif global_var.current_brand_name == "hizlifx" or \
-             global_var.current_brand_name == "strattonmarkets-eu" or \
-             global_var.current_brand_name == "any1profit" or \
-             global_var.current_brand_name == "newrichmarkets":
+                global_var.current_brand_name == "strattonmarkets-eu" or \
+                global_var.current_brand_name == "any1profit" or \
+                global_var.current_brand_name == "newrichmarkets":
             CreateLeadsProfilePage(self.driver).perform_create_lead(
                 lead[LeadsModuleConstants.FIRST_NAME],
                 lead[LeadsModuleConstants.FIRST_LAST_NAME],
