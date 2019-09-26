@@ -50,8 +50,8 @@ brands:
 #- name: newforexstage2
 #  config_file: newforexstage2.yml
 
-- name: olympiamarkets
-  config_file: olympiamarkets.yml
+#- name: olympiamarkets
+#  config_file: olympiamarkets.yml
 
 #- name: pmt247
 #  config_file: pmt247.yml
@@ -80,8 +80,8 @@ brands:
 #- name: trade99
 #  config_file: trade99.yml
 
-#- name: uft
-#  config_file: uft.yml
+- name: uft
+  config_file: uft.yml
 
 #- name: uprofx
 #  config_file: uprofx.yml
