@@ -1,5 +1,5 @@
-from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
-from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
+from src.main.python.ui.ca.model.pages.ca.QuestionnairePage import QuestionnairePage
+from src.main.python.ui.ca.model.constants.CAconstants.QuestionnaireConstants import QuestionnaireConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
@@ -65,6 +65,7 @@ class Login_CA_Precondition(object):
         # Registration form
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca'))\
+            .close_campaign_banner()\
             .click_sign_up()
         if (global_var.current_brand_name == "b-finance") or (global_var.current_brand_name == "eafx"):
             CALoginPage(self.driver)\
@@ -73,27 +74,23 @@ class Login_CA_Precondition(object):
             .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])\
             .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                         LeadsModuleConstants.FIRST_LAST_NAME])\
-            .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                    LeadsModuleConstants.EMAIL])\
+            .fill_email(CAConstants.EMAIL_CA)\
             .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                     LeadsModuleConstants.PHONE])\
-            .fill_password(CAConstants.PASSWORD)
-        if global_var.current_brand_name != "q8":
-            CALoginPage(self.driver).fill_confirm_password(CAConstants.PASSWORD)\
-                  .check_box_accept()
-        CALoginPage(self.driver)\
-            .click_submit() \
+            .fill_password(CAConstants.PASSWORD)\
+            .fill_confirm_password(CAConstants.PASSWORD)\
+            .check_box_accept()\
+            .risk_check_box_accept()\
+            .select_country_first_step(CAConstants.COUNTRY1)\
+            .click_submit()\
+            .close_payment_popup()
 
         # Personal details form
-        if global_var.current_brand_name == "trade99":
-            CALoginPage(self.driver)\
-                .close_payment_popup()
         if global_var.current_brand_name == "q8":
             CALoginPage(self.driver)\
                 .click_my_account() \
                 .logout() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .click_my_account() \
@@ -119,8 +116,7 @@ class Login_CA_Precondition(object):
                                    LeadsModuleConstants.FIRST_NAME]) \
                 .sign_out() \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
@@ -128,33 +124,10 @@ class Login_CA_Precondition(object):
                                                               LeadsModuleConstants.FIRST_NAME]) == \
                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
 
-        # elif global_var.current_brand_name == "ptbanc":
-        #
-        #     CALoginPage(self.driver).verify() \
-        #         .click_hi_guest() \
-        #         .click_transactions_history() \
-        #         .select_pt_b()\
-        #         .fill_city(CAConstants.CITY) \
-        #         .fill_zip_code(CAConstants.ZIP_CODE) \
-        #         .fill_address(CAConstants.ADDRESS) \
-        #         .click_next() \
-        #         .verify() \
-        #         .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                            LeadsModuleConstants.FIRST_NAME]) \
-        #         .sign_out() \
-        #         .login() \
-        #         .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                          LeadsModuleConstants.EMAIL]) \
-        #         .enter_password(CAConstants.PASSWORD) \
-        #         .click_login() \
-        #         .verify()
-        #     assert CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                                                       LeadsModuleConstants.FIRST_NAME]) == \
-        #            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
-
         elif global_var.current_brand_name == "jonesmutual":
 
-            CALoginPage(self.driver).verify() \
+            CALoginPage(self.driver)\
+                .verify() \
                 .click_hi_guest() \
                 .click_transactions_history() \
                 .select_data_birth_day(CAConstants.DAY_BIRTH) \
@@ -171,8 +144,7 @@ class Login_CA_Precondition(object):
                                    LeadsModuleConstants.FIRST_NAME]) \
                 .sign_out() \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
@@ -184,7 +156,8 @@ class Login_CA_Precondition(object):
             print(expected_client, existing_client)
             assert existing_client == expected_client
 
-        elif (global_var.current_brand_name == "solocapitals") or (global_var.current_brand_name == "b-finance"):
+        elif global_var.current_brand_name == "solocapitals" or \
+                global_var.current_brand_name == "b-finance":
             CALoginPage(self.driver).verify() \
                 .click_hi_guest() \
                 .click_transactions_history() \
@@ -202,8 +175,7 @@ class Login_CA_Precondition(object):
                            LeadsModuleConstants.FIRST_NAME]) \
                 .sign_out() \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                         LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
@@ -234,8 +206,7 @@ class Login_CA_Precondition(object):
                            LeadsModuleConstants.FIRST_NAME]) \
                 .sign_out() \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                         LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
@@ -247,55 +218,120 @@ class Login_CA_Precondition(object):
             print(expected_client, existing_client)
             assert existing_client == expected_client
 
-        elif global_var.current_brand_name == "trade99":
+        elif global_var.current_brand_name == "trade99" or \
+                global_var.current_brand_name == "libramarkets" or \
+                global_var.current_brand_name == "uprofx" or \
+                global_var.current_brand_name == "kontofx" or \
+                global_var.current_brand_name == "olympiamarkets":
 
-            CALoginPage(self.driver).verify() \
-                                    .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                                                LeadsModuleConstants.FIRST_NAME]) \
-                                    .click_transactions_history() \
-                                    .open_account_details_tab() \
-                                    .select_data_birth_day(CAConstants.DAY_BIRTH) \
-                                    .select_data_birth_month(CAConstants.MONTH_BIRTH) \
-                                    .select_data_birth_year(CAConstants.YEAR_BIRTH) \
-                                    .choose_citizenship(CAConstants.CITIZENSHIP) \
-                                    .fill_city(CAConstants.CITY) \
-                                    .fill_zip_code(CAConstants.ZIP_CODE) \
-                                    .fill_address(CAConstants.ADDRESS) \
-                                    .click_save_changes() \
-                                    .verify() \
-                                    .close_client_area() \
-                                    .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                       LeadsModuleConstants.FIRST_NAME]) \
-                                    .sign_out() \
-                                    .login() \
-                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                     LeadsModuleConstants.EMAIL]) \
-                                    .enter_password(CAConstants.PASSWORD) \
-                                    .click_login() \
-                                    .verify()
-        else:
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca'))
+            CALoginPage(self.driver)\
+                .verify() \
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                            LeadsModuleConstants.FIRST_NAME]) \
+                .click_transactions_history() \
+                .open_account_details_tab() \
+                .select_data_birth_day(CAConstants.DAY_BIRTH) \
+                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
+                .select_data_birth_year(CAConstants.YEAR_BIRTH) \
+                .choose_citizenship(CAConstants.CITIZENSHIP) \
+                .fill_city(CAConstants.CITY) \
+                .fill_zip_code(CAConstants.ZIP_CODE) \
+                .fill_address(CAConstants.ADDRESS) \
+                .click_save_changes() \
+                .verify() \
+                .close_client_area() \
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                   LeadsModuleConstants.FIRST_NAME]) \
+                .sign_out() \
+                .login() \
+                .enter_email(CAConstants.EMAIL_CA) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .verify()
 
-            CALoginPage(self.driver).verify() \
+        elif global_var.current_brand_name == "strattonmarkets-eu":
+            CALoginPage(self.driver)\
+                .verify() \
                 .click_hi_guest() \
                 .click_transactions_history() \
                 .select_data_birth_day(CAConstants.DAY_BIRTH) \
                 .select_data_birth_month(CAConstants.MONTH_BIRTH) \
                 .select_data_birth_year(CAConstants.YEAR_BIRTH) \
                 .choose_currency(CAConstants.CURRENCY) \
-                .choose_citizenship(CAConstants.CITIZENSHIP) \
+                .choose_citizenship(CAConstants.CITIZENSHIP3) \
                 .fill_city(CAConstants.CITY) \
                 .fill_zip_code(CAConstants.ZIP_CODE) \
                 .fill_address(CAConstants.ADDRESS) \
                 .click_next() \
+                .enter_ssn_tin(QuestionnaireConstants.SSN_TIN) \
+                .enter_id(QuestionnaireConstants.NAT_ID) \
+                .select_country_tax(QuestionnaireConstants.COUNTRY_TAX) \
+                .enter_company_name(QuestionnaireConstants.COMPANY_NAME) \
+                .select_us_reportable(CAConstants.US_REPORTABLE_NO) \
+                .click_save_changes_btn()
+
+            # Questionnaire: Financial Information
+            QuestionnairePage(self.driver) \
+                .select_employment_status(QuestionnaireConstants.EMPLOYMENT_STATUS_STUDENT) \
+                .select_education_level(QuestionnaireConstants.EDUCATION_LEVEL_NO_EDUCATION) \
+                .select_politically_exposed_person(QuestionnaireConstants.POLITICALLY_EXPOSED_PERSON_NO) \
+                .select_total_annual_income(QuestionnaireConstants.TOTAL_ANNUAL_INCOME_UNDER_15) \
+                .select_approximate_net_wealth(QuestionnaireConstants.APPROXIMATE_NET_WEALTH_UNDER_15) \
+                .select_expected_deposit(QuestionnaireConstants.EXPECTED_DEPOSIT_UNDER_10) \
+                .select_source_of_trading_funds(QuestionnaireConstants.SOURCE_TRADING_FUNDS_EMPLOYMENT) \
+                .select_why_want_trade(QuestionnaireConstants.WHY_WANT_TRADE_SPECULATIVE) \
+                .select_react_on_losses(QuestionnaireConstants.REACT_ON_LOSSES_EXPECT_TO_LOSE) \
+                .click_next_btn()
+
+            # Questionnaire: Knowledge and experience
+            QuestionnairePage(self.driver) \
+                .select_instruments_traded_before(QuestionnaireConstants.INSTRUMENTS_TRADED_BEFORE_NO_EXPERIENCE) \
+                .select_if_applicable(QuestionnaireConstants.IF_APPLICABLE_NONE) \
+                .select_correct_regarding_cfd(QuestionnaireConstants.REGARDING_CFD_RETAIL) \
+                .select_factor_affect_prices(QuestionnaireConstants.FACTOR_AFFECT_PRICES_EMPLOYEE_LAYOFFS_RETAIL) \
+                .select_close_bmw_position(QuestionnaireConstants.WHERE_CLOSE_BMW_POSITION_RETAIL) \
+                .select_required_margin(QuestionnaireConstants.REQUIRED_MARGIN_1000) \
+                .select_loss(QuestionnaireConstants.LOSS_AMOUNT_800) \
+                .click_next_btn() \
+                .verify_questionnaire_message(QuestionnaireConstants.MESSAGE_RETAIL) \
+                .click_next_btn()
+            CALoginPage(self.driver) \
                 .verify() \
                 .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                    LeadsModuleConstants.FIRST_NAME]) \
-                .sign_out() \
+                .sign_out()
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
+                .verify()
+        else:
+
+            CALoginPage(self.driver)\
+                .verify()\
+                .click_hi_guest()\
+                .click_transactions_history()\
+                .select_data_birth_day(CAConstants.DAY_BIRTH)\
+                .select_data_birth_month(CAConstants.MONTH_BIRTH)\
+                .select_data_birth_year(CAConstants.YEAR_BIRTH)\
+                .choose_currency(CAConstants.CURRENCY)\
+                .choose_citizenship(CAConstants.CITIZENSHIP)\
+                .fill_city(CAConstants.CITY)\
+                .fill_zip_code(CAConstants.ZIP_CODE)\
+                .fill_address(CAConstants.ADDRESS)\
+                .click_next()\
+                .verify()\
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                   LeadsModuleConstants.FIRST_NAME])\
+                .sign_out()\
+                .login()\
+                .enter_email(CAConstants.EMAIL_CA)\
+                .enter_password(CAConstants.PASSWORD)\
+                .click_login()\
                 .verify()
             sleep(2)
             existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(
@@ -316,8 +352,7 @@ class Login_CA_Precondition(object):
 
         sleep(2)
         ClientsPage(self.driver)\
-            .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
+            .find_client_by_email(CAConstants.EMAIL_CA)
         sleep(2)
         assert ClientsPage(self.driver).get_client_first_name() == self.load_lead_from_config(
                                                         TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
