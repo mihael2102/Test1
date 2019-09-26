@@ -74,8 +74,7 @@ class Login_CA_Precondition(object):
             .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])\
             .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                         LeadsModuleConstants.FIRST_LAST_NAME])\
-            .fill_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                    LeadsModuleConstants.EMAIL])\
+            .fill_email(CAConstants.EMAIL_CA)\
             .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                     LeadsModuleConstants.PHONE])\
             .fill_password(CAConstants.PASSWORD)\
@@ -91,8 +90,7 @@ class Login_CA_Precondition(object):
             CALoginPage(self.driver)\
                 .click_my_account() \
                 .logout() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .click_my_account() \
@@ -118,8 +116,7 @@ class Login_CA_Precondition(object):
                                    LeadsModuleConstants.FIRST_NAME]) \
                 .sign_out() \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
@@ -147,8 +144,7 @@ class Login_CA_Precondition(object):
                                    LeadsModuleConstants.FIRST_NAME]) \
                 .sign_out() \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
@@ -179,8 +175,7 @@ class Login_CA_Precondition(object):
                            LeadsModuleConstants.FIRST_NAME]) \
                 .sign_out() \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                         LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
@@ -211,8 +206,7 @@ class Login_CA_Precondition(object):
                            LeadsModuleConstants.FIRST_NAME]) \
                 .sign_out() \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                         LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
@@ -252,8 +246,7 @@ class Login_CA_Precondition(object):
                                    LeadsModuleConstants.FIRST_NAME]) \
                 .sign_out() \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
@@ -312,8 +305,7 @@ class Login_CA_Precondition(object):
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
@@ -337,8 +329,7 @@ class Login_CA_Precondition(object):
                                    LeadsModuleConstants.FIRST_NAME])\
                 .sign_out()\
                 .login()\
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL])\
+                .enter_email(CAConstants.EMAIL_CA)\
                 .enter_password(CAConstants.PASSWORD)\
                 .click_login()\
                 .verify()
@@ -361,8 +352,7 @@ class Login_CA_Precondition(object):
 
         sleep(2)
         ClientsPage(self.driver)\
-            .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
+            .find_client_by_email(CAConstants.EMAIL_CA)
         sleep(2)
         assert ClientsPage(self.driver).get_client_first_name() == self.load_lead_from_config(
                                                         TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]

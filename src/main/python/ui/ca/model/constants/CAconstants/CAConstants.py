@@ -10,6 +10,7 @@ class CAConstants(object):
     ACCOUNT_VALUE = "Account Value"
     USED_FUNDS = "Used Funds"
     AVALIABLE_FUNDS = "Available funds"
+    EMAIL_CA = "pandaqa+" + str(random.randrange(1, 9999999)) + "_ca@pandats.com"
     PASSWORD = "as1as2"
     DAY_BIRTH = "10"
     MONTH_BIRTH = "January"
