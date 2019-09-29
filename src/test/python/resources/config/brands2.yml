@@ -3,5 +3,5 @@ brands:
 - name: kontofx
   config_file: kontofx.yml
 
-- name: swisscci
-  config_file: swisscci.yml
+- name: olympiamarkets
+  config_file: olympiamarkets.yml

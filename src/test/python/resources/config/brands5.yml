@@ -5,6 +5,3 @@ brands:
 
 - name: hizlifx
   config_file: hizlifx.yml
-
-- name: olympiamarkets
-  config_file: olympiamarkets.yml
