@@ -479,7 +479,7 @@ class CAPage(CRMBasePage):
     def get_create_account_message(self):
         sleep(0.5)
         try:
-            msg = super().wait_load_element("//div[text()='Account created successfully']", timeout=5).text
+            msg = super().wait_load_element("//div[text()='Account created successfully']", timeout=3).text
         except(NoSuchElementException, TimeoutException):
             msg = super().wait_load_element(
                 "//div[text()='Dear customer, please note you are allowed to have only 1 live accounts']", timeout=5)\

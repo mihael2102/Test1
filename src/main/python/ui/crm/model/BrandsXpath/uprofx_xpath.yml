@@ -2,3 +2,5 @@ AffiliatePage:
   countrys: "//span[@class = 'hovered-option'][contains(text(),'%s')]"
   methods: "//span[@class = 'hovered-option'][contains(text(),'%s')]"
   trash_button: "//span[@class='glyphicon glyphicon-trash cursor-pointer']"
+CALoginPage:
+  check_box_accept: "//label[contains (text(), 'By checking this box I accept')]"
