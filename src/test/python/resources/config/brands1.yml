@@ -17,8 +17,8 @@ brands:
 #- name: brokerz
 #  config_file: brokerz.yml
 
-#- name: dax-300
-#  config_file: dax-300.yml
+- name: dax-300
+  config_file: dax-300.yml
 
 #- name: financix
 #  config_file: financix.yml
@@ -29,8 +29,8 @@ brands:
 #- name: gigafx
 #  config_file: gigafx.yml
 
-- name: grandefex
-  config_file: grandefex.yml
+#- name: grandefex
+#  config_file: grandefex.yml
 
 #- name: hizlifx
 #  config_file: hizlifx.yml
