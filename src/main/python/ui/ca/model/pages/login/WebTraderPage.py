@@ -8,6 +8,7 @@ import pyotp
 from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
+from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
 
 
 class WebTraderPage(CRMBasePage):
@@ -21,19 +22,25 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def click_close_order(self):
-        sleep(5)
-        click_close_order = self.driver.find_element(By.XPATH,
-                                                     "//tr[1]//span[contains(text(), 'Close')]")
+        sleep(0.5)
+        click_close_order = super().wait_load_element("//tr[1]//span[contains(text(), 'Close')]")
         click_close_order.click()
-        Logging().reportDebugStep(self, "click close order")
+        Logging().reportDebugStep(self, "Click CLOSE order")
         return WebTraderPage(self.driver)
 
     def get_id_order(self):
-        sleep(8)
-        get_id_order = self.driver.find_element(By.XPATH,
-                                                "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/tabs/div/div/open-trades/div/div/perfect-scrollbar/div/div[1]/div/table/tbody/tr[1]/open-trade/td[1]")
-        Logging().reportDebugStep(self, "get id order" + get_id_order.text)
-        return get_id_order.text
+        sleep(0.2)
+        order_id = super().wait_load_element("//open-trade/td[1]").get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Order ID: " + order_id)
+        TradingConstants.ORDER_ID_OPEN = order_id
+        return WebTraderPage(self.driver)
+
+    def get_created_time(self):
+        sleep(0.1)
+        created_time = super().wait_load_element("//open-trade/td[2]").get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Created Time: " + created_time)
+        TradingConstants.ORDER_CREATED_TIME = created_time
+        return WebTraderPage(self.driver)
 
     def check_msg_insufficient_funds(self):
         sleep(1)
@@ -130,36 +137,11 @@ class WebTraderPage(CRMBasePage):
         return pips_right_panel.text
 
     def select_asset(self, asset):
-        super().wait_load_element("//div[@class='loader__bar']", timeout=15)
-        super().wait_element_to_be_disappear("//div[@class='loader__bar']", timeout=35)
-        if global_var.current_brand_name == "ptbanc":
-            click_select_account = super().wait_load_element("//div[@class='name-pandats'][contains(text(),'Crypto')]")
-            self.driver.execute_script("arguments[0].scrollIntoView();", click_select_account)
-            self.driver.execute_script("arguments[0].click();", click_select_account)
-            # crypto = self.driver.find_element(By.XPATH,
-            #                                   "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[3]/div/span")
-            # crypto.click()
-            sleep(2)
-            asset = self.driver.find_element(By.XPATH,
-                                             "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[3]/ul/li[39]/asset-item/div/div[2]")
-            self.driver.execute_script("arguments[0].scrollIntoView();", asset)
-            try:
-                asset.click()
-            except:
-                self.driver.execute_script("arguments[0].click();", asset)
-        else:
-            try:
-                sleep(8)
-                click_select_account = self.driver.find_element(By.XPATH,
-                                                                "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li/asset-item/div//div[(text() = '" + asset + "')]")
-                click_select_account.click()
-            except:
-                self.refresh_page()
-                sleep(7)
-                click_select_account = self.driver.find_element(By.XPATH,
-                                                                  "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li/asset-item/div//div[(text() = '" + asset + "')]")
-                click_select_account.click()
-        Logging().reportDebugStep(self, "Click select account")
+        # super().wait_load_element("//div[@class='loader__bar']", timeout=15)
+        # super().wait_element_to_be_disappear("//div[@class='loader__bar']", timeout=35)
+        asset_btn = super().wait_load_element("//div[contains(text(),'%s')]" % asset)
+        self.driver.execute_script("arguments[0].click();", asset_btn)
+        Logging().reportDebugStep(self, "Select asset: " + asset)
         return WebTraderPage(self.driver)
 
     def click_select_account(self):
@@ -260,14 +242,17 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def get_msg_succsessfull_order(self):
-        sleep(1)
-        if global_var.current_brand_name != "ptbanc":
-            succsessfull_order = self.driver.find_element(By.XPATH, "//panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/popup/div/div[1]/h2").text
-        else:
-            succsessfull_order = self.driver.find_element(By.XPATH, "//panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/popup/div/div[1]/h2").text
+        sleep(0.1)
+        succsessfull_order = super().wait_load_element(
+            "//panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/popup/div/div[1]/h2").text
+        Logging().reportDebugStep(self, "Check message: " + succsessfull_order)
+        return WebTraderPage(self.driver)
 
-        Logging().reportDebugStep(self, "Check message")
-        return succsessfull_order
+    def close_succsessfull_order_popup(self):
+        close_btn = super().wait_load_element("//button[contains(text(),'Close')]")
+        close_btn.click()
+        Logging().reportDebugStep(self, "Close Order Successful pop up")
+        return WebTraderPage(self.driver)
 
     def select_volume_in_lot(self, volume):
         sleep(3)
@@ -295,8 +280,7 @@ class WebTraderPage(CRMBasePage):
                                                            self.__class__.__name__)["invest"])
         self.driver.execute_script("arguments[0].scrollIntoView();", invest)
         self.driver.execute_script("arguments[0].click();", invest)
-        invest.click()
-        Logging().reportDebugStep(self, "Click Invest")
+        Logging().reportDebugStep(self, "Click Invest button")
         return WebTraderPage(self.driver)
 
     def check_avaliable_funds(self):
@@ -379,3 +363,12 @@ class WebTraderPage(CRMBasePage):
            ).text
         Logging().reportDebugStep(self, "Check account value" + margin_level_number)
         return margin_level_number
+
+    def open_asset_group(self, asset_group):
+        try:
+            group = super().wait_load_element("//div[contains(text(),'%s')]" % asset_group)
+            group.click()
+            Logging().reportDebugStep(self, "Open asset group: " + asset_group)
+            return WebTraderPage(self.driver)
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "There is no " + asset_group + " asset group")

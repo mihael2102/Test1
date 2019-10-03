@@ -42,3 +42,6 @@ class TradingProcess(BaseTest):
             Trading_Precondition(self.driver, self.config).close_order()
         else:
             Logging().reportDebugStep(self, "NOT RUNNED")
+
+    def test_trading_process_open_position_ca(self):
+        Trading_Precondition(self.driver, self.config).trading_process_open_position_ca()

@@ -143,8 +143,9 @@ class DepositTestCRM(BaseTest):
             self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY_2)
 
         # Close popup
-        crm_client_profile.click_ok()\
-                          .refresh_page()
+        crm_client_profile\
+            .click_ok()\
+            .refresh_page()
 
         if global_var.current_brand_name == "trade99":
             deposit_amount_text = crm_client_profile\

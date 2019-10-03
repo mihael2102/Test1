@@ -18,6 +18,7 @@ from src.main.python.ui.crm.model.pages.help_desk.HelpDeskEditPage import HelpDe
 from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
+from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
 
 
 class Trading_Precondition(object):
@@ -29,14 +30,14 @@ class Trading_Precondition(object):
         self.driver = driver
         self.config = config
 
-
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)
         return lead
 
     def close_order(self):
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
-            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
                 .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                  LeadsModuleConstants.EMAIL]) \
@@ -319,12 +320,26 @@ class Trading_Precondition(object):
         assert -5000 <= result <= 5000
         assert CRMConstants.ORDER in order
 
-
-
-
-
-
-
-
-
-
+    def trading_process_open_position_ca(self):
+        CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
+            .login() \
+            .enter_email(CAConstants.EMAIL_CA) \
+            .enter_password(CAConstants.PASSWORD) \
+            .click_login() \
+            .verify()
+        CAPage(self.driver) \
+            .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
+            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
+            .open_accounts_list(CAConstants.ACCOUNT_DEMO) \
+            .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
+        WebTraderPage(self.driver)\
+            .open_asset_group(TradingConstants.ASSET_GROUP_CRYPTO)\
+            .select_asset(TradingConstants.ASSET_BTCEUR)\
+            .select_volume_in_lot(TradingConstants.VOLUME_IN_LOT_001)\
+            .click_buy()\
+            .click_invest()\
+            .get_msg_succsessfull_order()\
+            .close_succsessfull_order_popup()\
+            .get_id_order()\
+            .get_created_time()

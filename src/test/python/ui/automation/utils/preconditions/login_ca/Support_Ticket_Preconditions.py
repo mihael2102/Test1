@@ -35,8 +35,7 @@ class Support_Ticket_Preconditions(object):
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
             CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
                                     .login() \
-                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                 LeadsModuleConstants.EMAIL]) \
+                                    .enter_email(CAConstants.EMAIL_CA) \
                                     .enter_password(CAConstants.PASSWORD) \
                                     .click_login() \
                                     .verify() \
@@ -63,8 +62,7 @@ class Support_Ticket_Preconditions(object):
                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
             sleep(2)
-            ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                              LeadsModuleConstants.EMAIL])
+            ClientsPage(self.driver).find_client_by_email(CAConstants.EMAIL_CA)
             sleep(2)
             ClientProfilePage(self.driver).scroll_to_help_desk_section() \
                                           .open_help_desk_tab() \
@@ -79,14 +77,14 @@ class Support_Ticket_Preconditions(object):
 
     def check_updated_ticket_in_ca(self):
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
-            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
-                                    .login() \
-                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                 LeadsModuleConstants.EMAIL]) \
-                                    .enter_password(CAConstants.PASSWORD) \
-                                    .click_login() \
-                                    .verify() \
-                                    .open_ca_menu()
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .login() \
+                .enter_email(CAConstants.EMAIL_CA) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .verify() \
+                .open_ca_menu()
             CAPage(self.driver).open_service_desk() \
                                .open_closed_tickets_tab() \
                                .found_closed_ticket(CAConstants.TICKET_NUMBER_CA) \
