@@ -42,6 +42,20 @@ class WebTraderPage(CRMBasePage):
         TradingConstants.ORDER_CREATED_TIME = created_time
         return WebTraderPage(self.driver)
 
+    def get_symbol(self):
+        sleep(0.1)
+        symbol = super().wait_load_element("//open-trade/td[3]").get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Symbol: " + symbol)
+        TradingConstants.ORDER_SYMBOL = symbol
+        return WebTraderPage(self.driver)
+
+    def get_open_price(self):
+        sleep(0.1)
+        open_price = super().wait_load_element("//open-trade/td[7]").get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Open Price: " + open_price)
+        TradingConstants.ORDER_OPEN_PRICE = open_price
+        return WebTraderPage(self.driver)
+
     def check_msg_insufficient_funds(self):
         sleep(1)
         super().wait_load_element("//div[contains(text(),'Insufficient Funds')]", timeout=35)
