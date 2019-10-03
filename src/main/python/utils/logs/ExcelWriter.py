@@ -84,7 +84,6 @@ class ExcelWriter:
         worksheet.set_column(0, 0, 60)
         worksheet.set_column(1, len(brands), 20)
 
-
         # Write the test names
         row = 1
         for test in tests:
@@ -131,7 +130,6 @@ class ExcelWriter:
                     if s in test_result:
                         new_row_data = test_result.split("\n")
 
-
                         while '' in new_row_data:
                             new_row_data.remove('')
 
@@ -160,10 +158,6 @@ class ExcelWriter:
                         #         row += 1
                         #     if c == count_steps:
                         #         worksheet.write(row, col, "ERROR", cell_format_fail)
-
-
-
-
 
             col += 1
 

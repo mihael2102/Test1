@@ -16,18 +16,13 @@ from src.test.python.ui.automation.utils.preconditions.login_ca.Page_CA_Precondi
 class AddNewAccountTestCA(BaseTest):
 
     def test_add_live_account_ca(self):
-
         TradingAccountPrecondition(self.driver, self.config).add_live_account()
 
     def test_add_demo_account_ca(self):
-
         TradingAccountPrecondition(self.driver, self.config).add_demo_account()
 
     def test_verify_accounts_in_crm(self):
-
         TradingAccountPrecondition(self.driver, self.config).verify_account_in_crm()
 
     def test_switch_between_accounts_ca(self):
-
         Page_CA_Precondition(self.driver, self.config).switch_between_accounts()
-
