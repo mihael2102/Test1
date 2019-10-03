@@ -30,7 +30,7 @@ class CAMainMenuPage(CRMBasePage):
     def open_verification_center_tab(self):
         Logging().reportDebugStep(self, "Open Verification Center tab")
         try:
-            btn = super().wait_element_to_be_clickable("//i[@class='cmicon-check_box']")
+            btn = super().wait_element_to_be_clickable("//i[@class='cmicon-check_box']", timeout=10)
             btn.click()
         except(NoSuchElementException, TimeoutException):
             pass
@@ -39,7 +39,7 @@ class CAMainMenuPage(CRMBasePage):
 
     def check_verification_center_loaded(self):
         try:
-            super().wait_load_element("//span[contains(text(),'Proof of Identity')]")
+            super().wait_load_element("//span[contains(text(),'Proof of Identity')]", timeout=10)
             Logging().reportDebugStep(self, "Verification Center table is loaded")
         except(NoSuchElementException, TimeoutException):
             pass
@@ -49,7 +49,7 @@ class CAMainMenuPage(CRMBasePage):
     def open_service_desk_tab(self):
         try:
             Logging().reportDebugStep(self, "Open Service Desk tab")
-            btn = super().wait_element_to_be_clickable("(//i[@class='cmicon-comment'])[1]")
+            btn = super().wait_element_to_be_clickable("(//i[@class='cmicon-comment'])[1]", timeout=10)
             btn.click()
         except(NoSuchElementException, TimeoutException):
             pass
@@ -58,7 +58,7 @@ class CAMainMenuPage(CRMBasePage):
 
     def check_service_desk_loaded(self):
         try:
-            super().wait_load_element("//button[text()='Create New Ticket']")
+            super().wait_load_element("//button[text()='Create New Ticket']", timeout=10)
             Logging().reportDebugStep(self, "Service Desk table is loaded")
         except(NoSuchElementException, TimeoutException):
             pass

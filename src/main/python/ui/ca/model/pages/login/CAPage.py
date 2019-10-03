@@ -475,3 +475,19 @@ class CAPage(CRMBasePage):
         self.driver.find_element_by_xpath("//span[@class='approved'][contains(text(),'%s')]" % expected_status)
         Logging().reportDebugStep(self, "Document is " + expected_status)
         return CAPage(self.driver)
+
+    def get_create_account_message(self):
+        sleep(0.5)
+        try:
+            msg = super().wait_load_element("//div[text()='Account created successfully']", timeout=3).text
+        except(NoSuchElementException, TimeoutException):
+            msg = super().wait_load_element(
+                "//div[text()='Dear customer, please note you are allowed to have only 1 live accounts']", timeout=5)\
+                .text
+        if msg == CAConstants.CREATE_LIVE_ACC_MSG_NEGATIVE:
+            Logging().reportDebugStep(self, "Message: " + msg)
+            Logging().reportDebugStep(self, "There is no option open more than 1 account")
+            return False
+        elif msg == CAConstants.CREATE_LIVE_ACC_MSG_POSITIVE:
+            Logging().reportDebugStep(self, "Message: " + msg)
+            return CAPage(self.driver)
