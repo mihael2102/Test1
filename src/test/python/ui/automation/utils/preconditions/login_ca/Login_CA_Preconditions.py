@@ -222,7 +222,8 @@ class Login_CA_Precondition(object):
                 global_var.current_brand_name == "libramarkets" or \
                 global_var.current_brand_name == "uprofx" or \
                 global_var.current_brand_name == "kontofx" or \
-                global_var.current_brand_name == "olympiamarkets":
+                global_var.current_brand_name == "olympiamarkets" or \
+                global_var.current_brand_name == "grandefex":
 
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca'))
