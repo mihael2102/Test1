@@ -36,8 +36,7 @@ class Page_CA_Precondition(object):
                 CALoginPage(self.driver)\
                     .open_first_tab_page(self.config.get_value('url_ca')) \
                     .login() \
-                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL]) \
+                    .enter_email(CAConstants.EMAIL_CA) \
                     .enter_password(CAConstants.PASSWORD) \
                     .click_login() \
                     .verify()
@@ -76,23 +75,26 @@ class Page_CA_Precondition(object):
     def update_personal_details_in_ca(self):
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "b-finance") \
                 and (global_var.current_brand_name != "tradospot"):
-            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
-                                    .login() \
-                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                 LeadsModuleConstants.EMAIL]) \
-                                    .enter_password(CAConstants.PASSWORD) \
-                                    .click_login() \
-                                    .verify() \
-                                    .open_ca_menu()
-            CAPage(self.driver).open_personal_details()
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .login() \
+                .enter_email(CAConstants.EMAIL_CA) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .verify() \
+                .open_ca_menu()
+            CAPage(self.driver)\
+                .open_personal_details()
             if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "trade99":
-                CAPage(self.driver).edit_first_name(CAConstants.UPDATE_FIRST_NAME) \
-                                   .edit_last_name(CAConstants.UPDATE_LAST_NAME)
-            CAPage(self.driver).edit_citizenship(CAConstants.UPDATE_CITIZENSHIP) \
-                               .edit_city(CAConstants.UPDATE_CITY) \
-                               .edit_zip(CAConstants.UPDATE_ZIP_CODE) \
-                               .edit_address(CAConstants.UPDATE_ADDRESS) \
-                               .click_save_changes_btn()
+                CAPage(self.driver)\
+                    .edit_first_name(CAConstants.UPDATE_FIRST_NAME) \
+                    .edit_last_name(CAConstants.UPDATE_LAST_NAME)
+            CAPage(self.driver)\
+                .edit_citizenship(CAConstants.UPDATE_CITIZENSHIP) \
+                .edit_city(CAConstants.UPDATE_CITY) \
+                .edit_zip(CAConstants.UPDATE_ZIP_CODE) \
+                .edit_address(CAConstants.UPDATE_ADDRESS) \
+                .click_save_changes_btn()
         else:
             Logging().reportDebugStep(self, "Test is not running")
             return self
@@ -110,8 +112,7 @@ class Page_CA_Precondition(object):
                                TestDataConstants.FILTER))
 
             sleep(2)
-            ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                          LeadsModuleConstants.EMAIL])
+            ClientsPage(self.driver).find_client_by_email(CAConstants.EMAIL_CA)
             sleep(2)
             assert ClientsPage(self.driver).get_citizenship() == CAConstants.UPDATE_CITIZENSHIP
             assert ClientsPage(self.driver).get_client_address() == CAConstants.UPDATE_ADDRESS
@@ -137,42 +138,44 @@ class Page_CA_Precondition(object):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
                                                        TestDataConstants.FILTER))
         sleep(2)
-        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                          LeadsModuleConstants.EMAIL])
-        ClientsPage(self.driver).click_edit_btn() \
-                                .edit_first_name(CRMConstants.EDIT_FIRST_NAME) \
-                                .edit_last_name(CRMConstants.EDIT_LAST_NAME) \
-                                .edit_citizenship(CRMConstants.EDIT_CITIZENSHIP) \
-                                .edit_city(CRMConstants.EDIT_CITY) \
-                                .edit_zip(CRMConstants.EDIT_ZIP_CODE) \
-                                .edit_address(CRMConstants.EDIT_ADDRESS) \
-                                .fill_birthday(CRMConstants.BIRTHDAY) \
-                                .click_save_changes_btn()
+        ClientsPage(self.driver)\
+            .find_client_by_email(CAConstants.EMAIL_CA)
+        ClientsPage(self.driver)\
+            .click_edit_btn() \
+            .edit_first_name(CRMConstants.EDIT_FIRST_NAME) \
+            .edit_last_name(CRMConstants.EDIT_LAST_NAME) \
+            .edit_citizenship(CRMConstants.EDIT_CITIZENSHIP) \
+            .edit_city(CRMConstants.EDIT_CITY) \
+            .edit_zip(CRMConstants.EDIT_ZIP_CODE) \
+            .edit_address(CRMConstants.EDIT_ADDRESS) \
+            .fill_birthday(CRMConstants.BIRTHDAY) \
+            .click_save_changes_btn()
 
     def check_personal_details_in_ca(self):
         if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
-                                    .login() \
-                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                    LeadsModuleConstants.EMAIL]) \
-                                    .enter_password(CAConstants.PASSWORD) \
-                                    .click_login() \
-                                    .click_my_account() \
-                                    .account_details()
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .login() \
+                .enter_email(CAConstants.EMAIL_CA) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .click_my_account() \
+                .account_details()
             assert CRMConstants.EDIT_FIRST_NAME == CAPage(self.driver).get_first_name()
             assert CRMConstants.EDIT_LAST_NAME == CAPage(self.driver).get_last_name()
             assert CRMConstants.EDIT_CITY == CAPage(self.driver).get_city()
             assert CRMConstants.EDIT_ADDRESS == CAPage(self.driver).get_address()
 
         else:
-            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca'))
-            CALoginPage(self.driver).login() \
-                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                    LeadsModuleConstants.EMAIL]) \
-                                    .enter_password(CAConstants.PASSWORD) \
-                                    .click_login() \
-                                    .verify() \
-                                    .click_hi_user(CRMConstants.EDIT_FIRST_NAME)
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca'))
+            CALoginPage(self.driver)\
+                .login() \
+                .enter_email(CAConstants.EMAIL_CA) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .verify() \
+                .click_hi_user(CRMConstants.EDIT_FIRST_NAME)
             CAPage(self.driver).open_personal_details()
             assert CRMConstants.EDIT_FIRST_NAME == CAPage(self.driver).get_first_name()
             assert CRMConstants.EDIT_LAST_NAME == CAPage(self.driver).get_last_name()
@@ -185,8 +188,7 @@ class Page_CA_Precondition(object):
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
             CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                 LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify() \
