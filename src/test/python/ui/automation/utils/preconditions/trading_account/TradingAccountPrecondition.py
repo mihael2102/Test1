@@ -36,8 +36,7 @@ class TradingAccountPrecondition(object):
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .login() \
-            .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                         LeadsModuleConstants.EMAIL]) \
+            .enter_email(CAConstants.EMAIL_CA) \
             .enter_password(CAConstants.PASSWORD) \
             .click_login() \
             .verify() \
@@ -56,13 +55,16 @@ class TradingAccountPrecondition(object):
         if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual")\
                 or (global_var.current_brand_name == "royal_cfds"):
             CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL2)
+        elif global_var.current_brand_name == "strattonmarkets-eu":
+            CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL3)
         else:
             CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL)
 
         CAPage(self.driver)\
-            .click_create_account() \
-            .additional_account_created() \
-            .open_live_section() \
+            .click_create_account()\
+            .get_create_account_message()\
+            .additional_account_created()\
+            .open_live_section()\
             .get_live_account_number()
 
     def add_demo_account(self):
@@ -70,8 +72,7 @@ class TradingAccountPrecondition(object):
             CALoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
-                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                             LeadsModuleConstants.EMAIL]) \
+                .enter_email(CAConstants.EMAIL_CA) \
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify() \
@@ -150,8 +151,7 @@ class TradingAccountPrecondition(object):
                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
             sleep(2)
-            ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                                LeadsModuleConstants.EMAIL])
+            ClientsPage(self.driver).find_client_by_email(CAConstants.EMAIL_CA)
             sleep(2)
             ClientProfilePage(self.driver).open_trading_accounts_tab()
             ClientsPage(self.driver).trading_account_exist(CAConstants.DEMO_ACCOUNT_NUMBER)
@@ -160,20 +160,6 @@ class TradingAccountPrecondition(object):
         else:
             Logging().reportDebugStep(self, "Test is not running")
             return self
-
-
-            # BrandHomePage().open_first_tab_page(self.config.get_value('url_ca')).login() \
-        #     .set_fields(Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-        #                 Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.PASSWORD)) \
-        #     .click_login_button() \
-        #     .open_drop_down_menu() \
-        #     .select_module(CaConstants.MANAGE_ACCOUNTS)
-        #
-        # CaManageAccounts().open_new_account_button() \
-        #     .select_account_currency(
-        #     Config.data.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.ACCOUNT_CURRENCY_USD)) \
-        #     .create_account_button()
-        # return TradingAccountPrecondition()
 
     def add_demo_account_from_crm(self):
         crm_client_profile = CRMLoginPage(self.driver) \

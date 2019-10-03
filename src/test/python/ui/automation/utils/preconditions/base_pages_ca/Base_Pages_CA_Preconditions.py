@@ -35,8 +35,7 @@ class BasePagesCAPrecondition(object):
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .login() \
-            .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                            LeadsModuleConstants.EMAIL]) \
+            .enter_email(CAConstants.EMAIL_CA) \
             .enter_password(CAConstants.PASSWORD) \
             .click_login() \
             .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
