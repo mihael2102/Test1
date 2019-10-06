@@ -11,9 +11,9 @@ tests_config:
   class: AddNewLiveAccountTestCA
   tests:
     - test_add_new_live_account_ca
-#    - test_add_new_demo_account_ca
+    - test_add_new_demo_account_ca
 #    - test_check_accounts_in_crm
-    - test_open_ticket_ca
+#    - test_open_ticket_ca
 
 #- module: src.test.python.ui.automation.implementation.ca.Trading_Process
 #  class: TradingProcess
