@@ -45,3 +45,6 @@ class TradingProcess(BaseTest):
 
     def test_trading_process_open_position_ca(self):
         Trading_Precondition(self.driver, self.config).trading_process_open_position_ca()
+
+    def test_verify_open_position_crm(self):
+        Trading_Precondition(self.driver, self.config).verify_open_position_crm()
