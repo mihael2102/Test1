@@ -84,16 +84,16 @@ tests_config:
 #    - test_clients_mass_assign
 #
 ############################################## TASKS ##################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
-#  class: AddInteraction
-#  tests:
-#    - test_add_interaction  # Adds an interaction for a client
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
+  class: AddInteraction
+  tests:
+    - test_add_interaction  # Adds an interaction for a client
 #    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-#  class: AddEventTaskModule
-#  tests:
-#    - test_add_event
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+  class: AddEventTaskModule
+  tests:
+    - test_add_event
 #    - test_edit_event
 #    - test_delete_interaction
 #    - test_email_icon
@@ -189,13 +189,13 @@ tests_config:
 #    - test_perform_delete_rule
 #
 ########################################## WORKFLOWS MODULE ##############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
-  class: WorkflowsModulesTest
-  tests:
-    - test_create_workflows
+#- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
+#  class: WorkflowsModulesTest
+#  tests:
+#    - test_create_workflows
 #    - test_check_workflow_by_status
 #    - test_check_workflow_by_country
-    - test_delete_workflow
+#    - test_delete_workflow
 #
 ############################################ USER MANAGEMENT ############################################
 #- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
