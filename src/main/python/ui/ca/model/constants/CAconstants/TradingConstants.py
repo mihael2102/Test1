@@ -10,3 +10,5 @@ class TradingConstants(object):
     VOLUME_IN_LOT_001 = "0.01"
     ORDER_ID_OPEN = ""
     ORDER_CREATED_TIME = ""
+    ORDER_SYMBOL = ""
+    ORDER_OPEN_PRICE = ""
