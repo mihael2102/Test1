@@ -45,7 +45,8 @@ class TradingAccountCrmTest(BaseTest):
         if global_var.current_brand_name == "q8":
             TradingAccountPrecondition(self.driver, self.config) \
                 .add_live_mt5_from_crm()
-            confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
+            confirmation_message = ClientProfilePage(self.driver)\
+                .get_confirm_message()
             try:
                 self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY)
             except:
@@ -59,7 +60,6 @@ class TradingAccountCrmTest(BaseTest):
             .add_demo_account_from_crm()
 
         # Close pop up and update popup
-
         ClientProfilePage(self.driver).close_popup_new_trading_account()
         TradingAccountPrecondition(self.driver, self.config).update_demo_account_from_crm()
 

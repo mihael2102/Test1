@@ -319,7 +319,8 @@ class TradingAccountPrecondition(object):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
-        crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+        crm_client_profile\
+            .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
         MT4CreateAccountModule(self.driver) \
             .create_account_with_platform(
             self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT5),

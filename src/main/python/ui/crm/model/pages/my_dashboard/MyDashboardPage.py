@@ -383,29 +383,12 @@ class MyDashboardPage(CRMBasePage):
         sleep(3)
         click_send = super().wait_load_element("(//button[text()=' Send '])[2]")
         click_send.click()
-        self.wait_element_to_be_disappear("(//button[text()=' Send '])[2]")
-        Logging().reportDebugStep(self, "Click Send")
+        try:
+            self.wait_element_to_be_disappear("(//button[text()=' Send '])[2]", timeout=35)
+            Logging().reportDebugStep(self, "Click Send")
+        except:
+            Logging().reportDebugStep(self, "There is no Send mails function")
         return MyDashboardPage(self.driver)
-
-    # def check_latest_sales_loaded(self):
-    #     sleep(2)
-    #     self.driver.find_element_by_xpath("//h3[contains(text(),'Latest Sales Insights')]")
-    #     Logging().reportDebugStep(self, "Latest Sales Insights is loaded")
-    #     return MyDashboardPage(self.driver)
-    #
-    # def check_task_section_contains_record(self):
-    #     sleep(1)
-    #     self.driver.find_element_by_xpath("/html/body/app-root/sales-dashboard-module/div/div[2]/div/ \
-    #                             tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]")
-    #     Logging().reportDebugStep(self, "Your Tasks section contain records")
-    #     return MyDashboardPage(self.driver)
-    #
-    # def check_client_segmentation_contains_record(self):
-    #     sleep(1)
-    #     self.driver.find_element_by_xpath("/html/body/app-root/sales-dashboard-module/div/div[1]/div[2]/ \
-    #                                             sales-dashboard-segmentation/div/table[2]/tbody/tr[1]")
-    #     Logging().reportDebugStep(self, "Client Segmentation section contain records")
-    #     return MyDashboardPage(self.driver)
 
     def select_show_all_tab(self):
         self.wait_crm_loading_to_finish_tasks(85)

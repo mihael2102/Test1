@@ -47,8 +47,8 @@ brands:
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
@@ -77,8 +77,8 @@ brands:
 #- name: tfxgo
 #  config_file: tfxgo.yml
 
-#- name: trade99
-#  config_file: trade99.yml
+- name: trade99
+  config_file: trade99.yml
 
 #- name: uft
 #  config_file: uft.yml
