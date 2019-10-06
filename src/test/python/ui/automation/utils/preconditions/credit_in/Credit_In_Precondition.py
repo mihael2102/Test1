@@ -35,19 +35,21 @@ class CreditInPrecondition(object):
         return CreditInPrecondition(self.driver)
 
     def add_live_account_in_crm(self):
-        CRMHomePage(self.driver).open_client_module()
-        ClientsPage(self.driver).select_filter(self.config.get_data_client(
-                                                            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-                                .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                                                  TestDataConstants.E_MAIL))\
-                                .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+        CRMHomePage(self.driver)\
+            .open_client_module()
+        ClientsPage(self.driver)\
+            .select_filter(self.config.get_data_client(
+                                        TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
+            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
+                                                              TestDataConstants.E_MAIL))\
+            .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
         if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "newforexstaging"):
             crm_client_profile = MT4CreateAccountModule(self.driver) \
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
+                None)
 
         elif global_var.current_brand_name == "q8":
             crm_client_profile = MT4CreateAccountModule(self.driver) \
@@ -56,7 +58,7 @@ class CreditInPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
+                None)
 
         elif global_var.current_brand_name == "axa_markets":
             crm_client_profile = MT4CreateAccountModule(self.driver)\
@@ -64,7 +66,7 @@ class CreditInPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400))
+                None)
 
         elif global_var.current_brand_name == "trade99":
             crm_client_profile = MT4CreateAccountModule(self.driver)\
@@ -72,7 +74,7 @@ class CreditInPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
                 MT4ModuleConstants.CURRENCY_BTC,
                 MT4ModuleConstants.GROUP_REAL,
-                MT4ModuleConstants.LEVERAGE_100)
+                None)
 
         elif (global_var.current_brand_name == "gxfx") \
                 or (global_var.current_brand_name == "dax-300") \
@@ -83,7 +85,7 @@ class CreditInPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY_EUR),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_EUR),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
+                None)
 
         else:
             crm_client_profile = MT4CreateAccountModule(self.driver) \
@@ -91,7 +93,7 @@ class CreditInPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE))
+                None)
 
         return crm_client_profile
 
