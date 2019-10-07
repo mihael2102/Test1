@@ -78,16 +78,17 @@ class MyDashboardPrecondition(object):
         CRMHomePage(self.driver)\
             .open_more_list_modules() \
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
-        MyDashboardPage(self.driver).select_show_all_tab()
-        MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
-        MyDashboardPage(self.driver).open_email_actions_section()
         brand = global_var.current_brand_name
         subject = brand + CRMConstants.SUBJECT_TASK_MAIL
-        MyDashboardPage(self.driver).enter_subject_mail(subject)
-        MyDashboardPage(self.driver).enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
-        MyDashboardPage(self.driver).enter_cc_mail(CRMConstants.CC_EMAIL)
-        MyDashboardPage(self.driver).enter_body_mail(CRMConstants.BODY_LEAD_MAIL)
-        MyDashboardPage(self.driver).click_send()
+        MyDashboardPage(self.driver)\
+            .select_show_all_tab()\
+            .enter_account_name(CRMConstants.TESTQA)\
+            .open_email_actions_section()\
+            .enter_subject_mail(subject)\
+            .enter_body_mail(CRMConstants.BODY_LEAD_MAIL)\
+            .enter_cc_mail(CRMConstants.CC_EMAIL)\
+            .enter_body_mail(CRMConstants.BODY_LEAD_MAIL)\
+            .click_send()
         sleep(10)
         msg = TasksPage(self.driver).check_email(subject)
         assert subject in msg

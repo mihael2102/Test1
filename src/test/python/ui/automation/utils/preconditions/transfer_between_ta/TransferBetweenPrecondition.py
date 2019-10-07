@@ -42,8 +42,9 @@ class TransferBetweenPrecondition(object):
         # Get ta accounts info
         crm_client_profile = ClientProfilePage(self.driver)
 
-        ClientProfilePage(self.driver).click_trading_accounts_tab() \
-                                      .open_trading_accounts_tab()
+        ClientProfilePage(self.driver)\
+            .click_trading_accounts_tab() \
+            .open_trading_accounts_tab()
         sleep(2)
         first_account_number = ClientProfilePage(self.driver).get_trading_account_number_from_ta(
                                                         CRMConstants.FIRST_TA_NUMBER_FROM_TA_SECTION)
