@@ -236,7 +236,8 @@ class ApiPrecondition(object):
             assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                               LeadsModuleConstants.EMAIL1]
         except:
-            assert client_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW
+            assert client_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW4 or \
+                   client_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW3
         assert client_country == APIConstants.COUNTRY_CRM
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME]
@@ -248,7 +249,8 @@ class ApiPrecondition(object):
             try:
                 assert client_phone == APIConstants.PHONE_CRM
             except:
-                assert client_phone == DragonConstants.PHONE_NUMBER_HIDDEN
+                assert client_phone == DragonConstants.PHONE_NUMBER_HIDDEN3 or \
+                       client_phone == DragonConstants.PHONE_NUMBER_HIDDEN4
         assert refferal == APIConstants.REFFERAL
 
     def test_read_customer_details(self):
@@ -335,7 +337,8 @@ class ApiPrecondition(object):
             assert client_email == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL1]
         except AssertionError:
-            assert client_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW
+            assert client_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW4 or \
+                   client_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW3
 
         # First name verification:
         assert client_first_name == APIConstants.CHANGE_FIRST_NAME
@@ -344,7 +347,8 @@ class ApiPrecondition(object):
         try:
             assert client_phone == APIConstants.CHANGE_PHONE_CRM
         except AssertionError:
-            assert client_phone == DragonConstants.PHONE_NUMBER_HIDDEN
+            assert client_phone == DragonConstants.PHONE_NUMBER_HIDDEN4 or \
+                   client_phone == DragonConstants.PHONE_NUMBER_HIDDEN3
 
         # Postal code verification:
         assert client_postal_code == APIConstants.CHANGE_POSTAL_CODE
@@ -388,7 +392,8 @@ class ApiPrecondition(object):
         try:
             assert email == self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]
         except:
-            assert email == DragonConstants.EMAIL_VALID_DETAIL_VIEW
+            assert email == DragonConstants.EMAIL_VALID_DETAIL_VIEW4 or \
+                   email == DragonConstants.EMAIL_VALID_DETAIL_VIEW3
         assert fname == APIConstants.LEAD_FNAME
         assert lname == APIConstants.LEAD_LNAME
         # assert phone == APIConstants.LEAD_PHONE_CRM

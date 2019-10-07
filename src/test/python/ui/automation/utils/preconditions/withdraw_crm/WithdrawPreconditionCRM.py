@@ -31,13 +31,17 @@ class WithdrawPreconditionCRM(object):
                                                        TestDataConstants.FILTER))
 
         sleep(2)
-        ClientsPage(self.driver).find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+        ClientsPage(self.driver)\
+            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
         sleep(2)
-        ClientProfilePage(self.driver).scroll_to_financial_transactions_section() \
-                                      .open_financial_transactions_tab()
-        account_number = ClientProfilePage(self.driver).get_trading_account_number()
+        ClientProfilePage(self.driver)\
+            .scroll_to_financial_transactions_section() \
+            .open_financial_transactions_tab()
+        account_number = ClientProfilePage(self.driver)\
+            .get_trading_account_number()
         if global_var.current_brand_name == "trade99":
-            ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.WITHDRAW2)
+            ClientProfilePage(self.driver)\
+                .open_mt4_actions(CRMConstants.WITHDRAW2)
             MT4WithdrawModule(self.driver) \
                 .select_payment_method(CRMConstants.PAYMENT_METHOD_WITHDRAW) \
                 .select_account(account_number) \
@@ -60,9 +64,11 @@ class WithdrawPreconditionCRM(object):
         MT4WithdrawModule(self.driver).create_withdraw_button()
 
         # Check the balance updated
-        CRMLoginPage(self.driver).perform_scroll_up()
-        ClientProfilePage(self.driver).click_trading_accounts_tab() \
-                                      .open_trading_account_page(account_number)
+        CRMLoginPage(self.driver)\
+            .perform_scroll_up()
+        ClientProfilePage(self.driver)\
+            .click_trading_accounts_tab() \
+            .open_trading_account_page(account_number)
         balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
         if global_var.current_brand_name == "trade99":
             actual_balance = float(balance)
