@@ -93,14 +93,16 @@ class MassEditTestCRM(BaseTest):
         try:
             assert ClientProfilePage(self.driver).get_email_text() == self.client1[LeadsModuleConstants.EMAIL]
         except:
-            assert ClientProfilePage(self.driver).get_email_text() == DragonConstants.EMAIL_VALID_DETAIL_VIEW
+            assert ClientProfilePage(self.driver).get_email_text() == DragonConstants.EMAIL_VALID_DETAIL_VIEW4 or \
+                   ClientProfilePage(self.driver).get_email_text() == DragonConstants.EMAIL_VALID_DETAIL_VIEW3
         phone = ClientProfilePage(self.driver).get_phone_text()
         phone = phone.replace(' ', '').replace('+', '')
         if phone:
             try:
                 assert phone == self.client1[LeadsModuleConstants.PHONE]
             except:
-                assert phone == DragonConstants.PHONE_NUMBER_HIDDEN
+                assert phone == DragonConstants.PHONE_NUMBER_HIDDEN4 or \
+                       phone == DragonConstants.PHONE_NUMBER_HIDDEN3
         birthday = self.client1[LeadsModuleConstants.BIRTHDAY]
         birthday = birthday.replace('-', '')
         assert ClientProfilePage(self.driver).get_date_birthday() == birthday

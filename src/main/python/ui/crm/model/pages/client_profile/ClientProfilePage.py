@@ -86,7 +86,7 @@ class ClientProfilePage(CRMBasePage):
         return open_p_l.text
 
     def click_display_open_transactions(self):
-        sleep(2)
+        sleep(0.2)
         trading_account_tab = super().wait_element_to_be_clickable("//*[@id='RLContents']/input")
         try:
             trading_account_tab.click()
@@ -94,6 +94,12 @@ class ClientProfilePage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", trading_account_tab)
         Logging().reportDebugStep(self, "Click Display Open Transactions")
         return ClientProfilePage(self.driver)
+
+    def get_open_orders_data(self):
+        sleep(0.2)
+        open_orders_data = super().wait_load_element("//tbody[@id='OpenTransactionsBody']").get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Open Orders data: " + open_orders_data)
+        return open_orders_data
 
     def get_equity_text(self):
         equity = super().wait_load_element(
@@ -216,11 +222,14 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def open_trading_accounts_tab(self):
-        sleep(3)
-        trading_tab = super().wait_element_to_be_clickable("//a[@id='show_Accounts_TradingAccounts']")
-        # trading_tab.click()
-        self.driver.execute_script("arguments[0].click();", trading_tab)
-        Logging().reportDebugStep(self, "Open the trading account tab ")
+        sleep(0.3)
+        try:
+            trading_tab = super().wait_load_element(
+                "//a[@id='show_Accounts_TradingAccounts'][not (contains(@style,'none'))]", timeout=15)
+            self.driver.execute_script("arguments[0].click();", trading_tab)
+            Logging().reportDebugStep(self, "Open the Trading Accounts tab")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Trading Accounts tab is already opened")
         return ClientProfilePage(self.driver)
 
     '''
@@ -768,7 +777,7 @@ class ClientProfilePage(CRMBasePage):
         return balance
 
     def open_trading_account_page(self, account_number):
-        sleep(2)
+        sleep(0.2)
         try:
             link_trading_account = super().wait_load_element(
                 "//tr[@class='lvtColData']/td/span/a[contains(text(), '%s')]" % account_number, timeout=15)
@@ -781,6 +790,15 @@ class ClientProfilePage(CRMBasePage):
             sleep(1)
             self.driver.execute_script("arguments[0].click();", link_trading_account)
         Logging().reportDebugStep(self, "Open the trading account page")
+        return ClientProfilePage(self.driver)
+
+    def open_trading_account_by_number(self, ta_number):
+        sleep(0.5)
+        link_trading_account = super().wait_load_element(
+            "//div[@class='link_field']/a[@class='before_nw' and contains(text(),'%s')]" % ta_number, timeout=35)
+        sleep(0.1)
+        self.driver.execute_script("arguments[0].click();", link_trading_account)
+        Logging().reportDebugStep(self, "Open trading account: " + ta_number)
         return ClientProfilePage(self.driver)
 
     def change_client_status_with_pencil(self, status):

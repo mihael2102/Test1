@@ -13,6 +13,7 @@ from src.test.python.ui.automation.BaseTest import *
 import pytest
 from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
 
+
 class DocumentPrecondition(object):
 
     driver = None
@@ -27,11 +28,14 @@ class DocumentPrecondition(object):
         return lead
 
     def create_document(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
-        document_module = CRMHomePage(self.driver).open_more_list_modules().select_module_more_list(DocumentModuleConstants.DOCUMENT)
+        document_module = CRMHomePage(self.driver)\
+            .open_more_list_modules()\
+            .select_module_more_list(DocumentModuleConstants.DOCUMENT)
         document_module.open_create_document_module()
         document_module.browse_documents()
         document_module.select_document_type(CRMConstants.DOCUMENT_TYPE)
@@ -63,63 +67,75 @@ class DocumentPrecondition(object):
         assert document_module.get_link() == "Bear.jpg"
 
     def searching_by_columns(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                                            self.config.get_value(TestDataConstants.OTP_SECRET))
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
-        CRMHomePage(self.driver).open_more_list_modules() \
-                                .select_module_more_list(DocumentModuleConstants.DOCUMENT)
+        CRMHomePage(self.driver)\
+            .open_more_list_modules() \
+            .select_module_more_list(DocumentModuleConstants.DOCUMENT)
         document = DocumentsPage(self.driver)
+
         #get document's params
         document_number = document.get_document_no_from_listview(DocumentModuleConstants.ROW_NUMBER3)
         document_type = document.get_document_type_from_listview(DocumentModuleConstants.ROW_NUMBER2)
         modified_time = document.get_modified_time_from_listview(DocumentModuleConstants.ROW_NUMBER3)
 
         #search by Document's list view
-        actual_doc_no = document.enter_document_no_listview(document_number) \
-                                .search_document_module() \
-                                .get_document_no_from_listview(DocumentModuleConstants.ROW_NUMBER)
-        document.compare_data(DocumentModuleConstants.DATA_TYPE_DOC_NO, document_number, actual_doc_no)
+        actual_doc_no = document\
+            .enter_document_no_listview(document_number) \
+            .search_document_module() \
+            .get_document_no_from_listview(DocumentModuleConstants.ROW_NUMBER)
+        document\
+            .compare_data(DocumentModuleConstants.DATA_TYPE_DOC_NO, document_number, actual_doc_no)
 
-        document.clear_filter() \
-                .select_document_type_listview(document_type) \
-                .search_document_module() \
-                .global_data_checker(DocumentModuleConstants.DATA_TYPE_DOC_TYPE, document_type)
+        document\
+            .clear_filter() \
+            .select_document_type_listview(document_type) \
+            .search_document_module() \
+            .global_data_checker(DocumentModuleConstants.DATA_TYPE_DOC_TYPE, document_type)
         # document.compare_data(DocumentModuleConstants.DATA_TYPE_DOC_TYPE, document_type, actual_document_type)
 
-        document.clear_filter() \
-                .select_doc_modified_time(modified_time) \
-                .search_document_module() \
-                .global_data_checker(DocumentModuleConstants.DATA_TYPE_MODIFIED_TIME, modified_time)
+        document\
+            .clear_filter() \
+            .select_doc_modified_time(modified_time) \
+            .search_document_module() \
+            .global_data_checker(DocumentModuleConstants.DATA_TYPE_MODIFIED_TIME, modified_time)
 
     def check_tabs(self):
         # crm login, open Documents module
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
-        CRMHomePage(self.driver).open_more_list_modules() \
+        CRMHomePage(self.driver)\
+            .open_more_list_modules() \
             .select_module_more_list(DocumentModuleConstants.DOCUMENT)
         # open tabs and check data
         document = DocumentsPage(self.driver)
-        document.open_tab(DocumentModuleConstants.TAB_APPROVED) \
-                .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_APPROVED) \
-                .open_tab(DocumentModuleConstants.TAB_NOT_APPROVED) \
-                .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_NOT_APPROVED) \
-                .open_tab(DocumentModuleConstants.TAB_PENDING) \
-                .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_PENDING)
+        document\
+            .open_tab(DocumentModuleConstants.TAB_APPROVED) \
+            .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_APPROVED) \
+            .open_tab(DocumentModuleConstants.TAB_NOT_APPROVED) \
+            .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_NOT_APPROVED) \
+            .open_tab(DocumentModuleConstants.TAB_PENDING) \
+            .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_PENDING)
 
     def check_sorting(self):
         # crm login, open Documents module
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
-        CRMHomePage(self.driver).open_more_list_modules() \
-                                .select_module_more_list(DocumentModuleConstants.DOCUMENT)
+        CRMHomePage(self.driver)\
+            .open_more_list_modules() \
+            .select_module_more_list(DocumentModuleConstants.DOCUMENT)
 
         document = DocumentsPage(self.driver)
 
@@ -141,4 +157,3 @@ class DocumentPrecondition(object):
         document.sort_by_column(DocumentModuleConstants.DATA_TYPE_DOCUMENT_TYPE)
         first_row_document_type2 = document.get_row_doc_type(row_number=1)
         assert first_row_document_type1 != first_row_document_type2
-

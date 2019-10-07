@@ -216,27 +216,32 @@ class LeadModuleTest(BaseTest):
         try:
             self.assertEqual(mobile, lead_data[LeadsModuleConstants.FIRST_MOBILE])
         except(NoSuchElementException, TimeoutException, AssertionError):
-            self.assertEqual(mobile, DragonConstants.PHONE_NUMBER_HIDDEN)
+            assert mobile == DragonConstants.PHONE_NUMBER_HIDDEN4 or \
+                   mobile == DragonConstants.PHONE_NUMBER_HIDDEN3
         # Verify Fax:
         try:
             self.assertEqual(fax, lead_data[LeadsModuleConstants.FAX])
         except(NoSuchElementException, TimeoutException, AssertionError):
-            self.assertEqual(fax, DragonConstants.PHONE_NUMBER_HIDDEN)
+            assert fax == DragonConstants.PHONE_NUMBER_HIDDEN4 or \
+                   fax == DragonConstants.PHONE_NUMBER_HIDDEN3
         # Verify Phone:
         try:
             self.assertEqual(phone, lead_data[LeadsModuleConstants.PHONE])
         except(NoSuchElementException, TimeoutException, AssertionError):
-            self.assertEqual(phone, DragonConstants.PHONE_NUMBER_HIDDEN)
+            assert phone == DragonConstants.PHONE_NUMBER_HIDDEN4 or \
+                   phone == DragonConstants.PHONE_NUMBER_HIDDEN3
         # Verify Email:
         try:
             self.assertEqual(email, lead_data[LeadsModuleConstants.EMAIL])
         except(NoSuchElementException, TimeoutException, AssertionError):
-            self.assertEqual(email, DragonConstants.EMAIL_VALID_DETAIL_VIEW)
+            assert email == DragonConstants.EMAIL_VALID_DETAIL_VIEW4 or \
+                   email == DragonConstants.EMAIL_VALID_DETAIL_VIEW3
         # Verify Secondary Email:
         try:
             self.assertEqual(secondary_email, lead_data[LeadsModuleConstants.SECONDARY_EMAIL])
         except(NoSuchElementException, TimeoutException, AssertionError):
-            self.assertEqual(secondary_email, DragonConstants.EMAIL_VALID_DETAIL_VIEW)
+            assert secondary_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW4 or \
+                   secondary_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW3
         # Verify First source name:
         if global_var.current_brand_name != "marketsplus":
             self.assertEqual(source_name, lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME])
