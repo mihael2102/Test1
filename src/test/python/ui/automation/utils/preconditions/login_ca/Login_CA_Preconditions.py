@@ -372,7 +372,8 @@ class Login_CA_Precondition(object):
             try:
                 assert expected_phone in actual_phone
             except:
-                assert actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN
+                assert actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN4 or \
+                       actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN3
 
         if global_var.current_brand_name != "q8":
             assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS

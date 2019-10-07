@@ -31,7 +31,9 @@ class CreditInTestCRM(BaseTest):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        CreditInPrecondition(self.driver, self.config).add_live_account_in_crm().click_ok()
+        CreditInPrecondition(self.driver, self.config)\
+            .add_live_account_in_crm()\
+            .click_ok()
 
         # Take number of account
         account_number = ClientProfilePage(self.driver)\
