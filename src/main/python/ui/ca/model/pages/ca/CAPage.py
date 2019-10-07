@@ -895,8 +895,11 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def finish_button(self):
-        sleep(3)
-        click_submit = super().wait_load_element("//input[@class= 'green_btn popup_mod_btn centered']")
-        click_submit.click()
+        sleep(0.3)
+        click_submit = super().wait_load_element("//input[@class= 'green_btn popup_mod_btn centered']", timeout=35)
+        try:
+            self.driver.execute_script("arguments[0].click();", click_submit)
+        except:
+            click_submit.click()
         Logging().reportDebugStep(self, "Click Finish")
         return CAPage(self.driver)
