@@ -224,7 +224,7 @@ class DocumentsPage(CRMBasePage):
         sleep(1)
         button_search = super().wait_element_to_be_clickable("//input[@id='tks_searchbutton']")
         button_search.click()
-        sleep(2)
+        sleep(3)
         Logging().reportDebugStep(self, "Click Search")
         return DocumentsPage(self.driver)
 
