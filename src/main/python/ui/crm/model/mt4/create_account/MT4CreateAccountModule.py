@@ -25,7 +25,10 @@ class MT4CreateAccountModule(CRMBasePage):
         if group:
             self.select_group(group)
         if leverage:
-            self.select_leverage(leverage)
+            try:
+                self.select_leverage(leverage)
+            except:
+                Logging().reportDebugStep(self, "No option select leverage")
         self.click_create()
         return ClientProfilePage(self.driver)
 
