@@ -15,7 +15,7 @@ from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CACons
 from time import sleep
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskEditPage import HelpDeskEditPage
-from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
+from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
@@ -317,17 +317,17 @@ class Trading_Precondition(object):
         assert CRMConstants.ORDER in order
 
     def trading_process_open_position_ca(self):
-        CALoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url_ca')) \
-            .login() \
-            .enter_email(CAConstants.EMAIL_CA) \
-            .enter_password(CAConstants.PASSWORD) \
-            .click_login() \
+        CALoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url_ca'))\
+            .login()\
+            .enter_email(CAConstants.EMAIL_CA)\
+            .enter_password(CAConstants.PASSWORD)\
+            .click_login()\
             .verify()
-        CAPage(self.driver) \
-            .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
-            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
-            .open_accounts_list(CAConstants.ACCOUNT_DEMO) \
+        CAPage(self.driver)\
+            .open_accounts_list(CAConstants.ACCOUNT_LIVE)\
+            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)\
+            .open_accounts_list(CAConstants.ACCOUNT_DEMO)\
             .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
         WebTraderPage(self.driver)\
             .open_asset_group(TradingConstants.ASSET_GROUP_CRYPTO)\
@@ -343,6 +343,14 @@ class Trading_Precondition(object):
             .get_open_price()
 
     def verify_open_position_crm(self):
+        # Check if position was opened
+        try:
+            assert TradingConstants.IS_ASSET_EXIST == "yes"
+            Logging().reportDebugStep(self, "Position was opened")
+        except:
+            Logging().reportDebugStep(self, "There is no crypto assets")
+            assert TradingConstants.IS_ASSET_EXIST == "yes"
+
         # Login CRM
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
@@ -350,13 +358,11 @@ class Trading_Precondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+            .find_client_by_email(CAConstants.EMAIL_CA)
 
         # Open demo account details and get open orders data
         open_orders_data = ClientProfilePage(self.driver) \
-            .perform_scroll_down() \
-            .open_trading_accounts_tab() \
-            .get_client_account()\
+            .perform_scroll_down()\
             .open_trading_accounts_tab()\
             .open_trading_account_by_number(CAConstants.DEMO_ACCOUNT_NUMBER)\
             .click_display_open_transactions()\
@@ -368,7 +374,7 @@ class Trading_Precondition(object):
         expected_date = "20" + expected_date[2] + "-" + expected_date[1] + "-" + expected_date[0]
         expected_time = expected_created_time_order[1]
         expected_symbol = TradingConstants.ORDER_SYMBOL
-        expected_open_price = TradingConstants.ORDER_OPEN_PRICE.replace(',', '')
+        expected_open_price = TradingConstants.ORDER_OPEN_PRICE
 
         assert expected_order_id in open_orders_data
         assert expected_date in open_orders_data

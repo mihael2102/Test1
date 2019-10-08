@@ -12,3 +12,4 @@ class TradingConstants(object):
     ORDER_CREATED_TIME = ""
     ORDER_SYMBOL = ""
     ORDER_OPEN_PRICE = ""
+    IS_ASSET_EXIST = ""

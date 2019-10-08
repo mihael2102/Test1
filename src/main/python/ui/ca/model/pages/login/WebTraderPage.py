@@ -153,10 +153,15 @@ class WebTraderPage(CRMBasePage):
     def select_asset(self, asset):
         # super().wait_load_element("//div[@class='loader__bar']", timeout=15)
         # super().wait_element_to_be_disappear("//div[@class='loader__bar']", timeout=35)
-        asset_btn = super().wait_load_element("//div[contains(text(),'%s')]" % asset)
-        self.driver.execute_script("arguments[0].click();", asset_btn)
-        Logging().reportDebugStep(self, "Select asset: " + asset)
-        return WebTraderPage(self.driver)
+        try:
+            asset_btn = super().wait_load_element("//div[contains(text(),'%s')]" % asset)
+            self.driver.execute_script("arguments[0].click();", asset_btn)
+            Logging().reportDebugStep(self, "Select asset: " + asset)
+            TradingConstants.IS_ASSET_EXIST = "yes"
+            return WebTraderPage(self.driver)
+        except:
+            Logging().reportDebugStep(self, "There is no asset: " + asset)
+            TradingConstants.IS_ASSET_EXIST = "no"
 
     def click_select_account(self):
         sleep(5)
@@ -386,3 +391,4 @@ class WebTraderPage(CRMBasePage):
             return WebTraderPage(self.driver)
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "There is no " + asset_group + " asset group")
+            return WebTraderPage(self.driver)
