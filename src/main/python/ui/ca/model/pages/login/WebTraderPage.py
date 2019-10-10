@@ -268,6 +268,7 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def close_succsessfull_order_popup(self):
+        sleep(0.1)
         close_btn = super().wait_load_element("//button[contains(text(),'Close')]")
         close_btn.click()
         Logging().reportDebugStep(self, "Close Order Successful pop up")
@@ -392,3 +393,12 @@ class WebTraderPage(CRMBasePage):
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "There is no " + asset_group + " asset group")
             return WebTraderPage(self.driver)
+
+    def open_trading_page(self):
+        try:
+            trading_page = self.driver.find_element_by_xpath("//*[@id='u127-2']")
+            trading_page.click()
+            Logging().reportDebugStep(self, "Open Trading page")
+        except:
+            Logging().reportDebugStep(self, "Trading page is already opened")
+        return WebTraderPage(self.driver)

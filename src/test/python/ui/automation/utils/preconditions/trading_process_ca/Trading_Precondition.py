@@ -324,14 +324,25 @@ class Trading_Precondition(object):
             .enter_password(CAConstants.PASSWORD)\
             .click_login()\
             .verify()
+
+        # Check if demo account and crypto position was opened
+        try:
+            assert TradingConstants.IS_DEMO_EXIST == "yes"
+            Logging().reportDebugStep(self, "DEMO account was opened")
+        except:
+            if TradingConstants.IS_DEMO_EXIST == "no":
+                Logging().reportDebugStep(self, "There is no DEMO account")
+                assert TradingConstants.IS_DEMO_EXIST == "yes"
+
         CAPage(self.driver)\
             .open_accounts_list(CAConstants.ACCOUNT_LIVE)\
             .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)\
             .open_accounts_list(CAConstants.ACCOUNT_DEMO)\
             .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
         WebTraderPage(self.driver)\
+            .open_trading_page()\
             .open_asset_group(TradingConstants.ASSET_GROUP_CRYPTO)\
-            .select_asset(TradingConstants.ASSET_BTCEUR)\
+            .select_asset(TradingConstants.ASSET_XRPUSD)\
             .select_volume_in_lot(TradingConstants.VOLUME_IN_LOT_001)\
             .click_buy()\
             .click_invest()\
@@ -343,14 +354,6 @@ class Trading_Precondition(object):
             .get_open_price()
 
     def verify_open_position_crm(self):
-        # Check if position was opened
-        try:
-            assert TradingConstants.IS_ASSET_EXIST == "yes"
-            Logging().reportDebugStep(self, "Position was opened")
-        except:
-            Logging().reportDebugStep(self, "There is no crypto assets")
-            assert TradingConstants.IS_ASSET_EXIST == "yes"
-
         # Login CRM
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
@@ -359,6 +362,19 @@ class Trading_Precondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(CAConstants.EMAIL_CA)
+
+        # Check if demo account and crypto position was opened
+        try:
+            assert TradingConstants.IS_DEMO_EXIST == "yes" and \
+                   TradingConstants.IS_ASSET_EXIST == "yes"
+            Logging().reportDebugStep(self, "Position was opened")
+        except:
+            if TradingConstants.IS_DEMO_EXIST == "no":
+                Logging().reportDebugStep(self, "There is no DEMO account")
+                assert TradingConstants.IS_DEMO_EXIST == "yes"
+            elif TradingConstants.IS_ASSET_EXIST == "no":
+                Logging().reportDebugStep(self, "There is no crypto assets")
+                assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         # Open demo account details and get open orders data
         open_orders_data = ClientProfilePage(self.driver) \
