@@ -10,6 +10,7 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 import re
 import autoit
+from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
 
 
 class CAPage(CRMBasePage):
@@ -144,9 +145,14 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def open_demo_section(self):
-        demo_btn = super().wait_load_element("//span[contains(text(), 'Demo')]")
-        self.driver.execute_script("arguments[0].click();", demo_btn)
-        Logging().reportDebugStep(self, "Click Demo accounts section")
+        try:
+            demo_btn = super().wait_load_element("//span[contains(text(), 'Demo')]")
+            self.driver.execute_script("arguments[0].click();", demo_btn)
+            TradingConstants.IS_DEMO_EXIST = "yes"
+            Logging().reportDebugStep(self, "Click Demo accounts section")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "There is no Demo accounts section")
+            TradingConstants.IS_DEMO_EXIST = "no"
         return CAPage(self.driver)
 
     def get_leverage(self):

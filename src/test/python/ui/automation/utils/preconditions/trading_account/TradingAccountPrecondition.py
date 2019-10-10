@@ -68,77 +68,73 @@ class TradingAccountPrecondition(object):
             .get_live_account_number()
 
     def add_demo_account(self):
-        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
-            CALoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url_ca')) \
-                .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
-                .click_login() \
-                .verify() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                LeadsModuleConstants.FIRST_NAME])
-            CAPage(self.driver)\
-                .open_manage_accounts() \
-                .open_demo_section() \
-                .open_new_account_btn() \
-                .select_account_type(CAConstants.ACCOUNT_DEMO)
+        CALoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url_ca'))\
+            .login()\
+            .enter_email(CAConstants.EMAIL_CA)\
+            .enter_password(CAConstants.PASSWORD)\
+            .click_login()\
+            .verify()\
+            .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                            LeadsModuleConstants.FIRST_NAME])
+        CAPage(self.driver)\
+            .open_manage_accounts()\
+            .open_demo_section()\
+            .open_new_account_btn()\
+            .select_account_type(CAConstants.ACCOUNT_DEMO)
 
-            if global_var.current_brand_name == "mpcrypto" or global_var.current_brand_name == "trade99":
-                CAPage(self.driver).select_currency(CAConstants.CURRENCY_CRYPTO)
-            else:
-                CAPage(self.driver).select_currency(CAConstants.CURRENCY)
-
-            if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual")\
-                    or (global_var.current_brand_name == "royal_cfds"):
-                CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL2)
-            else:
-                CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL)
-
-            CAPage(self.driver)\
-                .set_initial_deposit(CAConstants.INITIAL_DEPOSIT0) \
-                .verify_init_deposit_error() \
-                .set_initial_deposit(CAConstants.INITIAL_DEPOSIT1) \
-                .verify_init_deposit_error()
-            if global_var.current_brand_name == "mpcrypto" or global_var.current_brand_name == "trade99":
-                CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT_BTC)
-            elif global_var.current_brand_name == "ptbanc":
-                CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT_PTBANC)
-            else:
-                CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT)
-            CAPage(self.driver)\
-                .click_create_account() \
-                .verify_demo_account_created() \
-                .open_demo_section()
-            if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual") \
-                    or (global_var.current_brand_name == "royal_cfds"):
-                actual_leverage = CAPage(self.driver).get_leverage()
-                expected_leverage = CAConstants.LEVERAGE_LEVEL2
-                assert actual_leverage == expected_leverage
-            else:
-                actual_leverage = CAPage(self.driver).get_leverage()
-                expected_leverage = CAConstants.LEVERAGE_LEVEL
-                print(expected_leverage, actual_leverage)
-                assert actual_leverage == expected_leverage
-
-            if global_var.current_brand_name == "mpcrypto":
-                actual_currency = CAPage(self.driver).get_currency()
-                expected_currency = CAConstants.CURRENCY_CRYPTO
-                assert actual_currency == expected_currency
-            elif global_var.current_brand_name == "trade99":
-                cur = CAPage(self.driver).get_currency()
-                actual_currency = cur.split(':')[0]
-                expected_currency = CAConstants.CURRENCY_CRYPTO
-                assert actual_currency == expected_currency
-            else:
-                actual_currency = CAPage(self.driver).get_currency()
-                expected_currency = CAConstants.CURRENCY
-                assert actual_currency == expected_currency
-
-            CAPage(self.driver).get_demo_account_number()
+        if global_var.current_brand_name == "mpcrypto" or global_var.current_brand_name == "trade99":
+            CAPage(self.driver).select_currency(CAConstants.CURRENCY_CRYPTO)
         else:
-            Logging().reportDebugStep(self, "Test is not running")
-            return self
+            CAPage(self.driver).select_currency(CAConstants.CURRENCY)
+
+        if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual")\
+                or (global_var.current_brand_name == "royal_cfds"):
+            CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL2)
+        else:
+            CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL)
+
+        CAPage(self.driver)\
+            .set_initial_deposit(CAConstants.INITIAL_DEPOSIT0) \
+            .verify_init_deposit_error() \
+            .set_initial_deposit(CAConstants.INITIAL_DEPOSIT1) \
+            .verify_init_deposit_error()
+        if global_var.current_brand_name == "mpcrypto" or global_var.current_brand_name == "trade99":
+            CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT_BTC)
+        elif global_var.current_brand_name == "ptbanc":
+            CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT_PTBANC)
+        else:
+            CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT)
+        CAPage(self.driver)\
+            .click_create_account() \
+            .verify_demo_account_created() \
+            .open_demo_section()
+        if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual") \
+                or (global_var.current_brand_name == "royal_cfds"):
+            actual_leverage = CAPage(self.driver).get_leverage()
+            expected_leverage = CAConstants.LEVERAGE_LEVEL2
+            assert actual_leverage == expected_leverage
+        else:
+            actual_leverage = CAPage(self.driver).get_leverage()
+            expected_leverage = CAConstants.LEVERAGE_LEVEL
+            print(expected_leverage, actual_leverage)
+            assert actual_leverage == expected_leverage
+
+        if global_var.current_brand_name == "mpcrypto":
+            actual_currency = CAPage(self.driver).get_currency()
+            expected_currency = CAConstants.CURRENCY_CRYPTO
+            assert actual_currency == expected_currency
+        elif global_var.current_brand_name == "trade99":
+            cur = CAPage(self.driver).get_currency()
+            actual_currency = cur.split(':')[0]
+            expected_currency = CAConstants.CURRENCY_CRYPTO
+            assert actual_currency == expected_currency
+        else:
+            actual_currency = CAPage(self.driver).get_currency()
+            expected_currency = CAConstants.CURRENCY
+            assert actual_currency == expected_currency
+
+        CAPage(self.driver).get_demo_account_number()
 
     def verify_account_in_crm(self):
         # Login to CRM
