@@ -17,8 +17,8 @@ brands:
 #- name: brokerz
 #  config_file: brokerz.yml
 
-#- name: dax-300
-#  config_file: dax-300.yml
+- name: dax-300
+  config_file: dax-300.yml
 
 #- name: financix
 #  config_file: financix.yml
@@ -77,8 +77,8 @@ brands:
 #- name: tfxgo
 #  config_file: tfxgo.yml
 
-- name: trade99
-  config_file: trade99.yml
+#- name: trade99
+#  config_file: trade99.yml
 
 #- name: uft
 #  config_file: uft.yml

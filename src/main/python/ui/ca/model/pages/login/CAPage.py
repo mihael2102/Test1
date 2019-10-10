@@ -220,10 +220,10 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Live account number is " + CAConstants.LIVE_ACCOUNT_NUMBER)
         return CAPage(self.driver)
 
-    def open_accounts_list(self, server):
+    def open_accounts_list(self):
         sleep(1)
         accounts_list = super().wait_load_element(
-            "//span[@class='account-type-pandats ng-star-inserted'][contains(text(), '%s')]" % server)
+         "//span[@class='account-type-pandats ng-star-inserted'][contains(text(), 'Demo') or contains(text(), 'Live')]")
         self.driver.execute_script("arguments[0].click();", accounts_list)
         Logging().reportDebugStep(self, "Open list accounts")
         return CAPage(self.driver)
@@ -237,8 +237,7 @@ class CAPage(CRMBasePage):
 
     def switch_to_account(self, account_number, account_server):
         sleep(1)
-        account = super().wait_element_to_be_clickable("//div[@class='account-title-pandats roboto-pandats'] \
-                                                        [contains(text(), '%s')]" % account_number)
+        account = super().wait_element_to_be_clickable("//div[contains(text(), '%s')]" % account_number)
         self.driver.execute_script("arguments[0].click();", account)
         Logging().reportDebugStep(self, "Switch to " + account_server + " account")
         return CAPage(self.driver)
