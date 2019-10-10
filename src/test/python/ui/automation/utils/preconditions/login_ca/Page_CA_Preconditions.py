@@ -31,45 +31,41 @@ class Page_CA_Precondition(object):
         return lead
 
     def switch_between_accounts(self):
-        if global_var.current_brand_name != "q8":
-            try:
-                CALoginPage(self.driver)\
-                    .open_first_tab_page(self.config.get_value('url_ca')) \
-                    .login() \
-                    .enter_email(CAConstants.EMAIL_CA) \
-                    .enter_password(CAConstants.PASSWORD) \
-                    .click_login() \
-                    .verify()
+        try:
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .login() \
+                .enter_email(CAConstants.EMAIL_CA) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .verify()
+            CAPage(self.driver)\
+                .open_accounts_list() \
+                .switch_to_account(CAConstants.LIVE_ACCOUNT_NUMBER, CAConstants.ACCOUNT_LIVE) \
+                .open_accounts_list() \
+                .verify_active_account_number(CAConstants.LIVE_ACCOUNT_NUMBER)
+            if global_var.current_brand_name == "mpcrypto":
                 CAPage(self.driver)\
-                    .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
-                    .switch_to_account(CAConstants.LIVE_ACCOUNT_NUMBER, CAConstants.ACCOUNT_LIVE) \
-                    .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
-                    .verify_active_account_number(CAConstants.LIVE_ACCOUNT_NUMBER)
+                    .verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
+            else:
+                CAPage(self.driver)\
+                    .verify_active_account_currency(CAConstants.CURRENCY)
+            if global_var.current_brand_name != "kontofx":
+                CAPage(self.driver)\
+                    .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
+                    .open_accounts_list() \
+                    .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
                 if global_var.current_brand_name == "mpcrypto":
                     CAPage(self.driver)\
                         .verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
                 else:
                     CAPage(self.driver)\
                         .verify_active_account_currency(CAConstants.CURRENCY)
-                if global_var.current_brand_name != "kontofx":
-                    CAPage(self.driver)\
-                        .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
-                        .open_accounts_list(CAConstants.ACCOUNT_DEMO) \
-                        .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
-                    if global_var.current_brand_name == "mpcrypto":
-                        CAPage(self.driver)\
-                            .verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
-                    else:
-                        CAPage(self.driver)\
-                            .verify_active_account_currency(CAConstants.CURRENCY)
-                else:
-                    Logging().reportDebugStep(self, "Test is not running")
+            else:
+                Logging().reportDebugStep(self, "Test is not running")
 
-            except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                Logging().reportDebugStep(self, "Module does not exist")
-                return self
-        else:
-            Logging().reportDebugStep(self, "Test is not running")
+        except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            Logging().reportDebugStep(self, "Module does not exist")
             return self
 
     def update_personal_details_in_ca(self):
