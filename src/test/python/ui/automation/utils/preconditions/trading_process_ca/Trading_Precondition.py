@@ -217,22 +217,26 @@ class Trading_Precondition(object):
     def trade_with_insufficient_funds(self):
 
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
-            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
-                                    .login() \
-                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                 LeadsModuleConstants.EMAIL]) \
-                                    .enter_password(CAConstants.PASSWORD) \
-                                    .click_login()
-        CAPage(self.driver).open_accounts_list(CAConstants.ACCOUNT_LIVE) \
-                           .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .login() \
+                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.EMAIL]) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login()
+        CAPage(self.driver)\
+            .open_accounts_list()\
+            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)
         if global_var.current_brand_name == "ptbanc":
-            WebTraderPage(self.driver).ptbanc_webtrader()
+            WebTraderPage(self.driver)\
+                .ptbanc_webtrader()
 
-        WebTraderPage(self.driver).select_asset(CRMConstants.ASSET)
-        WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_INSUFFICIENT_FUNDS)\
-                                  .click_sell()\
-                                  .click_invest()\
-                                  .check_msg_insufficient_funds()
+        WebTraderPage(self.driver)\
+            .select_asset(CRMConstants.ASSET)
+        WebTraderPage(self.driver)\
+            .select_volume_in_lot(CRMConstants.VOLUME_INSUFFICIENT_FUNDS)\
+            .click_sell()\
+            .click_invest()\
+            .check_msg_insufficient_funds()
 
     def open_order_buy_sell(self):
 
@@ -335,9 +339,9 @@ class Trading_Precondition(object):
                 assert TradingConstants.IS_DEMO_EXIST == "yes"
 
         CAPage(self.driver)\
-            .open_accounts_list(CAConstants.ACCOUNT_LIVE)\
+            .open_accounts_list()\
             .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)\
-            .open_accounts_list(CAConstants.ACCOUNT_DEMO)\
+            .open_accounts_list()\
             .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
         WebTraderPage(self.driver)\
             .open_trading_page()\
