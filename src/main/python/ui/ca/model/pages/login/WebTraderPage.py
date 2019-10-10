@@ -153,10 +153,15 @@ class WebTraderPage(CRMBasePage):
     def select_asset(self, asset):
         # super().wait_load_element("//div[@class='loader__bar']", timeout=15)
         # super().wait_element_to_be_disappear("//div[@class='loader__bar']", timeout=35)
-        asset_btn = super().wait_load_element("//div[contains(text(),'%s')]" % asset)
-        self.driver.execute_script("arguments[0].click();", asset_btn)
-        Logging().reportDebugStep(self, "Select asset: " + asset)
-        return WebTraderPage(self.driver)
+        try:
+            asset_btn = super().wait_load_element("//div[contains(text(),'%s')]" % asset)
+            self.driver.execute_script("arguments[0].click();", asset_btn)
+            Logging().reportDebugStep(self, "Select asset: " + asset)
+            TradingConstants.IS_ASSET_EXIST = "yes"
+            return WebTraderPage(self.driver)
+        except:
+            Logging().reportDebugStep(self, "There is no asset: " + asset)
+            TradingConstants.IS_ASSET_EXIST = "no"
 
     def click_select_account(self):
         sleep(5)
@@ -263,6 +268,7 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def close_succsessfull_order_popup(self):
+        sleep(0.1)
         close_btn = super().wait_load_element("//button[contains(text(),'Close')]")
         close_btn.click()
         Logging().reportDebugStep(self, "Close Order Successful pop up")
@@ -386,3 +392,13 @@ class WebTraderPage(CRMBasePage):
             return WebTraderPage(self.driver)
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "There is no " + asset_group + " asset group")
+            return WebTraderPage(self.driver)
+
+    def open_trading_page(self):
+        try:
+            trading_page = self.driver.find_element_by_xpath("//*[@id='u127-2']")
+            trading_page.click()
+            Logging().reportDebugStep(self, "Open Trading page")
+        except:
+            Logging().reportDebugStep(self, "Trading page is already opened")
+        return WebTraderPage(self.driver)

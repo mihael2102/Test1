@@ -114,7 +114,7 @@ class ClientProfilePage(CRMBasePage):
 
     def perform_scroll_down(self):
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        Logging().reportDebugStep(self, "Perform scroll down ")
+        Logging().reportDebugStep(self, "Perform scroll down")
         sleep(2)
         return ClientProfilePage(self.driver)
 
