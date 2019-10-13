@@ -98,6 +98,10 @@ class ClientProfilePage(CRMBasePage):
     def get_open_orders_data(self):
         sleep(0.2)
         open_orders_data = super().wait_load_element("//tbody[@id='OpenTransactionsBody']").get_attribute("innerText")
+        if "Loading" in open_orders_data:
+            sleep(1)
+            open_orders_data = super().wait_load_element("//tbody[@id='OpenTransactionsBody']").get_attribute(
+                "innerText")
         Logging().reportDebugStep(self, "Get Open Orders data: " + open_orders_data)
         return open_orders_data
 
@@ -800,6 +804,29 @@ class ClientProfilePage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", link_trading_account)
         Logging().reportDebugStep(self, "Open trading account: " + ta_number)
         return ClientProfilePage(self.driver)
+
+    def open_closed_transactions_tab(self):
+        sleep(0.2)
+        try:
+            closed_transactions_tab = super().wait_load_element(
+                "//a[@id='show_Tradingaccounts_ClosedTransactions'][not (contains(@style,'none'))]", timeout=15)
+            self.driver.execute_script("arguments[0].click();", closed_transactions_tab)
+            Logging().reportDebugStep(self, "Open the Closed Transactions tab")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Closed Transactions tab is already opened")
+        return ClientProfilePage(self.driver)
+
+    def get_closed_order_data(self):
+        sleep(0.2)
+        closed_orders_data = super().wait_load_element(
+            "//div[@id='tbl_Tradingaccounts_ClosedTransactions']//tr[@class='lvtColData' and @style='background:']")\
+            .get_attribute("innerText")
+        if "Loading" in closed_orders_data:
+            sleep(1)
+            closed_orders_data = super().wait_load_element("//tbody[@id='OpenTransactionsBody']").get_attribute(
+                "innerText")
+        Logging().reportDebugStep(self, "Get Closed Order data: " + closed_orders_data)
+        return closed_orders_data
 
     def change_client_status_with_pencil(self, status):
         sleep(2)

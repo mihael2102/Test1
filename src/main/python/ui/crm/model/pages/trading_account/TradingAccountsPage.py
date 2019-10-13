@@ -16,9 +16,6 @@ from src.main.python.utils.logs.Loging import Logging
 class TradingAccountsPage(CRMBasePage):
     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
 
-    # def __init__(self):
-    #     super().__init__()
-
     def open_create_filter_pop_up(self):
         element = super().wait_element_to_be_clickable("//a[contains(text(),'Create Filter')]")
         self.driver.execute_script("arguments[0].click();", element)
