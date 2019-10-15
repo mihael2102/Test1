@@ -15,12 +15,12 @@ tests_config:
     - test_add_demo_account_ca
 #    - test_verify_accounts_in_crm
 #    - test_switch_between_accounts_ca
-#
+
 #- module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
 #  class: TestPagesCA
 #  tests:
 #    - test_main_menu_pages_loading
-#
+
 - module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
   class: TradingProcess
   tests:
