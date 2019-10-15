@@ -7,7 +7,7 @@ import string
 
 class CRMConstants(object):
     brand = global_var.current_brand_name
-    YES = "Yes"
+    YES = "yes"
     ASSET_M = "BTCUSD.m"
     ASSET = "BTCUSD"
     VOLUME_FUNDS = "1"
