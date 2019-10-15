@@ -14,15 +14,21 @@ from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import T
 class WebTraderPage(CRMBasePage):
 
     def close_pop_up_close_trade(self, condition):
-        sleep(0.5)
-        click_close_order = self.driver.find_element(By.XPATH, "//button[contains(text(), '" + condition + "')]")
-        click_close_order.click()
+        sleep(0.1)
+        condition1 = condition.capitalize()
+        condition2 = condition.upper()
+        click_close_order = self.driver.find_element(By.XPATH, "//button[contains(text(), '" + condition + "') or \
+                                    contains(text(), '" + condition1 + "') or contains(text(), '" + condition2 + "')]")
+        try:
+            click_close_order.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", click_close_order)
         Logging().reportDebugStep(self, "Close pop up 'Close trade' : " + condition)
         return WebTraderPage(self.driver)
 
     def click_close_order(self):
         sleep(0.5)
-        click_close_order = super().wait_load_element("//tr[1]//span[contains(text(), 'Close')]")
+        click_close_order = super().wait_load_element("//tr[1]//span[contains(text(), 'Close')]", timeout=35)
         click_close_order.click()
         Logging().reportDebugStep(self, "Click CLOSE order")
         return WebTraderPage(self.driver)
@@ -319,6 +325,7 @@ class WebTraderPage(CRMBasePage):
         sleep(0.1)
         close_btn = super().wait_load_element("//button[contains(text(),'Close')]")
         close_btn.click()
+        sleep(0.5)
         Logging().reportDebugStep(self, "Close Order Successful pop up")
         return WebTraderPage(self.driver)
 
@@ -452,7 +459,7 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def open_trade_tab(self, tab_name):
-        sleep(0.2)
+        sleep(1)
         tab = super().wait_load_element("//div[contains(text(),'%s')]" % tab_name)
         tab.click()
         Logging().reportDebugStep(self, "Open tab: " + tab_name)

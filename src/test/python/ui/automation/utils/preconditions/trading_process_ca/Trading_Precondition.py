@@ -487,7 +487,7 @@ class Trading_Precondition(object):
                                      + expected_closed_order_date[0]
         expected_closed_order_time = expected_closed_time_order[1]
         expected_closed_price = TradingConstants.CLOSED_ORDER_CLOSED_PRICE
-        expected_profit = TradingConstants.CLOSED_ORDER_PROFIT
+        expected_profit = TradingConstants.CLOSED_ORDER_PROFIT.replace('€', '')
 
         assert expected_order_id in close_orders_data
         assert expected_date in close_orders_data
