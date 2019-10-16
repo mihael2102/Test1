@@ -193,7 +193,7 @@ class StrattonQuestionnairePrecondition(object):
 
             # Verify was opened DEMO account
             CAPage(self.driver)\
-                .open_accounts_list(CAConstants.ACCOUNT_DEMO) \
+                .open_accounts_list()\
                 .verify_active_account_server(CAConstants.ACCOUNT_DEMO)
 
             # Check status of customer_classification in CRM
@@ -280,8 +280,8 @@ class StrattonQuestionnairePrecondition(object):
             .click_next_btn()
 
         # Verify was opened LIVE account
-        CAPage(self.driver) \
-            .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
+        CAPage(self.driver)\
+            .open_accounts_list()\
             .verify_active_account_server(CAConstants.ACCOUNT_LIVE)
 
         # Check status of customer_classification in CRM
@@ -385,8 +385,8 @@ class StrattonQuestionnairePrecondition(object):
             .click_next_btn()
 
         # Verify was opened LIVE account
-        CAPage(self.driver) \
-            .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
+        CAPage(self.driver)\
+            .open_accounts_list()\
             .verify_active_account_server(CAConstants.ACCOUNT_LIVE)
 
         # Check status of customer_classification in CRM

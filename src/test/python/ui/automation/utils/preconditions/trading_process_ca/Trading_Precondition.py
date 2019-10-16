@@ -15,7 +15,7 @@ from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CACons
 from time import sleep
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskEditPage import HelpDeskEditPage
-from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
+from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
@@ -217,22 +217,26 @@ class Trading_Precondition(object):
     def trade_with_insufficient_funds(self):
 
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
-            CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
-                                    .login() \
-                                    .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                 LeadsModuleConstants.EMAIL]) \
-                                    .enter_password(CAConstants.PASSWORD) \
-                                    .click_login()
-        CAPage(self.driver).open_accounts_list(CAConstants.ACCOUNT_LIVE) \
-                           .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .login() \
+                .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.EMAIL]) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login()
+        CAPage(self.driver)\
+            .open_accounts_list()\
+            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)
         if global_var.current_brand_name == "ptbanc":
-            WebTraderPage(self.driver).ptbanc_webtrader()
+            WebTraderPage(self.driver)\
+                .ptbanc_webtrader()
 
-        WebTraderPage(self.driver).select_asset(CRMConstants.ASSET)
-        WebTraderPage(self.driver).select_volume_in_lot(CRMConstants.VOLUME_INSUFFICIENT_FUNDS)\
-                                  .click_sell()\
-                                  .click_invest()\
-                                  .check_msg_insufficient_funds()
+        WebTraderPage(self.driver)\
+            .select_asset(CRMConstants.ASSET)
+        WebTraderPage(self.driver)\
+            .select_volume_in_lot(CRMConstants.VOLUME_INSUFFICIENT_FUNDS)\
+            .click_sell()\
+            .click_invest()\
+            .check_msg_insufficient_funds()
 
     def open_order_buy_sell(self):
 
@@ -317,28 +321,39 @@ class Trading_Precondition(object):
         assert CRMConstants.ORDER in order
 
     def trading_process_open_position_ca(self):
-        CALoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url_ca')) \
-            .login() \
-            .enter_email(CAConstants.EMAIL_CA) \
-            .enter_password(CAConstants.PASSWORD) \
-            .click_login() \
+        CALoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url_ca'))\
+            .login()\
+            .enter_email(CAConstants.EMAIL_CA)\
+            .enter_password(CAConstants.PASSWORD)\
+            .click_login()\
             .verify()
-        CAPage(self.driver) \
-            .open_accounts_list(CAConstants.ACCOUNT_LIVE) \
-            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
-            .open_accounts_list(CAConstants.ACCOUNT_DEMO) \
+
+        # Check if demo account and crypto position was opened
+        try:
+            assert TradingConstants.IS_DEMO_EXIST == "yes"
+            Logging().reportDebugStep(self, "DEMO account was opened")
+        except:
+            if TradingConstants.IS_DEMO_EXIST == "no":
+                Logging().reportDebugStep(self, "There is no DEMO account")
+                assert TradingConstants.IS_DEMO_EXIST == "yes"
+
+        CAPage(self.driver)\
+            .open_accounts_list()\
+            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)\
+            .open_accounts_list()\
             .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
         WebTraderPage(self.driver)\
+            .open_trading_page()\
             .open_asset_group(TradingConstants.ASSET_GROUP_CRYPTO)\
-            .select_asset(TradingConstants.ASSET_BTCEUR)\
+            .select_asset(TradingConstants.ASSET_XRPUSD)\
             .select_volume_in_lot(TradingConstants.VOLUME_IN_LOT_001)\
             .click_buy()\
             .click_invest()\
             .get_msg_succsessfull_order()\
             .close_succsessfull_order_popup()\
             .get_id_order()\
-            .get_created_time()\
+            .get_order_created_time()\
             .get_symbol()\
             .get_open_price()
 
@@ -350,13 +365,24 @@ class Trading_Precondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+            .find_client_by_email(CAConstants.EMAIL_CA)
+
+        # Check if demo account and crypto position was opened
+        try:
+            assert TradingConstants.IS_DEMO_EXIST == "yes" and \
+                   TradingConstants.IS_ASSET_EXIST == "yes"
+            Logging().reportDebugStep(self, "Position was opened")
+        except:
+            if TradingConstants.IS_DEMO_EXIST == "no":
+                Logging().reportDebugStep(self, "There is no DEMO account")
+                assert TradingConstants.IS_DEMO_EXIST == "yes"
+            elif TradingConstants.IS_ASSET_EXIST == "no":
+                Logging().reportDebugStep(self, "There is no crypto assets")
+                assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         # Open demo account details and get open orders data
-        open_orders_data = ClientProfilePage(self.driver) \
-            .perform_scroll_down() \
-            .open_trading_accounts_tab() \
-            .get_client_account()\
+        open_orders_data = ClientProfilePage(self.driver)\
+            .perform_scroll_down()\
             .open_trading_accounts_tab()\
             .open_trading_account_by_number(CAConstants.DEMO_ACCOUNT_NUMBER)\
             .click_display_open_transactions()\
@@ -368,10 +394,112 @@ class Trading_Precondition(object):
         expected_date = "20" + expected_date[2] + "-" + expected_date[1] + "-" + expected_date[0]
         expected_time = expected_created_time_order[1]
         expected_symbol = TradingConstants.ORDER_SYMBOL
-        expected_open_price = TradingConstants.ORDER_OPEN_PRICE.replace(',', '')
+        expected_open_price = TradingConstants.ORDER_OPEN_PRICE
 
         assert expected_order_id in open_orders_data
         assert expected_date in open_orders_data
         assert expected_time in open_orders_data
         assert expected_symbol in open_orders_data
         assert expected_open_price in open_orders_data
+
+    def trading_process_close_position_ca(self):
+        CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
+            .login() \
+            .enter_email(CAConstants.EMAIL_CA) \
+            .enter_password(CAConstants.PASSWORD) \
+            .click_login() \
+            .verify()
+
+        # Check if demo account and crypto position was opened
+        try:
+            assert TradingConstants.IS_DEMO_EXIST == "yes" and \
+                   TradingConstants.IS_ASSET_EXIST == "yes"
+            Logging().reportDebugStep(self, "Position was opened")
+        except:
+            if TradingConstants.IS_DEMO_EXIST == "no":
+                Logging().reportDebugStep(self, "There is no DEMO account")
+                assert TradingConstants.IS_DEMO_EXIST == "yes"
+            elif TradingConstants.IS_ASSET_EXIST == "no":
+                Logging().reportDebugStep(self, "There is no crypto assets")
+                assert TradingConstants.IS_ASSET_EXIST == "yes"
+
+        CAPage(self.driver) \
+            .open_accounts_list() \
+            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
+            .open_accounts_list() \
+            .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
+        WebTraderPage(self.driver) \
+            .open_trading_page()\
+            .click_close_order()\
+            .close_pop_up_close_trade(CRMConstants.YES)\
+            .close_succsessfull_order_popup()\
+            .open_trade_tab(TradingConstants.TRADES_TAB_TRADE_HISTORY)\
+            .get_id_closed_order()\
+            .get_closed_order_created_time()\
+            .get_closed_order_symbol()\
+            .get_closed_order_open_price()\
+            .get_closed_order_closed_price()\
+            .get_closed_order_closed_time()\
+            .get_closed_order_profit()
+
+    def verify_close_position_crm(self):
+        # Login CRM
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(CAConstants.EMAIL_CA)
+
+        # Check if demo account and crypto position was opened
+        try:
+            assert TradingConstants.IS_DEMO_EXIST == "yes" and \
+                   TradingConstants.IS_ASSET_EXIST == "yes"
+            Logging().reportDebugStep(self, "Position was opened")
+        except:
+            if TradingConstants.IS_DEMO_EXIST == "no":
+                Logging().reportDebugStep(self, "There is no DEMO account")
+                assert TradingConstants.IS_DEMO_EXIST == "yes"
+            elif TradingConstants.IS_ASSET_EXIST == "no":
+                Logging().reportDebugStep(self, "There is no crypto assets")
+                assert TradingConstants.IS_ASSET_EXIST == "yes"
+
+        # Open demo account details and get open orders data
+        close_orders_data = ClientProfilePage(self.driver)\
+            .perform_scroll_down()\
+            .open_trading_accounts_tab()\
+            .open_trading_account_by_number(CAConstants.DEMO_ACCOUNT_NUMBER)\
+            .open_closed_transactions_tab()\
+            .get_closed_order_data()
+
+        # Verify data of closed trade:
+        expected_order_id = TradingConstants.ORDER_ID_CLOSED.replace('#', '')
+        expected_created_time_order = TradingConstants.CLOSED_ORDER_CREATED_TIME.split(' ')
+        expected_date = expected_created_time_order[0].split('/')
+        expected_date = expected_date[2] + "-" + expected_date[1] + "-" + expected_date[0]
+        expected_time = expected_created_time_order[1]
+        expected_symbol = TradingConstants.CLOSED_ORDER_SYMBOL
+        expected_open_price = TradingConstants.CLOSED_ORDER_OPEN_PRICE
+        if expected_open_price.endswith('0'):
+            expected_open_price = expected_open_price[:-1]
+        expected_closed_time_order = TradingConstants.CLOSED_ORDER_CLOSED_TIME.split(' ')
+        expected_closed_order_date = expected_closed_time_order[0].split('/')
+        expected_closed_order_date = expected_closed_order_date[2] + "-" + expected_closed_order_date[1] + "-" \
+                                     + expected_closed_order_date[0]
+        expected_closed_order_time = expected_closed_time_order[1]
+        expected_closed_price = TradingConstants.CLOSED_ORDER_CLOSED_PRICE
+        if expected_closed_price.endswith('0'):
+            expected_closed_price = expected_closed_price[:-1]
+        expected_profit = TradingConstants.CLOSED_ORDER_PROFIT.replace('€', '')
+
+        assert expected_order_id in close_orders_data
+        assert expected_date in close_orders_data
+        assert expected_time in close_orders_data
+        assert expected_symbol in close_orders_data
+        assert expected_open_price in close_orders_data
+        assert expected_closed_order_date in close_orders_data
+        assert expected_closed_order_time in close_orders_data
+        assert expected_closed_price in close_orders_data
+        assert expected_profit in close_orders_data
