@@ -14,11 +14,11 @@ brands:
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
 
-- name: brokerz
-  config_file: brokerz.yml
+#- name: brokerz
+#  config_file: brokerz.yml
 
-- name: dax-300
-  config_file: dax-300.yml
+#- name: dax-300
+#  config_file: dax-300.yml
 
 #- name: financix
 #  config_file: financix.yml
@@ -38,8 +38,8 @@ brands:
 #- name: jonesmutual
 #  config_file: jonesmutual.yml
 
-- name: kontofx
-  config_file: kontofx.yml
+#- name: kontofx
+#  config_file: kontofx.yml
 
 #- name: libramarkets
 #  config_file: libramarkets.yml
@@ -47,8 +47,8 @@ brands:
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
 
-#- name: newforexstage2
-#  config_file: newforexstage2.yml
+- name: newforexstage2
+  config_file: newforexstage2.yml
 
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
@@ -77,8 +77,8 @@ brands:
 #- name: tfxgo
 #  config_file: tfxgo.yml
 
-- name: trade99
-  config_file: trade99.yml
+#- name: trade99
+#  config_file: trade99.yml
 
 #- name: uft
 #  config_file: uft.yml
