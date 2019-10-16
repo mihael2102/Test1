@@ -474,6 +474,7 @@ class Trading_Precondition(object):
             .open_closed_transactions_tab()\
             .get_closed_order_data()
 
+        # Verify data of closed trade:
         expected_order_id = TradingConstants.ORDER_ID_CLOSED.replace('#', '')
         expected_created_time_order = TradingConstants.CLOSED_ORDER_CREATED_TIME.split(' ')
         expected_date = expected_created_time_order[0].split('/')
@@ -481,12 +482,16 @@ class Trading_Precondition(object):
         expected_time = expected_created_time_order[1]
         expected_symbol = TradingConstants.CLOSED_ORDER_SYMBOL
         expected_open_price = TradingConstants.CLOSED_ORDER_OPEN_PRICE
+        if expected_open_price.endswith('0'):
+            expected_open_price = expected_open_price[:-1]
         expected_closed_time_order = TradingConstants.CLOSED_ORDER_CLOSED_TIME.split(' ')
         expected_closed_order_date = expected_closed_time_order[0].split('/')
         expected_closed_order_date = expected_closed_order_date[2] + "-" + expected_closed_order_date[1] + "-" \
                                      + expected_closed_order_date[0]
         expected_closed_order_time = expected_closed_time_order[1]
         expected_closed_price = TradingConstants.CLOSED_ORDER_CLOSED_PRICE
+        if expected_closed_price.endswith('0'):
+            expected_closed_price = expected_closed_price[:-1]
         expected_profit = TradingConstants.CLOSED_ORDER_PROFIT.replace('€', '')
 
         assert expected_order_id in close_orders_data
