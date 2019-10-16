@@ -11,6 +11,9 @@ class TestAPI(BaseTest):
     def test_create_new_customer(self):
         ApiPrecondition(self.driver, self.config).test_create_new_customer()
 
+    def test_create_duplicate_customer(self):
+        ApiPrecondition(self.driver, self.config).create_duplicate_customer()
+
     def test_read_customer_details(self):
         ApiPrecondition(self.driver, self.config).test_read_customer_details()
 
