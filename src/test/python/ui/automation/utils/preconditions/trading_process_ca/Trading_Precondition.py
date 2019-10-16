@@ -474,6 +474,7 @@ class Trading_Precondition(object):
             .open_closed_transactions_tab()\
             .get_closed_order_data()
 
+        # Verify data of closed trade:
         expected_order_id = TradingConstants.ORDER_ID_CLOSED.replace('#', '')
         expected_created_time_order = TradingConstants.CLOSED_ORDER_CREATED_TIME.split(' ')
         expected_date = expected_created_time_order[0].split('/')

@@ -6,8 +6,9 @@ tests_config:
   tests:
 #    - test_autorization_process
     - test_create_new_customer
+    - test_create_duplicate_customer
 #    - test_read_customer_details
-    - test_update_customer
+#    - test_update_customer
 #    - test_create_lead_api
 #    - test_read_leads_api
 #    - test_login_token
