@@ -253,6 +253,26 @@ class ApiPrecondition(object):
                        client_phone == DragonConstants.PHONE_NUMBER_HIDDEN4
         assert refferal == APIConstants.REFFERAL
 
+    def create_duplicate_customer(self):
+        self.autorization_process_short()
+        ApiPage(self.driver) \
+            .create_customer_module() \
+            .enter_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.EMAIL1]) \
+            .enter_password(APIConstants.PASSWORD) \
+            .enter_country(APIConstants.COUNTRY2) \
+            .enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]) \
+            .enter_lastName(APIConstants.LASTNAME) \
+            .enter_phone(APIConstants.PHONE) \
+            .send_create_customer()
+
+        check_create_customer_token = ApiPage(self.driver)\
+            .check_create_customer_token()
+
+        assert APIConstants.STATUS_DUPLICATE_CUSTOMER and \
+               APIConstants.STATUS_DUPLICATE_CUSTOMER1 and \
+               APIConstants.STATUS_DUPLICATE_CUSTOMER2 \
+               in check_create_customer_token
+
     def test_read_customer_details(self):
         self.autorization_process_short()
         ApiPage(self.driver).read_customer_module()

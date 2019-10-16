@@ -67,7 +67,8 @@ class Login_CA_Precondition(object):
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .close_campaign_banner()\
             .click_sign_up()
-        if (global_var.current_brand_name == "b-finance") or (global_var.current_brand_name == "eafx"):
+        if global_var.current_brand_name == "b-finance" or \
+                global_var.current_brand_name == "eafx":
             CALoginPage(self.driver)\
                 .click_regulatory_confirmation()
         CALoginPage(self.driver)\
@@ -75,8 +76,7 @@ class Login_CA_Precondition(object):
             .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                         LeadsModuleConstants.FIRST_LAST_NAME])\
             .fill_email(CAConstants.EMAIL_CA)\
-            .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                    LeadsModuleConstants.PHONE])\
+            .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])\
             .fill_password(CAConstants.PASSWORD)\
             .fill_confirm_password(CAConstants.PASSWORD)\
             .check_box_accept()\
