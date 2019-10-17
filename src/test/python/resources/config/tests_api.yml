@@ -13,8 +13,8 @@ tests_config:
     - test_read_leads_api
     - test_login_token
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
-#  class: CheckDragonTest
-#  tests:
-#    - test_api_dragon_valid_phone
-#    - test_api_dragon_invalid_phone
+- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
+  class: CheckDragonTest
+  tests:
+    - test_api_dragon_valid_phone
+    - test_api_dragon_invalid_phone
