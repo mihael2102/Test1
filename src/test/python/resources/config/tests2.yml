@@ -1,5 +1,12 @@
 tests_config:
 
+########################################### USER_MANAGEMENT #########################################
+- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
+  class: UserManagementTest
+  tests:
+    - test_create_user
+    - test_delete_user
+
 ########################################## LEADS ###################################################
 - module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
   directive: reload_configuration
@@ -14,11 +21,3 @@ tests_config:
     - sorting_lead_module
     - test_mass_assign_leads
     - test_mass_edit_leads
-
-########################################### USER_MANAGEMENT #########################################
-- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
-  class: UserManagementTest
-  tests:
-    - test_create_user
-    - test_delete_user
-
