@@ -202,16 +202,16 @@ tests_config:
 #    - test_delete_user
 #
 ########################################### DOCUMENTS MODULE ############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
-  class: DocumentModuleTest
-  tests:
-    - test_searching_by_columns
+#- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
+#  class: DocumentModuleTest
+#  tests:
+#    - test_searching_by_columns
 #    - test_open_tabs
 #    - test_sorting
 #
 ############################################# DRAGON TESTS ###############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
-#  class: CheckDragonTest
-#  tests:
-#    - test_dragon_leads
+- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
+  class: CheckDragonTest
+  tests:
+    - test_dragon_leads
 #    - test_dragon_clients
