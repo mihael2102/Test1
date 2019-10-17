@@ -391,24 +391,65 @@ class DragonPrecondition(object):
 
         assert APIConstants.STATUS_OK in check_create_customer_token
 
-        ' Check valid phone number and Valid Phone icon in Clients list view: '
+        ' Check valid phone number in Clients list view: '
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url'))
         ClientsPage(self.driver) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .enter_email(DragonConstants.API_EMAIL) \
             .click_search_button()
-        if_icon_exist = DragonPage(self.driver) \
+        DragonPage(self.driver)\
+            .click_show_phone_btn()\
             .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)\
             .check_valid_phone_icon()
 
-        # assert if_icon_exist == True
+        ' Check phone number in detail view: '
+        ClientsPage(self.driver) \
+            .open_client_id()
+        DragonPage(self.driver)\
+            .click_show_phone_btn()\
+            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)\
+            .check_valid_phone_icon()
+
+    def check_api_dragon_invalid_phone(self):
+        # Create new client via API with invalid phone:
+        ApiPrecondition(self.driver, self.config) \
+            .autorization_process_short()
+        ApiPage(self.driver) \
+            .create_customer_module()\
+            .enter_email(DragonConstants.API_EMAIL1)\
+            .enter_password(APIConstants.PASSWORD)\
+            .enter_country(APIConstants.COUNTRY2)\
+            .enter_firstName(DragonConstants.FIRST_NAME_CONVERT)\
+            .enter_lastName(DragonConstants.DRAGON_LAST_NAME)\
+            .enter_phone(DragonConstants.PHONE_NUMBER_INVALID2)\
+            .send_create_customer()
+
+        check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+        count = 0
+        while APIConstants.STATUS_OK not in check_create_customer_token:
+            sleep(1)
+            check_create_customer_token = ApiPage(self.driver).check_create_customer_token()
+            count += 1
+            if count == 5:
+                break
+
+        assert APIConstants.STATUS_OK in check_create_customer_token
+
+        ' Check invalid phone number in Clients list view: '
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url'))
+        ClientsPage(self.driver) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .enter_email(DragonConstants.API_EMAIL1) \
+            .click_search_button()
+        DragonPage(self.driver) \
+            .click_show_phone_btn() \
+            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID2)
 
         ' Check phone number in detail view: '
         ClientsPage(self.driver) \
             .open_client_id()
         DragonPage(self.driver) \
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)\
-            .check_valid_phone_icon()
-
-        # assert if_icon_exist == True
+            .click_show_phone_btn() \
+            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID2)
