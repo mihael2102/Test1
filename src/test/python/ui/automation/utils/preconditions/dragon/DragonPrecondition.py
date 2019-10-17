@@ -47,13 +47,13 @@ class DragonPrecondition(object):
         sleep(3)
 
         ' Go to User Management and make Login As DragonTest user: '
-        CRMHomePage(self.driver).select_user_management()
-        UserManagementPage(self.driver) \
-            .open_crm_users_tab() \
-            .click_remove_filter_btn() \
-            .search_by_username(UserInformation.DRAGON_USER_NAME) \
-            .check_user_found(UserInformation.DRAGON_USER_NAME) \
-            .click_more_icon() \
+        CRMHomePage(self.driver)\
+            .select_user_management()\
+            .open_crm_users_tab()\
+            .click_remove_filter_btn()\
+            .search_by_username(UserInformation.DRAGON_USER_NAME)\
+            .check_user_found(UserInformation.DRAGON_USER_NAME)\
+            .click_more_icon()\
             .click_login_as_icon()
 
         ' Create Lead with wrong phone number: '
@@ -82,7 +82,7 @@ class DragonPrecondition(object):
             assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
             LeadViewInfo(self.driver)\
                 .click_ok()
-        except (TimeoutException, AssertionError, NoSuchElementException):
+        except(TimeoutException, AssertionError, NoSuchElementException):
             Logging().reportDebugStep(self, "Lead convert message was not picked up")
 
         ' Check phone and email in Clients list view: '
@@ -91,7 +91,8 @@ class DragonPrecondition(object):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .enter_email(DragonConstants.LEAD_EMAIL)\
             .click_search_button()
-        DragonPage(self.driver) \
+        DragonPage(self.driver)\
+            .click_show_phone_btn()\
             .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID)\
             .check_email_address(DragonConstants.EMAIL_VALID_LIST_VIEW)
 
@@ -99,13 +100,15 @@ class DragonPrecondition(object):
         ClientsPage(self.driver)\
             .open_client_id()
         DragonPage(self.driver)\
+            .click_show_phone_btn()\
             .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID)\
-            .check_email_address(DragonConstants.EMAIL_VALID_DETAIL_VIEW)\
+            .check_email_address(DragonConstants.EMAIL_VALID_DETAIL_VIEW3)\
             .check_email_in_send_mail_popup(DragonConstants.EMAIL_VALID_SEND_MAIL_POPUP)
 
         ' Check phone number on edit page: '
         phone_edit_page = ClientProfileUpdate(self.driver)\
             .click_edit_client_button()\
+            .click_show_phone_edit_page()\
             .get_phone_edit_page()
         assert phone_edit_page == DragonConstants.PHONE_NUMBER_INVALID
 
@@ -115,6 +118,7 @@ class DragonPrecondition(object):
             .click_save()\
             .refresh_page()
         DragonPage(self.driver)\
+            .click_show_phone_btn()\
             .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID2)
         ClientProfileUpdate(self.driver)\
             .click_edit_client_button()\
@@ -122,6 +126,7 @@ class DragonPrecondition(object):
             .click_save()\
             .refresh_page()
         DragonPage(self.driver)\
+            .click_show_phone_btn()\
             .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID3)
 
         ' Update phone to valid number and verify on details view page: '
@@ -131,16 +136,18 @@ class DragonPrecondition(object):
             .click_save()\
             .refresh_page()
         DragonPage(self.driver)\
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)
+            .click_show_phone_btn()\
+            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
 
         ' Check valid number and email in list view: '
-        CRMHomePage(self.driver) \
-            .open_client_module() \
+        CRMHomePage(self.driver)\
+            .open_client_module()\
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .enter_email(DragonConstants.LEAD_EMAIL) \
+            .enter_email(DragonConstants.LEAD_EMAIL)\
             .click_search_button()
-        DragonPage(self.driver) \
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)\
+        DragonPage(self.driver)\
+            .click_show_phone_btn()\
+            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)\
             .check_email_in_send_mail_popup(DragonConstants.EMAIL_VALID_SEND_MAIL_POPUP)
 
     def check_dragon_leads(self):
@@ -178,6 +185,7 @@ class DragonPrecondition(object):
                 self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))\
             .perform_searching_lead_by_mail(DragonConstants.LEAD_EMAIL1)
         DragonPage(self.driver)\
+            .click_show_phone_btn()\
             .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID)\
             .check_email_address(DragonConstants.EMAIL_VALID_LIST_VIEW)
         LeadsModule(self.driver)\
@@ -185,45 +193,51 @@ class DragonPrecondition(object):
 
         ' Check phone number and email in detail view: '
         DragonPage(self.driver)\
+            .click_show_phone_btn()\
             .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID)\
-            .check_email_address(DragonConstants.EMAIL_VALID_DETAIL_VIEW)\
+            .check_email_address(DragonConstants.EMAIL_VALID_DETAIL_VIEW3)\
             .check_email_in_send_mail_popup(DragonConstants.EMAIL_VALID_SEND_MAIL_POPUP)
 
         ' Check phone number on edit page: '
         phone_edit_page = LeadDetailViewInfo(self.driver)\
             .open_edit_lead_profile()\
             .get_phone_edit_page()
-        assert phone_edit_page == DragonConstants.PHONE_NUMBER_INVALID
+
+        assert DragonConstants.PHONE_NUMBER_HIDDEN3 in phone_edit_page
 
         ' Update phone to another invalid number and verify on details view page: '
         EditLeadsProfilePage(self.driver)\
             .set_phone(DragonConstants.PHONE_NUMBER_INVALID2)\
             .click_save()
-        DragonPage(self.driver) \
+        DragonPage(self.driver)\
+            .click_show_phone_btn()\
             .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID2)
         LeadDetailViewInfo(self.driver)\
             .open_edit_lead_profile() \
             .set_phone(DragonConstants.PHONE_NUMBER_INVALID3) \
             .click_save()
-        DragonPage(self.driver) \
+        DragonPage(self.driver)\
+            .click_show_phone_btn()\
             .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID3)
 
         ' Update phone to valid number and verify on details view page: '
-        LeadDetailViewInfo(self.driver) \
-            .open_edit_lead_profile() \
-            .set_phone(DragonConstants.PHONE_NUMBER_VALID) \
+        LeadDetailViewInfo(self.driver)\
+            .open_edit_lead_profile()\
+            .set_phone(DragonConstants.PHONE_NUMBER_VALID)\
             .click_save()
-        DragonPage(self.driver) \
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)
+        DragonPage(self.driver)\
+            .click_show_phone_btn()\
+            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
 
         ' Check valid number and email in list view: '
-        CRMHomePage(self.driver) \
-            .open_lead_module() \
+        CRMHomePage(self.driver)\
+            .open_lead_module()\
             .select_filter(
-                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME)) \
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))\
             .perform_searching_lead_by_mail(DragonConstants.LEAD_EMAIL1)
-        DragonPage(self.driver) \
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)\
+        DragonPage(self.driver)\
+            .click_show_phone_btn()\
+            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)\
             .check_email_in_send_mail_popup(DragonConstants.EMAIL_VALID_SEND_MAIL_POPUP)
 
     def check_ca_dragon_valid_phone(self):
@@ -280,13 +294,13 @@ class DragonPrecondition(object):
             .enter_email(DragonConstants.LEAD_EMAIL2)\
             .click_search_button()
         DragonPage(self.driver) \
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)
+            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
 
         ' Check phone number in detail view: '
         ClientsPage(self.driver)\
             .open_client_id()
         DragonPage(self.driver)\
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)
+            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
 
     def check_ca_dragon_invalid_phone(self):
         # Sign up with valid phone:
@@ -385,7 +399,7 @@ class DragonPrecondition(object):
             .enter_email(DragonConstants.API_EMAIL) \
             .click_search_button()
         if_icon_exist = DragonPage(self.driver) \
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)\
+            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)\
             .check_valid_phone_icon()
 
         # assert if_icon_exist == True
@@ -394,7 +408,7 @@ class DragonPrecondition(object):
         ClientsPage(self.driver) \
             .open_client_id()
         DragonPage(self.driver) \
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN)\
+            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)\
             .check_valid_phone_icon()
 
         # assert if_icon_exist == True
