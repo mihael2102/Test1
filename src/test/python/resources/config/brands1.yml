@@ -1,7 +1,7 @@
 brands:
 
-#- name: newforexstage2
-#  config_file: newforexstage2.yml
+- name: newforexstage2
+  config_file: newforexstage2.yml
 
 #- name: ptbanc
 #  config_file: ptbanc.yml
@@ -21,8 +21,8 @@ brands:
 #- name: trade99
 #  config_file: trade99.yml
 #
-- name: dax-300
-  config_file: dax-300.yml
+#- name: dax-300
+#  config_file: dax-300.yml
 
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
