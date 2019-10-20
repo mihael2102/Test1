@@ -11,6 +11,7 @@ class DragonConstants(object):
     LEAD_EMAIL2 = "pandaqa+dragon2" + random_number + "@pandats.com"
     LEAD_EMAIL3 = "pandaqa+dragon3" + random_number + "@pandats.com"
     API_EMAIL = "pandaqa+dragon_api" + random_number + "@pandats.com"
+    API_EMAIL1 = "pandaqa+dragon_api1" + random_number + "@pandats.com"
     LEAD_ASSIGNED_TO = "Dragon Test"
     PHONE_NUMBER_INVALID = "61298765432312"
     PHONE_NUMBER_INVALID2 = "44791112345623"
