@@ -44,6 +44,7 @@ LeadsModule:
   check_first_line_leads_no2: "//tbody[@id = 'listBody']/tr[2]/td[3]"
   edit_status: "//*[@id='leadstatus_mass_edit_check']/div[1]/div"
   mass_edit_leads: "//*[@id='list_action_buttons']/input[2]"
+  create_lead_module: "//td[@class='moduleName']//button[1]"
 CALoginPage:
   sign_up: "//button[contains(text(), 'Sign Up')]"
   check_box_accept: "//span[contains (text(), 'Terms and Conditions')]"
@@ -85,4 +86,5 @@ WebTraderPage:
   check_button: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[3]/div[1]/label"
   enter_stop_loss: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[4]/div[1]/custom-input/div/input"
   pips_bottom_panel_test: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[6]/div[1]/div/div"
-
+CRMHomePage:
+  leads_module_btn: "//span[@class='glyphicon glyphicon-Leads']"

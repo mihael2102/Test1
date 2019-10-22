@@ -1,0 +1,4 @@
+CRMHomePage:
+  leads_module_btn: "//i[@class='glyphicon glyphicon-Leads']"
+LeadsModule:
+  create_lead_module: "//button[@title='Create lead']"

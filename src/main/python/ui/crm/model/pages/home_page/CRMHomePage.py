@@ -68,7 +68,8 @@ class CRMHomePage(CRMBasePage):
         return CampaignsPage(self.driver)
 
     def open_lead_module(self):
-        task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Leads']")
+        task_module = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
+                                                ["leads_module_btn"])
         task_module.click()
         Logging().reportDebugStep(self, "Leads module was opened")
         return LeadsModule(self.driver)
