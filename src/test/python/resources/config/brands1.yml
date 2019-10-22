@@ -38,8 +38,8 @@ brands:
 #- name: jonesmutual
 #  config_file: jonesmutual.yml
 
-#- name: kontofx
-#  config_file: kontofx.yml
+- name: kontofx
+  config_file: kontofx.yml
 
 #- name: libramarkets
 #  config_file: libramarkets.yml
@@ -47,8 +47,8 @@ brands:
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
