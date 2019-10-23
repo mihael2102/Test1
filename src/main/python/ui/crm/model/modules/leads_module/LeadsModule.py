@@ -508,7 +508,8 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def open_create_lead_module(self):
-        task_module = super().wait_load_element("//td[@class='moduleName']//button[1]")
+        task_module = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
+                                                ["create_lead_module"])
         task_module.click()
         Logging().reportDebugStep(self, "Create leads module is opened")
         return CreateLeadsProfilePage(self.driver)

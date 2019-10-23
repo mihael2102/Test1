@@ -346,8 +346,8 @@ class LeadPrecondition(object):
             .open_lead_module() \
             .open_create_lead_module()\
 
-        if (global_var.current_brand_name == "safemarkets") or (global_var.current_brand_name == "uft") or \
-                (global_var.current_brand_name == "trade99"):
+        if global_var.current_brand_name == "uft" or \
+                global_var.current_brand_name == "trade99":
             CreateLeadsProfilePage(self.driver).perform_create_lead(
                 lead[LeadsModuleConstants.FIRST_NAME],
                 lead[LeadsModuleConstants.FIRST_LAST_NAME],
@@ -531,6 +531,33 @@ class LeadPrecondition(object):
                 lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
                 lead[LeadsModuleConstants.BRAND],
                 lead[LeadsModuleConstants.PO_BOX],
+                lead[LeadsModuleConstants.CITY],
+                lead[LeadsModuleConstants.FIRST_STATE])
+            return LeadPrecondition(self.driver, self.config)
+
+        elif global_var.current_brand_name == "newforexdev3":
+            CreateLeadsProfilePage(self.driver).perform_create_lead(
+                lead[LeadsModuleConstants.FIRST_NAME],
+                lead[LeadsModuleConstants.FIRST_LAST_NAME],
+                lead[LeadsModuleConstants.FIRST_MOBILE],
+                None,
+                lead[LeadsModuleConstants.EMAIL],
+                lead[LeadsModuleConstants.SECONDARY_EMAIL],
+                None,
+                lead[LeadsModuleConstants.PANDA_PARTNER],
+                lead[LeadsModuleConstants.FIRST_REFERRAL],
+                lead[LeadsModuleConstants.STREET],
+                lead[LeadsModuleConstants.POSTAL_CODE],
+                lead[LeadsModuleConstants.FIRST_COUNTRY],
+                lead[LeadsModuleConstants.FIRST_DESCRIPTION],
+                lead[LeadsModuleConstants.PHONE],
+                lead[LeadsModuleConstants.FIRST_TITTLE],
+                lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
+                lead[LeadsModuleConstants.FIRST_LEAD_STATUS],
+                lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
+                None,
+                None,
+                None,
                 lead[LeadsModuleConstants.CITY],
                 lead[LeadsModuleConstants.FIRST_STATE])
             return LeadPrecondition(self.driver, self.config)
