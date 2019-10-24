@@ -17,4 +17,4 @@ tests_config:
   class: CheckDragonTest
   tests:
     - test_api_dragon_valid_phone
-    - test_api_dragon_invalid_phone
+#    - test_api_dragon_invalid_phone
