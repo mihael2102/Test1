@@ -10,6 +10,14 @@ ClientsPage:
   client_country: "//span[@id='dtlview_Country']"
   client_citizenship: "//span[@id='dtlview_Citizenship']"
   citizenship: "//select[@id='citizenship']/option[contains(text(), '%s')]"
+ConvertLeadModule:
+  first_name_field: "//input[@name='account[FirstName]']"
+  last_name_field: "//input[@name='account[LastName]']"
+  email_field: "//input[@name='account[Email]']"
+  phone_field: "//input[@name='account[Phone]']"
+  referral_field: "//input[@name='account[Referral]']"
+  postal_code_field: "//input[@name='account[PostalCode]']"
+  city_field: "//input[@name='account[City]']"
 CreateLeadsProfilePage:
   first_name_field: "//input[@name='firstname']"
   last_name_field: "//input[@name='lastname']"
@@ -25,6 +33,10 @@ CreateLeadsProfilePage:
   city_field: "//input[@name='city']"
   description_field: "//textarea[@name='description']"
   state_field: "//input[@name='state']"
+  language_field: "//input[@name='cf_1092']"
+  fax_field: "//input[@name='fax']"
+  source_name_field: "//input[@name='sourcename']"
+  save_button: "//input[@title='Save [Alt+S]']"
 TasksPage:
   pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
   subject_input: "//tr[@class='tableFilters']//td[15]//input"
@@ -60,6 +72,10 @@ LeadsModule:
   edit_status: "//*[@id='leadstatus_mass_edit_check']/div[1]/div"
   mass_edit_leads: "//*[@id='list_action_buttons']/input[2]"
   create_lead_module: "//td[@class='moduleName']//button[1]"
+  email_field: "//tr[@name='customAdvanceSearch']//input[@name='tks_email']"
+  lead_no: "//a[contains(text(),'LEA')]"
+LeadViewInfo:
+  convert_lead_btn: "//a[contains(@onclick,'ConvertLead')]"
 CALoginPage:
   sign_up: "//button[contains(text(), 'Sign Up')]"
   check_box_accept: "//span[contains (text(), 'Terms and Conditions')]"

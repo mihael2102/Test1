@@ -123,9 +123,10 @@ class CreateLeadsProfilePage(CRMBasePage):
         return CreateLeadsProfilePage(self.driver)
 
     def set_fax(self, fax):
-        first_name_field = super().wait_load_element("//input[@name='fax']")
-        first_name_field.clear()
-        first_name_field.send_keys(fax)
+        fax_field = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
+                                              ["fax_field"])
+        fax_field.clear()
+        fax_field.send_keys(fax)
         Logging().reportDebugStep(self, "Fax was set: " + fax)
         return CreateLeadsProfilePage(self.driver)
 
@@ -146,9 +147,10 @@ class CreateLeadsProfilePage(CRMBasePage):
         return CreateLeadsProfilePage(self.driver)
 
     def set_language(self, language):
-        first_name_field = super().wait_load_element("//input[@name='cf_1092']")
-        first_name_field.clear()
-        first_name_field.send_keys(language)
+        language_field = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                   (self.__class__.__name__)["language_field"])
+        language_field.clear()
+        language_field.send_keys(language)
         Logging().reportDebugStep(self, "The language was set: " + language)
         return CreateLeadsProfilePage(self.driver)
 
@@ -192,7 +194,7 @@ class CreateLeadsProfilePage(CRMBasePage):
             lead_source_list = Select(self.driver.find_element(By.XPATH, "//select[@name='leadstatus']"))
             lead_source_list.select_by_visible_text(lead_status)
         except:
-            lead_source_item = super().wait_load_element("(//ul/li/a[@title='%s'])[2]" % lead_status)
+            lead_source_item = super().wait_load_element("//ul/li/a[@title='%s']" % lead_status)
             self.driver.execute_script("arguments[0].click();", lead_source_item)
         Logging().reportDebugStep(self, "The lead status was set: " + lead_status)
         return CreateLeadsProfilePage(self.driver)
@@ -202,16 +204,14 @@ class CreateLeadsProfilePage(CRMBasePage):
             assigned_to_list = Select(self.driver.find_element(By.XPATH, "//select[@name='assigned_user_id']"))
             assigned_to_list.select_by_visible_text(assigned_to)
         except:
-            assigned_to_btn = super().wait_load_element("//span[text()='Choose assigned']")
-            self.driver.execute_script("arguments[0].click();", assigned_to_btn)
-            assigned_to_field = super().wait_load_element("//input[@id='mat-input-114']")
-            assigned_to_field.clear()
-            assigned_to_field.send_keys(assigned_to)
+            assigned_to_item = super().wait_load_element("(//ul/li/a[@title='%s'])[1]" % assigned_to)
+            self.driver.execute_script("arguments[0].click();", assigned_to_item)
         Logging().reportDebugStep(self, "The assigned_to was set: " + assigned_to)
         return CreateLeadsProfilePage(self.driver)
 
     def set_source_name(self, source_name):
-        source_name_field = super().wait_load_element("//input[@name='sourcename']")
+        source_name_field = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                      (self.__class__.__name__)["source_name_field"])
         source_name_field.clear()
         source_name_field.send_keys(source_name)
         Logging().reportDebugStep(self, "The source name was set: " + source_name)
@@ -264,7 +264,8 @@ class CreateLeadsProfilePage(CRMBasePage):
         return CreateLeadsProfilePage(self.driver)
 
     def set_city(self, city):
-        city_field = super().wait_load_element("//input[@name='city']")
+        city_field = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
+                                               ["city_field"])
         city_field.clear()
         city_field.send_keys(city)
         Logging().reportDebugStep(self, "The city was set: " + city)
@@ -296,9 +297,15 @@ class CreateLeadsProfilePage(CRMBasePage):
         return CreateLeadsProfilePage(self.driver)
 
     def click_save(self):
-        save_button = self.driver.find_element(By.XPATH, "//input[@title='Save [Alt+S]']")
+        save_button = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+                                                (self.__class__.__name__)["save_button"])
         self.perform_scroll_up()
         save_button.click()
-        Logging().reportDebugStep(self, "The save button was clicked: ")
-        Logging().reportDebugStep(self, "The lead was created: ")
+        Logging().reportDebugStep(self, "The Save button was clicked")
+        return CreateLeadsProfilePage(self.driver)
+
+    def verify_success_message(self):
+        message = super().wait_load_element("//div[@class='dialog-content-success mat-dialog-content']/h5").text
+        assert "success" in message.lower()
+        Logging().reportDebugStep(self, "Create lead executed successfully")
         return CreateLeadsProfilePage(self.driver)

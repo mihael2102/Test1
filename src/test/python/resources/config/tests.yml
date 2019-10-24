@@ -43,11 +43,11 @@ tests_config:
 #    - test_check_email_popup
 #
 #################################### CONVERT LEAD ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 #
 #################################### CLIENTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
@@ -55,11 +55,11 @@ tests_config:
 #  tests:
 #    - test_make_searching_client_module   # Searches for a client
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
-  class: MassEditTestCRM
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
+#  class: MassEditTestCRM
+#  tests:
 #    - test_update_client_details
-    - test_clients_mass_edit
+#    - test_clients_mass_edit
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign
 #  class: MassAssignTestCRM

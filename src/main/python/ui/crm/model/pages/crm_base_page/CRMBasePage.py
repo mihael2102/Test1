@@ -91,8 +91,12 @@ class CRMBasePage(object):
         Logging().reportDebugStep(self, "Perform scroll into view of the element '%s'" % element.text)
 
     def click_ok(self):
-        button = self.wait_load_element("//button[contains(text(),'OK')]")
-        button.click()
+        try:
+            button = self.wait_load_element("//button[contains(text(),'OK')]")
+            button.click()
+        except:
+            button = self.wait_load_element("//span[contains(text(),'OK')]")
+            button.click()
         Logging().reportDebugStep(self, "The Ok button was clicked")
 
     def wait_crm_loading_to_finish(self):

@@ -535,15 +535,16 @@ class LeadPrecondition(object):
                 lead[LeadsModuleConstants.FIRST_STATE])
             return LeadPrecondition(self.driver, self.config)
 
-        elif global_var.current_brand_name == "newforexdev3":
+        elif global_var.current_brand_name == "newforexdev3" or \
+                global_var.current_brand_name == "newcrmui":
             CreateLeadsProfilePage(self.driver).perform_create_lead(
                 lead[LeadsModuleConstants.FIRST_NAME],
                 lead[LeadsModuleConstants.FIRST_LAST_NAME],
                 lead[LeadsModuleConstants.FIRST_MOBILE],
-                None,
+                lead[LeadsModuleConstants.FAX],
                 lead[LeadsModuleConstants.EMAIL],
                 lead[LeadsModuleConstants.SECONDARY_EMAIL],
-                None,
+                lead[LeadsModuleConstants.FIRST_LANGUAGE],
                 lead[LeadsModuleConstants.PANDA_PARTNER],
                 lead[LeadsModuleConstants.FIRST_REFERRAL],
                 lead[LeadsModuleConstants.STREET],
@@ -555,7 +556,7 @@ class LeadPrecondition(object):
                 lead[LeadsModuleConstants.FIRST_LEAD_SOURCE],
                 lead[LeadsModuleConstants.FIRST_LEAD_STATUS],
                 lead[LeadsModuleConstants.FIRST_ASSIGNED_TO],
-                None,
+                lead[LeadsModuleConstants.FIRST_SOURCE_NAME],
                 None,
                 None,
                 lead[LeadsModuleConstants.CITY],
