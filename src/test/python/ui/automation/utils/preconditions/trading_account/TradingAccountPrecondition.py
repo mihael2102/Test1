@@ -17,6 +17,7 @@ from time import sleep
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.logs.Loging import Logging
+from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 
 
 class TradingAccountPrecondition(object):
@@ -162,11 +163,21 @@ class TradingAccountPrecondition(object):
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url'))
+
+        ClientsPage(self.driver)\
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
-        crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+        if global_var.current_brand_name == "newcrmui":
+            MT4DropDown(self.driver)\
+                .open_mt4_module_newui(CRMConstants.CREATE_MT_USER)
+        else:
+            crm_client_profile\
+                .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
         if global_var.current_brand_name == "royal_cfds":
             MT4CreateAccountModule(self.driver) \

@@ -18,6 +18,10 @@ ConvertLeadModule:
   referral_field: "//input[@name='account[Referral]']"
   postal_code_field: "//input[@name='account[PostalCode]']"
   city_field: "//input[@name='account[City]']"
+  address_field: "//input[@name='account[Address]']"
+  password_field: "//input[@name='account[Password]']"
+  source_name_field: "//input[@name='account[SourceName]']"
+  convert_lead_btn: "//div[@class='modal-footer new-modal-footer']//button[contains(.,'Submit')]"
 CreateLeadsProfilePage:
   first_name_field: "//input[@name='firstname']"
   last_name_field: "//input[@name='lastname']"
@@ -52,6 +56,7 @@ ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
   i_confirm_checkbox: "//*[@name='confirm']"
   email: "//td[contains(text(),'Email')]//following-sibling::td[1]"
+  mt4_button: "//div[@class='mt4_act_box']"
 CRMClientDeposit:
   i_confirm_checkbox: "//*[@name='confirm']"
 AffiliatePage:

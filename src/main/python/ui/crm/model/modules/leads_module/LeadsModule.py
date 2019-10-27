@@ -887,7 +887,7 @@ class LeadsModule(CRMBasePage):
         return lead_assigned.text
 
     def open_personal_details_lead(self):
-        sleep(0.1)
+        sleep(0.3)
         lead_no = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
                                             ["lead_no"])
         try:

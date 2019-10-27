@@ -35,11 +35,22 @@ import xlrd
 
 
 class CRMHomePage(CRMBasePage):
+    '''
+            Open module from main menu
+    '''
+
+    def open_module_main_menu(self, module):
+        sleep(0.1)
+        module_item = super().wait_load_element("//span[text()=' %s ']" % module)
+        self.driver.execute_script("arguments[0].click();", module_item)
+        Logging().reportDebugStep(self, module + " module is opened")
+        self.wait_vtiger_loading_to_finish_custom(55)
+        self.wait_crm_loading_to_finish_tasks(55)
 
     ''' 
          Open the task module 
          return Help Desk instance
-     '''
+    '''
 
     def open_task_module(self):
         task_module = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Tasks']")
@@ -135,8 +146,12 @@ class CRMHomePage(CRMBasePage):
 
     def open_client_module(self):
         sleep(2)
-        home_page_element = self.wait_visible_of_element("//span[@class='glyphicon glyphicon-Clients']")
-        home_page_element.click()
+        try:
+            home_page_element = self.wait_visible_of_element("//span[@class='glyphicon glyphicon-Clients']")
+            home_page_element.click()
+        except:
+            clients = super().wait_load_element("//span[text()=' Clients ']")
+            self.driver.execute_script("arguments[0].click();", clients)
         self.wait_crm_loading_to_finish()
         Logging().reportDebugStep(self, "The Client module was opened")
         return ClientsPage(self.driver)

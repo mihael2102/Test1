@@ -92,7 +92,7 @@ class CRMBasePage(object):
 
     def click_ok(self):
         try:
-            button = self.wait_load_element("//button[contains(text(),'OK')]")
+            button = self.wait_load_element("//button[contains(text(),'OK')]", timeout=5)
             button.click()
         except:
             button = self.wait_load_element("//span[contains(text(),'OK')]")

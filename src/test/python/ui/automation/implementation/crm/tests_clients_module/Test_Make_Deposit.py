@@ -30,6 +30,9 @@ class DepositTestCRM(BaseTest):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url'))
+
         # ADD LIVE ACCOUNT IN CRM
         # Open clients module. Find created client by email and open his profile
         CRMHomePage(self.driver)\
@@ -39,10 +42,15 @@ class DepositTestCRM(BaseTest):
 
         # Create LIVE account for client using MT4 Actions
         crm_client_profile = ClientProfilePage(self.driver)
-        crm_client_profile.check_create_mt_user_btn()
-        crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+        if global_var.current_brand_name == "newcrmui":
+            MT4DropDown(self.driver) \
+                .open_mt4_module_newui(CRMConstants.CREATE_MT_USER)
+        else:
+            crm_client_profile.check_create_mt_user_btn()
+            crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-        if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "newforexstaging"):
+        if global_var.current_brand_name == "royal_cfds" or \
+                global_var.current_brand_name == "newforexstaging":
             MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),

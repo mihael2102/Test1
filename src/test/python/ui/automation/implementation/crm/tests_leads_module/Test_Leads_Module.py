@@ -173,8 +173,7 @@ class LeadModuleTest(BaseTest):
                 self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
                 self.client1[LeadsModuleConstants.FIRST_REFERRAL],
                 self.client1[LeadsModuleConstants.BRAND],
-                self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+                self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME])
 
         else:
             ConvertLeadModule(self.driver).perform_convert_lead(
@@ -195,18 +194,25 @@ class LeadModuleTest(BaseTest):
                 self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                 self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
-        convert_verified = False
-        try:
-            confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
-            assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
-            lead_view_profile_page.click_ok()
-            convert_verified = True
-        except (TimeoutException, AssertionError, NoSuchElementException):
-            Logging().reportDebugStep(self, "Lead convert message was not picked up")
-        if not convert_verified:
-            lead_detail_view = LeadDetailViewInfo(self.driver)
-            lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
-            self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
+        if global_var.current_brand_name == "newcrmui":
+            CreateLeadsProfilePage(self.driver)\
+                .verify_success_message()
+            CRMHomePage(self.driver)\
+                .click_ok()
+
+        if global_var.current_brand_name != "newcrmui":
+            convert_verified = False
+            try:
+                confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
+                assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+                lead_view_profile_page.click_ok()
+                convert_verified = True
+            except (TimeoutException, AssertionError, NoSuchElementException):
+                Logging().reportDebugStep(self, "Lead convert message was not picked up")
+            if not convert_verified:
+                lead_detail_view = LeadDetailViewInfo(self.driver)
+                lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
+                self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
 
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)

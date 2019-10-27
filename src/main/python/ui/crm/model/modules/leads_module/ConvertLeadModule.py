@@ -55,10 +55,7 @@ class ConvertLeadModule(CRMBasePage):
         self.set_source_name(source_name)
         if referral:
             self.set_referral(referral)
-        if brand:
-            self.set_brand(brand)
-        if phone_area_code:
-            self.set_area_code(phone_area_code)
+        self.set_brand(brand)
         sleep(1)
         self.click_submit()
 
@@ -173,9 +170,10 @@ class ConvertLeadModule(CRMBasePage):
 
     def set_source_name(self, source_name):
         try:
-            description_field = super().wait_load_element("//input[@name='account[SourceName]']", 1)
-            description_field.clear()
-            description_field.send_keys(source_name)
+            source_name_field = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                          (self.__class__.__name__)["source_name_field"])
+            source_name_field.clear()
+            source_name_field.send_keys(source_name)
             Logging().reportDebugStep(self, "The state was set: " + source_name)
         except (NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Source input was not found")
@@ -217,29 +215,35 @@ class ConvertLeadModule(CRMBasePage):
         return ConvertLeadModule(self.driver)
 
     def set_address(self, address):
-        address_field = super().wait_load_element("//input[@name='account[Address]']")
+        address_field = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                  (self.__class__.__name__)["address_field"])
         address_field.clear()
         address_field.send_keys(address)
         Logging().reportDebugStep(self, "The address was set: " + address)
         return ConvertLeadModule(self.driver)
 
     def set_password(self, password):
-        password_field = super().wait_load_element("//input[@name='account[Password]']")
+        password_field = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                   (self.__class__.__name__)["password_field"])
         password_field.clear()
         password_field.send_keys(password)
         Logging().reportDebugStep(self, "The password was set: " + password)
         return ConvertLeadModule(self.driver)
 
     def set_currency(self, currency):
-        country_list = Select(self.driver.find_element(By.XPATH, "//select[@name='account[Currency]']"))
-        country_list.select_by_visible_text(currency)
+        try:
+            currency_list = Select(self.driver.find_element(By.XPATH, "//select[@name='account[Currency]']"))
+            currency_list.select_by_visible_text(currency)
+        except:
+            currency_item = super().wait_load_element("//span[text()='%s']" % currency)
+            self.driver.execute_script("arguments[0].click();", currency_item)
         Logging().reportDebugStep(self, "The currency was set: " + currency)
         return ConvertLeadModule(self.driver)
 
     def click_submit(self):
-        task_module = super().wait_load_element("//div[@class='modal-footer new-modal-footer']"
-                                                "//button[contains(.,'Submit')]")
-        task_module.click()
+        convert_lead_btn = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                     (self.__class__.__name__)["convert_lead_btn"])
+        convert_lead_btn.click()
         Logging().reportDebugStep(self, "Click submit")
         return ConvertLeadModule(self.driver)
 
