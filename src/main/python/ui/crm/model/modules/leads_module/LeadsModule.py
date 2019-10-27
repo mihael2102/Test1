@@ -676,6 +676,7 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def enter_email(self, email):
+        sleep(0.2)
         email_field = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
                                                 ["email_field"])
         email_field.clear()

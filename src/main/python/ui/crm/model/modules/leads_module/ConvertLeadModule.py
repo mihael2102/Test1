@@ -45,7 +45,7 @@ class ConvertLeadModule(CRMBasePage):
         self.set_email(email)
         self.set_phone(phone)
         self.set_birth_day(day, month, year)
-        self.set_citizenship(citizenship)
+        self.set_citizenship_new_ui(citizenship)
         self.set_address(address)
         self.set_postal_code(postal_code)
         self.set_city(city)
@@ -211,7 +211,10 @@ class ConvertLeadModule(CRMBasePage):
         select_month.click()
         select_day = super().wait_load_element("(//div[contains(text(),'%s')])[1]" % day)
         select_day.click()
-
+        set_btn = super().wait_load_element("(//span[text()='Set'])[1]")
+        set_btn.click()
+        Logging().reportDebugStep(self, "The birthday was set")
+        return ConvertLeadModule(self.driver)
 
     def set_address(self, address):
         address_field = super().wait_load_element("//input[@name='account[Address]']")
@@ -247,4 +250,10 @@ class ConvertLeadModule(CRMBasePage):
             Logging().reportDebugStep(self, "The citizenship was set: " + citizenship)
         except NoSuchElementException:
             Logging().reportDebugStep(self, "Citizenship input was not found")
+        return ConvertLeadModule(self.driver)
+
+    def set_citizenship_new_ui(self, citizenship):
+        item = super().wait_load_element("//span[text()='%s']" % citizenship)
+        self.driver.execute_script("arguments[0].click();", item)
+        Logging().reportDebugStep(self, "The citizenship was set: " + citizenship)
         return ConvertLeadModule(self.driver)
