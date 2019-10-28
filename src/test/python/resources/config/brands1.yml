@@ -53,8 +53,8 @@ brands:
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
 
-- name: newcrmui
-  config_file: newcrmui.yml
+#- name: newcrmui
+#  config_file: newcrmui.yml
 
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
@@ -62,8 +62,8 @@ brands:
 #- name: pmt247
 #  config_file: pmt247.yml
 
-#- name: ptbanc
-#  config_file: ptbanc.yml
+- name: ptbanc
+  config_file: ptbanc.yml
 
 #- name: q8
 #  config_file: q8.yml
