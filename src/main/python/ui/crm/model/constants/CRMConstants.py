@@ -7,7 +7,7 @@ import string
 
 class CRMConstants(object):
     brand = global_var.current_brand_name
-    YES = "Yes"
+    YES = "yes"
     ASSET_M = "BTCUSD.m"
     ASSET = "BTCUSD"
     VOLUME_FUNDS = "1"
@@ -136,7 +136,9 @@ class CRMConstants(object):
     WITHDRAW2 = "4"
     DEPOSIT = "6"
     DEPOSIT2 = "3"
+    CREATE_DEPOSIT = "Deposit"
     CREATE_MT4_USER = "1"
+    CREATE_MT_USER = "Create MT User"
     CREATE_MT4_WITHDRAW = "7"
     UPDATE_MT4_USER = "2"
     AMOUNT_DEPOSIT = "10.00"
