@@ -205,9 +205,12 @@ class CRMHomePage(CRMBasePage):
         return UserManagementPage(self.driver)
 
     def select_dashboard_module_more_list(self, module):
-        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
-        module_element.click()
-        Logging().reportDebugStep(self, "Dashboard module was opened")
+        try:
+            module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+            module_element.click()
+            Logging().reportDebugStep(self, "Dashboard module was opened")
+        except:
+            Logging().reportDebugStep(self, "Dashboard module does not exist")
         return DashboardPage(self.driver)
 
     def select_leaderboard_module_more_list(self, module):

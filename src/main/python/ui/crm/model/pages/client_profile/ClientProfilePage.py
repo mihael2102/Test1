@@ -558,9 +558,12 @@ class ClientProfilePage(CRMBasePage):
 
     def get_confirm_message(self):
         sleep(0.2)
-        confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']", timeout=35)
-        Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
-        return confirm_message.text
+        try:
+            confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']", timeout=35)
+            Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
+            return confirm_message.text
+        except:
+            Logging().reportDebugStep(self, "Message was not picked up")
 
     def refresh_page(self):
         super().refresh_page()

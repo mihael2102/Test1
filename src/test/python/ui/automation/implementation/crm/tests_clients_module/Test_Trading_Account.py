@@ -69,8 +69,10 @@ class TradingAccountCrmTest(BaseTest):
             .add_demo_account_from_crm()
 
         # Close pop up and update popup
-        ClientProfilePage(self.driver).close_popup_new_trading_account()
-        TradingAccountPrecondition(self.driver, self.config).update_demo_account_from_crm()
+        ClientProfilePage(self.driver)\
+            .close_popup_new_trading_account()
+        TradingAccountPrecondition(self.driver, self.config)\
+            .update_demo_account_from_crm()
 
         confirmation_message = ClientProfilePage(self.driver).get_confirm_message()
         if global_var.current_brand_name == "trade99":

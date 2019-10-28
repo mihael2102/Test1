@@ -138,13 +138,18 @@ class MT4CreateAccountModule(CRMBasePage):
         return self
 
     def select_leverage(self, leverage):
-        drop_down = self.wait_element_to_be_clickable("//select[@name='leverage']", timeout=5)
-        drop_down.click()
-        leverage_selection = self.driver.find_element(By.XPATH, "//select[@name='leverage']//"
-                                                                "following-sibling::*[contains(.,'%s')]" % leverage)
-        leverage_selection.click()
-        Logging().reportDebugStep(self, "Trading account leverage was selected: " + leverage)
-        return self
+        try:
+            super().wait_load_element("//select[@id='leverage' and @aria-required='true']", timeout=15)
+            Logging().reportDebugStep(self, "Leverage can't be selected: readonly")
+            return self
+        except:
+            drop_down = self.wait_element_to_be_clickable("//select[@name='leverage']", timeout=5)
+            drop_down.click()
+            leverage_selection = self.driver.find_element(By.XPATH, "//select[@name='leverage']//"
+                                                                    "following-sibling::*[contains(.,'%s')]" % leverage)
+            leverage_selection.click()
+            Logging().reportDebugStep(self, "Trading account leverage was selected: " + leverage)
+            return self
 
     def select_leverage_new_ui(self, leverage):
         sleep(0.2)
