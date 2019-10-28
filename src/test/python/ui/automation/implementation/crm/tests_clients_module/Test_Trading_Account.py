@@ -17,15 +17,17 @@ class TradingAccountCrmTest(BaseTest):
     def test_crm_open_trading_account(self):
         TradingAccountPrecondition(self.driver, self.config) \
             .add_demo_account_from_crm()
-        if global_var.current_brand_name == "newcrmui":
-            MT4CreateAccountModule(self.driver) \
-                .verify_success_message()
-            CRMHomePage(self.driver) \
-                .click_ok()
-        else:
-            confirmation_message = ClientProfilePage(self.driver)\
-                .get_confirm_message()
-            assert CRMConstants.MSG_CREATED_SUCCESFULLY in confirmation_message
+        confirmation_message = ClientProfilePage(self.driver)\
+            .get_confirm_message()
+        assert CRMConstants.MSG_CREATED_SUCCESFULLY in confirmation_message
+
+    def test_crm_open_trading_account_new_ui(self):
+        TradingAccountPrecondition(self.driver, self.config) \
+            .add_demo_account_from_crm_new_ui()
+        MT4CreateAccountModule(self.driver) \
+            .verify_success_message()
+        CRMHomePage(self.driver) \
+            .click_ok()
 
     def test_crm_open_live_trading_account(self):
         TradingAccountPrecondition(self.driver, self.config) \

@@ -329,3 +329,47 @@ class LeadModuleTest(BaseTest):
         self.assertEqual(city, lead_data[LeadsModuleConstants.CITY])
         self.assertEqual(state, lead_data[LeadsModuleConstants.FIRST_STATE])
         return True
+
+    def test_convert_lead_new_ui(self):
+        LeadPrecondition(self.driver, self.config) \
+            .create_lead(self.lead1)
+        lead_view_profile_page = LeadViewInfo(self.driver)
+
+        CreateLeadsProfilePage(self.driver) \
+            .verify_success_message()
+        CRMHomePage(self.driver) \
+            .click_ok()
+        LeadsModule(self.driver) \
+            .select_filter_new_ui(self.config.get_data_lead_info(
+                    LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME)) \
+            .enter_email(self.config.get_data_lead_info(
+                    LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.EMAIL)) \
+            .open_personal_details_lead()
+
+        lead_view_profile_page \
+            .open_convert_lead_module() \
+
+        ConvertLeadModule(self.driver)\
+            .perform_convert_lead_new_ui(
+                self.client1[LeadsModuleConstants.FIRST_NAME],
+                self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                self.client1[LeadsModuleConstants.EMAIL],
+                self.client1[LeadsModuleConstants.PHONE],
+                self.client1[LeadsModuleConstants.DAY],
+                self.client1[LeadsModuleConstants.MONTH],
+                self.client1[LeadsModuleConstants.YEAR],
+                self.client1[LeadsModuleConstants.CITIZENSHIP],
+                self.client1[LeadsModuleConstants.STREET],
+                self.client1[LeadsModuleConstants.POSTAL_CODE],
+                self.client1[LeadsModuleConstants.CITY],
+                self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+                self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                self.client1[LeadsModuleConstants.BRAND],
+                self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME])
+
+        CreateLeadsProfilePage(self.driver) \
+            .verify_success_message()
+        CRMHomePage(self.driver) \
+            .click_ok()

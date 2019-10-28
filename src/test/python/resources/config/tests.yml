@@ -107,7 +107,7 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
   class: DepositTestCRM
   tests:
-    - test_make_deposit_crm  # make a deposit into a trading account from the crm
+    - test_make_deposit_crm  # create live mt account and make deposit in crm
 #    - test_make_deposit_for_client_crm
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM

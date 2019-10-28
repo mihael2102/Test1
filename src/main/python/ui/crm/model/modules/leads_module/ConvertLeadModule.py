@@ -243,8 +243,11 @@ class ConvertLeadModule(CRMBasePage):
     def click_submit(self):
         convert_lead_btn = super().wait_load_element(global_var.get_xpath_for_current_brand_element
                                                      (self.__class__.__name__)["convert_lead_btn"])
-        convert_lead_btn.click()
-        Logging().reportDebugStep(self, "Click submit")
+        try:
+            convert_lead_btn.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", convert_lead_btn)
+        Logging().reportDebugStep(self, "Click Submit")
         return ConvertLeadModule(self.driver)
 
     def set_citizenship(self, citizenship):

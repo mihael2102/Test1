@@ -51,14 +51,18 @@ class ClientsPage(CRMBasePage):
     def select_filter(self, test_filter):
         sleep(5)
         try:
-            try:
-                select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
-            except:
-                select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'Test clients')]")
-            self.driver.execute_script("arguments[0].click();", select_test_filter)
+            select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
         except:
-            filter_cl = super().wait_load_element("//span[contains(text(),'%s')]" % test_filter)
-            self.driver.execute_script("arguments[0].click();", filter_cl)
+            select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'Test clients')]")
+        self.driver.execute_script("arguments[0].click();", select_test_filter)
+        Logging().reportDebugStep(self, "Select " + test_filter + " filter")
+        self.wait_crm_loading_to_finish()
+        return ClientsPage(self.driver)
+
+    def select_filter_new_ui(self, test_filter):
+        sleep(5)
+        filter_cl = super().wait_load_element("//span[contains(text(),'%s')]" % test_filter)
+        self.driver.execute_script("arguments[0].click();", filter_cl)
         Logging().reportDebugStep(self, "Select " + test_filter + " filter")
         self.wait_crm_loading_to_finish()
         return ClientsPage(self.driver)
@@ -90,31 +94,33 @@ class ClientsPage(CRMBasePage):
 
     def find_client_by_email(self, email):
         sleep(2)
-        try:
-            email_field = super().wait_load_element("//input[@id='tks_email1']")
-            email_field.send_keys(email)
-            Logging().reportDebugStep(self, "Set the client's email in the email field is: " + email)
-            search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
-            search_button.click()
-            Logging().reportDebugStep(self, "Click the Search button")
-            sleep(2)
-            self.wait_crm_loading_to_finish()
-            client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC') and contains(@title,'ACC')]")
-            sleep(1)
-            self.driver.execute_script("arguments[0].click();", client_id)
-            sleep(1)
-            Logging().reportDebugStep(self, "Click user email: " + email)
-        except:
-            email_field = super().wait_load_element("(//input[@placeholder='Email'])[1]")
-            email_field.send_keys(email)
-            Logging().reportDebugStep(self, "Set the client's email in the email field is: " + email)
-            sleep(2)
-            self.wait_crm_loading_to_finish()
-            client_id = self.driver.find_element(By.XPATH, "//span/span[contains(text(), 'ACC')]")
-            sleep(1)
-            self.driver.execute_script("arguments[0].click();", client_id)
-            sleep(1)
-            Logging().reportDebugStep(self, "Click user email: " + email)
+        email_field = super().wait_load_element("//input[@id='tks_email1']")
+        email_field.send_keys(email)
+        Logging().reportDebugStep(self, "Set the client's email in the email field is: " + email)
+        search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
+        search_button.click()
+        Logging().reportDebugStep(self, "Click the Search button")
+        sleep(2)
+        self.wait_crm_loading_to_finish()
+        client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC') and contains(@title,'ACC')]")
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", client_id)
+        sleep(1)
+        Logging().reportDebugStep(self, "Click user email: " + email)
+        return ClientProfilePage(self.driver)
+
+    def find_client_by_email_new_ui(self, email):
+        sleep(2)
+        email_field = super().wait_load_element("(//input[@placeholder='Email'])[1]")
+        email_field.send_keys(email)
+        Logging().reportDebugStep(self, "Set the client's email in the email field is: " + email)
+        sleep(2)
+        self.wait_crm_loading_to_finish()
+        client_id = self.driver.find_element(By.XPATH, "//span/span[contains(text(), 'ACC')]")
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", client_id)
+        sleep(1)
+        Logging().reportDebugStep(self, "Click user email: " + email)
         return ClientProfilePage(self.driver)
 
     def find_first_client_by_email(self, email):

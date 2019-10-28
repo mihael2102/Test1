@@ -146,12 +146,16 @@ class CRMHomePage(CRMBasePage):
 
     def open_client_module(self):
         sleep(2)
-        try:
-            home_page_element = self.wait_visible_of_element("//span[@class='glyphicon glyphicon-Clients']")
-            home_page_element.click()
-        except:
-            clients = super().wait_load_element("//span[text()=' Clients ']")
-            self.driver.execute_script("arguments[0].click();", clients)
+        home_page_element = self.wait_visible_of_element("//span[@class='glyphicon glyphicon-Clients']")
+        home_page_element.click()
+        self.wait_crm_loading_to_finish()
+        Logging().reportDebugStep(self, "The Client module was opened")
+        return ClientsPage(self.driver)
+
+    def open_client_module_new_ui(self):
+        sleep(2)
+        clients = super().wait_load_element("//span[text()=' Clients ']")
+        self.driver.execute_script("arguments[0].click();", clients)
         self.wait_crm_loading_to_finish()
         Logging().reportDebugStep(self, "The Client module was opened")
         return ClientsPage(self.driver)

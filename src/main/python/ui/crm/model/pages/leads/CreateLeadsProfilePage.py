@@ -305,6 +305,7 @@ class CreateLeadsProfilePage(CRMBasePage):
         return CreateLeadsProfilePage(self.driver)
 
     def verify_success_message(self):
+        sleep(0.1)
         message = super().wait_load_element("//div[@class='dialog-content-success mat-dialog-content']").text
         assert "success" in message.lower()
         Logging().reportDebugStep(self, "Get message: " + message)
