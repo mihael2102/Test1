@@ -79,7 +79,8 @@ class UserManagementPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
-        CRMHomePage(self.driver).select_user_management()
+        CRMHomePage(self.driver)\
+            .select_user_management()
         UserManagementPage(self.driver)\
             .open_crm_users_tab() \
             .click_more_icon()\
@@ -91,3 +92,24 @@ class UserManagementPrecondition(object):
             .click_delete_icon() \
             .click_delete_btn() \
             .check_data_not_found()
+
+    def login_as(self):
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        sleep(3)
+
+        ' Go to User Management and make Login As DragonTest user: '
+        CRMHomePage(self.driver)\
+            .select_user_management()
+        UserManagementPage(self.driver) \
+            .open_crm_users_tab() \
+            .click_remove_filter_btn() \
+            .search_by_username(UserInformation.DRAGON_USER_NAME) \
+            .check_user_found(UserInformation.DRAGON_USER_NAME) \
+            .click_more_icon() \
+            .click_login_as_icon()\
+            .click_logout_login_as_session(UserInformation.DRAGON_NAME)\
+            .verify_current_user_name(UserInformation.PANDA_AUTO_NAME)

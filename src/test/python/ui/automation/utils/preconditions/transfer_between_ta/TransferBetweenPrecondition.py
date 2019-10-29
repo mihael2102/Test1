@@ -84,7 +84,7 @@ class TransferBetweenPrecondition(object):
 
         try:
             assert confirmation_message == CRMConstants.TRANSFER_BETWEEN_TA_MESSAGE
-        except (NoSuchElementException, TimeoutException):
+        except (NoSuchElementException, TimeoutException, AssertionError):
             pass
 
         amount_transfer = crm_client_profile.click_ok() \

@@ -50,26 +50,20 @@ class ClientsPage(CRMBasePage):
 
     def select_filter(self, test_filter):
         sleep(5)
-        drop_down_filter = super().wait_load_element("//span[@class='filter-option pull-left']")
-        try:
-            drop_down_filter.click()
-        except:
-            self.driver.execute_script("arguments[0].scrollIntoView();", drop_down_filter)
-            self.driver.execute_script("arguments[0].click();", drop_down_filter)
-        Logging().reportDebugStep(self, "Click the drop down Filter")
-        field_found = self.driver.find_element(By.XPATH, "//input[@class='input-block-level form-control']")
-        field_found.clear()
-        field_found.send_keys(test_filter)
-        Logging().reportDebugStep(self, "The field found is: " + test_filter)
         try:
             select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
         except:
             select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'Test clients')]")
-        try:
-            select_test_filter.click()
-        except:
-            self.driver.execute_script("arguments[0].click();", select_test_filter)
-        Logging().reportDebugStep(self, "Click the selected filter")
+        self.driver.execute_script("arguments[0].click();", select_test_filter)
+        Logging().reportDebugStep(self, "Select " + test_filter + " filter")
+        self.wait_crm_loading_to_finish()
+        return ClientsPage(self.driver)
+
+    def select_filter_new_ui(self, test_filter):
+        sleep(5)
+        filter_cl = super().wait_load_element("//span[contains(text(),'%s')]" % test_filter)
+        self.driver.execute_script("arguments[0].click();", filter_cl)
+        Logging().reportDebugStep(self, "Select " + test_filter + " filter")
         self.wait_crm_loading_to_finish()
         return ClientsPage(self.driver)
 
@@ -102,13 +96,27 @@ class ClientsPage(CRMBasePage):
         sleep(2)
         email_field = super().wait_load_element("//input[@id='tks_email1']")
         email_field.send_keys(email)
-        Logging().reportDebugStep(self, "Setting the user's email in the email field is: " + email)
+        Logging().reportDebugStep(self, "Set the client's email in the email field is: " + email)
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
         Logging().reportDebugStep(self, "Click the Search button")
         sleep(2)
         self.wait_crm_loading_to_finish()
         client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC') and contains(@title,'ACC')]")
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", client_id)
+        sleep(1)
+        Logging().reportDebugStep(self, "Click user email: " + email)
+        return ClientProfilePage(self.driver)
+
+    def find_client_by_email_new_ui(self, email):
+        sleep(2)
+        email_field = super().wait_load_element("(//input[@placeholder='Email'])[1]")
+        email_field.send_keys(email)
+        Logging().reportDebugStep(self, "Set the client's email in the email field is: " + email)
+        sleep(2)
+        self.wait_crm_loading_to_finish()
+        client_id = self.driver.find_element(By.XPATH, "//span/span[contains(text(), 'ACC')]")
         sleep(1)
         self.driver.execute_script("arguments[0].click();", client_id)
         sleep(1)

@@ -19,3 +19,5 @@ class UserInformation(object):
     FIRST_LAST_NAME = "first_last_name"
     PASSWORD = "Test12345"
     DRAGON_USER_NAME = "DragonTest"
+    DRAGON_NAME = "Dragon Test"
+    PANDA_AUTO_NAME = "Panda Auto"

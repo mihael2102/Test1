@@ -17,15 +17,7 @@ from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import Affiliat
 class AffiliateModule(BaseTest):
 
     def test_create_affiliate(self):
-        try:
-            AffiliatesPrecondition(self.driver, self.config).create_affiliate()
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            try:
-                AffiliatePage(self.driver).Sign_Out()
-                AffiliatesPrecondition(self.driver, self.config).create_affiliate()
-            except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-                AffiliatePage(self.driver).Sign_Out()
-                AffiliatesPrecondition(self.driver, self.config).create_affiliate()
+        AffiliatesPrecondition(self.driver, self.config).create_affiliate()
 
     def test_edit_affiliate(self):
         AffiliatesPrecondition(self.driver).create_affiliate()

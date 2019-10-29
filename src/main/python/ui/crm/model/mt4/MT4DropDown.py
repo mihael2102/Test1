@@ -38,3 +38,12 @@ class MT4DropDown(CRMBasePage):
         except (TimeoutException, NoSuchElementException):
             pass
             Logging().reportDebugStep(self, "Module does not exist")
+
+    def open_mt4_module_newui(self, module):
+        try:
+            sleep(0.2)
+            module_item = super().wait_load_element("//div[text()=' %s ']" % module)
+            self.driver.execute_script("arguments[0].click();", module_item)
+            Logging().reportDebugStep(self, module + " module is opened")
+        except:
+            Logging().reportDebugStep(self, "Module does not exist")
