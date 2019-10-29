@@ -35,11 +35,22 @@ import xlrd
 
 
 class CRMHomePage(CRMBasePage):
+    '''
+            Open module from main menu
+    '''
+
+    def open_module_main_menu(self, module):
+        sleep(0.1)
+        module_item = super().wait_load_element("//span[text()=' %s ']" % module)
+        self.driver.execute_script("arguments[0].click();", module_item)
+        Logging().reportDebugStep(self, module + " module is opened")
+        self.wait_vtiger_loading_to_finish_custom(55)
+        self.wait_crm_loading_to_finish_tasks(55)
 
     ''' 
          Open the task module 
          return Help Desk instance
-     '''
+    '''
 
     def open_task_module(self):
         task_module = super().wait_element_to_be_clickable("//span[@class='glyphicon glyphicon-Tasks']")
@@ -68,7 +79,8 @@ class CRMHomePage(CRMBasePage):
         return CampaignsPage(self.driver)
 
     def open_lead_module(self):
-        task_module = super().wait_load_element("//span[@class='glyphicon glyphicon-Leads']")
+        task_module = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
+                                                ["leads_module_btn"])
         task_module.click()
         Logging().reportDebugStep(self, "Leads module was opened")
         return LeadsModule(self.driver)
@@ -140,6 +152,14 @@ class CRMHomePage(CRMBasePage):
         Logging().reportDebugStep(self, "The Client module was opened")
         return ClientsPage(self.driver)
 
+    def open_client_module_new_ui(self):
+        sleep(2)
+        clients = super().wait_load_element("//span[text()=' Clients ']")
+        self.driver.execute_script("arguments[0].click();", clients)
+        self.wait_crm_loading_to_finish()
+        Logging().reportDebugStep(self, "The Client module was opened")
+        return ClientsPage(self.driver)
+
     def open_financial_transactions_module(self):
         home_page_element = super().wait_element_to_be_clickable(
             "//span[@class='glyphicon glyphicon-Financial Transactions']")
@@ -185,9 +205,12 @@ class CRMHomePage(CRMBasePage):
         return UserManagementPage(self.driver)
 
     def select_dashboard_module_more_list(self, module):
-        module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
-        module_element.click()
-        Logging().reportDebugStep(self, "Dashboard module was opened")
+        try:
+            module_element = super().wait_element_to_be_clickable("//a[@name='%s']" % module)
+            module_element.click()
+            Logging().reportDebugStep(self, "Dashboard module was opened")
+        except:
+            Logging().reportDebugStep(self, "Dashboard module does not exist")
         return DashboardPage(self.driver)
 
     def select_leaderboard_module_more_list(self, module):

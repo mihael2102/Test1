@@ -97,4 +97,7 @@ class LeadsModuleConstants(object):
     MESSAGE_MASS_EDIT_SUCCESSFULY = "Successfuly updated"
     FIRST_CONVERT_LEAD = "FirstConvertLead"
     BIRTHDAY = "birthday"
+    DAY = "day"
+    MONTH = "month"
+    YEAR = "year"
     CITIZENSHIP = "citizenship"

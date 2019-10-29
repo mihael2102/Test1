@@ -89,6 +89,9 @@ client_1:
   phone: "7777777"
   phone_area_code: 111
   birthday: "1971-01-01"
+  day: "1"
+  month: "JAN"
+  year: "1971"
   country: "Germany"
   first_country: "Germany"
   street: "My street"

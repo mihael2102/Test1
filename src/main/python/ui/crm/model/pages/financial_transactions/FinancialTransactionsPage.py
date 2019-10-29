@@ -233,6 +233,7 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__fill_search_field_with_value(transaction_id)
         self.__click_search_now_button()
         sleep(2)
+        self.wait_vtiger_loading_to_finish_custom(35)
         Logging().reportDebugStep(self, "Searching for transaction ID: %s was performed" % transaction_id)
         return FinancialTransactionsPage(self.driver)
 
