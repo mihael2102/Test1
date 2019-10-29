@@ -203,7 +203,7 @@ class DragonPrecondition(object):
             .open_edit_lead_profile()\
             .get_phone_edit_page()
 
-        assert DragonConstants.PHONE_NUMBER_HIDDEN3 in phone_edit_page
+        assert DragonConstants.PHONE_NUMBER_INVALID in phone_edit_page
 
         ' Update phone to another invalid number and verify on details view page: '
         EditLeadsProfilePage(self.driver)\

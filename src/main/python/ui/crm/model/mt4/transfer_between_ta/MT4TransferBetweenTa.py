@@ -83,6 +83,9 @@ class MT4TransferBetweenTa(CRMBasePage):
     def create_transfer(self):
         sleep(1)
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
-        create_button.click()
+        try:
+            self.driver.execute_script("arguments[0].click();", create_button)
+        except:
+            create_button.click()
         Logging().reportDebugStep(self, "The Create button was clicked")
         return ClientProfilePage(self.driver)

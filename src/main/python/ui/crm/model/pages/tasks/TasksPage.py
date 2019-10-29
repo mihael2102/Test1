@@ -94,7 +94,7 @@ class TasksPage(CRMBasePage):
         click_event_type = super().wait_load_element("//a[contains(text(), 'Event Type')]")
         self.driver.execute_script("arguments[0].click();", click_event_type)
         sleep(1)
-        self.wait_crm_loading_to_finish_tasks(55)
+        self.wait_crm_loading_to_finish_tasks(85)
         Logging().reportDebugStep(self, "Click on Event Type")
         return TasksPage(self.driver)
 
