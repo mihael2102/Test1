@@ -42,7 +42,8 @@ class DepositTestCRM(BaseTest):
         crm_client_profile.check_create_mt_user_btn()
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-        if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "newforexstaging"):
+        if global_var.current_brand_name == "royal_cfds" or \
+                global_var.current_brand_name == "newforexstaging":
             MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
@@ -106,6 +107,91 @@ class DepositTestCRM(BaseTest):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
                 .click_ok()
+
+        # Get account number to make deposit in future
+        account_number = ClientProfilePage(self.driver) \
+            .perform_scroll_down() \
+            .open_trading_accounts_tab() \
+            .get_client_account()
+
+        # Make deposit for account number using MT4 Actions
+        crm_client_profile.perform_scroll_up()
+        if global_var.current_brand_name == "trade99":
+            crm_client_profile.open_mt4_actions(CRMConstants.DEPOSIT2)
+        else:
+            crm_client_profile.open_mt4_actions(CRMConstants.DEPOSIT)
+
+        if global_var.current_brand_name == "trade99":
+            MT4DepositModule(self.driver)\
+                .make_deposit(account_number,
+                              CRMConstants.AMOUNT_DEPOSIT_BTC,
+                              CRMConstants.PAYMENT_METHOD_DEPOSIT,
+                              CRMConstants.STATUS_DEPOSIT,
+                              CRMConstants.DESCRIPTION_DEPOSIT)
+        else:
+            MT4DepositModule(self.driver)\
+                .make_deposit(account_number,
+                              CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
+                              CRMConstants.PAYMENT_METHOD_DEPOSIT,
+                              CRMConstants.STATUS_DEPOSIT,
+                              CRMConstants.DESCRIPTION_DEPOSIT)
+
+        # Check confirmation message
+        confirmation_message = crm_client_profile.get_confirm_message()
+        try:
+            self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY)
+        except:
+            self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY_2)
+
+        # Close popup
+        crm_client_profile\
+            .click_ok()\
+            .refresh_page()
+
+        if global_var.current_brand_name == "trade99":
+            deposit_amount_text = crm_client_profile\
+                .click_trading_accounts_tab() \
+                .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_BTC)
+            self.assertEqual(
+                CRMConstants.AMOUNT_DEPOSIT_BTC, deposit_amount_text,
+                "Wrong deposit sum is displayed")
+        else:
+            deposit_amount_text = crm_client_profile\
+                .click_trading_accounts_tab() \
+                .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
+            self.assertEqual(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, deposit_amount_text,
+                             "Wrong deposit sum is displayed")
+
+    def test_make_deposit_crm_new_ui(self):
+        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url'))\
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url'))
+
+        # ADD LIVE ACCOUNT IN CRM
+        # Open clients module. Find created client by email and open his profile
+        CRMHomePage(self.driver)\
+            .open_client_module_new_ui()\
+            .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
+            .find_client_by_email_new_ui(client1[LeadsModuleConstants.EMAIL])
+
+        # Create LIVE account for client using MT4 Actions
+        crm_client_profile = ClientProfilePage(self.driver)
+        MT4DropDown(self.driver) \
+            .open_mt4_module_newui(CRMConstants.CREATE_MT_USER)
+
+        MT4CreateAccountModule(self.driver) \
+            .create_account_new_ui(
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
+            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
+            .click_ok()
 
         # Get account number to make deposit in future
         account_number = ClientProfilePage(self.driver) \

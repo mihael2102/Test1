@@ -164,6 +164,6 @@ class AuditLogsPage(CRMBasePage):
 
     def check_audit_logs_loaded(self):
         sleep(2)
-        super().wait_load_element("(//tr[contains(@class,'tableRow')])[1]")
+        super().wait_load_element("(//tr[contains(@class,'tableRow')])[1]", timeout=35)
         Logging().reportDebugStep(self, "Audit Logs module is loaded")
         return AuditLogsPage(self.driver)

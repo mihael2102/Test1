@@ -157,6 +157,24 @@ class UserManagementPage(CRMBasePage):
         except (NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "The Login As button does not exist")
 
+    def click_logout_login_as_session(self, user):
+        sleep(0.1)
+        try:
+            logout_icon = super().wait_load_element("//a[@class='btn btn-default']").get_attribute("innerText")
+            logout_btn = super().wait_load_element("//a[@class='btn btn-default']")
+            self.driver.execute_script("arguments[0].click();", logout_btn)
+            assert user in logout_icon
+            Logging().reportDebugStep(self, "The Logout button was clicked")
+            return UserManagementPage(self.driver)
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "The Logout button does not exist")
+
+    def verify_current_user_name(self, username):
+        sleep(0.1)
+        super().wait_load_element("//span[@class='genHeaderSmall' and contains(text(),'%s')]" % username, timeout=35)
+        Logging().reportDebugStep(self, "The current user name is: " + username)
+        return UserManagementPage(self.driver)
+
     def click_delete_icon(self):
         sleep(0.5)
         try:

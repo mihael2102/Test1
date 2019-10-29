@@ -392,7 +392,8 @@ class ClientProfilePage(CRMBasePage):
 
     def open_mt4_actions(self, module):
         sleep(3)
-        mt4_button = super().wait_load_element("//div[@class='mt4_act_box']")
+        mt4_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
+                                               ["mt4_button"])
         sleep(1)
         self.driver.execute_script("arguments[0].click();", mt4_button)
         sleep(5)
@@ -557,9 +558,12 @@ class ClientProfilePage(CRMBasePage):
 
     def get_confirm_message(self):
         sleep(0.2)
-        confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']", timeout=35)
-        Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
-        return confirm_message.text
+        try:
+            confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']", timeout=35)
+            Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
+            return confirm_message.text
+        except:
+            Logging().reportDebugStep(self, "Message was not picked up")
 
     def refresh_page(self):
         super().refresh_page()
