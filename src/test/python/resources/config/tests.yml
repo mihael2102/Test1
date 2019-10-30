@@ -5,7 +5,7 @@ tests_config:
   directive: reload_configuration
   class: LeadModuleTest
   tests:
-    - test_convert_lead_short   # Creates a lead and converts it to a client(short scenario)
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 
 ######################################## CLIENTS ###############################################
 
