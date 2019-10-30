@@ -242,6 +242,7 @@ class LeadModuleTest(BaseTest):
                 self.client1[LeadsModuleConstants.POSTAL_CODE],
                 self.client1[LeadsModuleConstants.CITY],
                 self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                self.client1[LeadsModuleConstants.EMAIL],
                 self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
         if global_var.current_brand_name == "newcrmui":
