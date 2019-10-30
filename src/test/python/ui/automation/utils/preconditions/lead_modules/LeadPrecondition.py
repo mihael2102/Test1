@@ -590,6 +590,28 @@ class LeadPrecondition(object):
                 lead[LeadsModuleConstants.FIRST_STATE])
             return LeadPrecondition(self.driver, self.config)
 
+    def create_lead_short(self, lead):
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url'))
+
+        CRMHomePage(self.driver)\
+            .open_lead_module() \
+            .open_create_lead_module()\
+
+        CreateLeadsProfilePage(self.driver)\
+            .perform_create_lead_short(
+                lead[LeadsModuleConstants.FIRST_LAST_NAME],
+                lead[LeadsModuleConstants.EMAIL],
+                lead[LeadsModuleConstants.PHONE],
+                lead[LeadsModuleConstants.FIRST_ASSIGNED_TO])
+        return LeadPrecondition(self.driver, self.config)
+
     def create_three_leads(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
