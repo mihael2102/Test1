@@ -17,6 +17,7 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
+from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
 
 
 @pytest.mark.run(order=13)
@@ -187,62 +188,58 @@ class DepositTestCRM(BaseTest):
 
         MT4CreateAccountModule(self.driver) \
             .create_account_new_ui(
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-            self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
             .click_ok()
 
         # Get account number to make deposit in future
         account_number = ClientProfilePage(self.driver) \
-            .perform_scroll_down() \
-            .open_trading_accounts_tab() \
-            .get_client_account()
+            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)\
+            .get_ta_number()
 
         # Make deposit for account number using MT4 Actions
-        crm_client_profile.perform_scroll_up()
-        if global_var.current_brand_name == "trade99":
-            crm_client_profile.open_mt4_actions(CRMConstants.DEPOSIT2)
-        else:
-            crm_client_profile.open_mt4_actions(CRMConstants.DEPOSIT)
+        MT4DropDown(self.driver) \
+            .open_mt4_module_newui(CRMConstants.CREATE_MT_DEPOSIT)
 
         if global_var.current_brand_name == "trade99":
             MT4DepositModule(self.driver)\
-                .make_deposit(account_number,
-                              CRMConstants.AMOUNT_DEPOSIT_BTC,
-                              CRMConstants.PAYMENT_METHOD_DEPOSIT,
-                              CRMConstants.STATUS_DEPOSIT,
-                              CRMConstants.DESCRIPTION_DEPOSIT)
+                .make_deposit_new_ui(account_number,
+                                     CRMConstants.AMOUNT_DEPOSIT_BTC,
+                                     CRMConstants.PAYMENT_METHOD_DEPOSIT,
+                                     CRMConstants.STATUS_DEPOSIT,
+                                     CRMConstants.DESCRIPTION_DEPOSIT,
+                                     MT4ModuleConstants.CLEARED_BY)
         else:
             MT4DepositModule(self.driver)\
-                .make_deposit(account_number,
-                              CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
-                              CRMConstants.PAYMENT_METHOD_DEPOSIT,
-                              CRMConstants.STATUS_DEPOSIT,
-                              CRMConstants.DESCRIPTION_DEPOSIT)
+                .make_deposit_new_ui(account_number,
+                                     CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
+                                     CRMConstants.PAYMENT_METHOD_DEPOSIT,
+                                     CRMConstants.STATUS_DEPOSIT,
+                                     CRMConstants.DESCRIPTION_DEPOSIT,
+                                     MT4ModuleConstants.CLEARED_BY)
 
         # Check confirmation message
-        confirmation_message = crm_client_profile.get_confirm_message()
-        try:
-            self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY)
-        except:
-            self.assertEqual(confirmation_message, CRMConstants.DEPOSIT_SUCCESSFULLY_2)
+        MT4CreateAccountModule(self.driver) \
+            .verify_success_message()
+        CRMHomePage(self.driver) \
+            .click_ok()
 
         # Close popup
         crm_client_profile\
-            .click_ok()\
             .refresh_page()
 
         if global_var.current_brand_name == "trade99":
             deposit_amount_text = crm_client_profile\
-                .click_trading_accounts_tab() \
+                .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)\
                 .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_BTC)
             self.assertEqual(
                 CRMConstants.AMOUNT_DEPOSIT_BTC, deposit_amount_text,
                 "Wrong deposit sum is displayed")
         else:
             deposit_amount_text = crm_client_profile\
-                .click_trading_accounts_tab() \
+                .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)\
                 .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
             self.assertEqual(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT, deposit_amount_text,
                              "Wrong deposit sum is displayed")

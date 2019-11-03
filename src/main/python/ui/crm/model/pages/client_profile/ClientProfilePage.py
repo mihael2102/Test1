@@ -758,7 +758,7 @@ class ClientProfilePage(CRMBasePage):
         super().refresh_page()
         sleep(3)
         activities_counter = self.driver.find_element_by_xpath("//span[@class='amount amount_Activities']").text
-        if (int(activities_counter) != 0):
+        if int(activities_counter) != 0:
             Logging().reportDebugStep(self, "Client's page contain events")
             return True
         else:
@@ -1080,4 +1080,20 @@ class ClientProfilePage(CRMBasePage):
             return ClientProfilePage()
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "There is no Create MT User button available")
-            return ClientProfilePage()
+            return ClientProfilePage(self.driver)
+
+    ######################################## NEW UI METHODS ############################################
+
+    def open_tab(self, tab):
+        sleep(0.1)
+        tab_name = super().wait_load_element("//div[contains(text(),'%s')]" % tab)
+        self.driver.execute_script("arguments[0].click();", tab_name)
+        Logging().reportDebugStep(self, tab + " tab is opened")
+        return ClientProfilePage(self.driver)
+
+    def get_ta_number(self):
+        sleep(0.5)
+        ta_number = super().wait_load_element(
+            "//mat-expansion-panel[@id='trading-accounts']//tr[2]/td[1]/div/span/span").get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get trading account number: " + ta_number)
+        return ta_number

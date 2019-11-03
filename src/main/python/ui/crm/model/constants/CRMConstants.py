@@ -139,6 +139,7 @@ class CRMConstants(object):
     CREATE_DEPOSIT = "Deposit"
     CREATE_MT4_USER = "1"
     CREATE_MT_USER = "Create MT User"
+    CREATE_MT_DEPOSIT = "Deposit"
     CREATE_MT4_WITHDRAW = "7"
     UPDATE_MT4_USER = "2"
     AMOUNT_DEPOSIT = "10.00"

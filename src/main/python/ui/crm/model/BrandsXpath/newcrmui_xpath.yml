@@ -14,6 +14,7 @@ ConvertLeadModule:
   convert_lead_btn: "//span[text()=' Convert lead ']"
 ClientProfilePage:
   mt4_button: "//mat-panel-title[text()=' MT Actions ']"
+  deposit_sum: "//mat-expansion-panel[@id='trading-accounts']//tr[2]/td[4]/div/span/span"
 LeadsModule:
   create_lead_module: "//button[@title='Create lead']"
   email_field: "(//input[@placeholder='Email'])[1]"
@@ -39,3 +40,6 @@ CreateLeadsProfilePage:
   fax_field: "//input[@formcontrolname='fax']"
   source_name_field: "//input[@formcontrolname='sourceName']"
   save_button: "//span[text()=' Create lead ']"
+MT4DepositModule:
+  description_filed: "//input[@id='comment']"
+  create_deposit_button: "//span[contains(text(),' Deposit ')]"
