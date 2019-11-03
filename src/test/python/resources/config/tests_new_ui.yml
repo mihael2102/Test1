@@ -17,3 +17,8 @@ tests_config:
   class: DepositTestCRM
   tests:
     - test_make_deposit_crm_new_ui  # create live mt account and make deposit in crm
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
+  class: WithdrawTest
+  tests:
+    - test_withdraw_crm_new_ui   #preconditions: convert lead, make deposit

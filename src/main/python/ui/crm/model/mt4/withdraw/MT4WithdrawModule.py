@@ -31,6 +31,17 @@ class MT4WithdrawModule(CRMBasePage):
         self.create_withdraw_button()
         return ClientProfilePage()
 
+    def make_withdraw_new_ui(self, account_number, amount, payment_method, withdraw_status, description_withdraw,
+                             cleared_by):
+        self.select_payment_method_new_ui(payment_method)
+        self.select_status_new_ui(withdraw_status)
+        self.select_account_new_ui(account_number)
+        self.set_amount(amount)
+        self.set_description(description_withdraw)
+        self.select_cleared_by_new_ui(cleared_by)
+        self.create_withdraw_button()
+        return ClientProfilePage()
+
     '''
          Choice a payment method from drop down
          :parameter payment method the method of withdraw  in the drop down
@@ -117,5 +128,32 @@ class MT4WithdrawModule(CRMBasePage):
         super().wait_element_to_be_clickable("//*[@id='cleared_by']")
         select = Select(self.driver.find_element_by_xpath("//*[@id='cleared_by']"))
         select.select_by_visible_text(provider)
-        Logging().reportDebugStep(self, "The payment method of withdraw module was selected: " + provider)
+        Logging().reportDebugStep(self, "The Cleared By of withdraw module was selected: " + provider)
+        return MT4WithdrawModule(self.driver)
+
+    #################################### NEW UI METHODS ########################################
+
+    def select_payment_method_new_ui(self, payment_method):
+        sleep(0.2)
+        payment_method_item = super().wait_load_element("//span[text()='%s']" % payment_method)
+        self.driver.execute_script("arguments[0].click();", payment_method_item)
+        Logging().reportDebugStep(self, "The Payment method of withdraw module was selected: " + payment_method)
+        return MT4WithdrawModule(self.driver)
+
+    def select_status_new_ui(self, withdraw_status):
+        status_item = super().wait_load_element("//span[text()='%s']" % withdraw_status)
+        self.driver.execute_script("arguments[0].click();", status_item)
+        Logging().reportDebugStep(self, "The Status of withdraw was selected: " + withdraw_status)
+        return MT4WithdrawModule(self.driver)
+
+    def select_account_new_ui(self, account):
+        account_item = super().wait_load_element("//span[text()='%s']" % account)
+        self.driver.execute_script("arguments[0].click();", account_item)
+        Logging().reportDebugStep(self, "The Account of withdraw module was selected:  " + account)
+        return MT4WithdrawModule(self.driver)
+
+    def select_cleared_by_new_ui(self, provider):
+        cleared_by_item = super().wait_load_element("//span[text()='%s']" % provider)
+        self.driver.execute_script("arguments[0].click();", cleared_by_item)
+        Logging().reportDebugStep(self, "The Cleared By of withdraw module was selected: " + provider)
         return MT4WithdrawModule(self.driver)
