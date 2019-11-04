@@ -22,3 +22,8 @@ tests_config:
   class: WithdrawTest
   tests:
     - test_withdraw_crm_new_ui   #preconditions: convert lead, make deposit
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
+  class: CreditInTestCRM
+  tests:
+    - test_credit_in_crm_new_ui
