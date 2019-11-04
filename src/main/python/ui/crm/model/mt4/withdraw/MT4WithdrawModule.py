@@ -5,6 +5,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from time import sleep
 
 
@@ -31,7 +32,7 @@ class MT4WithdrawModule(CRMBasePage):
         self.create_withdraw_button()
         return ClientProfilePage()
 
-    def make_withdraw_new_ui(self, account_number, amount, payment_method, withdraw_status, description_withdraw,
+    def make_withdraw_new_ui(self, payment_method, account_number, amount, description_withdraw, withdraw_status,
                              cleared_by):
         self.select_payment_method_new_ui(payment_method)
         self.select_status_new_ui(withdraw_status)
@@ -105,11 +106,11 @@ class MT4WithdrawModule(CRMBasePage):
     '''
 
     def set_description(self, description_withdraw):
-        amount_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_comment']")
-        amount_filed.clear()
-        amount_filed.send_keys(description_withdraw)
-        Logging().reportDebugStep(self,
-                                  "The  description of withdraw module was set:  " + description_withdraw)
+        comment_filed = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+        (self.__class__.__name__)["comment_filed"])
+        comment_filed.clear()
+        comment_filed.send_keys(description_withdraw)
+        Logging().reportDebugStep(self, "The  description of withdraw module was set:  " + description_withdraw)
         return MT4WithdrawModule(self.driver)
 
     '''
@@ -118,9 +119,10 @@ class MT4WithdrawModule(CRMBasePage):
     '''
 
     def create_withdraw_button(self):
-        create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
+        create_withdraw_button = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+            (self.__class__.__name__)["create_withdraw_button"])
         sleep(2)
-        create_button.click()
+        create_withdraw_button.click()
         Logging().reportDebugStep(self, "The Create withdraw button was clicked")
         return ClientProfilePage(self.driver)
 
@@ -147,7 +149,7 @@ class MT4WithdrawModule(CRMBasePage):
         return MT4WithdrawModule(self.driver)
 
     def select_account_new_ui(self, account):
-        account_item = super().wait_load_element("//span[text()='%s']" % account)
+        account_item = super().wait_load_element("//ul//span[contains(text(),'%s')]" % account)
         self.driver.execute_script("arguments[0].click();", account_item)
         Logging().reportDebugStep(self, "The Account of withdraw module was selected:  " + account)
         return MT4WithdrawModule(self.driver)

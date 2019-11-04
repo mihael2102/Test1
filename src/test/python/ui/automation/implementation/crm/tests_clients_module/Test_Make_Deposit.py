@@ -226,7 +226,7 @@ class DepositTestCRM(BaseTest):
         CRMHomePage(self.driver) \
             .click_ok()
 
-        # Close popup
+        # Check balance was updated
         crm_client_profile\
             .refresh_page()
 

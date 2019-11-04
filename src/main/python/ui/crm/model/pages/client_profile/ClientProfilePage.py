@@ -780,9 +780,9 @@ class ClientProfilePage(CRMBasePage):
         return trading_account_number
 
     def get_balance_in_trading_account(self):
-        balance = super().wait_load_element("//*[@id='dtlview_Balance']").text
-        Logging().reportDebugStep(self, "Verify balance: " + balance)
-        return balance
+        balance_in_trading_account = super().wait_load_element("//*[@id='dtlview_Balance']").text
+        Logging().reportDebugStep(self, "Verify balance: " + balance_in_trading_account)
+        return balance_in_trading_account
 
     def open_trading_account_page(self, account_number):
         sleep(0.2)
@@ -803,7 +803,8 @@ class ClientProfilePage(CRMBasePage):
     def open_trading_account_by_number(self, ta_number):
         sleep(0.5)
         link_trading_account = super().wait_load_element(
-            "//div[@class='link_field']/a[@class='before_nw' and contains(text(),'%s')]" % ta_number, timeout=35)
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["link_trading_account"]
+            % ta_number, timeout=35)
         sleep(0.1)
         self.driver.execute_script("arguments[0].click();", link_trading_account)
         Logging().reportDebugStep(self, "Open trading account: " + ta_number)

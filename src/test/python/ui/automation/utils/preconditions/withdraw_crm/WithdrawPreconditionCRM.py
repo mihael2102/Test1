@@ -3,6 +3,8 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
+from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsInformationPage import \
+    TradingAccountsInformationPage
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
@@ -12,6 +14,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.mt4.withdraw.MT4WithdrawModule import MT4WithdrawModule
 from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
+from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 
 
 class WithdrawPreconditionCRM(object):
@@ -119,7 +122,7 @@ class WithdrawPreconditionCRM(object):
 
         sleep(2)
         ClientProfilePage(self.driver) \
-            .open_tab(ClientDetailsConstants.FINANCIAL_TRANSACTIONS_TAB)
+            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)
         account_number = ClientProfilePage(self.driver) \
             .get_ta_number()
 
@@ -152,13 +155,18 @@ class WithdrawPreconditionCRM(object):
                                       CRMConstants.STATUS_WITHDRAW,
                                       CRMConstants.CLEAREDBY_WITHDRAW)
 
+        # Check confirmation message
+        MT4CreateAccountModule(self.driver) \
+            .verify_success_message()
+        CRMHomePage(self.driver) \
+            .click_ok()
+
         # Check the balance updated
-        CRMLoginPage(self.driver) \
-            .perform_scroll_up()
         ClientProfilePage(self.driver) \
-            .click_trading_accounts_tab() \
-            .open_trading_account_page(account_number)
-        balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
+            .refresh_page()\
+            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)\
+            .open_trading_account_by_number(account_number)
+        balance = TradingAccountsInformationPage(self.driver).get_balance_text()
         if global_var.current_brand_name == "trade99":
             actual_balance = float(balance)
             expected_balance = float(CRMConstants.AMOUNT_DEPOSIT_BTC) - float(CRMConstants.AMOUNT_WITHDRAW_BTC)

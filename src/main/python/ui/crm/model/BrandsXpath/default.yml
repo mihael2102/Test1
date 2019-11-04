@@ -47,6 +47,8 @@ ClientProfilePage:
   i_confirm_checkbox: "//*[@name='confirm']"
   email: "//td[contains(text(),'Email')]//following-sibling::td[1]"
   mt4_button: "//div[@class='mt4_act_box']"
+  link_trading_account: "//div[@class='link_field']/a[@class='before_nw' and contains(text(),'%s')]"
+  balance_in_trading_account: "//*[@id='dtlview_Balance']"
 CRMClientDeposit:
   i_confirm_checkbox: "//*[@name='confirm']"
 ConvertLeadModule:
@@ -109,6 +111,11 @@ LeadViewInfo:
 MT4DepositModule:
   description_filed: "//input[@id='transaction_comment']"
   create_deposit_button: "//button[contains(text(),'Create')]"
+MT4WithdrawModule:
+  create_withdraw_button: "//button[contains(text(),'Create')]"
+  comment_filed: "//input[@id='transaction_comment']"
+TradingAccountsInformationPage:
+  balance_text: "//td[contains(text(),'Balance')]//following-sibling::td[1]"
 WebTraderPage:
   avaliable_funds: "//panda-forex-account-status/div/ul/li[1]/div[1]"
   used_funds: "//panda-forex-account-status/div/ul/li[2]/div[1]"
