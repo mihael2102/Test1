@@ -7,6 +7,7 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 from src.main.python.utils.logs.Loging import Logging
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
+from time import sleep
 
 
 class MT4DepositModule(CRMBasePage):
@@ -33,6 +34,17 @@ class MT4DepositModule(CRMBasePage):
         if global_var.current_brand_name == "dax-300" or global_var.current_brand_name == "stox50" or \
                 global_var.current_brand_name == "aztrades":
             self.select_cleared_by(MT4ModuleConstants.CLEARED_BY1)
+        self.create_deposit()
+        return ClientProfilePage(self.driver)
+
+    def make_deposit_new_ui(self, account_number, amount, payment_method, deposit_status, description_deposit,
+                            cleared_by):
+        self.select_payment_method_new_ui(payment_method)
+        self.select_status_new_ui(deposit_status)
+        self.select_account_new_ui(account_number)
+        self.set_amount(amount)
+        self.set_description(description_deposit)
+        self.select_cleared_by_new_ui(cleared_by)
         self.create_deposit()
         return ClientProfilePage(self.driver)
 
@@ -110,11 +122,11 @@ class MT4DepositModule(CRMBasePage):
     '''
 
     def set_description(self, description_deposit):
-        amount_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_comment']")
-        amount_filed.clear()
-        amount_filed.send_keys(description_deposit)
-        Logging().reportDebugStep(self,
-                                  "The description of deposit was set: " + description_deposit)
+        description_filed = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+            (self.__class__.__name__)["description_filed"])
+        description_filed.clear()
+        description_filed.send_keys(description_deposit)
+        Logging().reportDebugStep(self, "The description of deposit was set: " + description_deposit)
         return MT4DepositModule()
 
     '''
@@ -123,7 +135,40 @@ class MT4DepositModule(CRMBasePage):
     '''
 
     def create_deposit(self):
-        create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
-        create_button.click()
-        Logging().reportDebugStep(self, "The Create deposit button was clicked")
+        create_deposit_button = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+            (self.__class__.__name__)["create_deposit_button"])
+        create_deposit_button.click()
+        Logging().reportDebugStep(self, "The Create Deposit button was clicked")
         return ClientProfilePage()
+
+    ######################################## NEW UI METHODS ###################################
+
+    def select_payment_method_new_ui(self, method):
+        sleep(0.1)
+        payment_method = super().wait_load_element("//span[text()='%s']" % method)
+        self.driver.execute_script("arguments[0].click();", payment_method)
+        Logging().reportDebugStep(self, "The payment method of deposit module was selected: " + method)
+        return MT4DepositModule()
+
+    def select_status_new_ui(self, status):
+        sleep(0.1)
+        status_item = super().wait_load_element("//span[text()='%s']" % status)
+        self.driver.execute_script("arguments[0].click();", status_item)
+        Logging().reportDebugStep(self, "The status of deposit module was selected: " + status)
+        return MT4DepositModule()
+
+    def select_account_new_ui(self, account):
+        sleep(0.1)
+        account_item = super().wait_load_element("//span[contains(text(),'%s')]" % account)
+        self.driver.execute_script("arguments[0].click();", account_item)
+        Logging().reportDebugStep(self, "The account number of deposit module was selected: " + account)
+        return MT4DepositModule()
+
+    def select_cleared_by_new_ui(self, cleared_by):
+        try:
+            cleared_by_item = super().wait_load_element("//span[text()='%s']" % cleared_by)
+            self.driver.execute_script("arguments[0].click();", cleared_by_item)
+            Logging().reportDebugStep(self, "The Cleared by was selected: " + cleared_by)
+        except:
+            Logging().reportDebugStep(self, "The Cleared by pick-list is not existing")
+        return MT4DepositModule()

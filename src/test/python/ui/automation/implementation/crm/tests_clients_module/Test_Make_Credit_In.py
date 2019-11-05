@@ -17,6 +17,9 @@ from src.test.python.ui.automation.utils.preconditions.credit_in.Credit_In_Preco
     CreditInPrecondition
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from selenium.common.exceptions import NoSuchElementException
+from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
 import time
 
 
@@ -69,6 +72,70 @@ class CreditInTestCRM(BaseTest):
         credit_in_amount = ClientProfilePage(self.driver)\
             .perform_scroll_down()\
             .get_amount_of_credit_in()     # Get amount from block 'Trading Accounts'
+
+        counter = 0
+        if global_var.current_brand_name == "trade99":
+            expected_credit = CRMConstants.AMOUNT_CREDIT_IN_BTC
+        else:
+            expected_credit = CRMConstants.AMOUNT_CREDIT_IN
+
+        while expected_credit != credit_in_amount:
+            MT4CreditInModule(self.driver).refresh_page()
+            credit_in_amount = ClientProfilePage(self.driver) \
+                .perform_scroll_down() \
+                .get_amount_of_credit_in()
+            counter += 1
+            if counter == 7:
+                break
+
+        assert expected_credit == credit_in_amount
+
+    def test_credit_in_crm_new_ui(self):
+        self.config.get_value(TestDataConstants.CLIENT_ONE)
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url'))
+
+        CreditInPrecondition(self.driver, self.config) \
+            .add_live_account_in_crm_new_ui() \
+            .click_ok()
+
+        # Get account number to make credit in
+        account_number = ClientProfilePage(self.driver) \
+            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
+            .get_ta_number()
+
+        # Make Credit in
+        MT4DropDown(self.driver) \
+            .open_mt4_module_newui(CRMConstants.CREATE_MT_CREDIT_IN)
+
+        if global_var.current_brand_name == "trade99":
+            MT4CreditInModule(self.driver) \
+                .make_credit_in(account_number,
+                                CRMConstants.AMOUNT_CREDIT_IN_BTC,
+                                CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
+                                CRMConstants.CREDIT_IN_COMMENT) \
+                .click_ok() \
+                .refresh_page()
+        else:
+            MT4CreditInModule(self.driver) \
+                .make_credit_in(account_number,
+                                CRMConstants.AMOUNT_CREDIT_IN,
+                                CRMConstants.EXPIRE_DATE.strftime(CRMConstants.FORMAT_DATE),
+                                CRMConstants.CREDIT_IN_COMMENT) \
+                .click_ok() \
+                .refresh_page()
+        time.sleep(3)
+        MT4CreditInModule(self.driver).refresh_page()
+        # Check the Credit In amount
+        credit_in_amount = ClientProfilePage(self.driver) \
+            .perform_scroll_down() \
+            .get_amount_of_credit_in()  # Get amount from block 'Trading Accounts'
 
         counter = 0
         if global_var.current_brand_name == "trade99":

@@ -203,7 +203,7 @@ class DragonPrecondition(object):
             .open_edit_lead_profile()\
             .get_phone_edit_page()
 
-        assert DragonConstants.PHONE_NUMBER_HIDDEN3 in phone_edit_page
+        assert DragonConstants.PHONE_NUMBER_INVALID in phone_edit_page
 
         ' Update phone to another invalid number and verify on details view page: '
         EditLeadsProfilePage(self.driver)\
@@ -294,12 +294,14 @@ class DragonPrecondition(object):
             .enter_email(DragonConstants.LEAD_EMAIL2)\
             .click_search_button()
         DragonPage(self.driver) \
+            .click_show_phone_btn()\
             .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
 
         ' Check phone number in detail view: '
         ClientsPage(self.driver)\
             .open_client_id()
         DragonPage(self.driver)\
+            .click_show_phone_btn()\
             .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
 
     def check_ca_dragon_invalid_phone(self):
@@ -307,7 +309,8 @@ class DragonPrecondition(object):
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .click_sign_up()
-        if (global_var.current_brand_name == "b-finance") or (global_var.current_brand_name == "eafx"):
+        if global_var.current_brand_name == "b-finance" or \
+                global_var.current_brand_name == "eafx":
             CALoginPage(self.driver) \
                 .click_regulatory_confirmation()
         CALoginPage(self.driver) \
@@ -325,7 +328,7 @@ class DragonPrecondition(object):
 
         ' CRM login: '
         CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
+            .open_first_tab_page(self.config.get_value('url'))\
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
@@ -358,12 +361,14 @@ class DragonPrecondition(object):
         # For validation of number, that comes from CA, should add the country code:
         expected_number = "49" + DragonConstants.PHONE_NUMBER_INVALID_CA
         DragonPage(self.driver) \
+            .click_show_phone_btn()\
             .check_invalid_phone(expected_number)
 
         ' Check phone number in detail view: '
         ClientsPage(self.driver) \
             .open_client_id()
         DragonPage(self.driver) \
+            .click_show_phone_btn()\
             .check_invalid_phone(expected_number)
 
     def check_api_dragon_valid_phone(self):
