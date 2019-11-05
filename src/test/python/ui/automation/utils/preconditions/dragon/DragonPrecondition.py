@@ -46,16 +46,6 @@ class DragonPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
 
-        ' Go to User Management and make Login As DragonTest user: '
-        CRMHomePage(self.driver)\
-            .select_user_management()\
-            .open_crm_users_tab()\
-            .click_remove_filter_btn()\
-            .search_by_username(UserInformation.DRAGON_USER_NAME)\
-            .check_user_found(UserInformation.DRAGON_USER_NAME)\
-            .click_more_icon()\
-            .click_login_as_icon()
-
         ' Create Lead with wrong phone number: '
         CRMHomePage(self.driver) \
             .open_lead_module() \
@@ -84,6 +74,24 @@ class DragonPrecondition(object):
                 .click_ok()
         except(TimeoutException, AssertionError, NoSuchElementException):
             Logging().reportDebugStep(self, "Lead convert message was not picked up")
+
+        ' Assign the client to user, have not permission to see phone numbers: '
+        CRMHomePage(self.driver) \
+            .open_client_module() \
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(DragonConstants.LEAD_EMAIL)
+        ClientProfileUpdate(self.driver) \
+            .edit_assign_to_by_pencil(DragonConstants.LEAD_ASSIGNED_TO)
+
+        ' Go to User Management and make Login As DragonTest user: '
+        CRMHomePage(self.driver) \
+            .select_user_management() \
+            .open_crm_users_tab() \
+            .click_remove_filter_btn() \
+            .search_by_username(UserInformation.DRAGON_USER_NAME) \
+            .check_user_found(UserInformation.DRAGON_USER_NAME) \
+            .click_more_icon() \
+            .click_login_as_icon()
 
         ' Check phone and email in Clients list view: '
         CRMHomePage(self.driver)\
