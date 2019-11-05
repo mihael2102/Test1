@@ -313,7 +313,7 @@ class CALoginPage(CRMBasePage):
     def enter_password(self, password):
         sleep(1)
         try:
-            input_password = self.driver.find_element_by_xpath("(//input[@name='password'])[2]")
+            input_password = self.driver.find_element_by_xpath("(//input[@name='password'])[1]")
         except(NoSuchElementException, TimeoutException):
             input_password = self.driver.find_element_by_xpath("//input[@name='password']")
         self.driver.execute_script("arguments[0].click();", input_password)

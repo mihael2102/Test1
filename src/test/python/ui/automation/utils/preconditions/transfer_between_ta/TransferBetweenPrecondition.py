@@ -84,7 +84,7 @@ class TransferBetweenPrecondition(object):
 
         try:
             assert confirmation_message == CRMConstants.TRANSFER_BETWEEN_TA_MESSAGE
-        except (NoSuchElementException, TimeoutException):
+        except (NoSuchElementException, TimeoutException, AssertionError):
             pass
 
         amount_transfer = crm_client_profile.click_ok() \
@@ -97,7 +97,7 @@ class TransferBetweenPrecondition(object):
             amount_transfer = ClientProfilePage(self.driver).get_balance_of_trading_account\
                 (CRMConstants.SECOND_TA_NUMBER_FROM_TA_SECTION)
             count += 1
-            if count == 5:
+            if count == 7:
                 break
         assert amount_transfer == expected_balance
 
