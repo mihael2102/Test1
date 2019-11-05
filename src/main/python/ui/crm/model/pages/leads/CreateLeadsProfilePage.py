@@ -89,7 +89,7 @@ class CreateLeadsProfilePage(CRMBasePage):
         self.set_state(state)
         self.click_save()
 
-    def perform_create_lead_short(self, last_name, email, phone, assigned_to):
+    def perform_create_lead_short(self, last_name, email, assigned_to, phone):
         sleep(2)
         self.set_last_name(last_name)
         self.set_email(email)

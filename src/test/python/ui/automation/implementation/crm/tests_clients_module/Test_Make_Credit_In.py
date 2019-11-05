@@ -91,7 +91,7 @@ class CreditInTestCRM(BaseTest):
         assert expected_credit == credit_in_amount
 
     def test_credit_in_crm_new_ui(self):
-        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
+        self.config.get_value(TestDataConstants.CLIENT_ONE)
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -112,7 +112,7 @@ class CreditInTestCRM(BaseTest):
 
         # Make Credit in
         MT4DropDown(self.driver) \
-            .open_mt4_module_newui(CRMConstants.CREATE_MT_DEPOSIT)
+            .open_mt4_module_newui(CRMConstants.CREATE_MT_CREDIT_IN)
 
         if global_var.current_brand_name == "trade99":
             MT4CreditInModule(self.driver) \
