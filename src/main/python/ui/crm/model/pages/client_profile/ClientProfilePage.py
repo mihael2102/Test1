@@ -305,9 +305,11 @@ class ClientProfilePage(CRMBasePage):
 
     def get_client_account(self):
         sleep(1)
-        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]", timeout=35)
+        account_number = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                   (self.__class__.__name__)["account_number"], timeout=35)
         super().scroll_into_view(account_number)
-        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
+        account_number = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                   (self.__class__.__name__)["account_number"])
         Logging().reportDebugStep(self, "Client_account number: " + account_number.text)
         CRMConstants.CREDIT_ACCOUNT = account_number.text
         return account_number.text

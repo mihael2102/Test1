@@ -49,6 +49,7 @@ ClientProfilePage:
   mt4_button: "//div[@class='mt4_act_box']"
   link_trading_account: "//div[@class='link_field']/a[@class='before_nw' and contains(text(),'%s')]"
   balance_in_trading_account: "//*[@id='dtlview_Balance']"
+  account_number: "(//tr[@class='lvtColData'])[1]//td[1]"
 CRMClientDeposit:
   i_confirm_checkbox: "//*[@name='confirm']"
 ConvertLeadModule:

@@ -43,11 +43,11 @@ tests_config:
 #    - test_check_email_popup
 #
 #################################### CONVERT LEAD ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 #    - test_convert_lead_short
 #
 #################################### CLIENTS ###############################################
@@ -105,41 +105,41 @@ tests_config:
 #    - test_change_client_password_from_crm  # change a client account password from the crm
 #    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
-#  class: DepositTestCRM
-#  tests:
-#    - test_make_deposit_crm  # create live mt account and make deposit in crm
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+  class: DepositTestCRM
+  tests:
+    - test_make_deposit_crm  # create live mt account and make deposit in crm
 #    - test_make_deposit_for_client_crm
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-#  class: WithdrawTest
-#  tests:
-#    - test_withdraw_crm   #preconditions: convert lead, make deposit
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
-#  class: CreditInTestCRM
-#  tests:
-#    - test_make_credit_in_from_crm
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
-#  class: CreditOutTestCRM
-#  tests:
-#    - test_make_credit_out_crm # preconditions: convert lead, make credit in
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
+  class: WithdrawTest
+  tests:
+    - test_withdraw_crm   #preconditions: convert lead, make deposit
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
+  class: CreditInTestCRM
+  tests:
+    - test_make_credit_in_from_crm
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
+  class: CreditOutTestCRM
+  tests:
+    - test_make_credit_out_crm # preconditions: convert lead, make credit in
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
 #  class: SendEmailTestCRM
 #  tests:
 #    - test_send_email # preconditions: convert lead
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
-#  class: TransferBetweenTa
-#  tests:
-#    - test_transfer_between_ta # preconditions: convert lead, deposit crm
-
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-#  class: TradingAccountCrmTest
-#  tests:
-#    - test_crm_edit_trading_account  # edit trading account
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
+  class: TransferBetweenTa
+  tests:
+    - test_transfer_between_ta # preconditions: convert lead, deposit crm
+#
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - test_crm_edit_trading_account  # edit trading account
 #
 ######################################## AFFILIATES MODULE ##########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
@@ -148,12 +148,12 @@ tests_config:
 #     - test_create_affiliate
 #
 ####################################### FINANCIAL TRANSACTIONS ######################################
-- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
-  class: TabFinancialTransaction
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
+#  class: TabFinancialTransaction
+#  tests:
 #    - test_check_all_tab_from_financial_transactions
 #    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
-    - test_check_search_via_button # Check search using search button
+#    - test_check_search_via_button # Check search using search button
 #
 ########################################## CAMPAIGN MODULE ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
