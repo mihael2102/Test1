@@ -14,6 +14,9 @@ ConvertLeadModule:
   convert_lead_btn: "//span[text()=' Convert lead ']"
 ClientProfilePage:
   mt4_button: "//mat-panel-title[text()=' MT Actions ']"
+  deposit_sum: "//mat-expansion-panel[@id='trading-accounts']//tr[2]/td[4]/div/span/span"
+  link_trading_account: "//mat-expansion-panel[@id='trading-accounts']//span[@class='td-link' and text()=' %s ']"
+  balance_in_trading_account: "//*[@id='dtlview_Balance']"
 LeadsModule:
   create_lead_module: "//button[@title='Create lead']"
   email_field: "(//input[@placeholder='Email'])[1]"
@@ -39,3 +42,11 @@ CreateLeadsProfilePage:
   fax_field: "//input[@formcontrolname='fax']"
   source_name_field: "//input[@formcontrolname='sourceName']"
   save_button: "//span[text()=' Create lead ']"
+MT4DepositModule:
+  description_filed: "//input[@id='comment']"
+  create_deposit_button: "//span[contains(text(),' Deposit ')]"
+MT4WithdrawModule:
+  create_withdraw_button: "//span[text()=' Withdraw ']"
+  comment_filed: "//input[@id='comment']"
+TradingAccountsInformationPage:
+  balance_text: "//div[label='Balance']//following-sibling::mat-form-field//input"

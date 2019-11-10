@@ -97,7 +97,7 @@ class TransferBetweenPrecondition(object):
             amount_transfer = ClientProfilePage(self.driver).get_balance_of_trading_account\
                 (CRMConstants.SECOND_TA_NUMBER_FROM_TA_SECTION)
             count += 1
-            if count == 5:
+            if count == 7:
                 break
         assert amount_transfer == expected_balance
 
