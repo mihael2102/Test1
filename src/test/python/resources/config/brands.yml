@@ -50,9 +50,6 @@ brands:
   config_file: 24btcmarket.yml
 - name: marketsplus
   config_file: marketsplus.yml
-
-
-#new brands - never testing before
 - name: b-finance
   config_file: b-finance.yml
 - name: eafx
@@ -79,8 +76,14 @@ brands:
   config_file: b-traderfx.yml
 - name: newforexqa2
   config_file: newforexqa2.yml
-
-
+- name: financix
+  config_file: financix.yml
+- name: alferatrade
+  config_file: alferatrade.yml
+- name: wdcmarkets
+  config_file: wdcmarkets.yml
+- name: swisscci
+  config_file: swisscci.yml
 
 
 

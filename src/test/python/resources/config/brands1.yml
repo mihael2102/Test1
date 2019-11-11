@@ -5,6 +5,3 @@ brands:
 
 - name: solocapitlas
   config_file: solocapitlas.yml
-
-- name: uprofx
-  config_file: uprofx.yml

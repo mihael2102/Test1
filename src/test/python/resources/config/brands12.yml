@@ -1,6 +1,10 @@
 brands:
 
-- name: tradospot
-  config_file: tradospot.yml
-- name: mpcrypto
-  config_file: mpcrypto.yml
+- name: financix
+  config_file: financix.yml
+
+- name: alferatrade
+  config_file: alferatrade.yml
+
+- name: wdcmarkets
+  config_file: wdcmarkets.yml
