@@ -66,12 +66,7 @@ class Login_CA_Precondition(object):
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .close_campaign_banner()\
-            .click_sign_up()
-        if global_var.current_brand_name == "b-finance" or \
-                global_var.current_brand_name == "eafx":
-            CALoginPage(self.driver)\
-                .click_regulatory_confirmation()
-        CALoginPage(self.driver)\
+            .click_sign_up()\
             .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])\
             .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                         LeadsModuleConstants.FIRST_LAST_NAME])\
@@ -86,17 +81,7 @@ class Login_CA_Precondition(object):
             .close_payment_popup()
 
         # Personal details form
-        if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver)\
-                .click_my_account() \
-                .logout() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
-                .click_login() \
-                .click_my_account() \
-                .account_details()
-
-        elif global_var.current_brand_name == "firstindex":
+        if global_var.current_brand_name == "firstindex":
             CALoginPage(self.driver)\
                 .verify() \
                 .click_hi_guest() \
