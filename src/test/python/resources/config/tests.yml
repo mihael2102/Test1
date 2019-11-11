@@ -7,34 +7,12 @@ tests_config:
   tests:
     - test_perform_convert_lead   # Creates a lead and converts it to a client
 
-
-
-
-
-############################################# TASKS ##################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
-  class: AddInteraction
-  tests:
-    - test_add_interaction  # Adds an interaction for a client
-    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
-
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-  class: AddEventTaskModule
-  tests:
-    - test_add_event
-    - test_edit_event
-    - test_delete_interaction
-
-
-
 ############################################## CLIENT'S DETAILS ##########################################
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
   class: TradingAccountCrmTest
   tests:
     - fill_questioner_new_client
     - test_crm_open_trading_account  # open a new trading account
-
-
 
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
   class: DepositTestCRM
@@ -57,11 +35,6 @@ tests_config:
   tests:
     - test_make_credit_out_crm # preconditions: convert lead, make credit in
 
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
-  class: SendEmailTestCRM
-  tests:
-    - test_send_email # preconditions: convert lead
-
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
   class: TransferBetweenTa
   tests:
@@ -71,13 +44,3 @@ tests_config:
   class: TradingAccountCrmTest
   tests:
     - test_crm_edit_trading_account  # edit trading account
-
-
-
-
-
-
-
-
-
-
