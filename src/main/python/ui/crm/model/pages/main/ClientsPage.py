@@ -300,7 +300,7 @@ class ClientsPage(CRMBasePage):
         # Click on 'Search'
         search_button = super().wait_load_element("//input[@value='Search']")
         sleep(0.1)
-        search_button.click()
+        self.driver.execute_script("arguments[0].click();", search_button)
         sleep(0.1)
         self.wait_loading_to_finish(55)
         Logging().reportDebugStep(self, "The Search button was clicked")

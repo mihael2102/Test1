@@ -305,9 +305,11 @@ class ClientProfilePage(CRMBasePage):
 
     def get_client_account(self):
         sleep(1)
-        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]", timeout=35)
+        account_number = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                   (self.__class__.__name__)["account_number"], timeout=35)
         super().scroll_into_view(account_number)
-        account_number = super().wait_load_element("(//tr[@class='lvtColData'])[1]//td[1]")
+        account_number = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                   (self.__class__.__name__)["account_number"])
         Logging().reportDebugStep(self, "Client_account number: " + account_number.text)
         CRMConstants.CREDIT_ACCOUNT = account_number.text
         return account_number.text
@@ -558,9 +560,12 @@ class ClientProfilePage(CRMBasePage):
 
     def get_confirm_message(self):
         sleep(0.2)
-        confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']", timeout=35)
-        Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
-        return confirm_message.text
+        try:
+            confirm_message = super().wait_load_element("//div[@class='bootstrap-dialog-message']", timeout=35)
+            Logging().reportDebugStep(self, "Returns a confirmation message: " + confirm_message.text)
+            return confirm_message.text
+        except:
+            Logging().reportDebugStep(self, "Message was not picked up")
 
     def refresh_page(self):
         super().refresh_page()
@@ -755,7 +760,7 @@ class ClientProfilePage(CRMBasePage):
         super().refresh_page()
         sleep(3)
         activities_counter = self.driver.find_element_by_xpath("//span[@class='amount amount_Activities']").text
-        if (int(activities_counter) != 0):
+        if int(activities_counter) != 0:
             Logging().reportDebugStep(self, "Client's page contain events")
             return True
         else:
@@ -777,9 +782,9 @@ class ClientProfilePage(CRMBasePage):
         return trading_account_number
 
     def get_balance_in_trading_account(self):
-        balance = super().wait_load_element("//*[@id='dtlview_Balance']").text
-        Logging().reportDebugStep(self, "Verify balance: " + balance)
-        return balance
+        balance_in_trading_account = super().wait_load_element("//*[@id='dtlview_Balance']").text
+        Logging().reportDebugStep(self, "Verify balance: " + balance_in_trading_account)
+        return balance_in_trading_account
 
     def open_trading_account_page(self, account_number):
         sleep(0.2)
@@ -800,7 +805,8 @@ class ClientProfilePage(CRMBasePage):
     def open_trading_account_by_number(self, ta_number):
         sleep(0.5)
         link_trading_account = super().wait_load_element(
-            "//div[@class='link_field']/a[@class='before_nw' and contains(text(),'%s')]" % ta_number, timeout=35)
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["link_trading_account"]
+            % ta_number, timeout=35)
         sleep(0.1)
         self.driver.execute_script("arguments[0].click();", link_trading_account)
         Logging().reportDebugStep(self, "Open trading account: " + ta_number)
@@ -1077,4 +1083,20 @@ class ClientProfilePage(CRMBasePage):
             return ClientProfilePage()
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "There is no Create MT User button available")
-            return ClientProfilePage()
+            return ClientProfilePage(self.driver)
+
+    ######################################## NEW UI METHODS ############################################
+
+    def open_tab(self, tab):
+        sleep(0.1)
+        tab_name = super().wait_load_element("//div[contains(text(),'%s')]" % tab)
+        self.driver.execute_script("arguments[0].click();", tab_name)
+        Logging().reportDebugStep(self, tab + " tab is opened")
+        return ClientProfilePage(self.driver)
+
+    def get_ta_number(self):
+        sleep(0.5)
+        ta_number = super().wait_load_element(
+            "//mat-expansion-panel[@id='trading-accounts']//tr[2]/td[1]/div/span/span").get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get trading account number: " + ta_number)
+        return ta_number

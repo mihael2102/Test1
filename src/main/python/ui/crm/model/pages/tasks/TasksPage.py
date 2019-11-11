@@ -94,7 +94,7 @@ class TasksPage(CRMBasePage):
         click_event_type = super().wait_load_element("//a[contains(text(), 'Event Type')]")
         self.driver.execute_script("arguments[0].click();", click_event_type)
         sleep(1)
-        self.wait_crm_loading_to_finish_tasks(55)
+        self.wait_crm_loading_to_finish_tasks(85)
         Logging().reportDebugStep(self, "Click on Event Type")
         return TasksPage(self.driver)
 
@@ -319,7 +319,7 @@ class TasksPage(CRMBasePage):
         sleep(3)
         subject_mail = super().wait_load_element("//*[@id='email_cc']")
         subject_mail.send_keys(cc_mail)
-        Logging().reportDebugStep(self, "Enter cc mail" + cc_mail)
+        Logging().reportDebugStep(self, "Enter cc mail: " + cc_mail)
         return TasksPage(self.driver)
 
     def open_mass_edit_task(self):

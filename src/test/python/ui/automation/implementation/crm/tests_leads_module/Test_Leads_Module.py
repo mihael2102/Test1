@@ -214,6 +214,57 @@ class LeadModuleTest(BaseTest):
                 lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
                 self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
 
+    def test_convert_lead_short(self):
+        LeadPrecondition(self.driver, self.config)\
+            .create_lead_short(self.lead1)
+        lead_view_profile_page = LeadViewInfo(self.driver)
+
+        if global_var.current_brand_name == "newcrmui":
+            CreateLeadsProfilePage(self.driver)\
+                .verify_success_message()
+            CRMHomePage(self.driver)\
+                .click_ok()
+            LeadsModule(self.driver)\
+                .select_filter(self.config.get_data_lead_info(
+                                LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))\
+                .enter_email(self.config.get_data_lead_info(
+                                LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.EMAIL))\
+                .open_personal_details_lead()
+
+        lead_view_profile_page\
+            .open_convert_lead_module() \
+
+        ConvertLeadModule(self.driver)\
+            .perform_convert_lead_short(
+                self.client1[LeadsModuleConstants.FIRST_NAME],
+                self.client1[LeadsModuleConstants.BIRTHDAY],
+                self.client1[LeadsModuleConstants.STREET],
+                self.client1[LeadsModuleConstants.POSTAL_CODE],
+                self.client1[LeadsModuleConstants.CITY],
+                self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                self.client1[LeadsModuleConstants.EMAIL],
+                self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
+
+        if global_var.current_brand_name == "newcrmui":
+            CreateLeadsProfilePage(self.driver)\
+                .verify_success_message()
+            CRMHomePage(self.driver)\
+                .click_ok()
+
+        if global_var.current_brand_name != "newcrmui":
+            convert_verified = False
+            try:
+                confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
+                assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+                lead_view_profile_page.click_ok()
+                convert_verified = True
+            except (TimeoutException, AssertionError, NoSuchElementException):
+                Logging().reportDebugStep(self, "Lead convert message was not picked up")
+            if not convert_verified:
+                lead_detail_view = LeadDetailViewInfo(self.driver)
+                lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
+                self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
+
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)
         return lead
