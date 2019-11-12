@@ -40,6 +40,13 @@ class TradingAccountsInformationPage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the balance from crm: " + balance_text)
         return balance_text
 
+    def get_credit_text(self):
+        sleep(0.1)
+        credit_text = super().wait_load_element("//div[label='Credit']//following-sibling::div")\
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Returns the Credit amount from trading account page: " + credit_text)
+        return credit_text
+
     def get_equity_text(self):
         equity_text = self.driver.find_element(By.XPATH, "//td[contains(text(),'Equity')]//following-sibling::td[1]")
         parser_equity_text = equity_text.text.split(".")[0]

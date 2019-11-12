@@ -15,6 +15,8 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 from src.test.python.ui.automation.utils.preconditions.credit_in.Credit_In_Precondition import \
     CreditInPrecondition
+from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsInformationPage import \
+    TradingAccountsInformationPage
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from selenium.common.exceptions import NoSuchElementException
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
@@ -134,24 +136,23 @@ class CreditInTestCRM(BaseTest):
                                        MT4ModuleConstants.CREDIT_IN_GARANTED_BY,
                                        MT4ModuleConstants.CREDIT_IN_COMMENT)
 
-            # Check confirmation message
-            MT4CreateAccountModule(self.driver) \
-                .verify_success_message()
-            CRMHomePage(self.driver) \
-                .click_ok()
+        # Check confirmation message
+        MT4CreateAccountModule(self.driver) \
+            .verify_success_message()
+        CRMHomePage(self.driver) \
+            .click_ok()
 
-            # Check the balance updated
-            ClientProfilePage(self.driver) \
-                .refresh_page() \
-                .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
-                .open_trading_account_by_number(account_number)
-            sleep(1)
+        # Check the balance updated
+        ClientProfilePage(self.driver) \
+            .refresh_page() \
+            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
+            .open_trading_account_by_number(account_number)
 
-        MT4CreditInModule(self.driver).refresh_page()
+        MT4CreditInModule(self.driver)\
+            .refresh_page()
         # Check the Credit In amount
-        credit_in_amount = ClientProfilePage(self.driver) \
-            .perform_scroll_down() \
-            .get_amount_of_credit_in()  # Get amount from block 'Trading Accounts'
+        credit_in_amount = TradingAccountsInformationPage(self.driver) \
+            .get_credit_text()
 
         counter = 0
         if global_var.current_brand_name == "trade99":

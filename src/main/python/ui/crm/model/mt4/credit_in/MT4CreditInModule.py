@@ -117,7 +117,7 @@ class MT4CreditInModule(CRMBasePage):
 
     def set_expire_date_new_ui(self, day, month, year):
         date_field = super().wait_load_element(
-            "//input[@placeholder='Choose date of birth']")
+            "//div[contains(label,'Expire date')]//following-sibling::mat-form-field")
         self.driver.execute_script("arguments[0].click();", date_field)
         current_date_btn = super().wait_load_element(
             "(//span[@class='mat-button-wrapper' and contains(text(),'2019')])[1]")
