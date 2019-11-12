@@ -1,5 +1,11 @@
 tests_config:
 
+############################################ CLIENTS ################################################
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
+  class: SearchingClientsTestCRM
+  tests:
+    - test_make_searching_client_module   # Searches for a client.
+
 ########################################### CONVERT LEAD ############################################
 - module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
   directive: reload_configuration

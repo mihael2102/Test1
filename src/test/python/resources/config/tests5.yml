@@ -16,12 +16,6 @@ tests_config:
   tests:
     - test_crm_configurations_pages_loading
 
-############################################ CLIENTS ################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
-  class: SearchingClientsTestCRM
-  tests:
-    - test_make_searching_client_module   # Searches for a client.
-
 ############################################# TASKS ##################################################
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
   class: AddInteraction
