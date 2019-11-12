@@ -50,5 +50,7 @@ MT4WithdrawModule:
   comment_filed: "//input[@id='comment']"
 MT4CreditInModule:
   amount_filed: "//input[@formcontrolname='amount']"
+  description_filed: "//input[@formcontrolname='comment']"
+  create_button: "//span[text()=' Credit in ']"
 TradingAccountsInformationPage:
   balance_text: "//div[label='Balance']//following-sibling::div"
