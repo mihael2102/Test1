@@ -36,7 +36,7 @@ class TradingAccountsInformationPage(CRMBasePage):
     def get_balance_text(self):
         sleep(0.1)
         balance_text = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
-                                                 ["balance_text"]).get_attribute("value")
+                                                 ["balance_text"]).get_attribute("innerText")
         Logging().reportDebugStep(self, "Returns the balance from crm: " + balance_text)
         return balance_text
 

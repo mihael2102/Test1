@@ -115,6 +115,8 @@ MT4DepositModule:
 MT4WithdrawModule:
   create_withdraw_button: "//button[contains(text(),'Create')]"
   comment_filed: "//input[@id='transaction_comment']"
+MT4CreditInModule:
+  amount_filed: "//input[@id='amount']"
 TradingAccountsInformationPage:
   balance_text: "//td[contains(text(),'Balance')]//following-sibling::td[1]"
 WebTraderPage:

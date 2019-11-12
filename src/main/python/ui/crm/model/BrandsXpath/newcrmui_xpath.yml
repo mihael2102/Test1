@@ -48,5 +48,7 @@ MT4DepositModule:
 MT4WithdrawModule:
   create_withdraw_button: "//span[text()=' Withdraw ']"
   comment_filed: "//input[@id='comment']"
+MT4CreditInModule:
+  amount_filed: "//input[@formcontrolname='amount']"
 TradingAccountsInformationPage:
-  balance_text: "//div[label='Balance']//following-sibling::mat-form-field//input"
+  balance_text: "//div[label='Balance']//following-sibling::div"

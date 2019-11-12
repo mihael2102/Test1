@@ -142,10 +142,10 @@ tests_config:
 #    - test_crm_edit_trading_account  # edit trading account
 #
 ######################################## AFFILIATES MODULE ##########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
-  class: AffiliateModule
-  tests:
-     - test_create_affiliate
+#- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
+#  class: AffiliateModule
+#  tests:
+#     - test_create_affiliate
 #
 ####################################### FINANCIAL TRANSACTIONS ######################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
@@ -212,8 +212,8 @@ tests_config:
 #    - test_sorting
 #
 ############################################# DRAGON TESTS ###############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
-#  class: CheckDragonTest
-#  tests:
-#    - test_dragon_leads
-#    - test_dragon_clients
+- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
+  class: CheckDragonTest
+  tests:
+    - test_dragon_leads
+    - test_dragon_clients

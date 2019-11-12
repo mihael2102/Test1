@@ -1,5 +1,5 @@
 from time import sleep
-
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
@@ -21,6 +21,14 @@ class MT4CreditInModule(CRMBasePage):
 
     def make_credit_in(self, account_number, amount, expire_date, comment):
         self.select_account(account_number)
+        self.set_amount(amount)
+        self.set_expire_date(expire_date)
+        self.set_description(comment)
+        self.perform_create_credit_in()
+        return ClientProfilePage(self.driver)
+
+    def make_credit_in_new_ui(self, account_number, amount, expire_date, comment):
+        self.select_trading_account_new_ui(account_number)
         self.set_amount(amount)
         self.set_expire_date(expire_date)
         self.set_description(comment)
@@ -50,7 +58,8 @@ class MT4CreditInModule(CRMBasePage):
     '''
 
     def set_amount(self, amount):
-        amount_filed = self.driver.find_element(By.XPATH, "//input[@id='amount']")
+        amount_filed = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+        (self.__class__.__name__)["amount_filed"])
         amount_filed.clear()
         amount_filed.send_keys(amount)
         Logging().reportDebugStep(self, "The amount of credit in module was set:  " + amount)
@@ -95,3 +104,11 @@ class MT4CreditInModule(CRMBasePage):
         create_button.click()
         Logging().reportDebugStep(self, "Perform the create credit in  of credit in module was clicked")
         return ClientProfilePage()
+
+####################################### NEW UI METHODS #########################################
+
+    def select_trading_account_new_ui(self, account):
+        account_item = super().wait_load_element("//span[contains(text(),'%s')]" % account)
+        self.driver.execute_script("arguments[0].click();", account_item)
+        Logging().reportDebugStep(self, "The trading account for Credit In was selected:  " + account)
+        return MT4CreditInModule()
