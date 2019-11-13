@@ -199,6 +199,8 @@ class DepositTestCRM(BaseTest):
             .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)\
             .get_ta_number()
 
+        MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT = account_number
+
         # Make deposit for account number using MT4 Actions
         MT4DropDown(self.driver) \
             .open_mt4_module_newui(CRMConstants.CREATE_MT_DEPOSIT)

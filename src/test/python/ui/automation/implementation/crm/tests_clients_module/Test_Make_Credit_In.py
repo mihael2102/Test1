@@ -113,6 +113,8 @@ class CreditInTestCRM(BaseTest):
             .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
             .get_ta_number()
 
+        MT4ModuleConstants.ACCOUNT_NUMBER_CREDIT = account_number
+
         # Make Credit in
         MT4DropDown(self.driver) \
             .open_mt4_module_newui(CRMConstants.CREATE_MT_CREDIT_IN)
@@ -154,17 +156,22 @@ class CreditInTestCRM(BaseTest):
         credit_in_amount = TradingAccountsInformationPage(self.driver) \
             .get_credit_text()
 
-        counter = 0
+        if credit_in_amount[0] != 0:
+            credit_in_amount = credit_in_amount.split('.')[0]
+
         if global_var.current_brand_name == "trade99":
             expected_credit = CRMConstants.AMOUNT_CREDIT_IN_BTC
         else:
-            expected_credit = CRMConstants.AMOUNT_CREDIT_IN
+            expected_credit = CRMConstants.AMOUNT_CREDIT_IN.split('.')[0]
 
+        counter = 0
         while expected_credit != credit_in_amount:
-            MT4CreditInModule(self.driver).refresh_page()
-            credit_in_amount = ClientProfilePage(self.driver) \
-                .perform_scroll_down() \
-                .get_amount_of_credit_in()
+            MT4CreditInModule(self.driver)\
+                .refresh_page()
+            credit_in_amount = TradingAccountsInformationPage(self.driver) \
+                .get_credit_text()
+            if credit_in_amount[0] != 0:
+                credit_in_amount = credit_in_amount.split('.')[0]
             counter += 1
             if counter == 7:
                 break
