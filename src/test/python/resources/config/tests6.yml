@@ -1,17 +1,27 @@
 tests_config:
 
-########################################### CAMPAIGN MODULE ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
-  class: CampaignsModuleTest
+########################################### TASKS CALENDAR VIEW #####################################
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
+  class: CalendarView
   tests:
-    - test_create_campaign
-    - test_edit_campaign
-    - test_delete_campaign
+    - test_check_day_tab
+    - test_check_month_tab
+    - test_check_week_tab
 
-######################################### AUTOASSIGN MODULE #############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
-  class: AutoAssignModuleTest
+############################################# TASKS ##################################################
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
+  class: AddInteraction
   tests:
-    - test_add_auto_assign_rule_lead
-    - test_add_auto_assign_rule_client
-    - test_perform_delete_rule
+    - test_add_interaction  # Adds an interaction for a client
+    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
+
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+  class: AddEventTaskModule
+  tests:
+    - test_add_event
+    - test_edit_event
+    - test_delete_interaction
+    - test_sms_icon
+    - test_mass_edit_tasks
+    - test_searching_by_columns
+    - test_sorting_columns

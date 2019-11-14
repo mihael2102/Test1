@@ -12,7 +12,6 @@ tests_config:
   class: TradingAccountCrmTest
   tests:
     - fill_questioner_new_client
-    - test_crm_open_trading_account  # open a new trading account
 
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
   class: DepositTestCRM
@@ -39,8 +38,3 @@ tests_config:
   class: TransferBetweenTa
   tests:
     - test_transfer_between_ta  # preconditions: convert lead, deposit crm, credit in
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_edit_trading_account  # edit trading account
