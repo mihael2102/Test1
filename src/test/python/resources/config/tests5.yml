@@ -10,12 +10,6 @@ tests_config:
     - test_my_dashboard_loading
     - test_audit_logs_loading
 
-##################################### CRM CONFIGURATIONS #########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
-  class: CRMConfigurationsTest
-  tests:
-    - test_crm_configurations_pages_loading
-
 ############################################# TASKS ##################################################
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Add_Interaction
   class: AddInteraction
