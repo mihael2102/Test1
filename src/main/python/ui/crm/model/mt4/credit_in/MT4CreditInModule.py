@@ -110,6 +110,7 @@ class MT4CreditInModule(CRMBasePage):
 ####################################### NEW UI METHODS #########################################
 
     def select_trading_account_new_ui(self, account):
+        sleep(0.1)
         account_item = super().wait_load_element("//span[contains(text(),'%s')]" % account)
         self.driver.execute_script("arguments[0].click();", account_item)
         Logging().reportDebugStep(self, "The trading account for Credit In was selected:  " + account)

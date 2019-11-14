@@ -52,5 +52,10 @@ MT4CreditInModule:
   amount_filed: "//input[@formcontrolname='amount']"
   description_filed: "//input[@formcontrolname='comment']"
   create_button: "//span[text()=' Credit in ']"
+MT4CreditOutModule:
+  amount_filed: "//input[@formcontrolname='amount']"
+  granted_by_filed: "//input[@formcontrolname='grantedBy']"
+  comment_filed: "//input[@formcontrolname='comment']"
+  create_button: "//span[contains(text(),'Credit out')]"
 TradingAccountsInformationPage:
   balance_text: "//div[label='Balance']//following-sibling::div"

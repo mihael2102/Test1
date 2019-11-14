@@ -119,6 +119,11 @@ MT4CreditInModule:
   amount_filed: "//input[@id='amount']"
   description_filed: "//input[@id='transaction_comment']"
   create_button: "//button[contains(text(),'Create')]"
+MT4CreditOutModule:
+  amount_filed: "//input[@id='amount']"
+  granted_by_filed: "//input[@id='transaction_grantedBy']"
+  comment_filed: "//input[@id='transaction_comment']"
+  create_button: "//button[contains(text(),'Create')]"
 TradingAccountsInformationPage:
   balance_text: "//td[contains(text(),'Balance')]//following-sibling::td[1]"
 WebTraderPage:
