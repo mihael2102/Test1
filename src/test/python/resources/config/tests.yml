@@ -90,9 +90,9 @@ tests_config:
 #    - test_add_interaction  # Adds an interaction for a client
 #    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-  class: AddEventTaskModule
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+#  class: AddEventTaskModule
+#  tests:
 #    - test_add_event
 #    - test_edit_event
 #    - test_delete_interaction
@@ -100,7 +100,7 @@ tests_config:
 #    - test_sms_icon
 #    - test_mass_edit_tasks
 #    - test_searching_by_columns
-    - test_sorting_columns
+#    - test_sorting_columns
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
 #  class: CalendarView
@@ -173,10 +173,10 @@ tests_config:
 #    - test_check_search_via_button # Check search using search button
 #
 ############################################ CAMPAIGN MODULE ###############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
-#  class: CampaignsModuleTest
-#  tests:
-#    - test_create_campaign
+- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
+  class: CampaignsModuleTest
+  tests:
+    - test_create_campaign
 #    - test_edit_campaign
 #    - test_delete_campaign
 #
