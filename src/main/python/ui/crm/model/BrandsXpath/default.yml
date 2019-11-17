@@ -49,6 +49,7 @@ ClientProfilePage:
   mt4_button: "//div[@class='mt4_act_box']"
   link_trading_account: "//div[@class='link_field']/a[@class='before_nw' and contains(text(),'%s')]"
   balance_in_trading_account: "//*[@id='dtlview_Balance']"
+  account_number: "(//tr[@class='lvtColData'])[1]//td[1]"
 CRMClientDeposit:
   i_confirm_checkbox: "//*[@name='confirm']"
 ConvertLeadModule:
@@ -114,6 +115,15 @@ MT4DepositModule:
 MT4WithdrawModule:
   create_withdraw_button: "//button[contains(text(),'Create')]"
   comment_filed: "//input[@id='transaction_comment']"
+MT4CreditInModule:
+  amount_filed: "//input[@id='amount']"
+  description_filed: "//input[@id='transaction_comment']"
+  create_button: "//button[contains(text(),'Create')]"
+MT4CreditOutModule:
+  amount_filed: "//input[@id='amount']"
+  granted_by_filed: "//input[@id='transaction_grantedBy']"
+  comment_filed: "//input[@id='transaction_comment']"
+  create_button: "//button[contains(text(),'Create')]"
 TradingAccountsInformationPage:
   balance_text: "//td[contains(text(),'Balance')]//following-sibling::td[1]"
 WebTraderPage:
