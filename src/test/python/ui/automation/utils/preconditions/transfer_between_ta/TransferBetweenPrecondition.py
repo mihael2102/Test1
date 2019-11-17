@@ -122,13 +122,13 @@ class TransferBetweenPrecondition(object):
         CRMHomePage(self.driver) \
             .open_client_module_new_ui() \
             .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email_new_ui("pandaqa+20191117093056470650@pandats.com")
+            .find_client_by_email_new_ui(client1[LeadsModuleConstants.EMAIL])
 
         # Get balance of accounts and calculate of expected total:
         crm_client_profile = ClientProfilePage(self.driver)
         ClientProfilePage(self.driver) \
             .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
-            .open_trading_account_by_number('81869275')
+            .open_trading_account_by_number(MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT)
         balance1 = TradingAccountsInformationPage(self.driver)\
             .get_balance_text()
 
@@ -138,7 +138,7 @@ class TransferBetweenPrecondition(object):
         ClientProfilePage(self.driver) \
             .refresh_page()\
             .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
-            .open_trading_account_by_number('81869276')
+            .open_trading_account_by_number(MT4ModuleConstants.ACCOUNT_NUMBER_CREDIT)
         balance2 = TradingAccountsInformationPage(self.driver) \
             .get_balance_text()
 
