@@ -4,6 +4,7 @@ from src.main.python.utils.logs.Loging import Logging
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 class DragonPage(CRMBasePage):
@@ -13,13 +14,15 @@ class DragonPage(CRMBasePage):
     def check_invalid_phone(self, phone):
         # Check number:
         sleep(1)
-        number_text = super().wait_load_element("//div[@title='Click to Call']").get_attribute("innerText")
+        number_text = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
+                                                ["number_text"]).get_attribute("innerText")
         actual_number = number_text.replace(' ', '')
         actual_number = actual_number.replace('+', '')
         assert actual_number == phone
         Logging().reportDebugStep(self, "Invalid Phone number is displayed: " + phone)
         # Check colour:
-        super().wait_load_element("//div[@title='Click to Call' and contains(@style,'color: red')]")
+        super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
+                                                                                    ["number_color_red"])
         Logging().reportDebugStep(self, "The colour of Invalid Phone number in list view is red")
         return DragonPage(self.driver)
 
@@ -83,6 +86,7 @@ class DragonPage(CRMBasePage):
             show_phone_btn = super().wait_load_element("//span[@title='Show Phone Number']")
             self.driver.execute_script("arguments[0].click();", show_phone_btn)
             Logging().reportDebugStep(self, "Click Show Phone Number button")
+            return True
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "There are no 'Show Phone Number' button")
-        return DragonPage(self.driver)
+            return False
