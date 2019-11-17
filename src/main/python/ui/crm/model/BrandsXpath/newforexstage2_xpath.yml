@@ -12,6 +12,8 @@ ClientsPage:
   country_button: "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']"
   country_field: "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']"
   country_click: "//label[contains(text(),'%s')]"
+ClientProfilePage:
+  account_number: "(//tr[@class='lvtColData']//a[@id='1'])[2]"
 FinancialTransactionsPage:
   client_name_element:  "(//td[4]/div/a)[%s]"
   modified_time_element: "(//*[contains(@id,'row')]/td[12])[%s]"

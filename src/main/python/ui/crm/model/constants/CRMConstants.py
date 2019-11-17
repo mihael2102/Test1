@@ -137,6 +137,7 @@ class CRMConstants(object):
     CREATE_MT_CREDIT_IN = "Credit in"
     CREATE_MT_CREDIT_OUT = "Credit out"
     CREATE_MT_WITHDRAWAL = "Withdrawal"
+    CREATE_MT_TRANSFER = "Transfer between TA"
     WITHDRAW = "7"
     WITHDRAW2 = "4"
     DEPOSIT = "6"
