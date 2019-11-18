@@ -274,7 +274,6 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Enter level")
         return CAPage(self.driver)
 
-
     def select_incoming_funds(self, incoming_fund):
         sleep(3)
         WebDriverWait(self.driver, 10).until(
@@ -283,7 +282,6 @@ class CAPage(CRMBasePage):
         select.select_by_visible_text(incoming_fund)
         Logging().reportDebugStep(self, "Enter incoming fund")
         return CAPage(self.driver)
-
 
     def select_estimate_amount(self, amount):
         sleep(3)
@@ -306,7 +304,6 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Enter purpose")
         return CAPage(self.driver)
 
-
     def select_estimate_worth(self, estimate_worth):
         sleep(3)
         WebDriverWait(self.driver, 10).until(
@@ -315,7 +312,6 @@ class CAPage(CRMBasePage):
         select.select_by_visible_text(estimate_worth)
         Logging().reportDebugStep(self, "Enter estimate worth")
         return CAPage(self.driver)
-
 
     def select_estimate_income(self, estimate_income):
         sleep(3)
@@ -326,7 +322,6 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Enter estimate income")
         return CAPage(self.driver)
 
-
     def check_box_source_total(self, source):
         sleep(5)
         submit = super().wait_load_element("//*[@id='cblTotalWealth']/li[1]/label[contains(text(), 'Savings and investments ')]")
@@ -334,7 +329,6 @@ class CAPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", submit)
         Logging().reportDebugStep(self, "Click check box " + source)
         return CAPage(self.driver)
-
 
     def check_box_source(self, source):
         sleep(5)
