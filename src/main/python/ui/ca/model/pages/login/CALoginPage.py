@@ -27,9 +27,9 @@ class CALoginPage(CRMBasePage):
         country_drop_down = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["country_registr"])
         country_drop_down.click()
-        country = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+        country_item = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["select_country"] % country)
-        country.click()
+        country_item.click()
         Logging().reportDebugStep(self, "Select country: " + country)
         return CALoginPage(self.driver)
 
