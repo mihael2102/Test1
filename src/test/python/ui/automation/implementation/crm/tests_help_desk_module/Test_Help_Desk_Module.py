@@ -12,15 +12,18 @@ from src.test.python.ui.automation.utils.preconditions.help_desk.HelpDeskPrecond
 class HelpDeskModuleTest(BaseTest):
 
     def test_create_ticket(self):
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        HelpDeskPrecondition().create_first_ticket()
+        HelpDeskPrecondition(self.driver, self.config)\
+            .create_first_ticket()
 
-        detail_view_page_service_desk_module = HelpDeskPage().select_filter(
-            Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME)) \
+        detail_view_page_service_desk_module = HelpDeskPage()\
+            .select_filter(
+                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME)) \
             .find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
             .perform_search_ticket() \
             .open_ticket_number()

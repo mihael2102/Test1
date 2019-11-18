@@ -18,7 +18,7 @@ class DragonPage(CRMBasePage):
                                                 ["number_text"]).get_attribute("innerText")
         actual_number = number_text.replace(' ', '')
         actual_number = actual_number.replace('+', '')
-        assert actual_number == phone
+        assert phone in actual_number
         Logging().reportDebugStep(self, "Invalid Phone number is displayed: " + phone)
         # Check colour:
         super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)

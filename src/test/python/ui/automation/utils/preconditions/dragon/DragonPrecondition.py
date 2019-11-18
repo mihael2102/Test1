@@ -139,9 +139,14 @@ class DragonPrecondition(object):
             .set_phone(DragonConstants.PHONE_NUMBER_VALID)\
             .click_save()\
             .refresh_page()
-        DragonPage(self.driver)\
-            .click_show_phone_btn()\
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
+        phone_visibility = DragonPage(self.driver)\
+            .click_show_phone_btn()
+        if phone_visibility:
+            DragonPage(self.driver) \
+                .check_valid_phone(DragonConstants.PHONE_NUMBER_VALID)
+        else:
+            DragonPage(self.driver) \
+                .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
 
         ' Check valid number and email in list view: '
         CRMHomePage(self.driver)\
@@ -149,9 +154,15 @@ class DragonPrecondition(object):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .enter_email(DragonConstants.LEAD_EMAIL)\
             .click_search_button()
-        DragonPage(self.driver)\
-            .click_show_phone_btn()\
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)\
+        phone_visibility = DragonPage(self.driver)\
+            .click_show_phone_btn()
+        if phone_visibility:
+            DragonPage(self.driver) \
+                .check_valid_phone(DragonConstants.PHONE_NUMBER_VALID)
+        else:
+            DragonPage(self.driver) \
+                .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
+        DragonPage(self.driver) \
             .check_email_in_send_mail_popup(DragonConstants.EMAIL_VALID_SEND_MAIL_POPUP)
 
     def check_dragon_leads(self):
@@ -303,16 +314,26 @@ class DragonPrecondition(object):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .enter_email(DragonConstants.LEAD_EMAIL2)\
             .click_search_button()
-        DragonPage(self.driver) \
-            .click_show_phone_btn()\
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
+        phone_visibility = DragonPage(self.driver) \
+            .click_show_phone_btn()
+        if phone_visibility:
+            DragonPage(self.driver) \
+                .check_valid_phone(DragonConstants.PHONE_NUMBER_VALID_CA)
+        else:
+            DragonPage(self.driver) \
+                .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
 
         ' Check phone number in detail view: '
         ClientsPage(self.driver)\
             .open_client_id()
         DragonPage(self.driver)\
-            .click_show_phone_btn()\
-            .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
+            .click_show_phone_btn()
+        if phone_visibility:
+            DragonPage(self.driver) \
+                .check_valid_phone(DragonConstants.PHONE_NUMBER_VALID_CA)
+        else:
+            DragonPage(self.driver) \
+                .check_valid_phone(DragonConstants.PHONE_NUMBER_HIDDEN3)
 
     def check_ca_dragon_invalid_phone(self):
         # Sign up with valid phone:
@@ -369,17 +390,14 @@ class DragonPrecondition(object):
             .enter_email(DragonConstants.LEAD_EMAIL3) \
             .click_search_button()
         # For validation of number, that comes from CA, should add the country code:
-        expected_number = "49" + DragonConstants.PHONE_NUMBER_INVALID_CA
         DragonPage(self.driver) \
-            .click_show_phone_btn()\
-            .check_invalid_phone(expected_number)
+            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID_CA)
 
         ' Check phone number in detail view: '
         ClientsPage(self.driver) \
             .open_client_id()
         DragonPage(self.driver) \
-            .click_show_phone_btn()\
-            .check_invalid_phone(expected_number)
+            .check_invalid_phone(DragonConstants.PHONE_NUMBER_INVALID_CA)
 
     def check_api_dragon_valid_phone(self):
         # Create new client via API with valid phone:

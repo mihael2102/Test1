@@ -212,8 +212,14 @@ tests_config:
 #    - test_sorting
 #
 ############################################# DRAGON TESTS ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
-  class: CheckDragonTest
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
+#  class: CheckDragonTest
+#  tests:
 #    - test_dragon_leads
-    - test_dragon_clients
+#    - test_dragon_clients
+
+############################################## HELP DESK #################################################
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
+  class: HelpDeskModuleTest
+  tests:
+    - test_create_ticket
