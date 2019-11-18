@@ -61,9 +61,6 @@ class TransferBetweenPrecondition(object):
         second_account_balance = ClientProfilePage(self.driver).get_balance_of_trading_account\
                                                         (CRMConstants.SECOND_TA_NUMBER_FROM_TA_SECTION)
 
-        # amount_initial = crm_client_profile.get_initial_amount()
-        expected_balance = ""
-
         if global_var.current_brand_name == "trade99":
             expected_balance = crm_client_profile \
                 .get_difference_amount_text(second_account_balance, CRMConstants.AMOUNT_TRANSFER_BETWEEN_TA_BTC)
