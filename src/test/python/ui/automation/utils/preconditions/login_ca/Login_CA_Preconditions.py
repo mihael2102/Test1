@@ -92,6 +92,8 @@ class Login_CA_Precondition(object):
             .click_sign_up()
 
         if global_var.current_brand_name == "itrader_global":
+            CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP_MEX)
+        elif global_var.current_brand_name == "gmo":
             CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP_AUS)
         elif global_var.current_brand_name == "oinvestsa":
             CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP_SOUTH_A)

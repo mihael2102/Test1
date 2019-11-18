@@ -30,7 +30,7 @@ class CALoginPage(CRMBasePage):
         country = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
             self.__class__.__name__)["select_country"] % country)
         country.click()
-        Logging().reportDebugStep(self, "Select country")
+        Logging().reportDebugStep(self, "Select country: " + country)
         return CALoginPage(self.driver)
 
     def fill_first_name(self, first_name):
