@@ -8,6 +8,8 @@ class APIConstants(object):
     COUNTRY_MX = "mx"
     COUNTRY_CRM_SA = "South Africa"
     COUNTRY_SA = "za"
+    COUNTRY_AUS = "at"
+    COUNTRY_CRM_AUS = "Austria"
     PARTNER_ID_OI = "22050"
     PARTNER_ID_KB = "97008"
     PARTNER_ID_GMO = "16891"
