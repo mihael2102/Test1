@@ -159,6 +159,8 @@ class ApiPrecondition(object):
             ApiPage(self.driver).enter_country(APIConstants.COUNTRY_SA)
         elif global_var.current_brand_name == "itrader_global":
             ApiPage(self.driver).enter_country(APIConstants.COUNTRY_MX)
+        elif global_var.current_brand_name == "gmo":
+            ApiPage(self.driver).enter_country(APIConstants.COUNTRY_AUS)
         else:
             ApiPage(self.driver).enter_country(APIConstants.COUNTRY)
         ApiPage(self.driver).enter_firstName(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -201,6 +203,8 @@ class ApiPrecondition(object):
             assert client_country == APIConstants.COUNTRY_CRM_SA
         elif global_var.current_brand_name == "itrader_global":
             assert client_country == APIConstants.COUNTRY_MX_CRM
+        elif global_var.current_brand_name == "gmo":
+            assert client_country == APIConstants.COUNTRY_CRM_AUS
         else:
             assert client_country == APIConstants.COUNTRY_CRM
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -229,7 +233,10 @@ class ApiPrecondition(object):
         assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.EMAIL] in token
         assert APIConstants.REFFERAL in token
-        assert APIConstants.COUNTRY in token
+        if global_var.current_brand_name == "gmo":
+            assert APIConstants.COUNTRY_AUS in token
+        else:
+            assert APIConstants.COUNTRY in token
         assert APIConstants.LASTNAME in token
         assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME] in token
