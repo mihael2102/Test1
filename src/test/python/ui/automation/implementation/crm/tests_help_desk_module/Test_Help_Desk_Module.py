@@ -21,9 +21,7 @@ class HelpDeskModuleTest(BaseTest):
         HelpDeskPrecondition(self.driver, self.config)\
             .create_first_ticket()
 
-        detail_view_page_service_desk_module = HelpDeskPage()\
-            .select_filter(
-                Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME)) \
+        detail_view_page_service_desk_module = HelpDeskPage(self.driver)\
             .find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE) \
             .perform_search_ticket() \
             .open_ticket_number()
@@ -35,32 +33,41 @@ class HelpDeskModuleTest(BaseTest):
         description = detail_view_page_service_desk_module.get_description_text()
         notes = detail_view_page_service_desk_module.get_notes_text()
         priority = detail_view_page_service_desk_module.get_priority_text()
+        assigned_to = detail_view_page_service_desk_module.get_assigned_to_text()
+        ticket_source = detail_view_page_service_desk_module.get_ticket_source()
 
         assert tittle == HelpDeskConstants.FIRST_TITTLE
-        assert category == Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+        assert category == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
                                                           HelpDeskConstants.FIRST_CATEGORY)
-        assert ticket_status == Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+        assert ticket_status == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
                                                                HelpDeskConstants.FIRST_STATUS)
 
-        assert account_name == Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
-                                                              HelpDeskConstants.SECOND_RELATED_TO)
+        assert account_name == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                              HelpDeskConstants.FIRST_RELATED_TO)
 
-        assert description == Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+        assert description == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
                                                              HelpDeskConstants.FIRST_DESCRIPTION)
 
-        assert notes == Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+        assert assigned_to == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                             HelpDeskConstants.FIRST_ASSIGNED_TO)
+
+        assert ticket_source == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+                                                               HelpDeskConstants.FIRST_TICKET_SOURCE)
+
+        assert notes == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
                                                        HelpDeskConstants.FIRST_NOTES)
 
-        assert priority == Config.data.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+        assert priority == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
                                                           HelpDeskConstants.FIRST_PRIORITY)
 
     def test_edit_ticket(self):
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(Config.url_crm) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        HelpDeskPrecondition().create_first_ticket()
+        HelpDeskPrecondition(self.driver, self.config).create_first_ticket()
 
         HelpDeskPage().select_filter(Config.data.get_data_help_desk(
             HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FILTER_NAME)) \

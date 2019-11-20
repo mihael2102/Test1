@@ -223,3 +223,8 @@ tests_config:
   class: HelpDeskModuleTest
   tests:
     - test_create_ticket
+
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk
+  class: TabHelpDeskTest
+  tests:
+    - test_searching_help_desk
