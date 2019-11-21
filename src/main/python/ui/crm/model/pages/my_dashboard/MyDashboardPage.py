@@ -329,16 +329,16 @@ class MyDashboardPage(CRMBasePage):
         return account_status.text
 
     def check_pop_up_send_sms(self):
-        sleep(5)
+        sleep(0.5)
         try:
-            title = super().wait_load_element("//span[@class='title']/h4[contains(text(),'Send SMS to')]")
-        except:
+            title = super().wait_load_element("//span[@class='title']/h4[contains(text(),'Send SMS to')]", timeout=15)
+        except(NoSuchElementException, TimeoutException):
             title = super().wait_load_element("(//div/h3[text()='Server Not Configured?'])[2]")
-        Logging().reportDebugStep(self, title.text)
+        Logging().reportDebugStep(self, "Get text from sms popup: " + title.text)
         return title.text
 
     def click_sms_icon(self):
-        sleep(3)
+        sleep(0.3)
         first_check_box = super().wait_load_element(
             "(//span[contains(@class, 'glyphicon glyphicon-transfer cursor-pointer ng-star-inserted')])[1]")
         first_check_box.click()
@@ -399,18 +399,18 @@ class MyDashboardPage(CRMBasePage):
             select_show_all_tab.click()
         except:
             self.driver.execute_script("arguments[0].click();", select_show_all_tab)
-        sleep(2)
+        sleep(0.2)
         self.wait_crm_loading_to_finish_tasks(75)
         Logging().reportDebugStep(self, "Select Show All tab")
         return MyDashboardPage(self.driver)
 
     def enter_account_name(self, testqa):
-        sleep(1)
+        sleep(0.1)
         self.perform_scroll_down()
         sleep(0.5)
         input = super().wait_load_element("//*[@id='host-element']/input")
         self.driver.execute_script("arguments[0].scrollIntoView();", input)
-        sleep(1)
+        sleep(0.3)
         input.send_keys(testqa)
         sleep(1)
         try:

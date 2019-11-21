@@ -20,3 +20,5 @@ DragonPage:
 FinancialTransactionsPage:
   client_name_element:  "(//td[4]/div/a)[%s]"
   modified_time_element: "(//*[contains(@id,'row')]/td[12])[%s]"
+TasksPage:
+  sms_icon: "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[1]"
