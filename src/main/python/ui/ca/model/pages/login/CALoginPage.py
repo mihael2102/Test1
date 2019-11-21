@@ -97,7 +97,7 @@ class CALoginPage(CRMBasePage):
     def risk_check_box_accept(self):
         try:
             check_box = super().wait_load_element(
-                "//span[contains(text(),'CFD and Forex trading involves substantial risk')]")
+                "//span[contains(text(),'CFD and Forex trading involves substantial risk')]", timeout=5)
             check_box.click()
             Logging().reportDebugStep(self,
                "Check 'CFD and Forex trading involves substantial risk and may result in the loss of the invested capital'")
@@ -116,7 +116,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def click_hi_guest(self):
-        sleep(1)
+        sleep(0.1)
         hi_guest_button = super().wait_load_element("//div[contains (text(), 'Hi, Guest')]")
         hi_guest_button.click()
         Logging().reportDebugStep(self, "Click Hi, Guest")
@@ -301,23 +301,20 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def enter_email(self, email):
-        sleep(5)
-        input_email = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+        sleep(0.5)
+        input_email = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["login_email_input"])
         self.driver.execute_script("arguments[0].click();", input_email)
-        sleep(1)
+        sleep(0.1)
         input_email.send_keys(email)
         Logging().reportDebugStep(self, "Enter Email: " + email)
         return CALoginPage(self.driver)
 
     def enter_password(self, password):
-        sleep(1)
-        try:
-            input_password = self.driver.find_element_by_xpath("(//input[@name='password'])[1]")
-        except(NoSuchElementException, TimeoutException):
-            input_password = self.driver.find_element_by_xpath("//input[@name='password']")
+        sleep(0.1)
+        input_password = super().wait_load_element("//input[@id='forex-password']")
         self.driver.execute_script("arguments[0].click();", input_password)
-        sleep(1)
+        sleep(0.1)
         input_password.send_keys(password)
         Logging().reportDebugStep(self, "Enter Password: " + password)
         return CALoginPage(self.driver)
@@ -465,7 +462,7 @@ class CALoginPage(CRMBasePage):
 
     def select_country_first_step(self, country):
         try:
-            country_list = super().wait_element_to_be_clickable("//select[@id='country']")
+            country_list = super().wait_element_to_be_clickable("//select[@id='country']", timeout=5)
             select_status = Select(country_list)
             select_status.select_by_visible_text(country)
             Logging().reportDebugStep(self, "Select Country(first step): " + country)

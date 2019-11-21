@@ -36,9 +36,16 @@ class TradingAccountsInformationPage(CRMBasePage):
     def get_balance_text(self):
         sleep(0.1)
         balance_text = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
-                                                 ["balance_text"]).get_attribute("value")
+                                                 ["balance_text"]).get_attribute("innerText")
         Logging().reportDebugStep(self, "Returns the balance from crm: " + balance_text)
         return balance_text
+
+    def get_credit_text(self):
+        sleep(0.1)
+        credit_text = super().wait_load_element("//div[label='Credit']//following-sibling::div")\
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Returns the Credit amount from trading account page: " + credit_text)
+        return credit_text
 
     def get_equity_text(self):
         equity_text = self.driver.find_element(By.XPATH, "//td[contains(text(),'Equity')]//following-sibling::td[1]")

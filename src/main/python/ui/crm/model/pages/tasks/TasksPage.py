@@ -319,7 +319,7 @@ class TasksPage(CRMBasePage):
         sleep(3)
         subject_mail = super().wait_load_element("//*[@id='email_cc']")
         subject_mail.send_keys(cc_mail)
-        Logging().reportDebugStep(self, "Enter cc mail" + cc_mail)
+        Logging().reportDebugStep(self, "Enter cc mail: " + cc_mail)
         return TasksPage(self.driver)
 
     def open_mass_edit_task(self):

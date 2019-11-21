@@ -323,9 +323,9 @@ class ApiPrecondition(object):
             .update_customer_module()\
             .enter_email_for_update(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
                                             [LeadsModuleConstants.EMAIL1])\
-            .change_first_name(APIConstants.CHANGE_FIRST_NAME)\
             .change_postalCode(APIConstants.CHANGE_POSTAL_CODE)\
-            .change_phone(APIConstants.CHANGE_PHONE)\
+            .change_address(APIConstants.CHANGE_ADDRESS)\
+            .change_city(APIConstants.CHANGE_CITY)\
             .send_update_customer()\
             .check_update_token()
 
@@ -339,10 +339,6 @@ class ApiPrecondition(object):
             .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.EMAIL1])
         client_email = ClientsPage(self.driver)\
             .get_first_client_email()
-        client_first_name = ClientsPage(self.driver)\
-            .get_client_first_name()
-        client_phone = ClientsPage(self.driver)\
-            .get_client_phone()
         if global_var.current_brand_name == "q8":
             ClientsPage(self.driver)\
                 .open_address_information()
@@ -351,6 +347,10 @@ class ApiPrecondition(object):
                 .click_custom_information()
         client_postal_code = ClientsPage(self.driver)\
             .get_client_postalCode()
+        client_address = ClientsPage(self.driver)\
+            .get_client_address()
+        client_city = ClientsPage(self.driver)\
+            .get_client_city()
 
         # Email verification:
         try:
@@ -360,18 +360,14 @@ class ApiPrecondition(object):
             assert client_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW4 or \
                    client_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW3
 
-        # First name verification:
-        assert client_first_name == APIConstants.CHANGE_FIRST_NAME
-
-        # Phone verification:
-        try:
-            assert client_phone == APIConstants.CHANGE_PHONE_CRM
-        except AssertionError:
-            assert client_phone == DragonConstants.PHONE_NUMBER_HIDDEN4 or \
-                   client_phone == DragonConstants.PHONE_NUMBER_HIDDEN3
-
         # Postal code verification:
         assert client_postal_code == APIConstants.CHANGE_POSTAL_CODE
+
+        # Address verification:
+        assert client_address == APIConstants.CHANGE_ADDRESS
+
+        # City verification:
+        assert client_city == APIConstants.CHANGE_CITY
 
     def test_create_lead(self):
         self.autorization_process_short()

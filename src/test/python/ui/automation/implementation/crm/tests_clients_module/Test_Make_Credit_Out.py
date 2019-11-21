@@ -9,8 +9,10 @@ from src.test.python.ui.automation.utils.preconditions.credit_out.Credit_Out_Pre
 class CreditOutTestCRM(BaseTest):
 
     def test_make_credit_out_crm(self):
-
         CreditOutPrecondition(self.driver, self.config).credit_out_crm()
+
+    def test_make_credit_out_crm_new_ui(self):
+        CreditOutPrecondition(self.driver, self.config).credit_out_crm_new_ui()
 
 
 
