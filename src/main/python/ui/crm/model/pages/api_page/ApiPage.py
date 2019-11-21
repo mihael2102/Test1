@@ -217,6 +217,22 @@ class ApiPage(CRMBasePage):
         Logging().reportDebugStep(self, "Change phone: " + phone)
         return ApiPage(self.driver)
 
+    def change_city(self, city):
+        input = self.driver.find_element(By.XPATH,
+                                         "//*[@id='sample-request-param-field-city-Customers-updateCustomer-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.send_keys(city)
+        Logging().reportDebugStep(self, "Change city: " + city)
+        return ApiPage(self.driver)
+
+    def change_address(self, address):
+        input = self.driver.find_element(By.XPATH,
+                                         "//*[@id='sample-request-param-field-address-Customers-updateCustomer-0_0_0']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", input)
+        input.send_keys(address)
+        Logging().reportDebugStep(self, "Change city: " + address)
+        return ApiPage(self.driver)
+
     def update_customer_module(self):
         sleep(2)
         customer_module = self.driver.find_element(By.XPATH, "//*[@id='scrollingNav']/ul/li[10]/a")

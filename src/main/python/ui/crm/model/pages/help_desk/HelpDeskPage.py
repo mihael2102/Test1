@@ -23,13 +23,13 @@ class HelpDeskPage(CRMBasePage):
         tab = super().wait_load_element("//li[contains(text(),'Opened Today')]")
         tab.click()
         Logging().reportDebugStep(self, "The today tab was opened")
-        return HelpDeskPage()
+        return HelpDeskPage(self.driver)
 
     def open_create_ticket_page(self):
         create_ticket_page_button = super().wait_load_element("//td[@class='moduleName']//button[1]")
         create_ticket_page_button.click()
         Logging().reportDebugStep(self, "The create ticket page was opened")
-        return HelpDeskCreationTicket()
+        return HelpDeskCreationTicket(self.driver)
 
     def open_create_filter_pop_up(self):
         filter_button = super().wait_element_to_be_clickable("//a[@title='Create Filter']")
@@ -95,7 +95,7 @@ class HelpDeskPage(CRMBasePage):
         ticket_number = super().wait_load_element("//div[@class='link_field']")
         ticket_number.click()
         Logging().reportDebugStep(self, "Open ticket number")
-        return HelpDeskDetailViewPage()
+        return HelpDeskDetailViewPage(self.driver)
 
     ''' 
         Select the filter in drop-down   
@@ -125,18 +125,19 @@ class HelpDeskPage(CRMBasePage):
     '''
 
     def find_ticket_by_id(self, ticket_id):
-        field_id = super().wait_load_element("//input[@name='tks_bl_id']")
+        self.wait_vtiger_loading_to_finish_custom(35)
+        field_id = super().wait_load_element("//input[@name='tks_ticket_no']")
         field_id.clear()
         field_id.send_keys(ticket_id)
-        Logging().reportDebugStep(self, "The ticket was find: " + ticket_id)
+        Logging().reportDebugStep(self, "Search by Ticket No: " + ticket_id)
         return HelpDeskPage()
 
     def find_ticket_by_title(self, tittle):
         tittle_field = super().wait_element_to_be_clickable("//input[@name='tks_subject']")
         tittle_field.clear()
         tittle_field.send_keys(tittle)
-        Logging().reportDebugStep(self, "The tittle was find: " + tittle)
-        return HelpDeskPage()
+        Logging().reportDebugStep(self, "Search by column title: " + tittle)
+        return HelpDeskPage(self.driver)
 
     ''' 
          Perform  search ticket    
@@ -146,8 +147,9 @@ class HelpDeskPage(CRMBasePage):
     def perform_search_ticket(self):
         search_button = super().wait_load_element("//td[@class='txt_al_c']")
         search_button.click()
+        self.wait_vtiger_loading_to_finish_custom(35)
         Logging().reportDebugStep(self, "Perform search")
-        return HelpDeskPage()
+        return HelpDeskPage(self.driver)
 
     def delete_ticket(self):
         search_button = super().wait_load_element("//a[@alt='Delete']")
@@ -392,3 +394,18 @@ class HelpDeskPage(CRMBasePage):
                                                         "//table[@id='resizeble_cols']//td[11]")
         Logging().reportDebugStep(self, "Eleventh  column name : " + name_eleventh_column.text)
         return name_eleventh_column.text
+
+    def get_counter_text(self):
+        counter_text = super().wait_load_element("//span[@class='page-rows-count page-rows-count-overall']")\
+            .text.strip()
+        counter = counter_text.split(' ')
+        counter = counter[-1]
+        Logging().reportDebugStep(self, "Get Number of records: " + counter)
+        return counter
+
+    def clear_filter(self):
+        clear_filter_btn = super().wait_load_element("//a[@id='clearFilter']")
+        self.driver.execute_script("arguments[0].click();", clear_filter_btn)
+        self.wait_vtiger_loading_to_finish_custom(35)
+        Logging().reportDebugStep(self, "Clear filter")
+        return HelpDeskPage()

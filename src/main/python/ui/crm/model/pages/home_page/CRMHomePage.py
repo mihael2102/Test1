@@ -131,7 +131,6 @@ class CRMHomePage(CRMBasePage):
         module_element = super().wait_element_to_be_clickable("//*[@name='%s']" % module)
         module_element.click()
         Logging().reportDebugStep(self, "The Affiliates page was opened")
-        # return AffiliateListViewPage(self.driver)
         return AffiliatePage(self.driver)
 
     def refresh_page(self):

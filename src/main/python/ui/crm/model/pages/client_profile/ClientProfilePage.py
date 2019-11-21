@@ -833,7 +833,7 @@ class ClientProfilePage(CRMBasePage):
     def get_closed_order_data(self):
         sleep(0.2)
         closed_orders_data = super().wait_load_element(
-            "//div[@id='tbl_Tradingaccounts_ClosedTransactions']//tr[@class='lvtColData' and @style='background:']")\
+            "//div[@id='tbl_Tradingaccounts_ClosedTransactions']//tr[@class='lvtColData' and @style='background:'][1]")\
             .get_attribute("innerText")
         if "Loading" in closed_orders_data:
             sleep(1)
