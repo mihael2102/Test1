@@ -164,14 +164,11 @@ class TasksPage(CRMBasePage):
         return TasksPage(self.driver)
 
     def open_sms_actions_section(self):
-        sleep(6)
-        try:
-            first_check_box = super().wait_element_to_be_clickable(
-                "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[2]")
-        except:
-            first_check_box = super().wait_element_to_be_clickable("/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div/span/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div/span")
-        first_check_box.click()
-        Logging().reportDebugStep(self, "The sms module was opened")
+        sleep(0.1)
+        sms_icon = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                             (self.__class__.__name__)["sms_icon"])
+        sms_icon.click()
+        Logging().reportDebugStep(self, "The SMS module was opened")
         return TasksPage(self.driver)
 
     def check_pop_up_send_sms(self):
@@ -191,12 +188,13 @@ class TasksPage(CRMBasePage):
         return account_name
 
     def search_account_name(self, first_name):
-        input_account_name = super().wait_element_to_be_clickable("//*[@id='host-element']/input", timeout=10)
+        input_account_name = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["account_name_input"], timeout=10)
         input_account_name.send_keys(first_name)
-        sleep(1)
+        sleep(0.1)
         self.wait_crm_loading_to_finish_tasks(55)
         sleep(1)
-        Logging().reportDebugStep(self, "Search Account name: " + first_name)
+        Logging().reportDebugStep(self, "Search by Account name: " + first_name)
         return TasksPage(self.driver)
 
     def search_by_type(self, type):
@@ -523,18 +521,6 @@ class TasksPage(CRMBasePage):
         result_count = int(results_split[len(results_split) - 1])
         Logging().reportDebugStep(self, "Got %d search results" % result_count)
         return result_count
-
-    def search_account_name(self, first_name):
-        input_account_name = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["account_name_input"], timeout=10)
-        input_account_name.send_keys(first_name)
-        sleep(5)
-        return TasksPage(self.driver)
-
-    def get_account_name(self, first_name):
-        sleep(2)
-        search_account_name_text = super().wait_load_element("//a[contains(text(),'%s')]" % first_name).text
-        return search_account_name_text
 
     def open_edit_event(self):
         pencil_button = self.driver.find_element(By.XPATH,

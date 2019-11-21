@@ -30,7 +30,6 @@ import time
 class CreditInTestCRM(BaseTest):
 
     def test_make_credit_in_from_crm(self):
-
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),

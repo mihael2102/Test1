@@ -93,7 +93,7 @@ class TabHelpDeskTest(BaseTest):
         # Searching by Related To:
         help_desk_module \
             .enter_related_to(self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
-                                                              HelpDeskConstants.FIRST_RELATED_TO))\
+                                                             HelpDeskConstants.FIRST_RELATED_TO))\
             .perform_search_ticket()
 
         CRMBaseMethodsPage(self.driver)\
