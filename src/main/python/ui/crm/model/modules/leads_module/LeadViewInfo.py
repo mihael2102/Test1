@@ -4,6 +4,7 @@ from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import 
 from src.main.python.ui.crm.model.pages.leads.EditLeadsProfilePage import EditLeadsProfilePage
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 class LeadViewInfo(CRMBasePage):
@@ -23,8 +24,9 @@ class LeadViewInfo(CRMBasePage):
     def open_convert_lead_module(self):
         SidebarModules(self.driver).open_sidebar_if_exists()
         sleep(2)
-        task_module = super().wait_load_element("//a[contains(@onclick,'ConvertLead')]")
-        task_module.click()
+        convert_lead_btn = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                     (self.__class__.__name__)["convert_lead_btn"])
+        convert_lead_btn.click()
         Logging().reportDebugStep(self, "The convert lead module was opened")
         return ConvertLeadModule(self.driver)
 

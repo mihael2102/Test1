@@ -16,6 +16,13 @@ class MT4TransferBetweenTa(CRMBasePage):
         self.set_description(description_transfer)
         self.create_transfer()
 
+    def make_transfer_between_ta_new_ui(self, first_account, second_account, amount, description_transfer):
+        self.select_first_account(first_account)
+        self.select_second_account(second_account)
+        self.set_amount(amount)
+        self.set_description(description_transfer)
+        self.create_transfer()
+
     '''
         Select first account from drop down for transfer between
         :parameter account, the live account of the client
@@ -83,6 +90,17 @@ class MT4TransferBetweenTa(CRMBasePage):
     def create_transfer(self):
         sleep(1)
         create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
-        create_button.click()
+        try:
+            self.driver.execute_script("arguments[0].click();", create_button)
+        except:
+            create_button.click()
         Logging().reportDebugStep(self, "The Create button was clicked")
+        return ClientProfilePage(self.driver)
+
+####################################### NEW UI METHODS ############################################
+
+    def select_first_account_new_ui(self, account):
+        account_item = super().wait_load_element("//a/span[contains(text(),'%s')]" % account)
+        self.driver.execute_script("arguments[0].click();", account_item)
+        Logging().reportDebugStep(self, "The first account selected:  " + account)
         return ClientProfilePage(self.driver)

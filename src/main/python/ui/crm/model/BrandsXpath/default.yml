@@ -1,32 +1,4 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
-ClientsPage:
-  client_status_button: "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']"
-  client_status_field: "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']"
-  country_button: "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']"
-  country_field: "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']"
-  country_click: "//label[contains(text(),'%s')]"
-  client_currency: "//td[@class='dvtCellInfo'][contains(text(),'EUR')]"
-  client_phone: "//span[@id='dtlview_Phone']/div[@class='actions_btn']"
-  client_country: "//span[@id='dtlview_Country']"
-  client_citizenship: "//span[@id='dtlview_Citizenship']"
-  citizenship: "//select[@id='citizenship']/option[contains(text(), '%s')]"
-TasksPage:
-  pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
-  subject_input: "//tr[@class='tableFilters']//td[15]//input"
-  account_name_input: "//*[@id='host-element']/input"
-FinancialTransactionsPage:
-  client_name_element:  "(//td[3]/div/a)[%s]"
-  transaction_type_element : "(//*[@id='listBody']//tr/td[5])[%s]"
-  transaction_type_field: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/ul/li[1]/div/input"
-  transaction_type_drop_down: "//td[5]/div/div[1]/button"
-  trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
-  modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
-ClientProfilePage:
-  deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
-  i_confirm_checkbox: "//*[@name='confirm']"
-  email: "//td[contains(text(),'Email')]//following-sibling::td[1]"
-CRMClientDeposit:
-  i_confirm_checkbox: "//*[@name='confirm']"
 AffiliatePage:
   countrys: "//span[contains(@class,'hovered-option')][contains(text(),'%s')]"
   methods: "//span[@class = 'hovered-option ng-star-inserted'][contains(text(),'%s')]"
@@ -36,14 +8,6 @@ AffiliatePage:
   blocked_country_drop_down: "(//span[@class='ng-star-inserted' and contains(text(),'elected')])[2]"
   input_country: "//div[@class='select-options options-enabled']//input[@placeholder='Search...']"
   trash_button: "//span[@class = 'glyphicon glyphicon-trash cursor-pointer ng-star-inserted']"
-LeadsModule:
-  check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[9]"
-  check_first_line_email_2: "//tbody[@id = 'listBody']/tr[2]/td[9]"
-  check_first_line_exist: "//tbody[@id = 'listBody']/tr[1]/td[11]"
-  check_first_line_leads_no1: "//tbody[@id = 'listBody']/tr[1]/td[3]"
-  check_first_line_leads_no2: "//tbody[@id = 'listBody']/tr[2]/td[3]"
-  edit_status: "//*[@id='leadstatus_mass_edit_check']/div[1]/div"
-  mass_edit_leads: "//*[@id='list_action_buttons']/input[2]"
 CALoginPage:
   sign_up: "//button[contains(text(), 'Sign Up')]"
   check_box_accept: "//span[contains (text(), 'Terms and Conditions')]"
@@ -67,6 +31,105 @@ CAPage:
   edit_first_name: "//input[@name='firstName']"
   get_first_name: "//input[@name='firstName']"
   click_close: "//panda-forex-client-area/div/div/client-area-popup/div/div[2]/div[1]/a/i"
+ClientsPage:
+  client_status_button: "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']"
+  client_status_field: "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']"
+  country_button: "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']"
+  country_field: "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']"
+  country_click: "//label[contains(text(),'%s')]"
+  client_currency: "//td[@class='dvtCellInfo'][contains(text(),'EUR')]"
+  client_phone: "//span[@id='dtlview_Phone']/div[@class='actions_btn']"
+  client_country: "//span[@id='dtlview_Country']"
+  client_citizenship: "//span[@id='dtlview_Citizenship']"
+  citizenship: "//select[@id='citizenship']/option[contains(text(), '%s')]"
+ClientProfilePage:
+  deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
+  i_confirm_checkbox: "//*[@name='confirm']"
+  email: "//td[contains(text(),'Email')]//following-sibling::td[1]"
+  mt4_button: "//div[@class='mt4_act_box']"
+  link_trading_account: "//div[@class='link_field']/a[@class='before_nw' and contains(text(),'%s')]"
+  balance_in_trading_account: "//*[@id='dtlview_Balance']"
+  account_number: "(//tr[@class='lvtColData'])[1]//td[1]"
+CRMClientDeposit:
+  i_confirm_checkbox: "//*[@name='confirm']"
+ConvertLeadModule:
+  first_name_field: "//input[@name='account[FirstName]']"
+  last_name_field: "//input[@name='account[LastName]']"
+  email_field: "//input[@name='account[Email]']"
+  phone_field: "//input[@name='account[Phone]']"
+  referral_field: "//input[@name='account[Referral]']"
+  postal_code_field: "//input[@name='account[PostalCode]']"
+  city_field: "//input[@name='account[City]']"
+  address_field: "//input[@name='account[Address]']"
+  password_field: "//input[@name='account[Password]']"
+  source_name_field: "//input[@name='account[SourceName]']"
+  convert_lead_btn: "//div[@class='modal-footer new-modal-footer']//button[contains(.,'Submit')]"
+CreateLeadsProfilePage:
+  first_name_field: "//input[@name='firstname']"
+  last_name_field: "//input[@name='lastname']"
+  mobile_field: "//input[@name='mobile']"
+  email_field: "//input[@name='email']"
+  secondary_email_field: "//input[@name='secondaryemail']"
+  panda_partner_id_field: "//input[@name='pandapartnerid']"
+  phone_field: "//input[@name='phone']"
+  tittle_field: "//input[@name='designation']"
+  street_field: "//textarea[@name='lane']"
+  referral_field: "//textarea[@name='refferal']"
+  postal_code_field: "//input[@name='code']"
+  city_field: "//input[@name='city']"
+  description_field: "//textarea[@name='description']"
+  state_field: "//input[@name='state']"
+  language_field: "//input[@name='cf_1092']"
+  fax_field: "//input[@name='fax']"
+  source_name_field: "//input[@name='sourcename']"
+  save_button: "//input[@title='Save [Alt+S]']"
+CRMHomePage:
+  leads_module_btn: "//span[@class='glyphicon glyphicon-Leads']"
+DragonPage:
+  number_text: "//div[@title='Click to Call']"
+  number_color_red: "//div[@title='Click to Call' and contains(@style,'color: red')]"
+FinancialTransactionsPage:
+  client_name_element:  "(//td[3]/div/a)[%s]"
+  transaction_type_element : "(//*[@id='listBody']//tr/td[5])[%s]"
+  transaction_type_field: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/ul/li[1]/div/input"
+  transaction_type_drop_down: "//td[5]/div/div[1]/button"
+  trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
+  modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
+LeadsModule:
+  check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[9]"
+  check_first_line_email_2: "//tbody[@id = 'listBody']/tr[2]/td[9]"
+  check_first_line_exist: "//tbody[@id = 'listBody']/tr[1]/td[11]"
+  check_first_line_leads_no1: "//tbody[@id = 'listBody']/tr[1]/td[3]"
+  check_first_line_leads_no2: "//tbody[@id = 'listBody']/tr[2]/td[3]"
+  edit_status: "//*[@id='leadstatus_mass_edit_check']/div[1]/div"
+  mass_edit_leads: "//*[@id='list_action_buttons']/input[2]"
+  create_lead_module: "//td[@class='moduleName']//button[1]"
+  email_field: "//tr[@name='customAdvanceSearch']//input[@name='tks_email']"
+  lead_no: "//a[contains(text(),'LEA')]"
+LeadViewInfo:
+  convert_lead_btn: "//a[contains(@onclick,'ConvertLead')]"
+MT4DepositModule:
+  description_filed: "//input[@id='transaction_comment']"
+  create_deposit_button: "//button[contains(text(),'Create')]"
+MT4WithdrawModule:
+  create_withdraw_button: "//button[contains(text(),'Create')]"
+  comment_filed: "//input[@id='transaction_comment']"
+MT4CreditInModule:
+  amount_filed: "//input[@id='amount']"
+  description_filed: "//input[@id='transaction_comment']"
+  create_button: "//button[contains(text(),'Create')]"
+MT4CreditOutModule:
+  amount_filed: "//input[@id='amount']"
+  granted_by_filed: "//input[@id='transaction_grantedBy']"
+  comment_filed: "//input[@id='transaction_comment']"
+  create_button: "//button[contains(text(),'Create')]"
+TasksPage:
+  pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
+  subject_input: "//tr[@class='tableFilters']//td[15]//input"
+  account_name_input: "//*[@id='host-element']/input"
+  sms_icon: "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[2]"
+TradingAccountsInformationPage:
+  balance_text: "//td[contains(text(),'Balance')]//following-sibling::td[1]"
 WebTraderPage:
   avaliable_funds: "//panda-forex-account-status/div/ul/li[1]/div[1]"
   used_funds: "//panda-forex-account-status/div/ul/li[2]/div[1]"
@@ -85,4 +148,3 @@ WebTraderPage:
   check_button: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[3]/div[1]/label"
   enter_stop_loss: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[4]/div[1]/custom-input/div/input"
   pips_bottom_panel_test: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[6]/div[1]/div/div"
-

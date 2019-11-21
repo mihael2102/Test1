@@ -235,7 +235,7 @@ class EditLeadsProfilePage(CRMBasePage):
         save_button = self.driver.find_element(By.XPATH, "//input[@title='Save [Alt+S]']")
         self.perform_scroll_up()
         save_button.click()
-        Logging().reportDebugStep(self, "The save button was clicked: ")
+        Logging().reportDebugStep(self, "The Save button was clicked")
         return EditLeadsProfilePage(self.driver)
 
     def get_phone_edit_page(self):
