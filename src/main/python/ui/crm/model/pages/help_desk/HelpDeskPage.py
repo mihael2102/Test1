@@ -116,7 +116,7 @@ class HelpDeskPage(CRMBasePage):
         select_test_filter.click()
         Logging().reportDebugStep(self, "The filter was selected: " + test_filter)
 
-        return HelpDeskPage()
+        return HelpDeskPage(self.driver)
 
     ''' 
          Returns the ticket status  
@@ -130,7 +130,7 @@ class HelpDeskPage(CRMBasePage):
         field_id.clear()
         field_id.send_keys(ticket_id)
         Logging().reportDebugStep(self, "Search by Ticket No: " + ticket_id)
-        return HelpDeskPage()
+        return HelpDeskPage(self.driver)
 
     def find_ticket_by_title(self, tittle):
         tittle_field = super().wait_element_to_be_clickable("//input[@name='tks_subject']")
@@ -145,6 +145,7 @@ class HelpDeskPage(CRMBasePage):
     '''
 
     def perform_search_ticket(self):
+        sleep(0.1)
         search_button = super().wait_load_element("//td[@class='txt_al_c']")
         search_button.click()
         self.wait_vtiger_loading_to_finish_custom(35)
@@ -166,7 +167,7 @@ class HelpDeskPage(CRMBasePage):
         pencil_link = super().wait_element_to_be_clickable("//div[@class='actions_wrapper']//a[@alt='Edit']")
         self.driver.execute_script("arguments[0].click();", pencil_link)
         Logging().reportDebugStep(self, "Click edit of the ticket by pencil link")
-        return HelpDeskEditPage()
+        return HelpDeskEditPage(self.driver)
 
     def find_ticket_by_columns(self, ticket_number, ca_id, brand, tittle, related_to, assigned_to, status, priority,
                                category, description):
@@ -187,14 +188,14 @@ class HelpDeskPage(CRMBasePage):
         ticket_number_field.clear()
         ticket_number_field.send_keys(ticket_number)
         Logging().reportDebugStep(self, "The ticket number was entered: " + ticket_number)
-        return HelpDeskPage()
+        return HelpDeskPage(self.driver)
 
     def enter_related_to(self, related_to):
         related_to_field = super().wait_visible_of_element("//input[@id='tks_parent_id']")
         related_to_field.clear()
         related_to_field.send_keys(related_to)
         Logging().reportDebugStep(self, "The related to was entered: " + related_to)
-        return HelpDeskPage()
+        return HelpDeskPage(self.driver)
 
     def enter_priority(self, priority):
         country_drop_down = self.driver.find_element(By.XPATH,
@@ -408,4 +409,4 @@ class HelpDeskPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", clear_filter_btn)
         self.wait_vtiger_loading_to_finish_custom(35)
         Logging().reportDebugStep(self, "Clear filter")
-        return HelpDeskPage()
+        return HelpDeskPage(self.driver)
