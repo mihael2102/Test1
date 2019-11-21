@@ -32,7 +32,7 @@ class CRMBaseMethodsPage(CRMBasePage):
             table = self.driver.find_element_by_xpath("//*[@id='listBody']")
             row_count = 0
             for tr in table.find_elements_by_tag_name("tr"):
-                assert data in tr.text
+                assert data.lower() in tr.text.lower()
                 row_count += 1
             Logging().reportDebugStep(self, type_of_data + " is verified in " + str(row_count) + " rows")
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
