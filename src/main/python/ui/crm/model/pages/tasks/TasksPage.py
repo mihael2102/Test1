@@ -146,16 +146,12 @@ class TasksPage(CRMBasePage):
 
     def open_sms_actions_section(self):
         sleep(1)
+        sms_icon = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
+                                                            (self.__class__.__name__)["sms_icon"])
         try:
-            sms_btn = super().wait_element_to_be_clickable(
-                "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[2]")
+            sms_icon.click()
         except:
-            sms_btn = super().wait_element_to_be_clickable(
-                "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div/span/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div/span")
-        try:
-            sms_btn.click()
-        except:
-            self.driver.execute_script("arguments[0].click();", sms_btn)
+            self.driver.execute_script("arguments[0].click();", sms_icon)
         Logging().reportDebugStep(self, "The SMS module was opened")
         return TasksPage(self.driver)
 
