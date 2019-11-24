@@ -40,32 +40,42 @@ class MyDashboardPrecondition(object):
                                     .check_client_segmentation_contains_record()
 
     def edit_event(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
-        CRMHomePage(self.driver).open_more_list_modules() \
+        CRMHomePage(self.driver)\
+            .open_more_list_modules() \
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
-        MyDashboardPage(self.driver).select_show_all_tab()
+        MyDashboardPage(self.driver)\
+            .select_show_all_tab()
         if global_var.current_brand_name == "kayafx":
-            MyDashboardPage(self.driver).enter_account_name(CRMConstants.TEST_PANDA)
+            MyDashboardPage(self.driver)\
+                .enter_account_name(CRMConstants.TEST_PANDA)
         else:
-            MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
-        account_name = MyDashboardPage(self.driver).get_account_name()
-        MyDashboardPage(self.driver).click_pencil_icon()
-        EditEventModule(self.driver).edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
-                                                TaskModuleConstants.SECOND_EVENT_TYPE,
-                                                TaskModuleConstants.SECOND_DURATION,
-                                                CRMConstants.THIRD_DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
-                                                CRMConstants.THIRD_DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
-                                                TaskModuleConstants.SECOND_ASSIGN_TO,
-                                                TaskModuleConstants.SECOND_SUBJECT,
-                                                TaskModuleConstants.SECOND_PRIORITY,
-                                                TaskModuleConstants.DESCRIPTION_ADD_EVENT)
+            MyDashboardPage(self.driver)\
+                .enter_account_name(CRMConstants.TESTQA)
+        account_name = MyDashboardPage(self.driver)\
+            .get_account_name()
+        MyDashboardPage(self.driver)\
+            .click_pencil_icon()
+        EditEventModule(self.driver)\
+            .edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
+                        TaskModuleConstants.SECOND_EVENT_TYPE,
+                        TaskModuleConstants.SECOND_DURATION,
+                        CRMConstants.THIRD_DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
+                        CRMConstants.THIRD_DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
+                        TaskModuleConstants.SECOND_ASSIGN_TO,
+                        TaskModuleConstants.SECOND_SUBJECT,
+                        TaskModuleConstants.SECOND_PRIORITY,
+                        TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
-        MyDashboardPage(self.driver).refresh_page()
-        MyDashboardPage(self.driver).select_show_all_tab()
-        MyDashboardPage(self.driver).enter_account_name(account_name)
+        MyDashboardPage(self.driver)\
+            .refresh_page()
+        MyDashboardPage(self.driver)\
+            .select_show_all_tab()\
+            .enter_account_name(account_name)
         status = MyDashboardPage(self.driver).get_status()
         type = MyDashboardPage(self.driver).get_type()
         assert status == TaskModuleConstants.SECOND_EVENT_STATUS

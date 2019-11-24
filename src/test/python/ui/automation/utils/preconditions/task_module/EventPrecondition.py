@@ -187,7 +187,7 @@ class EventPrecondition(object):
             .open_task_module()
         task_module\
             .open_show_all_tab() \
-            .search_account_name(CRMConstants.CLIENT_NAME_FOR_EVENT)\
+            .find_event_by_subject(TaskModuleConstants.FOURTH_SUBJECT)\
             .open_edit_event()\
             .edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
                         TaskModuleConstants.SECOND_EVENT_TYPE,

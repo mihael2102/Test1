@@ -327,6 +327,7 @@ class TasksPage(CRMBasePage):
         sleep(2)
         subject_field.send_keys(subject)
         self.wait_crm_loading_to_finish_tasks(55)
+        sleep(1)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
         return TasksPage(self.driver)
 
@@ -376,7 +377,8 @@ class TasksPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", refresh_icon)
         self.wait_load_element("//a[@class='fa fa-refresh roll']")
         self.wait_element_to_be_disappear("//a[@class='fa fa-refresh roll']")
-        sleep(2)
+        sleep(0.2)
+        self.wait_load_element("//*[contains(text(), 'Showing Records') and contains(text(),'of')]")
         results_count_text = self.wait_visible_of_element("//*[contains(text(), 'Showing Records')]").text
         results_count = results_count_text.split("of ")[1]
         Logging().reportDebugStep(self, "Results found: " + results_count)
