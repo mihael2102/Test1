@@ -9,6 +9,7 @@ FirstLeadInfo:
   mobile: "8888888"
   fax: "5555"
   EVAL_email: "'pandaqa+' + (datetime.utcnow().strftime('%Y%m%d%H%M%S%f')) + '@pandats.com'"
+  EVAL_email_short: "'pandaqa+sh' + (datetime.utcnow().strftime('%Y%m%d%H%M%S%f')) + '@pandats.com'"
   secondary_email: "secondarytestqa+1@pandats.com"
   first_language: "English"
   panda_partner_id:

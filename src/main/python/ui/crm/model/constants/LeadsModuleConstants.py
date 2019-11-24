@@ -39,6 +39,7 @@ class LeadsModuleConstants(object):
     FIRST_MOBILE = "mobile"
     FAX = "fax"
     EMAIL = "email"
+    EMAIL_SHORT = "email_short"
     EMAIL1 = "email1"
     SECONDARY_EMAIL = "secondary_email"
     FIRST_LANGUAGE = "first_language"

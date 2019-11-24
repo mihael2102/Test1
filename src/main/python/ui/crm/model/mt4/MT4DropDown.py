@@ -45,5 +45,5 @@ class MT4DropDown(CRMBasePage):
             module_item = super().wait_load_element("//div[text()=' %s ']" % module)
             self.driver.execute_script("arguments[0].click();", module_item)
             Logging().reportDebugStep(self, module + " module is opened")
-        except:
+        except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Module does not exist")
