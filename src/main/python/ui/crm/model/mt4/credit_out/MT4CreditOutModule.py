@@ -2,23 +2,21 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 class MT4CreditOutModule(CRMBasePage):
 
-    # def __init__(self):
-    #     super().__init__()
-    #
-    # '''
-    #      Make credit out from CRM
-    #      :parameter account number,the account of client
-    #      :parameter amount, the amount of establishing a deposit
-    #      :parameter description deposit the description set in the field
-    #      :returns MT4 Credit Out instance
-    # '''
-
     def make_credit_out(self, account_number, amount, granted_by, comment):
         self.select_account(account_number)
+        self.set_amount(amount)
+        self.set_granted_by(granted_by)
+        self.set_description(comment)
+        self.perform_create_credit_out()
+        return ClientProfilePage()
+
+    def make_credit_out_new_ui(self, account_number, amount, granted_by, comment):
+        self.select_account_new_ui(account_number)
         self.set_amount(amount)
         self.set_granted_by(granted_by)
         self.set_description(comment)
@@ -48,7 +46,8 @@ class MT4CreditOutModule(CRMBasePage):
     '''
 
     def set_amount(self, amount):
-        amount_filed = self.driver.find_element(By.XPATH, "//input[@id='amount']")
+        amount_filed = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+        (self.__class__.__name__)["amount_filed"])
         amount_filed.clear()
         amount_filed.send_keys(amount)
         Logging().reportDebugStep(self, "The amount of credit out was set:  " + amount)
@@ -61,7 +60,8 @@ class MT4CreditOutModule(CRMBasePage):
     '''
 
     def set_description(self, description_credit_in):
-        comment_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_comment']")
+        comment_filed = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+        (self.__class__.__name__)["comment_filed"])
         comment_filed.clear()
         comment_filed.send_keys(description_credit_in)
         Logging().reportDebugStep(self, "The Comment of credit out was set: " + description_credit_in)
@@ -73,14 +73,16 @@ class MT4CreditOutModule(CRMBasePage):
     '''
 
     def set_granted_by(self, granted_by_text):
-        granted_by_filed = self.driver.find_element(By.XPATH, "//input[@id='transaction_grantedBy']")
+        granted_by_filed = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+        (self.__class__.__name__)["granted_by_filed"])
         granted_by_filed.clear()
         granted_by_filed.send_keys(granted_by_text)
         Logging().reportDebugStep(self, "The Granted by of credit out was set: " + granted_by_text)
         return MT4CreditOutModule(self.driver)
 
     def perform_create_credit_out(self):
-        create_button = self.driver.find_element(By.XPATH, "//button[contains(text(),'Create')]")
+        create_button = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+        (self.__class__.__name__)["create_button"])
         create_button.click()
         Logging().reportDebugStep(self, "Create of credit out button was clicked")
         return ClientProfilePage(self.driver)
@@ -95,3 +97,9 @@ class MT4CreditOutModule(CRMBasePage):
         credit_text = self.driver.find_element_by_xpath("//span[@id='dtlview_Credit']").text
         Logging().reportDebugStep(self, "Actual credit amount is " + credit_text)
         return credit_text
+
+    def select_account_new_ui(self, account):
+        account_item = super().wait_load_element("//span[contains(text(),'%s')]" % account)
+        self.driver.execute_script("arguments[0].click();", account_item)
+        Logging().reportDebugStep(self, "Account was selected: " + account)
+        return MT4CreditOutModule(self.driver)

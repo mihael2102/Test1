@@ -50,26 +50,20 @@ class ClientsPage(CRMBasePage):
 
     def select_filter(self, test_filter):
         sleep(5)
-        drop_down_filter = super().wait_load_element("//span[@class='filter-option pull-left']")
-        try:
-            drop_down_filter.click()
-        except:
-            self.driver.execute_script("arguments[0].scrollIntoView();", drop_down_filter)
-            self.driver.execute_script("arguments[0].click();", drop_down_filter)
-        Logging().reportDebugStep(self, "Click the drop down Filter")
-        field_found = self.driver.find_element(By.XPATH, "//input[@class='input-block-level form-control']")
-        field_found.clear()
-        field_found.send_keys(test_filter)
-        Logging().reportDebugStep(self, "The field found is: " + test_filter)
         try:
             select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'%s')]" % test_filter)
         except:
             select_test_filter = self.driver.find_element(By.XPATH, "//span[contains(text(),'Test clients')]")
-        try:
-            select_test_filter.click()
-        except:
-            self.driver.execute_script("arguments[0].click();", select_test_filter)
-        Logging().reportDebugStep(self, "Click the selected filter")
+        self.driver.execute_script("arguments[0].click();", select_test_filter)
+        Logging().reportDebugStep(self, "Select " + test_filter + " filter")
+        self.wait_crm_loading_to_finish()
+        return ClientsPage(self.driver)
+
+    def select_filter_new_ui(self, test_filter):
+        sleep(5)
+        filter_cl = super().wait_load_element("//span[contains(text(),'%s')]" % test_filter)
+        self.driver.execute_script("arguments[0].click();", filter_cl)
+        Logging().reportDebugStep(self, "Select " + test_filter + " filter")
         self.wait_crm_loading_to_finish()
         return ClientsPage(self.driver)
 
@@ -102,13 +96,27 @@ class ClientsPage(CRMBasePage):
         sleep(2)
         email_field = super().wait_load_element("//input[@id='tks_email1']")
         email_field.send_keys(email)
-        Logging().reportDebugStep(self, "Setting the user's email in the email field is: " + email)
+        Logging().reportDebugStep(self, "Set the client's email in the email field is: " + email)
         search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
         search_button.click()
         Logging().reportDebugStep(self, "Click the Search button")
         sleep(2)
         self.wait_crm_loading_to_finish()
         client_id = self.driver.find_element(By.XPATH, "//a[contains(text(), 'ACC') and contains(@title,'ACC')]")
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", client_id)
+        sleep(1)
+        Logging().reportDebugStep(self, "Click user email: " + email)
+        return ClientProfilePage(self.driver)
+
+    def find_client_by_email_new_ui(self, email):
+        sleep(2)
+        email_field = super().wait_load_element("(//input[@placeholder='Email'])[1]")
+        email_field.send_keys(email)
+        Logging().reportDebugStep(self, "Set the client's email in the email field is: " + email)
+        sleep(2)
+        self.wait_crm_loading_to_finish()
+        client_id = self.driver.find_element(By.XPATH, "//span/span[contains(text(), 'ACC')]")
         sleep(1)
         self.driver.execute_script("arguments[0].click();", client_id)
         sleep(1)
@@ -292,7 +300,7 @@ class ClientsPage(CRMBasePage):
         # Click on 'Search'
         search_button = super().wait_load_element("//input[@value='Search']")
         sleep(0.1)
-        search_button.click()
+        self.driver.execute_script("arguments[0].click();", search_button)
         sleep(0.1)
         self.wait_loading_to_finish(55)
         Logging().reportDebugStep(self, "The Search button was clicked")
@@ -513,7 +521,7 @@ class ClientsPage(CRMBasePage):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located(
                 (By.XPATH, "//td[contains(text(),'First Name')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the First Name: " + client_email.text)
+        Logging().reportDebugStep(self, "Get the First Name: " + client_email.text)
         return client_email.text
 
     def get_client_phone(self):
@@ -679,6 +687,87 @@ class ClientsPage(CRMBasePage):
     def open_address_information(self):
         try:
             self.driver.find_element_by_xpath("//*[@id='tblAddressInformation'][contains(@style,'none')]")
+            address_tab = super().wait_load_element("//*[contains(text(),'Address Information')]")
+            self.driver.execute_script("arguments[0].scrollIntoView();", address_tab)
+            self.driver.execute_script("arguments[0].click();", address_tab)
+            Logging().reportDebugStep(self, "Address Information tab was opened")
+            return ClientsPage(self.driver)
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Address Information tab is already opened")
+            return ClientsPage(self.driver)
+
+########################################### NEW UI METHODS #############################################
+
+    def get_client_fname(self):
+        sleep(0.1)
+        fname = super().wait_load_element("//div[label='First Name']//following-sibling::mat-form-field//input")\
+            .get_attribute("value")
+        Logging().reportDebugStep(self, "Get First Name: " + fname)
+        return fname
+
+    def get_client_lname(self):
+        sleep(0.1)
+        lname = super().wait_load_element("//div[label='Last Name']//following-sibling::mat-form-field//input") \
+            .get_attribute("value")
+        Logging().reportDebugStep(self, "Get Last Name: " + lname)
+        return lname
+
+    def get_client_phone_new_ui(self):
+        try:
+            sleep(0.1)
+            phone = super().wait_load_element("//div[label='Phone']//following-sibling::mat-form-field//input",
+                                              timeout=5).get_attribute("value")
+            Logging().reportDebugStep(self, "Get Phone: " + phone)
+            return phone
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "There is no Phone field")
+
+    def get_client_address_new_ui(self):
+        sleep(0.1)
+        address = super().wait_load_element("//div[label='Address']//following-sibling::div") \
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Address: " + address)
+        return address
+
+    def get_client_city_new_ui(self):
+        sleep(0.1)
+        city = super().wait_load_element("//div[label='City']//following-sibling::mat-form-field//input") \
+            .get_attribute("value")
+        Logging().reportDebugStep(self, "Get City: " + city)
+        return city
+
+    def get_client_zip_code(self):
+        sleep(0.1)
+        code = super().wait_load_element("//div[label='Code']//following-sibling::mat-form-field//input") \
+            .get_attribute("value")
+        Logging().reportDebugStep(self, "Get Code: " + code)
+        return code
+
+    def get_client_country_new_ui(self):
+        sleep(0.1)
+        country = super().wait_load_element("//div[label='Country']//following-sibling::div") \
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Country: " + country)
+        return country
+
+    def get_client_birthday(self):
+        sleep(0.1)
+        birthday = super().wait_load_element("//div[label='Date Of Birth']//following-sibling::mat-form-field//input") \
+            .get_attribute("value")
+        Logging().reportDebugStep(self, "Get Birthday: " + birthday)
+        return birthday
+
+    def get_client_base_currency(self):
+        sleep(0.1)
+        currency = super().wait_load_element("//div[label='Base Currency']//following-sibling::div") \
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Base Currency: " + currency)
+        return currency
+
+    def open_address_information_tab_new_ui(self):
+        try:
+            self.driver.find_element_by_xpath\
+                ("//mat-expansion-panel[@id='address-information']/mat-expansion-panel-header[@aria-expanded='false']")
             address_tab = super().wait_load_element("//*[contains(text(),'Address Information')]")
             self.driver.execute_script("arguments[0].scrollIntoView();", address_tab)
             self.driver.execute_script("arguments[0].click();", address_tab)
