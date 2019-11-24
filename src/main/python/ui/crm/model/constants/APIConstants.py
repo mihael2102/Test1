@@ -29,6 +29,8 @@ class APIConstants(object):
     CHANGE_PHONE = "3523233"
     CHANGE_PHONE_CRM = "+352 3233"
     CHANGE_POSTAL_CODE = "777"
+    CHANGE_ADDRESS = "Change address"
+    CHANGE_CITY = "Change city"
     LEAD_FNAME = "LeadFName"
     LEAD_LNAME = "LeadLName"
     LEAD_PHONE = str(random.randrange(1, 9999999))

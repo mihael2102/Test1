@@ -18,6 +18,7 @@ FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[11])[%s]"
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
+  account_number: "//tr[@class='lvtColData']//td[1]"
 CALoginPage:
   sign_up: "//a[contains(text(), 'Sign Up')]"
   submit_btn: "//button[contains (text(), 'Sign Up')][not(@disabled)]"

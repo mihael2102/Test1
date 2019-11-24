@@ -81,12 +81,7 @@ class Page_CA_Precondition(object):
                 .open_ca_menu()
             CAPage(self.driver)\
                 .open_personal_details()
-            if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "trade99":
-                CAPage(self.driver)\
-                    .edit_first_name(CAConstants.UPDATE_FIRST_NAME) \
-                    .edit_last_name(CAConstants.UPDATE_LAST_NAME)
             CAPage(self.driver)\
-                .edit_citizenship(CAConstants.UPDATE_CITIZENSHIP) \
                 .edit_city(CAConstants.UPDATE_CITY) \
                 .edit_zip(CAConstants.UPDATE_ZIP_CODE) \
                 .edit_address(CAConstants.UPDATE_ADDRESS) \
@@ -110,17 +105,9 @@ class Page_CA_Precondition(object):
             sleep(2)
             ClientsPage(self.driver).find_client_by_email(CAConstants.EMAIL_CA)
             sleep(2)
-            assert ClientsPage(self.driver).get_citizenship() == CAConstants.UPDATE_CITIZENSHIP
             assert ClientsPage(self.driver).get_client_address() == CAConstants.UPDATE_ADDRESS
             assert ClientsPage(self.driver).get_client_city() == CAConstants.UPDATE_CITY
             assert ClientsPage(self.driver).get_client_code() == CAConstants.UPDATE_ZIP_CODE
-            if global_var.current_brand_name != "kontofx" and global_var.current_brand_name != "trade99":
-                assert ClientsPage(self.driver).get_client_first_name() == CAConstants.UPDATE_FIRST_NAME
-                assert ClientsPage(self.driver).get_client_last_name() == CAConstants.UPDATE_LAST_NAME
-            # assert ClientsPage(self.driver).get_citizenship() == CAConstants.UPDATE_CITIZENSHIP
-            # assert ClientsPage(self.driver).get_client_address() == CAConstants.UPDATE_ADDRESS
-            # assert ClientsPage(self.driver).get_client_city() == CAConstants.UPDATE_CITY
-            # assert ClientsPage(self.driver).get_client_code() == CAConstants.UPDATE_ZIP_CODE
         else:
             Logging().reportDebugStep(self, "Test is not running")
             return self
