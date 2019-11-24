@@ -95,7 +95,7 @@ class HelpDeskPage(CRMBasePage):
         ticket_number = super().wait_load_element("//div[@class='link_field']")
         ticket_number.click()
         Logging().reportDebugStep(self, "Open ticket number")
-        return HelpDeskDetailViewPage()
+        return HelpDeskDetailViewPage(self.driver)
 
     ''' 
         Select the filter in drop-down   
