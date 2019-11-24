@@ -89,7 +89,7 @@ class CreateLeadsProfilePage(CRMBasePage):
         self.set_state(state)
         self.click_save()
 
-    def perform_create_lead_short(self, last_name, email, phone, assigned_to):
+    def perform_create_lead_short(self, last_name, email, assigned_to, phone):
         sleep(2)
         self.set_last_name(last_name)
         self.set_email(email)
@@ -306,7 +306,8 @@ class CreateLeadsProfilePage(CRMBasePage):
 
     def verify_success_message(self):
         sleep(0.1)
-        message = super().wait_load_element("//div[@class='dialog-content-success mat-dialog-content']").text
+        message = super().wait_load_element("//div[@class='dialog-content-success mat-dialog-content']", timeout=35)\
+            .text
         assert "success" in message.lower()
         Logging().reportDebugStep(self, "Get message: " + message)
         return CreateLeadsProfilePage(self.driver)

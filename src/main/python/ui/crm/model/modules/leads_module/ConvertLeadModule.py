@@ -59,8 +59,7 @@ class ConvertLeadModule(CRMBasePage):
         sleep(1)
         self.click_submit()
 
-    def perform_convert_lead_short(self, first_name, birthday, address, postal_code, city, country, email,
-                                   phone_area_code=None):
+    def perform_convert_lead_short(self, first_name, birthday, address, postal_code, city, country):
         sleep(2)
         self.set_first_name(first_name)
         self.set_birthday(birthday)
@@ -68,10 +67,6 @@ class ConvertLeadModule(CRMBasePage):
         self.set_postal_code(postal_code)
         self.set_city(city)
         self.set_country(country)
-        self.set_email(email)
-        if phone_area_code:
-            self.set_area_code(phone_area_code)
-        sleep(1)
         self.click_submit()
 
     def set_first_name(self, first_name):
