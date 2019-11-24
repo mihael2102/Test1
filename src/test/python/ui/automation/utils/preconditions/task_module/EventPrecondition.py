@@ -48,7 +48,8 @@ class EventPrecondition(object):
         assert account_name1 != account_name2
 
     def test_email_icon(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
@@ -69,17 +70,19 @@ class EventPrecondition(object):
         assert brand + CRMConstants.SUBJECT_TASK_MAIL in msg
 
     def test_sms_icon(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        task_module = CRMHomePage(self.driver).open_task_module()
-        task_module.open_show_all_tab()
-        task_module.search_account_name(CRMConstants.TESTQA)
-        sleep(10)
-        task_module.open_sms_actions_section()
-        title = task_module.check_pop_up_send_sms()
+        # Verify title of sms popup:
+        title = CRMHomePage(self.driver)\
+            .open_task_module()\
+            .open_show_all_tab()\
+            .search_account_name(CRMConstants.TESTQA)\
+            .open_sms_actions_section()\
+            .check_pop_up_send_sms()
         try:
             assert CRMConstants.SEND_SMS in title
         except:

@@ -7,6 +7,8 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
 from selenium.webdriver.support.select import Select
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 
 
 class ClientProfileUpdate(CRMBasePage):
@@ -196,13 +198,24 @@ class ClientProfileUpdate(CRMBasePage):
         Logging().reportDebugStep(self, "Click Edit button")
         return ClientProfileUpdate(self.driver)
 
+    def click_show_phone_edit_page(self):
+        sleep(0.1)
+        try:
+            show_phone_btn = super().wait_load_element("//a[@id='show-phone-eye']/span[@title='Show Phone Number']")
+            self.driver.execute_script("arguments[0].click();", show_phone_btn)
+            Logging().reportDebugStep(self, "Click Show Phone Number button")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "There are no 'Show Phone Number' button")
+        return ClientProfileUpdate(self.driver)
+
     def get_phone_edit_page(self):
+        sleep(1)
         phone = super().wait_load_element("//*[@id='phone']").get_attribute("value")
         Logging().reportDebugStep(self, "Get phone from Edit page: " + phone)
         return phone
 
     def set_phone(self, phone):
-        phone_field = super().wait_load_element("//input[@name='phone']")
+        phone_field = super().wait_load_element("//div[@id='popupcontent']//input[@name='phone']")
         phone_field.clear()
         phone_field.send_keys(phone)
         Logging().reportDebugStep(self, "The phone number was set: " + phone)

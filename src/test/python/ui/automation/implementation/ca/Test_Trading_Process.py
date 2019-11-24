@@ -8,6 +8,8 @@ from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.test.python.ui.automation.utils.preconditions.login_ca.Login_CA_Preconditions import Login_CA_Precondition
 from src.test.python.ui.automation.utils.preconditions.trading_process_ca.Trading_Precondition import Trading_Precondition
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.test.python.ui.automation.utils.preconditions.trading_process_ca.TradingPreconditionLive import \
+    TradingPreconditionLive
 
 
 class TradingProcess(BaseTest):
@@ -54,3 +56,15 @@ class TradingProcess(BaseTest):
 
     def test_verify_close_position_crm(self):
         Trading_Precondition(self.driver, self.config).verify_close_position_crm()
+
+    def test_open_position_live(self):
+        TradingPreconditionLive(self.driver, self.config).open_position_live()
+
+    def test_verify_live_open_position_crm(self):
+        TradingPreconditionLive(self.driver, self.config).verify_open_live_position_crm()
+
+    def test_close_position_live(self):
+        TradingPreconditionLive(self.driver, self.config).close_position_live()
+
+    def test_verify_live_close_position_crm(self):
+        TradingPreconditionLive(self.driver, self.config).verify_close_live_position_crm()
