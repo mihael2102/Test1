@@ -1,5 +1,5 @@
 from time import sleep
-
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
@@ -27,6 +27,15 @@ class MT4CreditInModule(CRMBasePage):
         self.perform_create_credit_in()
         return ClientProfilePage(self.driver)
 
+    def make_credit_in_new_ui(self, account_number, amount, day, month, year, garanted_by, comment):
+        self.select_trading_account_new_ui(account_number)
+        self.set_amount(amount)
+        self.set_expire_date_new_ui(day, month, year)
+        self.set_garanted_by(garanted_by)
+        self.set_description(comment)
+        self.perform_create_credit_in()
+        return ClientProfilePage(self.driver)
+
     '''
         Choice an account from drop down
         :parameter account the account of the  client
@@ -50,7 +59,8 @@ class MT4CreditInModule(CRMBasePage):
     '''
 
     def set_amount(self, amount):
-        amount_filed = self.driver.find_element(By.XPATH, "//input[@id='amount']")
+        amount_filed = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element
+        (self.__class__.__name__)["amount_filed"])
         amount_filed.clear()
         amount_filed.send_keys(amount)
         Logging().reportDebugStep(self, "The amount of credit in module was set:  " + amount)
@@ -78,11 +88,11 @@ class MT4CreditInModule(CRMBasePage):
      '''
 
     def set_description(self, description_credit_in):
-        amount_filed = super().wait_element_to_be_clickable("//input[@id='transaction_comment']", timeout=5)
-        amount_filed.clear()
-        amount_filed.send_keys(description_credit_in)
-        Logging().reportDebugStep(self, "The  description of credit in module was set in the description field:  " +
-                                  description_credit_in)
+        description_filed = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
+                                                        (self.__class__.__name__)["description_filed"], timeout=5)
+        description_filed.clear()
+        description_filed.send_keys(description_credit_in)
+        Logging().reportDebugStep(self, "The Comment was set: " + description_credit_in)
         return MT4CreditInModule()
 
     '''
@@ -91,7 +101,42 @@ class MT4CreditInModule(CRMBasePage):
     '''
 
     def perform_create_credit_in(self):
-        create_button = super().wait_element_to_be_clickable("//button[contains(text(),'Create')]", timeout=5)
+        create_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
+                                                        (self.__class__.__name__)["create_button"], timeout=5)
         create_button.click()
-        Logging().reportDebugStep(self, "Perform the create credit in  of credit in module was clicked")
+        Logging().reportDebugStep(self, "Perform the create Credit in was clicked")
         return ClientProfilePage()
+
+####################################### NEW UI METHODS #########################################
+
+    def select_trading_account_new_ui(self, account):
+        sleep(0.1)
+        account_item = super().wait_load_element("//span[contains(text(),'%s')]" % account)
+        self.driver.execute_script("arguments[0].click();", account_item)
+        Logging().reportDebugStep(self, "The trading account for Credit In was selected:  " + account)
+        return MT4CreditInModule()
+
+    def set_expire_date_new_ui(self, day, month, year):
+        date_field = super().wait_load_element(
+            "//div[contains(label,'Expire date')]//following-sibling::mat-form-field")
+        self.driver.execute_script("arguments[0].click();", date_field)
+        current_date_btn = super().wait_load_element(
+            "(//span[@class='mat-button-wrapper' and contains(text(),'2019')])[1]")
+        current_date_btn.click()
+        select_year = super().wait_load_element("//div[contains(text(),'%s')]" % year)
+        select_year.click()
+        select_month = super().wait_load_element("//div[contains(text(),'%s')]" % month)
+        select_month.click()
+        select_day = super().wait_load_element("(//div[contains(text(),'%s')])[1]" % day)
+        select_day.click()
+        set_btn = super().wait_load_element("(//span[text()='Set'])[1]")
+        set_btn.click()
+        Logging().reportDebugStep(self, "The Expire date was set")
+        return MT4CreditInModule(self.driver)
+
+    def set_garanted_by(self, garanted_by):
+        garanted_by_field = super().wait_load_element("//input[@formcontrolname='grantedBy']")
+        garanted_by_field.clear()
+        garanted_by_field.send_keys(garanted_by)
+        Logging().reportDebugStep(self, "The Garanted by was set:  " + garanted_by)
+        return MT4CreditInModule()
