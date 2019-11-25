@@ -22,5 +22,5 @@ logger = None
 handler = None
 
 
-# chrome_driver = "D:/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
-chrome_driver = "C:/Users/Panda102/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver.exe"
+chrome_driver = "C:/Users/Panda102/Desktop/drivers/chromedriver2.exe"
+# chrome_driver = "C:/Users/Panda102/automation-newforexqa/src/main/python/resources/grid/drivers/chromedriver1.exe"

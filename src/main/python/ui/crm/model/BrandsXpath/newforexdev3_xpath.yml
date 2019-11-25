@@ -1,0 +1,19 @@
+CRMHomePage:
+  leads_module_btn: "//i[@class='glyphicon glyphicon-Leads']"
+LeadsModule:
+  create_lead_module: "//button[@title='Create lead']"
+CreateLeadsProfilePage:
+  first_name_field: "//input[@id='first_name']"
+  last_name_field: "//input[@id='last-name']"
+  mobile_field: "//input[@formcontrolname='mobile']"
+  email_field: "//input[@formcontrolname='email']"
+  secondary_email_field: "//input[@formcontrolname='secondaryEmail']"
+  panda_partner_id_field: "//input[@formcontrolname='pandaPartnerId']"
+  phone_field: "//input[@formcontrolname='phone']"
+  tittle_field: "//input[@formcontrolname='title']"
+  street_field: "//input[@formcontrolname='address']"
+  referral_field: "//input[@formcontrolname='referral']"
+  postal_code_field: "//input[@formcontrolname='postalCode']"
+  city_field: "//input[@formcontrolname='city']"
+  description_field: "//input[@formcontrolname='description']"
+  state_field: "//input[@formcontrolname='state']"
