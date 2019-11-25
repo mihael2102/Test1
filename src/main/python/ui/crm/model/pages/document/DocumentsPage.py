@@ -206,7 +206,6 @@ class DocumentsPage(CRMBasePage):
         CRMBasePage(self.driver).refresh_page()
         sleep(2)
         user = super().wait_element_to_be_clickable("//img[@src='themes/panda/images/user.PNG']")
-        # self.driver.execute_script("arguments[0].click();", user)
         user.click()
         sleep(2)
         sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")

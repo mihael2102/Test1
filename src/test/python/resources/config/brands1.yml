@@ -38,8 +38,8 @@ brands:
 #- name: jonesmutual
 #  config_file: jonesmutual.yml
 
-#- name: kontofx
-#  config_file: kontofx.yml
+- name: kontofx
+  config_file: kontofx.yml
 
 #- name: libramarkets
 #  config_file: libramarkets.yml
@@ -65,8 +65,8 @@ brands:
 #- name: ptbanc
 #  config_file: ptbanc.yml
 
-- name: q8
-  config_file: q8.yml
+#- name: q8
+#  config_file: q8.yml
 
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
