@@ -165,7 +165,7 @@ class TasksPage(CRMBasePage):
 
     def open_sms_actions_section(self):
         sleep(0.1)
-        sms_icon = super().wait_load_element("(//span[contains(@class,'transfer')])[1]")
+        sms_icon = super().wait_element_to_be_clickable("(//span[contains(@class,'transfer')])[1]")
         sms_icon.click()
         Logging().reportDebugStep(self, "The SMS module was opened")
         return TasksPage(self.driver)
@@ -173,7 +173,7 @@ class TasksPage(CRMBasePage):
     def check_pop_up_send_sms(self):
         sleep(5)
         try:
-            title = super().wait_load_element("//h4[contains(text(),'Send SMS to')]")
+            title = super().wait_load_element("//h4[contains(text(),'Send SMS to')]", 10)
 
         except:
             title = super().wait_load_element("//h3[contains(text(),'Server')]")
@@ -191,6 +191,7 @@ class TasksPage(CRMBasePage):
                                                            self.__class__.__name__)["account_name_input"], timeout=10)
         input_account_name.send_keys(first_name)
         sleep(0.1)
+        self.wait_load_element("//div[@class='spinner']")
         self.wait_crm_loading_to_finish_tasks(55)
         sleep(1)
         Logging().reportDebugStep(self, "Search by Account name: " + first_name)
