@@ -18,8 +18,8 @@ brands:
 #  config_file: optionstars.yml
 #- name: uft
 #  config_file: uft.yml
-- name: brokerz
-  config_file: brokerz.yml
+#- name: brokerz
+#  config_file: brokerz.yml
 #- name: 4xfx
 #  config_file: 4xfx.yml
 #- name: herdos
@@ -36,8 +36,8 @@ brands:
 #  config_file: aztrades.yml
 #- name: bots
 #  config_file: bots.yml
-#- name: kontofx
-#  config_file: kontofx.yml
+- name: kontofx
+  config_file: kontofx.yml
 #- name: xtraderfx
 #  config_file: xtraderfx.yml
 #- name: firstindex
