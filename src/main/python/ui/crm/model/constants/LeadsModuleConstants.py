@@ -46,6 +46,7 @@ class LeadsModuleConstants(object):
     POSTAL_CODE = "postal_code"
     FIRST_COUNTRY = "first_country"
     FIRST_COUNTRY_GERMANY = "first_country_g"
+    FIRST_COUNTRY_AUSTRIA = "first_country_aus"
     FIRST_COUNTRY_SA = "first_country_sa"
     FIRST_COUNTRY_ME = "first_country_me"
     FIRST_DESCRIPTION = "first_descriptions"

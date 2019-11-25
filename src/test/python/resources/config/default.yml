@@ -97,6 +97,7 @@ client_1:
   first_country_me: "Mexico"
   first_country: "Germany"
   first_country_g: "Germany"
+  first_country_aus: "Austria"
   street: "My street"
   city: "Berlin"
   postal_code: "11111"
