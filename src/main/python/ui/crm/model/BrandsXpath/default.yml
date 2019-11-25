@@ -85,10 +85,9 @@ CreateLeadsProfilePage:
   save_button: "//input[@title='Save [Alt+S]']"
 CRMHomePage:
   leads_module_btn: "//span[@class='glyphicon glyphicon-Leads']"
-TasksPage:
-  pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
-  subject_input: "//tr[@class='tableFilters']//td[15]//input"
-  account_name_input: "//*[@id='host-element']/input"
+DragonPage:
+  number_text: "//div[@title='Click to Call']"
+  number_color_red: "//div[@title='Click to Call' and contains(@style,'color: red')]"
 FinancialTransactionsPage:
   client_name_element:  "(//td[3]/div/a)[%s]"
   transaction_type_element : "(//*[@id='listBody']//tr/td[5])[%s]"
@@ -115,6 +114,19 @@ MT4DepositModule:
 MT4WithdrawModule:
   create_withdraw_button: "//button[contains(text(),'Create')]"
   comment_filed: "//input[@id='transaction_comment']"
+MT4CreditInModule:
+  amount_filed: "//input[@id='amount']"
+  description_filed: "//input[@id='transaction_comment']"
+  create_button: "//button[contains(text(),'Create')]"
+MT4CreditOutModule:
+  amount_filed: "//input[@id='amount']"
+  granted_by_filed: "//input[@id='transaction_grantedBy']"
+  comment_filed: "//input[@id='transaction_comment']"
+  create_button: "//button[contains(text(),'Create')]"
+TasksPage:
+  pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
+  subject_input: "//tr[@class='tableFilters']//td[15]//input"
+  account_name_input: "//*[@id='host-element']/input"
 TradingAccountsInformationPage:
   balance_text: "//td[contains(text(),'Balance')]//following-sibling::td[1]"
 WebTraderPage:
