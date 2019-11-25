@@ -14,8 +14,8 @@ brands:
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
 
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: brokerz
+  config_file: brokerz.yml
 
 #- name: dax-300
 #  config_file: dax-300.yml
@@ -62,8 +62,8 @@ brands:
 #- name: pmt247
 #  config_file: pmt247.yml
 
-- name: ptbanc
-  config_file: ptbanc.yml
+#- name: ptbanc
+#  config_file: ptbanc.yml
 
 #- name: q8
 #  config_file: q8.yml
