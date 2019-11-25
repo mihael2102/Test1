@@ -143,22 +143,26 @@ class EventPrecondition(object):
         assert type == verify_type
 
     def create_first_event(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
-        task_module = CRMHomePage(self.driver).open_task_module()
+        task_module = CRMHomePage(self.driver)\
+            .open_task_module()
 
-        task_module.open_add_event_module().create_event(TaskModuleConstants.FIRST_EVENT_STATUS,
-                                                         TaskModuleConstants.FIRST_EVENT_TYPE,
-                                                         TaskModuleConstants.FIRST_DURATION,
-                                                         CRMConstants.DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
-                                                         CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
-                                                         TaskModuleConstants.FIRST_ASSIGN_TO,
-                                                         CRMConstants.CLIENT_NAME_FOR_EVENT,
-                                                         TaskModuleConstants.FOURTH_SUBJECT,
-                                                         TaskModuleConstants.FIRST_PRIORITY,
-                                                         TaskModuleConstants.DESCRIPTION_ADD_EVENT)
+        task_module\
+            .open_add_event_module()\
+            .create_event(TaskModuleConstants.FIRST_EVENT_STATUS,
+                          TaskModuleConstants.FIRST_EVENT_TYPE,
+                          TaskModuleConstants.FIRST_DURATION,
+                          CRMConstants.DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
+                          CRMConstants.DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
+                          TaskModuleConstants.FIRST_ASSIGN_TO,
+                          CRMConstants.CLIENT_NAME_FOR_EVENT,
+                          TaskModuleConstants.FOURTH_SUBJECT,
+                          TaskModuleConstants.FIRST_PRIORITY,
+                          TaskModuleConstants.DESCRIPTION_ADD_EVENT)
 
         res_count = task_module\
             .open_show_all_tab()\
@@ -179,9 +183,11 @@ class EventPrecondition(object):
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
-        task_module = CRMHomePage(self.driver).open_task_module()
-        task_module.open_show_all_tab() \
-            .search_account_name(CRMConstants.CLIENT_NAME_FOR_EVENT)\
+        task_module = CRMHomePage(self.driver)\
+            .open_task_module()
+        task_module\
+            .open_show_all_tab() \
+            .find_event_by_subject(TaskModuleConstants.FOURTH_SUBJECT)\
             .open_edit_event()\
             .edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
                         TaskModuleConstants.SECOND_EVENT_TYPE,

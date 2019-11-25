@@ -293,8 +293,7 @@ class MyDashboardPage(CRMBasePage):
 
     def click_sms_icon(self):
         sleep(3)
-        first_check_box = super().wait_load_element(
-            "/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div")
+        first_check_box = super().wait_load_element("(//span[contains(@class,'transfer')])[1]")
         first_check_box.click()
         Logging().reportDebugStep(self, "Click SMS icon")
         return MyDashboardPage(self.driver)
@@ -384,8 +383,8 @@ class MyDashboardPage(CRMBasePage):
         return account_name.text
 
     def click_pencil_icon(self):
-        sleep(4)
-        pencil_icon = self.driver.find_element_by_xpath("//tbody/tr[2]/td[18]/div[5]/div/span")
+        sleep(0.2)
+        pencil_icon = super().wait_load_element("(//span[contains(@class,'pencil')])[1]")
         pencil_icon.click()
         Logging().reportDebugStep(self, "Click pencil icon")
         return MyDashboardPage(self.driver)

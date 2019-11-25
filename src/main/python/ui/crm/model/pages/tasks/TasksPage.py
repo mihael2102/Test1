@@ -52,6 +52,7 @@ class TasksPage(CRMBasePage):
         sleep(1)
         task_module = super().wait_load_element("//a[contains(text(), '%s')]" % column, timeout=35)
         task_module.click()
+        sleep(0.1)
         self.wait_crm_loading_to_finish_tasks(200)
         sleep(1)
         Logging().reportDebugStep(self, "Click " + column + " column title")
@@ -145,16 +146,12 @@ class TasksPage(CRMBasePage):
 
     def open_sms_actions_section(self):
         sleep(1)
+        sms_icon = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
+                                                            (self.__class__.__name__)["sms_icon"])
         try:
-            sms_btn = super().wait_element_to_be_clickable(
-                "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[2]")
+            sms_icon.click()
         except:
-            sms_btn = super().wait_element_to_be_clickable(
-                "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div/span/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[2]/div/span")
-        try:
-            sms_btn.click()
-        except:
-            self.driver.execute_script("arguments[0].click();", sms_btn)
+            self.driver.execute_script("arguments[0].click();", sms_icon)
         Logging().reportDebugStep(self, "The SMS module was opened")
         return TasksPage(self.driver)
 
@@ -330,6 +327,7 @@ class TasksPage(CRMBasePage):
         sleep(2)
         subject_field.send_keys(subject)
         self.wait_crm_loading_to_finish_tasks(55)
+        sleep(1)
         Logging().reportDebugStep(self, "The subject was set: " + subject)
         return TasksPage(self.driver)
 
@@ -379,7 +377,8 @@ class TasksPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", refresh_icon)
         self.wait_load_element("//a[@class='fa fa-refresh roll']")
         self.wait_element_to_be_disappear("//a[@class='fa fa-refresh roll']")
-        sleep(2)
+        sleep(0.2)
+        self.wait_load_element("//*[contains(text(), 'Showing Records') and contains(text(),'of')]")
         results_count_text = self.wait_visible_of_element("//*[contains(text(), 'Showing Records')]").text
         results_count = results_count_text.split("of ")[1]
         Logging().reportDebugStep(self, "Results found: " + results_count)
