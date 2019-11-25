@@ -7,6 +7,7 @@ class WorkflowsConstants(object):
     random_number = str(random.randrange(1, 9999))
     CONDITION_OR = "OR"
     COUNTRY_AUSTRIA = "Austria"
+    COUNTRY_GUAM = "Guam"
     STATUS_B_TEST = "B - Test"
     NAME_WORKFLOW = "Test_workflow " + random_number
     PRIORITY_WORKFLOW = ""
