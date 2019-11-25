@@ -42,7 +42,7 @@ class WebTraderPage(CRMBasePage):
 
     def get_id_closed_order(self):
         sleep(0.2)
-        order_id = super().wait_load_element("//closed-trade/td[1]").get_attribute("innerText")
+        order_id = super().wait_load_element("//tr[1]/closed-trade/td[1]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get Closed Order ID: " + order_id)
         TradingConstants.ORDER_ID_CLOSED = order_id
         return WebTraderPage(self.driver)
@@ -56,7 +56,7 @@ class WebTraderPage(CRMBasePage):
 
     def get_closed_order_created_time(self):
         sleep(0.1)
-        created_time = super().wait_load_element("//closed-trade/td[2]").get_attribute("innerText")
+        created_time = super().wait_load_element("//tr[1]/closed-trade/td[2]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Created Time: " + created_time)
         TradingConstants.CLOSED_ORDER_CREATED_TIME = created_time
         return WebTraderPage(self.driver)
@@ -70,7 +70,7 @@ class WebTraderPage(CRMBasePage):
 
     def get_closed_order_symbol(self):
         sleep(0.1)
-        symbol = super().wait_load_element("//closed-trade/td[3]").get_attribute("innerText")
+        symbol = super().wait_load_element("//tr[1]/closed-trade/td[3]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Symbol: " + symbol)
         TradingConstants.CLOSED_ORDER_SYMBOL = symbol
         return WebTraderPage(self.driver)
@@ -84,28 +84,28 @@ class WebTraderPage(CRMBasePage):
 
     def get_closed_order_open_price(self):
         sleep(0.1)
-        open_price = super().wait_load_element("//closed-trade/td[6]").get_attribute("innerText")
+        open_price = super().wait_load_element("//tr[1]/closed-trade/td[6]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Open Price: " + open_price)
         TradingConstants.CLOSED_ORDER_OPEN_PRICE = open_price
         return WebTraderPage(self.driver)
 
     def get_closed_order_closed_price(self):
         sleep(0.1)
-        closed_price = super().wait_load_element("//closed-trade/td[7]").get_attribute("innerText")
+        closed_price = super().wait_load_element("//tr[1]/closed-trade/td[7]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Closed Price: " + closed_price)
         TradingConstants.CLOSED_ORDER_CLOSED_PRICE = closed_price
         return WebTraderPage(self.driver)
 
     def get_closed_order_closed_time(self):
         sleep(0.1)
-        closed_time = super().wait_load_element("//closed-trade/td[8]").get_attribute("innerText")
+        closed_time = super().wait_load_element("//tr[1]/closed-trade/td[8]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Closed Time: " + closed_time)
         TradingConstants.CLOSED_ORDER_CLOSED_TIME = closed_time
         return WebTraderPage(self.driver)
 
     def get_closed_order_profit(self):
         sleep(0.1)
-        profit = super().wait_load_element("//closed-trade/td[12]").get_attribute("innerText")
+        profit = super().wait_load_element("//tr[1]/closed-trade/td[12]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Profit: " + profit)
         TradingConstants.CLOSED_ORDER_PROFIT = profit
         return WebTraderPage(self.driver)

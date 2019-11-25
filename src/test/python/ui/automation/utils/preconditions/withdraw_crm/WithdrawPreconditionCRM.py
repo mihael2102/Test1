@@ -15,6 +15,7 @@ from src.main.python.ui.crm.model.mt4.withdraw.MT4WithdrawModule import MT4Withd
 from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
+from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 
 
 class WithdrawPreconditionCRM(object):
@@ -120,12 +121,6 @@ class WithdrawPreconditionCRM(object):
             .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email_new_ui(client1[LeadsModuleConstants.EMAIL])
 
-        sleep(2)
-        ClientProfilePage(self.driver) \
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)
-        account_number = ClientProfilePage(self.driver) \
-            .get_ta_number()
-
         # Create Withdrawal
         MT4DropDown(self.driver) \
             .open_mt4_module_newui(CRMConstants.CREATE_MT_WITHDRAWAL)
@@ -133,7 +128,7 @@ class WithdrawPreconditionCRM(object):
         if global_var.current_brand_name == "trade99":
             MT4WithdrawModule(self.driver) \
                 .make_withdraw_new_ui(CRMConstants.PAYMENT_METHOD_WITHDRAW,
-                                      account_number,
+                                      MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT,
                                       CRMConstants.AMOUNT_WITHDRAW_BTC,
                                       CRMConstants.DESCRIPTION_WITHDRAW,
                                       CRMConstants.STATUS_WITHDRAW,
@@ -141,7 +136,7 @@ class WithdrawPreconditionCRM(object):
         elif global_var.current_brand_name == "q8":
             MT4WithdrawModule(self.driver) \
                 .make_withdraw_new_ui(CRMConstants.PAYMENT_METHOD_WITHDRAW,
-                                      account_number,
+                                      MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT,
                                       CRMConstants.AMOUNT_WITHDRAW_BTC,
                                       CRMConstants.DESCRIPTION_WITHDRAW,
                                       CRMConstants.STATUS_WITHDRAW,
@@ -149,7 +144,7 @@ class WithdrawPreconditionCRM(object):
         else:
             MT4WithdrawModule(self.driver) \
                 .make_withdraw_new_ui(CRMConstants.PAYMENT_METHOD_WITHDRAW,
-                                      account_number,
+                                      MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT,
                                       CRMConstants.AMOUNT_WITHDRAW,
                                       CRMConstants.DESCRIPTION_WITHDRAW,
                                       CRMConstants.STATUS_WITHDRAW,
@@ -165,7 +160,7 @@ class WithdrawPreconditionCRM(object):
         ClientProfilePage(self.driver) \
             .refresh_page()\
             .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)\
-            .open_trading_account_by_number(account_number)
+            .open_trading_account_by_number(MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT)
         balance = TradingAccountsInformationPage(self.driver).get_balance_text()
         if global_var.current_brand_name == "trade99":
             actual_balance = float(balance)
