@@ -38,8 +38,8 @@ class TradingPreconditionLive(object):
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .login()\
-            .enter_email(TradingConstants.LIVE_ACCOUNT_EMAIL)\
-            .enter_password(TradingConstants.LIVE_ACCOUNT_PASSWORD)\
+            .enter_email(self.config.get_value('email_live_acc'))\
+            .enter_password(self.config.get_value('password_live_acc'))\
             .click_login()\
             .verify()
 
@@ -65,13 +65,13 @@ class TradingPreconditionLive(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(TradingConstants.LIVE_ACCOUNT_EMAIL)
+            .find_client_by_email(self.config.get_value('email_live_acc'))
 
         # Open live account details and get open orders data
         open_orders_data = ClientProfilePage(self.driver) \
             .perform_scroll_down() \
             .open_trading_accounts_tab() \
-            .open_trading_account_by_number(TradingConstants.LIVE_ACCOUNT_NUMBER) \
+            .open_trading_account_by_number(self.config.get_value('number_live_acc')) \
             .click_display_open_transactions() \
             .get_open_orders_data()
 
@@ -93,8 +93,8 @@ class TradingPreconditionLive(object):
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .login() \
-            .enter_email(TradingConstants.LIVE_ACCOUNT_EMAIL) \
-            .enter_password(TradingConstants.LIVE_ACCOUNT_PASSWORD) \
+            .enter_email(self.config.get_value('email_live_acc')) \
+            .enter_password(self.config.get_value('password_live_acc')) \
             .click_login() \
             .verify()
 
@@ -120,13 +120,13 @@ class TradingPreconditionLive(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(TradingConstants.LIVE_ACCOUNT_EMAIL)
+            .find_client_by_email(self.config.get_value('email_live_acc'))
 
         # Open live account details and get closed orders data
         close_orders_data = ClientProfilePage(self.driver) \
             .perform_scroll_down() \
             .open_trading_accounts_tab() \
-            .open_trading_account_by_number(TradingConstants.LIVE_ACCOUNT_NUMBER) \
+            .open_trading_account_by_number(self.config.get_value('number_live_acc')) \
             .open_closed_transactions_tab() \
             .get_closed_order_data()
 
