@@ -41,7 +41,7 @@ class ConfigProvider:
         self.brands_config = {}
         self.tests_config = {}
         self.load_config()
-        # self.load_brand_config()
+        self.load_brand_config()
         self.brands = None
 
         self.path_to_data_provider = ""
@@ -70,93 +70,61 @@ class ConfigProvider:
         self.load_brands()
         self.load_tests()
 
-    def load_brands(self, brand='default', use_base=True):
-        if self.__current_test_suite is not None:
-            brands_file_path = os.path.join(self.script_dir, self.config_dir, self.__current_test_suite)
-            with open(os.path.realpath(brands_file_path), 'r') as stream:
-                try:
-                    self.brands_config = yaml.load(stream)
-                    print(self.brands_config)
-                    config_dict = {}
-                    if use_base:
-                        brands_file_path = os.path.join(self.script_dir, self.config_dir, self.default_config_file)
-                        with open(os.path.realpath(brands_file_path), 'r') as stream:
-                            try:
-                                config_dict = yaml.load(stream)
-                            except yaml.YAMLError as e:
-                                print(e)
-                    brand_config_loaded = False
-                    # if not brand:
-                    #     brand = 'default'
-                    for config in self.brands_config['brands']:
-                        if config['name'] != brand:
-                            continue
-                        config_file_path = os.path.join(self.script_dir, self.config_dir, "Brands/",
-                                                        config['config_file'])
-                        with open(os.path.realpath(config_file_path), 'r') as stream:
-                            try:
-                                brand_config = yaml.load(stream)
-                                if use_base:
-                                    config_dict = self.dict_merge(config_dict, brand_config)
-                                else:
-                                    config_dict = brand_config
-                                brand_config_loaded = True
-                            except yaml.YAMLError as e:
-                                print(e)
-
-                    if not brand_config_loaded:
-                        print("Using default brand configuration")
-                    config_dict = self.render_configuration(config_dict)
-                    self.data = config_dict
-                except yaml.YAMLError as e:
-                    print(e)
-
-    def load_tests(self):
-        tests_file_path = os.path.join(self.script_dir, self.config_dir, Config.test_list)
-        with open(os.path.realpath(tests_file_path), 'r') as stream:
+    def load_brands(self):
+        brands_file_path = os.path.join(self.script_dir, self.config_dir, "brands.yml")
+        with open(os.path.realpath(brands_file_path), 'r') as stream:
             try:
-                self.tests_config = yaml.load(stream)
-                print(self.tests_config)
+                self.brands_config = yaml.load(stream)
+                print(self.brands_config)
             except yaml.YAMLError as e:
                 print(e)
 
-    # def load_brand_config(self, brand='default', use_base=True):
-    #     """
-    #     Load a configuration for a specific brand
-    #     :param brand the brand name as specified in the brands_config loaded previously
-    #     :param use_base whether to use the default configuration as a base for the brand configuration
-    #     """
-    #     # load default configuration as a base configuration
-    #     config_dict = {}
-    #     if use_base:
-    #         brands_file_path = os.path.join(self.script_dir, self.config_dir, self.default_config_file)
-    #         with open(os.path.realpath(brands_file_path), 'r') as stream:
-    #             try:
-    #                 config_dict = yaml.load(stream)
-    #             except yaml.YAMLError as e:
-    #                 print(e)
-    #     brand_config_loaded = False
-    #     # if not brand:
-    #     #     brand = 'default'
-    #     for config in self.brands_config['brands']:
-    #         if config['name'] != brand:
-    #             continue
-    #         config_file_path = os.path.join(self.script_dir, self.config_dir, "Brands/", config['config_file'])
-    #         with open(os.path.realpath(config_file_path), 'r') as stream:
-    #             try:
-    #                 brand_config = yaml.load(stream)
-    #                 if use_base:
-    #                     config_dict = self.dict_merge(config_dict, brand_config)
-    #                 else:
-    #                     config_dict = brand_config
-    #                 brand_config_loaded = True
-    #             except yaml.YAMLError as e:
-    #                 print(e)
-    #
-    #     if not brand_config_loaded:
-    #         print("Using default brand configuration")
-    #     config_dict = self.render_configuration(config_dict)
-    #     self.data = config_dict
+    def load_tests(self):
+        if self.__current_test_suite is not None:
+            tests_file_path = os.path.join(self.script_dir, self.config_dir, self.__current_test_suite)
+            with open(os.path.realpath(tests_file_path), 'r') as stream:
+                try:
+                    self.tests_config = yaml.load(stream)
+                    print(self.tests_config)
+                except yaml.YAMLError as e:
+                    print(e)
+
+    def load_brand_config(self, brand='default', use_base=True):
+        """
+        Load a configuration for a specific brand
+        :param brand the brand name as specified in the brands_config loaded previously
+        :param use_base whether to use the default configuration as a base for the brand configuration
+        """
+        # load default configuration as a base configuration
+        config_dict = {}
+        if use_base:
+            brands_file_path = os.path.join(self.script_dir, self.config_dir, self.default_config_file)
+            with open(os.path.realpath(brands_file_path), 'r') as stream:
+                try:
+                    config_dict = yaml.load(stream)
+                except yaml.YAMLError as e:
+                    print(e)
+        brand_config_loaded = False
+        # if not brand:
+        #     brand = 'default'
+        for config in self.brands_config['brands']:
+            if config['name'] != brand:
+                continue
+            config_file_path = os.path.join(self.script_dir, self.config_dir, "Brands/", config['config_file'])
+            with open(os.path.realpath(config_file_path), 'r') as stream:
+                try:
+                    brand_config = yaml.load(stream)
+                    if use_base:
+                        config_dict = self.dict_merge(config_dict, brand_config)
+                    else:
+                        config_dict = brand_config
+                    brand_config_loaded = True
+                except yaml.YAMLError as e:
+                    print(e)
+        if not brand_config_loaded:
+            print("Using default brand configuration")
+        config_dict = self.render_configuration(config_dict)
+        self.data = config_dict
 
     def dict_merge(self, dct, merge_dct, add_keys=True):
         """ Recursive dict merge. Inspired by :meth:``dict.update()``, instead of
@@ -337,7 +305,6 @@ class ConfigProvider:
 
     def get_data_lead_info(self, key, value):
         return self.get_value(key, value)
-
 
     def get_data_lead_info_from_json(self, value):
         connection_file = open(
