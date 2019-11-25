@@ -40,7 +40,8 @@ class TabLeadsModuleCRM(BaseTest):
         LeadPrecondition(self.driver, self.config).import_leads()
 
     def test_searching_lead_modules(self):
-        LeadPrecondition(self.driver, self.config).create_lead(self.lead1)
+        LeadPrecondition(self.driver, self.config)\
+            .create_lead(self.lead1)
 
         CRMHomePage(self.driver)\
             .refresh_page()\

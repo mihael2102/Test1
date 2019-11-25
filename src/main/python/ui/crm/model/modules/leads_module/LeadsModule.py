@@ -508,8 +508,9 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def open_create_lead_module(self):
-        task_module = super().wait_load_element("//td[@class='moduleName']//button[1]")
-        task_module.click()
+        create_lead_module = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                       (self.__class__.__name__)["create_lead_module"])
+        create_lead_module.click()
         Logging().reportDebugStep(self, "Create leads module is opened")
         return CreateLeadsProfilePage(self.driver)
 
@@ -571,7 +572,14 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "The filter found is: " + test_filter)
         select_test_filter = self.driver.find_element(By.XPATH, "//a/span[contains(., '%s')]" % test_filter)
         select_test_filter.click()
-        Logging().reportDebugStep(self, "Select the filter")
+        Logging().reportDebugStep(self, "Select the filter: " + test_filter)
+        self.wait_crm_loading_to_finish()
+        return LeadsModule(self.driver)
+
+    def select_filter_new_ui(self, test_filter):
+        filter_item = super().wait_load_element("//span[contains(text(),'%s')]" % test_filter)
+        self.driver.execute_script("arguments[0].click();", filter_item)
+        Logging().reportDebugStep(self, "Select the filter: " + test_filter)
         self.wait_crm_loading_to_finish()
         return LeadsModule(self.driver)
 
@@ -671,17 +679,18 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def enter_email(self, email):
-        first_name_field = self.driver.find_element(By.XPATH,
-                                                    "//tr[@name='customAdvanceSearch']//input[@name='tks_email']")
-        first_name_field.clear()
-        first_name_field.send_keys(email)
+        sleep(1)
+        email_field = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
+                                                ["email_field"])
+        email_field.clear()
+        email_field.send_keys(email)
+        self.wait_vtiger_loading_to_finish_custom(55)
         Logging().reportDebugStep(self, "The email was entered: " + email)
         return LeadsModule(self.driver)
 
     def enter_assigned_to(self, assigned_to):
         country_drop_down = self.driver.find_element(By.XPATH,
                                     "//tr[@id='customAdvanceSearch']//td[5]//span[@class='multiselect-selected-text']")
-
         country_drop_down.click()
         search_field = self.driver.find_element(By.XPATH,
                             "//tr[@id='customAdvanceSearch']//td[5]//input[@class='form-control multiselect-search']")
@@ -881,12 +890,13 @@ class LeadsModule(CRMBasePage):
         return lead_assigned.text
 
     def open_personal_details_lead(self):
-        sleep(0.1)
-        lead = super().wait_load_element("//a[contains(text(),'LEA')]")
+        sleep(1)
+        lead_no = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
+                                            ["lead_no"])
         try:
-            lead.click()
+            lead_no.click()
         except:
-            self.driver.execute_script("arguments[0].click();", lead)
+            self.driver.execute_script("arguments[0].click();", lead_no)
         Logging().reportDebugStep(self, "Go to personal details lead")
         return LeadsModule(self.driver)
 

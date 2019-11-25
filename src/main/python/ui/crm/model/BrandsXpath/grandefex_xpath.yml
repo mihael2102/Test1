@@ -1,0 +1,2 @@
+CALoginPage:
+  check_box_accept: "//label[contains (text(), 'By checking this box I accept')]"
