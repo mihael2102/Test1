@@ -14,3 +14,6 @@ class UserManagementTest(BaseTest):
 
     def test_delete_user(self):
         UserManagementPrecondition(self.driver, self.config).delete_user()
+
+    def test_login_as(self):
+        UserManagementPrecondition(self.driver, self.config).login_as()
