@@ -74,8 +74,8 @@ brands:
 #- name: stox50
 #  config_file: stox50.yml
 
-#- name: strattonmarkets-eu
-#  config_file: strattonmarkets-eu.yml
+- name: strattonmarkets-eu
+  config_file: strattonmarkets-eu.yml
 
 #- name: swisscci
 #  config_file: swisscci.yml
@@ -89,8 +89,8 @@ brands:
 #- name: tradenero
 #  config_file: tradenero.yml
 
-- name: uft
-  config_file: uft.yml
+#- name: uft
+#  config_file: uft.yml
 
 #- name: uprofx
 #  config_file: uprofx.yml
