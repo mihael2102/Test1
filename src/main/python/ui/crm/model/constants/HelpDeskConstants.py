@@ -49,3 +49,6 @@ class HelpDeskConstants(object):
     FIFTH_COLUMN = "fifth_column"
     SIXTH_COLUMN = "sixth_column"
     EDIT_HT_STATUS = "Closed"
+    TAB_CLOSED = "Closed"
+    TAB_IN_PROGRESS = "In Progress"
+    TAB_OPEN = "Open"

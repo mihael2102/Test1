@@ -41,7 +41,7 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def get_id_closed_order(self):
-        sleep(0.2)
+        sleep(0.5)
         order_id = super().wait_load_element("//tr[1]/closed-trade/td[1]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get Closed Order ID: " + order_id)
         TradingConstants.ORDER_ID_CLOSED = order_id
@@ -445,8 +445,10 @@ class WebTraderPage(CRMBasePage):
                 group = super().wait_load_element("//div[contains(text(),'%s')]" % asset_group)
                 group.click()
             except(NoSuchElementException, TimeoutException):
-                group = super().wait_load_element("//span[contains(text(),'Favorites')]")
+                group = super().wait_load_element("//span[contains(text(),'%s')]" % asset_group)
                 self.driver.execute_script("arguments[0].click();", group)
+                currencies_group = super().wait_load_element("//span[contains(text(),'Currencies')]")
+                self.driver.execute_script("arguments[0].click();", currencies_group)
             Logging().reportDebugStep(self, "Open asset group: " + asset_group)
             return WebTraderPage(self.driver)
         except(NoSuchElementException, TimeoutException):

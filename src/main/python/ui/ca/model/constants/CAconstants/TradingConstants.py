@@ -23,6 +23,7 @@ class TradingConstants(object):
     IS_ASSET_EXIST = ""
     IS_DEMO_EXIST = ""
     TRADES_TAB_TRADE_HISTORY = "Trade History"
+    TRADES_TAB_OPEN_TRADES = "Open Trades"
     LIVE_ACCOUNT_EMAIL = "pandaqa+trading_test@pandats.com"
     LIVE_ACCOUNT_PASSWORD = "q1w2e3"
     LIVE_ACCOUNT_NUMBER = "5015"

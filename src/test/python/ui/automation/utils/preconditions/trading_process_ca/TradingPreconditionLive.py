@@ -52,6 +52,7 @@ class TradingPreconditionLive(object):
             .click_invest()\
             .get_msg_succsessfull_order()\
             .close_succsessfull_order_popup()\
+            .open_trade_tab(TradingConstants.TRADES_TAB_OPEN_TRADES)\
             .get_id_order()\
             .get_order_created_time()\
             .get_symbol()\
@@ -149,6 +150,8 @@ class TradingPreconditionLive(object):
         while expected_closed_price.endswith('0'):
             expected_closed_price = expected_closed_price[:-1]
         expected_profit = TradingConstants.CLOSED_ORDER_PROFIT.replace('€', '')
+        expected_profit = expected_profit.replace('BTC: ', '')
+        expected_profit = expected_profit.replace('$', '')
 
         assert expected_order_id in close_orders_data
         assert expected_date in close_orders_data
