@@ -52,3 +52,6 @@ class HelpDeskConstants(object):
     TAB_CLOSED = "Closed"
     TAB_IN_PROGRESS = "In Progress"
     TAB_OPEN = "Open"
+    TAB_OPENED_TODAY = "Opened Today"
+    TAB_WAIT_FOR_RESPONSE = "Wait For Response"
+    STATUS_AWAITING = "Awaiting"

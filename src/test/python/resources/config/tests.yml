@@ -218,10 +218,10 @@ tests_config:
 #    - test_dragon_clients
 
 ############################################## HELP DESK #################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
-#  class: HelpDeskModuleTest
-#  tests:
-#    - test_create_ticket
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
+  class: HelpDeskModuleTest
+  tests:
+    - test_create_ticket
 
 - module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk
   class: TabHelpDeskTest
