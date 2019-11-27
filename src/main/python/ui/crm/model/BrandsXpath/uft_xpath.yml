@@ -1,4 +1,7 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CALoginPage:
+  check_box_accept: "//span[contains (text(), 'I accept the')]"
+  login_btn: "//button[text()=' Login ']"
 ClientsPage:
   client_status_button: "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']"
   client_status_field: "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']"
@@ -24,5 +27,3 @@ AffiliatePage:
   input_methods: "//div[@class = 'select-options options-enabled']//input[@class = 'button-span ng-untouched ng-pristine ng-valid glyphicon-minus-sign']"
   blocked_country_drop_down: "//div[@class = 'multi-select margin-top-10']/div[@class = 'multi-select-holder']"
   input_country: "//div[@class = 'select-options options-enabled']//input[@class = 'button-span ng-untouched ng-pristine ng-valid glyphicon-minus-sign']"
-CALoginPage:
-  check_box_accept: "//span[contains (text(), 'I accept the')]"

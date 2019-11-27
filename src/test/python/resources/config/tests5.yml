@@ -9,3 +9,15 @@ tests_config:
     - test_check_dashboard
     - test_check_leaderboard
     - test_check_user_management
+
+############################################## HELP DESK #################################################
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
+  class: HelpDeskModuleTest
+  tests:
+    - test_create_ticket
+
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk
+  class: TabHelpDeskTest
+  tests:
+    - test_searching_help_desk
+    - test_check_tab_help_desk
