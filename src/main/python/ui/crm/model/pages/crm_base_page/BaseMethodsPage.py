@@ -40,3 +40,19 @@ class CRMBaseMethodsPage(CRMBasePage):
                 ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
             Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
         return CRMBaseMethodsPage(self.driver)
+
+    def open_tab_list_view(self, tab_title):
+        tab = super().wait_element_to_be_clickable("//li[contains(text(),'%s')]" % tab_title)
+        tab.click()
+        self.wait_vtiger_loading_to_finish_custom(35)
+        self.wait_crm_loading_to_finish_tasks(35)
+        Logging().reportDebugStep(self, "Tab " + tab_title + " was opened")
+        return CRMBaseMethodsPage(self.driver)
+
+    def open_module(self, module_title):
+        module = super().wait_load_element("//a[contains(text(), '%s')]" % module_title)
+        self.driver.execute_script("arguments[0].click();", module)
+        self.wait_vtiger_loading_to_finish_custom(35)
+        self.wait_crm_loading_to_finish_tasks(35)
+        Logging().reportDebugStep(self, "Module " + module_title + " was opened")
+        return CRMBaseMethodsPage(self.driver)
