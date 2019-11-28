@@ -5,6 +5,7 @@ class TestDataConstants(object):
     DESCRIPTION = "Open a new ticket"
     CATEGORY_FIRST = "Login Problem"
     SUBJECT = "QA"
+    MODULE_HELP_DESK = "Help Desk"
     SERVICE_DESK = "Service Desk"
     INITIAL_DEPOSIT_FIRST = "initial_deposit1"
     INITIAL_DEPOSIT_SECOND = "initial_deposit2"
@@ -101,6 +102,3 @@ class TestDataConstants(object):
     LEADS_FILTER_NAME = "TestFilterLeadsModule" + str(date.today())
     HELP_DESK_FILTER_NAME = "TestFilterHelpDeskModule" + str(date.today())
     TRADING_ACCOUNTS_FILTER_NAME = "TestFilterTradingAccountModule" + str(date.today())
-
-
-

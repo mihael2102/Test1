@@ -1,0 +1,2 @@
+CALoginPage:
+  sign_up: "//a[text()='Start Trading']"
