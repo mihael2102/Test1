@@ -2,3 +2,6 @@ pretty_name: "newforexstage2"
 url: "https://newforexstage2.ptscrm.com/"
 url_ca: "https://newforexstage2.pandats.com/#/"
 otp_secret: SQHBI3QCJOVAYQYL
+email_live_acc: "pandaqa+trading_test@pandats.com"
+password_live_acc: "q1w2e3"
+number_live_acc: "5015"
