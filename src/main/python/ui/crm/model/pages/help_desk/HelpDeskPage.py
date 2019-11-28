@@ -183,6 +183,13 @@ class HelpDeskPage(CRMBasePage):
         self.enter_description(description)
         self.click_search_button()
 
+    def search_ticket_by_3_columns(self, ticket_number, tittle, related_to):
+        self.enter_ticket_number(ticket_number)
+        self.enter_tittle(tittle)
+        self.enter_related_to(related_to)
+        self.perform_search_ticket()
+        return HelpDeskPage(self.driver)
+
     def enter_ticket_number(self, ticket_number):
         ticket_number_field = super().wait_visible_of_element("//input[@id='tks_ticket_no']")
         ticket_number_field.clear()
@@ -199,11 +206,11 @@ class HelpDeskPage(CRMBasePage):
 
     def enter_priority(self, priority):
         country_drop_down = self.driver.find_element(By.XPATH,
-                                                     "//tr[@id='customAdvanceSearch']//td[4]//span[@class='multiselect-selected-text']")
+                                    "//tr[@id='customAdvanceSearch']//td[4]//span[@class='multiselect-selected-text']")
 
         country_drop_down.click()
         search_field = self.driver.find_element(By.XPATH,
-                                                "//tr[@id='customAdvanceSearch']//td[4]//input[@class='form-control multiselect-search']")
+                            "//tr[@id='customAdvanceSearch']//td[4]//input[@class='form-control multiselect-search']")
         search_field.clear()
         search_field.send_keys(priority)
         country_choice = self.driver.find_element(By.XPATH,
@@ -216,11 +223,11 @@ class HelpDeskPage(CRMBasePage):
 
     def enter_assigned_to(self, assigned_to):
         country_drop_down = self.driver.find_element(By.XPATH,
-                                                     "//tr[@id='customAdvanceSearch']//td[5]//span[@class='multiselect-selected-text']")
+                                    "//tr[@id='customAdvanceSearch']//td[5]//span[@class='multiselect-selected-text']")
 
         country_drop_down.click()
         search_field = self.driver.find_element(By.XPATH,
-                                                "//tr[@id='customAdvanceSearch']//td[5]//input[@class='form-control multiselect-search']")
+                            "//tr[@id='customAdvanceSearch']//td[5]//input[@class='form-control multiselect-search']")
         search_field.clear()
         search_field.send_keys(assigned_to)
         country_choice = self.driver.find_element(By.XPATH,
@@ -233,11 +240,11 @@ class HelpDeskPage(CRMBasePage):
 
     def enter_status(self, status):
         country_drop_down = self.driver.find_element(By.XPATH,
-                                                     "//tr[@id='customAdvanceSearch']//td[6]//span[@class='multiselect-selected-text']")
+                                    "//tr[@id='customAdvanceSearch']//td[6]//span[@class='multiselect-selected-text']")
 
         country_drop_down.click()
         search_field = self.driver.find_element(By.XPATH,
-                                                "//tr[@id='customAdvanceSearch']//td[6]//input[@class='form-control multiselect-search']")
+                             "//tr[@id='customAdvanceSearch']//td[6]//input[@class='form-control multiselect-search']")
         search_field.clear()
         search_field.send_keys(status)
         country_choice = self.driver.find_element(By.XPATH,
@@ -306,7 +313,7 @@ class HelpDeskPage(CRMBasePage):
     def click_search_button(self):
         search_button = self.driver.find_element(By.XPATH, "//td[@class='txt_al_c']")
         search_button.click()
-        Logging().reportDebugStep(self, "The button was clicked")
+        Logging().reportDebugStep(self, "Search button was clicked")
         return HelpDeskPage()
 
     def click_searching_in_help_desk(self):
