@@ -105,7 +105,7 @@ if __name__ == "__main__":
     if ip == '35.158.30.212' or ip == '35.158.90.50' or ip == '3.123.82.121':
 
         # Filename of TestSuite 1
-        path_to_test_suite_1 = "tests.yml"
+        path_to_test_suite_1 = "tests1.yml"
 
         # Filename of TestSuite 2
         path_to_test_suite_2 = "tests2.yml"
