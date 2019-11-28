@@ -1,6 +1,6 @@
 tests_config:
 
-#################################### CRM CONFIGURATION PAGES ##############################
+#################################### CRM CONFIGURATION ####################################
 - module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
   class: CRMConfigurationsTest
   tests:
