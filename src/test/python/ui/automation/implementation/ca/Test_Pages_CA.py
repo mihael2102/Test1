@@ -14,3 +14,6 @@ class TestPagesCA(BaseTest):
 
     def test_main_menu_pages_loading(self):
         BasePagesCAPrecondition(self.driver, self.config).main_menu_pages_loading()
+
+    def test_graphs_loading(self):
+        BasePagesCAPrecondition(self.driver, self.config).graphs_loading()
