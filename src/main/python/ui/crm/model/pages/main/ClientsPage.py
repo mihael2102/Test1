@@ -501,7 +501,10 @@ class ClientsPage(CRMBasePage):
         return client_email.text
 
     def came_back_on_previous_page(self):
+        sleep(5)
         super().came_back_on_previous_page()
+        # self.driver.execute_script('window.history.go(-1)')
+        # self.driver.execute_script("history.back();")
         Logging().reportDebugStep(self, "Come back on previous page was successfully")
         return ClientsPage(self.driver)
 
