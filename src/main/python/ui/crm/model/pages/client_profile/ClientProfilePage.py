@@ -544,7 +544,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_crm_id_client_details(self):
         crm_id = super().wait_load_element("//td[contains(text(),'CRM Id')]//following-sibling::td[1]").text
-        Logging().reportDebugStep(self, "Returns the country: " + crm_id)
+        Logging().reportDebugStep(self, "Get crm id: " + crm_id)
         return crm_id
 
     def perform_scroll(self, parameter):
