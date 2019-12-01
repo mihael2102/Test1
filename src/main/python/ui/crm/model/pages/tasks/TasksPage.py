@@ -190,8 +190,8 @@ class TasksPage(CRMBasePage):
         input_account_name = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["account_name_input"], timeout=10)
         input_account_name.send_keys(first_name)
-        sleep(0.1)
-        self.wait_load_element("//div[@class='spinner']")
+        sleep(1)
+        # self.wait_load_element("//div[@class='spinner']")
         self.wait_crm_loading_to_finish_tasks(55)
         sleep(1)
         Logging().reportDebugStep(self, "Search by Account name: " + first_name)
