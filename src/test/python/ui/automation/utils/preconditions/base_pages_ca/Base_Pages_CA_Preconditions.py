@@ -1,21 +1,12 @@
-from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
-from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
-from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
-from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
-from time import sleep
-from src.main.python.utils.logs.Loging import Logging
-from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import NoSuchElementException
+from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.pages.ca.CAMainMenuPage import CAMainMenuPage
+from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
 
 
 class BasePagesCAPrecondition(object):
@@ -53,3 +44,32 @@ class BasePagesCAPrecondition(object):
             .check_withdraw_loaded()\
             .open_manage_accounts_tab()\
             .check_manage_accounts_loaded()
+
+    def graphs_loading(self):
+        CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca'))\
+            .login()\
+            .enter_email(CAConstants.EMAIL_CA)\
+            .enter_password(CAConstants.PASSWORD)\
+            .click_login()\
+            .verify()
+
+        WebTraderPage(self.driver) \
+            .open_trading_page() \
+            .check_chart_loaded() \
+            .open_graph_tab(TradingConstants.GRAPH_TAB_5MIN) \
+            .check_chart_loaded()\
+            .open_graph_tab(TradingConstants.GRAPH_TAB_15MIN) \
+            .check_chart_loaded() \
+            .open_graph_tab(TradingConstants.GRAPH_TAB_30MIN) \
+            .check_chart_loaded() \
+            .open_graph_tab(TradingConstants.GRAPH_TAB_HOURLY) \
+            .check_chart_loaded() \
+            .open_graph_tab(TradingConstants.GRAPH_TAB_4HOURS) \
+            .check_chart_loaded() \
+            .open_graph_tab(TradingConstants.GRAPH_TAB_DAILY) \
+            .check_chart_loaded() \
+            .open_graph_tab(TradingConstants.GRAPH_TAB_WEEKLY) \
+            .check_chart_loaded() \
+            .open_graph_tab(TradingConstants.GRAPH_TAB_MONTHLY) \
+            .check_chart_loaded()
