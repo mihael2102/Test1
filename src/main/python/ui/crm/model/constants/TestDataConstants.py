@@ -6,6 +6,8 @@ class TestDataConstants(object):
     CATEGORY_FIRST = "Login Problem"
     SUBJECT = "QA"
     MODULE_HELP_DESK = "Help Desk"
+    MODULE_CAMPAIGNS = "Campaigns"
+    MODULE_AUDIT_LOGS = "Audit Logs"
     SERVICE_DESK = "Service Desk"
     INITIAL_DEPOSIT_FIRST = "initial_deposit1"
     INITIAL_DEPOSIT_SECOND = "initial_deposit2"

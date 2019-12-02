@@ -27,14 +27,14 @@ class CRMBaseMethodsPage(CRMBasePage):
         Check every line of table contain needed string:
     '''
 
-    def global_data_checker(self, type_of_data, data):
+    def global_data_checker(self, data):
         try:
             table = self.driver.find_element_by_xpath("//*[@id='listBody']")
             row_count = 0
             for tr in table.find_elements_by_tag_name("tr"):
                 assert data.lower() in tr.text.lower()
                 row_count += 1
-            Logging().reportDebugStep(self, type_of_data + " is verified in " + str(row_count) + " rows")
+            Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             super().wait_visible_of_element\
                 ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
