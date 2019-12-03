@@ -9,6 +9,8 @@ class TestDataConstants(object):
     MODULE_CAMPAIGNS = "Campaigns"
     MODULE_AUDIT_LOGS = "Audit Logs"
     MODULE_LEADS = "Leads"
+    MODULE_CLIENTS = "Clients"
+    MODULE_TASKS = "Tasks"
     SERVICE_DESK = "Service Desk"
     INITIAL_DEPOSIT_FIRST = "initial_deposit1"
     INITIAL_DEPOSIT_SECOND = "initial_deposit2"

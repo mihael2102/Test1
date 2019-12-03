@@ -103,3 +103,4 @@ class LeadsModuleConstants(object):
     YEAR = "year"
     CITIZENSHIP = "citizenship"
     TAB_ALL = "All"
+    ROW_NUMBER_FOR_DATA_SEARCHING = "5"

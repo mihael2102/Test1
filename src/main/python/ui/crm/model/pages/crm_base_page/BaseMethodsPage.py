@@ -8,6 +8,7 @@ from src.main.python.utils.logs.Loging import Logging
 import autoit
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
+from src.main.python.ui.crm.model.pages.crm_base_page.GlobalSearchPage import GlobalSearchPage
 import os
 
 
@@ -64,4 +65,22 @@ class CRMBaseMethodsPage(CRMBasePage):
         search_btn = super().wait_load_element("//button[@class='searchBtn']")
         self.driver.execute_script("arguments[0].click();", search_btn)
         Logging().reportDebugStep(self, "Global Search by data: " + item)
-        return CRMBaseMethodsPage(self.driver)
+        return GlobalSearchPage(self.driver)
+
+    def global_search_laravel(self, item):
+        search_field = super().wait_load_element("//input[@class='form-control']")
+        search_field.clear()
+        search_field.send_keys(item)
+        search_btn = super().wait_load_element("//button/i[@class='glyphicons search']")
+        self.driver.execute_script("arguments[0].click();", search_btn)
+        Logging().reportDebugStep(self, "Global Search by data: " + item)
+        return GlobalSearchPage(self.driver)
+
+    def comparator_string(self, item1, item2):
+        try:
+            assert item1 == item2
+            Logging().reportDebugStep(self, item1 + " is equal to " + item2)
+            return CRMBaseMethodsPage(self.driver)
+        except AssertionError:
+            Logging().reportDebugStep(self, item1 + " is not equal to " + item2)
+            assert item1 == item2

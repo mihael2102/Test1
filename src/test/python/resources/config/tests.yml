@@ -240,5 +240,5 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Global_Search
   class: TestGlobalSearch
   tests:
-    - test_global_search_leads
-#    - test_global_search_tasks
+#    - test_global_search_leads
+    - test_global_search_tasks

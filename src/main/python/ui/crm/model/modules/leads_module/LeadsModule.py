@@ -917,3 +917,11 @@ class LeadsModule(CRMBasePage):
         lead_email = super().wait_load_element("//tr[contains(@id,'row')][%s]//a/div[@title='send mail']" % row).text
         Logging().reportDebugStep(self, "Get Lead Email from list view(row = " + row + "): " + lead_email)
         return lead_email
+
+    def get_lead_created_time_list_view(self, row):
+        sleep(0.5)
+        created_time = super().wait_load_element\
+            ("//tr[contains(@id,'row')][%s]/td[contains(text(),'2019') or contains(text(),'2020')]" % row)\
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Created Time from list view(row = " + row + "): " + created_time)
+        return created_time
