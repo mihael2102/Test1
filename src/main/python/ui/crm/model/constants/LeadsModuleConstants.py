@@ -102,3 +102,4 @@ class LeadsModuleConstants(object):
     MONTH = "month"
     YEAR = "year"
     CITIZENSHIP = "citizenship"
+    TAB_ALL = "All"

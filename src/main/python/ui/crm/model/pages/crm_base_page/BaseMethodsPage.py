@@ -4,9 +4,6 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.document.CreateDocumentModule import CreateDocumentModule
-from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
-from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.utils.logs.Loging import Logging
 import autoit
 from selenium.common.exceptions import TimeoutException
@@ -50,9 +47,21 @@ class CRMBaseMethodsPage(CRMBasePage):
         return CRMBaseMethodsPage(self.driver)
 
     def open_module(self, module_title):
-        module = super().wait_load_element("//a[contains(text(), '%s')]" % module_title)
-        self.driver.execute_script("arguments[0].click();", module)
-        self.wait_vtiger_loading_to_finish_custom(35)
-        self.wait_crm_loading_to_finish_tasks(35)
-        Logging().reportDebugStep(self, "Module " + module_title + " was opened")
+        try:
+            module = super().wait_load_element("//a[contains(text(), '%s')]" % module_title)
+            self.driver.execute_script("arguments[0].click();", module)
+            self.wait_vtiger_loading_to_finish_custom(35)
+            self.wait_crm_loading_to_finish_tasks(35)
+            Logging().reportDebugStep(self, "Module " + module_title + " was opened")
+            return CRMBaseMethodsPage(self.driver)
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Module " + module_title + " does not exist")
+
+    def global_search_vtiger(self, item):
+        search_field = super().wait_load_element("//input[@class='searchBox']")
+        search_field.clear()
+        search_field.send_keys(item)
+        search_btn = super().wait_load_element("//button[@class='searchBtn']")
+        self.driver.execute_script("arguments[0].click();", search_btn)
+        Logging().reportDebugStep(self, "Global Search by data: " + item)
         return CRMBaseMethodsPage(self.driver)

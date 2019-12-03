@@ -905,3 +905,15 @@ class LeadsModule(CRMBasePage):
             EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Phone']")))
         Logging().reportDebugStep(self, "Verified the lead phone: " + lead_phone.text)
         return lead_phone.text
+
+    def get_lead_number_list_view(self, row):
+        sleep(0.5)
+        lead_no = super().wait_load_element("//tr[contains(@id,'row')][%s]//a[contains(@title,'LEA')]" % row).text
+        Logging().reportDebugStep(self, "Get Lead No from list view(row = " + row + "): " + lead_no)
+        return lead_no
+
+    def get_lead_email_list_view(self, row):
+        sleep(0.5)
+        lead_email = super().wait_load_element("//tr[contains(@id,'row')][%s]//a/div[@title='send mail']" % row).text
+        Logging().reportDebugStep(self, "Get Lead Email from list view(row = " + row + "): " + lead_email)
+        return lead_email

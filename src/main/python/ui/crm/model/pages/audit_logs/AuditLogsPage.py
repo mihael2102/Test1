@@ -36,7 +36,7 @@ class AuditLogsPage(CRMBasePage):
             "//div[@class='module-header-date-filter']//span[@id='basic-addon2']")
         all_tab.click()
         Logging().reportDebugStep(self, "The calendar view was opened ")
-        return AuditLogsPage()
+        return AuditLogsPage(self.driver)
 
     def get_today_tab_text(self):
         today_tab = super().wait_element_to_be_clickable("//button[contains(text(),'Today')]")
@@ -66,12 +66,12 @@ class AuditLogsPage(CRMBasePage):
         self.enter_id_record(id_record)
         self.enter_email_audit_logs(email)
         self.select_user_agent(user_agent)
-        return AuditLogsPage()
+        return AuditLogsPage(self.driver)
 
     def searching_by_2_columns(self, module, action):
         self.select_module_audit_logs(module)
         self.select_action_audit_logs(action)
-        return AuditLogsPage()
+        return AuditLogsPage(self.driver)
 
     def select_module_audit_logs(self, module):
         module_drop_down = super().wait_element_to_be_clickable("(//button[text()='None selected'])[1]")
@@ -168,11 +168,12 @@ class AuditLogsPage(CRMBasePage):
             row_count = 0
             for tr in table.find_elements_by_xpath("//tr[@class='tableRow ng-star-inserted' and @data-loadtime]"):
                 if tr.text:
-                    assert data.lower() in tr.text.lower()
+                    data = data.replace(" ", "")
+                    row_text = tr.text.replace(" ", "")
+                    assert data.lower() in row_text.lower()
                     row_count += 1
             Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            super().wait_visible_of_element \
-                ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
-            Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
+            super().wait_visible_of_element("//td[text()=' Data not found ']")
+            Logging().reportDebugStep(self, "Data not found")
         return AuditLogsPage(self.driver)

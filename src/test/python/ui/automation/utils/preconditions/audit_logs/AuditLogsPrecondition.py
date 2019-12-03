@@ -44,7 +44,30 @@ class AuditLogsPrecondition(object):
         """ Searching by columns """
         AuditLogsPage(self.driver)\
             .searching_by_2_columns(AuditLogsConstants.MODULE_USERS,
-                                    AuditLogsConstants.ACTION_1)\
+                                    AuditLogsConstants.ACTION_OTP_LOGIN)\
             .audit_logs_data_checker(AuditLogsConstants.MODULE_USERS)\
-            .audit_logs_data_checker(AuditLogsConstants.ACTION_1)
-        sleep(1)
+            .audit_logs_data_checker(AuditLogsConstants.ACTION_OTP_LOGIN)\
+            .refresh_page()
+        AuditLogsPage(self.driver)\
+            .searching_by_2_columns(AuditLogsConstants.MODULE_TRANSACTIONS,
+                                    AuditLogsConstants.ACTION_EXPORT)\
+            .audit_logs_data_checker(AuditLogsConstants.MODULE_TRANSACTIONS)\
+            .audit_logs_data_checker(AuditLogsConstants.ACTION_EXPORT)\
+            .refresh_page()
+        AuditLogsPage(self.driver) \
+            .searching_by_2_columns(AuditLogsConstants.MODULE_LEADS,
+                                    AuditLogsConstants.ACTION_SAVE) \
+            .audit_logs_data_checker(AuditLogsConstants.MODULE_LEADS) \
+            .audit_logs_data_checker(AuditLogsConstants.ACTION_SAVE) \
+            .refresh_page()
+        AuditLogsPage(self.driver) \
+            .searching_by_2_columns(AuditLogsConstants.MODULE_LEADS,
+                                    AuditLogsConstants.ACTION_DETAIL_VIEW) \
+            .audit_logs_data_checker(AuditLogsConstants.MODULE_LEADS) \
+            .audit_logs_data_checker(AuditLogsConstants.ACTION_DETAIL_VIEW) \
+            .refresh_page()
+        AuditLogsPage(self.driver) \
+            .searching_by_2_columns(AuditLogsConstants.MODULE_LEADS,
+                                    AuditLogsConstants.ACTION_EDIT_VIEW) \
+            .audit_logs_data_checker(AuditLogsConstants.MODULE_LEADS) \
+            .audit_logs_data_checker(AuditLogsConstants.ACTION_EDIT_VIEW)
