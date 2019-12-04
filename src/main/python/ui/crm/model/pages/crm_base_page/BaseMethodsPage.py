@@ -9,6 +9,7 @@ import autoit
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from src.main.python.ui.crm.model.pages.crm_base_page.GlobalSearchPage import GlobalSearchPage
+from datetime import datetime
 import os
 
 
@@ -84,3 +85,13 @@ class CRMBaseMethodsPage(CRMBasePage):
         except AssertionError:
             Logging().reportDebugStep(self, item1 + " is not equal to " + item2)
             assert item1 == item2
+
+    def get_current_date(self):
+        date = datetime.today().strftime('%Y-%m-%d')
+        Logging().reportDebugStep(self, "Get current date: " + date)
+        return date
+
+    def get_current_date_time(self):
+        date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
+        Logging().reportDebugStep(self, "Get current date and time: " + date)
+        return date

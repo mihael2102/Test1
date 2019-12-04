@@ -13,6 +13,9 @@ class AuditLogsModuleTest(BaseTest):
     def test_audit_logs_searching_by_columns(self):
         AuditLogsPrecondition(self.driver, self.config).searching_by_columns()
 
+    def test_new_events_shown_in_audit_logs(self):
+        AuditLogsPrecondition(self.driver, self.config).new_events_shown_in_audit_logs()
+
     def test_check_tab_audit_logs_module(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
