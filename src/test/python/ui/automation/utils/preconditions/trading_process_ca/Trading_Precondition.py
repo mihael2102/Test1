@@ -487,6 +487,8 @@ class Trading_Precondition(object):
         while expected_closed_price.endswith('0'):
             expected_closed_price = expected_closed_price[:-1]
         expected_profit = TradingConstants.CLOSED_ORDER_PROFIT.replace('€', '')
+        expected_profit = expected_profit.replace('$', '')
+        expected_profit = expected_profit.replace('BTC: ', '')
 
         assert expected_order_id in close_orders_data
         assert expected_date in close_orders_data
