@@ -29,14 +29,20 @@ class WorkflowsPrecondition(object):
         self.config = config
 
     def create_workflows(self):
+        """ Login CRM """
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        CRMHomePage(self.driver).open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
-        CRMConfigurationPage(self.driver).check_workflows_loaded()
+        """ Check Workflow module exist """
+        CRMHomePage(self.driver)\
+            .open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        CRMConfigurationPage(self.driver)\
+            .check_workflows_loaded()
+
+        """ Create new workflow """
         WorkflowsPage(self.driver)\
             .click_add_new_workflow()\
             .enter_workflow_name(WorkflowsConstants.NAME_WORKFLOW)\
@@ -91,11 +97,20 @@ class WorkflowsPrecondition(object):
         assert name_workflow == WorkflowsConstants.NAME_WORKFLOW
 
     def check_workflow_by_status(self):
+        """ Login CRM """
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        """ Check Workflow module exist """
+        CRMHomePage(self.driver) \
+            .open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        CRMConfigurationPage(self.driver) \
+            .check_workflows_loaded()
+
+        """ Check workflow by status is working """
         CRMHomePage(self.driver)\
             .open_client_module() \
             .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
@@ -117,11 +132,20 @@ class WorkflowsPrecondition(object):
         assert address == WorkflowsConstants.TEST_ADDRESS
 
     def check_workflow_by_country(self):
+        """ Login CRM """
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        """ Check Workflow module exist """
+        CRMHomePage(self.driver) \
+            .open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        CRMConfigurationPage(self.driver) \
+            .check_workflows_loaded()
+
+        """ Check workflow by country is working """
         CRMHomePage(self.driver)\
             .open_client_module()\
             .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
@@ -140,7 +164,7 @@ class WorkflowsPrecondition(object):
         actual_address = ClientProfilePage(self.driver).get_address_text()
         expected_address = WorkflowsConstants.TEST_ADDRESS
 
-        # Check Address and Country fields were updated
+        """ Check Address and Country fields were updated """
         count = 0
         while expected_address != actual_address or expected_country != actual_country:
             CRMHomePage(self.driver).refresh_page()

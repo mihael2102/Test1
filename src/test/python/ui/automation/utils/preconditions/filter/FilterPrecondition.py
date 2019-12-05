@@ -13,6 +13,7 @@ from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 from selenium.webdriver.common.by import By
 from time import sleep
 
+
 class FilterPrecondition(object):
 
     driver = None
