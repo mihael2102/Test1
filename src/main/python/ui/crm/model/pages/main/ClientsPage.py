@@ -82,7 +82,7 @@ class ClientsPage(CRMBasePage):
         all_tab = super().wait_element_to_be_clickable("//li[contains(text(),'All')]")
         all_tab.click()
         self.wait_vtiger_loading_to_finish_custom(35)
-        Logging().reportDebugStep(self, "The client module was opened")
+        Logging().reportDebugStep(self, "ALL tab was opened")
         return ClientsPage(self.driver)
 
     ''' 
@@ -698,6 +698,20 @@ class ClientsPage(CRMBasePage):
         except (NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Address Information tab is already opened")
             return ClientsPage(self.driver)
+
+    def get_client_crm_id_list_view(self, row):
+        sleep(0.5)
+        crm_id = super().wait_load_element("//tr[contains(@id,'row')][%s]//a[contains(@title,'ACC')]" % row).text
+        Logging().reportDebugStep(self, "Get CRM ID from list view(row = " + row + "): " + crm_id)
+        return crm_id
+
+    def get_client_created_time_list_view(self, row):
+        sleep(0.5)
+        created_time = super().wait_load_element\
+            ("//tr[contains(@id,'row')][%s]/td[contains(text(),'2019') or contains(text(),'2020')]" % row)\
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Created Time from list view(row = " + row + "): " + created_time)
+        return created_time
 
 ########################################### NEW UI METHODS #############################################
 
