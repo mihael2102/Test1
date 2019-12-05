@@ -18,7 +18,8 @@ class SearchingClientsTestCRM(BaseTest):
     def test_make_searching_client_module(self):
         # Test depends on test 'test_perform_convert_lead'
         # Please run it before current test because we need to create new client firstly.
-        crm_client_profile = CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        crm_client_profile = CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \

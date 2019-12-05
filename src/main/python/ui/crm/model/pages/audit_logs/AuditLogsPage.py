@@ -4,7 +4,8 @@ from time import sleep
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
-
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from datetime import *
@@ -12,9 +13,6 @@ from datetime import *
 
 
 class AuditLogsPage(CRMBasePage):
-
-    # def __init__(self):
-    #     super().__init__()
 
     def get_all_tab_text(self):
         all_tab = super().wait_element_to_be_clickable("//button[contains(text(),'All')]")
@@ -38,7 +36,7 @@ class AuditLogsPage(CRMBasePage):
             "//div[@class='module-header-date-filter']//span[@id='basic-addon2']")
         all_tab.click()
         Logging().reportDebugStep(self, "The calendar view was opened ")
-        return AuditLogsPage()
+        return AuditLogsPage(self.driver)
 
     def get_today_tab_text(self):
         today_tab = super().wait_element_to_be_clickable("//button[contains(text(),'Today')]")
@@ -61,71 +59,66 @@ class AuditLogsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the tab name " + month_tab_text.text)
         return month_tab_text.text
 
-    def perform_searching(self, module, action, user, email, id_record, user_agent):
+    def perform_searching(self, module=None, action=None, user=None, email=None, id_record=None, user_agent=None):
+        if module:
+            self.select_module_audit_logs(module)
+        if action:
+            self.select_action_audit_logs(action)
+        if user:
+            self.select_user_audit_logs(user)
+        if id_record:
+            self.enter_id_record(id_record)
+        if email:
+            self.enter_email_audit_logs(email)
+        if user_agent:
+            self.select_user_agent(user_agent)
+        return AuditLogsPage(self.driver)
+
+    def searching_by_2_columns(self, module, action):
         self.select_module_audit_logs(module)
         self.select_action_audit_logs(action)
-        self.select_user_audit_logs(user)
-        self.enter_id_record(id_record)
-        self.enter_email_audit_logs(email)
-        self.select_user_agent(user_agent)
-        return AuditLogsPage()
+        return AuditLogsPage(self.driver)
 
     def select_module_audit_logs(self, module):
-        module_drop_down = super().wait_element_to_be_clickable("//tr[@class='tableFilters']//td[1]")
-
+        module_drop_down = super().wait_element_to_be_clickable("(//button[text()='None selected'])[1]")
         module_drop_down.click()
-        search_field = self.driver.find_element(By.XPATH,
-                                                "//div[@class='select-options options-enabled']//input")
+        search_field = self.driver.find_element_by_xpath("//input[@placeholder='Search']")
         search_field.clear()
         search_field.send_keys(module)
-        module_choice = self.driver.find_element(By.XPATH,
-                                                 "//span[contains(text(),'%s')]" % module)
+        module_choice = self.driver.find_element_by_xpath("//span[contains(text(),'%s')]" % module)
         module_choice.click()
-
         ac = ActionChains(self.driver)
-
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The module was entered : " + module)
-
-        return AuditLogsPage()
+        self.wait_crm_loading_to_finish_tasks(35)
+        Logging().reportDebugStep(self, "The Module was set: " + module)
+        return AuditLogsPage(self.driver)
 
     def select_action_audit_logs(self, action):
-        action_drop_down = super().wait_element_to_be_clickable("//tr[@class='tableFilters']//td[2]")
-
+        action_drop_down = super().wait_element_to_be_clickable("(//button[text()='None selected'])[1]")
         action_drop_down.click()
-        search_field = self.driver.find_element(By.XPATH,
-                                                "//div[@class='select-options options-enabled']//input")
+        search_field = self.driver.find_element_by_xpath("//input[@placeholder='Search']")
         search_field.clear()
         search_field.send_keys(action)
-        action_choice = self.driver.find_element(By.XPATH,
-                                                 "//span[contains(text(),'%s')]" % action)
+        action_choice = self.driver.find_element_by_xpath("//span[contains(text(),'%s')]" % action)
         action_choice.click()
-
         ac = ActionChains(self.driver)
-
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The action was entered : " + action)
-
-        return AuditLogsPage()
+        self.wait_crm_loading_to_finish_tasks(35)
+        Logging().reportDebugStep(self, "The Action was set: " + action)
+        return AuditLogsPage(self.driver)
 
     def select_user_audit_logs(self, user):
-        user_drop_down = super().wait_element_to_be_clickable("//tr[@class='tableFilters']//td[3]")
-
+        user_drop_down = super().wait_element_to_be_clickable("(//button[text()='None selected'])[1]")
         user_drop_down.click()
-        search_field = self.driver.find_element(By.XPATH,
-                                                "//div[@class='select-options options-enabled']//input")
+        search_field = self.driver.find_element_by_xpath("//input[@placeholder='Search']")
         search_field.clear()
         search_field.send_keys(user)
-        action_choice = self.driver.find_element(By.XPATH,
-                                                 "//div[@class='select-options options-enabled']//"
-                                                 "span[contains(text(),'%s')]" % user)
+        action_choice = self.driver.find_element_by_xpath("//li//span[contains(text(),'%s')]" % user)
         action_choice.click()
-
         ac = ActionChains(self.driver)
-
         ac.move_by_offset(250, 250).click().perform()
-        Logging().reportDebugStep(self, "The user was entered : " + user)
-
+        self.wait_crm_loading_to_finish_tasks(35)
+        Logging().reportDebugStep(self, "The User was selected: " + user)
         return AuditLogsPage()
 
     def enter_id_record(self, id_record):
@@ -153,13 +146,13 @@ class AuditLogsPage(CRMBasePage):
         return AuditLogsPage()
 
     def enter_email_audit_logs(self, email):
-        search_field = self.driver.find_element(By.XPATH,
-                                                "//tr[@class='tableFilters']//td[5]//input")
+        search_field = self.driver.find_element_by_xpath("(//input[@placeholder='Search...'])[3]")
         search_field.clear()
         search_field.send_keys(email)
         ac = ActionChains(self.driver)
-
         ac.move_by_offset(250, 250).click().perform()
+        self.wait_crm_loading_to_finish_tasks(35)
+        Logging().reportDebugStep(self, "The client's email was entered: " + email)
         return AuditLogsPage()
 
     def check_audit_logs_loaded(self):
@@ -167,3 +160,28 @@ class AuditLogsPage(CRMBasePage):
         super().wait_load_element("(//tr[contains(@class,'tableRow')])[1]", timeout=35)
         Logging().reportDebugStep(self, "Audit Logs module is loaded")
         return AuditLogsPage(self.driver)
+
+    def audit_logs_data_checker(self, data):
+        sleep(2)
+        try:
+            table = self.driver.find_element_by_xpath("//div[@class='table-grid-container of-auto']/table/tbody")
+            row_count = 0
+            for tr in table.find_elements_by_xpath("//tr[@class='tableRow ng-star-inserted' and @data-loadtime]"):
+                if tr.text:
+                    data = data.replace(" ", "")
+                    row_text = tr.text.replace(" ", "")
+                    assert data.lower() in row_text.lower()
+                    row_count += 1
+            Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
+        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            super().wait_visible_of_element("//td[text()=' Data not found ']")
+            Logging().reportDebugStep(self, "Data not found")
+        return AuditLogsPage(self.driver)
+
+    def get_active_date_list_view(self, row):
+        sleep(0.2)
+        active_date = super().wait_load_element\
+        ("//tr[contains(@class,'Row')][%s]//span[contains(text(),'2019') or contains(text(),'2020')][not(contains(text(),'@'))]"
+             % row).text
+        Logging().reportDebugStep(self, "Get Active Date from list view(row = " + row + "): " + active_date)
+        return active_date

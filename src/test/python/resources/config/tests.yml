@@ -21,12 +21,12 @@ tests_config:
 #    - test_create_filter_trading_account_module
 #
 ########################################## LEADS ###################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
-  class: TabLeadsModuleCRM
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
+#  class: TabLeadsModuleCRM
+#  tests:
 #    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
 #    - sorting_lead_module
-    - test_mass_assign_leads
+#    - test_mass_assign_leads
 #    - test_mass_edit_leads
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
@@ -161,6 +161,7 @@ tests_config:
 #    - test_create_campaign
 #    - test_edit_campaign
 #    - test_delete_campaign
+#    - test_campaign_searching_by_columns
 #
 ########################################## AUTOASSIGN MODULE #############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
@@ -169,7 +170,7 @@ tests_config:
 #    - test_add_auto_assign_rule_lead
 #    - test_add_auto_assign_rule_client
 #    - test_perform_delete_rule
-#
+
 ########################################### CHECK MODULES ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
 #  class: CheckModulesTest
@@ -228,3 +229,17 @@ tests_config:
 #  tests:
 #    - test_searching_help_desk
 #    - test_check_tab_help_desk
+
+############################################## AUDIT LOGS ################################################
+- module: src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs
+  class: AuditLogsModuleTest
+  tests:
+#    - test_audit_logs_searching_by_columns
+    - test_new_events_shown_in_audit_logs
+
+############################################## GLOBAL SEARCH ################################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Global_Search
+#  class: TestGlobalSearch
+#  tests:
+#    - test_global_search_leads
+#    - test_global_search_tasks
