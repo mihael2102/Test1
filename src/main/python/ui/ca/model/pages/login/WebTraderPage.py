@@ -34,7 +34,7 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def get_id_order(self):
-        sleep(0.2)
+        sleep(0.5)
         order_id = super().wait_load_element("//open-trade/td[1]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get Order ID: " + order_id)
         TradingConstants.ORDER_ID_OPEN = order_id
