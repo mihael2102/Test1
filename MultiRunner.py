@@ -134,13 +134,16 @@ if __name__ == "__main__":
         # Filename of TestSuite 10
         path_to_test_suite_10 = "tests10.yml"
 
+        # Filename of TestSuite 11
+        path_to_test_suite_11 = "tests11.yml"
+
         # Form input list where each parameter is filename of TestSuite file
         input_list = [path_to_test_suite_1, path_to_test_suite_2, path_to_test_suite_3, path_to_test_suite_4,
                       path_to_test_suite_5, path_to_test_suite_6, path_to_test_suite_7, path_to_test_suite_8,
-                      path_to_test_suite_9, path_to_test_suite_10]
+                      path_to_test_suite_9, path_to_test_suite_10, path_to_test_suite_11]
 
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=10)
+        pool = multiprocessing.Pool(processes=11)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
