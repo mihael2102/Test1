@@ -17,6 +17,9 @@ brands:
 #- name: brokerz
 #  config_file: brokerz.yml
 
+#- name: ctxprime
+#  config_file: ctxprime.yml
+
 #- name: dax-300
 #  config_file: dax-300.yml
 
@@ -26,11 +29,11 @@ brands:
 #- name: globalix
 #  config_file: globalix.yml
 
-#- name: gigafx
-#  config_file: gigafx.yml
-
 #- name: grandefex
 #  config_file: grandefex.yml
+
+#- name: gtstox
+#  config_file: gtstox.yml
 
 #- name: hizlifx
 #  config_file: hizlifx.yml
@@ -44,11 +47,14 @@ brands:
 #- name: libramarkets
 #  config_file: libramarkets.yml
 
+- name: moneta
+  config_file: moneta.yml
+
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
@@ -88,6 +94,9 @@ brands:
 
 #- name: tradenero
 #  config_file: tradenero.yml
+
+#- name: tradixa
+#  config_file: tradixa.yml
 
 #- name: uft
 #  config_file: uft.yml
