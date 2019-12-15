@@ -34,15 +34,15 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def get_id_order(self):
-        sleep(0.2)
+        sleep(0.5)
         order_id = super().wait_load_element("//open-trade/td[1]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get Order ID: " + order_id)
         TradingConstants.ORDER_ID_OPEN = order_id
         return WebTraderPage(self.driver)
 
     def get_id_closed_order(self):
-        sleep(0.2)
-        order_id = super().wait_load_element("//closed-trade/td[1]").get_attribute("innerText")
+        sleep(0.5)
+        order_id = super().wait_load_element("//tr[1]/closed-trade/td[1]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get Closed Order ID: " + order_id)
         TradingConstants.ORDER_ID_CLOSED = order_id
         return WebTraderPage(self.driver)
@@ -56,7 +56,7 @@ class WebTraderPage(CRMBasePage):
 
     def get_closed_order_created_time(self):
         sleep(0.1)
-        created_time = super().wait_load_element("//closed-trade/td[2]").get_attribute("innerText")
+        created_time = super().wait_load_element("//tr[1]/closed-trade/td[2]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Created Time: " + created_time)
         TradingConstants.CLOSED_ORDER_CREATED_TIME = created_time
         return WebTraderPage(self.driver)
@@ -70,7 +70,7 @@ class WebTraderPage(CRMBasePage):
 
     def get_closed_order_symbol(self):
         sleep(0.1)
-        symbol = super().wait_load_element("//closed-trade/td[3]").get_attribute("innerText")
+        symbol = super().wait_load_element("//tr[1]/closed-trade/td[3]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Symbol: " + symbol)
         TradingConstants.CLOSED_ORDER_SYMBOL = symbol
         return WebTraderPage(self.driver)
@@ -84,28 +84,28 @@ class WebTraderPage(CRMBasePage):
 
     def get_closed_order_open_price(self):
         sleep(0.1)
-        open_price = super().wait_load_element("//closed-trade/td[6]").get_attribute("innerText")
+        open_price = super().wait_load_element("//tr[1]/closed-trade/td[6]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Open Price: " + open_price)
         TradingConstants.CLOSED_ORDER_OPEN_PRICE = open_price
         return WebTraderPage(self.driver)
 
     def get_closed_order_closed_price(self):
         sleep(0.1)
-        closed_price = super().wait_load_element("//closed-trade/td[7]").get_attribute("innerText")
+        closed_price = super().wait_load_element("//tr[1]/closed-trade/td[7]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Closed Price: " + closed_price)
         TradingConstants.CLOSED_ORDER_CLOSED_PRICE = closed_price
         return WebTraderPage(self.driver)
 
     def get_closed_order_closed_time(self):
         sleep(0.1)
-        closed_time = super().wait_load_element("//closed-trade/td[8]").get_attribute("innerText")
+        closed_time = super().wait_load_element("//tr[1]/closed-trade/td[8]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Closed Time: " + closed_time)
         TradingConstants.CLOSED_ORDER_CLOSED_TIME = closed_time
         return WebTraderPage(self.driver)
 
     def get_closed_order_profit(self):
         sleep(0.1)
-        profit = super().wait_load_element("//closed-trade/td[12]").get_attribute("innerText")
+        profit = super().wait_load_element("//tr[1]/closed-trade/td[12]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Profit: " + profit)
         TradingConstants.CLOSED_ORDER_PROFIT = profit
         return WebTraderPage(self.driver)
@@ -441,8 +441,14 @@ class WebTraderPage(CRMBasePage):
 
     def open_asset_group(self, asset_group):
         try:
-            group = super().wait_load_element("//div[contains(text(),'%s')]" % asset_group)
-            group.click()
+            try:
+                group = super().wait_load_element("//div[contains(text(),'%s')]" % asset_group)
+                group.click()
+            except(NoSuchElementException, TimeoutException):
+                group = super().wait_load_element("//span[contains(text(),'%s')]" % asset_group)
+                self.driver.execute_script("arguments[0].click();", group)
+                currencies_group = super().wait_load_element("//span[contains(text(),'Currencies')]")
+                self.driver.execute_script("arguments[0].click();", currencies_group)
             Logging().reportDebugStep(self, "Open asset group: " + asset_group)
             return WebTraderPage(self.driver)
         except(NoSuchElementException, TimeoutException):
@@ -463,4 +469,24 @@ class WebTraderPage(CRMBasePage):
         tab = super().wait_load_element("//div[contains(text(),'%s')]" % tab_name)
         tab.click()
         Logging().reportDebugStep(self, "Open tab: " + tab_name)
+        return WebTraderPage(self.driver)
+
+    def check_chart_loaded(self):
+        sleep(1)
+        self.wait_element_to_be_disappear("//div[contains(@class,'chart-preload')]", 15)
+        self.wait_element_to_be_disappear("//*[contains(@class,'no-chart-data-pandats')]", 10)
+        self.wait_load_element("//div[contains(@class,'chart-pane-legend-price')]/div[@class='legend-price']")
+        Logging().reportDebugStep(self, "Graph was loaded")
+        return WebTraderPage(self.driver)
+
+    def open_graph_tab(self, period):
+        sleep(0.2)
+        try:
+            tab = super().wait_load_element("(//button[@title='%s'])[1]/span" % period)
+            tab.click()
+        except(TimeoutException, NoSuchElementException):
+            self.refresh_page()
+            tab = super().wait_load_element("(//button[@title='%s'])[1]/span" % period)
+            tab.click()
+        Logging().reportDebugStep(self, period + " Graph is opens")
         return WebTraderPage(self.driver)
