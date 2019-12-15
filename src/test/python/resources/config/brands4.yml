@@ -1,7 +1,4 @@
 brands:
 
-- name: uft
-  config_file: uft.yml
-
 - name: ptbanc
   config_file: ptbanc.yml

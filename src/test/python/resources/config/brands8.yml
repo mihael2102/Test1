@@ -2,6 +2,3 @@ brands:
 
 - name: stox50
   config_file: stox50.yml
-
-- name: gigafx
-  config_file: gigafx.yml
