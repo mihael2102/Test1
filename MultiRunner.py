@@ -375,7 +375,5 @@ if __name__ == "__main__":
         # Send_ALL_XLS(all_excel)
         Send_ALL_XLS(short_excel)
 
-
-
     else:
         print("TURN ON VPN")
