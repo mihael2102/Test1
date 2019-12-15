@@ -108,7 +108,6 @@ class FinancialTransactionsPage(CRMBasePage):
         # self.enter_modified_time(modified_time)
         self.enter_trading_account(trading_account)
         self.click_search_button()
-        self.wait_loading_to_finish(35)
         return FinancialTransactionsPage(self.driver)
 
     def enter_transaction_number(self, transaction_number):
@@ -167,10 +166,7 @@ class FinancialTransactionsPage(CRMBasePage):
             sleep(3)
         transaction_number_element = self.driver.find_element(By.XPATH, "//a[contains(text(), 'MTT')]")
         self.scroll_into_view(transaction_number_element)
-        try:
-            transaction_number_element.click()
-        except:
-            self.driver.execute_script("arguments[0].click();", transaction_number_element)
+        transaction_number_element.click()
         Logging().reportDebugStep(self, "First financial transaction in search results was opened")
         return FinancialTransactionInformationPage(self.driver)
 
@@ -197,7 +193,6 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text("Transaction No")
         self.__fill_search_field_with_value(transaction_id)
         self.__click_search_now_button()
-        self.wait_loading_to_finish(35)
         Logging().reportDebugStep(self, "Searching for transaction ID: %s was performed" % transaction_id)
         return FinancialTransactionsPage(self.driver)
 
@@ -205,7 +200,6 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text("Client")
         self.__fill_search_field_with_value(client_name)
         self.__click_search_now_button()
-        self.wait_loading_to_finish(35)
         Logging().reportDebugStep(self, "Searching for client name: %s was performed" % client_name)
         return FinancialTransactionsPage(self.driver)
 
@@ -213,7 +207,6 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text(TestDataConstants.TRANSACTION_TYPE)
         self.__fill_search_field_with_value(transaction_type)
         self.__click_search_now_button()
-        self.wait_loading_to_finish(35)
         Logging().reportDebugStep(self, "Searching for transaction type: %s was performed" % transaction_type)
         return FinancialTransactionsPage(self.driver)
 
@@ -221,7 +214,6 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text(TestDataConstants.CREATED_TIME)
         self.__fill_search_field_with_value(modified_time)
         self.__click_search_now_button()
-        self.wait_loading_to_finish(35)
         Logging().reportDebugStep(self, "Searching for modified time: %s was performed" % modified_time)
         return FinancialTransactionsPage(self.driver)
 
@@ -229,7 +221,6 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text("Trading Account")
         self.__fill_search_field_with_value(trading_account)
         self.__click_search_now_button()
-        self.wait_loading_to_finish(35)
         Logging().reportDebugStep(self, "Searching for trading account: %s was performed" % trading_account)
         return FinancialTransactionsPage(self.driver)
 

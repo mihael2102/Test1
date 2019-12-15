@@ -1,0 +1,23 @@
+tests_config:
+
+############################################# AFFILIATES MODULE ##########################################
+- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
+  class: AffiliateModule
+  tests:
+    - test_create_delete_affiliate
+
+############################################ FINANCIAL TRANSACTIONS #######################################
+- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
+  class: TabFinancialTransaction
+  tests:
+    - test_check_all_tab_from_financial_transactions
+    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
+    - test_check_search_via_button # Check search using search button
+
+########################################### CAMPAIGN MODULE ###############################################
+- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
+  class: CampaignsModuleTest
+  tests:
+    - test_create_campaign
+    - test_edit_campaign
+    - test_delete_campaign

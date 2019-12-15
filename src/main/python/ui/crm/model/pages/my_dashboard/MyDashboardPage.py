@@ -293,16 +293,14 @@ class MyDashboardPage(CRMBasePage):
 
     def click_sms_icon(self):
         sleep(3)
-        first_check_box = super().wait_load_element\
-            ("//tr[contains(@class,'Row')][1]//span[contains(@class,'transfer')]")
+        first_check_box = super().wait_load_element("(//span[contains(@class,'transfer')])[1]")
         first_check_box.click()
         Logging().reportDebugStep(self, "Click SMS icon")
         return MyDashboardPage(self.driver)
 
     def open_email_actions_section(self):
         sleep(3)
-        first_check_box = super().wait_load_element\
-            ("//tr[contains(@class,'Row')][1]//span[contains(@class,'envelope')]")
+        first_check_box = super().wait_load_element("/html/body/app-root/sales-dashboard-module/div/div[2]/div/tasks-list-wrapper/div/tasks-list/div/div/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[1]/div")
         first_check_box.click()
         Logging().reportDebugStep(self, "The Email module was opened")
         return MyDashboardPage(self.driver)

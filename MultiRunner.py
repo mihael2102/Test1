@@ -32,7 +32,7 @@ class MultiRunner:
             global_var.current_brand_name = brand
             # self.data_provider.set_xpath_for_tests()
 
-            self.data_provider.load_brands(brand)
+            self.data_provider.load_brand_config(brand)
             brand_pretty_name = self.data_provider.get_data_client('pretty_name')
             brand_pretty_names.append(brand_pretty_name)
             print("Testing %s\n" % brand_pretty_name)
@@ -44,7 +44,6 @@ class MultiRunner:
         result_writer = ExcelWriter()
         result_writer.write_test_results(brand_pretty_names, test_list, overall_results)
         # result_writer.write_test_results_all_report(brand_pretty_names, test_list, overall_results)
-
 
     def single_brand_test(self, brand, test_list):
         runner = xmlrunner.XMLTestRunner(output='result')
@@ -98,38 +97,54 @@ def __simple_run(path_to_test_suite):
 
 if __name__ == "__main__":
 
+    from requests import get
+
     ip = get('https://api.ipify.org').text
     print('My public IP address is: {}'.format(ip))
 
     if ip == '35.158.30.212' or ip == '35.158.90.50' or ip == '3.123.82.121':
 
-        path_to_brands_suite_all = "brands.yml"
-        path_to_brands_suite_1 = "brands1.yml"
-        path_to_brands_suite_2 = "brands2.yml"
-        path_to_brands_suite_3 = "brands3.yml"
-        path_to_brands_suite_4 = "brands4.yml"
-        path_to_brands_suite_5 = "brands5.yml"
-        path_to_brands_suite_6 = "brands6.yml"
-        path_to_brands_suite_7 = "brands7.yml"
-        path_to_brands_suite_8 = "brands8.yml"
-        path_to_brands_suite_9 = "brands9.yml"
-        path_to_brands_suite_10 = "brands10.yml"
+        # Filename of TestSuite 1
+        path_to_test_suite_1 = "tests.yml"
+
+        # Filename of TestSuite 2
+        path_to_test_suite_2 = "tests2.yml"
+
+        # Filename of TestSuite 3
+        path_to_test_suite_3 = "tests3.yml"
+
+        # Filename of TestSuite 4
+        path_to_test_suite_4 = "tests4.yml"
+
+        # Filename of TestSuite 5
+        path_to_test_suite_5 = "tests5.yml"
+
+        # Filename of TestSuite 6
+        path_to_test_suite_6 = "tests6.yml"
+
+        # Filename of TestSuite 7
+        path_to_test_suite_7 = "tests7.yml"
+
+        # Filename of TestSuite 8
+        path_to_test_suite_8 = "tests8.yml"
+
+        # Filename of TestSuite 9
+        path_to_test_suite_9 = "tests9.yml"
+
+        # Filename of TestSuite 10
+        path_to_test_suite_10 = "tests10.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-        #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-        #               path_to_brands_suite_9, path_to_brands_suite_10]
-        input_list = [path_to_brands_suite_1]
-        # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
-        #               path_to_brands_suite_5]
-                      # Init multiprocess
+        input_list = [path_to_test_suite_1, path_to_test_suite_2, path_to_test_suite_3, path_to_test_suite_4,
+                      path_to_test_suite_5, path_to_test_suite_6, path_to_test_suite_7, path_to_test_suite_8,
+                      path_to_test_suite_9, path_to_test_suite_10]
 
-        pool = multiprocessing.Pool(processes=1)
+        # Init multiprocess
+        pool = multiprocessing.Pool(processes=10)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
 
-        #synchronization
 
         pool.close()
         pool.join()
@@ -137,9 +152,7 @@ if __name__ == "__main__":
         import xlsxwriter
         # Join all results in one excel
         all_excel = Config.file_path_1
-        # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex special job/result/final_file.xlsx')
-
-
+        # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex job 1/result/final_file.xlsx')
 
         all_file_frames = []
         for filename in glob.glob(Config.file_path_2):
@@ -163,7 +176,7 @@ if __name__ == "__main__":
                                                               'value': 'PASS',
                                                               'format': format2})
 
-                worksheet.conditional_format(0, 0, 922, 200, {'type': 'text',
+                worksheet.conditional_format(0, 0, 987, 200, {'type': 'text',
                                                               'criteria': 'beginsWith',
                                                               'value': 'ERROR',
                                                               'format': format1})
@@ -315,6 +328,8 @@ if __name__ == "__main__":
 
                 writer.save()
 
+
+            # Join all results in one excel
         short_excel = Config.short_excel_path
         # writer = EX('C:/Program Files (x86)/Jenkins/workspace/Old forex special job/result/final_file.xlsx')
 
@@ -358,7 +373,7 @@ if __name__ == "__main__":
         # Send_ALL_XLS(all_excel)
         Send_ALL_XLS(short_excel)
 
-        # os.system('start allure generate D:/automation-newforexqa/result -o D:/automation-newforexqa/result/allure-result')
+
 
     else:
         print("TURN ON VPN")
