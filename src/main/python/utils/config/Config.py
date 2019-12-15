@@ -1,4 +1,4 @@
-test = "GMO CA"
+test = "GlobalItrader CA"
 file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/final_file.xlsx"
 file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/' + test + '/result/*.xlsx'
 file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/%s"
