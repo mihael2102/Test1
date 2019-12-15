@@ -1,8 +1,8 @@
 brands:
 #- name: kayafx
 #  config_file: kaya_fx.yml
-- name: itrader
-  config_file: itrader.yml
+#- name: itrader
+#  config_file: itrader.yml
 #- name: stoxmarket
 #  config_file: stoxmarket.yml
 #- name: otcapital
@@ -13,8 +13,8 @@ brands:
 #  config_file: triomarkets.yml
 #- name: rimarkets
 #  config_file: rimarkets.yml
-#- name: itrader_global
-#  config_file: itrader_global.yml
+- name: itrader_global
+  config_file: itrader_global.yml
 #- name: finmarket
 #  config_file: finmarket.yml
 #- name: mlnfx
