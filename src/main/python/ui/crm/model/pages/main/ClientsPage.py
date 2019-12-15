@@ -82,7 +82,7 @@ class ClientsPage(CRMBasePage):
         all_tab = super().wait_element_to_be_clickable("//li[contains(text(),'All')]")
         all_tab.click()
         self.wait_vtiger_loading_to_finish_custom(35)
-        Logging().reportDebugStep(self, "The client module was opened")
+        Logging().reportDebugStep(self, "ALL tab was opened")
         return ClientsPage(self.driver)
 
     ''' 
@@ -501,7 +501,10 @@ class ClientsPage(CRMBasePage):
         return client_email.text
 
     def came_back_on_previous_page(self):
+        sleep(5)
         super().came_back_on_previous_page()
+        # self.driver.execute_script('window.history.go(-1)')
+        # self.driver.execute_script("history.back();")
         Logging().reportDebugStep(self, "Come back on previous page was successfully")
         return ClientsPage(self.driver)
 
@@ -521,7 +524,7 @@ class ClientsPage(CRMBasePage):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located(
                 (By.XPATH, "//td[contains(text(),'First Name')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the First Name: " + client_email.text)
+        Logging().reportDebugStep(self, "Get the First Name: " + client_email.text)
         return client_email.text
 
     def get_client_phone(self):
@@ -687,6 +690,101 @@ class ClientsPage(CRMBasePage):
     def open_address_information(self):
         try:
             self.driver.find_element_by_xpath("//*[@id='tblAddressInformation'][contains(@style,'none')]")
+            address_tab = super().wait_load_element("//*[contains(text(),'Address Information')]")
+            self.driver.execute_script("arguments[0].scrollIntoView();", address_tab)
+            self.driver.execute_script("arguments[0].click();", address_tab)
+            Logging().reportDebugStep(self, "Address Information tab was opened")
+            return ClientsPage(self.driver)
+        except (NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Address Information tab is already opened")
+            return ClientsPage(self.driver)
+
+    def get_client_crm_id_list_view(self, row):
+        sleep(0.5)
+        crm_id = super().wait_load_element("//tr[contains(@id,'row')][%s]//a[contains(@title,'ACC')]" % row).text
+        Logging().reportDebugStep(self, "Get CRM ID from list view(row = " + row + "): " + crm_id)
+        return crm_id
+
+    def get_client_created_time_list_view(self, row):
+        sleep(0.5)
+        created_time = super().wait_load_element\
+            ("//tr[contains(@id,'row')][%s]/td[contains(text(),'2019') or contains(text(),'2020')]" % row)\
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Created Time from list view(row = " + row + "): " + created_time)
+        return created_time
+
+########################################### NEW UI METHODS #############################################
+
+    def get_client_fname(self):
+        sleep(0.1)
+        fname = super().wait_load_element("//div[label='First Name']//following-sibling::mat-form-field//input")\
+            .get_attribute("value")
+        Logging().reportDebugStep(self, "Get First Name: " + fname)
+        return fname
+
+    def get_client_lname(self):
+        sleep(0.1)
+        lname = super().wait_load_element("//div[label='Last Name']//following-sibling::mat-form-field//input") \
+            .get_attribute("value")
+        Logging().reportDebugStep(self, "Get Last Name: " + lname)
+        return lname
+
+    def get_client_phone_new_ui(self):
+        try:
+            sleep(0.1)
+            phone = super().wait_load_element("//div[label='Phone']//following-sibling::mat-form-field//input",
+                                              timeout=5).get_attribute("value")
+            Logging().reportDebugStep(self, "Get Phone: " + phone)
+            return phone
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "There is no Phone field")
+
+    def get_client_address_new_ui(self):
+        sleep(0.1)
+        address = super().wait_load_element("//div[label='Address']//following-sibling::div") \
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Address: " + address)
+        return address
+
+    def get_client_city_new_ui(self):
+        sleep(0.1)
+        city = super().wait_load_element("//div[label='City']//following-sibling::mat-form-field//input") \
+            .get_attribute("value")
+        Logging().reportDebugStep(self, "Get City: " + city)
+        return city
+
+    def get_client_zip_code(self):
+        sleep(0.1)
+        code = super().wait_load_element("//div[label='Code']//following-sibling::mat-form-field//input") \
+            .get_attribute("value")
+        Logging().reportDebugStep(self, "Get Code: " + code)
+        return code
+
+    def get_client_country_new_ui(self):
+        sleep(0.1)
+        country = super().wait_load_element("//div[label='Country']//following-sibling::div") \
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Country: " + country)
+        return country
+
+    def get_client_birthday(self):
+        sleep(0.1)
+        birthday = super().wait_load_element("//div[label='Date Of Birth']//following-sibling::mat-form-field//input") \
+            .get_attribute("value")
+        Logging().reportDebugStep(self, "Get Birthday: " + birthday)
+        return birthday
+
+    def get_client_base_currency(self):
+        sleep(0.1)
+        currency = super().wait_load_element("//div[label='Base Currency']//following-sibling::div") \
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Base Currency: " + currency)
+        return currency
+
+    def open_address_information_tab_new_ui(self):
+        try:
+            self.driver.find_element_by_xpath\
+                ("//mat-expansion-panel[@id='address-information']/mat-expansion-panel-header[@aria-expanded='false']")
             address_tab = super().wait_load_element("//*[contains(text(),'Address Information')]")
             self.driver.execute_script("arguments[0].scrollIntoView();", address_tab)
             self.driver.execute_script("arguments[0].click();", address_tab)

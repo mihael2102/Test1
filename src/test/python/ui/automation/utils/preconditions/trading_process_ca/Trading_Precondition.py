@@ -1,20 +1,14 @@
-from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
-from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
-from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 from time import sleep
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
-from src.main.python.ui.crm.model.pages.help_desk.HelpDeskEditPage import HelpDeskEditPage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
@@ -482,7 +476,7 @@ class Trading_Precondition(object):
         expected_time = expected_created_time_order[1]
         expected_symbol = TradingConstants.CLOSED_ORDER_SYMBOL
         expected_open_price = TradingConstants.CLOSED_ORDER_OPEN_PRICE
-        if expected_open_price.endswith('0'):
+        while expected_open_price.endswith('0'):
             expected_open_price = expected_open_price[:-1]
         expected_closed_time_order = TradingConstants.CLOSED_ORDER_CLOSED_TIME.split(' ')
         expected_closed_order_date = expected_closed_time_order[0].split('/')
@@ -490,9 +484,11 @@ class Trading_Precondition(object):
                                      + expected_closed_order_date[0]
         expected_closed_order_time = expected_closed_time_order[1]
         expected_closed_price = TradingConstants.CLOSED_ORDER_CLOSED_PRICE
-        if expected_closed_price.endswith('0'):
+        while expected_closed_price.endswith('0'):
             expected_closed_price = expected_closed_price[:-1]
         expected_profit = TradingConstants.CLOSED_ORDER_PROFIT.replace('€', '')
+        expected_profit = expected_profit.replace('$', '')
+        expected_profit = expected_profit.replace('BTC: ', '')
 
         assert expected_order_id in close_orders_data
         assert expected_date in close_orders_data

@@ -11,6 +11,7 @@ from src.main.python.utils.logs.Loging import Logging
 import autoit
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 import os
 
 
@@ -206,7 +207,6 @@ class DocumentsPage(CRMBasePage):
         CRMBasePage(self.driver).refresh_page()
         sleep(2)
         user = super().wait_element_to_be_clickable("//img[@src='themes/panda/images/user.PNG']")
-        # self.driver.execute_script("arguments[0].click();", user)
         user.click()
         sleep(2)
         sign_out = super().wait_element_to_be_clickable("//a[contains(text(), 'Sign Out')]")
@@ -257,7 +257,8 @@ class DocumentsPage(CRMBasePage):
         return document_no
 
     def get_document_type_from_listview(self, row):
-        document_type = super().wait_load_element("(//*[contains(@id,'row_')]/td[3])[%s]" % row).text
+        document_type = super().wait_load_element(global_var.get_xpath_for_current_brand_element
+                                                  (self.__class__.__name__)["document_type"] % row).text
         Logging().reportDebugStep(self, "Return Document Type: " + document_type)
         return document_type
 
@@ -277,10 +278,10 @@ class DocumentsPage(CRMBasePage):
 
     def select_document_type_listview(self, doc_type):
         doc_type_field = super().wait_element_to_be_clickable \
-            ("//*[@id='customAdvanceSearch']/td[3]/div/div[1]/button/span")
+            ("//select[@id='tks_document_types']//following-sibling::div/button/span")
         doc_type_field.click()
         document_type_search_field = super().wait_element_to_be_clickable \
-            ("//*[@id='customAdvanceSearch']/td[3]/div/div[1]/ul/li[1]/div/input")
+            ("//select[@id='tks_document_types']//following-sibling::div/ul/li[1]/div/input")
         document_type_search_field.clear()
         document_type_search_field.send_keys(doc_type)
         sleep(1)
@@ -310,7 +311,8 @@ class DocumentsPage(CRMBasePage):
         modified_time_field.clear()
         modified_time_field.send_keys(mod_time)
         sleep(1)
-        apply_btn = super().wait_element_to_be_clickable("(//button[text()='Apply'])[3]")
+        apply_btn = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
+                                                         (self.__class__.__name__)["apply_btn"])
         apply_btn.click()
         Logging().reportDebugStep(self, "Selected Modified Time is: " + mod_time)
         return DocumentsPage(self.driver)

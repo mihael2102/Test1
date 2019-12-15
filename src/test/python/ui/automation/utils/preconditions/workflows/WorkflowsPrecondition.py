@@ -29,23 +29,30 @@ class WorkflowsPrecondition(object):
         self.config = config
 
     def create_workflows(self):
+        """ Login CRM """
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        CRMHomePage(self.driver).open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
-        CRMConfigurationPage(self.driver).check_workflows_loaded()
-        WorkflowsPage(self.driver).click_add_new_workflow()\
-                                  .enter_workflow_name(WorkflowsConstants.NAME_WORKFLOW)\
-                                  .enter_workflow_priority(WorkflowsConstants.PRIORITY_WORKFLOW)\
-                                  .click_radio_btn_modified()\
-                                  .click_next()\
-                                  .select_module(WorkflowsConstants.CLIENTS_MODULE)\
-                                  .click_add_condition()\
-                                  .select_accept_promotions(WorkflowsConstants.CLIENT_STATUS)\
-                                  .select_condition(WorkflowsConstants.CONDITION_IS)
+        """ Check Workflow module exist """
+        CRMHomePage(self.driver)\
+            .open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        CRMConfigurationPage(self.driver)\
+            .check_workflows_loaded()
+
+        """ Create new workflow """
+        WorkflowsPage(self.driver)\
+            .click_add_new_workflow()\
+            .enter_workflow_name(WorkflowsConstants.NAME_WORKFLOW)\
+            .enter_workflow_priority(WorkflowsConstants.PRIORITY_WORKFLOW)\
+            .click_radio_btn_modified()\
+            .click_next()\
+            .select_module(WorkflowsConstants.CLIENTS_MODULE)\
+            .click_add_condition()\
+            .select_accept_promotions(WorkflowsConstants.CLIENT_STATUS)\
+            .select_condition(WorkflowsConstants.CONDITION_IS)
 
         if global_var.current_brand_name == "ptbanc" or \
                 global_var.current_brand_name == "kontofx" or \
@@ -60,40 +67,50 @@ class WorkflowsPrecondition(object):
         else:
             WorkflowsPage(self.driver).select_status(WorkflowsConstants.STATUS_TEST)
 
-        WorkflowsPage(self.driver).click_add_condition() \
-                                  .select_second_accept_promotions(WorkflowsConstants.COUNTRY) \
-                                  .select_second_condition(WorkflowsConstants.CONDITION_IS) \
-                                  .select_second_country(WorkflowsConstants.COUNTRY_AUSTRIA)\
-                                  .select_condition_between(WorkflowsConstants.CONDITION_OR)\
-                                  .click_add_condition()\
-                                  .select_third_accept_promotions(WorkflowsConstants.EMAIl) \
-                                  .select_third_conditions(WorkflowsConstants.CONDITION_CONTAINS) \
-                                  .click_enter_email() \
-                                  .enter_email(WorkflowsConstants.PANDATS_EMAIL) \
-                                  .click_save_value() \
-                                  .select_second_condition_between(WorkflowsConstants.CONDITION_AND) \
-                                  .click_next() \
-                                  .select_add_task(WorkflowsConstants.UPDATE_FIELD)\
-                                  .enter_task_title(WorkflowsConstants.TASK_TITLE)\
-                                  .click_add_field()\
-                                  .select_field(WorkflowsConstants.ADDRESS)\
-                                  .click_enter_value()\
-                                  .enter_value(WorkflowsConstants.TEST_ADDRESS)\
-                                  .click_save_value_task()\
-                                  .click_add_field()\
-                                  .select_second_field(WorkflowsConstants.COUNTRY)\
-                                  .select_country(WorkflowsConstants.COUNTRY_ALBANIA)\
-                                  .click_save_task()\
-                                  .click_save_workflow()
-        name_workflow = WorkflowsPage(self.driver).check_name_workflow(WorkflowsConstants.NAME_WORKFLOW)
+        name_workflow = WorkflowsPage(self.driver)\
+            .click_add_condition() \
+            .select_second_accept_promotions(WorkflowsConstants.COUNTRY) \
+            .select_second_condition(WorkflowsConstants.CONDITION_IS) \
+            .select_second_country(WorkflowsConstants.COUNTRY_GUAM)\
+            .select_condition_between(WorkflowsConstants.CONDITION_OR)\
+            .click_add_condition()\
+            .select_third_accept_promotions(WorkflowsConstants.EMAIl) \
+            .select_third_conditions(WorkflowsConstants.CONDITION_CONTAINS) \
+            .click_enter_email() \
+            .enter_email(WorkflowsConstants.PANDATS_EMAIL) \
+            .click_save_value() \
+            .select_second_condition_between(WorkflowsConstants.CONDITION_AND) \
+            .click_next() \
+            .select_add_task(WorkflowsConstants.UPDATE_FIELD)\
+            .enter_task_title(WorkflowsConstants.TASK_TITLE)\
+            .click_add_field()\
+            .select_field(WorkflowsConstants.ADDRESS)\
+            .click_enter_value()\
+            .enter_value(WorkflowsConstants.TEST_ADDRESS)\
+            .click_save_value_task()\
+            .click_add_field()\
+            .select_second_field(WorkflowsConstants.COUNTRY)\
+            .select_country(WorkflowsConstants.COUNTRY_ALBANIA)\
+            .click_save_task()\
+            .click_save_workflow()\
+            .check_name_workflow(WorkflowsConstants.NAME_WORKFLOW)
         assert name_workflow == WorkflowsConstants.NAME_WORKFLOW
 
     def check_workflow_by_status(self):
+        """ Login CRM """
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        """ Check Workflow module exist """
+        CRMHomePage(self.driver) \
+            .open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        CRMConfigurationPage(self.driver) \
+            .check_workflows_loaded()
+
+        """ Check workflow by status is working """
         CRMHomePage(self.driver)\
             .open_client_module() \
             .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
@@ -115,28 +132,39 @@ class WorkflowsPrecondition(object):
         assert address == WorkflowsConstants.TEST_ADDRESS
 
     def check_workflow_by_country(self):
+        """ Login CRM """
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        """ Check Workflow module exist """
+        CRMHomePage(self.driver) \
+            .open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        CRMConfigurationPage(self.driver) \
+            .check_workflows_loaded()
+
+        """ Check workflow by country is working """
         CRMHomePage(self.driver)\
-            .open_client_module() \
-            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_second_client_by_email(WorkflowsConstants.PANDATS_EMAIL)
-        ClientProfilePage(self.driver).click_edit_personal_detail()
-        ClientProfilePage(self.driver).select_country(WorkflowsConstants.COUNTRY_AUSTRIA)
-        ClientProfilePage(self.driver).enter_date_birth(CRMConstants.DATE_BIRTH)
-        ClientProfilePage(self.driver).click_save()
+            .open_client_module()\
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
+            .find_second_client_by_email(WorkflowsConstants.PANDATS_EMAIL)\
+            .click_edit_personal_detail()\
+            .select_country(WorkflowsConstants.COUNTRY_GUAM)\
+            .enter_date_birth(CRMConstants.DATE_BIRTH)\
+            .click_save()
         sleep(2)
-        CRMHomePage(self.driver).refresh_page()
-        ClientProfilePage(self.driver).open_address_information()
+        CRMHomePage(self.driver)\
+            .refresh_page()
+        ClientProfilePage(self.driver)\
+            .open_address_information()
         actual_country = ClientProfilePage(self.driver).get_country_text()
         expected_country = WorkflowsConstants.COUNTRY_ALBANIA
         actual_address = ClientProfilePage(self.driver).get_address_text()
         expected_address = WorkflowsConstants.TEST_ADDRESS
 
-        # Check Address and Country fields were updated
+        """ Check Address and Country fields were updated """
         count = 0
         while expected_address != actual_address or expected_country != actual_country:
             CRMHomePage(self.driver).refresh_page()

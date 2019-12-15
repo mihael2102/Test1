@@ -279,6 +279,13 @@ class ClientProfilePage(CRMBasePage):
         Logging().reportDebugStep(self, "Returns the total amount " + str(total_amount))
         return str(total_amount)
 
+    def get_sum_amount_text(self, initial_amount, amount_deposit):
+        initial_amount1 = initial_amount.replace(',','')
+        amount_deposit1 = amount_deposit.replace(',','')
+        total_amount = Decimal(initial_amount1) + Decimal(amount_deposit1)
+        Logging().reportDebugStep(self, "Returns the total amount " + str(total_amount))
+        return str(total_amount)
+
     def get_amount_of_credit_in(self):
         # add refresh page
         credit_in_amount_element = super().wait_visible_of_element("//*[@id='rld_table_content']/tbody/tr[2]/td[6]")
@@ -537,7 +544,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_crm_id_client_details(self):
         crm_id = super().wait_load_element("//td[contains(text(),'CRM Id')]//following-sibling::td[1]").text
-        Logging().reportDebugStep(self, "Returns the country: " + crm_id)
+        Logging().reportDebugStep(self, "Get crm id: " + crm_id)
         return crm_id
 
     def perform_scroll(self, parameter):
@@ -826,7 +833,7 @@ class ClientProfilePage(CRMBasePage):
     def get_closed_order_data(self):
         sleep(0.2)
         closed_orders_data = super().wait_load_element(
-            "//div[@id='tbl_Tradingaccounts_ClosedTransactions']//tr[@class='lvtColData' and @style='background:']")\
+            "//div[@id='tbl_Tradingaccounts_ClosedTransactions']//tr[@class='lvtColData' and @style='background:'][1]")\
             .get_attribute("innerText")
         if "Loading" in closed_orders_data:
             sleep(1)
