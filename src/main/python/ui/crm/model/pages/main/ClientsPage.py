@@ -28,13 +28,8 @@ class ClientsPage(CRMBasePage):
             self.select_client_status(client_status)
         if email:
             self.enter_email(email)
-        # if name:
-        #     self.enter_client_name(name)
         if country:
             self.enter_country(country)
-
-        # if brand:
-        #     self.select_brand(brand)
         self.click_search_button()
         return ClientsPage(self.driver)
 
@@ -698,20 +693,6 @@ class ClientsPage(CRMBasePage):
         except (NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Address Information tab is already opened")
             return ClientsPage(self.driver)
-
-    def get_client_crm_id_list_view(self, row):
-        sleep(0.5)
-        crm_id = super().wait_load_element("//tr[contains(@id,'row')][%s]//a[contains(@title,'ACC')]" % row).text
-        Logging().reportDebugStep(self, "Get CRM ID from list view(row = " + row + "): " + crm_id)
-        return crm_id
-
-    def get_client_created_time_list_view(self, row):
-        sleep(0.5)
-        created_time = super().wait_load_element\
-            ("//tr[contains(@id,'row')][%s]/td[contains(text(),'2019') or contains(text(),'2020')]" % row)\
-            .get_attribute("innerText")
-        Logging().reportDebugStep(self, "Get Created Time from list view(row = " + row + "): " + created_time)
-        return created_time
 
 ########################################### NEW UI METHODS #############################################
 

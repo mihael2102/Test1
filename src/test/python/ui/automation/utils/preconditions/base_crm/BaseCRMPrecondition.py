@@ -10,6 +10,7 @@ from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsMod
 from src.main.python.ui.crm.model.pages.crm_base_page.GlobalSearchPage import GlobalSearchPage
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.constants.ClientsModuleConstants import ClientsModuleConstants
+from src.main.python.ui.crm.model.pages.clients.ClientsModulePage import ClientsModulePage
 from time import sleep
 
 
@@ -111,11 +112,11 @@ class BaseCRMPrecondition(object):
             .open_tab_list_view(ClientsModuleConstants.TAB_ALL)
 
         """ Get Client data """
-        crm_id = ClientsPage(self.driver)\
-            .get_client_crm_id_list_view(ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING)
+        crm_id = ClientsModulePage(self.driver)\
+            .get_client_crm_id_list_view(ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_5)
 
-        created_time = ClientsPage(self.driver) \
-            .get_client_created_time_list_view(ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING)
+        created_time = ClientsModulePage(self.driver) \
+            .get_client_created_time_list_view(ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_5)
 
         """ Open Tasks module """
         CRMBaseMethodsPage(self.driver) \

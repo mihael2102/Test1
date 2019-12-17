@@ -454,3 +454,14 @@ class Login_CA_Precondition(object):
         else:
             expected_currency = CAConstants.CURRENCY
         assert actual_currency == expected_currency
+
+    def login_ca(self):
+        CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
+            .close_campaign_banner() \
+            .login()\
+            .enter_email(self.config.get_value('email_live_acc')) \
+            .enter_password(self.config.get_value('password_live_acc')) \
+            .click_login()\
+            .verify()\
+            .verify_client("Test")
