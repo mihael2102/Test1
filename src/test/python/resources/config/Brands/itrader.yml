@@ -1,4 +1,6 @@
 pretty_name: "iTrader"
 url: "https://itrader.ptscrm.com/"
 url_ca: "https://my.itrader.com"
-
+email_live_acc: "QATest@pandats.com"
+password_live_acc: "testingQA12"
+number_live_acc: "32342"

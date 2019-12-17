@@ -2,3 +2,6 @@ pretty_name: "Gmo"
 url: "https://gmo.ptscrm.com/"
 url_ca: "https://my.gmotrading.com/"
 otp_secret: KKWHN6W63AIAJWNB
+email_live_acc: "QATest@pandats.com"
+password_live_acc: "testingQA12"
+number_live_acc: "32342"
