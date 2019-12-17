@@ -312,7 +312,8 @@ class CALoginPage(CRMBasePage):
 
     def enter_password(self, password):
         sleep(0.1)
-        input_password = super().wait_load_element("//input[@id='forex-password']")
+        input_password = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["login_password_input"])
         self.driver.execute_script("arguments[0].click();", input_password)
         sleep(0.1)
         input_password.send_keys(password)
