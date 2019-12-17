@@ -2,6 +2,9 @@
 
 brands:
 
+- name: 24option
+  config_file: 24option.yml
+
 - name: alferatrade
   config_file: alferatrade.yml
 
@@ -55,6 +58,3 @@ brands:
 
 - name: q8
   config_file: q8.yml
-
-- name: 24option
-  config_file: 24option.yml
