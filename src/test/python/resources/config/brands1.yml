@@ -2,53 +2,53 @@
 
 brands:
 
-#- name: alferatrade
-#  config_file: alferatrade.yml
+- name: alferatrade
+  config_file: alferatrade.yml
 
-#- name: any1profit
-#  config_file: any1profit.yml
+- name: any1profit
+  config_file: any1profit.yml
 
-#- name: aztrades
-#  config_file: aztrades.yml
+- name: aztrades
+  config_file: aztrades.yml
 
-#- name: bfxinternational
-#  config_file: bfxinternational.yml
+- name: bfxinternational
+  config_file: bfxinternational.yml
 
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: brokerz
+  config_file: brokerz.yml
 
-#- name: dax-300
-#  config_file: dax-300.yml
+- name: dax-300
+  config_file: dax-300.yml
 
-#- name: globalix
-#  config_file: globalix.yml
+- name: globalix
+  config_file: globalix.yml
 
-#- name: moneta
-#  config_file: moneta.yml
+- name: moneta
+  config_file: moneta.yml
 
-#- name: newrichmarkets
-#  config_file: newrichmarkets.yml
+- name: newrichmarkets
+  config_file: newrichmarkets.yml
 
-#- name: newforexstage2
-#  config_file: newforexstage2.yml
+- name: newforexstage2
+  config_file: newforexstage2.yml
 
-#- name: pmt247
-#  config_file: pmt247.yml
+- name: pmt247
+  config_file: pmt247.yml
 
-#- name: ptbanc
-#  config_file: ptbanc.yml
+- name: ptbanc
+  config_file: ptbanc.yml
 
-#- name: stox50
-#  config_file: stox50.yml
+- name: stox50
+  config_file: stox50.yml
 
-#- name: strattonmarkets-eu
-#  config_file: strattonmarkets-eu.yml
+- name: strattonmarkets-eu
+  config_file: strattonmarkets-eu.yml
 
-#- name: trade99
-#  config_file: trade99.yml
+- name: trade99
+  config_file: trade99.yml
 
-#- name: tradenero
-#  config_file: tradenero.yml
+- name: tradenero
+  config_file: tradenero.yml
 
-#- name: tradixa
-#  config_file: tradixa.yml
+- name: tradixa
+  config_file: tradixa.yml
