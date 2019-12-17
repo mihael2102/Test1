@@ -2,104 +2,53 @@
 
 brands:
 
-- name: alferatrade
-  config_file: alferatrade.yml
+#- name: alferatrade
+#  config_file: alferatrade.yml
 
-- name: any1profit
-  config_file: any1profit.yml
+#- name: any1profit
+#  config_file: any1profit.yml
 
-- name: aztrades
-  config_file: aztrades.yml
+#- name: aztrades
+#  config_file: aztrades.yml
 
-- name: bfxinternational
-  config_file: bfxinternational.yml
+#- name: bfxinternational
+#  config_file: bfxinternational.yml
 
-- name: brokerz
-  config_file: brokerz.yml
+#- name: brokerz
+#  config_file: brokerz.yml
 
-- name: ctxprime
-  config_file: ctxprime.yml
+#- name: dax-300
+#  config_file: dax-300.yml
 
-- name: dax-300
-  config_file: dax-300.yml
+#- name: globalix
+#  config_file: globalix.yml
 
-- name: financix
-  config_file: financix.yml
+#- name: moneta
+#  config_file: moneta.yml
 
-- name: globalix
-  config_file: globalix.yml
+#- name: newrichmarkets
+#  config_file: newrichmarkets.yml
 
-- name: grandefex
-  config_file: grandefex.yml
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 
-- name: gtstox
-  config_file: gtstox.yml
+#- name: pmt247
+#  config_file: pmt247.yml
 
-- name: hizlifx
-  config_file: hizlifx.yml
+#- name: ptbanc
+#  config_file: ptbanc.yml
 
-- name: jonesmutual
-  config_file: jonesmutual.yml
+#- name: stox50
+#  config_file: stox50.yml
 
-- name: kontofx
-  config_file: kontofx.yml
+#- name: strattonmarkets-eu
+#  config_file: strattonmarkets-eu.yml
 
-- name: libramarkets
-  config_file: libramarkets.yml
+#- name: trade99
+#  config_file: trade99.yml
 
-- name: moneta
-  config_file: moneta.yml
+#- name: tradenero
+#  config_file: tradenero.yml
 
-- name: newrichmarkets
-  config_file: newrichmarkets.yml
-
-- name: newforexstage2
-  config_file: newforexstage2.yml
-
-- name: newforexdev3
-  config_file: newforexdev3.yml
-
-- name: newcrmui
-  config_file: newcrmui.yml
-
-- name: olympiamarkets
-  config_file: olympiamarkets.yml
-
-- name: pmt247
-  config_file: pmt247.yml
-
-- name: ptbanc
-  config_file: ptbanc.yml
-
-- name: q8
-  config_file: q8.yml
-
-- name: solocapitlas
-  config_file: solocapitlas.yml
-
-- name: stox50
-  config_file: stox50.yml
-
-- name: strattonmarkets-eu
-  config_file: strattonmarkets-eu.yml
-
-- name: swisscci
-  config_file: swisscci.yml
-
-- name: tfxgo
-  config_file: tfxgo.yml
-
-- name: trade99
-  config_file: trade99.yml
-
-- name: tradenero
-  config_file: tradenero.yml
-
-- name: tradixa
-  config_file: tradixa.yml
-
-- name: uft
-  config_file: uft.yml
-
-- name: uprofx
-  config_file: uprofx.yml
+#- name: tradixa
+#  config_file: tradixa.yml
