@@ -152,9 +152,9 @@ def Send_Email_XLS(filepath):
 def Send_ALL_XLS(filepath):
 
     fromaddr = Config.email_address
-    to = "Niv.s@pandats.com"
+    to = "uria@pandats.com"
     # to = "michael.oryshchenko@pandats.com"
-    cc = "yarin.b@pandats.com"
+    cc = "israel.a@pandats.com"
     bcc = "michael.oryshchenko@pandats.com"
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
