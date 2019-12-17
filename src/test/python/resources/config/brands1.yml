@@ -52,3 +52,6 @@ brands:
 
 - name: tradixa
   config_file: tradixa.yml
+
+- name: q8
+  config_file: q8.yml
