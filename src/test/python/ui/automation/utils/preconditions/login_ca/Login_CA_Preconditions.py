@@ -475,7 +475,7 @@ class Login_CA_Precondition(object):
                 .enter_password(self.config.get_value('password_live_acc')) \
                 .click_login() \
                 .verify() \
-                .verify_client("my account")
+                .verify_client("Pelcome")
         else:
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
