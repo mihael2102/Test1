@@ -331,7 +331,8 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def verify_client(self, user_name):
-        verify_client = super().wait_load_element("//span[contains(text(), '%s')]" % user_name)
+        verify_client = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["client_title_name"] % user_name)
         client = verify_client.text
         Logging().reportDebugStep(self, "Verify " + client)
         return client
