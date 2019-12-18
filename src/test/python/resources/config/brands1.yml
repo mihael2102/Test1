@@ -20,11 +20,26 @@ brands:
 - name: brokerz
   config_file: brokerz.yml
 
+- name: confixfinancial
+  config_file: confixfinancial.yml
+
+- name: coin-bits
+  config_file: coin-bits.yml
+
 - name: dax-300
   config_file: dax-300.yml
 
+- name: dualix
+  config_file: dualix.yml
+
+- name: etfinance
+  config_file: etfinance.yml
+
 - name: globalix
   config_file: globalix.yml
+
+- name: marketrip
+  config_file: marketrip.yml
 
 - name: moneta
   config_file: moneta.yml
@@ -41,6 +56,12 @@ brands:
 - name: ptbanc
   config_file: ptbanc.yml
 
+- name: proconsultinginvest
+  config_file: proconsultinginvest.yml
+
+- name: q8
+  config_file: q8.yml
+
 - name: stox50
   config_file: stox50.yml
 
@@ -55,12 +76,3 @@ brands:
 
 - name: tradixa
   config_file: tradixa.yml
-
-- name: q8
-  config_file: q8.yml
-
-- name: etfinance
-  config_file: etfinance.yml
-
-- name: coin-bits
-  config_file: coin-bits.yml
