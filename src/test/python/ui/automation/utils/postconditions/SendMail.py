@@ -181,7 +181,7 @@ def Send_ALL_XLS(filepath):
 
     ###FOR JENKINS
     attachment = open("%s" % filepath, "rb")
-    attachment_scr = open("%s" % Config.screenshot_path, "rb")
+    attachment_scr = open(Config.screenshot_path, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
