@@ -1,9 +1,9 @@
 import unittest
 from datetime import *
-#import allure
+import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
+from allure.constants import AttachmentType
 from src.main.python.utils.config import Config
 from src.main.python.utils.data.providers.ConfigProvider import ConfigProvider
 from src.main.python.utils.logs.Loging import Logging
@@ -52,12 +52,11 @@ class BaseTest(unittest.TestCase):
                 if error:
                     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
                     print("%s %s" % (now, error))
-                    # file_name = 'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging' \
-                    #             '/allure/results/failed_screenshot %s.png' % now
-                    #
-                    # driver.get_screenshot_as_file(file_name)
-                    # allure.MASTER_HELPER.attach('failed_screenshot', driver.get_screenshot_as_png(),
-                    #                             type=AttachmentType.PNG)
+                    file_name = 'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging' \
+                                '/allure/results/failed_t %s.png' % now
+                    self.driver.get_screenshot_as_file(file_name)
+                    allure.MASTER_HELPER.attach('failed_screenshot', self.driver.get_screenshot_as_png(),
+                                                type=AttachmentType.PNG)
         sleep(3)
         self.driver.close()
         self.driver.quit()
