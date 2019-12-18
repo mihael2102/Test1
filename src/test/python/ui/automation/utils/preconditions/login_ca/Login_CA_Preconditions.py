@@ -72,7 +72,7 @@ class Login_CA_Precondition(object):
             .fill_email("israel.a+panda-monitoring@pandats.com")\
             .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])\
             .fill_password("Monitoring1234")\
-            .fill_confirm_password(CAConstants.PASSWORD)\
+            .fill_confirm_password("Monitoring1234")\
             .check_box_accept()\
             .risk_check_box_accept()\
             .select_country_first_step(CAConstants.COUNTRY1)\
