@@ -52,8 +52,8 @@ class BaseTest(unittest.TestCase):
                 if error:
                     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
                     print("%s %s" % (now, error))
-                    file_name = 'C:/Users/Administrator/.jenkins/workspace/Regression New Forex Staging' \
-                                '/allure/results/failed_t %s.png' % now
+                    file_name = "C:/Program Files (x86)/Jenkins/workspace/" + Config.test + \
+                                "/result/final_file.xlsx %s.png" % now
                     self.driver.get_screenshot_as_file(file_name)
                     allure.MASTER_HELPER.attach('failed_screenshot', self.driver.get_screenshot_as_png(),
                                                 type=AttachmentType.PNG)
