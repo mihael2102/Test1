@@ -37,11 +37,12 @@ class TradingAccountPrecondition(object):
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .login() \
-            .enter_email("israel.a+panda-monitoring@pandats.com") \
-            .enter_password("Monitoring1234") \
+            .enter_email(CAConstants.EMAIL_CA) \
+            .enter_password(CAConstants.PASSWORD) \
             .click_login() \
             .verify() \
-            .click_hi_user("Panda")
+            .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                LeadsModuleConstants.FIRST_NAME])
         CAPage(self.driver)\
             .open_manage_accounts() \
             .open_new_account_btn() \
@@ -71,11 +72,12 @@ class TradingAccountPrecondition(object):
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .login()\
-            .enter_email("israel.a+panda-monitoring@pandats.com")\
-            .enter_password("Monitoring1234")\
+            .enter_email(CAConstants.EMAIL_CA)\
+            .enter_password(CAConstants.PASSWORD)\
             .click_login()\
             .verify()\
-            .click_hi_user("Panda")
+            .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                            LeadsModuleConstants.FIRST_NAME])
         CAPage(self.driver)\
             .open_manage_accounts()\
             .open_demo_section()\
