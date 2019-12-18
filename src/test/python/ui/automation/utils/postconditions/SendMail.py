@@ -181,12 +181,15 @@ def Send_ALL_XLS(filepath):
 
     ###FOR JENKINS
     attachment = open("%s" % filepath, "rb")
+    attachment_scr = open("%s" % Config.screenshot_path, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
 
     # To change the payload into encoded form
     p.set_payload((attachment).read())
+    if attachment_scr:
+        p.set_payload((attachment_scr).read())
 
     # encode into base64
     encoders.encode_base64(p)
