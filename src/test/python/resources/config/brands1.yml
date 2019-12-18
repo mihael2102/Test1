@@ -7,10 +7,10 @@ brands:
 #
 #- name: any1profit
 #  config_file: any1profit.yml
-#
+
 #- name: aztrades
 #  config_file: aztrades.yml
-#
+
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
 #
@@ -25,10 +25,10 @@ brands:
 #
 #- name: financix
 #  config_file: financix.yml
-#
+
 #- name: globalix
 #  config_file: globalix.yml
-#
+
 #- name: grandefex
 #  config_file: grandefex.yml
 #
@@ -76,31 +76,31 @@ brands:
 
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
-#
+
 #- name: stox50
 #  config_file: stox50.yml
-#
+
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
-#
+
 #- name: swisscci
 #  config_file: swisscci.yml
-#
+
 #- name: tfxgo
 #  config_file: tfxgo.yml
-#
-#- name: trade99
-#  config_file: trade99.yml
-#
+
+- name: trade99
+  config_file: trade99.yml
+
 #- name: tradenero
 #  config_file: tradenero.yml
-#
+
 #- name: tradixa
 #  config_file: tradixa.yml
-#
+
 #- name: uft
 #  config_file: uft.yml
-#
+
 #- name: uprofx
 #  config_file: uprofx.yml
 
@@ -110,5 +110,5 @@ brands:
 #- name: etfinance
 #  config_file: etfinance.yml
 
-- name: coin-bits
-  config_file: coin-bits.yml
+#- name: coin-bits
+#  config_file: coin-bits.yml
