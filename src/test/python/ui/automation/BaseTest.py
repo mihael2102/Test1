@@ -52,9 +52,9 @@ class BaseTest(unittest.TestCase):
                 if error:
                     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
                     print("%s %s" % (now, error))
-                    file_name = "C:/Program Files (x86)/Jenkins/workspace/" + Config.test + \
-                                "/result/screenshot %s.png" % now
+                    file_name = "C:/Program Files (x86)/Jenkins/workspace/%s/result/screenshot %s.png" % (Config.test, now)
                     self.driver.get_screenshot_as_file(file_name)
+                    self.driver.save_screenshot(file_name)
                     allure.MASTER_HELPER.attach('failed_screenshot', self.driver.get_screenshot_as_png(),
                                                 type=AttachmentType.PNG)
         sleep(3)
