@@ -20,8 +20,8 @@ brands:
 #- name: coin-bits
 #  config_file: coin-bits.yml
 
-- name: confixfinancial
-  config_file: confixfinancial.yml
+#- name: confixfinancial
+#  config_file: confixfinancial.yml
 
 #- name: ctxprime
 #  config_file: ctxprime.yml
@@ -125,5 +125,5 @@ brands:
 #- name: uprofx
 #  config_file: uprofx.yml
 
-#- name: 24option
-#  config_file: 24option.yml
+- name: 24option
+  config_file: 24option.yml
