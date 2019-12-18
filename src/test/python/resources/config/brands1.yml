@@ -58,3 +58,9 @@ brands:
 
 - name: q8
   config_file: q8.yml
+
+- name: etfinance
+  config_file: etfinance.yml
+
+- name: coin-bits
+  config_file: coin-bits.yml
