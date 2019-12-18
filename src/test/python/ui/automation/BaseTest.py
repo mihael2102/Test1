@@ -59,6 +59,7 @@ class BaseTest(unittest.TestCase):
                     print("%s %s" % (now, error))
                     os.makedirs(dir)
                     file_name = "C:/screenshots/%s/%s.png" % (Config.test, now)
+                    Config.screenshot_path = file_name
                     self.driver.get_screenshot_as_file(file_name)
                     self.driver.save_screenshot(file_name)
                     # allure.MASTER_HELPER.attach('failed_screenshot', self.driver.get_screenshot_as_png(),
