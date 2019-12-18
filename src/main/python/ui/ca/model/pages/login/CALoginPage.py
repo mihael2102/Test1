@@ -300,6 +300,14 @@ class CALoginPage(CRMBasePage):
                 Logging().reportDebugStep(self, "There is no panda's plugin")
         return CALoginPage(self.driver)
 
+    def click_sign_in_btn(self):
+        sleep(1)
+        login_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["login_btn"])
+        self.driver.execute_script("arguments[0].click();", login_button)
+        Logging().reportDebugStep(self, "Click Login button")
+        return CALoginPage(self.driver)
+
     def enter_email(self, email):
         sleep(0.5)
         input_email = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
@@ -331,7 +339,8 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def verify_client(self, user_name):
-        verify_client = super().wait_load_element("//span[contains(text(), '%s')]" % user_name)
+        verify_client = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["client_title_name"] % user_name)
         client = verify_client.text
         Logging().reportDebugStep(self, "Verify " + client)
         return client
