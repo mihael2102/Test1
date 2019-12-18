@@ -10,7 +10,7 @@ def Send_Email_XML(filepath, content):
 
     fromaddr = Config.email_address
     to = "automationtest.sender@gmail.com"
-    cc = ""
+    cc = "michael.oryshchenko@pandats.com"
     bcc = ""
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
@@ -47,7 +47,7 @@ def Send_Email_XML(filepath, content):
     # open the file to be sent
     filepath = filepath.replace("\\","/")
     filename = filepath
-    # attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
+    attachment = open("D:/automation-newforexqa/%s" % filepath, "rb")
 
 ###FOR JENKINS
     attachment = open(Config.file_path_3 % filepath, "rb")

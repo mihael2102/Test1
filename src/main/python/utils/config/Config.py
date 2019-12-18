@@ -3,6 +3,7 @@ file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/fina
 file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/' + test + '/result/*.xlsx'
 file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/%s"
 short_excel_path = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/short_final_file.xlsx"
+screenshot_path = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/%s.png"
 mail_subject = test
 test_list = "tests_ca.yml"
 user_agent = "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) " \
