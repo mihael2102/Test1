@@ -2,6 +2,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
+from email.mime.image import MIMEImage
 from email import encoders
 from src.test.python.ui.automation.BaseTest import *
 
@@ -10,7 +11,7 @@ def Send_Email_XML(filepath, content):
 
     fromaddr = Config.email_address
     to = "israel.a@pandats.com"
-    cc = "michael.oryshchenko@pandats.com"
+    cc = "michael.oryshchenko@pandats.com, Niv.s@pandats.com"
     bcc = "uria@pandats.com, shay@pandats.com, karina.onishchenko@pandats.com"
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
@@ -43,6 +44,11 @@ def Send_Email_XML(filepath, content):
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
+
+    # attach the screenshot:
+    img_data = open(Config.screenshot_path, "rb").read()
+    screenshot = MIMEImage(img_data, name=os.path.basename(Config.screenshot_path))
+    msg.attach(screenshot)
 
     # open the file to be sent
     filepath = filepath.replace("\\","/")
@@ -87,7 +93,7 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = Config.email_address
-    to = "michael.oryshchenko@pandats.com"
+    to = Config.email_address
     # to = "yarin.b@pandats.com"
     cc = ""
     bcc = ""
