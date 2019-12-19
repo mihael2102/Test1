@@ -47,9 +47,6 @@ brands:
 - name: newrichmarkets
   config_file: newrichmarkets.yml
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
-
 - name: pmt247
   config_file: pmt247.yml
 
