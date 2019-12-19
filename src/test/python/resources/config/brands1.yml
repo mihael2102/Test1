@@ -8,8 +8,8 @@ brands:
 #- name: any1profit
 #  config_file: any1profit.yml
 
-- name: aztrades
-  config_file: aztrades.yml
+#- name: aztrades
+#  config_file: aztrades.yml
 
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
@@ -73,10 +73,10 @@ brands:
 
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
-#
-#- name: newcrmui
-#  config_file: newcrmui.yml
-#
+
+- name: newcrmui
+  config_file: newcrmui.yml
+
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
 

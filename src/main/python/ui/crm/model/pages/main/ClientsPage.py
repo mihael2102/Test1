@@ -698,15 +698,15 @@ class ClientsPage(CRMBasePage):
 
     def get_client_fname(self):
         sleep(0.1)
-        fname = super().wait_load_element("//div[label='First Name']//following-sibling::mat-form-field//input")\
-            .get_attribute("value")
+        fname = super().wait_load_element\
+            ("//div[label='First Name']//following-sibling::button/span[contains(@class,'txt')]").text
         Logging().reportDebugStep(self, "Get First Name: " + fname)
         return fname
 
     def get_client_lname(self):
         sleep(0.1)
-        lname = super().wait_load_element("//div[label='Last Name']//following-sibling::mat-form-field//input") \
-            .get_attribute("value")
+        lname = super().wait_load_element\
+            ("//div[label='Last Name']//following-sibling::button/span[contains(@class,'txt')]").text
         Logging().reportDebugStep(self, "Get Last Name: " + lname)
         return lname
 
