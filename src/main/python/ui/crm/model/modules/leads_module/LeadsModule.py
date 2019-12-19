@@ -801,7 +801,8 @@ class LeadsModule(CRMBasePage):
         input.clear()
         input.send_keys(phone)
         sleep(1)
-        save_personal_details = super().wait_load_element("//*[@id='editarea_Mobile']/div/a[1]/span")
+        save_personal_details = super().wait_load_element\
+            ("//*[@id='editarea_Mobile']//span[contains(@class,'glyphicons ok')]")
         try:
             save_personal_details.click()
         except:
