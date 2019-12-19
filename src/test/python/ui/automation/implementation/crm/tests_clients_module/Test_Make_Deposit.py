@@ -184,7 +184,7 @@ class DepositTestCRM(BaseTest):
         # Create LIVE account for client using MT4 Actions
         crm_client_profile = ClientProfilePage(self.driver)
         MT4DropDown(self.driver) \
-            .open_mt4_module_newui(CRMConstants.CREATE_MT_USER)
+            .open_mt4_module_newui(CRMConstants.CREATE_MT_ACCOUNT)
 
         MT4CreateAccountModule(self.driver) \
             .create_account_new_ui(

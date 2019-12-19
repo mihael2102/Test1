@@ -132,7 +132,7 @@ class CRMConstants(object):
     DESCRIPTION_TRANSFER_BETWEEN_TA = "test"
     STATUS_DEPOSIT = "Approved"
     PAYMENT_METHOD_DEPOSIT = "Credit card"
-    CREATE_MT_USER = "Create MT User"
+    CREATE_MT_ACCOUNT = "Create MT Account"
     CREATE_MT_DEPOSIT = "Deposit"
     CREATE_MT_CREDIT_IN = "Credit in"
     CREATE_MT_CREDIT_OUT = "Credit out"
