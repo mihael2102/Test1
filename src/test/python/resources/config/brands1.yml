@@ -11,8 +11,8 @@ brands:
 - name: any1profit
   config_file: any1profit.yml
 
-- name: aztrades
-  config_file: aztrades.yml
+#- name: aztrades
+#  config_file: aztrades.yml
 
 - name: bfxinternational
   config_file: bfxinternational.yml
