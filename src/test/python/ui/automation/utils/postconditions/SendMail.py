@@ -10,7 +10,7 @@ def Send_Email_XML(filepath, content):
 
     fromaddr = Config.email_address
     to = "automationtest.sender@gmail.com"
-    cc = "michael.oryshchenko@pandats.com"
+    cc = ""
     bcc = ""
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
@@ -181,18 +181,14 @@ def Send_ALL_XLS(filepath):
 
     ###FOR JENKINS
     attachment = open("%s" % filepath, "rb")
-    dir = 'C:/screenshots/%s' % Config.test
-    attachment_scr = None
-    if os.path.exists(dir):
-        attachment_scr = open(Config.screenshot_path, "rb")
+    attachment_scr = open(Config.screenshot_path, "rb")
 
     # instance of MIMEBase and named as p
     p = MIMEBase('application', 'octet-stream')
 
     # To change the payload into encoded form
     p.set_payload((attachment).read())
-    if os.path.exists(dir):
-        p.set_payload((attachment_scr).read())
+    p.set_payload((attachment_scr).read())
 
     # encode into base64
     encoders.encode_base64(p)
