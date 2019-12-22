@@ -17,8 +17,23 @@ brands:
 #- name: brokerz
 #  config_file: brokerz.yml
 
+#- name: coin-bits
+#  config_file: coin-bits.yml
+
+#- name: confixfinancial
+#  config_file: confixfinancial.yml
+
+#- name: ctxprime
+#  config_file: ctxprime.yml
+
 #- name: dax-300
 #  config_file: dax-300.yml
+
+#- name: dualix
+#  config_file: dualix.yml
+
+#- name: etfinance
+#  config_file: etfinance.yml
 
 #- name: financix
 #  config_file: financix.yml
@@ -26,11 +41,11 @@ brands:
 #- name: globalix
 #  config_file: globalix.yml
 
-#- name: gigafx
-#  config_file: gigafx.yml
-
 #- name: grandefex
 #  config_file: grandefex.yml
+
+#- name: gtstox
+#  config_file: gtstox.yml
 
 #- name: hizlifx
 #  config_file: hizlifx.yml
@@ -43,6 +58,12 @@ brands:
 
 #- name: libramarkets
 #  config_file: libramarkets.yml
+
+#- name: marketrip
+#  config_file: marketrip.yml
+
+#- name: moneta
+#  config_file: moneta.yml
 
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
@@ -59,8 +80,14 @@ brands:
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
 
+#- name: olympiusglobal
+#  config_file: olympiusglobal.yml
+
 #- name: pmt247
 #  config_file: pmt247.yml
+
+#- name: proconsultinginvest
+#  config_file: proconsultinginvest.yml
 
 #- name: ptbanc
 #  config_file: ptbanc.yml
@@ -83,14 +110,20 @@ brands:
 #- name: tfxgo
 #  config_file: tfxgo.yml
 
-#- name: trade99
-#  config_file: trade99.yml
+- name: trade99
+  config_file: trade99.yml
 
 #- name: tradenero
 #  config_file: tradenero.yml
+
+#- name: tradixa
+#  config_file: tradixa.yml
 
 #- name: uft
 #  config_file: uft.yml
 
 #- name: uprofx
 #  config_file: uprofx.yml
+
+#- name: 24option
+#  config_file: 24option.yml

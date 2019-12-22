@@ -3,7 +3,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
+from datetime import datetime
 from src.main.python.utils.config import Config
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.utils.waitting_utils.WaitingUtils import WaitingUtils
@@ -113,3 +113,13 @@ class CRMBasePage(object):
 
     def wait_crm_loading_to_finish_tasks(self, time):
         self.wait_element_to_be_disappear("//div[@class='spinner']", time)
+
+    """
+        Method make screenshot and saves to defined folder  
+    """
+    def perform_screenshot(self):
+        sleep(1)
+        now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
+        file_name = 'C:/screenshots/screenshot %s.png' % now
+        self.driver.get_screenshot_as_file(file_name)
+        Logging().reportDebugStep(self, "Screenshot was performed")

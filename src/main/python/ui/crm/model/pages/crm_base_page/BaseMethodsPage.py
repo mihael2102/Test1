@@ -4,13 +4,12 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.document.CreateDocumentModule import CreateDocumentModule
-from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
-from src.main.python.ui.crm.model.pages.document.DocumentDetailViewPage import DocumentDetailViewPage
 from src.main.python.utils.logs.Loging import Logging
 import autoit
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
+from src.main.python.ui.crm.model.pages.crm_base_page.GlobalSearchPage import GlobalSearchPage
+from datetime import datetime
 import os
 
 
@@ -27,14 +26,14 @@ class CRMBaseMethodsPage(CRMBasePage):
         Check every line of table contain needed string:
     '''
 
-    def global_data_checker(self, type_of_data, data):
+    def global_data_checker(self, data):
         try:
             table = self.driver.find_element_by_xpath("//*[@id='listBody']")
             row_count = 0
             for tr in table.find_elements_by_tag_name("tr"):
                 assert data.lower() in tr.text.lower()
                 row_count += 1
-            Logging().reportDebugStep(self, type_of_data + " is verified in " + str(row_count) + " rows")
+            Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             super().wait_visible_of_element\
                 ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
@@ -50,9 +49,83 @@ class CRMBaseMethodsPage(CRMBasePage):
         return CRMBaseMethodsPage(self.driver)
 
     def open_module(self, module_title):
-        module = super().wait_load_element("//a[contains(text(), '%s')]" % module_title)
-        self.driver.execute_script("arguments[0].click();", module)
-        self.wait_vtiger_loading_to_finish_custom(35)
-        self.wait_crm_loading_to_finish_tasks(35)
-        Logging().reportDebugStep(self, "Module " + module_title + " was opened")
-        return CRMBaseMethodsPage(self.driver)
+        try:
+            module = super().wait_load_element("//a[contains(text(), '%s')]" % module_title)
+            self.driver.execute_script("arguments[0].click();", module)
+            self.wait_vtiger_loading_to_finish_custom(35)
+            self.wait_crm_loading_to_finish_tasks(35)
+            Logging().reportDebugStep(self, "Module " + module_title + " was opened")
+            return CRMBaseMethodsPage(self.driver)
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Module " + module_title + " does not exist")
+
+    def global_search_vtiger(self, item):
+        search_field = super().wait_load_element("//input[@class='searchBox']")
+        search_field.clear()
+        search_field.send_keys(item)
+        search_btn = super().wait_load_element("//button[@class='searchBtn']")
+        self.driver.execute_script("arguments[0].click();", search_btn)
+        Logging().reportDebugStep(self, "Global Search by data: " + item)
+        return GlobalSearchPage(self.driver)
+
+    def global_search_laravel(self, item):
+        search_field = super().wait_load_element("//input[@class='form-control']")
+        search_field.clear()
+        search_field.send_keys(item)
+        search_btn = super().wait_load_element("//button/i[@class='glyphicons search']")
+        self.driver.execute_script("arguments[0].click();", search_btn)
+        Logging().reportDebugStep(self, "Global Search by data: " + item)
+        return GlobalSearchPage(self.driver)
+
+    def comparator_string(self, item1, item2):
+        try:
+            assert item1 == item2
+            Logging().reportDebugStep(self, item1 + " is equal to " + item2)
+            return CRMBaseMethodsPage(self.driver)
+        except AssertionError:
+            Logging().reportDebugStep(self, item1 + " is not equal to " + item2)
+            assert item1 == item2
+
+    def get_current_date(self):
+        date = datetime.today().strftime('%Y-%m-%d')
+        Logging().reportDebugStep(self, "Get current date: " + date)
+        return date
+
+    def get_current_date_time(self):
+        date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
+        Logging().reportDebugStep(self, "Get current date and time: " + date)
+        return date
+
+    """
+        Method returns number (str) of column in list view:
+    """
+    def get_column_number_by_title_vtiger(self, title):
+        sleep(0.1)
+        try:
+            table = self.driver.find_element_by_xpath("//*[@id='resizeble_cols']/tbody[1]/tr[1]")
+            count = 0
+            index = ""
+            for td in table.find_elements_by_tag_name("td"):
+                count += 1
+                if title.lower() in td.text.lower():
+                    index = str(count)
+                    break
+            assert len(index)
+            Logging().reportDebugStep(self, "Number of column is: " + index)
+            return index
+        except(NoSuchElementException, TimeoutException, AssertionError, AttributeError):
+            Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
+            return False
+
+    """
+        Method return data from cell of table (list view) by column title and row number:
+    """
+    def get_data_from_list_view_vtiger(self, column, row):
+        column_number = self.get_column_number_by_title_vtiger(column)
+        if column_number:
+            data = super().wait_load_element("//*[@id='listBody']/tr[%s]/td[%s]" % (row, column_number)).text
+            Logging().reportDebugStep(self, "Get data from list view: column = " + column + ", row = " + row)
+            return data
+        else:
+            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
+            return False

@@ -48,12 +48,13 @@ tests_config:
   class: LeadModuleTest
   tests:
     - test_perform_convert_lead   # Creates a lead and converts it to a client
-#
+
 #################################### CLIENTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
 #  class: SearchingClientsTestCRM
 #  tests:
 #    - test_make_searching_client_module   # Searches for a client
+#    - test_search_client_magnifying_glass
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
 #  class: MassEditTestCRM
@@ -85,35 +86,35 @@ tests_config:
 #     - test_check_week_tab
 
 ###################################### MT4 ACTIONS ###########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_open_trading_account  # open a new trading account
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+#  class: TradingAccountCrmTest
+#  tests:
+#    - test_crm_open_trading_account  # open a new trading account
 #    - test_crm_open_live_mt5
 #    - test_crm_open_demo_mt5
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
-  class: CheckPasswordTestCRM
-  tests:
-#    - test_check_client_password_crm  # check the client account password
-    - test_check_mt4_password_crm   # check the MT4 account password
-#
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
-  class: ChangePasswordTestCRM
-  tests:
-#    - test_change_client_password_from_crm  # change a client account password from the crm
-    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
-#  class: DepositTestCRM
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
+#  class: CheckPasswordTestCRM
 #  tests:
-#    - test_make_deposit_crm  # create live mt account and make deposit in crm
+#    - test_check_client_password_crm  # check the client account password
+#    - test_check_mt4_password_crm   # check the MT4 account password
+#
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
+#  class: ChangePasswordTestCRM
+#  tests:
+#    - test_change_client_password_from_crm  # change a client account password from the crm
+#    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
+#
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+  class: DepositTestCRM
+  tests:
+    - test_make_deposit_crm  # create live mt account and make deposit in crm
 #    - test_make_deposit_for_client_crm
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-#  class: WithdrawTest
-#  tests:
-#    - test_withdraw_crm   #preconditions: convert lead, make deposit
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
+  class: WithdrawTest
+  tests:
+    - test_withdraw_crm   #preconditions: convert lead, make deposit
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
 #  class: CreditInTestCRM
@@ -124,11 +125,11 @@ tests_config:
 #  class: CreditOutTestCRM
 #  tests:
 #    - test_make_credit_out_crm # preconditions: convert lead, make credit in
-#
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
-  class: SendEmailTestCRM
-  tests:
-    - test_send_email # preconditions: convert lead
+
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
+#  class: SendEmailTestCRM
+#  tests:
+#    - test_send_email # preconditions: convert lead
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
 #  class: TransferBetweenTa
@@ -161,6 +162,7 @@ tests_config:
 #    - test_create_campaign
 #    - test_edit_campaign
 #    - test_delete_campaign
+#    - test_campaign_searching_by_columns
 #
 ########################################## AUTOASSIGN MODULE #############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
@@ -169,7 +171,7 @@ tests_config:
 #    - test_add_auto_assign_rule_lead
 #    - test_add_auto_assign_rule_client
 #    - test_perform_delete_rule
-#
+
 ########################################### CHECK MODULES ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
 #  class: CheckModulesTest
@@ -227,3 +229,18 @@ tests_config:
 #  class: TabHelpDeskTest
 #  tests:
 #    - test_searching_help_desk
+#    - test_check_tab_help_desk
+
+############################################# AUDIT LOGS ################################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs
+#  class: AuditLogsModuleTest
+#  tests:
+#    - test_audit_logs_searching_by_columns
+#    - test_new_events_shown_in_audit_logs
+
+############################################# GLOBAL SEARCH ################################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Global_Search
+#  class: TestGlobalSearch
+#  tests:
+#    - test_global_search_leads
+#    - test_global_search_tasks
