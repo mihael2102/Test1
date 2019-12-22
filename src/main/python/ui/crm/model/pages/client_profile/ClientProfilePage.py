@@ -181,7 +181,8 @@ class ClientProfilePage(CRMBasePage):
         select = Select(
             self.driver.find_element(By.XPATH, "//select[@name='new_feel_lost_deposited_capital']"))
         if global_var.current_brand_name == "gmo":
-            select.select_by_visible_text("I would be upset for a while but it wouldn’t change my financial situation.")
+            select.select_by_visible_text\
+                ("I would be upset for a while, but the loss will not affect my financial situation to a large extent")
         else:
             select.select_by_visible_text(result_trading)
         Logging().reportDebugStep(self,
