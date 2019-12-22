@@ -169,7 +169,7 @@ class CAPage(CRMBasePage):
         select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlFeelLostDepositedCapital']"))
         if global_var.current_brand_name == "gmo":
             select.select_by_visible_text\
-                ("I would be upset for a while, but the loss will not affect my financial situation to a large extent")
+                ("I would be upset for a while but the loss will not affect my financial situation to a large extent")
         else:
             select.select_by_visible_text(result_of_trading)
         Logging().reportDebugStep(self, "Enter result of trading")
