@@ -168,10 +168,11 @@ class CAPage(CRMBasePage):
             EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlFeelLostDepositedCapital']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlFeelLostDepositedCapital']"))
         if global_var.current_brand_name == "gmo":
-            select.select_by_visible_text("I would be upset for a while but it wouldn’t change my financial situation")
+            select.select_by_visible_text\
+                ("I would be upset for a while but the loss will not affect my financial situation to a large extent")
         else:
             select.select_by_visible_text(result_of_trading)
-        Logging().reportDebugStep(self, "Enter  result of trading")
+        Logging().reportDebugStep(self, "Enter result of trading")
         return CAPage(self.driver)
 
     def select_inital_deposit(self, inital_deposit):
@@ -180,7 +181,7 @@ class CAPage(CRMBasePage):
             EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlBuyingPower']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlBuyingPower']"))
         select.select_by_visible_text(inital_deposit)
-        Logging().reportDebugStep(self, "Enter  inital deposit")
+        Logging().reportDebugStep(self, "Enter initial deposit")
         return CAPage(self.driver)
 
     def select_fb_price(self, fb_price):
@@ -274,7 +275,6 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Enter level")
         return CAPage(self.driver)
 
-
     def select_incoming_funds(self, incoming_fund):
         sleep(3)
         WebDriverWait(self.driver, 10).until(
@@ -283,7 +283,6 @@ class CAPage(CRMBasePage):
         select.select_by_visible_text(incoming_fund)
         Logging().reportDebugStep(self, "Enter incoming fund")
         return CAPage(self.driver)
-
 
     def select_estimate_amount(self, amount):
         sleep(3)
@@ -306,7 +305,6 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Enter purpose")
         return CAPage(self.driver)
 
-
     def select_estimate_worth(self, estimate_worth):
         sleep(3)
         WebDriverWait(self.driver, 10).until(
@@ -315,7 +313,6 @@ class CAPage(CRMBasePage):
         select.select_by_visible_text(estimate_worth)
         Logging().reportDebugStep(self, "Enter estimate worth")
         return CAPage(self.driver)
-
 
     def select_estimate_income(self, estimate_income):
         sleep(3)
@@ -326,7 +323,6 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Enter estimate income")
         return CAPage(self.driver)
 
-
     def check_box_source_total(self, source):
         sleep(5)
         submit = super().wait_load_element("//*[@id='cblTotalWealth']/li[1]/label[contains(text(), 'Savings and investments ')]")
@@ -334,7 +330,6 @@ class CAPage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", submit)
         Logging().reportDebugStep(self, "Click check box " + source)
         return CAPage(self.driver)
-
 
     def check_box_source(self, source):
         sleep(5)

@@ -2,3 +2,6 @@ pretty_name: "Brokerxp"
 url: "https://brokerxp.ptscrm.com/"
 url_ca: "https://my.brokerxp.com"
 otp_secret: TYP45DNKQL6JGIJX
+email_live_acc: "QATest@pandats.com"
+password_live_acc: "testingQA12"
+number_live_acc: "32342"
