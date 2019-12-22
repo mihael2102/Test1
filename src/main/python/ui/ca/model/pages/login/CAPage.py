@@ -284,14 +284,14 @@ class CAPage(CRMBasePage):
         first_name_field = super().wait_load_element("//input[@name='firstName']")
         first_name_field.clear()
         first_name_field.send_keys(first_name)
-        Logging().reportDebugStep(self, "Edit First Name")
+        Logging().reportDebugStep(self, "Edit First Name: " + first_name)
         return CAPage(self.driver)
 
     def edit_last_name(self, last_name):
         last_name_field = super().wait_load_element("//input[@name='lastName']")
         last_name_field.clear()
         last_name_field.send_keys(last_name)
-        Logging().reportDebugStep(self, "Edit Last Name")
+        Logging().reportDebugStep(self, "Edit Last Name: " + last_name)
         return CAPage(self.driver)
 
     def edit_citizenship(self, citizenship):
@@ -307,21 +307,21 @@ class CAPage(CRMBasePage):
         city_field = super().wait_load_element("//input[@name='city']")
         city_field.clear()
         city_field.send_keys(city)
-        Logging().reportDebugStep(self, "Edit City field")
+        Logging().reportDebugStep(self, "Edit City field: " + city)
         return CAPage(self.driver)
 
     def edit_zip(self, zipcode):
         zip_field = super().wait_load_element("//input[@name='postCode']")
         zip_field.clear()
         zip_field.send_keys(zipcode)
-        Logging().reportDebugStep(self, "Edit Zip code field")
+        Logging().reportDebugStep(self, "Edit Zip code field: " + zipcode)
         return CAPage(self.driver)
 
     def edit_address(self, address):
         address_field = super().wait_load_element("//input[@name='address']")
         address_field.clear()
         address_field.send_keys(address)
-        Logging().reportDebugStep(self, "Edit Address field")
+        Logging().reportDebugStep(self, "Edit Address field: " + address)
         return CAPage(self.driver)
 
     def click_save_changes_btn(self):

@@ -95,3 +95,37 @@ class CRMBaseMethodsPage(CRMBasePage):
         date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
         Logging().reportDebugStep(self, "Get current date and time: " + date)
         return date
+
+    """
+        Method returns number (str) of column in list view:
+    """
+    def get_column_number_by_title_vtiger(self, title):
+        sleep(0.1)
+        try:
+            table = self.driver.find_element_by_xpath("//*[@id='resizeble_cols']/tbody[1]/tr[1]")
+            count = 0
+            index = ""
+            for td in table.find_elements_by_tag_name("td"):
+                count += 1
+                if title.lower() in td.text.lower():
+                    index = str(count)
+                    break
+            assert len(index)
+            Logging().reportDebugStep(self, "Number of column is: " + index)
+            return index
+        except(NoSuchElementException, TimeoutException, AssertionError, AttributeError):
+            Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
+            return False
+
+    """
+        Method return data from cell of table (list view) by column title and row number:
+    """
+    def get_data_from_list_view_vtiger(self, column, row):
+        column_number = self.get_column_number_by_title_vtiger(column)
+        if column_number:
+            data = super().wait_load_element("//*[@id='listBody']/tr[%s]/td[%s]" % (row, column_number)).text
+            Logging().reportDebugStep(self, "Get data from list view: column = " + column + ", row = " + row)
+            return data
+        else:
+            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
+            return False
