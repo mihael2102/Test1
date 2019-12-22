@@ -92,6 +92,8 @@ class Login_CA_Precondition(object):
             .click_sign_up()
 
         if global_var.current_brand_name == "itrader_global":
+            CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP_MEX)
+        elif global_var.current_brand_name == "gmo":
             CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP_AUS)
         elif global_var.current_brand_name == "oinvestsa":
             CALoginPage(self.driver).select_country(CAConstants.CITIZENSHIP_SOUTH_A)
@@ -153,3 +155,11 @@ class Login_CA_Precondition(object):
             TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]).upper()
         assert actual_client_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                     LeadsModuleConstants.FIRST_NAME].upper() + " DOE"
+
+    def login_ca(self):
+        CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca'))\
+            .enter_email(self.config.get_value('email_live_acc')) \
+            .enter_password(self.config.get_value('password_live_acc')) \
+            .click_login()\
+            .get_client_name("Test")
