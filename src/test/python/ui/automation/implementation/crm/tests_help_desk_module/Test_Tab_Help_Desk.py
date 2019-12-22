@@ -24,19 +24,19 @@ class TabHelpDeskTest(BaseTest):
         CRMBaseMethodsPage(self.driver) \
             .open_module(TestDataConstants.MODULE_HELP_DESK)\
             .open_tab_list_view(HelpDeskConstants.TAB_CLOSED)\
-            .global_data_checker(HelpDeskConstants.TAB_CLOSED, HelpDeskConstants.TAB_CLOSED)\
+            .global_data_checker(HelpDeskConstants.TAB_CLOSED)\
             .open_tab_list_view(HelpDeskConstants.TAB_IN_PROGRESS)\
-            .global_data_checker(HelpDeskConstants.TAB_IN_PROGRESS, HelpDeskConstants.TAB_IN_PROGRESS)\
+            .global_data_checker(HelpDeskConstants.TAB_IN_PROGRESS)\
             .open_tab_list_view(HelpDeskConstants.TAB_OPEN)\
-            .global_data_checker(HelpDeskConstants.TAB_OPEN, HelpDeskConstants.TAB_OPEN)\
+            .global_data_checker(HelpDeskConstants.TAB_OPEN)\
             .open_tab_list_view(HelpDeskConstants.TAB_OPENED_TODAY)
         HelpDeskPage(self.driver)\
             .find_ticket_by_title(HelpDeskConstants.FIRST_TITTLE)\
             .perform_search_ticket()
         CRMBaseMethodsPage(self.driver) \
-            .global_data_checker(HelpDeskConstants.FIRST_TITTLE, HelpDeskConstants.FIRST_TITTLE)\
+            .global_data_checker(HelpDeskConstants.FIRST_TITTLE)\
             .open_tab_list_view(HelpDeskConstants.TAB_WAIT_FOR_RESPONSE)\
-            .global_data_checker(HelpDeskConstants.STATUS_AWAITING, HelpDeskConstants.STATUS_AWAITING)
+            .global_data_checker(HelpDeskConstants.STATUS_AWAITING)
 
     def test_searching_help_desk(self):
         CRMLoginPage(self.driver)\
@@ -96,7 +96,7 @@ class TabHelpDeskTest(BaseTest):
                                                     HelpDeskConstants.FIRST_RELATED_TO)
 
         CRMBaseMethodsPage(self.driver)\
-            .global_data_checker('Related To', related_to)
+            .global_data_checker(related_to)
 
         # Clear filter, make searching by 3 colunms:
         counter = HelpDeskPage(self.driver) \

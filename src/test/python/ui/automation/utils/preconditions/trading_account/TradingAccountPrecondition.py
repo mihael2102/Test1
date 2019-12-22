@@ -255,7 +255,7 @@ class TradingAccountPrecondition(object):
                 self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
         MT4DropDown(self.driver)\
-            .open_mt4_module_newui(CRMConstants.CREATE_MT_USER)
+            .open_mt4_module_newui(CRMConstants.CREATE_MT_ACCOUNT)
 
         MT4CreateAccountModule(self.driver) \
             .create_account_new_ui(

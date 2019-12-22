@@ -1,10 +1,11 @@
 tests_config:
 
 ######################################### CA TESTS ##############################################
-#- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
-#  class: SignUpTest
-#  tests:
-#    - test_check_sign_up
+- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
+  class: SignUpTest
+  tests:
+    - test_check_sign_up
+#    - test_check_login
 #    - test_check_email_sign_up
 #    - test_registred_client_exist_in_crm
 #
@@ -22,17 +23,17 @@ tests_config:
 #    - test_main_menu_pages_loading
 #    - test_graphs_loading
 #
-- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
-  class: TradingProcess
-  tests:
+#- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
+#  class: TradingProcess
+#  tests:
 #    - test_trading_process_open_position_ca    # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
 #    - test_verify_open_position_crm     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
 #    - test_trading_process_close_position_ca      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
 #    - test_verify_close_position_crm     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
-    - test_open_position_live         # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
-    - test_verify_live_open_position_crm     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
-    - test_close_position_live      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
-    - test_verify_live_close_position_crm     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
+#    - test_open_position_live         # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
+#    - test_verify_live_open_position_crm     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
+#    - test_close_position_live      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
+#    - test_verify_live_close_position_crm     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
 #
 #- module: src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update
 #  class: PersonalDetailsUpdateTestCA
@@ -42,12 +43,12 @@ tests_config:
 #    - test_update_personal_details_in_crm
 #    - test_personal_details_were_updated_in_ca
 #
-#- module: src.test.python.ui.automation.implementation.ca.Test_Support_Ticket
-#  class: CreateSupportTicketTestCa
-#  tests:
-#    - test_create_ticket
-#    - test_check_and_update_ticket_in_crm
-#    - test_check_updated_ticket_in_ca
+- module: src.test.python.ui.automation.implementation.ca.Test_Support_Ticket
+  class: CreateSupportTicketTestCa
+  tests:
+    - test_create_ticket
+    - test_check_and_update_ticket_in_crm
+    - test_check_updated_ticket_in_ca
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
 #  class: CheckDragonTest
