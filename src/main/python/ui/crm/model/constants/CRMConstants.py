@@ -78,6 +78,7 @@ class CRMConstants(object):
     BRAND = "brand_one"
     TRANSFER_BETWEEN_TA_MESSAGE = "Funds were transferred successfully"
     AMOUNT_TRANSFER_BETWEEN_TA = "1.00"
+    AMOUNT_TRANSFER_BETWEEN_TA_1 = "1"
     AMOUNT_TRANSFER_BETWEEN_TA_BTC = "0.00001"
     TRANSFER_BETWEEN_TA = "8"
     TRANSFER_BETWEEN_TA2 = "5"

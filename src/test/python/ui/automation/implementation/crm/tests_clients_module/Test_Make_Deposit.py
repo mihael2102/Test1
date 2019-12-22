@@ -174,14 +174,18 @@ class DepositTestCRM(BaseTest):
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url'))
 
-        # ADD LIVE ACCOUNT IN CRM
-        # Open clients module. Find created client by email and open his profile
+        """
+            ADD LIVE ACCOUNT IN CRM
+            Open clients module. Find created client by email and open his profile
+        """
         CRMHomePage(self.driver)\
             .open_client_module_new_ui()\
             .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
             .find_client_by_email_new_ui(client1[LeadsModuleConstants.EMAIL])
 
-        # Create LIVE account for client using MT4 Actions
+        """
+            Create LIVE account for client using MT4 Actions
+        """
         crm_client_profile = ClientProfilePage(self.driver)
         MT4DropDown(self.driver) \
             .open_mt4_module_newui(CRMConstants.CREATE_MT_ACCOUNT)
@@ -194,14 +198,18 @@ class DepositTestCRM(BaseTest):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
             .click_ok()
 
-        # Get account number to make deposit in future
+        """
+            Get account number to make deposit in future
+        """
         account_number = ClientProfilePage(self.driver) \
             .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)\
             .get_ta_number()
 
         MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT = account_number
 
-        # Make deposit for account number using MT4 Actions
+        """
+            Make deposit for account number using MT4 Actions
+        """
         MT4DropDown(self.driver) \
             .open_mt4_module_newui(CRMConstants.CREATE_MT_DEPOSIT)
 
@@ -220,7 +228,7 @@ class DepositTestCRM(BaseTest):
                                      CRMConstants.PAYMENT_METHOD_DEPOSIT,
                                      CRMConstants.STATUS_DEPOSIT,
                                      CRMConstants.DESCRIPTION_DEPOSIT,
-                                     MT4ModuleConstants.CLEARED_BY)
+                                     MT4ModuleConstants.CLEARED_BY1)
 
         # Check confirmation message
         MT4CreateAccountModule(self.driver) \

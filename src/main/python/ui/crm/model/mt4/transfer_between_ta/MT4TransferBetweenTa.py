@@ -17,11 +17,11 @@ class MT4TransferBetweenTa(CRMBasePage):
         self.create_transfer()
 
     def make_transfer_between_ta_new_ui(self, first_account, second_account, amount, description_transfer):
-        self.select_first_account(first_account)
-        self.select_second_account(second_account)
+        self.select_source_of_transfer_new_ui(first_account)
+        self.select_destination_of_transfer_new_ui(second_account)
         self.set_amount(amount)
         self.set_description(description_transfer)
-        self.create_transfer()
+        self.click_transfer_btn()
 
     '''
         Select first account from drop down for transfer between
@@ -63,7 +63,7 @@ class MT4TransferBetweenTa(CRMBasePage):
         amount_filed = self.driver.find_element(By.XPATH, "//input[@id='amount']")
         amount_filed.clear()
         amount_filed.send_keys(amount)
-        Logging().reportDebugStep(self, "The amount of transfer between ta module was set:  " + amount)
+        Logging().reportDebugStep(self, "The Amount of transfer between TA was set: " + amount)
         return MT4TransferBetweenTa(self.driver)
 
     '''
@@ -77,7 +77,7 @@ class MT4TransferBetweenTa(CRMBasePage):
             amount_filed = self.driver.find_element(By.XPATH, "//textarea[@id='transfer_comment']")
             amount_filed.clear()
             amount_filed.send_keys(description_deposit)
-            Logging().reportDebugStep(self, "The description of transfer between ta was set: " + description_deposit)
+            Logging().reportDebugStep(self, "The Description of transfer between ta was set: " + description_deposit)
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "The Description field is not displaying")
         return MT4TransferBetweenTa(self.driver)
@@ -99,8 +99,28 @@ class MT4TransferBetweenTa(CRMBasePage):
 
 ####################################### NEW UI METHODS ############################################
 
-    def select_first_account_new_ui(self, account):
-        account_item = super().wait_load_element("//a/span[contains(text(),'%s')]" % account)
+    def select_source_of_transfer_new_ui(self, account):
+        account_item = super().wait_load_element\
+         ("//span[contains(text(),'Source')]//following-sibling::ul[@class='options-list']//span[contains(text(),'%s')]"
+          % account)
         self.driver.execute_script("arguments[0].click();", account_item)
-        Logging().reportDebugStep(self, "The first account selected:  " + account)
+        Logging().reportDebugStep(self, "The Source account selected: " + account)
+        return ClientProfilePage(self.driver)
+
+    def select_destination_of_transfer_new_ui(self, account):
+        account_item = super().wait_load_element\
+         ("//span[contains(text(),'Destination ')]//following-sibling::"
+          "ul[@class='options-list']//span[contains(text(),'%s')]" % account)
+        self.driver.execute_script("arguments[0].click();", account_item)
+        Logging().reportDebugStep(self, "The Destination account selected: " + account)
+        return ClientProfilePage(self.driver)
+
+    """
+        Click 'Transfer' button in 'Transfer between TA' form
+    """
+    def click_transfer_btn(self):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click 'Transfer' button")
+        transfer_btn = super().wait_load_element("//button[not(@disabled='true')]/span[contains(text(),'Transfer')]")
+        transfer_btn.click()
         return ClientProfilePage(self.driver)
