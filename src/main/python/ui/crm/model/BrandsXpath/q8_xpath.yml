@@ -26,6 +26,7 @@ CALoginPage:
   sign_up: "//a[contains(text(), 'Sign Up')]"
   submit_btn: "//button[contains (text(), 'Sign Up')][not(@disabled)]"
   login_email_input: "//input[@name='email']"
+  login_password_input: "//input[@name='password']"
   login_btn_2: "//button[text()='Login']"
   login_btn: "//span[contains(text(), 'Login')]"
 CAPage:
