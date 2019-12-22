@@ -1,5 +1,6 @@
 from time import sleep
-
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
 from src.main.python.ui.crm.model.modules.campaigns_module.AddCampaignsModule import AddCampaignsModule
 from src.main.python.ui.crm.model.modules.campaigns_module.EditCampaignModule import EditCampaignModule
@@ -21,19 +22,21 @@ class CampaignsPage(CRMBasePage):
         add_campaign_button.clear()
         add_campaign_button.send_keys(campaign_name)
         Logging().reportDebugStep(self, "The campaign_name was entered: " + campaign_name)
-        return CampaignsPage()
+        return CampaignsPage(self.driver)
 
     def campaign_exist(self):
         campaign = super().wait_load_element("//*[@id='row0ListGrid0']/div[2]/div/a").text
         Logging().reportDebugStep(self, "Verify campaign name")
         return campaign
 
-    def perform_searching_campaign_by_columns(self, campaign_name, activity, start_date, cpa):
+    def perform_searching_campaign_by_columns(self, campaign_name, campaign_id, cpa):
+        self.set_campaign_id(campaign_id)
+        sleep(1)
         self.set_campaign_name(campaign_name)
-        self.set_activity(activity)
-        self.set_start_date(start_date)
+        sleep(1)
         self.set_cpa(cpa)
-        return CampaignsPage()
+        sleep(0.5)
+        return CampaignsPage(self.driver)
 
     def open_campaign_view(self, campaign_name):
         campaign_name_link = super().wait_element_to_be_clickable(
@@ -49,7 +52,7 @@ class CampaignsPage(CRMBasePage):
         hoverer.perform()
         delete_element.click()
         Logging().reportDebugStep(self, "The campaign was deleted ")
-        return CampaignsPage()
+        return CampaignsPage(self.driver)
 
     def get_message(self):
         delete_button = super().wait_element_to_be_clickable("//div[@role='row'][1]//div[15]//span")
@@ -58,12 +61,20 @@ class CampaignsPage(CRMBasePage):
         return delete_button.text
 
     def set_campaign_name(self, campaign_name):
-        add_campaign_button = super().wait_visible_of_element(
-            "//div[@id='filterrow.ListGrid0']//div[3]/preceding-sibling::div[1]//input")
-        add_campaign_button.clear()
-        add_campaign_button.send_keys(campaign_name)
-        Logging().reportDebugStep(self, "The campaign_name was entered: " + campaign_name)
-        return CampaignsPage()
+        name_field = super().wait_visible_of_element(
+            "(//div[@id='filterrow.ListGrid0']//div[3]/preceding-sibling::div[1]//input)[1]")
+        name_field.clear()
+        name_field.send_keys(campaign_name)
+        Logging().reportDebugStep(self, "The Campaign Name was entered: " + campaign_name)
+        return CampaignsPage(self.driver)
+
+    def set_campaign_id(self, campaign_id):
+        id_field = super().wait_load_element(
+            "/html/body/div/div[2]/div/div[2]/div/div[3]/div[1]/div[2]/div/div[1]/div/input")
+        id_field.clear()
+        id_field.send_keys(campaign_id)
+        Logging().reportDebugStep(self, "The Campaign ID was set: " + campaign_id)
+        return CampaignsPage(self.driver)
 
     def set_activity(self, activity):
         activity_button = super().wait_visible_of_element(
@@ -76,7 +87,7 @@ class CampaignsPage(CRMBasePage):
         item.click()
         activity_button.click()
         Logging().reportDebugStep(self, "The activity entered: " + activity)
-        return CampaignsPage()
+        return CampaignsPage(self.driver)
 
     def set_start_date(self, start_date):
         start_date_field = super().wait_visible_of_element(
@@ -85,8 +96,8 @@ class CampaignsPage(CRMBasePage):
         sleep(2)
         today_field = super().wait_visible_of_element("//a[contains(text(),'Today')]")
         today_field.click()
-        Logging().reportDebugStep(self, "The today  was clicked: " + start_date)
-        return CampaignsPage()
+        Logging().reportDebugStep(self, "The today was clicked: " + start_date)
+        return CampaignsPage(self.driver)
 
     def get_start_date(self):
         actual_start_date = super().wait_load_element("//*[@id='start_date']").get_attribute("value")
@@ -120,7 +131,7 @@ class CampaignsPage(CRMBasePage):
         sleep(2)
         cancel_button.click()
         Logging().reportDebugStep(self, "The Cancel button is clicked")
-        return CampaignsPage()
+        return CampaignsPage(self.driver)
 
     def deleting_confirmation(self):
         super().wait_visible_of_element("//div[contains(text(),'Confirm Delete')]")     #deleting confirmation popup is appear
@@ -128,41 +139,60 @@ class CampaignsPage(CRMBasePage):
         sleep(1)
         deleting_confirmation_button.click()
         Logging().reportDebugStep(self, "The deleting confirmation button is clicked")
-        return CampaignsPage()
+        return CampaignsPage(self.driver)
 
     def check_campaign_deleted(self):
         super().wait_visible_of_element("//span[contains(text(), 'No data to display')]")
         Logging().reportDebugStep(self, "Campaign not found")
-        return CampaignsPage()
-
-
-    # def set_assigned_to(self, assigned_to):
-    #     assigned_to_field = super().wait_visible_of_element(
-    #         "//div[@id='filterrow.ListGrid0']//div[6]/div[1]//div[2]")
-    #     assigned_to_field.click()
-    #
-    #     select_all = super().wait_visible_of_element(
-    #         "(//div[@role='option'])[37]//div[1]")
-    #     select_all.click()
-    #
-    #     assigned_to_item = super().wait_visible_of_element(
-    #         "//span[contains(text(),'%s')]" % assigned_to)
-    #
-    #     self.driver.execute_script("arguments[0].scrollIntoView();", assigned_to_item)
-    #     sleep(3)
-    #
-    #     first_item = super().wait_visible_of_element(
-    #         "//span[contains(text(),'%s')]//preceding-sibling::div[1]/div[1]//div[1]" % assigned_to)
-    #
-    #     hoverer = ActionChains(self.driver).move_to_element(first_item).click(first_item)
-    #     hoverer.perform()
-    #     first_item.click()
-    #     Logging().reportDebugStep(self, "The assigned_to was entered: " + assigned_to)
-    #     return CampaignsPage()
+        return CampaignsPage(self.driver)
 
     def set_cpa(self, cpa):
-        today_field = super().wait_visible_of_element(
-            "//div[@id='filterrow.ListGrid0']//div[11]//input")
+        today_field = super().wait_visible_of_element("(//div[@id='filterrow.ListGrid0']//div[11]//input)[1]")
         today_field.send_keys(cpa)
-        Logging().reportDebugStep(self, "The cpa was entered: " + cpa)
-        return CampaignsPage()
+        Logging().reportDebugStep(self, "The CPA was entered: " + cpa)
+        return CampaignsPage(self.driver)
+
+    def get_campaign_id_list_view(self):
+        campaign_id = super().wait_load_element("(//a[contains(@onclick,'PandaCampaign')])[1]").text
+        Logging().reportDebugStep(self, "Get first Campaign ID from list view: " + campaign_id)
+        return campaign_id
+
+    def get_campaign_name_list_view(self):
+        campaign_name = super().wait_load_element("(//a[contains(@onclick,'PandaCampaign')])[2]").text
+        Logging().reportDebugStep(self, "Get first Campaign Name from list view: " + campaign_name)
+        return campaign_name
+
+    def get_cpa_list_view(self):
+        cpa = super().wait_load_element("(//span[@title='USD'])[1]").text
+        Logging().reportDebugStep(self, "Get first CPA from list view: " + cpa)
+        return cpa
+
+    def campaign_data_checker(self, data):
+        sleep(2)
+        try:
+            table = self.driver.find_element_by_xpath("//*[@id='contenttableListGrid0']")
+            row_count = 0
+            for tr in table.find_elements_by_xpath("//div[@role='row']"):
+                if tr.text:
+                    assert data.lower() in tr.text.lower()
+                    row_count += 1
+            Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
+        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            super().wait_visible_of_element \
+                ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
+            Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
+        return CampaignsPage(self.driver)
+
+    def clear_filter(self):
+        clear_filter = super().wait_load_element("//div/a[@id='clearfilteringbutton']")
+        self.driver.execute_script("arguments[0].click();", clear_filter)
+        sleep(1)
+        Logging().reportDebugStep(self, "Clear filter")
+        return CampaignsPage(self.driver)
+
+    def refresh_filter(self):
+        refresh_filter = super().wait_load_element("//div/a[@id='refreshgridbutton']")
+        self.driver.execute_script("arguments[0].click();", refresh_filter)
+        sleep(1)
+        Logging().reportDebugStep(self, "Refresh filter")
+        return CampaignsPage(self.driver)

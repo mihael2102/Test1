@@ -1,0 +1,5 @@
+CALoginPage:
+  login_btn: "//span[contains(text(), 'Login')]"
+  login_email_input: "//*[@id='Username']"
+  login_password_input: "//*[@id='Password']"
+  login_btn_2: "//input[@value='Log in']"
