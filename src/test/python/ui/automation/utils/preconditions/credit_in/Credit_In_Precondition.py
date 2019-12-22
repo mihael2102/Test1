@@ -107,7 +107,7 @@ class CreditInPrecondition(object):
                                                                      TestDataConstants.E_MAIL))
         # Create LIVE account
         MT4DropDown(self.driver) \
-            .open_mt4_module_newui(CRMConstants.CREATE_MT_USER)
+            .open_mt4_module_newui(CRMConstants.CREATE_MT_ACCOUNT)
 
         if global_var.current_brand_name == "q8":
             crm_client_profile = MT4CreateAccountModule(self.driver) \
