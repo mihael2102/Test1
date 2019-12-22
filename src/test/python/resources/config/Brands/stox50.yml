@@ -1,3 +1,6 @@
 pretty_name: "Stox50"
 url: "https://stox50.ptscrm.com/"
 url_ca: "https://www.thestox50.com/en/home/?lang=en#/"
+email_live_acc: "QATest@pandats.com"
+password_live_acc: "testingQA12"
+number_live_acc: "32342"

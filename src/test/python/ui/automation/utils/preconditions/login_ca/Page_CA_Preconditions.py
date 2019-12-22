@@ -69,8 +69,7 @@ class Page_CA_Precondition(object):
             return self
 
     def update_personal_details_in_ca(self):
-        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "b-finance") \
-                and (global_var.current_brand_name != "tradospot"):
+        if global_var.current_brand_name != "q8":
             CALoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
@@ -92,8 +91,7 @@ class Page_CA_Precondition(object):
 
     def check_personal_details_in_crm(self):
         # Login to CRM
-        if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "b-finance") \
-                and (global_var.current_brand_name != "tradospot"):
+        if global_var.current_brand_name != "q8":
             CRMLoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url')) \
                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -103,7 +101,8 @@ class Page_CA_Precondition(object):
                                TestDataConstants.FILTER))
 
             sleep(2)
-            ClientsPage(self.driver).find_client_by_email(CAConstants.EMAIL_CA)
+            ClientsPage(self.driver)\
+                .find_client_by_email(CAConstants.EMAIL_CA)
             sleep(2)
             assert ClientsPage(self.driver).get_client_address() == CAConstants.UPDATE_ADDRESS
             assert ClientsPage(self.driver).get_client_city() == CAConstants.UPDATE_CITY

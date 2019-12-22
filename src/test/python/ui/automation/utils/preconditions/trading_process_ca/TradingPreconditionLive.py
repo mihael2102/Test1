@@ -59,7 +59,7 @@ class TradingPreconditionLive(object):
             .get_open_price()
 
     def verify_open_live_position_crm(self):
-        # Login CRM
+        """ Login CRM """
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -68,7 +68,15 @@ class TradingPreconditionLive(object):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(self.config.get_value('email_live_acc'))
 
-        # Open live account details and get open orders data
+        """ Check if crypto position was opened """
+        try:
+            assert TradingConstants.IS_ASSET_EXIST == "yes"
+            Logging().reportDebugStep(self, "Position was opened")
+        except:
+            Logging().reportDebugStep(self, "There is no crypto assets")
+            assert TradingConstants.IS_ASSET_EXIST == "yes"
+
+        """ Open live account details and get open orders data """
         open_orders_data = ClientProfilePage(self.driver) \
             .perform_scroll_down() \
             .open_trading_accounts_tab() \
@@ -91,6 +99,7 @@ class TradingPreconditionLive(object):
         assert expected_open_price in open_orders_data
 
     def close_position_live(self):
+        """ Log in CA """
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .login() \
@@ -98,6 +107,14 @@ class TradingPreconditionLive(object):
             .enter_password(self.config.get_value('password_live_acc')) \
             .click_login() \
             .verify()
+
+        """ Check if crypto position was opened """
+        try:
+            assert TradingConstants.IS_ASSET_EXIST == "yes"
+            Logging().reportDebugStep(self, "Position was opened")
+        except:
+            Logging().reportDebugStep(self, "There is no crypto assets")
+            assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         WebTraderPage(self.driver) \
             .open_trading_page() \
@@ -114,7 +131,7 @@ class TradingPreconditionLive(object):
             .get_closed_order_profit()
 
     def verify_close_live_position_crm(self):
-        # Login CRM
+        """ Login CRM """
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -123,7 +140,15 @@ class TradingPreconditionLive(object):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email(self.config.get_value('email_live_acc'))
 
-        # Open live account details and get closed orders data
+        """ Check if crypto position was opened """
+        try:
+            assert TradingConstants.IS_ASSET_EXIST == "yes"
+            Logging().reportDebugStep(self, "Position was opened")
+        except:
+            Logging().reportDebugStep(self, "There is no crypto assets")
+            assert TradingConstants.IS_ASSET_EXIST == "yes"
+
+        """ Open live account details and get closed orders data """
         close_orders_data = ClientProfilePage(self.driver) \
             .perform_scroll_down() \
             .open_trading_accounts_tab() \
@@ -131,7 +156,7 @@ class TradingPreconditionLive(object):
             .open_closed_transactions_tab() \
             .get_closed_order_data()
 
-        # Verify data of closed trade:
+        """ Verify data of closed trade: """
         expected_order_id = TradingConstants.ORDER_ID_CLOSED.replace('#', '')
         expected_created_time_order = TradingConstants.CLOSED_ORDER_CREATED_TIME.split(' ')
         expected_date = expected_created_time_order[0].split('/')
