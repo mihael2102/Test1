@@ -17,12 +17,21 @@ class WebTraderPage(CRMBasePage):
         sleep(0.1)
         condition1 = condition.capitalize()
         condition2 = condition.upper()
-        click_close_order = self.driver.find_element(By.XPATH, "//button[contains(text(), '" + condition + "') or \
-                                    contains(text(), '" + condition1 + "') or contains(text(), '" + condition2 + "')]")
         try:
-            click_close_order.click()
-        except:
-            self.driver.execute_script("arguments[0].click();", click_close_order)
+            click_close_order = self.driver.find_element(By.XPATH, "//button[contains(text(), '" + condition + "') or \
+                                        contains(text(), '" + condition1 + "') or contains(text(), '" + condition2 + "')]")
+            try:
+                click_close_order.click()
+            except:
+                self.driver.execute_script("arguments[0].click();", click_close_order)
+        except(NoSuchElementException, TimeoutException):
+            self.click_close_order()
+            click_close_order = self.driver.find_element(By.XPATH, "//button[contains(text(), '" + condition + "') or \
+                                                    contains(text(), '" + condition1 + "') or contains(text(), '" + condition2 + "')]")
+            try:
+                click_close_order.click()
+            except:
+                self.driver.execute_script("arguments[0].click();", click_close_order)
         Logging().reportDebugStep(self, "Close pop up 'Close trade' : " + condition)
         return WebTraderPage(self.driver)
 
