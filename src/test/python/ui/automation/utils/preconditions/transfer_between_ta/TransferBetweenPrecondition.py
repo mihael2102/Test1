@@ -170,7 +170,7 @@ class TransferBetweenPrecondition(object):
             MT4TransferBetweenTa(self.driver)\
                 .make_transfer_between_ta_new_ui(MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT,
                                                  MT4ModuleConstants.ACCOUNT_NUMBER_CREDIT,
-                                                 CRMConstants.AMOUNT_TRANSFER_BETWEEN_TA,
+                                                 CRMConstants.AMOUNT_TRANSFER_BETWEEN_TA_1,
                                                  CRMConstants.DESCRIPTION_TRANSFER_BETWEEN_TA)
 
         # Check confirmation message:

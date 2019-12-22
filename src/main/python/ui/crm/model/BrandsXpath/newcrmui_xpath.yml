@@ -18,7 +18,7 @@ ClientProfilePage:
   link_trading_account: "//mat-expansion-panel[@id='trading-accounts']//span[@class='td-link' and text()=' %s ']"
   balance_in_trading_account: "//*[@id='dtlview_Balance']"
 LeadsModule:
-  create_lead_module: "//button[@title='Create lead']"
+  create_lead_module: "//button[@title='Create new']"
   email_field: "(//input[@placeholder='Email'])[1]"
   lead_no: "//span[contains(text(),'LEA')]"
 LeadViewInfo:
