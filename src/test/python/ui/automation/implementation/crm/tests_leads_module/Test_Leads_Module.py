@@ -18,6 +18,7 @@ from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstan
 from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
+from src.main.python.ui.crm.model.pages.clients.ClientDetailsPage import ClientDetailsPage
 
 
 @pytest.mark.run(order=24)
@@ -420,7 +421,5 @@ class LeadModuleTest(BaseTest):
                 self.client1[LeadsModuleConstants.BRAND],
                 self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME])
 
-        CreateLeadsProfilePage(self.driver) \
-            .verify_success_message()
-        CRMHomePage(self.driver) \
-            .click_ok()
+        ClientDetailsPage(self.driver)\
+            .check_client_information_tab_exist()
