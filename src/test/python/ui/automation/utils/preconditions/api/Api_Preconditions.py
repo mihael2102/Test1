@@ -213,7 +213,7 @@ class ApiPrecondition(object):
 
         assert APIConstants.STATUS_OK in check_create_customer_token
 
-        # CRM verification:
+        """ CRM verification: """
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url'))
         ClientsPage(self.driver)\

@@ -72,7 +72,7 @@ class CalendarViewModule(CRMBasePage):
 
     def get_current_date(self):
         current_day = self.driver.find_element(By.XPATH, "//div[@class='fc-center'] ")
-        Logging().reportDebugStep(self, "The current today day is : " + current_day.text)
+        Logging().reportDebugStep(self, "The current today day is: " + current_day.text)
         return current_day.text
 
     def get_day_of_week(self):

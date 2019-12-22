@@ -1,5 +1,5 @@
 import pytest
-
+from src.test.python.ui.automation.utils.preconditions.audit_logs.AuditLogsPrecondition import AuditLogsPrecondition
 from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -9,6 +9,12 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 
 @pytest.mark.run(order=29)
 class AuditLogsModuleTest(BaseTest):
+
+    def test_audit_logs_searching_by_columns(self):
+        AuditLogsPrecondition(self.driver, self.config).searching_by_columns()
+
+    def test_new_events_shown_in_audit_logs(self):
+        AuditLogsPrecondition(self.driver, self.config).new_events_shown_in_audit_logs()
 
     def test_check_tab_audit_logs_module(self):
         CRMLoginPage().open_first_tab_page(Config.url_crm) \
