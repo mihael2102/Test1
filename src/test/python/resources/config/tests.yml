@@ -68,14 +68,14 @@ tests_config:
 #    - test_clients_mass_assign
 #
 ###################################### TASKS ##################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-#  class: AddEventTaskModule
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+  class: AddEventTaskModule
+  tests:
 #    - test_email_icon
 #    - test_sms_icon
-#    - test_mass_edit_tasks
-#    - test_searching_by_columns
-#    - test_sorting_columns
+    - test_mass_edit_tasks
+    - test_searching_by_columns
+    - test_sorting_columns
 #
 ####################################### TASKS CALENDAR VIEW ########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
@@ -188,13 +188,13 @@ tests_config:
 #    - test_crm_configurations_pages_loading
 #
 ######################################### WORKFLOWS MODULE #############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
-  class: WorkflowsModulesTest
-  tests:
-    - test_create_workflows
-    - test_check_workflow_by_status
-    - test_check_workflow_by_country
-    - test_delete_workflow
+#- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
+#  class: WorkflowsModulesTest
+#  tests:
+#    - test_create_workflows
+#    - test_check_workflow_by_status
+#    - test_check_workflow_by_country
+#    - test_delete_workflow
 #
 ########################################### USER_MANAGEMENT ############################################
 #- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management

@@ -74,7 +74,6 @@ class CRMBasePage(object):
         sleep(1)
         self.driver.refresh()
         self.wait_vtiger_loading_to_finish_custom(55)
-        # self.wait_load_element("//div[@class='spinner']", 55)
         self.wait_crm_loading_to_finish_tasks(95)
         Logging().reportDebugStep(self, "The page is refreshed")
 
