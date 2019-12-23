@@ -14,6 +14,7 @@ from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsMod
 from src.main.python.ui.crm.model.mt4.credit_out.MT4CreditOutModule import MT4CreditOutModule
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.pages.workflows.WorkflowsPage import WorkflowsPage
+from src.main.python.ui.crm.model.pages.clients.ClientsModulePage import ClientsModulePage
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMConfigurationPage import CRMConfigurationPage
 from src.main.python.ui.crm.model.pages.workflows.WorkflowsPage import WorkflowsPage
 from src.main.python.ui.crm.model.constants.WorkflowsConstants import WorkflowsConstants
@@ -113,8 +114,11 @@ class WorkflowsPrecondition(object):
         """ Check workflow by status is working """
         CRMHomePage(self.driver)\
             .open_client_module() \
-            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_first_client_by_email(WorkflowsConstants.PANDATS_EMAIL)
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        ClientsModulePage(self.driver)\
+            .set_data_to_email_column_search_field(WorkflowsConstants.PANDATS_EMAIL)\
+            .click_search_btn()\
+            .click_crm_id_list_view(row=5)
         if global_var.current_brand_name == "q8":
             ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_TEST)
         elif global_var.current_brand_name == "gigafx":
@@ -148,7 +152,12 @@ class WorkflowsPrecondition(object):
         """ Check workflow by country is working """
         CRMHomePage(self.driver)\
             .open_client_module()\
-            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        ClientsModulePage(self.driver) \
+            .set_data_to_email_column_search_field(WorkflowsConstants.PANDATS_EMAIL) \
+            .click_search_btn() \
+            .click_crm_id_list_view(row=7)
+        ClientsPage(self.driver)\
             .find_second_client_by_email(WorkflowsConstants.PANDATS_EMAIL)\
             .click_edit_personal_detail()\
             .select_country(WorkflowsConstants.COUNTRY_GUAM)\
