@@ -20,7 +20,8 @@ class TransferFundsTestCA(BaseTest):
         first_transfer_account = client_profile.get_client_account()
         second_transfer_account = client_profile.get_second_client_account()
 
-        CaManageAccounts().switch_first_tab_page() \
+        CaManageAccounts()\
+            .switch_first_tab_page() \
             .open_transfer_between_accounts_button() \
             .choose_transfer_from_account(first_transfer_account) \
             .choose_transfer_to_account(second_transfer_account) \
