@@ -110,7 +110,6 @@ class FinancialTransactionsPage(CRMBasePage):
         return modified_time_element
 
     def is_modified_time_in_search_results(self, modified_time):
-
         # Get collection of time search results because search does not consider hours/minutes but only date
         sleep(2)
         current_year = datetime.datetime.now().year
@@ -119,7 +118,9 @@ class FinancialTransactionsPage(CRMBasePage):
                 "//div[@class='main_tbl_wrapper']//tbody[@id = 'listBody']//td[contains(text(), '%s')]" % current_year)
         for time_item in modified_time_elements:
             if time_item.text == modified_time:
+                Logging().reportDebugStep(self, "Records were found")
                 return True
+        Logging().reportDebugStep(self, "Records were not found")
         return False
 
     def get_trading_account_by_position_from_list(self, position_in_list=3):
@@ -136,14 +137,10 @@ class FinancialTransactionsPage(CRMBasePage):
         self.enter_transaction_number(transaction_number)
         self.enter_client_name(client_name)
         self.enter_transaction_type_text(transaction_type_text)
-
-        # Check that column 'Time' is absent
-        if modified_time is not None:
+        if modified_time:
             self.enter_modified_time(modified_time)
-
         # if trading_account == None:
         #     self.enter_trading_account(trading_account)
-
         self.click_search_button()
         return FinancialTransactionsPage(self.driver)
 
@@ -200,9 +197,10 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionsPage(self.driver)
 
     def open_first_financial_transaction_in_list(self):
-        sleep(2)
-        self.wait_crm_loading_to_finish()
-        transaction_number_element = self.driver.find_element(By.XPATH, "//a[contains(text(), 'MTT')]")
+        sleep(0.2)
+        self.wait_vtiger_loading_to_finish_custom(35)
+        transaction_number_element = super().wait_load_element("//a[contains(text(), 'MTT')]")
+        sleep(0.2)
         self.scroll_into_view(transaction_number_element)
         sleep(3)
         transaction_number_element.click()
@@ -241,7 +239,8 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text("Client")
         self.__fill_search_field_with_value(client_name)
         self.__click_search_now_button()
-        sleep(2)
+        sleep(1)
+        self.wait_vtiger_loading_to_finish_custom(35)
         Logging().reportDebugStep(self, "Searching for client name: %s was performed" % client_name)
         return FinancialTransactionsPage(self.driver)
 
@@ -249,7 +248,8 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text("Transaction Type")
         self.__fill_search_field_with_value(transaction_type)
         self.__click_search_now_button()
-        sleep(2)
+        sleep(1)
+        self.wait_vtiger_loading_to_finish_custom(35)
         Logging().reportDebugStep(self, "Searching for transaction type: %s was performed" % transaction_type)
         return FinancialTransactionsPage(self.driver)
 
@@ -257,7 +257,8 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text("Created Time")
         self.__fill_search_field_with_value(modified_time)
         self.__click_search_now_button()
-        sleep(2)
+        sleep(1)
+        self.wait_vtiger_loading_to_finish_custom(35)
         Logging().reportDebugStep(self, "Searching for modified time: %s was performed" % modified_time)
         return FinancialTransactionsPage(self.driver)
 
