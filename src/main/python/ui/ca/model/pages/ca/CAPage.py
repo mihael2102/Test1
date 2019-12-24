@@ -168,10 +168,11 @@ class CAPage(CRMBasePage):
             EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlFeelLostDepositedCapital']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlFeelLostDepositedCapital']"))
         if global_var.current_brand_name == "gmo":
-            select.select_by_visible_text("I would be upset for a while but it wouldn’t change my financial situation")
+            select.select_by_visible_text\
+                ("I would be upset for a while but the loss will not affect my financial situation to a large extent")
         else:
             select.select_by_visible_text(result_of_trading)
-        Logging().reportDebugStep(self, "Enter  result of trading")
+        Logging().reportDebugStep(self, "Enter result of trading")
         return CAPage(self.driver)
 
     def select_inital_deposit(self, inital_deposit):
@@ -180,7 +181,7 @@ class CAPage(CRMBasePage):
             EC.element_to_be_clickable((By.XPATH, "//select[@id = 'ddlBuyingPower']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@id = 'ddlBuyingPower']"))
         select.select_by_visible_text(inital_deposit)
-        Logging().reportDebugStep(self, "Enter  inital deposit")
+        Logging().reportDebugStep(self, "Enter initial deposit")
         return CAPage(self.driver)
 
     def select_fb_price(self, fb_price):

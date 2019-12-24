@@ -17,3 +17,6 @@ brands:
 
 - name: itrader_global
   config_file: itrader_global.yml
+
+- name: etfinance
+  config_file: etfinance.yml
