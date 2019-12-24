@@ -1,3 +1,6 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CADepositPage:
+  deposit_btn: "//div[@class='cta-block']/a[contains(text(),'Deposit')]"
 CALoginPage:
   login_btn: "//button[@href='/en/account/login']"
   login_email_input: "//input[@name='Email']"
