@@ -41,8 +41,8 @@ class DepositCAPrecondition(object):
                 .click_login()\
                 .verify()\
                 .verify_client("my account")
-            CADepositPage(self.driver) \
-                .click_deposit_btn() \
+            CADepositPage(self.driver)\
+                .click_deposit_btn()\
                 .check_deposit_page_loaded()
         elif global_var.current_brand_name == "24option":
             CALoginPage(self.driver) \
@@ -68,5 +68,6 @@ class DepositCAPrecondition(object):
                 .verify() \
                 .verify_client("Test")
             CADepositPage(self.driver)\
-                .click_deposit_btn()\
+                .click_deposit_btn() \
+                .select_payment_method() \
                 .check_deposit_page_loaded()

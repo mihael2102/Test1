@@ -15,6 +15,17 @@ from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import T
 
 class CADepositPage(CRMBasePage):
 
+    ''' In list of payment methods select PRAXIS '''
+    def select_payment_method(self):
+        sleep(0.1)
+        try:
+            praxis = super().wait_load_element("//div[@class='pay-method-pandats praxis ng-star-inserted']", 8)
+            self.driver.execute_script("arguments[0].click();", praxis)
+            Logging().reportDebugStep(self, "Praxis method was selected successfully")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Selection of payment providers is not available")
+        return CADepositPage(self.driver)
+
     def click_deposit_btn(self):
         sleep(0.1)
         try:
@@ -26,6 +37,7 @@ class CADepositPage(CRMBasePage):
             Logging().reportDebugStep(self, "DEPOSIT pop up is already opened")
         return CADepositPage(self.driver)
 
+    ''' Check in deposit pop up loading Praxis iframe and in iframe available deposit button '''
     def check_deposit_page_loaded(self):
         sleep(0.1)
         ''' Check iframe is loaded '''

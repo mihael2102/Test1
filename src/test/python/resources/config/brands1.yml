@@ -125,5 +125,5 @@ brands:
 #- name: uprofx
 #  config_file: uprofx.yml
 
-- name: 24option
-  config_file: 24option.yml
+#- name: 24option
+#  config_file: 24option.yml
