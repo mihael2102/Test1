@@ -1,4 +1,8 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CADepositPage:
+  deposit_btn: "//span[text()='deposit']"
+  deposit_page: "//a[@id='learnmore_CreditCard']//following-sibling::a[@title='Click to Deposit' and contains(@href,'')]"
+  deposit_iframe: "//app-deposit/app-deposit-praxis-form/div[@class='praxis']/iframe[@class='praxis__iframe']"
 ClientsPage:
   client_status_button: "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']"
   client_status_field: "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']"
