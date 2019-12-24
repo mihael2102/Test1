@@ -76,7 +76,7 @@ tests_config:
 #    - test_mass_edit_tasks
 #    - test_searching_by_columns
 #    - test_sorting_columns
-#
+
 ####################################### TASKS CALENDAR VIEW ########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
 #  class: CalendarView
