@@ -1,3 +1,6 @@
 pretty_name: "Globalix"
 url: "https://globalix.ptscrm.com/"
 url_ca: "https://www.globalix.co/en/home/?lang=en#/"
+email_live_acc: "QATest@pandats.com"
+password_live_acc: "testingQA12"
+number_live_acc: "32342"
