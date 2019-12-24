@@ -1,2 +1,5 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CADepositPage:
+  deposit_page: "//button[@type='submit' and text()=' Deposit ']"
 CALoginPage:
   sign_up: "//a[text()='Start Trading']"
