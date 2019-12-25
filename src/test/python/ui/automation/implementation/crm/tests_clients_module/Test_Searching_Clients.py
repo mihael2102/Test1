@@ -7,11 +7,11 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.constants.ClientsModuleConstants import ClientsModuleConstants
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
+from src.main.python.ui.crm.model.constants.SearchModuleConstants import SearchModuleConstants
 from src.main.python.ui.crm.model.pages.clients.ClientsModulePage import ClientsModulePage
+from src.main.python.ui.crm.model.pages.crm_base_page.ModuleSearchPage import ModuleSearchPage
 
 
 @pytest.mark.run(order=3)
@@ -117,6 +117,51 @@ class SearchingClientsTestCRM(BaseTest):
             .get_data_from_list_view_vtiger(column=ClientsModuleConstants.COLUMN_COUNTRY,
                                             row=ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
-        """ Searching via 'Search in...' button (magnifying glass) """
+        """ Searching via 'Search in...' button (magnifying glass) by CRM ID """
         CRMBaseMethodsPage(self.driver) \
-            .click_magnifying_glass_btn()
+            .click_magnifying_glass_btn()\
+            .set_search_for_field(crm_id)\
+            .select_in_list(SearchModuleConstants.IN_CRM_ID)\
+            .click_search_now_btn()
+        CRMBaseMethodsPage(self.driver) \
+            .global_data_checker(crm_id)
+
+        """ Searching via 'Search in...' button (magnifying glass) by CLIENT STATUS """
+        ModuleSearchPage(self.driver) \
+            .set_search_for_field(client_status) \
+            .select_in_list(SearchModuleConstants.IN_CLIENT_STATUS) \
+            .click_search_now_btn()
+        CRMBaseMethodsPage(self.driver) \
+            .global_data_checker(client_status)
+
+        """ Searching via 'Search in...' button (magnifying glass) by EMAIL """
+        ModuleSearchPage(self.driver) \
+            .set_search_for_field(email) \
+            .select_in_list(SearchModuleConstants.IN_EMAIL) \
+            .click_search_now_btn()
+        CRMBaseMethodsPage(self.driver) \
+            .global_data_checker(email)
+
+        """ Searching via 'Search in...' button (magnifying glass) by CLIENT NAME """
+        ModuleSearchPage(self.driver) \
+            .set_search_for_field(client_name) \
+            .select_in_list(SearchModuleConstants.IN_CLIENT_NAME) \
+            .click_search_now_btn()
+        CRMBaseMethodsPage(self.driver) \
+            .global_data_checker(client_name)
+
+        """ Searching via 'Search in...' button (magnifying glass) by ASSIGNED TO """
+        ModuleSearchPage(self.driver) \
+            .set_search_for_field(assigned_to) \
+            .select_in_list(SearchModuleConstants.IN_ASSIGNED_TO) \
+            .click_search_now_btn()
+        CRMBaseMethodsPage(self.driver) \
+            .global_data_checker(assigned_to)
+
+        """ Searching via 'Search in...' button (magnifying glass) by COUNTRY """
+        ModuleSearchPage(self.driver) \
+            .set_search_for_field(country) \
+            .select_in_list(SearchModuleConstants.IN_COUNTRY) \
+            .click_search_now_btn()
+        CRMBaseMethodsPage(self.driver) \
+            .global_data_checker(country)

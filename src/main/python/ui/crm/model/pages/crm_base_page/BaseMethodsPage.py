@@ -6,9 +6,9 @@ from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 import autoit
-from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from src.main.python.ui.crm.model.pages.crm_base_page.GlobalSearchPage import GlobalSearchPage
+from src.main.python.ui.crm.model.pages.crm_base_page.ModuleSearchPage import ModuleSearchPage
 from datetime import datetime
 import os
 
@@ -111,7 +111,7 @@ class CRMBaseMethodsPage(CRMBasePage):
                     index = str(count)
                     break
             assert len(index)
-            Logging().reportDebugStep(self, "Number of column is: " + index)
+            Logging().reportDebugStep(self, "Number of column " + title + " is: " + index)
             return index
         except(NoSuchElementException, TimeoutException, AssertionError, AttributeError):
             Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
@@ -124,18 +124,19 @@ class CRMBaseMethodsPage(CRMBasePage):
         column_number = self.get_column_number_by_title_vtiger(column)
         if column_number:
             data = super().wait_load_element("//*[@id='listBody']/tr[%s]/td[%s]" % (row, column_number)).text
-            Logging().reportDebugStep(self, "Get data from list view: column = " + column + ", row = " + row)
+            Logging().reportDebugStep(self,
+                                      "Get data from list view (column = " + column + ", row = " + row + "): " + data)
             return data
         else:
             Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
             return False
 
     """
-        Click on ‘Search in ... module’ button (magnifying glass):
+        Click on 'Search in ... module' button (magnifying glass):
     """
     def click_magnifying_glass_btn(self):
         sleep(0.5)
-        glass_btn = super().wait_element_to_be_clickable("//span[@class='glyphicons search']")
+        glass_btn = super().wait_element_to_be_clickable("//button[contains(@title,'Search in')]")
         glass_btn.click()
-        Logging().reportDebugStep(self, "Click ‘Search in...’ button (magnifying glass)")
-        return CRMBaseMethodsPage(self.driver)
+        Logging().reportDebugStep(self, "Click 'Search in...' button (magnifying glass)")
+        return ModuleSearchPage(self.driver)
