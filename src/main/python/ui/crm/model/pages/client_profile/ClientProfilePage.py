@@ -690,8 +690,8 @@ class ClientProfilePage(CRMBasePage):
 
     def click_edit_ticket_pensil(self):
         sleep(1)
-        pencil_button = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//td[12]", timeout=35)
-        # pencil_button = super().wait_load_element("//div[@id = 'tbl_Accounts_HelpDesk']//td[12]/div/div/a[1]")
+        pencil_button = super().wait_load_element\
+            ("//div[@id = 'tbl_Accounts_HelpDesk']//a[@class='glyphicons pencil cntrl']", timeout=35)
         self.driver.execute_script("arguments[0].scrollIntoView();", pencil_button)
         try:
             pencil_button.click()
