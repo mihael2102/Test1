@@ -314,14 +314,14 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def get_client_name(self, user_name):
-        sleep(0.5)
+        sleep(1)
         try:
-            verify_client = super().wait_load_element("//a[contains(text(), '%s')]" % user_name, 35)
+            verify_client = super().wait_load_element("//a[contains(text(), '%s')]" % user_name, 45)
             client = verify_client.text
         except(NoSuchElementException, TimeoutException):
             self.refresh_page()
             sleep(2)
-            verify_client = super().wait_load_element("//a[contains(text(), '%s')]" % user_name)
+            verify_client = super().wait_load_element("//a[contains(text(), '%s')]" % user_name, 45)
             client = verify_client.text
         Logging().reportDebugStep(self, "Get client name: " + client)
         return client

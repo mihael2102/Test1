@@ -166,7 +166,8 @@ class Login_CA_Precondition(object):
                 .get_client_name("Test")
         except(NoSuchElementException, TimeoutException):
             CALoginPage(self.driver) \
-                .refresh_page()\
+                .refresh_page()
+            CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .enter_email(self.config.get_value('email_live_acc')) \
                 .enter_password(self.config.get_value('password_live_acc')) \
