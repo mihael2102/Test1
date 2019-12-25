@@ -135,12 +135,14 @@ class SearchingClientsTestCRM(BaseTest):
             .global_data_checker(client_status)
 
         """ Searching via 'Search in...' button (magnifying glass) by EMAIL """
-        ModuleSearchPage(self.driver) \
-            .set_search_for_field(email) \
-            .select_in_list(SearchModuleConstants.IN_EMAIL) \
-            .click_search_now_btn()
-        CRMBaseMethodsPage(self.driver) \
-            .global_data_checker(email)
+        """ In case email addresses are hidden under 'Send mail' label, don't execute searching """
+        if email.lower() != "send mail":
+            ModuleSearchPage(self.driver) \
+                .set_search_for_field(email) \
+                .select_in_list(SearchModuleConstants.IN_EMAIL) \
+                .click_search_now_btn()
+            CRMBaseMethodsPage(self.driver) \
+                .global_data_checker(email)
 
         """ Searching via 'Search in...' button (magnifying glass) by CLIENT NAME """
         ModuleSearchPage(self.driver) \

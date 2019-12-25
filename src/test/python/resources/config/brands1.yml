@@ -14,8 +14,8 @@ brands:
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
 
-- name: brokerz
-  config_file: brokerz.yml
+#- name: brokerz
+#  config_file: brokerz.yml
 
 #- name: coin-bits
 #  config_file: coin-bits.yml
@@ -26,8 +26,8 @@ brands:
 #- name: ctxprime
 #  config_file: ctxprime.yml
 
-- name: dax-300
-  config_file: dax-300.yml
+#- name: dax-300
+#  config_file: dax-300.yml
 
 #- name: dualix
 #  config_file: dualix.yml
@@ -53,8 +53,8 @@ brands:
 #- name: jonesmutual
 #  config_file: jonesmutual.yml
 
-- name: kontofx
-  config_file: kontofx.yml
+#- name: kontofx
+#  config_file: kontofx.yml
 
 #- name: libramarkets
 #  config_file: libramarkets.yml
@@ -92,8 +92,8 @@ brands:
 - name: ptbanc
   config_file: ptbanc.yml
 
-- name: q8
-  config_file: q8.yml
+#- name: q8
+#  config_file: q8.yml
 
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
@@ -110,8 +110,8 @@ brands:
 #- name: tfxgo
 #  config_file: tfxgo.yml
 
-- name: trade99
-  config_file: trade99.yml
+#- name: trade99
+#  config_file: trade99.yml
 
 #- name: tradenero
 #  config_file: tradenero.yml
