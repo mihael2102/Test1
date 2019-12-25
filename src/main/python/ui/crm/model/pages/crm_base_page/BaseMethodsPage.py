@@ -129,3 +129,13 @@ class CRMBaseMethodsPage(CRMBasePage):
         else:
             Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
             return False
+
+    """
+        Click on ‘Search in ... module’ button (magnifying glass):
+    """
+    def click_magnifying_glass_btn(self):
+        sleep(0.5)
+        glass_btn = super().wait_element_to_be_clickable("//span[@class='glyphicons search']")
+        glass_btn.click()
+        Logging().reportDebugStep(self, "Click ‘Search in...’ button (magnifying glass)")
+        return CRMBaseMethodsPage(self.driver)

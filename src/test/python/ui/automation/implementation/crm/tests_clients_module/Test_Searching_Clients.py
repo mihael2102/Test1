@@ -107,4 +107,16 @@ class SearchingClientsTestCRM(BaseTest):
         email = CRMBaseMethodsPage(self.driver)\
             .get_data_from_list_view_vtiger(column=ClientsModuleConstants.COLUMN_EMAIL,
                                             row=ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_1)
+        client_name = CRMBaseMethodsPage(self.driver)\
+            .get_data_from_list_view_vtiger(column=ClientsModuleConstants.COLUMN_CLIENT_NAME,
+                                            row=ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_1)
+        assigned_to = CRMBaseMethodsPage(self.driver) \
+            .get_data_from_list_view_vtiger(column=ClientsModuleConstants.COLUMN_ASSIGNED_TO,
+                                            row=ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_1)
+        country = CRMBaseMethodsPage(self.driver) \
+            .get_data_from_list_view_vtiger(column=ClientsModuleConstants.COLUMN_COUNTRY,
+                                            row=ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
+        """ Searching via 'Search in...' button (magnifying glass) """
+        CRMBaseMethodsPage(self.driver) \
+            .click_magnifying_glass_btn()

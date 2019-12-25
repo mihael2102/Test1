@@ -11,3 +11,6 @@ class ClientsModuleConstants(object):
     TAB_ALL = "All"
     COLUMN_CLIENT_STATUS = "Client Status"
     COLUMN_EMAIL = "Email"
+    COLUMN_CLIENT_NAME = "Client Name"
+    COLUMN_ASSIGNED_TO = "Assigned To"
+    COLUMN_COUNTRY = "Country"
