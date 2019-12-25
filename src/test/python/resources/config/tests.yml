@@ -50,11 +50,11 @@ tests_config:
 #    - test_perform_convert_lead   # Creates a lead and converts it to a client
 
 #################################### CLIENTS ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
-  class: SearchingClientsTestCRM
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
+#  class: SearchingClientsTestCRM
+#  tests:
 #    - test_make_searching_client_module   # Searches for a client
-    - test_search_client_magnifying_glass
+#    - test_search_client_magnifying_glass
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
 #  class: MassEditTestCRM
@@ -142,10 +142,10 @@ tests_config:
 #    - test_crm_edit_trading_account  # edit trading account
 #
 ######################################## AFFILIATES MODULE ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
-#  class: AffiliateModule
-#  tests:
-#     - test_create_affiliate
+- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
+  class: AffiliateModule
+  tests:
+     - test_create_affiliate
 #
 ####################################### FINANCIAL TRANSACTIONS ######################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
