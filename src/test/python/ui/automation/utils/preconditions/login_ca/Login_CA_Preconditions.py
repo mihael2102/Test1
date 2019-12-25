@@ -16,6 +16,7 @@ from email import parser
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
 from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
+from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 
 
 class Login_CA_Precondition(object):
@@ -79,6 +80,11 @@ class Login_CA_Precondition(object):
             .select_country_first_step(CAConstants.COUNTRY1)\
             .click_submit()\
             .close_payment_popup()
+
+        # Check graphs:
+        WebTraderPage(self.driver) \
+            .open_trading_page() \
+            .check_chart_loaded()
 
         # Personal details form
         if global_var.current_brand_name == "firstindex":
@@ -470,6 +476,7 @@ class Login_CA_Precondition(object):
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .close_campaign_banner() \
+                .close_notifications_banner()\
                 .click_sign_in_btn() \
                 .enter_email(self.config.get_value('email_live_acc')) \
                 .enter_password(self.config.get_value('password_live_acc')) \

@@ -29,6 +29,16 @@ class CALoginPage(CRMBasePage):
             Logging().reportDebugStep(self, "Campaign banner doesn't appears")
         return CALoginPage(self.driver)
 
+    def close_notifications_banner(self):
+        sleep(1)
+        try:
+            close_btn = super().wait_element_to_be_clickable("//button[@id='onesignal-popover-cancel-button']", 5)
+            close_btn.click()
+            Logging().reportDebugStep(self, "Notifications banner is closed")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Notifications banner doesn't appears")
+        return CALoginPage(self.driver)
+
     def click_sign_up(self):
         sleep(1)
         try:
@@ -352,7 +362,6 @@ class CALoginPage(CRMBasePage):
             verify_client = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                                self.__class__.__name__)["client_title_name"] % user_name)
             client = verify_client.text
-            Logging().reportDebugStep(self, "Verify " + client)
         except:
             sleep(1)
             self.refresh_page()
@@ -360,7 +369,7 @@ class CALoginPage(CRMBasePage):
             verify_client = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                 self.__class__.__name__)["client_title_name"] % user_name)
             client = verify_client.text
-            Logging().reportDebugStep(self, "Verify " + client)
+        Logging().reportDebugStep(self, "Verify " + client)
         return client
 
     def click_my_account(self):
