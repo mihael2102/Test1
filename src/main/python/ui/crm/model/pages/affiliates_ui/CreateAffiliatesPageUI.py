@@ -14,6 +14,7 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 class CreateAffiliatesPageUI(CRMBasePage):
 
     def click_add_new_affiliate_btn(self):
+        sleep(0.5)
         add_new_affiliate_btn = super().wait_element_to_be_clickable("//span[contains(text(),' Add new affiliate ')]")
         add_new_affiliate_btn.click()
         Logging().reportDebugStep(self, "Click 'Add new affiliate' button")

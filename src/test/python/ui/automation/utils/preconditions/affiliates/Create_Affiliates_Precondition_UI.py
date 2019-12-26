@@ -5,9 +5,10 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+from src.main.python.ui.crm.model.constants.AffiliatesModuleConstants.ListViewAffiliatesConstants import \
+    ListViewAffiliatesConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
+from src.main.python.ui.crm.model.pages.affiliates_ui.AffiliatesListViewPageUI import AffiliatesListViewPageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.affiliates_ui.CreateAffiliatesPageUI import CreateAffiliatesPageUI
 from src.main.python.ui.crm.model.constants.AffiliatesModuleConstants.CreateAffiliateConstants import \
@@ -52,39 +53,40 @@ class CreateAffiliatesPreconditionUI(object):
             .select_blocked_countries(CreateAffiliateConstants.BLOCKED_COUNTRY)\
             .click_save()
 
+        """ Verify Success message """
+        CRMBaseMethodsPage(self.driver)\
+            .verify_success_message()\
+            .click_ok()
 
-        # affiliate_list_view_page.choose_brand()
-        # affiliate_list_view_page.enter_allowed_ip(CRMConstants.ALLOWED_IP)
-        # affiliate_list_view_page.click_plus_ip()
-        affiliate_list_view_page.select_allowed_methods(CRMConstants.ALLOWED_METHOD)
-        # affiliate_list_view_page.select_blocked_country(CRMConstants.BLOCKED_COUNTRY)
-        # affiliate_list_view_page.click_submit()
-        # success_message = affiliate_list_view_page.get_success_message()
-        #
-        # if global_var.current_brand_name != "solocapitlas":
-        #     assert success_message == CRMConstants.CREATE_AFFILIATE_SUCCCESS
-        #
-        # CRMHomePage(self.driver).refresh_page()
-        # affiliate_list_view_page.search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                                                       LeadsModuleConstants.FIRST_NAME])
-        # AffiliatePage(self.driver).click_on_affiliate(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                                                   LeadsModuleConstants.FIRST_NAME])
-        #
-        # affiliate_name = affiliate_list_view_page.check_name_on_affiliate_details()
-        # assert affiliate_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #     LeadsModuleConstants.FIRST_NAME]
-        #
-        # CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
-        #
-        # CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(
-        #     AffiliateModuleConstants.AFFILIATES_MODULE)
-        # AffiliatePage(self.driver).search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                                                         LeadsModuleConstants.FIRST_NAME])
-        # AffiliatePage(self.driver).delete_affiliate() \
-        #     .confirm_delete_affiliate()
-        #
-        # CRMHomePage(self.driver).refresh_page()
-        # AffiliatePage(self.driver).search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-        #                                                         LeadsModuleConstants.FIRST_NAME])
-        #
-        # AffiliatePage(self.driver).check_data_not_found()
+        """ Verify affiliate exist in table """
+        AffiliatesListViewPageUI(self.driver)\
+            .set_data_column_field(column=ListViewAffiliatesConstants.COLUMN_PARTNER_NAME,
+                                   data=CreateAffiliateConstants.PARTNER_NAME)
+        CRMBaseMethodsPage(self.driver)\
+            .global_data_checker_new_ui(CreateAffiliateConstants.PARTNER_NAME)
+
+        """ Open affiliate's details page and verify Partner name """
+        AffiliatesListViewPageUI(self.driver)\
+            .click_on_partner_name(CreateAffiliateConstants.PARTNER_NAME) \
+            .verify_name_on_affiliate_details(CreateAffiliateConstants.PARTNER_NAME)\
+            .came_back_on_previous_page()
+
+        """ Delete affiliate """
+        AffiliatesListViewPageUI(self.driver) \
+            .set_data_column_field(column=ListViewAffiliatesConstants.COLUMN_PARTNER_NAME,
+                                   data=CreateAffiliateConstants.PARTNER_NAME)\
+            .click_more_icon()\
+            .click_delete_icon()\
+            .click_delete_btn()
+
+        """ Verify Success message """
+        CRMBaseMethodsPage(self.driver) \
+            .verify_success_message() \
+            .click_ok()\
+            .refresh_page()
+
+        """ Verify affiliate was deleted """
+        AffiliatesListViewPageUI(self.driver) \
+            .set_data_column_field(column=ListViewAffiliatesConstants.COLUMN_PARTNER_NAME,
+                                   data=CreateAffiliateConstants.PARTNER_NAME) \
+            .verify_data_not_found()
