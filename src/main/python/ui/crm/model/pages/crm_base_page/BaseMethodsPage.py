@@ -86,10 +86,18 @@ class CRMBaseMethodsPage(CRMBasePage):
             Logging().reportDebugStep(self, item1 + " is not equal to " + item2)
             assert item1 == item2
 
+    """
+        Method returns current server date:
+    """
+
     def get_current_date(self):
         date = datetime.today().strftime('%Y-%m-%d')
         Logging().reportDebugStep(self, "Get current date: " + date)
         return date
+
+    """
+        Method returns current server date and time:
+    """
 
     def get_current_date_time(self):
         date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
@@ -97,7 +105,7 @@ class CRMBaseMethodsPage(CRMBasePage):
         return date
 
     """
-        Method returns number (str) of column in list view:
+        Method gets title of column and returns index (str) of column in list view:
     """
     def get_column_number_by_title_vtiger(self, title):
         sleep(0.1)
@@ -140,3 +148,9 @@ class CRMBaseMethodsPage(CRMBasePage):
         glass_btn.click()
         Logging().reportDebugStep(self, "Click 'Search in...' button (magnifying glass)")
         return ModuleSearchPage(self.driver)
+
+    def verify_success_message(self):
+        message = super().wait_load_element("//div[@class='dialog-content-success mat-dialog-content']").text
+        assert "success" in message.lower()
+        Logging().reportDebugStep(self, "Get message: " + message)
+        return CRMBaseMethodsPage(self.driver)

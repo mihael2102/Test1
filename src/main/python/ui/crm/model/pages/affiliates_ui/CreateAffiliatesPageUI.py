@@ -38,3 +38,40 @@ class CreateAffiliatesPageUI(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", item)
         Logging().reportDebugStep(self, "Select Brand name")
         return CreateAffiliatesPageUI(self.driver)
+
+    def set_allowed_ip(self, ip):
+        sleep(0.1)
+        ip_field = super().wait_load_element("//input[@formcontrolname='allowedIp']")
+        ip_field.clear()
+        ip_field.send_keys(ip)
+        add_btn = super().wait_element_to_be_clickable("//span[text()='Add ']")
+        add_btn.click()
+        Logging().reportDebugStep(self, "Set Allowed IP: " + ip)
+        return CreateAffiliatesPageUI(self.driver)
+
+    def verify_allowed_ip_added(self, ip):
+        sleep(0.1)
+        ip_list = super().wait_load_element("//div[@class='ip-list']/div[1]/div[1]").text
+        assert ip in ip_list
+        Logging().reportDebugStep(self, "Allowed IP added successfully: " + ip)
+        return CreateAffiliatesPageUI(self.driver)
+
+    def select_allowed_methods(self, method):
+        sleep(0.1)
+        item = super().wait_load_element("(//span[contains(text(),'%s')])[1]" % method)
+        self.driver.execute_script("arguments[0].click();", item)
+        Logging().reportDebugStep(self, "Select Allowed Method: " + method)
+        return CreateAffiliatesPageUI(self.driver)
+
+    def select_blocked_countries(self, country):
+        sleep(0.1)
+        item = super().wait_load_element("(//span[contains(text(),'%s')])[1]" % country)
+        self.driver.execute_script("arguments[0].click();", item)
+        Logging().reportDebugStep(self, "Select Blocked Countries: " + country)
+        return CreateAffiliatesPageUI(self.driver)
+
+    def click_save(self):
+        save_btn = super().wait_element_to_be_clickable("//span[contains(text(),'Save')]")
+        save_btn.click()
+        Logging().reportDebugStep(self, "Click Save button")
+        return CreateAffiliatesPageUI(self.driver)

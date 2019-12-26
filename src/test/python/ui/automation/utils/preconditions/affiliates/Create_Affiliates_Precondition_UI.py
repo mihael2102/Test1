@@ -14,7 +14,7 @@ from src.main.python.ui.crm.model.constants.AffiliatesModuleConstants.CreateAffi
     CreateAffiliateConstants
 
 
-class AffiliatesPreconditionUI(object):
+class CreateAffiliatesPreconditionUI(object):
 
     driver = None
     config = None
@@ -45,13 +45,18 @@ class AffiliatesPreconditionUI(object):
         CreateAffiliatesPageUI(self.driver)\
             .click_add_new_affiliate_btn()\
             .set_partner_name(CreateAffiliateConstants.PARTNER_NAME)\
-            .select_brand()
+            .select_brand()\
+            .set_allowed_ip(CreateAffiliateConstants.ALLOWED_IP)\
+            .verify_allowed_ip_added(CreateAffiliateConstants.ALLOWED_IP)\
+            .select_allowed_methods(CreateAffiliateConstants.ALLOWED_METHOD)\
+            .select_blocked_countries(CreateAffiliateConstants.BLOCKED_COUNTRY)\
+            .click_save()
 
 
         # affiliate_list_view_page.choose_brand()
         # affiliate_list_view_page.enter_allowed_ip(CRMConstants.ALLOWED_IP)
         # affiliate_list_view_page.click_plus_ip()
-        # affiliate_list_view_page.select_allowed_methods(CRMConstants.ALLOWED_METHOD)
+        affiliate_list_view_page.select_allowed_methods(CRMConstants.ALLOWED_METHOD)
         # affiliate_list_view_page.select_blocked_country(CRMConstants.BLOCKED_COUNTRY)
         # affiliate_list_view_page.click_submit()
         # success_message = affiliate_list_view_page.get_success_message()
