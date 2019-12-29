@@ -8,7 +8,7 @@ from src.main.python.ui.crm.model.modules.affiliates.EditAffiliateModule import 
 from src.main.python.ui.crm.model.pages.affiliates.AffiliateDetailsViewPage import AffiliateDetailsViewPage
 from src.main.python.utils.logs.Loging import Logging
 from selenium.webdriver.common.by import By
-from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
+from src.main.python.ui.crm.model.constants.AffiliatesModuleConstants.AffiliateModuleConstants import AffiliateModuleConstants
 from src.main.python.utils.config import Config
 
 

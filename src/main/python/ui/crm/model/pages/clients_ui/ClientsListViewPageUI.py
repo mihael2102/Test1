@@ -31,3 +31,17 @@ class ClientsListViewPageUI(CRMBasePage):
         self.wait_loading_to_finish_new_ui(25)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
         return ClientsListViewPageUI(self.driver)
+
+    def select_data_column_field(self, column, data):
+        sleep(0.1)
+        field = super().wait_element_to_be_clickable("//span[@class='placeholder']/span[text()='%s']" % column)
+        field.click()
+        sleep(0.5)
+        item = super().wait_load_element("//span[text()='%s']" % data)
+        self.driver.execute_script("arguments[0].click();", item)
+        done = super().wait_element_to_be_clickable("//button[@class='btn-save']")
+        self.driver.execute_script("arguments[0].click();", done)
+        sleep(1)
+        self.wait_loading_to_finish_new_ui(25)
+        Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
+        return ClientsListViewPageUI(self.driver)

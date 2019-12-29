@@ -14,3 +14,4 @@ class ClientsModuleConstants(object):
     COLUMN_CLIENT_NAME = "Client Name"
     COLUMN_ASSIGNED_TO = "Assigned To"
     COLUMN_COUNTRY = "Country"
+    COLUMN_CRM_ID = "CRM Id"

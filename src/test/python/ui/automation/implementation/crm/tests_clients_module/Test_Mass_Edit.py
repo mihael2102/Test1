@@ -1,5 +1,5 @@
 import pytest
-from src.main.python.ui.crm.model.constants.EditClientConstants import EditClientConstants
+from src.main.python.ui.crm.model.constants.ClientsModuleConstants.EditClientConstants import EditClientConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -8,7 +8,6 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfileUpdate import ClientProfileUpdate
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
 
 

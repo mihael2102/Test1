@@ -62,6 +62,14 @@ class CRMBaseMethodsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Tab " + tab_title + " was opened")
         return CRMBaseMethodsPage(self.driver)
 
+    def open_tab_list_view_ui(self, tab_title):
+        tab = super().wait_element_to_be_clickable("//button/span[contains(text(),'%s')]" % tab_title)
+        tab.click()
+        sleep(1)
+        self.wait_loading_to_finish_new_ui(35)
+        Logging().reportDebugStep(self, "Tab " + tab_title + " was opened")
+        return CRMBaseMethodsPage(self.driver)
+
     def open_module(self, module_title):
         try:
             module = super().wait_load_element("//div[@class='content-menu']//span[contains(text(), '%s')]"
@@ -141,6 +149,24 @@ class CRMBaseMethodsPage(CRMBasePage):
             Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
             return False
 
+    def get_column_number_by_title_ui(self, title):
+        sleep(0.1)
+        try:
+            table = self.driver.find_element_by_xpath("//table/thead[@role='rowgroup']/tr")
+            count = 0
+            index = ""
+            for td in table.find_elements_by_tag_name("th"):
+                count += 1
+                if title.lower() in td.text.lower():
+                    index = str(count)
+                    break
+            assert len(index)
+            Logging().reportDebugStep(self, "Number of column " + title + " is: " + index)
+            return index
+        except(NoSuchElementException, TimeoutException, AssertionError, AttributeError):
+            Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
+            return False
+
     """
         Method return data from cell of table (list view) by column title and row number:
     """
@@ -148,6 +174,19 @@ class CRMBaseMethodsPage(CRMBasePage):
         column_number = self.get_column_number_by_title_vtiger(column)
         if column_number:
             data = super().wait_load_element("//*[@id='listBody']/tr[%s]/td[%s]" % (row, column_number)).text
+            Logging().reportDebugStep(self,
+                                      "Get data from list view (column = " + column + ", row = " + row + "): " + data)
+            return data
+        else:
+            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
+            return False
+
+    def get_data_from_list_view_ui(self, column, row):
+        column_number = self.get_column_number_by_title_ui(column)
+        if column_number:
+            data = super().wait_load_element(
+                "//table/tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][%s]/td[%s]"
+                % (row, column_number)).text
             Logging().reportDebugStep(self,
                                       "Get data from list view (column = " + column + ", row = " + row + "): " + data)
             return data
@@ -180,3 +219,22 @@ class CRMBaseMethodsPage(CRMBasePage):
         button.click()
         Logging().reportDebugStep(self, "Ok button was clicked")
         return CRMBaseMethodsPage(self.driver)
+
+    """
+        Method returns number(int) of records from string 'Show records'
+    """
+
+    def get_number_records(self):
+        sleep(0.1)
+        try:
+            show_records_btn = super().wait_element_to_be_clickable("//button[contains(@class,'show-records')]", 10)
+            self.driver.execute_script("arguments[0].click();", show_records_btn)
+            Logging().reportDebugStep(self, "Click 'Show records' button")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "'Show records' button already clicked")
+        sleep(1)
+        number_records = super().wait_element_to_be_clickable(
+            "//div[contains(@class,'mat-paginator')]//span[contains(@class,'total-records')]").text
+        number_records = number_records.replace(" ", "")
+        Logging().reportDebugStep(self, "Number of records: " + number_records)
+        return int(number_records)

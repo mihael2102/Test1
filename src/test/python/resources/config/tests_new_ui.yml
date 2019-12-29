@@ -51,7 +51,7 @@ tests_config:
 #     - test_create_delete_affiliate_ui
 
 #################################### CLIENTS ###############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
-#  class: SearchingClientsTestCRM
-#  tests:
-#    - test_make_searching_client_module
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_Clients_Module_UI
+  class: TestClientsModuleUI
+  tests:
+    - test_clients_searching_columns_ui

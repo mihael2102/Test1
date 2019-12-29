@@ -1,17 +1,3 @@
-import json
-from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
-from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
-from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
-from src.main.python.ui.crm.model.constants.AutoAssignConstants import AutoAssignConstants
-from src.main.python.ui.crm.model.constants.CampaingsConstants import CampaignsConstants
-from src.main.python.ui.crm.model.constants.FinancialTransactionsModuleConstants import \
-    FinancialTransactionsModuleConstants
-from src.main.python.ui.crm.model.constants.MassEditConstants import MassEditConstants
-from src.main.python.ui.crm.model.constants.TaskModule import TaskModuleConstants
-from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
-from src.main.python.utils.config import Config
-
-
 class DataProviders(object):
     # Class was temporary disabled to avoid problems of using of method with the same name 'get_data_client' from class ConfigProvider
     pass

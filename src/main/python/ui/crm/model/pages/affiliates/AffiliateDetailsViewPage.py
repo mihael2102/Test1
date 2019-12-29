@@ -1,10 +1,7 @@
 from time import sleep
 
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.affiliates.CreateAffiliateModule import CreateAffiliateModule
-from src.main.python.utils.logs.Loging import Logging
 from selenium.webdriver.common.by import By
-from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
 
 
 class AffiliateDetailsViewPage(CRMBasePage):
