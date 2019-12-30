@@ -38,7 +38,10 @@ class MT4CreateAccountModule(CRMBasePage):
         if currency:
             self.select_currency_new_ui(currency)
         if group:
-            self.select_group_new_ui(group)
+            try:
+                self.select_group_new_ui(group)
+            except:
+                Logging().reportDebugStep(self, "No option select group")
         if leverage:
             try:
                 self.select_leverage_new_ui(leverage)

@@ -1,9 +1,8 @@
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.pages.clients.ClientsModulePage import ClientsModulePage
-from src.main.python.ui.crm.model.constants.ClientsModuleConstants.ClientsModuleConstants import ClientsModuleConstants
+from src.main.python.ui.crm.model.constants.ClientsModuleConstants import ClientsModuleConstants
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.clients_ui.ClientsListViewPageUI import ClientsListViewPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
 
 
 class ClientsSearchingColumnsPreconditionUI(object):
@@ -57,7 +56,7 @@ class ClientsSearchingColumnsPreconditionUI(object):
                                         row=ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
         """ Search by table """
-        search = ClientsListViewPageUI(self.driver)
+        search = GlobalTablePageUI(self.driver)
         if crm_id:
             search\
                 .set_data_column_field(column=ClientsModuleConstants.COLUMN_CRM_ID,
@@ -104,6 +103,7 @@ class ClientsSearchingColumnsPreconditionUI(object):
             result\
                 .global_data_checker_new_ui(email)
 
+        """ Verify, only 1 record was found """
         number_records = CRMBaseMethodsPage(self.driver)\
             .get_number_records()
         assert number_records == 1

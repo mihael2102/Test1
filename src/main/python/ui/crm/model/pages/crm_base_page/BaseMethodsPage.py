@@ -155,7 +155,7 @@ class CRMBaseMethodsPage(CRMBasePage):
             table = self.driver.find_element_by_xpath("//table/thead[@role='rowgroup']/tr")
             count = 0
             index = ""
-            for td in table.find_elements_by_tag_name("th"):
+            for td in table.find_elements_by_xpath("//th[@role='columnheader']"):
                 count += 1
                 if title.lower() in td.text.lower():
                     index = str(count)

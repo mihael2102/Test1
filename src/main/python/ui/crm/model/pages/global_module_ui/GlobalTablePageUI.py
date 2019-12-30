@@ -20,7 +20,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 
-class ClientsListViewPageUI(CRMBasePage):
+class GlobalTablePageUI(CRMBasePage):
 
     def set_data_column_field(self, column, data):
         sleep(0.1)
@@ -30,7 +30,7 @@ class ClientsListViewPageUI(CRMBasePage):
         sleep(1)
         self.wait_loading_to_finish_new_ui(25)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
-        return ClientsListViewPageUI(self.driver)
+        return GlobalTablePageUI(self.driver)
 
     def select_data_column_field(self, column, data):
         sleep(0.1)
@@ -44,4 +44,4 @@ class ClientsListViewPageUI(CRMBasePage):
         sleep(1)
         self.wait_loading_to_finish_new_ui(25)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
-        return ClientsListViewPageUI(self.driver)
+        return GlobalTablePageUI(self.driver)

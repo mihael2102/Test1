@@ -23,9 +23,16 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
 
 
-class ClientDetailsPage(CRMBasePage):
+class ClientDetailsPageUI(CRMBasePage):
 
     def check_client_information_tab_exist(self):
         super().wait_load_element("//mat-panel-title[contains(text(),'Client Information')]")
         Logging().reportDebugStep(self, "Client Information tab exist")
-        return ClientDetailsPage(self.driver)
+        return ClientDetailsPageUI(self.driver)
+
+    def get_data_from_info_tag(self, tag_title):
+        sleep(0.1)
+        tag = super().wait_load_element(
+            "(//div[contains(text(),'%s')]//following-sibling::div[contains(@class,'info-tags')])[1]" % tag_title).text
+        Logging().reportDebugStep(self, "Get data from tag '" + tag_title + "': " + tag)
+        return tag

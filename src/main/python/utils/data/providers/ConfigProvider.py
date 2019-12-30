@@ -8,7 +8,7 @@ import random
 import string
 
 from src.main.python.ui.brand.model.client_area_modules.constats.CAClientUpdate import CAClientUpdate
-from src.main.python.ui.crm.model.constants.AffiliatesModuleConstants.AffiliateModuleConstants import AffiliateModuleConstants
+from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
 from src.main.python.ui.crm.model.constants.AuditLogsConstants import AuditLogsConstants
 from src.main.python.ui.crm.model.constants.AutoAssignConstants import AutoAssignConstants
 from src.main.python.ui.crm.model.constants.CampaingsConstants import CampaignsConstants
@@ -337,7 +337,6 @@ class ConfigProvider:
 
     def get_data_lead_info(self, key, value):
         return self.get_value(key, value)
-
 
     def get_data_lead_info_from_json(self, value):
         connection_file = open(

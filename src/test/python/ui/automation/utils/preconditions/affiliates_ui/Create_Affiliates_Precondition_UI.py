@@ -1,12 +1,10 @@
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants.AffiliatesModuleConstants.ListViewAffiliatesConstants import \
-    ListViewAffiliatesConstants
-from src.main.python.ui.crm.model.pages.affiliates_ui.AffiliatesListViewPageUI import AffiliatesListViewPageUI
+from src.main.python.ui.crm.model.constants.AffiliatesModuleConstantsUI import AffiliatesModuleConstantsUI
+from src.main.python.ui.crm.model.pages.affiliates_module_ui.AffiliatesListViewPageUI import AffiliatesListViewPageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.affiliates_ui.CreateAffiliatesPageUI import CreateAffiliatesPageUI
-from src.main.python.ui.crm.model.constants.AffiliatesModuleConstants.CreateAffiliateConstants import \
-    CreateAffiliateConstants
+from src.main.python.ui.crm.model.pages.affiliates_module_ui.CreateAffiliatesPageUI import CreateAffiliatesPageUI
+from src.main.python.ui.crm.model.constants.CreateAffiliateConstants import CreateAffiliateConstants
 
 
 class CreateAffiliatesPreconditionUI(object):
@@ -54,7 +52,7 @@ class CreateAffiliatesPreconditionUI(object):
 
         """ Verify affiliate exist in table """
         AffiliatesListViewPageUI(self.driver)\
-            .set_data_column_field(column=ListViewAffiliatesConstants.COLUMN_PARTNER_NAME,
+            .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_NAME,
                                    data=CreateAffiliateConstants.PARTNER_NAME)
         CRMBaseMethodsPage(self.driver)\
             .global_data_checker_new_ui(CreateAffiliateConstants.PARTNER_NAME)
@@ -67,7 +65,7 @@ class CreateAffiliatesPreconditionUI(object):
 
         """ Delete affiliate """
         AffiliatesListViewPageUI(self.driver) \
-            .set_data_column_field(column=ListViewAffiliatesConstants.COLUMN_PARTNER_NAME,
+            .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_NAME,
                                    data=CreateAffiliateConstants.PARTNER_NAME)\
             .click_more_icon()\
             .click_delete_icon()\
@@ -81,6 +79,6 @@ class CreateAffiliatesPreconditionUI(object):
 
         """ Verify affiliate was deleted """
         AffiliatesListViewPageUI(self.driver) \
-            .set_data_column_field(column=ListViewAffiliatesConstants.COLUMN_PARTNER_NAME,
+            .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_NAME,
                                    data=CreateAffiliateConstants.PARTNER_NAME) \
             .verify_data_not_found()

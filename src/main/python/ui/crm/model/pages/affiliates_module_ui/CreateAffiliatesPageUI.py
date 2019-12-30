@@ -35,7 +35,7 @@ class CreateAffiliatesPageUI(CRMBasePage):
     def select_brand(self):
         sleep(0.2)
         item = super().wait_load_element\
-         ("//label[contains(text(),' Brand name: ')]//following-sibling::nice-select//ul[@class='options-list']//a[1]")
+         ("//label[contains(text(),' Brand name: ')]//following-sibling::nice-select//ul[@class='options-list']/li[1]")
         self.driver.execute_script("arguments[0].click();", item)
         Logging().reportDebugStep(self, "Select Brand name")
         return CreateAffiliatesPageUI(self.driver)
@@ -72,7 +72,7 @@ class CreateAffiliatesPageUI(CRMBasePage):
         return CreateAffiliatesPageUI(self.driver)
 
     def click_save(self):
-        save_btn = super().wait_element_to_be_clickable("//span[contains(text(),'Save')]")
+        save_btn = super().wait_element_to_be_clickable("//button[span[contains(text(),'Save')]]")
         save_btn.click()
         Logging().reportDebugStep(self, "Click Save button")
         return CreateAffiliatesPageUI(self.driver)

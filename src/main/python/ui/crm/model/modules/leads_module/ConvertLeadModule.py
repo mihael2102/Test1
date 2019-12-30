@@ -36,26 +36,41 @@ class ConvertLeadModule(CRMBasePage):
         sleep(1)
         self.click_submit()
 
-    def perform_convert_lead_new_ui(self, first_name, last_name, email, phone, day, month, year, citizenship,
-                                    address, postal_code, city, country, password, currency, referral,
-                                    brand, source_name, phone_area_code=None):
+    def perform_convert_lead_new_ui(self, first_name=None, last_name=None, email=None, phone=None, day=None, month=None,
+                                    year=None, citizenship=None, address=None, postal_code=None, city=None,
+                                    country=None, password=None, currency=None, referral=None, brand=None,
+                                    source_name=None):
         sleep(2)
-        self.set_first_name(first_name)
-        self.set_last_name(last_name)
-        self.set_email(email)
-        self.set_phone(phone)
-        self.set_birth_day(day, month, year)
-        self.set_citizenship_new_ui(citizenship)
-        self.set_address(address)
-        self.set_postal_code(postal_code)
-        self.set_city(city)
-        self.set_country(country)
-        self.set_password(password)
-        self.set_currency(currency)
-        self.set_source_name(source_name)
+        if first_name:
+            self.set_first_name(first_name)
+        if last_name:
+            self.set_last_name(last_name)
+        if email:
+            self.set_email(email)
+        if phone:
+            self.set_phone(phone)
+        if day and month and year:
+            self.set_birth_day(day, month, year)
+        if citizenship:
+            self.set_citizenship_new_ui(citizenship)
+        if address:
+            self.set_address(address)
+        if postal_code:
+            self.set_postal_code(postal_code)
+        if city:
+            self.set_city(city)
+        if country:
+            self.set_country(country)
+        if password:
+            self.set_password(password)
+        if currency:
+            self.set_currency(currency)
+        if source_name:
+            self.set_source_name(source_name)
         if referral:
             self.set_referral(referral)
-        self.set_brand(brand)
+        if brand:
+            self.set_brand(brand)
         sleep(1)
         self.click_submit()
 
