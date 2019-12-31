@@ -65,8 +65,5 @@ brands:
 - name: trade99
   config_file: trade99.yml
 
-- name: tradenero
-  config_file: tradenero.yml
-
 - name: tradixa
   config_file: tradixa.yml
