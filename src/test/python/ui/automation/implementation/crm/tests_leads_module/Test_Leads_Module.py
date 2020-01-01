@@ -18,7 +18,7 @@ from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstan
 from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
-from src.main.python.ui.crm.model.pages.clients.ClientDetailsPage import ClientDetailsPage
+from src.main.python.ui.crm.model.pages.clients.ClientDetailsPageUI import ClientDetailsPageUI
 
 
 @pytest.mark.run(order=24)
@@ -403,23 +403,23 @@ class LeadModuleTest(BaseTest):
 
         ConvertLeadModule(self.driver)\
             .perform_convert_lead_new_ui(
-                self.client1[LeadsModuleConstants.FIRST_NAME],
-                self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                self.client1[LeadsModuleConstants.EMAIL],
-                self.client1[LeadsModuleConstants.PHONE],
-                self.client1[LeadsModuleConstants.DAY],
-                self.client1[LeadsModuleConstants.MONTH],
-                self.client1[LeadsModuleConstants.YEAR],
-                self.client1[LeadsModuleConstants.CITIZENSHIP],
-                self.client1[LeadsModuleConstants.STREET],
-                self.client1[LeadsModuleConstants.POSTAL_CODE],
-                self.client1[LeadsModuleConstants.CITY],
-                self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-                self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-                self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                self.client1[LeadsModuleConstants.BRAND],
-                self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME])
+                first_name=self.client1[LeadsModuleConstants.FIRST_NAME],
+                last_name=self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
+                email=self.client1[LeadsModuleConstants.EMAIL],
+                phone=self.client1[LeadsModuleConstants.PHONE],
+                day=self.client1[LeadsModuleConstants.DAY],
+                month=self.client1[LeadsModuleConstants.MONTH],
+                year=self.client1[LeadsModuleConstants.YEAR],
+                citizenship=self.client1[LeadsModuleConstants.CITIZENSHIP],
+                address=self.client1[LeadsModuleConstants.STREET],
+                postal_code=self.client1[LeadsModuleConstants.POSTAL_CODE],
+                city=self.client1[LeadsModuleConstants.CITY],
+                # country=self.client1[LeadsModuleConstants.FIRST_COUNTRY],
+                password=self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
+                currency=self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
+                referral=self.client1[LeadsModuleConstants.FIRST_REFERRAL],
+                # brand=self.client1[LeadsModuleConstants.BRAND],
+                source_name=self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME])
 
-        ClientDetailsPage(self.driver)\
+        ClientDetailsPageUI(self.driver)\
             .check_client_information_tab_exist()
