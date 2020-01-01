@@ -73,8 +73,8 @@ class CRMBasePage(object):
     def refresh_page(self):
         sleep(1)
         self.driver.refresh()
+        sleep(1)
         self.wait_vtiger_loading_to_finish_custom(55)
-        # self.wait_load_element("//div[@class='spinner']", 55)
         self.wait_crm_loading_to_finish_tasks(95)
         Logging().reportDebugStep(self, "The page is refreshed")
 
@@ -104,6 +104,9 @@ class CRMBasePage(object):
 
     def wait_vtiger_loading_to_finish_custom(self, time):
         self.wait_element_to_be_disappear("//div[@class='loader']", time)
+
+    def wait_loading_to_finish_new_ui(self, time):
+        self.wait_element_to_be_disappear("//mat-spinner", time)
 
     def get_current_url(self):
         return self.driver.current_url

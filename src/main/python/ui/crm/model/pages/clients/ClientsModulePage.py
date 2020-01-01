@@ -44,3 +44,26 @@ class ClientsModulePage(CRMBasePage):
             .get_attribute("innerText")
         Logging().reportDebugStep(self, "Get Created Time from list view(row = " + row + "): " + client_status)
         return client_status
+
+    def set_data_to_email_column_search_field(self, email):
+        sleep(0.1)
+        email_field = super().wait_load_element("//input[@id='tks_email1']")
+        email_field.clear()
+        email_field.send_keys(email)
+        Logging().reportDebugStep(self, "Set data to Email field: " + email)
+        return ClientsModulePage(self.driver)
+
+    def click_search_btn(self):
+        search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
+        search_button.click()
+        Logging().reportDebugStep(self, "Click Search button")
+        sleep(1)
+        self.wait_vtiger_loading_to_finish_custom(35)
+        return ClientsModulePage(self.driver)
+
+    def click_crm_id_list_view(self, row):
+        sleep(0.5)
+        crm_id = super().wait_load_element("//tr[contains(@id,'row')][%s]//a[contains(@title,'ACC')]" % row)
+        self.driver.execute_script("arguments[0].click();", crm_id)
+        Logging().reportDebugStep(self, "Open client's details page")
+        return ClientsModulePage(self.driver)
