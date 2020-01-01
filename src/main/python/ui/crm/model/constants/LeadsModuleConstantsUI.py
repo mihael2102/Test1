@@ -15,3 +15,4 @@ class LeadsModuleConstantsUI(object):
     COLUMN_ASSIGNED_TO = "Assigned To"
     COLUMN_COUNTRY = "Country"
     COLUMN_LEAD_NO = "Lead No"
+    SHORT_EMAIL = "pandaqa"

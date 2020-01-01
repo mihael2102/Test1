@@ -16,6 +16,7 @@ from src.main.python.ui.crm.model.constants.ClientDetailsConstants import Client
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
+from src.main.python.ui.crm.model.pages.clients.ClientDetailsPageUI import ClientDetailsPageUI
 
 
 class WithdrawPreconditionCRM(object):
@@ -189,3 +190,34 @@ class WithdrawPreconditionCRM(object):
                 if count == 10:
                     break
             assert actual_balance == expected_balance
+
+        """ Verify data in info tag Withdrawals was updated """
+        withdrawals_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstants.TAG_WITHDRAWALS)
+        if global_var.current_brand_name == "trade99":
+            assert CRMConstants.AMOUNT_WITHDRAW_BTC in withdrawals_tag
+        else:
+            assert CRMConstants.AMOUNT_WITHDRAW.split(".")[0] in withdrawals_tag
+
+        """ Verify data in info tag Balance, Equity, Free Margin, Net Deposit was updated """
+        balance_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstants.TAG_BALANCE)
+        equity_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstants.TAG_EQUITY)
+        free_margin_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstants.TAG_FREE_MARGIN)
+        net_deposit_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstants.TAG_NET_DEPOSIT)
+        if global_var.current_brand_name == "trade99":
+            expected_balance = float(CRMConstants.AMOUNT_DEPOSIT_BTC) - float(CRMConstants.AMOUNT_WITHDRAW_BTC)
+            assert str(expected_balance) in balance_tag
+            assert str(expected_balance) in equity_tag
+            assert str(expected_balance) in free_margin_tag
+            assert str(expected_balance) in net_deposit_tag
+        else:
+            expected_balance = int(((CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT).split('.'))[0]) \
+                               - int(CRMConstants.AMOUNT_WITHDRAW)
+            assert str(expected_balance) in balance_tag
+            assert str(expected_balance) in equity_tag
+            assert str(expected_balance) in free_margin_tag
+            assert str(expected_balance) in net_deposit_tag

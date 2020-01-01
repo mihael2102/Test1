@@ -22,9 +22,9 @@ class CRMBaseMethodsPage(CRMBasePage):
         Logging().reportDebugStep(self, "All records on the page were selected")
         return CRMBaseMethodsPage(self.driver)
 
-    '''
-        Check every line of table contain needed string:
-    '''
+    """
+       Check every line of table contain needed string:
+    """
 
     def global_data_checker(self, data):
         try:

@@ -45,3 +45,11 @@ class GlobalTablePageUI(CRMBasePage):
         self.wait_loading_to_finish_new_ui(25)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
         return GlobalTablePageUI(self.driver)
+
+    def select_all_records(self):
+        sleep(0.2)
+        all_records_checkbox = super().wait_element_to_be_clickable(
+            "//th[@role='columnheader']//label[@class='mat-checkbox-layout']")
+        all_records_checkbox.click()
+        Logging().reportDebugStep(self, "All records on the page were selected")
+        return GlobalTablePageUI(self.driver)

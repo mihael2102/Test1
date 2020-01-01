@@ -32,7 +32,7 @@ class MT4CreateAccountModule(CRMBasePage):
         self.click_create()
         return ClientProfilePage(self.driver)
 
-    def create_account_new_ui(self, server, currency, group, leverage):
+    def create_account_new_ui(self, server=None, currency=None, group=None, leverage=None):
         if server:
             self.select_server_new_ui(server)
         if currency:
@@ -172,7 +172,7 @@ class MT4CreateAccountModule(CRMBasePage):
         return MT4CreateAccountModule(self.driver)
 
     def click_create(self):
-        button = self.wait_load_element("//button[contains(., 'Create')]")
+        button = self.wait_element_to_be_clickable("//button[contains(., 'Create')]")
         button.click()
         Logging().reportDebugStep(self, "The Create button was clicked")
 

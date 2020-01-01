@@ -26,6 +26,7 @@ from selenium.webdriver.common.keys import Keys
 class ClientDetailsPageUI(CRMBasePage):
 
     def check_client_information_tab_exist(self):
+        sleep(0.1)
         super().wait_load_element("//mat-panel-title[contains(text(),'Client Information')]")
         Logging().reportDebugStep(self, "Client Information tab exist")
         return ClientDetailsPageUI(self.driver)

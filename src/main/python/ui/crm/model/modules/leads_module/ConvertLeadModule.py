@@ -207,7 +207,7 @@ class ConvertLeadModule(CRMBasePage):
             "//input[@placeholder='Choose date of birth']")
         self.driver.execute_script("arguments[0].click();", date_field)
         current_date_btn = super().wait_load_element(
-            "(//span[@class='mat-button-wrapper' and contains(text(),'2019')])[1]")
+            "(//span[@class='mat-button-wrapper' and contains(text(),'2020')])[1]")
         current_date_btn.click()
         prev_btn = super().wait_load_element(
                                 "(//button[@class='mat-calendar-previous-button mat-icon-button mat-button-base'])[1]")
