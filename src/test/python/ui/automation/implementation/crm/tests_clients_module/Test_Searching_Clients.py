@@ -12,6 +12,7 @@ from selenium.common.exceptions import TimeoutException
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.clients.ClientsModulePage import ClientsModulePage
+from src.main.python.ui.crm.model.pages.crm_base_page.ModuleSearchPage import ModuleSearchPage
 
 
 @pytest.mark.run(order=3)
@@ -30,30 +31,10 @@ class SearchingClientsTestCRM(BaseTest):
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
 
-        if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "swiftcfd") \
-                or (global_var.current_brand_name == "b-finance"):
-                sleep(15)
-                ClientsPage(self.driver).perform_searching(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
-
-        elif global_var.current_brand_name == "4xfx" or global_var.current_brand_name == "gigafx":
-                ClientsPage(self.driver).perform_searching(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_C_NEW),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
-
-        elif (global_var.current_brand_name == "safemarkets") or (global_var.current_brand_name == "uft") or \
-                (global_var.current_brand_name == "q8"):
+        if global_var.current_brand_name == "uft" or \
+           global_var.current_brand_name == "q8":
                 ClientsPage(self.driver).perform_searching(
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_NEW),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
-
-        elif global_var.current_brand_name == "goldenmarkets":
-                ClientsPage(self.driver).perform_searching(
-                    self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.CLIENT_STATUS_B_TEST),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
@@ -63,7 +44,7 @@ class SearchingClientsTestCRM(BaseTest):
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL),
                     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_COUNTRY))
 
-        elif (global_var.current_brand_name == "uprofx") or (global_var.current_brand_name == "xtraderfx"):
+        elif global_var.current_brand_name == "uprofx":
             ClientsPage(self.driver).enter_email(
                 self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
@@ -107,4 +88,63 @@ class SearchingClientsTestCRM(BaseTest):
         email = CRMBaseMethodsPage(self.driver)\
             .get_data_from_list_view_vtiger(column=ClientsModuleConstants.COLUMN_EMAIL,
                                             row=ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_1)
+        client_name = CRMBaseMethodsPage(self.driver)\
+            .get_data_from_list_view_vtiger(column=ClientsModuleConstants.COLUMN_CLIENT_NAME,
+                                            row=ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_1)
+        assigned_to = CRMBaseMethodsPage(self.driver) \
+            .get_data_from_list_view_vtiger(column=ClientsModuleConstants.COLUMN_ASSIGNED_TO,
+                                            row=ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_1)
+        country = CRMBaseMethodsPage(self.driver) \
+            .get_data_from_list_view_vtiger(column=ClientsModuleConstants.COLUMN_COUNTRY,
+                                            row=ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
+        """ Searching via 'Search in...' button (magnifying glass) by CRM ID """
+        CRMBaseMethodsPage(self.driver) \
+            .click_magnifying_glass_btn()\
+            .set_search_for_field(crm_id)\
+            .select_in_list(SearchModuleConstants.IN_CRM_ID)\
+            .click_search_now_btn()
+        CRMBaseMethodsPage(self.driver) \
+            .global_data_checker(crm_id)
+
+        """ Searching via 'Search in...' button (magnifying glass) by CLIENT STATUS """
+        ModuleSearchPage(self.driver) \
+            .set_search_for_field(client_status) \
+            .select_in_list(SearchModuleConstants.IN_CLIENT_STATUS) \
+            .click_search_now_btn()
+        CRMBaseMethodsPage(self.driver) \
+            .global_data_checker(client_status)
+
+        """ Searching via 'Search in...' button (magnifying glass) by EMAIL """
+        """ In case email addresses are hidden under 'Send mail' label, don't execute searching """
+        if email.lower() != "send mail":
+            ModuleSearchPage(self.driver) \
+                .set_search_for_field(email) \
+                .select_in_list(SearchModuleConstants.IN_EMAIL) \
+                .click_search_now_btn()
+            CRMBaseMethodsPage(self.driver) \
+                .global_data_checker(email)
+
+        """ Searching via 'Search in...' button (magnifying glass) by CLIENT NAME """
+        ModuleSearchPage(self.driver) \
+            .set_search_for_field(client_name) \
+            .select_in_list(SearchModuleConstants.IN_CLIENT_NAME) \
+            .click_search_now_btn()
+        CRMBaseMethodsPage(self.driver) \
+            .global_data_checker(client_name)
+
+        """ Searching via 'Search in...' button (magnifying glass) by ASSIGNED TO """
+        ModuleSearchPage(self.driver) \
+            .set_search_for_field(assigned_to) \
+            .select_in_list(SearchModuleConstants.IN_ASSIGNED_TO) \
+            .click_search_now_btn()
+        CRMBaseMethodsPage(self.driver) \
+            .global_data_checker(assigned_to)
+
+        """ Searching via 'Search in...' button (magnifying glass) by COUNTRY """
+        ModuleSearchPage(self.driver) \
+            .set_search_for_field(country) \
+            .select_in_list(SearchModuleConstants.IN_COUNTRY) \
+            .click_search_now_btn()
+        CRMBaseMethodsPage(self.driver) \
+            .global_data_checker(country)

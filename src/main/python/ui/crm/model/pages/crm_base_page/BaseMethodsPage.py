@@ -6,9 +6,9 @@ from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 import autoit
-from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from src.main.python.ui.crm.model.pages.crm_base_page.GlobalSearchPage import GlobalSearchPage
+from src.main.python.ui.crm.model.pages.crm_base_page.ModuleSearchPage import ModuleSearchPage
 from datetime import datetime
 import os
 
@@ -22,15 +22,29 @@ class CRMBaseMethodsPage(CRMBasePage):
         Logging().reportDebugStep(self, "All records on the page were selected")
         return CRMBaseMethodsPage(self.driver)
 
-    '''
-        Check every line of table contain needed string:
-    '''
+    """
+       Check every line of table contain needed string:
+    """
 
     def global_data_checker(self, data):
         try:
             table = self.driver.find_element_by_xpath("//*[@id='listBody']")
             row_count = 0
             for tr in table.find_elements_by_tag_name("tr"):
+                assert data.lower() in tr.text.lower()
+                row_count += 1
+            Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
+        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            super().wait_visible_of_element\
+                ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
+            Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
+        return CRMBaseMethodsPage(self.driver)
+
+    def global_data_checker_new_ui(self, data):
+        try:
+            table = self.driver.find_element_by_xpath("//tbody[@role='rowgroup']")
+            row_count = 0
+            for tr in table.find_elements_by_xpath("//tbody[@role='rowgroup']/tr[not (contains(@style,'hidden'))]"):
                 assert data.lower() in tr.text.lower()
                 row_count += 1
             Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
@@ -48,12 +62,22 @@ class CRMBaseMethodsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Tab " + tab_title + " was opened")
         return CRMBaseMethodsPage(self.driver)
 
+    def open_tab_list_view_ui(self, tab_title):
+        tab = super().wait_element_to_be_clickable("//button/span[contains(text(),'%s')]" % tab_title)
+        tab.click()
+        sleep(1)
+        self.wait_loading_to_finish_new_ui(35)
+        Logging().reportDebugStep(self, "Tab " + tab_title + " was opened")
+        return CRMBaseMethodsPage(self.driver)
+
     def open_module(self, module_title):
         try:
-            module = super().wait_load_element("//a[contains(text(), '%s')]" % module_title)
+            module = super().wait_load_element("//div[@class='content-menu']//span[contains(text(), '%s')]"
+                                               % module_title)
             self.driver.execute_script("arguments[0].click();", module)
             self.wait_vtiger_loading_to_finish_custom(35)
             self.wait_crm_loading_to_finish_tasks(35)
+            self.wait_loading_to_finish_new_ui(35)
             Logging().reportDebugStep(self, "Module " + module_title + " was opened")
             return CRMBaseMethodsPage(self.driver)
         except(NoSuchElementException, TimeoutException):
@@ -86,10 +110,18 @@ class CRMBaseMethodsPage(CRMBasePage):
             Logging().reportDebugStep(self, item1 + " is not equal to " + item2)
             assert item1 == item2
 
+    """
+        Method returns current server date:
+    """
+
     def get_current_date(self):
         date = datetime.today().strftime('%Y-%m-%d')
         Logging().reportDebugStep(self, "Get current date: " + date)
         return date
+
+    """
+        Method returns current server date and time:
+    """
 
     def get_current_date_time(self):
         date = datetime.today().strftime('%Y-%m-%d-%H:%M:%S')
@@ -97,7 +129,7 @@ class CRMBaseMethodsPage(CRMBasePage):
         return date
 
     """
-        Method returns number (str) of column in list view:
+        Method gets title of column and returns index (str) of column in list view:
     """
     def get_column_number_by_title_vtiger(self, title):
         sleep(0.1)
@@ -111,7 +143,25 @@ class CRMBaseMethodsPage(CRMBasePage):
                     index = str(count)
                     break
             assert len(index)
-            Logging().reportDebugStep(self, "Number of column is: " + index)
+            Logging().reportDebugStep(self, "Number of column " + title + " is: " + index)
+            return index
+        except(NoSuchElementException, TimeoutException, AssertionError, AttributeError):
+            Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
+            return False
+
+    def get_column_number_by_title_ui(self, title):
+        sleep(0.1)
+        try:
+            table = self.driver.find_element_by_xpath("//table/thead[@role='rowgroup']/tr")
+            count = 0
+            index = ""
+            for td in table.find_elements_by_xpath("//th[@role='columnheader']"):
+                count += 1
+                if title.lower() in td.text.lower():
+                    index = str(count)
+                    break
+            assert len(index)
+            Logging().reportDebugStep(self, "Number of column " + title + " is: " + index)
             return index
         except(NoSuchElementException, TimeoutException, AssertionError, AttributeError):
             Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
@@ -124,8 +174,67 @@ class CRMBaseMethodsPage(CRMBasePage):
         column_number = self.get_column_number_by_title_vtiger(column)
         if column_number:
             data = super().wait_load_element("//*[@id='listBody']/tr[%s]/td[%s]" % (row, column_number)).text
-            Logging().reportDebugStep(self, "Get data from list view: column = " + column + ", row = " + row)
+            Logging().reportDebugStep(self,
+                                      "Get data from list view (column = " + column + ", row = " + row + "): " + data)
             return data
         else:
             Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
             return False
+
+    def get_data_from_list_view_ui(self, column, row):
+        column_number = self.get_column_number_by_title_ui(column)
+        if column_number:
+            data = super().wait_load_element(
+                "//table/tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][%s]/td[%s]"
+                % (row, column_number)).text
+            Logging().reportDebugStep(self,
+                                      "Get data from list view (column = " + column + ", row = " + row + "): " + data)
+            return data
+        else:
+            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
+            return False
+
+    """
+        Click on 'Search in ... module' button (magnifying glass):
+    """
+    def click_magnifying_glass_btn(self):
+        sleep(0.5)
+        glass_btn = super().wait_element_to_be_clickable("//button[contains(@title,'Search in')]")
+        glass_btn.click()
+        Logging().reportDebugStep(self, "Click 'Search in...' button (magnifying glass)")
+        return ModuleSearchPage(self.driver)
+
+    """
+        Method checks, that message in pop up contains 'Success' and returns full text of message:
+    """
+
+    def verify_success_message(self):
+        message = super().wait_load_element("//div[contains(@class,'dialog-content-success mat-dialog-content')]").text
+        assert "success" in message.lower()
+        Logging().reportDebugStep(self, "Get message: " + message)
+        return CRMBaseMethodsPage(self.driver)
+
+    def click_ok(self):
+        button = self.wait_load_element("//span[contains(text(),'OK')]")
+        button.click()
+        Logging().reportDebugStep(self, "Ok button was clicked")
+        return CRMBaseMethodsPage(self.driver)
+
+    """
+        Method returns number(int) of records from string 'Show records'
+    """
+
+    def get_number_records(self):
+        sleep(0.1)
+        try:
+            show_records_btn = super().wait_element_to_be_clickable("//button[contains(@class,'show-records')]", 10)
+            self.driver.execute_script("arguments[0].click();", show_records_btn)
+            Logging().reportDebugStep(self, "Click 'Show records' button")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "'Show records' button already clicked")
+        sleep(1)
+        number_records = super().wait_element_to_be_clickable(
+            "//div[contains(@class,'mat-paginator')]//span[contains(@class,'total-records')]").text
+        number_records = number_records.replace(" ", "")
+        Logging().reportDebugStep(self, "Number of records: " + number_records)
+        return int(number_records)
