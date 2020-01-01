@@ -236,11 +236,11 @@ tests_config:
   class: AuditLogsModuleTest
   tests:
     - test_audit_logs_searching_by_columns
-#    - test_new_events_shown_in_audit_logs
+    - test_new_events_shown_in_audit_logs
 
 ############################################# GLOBAL SEARCH ################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Global_Search
-#  class: TestGlobalSearch
-#  tests:
-#    - test_global_search_leads
-#    - test_global_search_tasks
+- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Global_Search
+  class: TestGlobalSearch
+  tests:
+    - test_global_search_leads
+    - test_global_search_tasks
