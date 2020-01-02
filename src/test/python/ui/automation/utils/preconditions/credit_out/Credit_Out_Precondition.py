@@ -5,7 +5,7 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from src.main.python.ui.crm.model.pages.clients.ClientDetailsPageUI import ClientDetailsPageUI
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
@@ -148,8 +148,8 @@ class CreditOutPrecondition(object):
             assert actual_credit_btc == expected_credit
         else:
             actual_credit = int(TradingAccountsInformationPage(self.driver).get_credit_text()[0])
-            expected_credit = int(((CRMConstants.AMOUNT_CREDIT_IN).split('.'))[0]) - int\
-                                 (((CRMConstants.AMOUNT_CREDIT_OUT).split('.'))[0])
+            expected_credit = int(CRMConstants.AMOUNT_CREDIT_IN.split('.')[0]) - \
+                              int(CRMConstants.AMOUNT_CREDIT_OUT.split('.')[0])
             count = 0
             while actual_credit != expected_credit:
                 MT4DepositModule(self.driver).refresh_page()
@@ -158,6 +158,17 @@ class CreditOutPrecondition(object):
                 if count == 7:
                     break
             assert actual_credit == expected_credit
+
+        """ Verify data in info tag Credit was updated """
+        credit_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstants.TAG_CREDIT)
+        if global_var.current_brand_name == "trade99":
+            expected_credit = float(CRMConstants.AMOUNT_CREDIT_IN_BTC) - float(CRMConstants.AMOUNT_CREDIT_OUT_BTC)
+            assert expected_credit in credit_tag
+        else:
+            expected_credit = int(CRMConstants.AMOUNT_CREDIT_IN.split('.')[0]) - \
+                              int(CRMConstants.AMOUNT_CREDIT_OUT.split('.')[0])
+            assert expected_credit in credit_tag
 
     def add_live_account(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login()\
