@@ -106,7 +106,10 @@ class FinancialTransactionsPage(CRMBasePage):
         if global_var.current_brand_name != "forex_staging":
             self.enter_transaction_type_text(transaction_type_text)
         # self.enter_modified_time(modified_time)
-        self.enter_trading_account(trading_account)
+        try:
+            self.enter_trading_account(trading_account)
+        except:
+            Logging().reportDebugStep(self, "Trading account column is not existing")
         self.click_search_button()
         self.wait_loading_to_finish(35)
         return FinancialTransactionsPage(self.driver)
