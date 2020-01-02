@@ -10,7 +10,7 @@ from src.test.python.ui.automation.BaseTest import *
 def Send_Email_XML(filepath, content):
 
     fromaddr = Config.email_address
-    to = "michael.oryshchenko@pandats.com"
+    to = Config.email_address
     cc = ""
     bcc = ""
     # instance of MIMEMultipart
@@ -46,9 +46,9 @@ def Send_Email_XML(filepath, content):
     msg.attach(MIMEText(body, 'plain'))
 
     # attach the screenshot:
-    img_data = open(Config.screenshot_path, "rb").read()
-    screenshot = MIMEImage(img_data, name=os.path.basename(Config.screenshot_path))
-    msg.attach(screenshot)
+    # img_data = open(Config.screenshot_path, "rb").read()
+    # screenshot = MIMEImage(img_data, name=os.path.basename(Config.screenshot_path))
+    # msg.attach(screenshot)
 
     # open the file to be sent
     filepath = filepath.replace("\\","/")
