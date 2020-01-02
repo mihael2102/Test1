@@ -9,6 +9,7 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
 
+
 class AffiliatesPrecondition(object):
 
     driver = None
@@ -35,7 +36,7 @@ class AffiliatesPrecondition(object):
             .open_more_list_modules()\
             .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
 
-        '''Open popup and create new affiliate '''
+        ''' Open popup and create new affiliate '''
 
         affiliate_list_view_page.add_new_affiliate()
         affiliate_list_view_page.add_partner_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[

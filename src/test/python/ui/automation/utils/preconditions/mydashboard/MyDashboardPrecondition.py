@@ -29,41 +29,52 @@ class MyDashboardPrecondition(object):
         self.config = config
 
     def check_mydashboard_loading(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                                            self.config.get_value(TestDataConstants.OTP_SECRET))
-        CRMHomePage(self.driver).open_more_list_modules()\
-                                .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
-        MyDashboardPage(self.driver).check_latest_sales_loaded() \
-                                    .select_show_all_tab() \
-                                    .check_task_section_contains_record() \
-                                    .check_client_segmentation_contains_record()
-
-    def edit_event(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
-        CRMHomePage(self.driver).open_more_list_modules() \
+        CRMHomePage(self.driver)\
+            .open_more_list_modules()\
             .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
-        MyDashboardPage(self.driver).select_show_all_tab()
-        MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
-        account_name = MyDashboardPage(self.driver).get_account_name()
-        MyDashboardPage(self.driver).click_pencil_icon()
-        EditEventModule(self.driver).edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
-                                                TaskModuleConstants.SECOND_EVENT_TYPE,
-                                                TaskModuleConstants.SECOND_DURATION,
-                                                CRMConstants.THIRD_DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
-                                                CRMConstants.THIRD_DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
-                                                TaskModuleConstants.SECOND_ASSIGN_TO,
-                                                TaskModuleConstants.SECOND_SUBJECT,
-                                                TaskModuleConstants.SECOND_PRIORITY,
-                                                TaskModuleConstants.DESCRIPTION_ADD_EVENT)
+        MyDashboardPage(self.driver)\
+            .check_latest_sales_loaded() \
+            .select_show_all_tab() \
+            .check_task_section_contains_record() \
+            .check_client_segmentation_contains_record()
 
-        MyDashboardPage(self.driver).refresh_page()
-        MyDashboardPage(self.driver).select_show_all_tab()
-        MyDashboardPage(self.driver).enter_account_name(account_name)
+    def edit_event(self):
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        CRMHomePage(self.driver)\
+            .open_more_list_modules() \
+            .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
+        MyDashboardPage(self.driver)\
+            .select_show_all_tab()\
+            .enter_account_name(CRMConstants.TESTQA)
+        account_name = MyDashboardPage(self.driver)\
+            .get_account_name()
+        MyDashboardPage(self.driver)\
+            .click_pencil_icon()
+        EditEventModule(self.driver)\
+            .edit_event(TaskModuleConstants.SECOND_EVENT_STATUS,
+                        TaskModuleConstants.SECOND_EVENT_TYPE,
+                        TaskModuleConstants.SECOND_DURATION,
+                        CRMConstants.THIRD_DATE.strftime(CRMConstants.SECOND_FORMAT_DATE),
+                        CRMConstants.THIRD_DATE.strftime(CRMConstants.FIRST_FORMAT_TIME),
+                        TaskModuleConstants.SECOND_ASSIGN_TO,
+                        TaskModuleConstants.SECOND_SUBJECT,
+                        TaskModuleConstants.SECOND_PRIORITY,
+                        TaskModuleConstants.DESCRIPTION_ADD_EVENT)
+
+        MyDashboardPage(self.driver)\
+            .refresh_page()
+        MyDashboardPage(self.driver)\
+            .select_show_all_tab()\
+            .enter_account_name(account_name)
         status = MyDashboardPage(self.driver).get_status()
         type = MyDashboardPage(self.driver).get_event_type()
         assert status == TaskModuleConstants.SECOND_EVENT_STATUS
@@ -114,31 +125,43 @@ class MyDashboardPrecondition(object):
             assert CRMConstants.SERVER_NOT_CONFIGURATE in pop_up
 
     def test_searching_by_columns(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
-                                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                                            self.config.get_value(TestDataConstants.OTP_SECRET))
-        CRMHomePage(self.driver).open_more_list_modules() \
-                                .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
-        MyDashboardPage(self.driver).select_show_all_tab()
-        MyDashboardPage(self.driver).enter_account_name(CRMConstants.TESTQA)
-        account_name = MyDashboardPage(self.driver).get_account_name()
-        type = MyDashboardPage(self.driver).get_event_type()
-        status = MyDashboardPage(self.driver).get_status()
-        country = MyDashboardPage(self.driver).get_country()
-        assigned_to = MyDashboardPage(self.driver).get_assigned_to()
-        created_by = MyDashboardPage(self.driver).get_created_by()
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        CRMHomePage(self.driver)\
+            .open_more_list_modules() \
+            .select_my_dashboard_module_more_list(CRMConstants.MYDASHBOARD_MODULE)
+        MyDashboardPage(self.driver)\
+            .select_show_all_tab()\
+            .enter_account_name(CRMConstants.TESTQA)
+        account_name = MyDashboardPage(self.driver)\
+            .get_account_name()
+        type = MyDashboardPage(self.driver)\
+            .get_event_type()
+        status = MyDashboardPage(self.driver)\
+            .get_status()
+        country = MyDashboardPage(self.driver)\
+            .get_country()
+        assigned_to = MyDashboardPage(self.driver)\
+            .get_assigned_to()
+        created_by = MyDashboardPage(self.driver)\
+            .get_created_by()
 
-        MyDashboardPage(self.driver).refresh_page()
+        MyDashboardPage(self.driver)\
+            .refresh_page()
 
-        MyDashboardPage(self.driver).enter_account_name(account_name) \
-                                    .enter_event_type(type) \
-                                    .enter_status(status) \
-                                    .enter_country(country) \
-                                    .enter_assigned_to(assigned_to) \
-                                    .enter_created_by(created_by) \
+        MyDashboardPage(self.driver)\
+            .enter_account_name(account_name) \
+            .enter_event_type(type) \
+            .enter_status(status) \
+            .enter_country(country) \
+            .enter_assigned_to(assigned_to) \
+            .enter_created_by(created_by) \
 
-        return_account_name = MyDashboardPage(self.driver).get_account_name()
+        return_account_name = MyDashboardPage(self.driver)\
+            .get_account_name()
 
         assert return_account_name == account_name
 

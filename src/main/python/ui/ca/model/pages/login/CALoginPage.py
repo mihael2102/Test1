@@ -29,6 +29,16 @@ class CALoginPage(CRMBasePage):
             Logging().reportDebugStep(self, "Campaign banner doesn't appears")
         return CALoginPage(self.driver)
 
+    def close_notifications_banner(self):
+        sleep(1)
+        try:
+            close_btn = super().wait_element_to_be_clickable("//button[@id='onesignal-popover-cancel-button']", 5)
+            close_btn.click()
+            Logging().reportDebugStep(self, "Notifications banner is closed")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Notifications banner doesn't appears")
+        return CALoginPage(self.driver)
+
     def click_sign_up(self):
         sleep(1)
         try:
