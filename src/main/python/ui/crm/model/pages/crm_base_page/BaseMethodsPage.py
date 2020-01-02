@@ -72,8 +72,7 @@ class CRMBaseMethodsPage(CRMBasePage):
 
     def open_module(self, module_title):
         try:
-            module = super().wait_load_element("//div[@class='content-menu']//span[contains(text(), '%s')]"
-                                               % module_title)
+            module = super().wait_load_element("(//a[contains(text(), '%s')])[1]" % module_title)
             self.driver.execute_script("arguments[0].click();", module)
             self.wait_vtiger_loading_to_finish_custom(35)
             self.wait_crm_loading_to_finish_tasks(35)
