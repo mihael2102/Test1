@@ -30,12 +30,13 @@ class CampaignsPrecondition(object):
             CRMHomePage(self.driver).open_more_list_modules() \
                 .select_campaigns_module_more_list(CampaignsConstants.MODULE) \
                 .open_add_campaign_module()
-            AddCampaignsModule(self.driver).perform_add_new_campaign(self.camp_name,
-                                                                     CRMConstants.FIST_ASSIGNED_TO,
-                                                                     CRMConstants.START_DATE,
-                                                                     CRMConstants.END_DATE,
-                                                                     CRMConstants.FIST_DEAL,
-                                                                     CRMConstants.RATE)
+            AddCampaignsModule(self.driver)\
+                .perform_add_new_campaign(self.camp_name,
+                                          CRMConstants.FIST_ASSIGNED_TO,
+                                          CRMConstants.START_DATE,
+                                          CRMConstants.END_DATE,
+                                          CRMConstants.FIST_DEAL,
+                                          CRMConstants.RATE)
             CampaignsPage(self.driver).perform_searching_campaign_by_name(self.camp_name)
             sleep(2)
             existing_campaign = CampaignsPage(self.driver).campaign_exist()
