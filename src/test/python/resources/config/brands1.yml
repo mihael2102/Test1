@@ -26,8 +26,8 @@ brands:
 #- name: ctxprime
 #  config_file: ctxprime.yml
 
-#- name: dax-300
-#  config_file: dax-300.yml
+- name: dax-300
+  config_file: dax-300.yml
 
 #- name: dualix
 #  config_file: dualix.yml
@@ -68,8 +68,8 @@ brands:
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
