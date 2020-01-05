@@ -42,6 +42,8 @@ class CALoginPage(CRMBasePage):
     def click_sign_up(self):
         sleep(1)
         try:
+            if global_var.current_brand_name == "trade99":
+                self.click_sign_in_btn()
             sign_up_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
                                                                self.__class__.__name__)["sign_up"])
             sleep(1)
