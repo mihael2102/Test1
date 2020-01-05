@@ -89,8 +89,8 @@ brands:
 #- name: proconsultinginvest
 #  config_file: proconsultinginvest.yml
 
-- name: ptbanc
-  config_file: ptbanc.yml
+#- name: ptbanc
+#  config_file: ptbanc.yml
 
 #- name: q8
 #  config_file: q8.yml
@@ -110,8 +110,8 @@ brands:
 #- name: tfxgo
 #  config_file: tfxgo.yml
 
-#- name: trade99
-#  config_file: trade99.yml
+- name: trade99
+  config_file: trade99.yml
 
 #- name: tradenero
 #  config_file: tradenero.yml
