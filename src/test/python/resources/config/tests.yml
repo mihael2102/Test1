@@ -113,8 +113,8 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
   class: TradingAccountCrmTest
   tests:
-#    - fill_questioner_new_client
-    - test_crm_open_trading_account  # open a new trading account
+    - fill_questioner_new_client
+#    - test_crm_open_trading_account  # open a new trading account
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
 #  class: ChangePasswordTestCRM
@@ -153,10 +153,10 @@ tests_config:
 #  tests:
 #    - test_transfer_between_ta  # preconditions: convert lead, deposit crm, credit in
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_edit_trading_account  # edit trading account
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+#  class: TradingAccountCrmTest
+#  tests:
+#    - test_crm_edit_trading_account  # edit trading account
 #
 ############################################## AFFILIATES MODULE ##########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
