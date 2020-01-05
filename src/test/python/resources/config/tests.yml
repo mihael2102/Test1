@@ -109,8 +109,8 @@ tests_config:
   class: DepositTestCRM
   tests:
     - test_make_deposit_crm  # create live mt account and make deposit in crm
-    - test_make_deposit_for_client_crm
-
+#    - test_make_deposit_for_client_crm
+#
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
   class: WithdrawTest
   tests:
@@ -148,12 +148,12 @@ tests_config:
 #     - test_create_affiliate
 #
 ####################################### FINANCIAL TRANSACTIONS ######################################
-- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
-  class: TabFinancialTransaction
-  tests:
-    - test_check_all_tab_from_financial_transactions
-    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
-    - test_check_search_via_button # Check search using search button
+#- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
+#  class: TabFinancialTransaction
+#  tests:
+#    - test_check_all_tab_from_financial_transactions
+#    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
+#    - test_check_search_via_button # Check search using search button
 #
 ########################################## CAMPAIGN MODULE ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
