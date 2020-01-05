@@ -5,13 +5,14 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 import string
 
 
-class ClientsModuleConstants(object):
+class LeadsModuleConstantsUI(object):
     ROW_NUMBER_FOR_DATA_SEARCHING_5 = "5"
     ROW_NUMBER_FOR_DATA_SEARCHING_1 = "1"
     TAB_ALL = "All"
-    COLUMN_CLIENT_STATUS = "Client Status"
+    COLUMN_LEAD_STATUS = "Lead Status"
     COLUMN_EMAIL = "Email"
-    COLUMN_CLIENT_NAME = "Client Name"
+    COLUMN_PHONE = "Phone"
     COLUMN_ASSIGNED_TO = "Assigned To"
     COLUMN_COUNTRY = "Country"
-    COLUMN_CRM_ID = "CRM Id"
+    COLUMN_LEAD_NO = "Lead No"
+    SHORT_EMAIL = "pandaqa"
