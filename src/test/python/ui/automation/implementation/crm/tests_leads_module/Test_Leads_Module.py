@@ -118,26 +118,7 @@ class LeadModuleTest(BaseTest):
         lead_view_profile_page\
             .open_convert_lead_module() \
 
-        if global_var.current_brand_name == "mpcrypto":
-            ConvertLeadModule(self.driver).perform_convert_lead(
-                self.client1[LeadsModuleConstants.FIRST_NAME],
-                self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                self.client1[LeadsModuleConstants.EMAIL],
-                self.client1[LeadsModuleConstants.PHONE],
-                self.client1[LeadsModuleConstants.BIRTHDAY],
-                self.client1[LeadsModuleConstants.CITIZENSHIP],
-                self.client1[LeadsModuleConstants.STREET],
-                self.client1[LeadsModuleConstants.POSTAL_CODE],
-                self.client1[LeadsModuleConstants.CITY],
-                self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-                self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BCH],
-                self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                self.client1[LeadsModuleConstants.BRAND],
-                self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-        elif global_var.current_brand_name == "trade99":
+        if global_var.current_brand_name == "trade99":
             ConvertLeadModule(self.driver).perform_convert_lead(
                 self.client1[LeadsModuleConstants.FIRST_NAME],
                 self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
