@@ -1,7 +1,7 @@
 brands:
 
-- name: gmo
-  config_file: gmo.yml
+#- name: gmo
+#  config_file: gmo.yml
 
 #- name: capitalmarketsbanc
 #  config_file: capitalmarketsbanc.yml
@@ -12,8 +12,8 @@ brands:
 #- name: kaya_fx
 #  config_file: kaya_fx.yml
 
-#- name: itrader
-#  config_file: itrader.yml
+- name: itrader
+  config_file: itrader.yml
 
 #- name: itrader_global
 #  config_file: itrader_global.yml
