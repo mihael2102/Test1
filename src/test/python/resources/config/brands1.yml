@@ -26,8 +26,8 @@ brands:
 #- name: ctxprime
 #  config_file: ctxprime.yml
 
-- name: dax-300
-  config_file: dax-300.yml
+#- name: dax-300
+#  config_file: dax-300.yml
 
 #- name: dualix
 #  config_file: dualix.yml
@@ -89,8 +89,8 @@ brands:
 #- name: proconsultinginvest
 #  config_file: proconsultinginvest.yml
 
-#- name: ptbanc
-#  config_file: ptbanc.yml
+- name: ptbanc
+  config_file: ptbanc.yml
 
 #- name: q8
 #  config_file: q8.yml
