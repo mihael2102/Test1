@@ -580,6 +580,7 @@ class LeadsModule(CRMBasePage):
         filter_item = super().wait_load_element("//span[contains(text(),'%s')]" % test_filter)
         self.driver.execute_script("arguments[0].click();", filter_item)
         Logging().reportDebugStep(self, "Select the filter: " + test_filter)
+        sleep(1)
         self.wait_crm_loading_to_finish()
         return LeadsModule(self.driver)
 

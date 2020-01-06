@@ -40,20 +40,6 @@ class CRMBaseMethodsPage(CRMBasePage):
             Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
         return CRMBaseMethodsPage(self.driver)
 
-    def global_data_checker_new_ui(self, data):
-        try:
-            table = self.driver.find_element_by_xpath("//tbody[@role='rowgroup']")
-            row_count = 0
-            for tr in table.find_elements_by_xpath("//tbody[@role='rowgroup']/tr[not (contains(@style,'hidden'))]"):
-                assert data.lower() in tr.text.lower()
-                row_count += 1
-            Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
-        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            super().wait_visible_of_element\
-                ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
-            Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
-        return CRMBaseMethodsPage(self.driver)
-
     def open_tab_list_view(self, tab_title):
         tab = super().wait_element_to_be_clickable("//li[contains(text(),'%s')]" % tab_title)
         tab.click()
@@ -73,6 +59,18 @@ class CRMBaseMethodsPage(CRMBasePage):
     def open_module(self, module_title):
         try:
             module = super().wait_load_element("(//a[contains(text(), '%s')])[1]" % module_title)
+            self.driver.execute_script("arguments[0].click();", module)
+            self.wait_vtiger_loading_to_finish_custom(35)
+            self.wait_crm_loading_to_finish_tasks(35)
+            self.wait_loading_to_finish_new_ui(35)
+            Logging().reportDebugStep(self, "Module " + module_title + " was opened")
+            return CRMBaseMethodsPage(self.driver)
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Module " + module_title + " does not exist")
+
+    def open_module_ui(self, module_title):
+        try:
+            module = super().wait_load_element("//div[@class='nav-menu']//span[contains(text(), '%s')]" % module_title)
             self.driver.execute_script("arguments[0].click();", module)
             self.wait_vtiger_loading_to_finish_custom(35)
             self.wait_crm_loading_to_finish_tasks(35)

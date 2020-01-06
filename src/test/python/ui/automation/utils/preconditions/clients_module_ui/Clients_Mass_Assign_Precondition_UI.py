@@ -1,4 +1,4 @@
-from src.main.python.ui.crm.model.constants_ui.base_crm_constants.FiltersConstants import FiltersConstants
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -9,9 +9,10 @@ from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI impor
 from src.main.python.ui.crm.model.constants.LeadsModuleConstantsUI import LeadsModuleConstantsUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_constants.MassActionsConstants import MassActionsConstants
 from src.main.python.ui.crm.model.pages.global_module_ui.MassAssignPageUI import MassAssignPageUI
+from src.main.python.ui.crm.model.constants_ui.base_crm_constants.FiltersConstants import FiltersConstants
 
 
-class LeadsMassAssignPreconditionUI(object):
+class ClientsMassAssignPreconditionUI(object):
 
     driver = None
     config = None
@@ -20,7 +21,7 @@ class LeadsMassAssignPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def mass_assign_leads_ui(self):
+    def mass_assign_clients_ui(self):
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -30,13 +31,13 @@ class LeadsMassAssignPreconditionUI(object):
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url'))
 
-        """ Open Leads module """
+        """ Open Clients module """
         CRMBaseMethodsPage(self.driver) \
-            .open_module_ui(TestDataConstants.MODULE_LEADS)
+            .open_module_ui(TestDataConstants.MODULE_CLIENTS)
 
         """ Select records for Mass Assign """
         GlobalTablePageUI(self.driver) \
-            .select_filter_new_ui(FiltersConstants.FILTER_TEST_LEADS)\
+            .select_filter_new_ui(FiltersConstants.FILTER_TEST_CLIENTS)\
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL)\
             .select_all_records()\

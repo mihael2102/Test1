@@ -46,10 +46,70 @@ class GlobalTablePageUI(CRMBasePage):
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
         return GlobalTablePageUI(self.driver)
 
+    """
+        Check every line of table contain needed string:
+    """
+
+    def global_data_checker_new_ui(self, data):
+        try:
+            table = self.driver.find_element_by_xpath("//tbody[@role='rowgroup']")
+            row_count = 0
+            for tr in table.find_elements_by_xpath("//tbody[@role='rowgroup']/tr[not (contains(@style,'hidden'))]"):
+                assert data.lower() in tr.text.lower()
+                row_count += 1
+            Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
+        except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
+            super().wait_visible_of_element\
+                ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
+            Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
+        return GlobalTablePageUI(self.driver)
+
     def select_all_records(self):
         sleep(0.2)
         all_records_checkbox = super().wait_element_to_be_clickable(
             "//th[@role='columnheader']//label[@class='mat-checkbox-layout']")
         all_records_checkbox.click()
         Logging().reportDebugStep(self, "All records on the page were selected")
+        return GlobalTablePageUI(self.driver)
+
+    """
+        Execute click on one from Mass Action buttons
+    """
+
+    def click_mass_action_btn(self, btn_title):
+        sleep(0.1)
+        btn = super().wait_element_to_be_clickable(
+            "//div[contains(@class,'mass-actions')]/button/span[contains(text(),'%s')]" % btn_title)
+        self.driver.execute_script("arguments[0].click();", btn)
+        Logging().reportDebugStep(self, "Click '" + btn_title + "' button")
+        return GlobalTablePageUI(self.driver)
+
+    """
+        Verify successful message
+    """
+
+    def verify_success_message(self):
+        message = super().wait_load_element("//div[@class='dialog-content-success mat-dialog-content']").text
+        assert "success" in message.lower()
+        Logging().reportDebugStep(self, "Get message: " + message)
+        return GlobalTablePageUI(self.driver)
+
+    """
+        Click OK button
+    """
+
+    def click_ok(self):
+        sleep(0.1)
+        button = super().wait_element_to_be_clickable("//*[text()=' OK ']")
+        self.driver.execute_script("arguments[0].click();", button)
+        Logging().reportDebugStep(self, "OK button was clicked")
+        return GlobalTablePageUI(self.driver)
+
+    def select_filter_new_ui(self, test_filter):
+        sleep(0.1)
+        filter_item = super().wait_load_element("//span[contains(text(),'%s')]" % test_filter)
+        self.driver.execute_script("arguments[0].click();", filter_item)
+        Logging().reportDebugStep(self, "Select filter: " + test_filter)
+        sleep(1)
+        self.wait_crm_loading_to_finish()
         return GlobalTablePageUI(self.driver)
