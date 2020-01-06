@@ -41,22 +41,38 @@ class DepositCAPrecondition(object):
                 .click_login()\
                 .verify()\
                 .verify_client("my account")
-            CADepositPage(self.driver) \
-                .click_deposit_btn() \
+            CADepositPage(self.driver)\
+                .click_deposit_btn()\
                 .check_deposit_page_loaded()
         elif global_var.current_brand_name == "24option":
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca')) \
-                .close_campaign_banner() \
-                .click_sign_in_btn() \
-                .enter_email(self.config.get_value('email_live_acc')) \
-                .enter_password(self.config.get_value('password_live_acc')) \
-                .click_login() \
-                .verify() \
-                .verify_client("Welcome")
-            CADepositPage(self.driver) \
-                .click_deposit_btn() \
-                .check_deposit_page_loaded()
+            try:
+                CALoginPage(self.driver) \
+                    .open_first_tab_page(self.config.get_value('url_ca')) \
+                    .close_campaign_banner() \
+                    .close_notifications_banner()\
+                    .click_sign_in_btn() \
+                    .enter_email(self.config.get_value('email_live_acc')) \
+                    .enter_password(self.config.get_value('password_live_acc')) \
+                    .click_login() \
+                    .verify() \
+                    .verify_client("Welcome")
+                CADepositPage(self.driver) \
+                    .click_deposit_btn() \
+                    .check_deposit_page_loaded()
+            except:
+                CALoginPage(self.driver) \
+                    .open_first_tab_page(self.config.get_value('url_ca')) \
+                    .close_campaign_banner() \
+                    .close_notifications_banner() \
+                    .click_sign_in_btn() \
+                    .enter_email(self.config.get_value('email_live_acc')) \
+                    .enter_password(self.config.get_value('password_live_acc')) \
+                    .click_login() \
+                    .verify() \
+                    .verify_client("Welcome")
+                CADepositPage(self.driver) \
+                    .click_deposit_btn() \
+                    .check_deposit_page_loaded()
         else:
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
@@ -68,5 +84,6 @@ class DepositCAPrecondition(object):
                 .verify() \
                 .verify_client("Test")
             CADepositPage(self.driver)\
-                .click_deposit_btn()\
+                .click_deposit_btn() \
+                .select_payment_method() \
                 .check_deposit_page_loaded()

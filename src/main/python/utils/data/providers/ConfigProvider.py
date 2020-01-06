@@ -338,7 +338,6 @@ class ConfigProvider:
     def get_data_lead_info(self, key, value):
         return self.get_value(key, value)
 
-
     def get_data_lead_info_from_json(self, value):
         connection_file = open(
             self.path_to_data_provider + 'leads-information.json')

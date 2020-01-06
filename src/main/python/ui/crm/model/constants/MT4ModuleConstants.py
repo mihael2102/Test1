@@ -20,3 +20,4 @@ class MT4ModuleConstants(object):
     CREDIT_IN_EXPIRE_DAY = "1"
     ACCOUNT_NUMBER_DEPOSIT = ""
     ACCOUNT_NUMBER_CREDIT = ""
+    DEPOSIT_AMOUNT = "2"
