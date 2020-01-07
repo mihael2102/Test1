@@ -17,7 +17,7 @@ class WebTraderPage(CRMBasePage):
         sleep(0.1)
         condition1 = condition.capitalize()
         condition2 = condition.upper()
-        click_close_order = self.driver.find_element(By.XPATH, "//button[contains(text(), '" + condition + "') or \
+        click_close_order = super().wait_element_to_be_clickable("//button[contains(text(), '" + condition + "') or \
                                     contains(text(), '" + condition1 + "') or contains(text(), '" + condition2 + "')]")
         try:
             click_close_order.click()
