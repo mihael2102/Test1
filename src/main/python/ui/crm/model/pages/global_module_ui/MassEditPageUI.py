@@ -29,32 +29,25 @@ class MassEditPageUI(CRMBasePage):
         Logging().reportDebugStep(self, "Select '" + field + "' check box")
         return MassEditPageUI(self.driver)
 
-    def set_users_field(self, user):
+    def set_text_field(self, title, text):
         sleep(0.1)
-        users_field = super().wait_element_to_be_clickable("//input[@placeholder='Search users']")
-        users_field.clear()
-        users_field.send_keys(user)
-        Logging().reportDebugStep(self, "Set '" + user + "' to Users field")
-        return MassAssignPageUI(self.driver)
+        field = super().wait_load_element("//div[label=' %s ']//following-sibling::mat-form-field//input" % title)
+        field.clear()
+        field.send_keys(text)
+        Logging().reportDebugStep(self, "Set '" + text + "' to '" + title + "' field")
+        return MassEditPageUI(self.driver)
 
-    def select_user_by_title(self, user):
+    def select_from_list(self, pick_list, item_title):
         sleep(0.1)
-        user_item = super().wait_element_to_be_clickable(
-            "//div[@class='options-wrap ng-star-inserted']//span[contains(text(),'%s')]" % user)
-        self.driver.execute_script("arguments[0].click();", user_item)
-        Logging().reportDebugStep(self, "Select '" + user + "' from list")
-        return MassAssignPageUI(self.driver)
-
-    def select_status(self, status):
-        sleep(0.1)
-        item = super().wait_load_element("//div[@class='row client-status-wrap']//span[text()='%s']" % status)
+        item = super().wait_load_element(
+            "//span[text()=' %s ']//following-sibling::ul//span[text()='%s']" % (pick_list, item_title))
         self.driver.execute_script("arguments[0].click();", item)
-        Logging().reportDebugStep(self, "Select '" + status + "' status")
-        return MassAssignPageUI(self.driver)
+        Logging().reportDebugStep(self, "Select '" + item_title + "' from pick list " + pick_list)
+        return MassEditPageUI(self.driver)
 
-    def click_assign_btn(self):
+    def click_save_changes_btn(self):
         sleep(0.1)
-        assign_btn = super().wait_element_to_be_clickable("//button/span[text()=' Assign ']")
-        self.driver.execute_script("arguments[0].click();", assign_btn)
-        Logging().reportDebugStep(self, "Click 'Assign' button")
-        return MassAssignPageUI(self.driver)
+        save_btn = super().wait_element_to_be_clickable("//button/span[text()=' Save changes ']")
+        self.driver.execute_script("arguments[0].click();", save_btn)
+        Logging().reportDebugStep(self, "Click 'Save changes' button")
+        return MassEditPageUI(self.driver)

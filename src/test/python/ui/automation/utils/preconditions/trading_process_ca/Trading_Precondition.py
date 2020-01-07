@@ -396,6 +396,51 @@ class Trading_Precondition(object):
         assert expected_symbol in open_orders_data
         assert expected_open_price in open_orders_data
 
+    def verify_open_position_crm_ui(self):
+        # Login CRM
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email(CAConstants.EMAIL_CA)
+
+        # Check if demo account and crypto position was opened
+        try:
+            assert TradingConstants.IS_DEMO_EXIST == "yes" and \
+                   TradingConstants.IS_ASSET_EXIST == "yes"
+            Logging().reportDebugStep(self, "Position was opened")
+        except:
+            if TradingConstants.IS_DEMO_EXIST == "no":
+                Logging().reportDebugStep(self, "There is no DEMO account")
+                assert TradingConstants.IS_DEMO_EXIST == "yes"
+            elif TradingConstants.IS_ASSET_EXIST == "no":
+                Logging().reportDebugStep(self, "There is no crypto assets")
+                assert TradingConstants.IS_ASSET_EXIST == "yes"
+
+        # Open demo account details and get open orders data
+        open_orders_data = ClientProfilePage(self.driver)\
+            .perform_scroll_down()\
+            .open_trading_accounts_tab()\
+            .open_trading_account_by_number(CAConstants.DEMO_ACCOUNT_NUMBER)\
+            .click_display_open_transactions()\
+            .get_open_orders_data()
+
+        expected_order_id = TradingConstants.ORDER_ID_OPEN.replace('#', '')
+        expected_created_time_order = TradingConstants.ORDER_CREATED_TIME.split(' ')
+        expected_date = expected_created_time_order[0].split('/')
+        expected_date = "20" + expected_date[2] + "-" + expected_date[1] + "-" + expected_date[0]
+        expected_time = expected_created_time_order[1]
+        expected_symbol = TradingConstants.ORDER_SYMBOL
+        expected_open_price = TradingConstants.ORDER_OPEN_PRICE
+
+        assert expected_order_id in open_orders_data
+        assert expected_date in open_orders_data
+        assert expected_time in open_orders_data
+        assert expected_symbol in open_orders_data
+        assert expected_open_price in open_orders_data
+
     def trading_process_close_position_ca(self):
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca')) \

@@ -11,7 +11,7 @@ from src.main.python.ui.crm.model.constants_ui.base_crm_constants.MassActionsCon
 from src.main.python.ui.crm.model.pages.global_module_ui.MassEditPageUI import MassEditPageUI
 
 
-class LeadsMassEditPreconditionUI(object):
+class ClientsMassEditPreconditionUI(object):
     driver = None
     config = None
 
@@ -19,7 +19,7 @@ class LeadsMassEditPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def mass_edit_leads_ui(self):
+    def mass_edit_clients_ui(self):
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -29,13 +29,13 @@ class LeadsMassEditPreconditionUI(object):
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url'))
 
-        """ Open Leads module """
+        """ Open Clients module """
         CRMBaseMethodsPage(self.driver) \
-            .open_module_ui(TestDataConstants.MODULE_LEADS)
+            .open_module_ui(TestDataConstants.MODULE_CLIENTS)
 
         """ Select records for Mass Edit """
         GlobalTablePageUI(self.driver) \
-            .select_filter_new_ui(FiltersConstants.FILTER_TEST_LEADS) \
+            .select_filter_new_ui(FiltersConstants.FILTER_TEST_CLIENTS) \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
             .select_all_records() \
@@ -43,18 +43,15 @@ class LeadsMassEditPreconditionUI(object):
 
         """ Mass Edit """
         MassEditPageUI(self.driver) \
-            .select_field_to_edit(MassActionsConstants.FIELD_LEAD_STATUS) \
-            .select_from_list(MassActionsConstants.LIST_LEAD_STATUS, MassActionsConstants.STATUS_R_NEW) \
-            .select_field_to_edit(MassActionsConstants.FIELD_LANGUAGE) \
-            .set_text_field(MassActionsConstants.FIELD_LANGUAGE, MassActionsConstants.LANGUAGE_GERMAN) \
-            .select_field_to_edit(MassActionsConstants.FIELD_COUNTRY) \
-            .select_from_list(MassActionsConstants.FIELD_COUNTRY, MassActionsConstants.COUNTRY_ALBANIA) \
+            .select_field_to_edit(MassActionsConstants.FIELD_CLIENT_STATUS) \
+            .select_from_list(MassActionsConstants.FIELD_CLIENT_STATUS, MassActionsConstants.STATUS_B_TEST) \
+            .select_field_to_edit(MassActionsConstants.FIELD_ASSIGNED_TO) \
+            .select_from_list(MassActionsConstants.FIELD_ASSIGNED_TO, MassActionsConstants.USER_NAME_1) \
             .click_save_changes_btn()
 
         """ Check confirmation message and updated data in table """
         GlobalTablePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
-            .global_data_checker_new_ui(MassActionsConstants.LANGUAGE_GERMAN) \
-            .global_data_checker_new_ui(MassActionsConstants.STATUS_R_NEW) \
-            .global_data_checker_new_ui(MassActionsConstants.COUNTRY_ALBANIA)
+            .global_data_checker_new_ui(MassActionsConstants.USER_NAME_1) \
+            .global_data_checker_new_ui(MassActionsConstants.STATUS_B_TEST)

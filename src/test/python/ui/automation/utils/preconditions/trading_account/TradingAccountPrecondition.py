@@ -1,6 +1,6 @@
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
-from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
@@ -18,6 +18,7 @@ from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleC
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
+from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
 
 
 class TradingAccountPrecondition(object):
@@ -157,6 +158,25 @@ class TradingAccountPrecondition(object):
         else:
             Logging().reportDebugStep(self, "Test is not running")
             return self
+
+    def verify_account_in_crm_ui(self):
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
+            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url'))
+        CRMHomePage(self.driver) \
+            .open_client_module_new_ui() \
+            .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .find_client_by_email_new_ui(CAConstants.EMAIL_CA)
+        ClientProfilePage(self.driver) \
+            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)
+        ClientsPage(self.driver)\
+            .trading_account_exist_ui(CAConstants.DEMO_ACCOUNT_NUMBER)\
+            .trading_account_exist_ui(CAConstants.LIVE_ACCOUNT_NUMBER)
 
     def add_demo_account_from_crm(self):
         CRMLoginPage(self.driver) \
