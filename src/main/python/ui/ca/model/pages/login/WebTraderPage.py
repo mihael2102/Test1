@@ -28,8 +28,8 @@ class WebTraderPage(CRMBasePage):
 
     def click_close_order(self):
         sleep(0.5)
-        click_close_order = super().wait_load_element("//tr[1]//span[contains(text(), 'Close')]", timeout=35)
-        click_close_order.click()
+        click_close_order = super().wait_load_element("//tr[1]//span[contains(text(), 'Close')]", timeout=45)
+        self.driver.execute_script("arguments[0].click();", click_close_order)
         Logging().reportDebugStep(self, "Click CLOSE order")
         return WebTraderPage(self.driver)
 
