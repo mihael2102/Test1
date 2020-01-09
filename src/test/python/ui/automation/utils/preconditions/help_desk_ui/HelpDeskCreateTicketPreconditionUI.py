@@ -55,14 +55,15 @@ class HelpDeskCreateTicketPreconditionUI(object):
             .set_description(HDCreateTicketConstantsUI.DESCRIPTION) \
             .click_save_button()
 
-        GlobalTablePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
+        """ Verify successful message """
+        # GlobalTablePageUI(self.driver) \
+        #     .verify_success_message() \
+        #     .click_ok()
 
         """ Search ticket """
         GlobalTablePageUI(self.driver)\
             .set_data_column_field(column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
-                                   data=HDCreateTicketConstantsUI.STATUS)
+                                   data=HDCreateTicketConstantsUI.TITLE)
 
         """ Open ticket and get data """
         HelpDeskModulePageUI(self.driver) \

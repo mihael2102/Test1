@@ -57,7 +57,7 @@ class HelpDeskDetailsPageUI(CRMBasePage):
         sleep(0.1)
         category = super().wait_load_element(
             "//div[label='Category']//following-sibling::button/span[@class='text-left btn-txt-wrapper']").text
-        Logging().reportDebugStep(self, "Get Assigned To: " + category)
+        Logging().reportDebugStep(self, "Get Category: " + category)
         return category
 
     def get_priority(self):
@@ -71,12 +71,15 @@ class HelpDeskDetailsPageUI(CRMBasePage):
         sleep(0.1)
         description = super().wait_load_element(
             "//div[label='Description']//following-sibling::button/span[@class='text-left btn-txt-wrapper']").text
-        Logging().reportDebugStep(self, "Get Priority: " + description)
+        Logging().reportDebugStep(self, "Get Description: " + description)
         return description
 
     def open_tab(self, title):
-        tab = super().wait_load_element(
-            "//mat-expansion-panel-header[@aria-disabled='false']//mat-panel-title[contains(text(),'%s')]" % title)
-        self.driver.execute_script("arguments[0].click();", tab)
-        Logging().reportDebugStep(self, "Open tab: " + title)
+        try:
+            tab = super().wait_load_element(
+                "//mat-expansion-panel-header[@aria-disabled='false']//mat-panel-title[contains(text(),'%s')]" % title)
+            self.driver.execute_script("arguments[0].click();", tab)
+            Logging().reportDebugStep(self, "Open tab: " + title)
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Tab " + title + " already opened")
         return HelpDeskDetailsPageUI(self.driver)
