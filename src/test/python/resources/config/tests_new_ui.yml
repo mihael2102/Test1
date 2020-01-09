@@ -64,7 +64,8 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
   class: TestHelpDeskModuleUI
   tests:
-    - test_help_desk_searching_columns_ui
+    - test_create_ticket_ui
+#    - test_help_desk_searching_columns_ui
 
 ############################################# CA TESTS ##############################################
 #- module: src.test.python.ui.automation.implementation.ca.Test_SignUp

@@ -12,3 +12,4 @@ class HelpDeskModuleConstantsUI(object):
     COLUMN_ASSIGNED_TO = "Assigned To"
     COLUMN_TICKET_NO = "Ticket No"
     COLUMN_STATUS = "Status"
+    COLUMN_TITLE = "Title"
