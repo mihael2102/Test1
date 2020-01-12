@@ -49,8 +49,8 @@ class BasePagesCAPrecondition(object):
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .login()\
-            .enter_email(CAConstants.EMAIL_CA)\
-            .enter_password(CAConstants.PASSWORD)\
+            .enter_email(self.config.get_value('email_live_acc'))\
+            .enter_password(self.config.get_value('password_live_acc'))\
             .click_login()\
             .verify()
 
