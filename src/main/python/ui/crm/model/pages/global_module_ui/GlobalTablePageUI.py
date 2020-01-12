@@ -110,9 +110,44 @@ class GlobalTablePageUI(CRMBasePage):
 
     def select_filter_new_ui(self, test_filter):
         sleep(0.1)
+        Logging().reportDebugStep(self, "Select filter: " + test_filter)
         filter_item = super().wait_load_element("//span[contains(text(),'%s')]" % test_filter)
         self.driver.execute_script("arguments[0].click();", filter_item)
-        Logging().reportDebugStep(self, "Select filter: " + test_filter)
         sleep(1)
         self.wait_crm_loading_to_finish()
+        return GlobalTablePageUI(self.driver)
+
+    """
+        Delete Record
+    """
+
+    def click_delete_icon_list_view(self, row):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click 'Delete' button")
+        delete_icon = super().wait_element_to_be_clickable(
+            "//tr[not(contains(@style,'hidden'))][%s]//button[@title='delete']" % row)
+        self.driver.execute_script("arguments[0].click();", delete_icon)
+        return GlobalTablePageUI(self.driver)
+
+    def approve_deleting(self):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click 'Delete' button in approve pop up")
+        delete_btn = super().wait_element_to_be_clickable(
+            "//div[@class='mat-dialog-actions']/button/span[text()=' Delete ']")
+        delete_btn.click()
+        return GlobalTablePageUI(self.driver)
+
+    def verify_data_not_found(self):
+        sleep(0.1)
+        super().wait_element_to_be_disappear("//tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][1]",
+                                             timeout=5)
+        Logging().reportDebugStep(self, "Data was not found")
+        return GlobalTablePageUI(self.driver)
+
+    def open_actions_list(self):
+        hover_mouse = ActionChains(self.driver)
+        more_list_element = super().wait_element_to_be_clickable(
+            "//tr[not(contains(@style,'hidden'))][1]/td/button/span/mat-icon[text()='more_vert']")
+        hover_mouse.move_to_element(more_list_element)
+        hover_mouse.perform()
         return GlobalTablePageUI(self.driver)
