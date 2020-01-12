@@ -61,11 +61,18 @@ tests_config:
 #     - test_create_delete_affiliate_ui
 
 ############################################ HELP DESK ##############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
-  class: TestHelpDeskModuleUI
-  tests:
-    - test_create_ticket_ui
+#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
+#  class: TestHelpDeskModuleUI
+#  tests:
+#    - test_create_ticket_ui
 #    - test_help_desk_searching_columns_ui
+
+############################################## TASKS ################################################
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_ui.TestTasksModuleUI
+  class: TestTasksModuleUI
+  tests:
+#    - test_tasks_searching_columns_ui
+    - test_add_delete_event_ui
 
 ############################################# CA TESTS ##############################################
 #- module: src.test.python.ui.automation.implementation.ca.Test_SignUp

@@ -91,8 +91,8 @@ class HelpDeskCreateTicketPreconditionUI(object):
         CRMBaseMethodsPage(self.driver) \
             .comparator_string(title, HDCreateTicketConstantsUI.TITLE) \
             .comparator_string(status, HDCreateTicketConstantsUI.STATUS) \
-            .comparator_string(assigned_to, HDCreateTicketConstantsUI.ASSIGNED_TO) \
             .comparator_string(category, HDCreateTicketConstantsUI.CATEGORY) \
             .comparator_string(description, HDCreateTicketConstantsUI.DESCRIPTION) \
+            .comparator_string(assigned_to, HDCreateTicketConstantsUI.ASSIGNED_TO) \
             .comparator_string(priority, HDCreateTicketConstantsUI.PRIORITY) \
             .comparator_string(source, HDCreateTicketConstantsUI.SOURCE)

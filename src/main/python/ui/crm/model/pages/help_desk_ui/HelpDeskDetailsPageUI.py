@@ -43,7 +43,7 @@ class HelpDeskDetailsPageUI(CRMBasePage):
         sleep(0.1)
         source = super().wait_load_element(
             "//div[label='Ticket Source']//following-sibling::button/span[@class='text-left btn-txt-wrapper']").text
-        Logging().reportDebugStep(self, "Get Status: " + source)
+        Logging().reportDebugStep(self, "Get Source: " + source)
         return source
 
     def get_assigned_to(self):
