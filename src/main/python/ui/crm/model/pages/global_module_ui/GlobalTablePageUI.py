@@ -92,7 +92,7 @@ class GlobalTablePageUI(CRMBasePage):
     """
 
     def verify_success_message(self):
-        message = super().wait_load_element("//div[@class='dialog-content-success mat-dialog-content']").text
+        message = super().wait_load_element("//div[contains(@class,'dialog-content-success mat-dialog-content')]").text
         assert "success" in message.lower()
         Logging().reportDebugStep(self, "Get message: " + message)
         return GlobalTablePageUI(self.driver)

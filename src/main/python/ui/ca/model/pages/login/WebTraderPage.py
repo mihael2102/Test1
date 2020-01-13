@@ -105,7 +105,7 @@ class WebTraderPage(CRMBasePage):
 
     def get_closed_order_profit(self):
         sleep(0.1)
-        profit = super().wait_load_element("//tr[1]/closed-trade/td[12]").get_attribute("innerText")
+        profit = super().wait_load_element("//tr[1]/closed-trade/td[13]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Profit: " + profit)
         TradingConstants.CLOSED_ORDER_PROFIT = profit
         return WebTraderPage(self.driver)
@@ -326,7 +326,7 @@ class WebTraderPage(CRMBasePage):
         close_btn = super().wait_load_element("//button[contains(text(),'Close')]")
         self.driver.execute_script("arguments[0].scrollIntoView();", close_btn)
         sleep(0.1)
-        close_btn.click()
+        self.driver.execute_script("arguments[0].click();", close_btn)
         sleep(0.5)
         Logging().reportDebugStep(self, "Close Order Successful pop up")
         return WebTraderPage(self.driver)

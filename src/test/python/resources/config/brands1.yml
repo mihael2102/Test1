@@ -74,8 +74,8 @@ brands:
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
 
-#- name: newcrmui
-#  config_file: newcrmui.yml
+- name: newcrmui
+  config_file: newcrmui.yml
 
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
@@ -110,8 +110,8 @@ brands:
 #- name: tfxgo
 #  config_file: tfxgo.yml
 
-- name: trade99
-  config_file: trade99.yml
+#- name: trade99
+#  config_file: trade99.yml
 
 #- name: tradenero
 #  config_file: tradenero.yml
