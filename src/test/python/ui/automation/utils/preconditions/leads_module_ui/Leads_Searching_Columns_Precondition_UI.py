@@ -32,7 +32,7 @@ class LeadsSearchingColumnsPreconditionUI(object):
 
         """ Open Leads module """
         CRMBaseMethodsPage(self.driver) \
-            .open_module(TestDataConstants.MODULE_LEADS) \
+            .open_module_ui(TestDataConstants.MODULE_LEADS) \
             .open_tab_list_view_ui(LeadsModuleConstantsUI.TAB_ALL)
 
         """ Get lead's data from the first row of list view """
@@ -83,7 +83,7 @@ class LeadsSearchingColumnsPreconditionUI(object):
                                           data=email)
 
         """ Verify correct data found """
-        result = CRMBaseMethodsPage(self.driver)
+        result = GlobalTablePageUI(self.driver)
         if lead_no:
             result\
                 .global_data_checker_new_ui(lead_no)

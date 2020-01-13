@@ -32,7 +32,7 @@ class ClientsSearchingColumnsPreconditionUI(object):
 
         """ Open Clients module """
         CRMBaseMethodsPage(self.driver) \
-            .open_module(TestDataConstants.MODULE_CLIENTS) \
+            .open_module_ui(TestDataConstants.MODULE_CLIENTS) \
             .open_tab_list_view_ui(ClientsModuleConstants.TAB_ALL)
 
         """ Get client's data from the first row of list view """
@@ -83,7 +83,7 @@ class ClientsSearchingColumnsPreconditionUI(object):
                                           data=email)
 
         """ Verify correct data found """
-        result = CRMBaseMethodsPage(self.driver)
+        result = GlobalTablePageUI(self.driver)
         if crm_id:
             result\
                 .global_data_checker_new_ui(crm_id)
