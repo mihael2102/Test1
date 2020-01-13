@@ -1104,6 +1104,6 @@ class ClientProfilePage(CRMBasePage):
     def get_ta_number(self):
         sleep(0.5)
         ta_number = super().wait_load_element(
-            "//mat-expansion-panel[@id='trading-accounts']//tr[2]/td[1]/div/span/span").get_attribute("innerText")
+            "//mat-expansion-panel[@id='trading-accounts']//tr[2]/td[2]/div/span/span").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get trading account number: " + ta_number)
         return ta_number

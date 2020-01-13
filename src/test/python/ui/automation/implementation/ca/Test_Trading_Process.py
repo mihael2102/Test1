@@ -10,6 +10,8 @@ from src.test.python.ui.automation.utils.preconditions.trading_process_ca.Tradin
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.test.python.ui.automation.utils.preconditions.trading_process_ca.TradingPreconditionLive import \
     TradingPreconditionLive
+from src.test.python.ui.automation.utils.preconditions.trading_ui.VerifyOpenPositionPrecondition import \
+    VerifyOpenPositionPrecondition
 
 
 class TradingProcess(BaseTest):
@@ -50,6 +52,9 @@ class TradingProcess(BaseTest):
 
     def test_verify_open_position_crm(self):
         Trading_Precondition(self.driver, self.config).verify_open_position_crm()
+
+    def test_verify_open_position_crm_ui(self):
+        VerifyOpenPositionPrecondition(self.driver, self.config).verify_open_position_crm_ui()
 
     def test_trading_process_close_position_ca(self):
         Trading_Precondition(self.driver, self.config).trading_process_close_position_ca()

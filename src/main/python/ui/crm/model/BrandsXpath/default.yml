@@ -8,6 +8,10 @@ AffiliatePage:
   blocked_country_drop_down: "(//span[@class='ng-star-inserted' and contains(text(),'elected')])[2]"
   input_country: "//div[@class='select-options options-enabled']//input[@placeholder='Search...']"
   trash_button: "//span[@class = 'glyphicon glyphicon-trash cursor-pointer ng-star-inserted']"
+CADepositPage:
+  deposit_btn: "//button[contains(text(),'Deposit')]"
+  deposit_page: "//a[@id='learnmore_CreditCard']//following-sibling::a[@title='Click to Deposit' and contains(@href,'')]"
+  deposit_iframe: "//div[@class='body-pandats']/iframe[@id='depositFrame']"
 CALoginPage:
   sign_up: "//button[contains(text(), 'Sign Up')]"
   check_box_accept: "//span[contains (text(), 'Terms and Conditions')]"
