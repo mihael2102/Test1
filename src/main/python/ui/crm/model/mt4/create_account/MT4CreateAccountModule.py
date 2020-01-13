@@ -172,6 +172,7 @@ class MT4CreateAccountModule(CRMBasePage):
         return MT4CreateAccountModule(self.driver)
 
     def click_create(self):
+        sleep(1)
         button = self.wait_element_to_be_clickable("//button[contains(., 'Create')]")
         button.click()
         Logging().reportDebugStep(self, "The Create button was clicked")
