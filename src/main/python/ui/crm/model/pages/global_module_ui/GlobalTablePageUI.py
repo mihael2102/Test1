@@ -55,9 +55,10 @@ class GlobalTablePageUI(CRMBasePage):
                 row_count += 1
             Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            super().wait_visible_of_element\
-                ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
-            Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
+            sleep(0.1)
+            super().wait_element_to_be_disappear("//tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][1]",
+                                                 timeout=5)
+            Logging().reportDebugStep(self, "Data was not found")
         return GlobalTablePageUI(self.driver)
 
     def select_all_records(self):
