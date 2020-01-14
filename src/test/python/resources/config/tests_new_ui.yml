@@ -61,11 +61,23 @@ tests_config:
 #     - test_create_delete_affiliate_ui
 
 ############################################ HELP DESK ##############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
-  class: TestHelpDeskModuleUI
-  tests:
-    - test_create_delete_ticket_ui
+#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
+#  class: TestHelpDeskModuleUI
+#  tests:
+#    - test_create_delete_ticket_ui
 #    - test_help_desk_searching_columns_ui
+
+############################################ DOCUMENTS ##############################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_documents_ui.TestDocumentsModuleUI
+#  class: TestDocumentsModuleUI
+#  tests:
+#    - test_documents_searching_columns_ui
+
+######################################### TRADING ACCOUNTS ##########################################
+- module: src.test.python.ui.automation.implementation.crm.tests_trading_ui.TestTradingModuleUI
+  class: TestTradingModuleUI
+  tests:
+    - test_trading_searching_columns_ui
 
 ############################################## TASKS ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_ui.TestTasksModuleUI
