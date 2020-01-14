@@ -77,7 +77,8 @@ class HelpDeskDetailsPageUI(CRMBasePage):
     def open_tab(self, title):
         try:
             tab = super().wait_load_element(
-                "//mat-expansion-panel-header[@aria-disabled='false']//mat-panel-title[contains(text(),'%s')]" % title)
+                "//mat-expansion-panel-header[@aria-expanded='false']//mat-panel-title/div[contains(text(),'%s')]"
+                % title)
             self.driver.execute_script("arguments[0].click();", tab)
             Logging().reportDebugStep(self, "Open tab: " + title)
         except(NoSuchElementException, TimeoutException):

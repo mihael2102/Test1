@@ -26,7 +26,7 @@ class HelpDeskCreateTicketPreconditionUI(object):
         lead = self.config.get_value(lead_key)
         return lead
 
-    def create_ticket_ui(self):
+    def create_delete_ticket_ui(self):
         """ Login CRM """
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
@@ -95,4 +95,18 @@ class HelpDeskCreateTicketPreconditionUI(object):
             .comparator_string(description, HDCreateTicketConstantsUI.DESCRIPTION) \
             .comparator_string(assigned_to, HDCreateTicketConstantsUI.ASSIGNED_TO) \
             .comparator_string(priority, HDCreateTicketConstantsUI.PRIORITY) \
-            .comparator_string(source, HDCreateTicketConstantsUI.SOURCE)
+            .comparator_string(source, HDCreateTicketConstantsUI.SOURCE)\
+            .came_back_on_previous_page()
+
+        """ Delete ticket """
+        GlobalTablePageUI(self.driver) \
+            .set_data_column_field(column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
+                                   data=HDCreateTicketConstantsUI.TITLE) \
+            .open_actions_list() \
+            .click_delete_icon_list_view(HelpDeskModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
+            .approve_deleting() \
+            .verify_success_message() \
+            .click_ok() \
+            .set_data_column_field(column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
+                                   data=HDCreateTicketConstantsUI.TITLE) \
+            .verify_data_not_found()
