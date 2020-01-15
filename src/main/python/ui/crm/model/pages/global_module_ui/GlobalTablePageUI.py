@@ -16,9 +16,19 @@ class GlobalTablePageUI(CRMBasePage):
 
     def set_data_column_field(self, column, data):
         sleep(0.1)
-        field = super().wait_load_element("(//input[@placeholder='%s'])[1]" % column)
+        btn = super().wait_load_element("(//span[@class='placeholder']/span[text()='%s'])[1]" % column)
+        self.driver.execute_script("arguments[0].click();", btn)
+        field = super().wait_load_element(
+            "//span[contains(text(),'%s')]//following-sibling::div[@class='select-wrap']//input[@placeholder='Search']"
+            % column)
         field.clear()
         field.send_keys(data)
+        sleep(1)
+        try:
+            done = super().wait_element_to_be_clickable("//button[contains(span,'Apply')]")
+            self.driver.execute_script("arguments[0].click();", done)
+        except:
+            pass
         sleep(1)
         self.wait_loading_to_finish_new_ui(25)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
@@ -33,7 +43,7 @@ class GlobalTablePageUI(CRMBasePage):
                                          % (column, data))
         self.driver.execute_script("arguments[0].click();", item)
         try:
-            done = super().wait_element_to_be_clickable("//button[@class='btn-save']")
+            done = super().wait_element_to_be_clickable("//button/span[text()='Apply']")
             self.driver.execute_script("arguments[0].click();", done)
         except:
             pass

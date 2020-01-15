@@ -49,7 +49,7 @@ class AuditLogsSearchingColumnsPreconditionUI(object):
                                       data=AuditLogsModuleConstantsUI.MODULE_TRANSACTIONS) \
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_ACTION,
                                       data=AuditLogsModuleConstantsUI.ACTION_EXPORT) \
-            .global_data_checker_new_ui(AuditLogsModuleConstantsUI.MODULE_TRANSACTIONS) \
+            .global_data_checker_new_ui(AuditLogsModuleConstantsUI.DATA_TRANSACTIONS) \
             .global_data_checker_new_ui(AuditLogsModuleConstantsUI.ACTION_EXPORT) \
             .refresh_page()
 
@@ -68,7 +68,7 @@ class AuditLogsSearchingColumnsPreconditionUI(object):
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_ACTION,
                                       data=AuditLogsModuleConstantsUI.ACTION_DETAIL_VIEW) \
             .global_data_checker_new_ui(AuditLogsModuleConstantsUI.MODULE_LEADS) \
-            .global_data_checker_new_ui(AuditLogsModuleConstantsUI.ACTION_DETAIL_VIEW) \
+            .global_data_checker_new_ui(AuditLogsModuleConstantsUI.DATA_DETAIL_VIEW) \
             .refresh_page()
 
         GlobalTablePageUI(self.driver) \
@@ -77,4 +77,4 @@ class AuditLogsSearchingColumnsPreconditionUI(object):
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_ACTION,
                                       data=AuditLogsModuleConstantsUI.ACTION_EDIT_VIEW) \
             .global_data_checker_new_ui(AuditLogsModuleConstantsUI.MODULE_LEADS) \
-            .global_data_checker_new_ui(AuditLogsModuleConstantsUI.ACTION_EDIT_VIEW)
+            .global_data_checker_new_ui(AuditLogsModuleConstantsUI.DATA_EDIT_VIEW)
