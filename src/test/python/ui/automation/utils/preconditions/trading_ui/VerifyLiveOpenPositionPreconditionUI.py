@@ -16,7 +16,7 @@ from time import sleep
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskEditPage import HelpDeskEditPage
 from src.main.python.utils.logs.Loging import Logging
-from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.trading_ui.TradingDetailsPageUI import TradingDetailsPageUI
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
 
@@ -58,7 +58,7 @@ class VerifyLiveOpenPositionPreconditionUI(object):
 
         """ Open live account details and get open orders data """
         ClientProfilePage(self.driver) \
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
             .open_trading_account_by_number(self.config.get_value('number_live_acc'))
         open_orders_data = TradingDetailsPageUI(self.driver) \
             .display_open_trades() \

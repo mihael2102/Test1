@@ -5,6 +5,6 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 import string
 
 
-class FiltersConstants(object):
+class FiltersConstantsUI(object):
     FILTER_TEST_LEADS = "Test Leads"
     FILTER_TEST_CLIENTS = "Test Clients"

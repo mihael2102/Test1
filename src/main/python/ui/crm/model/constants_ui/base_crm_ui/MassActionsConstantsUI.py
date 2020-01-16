@@ -5,7 +5,7 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 import string
 
 
-class MassActionsConstants(object):
+class MassActionsConstantsUI(object):
     MASS_ASSIGN = "Mass assign"
     MASS_EDIT = "Mass edit"
     DEPARTMENT_ALL = "All Departments"

@@ -1,15 +1,20 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
 
 
 class ConvertLeadPageUI(CRMBasePage):
 
-    def convert_lead(self, first_name=None, last_name=None, email=None, phone=None, day=None, month=None, year=None,
-                     citizenship=None, address=None, postal_code=None, city=None, country=None, password=None,
-                     currency=None, referral=None, brand=None, source_name=None):
+    def convert_lead_ui(self, field1=None, first_name=None, field2=None, last_name=None, field3=None, email=None,
+                        field4=None, phone=None, day=None, month=None, year=None, list1=None, citizenship=None,
+                        list2=None, ui_language=None, field5=None, address=None, field6=None, postal_code=None,
+                        field7=None, city=None, list3=None, country=None, field9=None, password=None, list4=None,
+                        currency=None, field10=None, referral=None, list5=None, brand=None, field11=None,
+                        source_name=None):
+        self.click_convert_lead_btn()
         if first_name:
             self.set_text_field(field1, first_name)
         if last_name:
@@ -94,9 +99,11 @@ class ConvertLeadPageUI(CRMBasePage):
         Logging().reportDebugStep(self, "The birthday was set")
         return ConvertLeadPageUI(self.driver)
 
-    def click_create_lead_btn(self):
+    def click_submit(self):
         sleep(0.1)
-        save_button = super().wait_element_to_be_clickable("//button/span[text()=' Create lead ']")
-        save_button.click()
-        Logging().reportDebugStep(self, "Create lead button clicked")
+        Logging().reportDebugStep(self, "Click 'Convert lead' button")
+        convert_lead_btn = super().wait_load_element("//button[span=' Convert lead ']")
+        convert_lead_btn.click()
+        sleep(1)
+        self.wait_loading_to_finish_new_ui(8)
         return ConvertLeadPageUI(self.driver)
