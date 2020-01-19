@@ -1,3 +1,6 @@
 pretty_name: "Newrichmarkets"
 url: "https://newrichmarkets.ptscrm.com/"
 url_ca: "https://www.newrichmarkets.com/"
+email_live_acc: "QATest@pandats.com"
+password_live_acc: "testingQA12"
+number_live_acc: "32342"

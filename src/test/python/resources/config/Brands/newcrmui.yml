@@ -1,3 +1,6 @@
 pretty_name: "newcrmui"
 url: "https://newcrmui.ptscrm.com/v2/"
 url_ca: "https://newcrmui.pandats.com/#/"
+email_live_acc: "QATest@pandats.com"
+password_live_acc: "testingQA12"
+number_live_acc: "81893260"

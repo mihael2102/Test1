@@ -580,6 +580,7 @@ class LeadsModule(CRMBasePage):
         filter_item = super().wait_load_element("//span[contains(text(),'%s')]" % test_filter)
         self.driver.execute_script("arguments[0].click();", filter_item)
         Logging().reportDebugStep(self, "Select the filter: " + test_filter)
+        sleep(1)
         self.wait_crm_loading_to_finish()
         return LeadsModule(self.driver)
 
@@ -801,7 +802,8 @@ class LeadsModule(CRMBasePage):
         input.clear()
         input.send_keys(phone)
         sleep(1)
-        save_personal_details = super().wait_load_element("//*[@id='editarea_Mobile']/div/a[1]/span")
+        save_personal_details = super().wait_load_element\
+            ("//*[@id='editarea_Mobile']//span[contains(@class,'glyphicons ok')]")
         try:
             save_personal_details.click()
         except:
@@ -905,3 +907,23 @@ class LeadsModule(CRMBasePage):
             EC.visibility_of_element_located((By.XPATH, "//*[@id='mouseArea_Phone']")))
         Logging().reportDebugStep(self, "Verified the lead phone: " + lead_phone.text)
         return lead_phone.text
+
+    def get_lead_number_list_view(self, row):
+        sleep(0.5)
+        lead_no = super().wait_load_element("//tr[contains(@id,'row')][%s]//a[contains(@title,'LEA')]" % row).text
+        Logging().reportDebugStep(self, "Get Lead No from list view(row = " + row + "): " + lead_no)
+        return lead_no
+
+    def get_lead_email_list_view(self, row):
+        sleep(0.5)
+        lead_email = super().wait_load_element("//tr[contains(@id,'row')][%s]//a/div[@title='send mail']" % row).text
+        Logging().reportDebugStep(self, "Get Lead Email from list view(row = " + row + "): " + lead_email)
+        return lead_email
+
+    def get_lead_created_time_list_view(self, row):
+        sleep(0.5)
+        created_time = super().wait_load_element\
+            ("//tr[contains(@id,'row')][%s]/td[contains(text(),'2019') or contains(text(),'2020')]" % row)\
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get Created Time from list view(row = " + row + "): " + created_time)
+        return created_time

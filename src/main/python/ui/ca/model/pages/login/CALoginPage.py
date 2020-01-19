@@ -29,9 +29,21 @@ class CALoginPage(CRMBasePage):
             Logging().reportDebugStep(self, "Campaign banner doesn't appears")
         return CALoginPage(self.driver)
 
+    def close_notifications_banner(self):
+        sleep(1)
+        try:
+            close_btn = super().wait_element_to_be_clickable("//button[@id='onesignal-popover-cancel-button']", 5)
+            close_btn.click()
+            Logging().reportDebugStep(self, "Notifications banner is closed")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Notifications banner doesn't appears")
+        return CALoginPage(self.driver)
+
     def click_sign_up(self):
         sleep(1)
         try:
+            if global_var.current_brand_name == "trade99":
+                self.click_sign_in_btn()
             sign_up_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
                                                                self.__class__.__name__)["sign_up"])
             sleep(1)
@@ -300,6 +312,22 @@ class CALoginPage(CRMBasePage):
                 Logging().reportDebugStep(self, "There is no panda's plugin")
         return CALoginPage(self.driver)
 
+    def click_sign_in_btn(self):
+        sleep(1)
+        try:
+            login_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                self.__class__.__name__)["login_btn"])
+            self.driver.execute_script("arguments[0].click();", login_button)
+        except(NoSuchElementException, TimeoutException):
+            sleep(1)
+            self.refresh_page()
+            sleep(1)
+            login_button = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                self.__class__.__name__)["login_btn"], timeout=35)
+            self.driver.execute_script("arguments[0].click();", login_button)
+        Logging().reportDebugStep(self, "Click Login button")
+        return CALoginPage(self.driver)
+
     def enter_email(self, email):
         sleep(0.5)
         input_email = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
@@ -312,7 +340,8 @@ class CALoginPage(CRMBasePage):
 
     def enter_password(self, password):
         sleep(0.1)
-        input_password = super().wait_load_element("//input[@id='forex-password']")
+        input_password = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["login_password_input"])
         self.driver.execute_script("arguments[0].click();", input_password)
         sleep(0.1)
         input_password.send_keys(password)
@@ -330,8 +359,18 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def verify_client(self, user_name):
-        verify_client = super().wait_load_element("//span[contains(text(), '%s')]" % user_name)
-        client = verify_client.text
+        sleep(1)
+        try:
+            verify_client = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                               self.__class__.__name__)["client_title_name"] % user_name)
+            client = verify_client.text
+        except:
+            sleep(1)
+            self.refresh_page()
+            sleep(1)
+            verify_client = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                self.__class__.__name__)["client_title_name"] % user_name)
+            client = verify_client.text
         Logging().reportDebugStep(self, "Verify " + client)
         return client
 

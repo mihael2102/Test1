@@ -14,6 +14,7 @@ from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsMod
 from src.main.python.ui.crm.model.mt4.credit_out.MT4CreditOutModule import MT4CreditOutModule
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.pages.workflows.WorkflowsPage import WorkflowsPage
+from src.main.python.ui.crm.model.pages.clients.ClientsModulePage import ClientsModulePage
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMConfigurationPage import CRMConfigurationPage
 from src.main.python.ui.crm.model.pages.workflows.WorkflowsPage import WorkflowsPage
 from src.main.python.ui.crm.model.constants.WorkflowsConstants import WorkflowsConstants
@@ -29,14 +30,20 @@ class WorkflowsPrecondition(object):
         self.config = config
 
     def create_workflows(self):
+        """ Login CRM """
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        CRMHomePage(self.driver).open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
-        CRMConfigurationPage(self.driver).check_workflows_loaded()
+        """ Check Workflow module exist """
+        CRMHomePage(self.driver)\
+            .open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        CRMConfigurationPage(self.driver)\
+            .check_workflows_loaded()
+
+        """ Create new workflow """
         WorkflowsPage(self.driver)\
             .click_add_new_workflow()\
             .enter_workflow_name(WorkflowsConstants.NAME_WORKFLOW)\
@@ -91,15 +98,27 @@ class WorkflowsPrecondition(object):
         assert name_workflow == WorkflowsConstants.NAME_WORKFLOW
 
     def check_workflow_by_status(self):
+        """ Login CRM """
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        """ Check Workflow module exist """
+        CRMHomePage(self.driver) \
+            .open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        CRMConfigurationPage(self.driver) \
+            .check_workflows_loaded()
+
+        """ Check workflow by status is working """
         CRMHomePage(self.driver)\
             .open_client_module() \
-            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_first_client_by_email(WorkflowsConstants.PANDATS_EMAIL)
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        ClientsModulePage(self.driver)\
+            .set_data_to_email_column_search_field(WorkflowsConstants.PANDATS_EMAIL)\
+            .click_search_btn()\
+            .click_crm_id_list_view(row=5)
         if global_var.current_brand_name == "q8":
             ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_TEST)
         elif global_var.current_brand_name == "gigafx":
@@ -117,15 +136,28 @@ class WorkflowsPrecondition(object):
         assert address == WorkflowsConstants.TEST_ADDRESS
 
     def check_workflow_by_country(self):
+        """ Login CRM """
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
+
+        """ Check Workflow module exist """
+        CRMHomePage(self.driver) \
+            .open_crm_configuration(CRMConstants.CRM_CONFIGURATION)
+        CRMConfigurationPage(self.driver) \
+            .check_workflows_loaded()
+
+        """ Check workflow by country is working """
         CRMHomePage(self.driver)\
             .open_client_module()\
-            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-            .find_second_client_by_email(WorkflowsConstants.PANDATS_EMAIL)\
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        ClientsModulePage(self.driver) \
+            .set_data_to_email_column_search_field(WorkflowsConstants.PANDATS_EMAIL) \
+            .click_search_btn() \
+            .click_crm_id_list_view(row=7)
+        ClientProfilePage(self.driver)\
             .click_edit_personal_detail()\
             .select_country(WorkflowsConstants.COUNTRY_GUAM)\
             .enter_date_birth(CRMConstants.DATE_BIRTH)\
@@ -140,7 +172,7 @@ class WorkflowsPrecondition(object):
         actual_address = ClientProfilePage(self.driver).get_address_text()
         expected_address = WorkflowsConstants.TEST_ADDRESS
 
-        # Check Address and Country fields were updated
+        """ Check Address and Country fields were updated """
         count = 0
         while expected_address != actual_address or expected_country != actual_country:
             CRMHomePage(self.driver).refresh_page()

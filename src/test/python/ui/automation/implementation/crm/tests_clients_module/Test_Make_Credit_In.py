@@ -21,7 +21,8 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from selenium.common.exceptions import NoSuchElementException
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 from time import sleep
 import time
 
@@ -109,7 +110,7 @@ class CreditInTestCRM(BaseTest):
 
         # Get account number to make credit in
         account_number = ClientProfilePage(self.driver) \
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
             .get_ta_number()
 
         MT4ModuleConstants.ACCOUNT_NUMBER_CREDIT = account_number
@@ -146,7 +147,7 @@ class CreditInTestCRM(BaseTest):
         # Check the balance updated
         ClientProfilePage(self.driver) \
             .refresh_page() \
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
             .open_trading_account_by_number(account_number)
 
         MT4CreditInModule(self.driver)\
@@ -176,6 +177,32 @@ class CreditInTestCRM(BaseTest):
                 break
 
         assert expected_credit == credit_in_amount
+
+        """ Verify data in info tag Credit was updated """
+        credit_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_CREDIT)
+        if global_var.current_brand_name == "trade99":
+            assert CRMConstants.AMOUNT_CREDIT_IN_BTC in credit_tag
+        else:
+            assert CRMConstants.AMOUNT_CREDIT_IN.split('.')[0] in credit_tag
+
+        """ Verify data in info tag Equity, Free Margin were updated """
+        equity_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_EQUITY)
+        free_margin_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_FREE_MARGIN)
+        if global_var.current_brand_name == "trade99":
+            expected_equity = (float(CRMConstants.AMOUNT_DEPOSIT_BTC) -
+                               float(CRMConstants.AMOUNT_WITHDRAW_BTC)) + \
+                              float(CRMConstants.AMOUNT_CREDIT_IN_BTC)
+            assert str(expected_equity) in equity_tag
+            assert str(expected_equity) in free_margin_tag
+        else:
+            expected_equity = (int(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split('.')[0]) -
+                               int(CRMConstants.AMOUNT_WITHDRAW)) + \
+                               int(CRMConstants.AMOUNT_CREDIT_IN.split('.')[0])
+            assert str(expected_equity) in equity_tag
+            assert str(expected_equity) in free_margin_tag
 
     def test_make_credit_in_crm(self):
         pass

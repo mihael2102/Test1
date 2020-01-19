@@ -12,10 +12,11 @@ from time import sleep
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.mt4.withdraw.MT4WithdrawModule import MT4WithdrawModule
-from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
+from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 
 
 class WithdrawPreconditionCRM(object):
@@ -159,7 +160,7 @@ class WithdrawPreconditionCRM(object):
         # Check the balance updated
         ClientProfilePage(self.driver) \
             .refresh_page()\
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)\
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)\
             .open_trading_account_by_number(MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT)
         balance = TradingAccountsInformationPage(self.driver).get_balance_text()
         if global_var.current_brand_name == "trade99":
@@ -189,3 +190,34 @@ class WithdrawPreconditionCRM(object):
                 if count == 10:
                     break
             assert actual_balance == expected_balance
+
+        """ Verify data in info tag Withdrawals was updated """
+        withdrawals_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_WITHDRAWALS)
+        if global_var.current_brand_name == "trade99":
+            assert CRMConstants.AMOUNT_WITHDRAW_BTC in withdrawals_tag
+        else:
+            assert CRMConstants.AMOUNT_WITHDRAW.split(".")[0] in withdrawals_tag
+
+        """ Verify data in info tag Balance, Equity, Free Margin, Net Deposit was updated """
+        balance_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_BALANCE)
+        equity_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_EQUITY)
+        free_margin_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_FREE_MARGIN)
+        net_deposit_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_NET_DEPOSIT)
+        if global_var.current_brand_name == "trade99":
+            expected_balance = float(CRMConstants.AMOUNT_DEPOSIT_BTC) - float(CRMConstants.AMOUNT_WITHDRAW_BTC)
+            assert str(expected_balance) in balance_tag
+            assert str(expected_balance) in equity_tag
+            assert str(expected_balance) in free_margin_tag
+            assert str(expected_balance) in net_deposit_tag
+        else:
+            expected_balance = int(((CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT).split('.'))[0]) \
+                               - int(CRMConstants.AMOUNT_WITHDRAW)
+            assert str(expected_balance) in balance_tag
+            assert str(expected_balance) in equity_tag
+            assert str(expected_balance) in free_margin_tag
+            assert str(expected_balance) in net_deposit_tag

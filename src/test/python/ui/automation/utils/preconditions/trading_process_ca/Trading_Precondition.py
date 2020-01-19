@@ -13,6 +13,7 @@ from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 
 
 class Trading_Precondition(object):
@@ -487,6 +488,8 @@ class Trading_Precondition(object):
         while expected_closed_price.endswith('0'):
             expected_closed_price = expected_closed_price[:-1]
         expected_profit = TradingConstants.CLOSED_ORDER_PROFIT.replace('€', '')
+        expected_profit = expected_profit.replace('$', '')
+        expected_profit = expected_profit.replace('BTC: ', '')
 
         assert expected_order_id in close_orders_data
         assert expected_date in close_orders_data

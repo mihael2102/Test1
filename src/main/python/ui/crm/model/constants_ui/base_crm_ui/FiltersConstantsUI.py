@@ -5,6 +5,6 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 import string
 
 
-class ClientDetailsConstants(object):
-    TRADING_ACCOUNTS_TAB = "Trading Accounts"
-    FINANCIAL_TRANSACTIONS_TAB = "Financial Transactions"
+class FiltersConstantsUI(object):
+    FILTER_TEST_LEADS = "Test Leads"
+    FILTER_TEST_CLIENTS = "Test Clients"
