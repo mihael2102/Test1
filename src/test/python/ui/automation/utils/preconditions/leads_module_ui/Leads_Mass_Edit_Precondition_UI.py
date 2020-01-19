@@ -1,4 +1,4 @@
-from src.main.python.ui.crm.model.constants_ui.base_crm_constants.FiltersConstants import FiltersConstants
+from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -6,8 +6,8 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
-from src.main.python.ui.crm.model.constants.LeadsModuleConstantsUI import LeadsModuleConstantsUI
-from src.main.python.ui.crm.model.constants_ui.base_crm_constants.MassActionsConstants import MassActionsConstants
+from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
+from src.main.python.ui.crm.model.constants_ui.base_crm_ui.MassActionsConstantsUI import MassActionsConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.MassEditPageUI import MassEditPageUI
 
 
@@ -35,33 +35,26 @@ class LeadsMassEditPreconditionUI(object):
 
         """ Select records for Mass Edit """
         GlobalTablePageUI(self.driver) \
-            .select_filter_new_ui(FiltersConstants.FILTER_TEST_LEADS) \
+            .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_LEADS) \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
             .select_all_records() \
-            .click_mass_action_btn(MassActionsConstants.MASS_EDIT)
+            .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT)
 
         """ Mass Edit """
         MassEditPageUI(self.driver) \
-            .select_field_to_edit(MassActionsConstants.FIELD_LEAD_STATUS) \
-            .set_users_field(MassActionsConstants.USER_NAME) \
-            .select_user_by_title(MassActionsConstants.USER_NAME) \
-            .select_status(MassActionsConstants.STATUS_R_NEW) \
-            .click_assign_btn()
+            .select_field_to_edit(MassActionsConstantsUI.FIELD_LEAD_STATUS) \
+            .select_from_list(MassActionsConstantsUI.LIST_LEAD_STATUS, MassActionsConstantsUI.STATUS_R_NEW) \
+            .select_field_to_edit(MassActionsConstantsUI.FIELD_LANGUAGE) \
+            .set_text_field(MassActionsConstantsUI.FIELD_LANGUAGE, MassActionsConstantsUI.LANGUAGE_GERMAN) \
+            .select_field_to_edit(MassActionsConstantsUI.FIELD_COUNTRY) \
+            .select_from_list(MassActionsConstantsUI.FIELD_COUNTRY, MassActionsConstantsUI.COUNTRY_ALBANIA) \
+            .click_save_changes_btn()
 
-        # if global_var.current_brand_name == "uft" or global_var.current_brand_name == "trade99":
-        #     LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_1)
-        # elif global_var.current_brand_name == "stoxmarket" or global_var.current_brand_name == "gigafx":
-        #     LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_STOX)
-        # else:
-        #     LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT)
-        # LeadsModule(self.driver)\
-        #     .edit_source(CRMConstants.SOURCE_EDIT) \
-        #     .edit_country(CRMConstants.COUNTRY_EDIT) \
-        #     .click_save_mass_edit() \
         """ Check confirmation message and updated data in table """
         GlobalTablePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
-            .global_data_checker_new_ui(MassActionsConstants.USER_NAME) \
-            .global_data_checker_new_ui(MassActionsConstants.STATUS_R_NEW)
+            .global_data_checker_new_ui(MassActionsConstantsUI.LANGUAGE_GERMAN) \
+            .global_data_checker_new_ui(MassActionsConstantsUI.STATUS_R_NEW) \
+            .global_data_checker_new_ui(MassActionsConstantsUI.COUNTRY_ALBANIA)
