@@ -77,7 +77,9 @@ class WebTraderPage(CRMBasePage):
 
     def get_open_price(self):
         sleep(0.1)
-        open_price = super().wait_load_element("//open-trade/td[7]").get_attribute("innerText")
+        open_price = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                        self.__class__.__name__)["open_trade_open_price"])\
+            .get_attribute("innerText")
         Logging().reportDebugStep(self, "Get Open Price: " + open_price)
         TradingConstants.ORDER_OPEN_PRICE = open_price
         return WebTraderPage(self.driver)
