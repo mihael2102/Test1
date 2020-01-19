@@ -1,16 +1,14 @@
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.crm.model.pages.leads.LeadDetailViewInfo import LeadDetailViewInfo
+from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
-from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
-from src.main.python.ui.crm.model.constants.LeadsModuleConstantsUI import LeadsModuleConstantsUI
+from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
+from src.main.python.ui.crm.model.constants_ui.base_crm_ui.MassActionsConstantsUI import MassActionsConstantsUI
+from src.main.python.ui.crm.model.pages.global_module_ui.MassAssignPageUI import MassAssignPageUI
 
 
 class LeadsMassAssignPreconditionUI(object):
@@ -34,52 +32,27 @@ class LeadsMassAssignPreconditionUI(object):
 
         """ Open Leads module """
         CRMBaseMethodsPage(self.driver) \
-            .open_module(TestDataConstants.MODULE_LEADS)
+            .open_module_ui(TestDataConstants.MODULE_LEADS)
 
-        LeadsModule(self.driver) \
-            .select_filter_new_ui(self.config.get_data_lead_info(
-                                LeadsModuleConstants.FIRST_LEAD_INFO,
-                                LeadsModuleConstants.FILTER_NAME))
-
-        GlobalTablePageUI(self.driver)\
+        """ Select records for Mass Assign """
+        GlobalTablePageUI(self.driver) \
+            .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_LEADS)\
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL)\
-            .select_all_records()
+            .select_all_records()\
+            .click_mass_action_btn(MassActionsConstantsUI.MASS_ASSIGN)
 
-        CRMHomePage(self.driver)\
-            .open_lead_module()\
-            .select_filter(
-                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))\
-            .enter_email(CRMConstants.SHORT_EMAIL)\
-            .click_search_button_leads_module()\
-            .click_check_box_all_leads()\
-            .click_mass_assign()\
-            .input_mass_assign(CRMConstants.PANDAQA_ASSIGN)\
-            .select_user_assign(CRMConstants.PANDAQA_ASSIGN)\
-            .click_status()
+        """ Mass Assign """
+        MassAssignPageUI(self.driver)\
+            .select_department(MassActionsConstantsUI.DEPARTMENT_ALL)\
+            .set_users_field(MassActionsConstantsUI.USER_NAME)\
+            .select_user_by_title(MassActionsConstantsUI.USER_NAME)\
+            .select_status(MassActionsConstantsUI.STATUS_R_NEW)\
+            .click_assign_btn()
 
-        if global_var.current_brand_name == "uft" or global_var.current_brand_name == "trade99":
-            LeadsModule(self.driver)\
-                .select_status(CRMConstants.STATUS_EDIT_1)
-        elif global_var.current_brand_name == "stoxmarket":
-            LeadsModule(self.driver)\
-                .select_status(CRMConstants.STATUS_EDIT_STOX)
-        else:
-            LeadsModule(self.driver)\
-                .select_status(CRMConstants.STATUS_ASSIGN)
-        LeadsModule(self.driver)\
-            .click_assign()\
-            .mass_assign_result(CRMConstants.PANDAQA_ASSIGN)
-        i = 1
-        for i in range(1, 10):
-            status = LeadsModule(self.driver).check_status_leads(i)
-            if global_var.current_brand_name == "uft" or \
-               global_var.current_brand_name == "trade99":
-                assert status == CRMConstants.STATUS_EDIT_1
-            elif global_var.current_brand_name == "stoxmarket":
-                assert status == CRMConstants.STATUS_EDIT_STOX
-            else:
-                assert status == CRMConstants.STATUS_ASSIGN
-            assign_leads = LeadsModule(self.driver).check_assign_leads(i)
-
-            assert assign_leads == CRMConstants.PANDAQA_ASSIGN
+        """ Check confirmation message and updated data in table """
+        GlobalTablePageUI(self.driver) \
+            .verify_success_message()\
+            .click_ok()\
+            .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME)\
+            .global_data_checker_new_ui(MassActionsConstantsUI.STATUS_R_NEW)

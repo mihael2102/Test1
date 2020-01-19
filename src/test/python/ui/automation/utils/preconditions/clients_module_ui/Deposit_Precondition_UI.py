@@ -12,12 +12,12 @@ from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule impo
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.crm.model.pages.clients.ClientDetailsPageUI import ClientDetailsPageUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
-from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 
 
 @pytest.mark.run(order=13)
@@ -62,15 +62,15 @@ class DepositPreconditionUI(object):
         MT4CreateAccountModule(self.driver) \
             .create_account_new_ui(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_EUR))\
-                # self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                # self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_EUR),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))
         ClientProfilePage(self.driver)\
             .click_ok()
 
         """ Get account number to make deposit in future """
         account_number = ClientProfilePage(self.driver) \
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)\
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)\
             .get_ta_number()
 
         MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT = account_number
@@ -108,18 +108,18 @@ class DepositPreconditionUI(object):
 
         if global_var.current_brand_name == "trade99":
             deposit_amount_text = crm_client_profile\
-                .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)\
+                .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)\
                 .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_BTC)
             assert CRMConstants.AMOUNT_DEPOSIT_BTC == deposit_amount_text
         else:
             deposit_amount_text = crm_client_profile\
-                .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)\
+                .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)\
                 .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
             assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT == deposit_amount_text
 
         """ Verify data in info tag Balance was updated """
         balance_tag = ClientDetailsPageUI(self.driver)\
-            .get_data_from_info_tag(ClientDetailsConstants.TAG_BALANCE)
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_BALANCE)
         if global_var.current_brand_name == "trade99":
             assert CRMConstants.AMOUNT_DEPOSIT_BTC in balance_tag
         else:
@@ -127,7 +127,7 @@ class DepositPreconditionUI(object):
 
         """ Verify data in info tag Deposit was updated """
         deposit_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstants.TAG_DEPOSIT)
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_DEPOSIT)
         if global_var.current_brand_name == "trade99":
             assert CRMConstants.AMOUNT_DEPOSIT_BTC in deposit_tag
         else:
@@ -135,7 +135,7 @@ class DepositPreconditionUI(object):
 
         """ Verify data in info tag Equity was updated """
         equity_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstants.TAG_EQUITY)
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_EQUITY)
         if global_var.current_brand_name == "trade99":
             assert CRMConstants.AMOUNT_DEPOSIT_BTC in equity_tag
         else:
@@ -143,7 +143,7 @@ class DepositPreconditionUI(object):
 
         """ Verify data in info tag Free Margin was updated """
         free_margin_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstants.TAG_FREE_MARGIN)
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_FREE_MARGIN)
         if global_var.current_brand_name == "trade99":
             assert CRMConstants.AMOUNT_DEPOSIT_BTC in free_margin_tag
         else:
@@ -151,7 +151,7 @@ class DepositPreconditionUI(object):
 
         """ Verify data in info tag Net Deposit was updated """
         net_deposit_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstants.TAG_NET_DEPOSIT)
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_NET_DEPOSIT)
         if global_var.current_brand_name == "trade99":
             assert CRMConstants.AMOUNT_DEPOSIT_BTC in net_deposit_tag
         else:
