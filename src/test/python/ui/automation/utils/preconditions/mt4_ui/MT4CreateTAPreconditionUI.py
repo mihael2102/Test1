@@ -6,7 +6,6 @@ from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI i
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
-from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4CreateTAConstantsUI import MT4CreateTAConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
