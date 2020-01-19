@@ -1,5 +1,8 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CADepositPage:
+  deposit_page: "//li[@data-groups='Creditcard Mostused']"
 CALoginPage:
-  login_btn: "//span[contains(text(), 'Login')]"
+  login_btn: "//span[contains(text(), 'Log In')]"
   login_email_input: "//*[@id='Username']"
   login_password_input: "//*[@id='Password']"
   login_btn_2: "//input[@value='Log in']"
