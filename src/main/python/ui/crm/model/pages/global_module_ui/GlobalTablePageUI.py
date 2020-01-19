@@ -4,14 +4,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.client_modules.mass_sms.SendSMSClientsModule import SendSMSClientsModule
-from src.main.python.ui.crm.model.modules.client_modules.send_email.SendEmailClientsModule import SendEmailClientsModule
-from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
-from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
-from src.main.python.ui.crm.model.modules.client_modules.mass_assign.MassAssignClientsModule import \
-    MassAssignClientsModule
-from src.main.python.ui.crm.model.modules.client_modules.mass_edit.MassEditClientsModule import MassEditClientsModule
-from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
 #import allure
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
@@ -24,9 +16,19 @@ class GlobalTablePageUI(CRMBasePage):
 
     def set_data_column_field(self, column, data):
         sleep(0.1)
-        field = super().wait_load_element("(//input[@placeholder='%s'])[1]" % column)
+        btn = super().wait_load_element("(//span[@class='placeholder']/span[text()='%s'])[1]" % column)
+        self.driver.execute_script("arguments[0].click();", btn)
+        field = super().wait_load_element(
+            "//span[contains(text(),'%s')]//following-sibling::div[@class='select-wrap']//input[@placeholder='Search']"
+            % column)
         field.clear()
         field.send_keys(data)
+        sleep(1)
+        try:
+            done = super().wait_element_to_be_clickable("//button[contains(span,'Apply')]")
+            self.driver.execute_script("arguments[0].click();", done)
+        except:
+            pass
         sleep(1)
         self.wait_loading_to_finish_new_ui(25)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
@@ -37,10 +39,11 @@ class GlobalTablePageUI(CRMBasePage):
         field = super().wait_element_to_be_clickable("//span[@class='placeholder']/span[text()='%s']" % column)
         field.click()
         sleep(0.5)
-        item = super().wait_load_element("//span[text()='%s']" % data)
+        item = super().wait_load_element("//span[contains(text(),'%s')]//following-sibling::ul//span[text()='%s']"
+                                         % (column, data))
         self.driver.execute_script("arguments[0].click();", item)
         try:
-            done = super().wait_element_to_be_clickable("//button[@class='btn-save']")
+            done = super().wait_element_to_be_clickable("//button/span[text()='Apply']")
             self.driver.execute_script("arguments[0].click();", done)
         except:
             pass
@@ -62,9 +65,10 @@ class GlobalTablePageUI(CRMBasePage):
                 row_count += 1
             Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            super().wait_visible_of_element\
-                ("//span[@class='genHeaderSmall message_title' and contains(text(),'There are no')]")
-            Logging().reportDebugStep(self, "There are no documents that match the search criteria!")
+            sleep(0.1)
+            super().wait_element_to_be_disappear("//tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][1]",
+                                                 timeout=5)
+            Logging().reportDebugStep(self, "Data was not found")
         return GlobalTablePageUI(self.driver)
 
     def select_all_records(self):
@@ -92,7 +96,7 @@ class GlobalTablePageUI(CRMBasePage):
     """
 
     def verify_success_message(self):
-        message = super().wait_load_element("//div[@class='dialog-content-success mat-dialog-content']").text
+        message = super().wait_load_element("//div[contains(@class,'dialog-content-success mat-dialog-content')]").text
         assert "success" in message.lower()
         Logging().reportDebugStep(self, "Get message: " + message)
         return GlobalTablePageUI(self.driver)

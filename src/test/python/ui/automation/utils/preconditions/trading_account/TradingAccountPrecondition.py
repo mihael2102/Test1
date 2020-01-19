@@ -18,7 +18,7 @@ from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleC
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
-from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 
 
 class TradingAccountPrecondition(object):
@@ -173,7 +173,7 @@ class TradingAccountPrecondition(object):
             .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
             .find_client_by_email_new_ui(CAConstants.EMAIL_CA)
         ClientProfilePage(self.driver) \
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB)
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
         ClientsPage(self.driver)\
             .trading_account_exist_ui(CAConstants.DEMO_ACCOUNT_NUMBER)\
             .trading_account_exist_ui(CAConstants.LIVE_ACCOUNT_NUMBER)
