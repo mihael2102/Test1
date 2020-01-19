@@ -14,7 +14,7 @@ tests_config:
   class: TestLeadsModuleUI
   tests:
     - test_convert_lead_ui   # Creates a lead and converts it to a client
-#
+
 ############################################## CLIENTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_Clients_Module_UI
 #  class: TestClientsModuleUI
@@ -24,35 +24,31 @@ tests_config:
 #    - test_mass_edit_clients_ui
 
 ######################################### MT4 ACTIONS ###########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_open_trading_account_new_ui  # open demo trading account
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_MT4_UI
+- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
   class: TestMT4UI
   tests:
-    - test_deposit_crm_new_ui  # create live mt account and make deposit in crm
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-  class: WithdrawTest
-  tests:
-    - test_withdraw_crm_new_ui   #preconditions: convert lead, make deposit
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
-  class: CreditInTestCRM
-  tests:
-    - test_credit_in_crm_new_ui
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
-  class: CreditOutTestCRM
-  tests:
-    - test_make_credit_out_crm_new_ui # preconditions: convert lead, make credit in
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
-  class: TransferBetweenTa
-  tests:
-    - test_transfer_between_ta_new_ui # preconditions: convert lead, deposit crm
+    - test_create_demo_trading_account_ui
+    - test_deposit_crm_new_ui  # create live mt account and make deposit
+#
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
+#  class: WithdrawTest
+#  tests:
+#    - test_withdraw_crm_new_ui   #preconditions: convert lead, make deposit
+#
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
+#  class: CreditInTestCRM
+#  tests:
+#    - test_credit_in_crm_new_ui
+#
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
+#  class: CreditOutTestCRM
+#  tests:
+#    - test_make_credit_out_crm_new_ui # preconditions: convert lead, make credit in
+#
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
+#  class: TransferBetweenTa
+#  tests:
+#    - test_transfer_between_ta_new_ui # preconditions: convert lead, deposit crm
 
 ######################################## AFFILIATES MODULE ##########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module_ui.Test_Affiliates_Module_UI

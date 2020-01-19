@@ -1,13 +1,6 @@
 import pytest
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from selenium.common.exceptions import TimeoutException
-from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.modules.client_modules.client_deposit.CRMClientDeposit import CRMClientDeposit
-from src.main.python.ui.crm.model.modules.leads_module.LeadViewInfo import LeadViewInfo
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
@@ -16,12 +9,22 @@ from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import Cl
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
-from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
+from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
+from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
+from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
+from src.main.python.ui.crm.model.pages.mt4_ui.MT4CreateTAPageUI import MT4CreateTAPageUI
+from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4CreateTAConstantsUI import MT4CreateTAConstantsUI
+from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4ActionsConstantsUI import MT4ActionsConstantsUI
 
 
 @pytest.mark.run(order=13)
-class DepositPreconditionUI(object):
+class MT4DepositPreconditionUI(object):
 
     driver = None
     config = None
@@ -45,39 +48,37 @@ class DepositPreconditionUI(object):
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url'))
 
-        """
-            ADD LIVE ACCOUNT IN CRM
-            Open clients module. Find created client by email and open his profile
-        """
-        CRMHomePage(self.driver)\
-            .open_client_module_new_ui()\
-            .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-            .find_client_by_email_new_ui(client1[LeadsModuleConstants.EMAIL])
-
-        """ Create LIVE account for client using MT4 Actions """
-        crm_client_profile = ClientProfilePage(self.driver)
-        MT4DropDown(self.driver) \
+        """ Open clients module. Find created client by email and open his profile """
+        CRMBaseMethodsPage(self.driver) \
+            .open_module_ui(TestDataConstants.MODULE_CLIENTS)
+        GlobalTablePageUI(self.driver) \
+            .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
+            .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
+                                   ConvertLeadConstantsUI.EMAIL)
+        ClientsModulePageUI(self.driver) \
+            .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
             .open_mt4_module_newui(CRMConstants.CREATE_MT_ACCOUNT)
 
-        MT4CreateAccountModule(self.driver) \
-            .create_account_new_ui(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_EUR),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))
-        ClientProfilePage(self.driver)\
-            .click_ok()
+        """ Create LIVE account for client using MT4 Actions """
+        MT4CreateTAPageUI(self.driver) \
+            .mt4_create_ta_ui(
+            list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
+            list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=MT4CreateTAConstantsUI.CURRENCY,
+            list3=MT4CreateTAConstantsUI.LIST_GROUP, group=MT4CreateTAConstantsUI.GROUP_LIVE,
+            list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
 
         """ Get account number to make deposit in future """
-        account_number = ClientProfilePage(self.driver) \
-            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)\
-            .get_ta_number()
+        ClientDetailsPageUI(self.driver) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
+        account_number = CRMBaseMethodsPage(self.driver)\
+            .get_data_from_list_view_ui(ClientDetailsConstantsUI.COLUMN_TRADING_ACCOUNT_LOGIN,
+                                        ClientDetailsConstantsUI.ROW_1)
 
         MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT = account_number
 
         """ Make deposit for account number using MT4 Actions """
-        MT4DropDown(self.driver) \
-            .open_mt4_module_newui(CRMConstants.CREATE_MT_DEPOSIT)
+        ClientDetailsPageUI(self.driver) \
+            .open_mt4_module_newui(MT4ActionsConstantsUI.DEPOSIT)
 
         if global_var.current_brand_name == "trade99":
             MT4DepositModule(self.driver)\

@@ -45,3 +45,12 @@ class ClientDetailsPageUI(CRMBasePage):
             "(//div[contains(text(),'%s')]//following-sibling::div[contains(@class,'info-tags')])[1]" % tag_title).text
         Logging().reportDebugStep(self, "Get data from tag '" + tag_title + "': " + tag)
         return tag
+
+    def open_mt4_module_newui(self, module):
+        try:
+            sleep(0.2)
+            module_item = super().wait_load_element("//div[text()=' %s ']" % module)
+            self.driver.execute_script("arguments[0].click();", module_item)
+            Logging().reportDebugStep(self, module + " module is opened")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Module does not exist")

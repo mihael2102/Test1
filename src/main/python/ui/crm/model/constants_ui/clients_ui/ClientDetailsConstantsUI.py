@@ -8,10 +8,13 @@ import string
 class ClientDetailsConstantsUI(object):
     brand = global_var.current_brand_name
 
+    ROW_1 = "1"
+
     TAB_TRADING_ACCOUNTS = "Trading Accounts"
     TAB_FINANCIAL_TRANSACTIONS = "Financial Transactions"
     TAB_CUSTOM_INFORMATION = "Custom Information"
     TAB_ADDRESS_INFORMATION = "Address Information"
+
     TAG_BALANCE = "Balance"
     TAG_WITHDRAWALS = "Withdrawals"
     TAG_DEPOSIT = "Deposit"
@@ -37,3 +40,5 @@ class ClientDetailsConstantsUI(object):
     FIELD_REFERRAL = "Referral"
     FIELD_CLIENT_SOURCE = "Client Source"
     FIELD_BIRTHDAY = "Date Of Birth"
+
+    COLUMN_TRADING_ACCOUNT_LOGIN = "Trading Account Login"

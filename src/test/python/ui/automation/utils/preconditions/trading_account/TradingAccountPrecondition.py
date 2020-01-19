@@ -259,32 +259,6 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
             return self
 
-    def add_demo_account_from_crm_new_ui(self):
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-
-        CRMLoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url'))
-
-        ClientsPage(self.driver)\
-            .select_filter_new_ui(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email_new_ui(
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
-
-        MT4DropDown(self.driver)\
-            .open_mt4_module_newui(CRMConstants.CREATE_MT_ACCOUNT)
-
-        MT4CreateAccountModule(self.driver) \
-            .create_account_new_ui(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
-        return self
-
     def add_live_account_from_crm(self):
         crm_client_profile = CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
