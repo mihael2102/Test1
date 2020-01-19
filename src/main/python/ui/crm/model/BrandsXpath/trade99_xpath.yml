@@ -3,7 +3,7 @@
 CADepositPage:
   deposit_page: "//div[@class='header-pandats']/h1[text()='Choose a payment method']"
 CALoginPage:
-  sign_up: "//div[@class='btn-holder desktop-only']/a[@title='Open a Live Account']"
+  sign_up: " //button[text()=' Join Us ']"
 ClientsPage:
   client_currency: "//td[@class='dvtCellInfo'][contains(text(),'BTC')]"
 FinancialTransactionsPage:

@@ -24,5 +24,8 @@ class AddNewAccountTestCA(BaseTest):
     def test_verify_accounts_in_crm(self):
         TradingAccountPrecondition(self.driver, self.config).verify_account_in_crm()
 
+    def test_verify_accounts_in_crm_ui(self):
+        TradingAccountPrecondition(self.driver, self.config).verify_account_in_crm_ui()
+
     def test_switch_between_accounts_ca(self):
         Page_CA_Precondition(self.driver, self.config).switch_between_accounts()

@@ -24,15 +24,14 @@ class ClientsSearchingColumnsPreconditionUI(object):
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+                       self.config.get_value(TestDataConstants.OTP_SECRET))
 
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url'))
 
         """ Open Clients module """
         CRMBaseMethodsPage(self.driver) \
-            .open_module(TestDataConstants.MODULE_CLIENTS) \
+            .open_module_ui(TestDataConstants.MODULE_CLIENTS) \
             .open_tab_list_view_ui(ClientsModuleConstants.TAB_ALL)
 
         """ Get client's data from the first row of list view """
@@ -83,7 +82,7 @@ class ClientsSearchingColumnsPreconditionUI(object):
                                           data=email)
 
         """ Verify correct data found """
-        result = CRMBaseMethodsPage(self.driver)
+        result = GlobalTablePageUI(self.driver)
         if crm_id:
             result\
                 .global_data_checker_new_ui(crm_id)
