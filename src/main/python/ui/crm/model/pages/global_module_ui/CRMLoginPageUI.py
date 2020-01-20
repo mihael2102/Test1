@@ -1,28 +1,13 @@
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.utils.logs.Loging import Logging
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from time import sleep
 import pyotp
 
 
-class CRMLoginPage(CRMBasePage):
-
-    '''
-        Open the second tabs of crm page
-        :parameter url crm page url  
-    '''
-
-    def open_second_tab_page(self, url):
-        super().open_second_tab_page(url)
-        Logging().reportDebugStep(self, "Open second tabs page: " + url + '\n')
-        return CRMLoginPage(self.driver)
-
-    def open_first_tab_page(self, url):
-        super().open_first_tab_page(url)
-        Logging().reportDebugStep(self, "Open first tabs page: " + url)
-        return CRMLoginPage(self.driver)
+class CRMLoginPageUI(CRMBasePage):
 
     '''
         Login  to CRM 
@@ -31,19 +16,47 @@ class CRMLoginPage(CRMBasePage):
         return Home Page instance    
     '''
 
-    def crm_login(self, user_name, password, otp_secret=None):
+    def crm_login(self, url, user_name, password, otp_secret=None):
+        self.open_first_tab_page(url)
+        self.set_user_name(user_name)
+        self.set_password(password)
+        self.check_new_design()
+        self.click_login_btn()
+        sleep(1)
+        self.set_otp(otp_secret)
+        sleep(1)
+        self.close_news_popup()
+
+    def set_user_name(self, user_name):
+        sleep(0.1)
         user_name_field = self.driver.find_element(By.XPATH, "//input[@id='user_name']")
-        password__field = self.driver.find_element(By.XPATH, "//input[@id='user_password']")
-        login_button = self.driver.find_element(By.XPATH, "//input[@id='submitButton']")
         user_name_field.clear()
         user_name_field.send_keys(user_name)
-        Logging().reportDebugStep(self, "Setting the user name: " + user_name)
+        Logging().reportDebugStep(self, "Set User Name: " + user_name)
+        return CRMLoginPageUI(self.driver)
+
+    def set_password(self, password):
+        sleep(0.1)
+        password__field = self.driver.find_element(By.XPATH, "//input[@id='user_password']")
         password__field.clear()
         password__field.send_keys(password)
-        Logging().reportDebugStep(self, "Setting the password")
+        Logging().reportDebugStep(self, "Set Password")
+        return CRMLoginPageUI(self.driver)
+
+    def check_new_design(self):
+        sleep(0.1)
+        check_box = self.driver.find_element(By.XPATH, "//label[@class='pure-material-checkbox']")
+        check_box.click()
+        Logging().reportDebugStep(self, "Check 'LOGIN TO NEW CRM DESIGN' box")
+        return CRMLoginPageUI(self.driver)
+
+    def click_login_btn(self):
+        login_button = self.driver.find_element(By.XPATH, "//input[@id='submitButton']")
         login_button.click()
         Logging().reportDebugStep(self, "Click the Login button")
-        sleep(1)
+        return CRMLoginPageUI(self.driver)
+
+    def set_otp(self, otp_secret):
         try:
             otp_field = self.driver.find_element(By.XPATH, "//input[@id='otp']")
             submit_button = self.driver.find_element(By.XPATH, "//a[@id='submitButton2']")
@@ -56,21 +69,29 @@ class CRMLoginPage(CRMBasePage):
             Logging().reportDebugStep(self, "Click the submit button")
         except NoSuchElementException:
             Logging().reportDebugStep(self, "No OTP authentication is required")
+        return CRMLoginPageUI(self.driver)
 
-        # Wait for News popup at Old forex and close popup if it is shown
+    def close_news_popup(self):
         try:
-            # if ("uminvestments" or "ogtrade") in super().get_current_url():
-            sleep(1)
             do_not_show_again_checkbox = super().wait_element_to_be_clickable("//*[@id='do_not_show']", timeout=1)
             do_not_show_again_checkbox.click()
-
             close_window_button = super().wait_element_to_be_clickable(
                                         "//*[@id = 'whats_newcontent']//button[@aria-label = 'Close']", timeout=1)
             close_window_button.click()
             Logging().reportDebugStep(self, "'What's new' popup was closed")
         except (NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "'What's new' popup isn't displayed")
-        return ClientsPage(self.driver)
+        return ClientsModulePageUI(self.driver)
+
+    def open_second_tab_page(self, url):
+        super().open_second_tab_page(url)
+        Logging().reportDebugStep(self, "Open second tabs page: " + url + '\n')
+        return CRMLoginPageUI(self.driver)
+
+    def open_first_tab_page(self, url):
+        super().open_first_tab_page(url)
+        Logging().reportDebugStep(self, "Open first tabs page: " + url)
+        return CRMLoginPageUI(self.driver)
 
     '''
         Select the crm page again
@@ -80,4 +101,4 @@ class CRMLoginPage(CRMBasePage):
     def switch_second_tab_page(self):
         super().switch_second_tab_page()
         Logging().reportDebugStep(self, "Switch the second page")
-        return CRMLoginPage(self.driver)
+        return CRMLoginPageUI(self.driver)

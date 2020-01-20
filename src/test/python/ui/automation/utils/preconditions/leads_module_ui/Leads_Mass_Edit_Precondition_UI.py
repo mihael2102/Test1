@@ -1,5 +1,5 @@
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
@@ -20,14 +20,13 @@ class LeadsMassEditPreconditionUI(object):
         self.config = config
 
     def mass_edit_leads_ui(self):
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        """ Login CRM """
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+            self.config.get_value('url'),
+            self.config.get_value(TestDataConstants.USER_NAME),
+            self.config.get_value(TestDataConstants.CRM_PASSWORD),
+            self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Leads module """
         CRMBaseMethodsPage(self.driver) \

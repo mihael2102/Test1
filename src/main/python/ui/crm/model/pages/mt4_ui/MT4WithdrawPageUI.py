@@ -8,10 +8,10 @@ from src.main.python.utils.logs.Loging import Logging
 from time import sleep
 
 
-class MT4DepositPageUI(CRMBasePage):
+class MT4WithdrawPageUI(CRMBasePage):
 
-    def mt4_deposit_ui(self, list1=None, p_method=None, list2=None, status=None, list3=None, t_account=None,
-                       field1=None, amount=None, field2=None, comment=None, list4=None, cleared_by=None):
+    def mt4_withdraw_ui(self, list1=None, p_method=None, list2=None, status=None, list3=None, t_account=None,
+                        field1=None, amount=None, field2=None, comment=None, list4=None, cleared_by=None):
         if p_method:
             self.select_pick_list_item(list1, p_method)
         if status:
@@ -25,7 +25,7 @@ class MT4DepositPageUI(CRMBasePage):
         if cleared_by:
             self.select_pick_list_item(list4, cleared_by)
         sleep(1)
-        self.click_deposit()
+        self.click_withdraw()
 
     def select_pick_list_item(self, pick_list, item):
         sleep(0.1)
@@ -33,7 +33,7 @@ class MT4DepositPageUI(CRMBasePage):
         title = super().wait_load_element(
             "//span[text()=' %s ']//following-sibling::ul//span[contains(text(),'%s')]" % (pick_list, item))
         self.driver.execute_script("arguments[0].click();", title)
-        return MT4DepositPageUI(self.driver)
+        return MT4WithdrawPageUI(self.driver)
 
     def set_text_field(self, field, text):
         sleep(0.1)
@@ -42,13 +42,13 @@ class MT4DepositPageUI(CRMBasePage):
             "//div[contains(label,'%s')]//following-sibling::mat-form-field//input" % field)
         input_field.clear()
         input_field.send_keys(text)
-        return MT4DepositPageUI(self.driver)
+        return MT4WithdrawPageUI(self.driver)
 
-    def click_deposit(self):
+    def click_withdraw(self):
         sleep(0.1)
-        Logging().reportDebugStep(self, "Click 'Deposit' button")
-        deposit_btn = super().wait_element_to_be_clickable("//button[span=' Deposit ']")
-        deposit_btn.click()
+        Logging().reportDebugStep(self, "Click 'Withdraw' button")
+        withdraw_btn = super().wait_element_to_be_clickable("//button[span=' Withdraw ']")
+        withdraw_btn.click()
         sleep(1)
         self.wait_loading_to_finish_new_ui(8)
-        return MT4DepositPageUI(self.driver)
+        return MT4WithdrawPageUI(self.driver)

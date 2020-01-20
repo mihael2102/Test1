@@ -5,7 +5,7 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 import string
 
 
-class MT4DepositConstants(object):
+class MT4WithdrawConstantsUI(object):
     random_numbers = str(random.randrange(1, 9999))
     random_character = ''.join(random.choice(string.ascii_uppercase) for _ in range(5))
     now = datetime.now().strftime('%Y%m%d%H%M%S%f')
@@ -21,6 +21,8 @@ class MT4DepositConstants(object):
     P_METHOD = "Credit card"
     STATUS = "Approved"
     TA = ""
-    AMOUNT = "2.00"
+    AMOUNT = "1.00"
     COMMENT = "Test deposit"
     CLEARED_BY = "PRAXIS"
+
+    BALANCE = "1.00"

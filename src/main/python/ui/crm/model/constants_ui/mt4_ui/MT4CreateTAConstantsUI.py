@@ -1,6 +1,5 @@
 import random
 from datetime import *
-from dateutil.relativedelta import relativedelta
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 import string
 
@@ -19,9 +18,12 @@ class MT4CreateTAConstantsUI(object):
     SERVER_DEMO = "Demo"
     SERVER_LIVE = "Live"
     GROUP_DEMO = "demo"
-    GROUP_LIVE = "live"
+    if brand == "fair-bit":
+        GROUP_LIVE = "UST1"
+    else:
+        GROUP_LIVE = "live"
     LEVERAGE = "100"
     if brand == "fair-bit":
-        CURRENCY = "TTR"
+        CURRENCY = "UST"
     else:
         CURRENCY = "USD"

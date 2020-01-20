@@ -30,11 +30,13 @@ class ClientDetailsPageUI(CRMBasePage):
 
     def open_tab(self, title):
         try:
+            Logging().reportDebugStep(self, "Open tab: " + title)
             tab = super().wait_load_element(
                 "//mat-expansion-panel-header[@aria-expanded='false']//mat-panel-title/div[contains(text(),'%s')]"
                 % title)
             self.driver.execute_script("arguments[0].click();", tab)
-            Logging().reportDebugStep(self, "Open tab: " + title)
+            sleep(1)
+            self.wait_loading_to_finish_new_ui(5)
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Tab " + title + " already opened")
         return ClientDetailsPageUI(self.driver)

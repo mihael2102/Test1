@@ -20,10 +20,12 @@ from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstants
 from src.main.python.ui.crm.model.pages.mt4_ui.MT4CreateTAPageUI import MT4CreateTAPageUI
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4CreateTAConstantsUI import MT4CreateTAConstantsUI
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4ActionsConstantsUI import MT4ActionsConstantsUI
+from src.main.python.ui.crm.model.pages.mt4_ui.MT4CreditInPageUI import MT4CreditInPageUI
+from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4CreditInConstantsUI import MT4CreditInConstantsUI
 
 
 @pytest.mark.run(order=13)
-class MT4DepositPreconditionUI(object):
+class MT4CreditInPreconditionUI(object):
 
     driver = None
     config = None
@@ -32,7 +34,7 @@ class MT4DepositPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def deposit_crm_ui(self):
+    def credit_in_crm_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
@@ -50,22 +52,22 @@ class MT4DepositPreconditionUI(object):
                                    ConvertLeadConstantsUI.EMAIL)
         ClientsModulePageUI(self.driver) \
             .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
-            .open_mt4_module_newui(CRMConstants.CREATE_MT_ACCOUNT)
+            .open_mt4_module_newui(MT4ActionsConstantsUI.CREATE_MT_ACCOUNT)
 
         """ Create LIVE account for client using MT4 Actions """
         MT4CreateTAPageUI(self.driver) \
             .mt4_create_ta_ui(
-            list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
-            list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=MT4CreateTAConstantsUI.CURRENCY,
-            list3=MT4CreateTAConstantsUI.LIST_GROUP, group=MT4CreateTAConstantsUI.GROUP_LIVE,
-            list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
+                list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
+                list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=MT4CreateTAConstantsUI.CURRENCY,
+                list3=MT4CreateTAConstantsUI.LIST_GROUP, group=MT4CreateTAConstantsUI.GROUP_LIVE,
+                list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
 
         """ Verify successful message """
         GlobalTablePageUI(self.driver) \
             .verify_success_message() \
             .click_ok()
 
-        """ Get account number to make deposit in future """
+        """ Get account number to make Credit in """
         ClientDetailsPageUI(self.driver) \
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
         account_number = GlobalTablePageUI(self.driver)\
@@ -73,20 +75,19 @@ class MT4DepositPreconditionUI(object):
                 column=ClientDetailsConstantsUI.COLUMN_TRADING_ACCOUNT_LOGIN,
                 row=ClientDetailsConstantsUI.ROW_1)
 
-        MT4DepositConstantsUI.TA = account_number
+        MT4CreditInConstantsUI.TA_CREDIT = account_number
 
-        """ Make deposit for account number using MT4 Actions """
+        """ Make Credit in """
         ClientDetailsPageUI(self.driver) \
-            .open_mt4_module_newui(MT4ActionsConstantsUI.DEPOSIT)
+            .open_mt4_module_newui(MT4ActionsConstantsUI.CREDIT_IN)
 
-        MT4DepositPageUI(self.driver)\
-            .mt4_deposit_ui(
-                list1=MT4DepositConstantsUI.LIST_P_METHOD, p_method=MT4DepositConstantsUI.P_METHOD,
-                list2=MT4DepositConstantsUI.LIST_STATUS, status=MT4DepositConstantsUI.STATUS,
-                list3=MT4DepositConstantsUI.LIST_TA, t_account=account_number,
-                field1=MT4DepositConstantsUI.FIELD_AMOUNT, amount=MT4DepositConstantsUI.AMOUNT,
-                field2=MT4DepositConstantsUI.FIELD_COMMENT, comment=MT4DepositConstantsUI.COMMENT,
-                list4=MT4DepositConstantsUI.LIST_CLEARED_BY, cleared_by=MT4DepositConstantsUI.CLEARED_BY)
+        MT4CreditInPageUI(self.driver)\
+            .mt4_credit_in_ui(
+                list1=MT4CreditInConstantsUI.LIST_TA, t_account=MT4CreditInConstantsUI.TA_CREDIT,
+                field1=MT4CreditInConstantsUI.FIELD_AMOUNT, amount=MT4CreditInConstantsUI.AMOUNT,
+                day=MT4CreditInConstantsUI.DAY, month=MT4CreditInConstantsUI.MONTH, year=MT4CreditInConstantsUI.YEAR,
+                field2=MT4CreditInConstantsUI.FIELD_GRANTED_BY, granted_by=MT4CreditInConstantsUI.GRANTED_BY,
+                field3=MT4CreditInConstantsUI.FIELD_COMMENT, comment=MT4CreditInConstantsUI.COMMENT)
 
         """ Verify successful message """
         GlobalTablePageUI(self.driver) \

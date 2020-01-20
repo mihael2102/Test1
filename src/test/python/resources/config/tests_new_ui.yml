@@ -27,13 +27,10 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
   class: TestMT4UI
   tests:
-    - test_create_demo_trading_account_ui
-    - test_deposit_crm_new_ui  # create live mt account and make deposit
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-#  class: WithdrawTest
-#  tests:
-#    - test_withdraw_crm_new_ui   #preconditions: convert lead, make deposit
+#    - test_create_demo_trading_account_ui
+    - test_deposit_crm_ui  # create live mt account and make deposit
+    - test_withdraw_crm_ui
+    - test_credit_in_crm_ui
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
 #  class: CreditInTestCRM
