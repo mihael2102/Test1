@@ -36,19 +36,19 @@ class FinTransactionsSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(FinTransactionsModuleConstantsUI.TAB_ALL)
 
         """ Get data from the first row of list view """
-        transaction_no = CRMBaseMethodsPage(self.driver) \
+        transaction_no = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_TRANSACTION_NO,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        login = CRMBaseMethodsPage(self.driver) \
+        login = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_LOGIN,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        client = CRMBaseMethodsPage(self.driver) \
+        client = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_CLIENT,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        transaction_type = CRMBaseMethodsPage(self.driver) \
+        transaction_type = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_T_TYPE,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        payment_type = CRMBaseMethodsPage(self.driver) \
+        payment_type = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_P_TYPE,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 

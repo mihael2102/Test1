@@ -35,13 +35,13 @@ class TasksSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(TasksModuleConstantsUI.TAB_ALL)
 
         """ Get task data from the first row of list view """
-        event_type = CRMBaseMethodsPage(self.driver) \
+        event_type = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TasksModuleConstantsUI.COLUMN_EVENT_TYPE,
                                         row=TasksModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        status = CRMBaseMethodsPage(self.driver) \
+        status = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TasksModuleConstantsUI.COLUMN_STATUS,
                                         row=TasksModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        account_name = CRMBaseMethodsPage(self.driver) \
+        account_name = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TasksModuleConstantsUI.COLUMN_ACCOUNT_NAME,
                                         row=TasksModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 

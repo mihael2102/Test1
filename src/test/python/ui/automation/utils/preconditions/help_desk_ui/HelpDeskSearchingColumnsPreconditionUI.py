@@ -36,13 +36,13 @@ class HelpDeskSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(HelpDeskModuleConstantsUI.TAB_ALL)
 
         """ Get ticket's data from the first row of list view """
-        ticket_no = CRMBaseMethodsPage(self.driver) \
+        ticket_no = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=HelpDeskModuleConstantsUI.COLUMN_TICKET_NO,
                                         row=HelpDeskModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        status = CRMBaseMethodsPage(self.driver) \
+        status = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=HelpDeskModuleConstantsUI.COLUMN_STATUS,
                                         row=HelpDeskModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        assigned_to = CRMBaseMethodsPage(self.driver) \
+        assigned_to = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=HelpDeskModuleConstantsUI.COLUMN_ASSIGNED_TO,
                                         row=HelpDeskModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 

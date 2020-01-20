@@ -53,6 +53,45 @@ class GlobalTablePageUI(CRMBasePage):
         return GlobalTablePageUI(self.driver)
 
     """
+        Method gets title of column and returns index (str) of column in list view:
+    """
+
+    def get_column_number_by_title_ui(self, title):
+        sleep(0.1)
+        try:
+            table = self.driver.find_element_by_xpath("//table/thead[@role='rowgroup']/tr")
+            count = 0
+            index = ""
+            for td in table.find_elements_by_xpath("//th[@role='columnheader']"):
+                count += 1
+                if title.lower() in td.text.lower():
+                    index = str(count)
+                    break
+            assert len(index)
+            Logging().reportDebugStep(self, "Number of column " + title + " is: " + index)
+            return index
+        except(NoSuchElementException, TimeoutException, AssertionError, AttributeError):
+            Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
+            return False
+
+    """
+        Method return data from cell of table (list view) by column title and row number:
+    """
+
+    def get_data_from_list_view_ui(self, column, row):
+        column_number = self.get_column_number_by_title_ui(column)
+        if column_number:
+            data = super().wait_load_element(
+                "//table/tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][%s]/td[%s]"
+                % (row, column_number)).text
+            Logging().reportDebugStep(self,
+                                      "Get data from list view (column = " + column + ", row = " + row + "): " + data)
+            return data
+        else:
+            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
+            return False
+
+    """
         Check every line of table contain needed string:
     """
 

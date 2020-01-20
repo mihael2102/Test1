@@ -35,19 +35,19 @@ class TradingSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(TradingModuleConstantsUI.TAB_ALL)
 
         """ Get data from the first row of list view """
-        ta_login = CRMBaseMethodsPage(self.driver) \
+        ta_login = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TradingModuleConstantsUI.COLUMN_TA_LOGIN,
                                         row=TradingModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        server = CRMBaseMethodsPage(self.driver) \
+        server = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TradingModuleConstantsUI.COLUMN_SERVER,
                                         row=TradingModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        currency = CRMBaseMethodsPage(self.driver) \
+        currency = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TradingModuleConstantsUI.COLUMN_CURRENCY,
                                         row=TradingModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        ta_name = CRMBaseMethodsPage(self.driver) \
+        ta_name = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TradingModuleConstantsUI.COLUMN_TA_NAME,
                                         row=TradingModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        assigned_to = CRMBaseMethodsPage(self.driver) \
+        assigned_to = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TradingModuleConstantsUI.COLUMN_ASSIGNED_TO,
                                         row=TradingModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 

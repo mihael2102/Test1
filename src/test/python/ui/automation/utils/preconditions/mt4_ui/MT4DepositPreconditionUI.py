@@ -2,15 +2,14 @@ import pytest
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
-from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
-from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
+from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4DepositConstants import MT4DepositConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
-from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
+from src.main.python.ui.crm.model.pages.mt4_ui.MT4DepositPageUI import MT4DepositPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
@@ -38,7 +37,6 @@ class MT4DepositPreconditionUI(object):
         return lead
 
     def deposit_crm_new_ui(self):
-        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url'))\
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -70,9 +68,10 @@ class MT4DepositPreconditionUI(object):
         """ Get account number to make deposit in future """
         ClientDetailsPageUI(self.driver) \
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-        account_number = CRMBaseMethodsPage(self.driver)\
-            .get_data_from_list_view_ui(ClientDetailsConstantsUI.COLUMN_TRADING_ACCOUNT_LOGIN,
-                                        ClientDetailsConstantsUI.ROW_1)
+        account_number = GlobalTablePageUI(self.driver)\
+            .get_data_from_list_view_ui(
+                column=ClientDetailsConstantsUI.COLUMN_TRADING_ACCOUNT_LOGIN,
+                row=ClientDetailsConstantsUI.ROW_1)
 
         MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT = account_number
 
@@ -80,43 +79,32 @@ class MT4DepositPreconditionUI(object):
         ClientDetailsPageUI(self.driver) \
             .open_mt4_module_newui(MT4ActionsConstantsUI.DEPOSIT)
 
-        if global_var.current_brand_name == "trade99":
-            MT4DepositModule(self.driver)\
-                .make_deposit_new_ui(account_number,
-                                     CRMConstants.AMOUNT_DEPOSIT_BTC,
-                                     CRMConstants.PAYMENT_METHOD_DEPOSIT,
-                                     CRMConstants.STATUS_DEPOSIT,
-                                     CRMConstants.DESCRIPTION_DEPOSIT,
-                                     MT4ModuleConstants.CLEARED_BY)
-        else:
-            MT4DepositModule(self.driver)\
-                .make_deposit_new_ui(account_number,
-                                     CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT,
-                                     CRMConstants.PAYMENT_METHOD_DEPOSIT,
-                                     CRMConstants.STATUS_DEPOSIT,
-                                     CRMConstants.DESCRIPTION_DEPOSIT,
-                                     MT4ModuleConstants.CLEARED_BY1)
+        MT4DepositPageUI(self.driver)\
+            .mt4_deposit_ui(
+                list1=MT4DepositConstants.LIST_P_METHOD, p_method=MT4DepositConstants.P_METHOD,
+                list2=MT4DepositConstants.LIST_STATUS, status=MT4DepositConstants.STATUS,
+                list3=MT4DepositConstants.LIST_TA, t_account=account_number,
+                field1=MT4DepositConstants.FIELD_AMOUNT, amount=MT4DepositConstants.AMOUNT,
+                field2=MT4DepositConstants.FIELD_COMMENT, comment=MT4DepositConstants.COMMENT,
+                list4=MT4DepositConstants.LIST_CLEARED_BY, cleared_by=MT4DepositConstants.CLEARED_BY)
 
-        """ Check confirmation message """
-        MT4CreateAccountModule(self.driver) \
-            .verify_success_message()
-        CRMHomePage(self.driver) \
-            .click_ok()
-
-        """ Check balance was updated """
-        crm_client_profile\
+        """ Verify successful message """
+        GlobalTablePageUI(self.driver) \
+            .verify_success_message() \
+            .click_ok() \
             .refresh_page()
 
-        if global_var.current_brand_name == "trade99":
-            deposit_amount_text = crm_client_profile\
-                .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)\
-                .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_BTC)
-            assert CRMConstants.AMOUNT_DEPOSIT_BTC == deposit_amount_text
-        else:
-            deposit_amount_text = crm_client_profile\
-                .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)\
-                .get_amount_text(CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT)
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT == deposit_amount_text
+        """ Check balance was updated """
+        ClientDetailsPageUI(self.driver) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
+        balance = GlobalTablePageUI(self.driver) \
+            .get_data_from_list_view_ui(
+                column=ClientDetailsConstantsUI.COLUMN_BALANCE,
+                row=ClientDetailsConstantsUI.ROW_1)
+        CRMBaseMethodsPage(self.driver)\
+            .comparator_string(
+                balance,
+                MT4DepositConstants.AMOUNT)
 
         """ Verify data in info tag Balance was updated """
         balance_tag = ClientDetailsPageUI(self.driver)\

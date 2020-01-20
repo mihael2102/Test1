@@ -35,22 +35,22 @@ class ClientsSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(ClientsModuleConstantsUI.TAB_ALL)
 
         """ Get client's data from the first row of list view """
-        crm_id = CRMBaseMethodsPage(self.driver) \
+        crm_id = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=ClientsModuleConstantsUI.COLUMN_CRM_ID,
                                         row=ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        client_status = CRMBaseMethodsPage(self.driver) \
+        client_status = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=ClientsModuleConstantsUI.COLUMN_CLIENT_STATUS,
                                         row=ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        email = CRMBaseMethodsPage(self.driver) \
+        email = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=ClientsModuleConstantsUI.COLUMN_EMAIL,
                                         row=ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        client_name = CRMBaseMethodsPage(self.driver) \
+        client_name = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=ClientsModuleConstantsUI.COLUMN_CLIENT_NAME,
                                         row=ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        assigned_to = CRMBaseMethodsPage(self.driver) \
+        assigned_to = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=ClientsModuleConstantsUI.COLUMN_ASSIGNED_TO,
                                         row=ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        country = CRMBaseMethodsPage(self.driver) \
+        country = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=ClientsModuleConstantsUI.COLUMN_COUNTRY,
                                         row=ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
