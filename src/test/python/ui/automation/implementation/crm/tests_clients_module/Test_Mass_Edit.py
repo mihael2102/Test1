@@ -9,6 +9,7 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfileUpdate impor
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 
 
 @pytest.mark.run(order=8)
@@ -34,8 +35,14 @@ class MassEditTestCRM(BaseTest):
             .perform_searching_by_email(CRMConstants.SHORT_EMAIL)
 
         first_client = crm_clients_module_page.open_client_id().get_email_text()
-        crm_clients_module_page.came_back_on_previous_page().click_search_button()
-        crm_clients_module_page.select_three_records_clients_module() \
+        crm_clients_module_page.came_back_on_previous_page()
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url'))
+        ClientsPage(self.driver) \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .perform_searching_by_email(CRMConstants.SHORT_EMAIL)
+        crm_clients_module_page\
+            .select_three_records_clients_module() \
             .open_mass_edit_module() \
             .perform_mass_edit(self.config.get_data_mass_edit(MassEditConstants.ASSIGNED_TO_PANDA),
                                self.config.get_data_mass_edit(MassEditConstants.CLIENT_SOURCE)) \

@@ -256,6 +256,7 @@ class ClientsPage(CRMBasePage):
         search_button_xpath = "//td[@class='txt_al_c']/input"
         search_button = super().wait_element_to_be_clickable(search_button_xpath)
         self.driver.execute_script("arguments[0].click();", search_button)
+        sleep(1)
         self.wait_loading_to_finish(55)
         Logging().reportDebugStep(self, "The search button was clicked ")
         return ClientsPage(self.driver)
