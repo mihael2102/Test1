@@ -40,8 +40,8 @@ class MT4CreateTAPageUI(CRMBasePage):
     def click_create(self):
         sleep(0.1)
         Logging().reportDebugStep(self, "Click 'Create' button")
-        convert_lead_btn = super().wait_load_element("//button[span=' Create ']")
-        convert_lead_btn.click()
+        create_btn = super().wait_load_element("//button[span=' Create ']")
+        self.driver.execute_script("arguments[0].click();", create_btn)
         sleep(1)
         self.wait_loading_to_finish_new_ui(8)
         return MT4CreateTAPageUI(self.driver)

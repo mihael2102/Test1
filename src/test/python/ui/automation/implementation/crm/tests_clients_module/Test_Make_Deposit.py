@@ -90,7 +90,8 @@ class DepositTestCRM(BaseTest):
             (global_var.current_brand_name == "stox50") or \
             (global_var.current_brand_name == "aztrades") or \
             (global_var.current_brand_name == "grandefex") or \
-            (global_var.current_brand_name == "libramarkets"):
+            (global_var.current_brand_name == "libramarkets") or \
+            (global_var.current_brand_name == "wdcmarkets"):
 
             MT4CreateAccountModule(self.driver)\
                 .create_account(

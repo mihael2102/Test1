@@ -103,7 +103,7 @@ class ConvertLeadPageUI(CRMBasePage):
         sleep(0.1)
         Logging().reportDebugStep(self, "Click 'Convert lead' button")
         convert_lead_btn = super().wait_load_element("//button[span=' Convert lead ']")
-        convert_lead_btn.click()
+        self.driver.execute_script("arguments[0].click();", convert_lead_btn)
         sleep(1)
         self.wait_loading_to_finish_new_ui(8)
         return ConvertLeadPageUI(self.driver)

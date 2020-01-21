@@ -64,7 +64,7 @@ class MT4CreditInPageUI(CRMBasePage):
         sleep(0.1)
         Logging().reportDebugStep(self, "Click 'Deposit' button")
         deposit_btn = super().wait_element_to_be_clickable("//button[span=' Credit in ']")
-        deposit_btn.click()
+        self.driver.execute_script("arguments[0].click();", deposit_btn)
         sleep(1)
         self.wait_loading_to_finish_new_ui(8)
         return MT4CreditInPageUI(self.driver)

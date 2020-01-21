@@ -48,7 +48,7 @@ class MT4WithdrawPageUI(CRMBasePage):
         sleep(0.1)
         Logging().reportDebugStep(self, "Click 'Withdraw' button")
         withdraw_btn = super().wait_element_to_be_clickable("//button[span=' Withdraw ']")
-        withdraw_btn.click()
+        self.driver.execute_script("arguments[0].click();", withdraw_btn)
         sleep(1)
         self.wait_loading_to_finish_new_ui(8)
         return MT4WithdrawPageUI(self.driver)
