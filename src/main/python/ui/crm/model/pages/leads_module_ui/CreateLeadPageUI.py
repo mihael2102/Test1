@@ -85,6 +85,9 @@ class CreateLeadPageUI(CRMBasePage):
     def click_create_lead_btn(self):
         sleep(0.1)
         save_button = super().wait_element_to_be_clickable("//button/span[text()=' Create lead ']")
-        save_button.click()
+        try:
+            save_button.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", save_button)
         Logging().reportDebugStep(self, "Create lead button clicked")
         return CreateLeadPageUI(self.driver)

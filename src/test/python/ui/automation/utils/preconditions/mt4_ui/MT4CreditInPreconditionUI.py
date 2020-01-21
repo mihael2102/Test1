@@ -1,15 +1,8 @@
 import pytest
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4DepositConstantsUI import MT4DepositConstantsUI
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
-from src.test.python.ui.automation.BaseTest import *
-from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
-from src.main.python.ui.crm.model.pages.mt4_ui.MT4DepositPageUI import MT4DepositPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
@@ -22,6 +15,7 @@ from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4CreateTAConstantsUI imp
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4ActionsConstantsUI import MT4ActionsConstantsUI
 from src.main.python.ui.crm.model.pages.mt4_ui.MT4CreditInPageUI import MT4CreditInPageUI
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4CreditInConstantsUI import MT4CreditInConstantsUI
+from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4WithdrawConstantsUI import MT4WithdrawConstantsUI
 
 
 @pytest.mark.run(order=13)
@@ -95,54 +89,46 @@ class MT4CreditInPreconditionUI(object):
             .click_ok() \
             .refresh_page()
 
-        """ Check balance was updated """
+        """ Check credit was updated """
         ClientDetailsPageUI(self.driver) \
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-        balance = GlobalTablePageUI(self.driver) \
+        credit = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(
-                column=ClientDetailsConstantsUI.COLUMN_BALANCE,
+                column=ClientDetailsConstantsUI.COLUMN_CREDIT,
                 row=ClientDetailsConstantsUI.ROW_1)
-        CRMBaseMethodsPage(self.driver)\
+
+        counter = 0
+        while MT4CreditInConstantsUI != credit:
+            ClientDetailsPageUI(self.driver)\
+                .refresh_page()
+            ClientDetailsPageUI(self.driver) \
+                .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
+            credit = GlobalTablePageUI(self.driver) \
+                .get_data_from_list_view_ui(
+                column=ClientDetailsConstantsUI.COLUMN_CREDIT,
+                row=ClientDetailsConstantsUI.ROW_1)
+            counter += 1
+            if counter == 7:
+                break
+
+        CRMBaseMethodsPage(self.driver) \
             .comparator_string(
-                balance,
+                credit,
                 MT4DepositConstantsUI.AMOUNT)
 
-        """ Verify data in info tag Balance was updated """
-        balance_tag = ClientDetailsPageUI(self.driver)\
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_BALANCE)
-        if global_var.current_brand_name == "trade99":
-            assert CRMConstants.AMOUNT_DEPOSIT_BTC in balance_tag
-        else:
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in balance_tag
+        """ Verify data in info tag Credit was updated """
+        credit_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_CREDIT)
+        assert MT4CreditInConstantsUI.AMOUNT.split('.')[0] in credit_tag
 
-        """ Verify data in info tag Deposit was updated """
-        deposit_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_DEPOSIT)
-        if global_var.current_brand_name == "trade99":
-            assert CRMConstants.AMOUNT_DEPOSIT_BTC in deposit_tag
-        else:
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in deposit_tag
-
-        """ Verify data in info tag Equity was updated """
+        """ Verify data in info tag Equity, Free Margin were updated """
         equity_tag = ClientDetailsPageUI(self.driver) \
             .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_EQUITY)
-        if global_var.current_brand_name == "trade99":
-            assert CRMConstants.AMOUNT_DEPOSIT_BTC in equity_tag
-        else:
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in equity_tag
-
-        """ Verify data in info tag Free Margin was updated """
         free_margin_tag = ClientDetailsPageUI(self.driver) \
             .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_FREE_MARGIN)
-        if global_var.current_brand_name == "trade99":
-            assert CRMConstants.AMOUNT_DEPOSIT_BTC in free_margin_tag
-        else:
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in free_margin_tag
 
-        """ Verify data in info tag Net Deposit was updated """
-        net_deposit_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_NET_DEPOSIT)
-        if global_var.current_brand_name == "trade99":
-            assert CRMConstants.AMOUNT_DEPOSIT_BTC in net_deposit_tag
-        else:
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in net_deposit_tag
+        expected_equity = (int(MT4DepositConstantsUI.AMOUNT.split('.')[0]) -
+                           int(MT4WithdrawConstantsUI.AMOUNT)) + \
+                           int(MT4CreditInConstantsUI.AMOUNT.split('.')[0])
+        assert str(expected_equity) in equity_tag
+        assert str(expected_equity) in free_margin_tag

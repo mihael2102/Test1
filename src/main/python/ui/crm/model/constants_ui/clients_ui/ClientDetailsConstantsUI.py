@@ -43,3 +43,4 @@ class ClientDetailsConstantsUI(object):
 
     COLUMN_TRADING_ACCOUNT_LOGIN = "Trading Account Login"
     COLUMN_BALANCE = "Balance"
+    COLUMN_CREDIT = "Credit"
