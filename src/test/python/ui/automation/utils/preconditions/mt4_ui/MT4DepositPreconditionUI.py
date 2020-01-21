@@ -20,6 +20,7 @@ from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstants
 from src.main.python.ui.crm.model.pages.mt4_ui.MT4CreateTAPageUI import MT4CreateTAPageUI
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4CreateTAConstantsUI import MT4CreateTAConstantsUI
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4ActionsConstantsUI import MT4ActionsConstantsUI
+from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI import CreateLeadConstantsUI
 
 
 @pytest.mark.run(order=13)
@@ -47,10 +48,10 @@ class MT4DepositPreconditionUI(object):
         GlobalTablePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   ConvertLeadConstantsUI.EMAIL)
+                                   CreateLeadConstantsUI.EMAIL)
         ClientsModulePageUI(self.driver) \
             .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
-            .open_mt4_module_newui(CRMConstants.CREATE_MT_ACCOUNT)
+            .open_mt4_module_newui(MT4ActionsConstantsUI.CREATE_MT_ACCOUNT)
 
         """ Create LIVE account for client using MT4 Actions """
         MT4CreateTAPageUI(self.driver) \

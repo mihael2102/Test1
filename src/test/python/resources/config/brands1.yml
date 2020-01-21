@@ -35,8 +35,8 @@ brands:
 #- name: etfinance
 #  config_file: etfinance.yml
 
-#- name: fair-bit
-#  config_file: fair-bit.yml
+- name: fair-bit
+  config_file: fair-bit.yml
 
 #- name: financix
 #  config_file: financix.yml
@@ -128,8 +128,8 @@ brands:
 #- name: uprofx
 #  config_file: uprofx.yml
 
-- name: wdcmarkets
-  config_file: wdcmarkets.yml
+#- name: wdcmarkets
+#  config_file: wdcmarkets.yml
 
 #- name: 24option
 #  config_file: 24option.yml

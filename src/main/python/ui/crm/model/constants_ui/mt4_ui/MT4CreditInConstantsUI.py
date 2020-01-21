@@ -11,7 +11,7 @@ class MT4CreditInConstantsUI(object):
     now = datetime.now().strftime('%Y%m%d%H%M%S%f')
     brand = global_var.current_brand_name
 
-    LIST_TA = "Trading accounts"
+    LIST_TA = "Trading account"
     FIELD_AMOUNT = "Amount in account currency"
     FIELD_GRANTED_BY = "Granted by"
     FIELD_COMMENT = "Comment"

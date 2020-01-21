@@ -16,6 +16,7 @@ from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4ActionsConstantsUI impo
 from src.main.python.ui.crm.model.pages.mt4_ui.MT4CreditInPageUI import MT4CreditInPageUI
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4CreditInConstantsUI import MT4CreditInConstantsUI
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4WithdrawConstantsUI import MT4WithdrawConstantsUI
+from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI import CreateLeadConstantsUI
 
 
 @pytest.mark.run(order=13)
@@ -43,7 +44,7 @@ class MT4CreditInPreconditionUI(object):
         GlobalTablePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   ConvertLeadConstantsUI.EMAIL)
+                                   CreateLeadConstantsUI.EMAIL)
         ClientsModulePageUI(self.driver) \
             .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
             .open_mt4_module_newui(MT4ActionsConstantsUI.CREATE_MT_ACCOUNT)
@@ -98,7 +99,7 @@ class MT4CreditInPreconditionUI(object):
                 row=ClientDetailsConstantsUI.ROW_1)
 
         counter = 0
-        while MT4CreditInConstantsUI != credit:
+        while MT4CreditInConstantsUI.AMOUNT != credit:
             ClientDetailsPageUI(self.driver)\
                 .refresh_page()
             ClientDetailsPageUI(self.driver) \
@@ -114,7 +115,7 @@ class MT4CreditInPreconditionUI(object):
         CRMBaseMethodsPage(self.driver) \
             .comparator_string(
                 credit,
-                MT4DepositConstantsUI.AMOUNT)
+                MT4CreditInConstantsUI.AMOUNT)
 
         """ Verify data in info tag Credit was updated """
         credit_tag = ClientDetailsPageUI(self.driver) \

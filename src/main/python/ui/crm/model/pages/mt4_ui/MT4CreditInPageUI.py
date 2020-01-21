@@ -44,7 +44,7 @@ class MT4CreditInPageUI(CRMBasePage):
 
     def set_expire_date(self, day, month, year):
         date_field = super().wait_load_element(
-            "//input[@placeholder='Choose date of birth']")
+            "//input[@placeholder='Select expire date']")
         self.driver.execute_script("arguments[0].click();", date_field)
         current_date_btn = super().wait_load_element(
             "(//span[@class='mat-button-wrapper' and contains(text(),'2020')])[1]")

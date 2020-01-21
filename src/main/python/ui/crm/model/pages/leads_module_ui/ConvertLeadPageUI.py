@@ -69,11 +69,14 @@ class ConvertLeadPageUI(CRMBasePage):
 
     def set_text_field(self, field, text):
         sleep(0.1)
-        Logging().reportDebugStep(self, "Set " + field + ": " + text)
         input_field = super().wait_load_element(
             "//div[contains(label,'%s')]//following-sibling::mat-form-field//input" % field)
-        input_field.clear()
-        input_field.send_keys(text)
+        try:
+            input_field.clear()
+            input_field.send_keys(text)
+            Logging().reportDebugStep(self, "Set " + field + ": " + text)
+        except:
+            Logging().reportDebugStep(self, "The " + field + " field is read only")
         return ConvertLeadPageUI(self.driver)
 
     def set_birth_day(self, day, month, year):

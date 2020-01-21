@@ -16,6 +16,7 @@ from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI im
 from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4ActionsConstantsUI import MT4ActionsConstantsUI
+from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI import CreateLeadConstantsUI
 
 
 @pytest.mark.run(order=13)
@@ -43,7 +44,7 @@ class MT4WithdrawPreconditionUI(object):
         GlobalTablePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   ConvertLeadConstantsUI.EMAIL)
+                                   CreateLeadConstantsUI.EMAIL)
 
         """ Make Withdraw for account number using MT4 Actions """
         ClientsModulePageUI(self.driver) \

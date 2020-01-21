@@ -7,7 +7,7 @@ import string
 
 class MT4ActionsConstantsUI(object):
 
-    CREATE_MT_ACCOUNT = "Create MT Account"
+    CREATE_MT_ACCOUNT = "Create Trading Account"
     DEPOSIT = "Deposit"
-    WITHDRAW = "Withdrawal"
+    WITHDRAW = "Withdraw"
     CREDIT_IN = "Credit in"

@@ -42,7 +42,7 @@ class MT4CreateTAPreconditionUI(object):
         GlobalTablePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   ConvertLeadConstantsUI.EMAIL)
+                                   CreateLeadConstantsUI.EMAIL)
         ClientsModulePageUI(self.driver)\
             .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
             .open_mt4_module_newui(MT4ActionsConstantsUI.CREATE_MT_ACCOUNT)

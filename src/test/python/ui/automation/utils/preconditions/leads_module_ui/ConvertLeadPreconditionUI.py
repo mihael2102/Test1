@@ -175,7 +175,6 @@ class ConvertLeadPreconditionUI(object):
             .convert_lead_ui(
                 field1=ConvertLeadConstantsUI.FIELD_FNAME, first_name=ConvertLeadConstantsUI.FNAME,
                 field2=ConvertLeadConstantsUI.FIELD_LNAME, last_name=ConvertLeadConstantsUI.LNAME,
-                field3=ConvertLeadConstantsUI.FIELD_EMAIL, email=ConvertLeadConstantsUI.EMAIL,
                 field4=ConvertLeadConstantsUI.FIELD_PHONE, phone=ConvertLeadConstantsUI.PHONE,
                 day=ConvertLeadConstantsUI.DAY, month=ConvertLeadConstantsUI.MONTH, year=ConvertLeadConstantsUI.YEAR,
                 list1=ConvertLeadConstantsUI.LIST_CITIZENSHIP, citizenship=ConvertLeadConstantsUI.CITIZENSHIP,
