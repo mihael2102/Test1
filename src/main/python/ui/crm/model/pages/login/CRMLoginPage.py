@@ -81,8 +81,3 @@ class CRMLoginPage(CRMBasePage):
         super().switch_second_tab_page()
         Logging().reportDebugStep(self, "Switch the second page")
         return CRMLoginPage(self.driver)
-
-
-
-
-
