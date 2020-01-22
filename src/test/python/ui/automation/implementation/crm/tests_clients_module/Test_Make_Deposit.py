@@ -17,7 +17,7 @@ from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
-from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 
 
 @pytest.mark.run(order=13)
@@ -90,7 +90,8 @@ class DepositTestCRM(BaseTest):
             (global_var.current_brand_name == "stox50") or \
             (global_var.current_brand_name == "aztrades") or \
             (global_var.current_brand_name == "grandefex") or \
-            (global_var.current_brand_name == "libramarkets"):
+            (global_var.current_brand_name == "libramarkets") or \
+            (global_var.current_brand_name == "wdcmarkets"):
 
             MT4CreateAccountModule(self.driver)\
                 .create_account(

@@ -4,6 +4,10 @@ from src.test.python.ui.automation.utils.preconditions.leads_module_ui.Leads_Sea
 from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.leads_module_ui.Leads_Mass_Assign_Precondition_UI import \
     LeadsMassAssignPreconditionUI
+from src.test.python.ui.automation.utils.preconditions.leads_module_ui.Leads_Mass_Edit_Precondition_UI import \
+    LeadsMassEditPreconditionUI
+from src.test.python.ui.automation.utils.preconditions.leads_module_ui.ConvertLeadPreconditionUI import \
+    ConvertLeadPreconditionUI
 
 
 @pytest.mark.run(order=26)
@@ -14,3 +18,9 @@ class TestLeadsModuleUI(BaseTest):
 
     def test_mass_assign_leads_ui(self):
         LeadsMassAssignPreconditionUI(self.driver, self.config).mass_assign_leads_ui()
+
+    def test_mass_edit_leads_ui(self):
+        LeadsMassEditPreconditionUI(self.driver, self.config).mass_edit_leads_ui()
+
+    def test_convert_lead_ui(self):
+        ConvertLeadPreconditionUI(self.driver, self.config).convert_lead_ui()

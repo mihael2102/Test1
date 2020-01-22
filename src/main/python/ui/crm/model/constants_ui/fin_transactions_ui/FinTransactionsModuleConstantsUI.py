@@ -5,13 +5,12 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 import string
 
 
-class ClientsModuleConstants(object):
+class FinTransactionsModuleConstantsUI(object):
     ROW_NUMBER_FOR_DATA_SEARCHING_5 = "5"
     ROW_NUMBER_FOR_DATA_SEARCHING_1 = "1"
     TAB_ALL = "All"
-    COLUMN_CLIENT_STATUS = "Client Status"
-    COLUMN_EMAIL = "Email"
-    COLUMN_CLIENT_NAME = "Client Name"
-    COLUMN_ASSIGNED_TO = "Assigned To"
-    COLUMN_COUNTRY = "Country"
-    COLUMN_CRM_ID = "CRM Id"
+    COLUMN_TRANSACTION_NO = "Transaction No"
+    COLUMN_LOGIN = "Login"
+    COLUMN_CLIENT = "Client"
+    COLUMN_T_TYPE = "Transaction Type"
+    COLUMN_P_TYPE = "Payment Type"

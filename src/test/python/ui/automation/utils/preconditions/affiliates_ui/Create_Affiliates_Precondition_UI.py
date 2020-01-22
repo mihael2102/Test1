@@ -5,6 +5,7 @@ from src.main.python.ui.crm.model.pages.affiliates_module_ui.AffiliatesListViewP
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.affiliates_module_ui.CreateAffiliatesPageUI import CreateAffiliatesPageUI
 from src.main.python.ui.crm.model.constants.CreateAffiliateConstants import CreateAffiliateConstants
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
 
 
 class CreateAffiliatesPreconditionUI(object):
@@ -32,7 +33,7 @@ class CreateAffiliatesPreconditionUI(object):
 
         """ Open Affiliates page """
         CRMBaseMethodsPage(self.driver) \
-            .open_module(TestDataConstants.MODULE_AFFILIATES)
+            .open_module_ui(TestDataConstants.MODULE_AFFILIATES)
 
         """ Create new affiliate """
         CreateAffiliatesPageUI(self.driver)\
@@ -54,7 +55,7 @@ class CreateAffiliatesPreconditionUI(object):
         AffiliatesListViewPageUI(self.driver)\
             .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_NAME,
                                    data=CreateAffiliateConstants.PARTNER_NAME)
-        CRMBaseMethodsPage(self.driver)\
+        GlobalTablePageUI(self.driver)\
             .global_data_checker_new_ui(CreateAffiliateConstants.PARTNER_NAME)
 
         """ Open affiliate's details page and verify Partner name """

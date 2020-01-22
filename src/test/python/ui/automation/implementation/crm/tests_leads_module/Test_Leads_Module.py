@@ -12,13 +12,11 @@ from src.test.python.ui.automation.utils.preconditions.lead_modules.LeadPrecondi
 from selenium.common.exceptions import TimeoutException
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import ConvertLeadModule
-from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
 from selenium.common.exceptions import NoSuchElementException
 from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
 from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
-from src.main.python.ui.crm.model.pages.clients.ClientDetailsPageUI import ClientDetailsPageUI
 
 
 @pytest.mark.run(order=24)
@@ -103,41 +101,10 @@ class LeadModuleTest(BaseTest):
             .create_lead(self.lead1)
         lead_view_profile_page = LeadViewInfo(self.driver)
 
-        if global_var.current_brand_name == "newcrmui":
-            CreateLeadsProfilePage(self.driver)\
-                .verify_success_message()
-            CRMHomePage(self.driver)\
-                .click_ok()
-            LeadsModule(self.driver)\
-                .select_filter(self.config.get_data_lead_info(
-                                LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))\
-                .enter_email(self.config.get_data_lead_info(
-                                LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.EMAIL))\
-                .open_personal_details_lead()
-
         lead_view_profile_page\
             .open_convert_lead_module() \
 
-        if global_var.current_brand_name == "mpcrypto":
-            ConvertLeadModule(self.driver).perform_convert_lead(
-                self.client1[LeadsModuleConstants.FIRST_NAME],
-                self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                self.client1[LeadsModuleConstants.EMAIL],
-                self.client1[LeadsModuleConstants.PHONE],
-                self.client1[LeadsModuleConstants.BIRTHDAY],
-                self.client1[LeadsModuleConstants.CITIZENSHIP],
-                self.client1[LeadsModuleConstants.STREET],
-                self.client1[LeadsModuleConstants.POSTAL_CODE],
-                self.client1[LeadsModuleConstants.CITY],
-                self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-                self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD_BCH],
-                self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                self.client1[LeadsModuleConstants.BRAND],
-                self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
-                self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-        elif global_var.current_brand_name == "trade99":
+        if global_var.current_brand_name == "trade99":
             ConvertLeadModule(self.driver).perform_convert_lead(
                 self.client1[LeadsModuleConstants.FIRST_NAME],
                 self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
@@ -155,26 +122,6 @@ class LeadModuleTest(BaseTest):
                 self.client1[LeadsModuleConstants.BRAND],
                 self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                 self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-        elif global_var.current_brand_name == "newcrmui":
-            ConvertLeadModule(self.driver).perform_convert_lead_new_ui(
-                self.client1[LeadsModuleConstants.FIRST_NAME],
-                self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                self.client1[LeadsModuleConstants.EMAIL],
-                self.client1[LeadsModuleConstants.PHONE],
-                self.client1[LeadsModuleConstants.DAY],
-                self.client1[LeadsModuleConstants.MONTH],
-                self.client1[LeadsModuleConstants.YEAR],
-                self.client1[LeadsModuleConstants.CITIZENSHIP],
-                self.client1[LeadsModuleConstants.STREET],
-                self.client1[LeadsModuleConstants.POSTAL_CODE],
-                self.client1[LeadsModuleConstants.CITY],
-                self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-                self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-                self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                self.client1[LeadsModuleConstants.BRAND],
-                self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME])
 
         else:
             ConvertLeadModule(self.driver).perform_convert_lead(
@@ -195,76 +142,18 @@ class LeadModuleTest(BaseTest):
                 self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                 self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
-        if global_var.current_brand_name == "newcrmui":
-            CreateLeadsProfilePage(self.driver)\
-                .verify_success_message()
-            CRMHomePage(self.driver)\
-                .click_ok()
-
-        if global_var.current_brand_name != "newcrmui":
-            convert_verified = False
-            try:
-                confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
-                assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
-                lead_view_profile_page.click_ok()
-                convert_verified = True
-            except (TimeoutException, AssertionError, NoSuchElementException):
-                Logging().reportDebugStep(self, "Lead convert message was not picked up")
-            if not convert_verified:
-                lead_detail_view = LeadDetailViewInfo(self.driver)
-                lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
-                self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
-
-    def test_convert_lead_short(self):
-        LeadPrecondition(self.driver, self.config)\
-            .create_lead_short(self.lead1)
-        lead_view_profile_page = LeadViewInfo(self.driver)
-
-        if global_var.current_brand_name == "newcrmui":
-            CreateLeadsProfilePage(self.driver)\
-                .verify_success_message()
-            CRMHomePage(self.driver)\
-                .click_ok()
-            LeadsModule(self.driver)\
-                .select_filter(self.config.get_data_lead_info(
-                                LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))\
-                .enter_email(self.config.get_data_lead_info(
-                                LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.EMAIL))\
-                .open_personal_details_lead()
-
-        lead_view_profile_page\
-            .open_convert_lead_module() \
-
-        ConvertLeadModule(self.driver)\
-            .perform_convert_lead_short(
-                self.client1[LeadsModuleConstants.FIRST_NAME],
-                self.client1[LeadsModuleConstants.BIRTHDAY],
-                self.client1[LeadsModuleConstants.STREET],
-                self.client1[LeadsModuleConstants.POSTAL_CODE],
-                self.client1[LeadsModuleConstants.CITY],
-                self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-                self.client1[LeadsModuleConstants.EMAIL],
-                self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
-
-        if global_var.current_brand_name == "newcrmui":
-            CreateLeadsProfilePage(self.driver)\
-                .verify_success_message()
-            CRMHomePage(self.driver)\
-                .click_ok()
-
-        if global_var.current_brand_name != "newcrmui":
-            convert_verified = False
-            try:
-                confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
-                assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
-                lead_view_profile_page.click_ok()
-                convert_verified = True
-            except (TimeoutException, AssertionError, NoSuchElementException):
-                Logging().reportDebugStep(self, "Lead convert message was not picked up")
-            if not convert_verified:
-                lead_detail_view = LeadDetailViewInfo(self.driver)
-                lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
-                self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
+        convert_verified = False
+        try:
+            confirmation_message = lead_view_profile_page.get_confirm_message_lead_view_profile()
+            assert confirmation_message == CRMConstants().CONVERT_SUCCESSFUL_MESSAGE
+            lead_view_profile_page.click_ok()
+            convert_verified = True
+        except (TimeoutException, AssertionError, NoSuchElementException):
+            Logging().reportDebugStep(self, "Lead convert message was not picked up")
+        if not convert_verified:
+            lead_detail_view = LeadDetailViewInfo(self.driver)
+            lead_detail_view.wait_element_to_be_clickable("//input[@name='Edit']")
+            self.assertEqual(' yes ', lead_detail_view.get_exists_text(), "Lead is not at exists state")
 
     def load_lead_from_config(self, lead_key):
         lead = self.config.get_value(lead_key)
@@ -381,45 +270,3 @@ class LeadModuleTest(BaseTest):
         self.assertEqual(city, lead_data[LeadsModuleConstants.CITY])
         self.assertEqual(state, lead_data[LeadsModuleConstants.FIRST_STATE])
         return True
-
-    def test_convert_lead_new_ui(self):
-        LeadPrecondition(self.driver, self.config) \
-            .create_lead(self.lead1)
-        lead_view_profile_page = LeadViewInfo(self.driver)
-
-        CreateLeadsProfilePage(self.driver) \
-            .verify_success_message()
-        CRMHomePage(self.driver) \
-            .click_ok()
-        LeadsModule(self.driver) \
-            .select_filter_new_ui(self.config.get_data_lead_info(
-                    LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME)) \
-            .enter_email(self.config.get_data_lead_info(
-                    LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.EMAIL)) \
-            .open_personal_details_lead()
-
-        lead_view_profile_page \
-            .open_convert_lead_module() \
-
-        ConvertLeadModule(self.driver)\
-            .perform_convert_lead_new_ui(
-                first_name=self.client1[LeadsModuleConstants.FIRST_NAME],
-                last_name=self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                email=self.client1[LeadsModuleConstants.EMAIL],
-                phone=self.client1[LeadsModuleConstants.PHONE],
-                day=self.client1[LeadsModuleConstants.DAY],
-                month=self.client1[LeadsModuleConstants.MONTH],
-                year=self.client1[LeadsModuleConstants.YEAR],
-                citizenship=self.client1[LeadsModuleConstants.CITIZENSHIP],
-                address=self.client1[LeadsModuleConstants.STREET],
-                postal_code=self.client1[LeadsModuleConstants.POSTAL_CODE],
-                city=self.client1[LeadsModuleConstants.CITY],
-                # country=self.client1[LeadsModuleConstants.FIRST_COUNTRY],
-                password=self.client1[LeadsModuleConstants.FIRST_PASSWORD_LEAD],
-                currency=self.client1[LeadsModuleConstants.FIRST_CURRENCY_LEAD],
-                referral=self.client1[LeadsModuleConstants.FIRST_REFERRAL],
-                # brand=self.client1[LeadsModuleConstants.BRAND],
-                source_name=self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME])
-
-        ClientDetailsPageUI(self.driver)\
-            .check_client_information_tab_exist()
