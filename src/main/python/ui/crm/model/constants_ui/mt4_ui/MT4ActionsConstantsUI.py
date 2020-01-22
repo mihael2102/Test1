@@ -11,3 +11,5 @@ class MT4ActionsConstantsUI(object):
     DEPOSIT = "Deposit"
     WITHDRAW = "Withdraw"
     CREDIT_IN = "Credit in"
+    CREDIT_OUT = "Credit out"
+    TRANSFER = "Transfer between TA"

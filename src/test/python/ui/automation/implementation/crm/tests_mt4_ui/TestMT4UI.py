@@ -6,6 +6,9 @@ from src.test.python.ui.automation.utils.preconditions.mt4_ui.MT4CreateTAPrecond
     MT4CreateTAPreconditionUI
 from src.test.python.ui.automation.utils.preconditions.mt4_ui.MT4WithdrawPreconditionUI import MT4WithdrawPreconditionUI
 from src.test.python.ui.automation.utils.preconditions.mt4_ui.MT4CreditInPreconditionUI import MT4CreditInPreconditionUI
+from src.test.python.ui.automation.utils.preconditions.mt4_ui.MT4TransferPreconditionUI import MT4TransferPreconditionUI
+from src.test.python.ui.automation.utils.preconditions.mt4_ui.MT4CreditOutPreconditionUI import \
+    MT4CreditOutPreconditionUI
 
 
 @pytest.mark.run(order=3)
@@ -22,3 +25,9 @@ class TestMT4UI(BaseTest):
 
     def test_credit_in_crm_ui(self):
         MT4CreditInPreconditionUI(self.driver, self.config).credit_in_crm_ui()
+
+    def test_credit_out_crm_ui(self):
+        MT4CreditOutPreconditionUI(self.driver, self.config).credit_out_crm_ui()
+
+    def test_transfer_crm_ui(self):
+        MT4TransferPreconditionUI(self.driver, self.config).transfer_crm_ui()
