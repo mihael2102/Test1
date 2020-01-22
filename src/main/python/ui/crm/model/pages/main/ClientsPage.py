@@ -610,6 +610,14 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Trading account is found: " + trading_account)
         return ClientsPage(self.driver)
 
+    def trading_account_exist_ui(self, trading_account):
+        sleep(0.2)
+        table = super().wait_load_element(
+            "//mat-expansion-panel[@id='trading-accounts']//tbody[@role='rowgroup']").text
+        assert trading_account in table
+        Logging().reportDebugStep(self, "Trading account is found: " + trading_account)
+        return ClientsPage(self.driver)
+
     def click_edit_btn(self):
         edit_btn = super().wait_element_to_be_clickable("//input[contains(@title ,'Edit')]")
         self.driver.execute_script("arguments[0].click();", edit_btn)
