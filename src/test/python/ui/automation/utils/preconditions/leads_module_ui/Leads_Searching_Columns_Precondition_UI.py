@@ -78,7 +78,7 @@ class LeadsSearchingColumnsPreconditionUI(object):
         if email and ("*" not in email):
             search\
                 .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                          data=email)
+                                       data=email)
 
         """ Verify correct data found """
         result = GlobalTablePageUI(self.driver)

@@ -17,6 +17,7 @@ from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
 from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 
 
 class Login_CA_Precondition(object):
@@ -82,9 +83,9 @@ class Login_CA_Precondition(object):
             .close_payment_popup()
 
         # Check graphs:
-        WebTraderPage(self.driver) \
-            .open_trading_page() \
-            .check_chart_loaded()
+        # WebTraderPage(self.driver) \
+        #     .open_trading_page() \
+        #     .check_chart_loaded()
 
         # Personal details form
         if global_var.current_brand_name == "firstindex":
@@ -380,15 +381,13 @@ class Login_CA_Precondition(object):
             assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY
 
     def client_exist_in_crm_new_ui(self):
-        # Login to CRM
-        CRMLoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        """ Login CRM """
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+            self.config.get_value('url'),
+            self.config.get_value(TestDataConstants.USER_NAME),
+            self.config.get_value(TestDataConstants.CRM_PASSWORD),
+            self.config.get_value(TestDataConstants.OTP_SECRET))
 
         # Open clients module. Find created client by email and open his profile
         CRMHomePage(self.driver) \

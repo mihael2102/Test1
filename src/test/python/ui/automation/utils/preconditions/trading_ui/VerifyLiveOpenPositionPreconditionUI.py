@@ -4,14 +4,7 @@ from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
-from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
-from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
-from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from time import sleep
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskEditPage import HelpDeskEditPage
@@ -36,13 +29,13 @@ class VerifyLiveOpenPositionPreconditionUI(object):
 
     def verify_open_live_position_crm_ui(self):
         """ Login CRM """
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+                self.config.get_value('url'),
+                self.config.get_value(TestDataConstants.USER_NAME),
+                self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                self.config.get_value(TestDataConstants.OTP_SECRET))
+
         CRMHomePage(self.driver) \
             .open_client_module_new_ui() \
             .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \

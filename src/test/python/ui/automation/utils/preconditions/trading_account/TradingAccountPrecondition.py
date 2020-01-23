@@ -19,6 +19,7 @@ from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 
 
 class TradingAccountPrecondition(object):
@@ -160,14 +161,14 @@ class TradingAccountPrecondition(object):
             return self
 
     def verify_account_in_crm_ui(self):
-        CRMLoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        """ Login CRM """
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+            self.config.get_value('url'),
+            self.config.get_value(TestDataConstants.USER_NAME),
+            self.config.get_value(TestDataConstants.CRM_PASSWORD),
+            self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
         CRMHomePage(self.driver) \
             .open_client_module_new_ui() \
             .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \

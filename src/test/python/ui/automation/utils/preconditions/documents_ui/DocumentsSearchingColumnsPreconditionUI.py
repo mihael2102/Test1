@@ -1,4 +1,4 @@
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.documents_ui.DocumentsModuleConstantsUI import DocumentsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
@@ -20,14 +20,12 @@ class DocumentsSearchingColumnsPreconditionUI(object):
 
     def documents_searching_columns_ui(self):
         """ Login CRM """
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+            self.config.get_value('url'),
+            self.config.get_value(TestDataConstants.USER_NAME),
+            self.config.get_value(TestDataConstants.CRM_PASSWORD),
+            self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Documents module """
         CRMBaseMethodsPage(self.driver) \
@@ -35,19 +33,19 @@ class DocumentsSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(DocumentsModuleConstantsUI.TAB_ALL)
 
         """ Get data from the first row of list view """
-        document_no = CRMBaseMethodsPage(self.driver) \
+        document_no = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=DocumentsModuleConstantsUI.COLUMN_DOCUMENT_NO,
                                         row=DocumentsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        status = CRMBaseMethodsPage(self.driver) \
+        status = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=DocumentsModuleConstantsUI.COLUMN_STATUS,
                                         row=DocumentsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        document_type = CRMBaseMethodsPage(self.driver) \
+        document_type = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=DocumentsModuleConstantsUI.COLUMN_DOCUMENT_TYPE,
                                         row=DocumentsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        attached_to = CRMBaseMethodsPage(self.driver) \
+        attached_to = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=DocumentsModuleConstantsUI.COLUMN_ATTACHED_TO,
                                         row=DocumentsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        assigned_to = CRMBaseMethodsPage(self.driver) \
+        assigned_to = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=DocumentsModuleConstantsUI.COLUMN_ASSIGNED_TO,
                                         row=DocumentsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 

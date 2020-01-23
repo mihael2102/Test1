@@ -37,7 +37,8 @@ class LeadsMassEditPreconditionUI(object):
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_LEADS) \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
-            .select_all_records() \
+            .select_all_records_checkbox() \
+            .click_select_all_records_btn() \
             .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT)
 
         """ Mass Edit """
@@ -54,6 +55,8 @@ class LeadsMassEditPreconditionUI(object):
         GlobalTablePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
+            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
             .global_data_checker_new_ui(MassActionsConstantsUI.LANGUAGE_GERMAN) \
             .global_data_checker_new_ui(MassActionsConstantsUI.STATUS_R_NEW) \
             .global_data_checker_new_ui(MassActionsConstantsUI.COUNTRY_ALBANIA)

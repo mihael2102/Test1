@@ -76,8 +76,8 @@ class ClientsSearchingColumnsPreconditionUI(object):
                                           data=country)
         if email and ("*" not in email):
             search\
-                .select_data_column_field(column=ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                          data=email)
+                .set_data_column_field(column=ClientsModuleConstantsUI.COLUMN_EMAIL,
+                                       data=email)
 
         """ Verify correct data found """
         result = GlobalTablePageUI(self.driver)

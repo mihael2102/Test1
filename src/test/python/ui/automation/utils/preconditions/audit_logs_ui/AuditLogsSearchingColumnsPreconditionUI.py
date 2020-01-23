@@ -1,4 +1,4 @@
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.audit_logs_ui.AuditLogsModuleConstantsUI import \
     AuditLogsModuleConstantsUI
@@ -20,15 +20,13 @@ class AuditLogsSearchingColumnsPreconditionUI(object):
         return lead
 
     def audit_logs_searching_columns_ui(self):
-        """ Login to CRM """
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        """ Login CRM """
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+                self.config.get_value('url'),
+                self.config.get_value(TestDataConstants.USER_NAME),
+                self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Audit Logs module """
         CRMBaseMethodsPage(self.driver) \

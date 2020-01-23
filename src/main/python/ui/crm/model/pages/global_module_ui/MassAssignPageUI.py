@@ -56,5 +56,7 @@ class MassAssignPageUI(CRMBasePage):
         sleep(0.1)
         assign_btn = super().wait_element_to_be_clickable("//button/span[text()=' Assign ']")
         self.driver.execute_script("arguments[0].click();", assign_btn)
+        sleep(1)
+        self.wait_loading_to_finish_new_ui(5)
         Logging().reportDebugStep(self, "Click 'Assign' button")
         return MassAssignPageUI(self.driver)

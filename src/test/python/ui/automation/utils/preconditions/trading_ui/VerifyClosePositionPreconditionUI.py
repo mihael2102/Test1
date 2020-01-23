@@ -13,6 +13,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI imp
 from src.main.python.ui.crm.model.constants_ui.trading_ui.TradingDetailsConstantsUI import TradingDetailsConstantsUI
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 
 
 class VerifyClosePositionPreconditionUI(object):
@@ -30,13 +31,13 @@ class VerifyClosePositionPreconditionUI(object):
 
     def verify_close_position_crm_ui(self):
         """ Login CRM """
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+                self.config.get_value('url'),
+                self.config.get_value(TestDataConstants.USER_NAME),
+                self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                self.config.get_value(TestDataConstants.OTP_SECRET))
+
         CRMHomePage(self.driver) \
             .open_client_module_new_ui() \
             .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \

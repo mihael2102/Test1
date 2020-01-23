@@ -37,7 +37,7 @@ class ClientsMassEditPreconditionUI(object):
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
-            .select_all_records() \
+            .select_all_records_checkbox() \
             .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT)
 
         """ Mass Edit """
@@ -52,5 +52,7 @@ class ClientsMassEditPreconditionUI(object):
         GlobalTablePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
+            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
             .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME_1) \
             .global_data_checker_new_ui(MassActionsConstantsUI.STATUS_B_TEST)
