@@ -17,7 +17,14 @@ from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
 from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
+from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
+from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 
 
 class Login_CA_Precondition(object):
@@ -389,76 +396,56 @@ class Login_CA_Precondition(object):
             self.config.get_value(TestDataConstants.CRM_PASSWORD),
             self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        # Open clients module. Find created client by email and open his profile
-        CRMHomePage(self.driver) \
-            .open_client_module_new_ui() \
-            .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email_new_ui(CAConstants.EMAIL_CA)
+        """ Open Clients module and find created client by email """
+        CRMBaseMethodsPage(self.driver) \
+            .open_module_ui(TestDataConstants.MODULE_CLIENTS)
+        GlobalTablePageUI(self.driver) \
+            .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
+            .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
+                                   CAConstants.EMAIL_CA)
+        ClientsModulePageUI(self.driver) \
+            .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
-        # First Name validation:
-        actual_fname = ClientsPage(self.driver)\
-            .get_client_fname()
-        expected_fname = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
-        assert actual_fname == expected_fname
+        """ Get client's data """
+        details = ClientDetailsPageUI(self.driver)
 
-        # Last Name validation:
-        actual_lname = ClientsPage(self.driver)\
-            .get_client_lname()
-        expected_lname = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]
-        assert actual_lname == expected_lname
+        first_name = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_FNAME)
+        last_name = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_LNAME)
+        phone = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_PHONE)
+        birthday = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_BIRTHDAY)
+        address = details \
+            .open_tab(ClientDetailsConstantsUI.TAB_ADDRESS_INFORMATION) \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_ADDRESS)
+        postal_code = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_CODE)
+        city = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_CITY)
+        country = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_COUNTRY)
+        currency = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_BASE_CURRENCY)
 
-        # Phone validation:
-        actual_phone = ClientsPage(self.driver)\
-            .get_client_phone_new_ui()
-        if actual_phone:
-            expected_phone = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE]
+        """ Verify client's data """
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(first_name,
+                               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]) \
+            .comparator_string(last_name,
+                               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]) \
+            .comparator_string(birthday, CAConstants.BIRTHDAY_CRM) \
+            .comparator_string(currency, CAConstants.CURRENCY) \
+            .comparator_string(address, CAConstants.ADDRESS) \
+            .comparator_string(postal_code, CAConstants.ZIP_CODE) \
+            .comparator_string(city, CAConstants.CITY) \
+            .comparator_string(country, CAConstants.COUNTRY_DEFAULT)
 
-            try:
-                assert expected_phone in actual_phone
-            except AssertionError:
-                assert actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN4 or \
-                       actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN3
-
-        # Birthday validation:
-        actual_birthday = ClientsPage(self.driver)\
-            .get_client_birthday()
-        expected_birthday = CAConstants.BIRTHDAY_CRM
-        assert actual_birthday == expected_birthday
-
-        # Address validation
-        actual_address = ClientsPage(self.driver)\
-            .open_address_information_tab_new_ui()\
-            .get_client_address_new_ui()
-        expected_address = CAConstants.ADDRESS
-        assert actual_address == expected_address
-
-        # City validation:
-        actual_city = ClientsPage(self.driver)\
-            .get_client_city_new_ui()
-        expected_city = CAConstants.CITY
-        assert actual_city == expected_city
-
-        # Code validation:
-        actual_zip = ClientsPage(self.driver)\
-            .get_client_zip_code()
-        expected_zip = CAConstants.ZIP_CODE
-        assert actual_zip == expected_zip
-
-        # Country validation:
-        actual_country = ClientsPage(self.driver)\
-            .get_client_country_new_ui()
-        expected_country = CAConstants.COUNTRY_DEFAULT
-        assert actual_country == expected_country
-
-        # Currency validation:
-        actual_currency = ClientsPage(self.driver)\
-            .get_client_base_currency()
-        if global_var.current_brand_name == "mpcrypto" or \
-           global_var.current_brand_name == "trade99":
-            expected_currency = CAConstants.CURRENCY_CRYPTO
-        else:
-            expected_currency = CAConstants.CURRENCY
-        assert actual_currency == expected_currency
+        if "*" not in phone:
+            CRMBaseMethodsPage(self.driver) \
+                .comparator_string(phone,
+                                   self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])
 
     def login_ca(self):
         try:

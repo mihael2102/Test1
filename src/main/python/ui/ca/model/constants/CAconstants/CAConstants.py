@@ -18,9 +18,13 @@ class CAConstants(object):
     DAY_BIRTH = "10"
     MONTH_BIRTH = "January"
     YEAR_BIRTH = "1995"
-
-    CURRENCY = "EUR"
     BIRTHDAY_CRM = "1995-01-10"
+    if brand == "mpcrypto" or brand == "trade99":
+        CURRENCY = "BTC"
+    elif brand == "fair-bit":
+        CURRENCY = "UST"
+    else:
+        CURRENCY = "EUR"
     CURRENCY_CRYPTO = "BTC"
     CITY = "Berlin"
     UPDATE_CITY = "Toronto"
