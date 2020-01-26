@@ -1,3 +1,6 @@
 pretty_name: "iTrader Global"
 url: "https://globalitrader.ptscrm.com/"
 url_ca: "https://my-global.itrader.com/login.aspx?returnurl=%2f"
+email_live_acc: "QATest@pandats.com"
+password_live_acc: "testingQA12"
+number_live_acc: "32342"
