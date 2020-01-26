@@ -1,6 +1,6 @@
 pretty_name: "Gmo"
 url: "https://roinvesting.ptscrm.com/"
-url_ca: "https://my.roinvesting.com/login.aspx"
+url_ca: "https://my.roinvesting.com/en-us/myaccount.aspx"
 otp_secret: KKWHN6W63AIAJWNB
 email_live_acc: "QATest@pandats.com"
 password_live_acc: "testingQA12"

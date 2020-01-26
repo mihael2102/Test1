@@ -39,6 +39,8 @@ class Login_CA_Precondition(object):
             subject = "kaya"
         elif global_var.current_brand_name == "capitalmarketsbanc":
             subject = "cmb"
+        elif global_var.current_brand_name == "gmo":
+            subject = "roinvesting"
         else:
             subject = global_var.current_brand_name
         mail_subject = ""
