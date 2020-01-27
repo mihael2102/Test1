@@ -72,7 +72,7 @@ class MT4DepositPreconditionUI(object):
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
         account_number = GlobalTablePageUI(self.driver)\
             .get_data_from_list_view_ui(
-                column=ClientDetailsConstantsUI.COLUMN_TRADING_ACCOUNT_LOGIN,
+                column=ClientDetailsConstantsUI.COLUMN_LOGIN,
                 row=ClientDetailsConstantsUI.ROW_1)
 
         MT4DepositConstantsUI.TA = account_number

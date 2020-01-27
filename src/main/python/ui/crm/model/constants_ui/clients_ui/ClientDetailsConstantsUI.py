@@ -41,6 +41,6 @@ class ClientDetailsConstantsUI(object):
     FIELD_CLIENT_SOURCE = "Client Source"
     FIELD_BIRTHDAY = "Date Of Birth"
 
-    COLUMN_TRADING_ACCOUNT_LOGIN = "Trading Account Login"
+    COLUMN_LOGIN = "Login"
     COLUMN_BALANCE = "Balance"
     COLUMN_CREDIT = "Credit"
