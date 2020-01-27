@@ -2,9 +2,12 @@ import random
 import string
 from datetime import *
 from dateutil.relativedelta import relativedelta
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 class CAConstants(object):
+    brand = global_var.current_brand_name
+
     MARGIN_LVL = "Margin Level"
     TOTAL_P_L = "Total P/L"
     ACCOUNT_VALUE = "Account Value"
@@ -15,8 +18,13 @@ class CAConstants(object):
     DAY_BIRTH = "10"
     MONTH_BIRTH = "January"
     YEAR_BIRTH = "1995"
-    CURRENCY = "EUR"
     BIRTHDAY_CRM = "1995-01-10"
+    if brand == "mpcrypto" or brand == "trade99":
+        CURRENCY = "BTC"
+    elif brand == "fair-bit":
+        CURRENCY = "UST"
+    else:
+        CURRENCY = "EUR"
     CURRENCY_CRYPTO = "BTC"
     CITY = "Berlin"
     UPDATE_CITY = "Toronto"

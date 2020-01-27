@@ -37,7 +37,7 @@ class GlobalTablePageUI(CRMBasePage):
     def select_data_column_field(self, column, data):
         sleep(0.1)
         field = super().wait_element_to_be_clickable("//span[@class='placeholder']/span[text()='%s']" % column)
-        field.click()
+        self.driver.execute_script("arguments[0].click();", field)
         sleep(0.5)
         item = super().wait_load_element("//span[contains(text(),'%s')]//following-sibling::ul//span[text()='%s']"
                                          % (column, data))
@@ -96,6 +96,7 @@ class GlobalTablePageUI(CRMBasePage):
     """
 
     def global_data_checker_new_ui(self, data):
+        self.wait_loading_to_finish_new_ui(10)
         try:
             table = self.driver.find_element_by_xpath("//tbody[@role='rowgroup']")
             row_count = 0
@@ -110,12 +111,19 @@ class GlobalTablePageUI(CRMBasePage):
             Logging().reportDebugStep(self, "Data was not found")
         return GlobalTablePageUI(self.driver)
 
-    def select_all_records(self):
+    def select_all_records_checkbox(self):
         sleep(0.2)
         all_records_checkbox = super().wait_element_to_be_clickable(
             "//th[@role='columnheader']//label[@class='mat-checkbox-layout']")
         all_records_checkbox.click()
         Logging().reportDebugStep(self, "All records on the page were selected")
+        return GlobalTablePageUI(self.driver)
+
+    def click_select_all_records_btn(self):
+        sleep(0.2)
+        Logging().reportDebugStep(self, "Click 'Select All records' button")
+        all_records_btn = super().wait_element_to_be_clickable("//div[contains(text(),' Select all records ')]")
+        all_records_btn.click()
         return GlobalTablePageUI(self.driver)
 
     """
@@ -149,6 +157,7 @@ class GlobalTablePageUI(CRMBasePage):
         button = super().wait_element_to_be_clickable("//*[text()=' OK ']")
         self.driver.execute_script("arguments[0].click();", button)
         Logging().reportDebugStep(self, "OK button was clicked")
+        sleep(1)
         return GlobalTablePageUI(self.driver)
 
     def select_filter_new_ui(self, test_filter):
