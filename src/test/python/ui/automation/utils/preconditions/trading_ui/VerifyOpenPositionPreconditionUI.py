@@ -1,11 +1,11 @@
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
-from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 from time import sleep
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
@@ -17,6 +17,10 @@ from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.trading_ui.TradingDetailsPageUI import TradingDetailsPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
+from src.main.python.ui.crm.model.pages.trading_ui.TradingModulePageUI import TradingModulePageUI
 
 
 class VerifyOpenPositionPreconditionUI(object):
@@ -36,15 +40,21 @@ class VerifyOpenPositionPreconditionUI(object):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
-            self.config.get_value('url'),
-            self.config.get_value(TestDataConstants.USER_NAME),
-            self.config.get_value(TestDataConstants.CRM_PASSWORD),
-            self.config.get_value(TestDataConstants.OTP_SECRET))
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                new_design=0,
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        CRMHomePage(self.driver) \
-            .open_client_module_new_ui() \
-            .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email_new_ui(CAConstants.EMAIL_CA)
+        """ Open Clients module and find created client by email """
+        CRMBaseMethodsPage(self.driver) \
+            .open_module_ui(TestDataConstants.MODULE_CLIENTS)
+        GlobalTablePageUI(self.driver) \
+            .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
+            .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
+                                   CAConstants.EMAIL_CA)
+        ClientsModulePageUI(self.driver) \
+            .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
         """ Check if demo account and crypto position was opened """
         try:
@@ -60,9 +70,10 @@ class VerifyOpenPositionPreconditionUI(object):
                 assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         """ Open demo account details and get open orders data """
-        ClientProfilePage(self.driver) \
-            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
-            .open_trading_account_by_number(CAConstants.DEMO_ACCOUNT_NUMBER)
+        ClientDetailsPageUI(self.driver) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
+        TradingModulePageUI(self.driver)\
+            .click_on_ta_number(CAConstants.DEMO_ACCOUNT_NUMBER)
         open_orders_data = TradingDetailsPageUI(self.driver) \
             .display_open_trades()\
             .get_open_orders_data()
