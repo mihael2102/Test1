@@ -9,6 +9,8 @@ class ClientDetailsConstantsUI(object):
     brand = global_var.current_brand_name
 
     ROW_1 = "1"
+    ROW_2 = "2"
+    ROW_3 = "3"
 
     TAB_TRADING_ACCOUNTS = "Trading Accounts"
     TAB_FINANCIAL_TRANSACTIONS = "Financial Transactions"

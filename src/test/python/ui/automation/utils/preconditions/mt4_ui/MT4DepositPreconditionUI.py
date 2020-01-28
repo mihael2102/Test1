@@ -73,7 +73,7 @@ class MT4DepositPreconditionUI(object):
         account_number = GlobalTablePageUI(self.driver)\
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_LOGIN,
-                row=ClientDetailsConstantsUI.ROW_1)
+                row=ClientDetailsConstantsUI.ROW_2)
 
         MT4DepositConstantsUI.TA = account_number
 
@@ -102,7 +102,7 @@ class MT4DepositPreconditionUI(object):
         balance = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_BALANCE,
-                row=ClientDetailsConstantsUI.ROW_1)
+                row=ClientDetailsConstantsUI.ROW_2)
         CRMBaseMethodsPage(self.driver)\
             .comparator_string(
                 balance,

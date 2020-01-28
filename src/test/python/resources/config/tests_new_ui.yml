@@ -21,12 +21,12 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
   class: TestMT4UI
   tests:
-#    - test_create_demo_trading_account_ui
+    - test_create_demo_trading_account_ui
     - test_deposit_crm_ui  # create live mt account and make deposit
     - test_withdraw_crm_ui
-#    - test_credit_in_crm_ui
-#    - test_credit_out_crm_ui
-#    - test_transfer_crm_ui
+    - test_credit_in_crm_ui
+    - test_credit_out_crm_ui
+    - test_transfer_crm_ui
 
 ######################################## AFFILIATES MODULE ##########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module_ui.Test_Affiliates_Module_UI

@@ -74,7 +74,7 @@ class MT4CreditOutPreconditionUI(object):
         credit = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_CREDIT,
-                row=ClientDetailsConstantsUI.ROW_1)
+                row=ClientDetailsConstantsUI.ROW_3)
 
         counter = 0
         while MT4CreditOutConstantsUI.EXPECTED_CREDIT != credit:
@@ -85,7 +85,7 @@ class MT4CreditOutPreconditionUI(object):
             credit = GlobalTablePageUI(self.driver) \
                 .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_CREDIT,
-                row=ClientDetailsConstantsUI.ROW_1)
+                row=ClientDetailsConstantsUI.ROW_3)
             counter += 1
             if counter == 7:
                 break
