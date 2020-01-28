@@ -22,10 +22,12 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 class FilterPageUI(CRMBasePage):
 
-    def create_filter_clients_ui(self, field1=None, view_name=None):
+    def create_filter_clients_ui(self, field1=None, view_name=None, list1=None, based_filter=None):
         self.click_create_filter_btn()
         if view_name:
             self.set_text_field(field1, view_name)
+        if based_filter:
+            self.select_from_list(list1, based_filter)
 
     def click_create_filter_btn(self):
         sleep(0.1)
@@ -49,6 +51,14 @@ class FilterPageUI(CRMBasePage):
             "//span[text()=' %s ']//following-sibling::ul//span[text()='%s']" % (pick_list, item_title))
         self.driver.execute_script("arguments[0].click();", item)
         Logging().reportDebugStep(self, "Select '" + item_title + "' from pick list " + pick_list)
+        return FilterPageUI(self.driver)
+
+    def select_columns(self, item_title):
+        sleep(0.1)
+        item = super().wait_load_element(
+            "//section[h3='Table columns and order']//following-sibling::ul//span[text()='%s']" % item_title)
+        self.driver.execute_script("arguments[0].click();", item)
+        Logging().reportDebugStep(self, "Select '" + item_title + "' from Table columns and order")
         return FilterPageUI(self.driver)
 
     def click_assign_btn(self):

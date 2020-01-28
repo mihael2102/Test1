@@ -32,7 +32,8 @@ class FilterClientsPreconditionUI(BaseTest):
             new_design=0,
             otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        FilterPageUI(self.driver).create_filter_clients_ui()
+        FilterPageUI(self.driver)\
+            .create_filter_clients_ui()
 
         first_name__column = clients_module_page.get_first_name_column()
         second_name_column = clients_module_page.get_second_name_column()
