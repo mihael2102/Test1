@@ -199,11 +199,6 @@ if __name__ == "__main__":
                       path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
                       path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
                       path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
                       path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1
                       ]
 
