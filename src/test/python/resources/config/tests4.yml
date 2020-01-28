@@ -1,10 +1,6 @@
 tests_config:
 
-######################################### WORKFLOWS MODULE #############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
-  class: WorkflowsModulesTest
+- module: src.test.python.ui.automation.implementation.crm.load.TestLoadCRMUI
+  class: TestLoadCRMUI
   tests:
-    - test_create_workflows
-    - test_check_workflow_by_status
-    - test_check_workflow_by_country
-    - test_delete_workflow
+    - test_load_switch_tabs_ui

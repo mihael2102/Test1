@@ -1,23 +1,6 @@
 tests_config:
 
-########################################### USER_MANAGEMENT #########################################
-- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
-  class: UserManagementTest
+- module: src.test.python.ui.automation.implementation.crm.load.TestLoadCRMUI
+  class: TestLoadCRMUI
   tests:
-    - test_create_user
-    - test_delete_user
-
-########################################## LEADS ###################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_create_edit_lead
-
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
-  class: TabLeadsModuleCRM
-  tests:
-    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
-    - sorting_lead_module
-    - test_mass_assign_leads
-    - test_mass_edit_leads
+    - test_load_switch_tabs_ui

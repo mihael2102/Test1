@@ -1,17 +1,6 @@
 tests_config:
 
-######################################### CAMPAIGN MODULE ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
-  class: CampaignsModuleTest
+- module: src.test.python.ui.automation.implementation.crm.load.TestLoadCRMUI
+  class: TestLoadCRMUI
   tests:
-    - test_create_campaign
-    - test_edit_campaign
-    - test_delete_campaign
-
-######################################### AUTOASSIGN MODULE #############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
-  class: AutoAssignModuleTest
-  tests:
-    - test_add_auto_assign_rule_lead
-    - test_add_auto_assign_rule_client
-    - test_perform_delete_rule
+    - test_load_switch_tabs_ui
