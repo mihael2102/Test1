@@ -35,8 +35,8 @@ brands:
 #- name: etfinance
 #  config_file: etfinance.yml
 
-- name: fairbit
-  config_file: fair-bit.yml
+#- name: fairbit
+#  config_file: fair-bit.yml
 
 #- name: financix
 #  config_file: financix.yml
@@ -77,8 +77,8 @@ brands:
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
 
-#- name: newcrmui
-#  config_file: newcrmui.yml
+- name: newcrmui
+  config_file: newcrmui.yml
 
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml

@@ -79,11 +79,11 @@ tests_config:
 #    - test_add_delete_event_ui
 
 ############################################# CA TESTS ##############################################
-- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
-  class: SignUpTest
-  tests:
-    - test_check_sign_up
-    - test_check_email_sign_up
+#- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
+#  class: SignUpTest
+#  tests:
+#    - test_check_sign_up
+#    - test_check_email_sign_up
 #    - test_registred_client_in_crm_new_ui
 #
 #- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
@@ -111,3 +111,9 @@ tests_config:
 #    - test_verify_live_open_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
 #    - test_close_position_live      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
 #    - test_verify_live_close_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
+
+############################################# LOAD TESTS ############################################
+- module: src.test.python.ui.automation.implementation.crm.load.TestLoadCRMUI
+  class: TestLoadCRMUI
+  tests:
+    - test_load_switch_tabs_ui

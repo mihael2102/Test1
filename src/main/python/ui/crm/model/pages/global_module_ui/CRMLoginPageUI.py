@@ -24,7 +24,7 @@ class CRMLoginPageUI(CRMBasePage):
         if password:
             self.set_password(password)
         if new_design:
-            self.check_new_design(new_design)
+            self.check_new_design()
         self.click_login_btn()
         sleep(1)
         if otp_secret:
