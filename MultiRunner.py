@@ -203,7 +203,7 @@ if __name__ == "__main__":
                       ]
 
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=100)
+        pool = multiprocessing.Pool(processes=80)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
