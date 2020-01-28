@@ -24,46 +24,23 @@ class FilterPrecondition(object):
         self.config = config
 
     def create_filter_clients_module(self):
-        CRMHomePage(self.driver).open_client_module() #\
-            # .open_create_filter_pop_up() \
-        # sleep(3)
-        # test = self.driver.find_element(By.XPATH, "//span[contains(text(),'TestFilterClientsModule')]")
-        # print(test)
-        # while (self.driver.find_element(By.XPATH, "//span[contains(text(),'TestFilterClientsModule')]")):
-        #     sleep(5)
-        #     FilterPage(self.driver).click_delete_filter_button()
-        # else:
-        ClientsPage(self.driver).open_create_filter_pop_up()\
-
-        if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "intelligent_capital"):
-            FilterPage(self.driver).perform_create_filter_client_module(
-                       TestDataConstants.CLIENTS_FILTER_NAME,
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SECOND_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FOURTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIFTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SIXTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SEVENTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.EIGHTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.NINTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN_OTHER_TYPE),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN))
-
-        else:
-            FilterPage(self.driver).perform_create_filter_client_module(
-                        TestDataConstants.CLIENTS_FILTER_NAME,
-                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
-                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SECOND_COLUMN),
-                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
-                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FOURTH_COLUMN),
-                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIFTH_COLUMN),
-                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SIXTH_COLUMN),
-                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SEVENTH_COLUMN),
-                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.EIGHTH_COLUMN),
-                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.NINTH_COLUMN),
-                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN),
-                        self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN))
+        CRMHomePage(self.driver)\
+            .open_client_module()
+        ClientsPage(self.driver)\
+            .open_create_filter_pop_up()\
+            .perform_create_filter_client_module(
+                TestDataConstants.CLIENTS_FILTER_NAME,
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SECOND_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FOURTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIFTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SIXTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SEVENTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.EIGHTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.NINTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN),
+                self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN))
 
         FilterPage(self.driver).click_save_button()
         return FilterPrecondition(self.driver, self.config)

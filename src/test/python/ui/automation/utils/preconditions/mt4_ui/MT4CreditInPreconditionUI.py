@@ -68,8 +68,8 @@ class MT4CreditInPreconditionUI(object):
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
         account_number = GlobalTablePageUI(self.driver)\
             .get_data_from_list_view_ui(
-                column=ClientDetailsConstantsUI.COLUMN_TRADING_ACCOUNT_LOGIN,
-                row=ClientDetailsConstantsUI.ROW_1)
+                column=ClientDetailsConstantsUI.COLUMN_LOGIN,
+                row=ClientDetailsConstantsUI.ROW_3)
 
         MT4CreditInConstantsUI.TA_CREDIT = account_number
 
@@ -97,7 +97,7 @@ class MT4CreditInPreconditionUI(object):
         credit = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_CREDIT,
-                row=ClientDetailsConstantsUI.ROW_1)
+                row=ClientDetailsConstantsUI.ROW_3)
 
         counter = 0
         while MT4CreditInConstantsUI.AMOUNT != credit:
@@ -108,7 +108,7 @@ class MT4CreditInPreconditionUI(object):
             credit = GlobalTablePageUI(self.driver) \
                 .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_CREDIT,
-                row=ClientDetailsConstantsUI.ROW_1)
+                row=ClientDetailsConstantsUI.ROW_3)
             counter += 1
             if counter == 7:
                 break

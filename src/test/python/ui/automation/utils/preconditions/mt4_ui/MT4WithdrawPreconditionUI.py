@@ -73,7 +73,7 @@ class MT4WithdrawPreconditionUI(object):
         actual_balance = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_BALANCE,
-                row=ClientDetailsConstantsUI.ROW_1)
+                row=ClientDetailsConstantsUI.ROW_2)
 
         count = 0
         while actual_balance != MT4WithdrawConstantsUI.BALANCE:
@@ -85,7 +85,7 @@ class MT4WithdrawPreconditionUI(object):
             actual_balance = GlobalTablePageUI(self.driver) \
                 .get_data_from_list_view_ui(
                     column=ClientDetailsConstantsUI.COLUMN_BALANCE,
-                    row=ClientDetailsConstantsUI.ROW_1)
+                    row=ClientDetailsConstantsUI.ROW_2)
             count += 1
             if count == 10:
                 break
