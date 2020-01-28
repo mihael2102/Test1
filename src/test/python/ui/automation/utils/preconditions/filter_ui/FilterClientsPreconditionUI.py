@@ -1,26 +1,20 @@
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.constants.DocumentModuleConstants import DocumentModuleConstants
-from src.main.python.ui.crm.model.constants.HelpDeskConstants import HelpDeskConstants
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.constants.TradingAccountConstants import TradingAccountConstants
-from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
-from src.main.python.ui.crm.model.pages.document.DocumentsPage import DocumentsPage
-from src.main.python.ui.crm.model.pages.help_desk.HelpDeskPage import HelpDeskPage
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsPage import TradingAccountsPage
+from src.main.python.ui.crm.model.constants_ui.filters_ui.ClientsFilterConstantsUI import ClientsFilterConstantsUI
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.test.python.ui.automation.utils.preconditions.filter.FilterPrecondition import FilterPrecondition
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.FilterPageUI import FilterPageUI
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import TimeoutException
-from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 
 
-class FilterClientsPreconditionUI(BaseTest):
+class FilterClientsPreconditionUI(object):
+
+    driver = None
+    config = None
+
+    def __init__(self, driver, config):
+        self.driver = driver
+        self.config = config
 
     def create_filter_clients_ui(self):
         """ Login CRM """
@@ -32,8 +26,15 @@ class FilterClientsPreconditionUI(BaseTest):
             new_design=0,
             otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        FilterPageUI(self.driver)\
-            .create_filter_clients_ui()
+        FilterPageUI(self.driver) \
+            .create_filter_clients_ui(
+                field1=ClientsFilterConstantsUI.FIELD_VIEW_NAME, view_name=ClientsFilterConstantsUI.CLIENTS_FILTER_NAME,
+                column1=ClientsFilterConstantsUI.COLUMN1, column2=ClientsFilterConstantsUI.COLUMN2,
+                column3=ClientsFilterConstantsUI.COLUMN3, column4=ClientsFilterConstantsUI.COLUMN4,
+                column5=ClientsFilterConstantsUI.COLUMN5, column6=ClientsFilterConstantsUI.COLUMN6,
+                column7=ClientsFilterConstantsUI.COLUMN7, column8=ClientsFilterConstantsUI.COLUMN8,
+                column9=ClientsFilterConstantsUI.COLUMN9, column10=ClientsFilterConstantsUI.COLUMN10,
+                column11=ClientsFilterConstantsUI.COLUMN11)
 
         first_name__column = clients_module_page.get_first_name_column()
         second_name_column = clients_module_page.get_second_name_column()

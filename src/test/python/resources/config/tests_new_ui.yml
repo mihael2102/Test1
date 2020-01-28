@@ -1,10 +1,10 @@
 tests_config:
 
 ######################################## FILTERS TESTS ###############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_global_crm_ui.TestFiltersUI
-#  class: TestFiltersUI
-#  tests:
-#    - test_filter_clients_ui
+- module: src.test.python.ui.automation.implementation.crm.tests_global_crm_ui.TestFiltersUI
+  class: TestFiltersUI
+  tests:
+    - test_filter_clients_ui
 
 ########################################## LEADS ###################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_leads_module_ui.TestLeadsModuleUI
@@ -113,7 +113,7 @@ tests_config:
 #    - test_verify_live_close_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
 
 ############################################# LOAD TESTS ############################################
-- module: src.test.python.ui.automation.implementation.crm.load.TestLoadCRMUI
-  class: TestLoadCRMUI
-  tests:
-    - test_load_switch_tabs_ui
+#- module: src.test.python.ui.automation.implementation.crm.load.TestLoadCRMUI
+#  class: TestLoadCRMUI
+#  tests:
+#    - test_load_switch_tabs_ui
