@@ -21,7 +21,7 @@ class CAConstants(object):
     BIRTHDAY_CRM = "1995-01-10"
     if brand == "mpcrypto" or brand == "trade99":
         CURRENCY = "BTC"
-    elif brand == "fair-bit":
+    elif brand == "fairbit":
         CURRENCY = "UST"
     else:
         CURRENCY = "EUR"

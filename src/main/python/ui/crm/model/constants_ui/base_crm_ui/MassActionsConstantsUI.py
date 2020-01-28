@@ -14,7 +14,7 @@ class MassActionsConstantsUI(object):
     USER_NAME = "Panda Auto"
     USER_NAME_1 = "Michael O"
     STATUS_R_NEW = "R - New"
-    if brand == "fair-bit":
+    if brand == "fairbit":
         STATUS_B_TEST = "Test"
     else:
         STATUS_B_TEST = "B - Test"
