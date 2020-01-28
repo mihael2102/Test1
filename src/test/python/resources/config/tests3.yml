@@ -1,19 +1,9 @@
 tests_config:
 
-########################################### DOCUMENTS MODULE ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_document_module.Test_Document_Module
-  class: DocumentModuleTest
+############################################## CLIENTS ###############################################
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_Clients_Module_UI
+  class: TestClientsModuleUI
   tests:
-    - test_searching_by_columns
-    - test_open_tabs
-    - test_sorting
-
-######################################## FILTERS TESTS ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
-  class: FilterModulesTest
-  tests:
-    - test_create_filter_clients_module
-    - test_create_filter_documents_module
-    - test_create_filter_leads_module
-    - test_create_filter_help_desk
-    - test_create_filter_trading_account_module
+    - test_clients_searching_columns_ui
+    - test_mass_assign_clients_ui
+    - test_mass_edit_clients_ui

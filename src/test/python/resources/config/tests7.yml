@@ -1,19 +1,9 @@
 tests_config:
 
-##################################### TASKS ##################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-  class: AddEventTaskModule
+- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
+  class: TradingProcess
   tests:
-    - test_email_icon
-    - test_sms_icon
-    - test_mass_edit_tasks
-    - test_searching_by_columns
-    - test_sorting_columns
-
-###################################### TASKS CALENDAR VIEW ########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
-  class: CalendarView
-  tests:
-     - test_check_day_tab
-     - test_check_month_tab
-     - test_check_week_tab
+    - test_open_position_live         # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
+    - test_verify_live_open_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
+    - test_close_position_live      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
+    - test_verify_live_close_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT

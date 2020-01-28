@@ -1,41 +1,9 @@
 tests_config:
 
-#################################### CONVERT LEAD ##########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
+########################################## LEADS ###################################################
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module_ui.TestLeadsModuleUI
+  class: TestLeadsModuleUI
   tests:
-    - test_perform_convert_lead   # Creates a lead and converts it to a client
-
-######################################## CLIENTS ###############################################
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
-  class: DepositTestCRM
-  tests:
-    - test_make_deposit_crm  # make a deposit into a trading account from the crm
-    - test_make_deposit_for_client_crm
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-  class: WithdrawTest
-  tests:
-    - test_withdraw_crm   #preconditions: convert lead, make deposit
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
-  class: CreditInTestCRM
-  tests:
-    - test_make_credit_in_from_crm
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
-  class: CreditOutTestCRM
-  tests:
-    - test_make_credit_out_crm # preconditions: convert lead, make credit in
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
-  class: TransferBetweenTa
-  tests:
-    - test_transfer_between_ta # preconditions: convert lead, deposit crm
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_edit_trading_account  # edit trading account
+    - test_leads_searching_columns_ui
+    - test_mass_assign_leads_ui
+    - test_mass_edit_leads_ui

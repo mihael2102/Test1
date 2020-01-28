@@ -1,17 +1,31 @@
 tests_config:
 
-######################################### CAMPAIGN MODULE ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
-  class: CampaignsModuleTest
+############################################ CA TESTS ##############################################
+- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
+  class: SignUpTest
   tests:
-    - test_create_campaign
-    - test_edit_campaign
-    - test_delete_campaign
+    - test_check_sign_up
+    - test_check_email_sign_up
+    - test_registred_client_in_crm_new_ui
 
-######################################### AUTOASSIGN MODULE #############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
-  class: AutoAssignModuleTest
+- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
+  class: AddNewAccountTestCA
   tests:
-    - test_add_auto_assign_rule_lead
-    - test_add_auto_assign_rule_client
-    - test_perform_delete_rule
+    - test_add_live_account_ca
+    - test_add_demo_account_ca
+    - test_verify_accounts_in_crm_ui
+    - test_switch_between_accounts_ca
+
+- module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
+  class: TestPagesCA
+  tests:
+    - test_main_menu_pages_loading
+    - test_graphs_loading
+
+- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
+  class: TradingProcess
+  tests:
+    - test_trading_process_open_position_ca    # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
+    - test_verify_open_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
+    - test_trading_process_close_position_ca      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
+    - test_verify_close_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
