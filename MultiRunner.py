@@ -180,16 +180,34 @@ if __name__ == "__main__":
         path_to_test_suite_25 = "tests11.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-        input_list = [path_to_test_suite_1, path_to_test_suite_2, path_to_test_suite_3, path_to_test_suite_4,
-                      path_to_test_suite_5, path_to_test_suite_6, path_to_test_suite_7, path_to_test_suite_8,
-                      path_to_test_suite_9, path_to_test_suite_10, path_to_test_suite_11, path_to_test_suite_12,
-                      path_to_test_suite_13, path_to_test_suite_14, path_to_test_suite_15, path_to_test_suite_16,
-                      path_to_test_suite_17, path_to_test_suite_18, path_to_test_suite_19, path_to_test_suite_20,
-                      path_to_test_suite_21, path_to_test_suite_22, path_to_test_suite_23, path_to_test_suite_24,
-                      path_to_test_suite_25]
+        input_list = [path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1]
 
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=25)
+        pool = multiprocessing.Pool(processes=100)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
