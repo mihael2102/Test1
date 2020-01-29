@@ -9,3 +9,5 @@ ClientsPage:
 FinancialTransactionsPage:
   client_name_element:  "(//*[@id='listBody']//tr/td[4])[%s]"
   modified_time_element: "(//*[contains(@id,'row_')]/td[12])[%s]"
+WebTraderPage:
+  open_trade_open_price: "//open-trade/td[6]"

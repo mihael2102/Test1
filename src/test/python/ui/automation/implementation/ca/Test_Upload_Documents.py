@@ -4,7 +4,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.trading_account.TradingAccountPrecondition import TradingAccountPrecondition
 from src.test.python.ui.automation.utils.preconditions.login_ca.Page_CA_Preconditions import Page_CA_Precondition
 from src.test.python.ui.automation.utils.preconditions.login_ca.Support_Ticket_Preconditions import Support_Ticket_Preconditions
-from src.test.python.ui.automation.utils.preconditions.login_ca.Login_CA_Preconditions import Login_CA_Precondition
+from src.test.python.ui.automation.utils.preconditions.login_ca.Login_CA_Preconditions import LoginCAPrecondition
 from src.test.python.ui.automation.utils.preconditions.login_ca.Page_CA_Preconditions import Page_CA_Precondition
 
 @pytest.mark.run(order=5)
