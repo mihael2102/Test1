@@ -1,55 +1,41 @@
 tests_config:
 
+######################################## FILTERS TESTS ###############################################
+- module: src.test.python.ui.automation.implementation.crm.tests_global_crm_ui.TestFiltersUI
+  class: TestFiltersUI
+  tests:
+#    - test_filter_clients_ui
+#    - test_filter_leads_ui
+#    - test_filter_documents_ui
+    - test_filter_help_desk_ui
+
 ########################################## LEADS ###################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module_ui.Test_Leads_Module_UI
-  class: TestLeadsModuleUI
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module_ui.TestLeadsModuleUI
+#  class: TestLeadsModuleUI
+#  tests:
 #    - test_leads_searching_columns_ui
-    - test_mass_assign_leads
+#    - test_mass_assign_leads_ui
+#    - test_mass_edit_leads_ui
+#    - test_convert_lead_ui   # Creates a lead and converts it to a client
 
-####################################### CONVERT LEAD ##########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_convert_lead_new_ui   # Creates a lead and converts it to a client
-
-######################################## MT4 ACTIONS ###########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_open_trading_account_new_ui  # open demo trading account
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_MT4_UI
-  class: TestMT4UI
-  tests:
-    - test_deposit_crm_new_ui  # create live mt account and make deposit in crm
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-  class: WithdrawTest
-  tests:
-    - test_withdraw_crm_new_ui   #preconditions: convert lead, make deposit
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
-  class: CreditInTestCRM
-  tests:
-    - test_credit_in_crm_new_ui
-
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_Out
-#  class: CreditOutTestCRM
+############################################## CLIENTS ###############################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_Clients_Module_UI
+#  class: TestClientsModuleUI
 #  tests:
-#    - test_make_credit_out_crm_new_ui # preconditions: convert lead, make credit in
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
-#  class: TransferBetweenTa
-#  tests:
-#    - test_transfer_between_ta_new_ui # preconditions: convert lead, deposit crm
+#    - test_clients_searching_columns_ui
+#    - test_mass_assign_clients_ui
+#    - test_mass_edit_clients_ui
 
-#- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
-#  class: SignUpTest
+######################################### MT4 ACTIONS ###########################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
+#  class: TestMT4UI
 #  tests:
-#    - test_check_sign_up
-#    - test_registred_client_in_crm_new_ui
+#    - test_create_demo_trading_account_ui
+#    - test_deposit_crm_ui  # create live mt account and make deposit
+#    - test_withdraw_crm_ui
+#    - test_credit_in_crm_ui
+#    - test_credit_out_crm_ui
+#    - test_transfer_crm_ui
 
 ######################################## AFFILIATES MODULE ##########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module_ui.Test_Affiliates_Module_UI
@@ -57,8 +43,80 @@ tests_config:
 #  tests:
 #     - test_create_delete_affiliate_ui
 
-############################################## CLIENTS ###############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_Clients_Module_UI
-#  class: TestClientsModuleUI
+############################################ HELP DESK ##############################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
+#  class: TestHelpDeskModuleUI
 #  tests:
-#    - test_clients_searching_columns_ui
+#    - test_create_delete_ticket_ui
+#    - test_help_desk_searching_columns_ui
+
+############################################ DOCUMENTS ##############################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_documents_ui.TestDocumentsModuleUI
+#  class: TestDocumentsModuleUI
+#  tests:
+#    - test_documents_searching_columns_ui
+
+######################################### TRADING ACCOUNTS ##########################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_trading_ui.TestTradingModuleUI
+#  class: TestTradingModuleUI
+#  tests:
+#    - test_trading_searching_columns_ui
+
+####################################### FINANCIAL TRANSACTIONS ##########################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_fin_transactions_ui.TestFinTransactionsModuleUI
+#  class: TestFinTransactionsModuleUI
+#  tests:
+#    - test_fin_transactions_searching_columns_ui
+
+############################################## AUDIT LOGS ################################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_audit_logs_ui.TestAuditLogsModuleUI
+#  class: TestAuditLogsModuleUI
+#  tests:
+#    - test_audit_logs_searching_columns_ui
+
+############################################## TASKS ################################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_ui.TestTasksModuleUI
+#  class: TestTasksModuleUI
+#  tests:
+#    - test_tasks_searching_columns_ui
+#    - test_add_delete_event_ui
+
+############################################# CA TESTS ##############################################
+#- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
+#  class: SignUpTest
+#  tests:
+#    - test_check_sign_up
+#    - test_check_email_sign_up
+#    - test_registred_client_in_crm_new_ui
+#
+#- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
+#  class: AddNewAccountTestCA
+#  tests:
+#    - test_add_live_account_ca
+#    - test_add_demo_account_ca
+#    - test_verify_accounts_in_crm_ui
+#    - test_switch_between_accounts_ca
+#
+#- module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
+#  class: TestPagesCA
+#  tests:
+#    - test_main_menu_pages_loading
+#    - test_graphs_loading
+
+#- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
+#  class: TradingProcess
+#  tests:
+#    - test_trading_process_open_position_ca    # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
+#    - test_verify_open_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
+#    - test_trading_process_close_position_ca      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
+#    - test_verify_close_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
+#    - test_open_position_live         # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
+#    - test_verify_live_open_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
+#    - test_close_position_live      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
+#    - test_verify_live_close_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
+
+############################################# LOAD TESTS ############################################
+#- module: src.test.python.ui.automation.implementation.crm.load.TestLoadCRMUI
+#  class: TestLoadCRMUI
+#  tests:
+#    - test_load_switch_tabs_ui
