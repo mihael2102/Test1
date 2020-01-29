@@ -111,6 +111,18 @@ class GlobalTablePageUI(CRMBasePage):
             Logging().reportDebugStep(self, "Data was not found")
         return GlobalTablePageUI(self.driver)
 
+    """
+        Return title of column by index in table
+    """
+
+    def get_column_title(self, index):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Get title of column: " + index)
+        title = super().wait_load_element("(//tr[contains(@class,'mat-header-row')]/th/pnd-grid-filter)[%s]" % index)\
+            .text
+        Logging().reportDebugStep(self, "Get title of column " + index + ": " + title)
+        return title
+
     def select_all_records_checkbox(self):
         sleep(0.2)
         all_records_checkbox = super().wait_element_to_be_clickable(
@@ -163,7 +175,9 @@ class GlobalTablePageUI(CRMBasePage):
     def select_filter_new_ui(self, test_filter):
         sleep(0.1)
         Logging().reportDebugStep(self, "Select filter: " + test_filter)
-        filter_item = super().wait_load_element("//span[contains(text(),'%s')]" % test_filter)
+        filter_item = super().wait_load_element(
+            "//nice-select[@searchplaceholder='Search filter']//div[@class='select-wrap']//following-sibling::"
+            "ul//span[contains(text(),'%s')]" % test_filter)
         self.driver.execute_script("arguments[0].click();", filter_item)
         sleep(1)
         self.wait_crm_loading_to_finish()
@@ -185,7 +199,7 @@ class GlobalTablePageUI(CRMBasePage):
         sleep(0.1)
         Logging().reportDebugStep(self, "Click 'Delete' button in approve pop up")
         delete_btn = super().wait_element_to_be_clickable(
-            "//div[@class='mat-dialog-actions']/button/span[text()=' Delete ']")
+            "//div[contains(@class,'mat-dialog-actions')]/button/span[text()=' Delete ']")
         delete_btn.click()
         return GlobalTablePageUI(self.driver)
 
