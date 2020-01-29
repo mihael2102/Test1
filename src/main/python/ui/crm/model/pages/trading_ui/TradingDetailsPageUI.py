@@ -31,8 +31,8 @@ class TradingDetailsPageUI(CRMBasePage):
 
     def get_closed_orders_data_ui(self):
         sleep(0.2)
-        open_orders_data = super().wait_load_element(
+        closed_orders_data = super().wait_load_element(
             "//mat-expansion-panel[@id='closed-transactions']//tbody[@role='rowgroup']")\
             .get_attribute("innerText")
-        Logging().reportDebugStep(self, "Get Open Orders data: " + open_orders_data)
-        return open_orders_data
+        Logging().reportDebugStep(self, "Get Closed Orders data: " + closed_orders_data)
+        return closed_orders_data

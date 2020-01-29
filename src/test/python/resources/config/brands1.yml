@@ -35,7 +35,7 @@ brands:
 #- name: etfinance
 #  config_file: etfinance.yml
 
-- name: fair-bit
+- name: fairbit
   config_file: fair-bit.yml
 
 #- name: financix
