@@ -2,13 +2,14 @@ from time import sleep
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
 
 
 class FilterPageUI(CRMBasePage):
 
-    def create_filter_clients_ui(self, field1=None, view_name=None, list1=None, based_filter=None, column1=None,
-                                 column2=None, column3=None, column4=None, column5=None, column6=None, column7=None,
-                                 column8=None, column9=None, column10=None, column11=None):
+    def create_filter_ui(self, field1=None, view_name=None, list1=None, based_filter=None, column1=None,
+                         column2=None, column3=None, column4=None, column5=None, column6=None, column7=None,
+                         column8=None, column9=None, column10=None, column11=None):
         self.click_add_filter_btn()
         if view_name:
             self.set_text_field(field1, view_name)
@@ -78,3 +79,35 @@ class FilterPageUI(CRMBasePage):
         sleep(1)
         self.wait_loading_to_finish_new_ui(5)
         return FilterPageUI(self.driver)
+
+    def get_current_filter(self):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Get current filter title")
+        current_filter = super().wait_load_element("//nice-select[@searchplaceholder='Search filter']"
+                                                   "//div[@class='select-wrap']//span[@class='ng-star-inserted']").text
+        Logging().reportDebugStep(self, "Current filter title: " + current_filter)
+        return current_filter
+
+    def delete_filter(self, title):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click Delete filter button")
+        delete_btn = super().wait_load_element(
+            "//a[@title='%s']//following-sibling::div[@class='actions-wrap ng-star-inserted']/ul[@class='actions-menu']"
+            "//button[@title='Delete']" % title)
+        self.driver.execute_script("arguments[0].click();", delete_btn)
+        Logging().reportDebugStep(self, "Delete filter button was clicked")
+        return GlobalTablePageUI(self.driver)
+
+    def verify_filter_in_list(self, title):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Check filter " + title + " in filter pick-list")
+        pick_list = super().wait_load_element(
+            "//nice-select[@searchplaceholder='Search filter']//div[@class='select-wrap']//following-sibling::ul")\
+            .get_attribute("innerText")
+        try:
+            assert title in pick_list
+            Logging().reportDebugStep(self, "Filter " + title + " exist in pick-list")
+            return True
+        except AssertionError:
+            Logging().reportDebugStep(self, "Filter " + title + " is not existing in pick-list")
+            return False
