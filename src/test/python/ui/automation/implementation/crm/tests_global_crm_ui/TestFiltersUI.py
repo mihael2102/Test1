@@ -8,6 +8,8 @@ from src.test.python.ui.automation.utils.preconditions.filter_ui.FilterDocuments
     FilterDocumentsPreconditionUI
 from src.test.python.ui.automation.utils.preconditions.filter_ui.FilterHelpDeskPreconditionUI import \
     FilterHelpDeskPreconditionUI
+from src.test.python.ui.automation.utils.preconditions.filter_ui.FilterTAPreconditionUI import \
+    FilterTAPreconditionUI
 
 
 @pytest.mark.run(order=3)
@@ -24,3 +26,6 @@ class TestFiltersUI(BaseTest):
 
     def test_filter_help_desk_ui(self):
         FilterHelpDeskPreconditionUI(self.driver, self.config).create_filter_help_desk_ui()
+
+    def test_filter_ta_ui(self):
+        FilterTAPreconditionUI(self.driver, self.config).create_filter_ta_ui()
