@@ -17,8 +17,8 @@ brands:
 #- name: brokerz
 #  config_file: brokerz.yml
 
-- name: coin-bits
-  config_file: coin-bits.yml
+#- name: coin-bits
+#  config_file: coin-bits.yml
 
 #- name: confixfinancial
 #  config_file: confixfinancial.yml
@@ -35,8 +35,8 @@ brands:
 #- name: etfinance
 #  config_file: etfinance.yml
 
-#- name: fairbit
-#  config_file: fair-bit.yml
+- name: fairbit
+  config_file: fair-bit.yml
 
 #- name: financix
 #  config_file: financix.yml
