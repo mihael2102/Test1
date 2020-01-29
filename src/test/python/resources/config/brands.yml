@@ -1,6 +1,6 @@
 brands:
 
-- name: fair-bit
+- name: fairbit
   config_file: fair-bit.yml
 
 #- name: axa_markets

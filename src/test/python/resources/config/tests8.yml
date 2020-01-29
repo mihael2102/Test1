@@ -1,36 +1,10 @@
 tests_config:
 
-#################################### CLIENTS ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
-  class: MassEditTestCRM
+######################################## FILTERS TESTS ###############################################
+- module: src.test.python.ui.automation.implementation.crm.tests_global_crm_ui.TestFiltersUI
+  class: TestFiltersUI
   tests:
-    - test_clients_mass_edit
-
-####################################### AFFILIATES MODULE ##########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
-  class: AffiliateModule
-  tests:
-     - test_create_affiliate
-
-###################################### FINANCIAL TRANSACTIONS ######################################
-- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
-  class: TabFinancialTransaction
-  tests:
-    - test_check_all_tab_from_financial_transactions
-    - test_check_searching_by_column # Check filters in columns -  all required columns (customer name, date, transaction type, trading account number, transaction number)
-    - test_check_search_via_button # Check search using search button
-
-#################################### CLIENTS ###############################################
-
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign
-  class: MassAssignTestCRM
-  tests:
-    - test_clients_mass_assign
-
-#################################### LEADS ################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_edit_lead_pencil_icon
-    - test_check_email_popup
+    - test_filter_clients_ui
+    - test_filter_leads_ui
+    - test_filter_documents_ui
+    - test_filter_help_desk_ui
