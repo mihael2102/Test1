@@ -35,8 +35,8 @@ brands:
 - name: marketrip
   config_file: marketrip.yml
 
-- name: moneta
-  config_file: moneta.yml
+#- name: moneta
+#  config_file: moneta.yml
 
 - name: newrichmarkets
   config_file: newrichmarkets.yml
