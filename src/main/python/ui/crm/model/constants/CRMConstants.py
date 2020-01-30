@@ -33,7 +33,7 @@ class CRMConstants(object):
     SUBJECT_TASK_MAIL = ": SUBJECT_TASK" + str(random.randrange(1, 999))
     TRADING_LEVERAGE_ITRADER = "30"
     SUBJECT_LEAD_MAIL = ": Test MAIL" + str(random.randrange(1, 9999999))
-    BODY_LEAD_MAIL = "Test"
+    BODY_LEAD_MAIL = "Test1111111111111111111111"
     CHANGE_PHONE_LEAD = "0534431234"
     DATE_BIRTH = "1999-02-19"
     STATUS_EDIT_STOX = "R - New"

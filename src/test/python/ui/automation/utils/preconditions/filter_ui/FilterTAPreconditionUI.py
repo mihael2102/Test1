@@ -1,4 +1,4 @@
-from src.main.python.ui.crm.model.constants_ui.filters_ui.LeadsFilterConstantsUI import LeadsFilterConstantsUI
+from src.main.python.ui.crm.model.constants_ui.filters_ui.TAFilterConstantsUI import TAFilterConstantsUI
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
@@ -34,17 +34,17 @@ class FilterTAPreconditionUI(object):
         """ Create Filter """
         FilterPageUI(self.driver) \
             .create_filter_ui(
-                field1=LeadsFilterConstantsUI.FIELD_VIEW_NAME, view_name=LeadsFilterConstantsUI.LEADS_FILTER_NAME,
-                column1=LeadsFilterConstantsUI.COLUMN1, column2=LeadsFilterConstantsUI.COLUMN2,
-                column3=LeadsFilterConstantsUI.COLUMN3, column4=LeadsFilterConstantsUI.COLUMN4,
-                column5=LeadsFilterConstantsUI.COLUMN5, column6=LeadsFilterConstantsUI.COLUMN6,
-                column7=LeadsFilterConstantsUI.COLUMN7, column8=LeadsFilterConstantsUI.COLUMN8)
+                field1=TAFilterConstantsUI.FIELD_VIEW_NAME, view_name=TAFilterConstantsUI.TA_FILTER_NAME,
+                column1=TAFilterConstantsUI.COLUMN1, column2=TAFilterConstantsUI.COLUMN2,
+                column3=TAFilterConstantsUI.COLUMN3, column4=TAFilterConstantsUI.COLUMN4,
+                column5=TAFilterConstantsUI.COLUMN5, column6=TAFilterConstantsUI.COLUMN6,
+                column7=TAFilterConstantsUI.COLUMN7, column8=TAFilterConstantsUI.COLUMN8)
 
         """ Get and verify current filter title """
         current_filter = FilterPageUI(self.driver) \
             .get_current_filter()
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(LeadsFilterConstantsUI.LEADS_FILTER_NAME,
+            .comparator_string(TAFilterConstantsUI.TA_FILTER_NAME,
                                current_filter)
 
         """ Get titles of new filter columns """
@@ -69,20 +69,20 @@ class FilterTAPreconditionUI(object):
 
         """ Verify titles are correct """
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(LeadsFilterConstantsUI.COLUMN1, title1) \
-            .comparator_string(LeadsFilterConstantsUI.COLUMN2, title2) \
-            .comparator_string(LeadsFilterConstantsUI.COLUMN3, title3) \
-            .comparator_string(LeadsFilterConstantsUI.COLUMN4, title4) \
-            .comparator_string(LeadsFilterConstantsUI.COLUMN5, title5) \
-            .comparator_string(LeadsFilterConstantsUI.COLUMN6, title6) \
-            .comparator_string(LeadsFilterConstantsUI.COLUMN7, title7) \
-            .comparator_string(LeadsFilterConstantsUI.COLUMN8, title8)
+            .comparator_string(TAFilterConstantsUI.COLUMN1, title1) \
+            .comparator_string(TAFilterConstantsUI.COLUMN2, title2) \
+            .comparator_string(TAFilterConstantsUI.COLUMN3, title3) \
+            .comparator_string(TAFilterConstantsUI.COLUMN4, title4) \
+            .comparator_string(TAFilterConstantsUI.COLUMN5, title5) \
+            .comparator_string(TAFilterConstantsUI.COLUMN6, title6) \
+            .comparator_string(TAFilterConstantsUI.COLUMN7, title7) \
+            .comparator_string(TAFilterConstantsUI.COLUMN8, title8)
 
         """ Delete Filter """
         GlobalTablePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_ALL)
         FilterPageUI(self.driver) \
-            .delete_filter(LeadsFilterConstantsUI.LEADS_FILTER_NAME) \
+            .delete_filter(TAFilterConstantsUI.TA_FILTER_NAME) \
             .approve_deleting() \
             .verify_success_message() \
             .click_ok() \
@@ -90,13 +90,13 @@ class FilterTAPreconditionUI(object):
 
         """ Check filter not exist in list """
         filter_exist = FilterPageUI(self.driver)\
-            .verify_filter_in_list(LeadsFilterConstantsUI.LEADS_FILTER_NAME)
+            .verify_filter_in_list(TAFilterConstantsUI.TA_FILTER_NAME)
         while filter_exist:
             FilterPageUI(self.driver) \
-                .delete_filter(LeadsFilterConstantsUI.LEADS_FILTER_NAME) \
+                .delete_filter(TAFilterConstantsUI.TA_FILTER_NAME) \
                 .approve_deleting() \
                 .verify_success_message() \
                 .click_ok() \
                 .select_filter_new_ui(FiltersConstantsUI.FILTER_ALL)
             filter_exist = FilterPageUI(self.driver) \
-                .verify_filter_in_list(LeadsFilterConstantsUI.LEADS_FILTER_NAME)
+                .verify_filter_in_list(TAFilterConstantsUI.TA_FILTER_NAME)
