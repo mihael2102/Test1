@@ -2,16 +2,13 @@ from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRM
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.pages.crm_base_page.GlobalSearchPage import GlobalSearchPage
-from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
-from src.main.python.ui.crm.model.constants.ClientsModuleConstants import ClientsModuleConstants
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.clients.ClientsModulePage import ClientsModulePage
-from time import sleep
 
 
 class BaseCRMPrecondition(object):
@@ -109,14 +106,14 @@ class BaseCRMPrecondition(object):
         """ Open Clients module """
         CRMBaseMethodsPage(self.driver) \
             .open_module(TestDataConstants.MODULE_CLIENTS)\
-            .open_tab_list_view(ClientsModuleConstants.TAB_ALL)
+            .open_tab_list_view(ClientsModuleConstantsUI.TAB_ALL)
 
         """ Get Client data """
         crm_id = ClientsModulePage(self.driver)\
-            .get_client_crm_id_list_view(ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_5)
+            .get_client_crm_id_list_view(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_5)
 
         created_time = ClientsModulePage(self.driver) \
-            .get_client_created_time_list_view(ClientsModuleConstants.ROW_NUMBER_FOR_DATA_SEARCHING_5)
+            .get_client_created_time_list_view(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_5)
 
         """ Open Tasks module """
         CRMBaseMethodsPage(self.driver) \

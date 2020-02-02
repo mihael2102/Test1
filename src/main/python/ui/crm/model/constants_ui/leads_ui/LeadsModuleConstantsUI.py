@@ -29,7 +29,7 @@ class LeadsModuleConstantsUI(object):
     COLUMN_DESCRIPTION = "Description"
     COLUMN_LEAD_SOURCE = "Lead source"
     COLUMN_LEAD_STATUS = "Lead status"
-    COLUMN_ASSIGNED_TO = "Assigned to"
+    COLUMN_ASSIGNED_TO = "Assigned To"
     COLUMN_COUNTRY = "Country"
     COLUMN_LEAD_NO = "Lead No"
     ROW_NUMBER_FOR_DATA_SEARCHING_5 = "5"

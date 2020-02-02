@@ -80,7 +80,8 @@ class CreditInPrecondition(object):
         elif (global_var.current_brand_name == "gxfx") \
                 or (global_var.current_brand_name == "dax-300") \
                 or (global_var.current_brand_name == "kontofx") \
-                or (global_var.current_brand_name == "uprofx"):
+                or (global_var.current_brand_name == "uprofx") \
+                or (global_var.current_brand_name == "wdcmarkets"):
             crm_client_profile = MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
