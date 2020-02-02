@@ -180,25 +180,11 @@ if __name__ == "__main__":
         path_to_test_suite_25 = "tests11.yml"
 
         # Form input list where each parameter is filename of TestSuite file
-        input_list = [path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
-                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1
+        input_list = [path_to_test_suite_1
                       ]
 
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=60)
+        pool = multiprocessing.Pool(processes=1)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
