@@ -100,7 +100,7 @@ class CRMBaseMethodsPage(CRMBasePage):
 
     def comparator_string(self, item1, item2):
         try:
-            assert item1 == item2
+            assert item1.lower() == item2.lower()
             Logging().reportDebugStep(self, item1 + " is equal to " + item2)
             return CRMBaseMethodsPage(self.driver)
         except AssertionError:
@@ -146,24 +146,6 @@ class CRMBaseMethodsPage(CRMBasePage):
             Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
             return False
 
-    def get_column_number_by_title_ui(self, title):
-        sleep(0.1)
-        try:
-            table = self.driver.find_element_by_xpath("//table/thead[@role='rowgroup']/tr")
-            count = 0
-            index = ""
-            for td in table.find_elements_by_xpath("//th[@role='columnheader']"):
-                count += 1
-                if title.lower() in td.text.lower():
-                    index = str(count)
-                    break
-            assert len(index)
-            Logging().reportDebugStep(self, "Number of column " + title + " is: " + index)
-            return index
-        except(NoSuchElementException, TimeoutException, AssertionError, AttributeError):
-            Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
-            return False
-
     """
         Method return data from cell of table (list view) by column title and row number:
     """
@@ -171,19 +153,6 @@ class CRMBaseMethodsPage(CRMBasePage):
         column_number = self.get_column_number_by_title_vtiger(column)
         if column_number:
             data = super().wait_load_element("//*[@id='listBody']/tr[%s]/td[%s]" % (row, column_number)).text
-            Logging().reportDebugStep(self,
-                                      "Get data from list view (column = " + column + ", row = " + row + "): " + data)
-            return data
-        else:
-            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
-            return False
-
-    def get_data_from_list_view_ui(self, column, row):
-        column_number = self.get_column_number_by_title_ui(column)
-        if column_number:
-            data = super().wait_load_element(
-                "//table/tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][%s]/td[%s]"
-                % (row, column_number)).text
             Logging().reportDebugStep(self,
                                       "Get data from list view (column = " + column + ", row = " + row + "): " + data)
             return data

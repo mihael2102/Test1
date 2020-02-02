@@ -37,7 +37,7 @@ class GlobalTablePageUI(CRMBasePage):
     def select_data_column_field(self, column, data):
         sleep(0.1)
         field = super().wait_element_to_be_clickable("//span[@class='placeholder']/span[text()='%s']" % column)
-        field.click()
+        self.driver.execute_script("arguments[0].click();", field)
         sleep(0.5)
         item = super().wait_load_element("//span[contains(text(),'%s')]//following-sibling::ul//span[text()='%s']"
                                          % (column, data))
@@ -53,10 +53,50 @@ class GlobalTablePageUI(CRMBasePage):
         return GlobalTablePageUI(self.driver)
 
     """
+        Method gets title of column and returns index (str) of column in list view:
+    """
+
+    def get_column_number_by_title_ui(self, title):
+        sleep(0.1)
+        try:
+            table = self.driver.find_element_by_xpath("//table/thead[@role='rowgroup']/tr")
+            count = 0
+            index = ""
+            for td in table.find_elements_by_xpath("//th[@role='columnheader']"):
+                count += 1
+                if title.lower() in td.text.lower():
+                    index = str(count)
+                    break
+            assert len(index)
+            Logging().reportDebugStep(self, "Number of column " + title + " is: " + index)
+            return index
+        except(NoSuchElementException, TimeoutException, AssertionError, AttributeError):
+            Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
+            return False
+
+    """
+        Method return data from cell of table (list view) by column title and row number:
+    """
+
+    def get_data_from_list_view_ui(self, column, row):
+        column_number = self.get_column_number_by_title_ui(column)
+        if column_number:
+            data = super().wait_load_element(
+                "//table/tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][%s]/td[%s]"
+                % (row, column_number)).text
+            Logging().reportDebugStep(self,
+                                      "Get data from list view (column = " + column + ", row = " + row + "): " + data)
+            return data
+        else:
+            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
+            return False
+
+    """
         Check every line of table contain needed string:
     """
 
     def global_data_checker_new_ui(self, data):
+        self.wait_loading_to_finish_new_ui(10)
         try:
             table = self.driver.find_element_by_xpath("//tbody[@role='rowgroup']")
             row_count = 0
@@ -71,12 +111,31 @@ class GlobalTablePageUI(CRMBasePage):
             Logging().reportDebugStep(self, "Data was not found")
         return GlobalTablePageUI(self.driver)
 
-    def select_all_records(self):
+    """
+        Return title of column by index in table
+    """
+
+    def get_column_title(self, index):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Get title of column: " + index)
+        title = super().wait_load_element("(//tr[contains(@class,'mat-header-row')]/th/pnd-grid-filter)[%s]" % index)\
+            .text
+        Logging().reportDebugStep(self, "Get title of column " + index + ": " + title)
+        return title
+
+    def select_all_records_checkbox(self):
         sleep(0.2)
         all_records_checkbox = super().wait_element_to_be_clickable(
             "//th[@role='columnheader']//label[@class='mat-checkbox-layout']")
         all_records_checkbox.click()
         Logging().reportDebugStep(self, "All records on the page were selected")
+        return GlobalTablePageUI(self.driver)
+
+    def click_select_all_records_btn(self):
+        sleep(0.2)
+        Logging().reportDebugStep(self, "Click 'Select All records' button")
+        all_records_btn = super().wait_element_to_be_clickable("//div[contains(text(),' Select all records ')]")
+        all_records_btn.click()
         return GlobalTablePageUI(self.driver)
 
     """
@@ -97,8 +156,8 @@ class GlobalTablePageUI(CRMBasePage):
 
     def verify_success_message(self):
         message = super().wait_load_element("//div[contains(@class,'dialog-content-success mat-dialog-content')]").text
-        assert "success" in message.lower()
         Logging().reportDebugStep(self, "Get message: " + message)
+        assert "success" in message.lower()
         return GlobalTablePageUI(self.driver)
 
     """
@@ -110,12 +169,15 @@ class GlobalTablePageUI(CRMBasePage):
         button = super().wait_element_to_be_clickable("//*[text()=' OK ']")
         self.driver.execute_script("arguments[0].click();", button)
         Logging().reportDebugStep(self, "OK button was clicked")
+        sleep(1)
         return GlobalTablePageUI(self.driver)
 
     def select_filter_new_ui(self, test_filter):
         sleep(0.1)
         Logging().reportDebugStep(self, "Select filter: " + test_filter)
-        filter_item = super().wait_load_element("//span[contains(text(),'%s')]" % test_filter)
+        filter_item = super().wait_load_element(
+            "//nice-select[@searchplaceholder='Search filter']//div[@class='select-wrap']//following-sibling::"
+            "ul//span[contains(text(),'%s')]" % test_filter)
         self.driver.execute_script("arguments[0].click();", filter_item)
         sleep(1)
         self.wait_crm_loading_to_finish()
@@ -137,7 +199,7 @@ class GlobalTablePageUI(CRMBasePage):
         sleep(0.1)
         Logging().reportDebugStep(self, "Click 'Delete' button in approve pop up")
         delete_btn = super().wait_element_to_be_clickable(
-            "//div[@class='mat-dialog-actions']/button/span[text()=' Delete ']")
+            "//div[contains(@class,'mat-dialog-actions')]/button/span[text()=' Delete ']")
         delete_btn.click()
         return GlobalTablePageUI(self.driver)
 

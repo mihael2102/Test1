@@ -29,3 +29,16 @@ class GlobalDetailsPageUI(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", tab_name)
         self.wait_loading_to_finish_new_ui(8)
         return ClientProfilePage(self.driver)
+
+    def get_text_from_field(self, field):
+        sleep(0.1)
+        try:
+            data = super().wait_load_element(
+                "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field,
+                timeout=5).text
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Field " + field + " is not editable")
+            data = super().wait_load_element(
+                "//div[label='%s']//following-sibling::div//div[@class='ng-star-inserted']" % field).text
+        Logging().reportDebugStep(self, "Get data from field " + field + ": " + data)
+        return data
