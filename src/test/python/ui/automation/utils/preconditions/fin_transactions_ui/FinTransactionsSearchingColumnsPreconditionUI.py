@@ -1,4 +1,4 @@
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.fin_transactions_ui.FinTransactionsModuleConstantsUI import \
     FinTransactionsModuleConstantsUI
@@ -21,14 +21,13 @@ class FinTransactionsSearchingColumnsPreconditionUI(object):
 
     def fin_transactions_searching_columns_ui(self):
         """ Login CRM """
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                new_design=0,
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Financial Transactions module """
         CRMBaseMethodsPage(self.driver) \
@@ -36,19 +35,19 @@ class FinTransactionsSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(FinTransactionsModuleConstantsUI.TAB_ALL)
 
         """ Get data from the first row of list view """
-        transaction_no = CRMBaseMethodsPage(self.driver) \
+        transaction_no = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_TRANSACTION_NO,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        login = CRMBaseMethodsPage(self.driver) \
+        login = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_LOGIN,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        client = CRMBaseMethodsPage(self.driver) \
+        client = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_CLIENT,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        transaction_type = CRMBaseMethodsPage(self.driver) \
+        transaction_type = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_T_TYPE,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        payment_type = CRMBaseMethodsPage(self.driver) \
+        payment_type = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_P_TYPE,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 

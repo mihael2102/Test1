@@ -156,3 +156,4 @@ WebTraderPage:
   check_button: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[3]/div[1]/label"
   enter_stop_loss: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[4]/div[1]/custom-input/div/input"
   pips_bottom_panel_test: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[6]/div[1]/div/div"
+  open_trade_open_price: "//open-trade/td[7]"
