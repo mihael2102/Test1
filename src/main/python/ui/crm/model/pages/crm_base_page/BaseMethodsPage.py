@@ -100,7 +100,7 @@ class CRMBaseMethodsPage(CRMBasePage):
 
     def comparator_string(self, item1, item2):
         try:
-            assert item1 == item2
+            assert item1.lower() == item2.lower()
             Logging().reportDebugStep(self, item1 + " is equal to " + item2)
             return CRMBaseMethodsPage(self.driver)
         except AssertionError:

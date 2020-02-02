@@ -33,10 +33,11 @@ class MT4WithdrawPreconditionUI(object):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
-                self.config.get_value('url'),
-                self.config.get_value(TestDataConstants.USER_NAME),
-                self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                self.config.get_value(TestDataConstants.OTP_SECRET))
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                new_design=0,
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Clients module and find created client by email """
         CRMBaseMethodsPage(self.driver) \
@@ -72,7 +73,7 @@ class MT4WithdrawPreconditionUI(object):
         actual_balance = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_BALANCE,
-                row=ClientDetailsConstantsUI.ROW_1)
+                row=ClientDetailsConstantsUI.ROW_2)
 
         count = 0
         while actual_balance != MT4WithdrawConstantsUI.BALANCE:
@@ -84,7 +85,7 @@ class MT4WithdrawPreconditionUI(object):
             actual_balance = GlobalTablePageUI(self.driver) \
                 .get_data_from_list_view_ui(
                     column=ClientDetailsConstantsUI.COLUMN_BALANCE,
-                    row=ClientDetailsConstantsUI.ROW_1)
+                    row=ClientDetailsConstantsUI.ROW_2)
             count += 1
             if count == 10:
                 break

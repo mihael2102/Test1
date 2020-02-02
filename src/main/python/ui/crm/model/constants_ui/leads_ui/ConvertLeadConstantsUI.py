@@ -42,7 +42,7 @@ class ConvertLeadConstantsUI(object):
     CITY = "Zurich"
     COUNTRY = "Germany"
     PASSWORD = "Abcd1234"
-    if brand == "fair-bit":
+    if brand == "fairbit":
         CURRENCY = "UST"
     else:
         CURRENCY = "EUR"
