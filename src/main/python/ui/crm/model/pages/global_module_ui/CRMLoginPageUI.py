@@ -16,14 +16,19 @@ class CRMLoginPageUI(CRMBasePage):
         return Home Page instance    
     '''
 
-    def crm_login(self, url, user_name, password, otp_secret=None):
-        self.open_first_tab_page(url)
-        self.set_user_name(user_name)
-        self.set_password(password)
-        self.check_new_design()
+    def crm_login(self, url=None, user_name=None, password=None, new_design=None, otp_secret=None):
+        if url:
+            self.open_first_tab_page(url)
+        if user_name:
+            self.set_user_name(user_name)
+        if password:
+            self.set_password(password)
+        if new_design:
+            self.check_new_design()
         self.click_login_btn()
         sleep(1)
-        self.set_otp(otp_secret)
+        if otp_secret:
+            self.set_otp(otp_secret)
         sleep(1)
         self.close_news_popup()
 

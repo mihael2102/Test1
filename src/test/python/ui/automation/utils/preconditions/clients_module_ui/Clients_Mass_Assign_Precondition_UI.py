@@ -23,10 +23,11 @@ class ClientsMassAssignPreconditionUI(object):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
-            self.config.get_value('url'),
-            self.config.get_value(TestDataConstants.USER_NAME),
-            self.config.get_value(TestDataConstants.CRM_PASSWORD),
-            self.config.get_value(TestDataConstants.OTP_SECRET))
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                new_design=0,
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Clients module """
         CRMBaseMethodsPage(self.driver) \
@@ -37,7 +38,7 @@ class ClientsMassAssignPreconditionUI(object):
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS)\
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL)\
-            .select_all_records()\
+            .select_all_records_checkbox()\
             .click_mass_action_btn(MassActionsConstantsUI.MASS_ASSIGN)
 
         """ Mass Assign """
@@ -51,6 +52,9 @@ class ClientsMassAssignPreconditionUI(object):
         """ Check confirmation message and updated data in table """
         GlobalTablePageUI(self.driver) \
             .verify_success_message()\
-            .click_ok()\
+            .click_ok() \
+            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
+            .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS)\
             .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME)\
             .global_data_checker_new_ui(MassActionsConstantsUI.STATUS_R_NEW)

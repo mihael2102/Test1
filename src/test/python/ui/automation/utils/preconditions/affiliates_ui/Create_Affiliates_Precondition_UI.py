@@ -1,4 +1,4 @@
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.AffiliatesModuleConstantsUI import AffiliatesModuleConstantsUI
 from src.main.python.ui.crm.model.pages.affiliates_module_ui.AffiliatesListViewPageUI import AffiliatesListViewPageUI
@@ -22,14 +22,14 @@ class CreateAffiliatesPreconditionUI(object):
         return lead
 
     def create_delete_affiliate_ui(self):
-        """ Login to CRM """
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        """ Login CRM """
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                new_design=0,
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Affiliates page """
         CRMBaseMethodsPage(self.driver) \
@@ -52,10 +52,9 @@ class CreateAffiliatesPreconditionUI(object):
             .click_ok()
 
         """ Verify affiliate exist in table """
-        AffiliatesListViewPageUI(self.driver)\
+        GlobalTablePageUI(self.driver) \
             .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_NAME,
-                                   data=CreateAffiliateConstants.PARTNER_NAME)
-        GlobalTablePageUI(self.driver)\
+                                   data=CreateAffiliateConstants.PARTNER_NAME) \
             .global_data_checker_new_ui(CreateAffiliateConstants.PARTNER_NAME)
 
         """ Open affiliate's details page and verify Partner name """
@@ -65,9 +64,10 @@ class CreateAffiliatesPreconditionUI(object):
             .came_back_on_previous_page()
 
         """ Delete affiliate """
-        AffiliatesListViewPageUI(self.driver) \
+        GlobalTablePageUI(self.driver) \
             .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_NAME,
-                                   data=CreateAffiliateConstants.PARTNER_NAME)\
+                                   data=CreateAffiliateConstants.PARTNER_NAME)
+        AffiliatesListViewPageUI(self.driver) \
             .click_more_icon()\
             .click_delete_icon()\
             .click_delete_btn()
@@ -79,7 +79,8 @@ class CreateAffiliatesPreconditionUI(object):
             .refresh_page()
 
         """ Verify affiliate was deleted """
-        AffiliatesListViewPageUI(self.driver) \
+        GlobalTablePageUI(self.driver) \
             .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_NAME,
-                                   data=CreateAffiliateConstants.PARTNER_NAME) \
+                                   data=CreateAffiliateConstants.PARTNER_NAME)
+        AffiliatesListViewPageUI(self.driver) \
             .verify_data_not_found()

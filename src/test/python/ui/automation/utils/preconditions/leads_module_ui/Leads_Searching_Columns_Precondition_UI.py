@@ -22,10 +22,11 @@ class LeadsSearchingColumnsPreconditionUI(object):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
-            self.config.get_value('url'),
-            self.config.get_value(TestDataConstants.USER_NAME),
-            self.config.get_value(TestDataConstants.CRM_PASSWORD),
-            self.config.get_value(TestDataConstants.OTP_SECRET))
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                new_design=0,
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Leads module """
         CRMBaseMethodsPage(self.driver) \
@@ -78,7 +79,7 @@ class LeadsSearchingColumnsPreconditionUI(object):
         if email and ("*" not in email):
             search\
                 .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                          data=email)
+                                       data=email)
 
         """ Verify correct data found """
         result = GlobalTablePageUI(self.driver)
