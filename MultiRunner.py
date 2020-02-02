@@ -192,11 +192,16 @@ if __name__ == "__main__":
                       path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
                       path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
                       path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
+                      path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1, path_to_test_suite_1,
                       path_to_test_suite_1, path_to_test_suite_1
                       ]
 
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=50)
+        pool = multiprocessing.Pool(processes=70)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
