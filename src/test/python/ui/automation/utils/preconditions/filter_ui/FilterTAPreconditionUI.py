@@ -1,4 +1,4 @@
-from src.main.python.ui.crm.model.constants_ui.filters_ui.ClientsFilterConstantsUI import ClientsFilterConstantsUI
+from src.main.python.ui.crm.model.constants_ui.filters_ui.TAFilterConstantsUI import TAFilterConstantsUI
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
@@ -8,7 +8,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRM
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 
 
-class FilterClientsPreconditionUI(object):
+class FilterTAPreconditionUI(object):
 
     driver = None
     config = None
@@ -17,7 +17,7 @@ class FilterClientsPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def create_filter_clients_ui(self):
+    def create_filter_ta_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
@@ -27,22 +27,24 @@ class FilterClientsPreconditionUI(object):
             new_design=0,
             otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
+        """ Open Trading Accounts module """
+        CRMBaseMethodsPage(self.driver) \
+            .open_module_ui(TestDataConstants.MODULE_TRADING_ACCOUNTS)
+
         """ Create Filter """
         FilterPageUI(self.driver) \
             .create_filter_ui(
-                field1=ClientsFilterConstantsUI.FIELD_VIEW_NAME, view_name=ClientsFilterConstantsUI.CLIENTS_FILTER_NAME,
-                column1=ClientsFilterConstantsUI.COLUMN1, column2=ClientsFilterConstantsUI.COLUMN2,
-                column3=ClientsFilterConstantsUI.COLUMN3, column4=ClientsFilterConstantsUI.COLUMN4,
-                column5=ClientsFilterConstantsUI.COLUMN5, column6=ClientsFilterConstantsUI.COLUMN6,
-                column7=ClientsFilterConstantsUI.COLUMN7, column8=ClientsFilterConstantsUI.COLUMN8,
-                column9=ClientsFilterConstantsUI.COLUMN9, column10=ClientsFilterConstantsUI.COLUMN10,
-                column11=ClientsFilterConstantsUI.COLUMN11)
+                field1=TAFilterConstantsUI.FIELD_VIEW_NAME, view_name=TAFilterConstantsUI.TA_FILTER_NAME,
+                column1=TAFilterConstantsUI.COLUMN1, column2=TAFilterConstantsUI.COLUMN2,
+                column3=TAFilterConstantsUI.COLUMN3, column4=TAFilterConstantsUI.COLUMN4,
+                column5=TAFilterConstantsUI.COLUMN5, column6=TAFilterConstantsUI.COLUMN6,
+                column7=TAFilterConstantsUI.COLUMN7, column8=TAFilterConstantsUI.COLUMN8)
 
         """ Get and verify current filter title """
         current_filter = FilterPageUI(self.driver) \
             .get_current_filter()
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(ClientsFilterConstantsUI.CLIENTS_FILTER_NAME,
+            .comparator_string(TAFilterConstantsUI.TA_FILTER_NAME,
                                current_filter)
 
         """ Get titles of new filter columns """
@@ -64,32 +66,23 @@ class FilterClientsPreconditionUI(object):
             .get_column_title("7").strip()
         title8 = title \
             .get_column_title("8").strip()
-        title9 = title \
-            .get_column_title("9").strip()
-        title10 = title \
-            .get_column_title("10").strip()
-        title11 = title \
-            .get_column_title("11").strip()
 
         """ Verify titles are correct """
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(ClientsFilterConstantsUI.COLUMN1, title1) \
-            .comparator_string(ClientsFilterConstantsUI.COLUMN2, title2) \
-            .comparator_string(ClientsFilterConstantsUI.COLUMN3, title3) \
-            .comparator_string(ClientsFilterConstantsUI.COLUMN4, title4) \
-            .comparator_string(ClientsFilterConstantsUI.COLUMN5, title5) \
-            .comparator_string(ClientsFilterConstantsUI.COLUMN6, title6) \
-            .comparator_string(ClientsFilterConstantsUI.COLUMN7, title7) \
-            .comparator_string(ClientsFilterConstantsUI.COLUMN8, title8) \
-            .comparator_string(ClientsFilterConstantsUI.COLUMN9, title9) \
-            .comparator_string(ClientsFilterConstantsUI.COLUMN10, title10) \
-            .comparator_string(ClientsFilterConstantsUI.COLUMN11, title11)
+            .comparator_string(TAFilterConstantsUI.COLUMN1, title1) \
+            .comparator_string(TAFilterConstantsUI.COLUMN2, title2) \
+            .comparator_string(TAFilterConstantsUI.COLUMN3, title3) \
+            .comparator_string(TAFilterConstantsUI.COLUMN4, title4) \
+            .comparator_string(TAFilterConstantsUI.COLUMN5, title5) \
+            .comparator_string(TAFilterConstantsUI.COLUMN6, title6) \
+            .comparator_string(TAFilterConstantsUI.COLUMN7, title7) \
+            .comparator_string(TAFilterConstantsUI.COLUMN8, title8)
 
         """ Delete Filter """
         GlobalTablePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_ALL)
         FilterPageUI(self.driver) \
-            .delete_filter(ClientsFilterConstantsUI.CLIENTS_FILTER_NAME) \
+            .delete_filter(TAFilterConstantsUI.TA_FILTER_NAME) \
             .approve_deleting() \
             .verify_success_message() \
             .click_ok() \
@@ -97,13 +90,13 @@ class FilterClientsPreconditionUI(object):
 
         """ Check filter not exist in list """
         filter_exist = FilterPageUI(self.driver)\
-            .verify_filter_in_list(ClientsFilterConstantsUI.CLIENTS_FILTER_NAME)
+            .verify_filter_in_list(TAFilterConstantsUI.TA_FILTER_NAME)
         while filter_exist:
             FilterPageUI(self.driver) \
-                .delete_filter(ClientsFilterConstantsUI.CLIENTS_FILTER_NAME) \
+                .delete_filter(TAFilterConstantsUI.TA_FILTER_NAME) \
                 .approve_deleting() \
                 .verify_success_message() \
                 .click_ok() \
                 .select_filter_new_ui(FiltersConstantsUI.FILTER_ALL)
             filter_exist = FilterPageUI(self.driver) \
-                .verify_filter_in_list(ClientsFilterConstantsUI.CLIENTS_FILTER_NAME)
+                .verify_filter_in_list(TAFilterConstantsUI.TA_FILTER_NAME)
