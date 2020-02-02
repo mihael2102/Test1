@@ -9,3 +9,6 @@ class TestLoadCRMUI(BaseTest):
 
     def test_load_switch_tabs_ui(self):
         LoadSwitchTabsPreconditionUI(self.driver, self.config).load_switch_tabs_ui()
+
+    def test_load_switch_tabs(self):
+        LoadSwitchTabsPreconditionUI(self.driver, self.config).load_switch_tabs()

@@ -368,14 +368,14 @@ class LeadsModule(CRMBasePage):
         sleep(4)
         click_mass_assign = self.driver.find_element(By.XPATH, "//div[2][contains (text(), '%s')]" % user)
         click_mass_assign.click()
-        Logging().reportDebugStep(self, "Select User")
+        Logging().reportDebugStep(self, "Select User: " + user)
         return LeadsModule(self.driver)
 
     def input_mass_assign(self, user):
         sleep(10)
         input_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='searchstring']")
         input_mass_assign.send_keys(user)
-        Logging().reportDebugStep(self, "Enter User name")
+        Logging().reportDebugStep(self, "Enter User name: " + user)
         return LeadsModule(self.driver)
 
     def click_mass_assign(self):
