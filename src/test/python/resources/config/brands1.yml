@@ -11,8 +11,8 @@ brands:
 #- name: aztrades
 #  config_file: aztrades.yml
 
-#- name: bfxinternational
-#  config_file: bfxinternational.yml
+- name: bfxinternational
+  config_file: bfxinternational.yml
 
 #- name: brokerz
 #  config_file: brokerz.yml
@@ -77,8 +77,8 @@ brands:
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
 
-- name: newcrmui
-  config_file: newcrmui.yml
+#- name: newcrmui
+#  config_file: newcrmui.yml
 
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
