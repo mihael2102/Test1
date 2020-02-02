@@ -20,8 +20,8 @@ brands:
 - name: confixfinancial
   config_file: confixfinancial.yml
 
-- name: coin-bits
-  config_file: coin-bits.yml
+#- name: coin-bits
+#  config_file: coin-bits.yml
 
 - name: dax-300
   config_file: dax-300.yml
@@ -47,8 +47,8 @@ brands:
 - name: pmt247
   config_file: pmt247.yml
 
-#- name: ptbanc
-#  config_file: ptbanc.yml
+- name: ptbanc
+  config_file: ptbanc.yml
 
 - name: proconsultinginvest
   config_file: proconsultinginvest.yml

@@ -1,5 +1,3 @@
-CRMHomePage:
-  leads_module_btn: "//i[@class='glyphicon glyphicon-Leads']"
 ConvertLeadModule:
   first_name_field: "//input[@formcontrolname='firstName']"
   last_name_field: "//input[@formcontrolname='lastName']"
