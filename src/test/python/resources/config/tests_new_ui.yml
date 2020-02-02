@@ -130,5 +130,5 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.load.TestLoadCRMUI
   class: TestLoadCRMUI
   tests:
-#    - test_load_switch_tabs_ui
-    - test_load_switch_tabs
+    - test_load_switch_tabs_ui
+#    - test_load_switch_tabs
