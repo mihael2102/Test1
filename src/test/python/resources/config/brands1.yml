@@ -92,8 +92,8 @@ brands:
 #- name: proconsultinginvest
 #  config_file: proconsultinginvest.yml
 
-#- name: ptbanc
-#  config_file: ptbanc.yml
+- name: ptbanc
+  config_file: ptbanc.yml
 
 #- name: q8
 #  config_file: q8.yml
