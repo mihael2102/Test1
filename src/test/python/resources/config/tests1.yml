@@ -8,7 +8,6 @@ tests_config:
     - test_perform_convert_lead   # Creates a lead and converts it to a client
 
 ######################################## CLIENTS ###############################################
-
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
   class: DepositTestCRM
   tests:
