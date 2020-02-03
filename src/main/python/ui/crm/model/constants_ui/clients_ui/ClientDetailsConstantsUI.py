@@ -9,6 +9,8 @@ class ClientDetailsConstantsUI(object):
     brand = global_var.current_brand_name
 
     ROW_1 = "1"
+    ROW_2 = "2"
+    ROW_3 = "3"
 
     TAB_TRADING_ACCOUNTS = "Trading Accounts"
     TAB_FINANCIAL_TRANSACTIONS = "Financial Transactions"
@@ -27,7 +29,7 @@ class ClientDetailsConstantsUI(object):
     FIELD_LNAME = "Last Name"
     FIELD_EMAIL = "Email"
     FIELD_PHONE = "Phone"
-    if brand == "fair-bit":
+    if brand == "fairbit":
         FIELD_CITIZENSHIP = "Nationality"
     else:
         FIELD_CITIZENSHIP = "Citizenship"
@@ -41,6 +43,6 @@ class ClientDetailsConstantsUI(object):
     FIELD_CLIENT_SOURCE = "Client Source"
     FIELD_BIRTHDAY = "Date Of Birth"
 
-    COLUMN_TRADING_ACCOUNT_LOGIN = "Trading Account Login"
+    COLUMN_LOGIN = "Login"
     COLUMN_BALANCE = "Balance"
     COLUMN_CREDIT = "Credit"
