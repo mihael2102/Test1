@@ -20,10 +20,10 @@ class CALoginPage(CRMBasePage):
     def close_campaign_banner(self):
         sleep(1)
         try:
-            # Check banner exist
-            self.driver.find_element_by_xpath("(//div[@class='Campaign__alphaLayer'])[2]")
-            close_btn = self.driver.find_element_by_xpath("(//button[@title='Close'])[2]")
-            close_btn.click()
+            self.driver.find_element_by_xpath("(//div[contains(@class,'Campaign__')])[2]")
+            campaign_close_btn = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
+                                                               self.__class__.__name__)["campaign_close_btn"])
+            campaign_close_btn.click()
             Logging().reportDebugStep(self, "Campaign banner is closed")
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Campaign banner doesn't appears")
