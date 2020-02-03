@@ -40,6 +40,10 @@ class GraphPreconditionCA(object):
             .verify() \
             .verify_client(AccountConstants.CLIENT)
 
+        if global_var.current_brand_name == "q8":
+            self.driver.switch_to_frame(self.driver.find_element_by_xpath(
+                "//iframe[@class='platform__mobile-platform']"))
+
         WebTraderPage(self.driver) \
             .open_trading_page() \
             .check_chart_loaded() \

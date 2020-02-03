@@ -477,9 +477,6 @@ class WebTraderPage(CRMBasePage):
 
     def check_chart_loaded(self):
         sleep(1)
-        if global_var.current_brand_name == "q8":
-            self.driver.switch_to_frame(self.driver.find_element_by_xpath(
-                "//iframe[@class='platform__mobile-platform']"))
         self.wait_element_to_be_disappear("//div[contains(@class,'chart-preload')]", 15)
         self.wait_element_to_be_disappear("//*[contains(@class,'no-chart-data-pandats')]", 10)
         self.wait_load_element("//div[contains(@class,'chart-pane-legend-price')]/div[@class='legend-price']")
@@ -488,8 +485,6 @@ class WebTraderPage(CRMBasePage):
 
     def open_graph_tab(self, period):
         sleep(0.2)
-        if global_var.current_brand_name == "q8":
-            self.driver.switch_to.default_content()
         try:
             tab = super().wait_load_element("(//button[@title='%s'])[1]/span" % period)
             tab.click()
