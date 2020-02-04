@@ -158,7 +158,7 @@ def Send_Email_XLS(filepath):
 def Send_ALL_XLS(filepath):
 
     fromaddr = Config.email_address
-    to = Config.email_address
+    to = "michael.oryshchenko@pandats.com"
     # to = "michael.oryshchenko@pandats.com"
     cc = ""
     bcc = ""
