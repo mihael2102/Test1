@@ -7,6 +7,7 @@ from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CACons
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.pages.ca.CAMainMenuPage import CAMainMenuPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
+from src.main.python.ui.ca.model.constants.CAconstants.AccountConstants import AccountConstants
 
 
 class GraphPreconditionCA(object):
@@ -23,13 +24,29 @@ class GraphPreconditionCA(object):
         return lead
 
     def verify_graph_ca(self):
+
+        if global_var.current_brand_name == "q8":
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca_2'))
+        else:
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url_ca'))\
-            .login() \
+            .close_campaign_banner() \
+            .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc')) \
             .enter_password(self.config.get_value('password_live_acc')) \
-            .click_login()\
-            .verify()
+            .click_login() \
+            .verify() \
+            .close_payment_popup() \
+            .verify_client(AccountConstants.CLIENT)
+
+        if global_var.current_brand_name == "q8":
+            self.driver.switch_to_frame(self.driver.find_element_by_xpath(
+                "//iframe[@class='platform__mobile-platform']"))
+        elif global_var.current_brand_name == "24option":
+            self.driver.switch_to_frame(self.driver.find_element_by_xpath(
+                "//iframe[@id='swPandaIframe']"))
 
         WebTraderPage(self.driver) \
             .open_trading_page() \
@@ -41,9 +58,12 @@ class GraphPreconditionCA(object):
             .open_graph_tab(TradingConstants.GRAPH_TAB_30MIN) \
             .check_chart_loaded() \
             .open_graph_tab(TradingConstants.GRAPH_TAB_HOURLY) \
-            .check_chart_loaded() \
-            .open_graph_tab(TradingConstants.GRAPH_TAB_4HOURS) \
-            .check_chart_loaded() \
+            .check_chart_loaded()
+        if global_var.current_brand_name != "24option":
+            WebTraderPage(self.driver) \
+                .open_graph_tab(TradingConstants.GRAPH_TAB_4HOURS) \
+                .check_chart_loaded()
+        WebTraderPage(self.driver) \
             .open_graph_tab(TradingConstants.GRAPH_TAB_DAILY) \
             .check_chart_loaded() \
             .open_graph_tab(TradingConstants.GRAPH_TAB_WEEKLY) \

@@ -18,6 +18,8 @@ CALoginPage:
   login_btn: "//button[contains(text(), 'Login')]"
   client_title_name: "//span[contains(text(), '%s')]"
   citizenship: "//custom-select[@name='citizenship']//span[text()='%s']"
+  campaign_close_btn: "(//button[@title='Close'])[2]"
+  close_payment_btn: "//div[@class='close-pandats cmicon-close4 ng-star-inserted']"
   submit_btn: "//button[contains (text(), 'Submit')]"
   login_email_input: "//input[@name='login']"
   login_password_input: "//input[@id='forex-password']"
