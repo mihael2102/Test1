@@ -93,7 +93,7 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = Config.email_address
-    to = Config.email_address
+    to = "michael.oryshchenko@pandats.com"
     # to = "yarin.b@pandats.com"
     cc = ""
     bcc = ""
