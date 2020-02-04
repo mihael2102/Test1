@@ -9,3 +9,4 @@ class TradingDetailsConstantsUI(object):
     TAB_CLOSED_TRANSACTIONS = "Closed Transactions"
 
     FIELD_BALANCE = "Balance"
+    ASSET_EURUSD = "EURUSD"

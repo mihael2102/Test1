@@ -500,3 +500,27 @@ class WebTraderPage(CRMBasePage):
                 self.driver.execute_script("arguments[0].click();", tab)
         Logging().reportDebugStep(self, period + " Graph is opens")
         return WebTraderPage(self.driver)
+
+    def get_asset_price(self, asset):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Get price of asset: " + asset)
+        price = super().wait_load_element(
+            "//div[text()='%s']//following-sibling::div[contains(@class,'price-pandats')]" % asset).text
+        Logging().reportDebugStep(self, "Current price of asset: " + price)
+        return price
+
+    def verify_asset_price_change(self, asset):
+        sleep(0.1)
+        price = self.get_asset_price(asset)
+        sleep(2)
+        price2 = self.get_asset_price(asset)
+        counter = 0
+        while price == price2:
+            price2 = self.get_asset_price(asset)
+            sleep(2)
+            counter += 1
+            if counter == 20:
+                break
+        assert price != price2
+        Logging().reportDebugStep(self, "Price of asset " + asset + " is changing dynamically")
+        return WebTraderPage(self.driver)
