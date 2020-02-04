@@ -11,8 +11,8 @@ brands:
 #- name: aztrades
 #  config_file: aztrades.yml
 
-#- name: bfxinternational
-#  config_file: bfxinternational.yml
+- name: bfxinternational
+  config_file: bfxinternational.yml
 
 #- name: brokerz
 #  config_file: brokerz.yml
@@ -35,8 +35,8 @@ brands:
 #- name: etfinance
 #  config_file: etfinance.yml
 
-- name: fairbit
-  config_file: fair-bit.yml
+#- name: fairbit
+#  config_file: fair-bit.yml
 
 #- name: financix
 #  config_file: financix.yml
