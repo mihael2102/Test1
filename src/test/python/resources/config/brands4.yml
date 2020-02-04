@@ -2,3 +2,6 @@ brands:
 
 - name: brokerz
   config_file: brokerz.yml
+
+- name: ptbanc
+  config_file: ptbanc.yml

@@ -2,3 +2,6 @@ brands:
 
 - name: confixfinancial
   config_file: confixfinancial.yml
+
+- name: proconsultinginvest
+  config_file: proconsultinginvest.yml

@@ -129,14 +129,12 @@ if __name__ == "__main__":
 
         input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
                       path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
-                      path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
-                      path_to_brands_suite_13, path_to_brands_suite_14, path_to_brands_suite_15,
-                      path_to_brands_suite_16, path_to_brands_suite_17, path_to_brands_suite_18]
+                      path_to_brands_suite_9]
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3]
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
         #               path_to_brands_suite_5, path_to_brands_suite_6]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=18)
+        pool = multiprocessing.Pool(processes=9)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)

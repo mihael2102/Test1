@@ -2,3 +2,6 @@ brands:
 
 - name: globalix
   config_file: globalix.yml
+
+- name: tradixa
+  config_file: tradixa.yml

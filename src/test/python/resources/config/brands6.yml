@@ -2,3 +2,6 @@ brands:
 
 - name: dax-300
   config_file: dax-300.yml
+
+- name: q8
+  config_file: q8.yml

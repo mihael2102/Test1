@@ -4,3 +4,6 @@ brands:
 
 - name: 24option
   config_file: 24option.yml
+
+- name: marketrip
+  config_file: marketrip.yml

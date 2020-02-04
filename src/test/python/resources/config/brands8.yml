@@ -2,3 +2,6 @@ brands:
 
 - name: fairbit
   config_file: fair-bit.yml
+
+- name: trade99
+  config_file: trade99.yml
