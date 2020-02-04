@@ -11,11 +11,11 @@ brands:
 #- name: aztrades
 #  config_file: aztrades.yml
 
-- name: bfxinternational
-  config_file: bfxinternational.yml
+#- name: bfxinternational
+#  config_file: bfxinternational.yml
 
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: brokerz
+  config_file: brokerz.yml
 
 #- name: coin-bits
 #  config_file: coin-bits.yml
