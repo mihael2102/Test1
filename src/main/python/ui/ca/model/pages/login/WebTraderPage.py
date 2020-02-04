@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.logs.Loging import Logging
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException, ElementNotVisibleException
 from time import sleep
 import pyotp
 from selenium.webdriver.support.select import Select
@@ -486,11 +486,14 @@ class WebTraderPage(CRMBasePage):
     def open_graph_tab(self, period):
         sleep(0.2)
         try:
-            tab = super().wait_load_element("(//button[@title='%s'])[1]/span" % period)
+            tab = super().wait_load_element("(//button[@title='%s'])[1]/span" % period, timeout=5)
             tab.click()
-        except(TimeoutException, NoSuchElementException):
+        except(TimeoutException, NoSuchElementException, ElementNotVisibleException):
             self.refresh_page()
+            sleep(0.1)
+            if global_var.current_brand_name == "24option":
+                self.driver.switch_to_frame(super().wait_load_element("//iframe[@id='swPandaIframe']"))
             tab = super().wait_load_element("(//button[@title='%s'])[1]/span" % period)
-            tab.click()
+            self.driver.execute_script("arguments[0].click();", tab)
         Logging().reportDebugStep(self, period + " Graph is opens")
         return WebTraderPage(self.driver)

@@ -38,11 +38,15 @@ class GraphPreconditionCA(object):
             .enter_password(self.config.get_value('password_live_acc')) \
             .click_login() \
             .verify() \
+            .close_payment_popup() \
             .verify_client(AccountConstants.CLIENT)
 
         if global_var.current_brand_name == "q8":
             self.driver.switch_to_frame(self.driver.find_element_by_xpath(
                 "//iframe[@class='platform__mobile-platform']"))
+        elif global_var.current_brand_name == "24option":
+            self.driver.switch_to_frame(self.driver.find_element_by_xpath(
+                "//iframe[@id='swPandaIframe']"))
 
         WebTraderPage(self.driver) \
             .open_trading_page() \
@@ -54,9 +58,12 @@ class GraphPreconditionCA(object):
             .open_graph_tab(TradingConstants.GRAPH_TAB_30MIN) \
             .check_chart_loaded() \
             .open_graph_tab(TradingConstants.GRAPH_TAB_HOURLY) \
-            .check_chart_loaded() \
-            .open_graph_tab(TradingConstants.GRAPH_TAB_4HOURS) \
-            .check_chart_loaded() \
+            .check_chart_loaded()
+        if global_var.current_brand_name != "24option":
+            WebTraderPage(self.driver) \
+                .open_graph_tab(TradingConstants.GRAPH_TAB_4HOURS) \
+                .check_chart_loaded()
+        WebTraderPage(self.driver) \
             .open_graph_tab(TradingConstants.GRAPH_TAB_DAILY) \
             .check_chart_loaded() \
             .open_graph_tab(TradingConstants.GRAPH_TAB_WEEKLY) \
