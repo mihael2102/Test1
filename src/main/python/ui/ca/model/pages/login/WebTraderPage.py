@@ -494,6 +494,9 @@ class WebTraderPage(CRMBasePage):
             if global_var.current_brand_name == "24option":
                 self.driver.switch_to_frame(super().wait_load_element("//iframe[@id='swPandaIframe']"))
             tab = super().wait_load_element("(//button[@title='%s'])[1]/span" % period)
-            self.driver.execute_script("arguments[0].click();", tab)
+            try:
+                tab.click()
+            except:
+                self.driver.execute_script("arguments[0].click();", tab)
         Logging().reportDebugStep(self, period + " Graph is opens")
         return WebTraderPage(self.driver)
