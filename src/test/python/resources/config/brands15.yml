@@ -1,0 +1,4 @@
+brands:
+
+- name: q8
+  config_file: q8.yml

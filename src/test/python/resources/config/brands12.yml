@@ -1,6 +1,4 @@
 brands:
 
-- name: tradospot
-  config_file: tradospot.yml
-- name: mpcrypto
-  config_file: mpcrypto.yml
+- name: pmt247
+  config_file: pmt247.yml

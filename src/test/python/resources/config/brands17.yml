@@ -1,0 +1,4 @@
+brands:
+
+- name: trade99
+  config_file: trade99.yml

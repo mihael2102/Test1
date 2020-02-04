@@ -1,0 +1,4 @@
+brands:
+
+- name: strattonmarkets-eu
+  config_file: strattonmarkets-eu.yml

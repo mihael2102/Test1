@@ -1,7 +1,4 @@
 brands:
 
-- name: herdos
-  config_file: herdos.yml
-- name: hizlifx
-  config_file: hizlifx.yml
-
+- name: globalix
+  config_file: globalix.yml

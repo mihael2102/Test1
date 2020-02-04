@@ -1,0 +1,4 @@
+brands:
+
+- name: tradixa
+  config_file: tradixa.yml

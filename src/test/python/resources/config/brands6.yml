@@ -1,4 +1,4 @@
 brands:
 
-- name: kontofx
-  config_file: kontofx.yml
+- name: dax-300
+  config_file: dax-300.yml

@@ -1,0 +1,4 @@
+brands:
+
+- name: proconsultinginvest
+  config_file: proconsultinginvest.yml

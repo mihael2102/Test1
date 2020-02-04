@@ -1,4 +1,4 @@
 brands:
 
-- name: brokerz
-  config_file: brokerz.yml
+- name: confixfinancial
+  config_file: confixfinancial.yml
