@@ -165,6 +165,7 @@ if __name__ == "__main__":
 
                 format2 = workbook.add_format({'bg_color': '#C4D79B',
                                                'font_color': '#000000'})
+
                 format3 = workbook.add_format({'bg_color': '#a1f1f0',
                                                'font_color': '#1500cf'})
                 worksheet.conditional_format(0, 0, 922, 200, {'type': 'text',
@@ -380,8 +381,6 @@ if __name__ == "__main__":
 
         # Send_ALL_XLS(all_excel)
         Send_ALL_XLS(short_excel)
-
-
 
     else:
         print("TURN ON VPN")
