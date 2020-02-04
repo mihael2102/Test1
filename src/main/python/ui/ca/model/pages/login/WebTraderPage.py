@@ -2,7 +2,8 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.logs.Loging import Logging
-from selenium.common.exceptions import NoSuchElementException, TimeoutException, ElementNotVisibleException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException, ElementNotVisibleException, \
+    WebDriverException
 from time import sleep
 import pyotp
 from selenium.webdriver.support.select import Select
@@ -438,8 +439,7 @@ class WebTraderPage(CRMBasePage):
 
     def check_margin_level_number(self):
         margin_level_number = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["margin_level_number"]
-           ).text
+                                                           self.__class__.__name__)["margin_level_number"]).text
         Logging().reportDebugStep(self, "Check account value" + margin_level_number)
         return margin_level_number
 
@@ -488,7 +488,7 @@ class WebTraderPage(CRMBasePage):
         try:
             tab = super().wait_load_element("(//button[@title='%s'])[1]/span" % period, timeout=5)
             tab.click()
-        except(TimeoutException, NoSuchElementException, ElementNotVisibleException):
+        except(TimeoutException, NoSuchElementException, ElementNotVisibleException, WebDriverException):
             self.refresh_page()
             sleep(0.1)
             if global_var.current_brand_name == "24option":
@@ -504,8 +504,9 @@ class WebTraderPage(CRMBasePage):
     def get_asset_price(self, asset):
         sleep(0.1)
         Logging().reportDebugStep(self, "Get price of asset: " + asset)
-        price = super().wait_load_element(
-            "//div[text()='%s']//following-sibling::div[contains(@class,'price-pandats')]" % asset).text
+        price = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["price"] % asset)\
+            .get_attribute("innerText")
         Logging().reportDebugStep(self, "Current price of asset: " + price)
         return price
 

@@ -6,7 +6,11 @@ import string
 
 
 class TradingDetailsConstantsUI(object):
-    TAB_CLOSED_TRANSACTIONS = "Closed Transactions"
+    brand = global_var.current_brand_name
 
+    TAB_CLOSED_TRANSACTIONS = "Closed Transactions"
     FIELD_BALANCE = "Balance"
-    ASSET_EURUSD = "EURUSD"
+    if brand == "newrichmarkets":
+        ASSET_1 = "3M"
+    else:
+        ASSET_1 = "EURUSD"
