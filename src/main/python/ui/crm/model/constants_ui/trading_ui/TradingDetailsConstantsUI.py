@@ -6,11 +6,8 @@ import string
 
 
 class TradingDetailsConstantsUI(object):
-    brand = ""
+    brand = global_var.current_brand_name
 
     TAB_CLOSED_TRANSACTIONS = "Closed Transactions"
     FIELD_BALANCE = "Balance"
-    if brand == "fairbit":
-        ASSET_1 = "ETCEUR"
-    else:
-        ASSET_1 = "EURUSD"
+
