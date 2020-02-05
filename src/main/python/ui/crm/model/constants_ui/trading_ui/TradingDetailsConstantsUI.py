@@ -10,9 +10,7 @@ class TradingDetailsConstantsUI(object):
 
     TAB_CLOSED_TRANSACTIONS = "Closed Transactions"
     FIELD_BALANCE = "Balance"
-    if brand == "newrichmarkets":
-        ASSET_1 = "3M"
-    elif brand == "fairbit":
+    if brand == "fairbit":
         ASSET_1 = "ETCEUR"
     else:
         ASSET_1 = "EURUSD"

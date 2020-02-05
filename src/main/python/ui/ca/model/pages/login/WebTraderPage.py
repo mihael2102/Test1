@@ -511,14 +511,14 @@ class WebTraderPage(CRMBasePage):
         return price
 
     def verify_asset_price_change(self, asset):
-        sleep(0.1)
+        sleep(1)
         price = self.get_asset_price(asset)
         sleep(2)
         price2 = self.get_asset_price(asset)
         counter = 0
         while price == price2:
             price2 = self.get_asset_price(asset)
-            sleep(2)
+            sleep(3)
             counter += 1
             if counter == 20:
                 break
