@@ -51,4 +51,4 @@ class AssetPricePreconditionCA(object):
 
         WebTraderPage(self.driver) \
             .open_trading_page() \
-            .verify_asset_price_change(TradingDetailsConstantsUI.ASSET_EURUSD)
+            .verify_asset_price_change(TradingDetailsConstantsUI.ASSET_1)
