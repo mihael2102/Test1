@@ -10,7 +10,7 @@ from src.test.python.ui.automation.BaseTest import *
 def Send_Email_XML(filepath, content):
 
     fromaddr = Config.email_address
-    to = Config.email_address
+    to = "michael.oryshchenko@pandats.com"
     cc = ""
     bcc = ""
     # instance of MIMEMultipart
@@ -46,9 +46,9 @@ def Send_Email_XML(filepath, content):
     msg.attach(MIMEText(body, 'plain'))
 
     # attach the screenshot:
-    # img_data = open(Config.screenshot_path, "rb").read()
-    # screenshot = MIMEImage(img_data, name=os.path.basename(Config.screenshot_path))
-    # msg.attach(screenshot)
+    img_data = open(Config.screenshot_path, "rb").read()
+    screenshot = MIMEImage(img_data, name=os.path.basename(Config.screenshot_path))
+    msg.attach(screenshot)
 
     # open the file to be sent
     filepath = filepath.replace("\\","/")
@@ -93,7 +93,7 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = Config.email_address
-    to = "michael.oryshchenko@pandats.com"
+    to = Config.email_address
     # to = "yarin.b@pandats.com"
     cc = ""
     bcc = ""
@@ -158,10 +158,10 @@ def Send_Email_XLS(filepath):
 def Send_ALL_XLS(filepath):
 
     fromaddr = Config.email_address
-    to = "Niv.s@pandats.com"
+    to = "michael.oryshchenko@pandats.com"
     # to = "michael.oryshchenko@pandats.com"
     cc = "yarin.b@pandats.com"
-    bcc = "michael.oryshchenko@pandats.com"
+    bcc = ""
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
