@@ -416,8 +416,9 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def close_payment_popup(self):
+        sleep(1)
         try:
-            sleep(0.2)
+            sleep(1)
             close_payment_btn = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
                 self.__class__.__name__)["close_payment_btn"], timeout=5)
             self.driver.execute_script("arguments[0].click();", close_payment_btn)
