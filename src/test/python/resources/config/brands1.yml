@@ -2,8 +2,8 @@
 
 brands:
 
-#- name: alferatrade
-#  config_file: alferatrade.yml
+- name: alferatrade
+  config_file: alferatrade.yml
 
 #- name: any1profit
 #  config_file: any1profit.yml
