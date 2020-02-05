@@ -26,8 +26,8 @@ brands:
 #- name: ctxprime
 #  config_file: ctxprime.yml
 
-- name: dax-300
-  config_file: dax-300.yml
+#- name: dax-300
+#  config_file: dax-300.yml
 
 #- name: dualix
 #  config_file: dualix.yml
@@ -131,5 +131,5 @@ brands:
 #- name: wdcmarkets
 #  config_file: wdcmarkets.yml
 
-#- name: 24option
-#  config_file: 24option.yml
+- name: 24option
+  config_file: 24option.yml
