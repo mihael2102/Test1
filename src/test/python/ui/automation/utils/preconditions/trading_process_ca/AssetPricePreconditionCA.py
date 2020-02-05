@@ -26,6 +26,8 @@ class AssetPricePreconditionCA(object):
 
     def verify_asset_price_ca(self):
 
+        TradingDetailsConstantsUI.brand = global_var.current_brand_name
+
         if global_var.current_brand_name == "q8":
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca_2'))

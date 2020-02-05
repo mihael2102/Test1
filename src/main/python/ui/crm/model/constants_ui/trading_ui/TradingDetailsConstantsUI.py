@@ -6,7 +6,7 @@ import string
 
 
 class TradingDetailsConstantsUI(object):
-    brand = global_var.current_brand_name
+    brand = ""
 
     TAB_CLOSED_TRANSACTIONS = "Closed Transactions"
     FIELD_BALANCE = "Balance"
