@@ -18,7 +18,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def close_campaign_banner(self):
-        sleep(1)
+        sleep(3)
         try:
             super().wait_load_element("(//div[contains(@class,'Campaign__')])[2]", timeout=10)
             campaign_close_btn = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
@@ -359,7 +359,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def verify_client(self, user_name):
-        sleep(1)
+        sleep(2)
         try:
             verify_client = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                             self.__class__.__name__)["client_title_name"] % user_name)
@@ -367,7 +367,7 @@ class CALoginPage(CRMBasePage):
         except:
             sleep(1)
             self.refresh_page()
-            sleep(1)
+            sleep(2)
             verify_client = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                 self.__class__.__name__)["client_title_name"] % user_name)
             client = verify_client.text

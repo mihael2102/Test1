@@ -119,11 +119,6 @@ if __name__ == "__main__":
         path_to_brands_suite_11 = "brands11.yml"
         path_to_brands_suite_12 = "brands12.yml"
         path_to_brands_suite_13 = "brands13.yml"
-        path_to_brands_suite_14 = "brands14.yml"
-        path_to_brands_suite_15 = "brands15.yml"
-        path_to_brands_suite_16 = "brands16.yml"
-        path_to_brands_suite_17 = "brands17.yml"
-        path_to_brands_suite_18 = "brands18.yml"
 
         # Form input list where each parameter is filename of TestSuite file
 
@@ -163,7 +158,6 @@ if __name__ == "__main__":
 
                 format2 = workbook.add_format({'bg_color': '#C4D79B',
                                                'font_color': '#000000'})
-
                 format3 = workbook.add_format({'bg_color': '#a1f1f0',
                                                'font_color': '#1500cf'})
                 worksheet.conditional_format(0, 0, 922, 200, {'type': 'text',
