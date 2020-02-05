@@ -12,5 +12,7 @@ class TradingDetailsConstantsUI(object):
     FIELD_BALANCE = "Balance"
     if brand == "newrichmarkets":
         ASSET_1 = "3M"
+    elif brand == "fairbit":
+        ASSET_1 = "ETCEUR"
     else:
         ASSET_1 = "EURUSD"
