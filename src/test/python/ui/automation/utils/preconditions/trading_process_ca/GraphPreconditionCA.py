@@ -38,8 +38,7 @@ class GraphPreconditionCA(object):
             .enter_password(self.config.get_value('password_live_acc')) \
             .click_login() \
             .verify() \
-            .close_payment_popup() \
-            .verify_client(AccountConstants.CLIENT)
+            .close_payment_popup()
 
         if global_var.current_brand_name == "q8":
             self.driver.switch_to_frame(self.driver.find_element_by_xpath(
