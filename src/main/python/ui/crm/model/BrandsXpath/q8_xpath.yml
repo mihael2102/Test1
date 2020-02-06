@@ -27,6 +27,7 @@ ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
   account_number: "//tr[@class='lvtColData']//td[1]"
 CALoginPage:
+  campaign_close_btn: "//button[@title='Close']"
   sign_up: "//a[contains(text(), 'Sign Up')]"
   submit_btn: "//button[contains (text(), 'Sign Up')][not(@disabled)]"
   login_email_input: "//input[@name='email']"

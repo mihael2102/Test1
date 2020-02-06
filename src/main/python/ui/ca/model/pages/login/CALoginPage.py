@@ -18,12 +18,12 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def close_campaign_banner(self):
-        sleep(1)
+        sleep(3)
         try:
-            # Check banner exist
-            self.driver.find_element_by_xpath("(//div[@class='Campaign__alphaLayer'])[2]")
-            close_btn = self.driver.find_element_by_xpath("(//button[@title='Close'])[2]")
-            close_btn.click()
+            super().wait_load_element("(//div[contains(@class,'Campaign__')])[2]", timeout=10)
+            campaign_close_btn = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                                                               self.__class__.__name__)["campaign_close_btn"])
+            self.driver.execute_script("arguments[0].click();", campaign_close_btn)
             Logging().reportDebugStep(self, "Campaign banner is closed")
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Campaign banner doesn't appears")
@@ -359,15 +359,15 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def verify_client(self, user_name):
-        sleep(1)
+        sleep(5)
         try:
             verify_client = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
-                                                               self.__class__.__name__)["client_title_name"] % user_name)
+                                                            self.__class__.__name__)["client_title_name"] % user_name)
             client = verify_client.text
         except:
             sleep(1)
             self.refresh_page()
-            sleep(1)
+            sleep(3)
             verify_client = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                 self.__class__.__name__)["client_title_name"] % user_name)
             client = verify_client.text
@@ -416,11 +416,20 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def close_payment_popup(self):
+        sleep(1)
         try:
-            sleep(0.2)
-            close_btn = super().wait_element_to_be_clickable("//div[@class='close-pandats cmicon-close4 ng-star-inserted']")
-            close_btn.click()
+            sleep(1)
+            close_payment_btn = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
+                self.__class__.__name__)["close_payment_btn"], timeout=5)
+            self.driver.execute_script("arguments[0].click();", close_payment_btn)
             Logging().reportDebugStep(self, "Close the pop up 'Choose a payment method'")
+            try:
+                sleep(0.1)
+                approve_close_btn = super().wait_element_to_be_clickable("//*[@id='dialog_btn_leave']", timeout=5)
+                self.driver.execute_script("arguments[0].click();", approve_close_btn)
+                Logging().reportDebugStep(self, "Click 'I'm Sure' button")
+            except(NoSuchElementException, TimeoutException):
+                Logging().reportDebugStep(self, "There is no approving button")
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Pop up 'Choose a payment method' wasn't opened")
         return CALoginPage(self.driver)

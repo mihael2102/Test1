@@ -2,7 +2,8 @@ from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.logs.Loging import Logging
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException, ElementNotVisibleException, \
+    WebDriverException
 from time import sleep
 import pyotp
 from selenium.webdriver.support.select import Select
@@ -438,16 +439,17 @@ class WebTraderPage(CRMBasePage):
 
     def check_margin_level_number(self):
         margin_level_number = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
-                                                           self.__class__.__name__)["margin_level_number"]
-           ).text
+                                                           self.__class__.__name__)["margin_level_number"]).text
         Logging().reportDebugStep(self, "Check account value" + margin_level_number)
         return margin_level_number
 
     def open_asset_group(self, asset_group):
         try:
             try:
-                group = super().wait_load_element("//div[contains(text(),'%s')]" % asset_group)
-                group.click()
+                group = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                  self.__class__.__name__)["asset_group"] % asset_group)
+                # group.click()
+                self.driver.execute_script("arguments[0].click();", group)
             except(NoSuchElementException, TimeoutException):
                 group = super().wait_load_element("//span[contains(text(),'%s')]" % asset_group)
                 self.driver.execute_script("arguments[0].click();", group)
@@ -486,11 +488,42 @@ class WebTraderPage(CRMBasePage):
     def open_graph_tab(self, period):
         sleep(0.2)
         try:
-            tab = super().wait_load_element("(//button[@title='%s'])[1]/span" % period)
+            tab = super().wait_load_element("(//button[@title='%s'])[1]/span" % period, timeout=5)
             tab.click()
-        except(TimeoutException, NoSuchElementException):
+        except(TimeoutException, NoSuchElementException, ElementNotVisibleException, WebDriverException):
             self.refresh_page()
+            sleep(0.1)
+            if global_var.current_brand_name == "24option":
+                self.driver.switch_to_frame(super().wait_load_element("//iframe[@id='swPandaIframe']"))
             tab = super().wait_load_element("(//button[@title='%s'])[1]/span" % period)
-            tab.click()
+            try:
+                tab.click()
+            except:
+                self.driver.execute_script("arguments[0].click();", tab)
         Logging().reportDebugStep(self, period + " Graph is opens")
+        return WebTraderPage(self.driver)
+
+    def get_asset_price(self, asset):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Get price of asset: " + asset)
+        price = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                           self.__class__.__name__)["price"] % asset)\
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Current price of asset: " + price)
+        return price
+
+    def verify_asset_price_change(self, asset):
+        sleep(1)
+        price = self.get_asset_price(asset)
+        sleep(2)
+        price2 = self.get_asset_price(asset)
+        counter = 0
+        while price == price2:
+            price2 = self.get_asset_price(asset)
+            sleep(3)
+            counter += 1
+            if counter == 30:
+                break
+        assert price != price2
+        Logging().reportDebugStep(self, "Price of asset " + asset + " is changing dynamically")
         return WebTraderPage(self.driver)

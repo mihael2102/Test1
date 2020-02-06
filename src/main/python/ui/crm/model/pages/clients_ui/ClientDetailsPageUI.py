@@ -30,11 +30,13 @@ class ClientDetailsPageUI(CRMBasePage):
 
     def open_tab(self, title):
         try:
+            Logging().reportDebugStep(self, "Open tab: " + title)
             tab = super().wait_load_element(
                 "//mat-expansion-panel-header[@aria-expanded='false']//mat-panel-title/div[contains(text(),'%s')]"
                 % title)
             self.driver.execute_script("arguments[0].click();", tab)
-            Logging().reportDebugStep(self, "Open tab: " + title)
+            sleep(1)
+            self.wait_loading_to_finish_new_ui(5)
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Tab " + title + " already opened")
         return ClientDetailsPageUI(self.driver)
@@ -45,3 +47,12 @@ class ClientDetailsPageUI(CRMBasePage):
             "(//div[contains(text(),'%s')]//following-sibling::div[contains(@class,'info-tags')])[1]" % tag_title).text
         Logging().reportDebugStep(self, "Get data from tag '" + tag_title + "': " + tag)
         return tag
+
+    def open_mt4_module_newui(self, module):
+        try:
+            sleep(0.2)
+            module_item = super().wait_load_element("//div[text()=' %s ']" % module)
+            self.driver.execute_script("arguments[0].click();", module_item)
+            Logging().reportDebugStep(self, module + " module is opened")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Module does not exist")

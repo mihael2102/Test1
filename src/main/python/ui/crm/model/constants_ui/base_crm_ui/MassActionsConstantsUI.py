@@ -6,13 +6,18 @@ import string
 
 
 class MassActionsConstantsUI(object):
-    MASS_ASSIGN = "Mass assign"
-    MASS_EDIT = "Mass edit"
+    brand = global_var.current_brand_name
+
+    MASS_ASSIGN = "Mass Assign"
+    MASS_EDIT = "Mass Edit"
     DEPARTMENT_ALL = "All Departments"
     USER_NAME = "Panda Auto"
     USER_NAME_1 = "Michael O"
     STATUS_R_NEW = "R - New"
-    STATUS_B_TEST = "B - Test"
+    if brand == "fairbit":
+        STATUS_B_TEST = "Test"
+    else:
+        STATUS_B_TEST = "B - Test"
     FIELD_LEAD_STATUS = "Lead Status"
     FIELD_LEAD_SOURCE = "Lead Source"
     FIELD_CLIENT_STATUS = "Client Status"

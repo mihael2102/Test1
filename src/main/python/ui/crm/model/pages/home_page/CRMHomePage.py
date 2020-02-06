@@ -184,10 +184,10 @@ class CRMHomePage(CRMBasePage):
 
     def open_crm_configuration(self, module):
         try:
-            module_element = self.driver.find_element_by_xpath("//a[contains(text(),'%s')]" % module)
+            module_element = super().wait_load_element("//a[contains(text(),'%s')]" % module)
             self.driver.execute_script("arguments[0].click();", module_element)
             Logging().reportDebugStep(self, "The CRM Configuration module was opened")
-        except TimeoutException:
+        except(TimeoutException, NoSuchElementException):
             Logging().reportDebugStep(self, "CRM Configuration module does not exist")
         return AuditLogsPage(self.driver)
 

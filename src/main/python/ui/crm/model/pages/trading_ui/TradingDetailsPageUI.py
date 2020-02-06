@@ -5,6 +5,7 @@ from allure.constants import AttachmentType
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -30,8 +31,8 @@ class TradingDetailsPageUI(CRMBasePage):
 
     def get_closed_orders_data_ui(self):
         sleep(0.2)
-        open_orders_data = super().wait_load_element(
+        closed_orders_data = super().wait_load_element(
             "//mat-expansion-panel[@id='closed-transactions']//tbody[@role='rowgroup']")\
             .get_attribute("innerText")
-        Logging().reportDebugStep(self, "Get Open Orders data: " + open_orders_data)
-        return open_orders_data
+        Logging().reportDebugStep(self, "Get Closed Orders data: " + closed_orders_data)
+        return closed_orders_data

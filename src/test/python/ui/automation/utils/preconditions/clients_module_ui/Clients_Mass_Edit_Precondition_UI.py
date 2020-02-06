@@ -1,5 +1,5 @@
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
@@ -20,14 +20,14 @@ class ClientsMassEditPreconditionUI(object):
         self.config = config
 
     def mass_edit_clients_ui(self):
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        """ Login CRM """
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                new_design=0,
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Clients module """
         CRMBaseMethodsPage(self.driver) \
@@ -38,7 +38,7 @@ class ClientsMassEditPreconditionUI(object):
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
-            .select_all_records() \
+            .select_all_records_checkbox() \
             .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT)
 
         """ Mass Edit """
@@ -53,5 +53,7 @@ class ClientsMassEditPreconditionUI(object):
         GlobalTablePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
+            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
             .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME_1) \
             .global_data_checker_new_ui(MassActionsConstantsUI.STATUS_B_TEST)
