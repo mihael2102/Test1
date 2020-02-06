@@ -446,8 +446,10 @@ class WebTraderPage(CRMBasePage):
     def open_asset_group(self, asset_group):
         try:
             try:
-                group = super().wait_load_element("//div[contains(text(),'%s')]" % asset_group)
-                group.click()
+                group = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                                                  self.__class__.__name__)["asset_group"] % asset_group)
+                # group.click()
+                self.driver.execute_script("arguments[0].click();", group)
             except(NoSuchElementException, TimeoutException):
                 group = super().wait_load_element("//span[contains(text(),'%s')]" % asset_group)
                 self.driver.execute_script("arguments[0].click();", group)
@@ -520,7 +522,7 @@ class WebTraderPage(CRMBasePage):
             price2 = self.get_asset_price(asset)
             sleep(3)
             counter += 1
-            if counter == 20:
+            if counter == 30:
                 break
         assert price != price2
         Logging().reportDebugStep(self, "Price of asset " + asset + " is changing dynamically")

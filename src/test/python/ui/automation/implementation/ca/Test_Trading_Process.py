@@ -12,9 +12,50 @@ from src.test.python.ui.automation.utils.preconditions.trading_process_ca.Tradin
     TradingPreconditionLive
 from src.test.python.ui.automation.utils.preconditions.trading_ui.VerifyOpenPositionPreconditionUI import \
     VerifyOpenPositionPreconditionUI
+from src.test.python.ui.automation.utils.preconditions.trading_process_ca.CryptoQuotesPreconditionCA import \
+    CryptoQuotesPreconditionCA
 
 
 class TradingProcess(BaseTest):
+
+    def test_crypto_quotes(self):
+        CryptoQuotesPreconditionCA(self.driver, self.config).verify_crypto_quotes_ca()
+
+    def test_trading_process_open_position_ca(self):
+        Trading_Precondition(self.driver, self.config).trading_process_open_position_ca()
+
+    def test_verify_open_position_crm(self):
+        Trading_Precondition(self.driver, self.config).verify_open_position_crm()
+
+    def test_verify_open_position_crm_ui(self):
+        VerifyOpenPositionPreconditionUI(self.driver, self.config).verify_open_position_crm_ui()
+
+    def test_trading_process_close_position_ca(self):
+        Trading_Precondition(self.driver, self.config).trading_process_close_position_ca()
+
+    def test_verify_close_position_crm(self):
+        Trading_Precondition(self.driver, self.config).verify_close_position_crm()
+
+    def test_verify_close_position_crm_ui(self):
+        VerifyClosePositionPreconditionUI(self.driver, self.config).verify_close_position_crm_ui()
+
+    def test_open_position_live(self):
+        TradingPreconditionLive(self.driver, self.config).open_position_live()
+
+    def test_verify_live_open_position_crm(self):
+        TradingPreconditionLive(self.driver, self.config).verify_open_live_position_crm()
+
+    def test_verify_live_open_position_crm_ui(self):
+        VerifyLiveOpenPositionPreconditionUI(self.driver, self.config).verify_open_live_position_crm_ui()
+
+    def test_close_position_live(self):
+        TradingPreconditionLive(self.driver, self.config).close_position_live()
+
+    def test_verify_live_close_position_crm(self):
+        TradingPreconditionLive(self.driver, self.config).verify_close_live_position_crm()
+
+    def test_verify_live_close_position_crm_ui(self):
+        VerifyLiveClosePreconditionUI(self.driver, self.config).verify_close_live_position_crm_ui()
 
     def test_trade_with_insufficient_funds(self):
         if global_var.current_brand_name != "kontofx" and \
@@ -60,39 +101,3 @@ class TradingProcess(BaseTest):
                 .close_order()
         else:
             Logging().reportDebugStep(self, "NOT RUNNED")
-
-    def test_trading_process_open_position_ca(self):
-        Trading_Precondition(self.driver, self.config).trading_process_open_position_ca()
-
-    def test_verify_open_position_crm(self):
-        Trading_Precondition(self.driver, self.config).verify_open_position_crm()
-
-    def test_verify_open_position_crm_ui(self):
-        VerifyOpenPositionPreconditionUI(self.driver, self.config).verify_open_position_crm_ui()
-
-    def test_trading_process_close_position_ca(self):
-        Trading_Precondition(self.driver, self.config).trading_process_close_position_ca()
-
-    def test_verify_close_position_crm(self):
-        Trading_Precondition(self.driver, self.config).verify_close_position_crm()
-
-    def test_verify_close_position_crm_ui(self):
-        VerifyClosePositionPreconditionUI(self.driver, self.config).verify_close_position_crm_ui()
-
-    def test_open_position_live(self):
-        TradingPreconditionLive(self.driver, self.config).open_position_live()
-
-    def test_verify_live_open_position_crm(self):
-        TradingPreconditionLive(self.driver, self.config).verify_open_live_position_crm()
-
-    def test_verify_live_open_position_crm_ui(self):
-        VerifyLiveOpenPositionPreconditionUI(self.driver, self.config).verify_open_live_position_crm_ui()
-
-    def test_close_position_live(self):
-        TradingPreconditionLive(self.driver, self.config).close_position_live()
-
-    def test_verify_live_close_position_crm(self):
-        TradingPreconditionLive(self.driver, self.config).verify_close_live_position_crm()
-
-    def test_verify_live_close_position_crm_ui(self):
-        VerifyLiveClosePreconditionUI(self.driver, self.config).verify_close_live_position_crm_ui()
