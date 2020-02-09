@@ -1,13 +1,16 @@
 import random
+import string
 from datetime import *
 from dateutil.relativedelta import relativedelta
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-import string
 
 
-class TradingDetailsConstantsUI(object):
+class AccountConstants(object):
     brand = global_var.current_brand_name
 
-    TAB_CLOSED_TRANSACTIONS = "Closed Transactions"
-    FIELD_BALANCE = "Balance"
-
+    if brand == "q8":
+        CLIENT = "my account"
+    elif brand == "24option":
+        CLIENT = "Welcome"
+    else:
+        CLIENT = "Test"
