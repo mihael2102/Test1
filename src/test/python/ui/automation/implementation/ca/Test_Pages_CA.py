@@ -8,6 +8,8 @@ from src.test.python.ui.automation.utils.preconditions.login_ca.Login_CA_Precond
 from src.test.python.ui.automation.utils.preconditions.base_pages_ca.Base_Pages_CA_Preconditions import \
     BasePagesCAPrecondition
 from src.test.python.ui.automation.utils.preconditions.trading_process_ca.GraphPreconditionCA import GraphPreconditionCA
+from src.test.python.ui.automation.utils.preconditions.trading_process_ca.AssetPricePreconditionCA import \
+    AssetPricePreconditionCA
 
 
 @pytest.mark.run(order=2)
@@ -21,3 +23,6 @@ class TestPagesCA(BaseTest):
 
     def test_graph_ca(self):
         GraphPreconditionCA(self.driver, self.config).verify_graph_ca()
+
+    def test_asset_price_ca(self):
+        AssetPricePreconditionCA(self.driver, self.config).verify_asset_price_ca()

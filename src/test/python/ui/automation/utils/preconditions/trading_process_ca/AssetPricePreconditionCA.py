@@ -1,16 +1,11 @@
-from src.main.python.utils.config import Config
-from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
-from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
-from src.main.python.ui.ca.model.pages.ca.CAMainMenuPage import CAMainMenuPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
-from src.main.python.ui.ca.model.constants.CAconstants.AccountConstants import AccountConstants
+from src.main.python.ui.ca.model.constants.CAvariables.TradingVariablesCA import TradingVariablesCA
 
 
-class GraphPreconditionCA(object):
+class AssetPricePreconditionCA(object):
 
     driver = None
     config = None
@@ -23,7 +18,7 @@ class GraphPreconditionCA(object):
         lead = self.config.get_value(lead_key)
         return lead
 
-    def verify_graph_ca(self):
+    def verify_asset_price_ca(self):
 
         if global_var.current_brand_name == "q8":
             CALoginPage(self.driver) \
@@ -48,24 +43,11 @@ class GraphPreconditionCA(object):
                 "//iframe[@id='swPandaIframe']"))
 
         WebTraderPage(self.driver) \
-            .open_trading_page() \
-            .check_chart_loaded() \
-            .open_graph_tab(TradingConstants.GRAPH_TAB_5MIN) \
-            .check_chart_loaded()\
-            .open_graph_tab(TradingConstants.GRAPH_TAB_15MIN) \
-            .check_chart_loaded() \
-            .open_graph_tab(TradingConstants.GRAPH_TAB_30MIN) \
-            .check_chart_loaded() \
-            .open_graph_tab(TradingConstants.GRAPH_TAB_HOURLY) \
-            .check_chart_loaded()
-        if global_var.current_brand_name != "24option":
+            .open_trading_page()
+        asset = TradingVariablesCA(self.driver)\
+            .get_asset(global_var.current_brand_name)
+        if global_var.current_brand_name == "newrichmarkets":
             WebTraderPage(self.driver) \
-                .open_graph_tab(TradingConstants.GRAPH_TAB_4HOURS) \
-                .check_chart_loaded()
+                .open_asset_group(TradingConstants.ASSET_GROUP_FOREX)
         WebTraderPage(self.driver) \
-            .open_graph_tab(TradingConstants.GRAPH_TAB_DAILY) \
-            .check_chart_loaded() \
-            .open_graph_tab(TradingConstants.GRAPH_TAB_WEEKLY) \
-            .check_chart_loaded() \
-            .open_graph_tab(TradingConstants.GRAPH_TAB_MONTHLY) \
-            .check_chart_loaded()
+            .verify_asset_price_change(asset)
