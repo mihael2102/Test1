@@ -9,3 +9,4 @@ CALoginPage:
   login_btn_2: "//input[@value='Log in']"
 WebTraderPage:
   price: "//td[contains(text(),'%s')]//following-sibling::td[contains(@data-bind,'markupBid')]"
+  asset_group: "//label[contains(text(),'%s')]"

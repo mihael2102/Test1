@@ -29,8 +29,8 @@ brands:
 - name: dualix
   config_file: dualix.yml
 
-- name: fairbit
-  config_file: fair-bit.yml
+#- name: fairbit
+#  config_file: fair-bit.yml
 
 - name: globalix
   config_file: globalix.yml
