@@ -226,7 +226,10 @@ class CreateLeadsProfilePage(CRMBasePage):
     def set_first_brand(self):
         try:
             brand_list = Select(self.driver.find_element(By.XPATH, "//select[@name='brands']"))
-            brand_list.select_by_index(1)
+            if global_var.current_brand_name == "ptbanc":
+                brand_list.select_by_index(2)
+            else:
+                brand_list.select_by_index(1)
             Logging().reportDebugStep(self, "The lead status was set to the first brand")
         except NoSuchElementException:
             Logging().reportDebugStep(self, "Brand select box was not found")
