@@ -11,6 +11,3 @@ class WithdrawTest(BaseTest):
 
     def test_withdraw_crm(self):
         WithdrawPreconditionCRM(self.driver, self.config).create_withdraw()
-
-    def test_withdraw_crm_new_ui(self):
-        WithdrawPreconditionCRM(self.driver, self.config).create_withdraw_new_ui()

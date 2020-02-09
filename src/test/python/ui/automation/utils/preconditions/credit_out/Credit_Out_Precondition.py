@@ -88,7 +88,7 @@ class CreditOutPrecondition(object):
             assert actual_credit == expected_credit
 
     def credit_out_crm_new_ui(self):
-        CRMLoginPage(self.driver)\
+        CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),

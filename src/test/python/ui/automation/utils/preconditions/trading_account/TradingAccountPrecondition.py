@@ -19,6 +19,12 @@ from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
+from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 
 
 class TradingAccountPrecondition(object):
@@ -47,12 +53,8 @@ class TradingAccountPrecondition(object):
         CAPage(self.driver)\
             .open_manage_accounts() \
             .open_new_account_btn() \
-            .select_account_type(CAConstants.ACCOUNT_LIVE)
-
-        if global_var.current_brand_name == "mpcrypto" or global_var.current_brand_name == "trade99":
-            CAPage(self.driver).select_currency(CAConstants.CURRENCY_CRYPTO)
-        else:
-            CAPage(self.driver).select_currency(CAConstants.CURRENCY)
+            .select_account_type(CAConstants.ACCOUNT_LIVE) \
+            .select_currency(CAConstants.CURRENCY)
 
         if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual")\
                 or (global_var.current_brand_name == "royal_cfds"):
@@ -160,18 +162,25 @@ class TradingAccountPrecondition(object):
             return self
 
     def verify_account_in_crm_ui(self):
-        CRMLoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        """ Login CRM """
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                new_design=0,
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
-        CRMHomePage(self.driver) \
-            .open_client_module_new_ui() \
-            .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email_new_ui(CAConstants.EMAIL_CA)
+        """ Open Clients module and find created client by email """
+        CRMBaseMethodsPage(self.driver) \
+            .open_module_ui(TestDataConstants.MODULE_CLIENTS)
+        GlobalTablePageUI(self.driver) \
+            .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
+            .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
+                                   CAConstants.EMAIL_CA)
+        ClientsModulePageUI(self.driver) \
+            .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
+
         ClientProfilePage(self.driver) \
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
         ClientsPage(self.driver)\
@@ -258,32 +267,6 @@ class TradingAccountPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
             return self
-
-    def add_demo_account_from_crm_new_ui(self):
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-
-        CRMLoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url'))
-
-        ClientsPage(self.driver)\
-            .select_filter_new_ui(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email_new_ui(
-                self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
-
-        MT4DropDown(self.driver)\
-            .open_mt4_module_newui(CRMConstants.CREATE_MT_ACCOUNT)
-
-        MT4CreateAccountModule(self.driver) \
-            .create_account_new_ui(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
-        return self
 
     def add_live_account_from_crm(self):
         crm_client_profile = CRMLoginPage(self.driver) \
