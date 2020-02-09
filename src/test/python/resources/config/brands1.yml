@@ -2,8 +2,8 @@
 
 brands:
 
-- name: alferatrade
-  config_file: alferatrade.yml
+#- name: alferatrade
+#  config_file: alferatrade.yml
 
 #- name: any1profit
 #  config_file: any1profit.yml
@@ -71,8 +71,8 @@ brands:
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
 
-#- name: newforexstage2
-#  config_file: newforexstage2.yml
+- name: newforexstage2
+  config_file: newforexstage2.yml
 
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
