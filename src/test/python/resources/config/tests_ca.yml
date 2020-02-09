@@ -26,6 +26,7 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
   class: TradingProcess
   tests:
+    - test_crypto_quotes
     - test_trading_process_open_position_ca    # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
     - test_verify_open_position_crm     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
     - test_trading_process_close_position_ca      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
