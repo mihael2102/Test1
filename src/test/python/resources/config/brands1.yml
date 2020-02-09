@@ -2,8 +2,8 @@
 
 brands:
 
-#- name: alferatrade
-#  config_file: alferatrade.yml
+- name: alferatrade
+  config_file: alferatrade.yml
 
 #- name: any1profit
 #  config_file: any1profit.yml
@@ -131,5 +131,5 @@ brands:
 #- name: wdcmarkets
 #  config_file: wdcmarkets.yml
 
-- name: 24option
-  config_file: 24option.yml
+#- name: 24option
+#  config_file: 24option.yml
