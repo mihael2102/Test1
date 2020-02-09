@@ -65,4 +65,3 @@ tests_config:
 #    - test_customer_classification_retail
 #    - test_customer_classification_professional_eligible
 #    - test_customer_classification_professional_elective
-
