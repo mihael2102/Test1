@@ -5,6 +5,9 @@ from src.main.python.ui.ca.model.pages.ca.CAMainMenuPage import CAMainMenuPage
 from src.main.python.ui.ca.model.pages.ca.withdraw_ca.CAWithdrawPage import CAWithdrawPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAWithdrawConstants import CAWithdrawConstants
 from src.main.python.ui.ca.model.pages.ca.withdraw_ca.CAWithdrawHistoryPage import CAWithdrawHistoryPage
+from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
+from time import sleep
 
 
 class WithdrawRequestPreconditionCA(object):
@@ -51,7 +54,7 @@ class WithdrawRequestPreconditionCA(object):
             .get_withdraw_status("1")
 
         """ Verify withdraw status in CRM (pending) """
-        CRMLoginPage(self.driver) \
+        status_crm = CRMLoginPage(self.driver) \
             .open_second_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
@@ -60,4 +63,37 @@ class WithdrawRequestPreconditionCA(object):
                                                        TestDataConstants.FILTER)) \
             .find_client_by_email(self.config.get_value('email_live_acc')) \
             .scroll_to_financial_transactions_section() \
-            .open_financial_transactions_tab()
+            .open_financial_transactions_tab() \
+            .get_withdraw_status()
+
+        """ Compare ca and crm statuses """
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(status_ca, status_crm)
+
+        """ Change ticket status to 'Closed' in CA """
+        status_ca = CAWithdrawHistoryPage(self.driver)\
+            .switch_first_tab_page() \
+            .click_cancel_btn() \
+            .get_withdraw_status("1")
+
+        """ Verify status updated in CRM """
+        CRMLoginPage(self.driver) \
+            .switch_second_tab_page() \
+            .refresh_page()
+        status_crm = ClientProfilePage(self.driver) \
+            .get_withdraw_status()
+
+        """ Compare ca and crm statuses """
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(status_ca, CAWithdrawConstants.STATUS_REQUEST_CA)
+        counter = 0
+        while status_crm != CAWithdrawConstants.STATUS_REQUEST_CRM:
+            status_crm = ClientProfilePage(self.driver) \
+                .refresh_page() \
+                .get_withdraw_status()
+            sleep(1)
+            counter += 1
+            if counter == 3:
+                break
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(status_crm, CAWithdrawConstants.STATUS_REQUEST_CRM)

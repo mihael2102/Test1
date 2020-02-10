@@ -12,3 +12,5 @@ class CAWithdrawConstants(object):
     EXPIRY_MONTH = "01"
     EXPIRY_YEAR = "2025"
     REASON = "Limited funds"
+    STATUS_REQUEST_CA = "Canceled by customer"
+    STATUS_REQUEST_CRM = "Cancelled by customer"

@@ -69,4 +69,5 @@ class CAWithdrawPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click 'Submit' button")
         submit_btn = super().wait_load_element("//button[text()=' Submit ']")
         self.driver.execute_script("arguments[0].click();", submit_btn)
+        sleep(0.5)
         return CAWithdrawPage(self.driver)
