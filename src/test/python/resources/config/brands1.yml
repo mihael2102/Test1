@@ -20,8 +20,8 @@ brands:
 #- name: coin-bits
 #  config_file: coin-bits.yml
 
-#- name: confixfinancial
-#  config_file: confixfinancial.yml
+- name: confixfinancial
+  config_file: confixfinancial.yml
 
 #- name: ctxprime
 #  config_file: ctxprime.yml
@@ -62,8 +62,8 @@ brands:
 #- name: libramarkets
 #  config_file: libramarkets.yml
 
-- name: marketrip
-  config_file: marketrip.yml
+#- name: marketrip
+#  config_file: marketrip.yml
 
 #- name: moneta
 #  config_file: moneta.yml
