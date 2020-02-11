@@ -1,7 +1,4 @@
 brands:
 
-- name: globalix
-  config_file: globalix.yml
-
 - name: pmt247
   config_file: pmt247.yml

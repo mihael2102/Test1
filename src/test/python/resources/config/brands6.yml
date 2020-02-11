@@ -1,7 +1,4 @@
 brands:
 
-- name: libramarkets
-  config_file: libramarkets.yml
-
-- name: dax-300
-  config_file: dax-300.yml
+- name: globalix
+  config_file: globalix.yml

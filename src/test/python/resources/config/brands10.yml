@@ -1,7 +1,4 @@
 brands:
 
-- name: bfxinternational
-  config_file: bfxinternational.yml
-
-- name: grandefex
-  config_file: grandefex.yml
+- name: alferatrade
+  config_file: alferatrade.yml

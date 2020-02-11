@@ -1,7 +1,7 @@
 brands:
 
-- name: kontofx
-  config_file: kontofx.yml
+- name: brokerz
+  config_file: brokerz.yml
 
-- name: olympiamarkets
-  config_file: olympiamarkets.yml
+- name: proconsultinginvest
+  config_file: proconsultinginvest.yml

@@ -1,10 +1,4 @@
 brands:
 
-- name: financix
-  config_file: financix.yml
-
-- name: alferatrade
-  config_file: alferatrade.yml
-
-- name: wdcmarkets
-  config_file: wdcmarkets.yml
+- name: confixfinancial
+  config_file: confixfinancial.yml

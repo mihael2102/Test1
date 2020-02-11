@@ -1,7 +1,4 @@
 brands:
 
-- name: trade99
-  config_file: trade99.yml
-
-- name: any1profit
-  config_file: any1profit.yml
+- name: bfxinternational
+  config_file: bfxinternational.yml
