@@ -44,7 +44,7 @@ class DepositTestCRM(BaseTest):
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
         if global_var.current_brand_name == "royal_cfds" or \
-                global_var.current_brand_name == "newforexstaging":
+           global_var.current_brand_name == "newforexstaging":
             MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
@@ -83,15 +83,15 @@ class DepositTestCRM(BaseTest):
                 .click_ok()
 
         elif (global_var.current_brand_name == "gxfx") or \
-            (global_var.current_brand_name == "dax-300") or \
-            (global_var.current_brand_name == "kontofx") or \
-            (global_var.current_brand_name == "uprofx") or \
-            (global_var.current_brand_name == "olympiamarkets") or \
-            (global_var.current_brand_name == "stox50") or \
-            (global_var.current_brand_name == "aztrades") or \
-            (global_var.current_brand_name == "grandefex") or \
-            (global_var.current_brand_name == "libramarkets") or \
-            (global_var.current_brand_name == "wdcmarkets"):
+             (global_var.current_brand_name == "dax-300") or \
+             (global_var.current_brand_name == "kontofx") or \
+             (global_var.current_brand_name == "uprofx") or \
+             (global_var.current_brand_name == "olympiamarkets") or \
+             (global_var.current_brand_name == "stox50") or \
+             (global_var.current_brand_name == "aztrades") or \
+             (global_var.current_brand_name == "grandefex") or \
+             (global_var.current_brand_name == "libramarkets") or \
+             (global_var.current_brand_name == "wdcmarkets"):
 
             MT4CreateAccountModule(self.driver)\
                 .create_account(

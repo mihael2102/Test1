@@ -211,7 +211,7 @@ class WebTraderPage(CRMBasePage):
         # super().wait_load_element("//div[@class='loader__bar']", timeout=15)
         # super().wait_element_to_be_disappear("//div[@class='loader__bar']", timeout=35)
         try:
-            asset_btn = super().wait_load_element("//div[contains(text(),'%s')]" % asset)
+            asset_btn = super().wait_load_element("//div[contains(text(),'%s') and not(contains(text(),'.m'))]" % asset)
             self.driver.execute_script("arguments[0].click();", asset_btn)
             Logging().reportDebugStep(self, "Select asset: " + asset)
             TradingConstants.IS_ASSET_EXIST = "yes"
@@ -228,7 +228,7 @@ class WebTraderPage(CRMBasePage):
 
         elif global_var.current_brand_name == "brokerz":
             click_select_account = self.driver.find_element(By.XPATH,
-                                                            "//*[@id='panda-buttons']/panda-forex-accounts/div/div/i[2]")
+                                                        "//*[@id='panda-buttons']/panda-forex-accounts/div/div/i[2]")
 
         else:
             click_select_account = self.driver.find_element(By.XPATH,
@@ -242,7 +242,7 @@ class WebTraderPage(CRMBasePage):
         sleep(8)
         if global_var.current_brand_name == "ptbanc":
             click_select_account = self.driver.find_element(By.XPATH,
-                                                            "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
+                        "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
         elif global_var.current_brand_name == "brokerz":
             click_select_account = self.driver.find_element(By.XPATH,
                                                             "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[2]/div/div[3]/span[contains(text(), 'Demo')]")
