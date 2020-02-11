@@ -36,29 +36,6 @@ class ConvertLeadModule(CRMBasePage):
         sleep(1)
         self.click_submit()
 
-    def perform_convert_lead_new_ui(self, first_name, last_name, email, phone, day, month, year, citizenship,
-                                    address, postal_code, city, country, password, currency, referral,
-                                    brand, source_name, phone_area_code=None):
-        sleep(2)
-        self.set_first_name(first_name)
-        self.set_last_name(last_name)
-        self.set_email(email)
-        self.set_phone(phone)
-        self.set_birth_day(day, month, year)
-        self.set_citizenship_new_ui(citizenship)
-        self.set_address(address)
-        self.set_postal_code(postal_code)
-        self.set_city(city)
-        self.set_country(country)
-        self.set_password(password)
-        self.set_currency(currency)
-        self.set_source_name(source_name)
-        if referral:
-            self.set_referral(referral)
-        self.set_brand(brand)
-        sleep(1)
-        self.click_submit()
-
     def perform_convert_lead_short(self, first_name, birthday, address, postal_code, city, country):
         sleep(2)
         self.set_first_name(first_name)
@@ -187,29 +164,6 @@ class ConvertLeadModule(CRMBasePage):
             Logging().reportDebugStep(self, "Birthday input was not found")
         return ConvertLeadModule(self.driver)
 
-    def set_birth_day(self, day, month, year):
-        date_field = super().wait_load_element(
-            "//input[@placeholder='Choose date of birth']")
-        self.driver.execute_script("arguments[0].click();", date_field)
-        current_date_btn = super().wait_load_element(
-            "(//span[@class='mat-button-wrapper' and contains(text(),'2019')])[1]")
-        current_date_btn.click()
-        prev_btn = super().wait_load_element(
-                                "(//button[@class='mat-calendar-previous-button mat-icon-button mat-button-base'])[1]")
-        prev_btn.click()
-        sleep(0.5)
-        prev_btn.click()
-        select_year = super().wait_load_element("//div[contains(text(),'%s')]" % year)
-        select_year.click()
-        select_month = super().wait_load_element("//div[contains(text(),'%s')]" % month)
-        select_month.click()
-        select_day = super().wait_load_element("(//div[contains(text(),'%s')])[1]" % day)
-        select_day.click()
-        set_btn = super().wait_load_element("(//span[text()='Set'])[1]")
-        set_btn.click()
-        Logging().reportDebugStep(self, "The birthday was set")
-        return ConvertLeadModule(self.driver)
-
     def set_address(self, address):
         address_field = super().wait_load_element(global_var.get_xpath_for_current_brand_element
                                                   (self.__class__.__name__)["address_field"])
@@ -253,10 +207,4 @@ class ConvertLeadModule(CRMBasePage):
             Logging().reportDebugStep(self, "The citizenship was set: " + citizenship)
         except NoSuchElementException:
             Logging().reportDebugStep(self, "Citizenship input was not found")
-        return ConvertLeadModule(self.driver)
-
-    def set_citizenship_new_ui(self, citizenship):
-        item = super().wait_load_element("//span[text()='%s']" % citizenship)
-        self.driver.execute_script("arguments[0].click();", item)
-        Logging().reportDebugStep(self, "The citizenship was set: " + citizenship)
         return ConvertLeadModule(self.driver)

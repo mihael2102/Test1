@@ -2,6 +2,7 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
+from email.mime.image import MIMEImage
 from email import encoders
 from src.test.python.ui.automation.BaseTest import *
 
@@ -9,7 +10,7 @@ from src.test.python.ui.automation.BaseTest import *
 def Send_Email_XML(filepath, content):
 
     fromaddr = Config.email_address
-    to = "automationtest.sender@gmail.com"
+    to = Config.email_address
     cc = ""
     bcc = ""
     # instance of MIMEMultipart
@@ -43,6 +44,11 @@ def Send_Email_XML(filepath, content):
 
     # attach the body with the msg instance
     msg.attach(MIMEText(body, 'plain'))
+
+    # attach the screenshot:
+    # img_data = open(Config.screenshot_path, "rb").read()
+    # screenshot = MIMEImage(img_data, name=os.path.basename(Config.screenshot_path))
+    # msg.attach(screenshot)
 
     # open the file to be sent
     filepath = filepath.replace("\\","/")

@@ -368,14 +368,14 @@ class LeadsModule(CRMBasePage):
         sleep(4)
         click_mass_assign = self.driver.find_element(By.XPATH, "//div[2][contains (text(), '%s')]" % user)
         click_mass_assign.click()
-        Logging().reportDebugStep(self, "Select User")
+        Logging().reportDebugStep(self, "Select User: " + user)
         return LeadsModule(self.driver)
 
     def input_mass_assign(self, user):
         sleep(10)
         input_mass_assign = self.driver.find_element(By.XPATH, "//*[@id='searchstring']")
         input_mass_assign.send_keys(user)
-        Logging().reportDebugStep(self, "Enter User name")
+        Logging().reportDebugStep(self, "Enter User name: " + user)
         return LeadsModule(self.driver)
 
     def click_mass_assign(self):
@@ -580,6 +580,7 @@ class LeadsModule(CRMBasePage):
         filter_item = super().wait_load_element("//span[contains(text(),'%s')]" % test_filter)
         self.driver.execute_script("arguments[0].click();", filter_item)
         Logging().reportDebugStep(self, "Select the filter: " + test_filter)
+        sleep(1)
         self.wait_crm_loading_to_finish()
         return LeadsModule(self.driver)
 
@@ -801,7 +802,8 @@ class LeadsModule(CRMBasePage):
         input.clear()
         input.send_keys(phone)
         sleep(1)
-        save_personal_details = super().wait_load_element("//*[@id='editarea_Mobile']/div/a[1]/span")
+        save_personal_details = super().wait_load_element\
+            ("//*[@id='editarea_Mobile']//span[contains(@class,'glyphicons ok')]")
         try:
             save_personal_details.click()
         except:

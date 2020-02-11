@@ -33,7 +33,7 @@ class CRMConstants(object):
     SUBJECT_TASK_MAIL = ": SUBJECT_TASK" + str(random.randrange(1, 999))
     TRADING_LEVERAGE_ITRADER = "30"
     SUBJECT_LEAD_MAIL = ": Test MAIL" + str(random.randrange(1, 9999999))
-    BODY_LEAD_MAIL = "Test"
+    BODY_LEAD_MAIL = "Test1111111111111111111111"
     CHANGE_PHONE_LEAD = "0534431234"
     DATE_BIRTH = "1999-02-19"
     STATUS_EDIT_STOX = "R - New"
@@ -78,6 +78,7 @@ class CRMConstants(object):
     BRAND = "brand_one"
     TRANSFER_BETWEEN_TA_MESSAGE = "Funds were transferred successfully"
     AMOUNT_TRANSFER_BETWEEN_TA = "1.00"
+    AMOUNT_TRANSFER_BETWEEN_TA_1 = "1"
     AMOUNT_TRANSFER_BETWEEN_TA_BTC = "0.00001"
     TRANSFER_BETWEEN_TA = "8"
     TRANSFER_BETWEEN_TA2 = "5"
@@ -132,7 +133,7 @@ class CRMConstants(object):
     DESCRIPTION_TRANSFER_BETWEEN_TA = "test"
     STATUS_DEPOSIT = "Approved"
     PAYMENT_METHOD_DEPOSIT = "Credit card"
-    CREATE_MT_USER = "Create MT User"
+    CREATE_MT_ACCOUNT = "Create MT Account"
     CREATE_MT_DEPOSIT = "Deposit"
     CREATE_MT_CREDIT_IN = "Credit in"
     CREATE_MT_CREDIT_OUT = "Credit out"

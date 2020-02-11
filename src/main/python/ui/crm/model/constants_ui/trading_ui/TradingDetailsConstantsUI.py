@@ -5,6 +5,9 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 import string
 
 
-class ClientDetailsConstants(object):
-    TRADING_ACCOUNTS_TAB = "Trading Accounts"
-    FINANCIAL_TRANSACTIONS_TAB = "Financial Transactions"
+class TradingDetailsConstantsUI(object):
+    brand = global_var.current_brand_name
+
+    TAB_CLOSED_TRANSACTIONS = "Closed Transactions"
+    FIELD_BALANCE = "Balance"
+

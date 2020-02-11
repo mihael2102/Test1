@@ -5,13 +5,13 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from time import sleep
-from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.test.python.ui.automation.BaseTest import *
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
@@ -88,7 +88,7 @@ class CreditOutPrecondition(object):
             assert actual_credit == expected_credit
 
     def credit_out_crm_new_ui(self):
-        CRMLoginPage(self.driver)\
+        CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
@@ -128,7 +128,7 @@ class CreditOutPrecondition(object):
         # Check the balance updated
         ClientProfilePage(self.driver) \
             .refresh_page() \
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
             .open_trading_account_by_number(MT4ModuleConstants.ACCOUNT_NUMBER_CREDIT)
 
         MT4CreditOutModule(self.driver) \
@@ -148,8 +148,8 @@ class CreditOutPrecondition(object):
             assert actual_credit_btc == expected_credit
         else:
             actual_credit = int(TradingAccountsInformationPage(self.driver).get_credit_text()[0])
-            expected_credit = int(((CRMConstants.AMOUNT_CREDIT_IN).split('.'))[0]) - int\
-                                 (((CRMConstants.AMOUNT_CREDIT_OUT).split('.'))[0])
+            expected_credit = int(CRMConstants.AMOUNT_CREDIT_IN.split('.')[0]) - \
+                              int(CRMConstants.AMOUNT_CREDIT_OUT.split('.')[0])
             count = 0
             while actual_credit != expected_credit:
                 MT4DepositModule(self.driver).refresh_page()
@@ -158,6 +158,17 @@ class CreditOutPrecondition(object):
                 if count == 7:
                     break
             assert actual_credit == expected_credit
+
+        """ Verify data in info tag Credit was updated """
+        credit_tag = ClientDetailsPageUI(self.driver) \
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_CREDIT)
+        if global_var.current_brand_name == "trade99":
+            expected_credit = float(CRMConstants.AMOUNT_CREDIT_IN_BTC) - float(CRMConstants.AMOUNT_CREDIT_OUT_BTC)
+            assert expected_credit in credit_tag
+        else:
+            expected_credit = int(CRMConstants.AMOUNT_CREDIT_IN.split('.')[0]) - \
+                              int(CRMConstants.AMOUNT_CREDIT_OUT.split('.')[0])
+            assert expected_credit in credit_tag
 
     def add_live_account(self):
         BrandHomePage().open_first_tab_page(Config.url_client_area).login()\

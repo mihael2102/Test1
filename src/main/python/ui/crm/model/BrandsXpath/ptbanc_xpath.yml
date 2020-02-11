@@ -1,32 +1,41 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CADepositPage:
+  deposit_btn: "//button[contains(text(),'Deposit')]"
+  deposit_page: "//button[text()=' Deposit $ 200 to my account ']"
+  deposit_iframe: "//div[@class='payment-method-pandats naspay-pandats']"
+CALoginPage:
+  city: "//input[@name = 'city']"
+  zip_code: "//input[@name = 'postCode']"
+  address: "//input[@name = 'address']"
+  next_btn: "//button[contains (text(), 'Next')]"
+CAPage:
+  click_close:  "/html/body/panda-forex-client-area/div/div/client-area-popup/div/div[2]/div[1]/a/i"
+CAWithdrawHistoryPage:
+  submit_cancel_button: "//button[text()='yes']"
 ClientsPage:
   client_status_button: "//*[@id='customAdvanceSearch']/td[3]/div/div[1]/button"
   client_status_field: "//*[@id='customAdvanceSearch']/td[3]/div/div[1]/ul/li[1]/div/input"
   country_button: "//td[8]/div/div/button"
   country_field: "//td[8]//ul/li/div/input"
   country_click: "//td[8]//label[contains(text(),'%s')]"
-TasksPage:
-  pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
-  subject_input: "//tr[@class='tableFilters']//td[15]//input"
-  account_name_input: "//*[@id='host-element']/input"
+ClientProfilePage:
+  deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
 FinancialTransactionsPage:
   client_name_element:  "(//*[@id='listBody']//tr/td[4])[%s]"
   transaction_type_element : "(//*[@id='listBody']//tr/td[5])[%s]"
   transaction_type_field: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/ul/li[1]/div/input"
   transaction_type_drop_down: "//td[5]/div/div[1]/button"
   modified_time_element: "(//*[@id='listBody']//tr/td[12])[%s]"
-ClientProfilePage:
-  deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
 LeadsModule:
   check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[8]"
   check_first_line_email_2: "//tbody[@id = 'listBody']/tr[2]/td[8]"
   check_first_line_exist: "//tbody[@id = 'listBody']/tr[1]/td[10]"
   check_first_line_leads_no1: "//tbody[@id = 'listBody']/tr[1]/td[2]"
   check_first_line_leads_no2: "//tbody[@id = 'listBody']/tr[2]/td[2]"
-CALoginPage:
-  city: "//input[@name = 'city']"
-  zip_code: "//input[@name = 'postCode']"
-  address: "//input[@name = 'address']"
-  next_btn: "//button[contains (text(), 'Next')]"
+TasksPage:
+  pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
+  subject_input: "//tr[@class='tableFilters']//td[15]//input"
+  account_name_input: "//*[@id='host-element']/input"
 WebTraderPage:
   avaliable_funds: "//*[@id='u8984']/panda-forex-account-status/div/ul/li[1]/div[1]"
   used_funds: "//*[@id='u8984']/panda-forex-account-status/div/ul/li[2]/div[1]"
@@ -45,5 +54,3 @@ WebTraderPage:
   check_button: "//label[contains(text(), 'Set Stop Loss')]"
   enter_stop_loss: "//input[@class='custom-input-field-pandats ng-untouched ng-pristine ng-valid locked-pandats']"
   pips_bottom_panel_test: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[6]/div[1]/div/div"
-CAPage:
-  click_close:  "/html/body/panda-forex-client-area/div/div/client-area-popup/div/div[2]/div[1]/a/i"
