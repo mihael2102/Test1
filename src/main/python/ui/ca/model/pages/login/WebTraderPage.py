@@ -262,7 +262,10 @@ class WebTraderPage(CRMBasePage):
         sleep(3)
         click_buy = self.driver.find_element(By.XPATH,global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["click_buy"])
-        click_buy.click()
+        try:
+            click_buy.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", click_buy)
         Logging().reportDebugStep(self, "click Buy")
         return WebTraderPage(self.driver)
 
