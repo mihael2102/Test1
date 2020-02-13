@@ -127,7 +127,7 @@ class LeadModuleTest(BaseTest):
             ConvertLeadModule(self.driver).perform_convert_lead(
                 self.client1[LeadsModuleConstants.FIRST_NAME],
                 self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
-                self.client1[LeadsModuleConstants.EMAIL],
+                self.lead1[LeadsModuleConstants.EMAIL],
                 self.client1[LeadsModuleConstants.PHONE],
                 self.client1[LeadsModuleConstants.BIRTHDAY],
                 self.client1[LeadsModuleConstants.CITIZENSHIP],

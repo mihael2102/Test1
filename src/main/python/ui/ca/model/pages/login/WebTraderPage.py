@@ -43,7 +43,7 @@ class WebTraderPage(CRMBasePage):
 
     def get_id_closed_order(self):
         sleep(0.5)
-        order_id = super().wait_load_element("//tr[1]/closed-trade/td[1]").get_attribute("innerText")
+        order_id = super().wait_load_element("//tr[1]/closed-trade//td[1]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get Closed Order ID: " + order_id)
         TradingConstants.ORDER_ID_CLOSED = order_id
         return WebTraderPage(self.driver)
@@ -57,7 +57,7 @@ class WebTraderPage(CRMBasePage):
 
     def get_closed_order_created_time(self):
         sleep(0.1)
-        created_time = super().wait_load_element("//tr[1]/closed-trade/td[2]").get_attribute("innerText")
+        created_time = super().wait_load_element("//tr[1]/closed-trade//td[2]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Created Time: " + created_time)
         TradingConstants.CLOSED_ORDER_CREATED_TIME = created_time
         return WebTraderPage(self.driver)
@@ -71,7 +71,7 @@ class WebTraderPage(CRMBasePage):
 
     def get_closed_order_symbol(self):
         sleep(0.1)
-        symbol = super().wait_load_element("//tr[1]/closed-trade/td[3]").get_attribute("innerText")
+        symbol = super().wait_load_element("//tr[1]/closed-trade//td[3]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Symbol: " + symbol)
         TradingConstants.CLOSED_ORDER_SYMBOL = symbol
         return WebTraderPage(self.driver)
@@ -87,28 +87,28 @@ class WebTraderPage(CRMBasePage):
 
     def get_closed_order_open_price(self):
         sleep(0.1)
-        open_price = super().wait_load_element("//tr[1]/closed-trade/td[6]").get_attribute("innerText")
+        open_price = super().wait_load_element("//tr[1]/closed-trade//td[6]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Open Price: " + open_price)
         TradingConstants.CLOSED_ORDER_OPEN_PRICE = open_price
         return WebTraderPage(self.driver)
 
     def get_closed_order_closed_price(self):
         sleep(0.1)
-        closed_price = super().wait_load_element("//tr[1]/closed-trade/td[7]").get_attribute("innerText")
+        closed_price = super().wait_load_element("//tr[1]/closed-trade//td[7]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Closed Price: " + closed_price)
         TradingConstants.CLOSED_ORDER_CLOSED_PRICE = closed_price
         return WebTraderPage(self.driver)
 
     def get_closed_order_closed_time(self):
         sleep(0.1)
-        closed_time = super().wait_load_element("//tr[1]/closed-trade/td[8]").get_attribute("innerText")
+        closed_time = super().wait_load_element("//tr[1]/closed-trade//td[8]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Closed Time: " + closed_time)
         TradingConstants.CLOSED_ORDER_CLOSED_TIME = closed_time
         return WebTraderPage(self.driver)
 
     def get_closed_order_profit(self):
         sleep(0.1)
-        profit = super().wait_load_element("//tr[1]/closed-trade/td[13]").get_attribute("innerText")
+        profit = super().wait_load_element("//tr[1]/closed-trade//td[13]").get_attribute("innerText")
         Logging().reportDebugStep(self, "Get closed order Profit: " + profit)
         TradingConstants.CLOSED_ORDER_PROFIT = profit
         return WebTraderPage(self.driver)
@@ -211,7 +211,7 @@ class WebTraderPage(CRMBasePage):
         # super().wait_load_element("//div[@class='loader__bar']", timeout=15)
         # super().wait_element_to_be_disappear("//div[@class='loader__bar']", timeout=35)
         try:
-            asset_btn = super().wait_load_element("//div[contains(text(),'%s')]" % asset)
+            asset_btn = super().wait_load_element("//div[contains(text(),'%s') and not(contains(text(),'.m'))]" % asset)
             self.driver.execute_script("arguments[0].click();", asset_btn)
             Logging().reportDebugStep(self, "Select asset: " + asset)
             TradingConstants.IS_ASSET_EXIST = "yes"
@@ -228,7 +228,7 @@ class WebTraderPage(CRMBasePage):
 
         elif global_var.current_brand_name == "brokerz":
             click_select_account = self.driver.find_element(By.XPATH,
-                                                            "//*[@id='panda-buttons']/panda-forex-accounts/div/div/i[2]")
+                                                        "//*[@id='panda-buttons']/panda-forex-accounts/div/div/i[2]")
 
         else:
             click_select_account = self.driver.find_element(By.XPATH,
@@ -242,7 +242,7 @@ class WebTraderPage(CRMBasePage):
         sleep(8)
         if global_var.current_brand_name == "ptbanc":
             click_select_account = self.driver.find_element(By.XPATH,
-                                                            "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
+                        "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
         elif global_var.current_brand_name == "brokerz":
             click_select_account = self.driver.find_element(By.XPATH,
                                                             "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[2]/div/div[3]/span[contains(text(), 'Demo')]")
@@ -262,7 +262,10 @@ class WebTraderPage(CRMBasePage):
         sleep(3)
         click_buy = self.driver.find_element(By.XPATH,global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["click_buy"])
-        click_buy.click()
+        try:
+            click_buy.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", click_buy)
         Logging().reportDebugStep(self, "click Buy")
         return WebTraderPage(self.driver)
 
