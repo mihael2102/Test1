@@ -450,7 +450,7 @@ class WebTraderPage(CRMBasePage):
             try:
                 group = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                   self.__class__.__name__)["asset_group"] % asset_group)
-                # group.click()
+                self.scroll_into_view(group)
                 self.driver.execute_script("arguments[0].click();", group)
             except(NoSuchElementException, TimeoutException):
                 group = super().wait_load_element("//span[contains(text(),'%s')]" % asset_group)

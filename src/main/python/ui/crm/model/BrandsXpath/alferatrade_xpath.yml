@@ -2,4 +2,4 @@
 CADepositPage:
   deposit_page: "//button[@type='submit' and text()=' Deposit ']"
 CALoginPage:
-  sign_up: "//a[text()='Start Trading']"
+  sign_up: "//a[text()='Sign Up']"
