@@ -1,4 +1,4 @@
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.tasks_ui.TasksModuleConstantsUI import TasksModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
@@ -20,14 +20,13 @@ class TasksSearchingColumnsPreconditionUI(object):
 
     def tasks_searching_columns_ui(self):
         """ Login CRM """
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
-
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                new_design=0,
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Tasks module """
         CRMBaseMethodsPage(self.driver) \
@@ -35,13 +34,13 @@ class TasksSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(TasksModuleConstantsUI.TAB_ALL)
 
         """ Get task data from the first row of list view """
-        event_type = CRMBaseMethodsPage(self.driver) \
+        event_type = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TasksModuleConstantsUI.COLUMN_EVENT_TYPE,
                                         row=TasksModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        status = CRMBaseMethodsPage(self.driver) \
+        status = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TasksModuleConstantsUI.COLUMN_STATUS,
                                         row=TasksModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        account_name = CRMBaseMethodsPage(self.driver) \
+        account_name = GlobalTablePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TasksModuleConstantsUI.COLUMN_ACCOUNT_NAME,
                                         row=TasksModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
