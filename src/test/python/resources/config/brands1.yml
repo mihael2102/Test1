@@ -29,8 +29,8 @@ brands:
 #- name: dax-300
 #  config_file: dax-300.yml
 
-- name: dualix
-  config_file: dualix.yml
+#- name: dualix
+#  config_file: dualix.yml
 
 #- name: etfinance
 #  config_file: etfinance.yml
@@ -113,8 +113,8 @@ brands:
 #- name: tfxgo
 #  config_file: tfxgo.yml
 
-#- name: trade99
-#  config_file: trade99.yml
+- name: trade99
+  config_file: trade99.yml
 
 #- name: tradenero
 #  config_file: tradenero.yml

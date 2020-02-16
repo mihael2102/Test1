@@ -1,4 +1,7 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CALoginPage:
+  submit_btn: "//button[span=' Submit ']"
+  login_btn_2: "//button[@class = 'forex-button-pandats login-button-pandats font-15-pandats'][contains(text(), 'Login')]"
 CAWithdrawHistoryPage:
   submit_cancel_button: "//button[text()='yes']"
 ClientsPage:
