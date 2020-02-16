@@ -4,6 +4,10 @@ CADepositPage:
   deposit_page: "//div[@class='header-pandats']/h1[text()='Choose a payment method']"
 CALoginPage:
   sign_up: " //button[text()=' Join Us ']"
+  submit_btn: "//button[span=' Submit ']"
+  login_btn_2: "//button[@class = 'forex-button-pandats login-button-pandats font-15-pandats'][contains(text(), 'Login')]"
+ClientProfilePage:
+  withdraw_status: "//*[@id='tbl_Accounts_FinancialTransactions']//tbody/tr[2]/td[9]"
 ClientsPage:
   client_currency: "//td[@class='dvtCellInfo'][contains(text(),'BTC')]"
 FinancialTransactionsPage:

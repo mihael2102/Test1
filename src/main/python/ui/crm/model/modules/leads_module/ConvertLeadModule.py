@@ -72,8 +72,11 @@ class ConvertLeadModule(CRMBasePage):
     def set_email(self, email):
         email_field = super().wait_load_element(global_var.get_xpath_for_current_brand_element(self.__class__.__name__)
                                                 ["email_field"])
-        email_field.clear()
-        email_field.send_keys(email)
+        try:
+            email_field.clear()
+            email_field.send_keys(email)
+        except:
+            Logging().reportDebugStep(self, "The email field is not editable")
         Logging().reportDebugStep(self, "The email was set to: " + email)
         return ConvertLeadModule(self.driver)
 
