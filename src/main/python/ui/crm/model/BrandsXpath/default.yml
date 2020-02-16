@@ -18,6 +18,8 @@ CALoginPage:
   login_btn: "//button[contains(text(), 'Login')]"
   client_title_name: "//span[contains(text(), '%s')]"
   citizenship: "//custom-select[@name='citizenship']//span[text()='%s']"
+  campaign_close_btn: "(//button[@title='Close'])[2]"
+  close_payment_btn: "//div[@class='close-pandats cmicon-close4 ng-star-inserted']"
   submit_btn: "//button[contains (text(), 'Submit')]"
   login_email_input: "//input[@name='login']"
   login_password_input: "//input[@id='forex-password']"
@@ -37,6 +39,8 @@ CAPage:
   edit_first_name: "//input[@name='firstName']"
   get_first_name: "//input[@name='firstName']"
   click_close: "//panda-forex-client-area/div/div/client-area-popup/div/div[2]/div[1]/a/i"
+CAWithdrawHistoryPage:
+  submit_cancel_button: "//button[text()='Yes']"
 ClientsPage:
   client_status_button: "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']"
   client_status_field: "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']"
@@ -56,6 +60,7 @@ ClientProfilePage:
   link_trading_account: "//div[@class='link_field']/a[@class='before_nw' and contains(text(),'%s')]"
   balance_in_trading_account: "//*[@id='dtlview_Balance']"
   account_number: "(//tr[@class='lvtColData'])[1]//td[1]"
+  withdraw_status: "//*[@id='tbl_Accounts_FinancialTransactions']//tbody/tr[2]/td[10]"
 CRMClientDeposit:
   i_confirm_checkbox: "//*[@name='confirm']"
 ConvertLeadModule:
@@ -156,3 +161,6 @@ WebTraderPage:
   check_button: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[3]/div[1]/label"
   enter_stop_loss: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[4]/div[1]/custom-input/div/input"
   pips_bottom_panel_test: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[6]/div[1]/div/div"
+  open_trade_open_price: "//open-trade/td[7]"
+  price: "//div[text()='%s']//following-sibling::div[contains(@class,'price-pandats')]"
+  asset_group: "//div[contains(text(),'%s')]"

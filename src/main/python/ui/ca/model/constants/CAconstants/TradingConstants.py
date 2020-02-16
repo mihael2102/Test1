@@ -6,6 +6,8 @@ from dateutil.relativedelta import relativedelta
 
 class TradingConstants(object):
     ASSET_GROUP_CRYPTO = "Crypto"
+    ASSET_GROUP_FAVORITES = "Favorites"
+    ASSET_GROUP_FOREX = "Forex"
     ASSET_BTCEUR = "BTCEUR"
     ASSET_XRPUSD = "XRPUSD"
     VOLUME_IN_LOT_001 = "0.01"

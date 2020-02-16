@@ -8,3 +8,4 @@ import string
 class FiltersConstantsUI(object):
     FILTER_TEST_LEADS = "Test Leads"
     FILTER_TEST_CLIENTS = "Test Clients"
+    FILTER_ALL = "All"

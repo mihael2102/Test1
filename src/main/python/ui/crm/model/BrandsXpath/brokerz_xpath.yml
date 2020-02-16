@@ -1,9 +1,16 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CALoginPage:
+  submit_btn: "//button[span=' Submit ']"
+  login_btn_2: "//button[@class = 'forex-button-pandats login-button-pandats font-15-pandats'][contains(text(), 'Login')]"
+CAWithdrawHistoryPage:
+  submit_cancel_button: "//button[text()='yes']"
 ClientsPage:
   client_status_button: "//tr[@id='customAdvanceSearch']//td[4]//span[@class='multiselect-selected-text']"
   client_status_field: "//tr[@id='customAdvanceSearch']//td[4]//input[@class='form-control multiselect-search']"
   country_button: "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']"
   country_field: "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']"
+ClientProfilePage:
+  deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
 TasksPage:
   pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
   subject_input: "//tr[@class='tableFilters']//td[15]//input"
@@ -14,8 +21,6 @@ FinancialTransactionsPage:
   transaction_type_field: "(//div/div[1]/ul/li[1]/div/input)[1]"
   transaction_type_drop_down: "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/button"
   modified_time_element: "(//*[@id='listBody']//tr/td[9])[%s]"
-ClientProfilePage:
-  deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
 LeadsModule:
   check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[8]"
   check_first_line_email_2: "//tbody[@id = 'listBody']/tr[2]/td[8]"
