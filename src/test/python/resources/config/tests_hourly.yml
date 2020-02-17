@@ -10,8 +10,8 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
   class: TestPagesCA
   tests:
-    - test_graph_ca
-#    - test_asset_price_ca
+#    - test_graph_ca
+    - test_asset_price_ca
 
 #- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
 #  class: TradingProcess
