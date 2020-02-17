@@ -23,8 +23,8 @@ brands:
 #- name: coin-bits
 #  config_file: coin-bits.yml
 
-- name: dax-300
-  config_file: dax-300.yml
+#- name: dax-300
+#  config_file: dax-300.yml
 
 - name: dualix
   config_file: dualix.yml
