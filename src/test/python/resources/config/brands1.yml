@@ -11,8 +11,8 @@ brands:
 #- name: aztrades
 #  config_file: aztrades.yml
 
-#- name: bfxinternational
-#  config_file: bfxinternational.yml
+- name: bfxinternational
+  config_file: bfxinternational.yml
 
 #- name: brokerz
 #  config_file: brokerz.yml
