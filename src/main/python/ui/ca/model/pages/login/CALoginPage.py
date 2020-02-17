@@ -17,6 +17,10 @@ class CALoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Open first tabs page: " + url)
         return CALoginPage(self.driver)
 
+    def switch_first_tab_page(self):
+        super().switch_first_tab_page()
+        return CALoginPage(self.driver)
+
     def close_campaign_banner(self):
         sleep(3)
         try:
