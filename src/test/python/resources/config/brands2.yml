@@ -2,6 +2,3 @@ brands:
 
 - name: brokerz
   config_file: brokerz.yml
-
-- name: proconsultinginvest
-  config_file: proconsultinginvest.yml

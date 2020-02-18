@@ -1,4 +1,4 @@
 brands:
 
-- name: 24option
-  config_file: 24option.yml
+- name: confixfinancial
+  config_file: confixfinancial.yml

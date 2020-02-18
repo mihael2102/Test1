@@ -1,4 +1,4 @@
 brands:
 
-- name: dax-300
-  config_file: dax-300.yml
+- name: tradixa
+  config_file: tradixa.yml
