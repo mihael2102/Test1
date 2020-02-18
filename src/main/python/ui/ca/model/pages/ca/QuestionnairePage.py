@@ -76,6 +76,7 @@ class QuestionnairePage(CRMBasePage):
     def select_react_on_losses(self, react):
         item = self.driver.find_element_by_xpath(
             "//span[@class='item-pandats ng-star-inserted']/span[text()='%s']" % react)
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", item)
         self.driver.execute_script("arguments[0].click();", item)
         Logging().reportDebugStep(self, "How do you think you will react if you incur trading losses?: " + react)
         return QuestionnairePage(self.driver)
