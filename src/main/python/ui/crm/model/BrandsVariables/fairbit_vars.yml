@@ -3,3 +3,5 @@ AssetPricePreconditionCA:
   asset: "ETCEUR"
 ConvertLeadPreconditionUI:
   convert_lead_currency: "UST"
+TradingAccountPrecondition:
+  demo_acc_currency: "UST"
