@@ -2,7 +2,6 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
-from src.main.python.ui.ca.model.constants.CAvariables.TradingVariablesCA import TradingVariablesCA
 
 
 class CryptoQuotesPreconditionCA(object):
