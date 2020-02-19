@@ -267,7 +267,7 @@ class LoginCAPrecondition(object):
                 .select_loss(QuestionnaireConstants.LOSS_AMOUNT_800) \
                 .click_next_btn() \
                 .verify_questionnaire_message(QuestionnaireConstants.MESSAGE_RETAIL) \
-                .click_next_btn()
+                .close_questionnaire_message()
             CALoginPage(self.driver) \
                 .verify() \
                 .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
