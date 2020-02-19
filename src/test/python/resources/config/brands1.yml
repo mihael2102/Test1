@@ -113,8 +113,8 @@ brands:
 #- name: tfxgo
 #  config_file: tfxgo.yml
 
-- name: trade99
-  config_file: trade99.yml
+#- name: trade99
+#  config_file: trade99.yml
 
 #- name: tradenero
 #  config_file: tradenero.yml
