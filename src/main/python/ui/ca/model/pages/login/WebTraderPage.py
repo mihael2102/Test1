@@ -467,9 +467,9 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def open_trade_tab(self, tab_name):
-        sleep(1)
+        sleep(2)
         tab = super().wait_load_element("//div[contains(text(),'%s')]" % tab_name)
-        tab.click()
+        self.driver.execute_script("arguments[0].click();", tab)
         Logging().reportDebugStep(self, "Open tab: " + tab_name)
         return WebTraderPage(self.driver)
 

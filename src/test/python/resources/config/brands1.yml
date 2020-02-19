@@ -68,8 +68,8 @@ brands:
 #- name: moneta
 #  config_file: moneta.yml
 
-#- name: newrichmarkets
-#  config_file: newrichmarkets.yml
+- name: newrichmarkets
+  config_file: newrichmarkets.yml
 
 #- name: newforexstage2
 #  config_file: newforexstage2.yml
