@@ -1,4 +1,4 @@
 brands:
 
-- name: brokerz
-  config_file: brokerz.yml
+- name: strattonmarkets-eu
+  config_file: strattonmarkets-eu.yml

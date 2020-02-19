@@ -1,4 +1,4 @@
 brands:
 
-- name: dualix
-  config_file: dualix.yml
+- name: marketrip
+  config_file: marketrip.yml

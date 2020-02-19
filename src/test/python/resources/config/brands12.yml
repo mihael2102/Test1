@@ -1,4 +1,4 @@
 brands:
 
-- name: confixfinancial
-  config_file: confixfinancial.yml
+- name: dualix
+  config_file: dualix.yml
