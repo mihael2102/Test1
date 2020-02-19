@@ -1,6 +1,4 @@
-from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
-from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
@@ -17,7 +15,6 @@ from time import sleep
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.logs.Loging import Logging
-from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
@@ -54,17 +51,8 @@ class TradingAccountPrecondition(object):
             .open_manage_accounts() \
             .open_new_account_btn() \
             .select_account_type(CAConstants.ACCOUNT_LIVE) \
-            .select_currency(CAConstants.CURRENCY)
-
-        if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual")\
-                or (global_var.current_brand_name == "royal_cfds"):
-            CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL2)
-        elif global_var.current_brand_name == "strattonmarkets-eu":
-            CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL3)
-        else:
-            CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL)
-
-        CAPage(self.driver)\
+            .select_currency(CAConstants.CURRENCY) \
+            .select_leverage_level(var.get_var(self.__class__.__name__)["live_acc_leverage"]) \
             .click_create_account()\
             .get_create_account_message()\
             .additional_account_created()\
@@ -85,31 +73,14 @@ class TradingAccountPrecondition(object):
             .open_manage_accounts()\
             .open_demo_section()\
             .open_new_account_btn()\
-            .select_account_type(CAConstants.ACCOUNT_DEMO)
-
-        if global_var.current_brand_name == "mpcrypto" or global_var.current_brand_name == "trade99":
-            CAPage(self.driver).select_currency(CAConstants.CURRENCY_CRYPTO)
-        else:
-            CAPage(self.driver).select_currency(CAConstants.CURRENCY)
-
-        if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual")\
-                or (global_var.current_brand_name == "royal_cfds"):
-            CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL2)
-        else:
-            CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL)
-
-        CAPage(self.driver)\
+            .select_account_type(CAConstants.ACCOUNT_DEMO) \
+            .select_currency(var.get_var(self.__class__.__name__)["demo_acc_currency"]) \
+            .select_leverage_level(var.get_var(self.__class__.__name__)["demo_acc_leverage"]) \
             .set_initial_deposit(CAConstants.INITIAL_DEPOSIT0) \
             .verify_init_deposit_error() \
             .set_initial_deposit(CAConstants.INITIAL_DEPOSIT1) \
-            .verify_init_deposit_error()
-        if global_var.current_brand_name == "mpcrypto" or global_var.current_brand_name == "trade99":
-            CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT_BTC)
-        elif global_var.current_brand_name == "ptbanc":
-            CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT_PTBANC)
-        else:
-            CAPage(self.driver).set_initial_deposit(CAConstants.INITIAL_DEPOSIT)
-        CAPage(self.driver)\
+            .verify_init_deposit_error() \
+            .set_initial_deposit(var.get_var(self.__class__.__name__)["initial_deposit_amount"]) \
             .click_create_account() \
             .verify_demo_account_created() \
             .open_demo_section()

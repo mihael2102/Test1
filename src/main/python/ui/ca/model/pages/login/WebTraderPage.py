@@ -193,24 +193,21 @@ class WebTraderPage(CRMBasePage):
 
     def check_pips_bottom_panel(self):
         sleep(3)
-        pips_bottom_panel = self.driver.find_element(By.XPATH,
-                                                     global_var.get_xpath_for_current_brand_element(
+        pips_bottom_panel = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
                                                          self.__class__.__name__)["pips_bottom_panel"])
         Logging().reportDebugStep(self, "Check pip in bottom panel" + pips_bottom_panel.text)
         return pips_bottom_panel.text
 
     def check_pips_right_panel(self):
         sleep(3)
-        pips_right_panel = self.driver.find_element(By.XPATH,
-                                                    global_var.get_xpath_for_current_brand_element(
+        pips_right_panel = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
                                                         self.__class__.__name__)["pips_right_panel"])
         Logging().reportDebugStep(self, "Check pip in right panel" + pips_right_panel.text)
         return pips_right_panel.text
 
     def select_asset(self, asset):
-        # super().wait_load_element("//div[@class='loader__bar']", timeout=15)
-        # super().wait_element_to_be_disappear("//div[@class='loader__bar']", timeout=35)
         try:
+            sleep(1)
             asset_btn = super().wait_load_element("//div[contains(text(),'%s') and not(contains(text(),'.m'))]" % asset)
             self.driver.execute_script("arguments[0].click();", asset_btn)
             Logging().reportDebugStep(self, "Select asset: " + asset)
@@ -224,16 +221,12 @@ class WebTraderPage(CRMBasePage):
         sleep(5)
         if global_var.current_brand_name == "ptbanc":
             click_select_account = self.driver.find_element(By.XPATH,
-                                                   "//*[@id='u33171']/panda-forex-accounts/div/div/i[2]")
-
+                                                            "//*[@id='u33171']/panda-forex-accounts/div/div/i[2]")
         elif global_var.current_brand_name == "brokerz":
             click_select_account = self.driver.find_element(By.XPATH,
                                                         "//*[@id='panda-buttons']/panda-forex-accounts/div/div/i[2]")
-
         else:
-            click_select_account = self.driver.find_element(By.XPATH,
-                "//panda-forex-accounts/div/div/i[2]")
-
+            click_select_account = self.driver.find_element(By.XPATH, "//panda-forex-accounts/div/div/i[2]")
         click_select_account.click()
         Logging().reportDebugStep(self, "Click select account")
         return WebTraderPage(self.driver)
@@ -245,12 +238,10 @@ class WebTraderPage(CRMBasePage):
                         "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
         elif global_var.current_brand_name == "brokerz":
             click_select_account = self.driver.find_element(By.XPATH,
-                                                            "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[2]/div/div[3]/span[contains(text(), 'Demo')]")
-
+             "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[2]/div/div[3]/span[contains(text(), 'Demo')]")
         else:
             click_select_account = self.driver.find_element(By.XPATH,
-                                                            "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
-
+             "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
         try:
             click_select_account.click()
         except:
@@ -273,9 +264,10 @@ class WebTraderPage(CRMBasePage):
         sleep(3)
         if global_var.current_brand_name != "ptbanc":
             btn_deposit = self.driver.find_element(By.XPATH,
-                                                   "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li/asset-item/div//div[(text() = '" + asset + "')]")
+             "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[2]/ul/li/asset-item/div//div[(text() = '" + asset + "')]")
         else:
-            btn_deposit = self.driver.find_element(By.XPATH, "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[3]/ul/li[39]/asset-item/div/div[2]")
+            btn_deposit = self.driver.find_element(By.XPATH,
+             "//panda-forex-trading-platform/div/div/div/div[1]/asset-list/div/div[2]/perfect-scrollbar/div/div[1]/ul/li[3]/ul/li[39]/asset-item/div/div[2]")
         self.driver.execute_script("arguments[0].scrollIntoView();", btn_deposit)
         try:
             btn_deposit.click()
@@ -298,15 +290,14 @@ class WebTraderPage(CRMBasePage):
             Logging().reportDebugStep(self, "Get account number" + succsessfull_order2)
         else:
             sleep(10)
-            demo = self.driver.find_element(By.XPATH,
-                                            "//panda-forex-accounts/div/div/i[2]")
+            demo = self.driver.find_element(By.XPATH, "//panda-forex-accounts/div/div/i[2]")
             try:
                 demo.click()
             except:
                 self.driver.execute_script("arguments[0].click();", demo)
             sleep(3)
             succsessfull_order = self.driver.find_element(By.XPATH,
-                                                          "//panda-forex-accounts/div/div/div/ul/li/div/div[1]/div/div[2]").text
+                                                "//panda-forex-accounts/div/div/div/ul/li/div/div[1]/div/div[2]").text
             succsessfull_order1 = succsessfull_order.replace(' #', '')
             succsessfull_order2 = succsessfull_order1.replace(' - ', '')
             Logging().reportDebugStep(self, "Get account number" + succsessfull_order2)
@@ -315,7 +306,8 @@ class WebTraderPage(CRMBasePage):
 
     def click_deposit(self):
         sleep(10)
-        btn_deposit = self.driver.find_element(By.XPATH, "//panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div[1]/form/div[6]/div[2]/button")
+        btn_deposit = self.driver.find_element(By.XPATH,
+         "//panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/perfect-scrollbar/div[1]/form/div[6]/div[2]/button")
         btn_deposit.click()
         Logging().reportDebugStep(self, "Click Deposit")
         return WebTraderPage(self.driver)
@@ -449,9 +441,10 @@ class WebTraderPage(CRMBasePage):
     def open_asset_group(self, asset_group):
         try:
             try:
+                sleep(0.5)
                 group = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                   self.__class__.__name__)["asset_group"] % asset_group)
-                # group.click()
+                self.scroll_into_view(group)
                 self.driver.execute_script("arguments[0].click();", group)
             except(NoSuchElementException, TimeoutException):
                 group = super().wait_load_element("//span[contains(text(),'%s')]" % asset_group)
@@ -474,9 +467,9 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def open_trade_tab(self, tab_name):
-        sleep(1)
+        sleep(2)
         tab = super().wait_load_element("//div[contains(text(),'%s')]" % tab_name)
-        tab.click()
+        self.driver.execute_script("arguments[0].click();", tab)
         Logging().reportDebugStep(self, "Open tab: " + tab_name)
         return WebTraderPage(self.driver)
 
