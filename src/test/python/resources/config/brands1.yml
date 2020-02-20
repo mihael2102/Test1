@@ -1,4 +1,4 @@
 brands:
 
-- name: newrichmarkets
-  config_file: newrichmarkets.yml
+- name: marketrip
+  config_file: marketrip.yml
