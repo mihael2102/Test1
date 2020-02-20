@@ -26,17 +26,17 @@ tests_config:
   class: SignUpTest
   tests:
     - test_check_sign_up
-
-- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
-  class: AddNewAccountTestCA
-  tests:
-    - test_add_live_account_ca
-    - test_add_demo_account_ca
-
-- module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
-  class: TestPagesCA
-  tests:
-    - test_main_menu_pages_loading
+#
+#- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
+#  class: AddNewAccountTestCA
+#  tests:
+#    - test_add_live_account_ca
+#    - test_add_demo_account_ca
+#
+#- module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
+#  class: TestPagesCA
+#  tests:
+#    - test_main_menu_pages_loading
 
 #- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
 #  class: TradingProcess

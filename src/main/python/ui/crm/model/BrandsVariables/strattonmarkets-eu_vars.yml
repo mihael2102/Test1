@@ -1,3 +1,4 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
 TradingAccountPrecondition:
+  demo_acc_leverage: "1:30"
   live_acc_leverage: "1:30"

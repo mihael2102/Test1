@@ -71,7 +71,7 @@ class LoginCAPrecondition(object):
         pop_conn.quit()
 
     def sign_up_ca(self):
-        # Registration form
+        """ Registration form """
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .close_campaign_banner()\
@@ -89,44 +89,13 @@ class LoginCAPrecondition(object):
             .click_submit()\
             .close_payment_popup()
 
-        # Check graphs:
+        """ Check graphs """
         WebTraderPage(self.driver) \
             .open_trading_page() \
             .check_chart_loaded()
 
-        # Personal details form
-        if global_var.current_brand_name == "jonesmutual":
-            CALoginPage(self.driver)\
-                .verify() \
-                .click_hi_guest() \
-                .click_transactions_history() \
-                .select_data_birth_day(CAConstants.DAY_BIRTH) \
-                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
-                .select_data_birth_year(CAConstants.YEAR_BIRTH) \
-                .choose_currency(CAConstants.CURRENCY) \
-                .choose_citizenship(CAConstants.CITIZENSHIP2) \
-                .fill_city(CAConstants.CITY) \
-                .fill_zip_code(CAConstants.ZIP_CODE) \
-                .fill_address(CAConstants.ADDRESS) \
-                .click_next() \
-                .verify() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                   LeadsModuleConstants.FIRST_NAME]) \
-                .sign_out() \
-                .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
-                .click_login() \
-                .verify()
-            sleep(2)
-            existing_client = CALoginPage(self.driver).verify_client(
-                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                    LeadsModuleConstants.FIRST_NAME])
-            expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
-            print(expected_client, existing_client)
-            assert existing_client == expected_client
-
-        elif global_var.current_brand_name == "solocapitals":
+        """ Personal details form """
+        if global_var.current_brand_name == "solocapitals":
             CALoginPage(self.driver)\
                 .verify() \
                 .click_hi_guest() \
@@ -222,7 +191,8 @@ class LoginCAPrecondition(object):
                 .click_login() \
                 .verify()
 
-        elif global_var.current_brand_name == "strattonmarkets-eu":
+        elif global_var.current_brand_name == "strattonmarkets-eu" or \
+                global_var.current_brand_name == "dualix":
             CALoginPage(self.driver)\
                 .verify() \
                 .click_hi_guest() \
@@ -243,7 +213,7 @@ class LoginCAPrecondition(object):
                 .select_us_reportable(CAConstants.US_REPORTABLE_NO) \
                 .click_save_changes_btn()
 
-            # Questionnaire: Financial Information
+            """ Questionnaire: Financial Information """
             QuestionnairePage(self.driver) \
                 .select_employment_status(QuestionnaireConstants.EMPLOYMENT_STATUS_STUDENT) \
                 .select_education_level(QuestionnaireConstants.EDUCATION_LEVEL_NO_EDUCATION) \
@@ -256,7 +226,7 @@ class LoginCAPrecondition(object):
                 .select_react_on_losses(QuestionnaireConstants.REACT_ON_LOSSES_EXPECT_TO_LOSE) \
                 .click_next_btn()
 
-            # Questionnaire: Knowledge and experience
+            """ Questionnaire: Knowledge and experience """
             QuestionnairePage(self.driver) \
                 .select_instruments_traded_before(QuestionnaireConstants.INSTRUMENTS_TRADED_BEFORE_NO_EXPERIENCE) \
                 .select_if_applicable(QuestionnaireConstants.IF_APPLICABLE_NONE) \
@@ -312,7 +282,7 @@ class LoginCAPrecondition(object):
             assert existing_client.lower() == expected_client.lower()
 
     def client_exist_in_crm(self):
-        # Login to CRM
+        """ Login to CRM """
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),

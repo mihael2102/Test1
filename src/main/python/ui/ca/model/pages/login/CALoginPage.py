@@ -202,6 +202,7 @@ class CALoginPage(CRMBasePage):
             data = self.driver.find_element_by_xpath(global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["citizenship"] % citizenship)
             self.driver.execute_script("arguments[0].click();", data)
+            sleep(0.5)
             d = self.driver.find_element_by_xpath("//label[contains (text(), 'First Name')]")
             d.click()
         Logging().reportDebugStep(self, "Select citizenship : " + citizenship)
@@ -498,6 +499,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def enter_id(self, id_num):
+        sleep(0.2)
         nat_id_field = super().wait_load_element(
             "//label[text()='National ID']//following-sibling::input[@name='nationalId']")
         nat_id_field.clear()
