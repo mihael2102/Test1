@@ -171,3 +171,10 @@ class QuestionnairePage(CRMBasePage):
         assert expected_msg == actual_msg
         Logging().reportDebugStep(self, "Message is verified: " + actual_msg)
         return QuestionnairePage(self.driver)
+
+    def close_questionnaire_message(self):
+        sleep(1)
+        close_btn = super().wait_load_element("//div[@class='close-pandats cmicon-close3']")
+        close_btn.click()
+        Logging().reportDebugStep(self, "Message is closed")
+        return QuestionnairePage(self.driver)

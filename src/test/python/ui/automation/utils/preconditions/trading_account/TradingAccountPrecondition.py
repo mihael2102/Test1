@@ -60,6 +60,7 @@ class TradingAccountPrecondition(object):
             .get_live_account_number()
 
     def add_demo_account(self):
+        """ Log in CA """
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .login()\
@@ -69,6 +70,8 @@ class TradingAccountPrecondition(object):
             .verify()\
             .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                             LeadsModuleConstants.FIRST_NAME])
+
+        """ Create Demo account """
         CAPage(self.driver)\
             .open_manage_accounts()\
             .open_demo_section()\
@@ -84,30 +87,19 @@ class TradingAccountPrecondition(object):
             .click_create_account() \
             .verify_demo_account_created() \
             .open_demo_section()
-        if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual") \
-                or (global_var.current_brand_name == "royal_cfds"):
-            actual_leverage = CAPage(self.driver).get_leverage()
-            expected_leverage = CAConstants.LEVERAGE_LEVEL2
-            assert actual_leverage == expected_leverage
-        else:
-            actual_leverage = CAPage(self.driver).get_leverage()
-            expected_leverage = CAConstants.LEVERAGE_LEVEL
-            print(expected_leverage, actual_leverage)
-            assert actual_leverage == expected_leverage
 
-        if global_var.current_brand_name == "mpcrypto":
-            actual_currency = CAPage(self.driver).get_currency()
-            expected_currency = CAConstants.CURRENCY_CRYPTO
-            assert actual_currency == expected_currency
-        elif global_var.current_brand_name == "trade99":
-            cur = CAPage(self.driver).get_currency()
-            actual_currency = cur.split(':')[0]
-            expected_currency = CAConstants.CURRENCY_CRYPTO
-            assert actual_currency == expected_currency
-        else:
-            actual_currency = CAPage(self.driver).get_currency()
-            expected_currency = CAConstants.CURRENCY
-            assert actual_currency == expected_currency
+        """ Verify Leverage """
+        actual_leverage = CAPage(self.driver).get_leverage()
+        expected_leverage = var.get_var(self.__class__.__name__)["demo_acc_leverage"]
+        print(expected_leverage, actual_leverage)
+        assert actual_leverage == expected_leverage
+
+        """ Verify Currency """
+        actual_currency = CAPage(self.driver).get_currency()
+        expected_currency = var.get_var(self.__class__.__name__)["demo_acc_currency"]
+        if global_var.current_brand_name == "trade99":
+            actual_currency = actual_currency.split(':')[0]
+        assert actual_currency == expected_currency
 
         CAPage(self.driver).get_demo_account_number()
 
