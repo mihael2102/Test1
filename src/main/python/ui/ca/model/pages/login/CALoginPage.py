@@ -24,7 +24,7 @@ class CALoginPage(CRMBasePage):
     def close_campaign_banner(self):
         sleep(3)
         try:
-            super().wait_load_element("(//div[contains(@class,'Campaign__')])[2]", timeout=10)
+            super().wait_load_element("(//div[contains(@class,'Campaign__')])[2]", timeout=15)
             campaign_close_btn = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
                                                                self.__class__.__name__)["campaign_close_btn"])
             self.driver.execute_script("arguments[0].click();", campaign_close_btn)

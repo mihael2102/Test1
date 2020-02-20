@@ -29,8 +29,8 @@ brands:
 #- name: dax-300
 #  config_file: dax-300.yml
 
-- name: dualix
-  config_file: dualix.yml
+#- name: dualix
+#  config_file: dualix.yml
 
 #- name: etfinance
 #  config_file: etfinance.yml
@@ -41,8 +41,8 @@ brands:
 #- name: financix
 #  config_file: financix.yml
 
-#- name: globalix
-#  config_file: globalix.yml
+- name: globalix
+  config_file: globalix.yml
 
 #- name: grandefex
 #  config_file: grandefex.yml
