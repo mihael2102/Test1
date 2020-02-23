@@ -35,13 +35,26 @@ class TradingPreconditionLive(object):
         return lead
 
     def open_position_live(self):
-        CALoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url_ca'))\
-            .login()\
+        if global_var.current_brand_name == "q8":
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca_2'))
+        else:
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca'))
+        CALoginPage(self.driver) \
+            .close_campaign_banner() \
+            .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc'))\
             .enter_password(self.config.get_value('password_live_acc'))\
             .click_login()\
             .verify()
+
+        if global_var.current_brand_name == "q8":
+            self.driver.switch_to_frame(self.driver.find_element_by_xpath(
+                "//iframe[@class='platform__mobile-platform']"))
+        elif global_var.current_brand_name == "24option":
+            self.driver.switch_to_frame(self.driver.find_element_by_xpath(
+                "//iframe[@id='swPandaIframe']"))
 
         WebTraderPage(self.driver)\
             .open_trading_page()\

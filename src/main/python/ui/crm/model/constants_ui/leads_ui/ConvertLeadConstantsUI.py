@@ -42,8 +42,8 @@ class ConvertLeadConstantsUI(object):
     CITY = "Zurich"
     COUNTRY = "Germany"
     PASSWORD = "Abcd1234"
-    if brand == "fair-bit":
-        CURRENCY = "TTR"
+    if brand == "fairbit":
+        CURRENCY = "UST"
     else:
         CURRENCY = "EUR"
     REFERRAL = "TEST REFERRAL 2"
