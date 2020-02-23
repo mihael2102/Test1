@@ -1086,7 +1086,7 @@ class ClientProfilePage(CRMBasePage):
 
     def check_create_mt_user_btn(self):
         try:
-            super().wait_load_element("//*[@id='mt4_act_box']/a[contains(@onclick, 'Create MT')]", timeout=5)
+            super().wait_load_element("//*[@id='mt4_act_box']/a[contains(@onclick, 'Create ')]", timeout=5)
             Logging().reportDebugStep(self, "Create MT User button is available")
             return ClientProfilePage()
         except(NoSuchElementException, TimeoutException):

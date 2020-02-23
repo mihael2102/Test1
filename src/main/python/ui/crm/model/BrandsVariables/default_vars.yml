@@ -1,0 +1,10 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+AssetPricePreconditionCA:
+  asset: "EURUSD"
+ConvertLeadPreconditionUI:
+  convert_lead_currency: "EUR"
+TradingAccountPrecondition:
+  demo_acc_currency: "EUR"
+  demo_acc_leverage: "1:100"
+  live_acc_leverage: "1:100"
+  initial_deposit_amount: "50000"
