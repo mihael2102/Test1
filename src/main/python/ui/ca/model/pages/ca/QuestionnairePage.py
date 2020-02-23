@@ -76,6 +76,7 @@ class QuestionnairePage(CRMBasePage):
     def select_react_on_losses(self, react):
         item = self.driver.find_element_by_xpath(
             "//span[@class='item-pandats ng-star-inserted']/span[text()='%s']" % react)
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", item)
         self.driver.execute_script("arguments[0].click();", item)
         Logging().reportDebugStep(self, "How do you think you will react if you incur trading losses?: " + react)
         return QuestionnairePage(self.driver)
@@ -169,4 +170,11 @@ class QuestionnairePage(CRMBasePage):
         actual_msg = super().wait_load_element("//div[@class='negative-scoring-pandats']").text
         assert expected_msg == actual_msg
         Logging().reportDebugStep(self, "Message is verified: " + actual_msg)
+        return QuestionnairePage(self.driver)
+
+    def close_questionnaire_message(self):
+        sleep(1)
+        close_btn = super().wait_load_element("//div[@class='close-pandats cmicon-close3']")
+        close_btn.click()
+        Logging().reportDebugStep(self, "Message is closed")
         return QuestionnairePage(self.driver)

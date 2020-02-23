@@ -2,6 +2,7 @@ import random
 from datetime import *
 from dateutil.relativedelta import relativedelta
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 import string
 
 
