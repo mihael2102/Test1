@@ -35,14 +35,14 @@ brands:
 #- name: etfinance
 #  config_file: etfinance.yml
 
-#- name: fair-bit
+#- name: fairbit
 #  config_file: fair-bit.yml
 
 #- name: financix
 #  config_file: financix.yml
 
-#- name: globalix
-#  config_file: globalix.yml
+- name: globalix
+  config_file: globalix.yml
 
 #- name: grandefex
 #  config_file: grandefex.yml
@@ -113,8 +113,8 @@ brands:
 #- name: tfxgo
 #  config_file: tfxgo.yml
 
-- name: trade99
-  config_file: trade99.yml
+#- name: trade99
+#  config_file: trade99.yml
 
 #- name: tradenero
 #  config_file: tradenero.yml
@@ -127,6 +127,9 @@ brands:
 
 #- name: uprofx
 #  config_file: uprofx.yml
+
+#- name: wdcmarkets
+#  config_file: wdcmarkets.yml
 
 #- name: 24option
 #  config_file: 24option.yml
