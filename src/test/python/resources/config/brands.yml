@@ -1,7 +1,8 @@
 brands:
 
-- name: trade99
-  config_file: trade99.yml
+- name: tradixa
+  config_file: tradixa.yml
+
 #- name: royal_cfds
 #  config_file: royal_cfds.yml
 #- name: jonesmutual
