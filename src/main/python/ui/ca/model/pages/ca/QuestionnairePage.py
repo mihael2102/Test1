@@ -82,6 +82,7 @@ class QuestionnairePage(CRMBasePage):
         return QuestionnairePage(self.driver)
 
     def click_next_btn(self):
+        sleep(0.2)
         next_btn = super().wait_element_to_be_clickable("//button[text()=' Next ']")
         next_btn.click()
         Logging().reportDebugStep(self, "NEXT button clicked")
@@ -173,8 +174,17 @@ class QuestionnairePage(CRMBasePage):
         return QuestionnairePage(self.driver)
 
     def close_questionnaire_message(self):
-        sleep(1)
+        sleep(2)
         close_btn = super().wait_load_element("//div[@class='close-pandats cmicon-close3']")
         close_btn.click()
         Logging().reportDebugStep(self, "Message is closed")
+        return QuestionnairePage(self.driver)
+
+    def select_item_pick_list(self, question, answer):
+        sleep(0.1)
+        item = super().wait_load_element(
+            "//label[text()='%s']//following-sibling::custom-select//div[@class='wrap-list-pandats ng-star-inserted']/"
+            "span/span[text()='%s']" % (question, answer))
+        self.driver.execute_script("arguments[0].click();", item)
+        Logging().reportDebugStep(self, question + ": " + answer)
         return QuestionnairePage(self.driver)

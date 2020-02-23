@@ -21,6 +21,7 @@ class WithdrawPreconditionCRM(object):
 
     def create_withdraw(self):
         client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
+        lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -28,10 +29,13 @@ class WithdrawPreconditionCRM(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
                                                        TestDataConstants.FILTER))
-
         sleep(2)
-        ClientsPage(self.driver)\
-            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+        if global_var.current_brand_name == "confixfinancial":
+            ClientsPage(self.driver) \
+                .find_client_by_email(lead1[LeadsModuleConstants.EMAIL])
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
         sleep(2)
         ClientProfilePage(self.driver)\
             .scroll_to_financial_transactions_section() \

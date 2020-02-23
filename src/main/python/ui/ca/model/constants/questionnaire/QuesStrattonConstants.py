@@ -4,7 +4,7 @@ from datetime import *
 from dateutil.relativedelta import relativedelta
 
 
-class QuestionnaireConstants(object):
+class QuesStrattonConstants(object):
     random_number = str(random.randrange(1, 9999999))
     STRATTON_LIVE = "StrattonMarketsEU Live"
     CURRENCY_EUR = "EUR"

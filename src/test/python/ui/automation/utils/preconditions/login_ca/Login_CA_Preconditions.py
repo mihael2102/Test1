@@ -1,6 +1,5 @@
 from src.main.python.ui.ca.model.pages.ca.QuestionnairePage import QuestionnairePage
-from src.main.python.ui.ca.model.constants.CAconstants.QuestionnaireConstants import QuestionnaireConstants
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.ca.model.constants.questionnaire.QuesStrattonConstants import QuesStrattonConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -25,6 +24,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI impor
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
+from src.main.python.ui.ca.model.constants.questionnaire.QuesDualixConstants import QuesDualixConstants
 
 
 class LoginCAPrecondition(object):
@@ -191,8 +191,7 @@ class LoginCAPrecondition(object):
                 .click_login() \
                 .verify()
 
-        elif global_var.current_brand_name == "strattonmarkets-eu" or \
-                global_var.current_brand_name == "dualix":
+        elif global_var.current_brand_name == "strattonmarkets-eu":
             CALoginPage(self.driver)\
                 .verify() \
                 .click_hi_guest() \
@@ -206,37 +205,37 @@ class LoginCAPrecondition(object):
                 .fill_zip_code(CAConstants.ZIP_CODE) \
                 .fill_address(CAConstants.ADDRESS) \
                 .click_next() \
-                .enter_ssn_tin(QuestionnaireConstants.SSN_TIN) \
-                .enter_id(QuestionnaireConstants.NAT_ID) \
-                .select_country_tax(QuestionnaireConstants.COUNTRY_TAX) \
-                .enter_company_name(QuestionnaireConstants.COMPANY_NAME) \
+                .enter_ssn_tin(QuesStrattonConstants.SSN_TIN) \
+                .enter_id(QuesStrattonConstants.NAT_ID) \
+                .select_country_tax(QuesStrattonConstants.COUNTRY_TAX) \
+                .enter_company_name(QuesStrattonConstants.COMPANY_NAME) \
                 .select_us_reportable(CAConstants.US_REPORTABLE_NO) \
                 .click_save_changes_btn()
 
             """ Questionnaire: Financial Information """
             QuestionnairePage(self.driver) \
-                .select_employment_status(QuestionnaireConstants.EMPLOYMENT_STATUS_STUDENT) \
-                .select_education_level(QuestionnaireConstants.EDUCATION_LEVEL_NO_EDUCATION) \
-                .select_politically_exposed_person(QuestionnaireConstants.POLITICALLY_EXPOSED_PERSON_NO) \
-                .select_total_annual_income(QuestionnaireConstants.TOTAL_ANNUAL_INCOME_UNDER_15) \
-                .select_approximate_net_wealth(QuestionnaireConstants.APPROXIMATE_NET_WEALTH_UNDER_15) \
-                .select_expected_deposit(QuestionnaireConstants.EXPECTED_DEPOSIT_UNDER_10) \
-                .select_source_of_trading_funds(QuestionnaireConstants.SOURCE_TRADING_FUNDS_EMPLOYMENT) \
-                .select_why_want_trade(QuestionnaireConstants.WHY_WANT_TRADE_SPECULATIVE) \
-                .select_react_on_losses(QuestionnaireConstants.REACT_ON_LOSSES_EXPECT_TO_LOSE) \
+                .select_employment_status(QuesStrattonConstants.EMPLOYMENT_STATUS_STUDENT) \
+                .select_education_level(QuesStrattonConstants.EDUCATION_LEVEL_NO_EDUCATION) \
+                .select_politically_exposed_person(QuesStrattonConstants.POLITICALLY_EXPOSED_PERSON_NO) \
+                .select_total_annual_income(QuesStrattonConstants.TOTAL_ANNUAL_INCOME_UNDER_15) \
+                .select_approximate_net_wealth(QuesStrattonConstants.APPROXIMATE_NET_WEALTH_UNDER_15) \
+                .select_expected_deposit(QuesStrattonConstants.EXPECTED_DEPOSIT_UNDER_10) \
+                .select_source_of_trading_funds(QuesStrattonConstants.SOURCE_TRADING_FUNDS_EMPLOYMENT) \
+                .select_why_want_trade(QuesStrattonConstants.WHY_WANT_TRADE_SPECULATIVE) \
+                .select_react_on_losses(QuesStrattonConstants.REACT_ON_LOSSES_EXPECT_TO_LOSE) \
                 .click_next_btn()
 
             """ Questionnaire: Knowledge and experience """
             QuestionnairePage(self.driver) \
-                .select_instruments_traded_before(QuestionnaireConstants.INSTRUMENTS_TRADED_BEFORE_NO_EXPERIENCE) \
-                .select_if_applicable(QuestionnaireConstants.IF_APPLICABLE_NONE) \
-                .select_correct_regarding_cfd(QuestionnaireConstants.REGARDING_CFD_RETAIL) \
-                .select_factor_affect_prices(QuestionnaireConstants.FACTOR_AFFECT_PRICES_EMPLOYEE_LAYOFFS_RETAIL) \
-                .select_close_bmw_position(QuestionnaireConstants.WHERE_CLOSE_BMW_POSITION_RETAIL) \
-                .select_required_margin(QuestionnaireConstants.REQUIRED_MARGIN_1000) \
-                .select_loss(QuestionnaireConstants.LOSS_AMOUNT_800) \
+                .select_instruments_traded_before(QuesStrattonConstants.INSTRUMENTS_TRADED_BEFORE_NO_EXPERIENCE) \
+                .select_if_applicable(QuesStrattonConstants.IF_APPLICABLE_NONE) \
+                .select_correct_regarding_cfd(QuesStrattonConstants.REGARDING_CFD_RETAIL) \
+                .select_factor_affect_prices(QuesStrattonConstants.FACTOR_AFFECT_PRICES_EMPLOYEE_LAYOFFS_RETAIL) \
+                .select_close_bmw_position(QuesStrattonConstants.WHERE_CLOSE_BMW_POSITION_RETAIL) \
+                .select_required_margin(QuesStrattonConstants.REQUIRED_MARGIN_1000) \
+                .select_loss(QuesStrattonConstants.LOSS_AMOUNT_800) \
                 .click_next_btn() \
-                .verify_questionnaire_message(QuestionnaireConstants.MESSAGE_RETAIL) \
+                .verify_questionnaire_message(QuesStrattonConstants.MESSAGE_RETAIL) \
                 .close_questionnaire_message()
             CALoginPage(self.driver) \
                 .verify() \
@@ -250,8 +249,54 @@ class LoginCAPrecondition(object):
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
+        elif global_var.current_brand_name == "dualix":
+            CALoginPage(self.driver) \
+                .verify() \
+                .click_hi_guest() \
+                .click_transactions_history() \
+                .select_data_birth_day(CAConstants.DAY_BIRTH) \
+                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
+                .select_data_birth_year(CAConstants.YEAR_BIRTH) \
+                .choose_currency(CAConstants.CURRENCY) \
+                .choose_citizenship(CAConstants.CITIZENSHIP3) \
+                .fill_city(CAConstants.CITY) \
+                .fill_zip_code(CAConstants.ZIP_CODE) \
+                .fill_address(CAConstants.ADDRESS) \
+                .click_next() \
+                .enter_ssn_tin(QuesStrattonConstants.SSN_TIN) \
+                .enter_id(QuesStrattonConstants.NAT_ID) \
+                .select_country_tax(QuesStrattonConstants.COUNTRY_TAX) \
+                .enter_company_name(QuesStrattonConstants.COMPANY_NAME) \
+                .select_us_reportable(CAConstants.US_REPORTABLE_NO) \
+                .click_save_changes_btn()
+            QuestionnairePage(self.driver)\
+                .select_item_pick_list(QuesDualixConstants.LIST_1, QuesDualixConstants.ITEM_1) \
+                .select_item_pick_list(QuesDualixConstants.LIST_2, QuesDualixConstants.ITEM_2) \
+                .select_item_pick_list(QuesDualixConstants.LIST_3, QuesDualixConstants.ITEM_3) \
+                .select_item_pick_list(QuesDualixConstants.LIST_4, QuesDualixConstants.ITEM_4) \
+                .select_item_pick_list(QuesDualixConstants.LIST_5, QuesDualixConstants.ITEM_5) \
+                .select_item_pick_list(QuesDualixConstants.LIST_6, QuesDualixConstants.ITEM_6) \
+                .click_next_btn() \
+                .select_item_pick_list(QuesDualixConstants.LIST_7, QuesDualixConstants.ITEM_7) \
+                .select_item_pick_list(QuesDualixConstants.LIST_8, QuesDualixConstants.ITEM_8) \
+                .select_item_pick_list(QuesDualixConstants.LIST_9, QuesDualixConstants.ITEM_9) \
+                .select_item_pick_list(QuesDualixConstants.LIST_10, QuesDualixConstants.ITEM_10) \
+                .select_item_pick_list(QuesDualixConstants.LIST_11, QuesDualixConstants.ITEM_11) \
+                .select_item_pick_list(QuesDualixConstants.LIST_12, QuesDualixConstants.ITEM_12) \
+                .select_item_pick_list(QuesDualixConstants.LIST_13, QuesDualixConstants.ITEM_13) \
+                .select_item_pick_list(QuesDualixConstants.LIST_14, QuesDualixConstants.ITEM_14) \
+                .select_item_pick_list(QuesDualixConstants.LIST_15, QuesDualixConstants.ITEM_15) \
+                .select_item_pick_list(QuesDualixConstants.LIST_16, QuesDualixConstants.ITEM_16) \
+                .select_item_pick_list(QuesDualixConstants.LIST_17, QuesDualixConstants.ITEM_17) \
+                .select_item_pick_list(QuesDualixConstants.LIST_18, QuesDualixConstants.ITEM_18) \
+                .select_item_pick_list(QuesDualixConstants.LIST_19, QuesDualixConstants.ITEM_19) \
+                .select_item_pick_list(QuesDualixConstants.LIST_20, QuesDualixConstants.ITEM_20) \
+                .select_item_pick_list(QuesDualixConstants.LIST_21, QuesDualixConstants.ITEM_21) \
+                .select_item_pick_list(QuesDualixConstants.LIST_22, QuesDualixConstants.ITEM_22) \
+                .select_item_pick_list(QuesDualixConstants.LIST_23, QuesDualixConstants.ITEM_23) \
+                .click_next_btn() \
+                .close_questionnaire_message()
         else:
-
             CALoginPage(self.driver)\
                 .verify()\
                 .click_hi_guest()\
@@ -274,12 +319,12 @@ class LoginCAPrecondition(object):
                 .enter_password(CAConstants.PASSWORD)\
                 .click_login()\
                 .verify()
-            sleep(2)
-            existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(
-                TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])
-            expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+        sleep(2)
+        existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(
+            TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])
+        expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
 
-            assert existing_client.lower() == expected_client.lower()
+        assert existing_client.lower() == expected_client.lower()
 
     def client_exist_in_crm(self):
         """ Login to CRM """
