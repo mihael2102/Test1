@@ -30,6 +30,12 @@ class QuesDualixConstants(object):
     LIST_21 = "How do you think you will react if you incur trading losses?"
     LIST_22 = "Which of the following is correct regarding Contracts for Difference (CFDs)?"
     LIST_23 = "What is the main factor that can affect the prices of the underlying currency exchange (forex) markets?"
+    LIST_24 = "Country of Tax"
+    LIST_25 = "Are you a US reportable person?"
+
+    FIELD_1 = "SSN/TIN"
+    FIELD_2 = "National ID"
+    FIELD_3 = "Company Name"
 
     ITEM_1 = "No"
     ITEM_2 = "Additional Income"
@@ -54,3 +60,13 @@ class QuesDualixConstants(object):
     ITEM_21 = "I expect to lose sometimes. It is part of trading. If I make a loss, I will review and revise my trading strategy."
     ITEM_22 = "They are speculative, complex and risky."
     ITEM_23 = "Interest Rates and Economic Releases/Announcements"
+    ITEM_23_CRM = "Interest Rates and Economic Releases/Announcements."
+    ITEM_24 = "Germany"
+    ITEM_25 = "No"
+
+    SSN = "123123"
+    ID = "11111"
+    COMPANY_NAME = "TEST COMPANY"
+
+    SECTION_KNOWLEDGE = "Knowledge"
+    SECTION_PERS_PROFILE = "Personal Profile"

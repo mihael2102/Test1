@@ -19,6 +19,8 @@ from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleC
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from src.main.python.ui.crm.model.side_bar.SidebarModules import SidebarModules
+from src.main.python.ui.ca.model.constants.questionnaire.QuesDualixConstants import QuesDualixConstants
 
 
 @pytest.mark.run(order=13)
@@ -38,12 +40,51 @@ class DepositTestCRM(BaseTest):
         CRMHomePage(self.driver)\
             .open_client_module()\
             .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
-        if global_var.current_brand_name == "confixfinancial":
+        if global_var.current_brand_name == "confixfinancial" or \
+                global_var.current_brand_name == "marketrip":
             ClientsPage(self.driver) \
                 .find_client_by_email(lead1[LeadsModuleConstants.EMAIL])
         else:
             ClientsPage(self.driver) \
                 .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+
+        # Fill Questionnaire
+        if global_var.current_brand_name == "dualix":
+            SidebarModules(self.driver)\
+                .open_view_edit_questionnaire() \
+                .select_item_pick_list(QuesDualixConstants.LIST_1, QuesDualixConstants.ITEM_1) \
+                .select_item_pick_list(QuesDualixConstants.LIST_2, QuesDualixConstants.ITEM_2) \
+                .select_item_pick_list(QuesDualixConstants.LIST_3, QuesDualixConstants.ITEM_3) \
+                .select_item_pick_list(QuesDualixConstants.LIST_4, QuesDualixConstants.ITEM_4) \
+                .select_item_pick_list(QuesDualixConstants.LIST_5, QuesDualixConstants.ITEM_5) \
+                .select_item_pick_list(QuesDualixConstants.LIST_6, QuesDualixConstants.ITEM_6) \
+                .open_section(QuesDualixConstants.SECTION_KNOWLEDGE) \
+                .select_item_pick_list(QuesDualixConstants.LIST_7, QuesDualixConstants.ITEM_7) \
+                .select_item_pick_list(QuesDualixConstants.LIST_8, QuesDualixConstants.ITEM_8) \
+                .select_item_pick_list(QuesDualixConstants.LIST_9, QuesDualixConstants.ITEM_9) \
+                .select_item_pick_list(QuesDualixConstants.LIST_10, QuesDualixConstants.ITEM_10) \
+                .select_item_pick_list(QuesDualixConstants.LIST_11, QuesDualixConstants.ITEM_11) \
+                .select_item_pick_list(QuesDualixConstants.LIST_12, QuesDualixConstants.ITEM_12) \
+                .select_item_pick_list(QuesDualixConstants.LIST_13, QuesDualixConstants.ITEM_13) \
+                .select_item_pick_list(QuesDualixConstants.LIST_14, QuesDualixConstants.ITEM_14) \
+                .select_item_pick_list(QuesDualixConstants.LIST_15, QuesDualixConstants.ITEM_15) \
+                .select_item_pick_list(QuesDualixConstants.LIST_16, QuesDualixConstants.ITEM_16) \
+                .select_item_pick_list(QuesDualixConstants.LIST_17, QuesDualixConstants.ITEM_17) \
+                .select_item_pick_list(QuesDualixConstants.LIST_18, QuesDualixConstants.ITEM_18) \
+                .select_item_pick_list(QuesDualixConstants.LIST_19, QuesDualixConstants.ITEM_19) \
+                .select_item_pick_list(QuesDualixConstants.LIST_20, QuesDualixConstants.ITEM_20) \
+                .select_item_pick_list(QuesDualixConstants.LIST_21, QuesDualixConstants.ITEM_21) \
+                .select_item_pick_list(QuesDualixConstants.LIST_22, QuesDualixConstants.ITEM_22) \
+                .select_item_pick_list(QuesDualixConstants.LIST_23, QuesDualixConstants.ITEM_23_CRM) \
+                .open_section(QuesDualixConstants.SECTION_PERS_PROFILE) \
+                .select_item_pick_list(QuesDualixConstants.LIST_24, QuesDualixConstants.ITEM_24) \
+                .set_text_field(QuesDualixConstants.FIELD_1, QuesDualixConstants.SSN) \
+                .select_item_pick_list(QuesDualixConstants.LIST_25, QuesDualixConstants.ITEM_25) \
+                .set_text_field(QuesDualixConstants.FIELD_2, QuesDualixConstants.ID) \
+                .set_text_field(QuesDualixConstants.FIELD_3, QuesDualixConstants.COMPANY_NAME) \
+                .click_save_btn() \
+                .get_success_message() \
+                .click_ok()
 
         # Create LIVE account for client using MT4 Actions
         crm_client_profile = ClientProfilePage(self.driver)

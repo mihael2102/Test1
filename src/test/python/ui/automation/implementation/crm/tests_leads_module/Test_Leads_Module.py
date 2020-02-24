@@ -123,7 +123,8 @@ class LeadModuleTest(BaseTest):
                 self.client1[LeadsModuleConstants.FIRST_SOURCE_NAME],
                 self.client1[LeadsModuleConstants.PHONE_AREA_CODE])
 
-        elif global_var.current_brand_name == "confixfinancial":
+        elif global_var.current_brand_name == "confixfinancial" or \
+                global_var.current_brand_name == "marketrip":
             ConvertLeadModule(self.driver).perform_convert_lead(
                 self.client1[LeadsModuleConstants.FIRST_NAME],
                 self.client1[LeadsModuleConstants.FIRST_LAST_NAME],
