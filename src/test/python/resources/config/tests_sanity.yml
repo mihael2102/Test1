@@ -37,6 +37,7 @@ tests_config:
   class: TestPagesCA
   tests:
     - test_main_menu_pages_loading
+    - test_graph_ca
 
 #- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
 #  class: TradingProcess
