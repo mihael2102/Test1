@@ -174,7 +174,9 @@ class QuestionnairePage(CRMBasePage):
         return QuestionnairePage(self.driver)
 
     def close_questionnaire_message(self):
-        sleep(2)
+        sleep(1)
+        self.wait_element_to_be_disappear("//div[contains(@class,'spinner')]")
+        sleep(0.1)
         close_btn = super().wait_load_element("//div[@class='close-pandats cmicon-close3']")
         close_btn.click()
         Logging().reportDebugStep(self, "Message is closed")
