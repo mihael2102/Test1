@@ -18,13 +18,14 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 
 
 @pytest.mark.run(order=13)
 class DepositTestCRM(BaseTest):
 
     def test_make_deposit_crm(self):
-        # lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
+        lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
         client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url'))\
@@ -36,8 +37,13 @@ class DepositTestCRM(BaseTest):
         # Open clients module. Find created client by email and open his profile
         CRMHomePage(self.driver)\
             .open_client_module()\
-            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if global_var.current_brand_name == "confixfinancial":
+            ClientsPage(self.driver) \
+                .find_client_by_email(lead1[LeadsModuleConstants.EMAIL])
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
 
         # Create LIVE account for client using MT4 Actions
         crm_client_profile = ClientProfilePage(self.driver)
