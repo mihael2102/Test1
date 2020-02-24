@@ -27,6 +27,9 @@ LeadModuleTest:
   first_source_name: "source 1"
 TradingAccountPrecondition:
   demo_acc_currency: "EUR"
+  demo_acc_currency_usd: "USD"
   demo_acc_leverage: "1:100"
   live_acc_leverage: "1:100"
   initial_deposit_amount: "50000"
+  demo_acc_server: "Demo"
+  live_acc_server: "Live"

@@ -38,6 +38,7 @@ class TradingAccountPrecondition(object):
         return lead
 
     def add_live_account(self):
+        """ Log in CA """
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .login() \
@@ -47,6 +48,7 @@ class TradingAccountPrecondition(object):
             .verify() \
             .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                 LeadsModuleConstants.FIRST_NAME])
+        """ Create LIVE account """
         CAPage(self.driver)\
             .open_manage_accounts() \
             .open_new_account_btn() \
@@ -104,7 +106,7 @@ class TradingAccountPrecondition(object):
         CAPage(self.driver).get_demo_account_number()
 
     def verify_account_in_crm(self):
-        # Login to CRM
+        """ Login to CRM """
         if global_var.current_brand_name != "q8":
             CRMLoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url')) \
@@ -164,16 +166,7 @@ class TradingAccountPrecondition(object):
         ClientProfilePage(self.driver) \
             .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-        if global_var.current_brand_name == "royal_cfds":
-            MT4CreateAccountModule(self.driver) \
-                .create_account(
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_1_200))
-            return self
-
-        elif global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8":
             MT4CreateAccountModule(self.driver) \
                 .create_account_with_platform(
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT4),
@@ -199,15 +192,6 @@ class TradingAccountPrecondition(object):
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY_BTC),
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
-            return self
-
-        elif global_var.current_brand_name == "axa_markets":
-            MT4CreateAccountModule(self.driver) \
-                .create_account(
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400))
             return self
 
         elif (global_var.current_brand_name == "dax-300") \
@@ -242,16 +226,7 @@ class TradingAccountPrecondition(object):
 
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-        if global_var.current_brand_name == "royal_cfds":
-            MT4CreateAccountModule(self.driver) \
-                .create_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, CRMConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_1_200))
-            return self
-
-        elif global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8":
             MT4CreateAccountModule(self.driver) \
                 .create_account_with_platform(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT4),
