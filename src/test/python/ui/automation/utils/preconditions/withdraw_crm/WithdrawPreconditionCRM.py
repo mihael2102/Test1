@@ -31,7 +31,8 @@ class WithdrawPreconditionCRM(object):
                                                        TestDataConstants.FILTER))
         sleep(2)
         if global_var.current_brand_name == "confixfinancial" or \
-                global_var.current_brand_name == "marketrip":
+                global_var.current_brand_name == "marketrip" or \
+                global_var.current_brand_name == "tradixa":
             ClientsPage(self.driver) \
                 .find_client_by_email(lead1[LeadsModuleConstants.EMAIL])
         else:
