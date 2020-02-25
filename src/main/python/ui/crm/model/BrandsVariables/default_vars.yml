@@ -3,6 +3,8 @@ AssetPricePreconditionCA:
   asset: "EURUSD"
 ConvertLeadPreconditionUI:
   convert_lead_currency: "EUR"
+CryptoQuotesPreconditionCA:
+  asset: "BTCEUR"
 DepositTestCRM:
   live_acc_server: "Live"
   live_acc_currency: "USD"
@@ -38,3 +40,5 @@ TradingAccountPrecondition:
   initial_deposit_amount: "50000"
   demo_acc_server: "Demo"
   live_acc_server: "Live"
+TradingPreconditionLive:
+  asset: "XRPUSD"
