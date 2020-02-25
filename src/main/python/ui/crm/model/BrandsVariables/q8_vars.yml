@@ -1,0 +1,5 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CryptoQuotesPreconditionCA:
+  asset: "AUDUSD"
+TradingPreconditionLive:
+  asset: "AUDUSD"
