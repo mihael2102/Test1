@@ -72,27 +72,38 @@ class LoginCAPrecondition(object):
 
     def sign_up_ca(self):
         """ Registration form """
-        CALoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url_ca'))\
-            .close_campaign_banner()\
-            .click_sign_up()\
-            .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])\
-            .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                        LeadsModuleConstants.FIRST_LAST_NAME])\
-            .fill_email(CAConstants.EMAIL_CA)\
-            .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])\
-            .fill_password(CAConstants.PASSWORD)\
-            .fill_confirm_password(CAConstants.PASSWORD)\
-            .check_box_accept()\
-            .risk_check_box_accept()\
-            .select_country_first_step(CAConstants.COUNTRY1)\
-            .click_submit()\
-            .close_payment_popup()
+        if global_var.current_brand_name == "q8":
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca_2')) \
+                .sign_up_q8(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
+                            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
+                                                      [LeadsModuleConstants.FIRST_LAST_NAME],
+                            CAConstants.EMAIL_CA,
+                            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE],
+                            CAConstants.PASSWORD)
+        else:
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca'))\
+                .close_campaign_banner()\
+                .click_sign_up()\
+                .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
+                                             [LeadsModuleConstants.FIRST_NAME])\
+                .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
+                                            [LeadsModuleConstants.FIRST_LAST_NAME])\
+                .fill_email(CAConstants.EMAIL_CA)\
+                .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])\
+                .fill_password(CAConstants.PASSWORD)\
+                .fill_confirm_password(CAConstants.PASSWORD)\
+                .check_box_accept()\
+                .risk_check_box_accept()\
+                .select_country_first_step(CAConstants.COUNTRY1)\
+                .click_submit()\
+                .close_payment_popup()
 
-        """ Check graphs """
-        WebTraderPage(self.driver) \
-            .open_trading_page() \
-            .check_chart_loaded()
+            """ Check graphs """
+            WebTraderPage(self.driver) \
+                .open_trading_page() \
+                .check_chart_loaded()
 
         """ Personal details form """
         if global_var.current_brand_name == "solocapitals":
@@ -296,6 +307,8 @@ class LoginCAPrecondition(object):
                 .select_item_pick_list(QuesDualixConstants.LIST_23, QuesDualixConstants.ITEM_23) \
                 .click_next_btn() \
                 .close_questionnaire_message()
+        elif global_var.current_brand_name == "q8":
+            pass
         else:
             CALoginPage(self.driver)\
                 .verify()\
@@ -320,11 +333,14 @@ class LoginCAPrecondition(object):
                 .click_login()\
                 .verify()
         sleep(2)
-        existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(
-            TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])
-        expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+        if global_var.current_brand_name == "q8":
+            CALoginPage(self.driver).verify_client("my account")
+        else:
+            existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(
+                TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])
+            expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
 
-        assert existing_client.lower() == expected_client.lower()
+            assert existing_client.lower() == expected_client.lower()
 
     def client_exist_in_crm(self):
         """ Login to CRM """

@@ -21,6 +21,17 @@ class CALoginPage(CRMBasePage):
         super().switch_first_tab_page()
         return CALoginPage(self.driver)
 
+    def sign_up_q8(self, first_name, last_name, email, phone, password):
+        sleep(0.5)
+        self.close_campaign_banner()
+        self.click_sign_up()
+        self.fill_first_name(first_name)
+        self.fill_last_name(last_name)
+        self.fill_email(email)
+        self.fill_phone(phone)
+        self.fill_password(password)
+        self.click_submit()
+
     def close_campaign_banner(self):
         sleep(3)
         try:

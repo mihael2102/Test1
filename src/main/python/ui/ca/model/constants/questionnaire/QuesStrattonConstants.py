@@ -6,6 +6,7 @@ from dateutil.relativedelta import relativedelta
 
 class QuesStrattonConstants(object):
     random_number = str(random.randrange(1, 9999999))
+
     STRATTON_LIVE = "StrattonMarketsEU Live"
     CURRENCY_EUR = "EUR"
     GROUP_STR_VGOLD_EUR = "STR_VGoldEUR"
@@ -16,6 +17,7 @@ class QuesStrattonConstants(object):
     LEVERAGE_400 = "400"
     LEVERAGE_1_30 = "1 : 30"
     LEVERAGE_1_400 = "1 : 400"
+
     UPDATE_QUESTIONNAIRE_MSG = "Questionnaire was updated"
     PROF_CLASSIFICATION_ELECTIVE = "Elective Professional"
     CUSTOMER_CLASSIFICATION_EMPTY = ""
@@ -23,10 +25,40 @@ class QuesStrattonConstants(object):
     CUSTOMER_CLASSIFICATION_NEGATIVE = "Negative"
     CUSTOMER_CLASSIFICATION_RETAIL = "Retail"
     CUSTOMER_CLASSIFICATION_PROF_ELIGIBLE = "Professional Eligible"
+
     SSN_TIN = "123123"
     NAT_ID = "123123"
     COUNTRY_TAX = "Germany"
     COMPANY_NAME = "Test"
+    US = "No"
+
+    LIST_1 = "What’s your employment status?"
+    LIST_2 = "your level of education?"
+    LIST_3 = "Are you a politically exposed person?"
+    LIST_4 = "your Total Annual Income?"
+    LIST_5 = "your approximate Net Wealth (financial instruments + cash)?"
+    LIST_6 = "How much do you expect to deposit in the next year with us?"
+    LIST_7 = "What will be the main source of your trading funds?"
+    LIST_8 = "Why do you want to trade?"
+    LIST_9 = "How do you think you will react if you incur trading losses?"
+    LIST_10 = "Which of the following instruments have you traded before?"
+    LIST_10_1 = "Average frequency of your annual past transactions:"
+    LIST_10_2 = "Average trade size (volume) of your annual past transactions:"
+    LIST_10_3 = "Common level of leverage used:"
+    LIST_11 = "Please select if applicable:"
+    LIST_12 = "Which of the following is correct regarding Contracts for Difference (CFDs)?"
+    LIST_13 = "What is the main factor that can affect the prices of the underlying currency exchange (forex) markets?"
+    LIST_14 = "If you open a position on the BMW share through our platform, where can you close it?"
+    LIST_15 = "What would be the required margin to open a CFD of 1 Lot (€100,000) on EUR/USD, assuming your leverage is 1:100 (i.e. margin 1%)?"
+    LIST_16 = "A Trader has a trading capital/equity of €10,000 and opens a CFD position on EUR/USD at 1.1000. What will be the loss when the price moves against the Trader by 10 pips if the pip value is €45 and the leverage is 1:50."
+    LIST_17 = "Are you a US reportable person?"
+    LIST_18 = "Country of Tax"
+    LIST_19 = "Are you a US reportable person?"
+
+    FIELD_1 = "SSN/TIN"
+    FIELD_2 = "National ID"
+    FIELD_3 = "Company Name"
+
     EMPLOYMENT_STATUS_STUDENT = "Student"
     EDUCATION_LEVEL_NO_EDUCATION = "No Education"
     POLITICALLY_EXPOSED_PERSON_NO = "No"
@@ -59,10 +91,15 @@ class QuesStrattonConstants(object):
     REQUIRED_MARGIN_1000 = "€1,000"
     LOSS_AMOUNT_800 = "€800"
     LOSS_AMOUNT_450 = "€450"
+
     MESSAGE_NEGATIVE = "Dear customer, Based on the information you have submitted, please note that you do not appear to posses the appropriate knowledge and experience to deal in the financial instruments and services our company offers, since these are considered as complex products. We are concerned you do not understand the risks involved. Therefore, we do not recommend you proceed with the opening of a live trading account and opened a demo account for you to review and gain some experience in our platform."
     MESSAGE_RETAIL = "Dear customer, Based on the information you have submitted, we have opened a live trading account for you. Please note that in order to start with the trading activity, you will have to upload your documents located in the verification center."
+
     MAIL_CLIENT_EMPTY = "pandaqa" + random_number + "empty@pandats.com"
     MAIL_CLIENT_BLOCKED = "pandaqa+" + random_number + "blocked@pandats.com"
     MAIL_CLIENT_NEGATIVE = "pandaqa+" + random_number + "negative@pandats.com"
     MAIL_CLIENT_RETAIL = "pandaqa+" + random_number + "retail@pandats.com"
     MAIL_CLIENT_PROFESSIONAL_ELIGIBLE = "pandaqa+" + random_number + "prof_eligible@pandats.com"
+
+    SECTION_KNOWLEDGE = "Knowledge"
+    SECTION_PERS_PROFILE = "Personal Profile"

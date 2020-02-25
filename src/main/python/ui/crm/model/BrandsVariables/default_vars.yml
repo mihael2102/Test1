@@ -3,6 +3,11 @@ AssetPricePreconditionCA:
   asset: "EURUSD"
 ConvertLeadPreconditionUI:
   convert_lead_currency: "EUR"
+DepositTestCRM:
+  live_acc_server: "Live"
+  live_acc_currency: "USD"
+  live_acc_group: "USD"
+  live_acc_leverage: "100"
 LeadModuleTest:
   EVAL_first_name: "'testqa' + (''.join(random.sample(string.ascii_uppercase*6, 6)))"
   last_name: "Doe"
