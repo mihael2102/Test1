@@ -44,18 +44,10 @@ class CreditInPrecondition(object):
             .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
                                                               TestDataConstants.E_MAIL))\
             .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
-        if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "newforexstaging"):
-            crm_client_profile = MT4CreateAccountModule(self.driver) \
-                .create_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
-
-        elif global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8":
             crm_client_profile = MT4CreateAccountModule(self.driver) \
                 .create_account_with_platform(
-                self.config.get_value(TestDataConstants.TRADING_PLATFORMS, TestDataConstants.TRADING_PLATFORM_MT4),
+                self.config.get_value(TestDataConstants.TRADING_PLATFORMS, TestDataConstants.TRADING_PLATFORM_MT5),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
