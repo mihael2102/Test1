@@ -11,8 +11,13 @@ class QuestionnaireCRMPage(CRMBasePage):
 
     def select_item_pick_list(self, question, answer):
         sleep(0.1)
-        pick_list = Select(super().wait_load_element(
-            "//label[contains(text(),'%s')]//following-sibling::div[@class='form-group']/select" % question))
+        try:
+            pick_list = Select(super().wait_load_element(
+                "//label[contains(text(),'%s')]//following-sibling::div[@class='form-group']/select" % question,
+                timeout=10))
+        except(NoSuchElementException, TimeoutException):
+            pick_list = Select(super().wait_load_element(
+                "//label[contains(text(),'%s')]//following-sibling::select" % question))
         pick_list.select_by_visible_text(answer)
         Logging().reportDebugStep(self, question + ": " + answer)
         return QuestionnaireCRMPage(self.driver)

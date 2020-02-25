@@ -10,11 +10,11 @@ tests_config:
   class: DepositTestCRM
   tests:
     - test_make_deposit_crm  # create live account and make a deposit into a trading account from the crm
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-#  class: WithdrawTest
-#  tests:
-#    - test_withdraw_crm   #preconditions: convert lead, make deposit
+
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
+  class: WithdrawTest
+  tests:
+    - test_withdraw_crm   #preconditions: convert lead, make deposit
 
 #- module: src.test.python.ui.automation.implementation.api.Test_API
 #  class: TestAPI

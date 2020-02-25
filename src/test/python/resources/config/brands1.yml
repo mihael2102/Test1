@@ -29,8 +29,8 @@ brands:
 #- name: dax-300
 #  config_file: dax-300.yml
 
-- name: dualix
-  config_file: dualix.yml
+#- name: dualix
+#  config_file: dualix.yml
 
 #- name: etfinance
 #  config_file: etfinance.yml
@@ -104,8 +104,8 @@ brands:
 #- name: stox50
 #  config_file: stox50.yml
 
-#- name: strattonmarkets-eu
-#  config_file: strattonmarkets-eu.yml
+- name: strattonmarkets-eu
+  config_file: strattonmarkets-eu.yml
 
 #- name: swisscci
 #  config_file: swisscci.yml

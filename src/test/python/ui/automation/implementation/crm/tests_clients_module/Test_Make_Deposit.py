@@ -21,6 +21,8 @@ from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.side_bar.SidebarModules import SidebarModules
 from src.main.python.ui.ca.model.constants.questionnaire.QuesDualixConstants import QuesDualixConstants
+from src.main.python.ui.ca.model.constants.questionnaire.QuesStrattonConstants import QuesStrattonConstants
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 @pytest.mark.run(order=13)
@@ -84,34 +86,48 @@ class DepositTestCRM(BaseTest):
                 .set_text_field(QuesDualixConstants.FIELD_3, QuesDualixConstants.COMPANY_NAME) \
                 .click_save_btn() \
                 .get_success_message() \
-                .click_ok()
+                .click_ok() \
+                .refresh_page()
+        if global_var.current_brand_name == "strattonmarkets-eu":
+            SidebarModules(self.driver)\
+                .open_view_edit_questionnaire() \
+                .select_item_pick_list(QuesStrattonConstants.LIST_1, QuesStrattonConstants.EMPLOYMENT_STATUS_STUDENT) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_2, QuesStrattonConstants.EDUCATION_LEVEL_NO_EDUCATION) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_3, QuesStrattonConstants.POLITICALLY_EXPOSED_PERSON_NO) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_4, QuesStrattonConstants.TOTAL_ANNUAL_INCOME_OVER_700) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_5, QuesStrattonConstants.APPROXIMATE_NET_WEALTH_OVER_700) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_6, QuesStrattonConstants.EXPECTED_DEPOSIT_OVER_350) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_7, QuesStrattonConstants.SOURCE_TRADING_FUNDS_EMPLOYMENT) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_8, QuesStrattonConstants.WHY_WANT_TRADE_SPECULATIVE) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_9, QuesStrattonConstants.REACT_ON_LOSSES_NO_BIG_DEAL) \
+                .open_section(QuesStrattonConstants.SECTION_KNOWLEDGE) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_10, QuesStrattonConstants.INSTRUMENTS_TRADED_BEFORE_BOTH_ABOVE) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_10_1, QuesStrattonConstants.AVERAGE_FREQUENCY_20) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_10_2, QuesStrattonConstants.TRADE_SIZE_MORE_10000) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_10_3, QuesStrattonConstants.COMMON_LEVEL_ABOVE_30) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_11, QuesStrattonConstants.IF_APPLICABLE_BOTH_ABOVE) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_12, QuesStrattonConstants.REGARDING_CFD_RETAIL) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_13, QuesStrattonConstants.FACTOR_AFFECT_PRICES_EMPLOYEE_LAYOFFS_RETAIL) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_14, QuesStrattonConstants.WHERE_CLOSE_BMW_POSITION_RETAIL) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_15, QuesStrattonConstants.REQUIRED_MARGIN_1000) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_16, QuesStrattonConstants.LOSS_AMOUNT_450) \
+                .open_section(QuesStrattonConstants.SECTION_PERS_PROFILE) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_18, QuesStrattonConstants.COUNTRY_TAX) \
+                .set_text_field(QuesStrattonConstants.FIELD_1, QuesStrattonConstants.SSN_TIN) \
+                .select_item_pick_list(QuesStrattonConstants.LIST_19, QuesStrattonConstants.US) \
+                .set_text_field(QuesStrattonConstants.FIELD_2, QuesStrattonConstants.NAT_ID) \
+                .set_text_field(QuesStrattonConstants.FIELD_3, QuesStrattonConstants.COMPANY_NAME) \
+                .click_save_btn() \
+                .get_success_message() \
+                .click_ok() \
+                .refresh_page()
 
         # Create LIVE account for client using MT4 Actions
         crm_client_profile = ClientProfilePage(self.driver)
         crm_client_profile.check_create_mt_user_btn()
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-        if global_var.current_brand_name == "royal_cfds" or \
-           global_var.current_brand_name == "newforexstaging":
-            MT4CreateAccountModule(self.driver)\
-                .create_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE,
-                                      TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))\
-                .click_ok()
-
-        elif global_var.current_brand_name == "trade99":
-            MT4CreateAccountModule(self.driver)\
-                .create_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                MT4ModuleConstants.CURRENCY_BTC,
-                MT4ModuleConstants.GROUP_REAL,
-                MT4ModuleConstants.LEVERAGE_100)\
-                .click_ok()
-
-        elif global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8":
             MT4CreateAccountModule(self.driver)\
                 .create_account_with_platform(
                 self.config.get_value(TestDataConstants.TRADING_PLATFORMS, TestDataConstants.TRADING_PLATFORM_MT4),
@@ -120,42 +136,13 @@ class DepositTestCRM(BaseTest):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200)) \
                 .click_ok()
-
-        elif global_var.current_brand_name == "axa_markets":
-            MT4CreateAccountModule(self.driver)\
-                .create_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400)) \
-                .click_ok()
-
-        elif (global_var.current_brand_name == "gxfx") or \
-             (global_var.current_brand_name == "dax-300") or \
-             (global_var.current_brand_name == "kontofx") or \
-             (global_var.current_brand_name == "uprofx") or \
-             (global_var.current_brand_name == "olympiamarkets") or \
-             (global_var.current_brand_name == "stox50") or \
-             (global_var.current_brand_name == "aztrades") or \
-             (global_var.current_brand_name == "grandefex") or \
-             (global_var.current_brand_name == "libramarkets") or \
-             (global_var.current_brand_name == "wdcmarkets"):
-
-            MT4CreateAccountModule(self.driver)\
-                .create_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY_EUR),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_EUR),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200)) \
-                .click_ok()
-
         else:
             MT4CreateAccountModule(self.driver) \
                 .create_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE))\
+                    var.get_var(self.__class__.__name__)["live_acc_server"],
+                    var.get_var(self.__class__.__name__)["live_acc_currency"],
+                    var.get_var(self.__class__.__name__)["live_acc_group"],
+                    var.get_var(self.__class__.__name__)["live_acc_leverage"]) \
                 .click_ok()
 
         # Get account number to make deposit in future
