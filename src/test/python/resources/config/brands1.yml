@@ -95,8 +95,8 @@ brands:
 #- name: ptbanc
 #  config_file: ptbanc.yml
 
-- name: q8
-  config_file: q8.yml
+#- name: q8
+#  config_file: q8.yml
 
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
@@ -119,8 +119,8 @@ brands:
 #- name: tradenero
 #  config_file: tradenero.yml
 
-#- name: tradixa
-#  config_file: tradixa.yml
+- name: tradixa
+  config_file: tradixa.yml
 
 #- name: uft
 #  config_file: uft.yml
