@@ -39,19 +39,22 @@ class TradingAccountPrecondition(object):
 
     def add_live_account(self):
         """ Log in CA """
-        CALoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url_ca')) \
-            .login() \
-            .enter_email(CAConstants.EMAIL_CA) \
-            .enter_password(CAConstants.PASSWORD) \
-            .click_login() \
-            .verify() \
-            .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                LeadsModuleConstants.FIRST_NAME])
         if global_var.current_brand_name == "q8":
-            CAPage(self.driver)\
+            # pass
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca')) \
                 .not_runned_test()
         else:
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .login() \
+                .enter_email(CAConstants.EMAIL_CA) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .verify() \
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                    LeadsModuleConstants.FIRST_NAME])
+
             """ Create LIVE account """
             CAPage(self.driver)\
                 .open_manage_accounts() \

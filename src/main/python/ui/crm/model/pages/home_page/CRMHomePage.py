@@ -98,7 +98,7 @@ class CRMHomePage(CRMBasePage):
             Logging().reportDebugStep(self, "The audit logs module was opened")
         except TimeoutException:
             pass
-            Logging().reportDebugStep(self, "Audit Logs module does not exist")
+            Logging().reportDebugStep(self, "Audit Logs module does not exist (NOT RUNNED)")
         return AuditLogsPage(self.driver)
 
     def select_auto_assign_module_more_list(self, module):
@@ -109,7 +109,7 @@ class CRMHomePage(CRMBasePage):
             return AutoAssignPage(self.driver)
         except NoSuchElementException:
             pass
-            Logging().reportDebugStep(self, "The AutoAssign module does not exist")
+            Logging().reportDebugStep(self, "The AutoAssign module does not exist (NOT RUNNED)")
             return False
 
     def select_service_desk_module_more_list(self, module):
@@ -124,7 +124,7 @@ class CRMHomePage(CRMBasePage):
             module_element.click()
             Logging().reportDebugStep(self, "The my dashboard  module was opened")
         except TimeoutException:
-            Logging().reportDebugStep(self, "My Dashboard module does not exist")
+            Logging().reportDebugStep(self, "My Dashboard module does not exist (NOT RUNNED)")
         return MyDashBoardModule(self.driver)
 
     def select_affiliates_module_more_list(self, module):
@@ -188,7 +188,7 @@ class CRMHomePage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", module_element)
             Logging().reportDebugStep(self, "The CRM Configuration module was opened")
         except(TimeoutException, NoSuchElementException):
-            Logging().reportDebugStep(self, "CRM Configuration module does not exist")
+            Logging().reportDebugStep(self, "CRM Configuration module does not exist (NOT RUNNED)")
         return AuditLogsPage(self.driver)
 
     def select_user_management(self):
@@ -209,7 +209,7 @@ class CRMHomePage(CRMBasePage):
             module_element.click()
             Logging().reportDebugStep(self, "Dashboard module was opened")
         except:
-            Logging().reportDebugStep(self, "Dashboard module does not exist")
+            Logging().reportDebugStep(self, "Dashboard module does not exist (NOT RUNNED)")
         return DashboardPage(self.driver)
 
     def select_leaderboard_module_more_list(self, module):
