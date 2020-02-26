@@ -215,6 +215,7 @@ class WebTraderPage(CRMBasePage):
             return WebTraderPage(self.driver)
         except:
             Logging().reportDebugStep(self, "There is no asset: " + asset)
+            Logging().reportDebugStep(self, "NOT RUNNED")
             TradingConstants.IS_ASSET_EXIST = "no"
 
     def click_select_account(self):
@@ -455,6 +456,7 @@ class WebTraderPage(CRMBasePage):
             return WebTraderPage(self.driver)
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "There is no " + asset_group + " asset group")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             return WebTraderPage(self.driver)
 
     def open_trading_page(self):

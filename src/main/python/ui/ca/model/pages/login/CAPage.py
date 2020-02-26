@@ -152,6 +152,7 @@ class CAPage(CRMBasePage):
             Logging().reportDebugStep(self, "Click Demo accounts section")
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "There is no Demo accounts section")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             TradingConstants.IS_DEMO_EXIST = "no"
         return CAPage(self.driver)
 
@@ -492,6 +493,7 @@ class CAPage(CRMBasePage):
         if msg == CAConstants.CREATE_LIVE_ACC_MSG_NEGATIVE:
             Logging().reportDebugStep(self, "Message: " + msg)
             Logging().reportDebugStep(self, "There is no option open more than 1 account")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             return False
         elif msg == CAConstants.CREATE_LIVE_ACC_MSG_POSITIVE:
             Logging().reportDebugStep(self, "Message: " + msg)

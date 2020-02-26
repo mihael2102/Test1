@@ -56,7 +56,7 @@ class ApiPage(CRMBasePage):
             Logging().reportDebugStep(self, "Open login token module")
             return ApiPage(self.driver)
         except NoSuchElementException:
-            Logging().reportDebugStep(self, "Login token module does not exist")
+            Logging().reportDebugStep(self, "Login token module does not exist (NOT RUNNED)")
             return ApiPage(self.driver)
 
 
