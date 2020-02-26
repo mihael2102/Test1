@@ -1,6 +1,5 @@
 from src.main.python.ui.ca.model.pages.ca.QuestionnairePage import QuestionnairePage
-from src.main.python.ui.ca.model.constants.CAconstants.QuestionnaireConstants import QuestionnaireConstants
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.ca.model.constants.questionnaire.QuesStrattonConstants import QuesStrattonConstants
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -17,9 +16,18 @@ from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
 from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
+from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
+from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
+from src.main.python.ui.ca.model.constants.questionnaire.QuesDualixConstants import QuesDualixConstants
 
 
-class Login_CA_Precondition(object):
+class LoginCAPrecondition(object):
 
     driver = None
     config = None
@@ -63,93 +71,44 @@ class Login_CA_Precondition(object):
         pop_conn.quit()
 
     def sign_up_ca(self):
-        # Registration form
-        CALoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url_ca'))\
-            .close_campaign_banner()\
-            .click_sign_up()\
-            .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])\
-            .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                        LeadsModuleConstants.FIRST_LAST_NAME])\
-            .fill_email(CAConstants.EMAIL_CA)\
-            .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])\
-            .fill_password(CAConstants.PASSWORD)\
-            .fill_confirm_password(CAConstants.PASSWORD)\
-            .check_box_accept()\
-            .risk_check_box_accept()\
-            .select_country_first_step(CAConstants.COUNTRY1)\
-            .click_submit()\
-            .close_payment_popup()
+        """ Registration form """
+        if global_var.current_brand_name == "q8":
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca_2')) \
+                .sign_up_q8(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
+                            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
+                                                      [LeadsModuleConstants.FIRST_LAST_NAME],
+                            CAConstants.EMAIL_CA,
+                            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE],
+                            CAConstants.PASSWORD)
+        else:
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca'))\
+                .close_campaign_banner()\
+                .click_sign_up()\
+                .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
+                                             [LeadsModuleConstants.FIRST_NAME])\
+                .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
+                                            [LeadsModuleConstants.FIRST_LAST_NAME])\
+                .fill_email(CAConstants.EMAIL_CA)\
+                .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])\
+                .fill_password(CAConstants.PASSWORD)\
+                .fill_confirm_password(CAConstants.PASSWORD)\
+                .check_box_accept()\
+                .risk_check_box_accept()\
+                .select_country_first_step(CAConstants.COUNTRY1)\
+                .click_submit()\
+                .close_payment_popup()
 
-        # Check graphs:
-        WebTraderPage(self.driver) \
-            .open_trading_page() \
-            .check_chart_loaded()
+            """ Check graphs """
+            WebTraderPage(self.driver) \
+                .open_trading_page() \
+                .check_chart_loaded()
 
-        # Personal details form
-        if global_var.current_brand_name == "firstindex":
+        """ Personal details form """
+        if global_var.current_brand_name == "solocapitals":
             CALoginPage(self.driver)\
                 .verify() \
-                .click_hi_guest() \
-                .click_transactions_history() \
-                .select_data_birth_day(CAConstants.DAY_BIRTH) \
-                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
-                .select_data_birth_year(CAConstants.YEAR_BIRTH) \
-                .choose_currency(CAConstants.CURRENCY) \
-                .choose_citizenship(CAConstants.CITIZENSHIP) \
-                .fill_city(CAConstants.CITY) \
-                .fill_zip_code(CAConstants.ZIP_CODE) \
-                .fill_address(CAConstants.ADDRESS) \
-                .account_type(CAConstants.ACCOUNT_TYPE)\
-                .click_next() \
-                .verify() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                   LeadsModuleConstants.FIRST_NAME]) \
-                .sign_out() \
-                .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
-                .click_login() \
-                .verify()
-            assert CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                              LeadsModuleConstants.FIRST_NAME]) == \
-                   self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
-
-        elif global_var.current_brand_name == "jonesmutual":
-
-            CALoginPage(self.driver)\
-                .verify() \
-                .click_hi_guest() \
-                .click_transactions_history() \
-                .select_data_birth_day(CAConstants.DAY_BIRTH) \
-                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
-                .select_data_birth_year(CAConstants.YEAR_BIRTH) \
-                .choose_currency(CAConstants.CURRENCY) \
-                .choose_citizenship(CAConstants.CITIZENSHIP2) \
-                .fill_city(CAConstants.CITY) \
-                .fill_zip_code(CAConstants.ZIP_CODE) \
-                .fill_address(CAConstants.ADDRESS) \
-                .click_next() \
-                .verify() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                   LeadsModuleConstants.FIRST_NAME]) \
-                .sign_out() \
-                .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
-                .click_login() \
-                .verify()
-            sleep(2)
-            existing_client = CALoginPage(self.driver).verify_client(
-                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                    LeadsModuleConstants.FIRST_NAME])
-            expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
-            print(expected_client, existing_client)
-            assert existing_client == expected_client
-
-        elif global_var.current_brand_name == "solocapitals" or \
-                global_var.current_brand_name == "b-finance":
-            CALoginPage(self.driver).verify() \
                 .click_hi_guest() \
                 .click_transactions_history() \
                 .select_data_birth_day(CAConstants.DAY_BIRTH) \
@@ -179,8 +138,8 @@ class Login_CA_Precondition(object):
             assert existing_client == expected_client.upper()
 
         elif global_var.current_brand_name == "mpcrypto":
-
-            CALoginPage(self.driver).verify() \
+            CALoginPage(self.driver)\
+                .verify() \
                 .click_hi_guest() \
                 .click_transactions_history() \
                 .select_data_birth_day(CAConstants.DAY_BIRTH) \
@@ -257,38 +216,38 @@ class Login_CA_Precondition(object):
                 .fill_zip_code(CAConstants.ZIP_CODE) \
                 .fill_address(CAConstants.ADDRESS) \
                 .click_next() \
-                .enter_ssn_tin(QuestionnaireConstants.SSN_TIN) \
-                .enter_id(QuestionnaireConstants.NAT_ID) \
-                .select_country_tax(QuestionnaireConstants.COUNTRY_TAX) \
-                .enter_company_name(QuestionnaireConstants.COMPANY_NAME) \
+                .enter_ssn_tin(QuesStrattonConstants.SSN_TIN) \
+                .enter_id(QuesStrattonConstants.NAT_ID) \
+                .select_country_tax(QuesStrattonConstants.COUNTRY_TAX) \
+                .enter_company_name(QuesStrattonConstants.COMPANY_NAME) \
                 .select_us_reportable(CAConstants.US_REPORTABLE_NO) \
                 .click_save_changes_btn()
 
-            # Questionnaire: Financial Information
+            """ Questionnaire: Financial Information """
             QuestionnairePage(self.driver) \
-                .select_employment_status(QuestionnaireConstants.EMPLOYMENT_STATUS_STUDENT) \
-                .select_education_level(QuestionnaireConstants.EDUCATION_LEVEL_NO_EDUCATION) \
-                .select_politically_exposed_person(QuestionnaireConstants.POLITICALLY_EXPOSED_PERSON_NO) \
-                .select_total_annual_income(QuestionnaireConstants.TOTAL_ANNUAL_INCOME_UNDER_15) \
-                .select_approximate_net_wealth(QuestionnaireConstants.APPROXIMATE_NET_WEALTH_UNDER_15) \
-                .select_expected_deposit(QuestionnaireConstants.EXPECTED_DEPOSIT_UNDER_10) \
-                .select_source_of_trading_funds(QuestionnaireConstants.SOURCE_TRADING_FUNDS_EMPLOYMENT) \
-                .select_why_want_trade(QuestionnaireConstants.WHY_WANT_TRADE_SPECULATIVE) \
-                .select_react_on_losses(QuestionnaireConstants.REACT_ON_LOSSES_EXPECT_TO_LOSE) \
+                .select_employment_status(QuesStrattonConstants.EMPLOYMENT_STATUS_STUDENT) \
+                .select_education_level(QuesStrattonConstants.EDUCATION_LEVEL_NO_EDUCATION) \
+                .select_politically_exposed_person(QuesStrattonConstants.POLITICALLY_EXPOSED_PERSON_NO) \
+                .select_total_annual_income(QuesStrattonConstants.TOTAL_ANNUAL_INCOME_UNDER_15) \
+                .select_approximate_net_wealth(QuesStrattonConstants.APPROXIMATE_NET_WEALTH_UNDER_15) \
+                .select_expected_deposit(QuesStrattonConstants.EXPECTED_DEPOSIT_UNDER_10) \
+                .select_source_of_trading_funds(QuesStrattonConstants.SOURCE_TRADING_FUNDS_EMPLOYMENT) \
+                .select_why_want_trade(QuesStrattonConstants.WHY_WANT_TRADE_SPECULATIVE) \
+                .select_react_on_losses(QuesStrattonConstants.REACT_ON_LOSSES_EXPECT_TO_LOSE) \
                 .click_next_btn()
 
-            # Questionnaire: Knowledge and experience
+            """ Questionnaire: Knowledge and experience """
             QuestionnairePage(self.driver) \
-                .select_instruments_traded_before(QuestionnaireConstants.INSTRUMENTS_TRADED_BEFORE_NO_EXPERIENCE) \
-                .select_if_applicable(QuestionnaireConstants.IF_APPLICABLE_NONE) \
-                .select_correct_regarding_cfd(QuestionnaireConstants.REGARDING_CFD_RETAIL) \
-                .select_factor_affect_prices(QuestionnaireConstants.FACTOR_AFFECT_PRICES_EMPLOYEE_LAYOFFS_RETAIL) \
-                .select_close_bmw_position(QuestionnaireConstants.WHERE_CLOSE_BMW_POSITION_RETAIL) \
-                .select_required_margin(QuestionnaireConstants.REQUIRED_MARGIN_1000) \
-                .select_loss(QuestionnaireConstants.LOSS_AMOUNT_800) \
+                .select_instruments_traded_before(QuesStrattonConstants.INSTRUMENTS_TRADED_BEFORE_NO_EXPERIENCE) \
+                .select_if_applicable(QuesStrattonConstants.IF_APPLICABLE_NONE) \
+                .select_correct_regarding_cfd(QuesStrattonConstants.REGARDING_CFD_RETAIL) \
+                .select_factor_affect_prices(QuesStrattonConstants.FACTOR_AFFECT_PRICES_EMPLOYEE_LAYOFFS_RETAIL) \
+                .select_close_bmw_position(QuesStrattonConstants.WHERE_CLOSE_BMW_POSITION_RETAIL) \
+                .select_required_margin(QuesStrattonConstants.REQUIRED_MARGIN_1000) \
+                .select_loss(QuesStrattonConstants.LOSS_AMOUNT_800) \
                 .click_next_btn() \
-                .verify_questionnaire_message(QuestionnaireConstants.MESSAGE_RETAIL) \
-                .click_next_btn()
+                .verify_questionnaire_message(QuesStrattonConstants.MESSAGE_RETAIL) \
+                .close_questionnaire_message()
             CALoginPage(self.driver) \
                 .verify() \
                 .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
@@ -301,8 +260,56 @@ class Login_CA_Precondition(object):
                 .enter_password(CAConstants.PASSWORD) \
                 .click_login() \
                 .verify()
+        elif global_var.current_brand_name == "dualix":
+            CALoginPage(self.driver) \
+                .verify() \
+                .click_hi_guest() \
+                .click_transactions_history() \
+                .select_data_birth_day(CAConstants.DAY_BIRTH) \
+                .select_data_birth_month(CAConstants.MONTH_BIRTH) \
+                .select_data_birth_year(CAConstants.YEAR_BIRTH) \
+                .choose_currency(CAConstants.CURRENCY) \
+                .choose_citizenship(CAConstants.CITIZENSHIP3) \
+                .fill_city(CAConstants.CITY) \
+                .fill_zip_code(CAConstants.ZIP_CODE) \
+                .fill_address(CAConstants.ADDRESS) \
+                .click_next() \
+                .enter_ssn_tin(QuesStrattonConstants.SSN_TIN) \
+                .enter_id(QuesStrattonConstants.NAT_ID) \
+                .select_country_tax(QuesStrattonConstants.COUNTRY_TAX) \
+                .enter_company_name(QuesStrattonConstants.COMPANY_NAME) \
+                .select_us_reportable(CAConstants.US_REPORTABLE_NO) \
+                .click_save_changes_btn()
+            QuestionnairePage(self.driver)\
+                .select_item_pick_list(QuesDualixConstants.LIST_1, QuesDualixConstants.ITEM_1) \
+                .select_item_pick_list(QuesDualixConstants.LIST_2, QuesDualixConstants.ITEM_2) \
+                .select_item_pick_list(QuesDualixConstants.LIST_3, QuesDualixConstants.ITEM_3) \
+                .select_item_pick_list(QuesDualixConstants.LIST_4, QuesDualixConstants.ITEM_4) \
+                .select_item_pick_list(QuesDualixConstants.LIST_5, QuesDualixConstants.ITEM_5) \
+                .select_item_pick_list(QuesDualixConstants.LIST_6, QuesDualixConstants.ITEM_6) \
+                .click_next_btn() \
+                .select_item_pick_list(QuesDualixConstants.LIST_7, QuesDualixConstants.ITEM_7) \
+                .select_item_pick_list(QuesDualixConstants.LIST_8, QuesDualixConstants.ITEM_8) \
+                .select_item_pick_list(QuesDualixConstants.LIST_9, QuesDualixConstants.ITEM_9) \
+                .select_item_pick_list(QuesDualixConstants.LIST_10, QuesDualixConstants.ITEM_10) \
+                .select_item_pick_list(QuesDualixConstants.LIST_11, QuesDualixConstants.ITEM_11) \
+                .select_item_pick_list(QuesDualixConstants.LIST_12, QuesDualixConstants.ITEM_12) \
+                .select_item_pick_list(QuesDualixConstants.LIST_13, QuesDualixConstants.ITEM_13) \
+                .select_item_pick_list(QuesDualixConstants.LIST_14, QuesDualixConstants.ITEM_14) \
+                .select_item_pick_list(QuesDualixConstants.LIST_15, QuesDualixConstants.ITEM_15) \
+                .select_item_pick_list(QuesDualixConstants.LIST_16, QuesDualixConstants.ITEM_16) \
+                .select_item_pick_list(QuesDualixConstants.LIST_17, QuesDualixConstants.ITEM_17) \
+                .select_item_pick_list(QuesDualixConstants.LIST_18, QuesDualixConstants.ITEM_18) \
+                .select_item_pick_list(QuesDualixConstants.LIST_19, QuesDualixConstants.ITEM_19) \
+                .select_item_pick_list(QuesDualixConstants.LIST_20, QuesDualixConstants.ITEM_20) \
+                .select_item_pick_list(QuesDualixConstants.LIST_21, QuesDualixConstants.ITEM_21) \
+                .select_item_pick_list(QuesDualixConstants.LIST_22, QuesDualixConstants.ITEM_22) \
+                .select_item_pick_list(QuesDualixConstants.LIST_23, QuesDualixConstants.ITEM_23) \
+                .click_next_btn() \
+                .close_questionnaire_message()
+        elif global_var.current_brand_name == "q8":
+            pass
         else:
-
             CALoginPage(self.driver)\
                 .verify()\
                 .click_hi_guest()\
@@ -325,7 +332,10 @@ class Login_CA_Precondition(object):
                 .enter_password(CAConstants.PASSWORD)\
                 .click_login()\
                 .verify()
-            sleep(2)
+        sleep(2)
+        if global_var.current_brand_name == "q8":
+            CALoginPage(self.driver).verify_client("my account")
+        else:
             existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(
                 TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])
             expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
@@ -333,7 +343,7 @@ class Login_CA_Precondition(object):
             assert existing_client.lower() == expected_client.lower()
 
     def client_exist_in_crm(self):
-        # Login to CRM
+        """ Login to CRM """
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -380,86 +390,65 @@ class Login_CA_Precondition(object):
             assert ClientsPage(self.driver).get_client_currency() == CAConstants.CURRENCY
 
     def client_exist_in_crm_new_ui(self):
-        # Login to CRM
-        CRMLoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET))
+        """ Login CRM """
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                new_design=0,
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        """ Open Clients module and find created client by email """
+        CRMBaseMethodsPage(self.driver) \
+            .open_module_ui(TestDataConstants.MODULE_CLIENTS)
+        GlobalTablePageUI(self.driver) \
+            .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
+            .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
+                                   CAConstants.EMAIL_CA)
+        ClientsModulePageUI(self.driver) \
+            .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
-        # Open clients module. Find created client by email and open his profile
-        CRMHomePage(self.driver) \
-            .open_client_module_new_ui() \
-            .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email_new_ui(CAConstants.EMAIL_CA)
+        """ Get client's data """
+        details = ClientDetailsPageUI(self.driver)
 
-        # First Name validation:
-        actual_fname = ClientsPage(self.driver)\
-            .get_client_fname()
-        expected_fname = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
-        assert actual_fname == expected_fname
+        first_name = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_FNAME)
+        last_name = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_LNAME)
+        phone = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_PHONE)
+        birthday = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_BIRTHDAY)
+        address = details \
+            .open_tab(ClientDetailsConstantsUI.TAB_ADDRESS_INFORMATION) \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_ADDRESS)
+        postal_code = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_CODE)
+        city = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_CITY)
+        country = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_COUNTRY)
+        currency = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_BASE_CURRENCY)
 
-        # Last Name validation:
-        actual_lname = ClientsPage(self.driver)\
-            .get_client_lname()
-        expected_lname = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]
-        assert actual_lname == expected_lname
+        """ Verify client's data """
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(first_name,
+                               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]) \
+            .comparator_string(last_name,
+                               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]) \
+            .comparator_string(birthday, CAConstants.BIRTHDAY_CRM) \
+            .comparator_string(currency, CAConstants.CURRENCY) \
+            .comparator_string(address, CAConstants.ADDRESS) \
+            .comparator_string(postal_code, CAConstants.ZIP_CODE) \
+            .comparator_string(city, CAConstants.CITY) \
+            .comparator_string(country, CAConstants.COUNTRY_DEFAULT)
 
-        # Phone validation:
-        actual_phone = ClientsPage(self.driver)\
-            .get_client_phone_new_ui()
-        if actual_phone:
-            expected_phone = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE]
-
-            try:
-                assert expected_phone in actual_phone
-            except AssertionError:
-                assert actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN4 or \
-                       actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN3
-
-        # Birthday validation:
-        actual_birthday = ClientsPage(self.driver)\
-            .get_client_birthday()
-        expected_birthday = CAConstants.BIRTHDAY_CRM
-        assert actual_birthday == expected_birthday
-
-        # Address validation
-        actual_address = ClientsPage(self.driver)\
-            .open_address_information_tab_new_ui()\
-            .get_client_address_new_ui()
-        expected_address = CAConstants.ADDRESS
-        assert actual_address == expected_address
-
-        # City validation:
-        actual_city = ClientsPage(self.driver)\
-            .get_client_city_new_ui()
-        expected_city = CAConstants.CITY
-        assert actual_city == expected_city
-
-        # Code validation:
-        actual_zip = ClientsPage(self.driver)\
-            .get_client_zip_code()
-        expected_zip = CAConstants.ZIP_CODE
-        assert actual_zip == expected_zip
-
-        # Country validation:
-        actual_country = ClientsPage(self.driver)\
-            .get_client_country_new_ui()
-        expected_country = CAConstants.COUNTRY_DEFAULT
-        assert actual_country == expected_country
-
-        # Currency validation:
-        actual_currency = ClientsPage(self.driver)\
-            .get_client_base_currency()
-        if global_var.current_brand_name == "mpcrypto" or \
-           global_var.current_brand_name == "trade99":
-            expected_currency = CAConstants.CURRENCY_CRYPTO
-        else:
-            expected_currency = CAConstants.CURRENCY
-        assert actual_currency == expected_currency
+        if "*" not in phone:
+            CRMBaseMethodsPage(self.driver) \
+                .comparator_string(phone,
+                                   self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])
 
     def login_ca(self):
         try:

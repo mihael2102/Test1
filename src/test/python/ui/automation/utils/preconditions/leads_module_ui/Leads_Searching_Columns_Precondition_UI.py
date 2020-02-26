@@ -1,6 +1,6 @@
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants.LeadsModuleConstantsUI import LeadsModuleConstantsUI
+from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
 
@@ -20,15 +20,13 @@ class LeadsSearchingColumnsPreconditionUI(object):
 
     def leads_searching_columns_ui(self):
         """ Login CRM """
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
-
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                new_design=0,
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Leads module """
         CRMBaseMethodsPage(self.driver) \
@@ -36,22 +34,23 @@ class LeadsSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(LeadsModuleConstantsUI.TAB_ALL)
 
         """ Get lead's data from the first row of list view """
-        lead_no = CRMBaseMethodsPage(self.driver) \
+        get_data = GlobalTablePageUI(self.driver)
+        lead_no = get_data \
             .get_data_from_list_view_ui(column=LeadsModuleConstantsUI.COLUMN_LEAD_NO,
                                         row=LeadsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        lead_status = CRMBaseMethodsPage(self.driver) \
+        lead_status = get_data \
             .get_data_from_list_view_ui(column=LeadsModuleConstantsUI.COLUMN_LEAD_STATUS,
                                         row=LeadsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        email = CRMBaseMethodsPage(self.driver) \
+        email = get_data \
             .get_data_from_list_view_ui(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
                                         row=LeadsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        phone = CRMBaseMethodsPage(self.driver) \
+        phone = get_data \
             .get_data_from_list_view_ui(column=LeadsModuleConstantsUI.COLUMN_PHONE,
                                         row=LeadsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        assigned_to = CRMBaseMethodsPage(self.driver) \
+        assigned_to = get_data \
             .get_data_from_list_view_ui(column=LeadsModuleConstantsUI.COLUMN_ASSIGNED_TO,
                                         row=LeadsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        country = CRMBaseMethodsPage(self.driver) \
+        country = get_data \
             .get_data_from_list_view_ui(column=LeadsModuleConstantsUI.COLUMN_COUNTRY,
                                         row=LeadsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
@@ -80,7 +79,7 @@ class LeadsSearchingColumnsPreconditionUI(object):
         if email and ("*" not in email):
             search\
                 .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                          data=email)
+                                       data=email)
 
         """ Verify correct data found """
         result = GlobalTablePageUI(self.driver)

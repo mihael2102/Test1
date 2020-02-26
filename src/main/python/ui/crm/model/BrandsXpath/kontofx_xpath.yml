@@ -1,6 +1,8 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+
 LeadsModule:
   check_first_line_exist: "//tbody[@id = 'listBody']/tr[1]/td[11]"
 CALoginPage:
   check_box_accept: "//label[contains (text(), 'By checking this box I accept')]"
 ClientProfilePage:
-  account_number: "//tr[@class='lvtColData']//td[1]"
+  account_number: "//div[@class='link_field']/a[text()]"

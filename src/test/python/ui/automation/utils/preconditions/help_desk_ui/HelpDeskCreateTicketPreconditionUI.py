@@ -1,7 +1,7 @@
 import pytest
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.pages.help_desk_ui.HelpDeskCreateTicketPageUI import HelpDeskCreateTicketPageUI
 from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDCreateTicketConstantsUI import HDCreateTicketConstantsUI
@@ -26,17 +26,15 @@ class HelpDeskCreateTicketPreconditionUI(object):
         lead = self.config.get_value(lead_key)
         return lead
 
-    def create_ticket_ui(self):
+    def create_delete_ticket_ui(self):
         """ Login CRM """
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url')) \
-            .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                       self.config.get_value(TestDataConstants.OTP_SECRET)) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
-
-        CRMLoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url'))
+        CRMLoginPageUI(self.driver) \
+            .crm_login(
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                new_design=0,
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Help Desk module """
         CRMBaseMethodsPage(self.driver) \
@@ -95,4 +93,18 @@ class HelpDeskCreateTicketPreconditionUI(object):
             .comparator_string(description, HDCreateTicketConstantsUI.DESCRIPTION) \
             .comparator_string(assigned_to, HDCreateTicketConstantsUI.ASSIGNED_TO) \
             .comparator_string(priority, HDCreateTicketConstantsUI.PRIORITY) \
-            .comparator_string(source, HDCreateTicketConstantsUI.SOURCE)
+            .comparator_string(source, HDCreateTicketConstantsUI.SOURCE)\
+            .came_back_on_previous_page()
+
+        """ Delete ticket """
+        GlobalTablePageUI(self.driver) \
+            .set_data_column_field(column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
+                                   data=HDCreateTicketConstantsUI.TITLE) \
+            .open_actions_list() \
+            .click_delete_icon_list_view(HelpDeskModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
+            .approve_deleting() \
+            .verify_success_message() \
+            .click_ok() \
+            .set_data_column_field(column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
+                                   data=HDCreateTicketConstantsUI.TITLE) \
+            .verify_data_not_found()
