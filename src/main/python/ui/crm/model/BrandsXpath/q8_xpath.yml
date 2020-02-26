@@ -34,6 +34,8 @@ CALoginPage:
   login_password_input: "//input[@name='password']"
   login_btn_2: "//button[text()='Login']"
   login_btn: "//span[contains(text(), 'Login')]"
+  input_first_name: "//input[@id='firstName']"
+  input_last_name: "//input[@id='lastName']"
 CAPage:
   edit_first_name: "//input[@name='firstName']"
   get_first_name: "//input[@name='firstName']"
