@@ -1,7 +1,10 @@
 brands:
 
-- name: dax-300
-  config_file: dax-300.yml
+- name: bfxinternational
+  config_file: bfxinternational.yml
+
+#- name: dax-300
+#  config_file: dax-300.yml
 #- name: royal_cfds
 #  config_file: royal_cfds.yml
 #- name: jonesmutual
