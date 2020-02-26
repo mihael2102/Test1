@@ -49,7 +49,8 @@ class BaseTest(unittest.TestCase):
 
     def tearDown(self):
         """Take a Screen-shot of the drive homepage, when it Failed."""
-        dir = 'C:/screenshots/%s' % Config.test
+        import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+        dir = 'C:/screenshots/%s/%s' % (Config.test, global_var.current_brand_name)
         if os.path.exists(dir):
             shutil.rmtree(dir)
         if self._outcome.errors:
