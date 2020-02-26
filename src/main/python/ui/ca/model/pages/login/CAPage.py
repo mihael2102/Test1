@@ -498,8 +498,3 @@ class CAPage(CRMBasePage):
         elif msg == CAConstants.CREATE_LIVE_ACC_MSG_POSITIVE:
             Logging().reportDebugStep(self, "Message: " + msg)
             return CAPage(self.driver)
-
-    def not_runned_test(self):
-        sleep(0.5)
-        Logging().reportDebugStep(self, "There is no needed environment for test running")
-        pass
