@@ -311,7 +311,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_client_account(self):
-        sleep(1)
+        sleep(2)
         account_number = super().wait_load_element(global_var.get_xpath_for_current_brand_element
                                                    (self.__class__.__name__)["account_number"], timeout=35)
         super().scroll_into_view(account_number)
@@ -600,7 +600,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_compliance_agent_text(self):
         compliance_agent = self.driver.find_element(By.XPATH,
-                                                    "//td[contains(text(),'Compliance Agent')]//following-sibling::td[1]")
+                                                "//td[contains(text(),'Compliance Agent')]//following-sibling::td[1]")
 
         new_line = compliance_agent.text.strip()
         Logging().reportDebugStep(self, "Returns the compliance_agent source: " + new_line)
@@ -608,7 +608,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_compliance_notes_text(self):
         compliance_notes = self.driver.find_element(By.XPATH,
-                                                    "//td[contains(text(),'Compliance Notes')]//following-sibling::td[1]")
+                                                "//td[contains(text(),'Compliance Notes')]//following-sibling::td[1]")
         parser_compliance_notes_text = re.sub('[" "]', '', compliance_notes.text, 1)
         Logging().reportDebugStep(self, "Returns the compliance notes source: " + parser_compliance_notes_text)
         return parser_compliance_notes_text
@@ -957,7 +957,8 @@ class ClientProfilePage(CRMBasePage):
         return ClientProfilePage(self.driver)
 
     def click_edit_help_desk_ticket(self):
-        edit_help_desk = super().wait_element_to_be_clickable("//*[@id='rld_table_content']/tbody/tr[2]/td[11]/div/div/a")
+        edit_help_desk = super().wait_element_to_be_clickable(
+            "//*[@id='rld_table_content']/tbody/tr[2]/td[11]/div/div/a")
         self.driver.execute_script("arguments[0].click();", edit_help_desk)
         Logging().reportDebugStep(self, "Click Edit help desk ticket")
         return ClientProfilePage(self.driver)
@@ -1085,12 +1086,20 @@ class ClientProfilePage(CRMBasePage):
 
     def check_create_mt_user_btn(self):
         try:
-            super().wait_load_element("//*[@id='mt4_act_box']/a[contains(@onclick, 'Create MT')]", timeout=5)
+            super().wait_load_element("//*[@id='mt4_act_box']/a[contains(@onclick, 'Create ')]", timeout=5)
             Logging().reportDebugStep(self, "Create MT User button is available")
             return ClientProfilePage()
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "There is no Create MT User button available")
             return ClientProfilePage(self.driver)
+
+    def get_withdraw_status(self):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Get Withdraw status")
+        withdraw_status = super().wait_load_element(
+            global_var.get_xpath_for_current_brand_element(self.__class__.__name__)["withdraw_status"]).text
+        Logging().reportDebugStep(self, "Withdraw status: " + withdraw_status)
+        return withdraw_status
 
     ######################################## NEW UI METHODS ############################################
 

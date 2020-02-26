@@ -245,7 +245,8 @@ class ApiPrecondition(object):
         if global_var.current_brand_name != "brokerz" and \
                 global_var.current_brand_name != "tradenero" and \
                 global_var.current_brand_name != "newrichmarkets" and \
-                global_var.current_brand_name != "globalix":
+                global_var.current_brand_name != "globalix" and \
+                global_var.current_brand_name != "marketrip":
             try:
                 assert client_phone == APIConstants.PHONE_CRM
             except:
