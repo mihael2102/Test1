@@ -40,7 +40,6 @@ class TradingAccountPrecondition(object):
     def add_live_account(self):
         """ Log in CA """
         if global_var.current_brand_name == "q8":
-            # pass
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .not_runned_test()
@@ -70,47 +69,52 @@ class TradingAccountPrecondition(object):
 
     def add_demo_account(self):
         """ Log in CA """
-        CALoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url_ca'))\
-            .login()\
-            .enter_email(CAConstants.EMAIL_CA)\
-            .enter_password(CAConstants.PASSWORD)\
-            .click_login()\
-            .verify()\
-            .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                            LeadsModuleConstants.FIRST_NAME])
+        if global_var.current_brand_name == "q8":
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .not_runned_test()
+        else:
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca'))\
+                .login()\
+                .enter_email(CAConstants.EMAIL_CA)\
+                .enter_password(CAConstants.PASSWORD)\
+                .click_login()\
+                .verify()\
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                LeadsModuleConstants.FIRST_NAME])
 
-        """ Create Demo account """
-        CAPage(self.driver)\
-            .open_manage_accounts()\
-            .open_demo_section()\
-            .open_new_account_btn()\
-            .select_account_type(CAConstants.ACCOUNT_DEMO) \
-            .select_currency(var.get_var(self.__class__.__name__)["demo_acc_currency"]) \
-            .select_leverage_level(var.get_var(self.__class__.__name__)["demo_acc_leverage"]) \
-            .set_initial_deposit(CAConstants.INITIAL_DEPOSIT0) \
-            .verify_init_deposit_error() \
-            .set_initial_deposit(CAConstants.INITIAL_DEPOSIT1) \
-            .verify_init_deposit_error() \
-            .set_initial_deposit(var.get_var(self.__class__.__name__)["initial_deposit_amount"]) \
-            .click_create_account() \
-            .verify_demo_account_created() \
-            .open_demo_section()
+            """ Create Demo account """
+            CAPage(self.driver)\
+                .open_manage_accounts()\
+                .open_demo_section()\
+                .open_new_account_btn()\
+                .select_account_type(CAConstants.ACCOUNT_DEMO) \
+                .select_currency(var.get_var(self.__class__.__name__)["demo_acc_currency"]) \
+                .select_leverage_level(var.get_var(self.__class__.__name__)["demo_acc_leverage"]) \
+                .set_initial_deposit(CAConstants.INITIAL_DEPOSIT0) \
+                .verify_init_deposit_error() \
+                .set_initial_deposit(CAConstants.INITIAL_DEPOSIT1) \
+                .verify_init_deposit_error() \
+                .set_initial_deposit(var.get_var(self.__class__.__name__)["initial_deposit_amount"]) \
+                .click_create_account() \
+                .verify_demo_account_created() \
+                .open_demo_section()
 
-        """ Verify Leverage """
-        actual_leverage = CAPage(self.driver).get_leverage()
-        expected_leverage = var.get_var(self.__class__.__name__)["demo_acc_leverage"]
-        print(expected_leverage, actual_leverage)
-        assert actual_leverage == expected_leverage
+            """ Verify Leverage """
+            actual_leverage = CAPage(self.driver).get_leverage()
+            expected_leverage = var.get_var(self.__class__.__name__)["demo_acc_leverage"]
+            print(expected_leverage, actual_leverage)
+            assert actual_leverage == expected_leverage
 
-        """ Verify Currency """
-        actual_currency = CAPage(self.driver).get_currency()
-        expected_currency = var.get_var(self.__class__.__name__)["demo_acc_currency"]
-        if global_var.current_brand_name == "trade99":
-            actual_currency = actual_currency.split(':')[0]
-        assert actual_currency == expected_currency
+            """ Verify Currency """
+            actual_currency = CAPage(self.driver).get_currency()
+            expected_currency = var.get_var(self.__class__.__name__)["demo_acc_currency"]
+            if global_var.current_brand_name == "trade99":
+                actual_currency = actual_currency.split(':')[0]
+            assert actual_currency == expected_currency
 
-        CAPage(self.driver).get_demo_account_number()
+            CAPage(self.driver).get_demo_account_number()
 
     def verify_account_in_crm(self):
         """ Login to CRM """
