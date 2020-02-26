@@ -104,6 +104,7 @@ if __name__ == "__main__":
 
     if ip == '35.158.30.212' or ip == '35.158.90.50' or ip == '3.123.82.121':
 
+
         all_brands_yml = "brands.yml"
         path_to_brands_suite_1 = "brands1.yml"
         path_to_brands_suite_2 = "brands2.yml"
