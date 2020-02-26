@@ -1,8 +1,5 @@
 import pytest
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from selenium.common.exceptions import TimeoutException
-from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -12,12 +9,9 @@ from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule impo
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.crm.model.pages.leads.LeadDetailViewInfo import LeadDetailViewInfo
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.test.python.ui.automation.BaseTest import *
-from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
-from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
-from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
+from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.side_bar.SidebarModules import SidebarModules
 from src.main.python.ui.ca.model.constants.questionnaire.QuesDualixConstants import QuesDualixConstants
@@ -42,14 +36,12 @@ class DepositTestCRM(BaseTest):
         CRMHomePage(self.driver)\
             .open_client_module()\
             .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
-        if global_var.current_brand_name == "confixfinancial" or \
-                global_var.current_brand_name == "marketrip" or \
-                global_var.current_brand_name == "tradixa":
-            ClientsPage(self.driver) \
-                .find_client_by_email(lead1[LeadsModuleConstants.EMAIL])
-        else:
+        if ConvertLeadConstantsUI.EMAIL_EDITABLE:
             ClientsPage(self.driver) \
                 .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(lead1[LeadsModuleConstants.EMAIL])
 
         # Fill Questionnaire
         if global_var.current_brand_name == "dualix":

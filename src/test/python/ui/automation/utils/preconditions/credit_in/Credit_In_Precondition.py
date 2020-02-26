@@ -12,6 +12,8 @@ from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
+from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 
 
 class CreditInPrecondition(object):
@@ -36,13 +38,17 @@ class CreditInPrecondition(object):
         return CreditInPrecondition(self.driver)
 
     def add_live_account_in_crm(self):
+        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
+        lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
+        if ConvertLeadConstantsUI.EMAIL_EDITABLE:
+            client = client1[LeadsModuleConstants.EMAIL]
+        else:
+            client = lead1[LeadsModuleConstants.EMAIL]
         CRMHomePage(self.driver)\
             .open_client_module()
         ClientsPage(self.driver)\
-            .select_filter(self.config.get_data_client(
-                                        TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                              TestDataConstants.E_MAIL))\
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
+            .find_client_by_email(client)\
             .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
         if global_var.current_brand_name == "q8":
             crm_client_profile = MT4CreateAccountModule(self.driver) \

@@ -9,6 +9,7 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.mt4.withdraw.MT4WithdrawModule import MT4WithdrawModule
+from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
 
 
 class WithdrawPreconditionCRM(object):
@@ -30,14 +31,12 @@ class WithdrawPreconditionCRM(object):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
                                                        TestDataConstants.FILTER))
         sleep(2)
-        if global_var.current_brand_name == "confixfinancial" or \
-                global_var.current_brand_name == "marketrip" or \
-                global_var.current_brand_name == "tradixa":
-            ClientsPage(self.driver) \
-                .find_client_by_email(lead1[LeadsModuleConstants.EMAIL])
-        else:
+        if ConvertLeadConstantsUI.EMAIL_EDITABLE:
             ClientsPage(self.driver) \
                 .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(lead1[LeadsModuleConstants.EMAIL])
         sleep(2)
         ClientProfilePage(self.driver)\
             .scroll_to_financial_transactions_section() \
