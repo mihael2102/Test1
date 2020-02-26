@@ -48,18 +48,22 @@ class TradingAccountPrecondition(object):
             .verify() \
             .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                 LeadsModuleConstants.FIRST_NAME])
-        """ Create LIVE account """
-        CAPage(self.driver)\
-            .open_manage_accounts() \
-            .open_new_account_btn() \
-            .select_account_type(CAConstants.ACCOUNT_LIVE) \
-            .select_currency(CAConstants.CURRENCY) \
-            .select_leverage_level(var.get_var(self.__class__.__name__)["live_acc_leverage"]) \
-            .click_create_account()\
-            .get_create_account_message()\
-            .additional_account_created()\
-            .open_live_section()\
-            .get_live_account_number()
+        if global_var.current_brand_name == "q8":
+            CAPage(self.driver)\
+                .not_runned_test()
+        else:
+            """ Create LIVE account """
+            CAPage(self.driver)\
+                .open_manage_accounts() \
+                .open_new_account_btn() \
+                .select_account_type(CAConstants.ACCOUNT_LIVE) \
+                .select_currency(CAConstants.CURRENCY) \
+                .select_leverage_level(var.get_var(self.__class__.__name__)["live_acc_leverage"]) \
+                .click_create_account()\
+                .get_create_account_message()\
+                .additional_account_created()\
+                .open_live_section()\
+                .get_live_account_number()
 
     def add_demo_account(self):
         """ Log in CA """
