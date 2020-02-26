@@ -74,7 +74,7 @@ class LoginCAPrecondition(object):
         """ Registration form """
         if global_var.current_brand_name == "q8":
             CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca_2')) \
+                .open_first_tab_page(self.config.get_value('url_ca')) \
                 .sign_up_q8(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
                             self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
                                                       [LeadsModuleConstants.FIRST_LAST_NAME],
@@ -455,7 +455,7 @@ class LoginCAPrecondition(object):
 
             if global_var.current_brand_name == "q8":
                 CALoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url_ca_2')) \
+                    .open_first_tab_page(self.config.get_value('url_ca')) \
                     .close_campaign_banner() \
                     .click_sign_in_btn()\
                     .enter_email(self.config.get_value('email_live_acc')) \
@@ -489,7 +489,7 @@ class LoginCAPrecondition(object):
                 .refresh_page()
             if global_var.current_brand_name == "q8":
                 CALoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url_ca_2')) \
+                    .open_first_tab_page(self.config.get_value('url_ca')) \
                     .close_campaign_banner() \
                     .click_sign_in_btn()\
                     .enter_email(self.config.get_value('email_live_acc')) \

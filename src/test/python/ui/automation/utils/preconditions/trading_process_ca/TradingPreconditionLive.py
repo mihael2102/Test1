@@ -27,7 +27,7 @@ class TradingPreconditionLive(object):
     def open_position_live(self):
         if global_var.current_brand_name == "q8":
             CALoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url_ca_2'))
+                .open_first_tab_page(self.config.get_value('url_ca'))
         else:
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca'))
@@ -77,6 +77,7 @@ class TradingPreconditionLive(object):
             Logging().reportDebugStep(self, "Position was opened")
         except:
             Logging().reportDebugStep(self, "There is no crypto assets")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         """ Open live account details and get open orders data """
@@ -105,7 +106,7 @@ class TradingPreconditionLive(object):
         """ Log in CA """
         if global_var.current_brand_name == "q8":
             CALoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url_ca_2'))
+                .open_first_tab_page(self.config.get_value('url_ca'))
         else:
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca'))
@@ -123,6 +124,7 @@ class TradingPreconditionLive(object):
             Logging().reportDebugStep(self, "Position was opened")
         except:
             Logging().reportDebugStep(self, "There is no crypto assets")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         if global_var.current_brand_name == "q8":
@@ -162,6 +164,7 @@ class TradingPreconditionLive(object):
             Logging().reportDebugStep(self, "Position was opened")
         except:
             Logging().reportDebugStep(self, "There is no crypto assets")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         """ Open live account details and get closed orders data """

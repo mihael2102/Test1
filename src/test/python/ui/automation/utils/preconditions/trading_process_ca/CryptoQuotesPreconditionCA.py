@@ -22,7 +22,7 @@ class CryptoQuotesPreconditionCA(object):
 
         if global_var.current_brand_name == "q8":
             CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca_2'))
+                .open_first_tab_page(self.config.get_value('url_ca'))
         else:
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca'))

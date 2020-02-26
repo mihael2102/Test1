@@ -64,9 +64,11 @@ class VerifyOpenPositionPreconditionUI(object):
         except:
             if TradingConstants.IS_DEMO_EXIST == "no":
                 Logging().reportDebugStep(self, "There is no DEMO account")
+                Logging().reportDebugStep(self, "NOT RUNNED")
                 assert TradingConstants.IS_DEMO_EXIST == "yes"
             elif TradingConstants.IS_ASSET_EXIST == "no":
                 Logging().reportDebugStep(self, "There is no crypto assets")
+                Logging().reportDebugStep(self, "NOT RUNNED")
                 assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         """ Open demo account details and get open orders data """
