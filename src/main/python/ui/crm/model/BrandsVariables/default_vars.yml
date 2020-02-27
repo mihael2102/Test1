@@ -1,4 +1,7 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+
+ApiPrecondition:
+  partner_id: "3898"
 AssetPricePreconditionCA:
   asset: "EURUSD"
 ConvertLeadPreconditionUI:
