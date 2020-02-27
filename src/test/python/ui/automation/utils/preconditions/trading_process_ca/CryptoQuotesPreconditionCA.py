@@ -19,12 +19,7 @@ class CryptoQuotesPreconditionCA(object):
         return lead
 
     def verify_crypto_quotes_ca(self):
-
-        if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca'))
-        else:
-            CALoginPage(self.driver) \
+        CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver) \
             .close_campaign_banner() \

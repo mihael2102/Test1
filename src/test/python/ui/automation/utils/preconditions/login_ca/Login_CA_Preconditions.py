@@ -80,7 +80,7 @@ class LoginCAPrecondition(object):
                                                       [LeadsModuleConstants.FIRST_LAST_NAME],
                             CAConstants.EMAIL_CA,
                             self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE],
-                            CAConstants.PASSWORD)
+                            CAConstants.PASSORD)
         else:
             CALoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url_ca'))\

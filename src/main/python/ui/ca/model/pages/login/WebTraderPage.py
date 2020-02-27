@@ -456,7 +456,6 @@ class WebTraderPage(CRMBasePage):
             return WebTraderPage(self.driver)
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "There is no " + asset_group + " asset group")
-            Logging().reportDebugStep(self, "NOT RUNNED")
             return WebTraderPage(self.driver)
 
     def open_trading_page(self):
