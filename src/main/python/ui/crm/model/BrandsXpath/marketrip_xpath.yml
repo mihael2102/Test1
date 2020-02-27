@@ -1,0 +1,3 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CALoginPage:
+  login_btn_2: "//button[@class = 'forex-button-pandats login-button-pandats font-15-pandats'][contains(text(), 'Login')]"

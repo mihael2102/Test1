@@ -65,7 +65,7 @@ class Page_CA_Precondition(object):
                 Logging().reportDebugStep(self, "Test is not running")
 
         except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
-            Logging().reportDebugStep(self, "Module does not exist")
+            Logging().reportDebugStep(self, "Module does not exist (NOT RUNNED)")
             return self
 
     def update_personal_details_in_ca(self):

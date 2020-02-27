@@ -49,3 +49,5 @@ class ConvertLeadConstantsUI(object):
     REFERRAL = "TEST REFERRAL 2"
     BRAND = ""
     SOURCE_NAME = "source test 2"
+
+    EMAIL_EDITABLE = ""
