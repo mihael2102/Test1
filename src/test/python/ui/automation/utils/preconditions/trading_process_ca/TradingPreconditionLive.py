@@ -99,13 +99,8 @@ class TradingPreconditionLive(object):
 
     def close_position_live(self):
         """ Log in CA """
-        if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url_ca'))
-        else:
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
             .close_campaign_banner() \
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc'))\

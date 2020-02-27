@@ -19,9 +19,9 @@ class CryptoQuotesPreconditionCA(object):
         return lead
 
     def verify_crypto_quotes_ca(self):
+
         CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca'))
-        CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
             .close_campaign_banner() \
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc')) \
