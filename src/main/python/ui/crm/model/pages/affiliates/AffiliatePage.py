@@ -17,14 +17,6 @@ from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
 
 class AffiliatePage(CRMBasePage):
 
-    def click_submit(self):
-        sleep(3)
-        submit = self.driver.find_element(By.XPATH,
-                                          "/html/body/bs-modal[3]/div/div/form/bs-modal-footer/div/button[3]")
-        submit.click()
-        Logging().reportDebugStep(self, "click submit")
-        return AffiliatePage(self.driver)
-
     def add_none_selected_countries(self):
         sleep(3)
         methods = super().wait_element_to_be_clickable(
@@ -178,6 +170,7 @@ class AffiliatePage(CRMBasePage):
         sleep(1)
         self.driver.execute_script("arguments[0].click();", button_submit)
         Logging().reportDebugStep(self, "Click Submit")
+        return AffiliatePage(self.driver)
 
     def get_success_message(self):
         success_message = super().wait_load_element("//div[contains(text(),'Success')]").text

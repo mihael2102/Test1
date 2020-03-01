@@ -157,6 +157,7 @@ class CRMConstants(object):
     ADD_INTERACTION_TEXT = "Add Interaction"
     CHECK_CLIENT_PASSWORD = "Check Client Password"
     CHANGE_CLIENT_PASSWORD = "Change Client Password"
+    VIEW_EDIT_QUESTIONNAIRE = "View/Edit Questionnaire"
     INTERACTION_SUCCESSFULLY = "Interaction successfully created"
     SHORT_E_MAIL = "short_email"
     SHORT_SECOND_E_MAIL = "short_second_email"

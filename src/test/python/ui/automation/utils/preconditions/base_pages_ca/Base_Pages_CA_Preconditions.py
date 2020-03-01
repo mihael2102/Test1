@@ -23,27 +23,32 @@ class BasePagesCAPrecondition(object):
         return lead
 
     def main_menu_pages_loading(self):
-        CALoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url_ca')) \
-            .login() \
-            .enter_email(CAConstants.EMAIL_CA) \
-            .enter_password(CAConstants.PASSWORD) \
-            .click_login() \
-            .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                               LeadsModuleConstants.FIRST_NAME]) \
-            .click_transactions_history()
-        CAMainMenuPage(self.driver)\
-            .check_transaction_history_loaded()\
-            .open_account_details_tab()\
-            .check_account_details_loaded()\
-            .open_verification_center_tab()\
-            .check_verification_center_loaded()\
-            .open_service_desk_tab()\
-            .check_service_desk_loaded()\
-            .open_withdraw_tab()\
-            .check_withdraw_loaded()\
-            .open_manage_accounts_tab()\
-            .check_manage_accounts_loaded()
+        if global_var.current_brand_name == "q8":
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .not_runned_test()
+        else:
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .login() \
+                .enter_email(CAConstants.EMAIL_CA) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                   LeadsModuleConstants.FIRST_NAME]) \
+                .click_transactions_history()
+            CAMainMenuPage(self.driver)\
+                .check_transaction_history_loaded()\
+                .open_account_details_tab()\
+                .check_account_details_loaded()\
+                .open_verification_center_tab()\
+                .check_verification_center_loaded()\
+                .open_service_desk_tab()\
+                .check_service_desk_loaded()\
+                .open_withdraw_tab()\
+                .check_withdraw_loaded()\
+                .open_manage_accounts_tab()\
+                .check_manage_accounts_loaded()
 
     def graphs_loading(self):
         CALoginPage(self.driver) \

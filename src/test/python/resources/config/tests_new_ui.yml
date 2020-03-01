@@ -127,8 +127,8 @@ tests_config:
 #    - test_verify_live_close_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
 
 ############################################# LOAD TESTS ############################################
-- module: src.test.python.ui.automation.implementation.crm.load.TestLoadCRMUI
-  class: TestLoadCRMUI
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.load.TestLoadCRMUI
+#  class: TestLoadCRMUI
+#  tests:
 #    - test_load_switch_tabs_ui
-    - test_load_switch_tabs
+#    - test_load_switch_tabs

@@ -57,6 +57,7 @@ class VerifyLiveOpenPositionPreconditionUI(object):
             Logging().reportDebugStep(self, "Position was opened")
         except:
             Logging().reportDebugStep(self, "There is no crypto assets")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         """ Open live account details and get open orders data """
