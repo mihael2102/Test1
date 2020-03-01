@@ -70,7 +70,7 @@ class TradingProcess(BaseTest):
 
     def test_verify_live_close_position_crm(self):
         day = CRMHomePage(self.driver).get_day_of_week()
-        if day == 3 and global_var.current_brand_name == "q8":
+        if day == 6 and global_var.current_brand_name == "q8":
             CALoginPage(self.driver) \
                 .not_runned_test()
         else:
