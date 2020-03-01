@@ -86,7 +86,7 @@ class CRMLoginPage(CRMBasePage):
     def deselect_new_ui(self):
         try:
             box = super().wait_load_element("//*[@id='new-ui-selected' and @checked]", timeout=5)
-            box.click()
+            self.driver.execute_script("arguments[0].click();", box)
             Logging().reportDebugStep(self, "Deselect New UI check box")
         except:
             Logging().reportDebugStep(self, "New UI check box is not selected")

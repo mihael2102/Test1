@@ -11,8 +11,8 @@ brands:
 #- name: aztrades
 #  config_file: aztrades.yml
 
-- name: bfxinternational
-  config_file: bfxinternational.yml
+#- name: bfxinternational
+#  config_file: bfxinternational.yml
 
 #- name: brokerz
 #  config_file: brokerz.yml
@@ -119,8 +119,8 @@ brands:
 #- name: tradenero
 #  config_file: tradenero.yml
 
-#- name: tradixa
-#  config_file: tradixa.yml
+- name: tradixa
+  config_file: tradixa.yml
 
 #- name: uft
 #  config_file: uft.yml
