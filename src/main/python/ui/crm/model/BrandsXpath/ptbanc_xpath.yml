@@ -32,6 +32,8 @@ LeadsModule:
   check_first_line_exist: "//tbody[@id = 'listBody']/tr[1]/td[10]"
   check_first_line_leads_no1: "//tbody[@id = 'listBody']/tr[1]/td[2]"
   check_first_line_leads_no2: "//tbody[@id = 'listBody']/tr[2]/td[2]"
+  l_status_table: "//tbody[@id = 'listBody']/tr[%s]/td[6]"
+  l_assign_table: "//tbody[@id = 'listBody']/tr[%s]/td[13]"
 TasksPage:
   pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
   subject_input: "//tr[@class='tableFilters']//td[15]//input"

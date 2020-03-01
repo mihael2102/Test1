@@ -35,6 +35,9 @@ LeadModuleTest:
   first_referral:
   brand:
   first_source_name: "source 1"
+LeadPrecondition:
+  m_assign_lead_status: "R - New"
+  m_edit_lead_status: "B - Test"
 TradingAccountPrecondition:
   demo_acc_currency: "EUR"
   demo_acc_currency_usd: "USD"
@@ -45,3 +48,5 @@ TradingAccountPrecondition:
   live_acc_server: "Live"
 TradingPreconditionLive:
   asset: "XRPUSD"
+WorkflowsPrecondition:
+  client_status: "B - Test"

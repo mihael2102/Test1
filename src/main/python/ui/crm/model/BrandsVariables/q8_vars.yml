@@ -3,3 +3,5 @@ CryptoQuotesPreconditionCA:
   asset: "AUDUSD"
 TradingPreconditionLive:
   asset: "AUDUSD"
+WorkflowsPrecondition:
+  client_status: "Not Interested"
