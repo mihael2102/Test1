@@ -12,6 +12,8 @@ from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
+from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 
 
 class CreditInPrecondition(object):
@@ -36,26 +38,22 @@ class CreditInPrecondition(object):
         return CreditInPrecondition(self.driver)
 
     def add_live_account_in_crm(self):
+        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
+        lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
+        if ConvertLeadConstantsUI.EMAIL_EDITABLE:
+            client = client1[LeadsModuleConstants.EMAIL]
+        else:
+            client = lead1[LeadsModuleConstants.EMAIL]
         CRMHomePage(self.driver)\
             .open_client_module()
         ClientsPage(self.driver)\
-            .select_filter(self.config.get_data_client(
-                                        TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                              TestDataConstants.E_MAIL))\
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
+            .find_client_by_email(client)\
             .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
-        if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "newforexstaging"):
-            crm_client_profile = MT4CreateAccountModule(self.driver) \
-                .create_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
-
-        elif global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8":
             crm_client_profile = MT4CreateAccountModule(self.driver) \
                 .create_account_with_platform(
-                self.config.get_value(TestDataConstants.TRADING_PLATFORMS, TestDataConstants.TRADING_PLATFORM_MT4),
+                self.config.get_value(TestDataConstants.TRADING_PLATFORMS, TestDataConstants.TRADING_PLATFORM_MT5),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
@@ -80,7 +78,8 @@ class CreditInPrecondition(object):
         elif (global_var.current_brand_name == "gxfx") \
                 or (global_var.current_brand_name == "dax-300") \
                 or (global_var.current_brand_name == "kontofx") \
-                or (global_var.current_brand_name == "uprofx"):
+                or (global_var.current_brand_name == "uprofx") \
+                or (global_var.current_brand_name == "wdcmarkets"):
             crm_client_profile = MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
@@ -149,9 +148,9 @@ class CreditInPrecondition(object):
             crm_client_profile = MT4CreateAccountModule(self.driver) \
                 .create_account_new_ui(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY))
-                # self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),
-                # self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE))
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE))
 
         return crm_client_profile
 

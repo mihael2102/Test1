@@ -525,7 +525,7 @@ class ClientsPage(CRMBasePage):
     def get_client_phone(self):
         client_email = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Phone')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the Phone: " + client_email.text)
+        Logging().reportDebugStep(self, "Get Phone: " + client_email.text)
         return client_email.text
 
     def click_custom_information(self):
@@ -543,7 +543,7 @@ class ClientsPage(CRMBasePage):
     def get_client_postalCode(self):
         client_postalCode = WebDriverWait(self.driver, 50).until(
             EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Code')]//following-sibling::td[1]")))
-        Logging().reportDebugStep(self, "Verified the Code: " + client_postalCode.text)
+        Logging().reportDebugStep(self, "Get Code: " + client_postalCode.text)
         return client_postalCode.text
 
     def get_client_address(self):
@@ -607,6 +607,14 @@ class ClientsPage(CRMBasePage):
     def trading_account_exist(self, trading_account):
         self.driver.find_elements_by_xpath("//a[@class='before_nw'][contains(@href, 'Tradingaccount')] \
                                             [contains(text(), '%s')]" % trading_account)
+        Logging().reportDebugStep(self, "Trading account is found: " + trading_account)
+        return ClientsPage(self.driver)
+
+    def trading_account_exist_ui(self, trading_account):
+        sleep(0.2)
+        table = super().wait_load_element(
+            "//mat-expansion-panel[@id='trading-accounts']//tbody[@role='rowgroup']").text
+        assert trading_account in table
         Logging().reportDebugStep(self, "Trading account is found: " + trading_account)
         return ClientsPage(self.driver)
 
@@ -718,7 +726,7 @@ class ClientsPage(CRMBasePage):
             Logging().reportDebugStep(self, "Get Phone: " + phone)
             return phone
         except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "There is no Phone field")
+            Logging().reportDebugStep(self, "There is no Phone field (NOT RUNNED)")
 
     def get_client_address_new_ui(self):
         sleep(0.1)

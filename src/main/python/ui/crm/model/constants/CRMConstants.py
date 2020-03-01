@@ -6,6 +6,8 @@ import string
 
 
 class CRMConstants(object):
+    random_character = ''.join(random.choice(string.ascii_uppercase) for _ in range(5))
+
     brand = global_var.current_brand_name
     YES = "yes"
     ASSET_M = "BTCUSD.m"
@@ -33,7 +35,7 @@ class CRMConstants(object):
     SUBJECT_TASK_MAIL = ": SUBJECT_TASK" + str(random.randrange(1, 999))
     TRADING_LEVERAGE_ITRADER = "30"
     SUBJECT_LEAD_MAIL = ": Test MAIL" + str(random.randrange(1, 9999999))
-    BODY_LEAD_MAIL = "Test"
+    BODY_LEAD_MAIL = "Test1111111111111111111111"
     CHANGE_PHONE_LEAD = "0534431234"
     DATE_BIRTH = "1999-02-19"
     STATUS_EDIT_STOX = "R - New"
@@ -157,6 +159,7 @@ class CRMConstants(object):
     ADD_INTERACTION_TEXT = "Add Interaction"
     CHECK_CLIENT_PASSWORD = "Check Client Password"
     CHANGE_CLIENT_PASSWORD = "Change Client Password"
+    VIEW_EDIT_QUESTIONNAIRE = "View/Edit Questionnaire"
     INTERACTION_SUCCESSFULLY = "Interaction successfully created"
     SHORT_E_MAIL = "short_email"
     SHORT_SECOND_E_MAIL = "short_second_email"
@@ -182,7 +185,7 @@ class CRMConstants(object):
     CREATE_AFFILIATE_SUCCCESS = "Success"
     EASY_SEARCH_CLIENT_TEST = "test"
     EASY_SEARCH_CLIENT_TEST_TEST = "test test"
-    CAMPAIGN_NAME = "TestCampaign" + str(random.randrange(1, 9999))
+    CAMPAIGN_NAME = "TestCampaign" + random_character
     FIST_ASSIGNED_TO = "Panda Auto"
     START_DATE = "2019-01-09"
     START_DATE2 = "2020-02-03"

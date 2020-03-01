@@ -1,19 +1,5 @@
-from src.main.python.ui.ca.model.pages.ca.QuestionnairePage import QuestionnairePage
-from src.main.python.ui.ca.model.constants.CAconstants.QuestionnaireConstants import QuestionnaireConstants
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.main.python.utils.config import Config
-from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
-from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
-from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
-from time import sleep
-import poplib
-from email import parser
-from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.ca.model.pages.ca.CADepositPage import CADepositPage
 
 
@@ -33,7 +19,7 @@ class DepositCAPrecondition(object):
     def client_deposit_page_loading(self):
         if global_var.current_brand_name == "q8":
             CALoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url_ca_2'))\
+                .open_first_tab_page(self.config.get_value('url_ca'))\
                 .close_campaign_banner()\
                 .click_sign_in_btn()\
                 .enter_email(self.config.get_value('email_live_acc'))\

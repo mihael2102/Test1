@@ -41,6 +41,7 @@ class CRMLoginPage(CRMBasePage):
         password__field.clear()
         password__field.send_keys(password)
         Logging().reportDebugStep(self, "Setting the password")
+        self.deselect_new_ui()
         login_button.click()
         Logging().reportDebugStep(self, "Click the Login button")
         sleep(1)
@@ -82,7 +83,11 @@ class CRMLoginPage(CRMBasePage):
         Logging().reportDebugStep(self, "Switch the second page")
         return CRMLoginPage(self.driver)
 
-
-
-
-
+    def deselect_new_ui(self):
+        try:
+            box = super().wait_load_element("//*[@id='new-ui-selected' and @checked]", timeout=5)
+            self.driver.execute_script("arguments[0].click();", box)
+            Logging().reportDebugStep(self, "Deselect New UI check box")
+        except:
+            Logging().reportDebugStep(self, "New UI check box is not selected")
+        return CRMLoginPage(self.driver)

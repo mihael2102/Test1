@@ -1,0 +1,9 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+DepositTestCRM:
+  live_acc_currency: "BTC"
+  live_acc_group: "real"
+TradingAccountPrecondition:
+  demo_acc_currency: "BTC"
+  initial_deposit_amount: "10"
+WorkflowsPrecondition:
+  client_status: "Test***"

@@ -12,7 +12,7 @@ from time import sleep
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
-from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.mt4.transfer_between_ta.MT4TransferBetweenTa import MT4TransferBetweenTa
 from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsInformationPage import \
@@ -124,7 +124,7 @@ class TransferBetweenPrecondition(object):
         # Get balance of accounts and calculate of expected total:
         crm_client_profile = ClientProfilePage(self.driver)
         ClientProfilePage(self.driver) \
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
             .open_trading_account_by_number(MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT)
         balance1 = TradingAccountsInformationPage(self.driver)\
             .get_balance_text()
@@ -134,7 +134,7 @@ class TransferBetweenPrecondition(object):
         sleep(0.5)
         ClientProfilePage(self.driver) \
             .refresh_page()\
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
             .open_trading_account_by_number(MT4ModuleConstants.ACCOUNT_NUMBER_CREDIT)
         balance2 = TradingAccountsInformationPage(self.driver) \
             .get_balance_text()
@@ -182,7 +182,7 @@ class TransferBetweenPrecondition(object):
         # Check the balance of first account updated:
         ClientProfilePage(self.driver) \
             .refresh_page() \
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
             .open_trading_account_by_number(MT4ModuleConstants.ACCOUNT_NUMBER_DEPOSIT)
         balance_first = TradingAccountsInformationPage(self.driver)\
             .get_balance_text()
@@ -208,7 +208,7 @@ class TransferBetweenPrecondition(object):
 
         ClientProfilePage(self.driver) \
             .refresh_page() \
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
             .open_trading_account_by_number(MT4ModuleConstants.ACCOUNT_NUMBER_CREDIT)
         balance_second = TradingAccountsInformationPage(self.driver)\
             .get_balance_text()
