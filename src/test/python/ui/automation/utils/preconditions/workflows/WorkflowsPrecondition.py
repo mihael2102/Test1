@@ -1,19 +1,10 @@
-from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
-from src.main.python.ui.brand.model.client_area_modules.personal_details.CaManageAccounts import CaManageAccounts
-from src.main.python.ui.brand.model.pages.home.BrandHomePage import BrandHomePage
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
-from time import sleep
 from src.test.python.ui.automation.BaseTest import *
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.mt4.credit_out.MT4CreditOutModule import MT4CreditOutModule
-from src.main.python.utils.config import Config
-from src.main.python.ui.crm.model.pages.workflows.WorkflowsPage import WorkflowsPage
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 from src.main.python.ui.crm.model.pages.clients.ClientsModulePage import ClientsModulePage
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMConfigurationPage import CRMConfigurationPage
 from src.main.python.ui.crm.model.pages.workflows.WorkflowsPage import WorkflowsPage
@@ -44,7 +35,7 @@ class WorkflowsPrecondition(object):
             .check_workflows_loaded()
 
         """ Create new workflow """
-        WorkflowsPage(self.driver)\
+        name_workflow = WorkflowsPage(self.driver)\
             .click_add_new_workflow()\
             .enter_workflow_name(WorkflowsConstants.NAME_WORKFLOW)\
             .enter_workflow_priority(WorkflowsConstants.PRIORITY_WORKFLOW)\
@@ -53,22 +44,8 @@ class WorkflowsPrecondition(object):
             .select_module(WorkflowsConstants.CLIENTS_MODULE)\
             .click_add_condition()\
             .select_accept_promotions(WorkflowsConstants.CLIENT_STATUS)\
-            .select_condition(WorkflowsConstants.CONDITION_IS)
-
-        if global_var.current_brand_name == "ptbanc" or \
-                global_var.current_brand_name == "kontofx" or \
-                global_var.current_brand_name == "newforexstage2" or \
-                global_var.current_brand_name == "brokerz" or \
-                global_var.current_brand_name == "dax-300":
-            WorkflowsPage(self.driver).select_status(WorkflowsConstants.STATUS_B_TEST)
-        elif global_var.current_brand_name == "gigafx":
-            WorkflowsPage(self.driver).select_status(WorkflowsConstants.STATUS_R_NO_ANSWER)
-        elif global_var.current_brand_name == "trade99":
-            WorkflowsPage(self.driver).select_status(WorkflowsConstants.STATUS_TEST_STARS)
-        else:
-            WorkflowsPage(self.driver).select_status(WorkflowsConstants.STATUS_TEST)
-
-        name_workflow = WorkflowsPage(self.driver)\
+            .select_condition(WorkflowsConstants.CONDITION_IS) \
+            .select_status(var.get_var(self.__class__.__name__)["client_status"]) \
             .click_add_condition() \
             .select_second_accept_promotions(WorkflowsConstants.COUNTRY) \
             .select_second_condition(WorkflowsConstants.CONDITION_IS) \
@@ -119,18 +96,12 @@ class WorkflowsPrecondition(object):
             .set_data_to_email_column_search_field(WorkflowsConstants.PANDATS_EMAIL)\
             .click_search_btn()\
             .click_crm_id_list_view(row=5)
-        if global_var.current_brand_name == "q8":
-            ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_TEST)
-        elif global_var.current_brand_name == "gigafx":
-            ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_R_NO_ANSWER)
-        elif global_var.current_brand_name == "trade99":
-            ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_TEST_STARS)
-        else:
-            ClientProfilePage(self.driver).change_client_status_with_pencil(WorkflowsConstants.STATUS_B_TEST)
-        CRMHomePage(self.driver).refresh_page()
-        if global_var.current_brand_name == "q8":
-            ClientProfilePage(self.driver).open_address_information()
-        country = ClientProfilePage(self.driver).get_country_text()
+        ClientProfilePage(self.driver)\
+            .change_client_status_with_pencil(var.get_var(self.__class__.__name__)["client_status"]) \
+            .refresh_page()
+        country = ClientProfilePage(self.driver)\
+            .open_address_information() \
+            .get_country_text()
         assert country == WorkflowsConstants.COUNTRY_ALBANIA
         address = ClientProfilePage(self.driver).get_address_text()
         assert address == WorkflowsConstants.TEST_ADDRESS

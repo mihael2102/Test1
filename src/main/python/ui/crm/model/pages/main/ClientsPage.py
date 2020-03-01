@@ -726,7 +726,7 @@ class ClientsPage(CRMBasePage):
             Logging().reportDebugStep(self, "Get Phone: " + phone)
             return phone
         except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "There is no Phone field")
+            Logging().reportDebugStep(self, "There is no Phone field (NOT RUNNED)")
 
     def get_client_address_new_ui(self):
         sleep(0.1)
