@@ -5,19 +5,21 @@ from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.mt4.deposit.MT4DepositModule import MT4DepositModule
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.pages.clients.ClientDetailsPageUI import ClientDetailsPageUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 from src.main.python.ui.crm.model.mt4.create_account.MT4CreateAccountModule import MT4CreateAccountModule
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from time import sleep
-from src.main.python.ui.crm.model.constants.ClientDetailsConstants import ClientDetailsConstants
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.test.python.ui.automation.BaseTest import *
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.mt4.credit_out.MT4CreditOutModule import MT4CreditOutModule
 from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsInformationPage import \
     TradingAccountsInformationPage
+from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.utils.config import Config
 
 
@@ -30,6 +32,11 @@ class CreditOutPrecondition(object):
         self.config = config
 
     def credit_out_crm(self):
+        lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
+        if ConvertLeadConstantsUI.EMAIL_EDITABLE:
+            client = self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL)
+        else:
+            client = lead1[LeadsModuleConstants.EMAIL]
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -37,8 +44,7 @@ class CreditOutPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
                                                        TestDataConstants.FILTER)) \
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                              TestDataConstants.E_MAIL))
+            .find_client_by_email(client)
         sleep(2)
         if global_var.current_brand_name == "trade99":
             ClientProfilePage(self.driver)\
@@ -88,7 +94,7 @@ class CreditOutPrecondition(object):
             assert actual_credit == expected_credit
 
     def credit_out_crm_new_ui(self):
-        CRMLoginPage(self.driver)\
+        CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
@@ -128,7 +134,7 @@ class CreditOutPrecondition(object):
         # Check the balance updated
         ClientProfilePage(self.driver) \
             .refresh_page() \
-            .open_tab(ClientDetailsConstants.TRADING_ACCOUNTS_TAB) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
             .open_trading_account_by_number(MT4ModuleConstants.ACCOUNT_NUMBER_CREDIT)
 
         MT4CreditOutModule(self.driver) \
@@ -161,7 +167,7 @@ class CreditOutPrecondition(object):
 
         """ Verify data in info tag Credit was updated """
         credit_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstants.TAG_CREDIT)
+            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_CREDIT)
         if global_var.current_brand_name == "trade99":
             expected_credit = float(CRMConstants.AMOUNT_CREDIT_IN_BTC) - float(CRMConstants.AMOUNT_CREDIT_OUT_BTC)
             assert expected_credit in credit_tag

@@ -13,6 +13,7 @@ from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 
 
 class Trading_Precondition(object):
@@ -66,8 +67,7 @@ class Trading_Precondition(object):
             else:
                 CAPage(self.driver).select_currency(CAConstants.CURRENCY)
 
-            if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "jonesmutual")\
-                    or (global_var.current_brand_name == "royal_cfds"):
+            if (global_var.current_brand_name == "swiftcfd") or (global_var.current_brand_name == "royal_cfds"):
                 CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL2)
             else:
                 CAPage(self.driver).select_leverage_level(CAConstants.LEVERAGE_LEVEL)
@@ -330,13 +330,12 @@ class Trading_Precondition(object):
         except:
             if TradingConstants.IS_DEMO_EXIST == "no":
                 Logging().reportDebugStep(self, "There is no DEMO account")
+                Logging().reportDebugStep(self, "NOT RUNNED")
                 assert TradingConstants.IS_DEMO_EXIST == "yes"
 
         CAPage(self.driver)\
             .open_accounts_list()\
-            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)\
-            .open_accounts_list()\
-            .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
+            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)
         WebTraderPage(self.driver)\
             .open_trading_page()\
             .open_asset_group(TradingConstants.ASSET_GROUP_CRYPTO)\
@@ -369,9 +368,11 @@ class Trading_Precondition(object):
         except:
             if TradingConstants.IS_DEMO_EXIST == "no":
                 Logging().reportDebugStep(self, "There is no DEMO account")
+                Logging().reportDebugStep(self, "NOT RUNNED")
                 assert TradingConstants.IS_DEMO_EXIST == "yes"
             elif TradingConstants.IS_ASSET_EXIST == "no":
                 Logging().reportDebugStep(self, "There is no crypto assets")
+                Logging().reportDebugStep(self, "NOT RUNNED")
                 assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         # Open demo account details and get open orders data
@@ -413,16 +414,16 @@ class Trading_Precondition(object):
         except:
             if TradingConstants.IS_DEMO_EXIST == "no":
                 Logging().reportDebugStep(self, "There is no DEMO account")
+                Logging().reportDebugStep(self, "NOT RUNNED")
                 assert TradingConstants.IS_DEMO_EXIST == "yes"
             elif TradingConstants.IS_ASSET_EXIST == "no":
                 Logging().reportDebugStep(self, "There is no crypto assets")
+                Logging().reportDebugStep(self, "NOT RUNNED")
                 assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         CAPage(self.driver) \
             .open_accounts_list() \
-            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
-            .open_accounts_list() \
-            .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
+            .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO)
         WebTraderPage(self.driver) \
             .open_trading_page()\
             .click_close_order()\
@@ -455,9 +456,11 @@ class Trading_Precondition(object):
         except:
             if TradingConstants.IS_DEMO_EXIST == "no":
                 Logging().reportDebugStep(self, "There is no DEMO account")
+                Logging().reportDebugStep(self, "NOT RUNNED")
                 assert TradingConstants.IS_DEMO_EXIST == "yes"
             elif TradingConstants.IS_ASSET_EXIST == "no":
                 Logging().reportDebugStep(self, "There is no crypto assets")
+                Logging().reportDebugStep(self, "NOT RUNNED")
                 assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         # Open demo account details and get open orders data
