@@ -38,73 +38,86 @@ class TradingAccountPrecondition(object):
         return lead
 
     def add_live_account(self):
-        CALoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url_ca')) \
-            .login() \
-            .enter_email(CAConstants.EMAIL_CA) \
-            .enter_password(CAConstants.PASSWORD) \
-            .click_login() \
-            .verify() \
-            .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                LeadsModuleConstants.FIRST_NAME])
-        CAPage(self.driver)\
-            .open_manage_accounts() \
-            .open_new_account_btn() \
-            .select_account_type(CAConstants.ACCOUNT_LIVE) \
-            .select_currency(CAConstants.CURRENCY) \
-            .select_leverage_level(var.get_var(self.__class__.__name__)["live_acc_leverage"]) \
-            .click_create_account()\
-            .get_create_account_message()\
-            .additional_account_created()\
-            .open_live_section()\
-            .get_live_account_number()
+        """ Log in CA """
+        if global_var.current_brand_name == "q8":
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .not_runned_test()
+        else:
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .login() \
+                .enter_email(CAConstants.EMAIL_CA) \
+                .enter_password(CAConstants.PASSWORD) \
+                .click_login() \
+                .verify() \
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                    LeadsModuleConstants.FIRST_NAME])
+
+            """ Create LIVE account """
+            CAPage(self.driver)\
+                .open_manage_accounts() \
+                .open_new_account_btn() \
+                .select_account_type(CAConstants.ACCOUNT_LIVE) \
+                .select_currency(CAConstants.CURRENCY) \
+                .select_leverage_level(var.get_var(self.__class__.__name__)["live_acc_leverage"]) \
+                .click_create_account()\
+                .get_create_account_message()\
+                .additional_account_created()\
+                .open_live_section()\
+                .get_live_account_number()
 
     def add_demo_account(self):
         """ Log in CA """
-        CALoginPage(self.driver)\
-            .open_first_tab_page(self.config.get_value('url_ca'))\
-            .login()\
-            .enter_email(CAConstants.EMAIL_CA)\
-            .enter_password(CAConstants.PASSWORD)\
-            .click_login()\
-            .verify()\
-            .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                            LeadsModuleConstants.FIRST_NAME])
+        if global_var.current_brand_name == "q8":
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .not_runned_test()
+        else:
+            CALoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url_ca'))\
+                .login()\
+                .enter_email(CAConstants.EMAIL_CA)\
+                .enter_password(CAConstants.PASSWORD)\
+                .click_login()\
+                .verify()\
+                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                LeadsModuleConstants.FIRST_NAME])
 
-        """ Create Demo account """
-        CAPage(self.driver)\
-            .open_manage_accounts()\
-            .open_demo_section()\
-            .open_new_account_btn()\
-            .select_account_type(CAConstants.ACCOUNT_DEMO) \
-            .select_currency(var.get_var(self.__class__.__name__)["demo_acc_currency"]) \
-            .select_leverage_level(var.get_var(self.__class__.__name__)["demo_acc_leverage"]) \
-            .set_initial_deposit(CAConstants.INITIAL_DEPOSIT0) \
-            .verify_init_deposit_error() \
-            .set_initial_deposit(CAConstants.INITIAL_DEPOSIT1) \
-            .verify_init_deposit_error() \
-            .set_initial_deposit(var.get_var(self.__class__.__name__)["initial_deposit_amount"]) \
-            .click_create_account() \
-            .verify_demo_account_created() \
-            .open_demo_section()
+            """ Create Demo account """
+            CAPage(self.driver)\
+                .open_manage_accounts()\
+                .open_demo_section()\
+                .open_new_account_btn()\
+                .select_account_type(CAConstants.ACCOUNT_DEMO) \
+                .select_currency(var.get_var(self.__class__.__name__)["demo_acc_currency"]) \
+                .select_leverage_level(var.get_var(self.__class__.__name__)["demo_acc_leverage"]) \
+                .set_initial_deposit(CAConstants.INITIAL_DEPOSIT0) \
+                .verify_init_deposit_error() \
+                .set_initial_deposit(CAConstants.INITIAL_DEPOSIT1) \
+                .verify_init_deposit_error() \
+                .set_initial_deposit(var.get_var(self.__class__.__name__)["initial_deposit_amount"]) \
+                .click_create_account() \
+                .verify_demo_account_created() \
+                .open_demo_section()
 
-        """ Verify Leverage """
-        actual_leverage = CAPage(self.driver).get_leverage()
-        expected_leverage = var.get_var(self.__class__.__name__)["demo_acc_leverage"]
-        print(expected_leverage, actual_leverage)
-        assert actual_leverage == expected_leverage
+            """ Verify Leverage """
+            actual_leverage = CAPage(self.driver).get_leverage()
+            expected_leverage = var.get_var(self.__class__.__name__)["demo_acc_leverage"]
+            print(expected_leverage, actual_leverage)
+            assert actual_leverage == expected_leverage
 
-        """ Verify Currency """
-        actual_currency = CAPage(self.driver).get_currency()
-        expected_currency = var.get_var(self.__class__.__name__)["demo_acc_currency"]
-        if global_var.current_brand_name == "trade99":
-            actual_currency = actual_currency.split(':')[0]
-        assert actual_currency == expected_currency
+            """ Verify Currency """
+            actual_currency = CAPage(self.driver).get_currency()
+            expected_currency = var.get_var(self.__class__.__name__)["demo_acc_currency"]
+            if global_var.current_brand_name == "trade99":
+                actual_currency = actual_currency.split(':')[0]
+            assert actual_currency == expected_currency
 
-        CAPage(self.driver).get_demo_account_number()
+            CAPage(self.driver).get_demo_account_number()
 
     def verify_account_in_crm(self):
-        # Login to CRM
+        """ Login to CRM """
         if global_var.current_brand_name != "q8":
             CRMLoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url')) \
@@ -164,16 +177,7 @@ class TradingAccountPrecondition(object):
         ClientProfilePage(self.driver) \
             .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-        if global_var.current_brand_name == "royal_cfds":
-            MT4CreateAccountModule(self.driver) \
-                .create_account(
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_1_200))
-            return self
-
-        elif global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8":
             MT4CreateAccountModule(self.driver) \
                 .create_account_with_platform(
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT4),
@@ -199,15 +203,6 @@ class TradingAccountPrecondition(object):
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY_BTC),
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE))
-            return self
-
-        elif global_var.current_brand_name == "axa_markets":
-            MT4CreateAccountModule(self.driver) \
-                .create_account(
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400))
             return self
 
         elif (global_var.current_brand_name == "dax-300") \
@@ -242,16 +237,7 @@ class TradingAccountPrecondition(object):
 
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
-        if global_var.current_brand_name == "royal_cfds":
-            MT4CreateAccountModule(self.driver) \
-                .create_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, CRMConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_1_200))
-            return self
-
-        elif global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8":
             MT4CreateAccountModule(self.driver) \
                 .create_account_with_platform(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT4),
