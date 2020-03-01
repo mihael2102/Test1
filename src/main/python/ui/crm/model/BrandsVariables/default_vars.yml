@@ -45,3 +45,5 @@ TradingAccountPrecondition:
   live_acc_server: "Live"
 TradingPreconditionLive:
   asset: "XRPUSD"
+WorkflowsPrecondition:
+  client_status: "B - Test"

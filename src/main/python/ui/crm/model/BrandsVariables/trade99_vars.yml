@@ -5,3 +5,5 @@ DepositTestCRM:
 TradingAccountPrecondition:
   demo_acc_currency: "BTC"
   initial_deposit_amount: "10"
+WorkflowsPrecondition:
+  client_status: "Test***"
