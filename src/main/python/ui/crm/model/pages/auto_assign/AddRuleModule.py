@@ -55,7 +55,7 @@ class AddRuleModule(CRMBasePage):
             return AddRuleModule(self.driver)
         except NoSuchElementException:
             pass
-            Logging().reportDebugStep(self, "There is no Brand field")
+            Logging().reportDebugStep(self, "There is no Brand field (NOT RUNNED)")
             return AddRuleModule(self.driver)
 
     def select_brand_by_number(self):
@@ -69,7 +69,7 @@ class AddRuleModule(CRMBasePage):
             return AddRuleModule(self.driver)
         except NoSuchElementException:
             pass
-            Logging().reportDebugStep(self, "There is no Brand field")
+            Logging().reportDebugStep(self, "There is no Brand field (NOT RUNNED)")
             return AddRuleModule(self.driver)
 
     def set_lead_module_check_box(self):

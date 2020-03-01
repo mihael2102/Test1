@@ -34,7 +34,7 @@ class CAMainMenuPage(CRMBasePage):
             btn.click()
         except(NoSuchElementException, TimeoutException):
             pass
-            Logging().reportDebugStep(self, "There is no Verification Center tab")
+            Logging().reportDebugStep(self, "There is no Verification Center tab (NOT RUNNED)")
         return CAMainMenuPage(self.driver)
 
     def check_verification_center_loaded(self):
@@ -43,7 +43,7 @@ class CAMainMenuPage(CRMBasePage):
             Logging().reportDebugStep(self, "Verification Center table is loaded")
         except(NoSuchElementException, TimeoutException):
             pass
-            Logging().reportDebugStep(self, "There is no Verification Center tab")
+            Logging().reportDebugStep(self, "There is no Verification Center tab (NOT RUNNED)")
         return CAMainMenuPage(self.driver)
 
     def open_service_desk_tab(self):
@@ -53,7 +53,7 @@ class CAMainMenuPage(CRMBasePage):
             btn.click()
         except(NoSuchElementException, TimeoutException):
             pass
-            Logging().reportDebugStep(self, "There is no Service Desk tab")
+            Logging().reportDebugStep(self, "There is no Service Desk tab (NOT RUNNED)")
         return CAMainMenuPage(self.driver)
 
     def check_service_desk_loaded(self):
@@ -62,7 +62,7 @@ class CAMainMenuPage(CRMBasePage):
             Logging().reportDebugStep(self, "Service Desk table is loaded")
         except(NoSuchElementException, TimeoutException):
             pass
-            Logging().reportDebugStep(self, "There is no Service Desk tab")
+            Logging().reportDebugStep(self, "There is no Service Desk tab (NOT RUNNED)")
         return CAMainMenuPage(self.driver)
 
     def open_withdraw_tab(self):

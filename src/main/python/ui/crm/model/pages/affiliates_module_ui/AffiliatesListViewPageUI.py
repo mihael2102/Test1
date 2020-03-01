@@ -54,7 +54,7 @@ class AffiliatesListViewPageUI(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", delete_btn)
             Logging().reportDebugStep(self, "The Delete Affiliates button was clicked")
         except (NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "The Delete Affiliates button does not exist")
+            Logging().reportDebugStep(self, "The Delete Affiliates button does not exist (NOT RUNNED)")
         return AffiliatesListViewPageUI(self.driver)
 
     def click_delete_btn(self):

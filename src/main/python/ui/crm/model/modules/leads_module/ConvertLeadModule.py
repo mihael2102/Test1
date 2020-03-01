@@ -5,6 +5,7 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
 from time import sleep
 
 
@@ -75,9 +76,11 @@ class ConvertLeadModule(CRMBasePage):
         try:
             email_field.clear()
             email_field.send_keys(email)
+            ConvertLeadConstantsUI.EMAIL_EDITABLE = True
+            Logging().reportDebugStep(self, "The email was set to: " + email)
         except:
+            ConvertLeadConstantsUI.EMAIL_EDITABLE = False
             Logging().reportDebugStep(self, "The email field is not editable")
-        Logging().reportDebugStep(self, "The email was set to: " + email)
         return ConvertLeadModule(self.driver)
 
     def set_phone(self, phone):
