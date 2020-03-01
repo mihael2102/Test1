@@ -41,8 +41,8 @@ brands:
 #- name: financix
 #  config_file: financix.yml
 
-- name: globalix
-  config_file: globalix.yml
+#- name: globalix
+#  config_file: globalix.yml
 
 #- name: grandefex
 #  config_file: grandefex.yml
@@ -119,8 +119,8 @@ brands:
 #- name: tradenero
 #  config_file: tradenero.yml
 
-#- name: tradixa
-#  config_file: tradixa.yml
+- name: tradixa
+  config_file: tradixa.yml
 
 #- name: uft
 #  config_file: uft.yml

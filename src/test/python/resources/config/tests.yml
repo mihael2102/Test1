@@ -105,16 +105,16 @@ tests_config:
 #    - test_change_client_password_from_crm  # change a client account password from the crm
 #    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
-  class: DepositTestCRM
-  tests:
-    - test_make_deposit_crm  # create live mt account and make deposit in crm
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+#  class: DepositTestCRM
+#  tests:
+#    - test_make_deposit_crm  # create live mt account and make deposit in crm
 #    - test_make_deposit_for_client_crm
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-  class: WithdrawTest
-  tests:
-    - test_withdraw_crm   #preconditions: convert lead, make deposit
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
+#  class: WithdrawTest
+#  tests:
+#    - test_withdraw_crm   #preconditions: convert lead, make deposit
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
 #  class: CreditInTestCRM
