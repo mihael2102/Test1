@@ -66,7 +66,7 @@ class CRMBaseMethodsPage(CRMBasePage):
             Logging().reportDebugStep(self, "Module " + module_title + " was opened")
             return CRMBaseMethodsPage(self.driver)
         except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "Module " + module_title + " does not exist")
+            Logging().reportDebugStep(self, "Module " + module_title + " does not exist (NOT RUNNED)")
 
     def open_module_ui(self, module_title):
         try:
@@ -78,7 +78,7 @@ class CRMBaseMethodsPage(CRMBasePage):
             Logging().reportDebugStep(self, "Module " + module_title + " was opened")
             return CRMBaseMethodsPage(self.driver)
         except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "Module " + module_title + " does not exist")
+            Logging().reportDebugStep(self, "Module " + module_title + " does not exist (NOT RUNNED)")
 
     def global_search_vtiger(self, item):
         search_field = super().wait_load_element("//input[@class='searchBox']")
@@ -143,7 +143,7 @@ class CRMBaseMethodsPage(CRMBasePage):
             Logging().reportDebugStep(self, "Number of column " + title + " is: " + index)
             return index
         except(NoSuchElementException, TimeoutException, AssertionError, AttributeError):
-            Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
+            Logging().reportDebugStep(self, "Column '" + title + "' does not exist (NOT RUNNED)")
             return False
 
     """
@@ -157,7 +157,7 @@ class CRMBaseMethodsPage(CRMBasePage):
                                       "Get data from list view (column = " + column + ", row = " + row + "): " + data)
             return data
         else:
-            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
+            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist (NOT RUNNED)")
             return False
 
     """

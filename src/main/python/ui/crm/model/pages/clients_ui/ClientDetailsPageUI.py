@@ -55,4 +55,4 @@ class ClientDetailsPageUI(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", module_item)
             Logging().reportDebugStep(self, module + " module is opened")
         except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "Module does not exist")
+            Logging().reportDebugStep(self, "Module does not exist (NOT RUNNED)")

@@ -29,15 +29,18 @@ class CampaignsPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Campaigns page """
-        campaign_list_view_page = CRMHomePage(self.driver)\
+        CRMHomePage(self.driver)\
             .open_more_list_modules()\
             .select_campaigns_module_more_list(CampaignsConstants.MODULE) \
             .open_add_campaign_module()
+
+        """ Add new campaign """
         AddCampaignsModule(self.driver)\
-            .perform_add_new_campaign(self.camp_name,
-                                      CRMConstants.FIST_ASSIGNED_TO,
-                                      CRMConstants.FIST_DEAL,
-                                      CRMConstants.RATE)
+            .perform_add_new_campaign(
+                self.camp_name,
+                CRMConstants.FIST_ASSIGNED_TO,
+                CRMConstants.FIST_DEAL,
+                CRMConstants.RATE)
         CampaignsPage(self.driver)\
             .perform_searching_campaign_by_name(self.camp_name)
         sleep(2)
@@ -45,7 +48,6 @@ class CampaignsPrecondition(object):
             .campaign_exist()
 
         assert self.camp_name == existing_campaign
-        #return self.camp_name, existing_campaign
         sleep(2)
 
     """edit campaign"""

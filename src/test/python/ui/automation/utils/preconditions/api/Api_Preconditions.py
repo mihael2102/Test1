@@ -1,5 +1,6 @@
 from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
 from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
@@ -40,14 +41,11 @@ class ApiPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list\
-            (AffiliateModuleConstants.AFFILIATES_MODULE)
-        if global_var.current_brand_name == "eafx":
-            AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_EAFX)
-        elif global_var.current_brand_name == "uft":
-            AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID_UFT)
-        else:
-            AffiliatePage(self.driver).search_by_partner_id(APIConstants.PARTNER_ID)
+        affiliate_list_view_page = CRMHomePage(self.driver)\
+            .open_more_list_modules()\
+            .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
+        AffiliatePage(self.driver)\
+            .search_by_partner_id(var.get_var(self.__class__.__name__)["partner_id"])
         AffiliatePage(self.driver).open_edit_affiliate()
         selected_methods = AffiliatePage(self.driver).check_selected_methods()
         if "Selected" in selected_methods:
@@ -68,26 +66,21 @@ class ApiPrecondition(object):
                 AffiliatePage(self.driver).add_none_selected_countries()
                 AffiliatePage(self.driver).click_submit()
 
-        AffiliatePage(self.driver)\
-            .click_enabled_radio_btn()\
-            .click_submit()
-
-        secret_key = AffiliatePage(self.driver).copy_secret_key()
-
-        api = affiliate_list_view_page.get_link_api()
-        CRMLoginPage(self.driver).open_first_tab_page(api)
-        ApiPage(self.driver).enter_secret_key(secret_key)
-        ApiPage(self.driver).authorization_module()
-        if global_var.current_brand_name == "eafx":
-            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID_EAFX)
-        elif global_var.current_brand_name == "uft":
-            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID_UFT)
-        else:
-            ApiPage(self.driver).input_partner_id(APIConstants.PARTNER_ID)
-        ApiPage(self.driver).generate_time()
-        ApiPage(self.driver).generate_accessKey()
-        ApiPage(self.driver).send_authorization()
-        check_token = ApiPage(self.driver).check_token()
+        secret_key = AffiliatePage(self.driver)\
+            .click_enabled_radio_btn() \
+            .click_submit() \
+            .copy_secret_key()
+        api = affiliate_list_view_page\
+            .get_link_api()
+        check_token = ApiPage(self.driver)\
+            .open_first_tab_page(api) \
+            .enter_secret_key(secret_key) \
+            .authorization_module() \
+            .input_partner_id(var.get_var(self.__class__.__name__)["partner_id"]) \
+            .generate_time() \
+            .generate_accessKey() \
+            .send_authorization() \
+            .check_token()
 
         # assert APIConstants.PARTNER_ID or APIConstants.PARTNER_ID_EAFX in check_token
         assert APIConstants.STATUS_OK in check_token
@@ -101,46 +94,22 @@ class ApiPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
         affiliate_list_view_page = CRMHomePage(self.driver)\
-            .open_more_list_modules()\
-            .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
-        if global_var.current_brand_name == "eafx":
-            AffiliatePage(self.driver)\
-                .search_by_partner_id(APIConstants.PARTNER_ID_EAFX)
-        elif global_var.current_brand_name == "uft":
-            AffiliatePage(self.driver)\
-                .search_by_partner_id(APIConstants.PARTNER_ID_UFT)
-        elif global_var.current_brand_name == "any1profit":
-            AffiliatePage(self.driver) \
-                .search_by_partner_id(APIConstants.PARTNER_ID_ANY1PROFIT)
-        else:
-            AffiliatePage(self.driver)\
-                .search_by_partner_id(APIConstants.PARTNER_ID)
+            .open_more_list_modules() \
+            .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE) \
+            .search_by_partner_id(var.get_var(self.__class__.__name__)["partner_id"])
 
         secret_key = AffiliatePage(self.driver)\
             .copy_secret_key()
 
         api = affiliate_list_view_page\
             .get_link_api()
-        CRMLoginPage(self.driver)\
-            .open_first_tab_page(api)
         ApiPage(self.driver)\
-            .enter_secret_key(secret_key)\
-            .authorization_module()
-        if global_var.current_brand_name == "eafx":
-            ApiPage(self.driver)\
-                .input_partner_id(APIConstants.PARTNER_ID_EAFX)
-        elif global_var.current_brand_name == "uft":
-            ApiPage(self.driver)\
-                .input_partner_id(APIConstants.PARTNER_ID_UFT)
-        elif global_var.current_brand_name == "any1profit":
-            ApiPage(self.driver) \
-                .input_partner_id(APIConstants.PARTNER_ID_ANY1PROFIT)
-        else:
-            ApiPage(self.driver)\
-                .input_partner_id(APIConstants.PARTNER_ID)
-        ApiPage(self.driver)\
-            .generate_time()\
-            .generate_accessKey()\
+            .open_first_tab_page(api) \
+            .enter_secret_key(secret_key) \
+            .authorization_module() \
+            .input_partner_id(var.get_var(self.__class__.__name__)["partner_id"]) \
+            .generate_time() \
+            .generate_accessKey() \
             .send_authorization()
         check_token = ApiPage(self.driver)\
             .check_token()
@@ -245,7 +214,8 @@ class ApiPrecondition(object):
         if global_var.current_brand_name != "brokerz" and \
                 global_var.current_brand_name != "tradenero" and \
                 global_var.current_brand_name != "newrichmarkets" and \
-                global_var.current_brand_name != "globalix":
+                global_var.current_brand_name != "globalix" and \
+                global_var.current_brand_name != "marketrip":
             try:
                 assert client_phone == APIConstants.PHONE_CRM
             except:
