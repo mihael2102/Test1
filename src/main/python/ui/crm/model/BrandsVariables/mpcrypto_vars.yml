@@ -1,0 +1,4 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+TradingAccountPrecondition:
+  demo_acc_currency: "BTC"
+  initial_deposit_amount: "10"

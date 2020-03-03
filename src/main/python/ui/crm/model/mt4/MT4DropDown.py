@@ -19,7 +19,7 @@ class MT4DropDown(CRMBasePage):
             Logging().reportDebugStep(self, module + " module is opened")
         except (TimeoutException, NoSuchElementException):
             pass
-            Logging().reportDebugStep(self, "Module does not exist")
+            Logging().reportDebugStep(self, "Module does not exist (NOT RUNNED)")
         time.sleep(1)
 
     def open_mt4_module(self, module):
@@ -37,7 +37,7 @@ class MT4DropDown(CRMBasePage):
             Logging().reportDebugStep(self, module + " module is opened")
         except (TimeoutException, NoSuchElementException):
             pass
-            Logging().reportDebugStep(self, "Module does not exist")
+            Logging().reportDebugStep(self, "Module does not exist (NOT RUNNED)")
 
     def open_mt4_module_newui(self, module):
         try:
@@ -46,4 +46,4 @@ class MT4DropDown(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", module_item)
             Logging().reportDebugStep(self, module + " module is opened")
         except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "Module does not exist")
+            Logging().reportDebugStep(self, "Module does not exist (NOT RUNNED)")
