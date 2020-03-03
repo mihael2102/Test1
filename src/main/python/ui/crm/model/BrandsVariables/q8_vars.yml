@@ -1,6 +1,8 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
 CryptoQuotesPreconditionCA:
   asset: "AUDUSD"
+DepositCAPrecondition:
+  client_name: "my account"
 TradingPreconditionLive:
   asset: "AUDUSD"
 WorkflowsPrecondition:
