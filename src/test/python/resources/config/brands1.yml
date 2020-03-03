@@ -68,14 +68,17 @@ brands:
 #- name: moneta
 #  config_file: moneta.yml
 
-#- name: newrichmarkets
-#  config_file: newrichmarkets.yml
+- name: newrichmarkets
+  config_file: newrichmarkets.yml
 
 #- name: newforexstage2
 #  config_file: newforexstage2.yml
 
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
+
+#- name: newforexqa2
+#  config_file: newforexqa2.yml
 
 #- name: newcrmui
 #  config_file: newcrmui.yml
@@ -131,5 +134,5 @@ brands:
 #- name: wdcmarkets
 #  config_file: wdcmarkets.yml
 
-- name: 24option
-  config_file: 24option.yml
+#- name: 24option
+#  config_file: 24option.yml

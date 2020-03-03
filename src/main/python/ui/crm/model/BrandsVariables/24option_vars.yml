@@ -3,3 +3,5 @@ CryptoQuotesPreconditionCA:
   asset: "BitcoinEUR"
 DepositCAPrecondition:
   client_name: "Welcome"
+LoginCAPrecondition:
+  client_name: "Welcome"
