@@ -3,8 +3,11 @@ brands:
 #- name: fairbit
 #  config_file: fair-bit.yml
 
-- name: newcrmui
-  config_file: newcrmui.yml
+- name: newforexstage2
+  config_file: newforexstage2.yml
+
+#- name: newcrmui
+#  config_file: newcrmui.yml
 
 #- name: axa_markets
 #  config_file: axa_markets.yml
