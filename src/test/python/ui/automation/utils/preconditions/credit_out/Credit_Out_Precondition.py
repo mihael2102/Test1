@@ -18,6 +18,8 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.ui.crm.model.mt4.credit_out.MT4CreditOutModule import MT4CreditOutModule
 from src.main.python.ui.crm.model.pages.trading_account.TradingAccountsInformationPage import \
     TradingAccountsInformationPage
+from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
+from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.utils.config import Config
 
 
@@ -30,6 +32,11 @@ class CreditOutPrecondition(object):
         self.config = config
 
     def credit_out_crm(self):
+        lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
+        if ConvertLeadConstantsUI.EMAIL_EDITABLE:
+            client = self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL)
+        else:
+            client = lead1[LeadsModuleConstants.EMAIL]
         CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -37,8 +44,7 @@ class CreditOutPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
                                                        TestDataConstants.FILTER)) \
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                              TestDataConstants.E_MAIL))
+            .find_client_by_email(client)
         sleep(2)
         if global_var.current_brand_name == "trade99":
             ClientProfilePage(self.driver)\

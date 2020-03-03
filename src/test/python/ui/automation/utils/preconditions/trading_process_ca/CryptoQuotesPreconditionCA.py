@@ -2,7 +2,7 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
-from src.main.python.ui.ca.model.constants.CAvariables.TradingVariablesCA import TradingVariablesCA
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 class CryptoQuotesPreconditionCA(object):
@@ -20,13 +20,8 @@ class CryptoQuotesPreconditionCA(object):
 
     def verify_crypto_quotes_ca(self):
 
-        if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca_2'))
-        else:
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
             .close_campaign_banner() \
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc')) \
@@ -48,10 +43,8 @@ class CryptoQuotesPreconditionCA(object):
            global_var.current_brand_name == "strattonmarkets-eu":
             WebTraderPage(self.driver) \
                 .perform_scroll_down()
-        if global_var.current_brand_name == "24option":
-            asset = "BitcoinEUR"
-        else:
-            asset = TradingConstants.ASSET_BTCEUR
+
+        asset = var.get_var(self.__class__.__name__)["asset"]
         WebTraderPage(self.driver) \
             .open_asset_group(TradingConstants.ASSET_GROUP_CRYPTO) \
             .verify_asset_price_change(asset)

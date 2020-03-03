@@ -55,6 +55,7 @@ class FinancialTransactionInformationPage(CRMBasePage):
             super().wait_load_element\
                 ("//div[@class='wrn_message textcenter']/span[contains(text(),'not have sufficient priveleges')] ")
             Logging().reportDebugStep(self, "There is no sufficient priveleges to access this page")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             return FinancialTransactionInformationPage(self.driver)
 
     def get_assigned_to_text(self):
