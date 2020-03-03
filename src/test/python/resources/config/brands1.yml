@@ -71,8 +71,8 @@ brands:
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
 
-#- name: newforexstage2
-#  config_file: newforexstage2.yml
+- name: newforexstage2
+  config_file: newforexstage2.yml
 
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
@@ -131,5 +131,5 @@ brands:
 #- name: wdcmarkets
 #  config_file: wdcmarkets.yml
 
-- name: 24option
-  config_file: 24option.yml
+#- name: 24option
+#  config_file: 24option.yml
