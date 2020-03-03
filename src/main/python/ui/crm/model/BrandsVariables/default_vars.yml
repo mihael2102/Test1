@@ -10,6 +10,7 @@ CryptoQuotesPreconditionCA:
 DepositCAPrecondition:
   client_name: "Test"
 DepositTestCRM:
+  live_acc_platform: ""
   live_acc_server: "Live"
   live_acc_currency: "USD"
   live_acc_group: "USD"
