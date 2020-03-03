@@ -77,8 +77,8 @@ brands:
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
 
-- name: newcrmui
-  config_file: newcrmui.yml
+#- name: newcrmui
+#  config_file: newcrmui.yml
 
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
