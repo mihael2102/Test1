@@ -17,6 +17,7 @@ from src.main.python.ui.crm.model.pages.mt4_ui.MT4CreditInPageUI import MT4Credi
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4CreditInConstantsUI import MT4CreditInConstantsUI
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4WithdrawConstantsUI import MT4WithdrawConstantsUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI import CreateLeadConstantsUI
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 @pytest.mark.run(order=13)
@@ -48,7 +49,7 @@ class MT4CreditInPreconditionUI(object):
                                    CreateLeadConstantsUI.EMAIL)
         ClientsModulePageUI(self.driver) \
             .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
-            .open_mt4_module_newui(MT4ActionsConstantsUI.CREATE_MT_ACCOUNT)
+            .open_mt4_module_newui(var.get_var(self.__class__.__name__)["create_mt_user"])
 
         """ Create LIVE account for client using MT4 Actions """
         MT4CreateTAPageUI(self.driver) \

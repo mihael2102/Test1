@@ -42,6 +42,12 @@ LeadPrecondition:
   m_edit_lead_status: "B - Test"
 LoginCAPrecondition:
   client_name: "Test"
+MT4CreateTAPreconditionUI:
+  create_mt_user: "Create MT User"
+MT4CreditInPreconditionUI:
+  create_mt_user: "Create MT User"
+MT4DepositPreconditionUI:
+  create_mt_user: "Create MT User"
 TradingAccountPrecondition:
   demo_acc_currency: "EUR"
   demo_acc_currency_usd: "USD"

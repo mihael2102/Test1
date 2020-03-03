@@ -3,5 +3,11 @@ AssetPricePreconditionCA:
   asset: "ETCEUR"
 ConvertLeadPreconditionUI:
   convert_lead_currency: "UST"
+MT4CreateTAPreconditionUI:
+  create_mt_user: "Create Trading Account"
+MT4CreditInPreconditionUI:
+  create_mt_user: "Create Trading Account"
+MT4DepositPreconditionUI:
+  create_mt_user: "Create Trading Account"
 TradingAccountPrecondition:
   demo_acc_currency: "UST"
