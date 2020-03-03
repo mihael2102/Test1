@@ -12,9 +12,8 @@ def Send_Email_XML(filepath, content):
 
     fromaddr = Config.email_address
     to = "michael.oryshchenko@pandats.com"
-    cc = ""
-    # cc = "valerie@pandats.com"
-    bcc = ""
+    cc = "valerie@pandats.com"
+    bcc = "yarin.b@pandats.com"
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
@@ -97,9 +96,8 @@ def Send_Email_XML(filepath, content):
 def Send_Email_XLS(filepath):
 
     fromaddr = Config.email_address
-    to = "michael.oryshchenko@pandats.com, yarin.b@pandats.com"
+    to = "michael.oryshchenko@pandats.com"
     cc = ""
-    # cc = "valerie@pandats.com"
     bcc = ""
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
@@ -164,7 +162,7 @@ def Send_ALL_XLS(filepath):
     fromaddr = Config.email_address
     to = "michael.oryshchenko@pandats.com"
     cc = "yarin.b@pandats.com"
-    bcc = ""
+    bcc = "valerie@pandats.com"
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
