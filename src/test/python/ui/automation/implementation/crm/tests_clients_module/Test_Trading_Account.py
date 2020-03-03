@@ -53,7 +53,7 @@ class TradingAccountCrmTest(BaseTest):
             except:
                 self.assertEqual(confirmation_message, CRMConstants.MT4_ACCOUNT_CREATED_SUCCESFULLY_2)
         else:
-            Logging().reportDebugStep(self, "module does not exist")
+            Logging().reportDebugStep(self, "module does not exist (NOT RUNNED)")
             return self
 
     def test_crm_edit_trading_account(self):
