@@ -1,7 +1,10 @@
 brands:
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
+- name: newforexqa2
+  config_file: newforexqa2.yml
+
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 #- name: royal_cfds
 #  config_file: royal_cfds.yml
 #- name: jonesmutual
