@@ -4,8 +4,8 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.ca.Test_SignUp
   class: SignUpTest
   tests:
-#    - test_check_login
-    - test_client_deposit_page_loading
+    - test_check_login
+#    - test_client_deposit_page_loading
 
 #- module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
 #  class: TestPagesCA

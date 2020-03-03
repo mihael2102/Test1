@@ -39,6 +39,8 @@ LeadModuleTest:
 LeadPrecondition:
   m_assign_lead_status: "R - New"
   m_edit_lead_status: "B - Test"
+LoginCAPrecondition:
+  client_name: "Test"
 TradingAccountPrecondition:
   demo_acc_currency: "EUR"
   demo_acc_currency_usd: "USD"
