@@ -10,7 +10,7 @@ tests_config:
 #  class: DepositTestCRM
 #  tests:
 #    - test_make_deposit_crm  # create live account and make a deposit into a trading account from the crm
-
+#
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
 #  class: WithdrawTest
 #  tests:
@@ -22,15 +22,15 @@ tests_config:
 #    - test_create_lead_api
 #    - test_create_new_customer
 #
-- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
-  class: SignUpTest
-  tests:
-    - test_check_sign_up
-
-- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
-  class: AddNewAccountTestCA
-  tests:
-    - test_add_live_account_ca
+#- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
+#  class: SignUpTest
+#  tests:
+#    - test_check_sign_up
+#
+#- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
+#  class: AddNewAccountTestCA
+#  tests:
+#    - test_add_live_account_ca
 #    - test_add_demo_account_ca
 #
 #- module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
