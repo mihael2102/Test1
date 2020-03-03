@@ -20,8 +20,8 @@ brands:
 #- name: coin-bits
 #  config_file: coin-bits.yml
 
-#- name: confixfinancial
-#  config_file: confixfinancial.yml
+- name: confixfinancial
+  config_file: confixfinancial.yml
 
 #- name: ctxprime
 #  config_file: ctxprime.yml
@@ -77,8 +77,8 @@ brands:
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
 
-- name: newforexqa2
-  config_file: newforexqa2.yml
+#- name: newforexqa2
+#  config_file: newforexqa2.yml
 
 #- name: newcrmui
 #  config_file: newcrmui.yml
