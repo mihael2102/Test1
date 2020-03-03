@@ -119,8 +119,8 @@ brands:
 #- name: tradenero
 #  config_file: tradenero.yml
 
-- name: tradixa
-  config_file: tradixa.yml
+#- name: tradixa
+#  config_file: tradixa.yml
 
 #- name: uft
 #  config_file: uft.yml
@@ -131,5 +131,5 @@ brands:
 #- name: wdcmarkets
 #  config_file: wdcmarkets.yml
 
-#- name: 24option
-#  config_file: 24option.yml
+- name: 24option
+  config_file: 24option.yml

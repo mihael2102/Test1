@@ -1,5 +1,4 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
-
 ApiPrecondition:
   partner_id: "3898"
 AssetPricePreconditionCA:
@@ -8,6 +7,8 @@ ConvertLeadPreconditionUI:
   convert_lead_currency: "EUR"
 CryptoQuotesPreconditionCA:
   asset: "BTCEUR"
+DepositCAPrecondition:
+  client_name: "Test"
 DepositTestCRM:
   live_acc_server: "Live"
   live_acc_currency: "USD"
