@@ -120,6 +120,8 @@ LeadsModule:
   create_lead_module: "//td[@class='moduleName']//button[1]"
   email_field: "//tr[@name='customAdvanceSearch']//input[@name='tks_email']"
   lead_no: "//a[contains(text(),'LEA')]"
+  l_status_table: "//tbody[@id = 'listBody']/tr[%s]/td[7]"
+  l_assign_table: "//tbody[@id = 'listBody']/tr[%s]/td[14]"
 LeadViewInfo:
   convert_lead_btn: "//a[contains(@onclick,'ConvertLead')]"
 MT4DepositModule:

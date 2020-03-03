@@ -8,6 +8,8 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
+from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from time import sleep
 import glob
 import os
@@ -220,43 +222,25 @@ class LeadPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        CRMHomePage(self.driver).open_lead_module()
-        LeadsModule(self.driver).select_filter(
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
-        LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
-        LeadsModule(self.driver).click_search_button_leads_module()
-        sleep(1)
-        LeadsModule(self.driver).click_check_box_all_leads()
-        LeadsModule(self.driver).mass_edit_leads()
-        if global_var.current_brand_name == "uft" or global_var.current_brand_name == "trade99":
-            LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_1)
-        elif global_var.current_brand_name == "stoxmarket" or global_var.current_brand_name == "gigafx":
-            LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_STOX)
-        else:
-            LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT)
+        CRMHomePage(self.driver)\
+            .open_lead_module()
         LeadsModule(self.driver)\
+            .select_filter(
+               self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME)) \
+            .enter_email(CRMConstants.SHORT_EMAIL) \
+            .click_search_button_leads_module() \
+            .click_check_box_all_leads() \
+            .mass_edit_leads() \
+            .edit_status(var.get_var(self.__class__.__name__)["m_edit_lead_status"]) \
             .edit_source(CRMConstants.SOURCE_EDIT) \
             .edit_country(CRMConstants.COUNTRY_EDIT) \
             .click_save_mass_edit() \
             .click_ok() \
             .enter_email(CRMConstants.SHORT_EMAIL) \
             .click_search_button_leads_module()
-        i = 1
-        for i in range(1, 10):
-            status = LeadsModule(self.driver).check_status_leads(i)
-            if global_var.current_brand_name == "uft" or global_var.current_brand_name == "otcapital" or \
-                    global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets" or\
-                    global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "fm-fx" or \
-                    global_var.current_brand_name == "trade99":
-                assert status == CRMConstants.STATUS_EDIT_1
-            elif global_var.current_brand_name == "stoxmarket" or global_var.current_brand_name == "gigafx":
-                assert status == CRMConstants.STATUS_EDIT_STOX
-            else:
-                assert status == CRMConstants.STATUS_EDIT
-            country = LeadsModule(self.driver).check_country_leads(i)
-            assert country == CRMConstants.COUNTRY_EDIT
-            # source = LeadsModule(self.driver).check_source_leads(i)
-            # assert source == CRMConstants.SOURCE_EDIT
+        CRMBaseMethodsPage(self.driver) \
+            .global_data_checker(var.get_var(self.__class__.__name__)["m_edit_lead_status"]) \
+            .global_data_checker(CRMConstants.COUNTRY_EDIT)
 
     def mass_assign_leads(self):
         CRMLoginPage(self.driver)\
@@ -275,33 +259,14 @@ class LeadPrecondition(object):
             .click_mass_assign()\
             .input_mass_assign(CRMConstants.PANDAQA_ASSIGN)\
             .select_user_assign(CRMConstants.PANDAQA_ASSIGN)\
-            .click_status()
-
-        if global_var.current_brand_name == "uft" or global_var.current_brand_name == "trade99":
-            LeadsModule(self.driver)\
-                .select_status(CRMConstants.STATUS_EDIT_1)
-        elif global_var.current_brand_name == "stoxmarket":
-            LeadsModule(self.driver)\
-                .select_status(CRMConstants.STATUS_EDIT_STOX)
-        else:
-            LeadsModule(self.driver)\
-                .select_status(CRMConstants.STATUS_ASSIGN)
-        LeadsModule(self.driver)\
-            .click_assign()\
+            .click_status() \
+            .select_status(var.get_var(self.__class__.__name__)["m_assign_lead_status"]) \
+            .click_assign() \
             .mass_assign_result(CRMConstants.PANDAQA_ASSIGN)
-        i = 1
-        for i in range(1, 10):
-            status = LeadsModule(self.driver).check_status_leads(i)
-            if global_var.current_brand_name == "uft" or \
-               global_var.current_brand_name == "trade99":
-                assert status == CRMConstants.STATUS_EDIT_1
-            elif global_var.current_brand_name == "stoxmarket":
-                assert status == CRMConstants.STATUS_EDIT_STOX
-            else:
-                assert status == CRMConstants.STATUS_ASSIGN
-            assign_leads = LeadsModule(self.driver).check_assign_leads(i)
 
-            assert assign_leads == CRMConstants.PANDAQA_ASSIGN
+        CRMBaseMethodsPage(self.driver)\
+            .global_data_checker(var.get_var(self.__class__.__name__)["m_assign_lead_status"]) \
+            .global_data_checker(CRMConstants.PANDAQA_ASSIGN)
 
     def sorting_leads(self):
         CRMLoginPage(self.driver)\
