@@ -83,7 +83,7 @@ class GlobalTablePageUI(CRMBasePage):
         if column_number:
             data = super().wait_load_element(
                 "//table/tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][%s]/td[%s]"
-                % (row, column_number)).text
+                % (row, column_number)).get_attribute("innerText")
             Logging().reportDebugStep(self,
                                       "Get data from list view (column = " + column + ", row = " + row + "): " + data)
             return data
