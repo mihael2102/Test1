@@ -12,6 +12,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI impor
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4ActionsConstantsUI import MT4ActionsConstantsUI
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 @pytest.mark.run(order=13)
@@ -47,13 +48,14 @@ class MT4CreateTAPreconditionUI(object):
                                    CreateLeadConstantsUI.EMAIL)
         ClientsModulePageUI(self.driver)\
             .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
-            .open_mt4_module_newui(MT4ActionsConstantsUI.CREATE_MT_ACCOUNT)
+            .open_mt4_module_newui(var.get_var(self.__class__.__name__)["create_mt_user"])
 
         """ Create DEMO account for client using MT4 Actions """
         MT4CreateTAPageUI(self.driver)\
             .mt4_create_ta_ui(
                 list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_DEMO,
-                list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=MT4CreateTAConstantsUI.CURRENCY,
+                list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=var.get_var(self.__class__.__name__)
+                                                                                 ["d_acc_currency"],
                 list3=MT4CreateTAConstantsUI.LIST_GROUP, group=MT4CreateTAConstantsUI.GROUP_DEMO,
                 list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
 
