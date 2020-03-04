@@ -54,7 +54,8 @@ class MT4CreateTAPreconditionUI(object):
         MT4CreateTAPageUI(self.driver)\
             .mt4_create_ta_ui(
                 list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_DEMO,
-                list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=MT4CreateTAConstantsUI.CURRENCY,
+                list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=var.get_var(self.__class__.__name__)
+                                                                                 ["d_acc_currency"],
                 list3=MT4CreateTAConstantsUI.LIST_GROUP, group=MT4CreateTAConstantsUI.GROUP_DEMO,
                 list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
 

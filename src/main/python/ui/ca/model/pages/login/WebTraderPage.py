@@ -476,8 +476,8 @@ class WebTraderPage(CRMBasePage):
 
     def check_chart_loaded(self):
         sleep(1)
-        self.wait_element_to_be_disappear("//div[contains(@class,'chart-preload')]", 15)
-        self.wait_element_to_be_disappear("//*[contains(@class,'no-chart-data-pandats')]", 10)
+        self.wait_element_to_be_disappear("//div[contains(@class,'chart-preload')]", 25)
+        self.wait_element_to_be_disappear("//*[contains(@class,'no-chart-data-pandats')]", 15)
         self.wait_load_element("//div[contains(@class,'chart-pane-legend-price')]/div[@class='legend-price']")
         Logging().reportDebugStep(self, "Graph was loaded")
         return WebTraderPage(self.driver)

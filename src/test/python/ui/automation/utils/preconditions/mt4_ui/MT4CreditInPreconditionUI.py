@@ -54,10 +54,10 @@ class MT4CreditInPreconditionUI(object):
         """ Create LIVE account for client using MT4 Actions """
         MT4CreateTAPageUI(self.driver) \
             .mt4_create_ta_ui(
-                list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
-                list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=MT4CreateTAConstantsUI.CURRENCY,
-                list3=MT4CreateTAConstantsUI.LIST_GROUP, group=MT4CreateTAConstantsUI.GROUP_LIVE,
-                list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
+            list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
+            list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=var.get_var(self.__class__.__name__)["l_acc_currency"],
+            list3=MT4CreateTAConstantsUI.LIST_GROUP, group=var.get_var(self.__class__.__name__)["live_acc_group"],
+            list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
 
         """ Verify successful message """
         GlobalTablePageUI(self.driver) \
