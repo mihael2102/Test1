@@ -29,10 +29,7 @@ class ClientDetailsConstantsUI(object):
     FIELD_LNAME = "Last Name"
     FIELD_EMAIL = "Email"
     FIELD_PHONE = "Phone"
-    if brand == "fairbit":
-        FIELD_CITIZENSHIP = "Nationality"
-    else:
-        FIELD_CITIZENSHIP = "Citizenship"
+    FIELD_CITIZENSHIP = "Citizenship"
     FIELD_UI_LANGUAGE = "UI Language"
     FIELD_ADDRESS = "Address"
     FIELD_CODE = "Code"

@@ -206,9 +206,8 @@ class WebTraderPage(CRMBasePage):
         return pips_right_panel.text
 
     def select_asset(self, asset):
-        # super().wait_load_element("//div[@class='loader__bar']", timeout=15)
-        # super().wait_element_to_be_disappear("//div[@class='loader__bar']", timeout=35)
         try:
+            sleep(1)
             asset_btn = super().wait_load_element("//div[contains(text(),'%s') and not(contains(text(),'.m'))]" % asset)
             self.driver.execute_script("arguments[0].click();", asset_btn)
             Logging().reportDebugStep(self, "Select asset: " + asset)
@@ -216,22 +215,19 @@ class WebTraderPage(CRMBasePage):
             return WebTraderPage(self.driver)
         except:
             Logging().reportDebugStep(self, "There is no asset: " + asset)
+            Logging().reportDebugStep(self, "NOT RUNNED")
             TradingConstants.IS_ASSET_EXIST = "no"
 
     def click_select_account(self):
         sleep(5)
         if global_var.current_brand_name == "ptbanc":
             click_select_account = self.driver.find_element(By.XPATH,
-                                                   "//*[@id='u33171']/panda-forex-accounts/div/div/i[2]")
-
+                                                            "//*[@id='u33171']/panda-forex-accounts/div/div/i[2]")
         elif global_var.current_brand_name == "brokerz":
             click_select_account = self.driver.find_element(By.XPATH,
                                                         "//*[@id='panda-buttons']/panda-forex-accounts/div/div/i[2]")
-
         else:
-            click_select_account = self.driver.find_element(By.XPATH,
-                "//panda-forex-accounts/div/div/i[2]")
-
+            click_select_account = self.driver.find_element(By.XPATH, "//panda-forex-accounts/div/div/i[2]")
         click_select_account.click()
         Logging().reportDebugStep(self, "Click select account")
         return WebTraderPage(self.driver)
@@ -244,11 +240,9 @@ class WebTraderPage(CRMBasePage):
         elif global_var.current_brand_name == "brokerz":
             click_select_account = self.driver.find_element(By.XPATH,
              "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[2]/div/div[3]/span[contains(text(), 'Demo')]")
-
         else:
             click_select_account = self.driver.find_element(By.XPATH,
              "//panda-forex-accounts/div/div/div/perfect-scrollbar/div/div[1]/div/ul/li[3]/div/div[3]/span")
-
         try:
             click_select_account.click()
         except:
@@ -448,6 +442,7 @@ class WebTraderPage(CRMBasePage):
     def open_asset_group(self, asset_group):
         try:
             try:
+                sleep(0.5)
                 group = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                   self.__class__.__name__)["asset_group"] % asset_group)
                 self.scroll_into_view(group)
@@ -473,16 +468,16 @@ class WebTraderPage(CRMBasePage):
         return WebTraderPage(self.driver)
 
     def open_trade_tab(self, tab_name):
-        sleep(1)
+        sleep(2)
         tab = super().wait_load_element("//div[contains(text(),'%s')]" % tab_name)
-        tab.click()
+        self.driver.execute_script("arguments[0].click();", tab)
         Logging().reportDebugStep(self, "Open tab: " + tab_name)
         return WebTraderPage(self.driver)
 
     def check_chart_loaded(self):
         sleep(1)
-        self.wait_element_to_be_disappear("//div[contains(@class,'chart-preload')]", 15)
-        self.wait_element_to_be_disappear("//*[contains(@class,'no-chart-data-pandats')]", 10)
+        self.wait_element_to_be_disappear("//div[contains(@class,'chart-preload')]", 25)
+        self.wait_element_to_be_disappear("//*[contains(@class,'no-chart-data-pandats')]", 15)
         self.wait_load_element("//div[contains(@class,'chart-pane-legend-price')]/div[@class='legend-price']")
         Logging().reportDebugStep(self, "Graph was loaded")
         return WebTraderPage(self.driver)

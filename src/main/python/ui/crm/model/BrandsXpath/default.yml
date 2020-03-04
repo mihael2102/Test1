@@ -20,7 +20,7 @@ CALoginPage:
   citizenship: "//custom-select[@name='citizenship']//span[text()='%s']"
   campaign_close_btn: "(//button[@title='Close'])[2]"
   close_payment_btn: "//div[@class='close-pandats cmicon-close4 ng-star-inserted']"
-  submit_btn: "//button[contains (text(), 'Submit')]"
+  submit_btn: "//button[span=' Submit ']"
   login_email_input: "//input[@name='login']"
   login_password_input: "//input[@id='forex-password']"
   login_btn_2: "//button[@class = 'forex-button-pandats login-button-pandats font-15-pandats'][contains(text(), 'Login')]"
@@ -120,6 +120,8 @@ LeadsModule:
   create_lead_module: "//td[@class='moduleName']//button[1]"
   email_field: "//tr[@name='customAdvanceSearch']//input[@name='tks_email']"
   lead_no: "//a[contains(text(),'LEA')]"
+  l_status_table: "//tbody[@id = 'listBody']/tr[%s]/td[7]"
+  l_assign_table: "//tbody[@id = 'listBody']/tr[%s]/td[14]"
 LeadViewInfo:
   convert_lead_btn: "//a[contains(@onclick,'ConvertLead')]"
 MT4DepositModule:

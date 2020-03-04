@@ -15,17 +15,17 @@ tests_config:
 #  class: WithdrawTest
 #  tests:
 #    - test_withdraw_crm   #preconditions: convert lead, make deposit
-#
+
 #- module: src.test.python.ui.automation.implementation.api.Test_API
 #  class: TestAPI
 #  tests:
 #    - test_create_lead_api
 #    - test_create_new_customer
 #
-- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
-  class: SignUpTest
-  tests:
-    - test_check_sign_up
+#- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
+#  class: SignUpTest
+#  tests:
+#    - test_check_sign_up
 #
 #- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
 #  class: AddNewAccountTestCA
@@ -37,15 +37,16 @@ tests_config:
 #  class: TestPagesCA
 #  tests:
 #    - test_main_menu_pages_loading
-#
-#- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
-#  class: TradingProcess
-#  tests:
+#    - test_graph_ca
+
+- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
+  class: TradingProcess
+  tests:
 #    - test_crypto_quotes
-#    - test_trading_process_open_position_ca    # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
-#    - test_verify_open_position_crm     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
-#    - test_trading_process_close_position_ca      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
-#    - test_verify_close_position_crm
+    - test_open_position_live
+    - test_verify_live_open_position_crm
+    - test_close_position_live
+    - test_verify_live_close_position_crm
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
 #  class: CheckModulesTest

@@ -71,7 +71,7 @@ class GlobalTablePageUI(CRMBasePage):
             Logging().reportDebugStep(self, "Number of column " + title + " is: " + index)
             return index
         except(NoSuchElementException, TimeoutException, AssertionError, AttributeError):
-            Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
+            Logging().reportDebugStep(self, "Column '" + title + "' does not exist (NOT RUNNED)")
             return False
 
     """
@@ -83,12 +83,12 @@ class GlobalTablePageUI(CRMBasePage):
         if column_number:
             data = super().wait_load_element(
                 "//table/tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][%s]/td[%s]"
-                % (row, column_number)).text
+                % (row, column_number)).get_attribute("innerText")
             Logging().reportDebugStep(self,
                                       "Get data from list view (column = " + column + ", row = " + row + "): " + data)
             return data
         else:
-            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
+            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist (NOT RUNNED)")
             return False
 
     """
