@@ -3,6 +3,8 @@ CryptoQuotesPreconditionCA:
   asset: "AUDUSD"
 DepositCAPrecondition:
   client_name: "my account"
+LoginCAPrecondition:
+  client_name: "my account"
 TradingPreconditionLive:
   asset: "AUDUSD"
 WorkflowsPrecondition:

@@ -413,7 +413,7 @@ class ApiPage(CRMBasePage):
 
     def enter_secret_key(self, partnerSecretKey):
         sleep(5)
-        input_secret_key = super().wait_load_element("//*[@id='partnerSecretKey']")
+        input_secret_key = super().wait_load_element("//*[@id='partnerSecretKey']", timeout=35)
         input_secret_key.send_keys(partnerSecretKey)
         Logging().reportDebugStep(self, "Enter Secret Key")
         return ApiPage(self.driver)
