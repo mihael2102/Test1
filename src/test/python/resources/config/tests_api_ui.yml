@@ -1,0 +1,19 @@
+tests_config:
+
+- module: src.test.python.ui.automation.implementation.api.TestApiUI
+  class: TestApiUI
+  tests:
+#    - test_autorization_ui
+    - test_create_customer_ui
+#    - test_create_duplicate_customer
+#    - test_read_customer_details
+#    - test_update_customer
+#    - test_create_lead_api
+#    - test_read_leads_api
+#    - test_login_token
+
+#- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
+#  class: CheckDragonTest
+#  tests:
+#    - test_api_dragon_valid_phone
+#    - test_api_dragon_invalid_phone
