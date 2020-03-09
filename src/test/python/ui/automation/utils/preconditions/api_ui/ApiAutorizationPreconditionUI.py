@@ -48,7 +48,7 @@ class ApiAutorizationPreconditionUI(object):
 
         """ Autorization """
         ApiPage(self.driver)\
-            .open_first_tab_page(api_link) \
+            .open_second_tab_page(api_link) \
             .enter_secret_key(secret_key) \
             .authorization_module() \
             .input_partner_id(var.get_var("ApiPrecondition")["partner_id"]) \
