@@ -20,3 +20,4 @@ class ApiCreateCustomerConstantsUI(object):
     PHONE = "3453453"
     REFFERAL = "langref=hebrew"
     STATUS_OK = "ok"
+    STATUS_DUPLICATE_CUSTOMER = "Customer already exists"

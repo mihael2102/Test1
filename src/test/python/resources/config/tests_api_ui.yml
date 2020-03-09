@@ -5,7 +5,7 @@ tests_config:
   tests:
 #    - test_autorization_ui
     - test_create_customer_ui
-#    - test_create_duplicate_customer
+    - test_duplicate_customer_ui
 #    - test_read_customer_details
 #    - test_update_customer
 #    - test_create_lead_api
