@@ -39,11 +39,11 @@ tests_config:
 #    - test_mass_edit_clients_ui
 
 ######################################### MT4 ACTIONS ###########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
-  directive: reload_configuration
-  class: TestMT4UI
-  tests:
-    - test_create_demo_ta_ui
+#- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
+#  directive: reload_configuration
+#  class: TestMT4UI
+#  tests:
+#    - test_create_demo_ta_ui
 #    - test_deposit_crm_ui  # create live mt account and make deposit
 #    - test_withdraw_crm_ui
 #    - test_credit_in_crm_ui
@@ -99,7 +99,6 @@ tests_config:
 #  class: SignUpTest
 #  tests:
 #    - test_check_sign_up
-#    - test_check_email_sign_up
 #    - test_registred_client_in_crm_new_ui
 #
 #- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
