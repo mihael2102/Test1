@@ -11,9 +11,9 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 def Send_Email_XML(filepath, content):
 
     fromaddr = Config.email_address
-    to = "michael.oryshchenko@pandats.com"
-    cc = "valerie@pandats.com"
-    bcc = "yarin.b@pandats.com"
+    to = Config.email_address
+    cc = ""
+    bcc = ""
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
@@ -47,11 +47,11 @@ def Send_Email_XML(filepath, content):
     msg.attach(MIMEText(body, 'plain'))
 
     # attach the screenshot:
-    screenshot_path = "C:/screenshots/" + Config.test + "/" + global_var.current_brand_name + "/scr.png"
-    if os.path.exists(screenshot_path):
-        img_data = open(screenshot_path, "rb").read()
-        screenshot = MIMEImage(img_data, name=os.path.basename(screenshot_path))
-        msg.attach(screenshot)
+    # screenshot_path = "C:/screenshots/" + Config.test + "/" + global_var.current_brand_name + "/scr.png"
+    # if os.path.exists(screenshot_path):
+    #     img_data = open(screenshot_path, "rb").read()
+    #     screenshot = MIMEImage(img_data, name=os.path.basename(screenshot_path))
+    #     msg.attach(screenshot)
 
     # open the file to be sent
     filepath = filepath.replace("\\","/")
@@ -161,8 +161,8 @@ def Send_ALL_XLS(filepath):
 
     fromaddr = Config.email_address
     to = "michael.oryshchenko@pandats.com"
-    cc = "yarin.b@pandats.com"
-    bcc = "valerie@pandats.com"
+    cc = ""
+    bcc = ""
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
