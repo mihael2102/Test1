@@ -5,6 +5,7 @@ from email.mime.base import MIMEBase
 from email.mime.image import MIMEImage
 from email import encoders
 from src.test.python.ui.automation.BaseTest import *
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 def Send_Email_XML(filepath, content):
