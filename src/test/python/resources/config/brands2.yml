@@ -1,4 +1,4 @@
 brands:
 
-- name: strattonmarkets-eu
-  config_file: strattonmarkets-eu.yml
+- name: any1profit
+  config_file: any1profit.yml
