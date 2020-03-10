@@ -17,7 +17,7 @@ from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import Cl
 from time import sleep
 
 
-class ApiCreateCustomerPreconditionUI(object):
+class ApiUpdateCustomerPreconditionUI(object):
 
     driver = None
     config = None
@@ -26,34 +26,22 @@ class ApiCreateCustomerPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def create_customer_ui(self):
+    def update_customer_ui(self):
         """ Autorization """
         ApiAutorizationPreconditionUI(self.driver, self.config)\
             .autorization_ui()
 
-        """ Create Customer """
-        check_create_customer_token = ApiPage(self.driver)\
-            .create_customer_module() \
-            .enter_email(ApiCustomerConstantsUI.EMAIL) \
-            .enter_password(ApiCustomerConstantsUI.PASSWORD) \
-            .enter_country(ApiCustomerConstantsUI.COUNTRY) \
-            .enter_firstName(ApiCustomerConstantsUI.FNAME) \
-            .enter_lastName(ApiCustomerConstantsUI.LNAME) \
-            .enter_phone(ApiCustomerConstantsUI.PHONE) \
-            .enter_refferal(ApiCustomerConstantsUI.REFFERAL) \
-            .send_create_customer() \
-            .check_create_customer_token()
+        """ Update Customer """
+        token = ApiPage(self.driver) \
+            .update_customer_module() \
+            .enter_email_for_update(ApiCustomerConstantsUI.EMAIL) \
+            .change_postalCode(ApiCustomerConstantsUI.CHANGE_POSTAL_CODE) \
+            .change_address(ApiCustomerConstantsUI.CHANGE_ADDRESS) \
+            .change_city(ApiCustomerConstantsUI.CHANGE_CITY) \
+            .send_update_customer() \
+            .check_update_token()
 
-        count = 0
-        while APIConstants.STATUS_OK not in check_create_customer_token:
-            sleep(1)
-            check_create_customer_token = ApiPage(self.driver)\
-                .check_create_customer_token()
-            count += 1
-            if count == 5:
-                break
-
-        assert APIConstants.STATUS_OK in check_create_customer_token
+        assert ApiCustomerConstantsUI.STATUS_OK in token
 
         """ CRM: get client's data """
         CRMLoginPageUI(self.driver) \
@@ -70,33 +58,16 @@ class ApiCreateCustomerPreconditionUI(object):
         details = ClientDetailsPageUI(self.driver)
         email = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_EMAIL)
-        first_name = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_FNAME)
-        last_name = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_LNAME)
-        phone = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_PHONE)
-        country = details \
+        city = details \
             .open_tab(ClientDetailsConstantsUI.TAB_ADDRESS_INFORMATION) \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_COUNTRY)
-        referral = details \
-            .open_tab(ClientDetailsConstantsUI.TAB_CUSTOM_INFORMATION) \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_REFERRAL)
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_CITY)
+        address = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_ADDRESS)
+        code = details \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_CODE)
 
         """ Verify client's data """
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(first_name, ApiCustomerConstantsUI.FNAME) \
-            .comparator_string(last_name, ApiCustomerConstantsUI.LNAME) \
-            .comparator_string(referral, ApiCustomerConstantsUI.REFFERAL) \
-            .comparator_string(country, ApiCustomerConstantsUI.COUNTRY_CRM)
-
-        if email and "*" not in email and "..." not in email:
-            CRMBaseMethodsPage(self.driver) \
-                .comparator_string(email, ApiCustomerConstantsUI.EMAIL)
-        elif email and "*" not in email:
-            email = email.replace('...', '')
-            assert email in ApiCustomerConstantsUI.EMAIL
-
-        if phone and "*" not in phone:
-            CRMBaseMethodsPage(self.driver) \
-                .comparator_string(phone, ApiCustomerConstantsUI.PHONE)
+            .comparator_string(city, ApiCustomerConstantsUI.CHANGE_CITY) \
+            .comparator_string(address, ApiCustomerConstantsUI.CHANGE_ADDRESS) \
+            .comparator_string(code, ApiCustomerConstantsUI.CHANGE_POSTAL_CODE)

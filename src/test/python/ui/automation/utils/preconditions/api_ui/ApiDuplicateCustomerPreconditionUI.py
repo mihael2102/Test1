@@ -5,7 +5,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
 from src.main.python.ui.crm.model.constants.APIConstants import APIConstants
-from src.main.python.ui.crm.model.constants_ui.api_ui.ApiCreateCustomerConstantsUI import ApiCreateCustomerConstantsUI
+from src.main.python.ui.crm.model.constants_ui.api_ui.ApiCustomerConstantsUI import ApiCustomerConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
@@ -34,14 +34,14 @@ class ApiDuplicateCustomerPreconditionUI(object):
         """ Create Customer with same email"""
         check_create_customer_token = ApiPage(self.driver)\
             .create_customer_module() \
-            .enter_email(ApiCreateCustomerConstantsUI.EMAIL) \
-            .enter_password(ApiCreateCustomerConstantsUI.PASSWORD) \
-            .enter_country(ApiCreateCustomerConstantsUI.COUNTRY) \
-            .enter_firstName(ApiCreateCustomerConstantsUI.FNAME) \
-            .enter_lastName(ApiCreateCustomerConstantsUI.LNAME) \
-            .enter_phone(ApiCreateCustomerConstantsUI.PHONE) \
-            .enter_refferal(ApiCreateCustomerConstantsUI.REFFERAL) \
+            .enter_email(ApiCustomerConstantsUI.EMAIL) \
+            .enter_password(ApiCustomerConstantsUI.PASSWORD) \
+            .enter_country(ApiCustomerConstantsUI.COUNTRY) \
+            .enter_firstName(ApiCustomerConstantsUI.FNAME) \
+            .enter_lastName(ApiCustomerConstantsUI.LNAME) \
+            .enter_phone(ApiCustomerConstantsUI.PHONE) \
+            .enter_refferal(ApiCustomerConstantsUI.REFFERAL) \
             .send_create_customer() \
             .check_create_customer_token()
 
-        assert ApiCreateCustomerConstantsUI.STATUS_DUPLICATE_CUSTOMER in check_create_customer_token
+        assert ApiCustomerConstantsUI.STATUS_DUPLICATE_CUSTOMER in check_create_customer_token
