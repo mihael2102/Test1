@@ -1,4 +1,4 @@
 brands:
 
-- name: brokerz
-  config_file: brokerz.yml
+- name: newforexstage2
+  config_file: newforexstage2.yml
