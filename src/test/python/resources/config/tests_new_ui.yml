@@ -25,10 +25,10 @@ tests_config:
   directive: reload_configuration
   class: TestLeadsModuleUI
   tests:
-#    - test_leads_searching_columns_ui
+    - test_leads_searching_columns_ui
 #    - test_mass_assign_leads_ui
 #    - test_mass_edit_leads_ui
-    - test_convert_lead_ui   # Creates a lead and converts it to a client
+#    - test_convert_lead_ui   # Creates a lead and converts it to a client
 
 ############################################## CLIENTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_Clients_Module_UI
@@ -93,10 +93,3 @@ tests_config:
 #  tests:
 #    - test_tasks_searching_columns_ui
 #    - test_add_delete_event_ui
-
-############################################# LOAD TESTS ############################################
-#- module: src.test.python.ui.automation.implementation.crm.load.TestLoadCRMUI
-#  class: TestLoadCRMUI
-#  tests:
-#    - test_load_switch_tabs_ui
-#    - test_load_switch_tabs

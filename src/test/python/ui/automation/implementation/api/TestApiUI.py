@@ -1,4 +1,3 @@
-import pytest
 from src.test.python.ui.automation.utils.preconditions.api_ui.ApiAutorizationPreconditionUI import \
     ApiAutorizationPreconditionUI
 from src.test.python.ui.automation.utils.preconditions.api_ui.ApiDuplicateCustomerPreconditionUI import \
@@ -44,9 +43,3 @@ class TestApiUI(BaseTest):
 
     def test_login_token_ui(self):
         ApiLoginTokenPreconditionUI(self.driver, self.config).login_token_ui()
-
-    def test_autoassign_create_new_customer(self):
-        ApiPrecondition(self.driver, self.config).autoassign_create_new_customer()
-
-    def test_autoassign_create_new_lead(self):
-        ApiPrecondition(self.driver, self.config).autoassign_create_lead()
