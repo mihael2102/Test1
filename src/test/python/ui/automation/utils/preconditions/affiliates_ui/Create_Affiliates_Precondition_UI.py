@@ -1,7 +1,7 @@
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.AffiliatesModuleConstantsUI import AffiliatesModuleConstantsUI
-from src.main.python.ui.crm.model.pages.affiliates_module_ui.AffiliatesListViewPageUI import AffiliatesListViewPageUI
+from src.main.python.ui.crm.model.pages.affiliates_module_ui.AffiliatesModulePageUI import AffiliatesModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.affiliates_module_ui.CreateAffiliatesPageUI import CreateAffiliatesPageUI
 from src.main.python.ui.crm.model.constants.CreateAffiliateConstants import CreateAffiliateConstants
@@ -58,7 +58,7 @@ class CreateAffiliatesPreconditionUI(object):
             .global_data_checker_new_ui(CreateAffiliateConstants.PARTNER_NAME)
 
         """ Open affiliate's details page and verify Partner name """
-        AffiliatesListViewPageUI(self.driver)\
+        AffiliatesModulePageUI(self.driver)\
             .click_on_partner_name(CreateAffiliateConstants.PARTNER_NAME) \
             .verify_name_on_affiliate_details(CreateAffiliateConstants.PARTNER_NAME)\
             .came_back_on_previous_page()
@@ -67,7 +67,7 @@ class CreateAffiliatesPreconditionUI(object):
         GlobalTablePageUI(self.driver) \
             .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_NAME,
                                    data=CreateAffiliateConstants.PARTNER_NAME)
-        AffiliatesListViewPageUI(self.driver) \
+        AffiliatesModulePageUI(self.driver) \
             .click_more_icon()\
             .click_delete_icon()\
             .click_delete_btn()
@@ -82,5 +82,5 @@ class CreateAffiliatesPreconditionUI(object):
         GlobalTablePageUI(self.driver) \
             .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_NAME,
                                    data=CreateAffiliateConstants.PARTNER_NAME)
-        AffiliatesListViewPageUI(self.driver) \
+        AffiliatesModulePageUI(self.driver) \
             .verify_data_not_found()

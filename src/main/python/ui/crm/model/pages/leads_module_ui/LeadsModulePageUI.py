@@ -8,8 +8,8 @@ from time import sleep
 class LeadsModulePageUI(CRMBasePage):
 
     def open_lead(self):
-        sleep(0.1)
-        lead_no = super().wait_element_to_be_clickable("//span[contains(text(),'LEA')]")
+        sleep(0.5)
+        lead_no = super().wait_element_to_be_clickable("//span[@class='td-link' and contains(text(),'LEA')]")
         lead_no.click()
         sleep(1)
         self.wait_loading_to_finish_new_ui(15)

@@ -97,6 +97,7 @@ class WithdrawPreconditionCRM(object):
                 sleep(2)
                 balance = ClientProfilePage(self.driver).get_balance_in_trading_account()
                 actual_balance = int((balance.split('.'))[0])
+                sleep(1)
                 count += 1
                 if count == 10:
                     break
