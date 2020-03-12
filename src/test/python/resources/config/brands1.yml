@@ -47,8 +47,8 @@ brands:
 - name: pmt247
   config_file: pmt247.yml
 
-- name: ptbanc
-  config_file: ptbanc.yml
+#- name: ptbanc
+#  config_file: ptbanc.yml
 
 - name: proconsultinginvest
   config_file: proconsultinginvest.yml
