@@ -28,7 +28,7 @@ class LeadsModuleConstantsUI(object):
     COLUMN_PO_BOX = "PO Box"
     COLUMN_DESCRIPTION = "Description"
     COLUMN_LEAD_SOURCE = "Lead source"
-    COLUMN_LEAD_STATUS = "Lead status"
+    COLUMN_LEAD_STATUS = "Lead Status"
     COLUMN_ASSIGNED_TO = "Assigned To"
     COLUMN_COUNTRY = "Country"
     COLUMN_LEAD_NO = "Lead No"
