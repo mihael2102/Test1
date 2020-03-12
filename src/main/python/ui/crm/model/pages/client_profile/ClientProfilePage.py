@@ -1090,7 +1090,7 @@ class ClientProfilePage(CRMBasePage):
             Logging().reportDebugStep(self, "Create MT User button is available")
             return ClientProfilePage()
         except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "There is no Create MT User button available")
+            Logging().reportDebugStep(self, "There is no Create MT User button available (NOT RUNNED)")
             return ClientProfilePage(self.driver)
 
     def get_withdraw_status(self):

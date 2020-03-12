@@ -1,3 +1,7 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
 CryptoQuotesPreconditionCA:
   asset: "BitcoinEUR"
+DepositCAPrecondition:
+  client_name: "Welcome"
+LoginCAPrecondition:
+  client_name: "Welcome"

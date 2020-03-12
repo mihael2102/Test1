@@ -120,6 +120,8 @@ LeadsModule:
   create_lead_module: "//td[@class='moduleName']//button[1]"
   email_field: "//tr[@name='customAdvanceSearch']//input[@name='tks_email']"
   lead_no: "//a[contains(text(),'LEA')]"
+  l_status_table: "//tbody[@id = 'listBody']/tr[%s]/td[7]"
+  l_assign_table: "//tbody[@id = 'listBody']/tr[%s]/td[14]"
 LeadViewInfo:
   convert_lead_btn: "//a[contains(@onclick,'ConvertLead')]"
 MT4DepositModule:
@@ -163,4 +165,4 @@ WebTraderPage:
   pips_bottom_panel_test: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[6]/div[1]/div/div"
   open_trade_open_price: "//open-trade/td[7]"
   price: "//div[text()='%s']//following-sibling::div[contains(@class,'price-pandats')]"
-  asset_group: "//div[contains(text(),'%s')]"
+  asset_group: "//li[not(contains(@class,'active'))]//div[contains(text(),'%s')]"

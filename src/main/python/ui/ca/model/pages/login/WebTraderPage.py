@@ -215,6 +215,7 @@ class WebTraderPage(CRMBasePage):
             return WebTraderPage(self.driver)
         except:
             Logging().reportDebugStep(self, "There is no asset: " + asset)
+            Logging().reportDebugStep(self, "NOT RUNNED")
             TradingConstants.IS_ASSET_EXIST = "no"
 
     def click_select_account(self):
@@ -440,18 +441,22 @@ class WebTraderPage(CRMBasePage):
 
     def open_asset_group(self, asset_group):
         try:
-            try:
-                sleep(0.5)
-                group = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
-                                                  self.__class__.__name__)["asset_group"] % asset_group)
-                self.scroll_into_view(group)
-                self.driver.execute_script("arguments[0].click();", group)
-            except(NoSuchElementException, TimeoutException):
-                group = super().wait_load_element("//span[contains(text(),'%s')]" % asset_group)
+            if global_var.current_brand_name == "trade99":
+                group = super().wait_load_element("//span[contains(text(),'%s')]" % asset_group, timeout=10)
                 self.driver.execute_script("arguments[0].click();", group)
                 currencies_group = super().wait_load_element("//span[contains(text(),'Currencies')]")
                 self.driver.execute_script("arguments[0].click();", currencies_group)
-            Logging().reportDebugStep(self, "Open asset group: " + asset_group)
+                Logging().reportDebugStep(self, "Open asset group: " + asset_group)
+            else:
+                try:
+                    sleep(0.5)
+                    group = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+                        self.__class__.__name__)["asset_group"] % asset_group)
+                    self.scroll_into_view(group)
+                    self.driver.execute_script("arguments[0].click();", group)
+                    Logging().reportDebugStep(self, "Open asset group: " + asset_group)
+                except:
+                    Logging().reportDebugStep(self, "Asset group " + asset_group + " already opened")
             return WebTraderPage(self.driver)
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "There is no " + asset_group + " asset group")
@@ -475,8 +480,8 @@ class WebTraderPage(CRMBasePage):
 
     def check_chart_loaded(self):
         sleep(1)
-        self.wait_element_to_be_disappear("//div[contains(@class,'chart-preload')]", 15)
-        self.wait_element_to_be_disappear("//*[contains(@class,'no-chart-data-pandats')]", 10)
+        self.wait_element_to_be_disappear("//div[contains(@class,'chart-preload')]", 25)
+        self.wait_element_to_be_disappear("//*[contains(@class,'no-chart-data-pandats')]", 15)
         self.wait_load_element("//div[contains(@class,'chart-pane-legend-price')]/div[@class='legend-price']")
         Logging().reportDebugStep(self, "Graph was loaded")
         return WebTraderPage(self.driver)
