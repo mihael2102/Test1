@@ -1,5 +1,8 @@
 brands:
 
+- name: pmt247
+  config_file: pmt247.yml
+
 #- name: newforexstage2
 #  config_file: newforexstage2.yml
 
@@ -21,8 +24,8 @@ brands:
 #- name: trade99
 #  config_file: trade99.yml
 #
-- name: dax-300
-  config_file: dax-300.yml
+#- name: dax-300
+#  config_file: dax-300.yml
 
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
