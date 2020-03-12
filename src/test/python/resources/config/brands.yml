@@ -1,7 +1,9 @@
 brands:
 
-- name: dax-300
-  config_file: dax-300.yml
+- name: pmt247
+  config_file: pmt247.yml
+#- name: dax-300
+#  config_file: dax-300.yml
 #- name: royal_cfds
 #  config_file: royal_cfds.yml
 #- name: jonesmutual
