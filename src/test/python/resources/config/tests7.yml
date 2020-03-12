@@ -1,9 +1,10 @@
 tests_config:
 
-- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
-  class: TradingProcess
+######################################## FILTERS TESTS ###############################################
+- module: src.test.python.ui.automation.implementation.crm.tests_global_crm_ui.TestFiltersUI
+  class: TestFiltersUI
   tests:
-    - test_open_position_live         # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
-    - test_verify_live_open_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
-    - test_close_position_live      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
-    - test_verify_live_close_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
+    - test_filter_clients_ui
+    - test_filter_leads_ui
+    - test_filter_documents_ui
+    - test_filter_help_desk_ui

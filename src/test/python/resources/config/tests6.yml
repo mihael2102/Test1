@@ -1,31 +1,19 @@
 tests_config:
 
-############################################ CA TESTS ##############################################
-- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
-  class: SignUpTest
+######################################## TRADING ACCOUNTS ##########################################
+- module: src.test.python.ui.automation.implementation.crm.tests_trading_ui.TestTradingModuleUI
+  class: TestTradingModuleUI
   tests:
-    - test_check_sign_up
-    - test_check_email_sign_up
-    - test_registred_client_in_crm_new_ui
+    - test_trading_searching_columns_ui
 
-- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
-  class: AddNewAccountTestCA
+###################################### FINANCIAL TRANSACTIONS ##########################################
+- module: src.test.python.ui.automation.implementation.crm.tests_fin_transactions_ui.TestFinTransactionsModuleUI
+  class: TestFinTransactionsModuleUI
   tests:
-    - test_add_live_account_ca
-    - test_add_demo_account_ca
-    - test_verify_accounts_in_crm_ui
-    - test_switch_between_accounts_ca
+    - test_fin_transactions_searching_columns_ui
 
-- module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
-  class: TestPagesCA
+############################################# AUDIT LOGS ################################################
+- module: src.test.python.ui.automation.implementation.crm.tests_audit_logs_ui.TestAuditLogsModuleUI
+  class: TestAuditLogsModuleUI
   tests:
-    - test_main_menu_pages_loading
-    - test_graphs_loading
-
-- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
-  class: TradingProcess
-  tests:
-    - test_trading_process_open_position_ca    # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
-    - test_verify_open_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
-    - test_trading_process_close_position_ca      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
-    - test_verify_close_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
+    - test_audit_logs_searching_columns_ui

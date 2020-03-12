@@ -18,21 +18,3 @@ tests_config:
   class: TestDocumentsModuleUI
   tests:
     - test_documents_searching_columns_ui
-
-######################################## TRADING ACCOUNTS ##########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_trading_ui.TestTradingModuleUI
-  class: TestTradingModuleUI
-  tests:
-    - test_trading_searching_columns_ui
-
-###################################### FINANCIAL TRANSACTIONS ##########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_fin_transactions_ui.TestFinTransactionsModuleUI
-  class: TestFinTransactionsModuleUI
-  tests:
-    - test_fin_transactions_searching_columns_ui
-
-############################################# AUDIT LOGS ################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_audit_logs_ui.TestAuditLogsModuleUI
-  class: TestAuditLogsModuleUI
-  tests:
-    - test_audit_logs_searching_columns_ui
