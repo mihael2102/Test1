@@ -206,7 +206,7 @@ class ConvertLeadPreconditionUI(object):
         birthday = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_BIRTHDAY)
         citizenship = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_CITIZENSHIP)
+            .get_text_from_field(var.get_var(self.__class__.__name__)["field_citizenship"])
         ui_language = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_UI_LANGUAGE)
         address = details \
@@ -248,6 +248,6 @@ class ConvertLeadPreconditionUI(object):
             email = email.replace('...', '')
             assert email in ConvertLeadConstantsUI.EMAIL
 
-        if "*" not in phone:
+        if phone and "*" not in phone:
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(phone, ConvertLeadConstantsUI.PHONE)

@@ -39,7 +39,6 @@ class LeadsMassEditPreconditionUI(object):
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
             .select_all_records_checkbox() \
-            .click_select_all_records_btn() \
             .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT)
 
         """ Mass Edit """

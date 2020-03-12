@@ -49,7 +49,8 @@ class BaseTest(unittest.TestCase):
 
     def tearDown(self):
         """Take a Screen-shot of the drive homepage, when it Failed."""
-        dir = 'C:/screenshots/%s' % Config.test
+        import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+        dir = 'C:/screenshots/%s/%s' % (Config.test, global_var.current_brand_name)
         if os.path.exists(dir):
             shutil.rmtree(dir)
         if self._outcome.errors:
@@ -58,7 +59,7 @@ class BaseTest(unittest.TestCase):
                     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
                     print("%s %s" % (now, error))
                     os.makedirs(dir)
-                    file_name = Config.screenshot_path
+                    file_name = "C:/screenshots/" + Config.test + "/" + global_var.current_brand_name + "/scr.png"
                     self.driver.get_screenshot_as_file(file_name)
                     self.driver.save_screenshot(file_name)
                     # allure.MASTER_HELPER.attach('failed_screenshot', self.driver.get_screenshot_as_png(),

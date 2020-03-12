@@ -21,6 +21,17 @@ class CALoginPage(CRMBasePage):
         super().switch_first_tab_page()
         return CALoginPage(self.driver)
 
+    def sign_up_q8(self, first_name, last_name, email, phone, password):
+        sleep(0.5)
+        self.close_campaign_banner()
+        self.click_sign_up()
+        self.fill_first_name(first_name)
+        self.fill_last_name(last_name)
+        self.fill_email(email)
+        self.fill_phone(phone)
+        self.fill_password(password)
+        self.click_submit()
+
     def close_campaign_banner(self):
         sleep(3)
         try:
@@ -58,6 +69,7 @@ class CALoginPage(CRMBasePage):
             Logging().reportDebugStep(self, "Click Sign Up")
         except:
             Logging().reportDebugStep(self, "There is no panda plugin")
+            Logging().reportDebugStep(self, "NOT RUNNED")
         return CALoginPage(self.driver)
 
     def fill_first_name(self, first_name):
@@ -315,6 +327,7 @@ class CALoginPage(CRMBasePage):
                 Logging().reportDebugStep(self, "Click Login")
             except:
                 Logging().reportDebugStep(self, "There is no panda's plugin")
+                Logging().reportDebugStep(self, "NOT RUNNED")
         return CALoginPage(self.driver)
 
     def click_sign_in_btn(self):
@@ -537,3 +550,9 @@ class CALoginPage(CRMBasePage):
         save_changes_btn.click()
         Logging().reportDebugStep(self, "Save Changes button is clicked")
         return QuestionnairePage(self.driver)
+
+    def not_runned_test(self):
+        sleep(0.5)
+        Logging().reportDebugStep(self, "There is no needed environment for test running")
+        Logging().reportDebugStep(self, "NOT RUNNED")
+        pass
