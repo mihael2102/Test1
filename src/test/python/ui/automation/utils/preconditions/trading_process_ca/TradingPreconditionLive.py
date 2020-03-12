@@ -25,13 +25,8 @@ class TradingPreconditionLive(object):
         return lead
 
     def open_position_live(self):
-        if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url_ca_2'))
-        else:
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
             .close_campaign_banner() \
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc'))\
@@ -77,6 +72,7 @@ class TradingPreconditionLive(object):
             Logging().reportDebugStep(self, "Position was opened")
         except:
             Logging().reportDebugStep(self, "There is no crypto assets")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         """ Open live account details and get open orders data """
@@ -103,13 +99,8 @@ class TradingPreconditionLive(object):
 
     def close_position_live(self):
         """ Log in CA """
-        if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url_ca_2'))
-        else:
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
             .close_campaign_banner() \
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc'))\
@@ -123,6 +114,7 @@ class TradingPreconditionLive(object):
             Logging().reportDebugStep(self, "Position was opened")
         except:
             Logging().reportDebugStep(self, "There is no crypto assets")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         if global_var.current_brand_name == "q8":
@@ -162,6 +154,7 @@ class TradingPreconditionLive(object):
             Logging().reportDebugStep(self, "Position was opened")
         except:
             Logging().reportDebugStep(self, "There is no crypto assets")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         """ Open live account details and get closed orders data """
