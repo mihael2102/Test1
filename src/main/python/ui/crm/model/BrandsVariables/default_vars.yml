@@ -1,14 +1,17 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
-
 ApiPrecondition:
   partner_id: "3898"
 AssetPricePreconditionCA:
   asset: "EURUSD"
 ConvertLeadPreconditionUI:
   convert_lead_currency: "EUR"
+  field_citizenship: "Citizenship"
 CryptoQuotesPreconditionCA:
   asset: "BTCEUR"
+DepositCAPrecondition:
+  client_name: "Test"
 DepositTestCRM:
+  live_acc_platform: ""
   live_acc_server: "Live"
   live_acc_currency: "USD"
   live_acc_group: "USD"
@@ -38,6 +41,19 @@ LeadModuleTest:
 LeadPrecondition:
   m_assign_lead_status: "R - New"
   m_edit_lead_status: "B - Test"
+LoginCAPrecondition:
+  client_name: "Test"
+MT4CreateTAPreconditionUI:
+  create_mt_user: "Create MT User"
+  d_acc_currency: "USD"
+MT4CreditInPreconditionUI:
+  create_mt_user: "Create MT User"
+  l_acc_currency: "EUR"
+  live_acc_group: "live"
+MT4DepositPreconditionUI:
+  create_mt_user: "Create MT User"
+  live_acc_group: "live"
+  l_acc_currency: "EUR"
 TradingAccountPrecondition:
   demo_acc_currency: "EUR"
   demo_acc_currency_usd: "USD"

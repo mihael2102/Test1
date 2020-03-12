@@ -341,14 +341,15 @@ class ApiPrecondition(object):
 
     def test_create_lead(self):
         self.autorization_process_short()
-        ApiPage(self.driver).create_lead_module()
-        ApiPage(self.driver).enter_email_lead(self.load_lead_from_config
-                                              (LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL])
-        ApiPage(self.driver).enter_firstName_lead(APIConstants.LEAD_FNAME)
-        ApiPage(self.driver).enter_lastName_lead(APIConstants.LEAD_LNAME)
-        ApiPage(self.driver).enter_phone_lead(APIConstants.LEAD_PHONE)
-        ApiPage(self.driver).send_create_lead()
-        token = ApiPage(self.driver).check_create_lead_token()
+        token = ApiPage(self.driver)\
+            .create_lead_module() \
+            .enter_email_lead(self.load_lead_from_config
+                              (LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]) \
+            .enter_firstName_lead(APIConstants.LEAD_FNAME) \
+            .enter_lastName_lead(APIConstants.LEAD_LNAME) \
+            .enter_phone_lead(APIConstants.LEAD_PHONE) \
+            .send_create_lead() \
+            .check_create_lead_token()
         count = 0
         while APIConstants.STATUS_OK not in token:
             sleep(1)
