@@ -69,6 +69,7 @@ class CALoginPage(CRMBasePage):
             Logging().reportDebugStep(self, "Click Sign Up")
         except:
             Logging().reportDebugStep(self, "There is no panda plugin")
+            Logging().reportDebugStep(self, "NOT RUNNED")
         return CALoginPage(self.driver)
 
     def fill_first_name(self, first_name):
@@ -326,6 +327,7 @@ class CALoginPage(CRMBasePage):
                 Logging().reportDebugStep(self, "Click Login")
             except:
                 Logging().reportDebugStep(self, "There is no panda's plugin")
+                Logging().reportDebugStep(self, "NOT RUNNED")
         return CALoginPage(self.driver)
 
     def click_sign_in_btn(self):
@@ -548,3 +550,9 @@ class CALoginPage(CRMBasePage):
         save_changes_btn.click()
         Logging().reportDebugStep(self, "Save Changes button is clicked")
         return QuestionnairePage(self.driver)
+
+    def not_runned_test(self):
+        sleep(0.5)
+        Logging().reportDebugStep(self, "There is no needed environment for test running")
+        Logging().reportDebugStep(self, "NOT RUNNED")
+        pass

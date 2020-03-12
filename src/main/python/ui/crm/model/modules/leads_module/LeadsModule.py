@@ -278,41 +278,6 @@ class LeadsModule(CRMBasePage):
         sleep(20)
         return LeadsModule(self.driver)
 
-    def check_assign_leads(self, i):
-        if global_var.current_brand_name == "swiftcfd" or global_var.current_brand_name == "royal_cfds" or \
-                global_var.current_brand_name == "brokerz" or global_var.current_brand_name == "ptbanc" or \
-                global_var.current_brand_name == "aztrades" or global_var.current_brand_name == "24btcmarket" or \
-                global_var.current_brand_name == "newforexstage2" or global_var.current_brand_name == "gigafx" or \
-                global_var.current_brand_name == "dax-300":
-            assign_leads = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[13]")\
-                .text
-        else:
-            assign_leads = self.driver.find_element(By.XPATH,
-                                                    "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[14]").text
-        if i == 10:
-            Logging().reportDebugStep(self, "Verify assign")
-        return assign_leads
-
-    def check_status_leads(self, i):
-        sleep(1)
-        if global_var.current_brand_name == "swiftcfd" or global_var.current_brand_name == "royal_cfds" or \
-                global_var.current_brand_name == "brokerz" or global_var.current_brand_name == "ptbanc" or \
-                global_var.current_brand_name == "aztrades" or global_var.current_brand_name == "24btcmarket" or \
-                global_var.current_brand_name == "newforexstage2" or global_var.current_brand_name == "gigafx" or \
-                global_var.current_brand_name == "dax-300":
-            status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]")
-            self.driver.execute_script("arguments[0].scrollIntoView();", status)
-            sleep(0.1)
-            status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]").text
-        else:
-            status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]")
-            self.driver.execute_script("arguments[0].scrollIntoView();", status)
-            sleep(0.1)
-            status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[7]").text
-        if i == 9:
-            Logging().reportDebugStep(self, "Verify status")
-        return status
-
     def check_country_leads(self, i):
         sleep(4)
         if global_var.current_brand_name == "swiftcfd" or global_var.current_brand_name == "royal_cfds" or \
@@ -349,9 +314,9 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def mass_assign_result(self, user):
-        sleep(4)
+        sleep(1)
         Logging().reportDebugStep(self, "Close successful result pop ups")
-        self.driver.find_element(By.XPATH, "//div[contains(text(), 'accounts assigned to %s')]" % user)
+        super().wait_load_element("//div[contains(text(),'assigned to %s')]" % user)
         btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
         btn_ok.click()
         self.wait_vtiger_loading_to_finish_custom(35)
