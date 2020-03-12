@@ -15,8 +15,8 @@ brands:
 #- name: aztrades
 #  config_file: aztrades.yml
 #
-- name: brokerz
-  config_file: brokerz.yml
+#- name: brokerz
+#  config_file: brokerz.yml
 #
 #- name: bots
 #  config_file: bots.yml
@@ -101,6 +101,9 @@ brands:
 #
 #- name: tradospot
 #  config_file: tradospot.yml
+
+- name: tradixa
+  config_file: tradixa.yml
 #
 #- name: tfxgo
 #  config_file: tfxgo.yml

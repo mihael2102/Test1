@@ -62,8 +62,8 @@ brands:
 #- name: libramarkets
 #  config_file: libramarkets.yml
 
-- name: marketrip
-  config_file: marketrip.yml
+#- name: marketrip
+#  config_file: marketrip.yml
 
 #- name: moneta
 #  config_file: moneta.yml
@@ -122,8 +122,8 @@ brands:
 #- name: tradenero
 #  config_file: tradenero.yml
 
-#- name: tradixa
-#  config_file: tradixa.yml
+- name: tradixa
+  config_file: tradixa.yml
 
 #- name: uft
 #  config_file: uft.yml
