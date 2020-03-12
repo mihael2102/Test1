@@ -304,6 +304,7 @@ class LeadPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
+        sleep(1)
         CRMHomePage(self.driver)\
             .open_lead_module() \
             .open_create_lead_module()\
