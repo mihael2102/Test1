@@ -19,14 +19,8 @@ class AssetPricePreconditionCA(object):
         return lead
 
     def verify_asset_price_ca(self):
-
-        if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca'))
-        else:
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
             .close_campaign_banner() \
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc')) \
@@ -43,9 +37,6 @@ class AssetPricePreconditionCA(object):
                 "//iframe[@id='swPandaIframe']"))
 
         WebTraderPage(self.driver) \
-            .open_trading_page()
-        if global_var.current_brand_name == "newrichmarkets":
-            WebTraderPage(self.driver) \
-                .open_asset_group(TradingConstants.ASSET_GROUP_FOREX)
-        WebTraderPage(self.driver) \
+            .open_trading_page() \
+            .open_asset_group(TradingConstants.ASSET_GROUP_FOREX) \
             .verify_asset_price_change(var.get_var(self.__class__.__name__)["asset"])
