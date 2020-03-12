@@ -3,8 +3,8 @@ brands:
 #- name: fairbit
 #  config_file: fair-bit.yml
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 
 #- name: newcrmui
 #  config_file: newcrmui.yml
@@ -15,8 +15,8 @@ brands:
 #- name: aztrades
 #  config_file: aztrades.yml
 #
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: brokerz
+  config_file: brokerz.yml
 #
 #- name: bots
 #  config_file: bots.yml
