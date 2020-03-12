@@ -11,7 +11,7 @@ import os
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
-class AffiliatesListViewPageUI(CRMBasePage):
+class AffiliatesModulePageUI(CRMBasePage):
 
     """
         Method get column title and data for searching:
@@ -24,20 +24,20 @@ class AffiliatesListViewPageUI(CRMBasePage):
         sleep(1)
         self.wait_loading_to_finish_new_ui(25)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
-        return AffiliatesListViewPageUI(self.driver)
+        return AffiliatesModulePageUI(self.driver)
 
     def click_on_partner_name(self, name):
         sleep(0.1)
         partner_name = super().wait_element_to_be_clickable("//span[@class='td-link' and contains(text(),'%s')]" % name)
         partner_name.click()
         Logging().reportDebugStep(self, "Open details of affiliate: " + name)
-        return AffiliatesListViewPageUI(self.driver)
+        return AffiliatesModulePageUI(self.driver)
 
     def verify_name_on_affiliate_details(self, name):
         sleep(0.1)
         super().wait_load_element("//div[@class='user-name' and text()='%s']" % name)
         Logging().reportDebugStep(self, "Partner name is verified on affiliate's details page: " + name)
-        return AffiliatesListViewPageUI(self.driver)
+        return AffiliatesModulePageUI(self.driver)
 
     def click_more_icon(self):
         sleep(2)
@@ -45,7 +45,7 @@ class AffiliatesListViewPageUI(CRMBasePage):
         self.driver.execute_script("arguments[0].scrollIntoView();", more_btn)
         self.driver.execute_script("arguments[0].click();", more_btn)
         Logging().reportDebugStep(self, "The More button was clicked")
-        return AffiliatesListViewPageUI(self.driver)
+        return AffiliatesModulePageUI(self.driver)
 
     def click_delete_icon(self):
         sleep(0.1)
@@ -54,8 +54,8 @@ class AffiliatesListViewPageUI(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", delete_btn)
             Logging().reportDebugStep(self, "The Delete Affiliates button was clicked")
         except (NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "The Delete Affiliates button does not exist")
-        return AffiliatesListViewPageUI(self.driver)
+            Logging().reportDebugStep(self, "The Delete Affiliates button does not exist (NOT RUNNED)")
+        return AffiliatesModulePageUI(self.driver)
 
     def click_delete_btn(self):
         sleep(0.1)
@@ -64,10 +64,17 @@ class AffiliatesListViewPageUI(CRMBasePage):
         sleep(1)
         self.wait_loading_to_finish_new_ui(15)
         Logging().reportDebugStep(self, "Delete Confirmation button was clicked")
-        return AffiliatesListViewPageUI(self.driver)
+        return AffiliatesModulePageUI(self.driver)
 
     def verify_data_not_found(self):
         sleep(0.1)
         super().wait_load_element("//span[contains(text(),'No results')]")
         Logging().reportDebugStep(self, "Affiliate was not found")
-        return AffiliatesListViewPageUI(self.driver)
+        return AffiliatesModulePageUI(self.driver)
+
+    def get_link_api(self):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Get link API")
+        api_link = super().wait_load_element("//div[text()='API Link:']//following-sibling::a").text
+        Logging().reportDebugStep(self, "Get link API: " + api_link)
+        return api_link

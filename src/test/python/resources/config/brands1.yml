@@ -41,8 +41,8 @@ brands:
 #- name: financix
 #  config_file: financix.yml
 
-- name: globalix
-  config_file: globalix.yml
+#- name: globalix
+#  config_file: globalix.yml
 
 #- name: grandefex
 #  config_file: grandefex.yml
@@ -62,8 +62,8 @@ brands:
 #- name: libramarkets
 #  config_file: libramarkets.yml
 
-#- name: marketrip
-#  config_file: marketrip.yml
+- name: marketrip
+  config_file: marketrip.yml
 
 #- name: moneta
 #  config_file: moneta.yml
@@ -76,6 +76,9 @@ brands:
 
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
+
+#- name: newforexqa2
+#  config_file: newforexqa2.yml
 
 #- name: newcrmui
 #  config_file: newcrmui.yml

@@ -1,24 +1,14 @@
-from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
-from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
-from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
-from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
-from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
-from time import sleep
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
-from src.main.python.ui.crm.model.pages.help_desk.HelpDeskEditPage import HelpDeskEditPage
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
-from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 class TradingPreconditionLive(object):
@@ -35,13 +25,8 @@ class TradingPreconditionLive(object):
         return lead
 
     def open_position_live(self):
-        if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url_ca_2'))
-        else:
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca'))
         CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
             .close_campaign_banner() \
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc'))\
@@ -59,7 +44,7 @@ class TradingPreconditionLive(object):
         WebTraderPage(self.driver)\
             .open_trading_page()\
             .open_asset_group(TradingConstants.ASSET_GROUP_CRYPTO)\
-            .select_asset(TradingConstants.ASSET_XRPUSD)\
+            .select_asset(var.get_var(self.__class__.__name__)["asset"])\
             .select_volume_in_lot(TradingConstants.VOLUME_IN_LOT_001)\
             .click_buy()\
             .click_invest()\
@@ -87,6 +72,7 @@ class TradingPreconditionLive(object):
             Logging().reportDebugStep(self, "Position was opened")
         except:
             Logging().reportDebugStep(self, "There is no crypto assets")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         """ Open live account details and get open orders data """
@@ -115,10 +101,11 @@ class TradingPreconditionLive(object):
         """ Log in CA """
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca')) \
-            .login() \
-            .enter_email(self.config.get_value('email_live_acc')) \
-            .enter_password(self.config.get_value('password_live_acc')) \
-            .click_login() \
+            .close_campaign_banner() \
+            .click_sign_in_btn() \
+            .enter_email(self.config.get_value('email_live_acc'))\
+            .enter_password(self.config.get_value('password_live_acc'))\
+            .click_login()\
             .verify()
 
         """ Check if crypto position was opened """
@@ -127,7 +114,15 @@ class TradingPreconditionLive(object):
             Logging().reportDebugStep(self, "Position was opened")
         except:
             Logging().reportDebugStep(self, "There is no crypto assets")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             assert TradingConstants.IS_ASSET_EXIST == "yes"
+
+        if global_var.current_brand_name == "q8":
+            self.driver.switch_to_frame(self.driver.find_element_by_xpath(
+                "//iframe[@class='platform__mobile-platform']"))
+        elif global_var.current_brand_name == "24option":
+            self.driver.switch_to_frame(self.driver.find_element_by_xpath(
+                "//iframe[@id='swPandaIframe']"))
 
         WebTraderPage(self.driver) \
             .open_trading_page() \
@@ -159,6 +154,7 @@ class TradingPreconditionLive(object):
             Logging().reportDebugStep(self, "Position was opened")
         except:
             Logging().reportDebugStep(self, "There is no crypto assets")
+            Logging().reportDebugStep(self, "NOT RUNNED")
             assert TradingConstants.IS_ASSET_EXIST == "yes"
 
         """ Open live account details and get closed orders data """
