@@ -18,33 +18,17 @@ class DepositCAPrecondition(object):
         return lead
 
     def client_deposit_page_loading(self):
-        try:
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca')) \
-                .close_campaign_banner() \
-                .close_notifications_banner() \
-                .click_sign_in_btn() \
-                .enter_email(self.config.get_value('email_live_acc')) \
-                .enter_password(self.config.get_value('password_live_acc')) \
-                .click_login() \
-                .verify() \
-                .verify_client(var.get_var(self.__class__.__name__)["client_name"])
-            CADepositPage(self.driver) \
-                .click_deposit_btn() \
-                .select_payment_method() \
-                .check_deposit_page_loaded()
-        except:
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca')) \
-                .close_campaign_banner() \
-                .close_notifications_banner() \
-                .click_sign_in_btn() \
-                .enter_email(self.config.get_value('email_live_acc')) \
-                .enter_password(self.config.get_value('password_live_acc')) \
-                .click_login() \
-                .verify() \
-                .verify_client(var.get_var(self.__class__.__name__)["client_name"])
-            CADepositPage(self.driver) \
-                .click_deposit_btn() \
-                .select_payment_method() \
-                .check_deposit_page_loaded()
+        CALoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url_ca')) \
+            .close_campaign_banner() \
+            .close_notifications_banner() \
+            .click_sign_in_btn() \
+            .enter_email(self.config.get_value('email_live_acc')) \
+            .enter_password(self.config.get_value('password_live_acc')) \
+            .click_login() \
+            .verify() \
+            .verify_client(var.get_var(self.__class__.__name__)["client_name"])
+        CADepositPage(self.driver) \
+            .click_deposit_btn() \
+            .select_payment_method() \
+            .check_deposit_page_loaded()

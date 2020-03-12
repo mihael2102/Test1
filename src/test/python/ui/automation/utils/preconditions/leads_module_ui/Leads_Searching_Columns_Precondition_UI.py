@@ -60,7 +60,7 @@ class LeadsSearchingColumnsPreconditionUI(object):
             search\
                 .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_LEAD_NO,
                                        data=lead_no)
-        if phone:
+        if phone and ("*" not in phone):
             search\
                 .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_PHONE,
                                        data=phone)
