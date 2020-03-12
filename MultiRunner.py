@@ -64,6 +64,7 @@ class MultiRunner:
             result, content = runner.run(test)
             # content = runner.run()
             test_name = test_data['class'] + '.' + test_data['method']
+
             content_fail_err = content.decode("utf-8")
             temp = content_fail_err.find('Open first tabs page')
             index = temp
@@ -76,13 +77,13 @@ class MultiRunner:
             # content_fail_err = content_fail_err.replace(' ', '')
             #test_passed = False
             if not result or result.errors:
-                results[test_name] = "ERROR" + content_fail_err
+                results[test_name] = "ERROR \n" + content_fail_err
             elif result.failures:
-                results[test_name] = "FAIL" + content_fail_err
+                results[test_name] = "FAIL \n" + content_fail_err
             elif not result.testsRun:
                 results[test_name] = "SKIP"
             else:
-                results[test_name] = "PASS"
+                results[test_name] = "PASS \n" + content_fail_err
                 #test_passed = True
             #if self.fail_fast and not test_passed:
                 #break

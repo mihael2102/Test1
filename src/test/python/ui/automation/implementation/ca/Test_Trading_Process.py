@@ -14,6 +14,8 @@ from src.test.python.ui.automation.utils.preconditions.trading_ui.VerifyOpenPosi
     VerifyOpenPositionPreconditionUI
 from src.test.python.ui.automation.utils.preconditions.trading_process_ca.CryptoQuotesPreconditionCA import \
     CryptoQuotesPreconditionCA
+from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 
 
 class TradingProcess(BaseTest):
@@ -40,19 +42,39 @@ class TradingProcess(BaseTest):
         VerifyClosePositionPreconditionUI(self.driver, self.config).verify_close_position_crm_ui()
 
     def test_open_position_live(self):
-        TradingPreconditionLive(self.driver, self.config).open_position_live()
+        day = CRMHomePage(self.driver).get_day_of_week()
+        if day == 6 and global_var.current_brand_name == "q8":
+            CALoginPage(self.driver) \
+                .not_runned_test()
+        else:
+            TradingPreconditionLive(self.driver, self.config).open_position_live()
 
     def test_verify_live_open_position_crm(self):
-        TradingPreconditionLive(self.driver, self.config).verify_open_live_position_crm()
+        day = CRMHomePage(self.driver).get_day_of_week()
+        if day == 6 and global_var.current_brand_name == "q8":
+            CALoginPage(self.driver) \
+                .not_runned_test()
+        else:
+            TradingPreconditionLive(self.driver, self.config).verify_open_live_position_crm()
 
     def test_verify_live_open_position_crm_ui(self):
         VerifyLiveOpenPositionPreconditionUI(self.driver, self.config).verify_open_live_position_crm_ui()
 
     def test_close_position_live(self):
-        TradingPreconditionLive(self.driver, self.config).close_position_live()
+        day = CRMHomePage(self.driver).get_day_of_week()
+        if day == 6 and global_var.current_brand_name == "q8":
+            CALoginPage(self.driver) \
+                .not_runned_test()
+        else:
+            TradingPreconditionLive(self.driver, self.config).close_position_live()
 
     def test_verify_live_close_position_crm(self):
-        TradingPreconditionLive(self.driver, self.config).verify_close_live_position_crm()
+        day = CRMHomePage(self.driver).get_day_of_week()
+        if day == 3 and global_var.current_brand_name == "q8":
+            CALoginPage(self.driver) \
+                .not_runned_test()
+        else:
+            TradingPreconditionLive(self.driver, self.config).verify_close_live_position_crm()
 
     def test_verify_live_close_position_crm_ui(self):
         VerifyLiveClosePreconditionUI(self.driver, self.config).verify_close_live_position_crm_ui()

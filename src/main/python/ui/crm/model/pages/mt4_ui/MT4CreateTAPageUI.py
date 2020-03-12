@@ -10,15 +10,15 @@ from time import sleep
 
 class MT4CreateTAPageUI(CRMBasePage):
 
-    def mt4_create_ta_ui(self, list1=None, server=None, list2=None, currency=None, list3=None, group=None, list4=None,
-                         leverage=None):
+    def mt4_create_ta_ui(self, list1=None, server=None, list2=None, currency=None, list3=None, group_number=None,
+                         list4=None, leverage=None):
         if server:
             self.select_pick_list_item(list1, server)
         if currency:
             self.select_pick_list_item(list2, currency)
-        if group:
+        if group_number:
             try:
-                self.select_pick_list_item(list3, group)
+                self.select_pick_list_item_by_number(list3, group_number)
             except(TimeoutException, NoSuchElementException):
                 Logging().reportDebugStep(self, "No option select group")
         if leverage:
@@ -34,6 +34,14 @@ class MT4CreateTAPageUI(CRMBasePage):
         Logging().reportDebugStep(self, "Select " + pick_list + ": " + item)
         title = super().wait_load_element(
             "//span[text()=' %s ']//following-sibling::ul//span[contains(text(),'%s')]" % (pick_list, item))
+        self.driver.execute_script("arguments[0].click();", title)
+        return MT4CreateTAPageUI(self.driver)
+
+    def select_pick_list_item_by_number(self, pick_list, number):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Select " + pick_list + ": " + number)
+        title = super().wait_load_element(
+            "(//span[text()=' %s ']//following-sibling::ul//span)[%s]" % (pick_list, number))
         self.driver.execute_script("arguments[0].click();", title)
         return MT4CreateTAPageUI(self.driver)
 
