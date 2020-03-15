@@ -21,23 +21,27 @@ class CampaignsPrecondition(object):
 
         def create_new_campaign(self):
             """ Login to CRM """
-            CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+            CRMLoginPage(self.driver)\
+                .open_first_tab_page(self.config.get_value('url')) \
                 .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                            self.config.get_value(TestDataConstants.CRM_PASSWORD),
                            self.config.get_value(TestDataConstants.OTP_SECRET))
 
-            """ Open Affiliates page """
-            CRMHomePage(self.driver).open_more_list_modules() \
+            """ Open Campaigns page """
+            CRMHomePage(self.driver)\
+                .open_more_list_modules() \
                 .select_campaigns_module_more_list(CampaignsConstants.MODULE) \
                 .open_add_campaign_module()
             AddCampaignsModule(self.driver)\
-                .perform_add_new_campaign(self.camp_name,
-                                          CRMConstants.FIST_ASSIGNED_TO,
-                                          CRMConstants.START_DATE,
-                                          CRMConstants.END_DATE,
-                                          CRMConstants.FIST_DEAL,
-                                          CRMConstants.RATE)
-            CampaignsPage(self.driver).perform_searching_campaign_by_name(self.camp_name)
+                .perform_add_new_campaign(
+                    self.camp_name,
+                    CRMConstants.FIST_ASSIGNED_TO,
+                    CRMConstants.START_DATE,
+                    CRMConstants.END_DATE,
+                    CRMConstants.FIST_DEAL,
+                    CRMConstants.RATE)
+            CampaignsPage(self.driver)\
+                .perform_searching_campaign_by_name(self.camp_name)
             sleep(2)
             existing_campaign = CampaignsPage(self.driver).campaign_exist()
             sleep(1)
@@ -54,7 +58,8 @@ class CampaignsPrecondition(object):
                            self.config.get_value(TestDataConstants.OTP_SECRET))
 
             """ Open Campaign page """
-            CRMHomePage(self.driver).open_more_list_modules() \
+            CRMHomePage(self.driver)\
+                .open_more_list_modules() \
                 .select_campaigns_module_more_list(CampaignsConstants.MODULE)
             CampaignsPage(self.driver).perform_searching_campaign_by_name(self.camp_name)
             sleep(2)

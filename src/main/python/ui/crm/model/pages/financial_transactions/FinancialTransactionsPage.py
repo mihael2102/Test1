@@ -111,7 +111,7 @@ class FinancialTransactionsPage(CRMBasePage):
         except:
             Logging().reportDebugStep(self, "Trading account column is not existing")
         self.click_search_button()
-        self.wait_loading_to_finish(35)
+        self.wait_loading_to_finish(55)
         return FinancialTransactionsPage(self.driver)
 
     def enter_transaction_number(self, transaction_number):
@@ -200,7 +200,7 @@ class FinancialTransactionsPage(CRMBasePage):
         self.__change_search_criteria_by_visible_text("Transaction No")
         self.__fill_search_field_with_value(transaction_id)
         self.__click_search_now_button()
-        self.wait_loading_to_finish(35)
+        self.wait_loading_to_finish(55)
         Logging().reportDebugStep(self, "Searching for transaction ID: %s was performed" % transaction_id)
         return FinancialTransactionsPage(self.driver)
 
