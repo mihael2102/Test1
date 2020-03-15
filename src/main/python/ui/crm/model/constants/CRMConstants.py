@@ -1,9 +1,11 @@
 import random
 from datetime import *
 from dateutil.relativedelta import relativedelta
+import string
 
 
 class CRMConstants(object):
+    random_character = ''.join(random.choice(string.ascii_uppercase) for _ in range(5))
     MT4_ACCOUNT_CREATED_SUCCESFULLY_2 = "MT4 Account created successfully"
     MT4_ACCOUNT_UPDATED_SUCCESFULLY_2 = "MT4 Account updated successfully"
     DEPOSIT_SUCCESSFULLY_2 = "Successful MT4 Deposit"
@@ -180,7 +182,7 @@ class CRMConstants(object):
     EASY_SEARCH_CLIENT_TEST = "test"
     EASY_SEARCH_CLIENT_TEST_TEST = "test test"
     CONVERT_SUCCESSFUL_MESSAGE_EMPTY = ""
-    CAMPAIGN_NAME = "TestCampaign" + str(random.randrange(1, 9999))
+    CAMPAIGN_NAME = "TestCampaign" + random_character
     FIST_ASSIGNED_TO = "Panda Auto"
     START_DATE = "2020-12-31"
     START_DATE2 = "2021-02-03"
