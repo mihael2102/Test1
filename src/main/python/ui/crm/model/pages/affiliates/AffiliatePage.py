@@ -98,6 +98,7 @@ class AffiliatePage(CRMBasePage):
         input_partner_name = super().wait_load_element("//td[3]//input")
         input_partner_name.send_keys(name)
         Logging().reportDebugStep(self, "Search partner name: " + name)
+        return AffiliatePage(self.driver)
 
     def click_on_affiliate(self, name):
         affiliate_name = super().wait_load_element("//a[contains(text(), '%s')]" % name)
@@ -111,8 +112,7 @@ class AffiliatePage(CRMBasePage):
 
     def delete_affiliate(self):
         sleep(3)
-        trash_button = super().wait_load_element(
-            "//span[@class = 'glyphicon glyphicon-trash cursor-pointer ng-star-inserted']")
+        trash_button = super().wait_load_element("//span[contains(@class,'glyphicon-trash')]")
         trash_button.click()
         Logging().reportDebugStep(self, "Delete button was clicked")
         return AffiliatePage(self.driver)

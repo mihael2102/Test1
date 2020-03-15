@@ -11,6 +11,7 @@ from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.config import Config
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
+
 class CreditInPrecondition(object):
 
     def __init__(self, driver, config) -> None:
