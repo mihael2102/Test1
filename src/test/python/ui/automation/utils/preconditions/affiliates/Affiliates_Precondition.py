@@ -33,7 +33,9 @@ class AffiliatesPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Affiliates page """
-        affiliate_list_view_page = CRMHomePage(self.driver).open_more_list_modules().select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
+        affiliate_list_view_page = CRMHomePage(self.driver)\
+            .open_more_list_modules()\
+            .select_affiliates_module_more_list(AffiliateModuleConstants.AFFILIATES_MODULE)
 
         '''Open popup and create new affiliate '''
 
@@ -61,16 +63,16 @@ class AffiliatesPrecondition(object):
 
         ClientsPage(self.driver).came_back_on_previous_page()
         sleep(3)
-        AffiliatePage(self.driver).search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                                LeadsModuleConstants.FIRST_NAME])
-        AffiliatePage(self.driver).delete_affiliate() \
-            .confirm_delete_affiliate()
-
-        CRMHomePage(self.driver).refresh_page()
-        AffiliatePage(self.driver).search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                                LeadsModuleConstants.FIRST_NAME])
-
-        AffiliatePage(self.driver).check_data_not_found()
+        AffiliatePage(self.driver)\
+            .search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                                LeadsModuleConstants.FIRST_NAME]) \
+            .delete_affiliate() \
+            .confirm_delete_affiliate() \
+            .refresh_page()
+        AffiliatePage(self.driver)\
+            .search_affiliate_by_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                                LeadsModuleConstants.FIRST_NAME]) \
+            .check_data_not_found()
 
     def delete_affiliate(self):
         """ Login to CRM """
