@@ -3,15 +3,15 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
+from src.main.python.ui.crm.model.constants_ui.tasks_ui.TasksModuleConstantsUI import TasksModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
-from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
+from src.main.python.ui.crm.model.constants_ui.tasks_ui.TasksModuleConstantsUI import TasksModuleConstantsUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.MassActionsConstantsUI import MassActionsConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.MassEditPageUI import MassEditPageUI
 
 
-class ClientsMassEditPreconditionUI(object):
+class TasksMassEditPreconditionUI(object):
     driver = None
     config = None
 
@@ -19,7 +19,7 @@ class ClientsMassEditPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def mass_edit_clients_ui(self):
+    def mass_edit_tasks_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
@@ -29,15 +29,15 @@ class ClientsMassEditPreconditionUI(object):
                 new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        """ Open Clients module """
+        """ Open Tasks module """
         CRMBaseMethodsPage(self.driver) \
-            .open_module_ui(TestDataConstants.MODULE_CLIENTS)
+            .open_module_ui(TestDataConstants.MODULE_TASKS) \
+            .open_tab_list_view_ui(TasksModuleConstantsUI.TAB_ALL)
 
         """ Select records for Mass Edit """
         GlobalTablePageUI(self.driver) \
-            .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
-            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
+            .set_data_column_field(TasksModuleConstantsUI.COLUMN_ACCOUNT_NAME,
+                                   TasksModuleConstantsUI.ACCOUNT_NAME) \
             .select_all_records_checkbox() \
             .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT)
 
