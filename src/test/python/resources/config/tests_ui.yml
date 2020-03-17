@@ -39,11 +39,11 @@ tests_config:
 #    - test_mass_edit_clients_ui
 
 ######################################### MT4 ACTIONS ###########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
-  directive: reload_configuration
-  class: TestMT4UI
-  tests:
-    - test_create_demo_ta_ui
+#- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
+#  directive: reload_configuration
+#  class: TestMT4UI
+#  tests:
+#    - test_create_demo_ta_ui
 #    - test_deposit_crm_ui  # create live mt account and make deposit
 #    - test_withdraw_crm_ui
 #    - test_credit_in_crm_ui
@@ -93,44 +93,4 @@ tests_config:
 #  tests:
 #    - test_tasks_searching_columns_ui
 #    - test_add_delete_event_ui
-
-############################################# CA TESTS ##############################################
-#- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
-#  class: SignUpTest
-#  tests:
-#    - test_check_sign_up
-#    - test_check_email_sign_up
-#    - test_registred_client_in_crm_new_ui
-#
-#- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
-#  class: AddNewAccountTestCA
-#  tests:
-#    - test_add_live_account_ca
-#    - test_add_demo_account_ca
-#    - test_verify_accounts_in_crm_ui
-#    - test_switch_between_accounts_ca
-#
-#- module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
-#  class: TestPagesCA
-#  tests:
-#    - test_main_menu_pages_loading
-#    - test_graphs_loading
-
-#- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
-#  class: TradingProcess
-#  tests:
-#    - test_trading_process_open_position_ca    # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
-#    - test_verify_open_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
-#    - test_trading_process_close_position_ca      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
-#    - test_verify_close_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
-#    - test_open_position_live         # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
-#    - test_verify_live_open_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
-#    - test_close_position_live      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
-#    - test_verify_live_close_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
-
-############################################# LOAD TESTS ############################################
-#- module: src.test.python.ui.automation.implementation.crm.load.TestLoadCRMUI
-#  class: TestLoadCRMUI
-#  tests:
-#    - test_load_switch_tabs_ui
-#    - test_load_switch_tabs
+#    - test_tasks_mass_edit
