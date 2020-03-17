@@ -14,6 +14,10 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 class GlobalTablePageUI(CRMBasePage):
 
+    def refresh_page_ui(self):
+        self.refresh_page()
+        return GlobalTablePageUI(self.driver)
+
     def set_data_column_field(self, column, data):
         sleep(0.1)
         btn = super().wait_load_element("(//span[@class='placeholder']/span[text()='%s'])[1]" % column)

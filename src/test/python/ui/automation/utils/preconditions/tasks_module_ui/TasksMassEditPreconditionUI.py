@@ -1,9 +1,5 @@
-from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
-from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.main.python.ui.crm.model.constants_ui.tasks_ui.TasksModuleConstantsUI import TasksModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
 from src.main.python.ui.crm.model.constants_ui.tasks_ui.TasksModuleConstantsUI import TasksModuleConstantsUI
@@ -43,17 +39,21 @@ class TasksMassEditPreconditionUI(object):
 
         """ Mass Edit """
         MassEditPageUI(self.driver) \
-            .select_field_to_edit(MassActionsConstantsUI.FIELD_CLIENT_STATUS) \
-            .select_from_list(MassActionsConstantsUI.FIELD_CLIENT_STATUS, MassActionsConstantsUI.STATUS_B_TEST) \
+            .select_field_to_edit(MassActionsConstantsUI.LIST_EVENT_TYPE) \
+            .select_from_list(MassActionsConstantsUI.LIST_EVENT_TYPE, MassActionsConstantsUI.EVENT_TYPE) \
             .select_field_to_edit(MassActionsConstantsUI.FIELD_ASSIGNED_TO) \
-            .select_from_list(MassActionsConstantsUI.FIELD_ASSIGNED_TO, MassActionsConstantsUI.USER_NAME_1) \
+            .select_from_list(MassActionsConstantsUI.FIELD_ASSIGNED_TO, MassActionsConstantsUI.USER_NAME) \
+            .select_field_to_edit(MassActionsConstantsUI.LIST_PRIORITY) \
+            .select_from_list(MassActionsConstantsUI.LIST_PRIORITY, MassActionsConstantsUI.PRIORITY) \
             .click_save_changes_btn()
 
         """ Check confirmation message and updated data in table """
         GlobalTablePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
-            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
-            .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME_1) \
-            .global_data_checker_new_ui(MassActionsConstantsUI.STATUS_B_TEST)
+            .refresh_page_ui() \
+            .set_data_column_field(TasksModuleConstantsUI.COLUMN_ACCOUNT_NAME,
+                                   TasksModuleConstantsUI.ACCOUNT_NAME) \
+            .global_data_checker_new_ui(MassActionsConstantsUI.EVENT_TYPE) \
+            .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME) \
+            .global_data_checker_new_ui(MassActionsConstantsUI.PRIORITY)

@@ -20,6 +20,8 @@ class MassActionsConstantsUI(object):
     FIELD_ASSIGNED_TO = "Assigned To"
     LIST_LEAD_STATUS = "Lead Status"
     LIST_EVENT_TYPE = "Event Type"
+    LIST_EVENT_DURATION = "Event Duration"
+    LIST_PRIORITY = "Priority"
 
     SOURCE_OTHER = "Other"
     COUNTRY_ALBANIA = "Albania"
@@ -29,3 +31,5 @@ class MassActionsConstantsUI(object):
     STATUS_R_NEW = "R - New"
     STATUS_B_TEST = "B - Test"
     EVENT_TYPE = "Meeting"
+    EVENT_DURATION = "15M"
+    PRIORITY = "Low"
