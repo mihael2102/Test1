@@ -127,7 +127,7 @@ class WorkflowsPrecondition(object):
         ClientsModulePage(self.driver) \
             .set_data_to_email_column_search_field(WorkflowsConstants.PANDATS_EMAIL) \
             .click_search_btn() \
-            .click_crm_id_list_view(row=7)
+            .click_crm_id_list_view(row=2)
         ClientProfilePage(self.driver)\
             .click_edit_personal_detail()\
             .select_country(WorkflowsConstants.COUNTRY_GUAM)\
