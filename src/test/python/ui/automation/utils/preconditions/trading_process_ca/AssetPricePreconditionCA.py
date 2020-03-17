@@ -2,6 +2,7 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
+from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
 
 
 class AssetPricePreconditionCA(object):
@@ -37,4 +38,5 @@ class AssetPricePreconditionCA(object):
 
         WebTraderPage(self.driver) \
             .open_trading_page() \
+            .open_asset_group(TradingConstants.ASSET_GROUP_FOREX) \
             .verify_asset_price_change(var.get_var(self.__class__.__name__)["asset"])

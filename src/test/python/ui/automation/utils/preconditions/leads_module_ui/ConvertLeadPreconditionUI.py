@@ -248,6 +248,6 @@ class ConvertLeadPreconditionUI(object):
             email = email.replace('...', '')
             assert email in ConvertLeadConstantsUI.EMAIL
 
-        if "*" not in phone:
+        if phone and "*" not in phone:
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(phone, ConvertLeadConstantsUI.PHONE)

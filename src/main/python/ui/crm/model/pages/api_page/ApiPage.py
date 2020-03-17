@@ -21,6 +21,11 @@ class ApiPage(CRMBasePage):
         Logging().reportDebugStep(self, "Open first tabs page: " + url)
         return ApiPage(self.driver)
 
+    def open_second_tab_page(self, url):
+        super().open_second_tab_page(url)
+        Logging().reportDebugStep(self, "Open second tabs page: " + url)
+        return ApiPage(self.driver)
+
     def check_page_from_token(self):
         sleep(5)
         payment_details = self.driver.find_element(By.XPATH,
@@ -451,7 +456,8 @@ class ApiPage(CRMBasePage):
 
     def send_authorization(self):
         sleep(2)
-        send = self.driver.find_element(By.XPATH, "//*[@id='api-Authorization-Authorization-0.0.0']/form/fieldset/div[3]/div/button")
+        send = self.driver.find_element(By.XPATH,
+                                    "//*[@id='api-Authorization-Authorization-0.0.0']/form/fieldset/div[3]/div/button")
         self.driver.execute_script("arguments[0].scrollIntoView();", send)
         send.click()
         Logging().reportDebugStep(self, "Click send")
@@ -459,6 +465,7 @@ class ApiPage(CRMBasePage):
 
     def check_token(self):
         sleep(5)
-        check_token = self.driver.find_element(By.XPATH, "//*[@id='api-Authorization-Authorization-0.0.0']/form/fieldset/div[4]/pre/code").text
+        check_token = self.driver.find_element(By.XPATH,
+                                "//*[@id='api-Authorization-Authorization-0.0.0']/form/fieldset/div[4]/pre/code").text
         Logging().reportDebugStep(self, "Check token")
         return check_token

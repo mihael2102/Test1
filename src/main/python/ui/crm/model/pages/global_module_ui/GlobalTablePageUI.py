@@ -14,6 +14,10 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 class GlobalTablePageUI(CRMBasePage):
 
+    def refresh_page_ui(self):
+        self.refresh_page()
+        return GlobalTablePageUI(self.driver)
+
     def set_data_column_field(self, column, data):
         sleep(0.1)
         btn = super().wait_load_element("(//span[@class='placeholder']/span[text()='%s'])[1]" % column)
@@ -59,7 +63,7 @@ class GlobalTablePageUI(CRMBasePage):
     def get_column_number_by_title_ui(self, title):
         sleep(0.1)
         try:
-            table = self.driver.find_element_by_xpath("//table/thead[@role='rowgroup']/tr")
+            table = super().wait_load_element("//table/thead[@role='rowgroup']/tr")
             count = 0
             index = ""
             for td in table.find_elements_by_xpath("//th[@role='columnheader']"):
@@ -88,7 +92,7 @@ class GlobalTablePageUI(CRMBasePage):
                                       "Get data from list view (column = " + column + ", row = " + row + "): " + data)
             return data
         else:
-            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist (NOT RUNNED)")
+            Logging().reportDebugStep(self, "Column '" + column + "' or row '" + row + "' does not exist")
             return False
 
     """
@@ -100,7 +104,8 @@ class GlobalTablePageUI(CRMBasePage):
         try:
             table = self.driver.find_element_by_xpath("//tbody[@role='rowgroup']")
             row_count = 0
-            for tr in table.find_elements_by_xpath("//tbody[@role='rowgroup']/tr[not (contains(@style,'hidden'))]"):
+            for tr in table.find_elements_by_xpath(
+                    "//tbody[@role='rowgroup']/tr[@role='row' and not (contains(@style,'hidden'))]"):
                 assert data.lower() in tr.text.lower()
                 row_count += 1
             Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
@@ -155,6 +160,7 @@ class GlobalTablePageUI(CRMBasePage):
     """
 
     def verify_success_message(self):
+        sleep(0.1)
         message = super().wait_load_element("//div[contains(@class,'dialog-content-success mat-dialog-content')]").text
         Logging().reportDebugStep(self, "Get message: " + message)
         assert "success" in message.lower()
@@ -183,18 +189,6 @@ class GlobalTablePageUI(CRMBasePage):
         self.wait_crm_loading_to_finish()
         return GlobalTablePageUI(self.driver)
 
-    """
-        Delete Record
-    """
-
-    def click_delete_icon_list_view(self, row):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Click 'Delete' button")
-        delete_icon = super().wait_element_to_be_clickable(
-            "//tr[not(contains(@style,'hidden'))][%s]//button[@title='delete']" % row)
-        self.driver.execute_script("arguments[0].click();", delete_icon)
-        return GlobalTablePageUI(self.driver)
-
     def approve_deleting(self):
         sleep(0.1)
         Logging().reportDebugStep(self, "Click 'Delete' button in approve pop up")
@@ -205,10 +199,15 @@ class GlobalTablePageUI(CRMBasePage):
 
     def verify_data_not_found(self):
         sleep(0.1)
-        super().wait_element_to_be_disappear("//tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][1]",
-                                             timeout=5)
+        super().wait_element_to_be_disappear(
+            "//tbody[@role='rowgroup']/tr[@role='row' and not(contains(@style,'hidden'))][1]",
+            timeout=5)
         Logging().reportDebugStep(self, "Data was not found")
         return GlobalTablePageUI(self.driver)
+
+    """
+        ACTIONS METHODS
+    """
 
     def open_actions_list(self):
         hover_mouse = ActionChains(self.driver)
@@ -216,4 +215,26 @@ class GlobalTablePageUI(CRMBasePage):
             "//tr[not(contains(@style,'hidden'))][1]/td/button/span/mat-icon[text()='more_vert']")
         hover_mouse.move_to_element(more_list_element)
         hover_mouse.perform()
+        return GlobalTablePageUI(self.driver)
+
+    def click_delete_icon_list_view(self, row):
+        sleep(0.1)
+        try:
+            Logging().reportDebugStep(self, "Click 'Delete' button")
+            delete_icon = super().wait_element_to_be_clickable(
+                "//tr[not(contains(@style,'hidden'))][%s]//button[@title='delete' and not(@disabled)]" % row)
+            self.driver.execute_script("arguments[0].click();", delete_icon)
+            return GlobalTablePageUI(self.driver)
+        except:
+            self.driver.find_element_by_xpath(
+                "//tr[not(contains(@style,'hidden'))][%s]//button[@title='delete']" % row)
+            Logging().reportDebugStep(self, "'Delete' button is not available")
+            Logging().reportDebugStep(self, "NOT RUNNED")
+
+    def click_edit_icon_list_view(self, row):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click 'Edit' button")
+        edit_icon = super().wait_element_to_be_clickable(
+            "//tr[not(contains(@style,'hidden'))][%s]//button[@title='edit']" % row)
+        self.driver.execute_script("arguments[0].click();", edit_icon)
         return GlobalTablePageUI(self.driver)
