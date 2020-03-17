@@ -14,6 +14,10 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 class GlobalTablePageUI(CRMBasePage):
 
+    def refresh_page_ui(self):
+        self.refresh_page()
+        return GlobalTablePageUI(self.driver)
+
     def set_data_column_field(self, column, data):
         sleep(0.1)
         btn = super().wait_load_element("(//span[@class='placeholder']/span[text()='%s'])[1]" % column)
@@ -215,11 +219,17 @@ class GlobalTablePageUI(CRMBasePage):
 
     def click_delete_icon_list_view(self, row):
         sleep(0.1)
-        Logging().reportDebugStep(self, "Click 'Delete' button")
-        delete_icon = super().wait_element_to_be_clickable(
-            "//tr[not(contains(@style,'hidden'))][%s]//button[@title='delete']" % row)
-        self.driver.execute_script("arguments[0].click();", delete_icon)
-        return GlobalTablePageUI(self.driver)
+        try:
+            Logging().reportDebugStep(self, "Click 'Delete' button")
+            delete_icon = super().wait_element_to_be_clickable(
+                "//tr[not(contains(@style,'hidden'))][%s]//button[@title='delete' and not(@disabled)]" % row)
+            self.driver.execute_script("arguments[0].click();", delete_icon)
+            return GlobalTablePageUI(self.driver)
+        except:
+            self.driver.find_element_by_xpath(
+                "//tr[not(contains(@style,'hidden'))][%s]//button[@title='delete']" % row)
+            Logging().reportDebugStep(self, "'Delete' button is not available")
+            Logging().reportDebugStep(self, "NOT RUNNED")
 
     def click_edit_icon_list_view(self, row):
         sleep(0.1)
