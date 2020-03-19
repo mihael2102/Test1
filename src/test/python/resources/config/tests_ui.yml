@@ -88,9 +88,10 @@ tests_config:
 #    - test_audit_logs_searching_columns_ui
 
 ############################################## TASKS ################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_ui.TestTasksModuleUI
-#  class: TestTasksModuleUI
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_ui.TestTasksModuleUI
+  class: TestTasksModuleUI
+  tests:
 #    - test_tasks_searching_columns_ui
-#    - test_add_delete_event_ui
-#    - test_tasks_mass_edit
+    - test_add_delete_event_ui
+    - test_tasks_mass_edit
+    - test_tasks_email_ui

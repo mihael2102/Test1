@@ -156,12 +156,12 @@ tests_config:
 #    - test_check_search_via_button # Check search using search button
 #
 ########################################## CAMPAIGN MODULE ###############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
-#  class: CampaignsModuleTest
-#  tests:
-#    - test_create_campaign
+- module: src.test.python.ui.automation.implementation.crm.tests_compaigns_module.Test_Campaigns_Module
+  class: CampaignsModuleTest
+  tests:
+    - test_create_campaign
 #    - test_edit_campaign
-#    - test_delete_campaign
+    - test_delete_campaign
 #    - test_campaign_searching_by_columns
 #
 ########################################## AUTOASSIGN MODULE #############################################
