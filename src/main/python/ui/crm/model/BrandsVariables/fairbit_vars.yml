@@ -1,6 +1,8 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
 AssetPricePreconditionCA:
   asset: "ETCEUR"
+ClientsMassEditPreconditionUI:
+  client_status: "Test"
 ConvertLeadPreconditionUI:
   convert_lead_currency: "UST"
   field_citizenship: "Nationality"
