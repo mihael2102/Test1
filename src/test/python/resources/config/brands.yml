@@ -1,5 +1,8 @@
 brands:
 
+- name: 4ex7
+  config_file: 4ex7.yml
+
 #- name: fairbit
 #  config_file: fair-bit.yml
 
@@ -102,8 +105,8 @@ brands:
 #- name: tradospot
 #  config_file: tradospot.yml
 
-- name: tradixa
-  config_file: tradixa.yml
+#- name: tradixa
+#  config_file: tradixa.yml
 #
 #- name: tfxgo
 #  config_file: tfxgo.yml
