@@ -1,31 +1,123 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+
 brands:
+
+#- name: alferatrade
+#  config_file: alferatrade.yml
+
+#- name: any1profit
+#  config_file: any1profit.yml
+
+#- name: aztrades
+#  config_file: aztrades.yml
+
+#- name: bfxinternational
+#  config_file: bfxinternational.yml
+
+#- name: brokerz
+#  config_file: brokerz.yml
+
+#- name: coin-bits
+#  config_file: coin-bits.yml
+
+#- name: confixfinancial
+#  config_file: confixfinancial.yml
+
+#- name: ctxprime
+#  config_file: ctxprime.yml
+
+#- name: dualix
+#  config_file: dualix.yml
+
+#- name: etfinance
+#  config_file: etfinance.yml
+
+#- name: fairbit
+#  config_file: fair-bit.yml
+
+#- name: fbrokers
+#  config_file: fbrokers.yml
+
+#- name: financix
+#  config_file: financix.yml
+
+#- name: globalix
+#  config_file: globalix.yml
+
+#- name: grandefex
+#  config_file: grandefex.yml
+
+#- name: gtstox
+#  config_file: gtstox.yml
+
+#- name: kontofx
+#  config_file: kontofx.yml
+
+#- name: libramarkets
+#  config_file: libramarkets.yml
+
+#- name: marketrip
+#  config_file: marketrip.yml
+
+#- name: metadoro
+#  config_file: metadoro.yml
+
+#- name: moneta
+#  config_file: moneta.yml
+
+#- name: newrichmarkets
+#  config_file: newrichmarkets.yml
 
 #- name: newforexstage2
 #  config_file: newforexstage2.yml
+
+#- name: newforexdev3
+#  config_file: newforexdev3.yml
+
+#- name: newforexqa2
+#  config_file: newforexqa2.yml
+
+#- name: newcrmui
+#  config_file: newcrmui.yml
+
+#- name: olympiamarkets
+#  config_file: olympiamarkets.yml
+
+#- name: olympiusglobal
+#  config_file: olympiusglobal.yml
+
+#- name: pmt247
+#  config_file: pmt247.yml
+
+#- name: proconsultinginvest
+#  config_file: proconsultinginvest.yml
 
 #- name: ptbanc
 #  config_file: ptbanc.yml
 
 #- name: q8
 #  config_file: q8.yml
-#
-#- name: kontofx
-#  config_file: kontofx.yml
-#
-#- name: brokerz
-#  config_file: brokerz.yml
-#
-#- name: gigafx
-#  config_file: gigafx.yml
-#
-- name: trade99
-  config_file: trade99.yml
-#
-#- name: dax-300
-#  config_file: dax-300.yml
+
+#- name: solocapitlas
+#  config_file: solocapitlas.yml
 
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
 
-#- name: tradenero
-#  config_file: tradenero.yml
+#- name: trade99
+#  config_file: trade99.yml
+
+#- name: tradixa
+#  config_file: tradixa.yml
+
+#- name: uprofx
+#  config_file: uprofx.yml
+
+#- name: wdcmarkets
+#  config_file: wdcmarkets.yml
+
+- name: 4ex7
+  config_file: 4ex7.yml
+
+#- name: 24option
+#  config_file: 24option.yml
