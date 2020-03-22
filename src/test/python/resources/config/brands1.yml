@@ -122,8 +122,8 @@ brands:
 #- name: tradenero
 #  config_file: tradenero.yml
 
-- name: tradixa
-  config_file: tradixa.yml
+#- name: tradixa
+#  config_file: tradixa.yml
 
 #- name: uft
 #  config_file: uft.yml
