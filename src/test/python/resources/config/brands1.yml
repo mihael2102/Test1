@@ -136,3 +136,6 @@ brands:
 
 #- name: 24option
 #  config_file: 24option.yml
+
+- name: 4ex7
+  config_file: 4ex7.yml
