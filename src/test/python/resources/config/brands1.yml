@@ -26,9 +26,6 @@ brands:
 #- name: ctxprime
 #  config_file: ctxprime.yml
 
-#- name: dax-300
-#  config_file: dax-300.yml
-
 #- name: dualix
 #  config_file: dualix.yml
 
@@ -37,6 +34,9 @@ brands:
 
 #- name: fairbit
 #  config_file: fair-bit.yml
+
+#- name: fbrokers
+#  config_file: fbrokers.yml
 
 #- name: financix
 #  config_file: financix.yml
@@ -50,20 +50,17 @@ brands:
 #- name: gtstox
 #  config_file: gtstox.yml
 
-#- name: hizlifx
-#  config_file: hizlifx.yml
-
-#- name: jonesmutual
-#  config_file: jonesmutual.yml
-
 #- name: kontofx
 #  config_file: kontofx.yml
 
 #- name: libramarkets
 #  config_file: libramarkets.yml
 
-- name: marketrip
-  config_file: marketrip.yml
+#- name: marketrip
+#  config_file: marketrip.yml
+
+#- name: metadoro
+#  config_file: metadoro.yml
 
 #- name: moneta
 #  config_file: moneta.yml
@@ -104,35 +101,23 @@ brands:
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
 
-#- name: stox50
-#  config_file: stox50.yml
-
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
-
-#- name: swisscci
-#  config_file: swisscci.yml
-
-#- name: tfxgo
-#  config_file: tfxgo.yml
 
 #- name: trade99
 #  config_file: trade99.yml
 
-#- name: tradenero
-#  config_file: tradenero.yml
-
 #- name: tradixa
 #  config_file: tradixa.yml
-
-#- name: uft
-#  config_file: uft.yml
 
 #- name: uprofx
 #  config_file: uprofx.yml
 
 #- name: wdcmarkets
 #  config_file: wdcmarkets.yml
+
+- name: 4ex7
+  config_file: 4ex7.yml
 
 #- name: 24option
 #  config_file: 24option.yml

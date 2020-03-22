@@ -10,9 +10,14 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.utils.config import Config
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from src.main.python.ui.crm.model.pages.global_module_ui.EmailPageUI import EmailPageUI
 
 
 class GlobalTablePageUI(CRMBasePage):
+
+    def refresh_page_ui(self):
+        self.refresh_page()
+        return GlobalTablePageUI(self.driver)
 
     def set_data_column_field(self, column, data):
         sleep(0.1)
@@ -215,11 +220,17 @@ class GlobalTablePageUI(CRMBasePage):
 
     def click_delete_icon_list_view(self, row):
         sleep(0.1)
-        Logging().reportDebugStep(self, "Click 'Delete' button")
-        delete_icon = super().wait_element_to_be_clickable(
-            "//tr[not(contains(@style,'hidden'))][%s]//button[@title='delete']" % row)
-        self.driver.execute_script("arguments[0].click();", delete_icon)
-        return GlobalTablePageUI(self.driver)
+        try:
+            Logging().reportDebugStep(self, "Click 'Delete' button")
+            delete_icon = super().wait_element_to_be_clickable(
+                "//tr[not(contains(@style,'hidden'))][%s]//button[@title='delete' and not(@disabled)]" % row)
+            self.driver.execute_script("arguments[0].click();", delete_icon)
+            return GlobalTablePageUI(self.driver)
+        except:
+            self.driver.find_element_by_xpath(
+                "//tr[not(contains(@style,'hidden'))][%s]//button[@title='delete']" % row)
+            Logging().reportDebugStep(self, "'Delete' button is not available")
+            Logging().reportDebugStep(self, "NOT RUNNED")
 
     def click_edit_icon_list_view(self, row):
         sleep(0.1)
@@ -228,3 +239,11 @@ class GlobalTablePageUI(CRMBasePage):
             "//tr[not(contains(@style,'hidden'))][%s]//button[@title='edit']" % row)
         self.driver.execute_script("arguments[0].click();", edit_icon)
         return GlobalTablePageUI(self.driver)
+
+    def click_email_icon_list_view(self, row):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click 'Edit' button")
+        edit_icon = super().wait_element_to_be_clickable(
+            "//tr[not(contains(@style,'hidden'))][%s]//button[@title='email']" % row)
+        self.driver.execute_script("arguments[0].click();", edit_icon)
+        return EmailPageUI(self.driver)
