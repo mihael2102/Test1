@@ -41,8 +41,8 @@ brands:
 #- name: financix
 #  config_file: financix.yml
 
-#- name: globalix
-#  config_file: globalix.yml
+- name: globalix
+  config_file: globalix.yml
 
 #- name: grandefex
 #  config_file: grandefex.yml
@@ -116,8 +116,8 @@ brands:
 #- name: wdcmarkets
 #  config_file: wdcmarkets.yml
 
-- name: 4ex7
-  config_file: 4ex7.yml
+#- name: 4ex7
+#  config_file: 4ex7.yml
 
 #- name: 24option
 #  config_file: 24option.yml
