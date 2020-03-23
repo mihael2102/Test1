@@ -42,3 +42,11 @@ class GlobalDetailsPageUI(CRMBasePage):
                 "//div[label='%s']//following-sibling::div//div[@class='ng-star-inserted']" % field).text
         Logging().reportDebugStep(self, "Get data from field " + field + ": " + data)
         return data
+
+    def click_edit_btn(self):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click Edit button")
+        edit_btn = super().wait_load_element(
+            "//div[@class='wrap-navigation d-flex align-items-center']//button[span[i[contains(@class,'pencil')]]]")
+        edit_btn.click()
+        return GlobalDetailsPageUI(self.driver)
