@@ -5,7 +5,7 @@ from src.main.python.ui.crm.model.pages.affiliates_module_ui.AffiliatesModulePag
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.affiliates_module_ui.CreateAffiliatesPageUI import CreateAffiliatesPageUI
 from src.main.python.ui.crm.model.constants.CreateAffiliateConstants import CreateAffiliateConstants
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 
 
 class CreateAffiliatesPreconditionUI(object):
@@ -52,7 +52,7 @@ class CreateAffiliatesPreconditionUI(object):
             .click_ok()
 
         """ Verify affiliate exist in table """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_NAME,
                                    data=CreateAffiliateConstants.PARTNER_NAME) \
             .global_data_checker_new_ui(CreateAffiliateConstants.PARTNER_NAME)
@@ -64,7 +64,7 @@ class CreateAffiliatesPreconditionUI(object):
             .came_back_on_previous_page()
 
         """ Delete affiliate """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_NAME,
                                    data=CreateAffiliateConstants.PARTNER_NAME)
         AffiliatesModulePageUI(self.driver) \
@@ -79,7 +79,7 @@ class CreateAffiliatesPreconditionUI(object):
             .refresh_page()
 
         """ Verify affiliate was deleted """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_NAME,
                                    data=CreateAffiliateConstants.PARTNER_NAME)
         AffiliatesModulePageUI(self.driver) \

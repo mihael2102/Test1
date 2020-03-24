@@ -2,7 +2,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.tasks_ui.TasksModuleConstantsUI import TasksModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.EmailPageUI import EmailPageUI
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.EmailConstantsUI import EmailConstantsUI
@@ -38,7 +38,7 @@ class TasksEmailPreconditionUI(object):
 
         """ Send Email """
         subject = global_var.current_brand_name + EmailConstantsUI.SUBJECT_TASKS
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .set_data_column_field(TasksModuleConstantsUI.COLUMN_ACCOUNT_NAME,
                                    TasksModuleConstantsUI.ACCOUNT_NAME) \
             .open_actions_list() \
@@ -48,7 +48,7 @@ class TasksEmailPreconditionUI(object):
             .click_send_btn()
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok()
 

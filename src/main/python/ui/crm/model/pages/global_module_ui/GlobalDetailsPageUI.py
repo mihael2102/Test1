@@ -22,13 +22,18 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 class GlobalDetailsPageUI(CRMBasePage):
 
-    def open_tab_ui(self, tab):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Open " + tab + " tab")
-        tab_name = super().wait_load_element("//mat-panel-title/div[contains(text(),'%s')]" % tab)
-        self.driver.execute_script("arguments[0].click();", tab_name)
-        self.wait_loading_to_finish_new_ui(8)
-        return ClientProfilePage(self.driver)
+    def open_tab(self, title):
+        try:
+            Logging().reportDebugStep(self, "Open tab: " + title)
+            tab = super().wait_load_element(
+                "//mat-expansion-panel-header[@aria-expanded='false']//mat-panel-title/div[contains(text(),'%s')]"
+                % title)
+            self.driver.execute_script("arguments[0].click();", tab)
+            sleep(1)
+            self.wait_loading_to_finish_new_ui(5)
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Tab " + title + " already opened")
+        return GlobalDetailsPageUI(self.driver)
 
     def get_text_from_field(self, field):
         sleep(0.1)

@@ -2,7 +2,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 
 
 class ClientsSearchingColumnsPreconditionUI(object):
@@ -34,27 +34,27 @@ class ClientsSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(ClientsModuleConstantsUI.TAB_ALL)
 
         """ Get client's data from the first row of list view """
-        crm_id = GlobalTablePageUI(self.driver) \
+        crm_id = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=ClientsModuleConstantsUI.COLUMN_CRM_ID,
                                         row=ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        client_status = GlobalTablePageUI(self.driver) \
+        client_status = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=ClientsModuleConstantsUI.COLUMN_CLIENT_STATUS,
                                         row=ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        email = GlobalTablePageUI(self.driver) \
+        email = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=ClientsModuleConstantsUI.COLUMN_EMAIL,
                                         row=ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        client_name = GlobalTablePageUI(self.driver) \
+        client_name = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=ClientsModuleConstantsUI.COLUMN_CLIENT_NAME,
                                         row=ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        assigned_to = GlobalTablePageUI(self.driver) \
+        assigned_to = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=ClientsModuleConstantsUI.COLUMN_ASSIGNED_TO,
                                         row=ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        country = GlobalTablePageUI(self.driver) \
+        country = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=ClientsModuleConstantsUI.COLUMN_COUNTRY,
                                         row=ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
         """ Search by table """
-        search = GlobalTablePageUI(self.driver)
+        search = GlobalModulePageUI(self.driver)
         if crm_id:
             search\
                 .set_data_column_field(column=ClientsModuleConstantsUI.COLUMN_CRM_ID,
@@ -81,7 +81,7 @@ class ClientsSearchingColumnsPreconditionUI(object):
                                        data=email)
 
         """ Verify correct data found """
-        result = GlobalTablePageUI(self.driver)
+        result = GlobalModulePageUI(self.driver)
         if crm_id:
             result\
                 .global_data_checker_new_ui(crm_id)

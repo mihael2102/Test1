@@ -3,7 +3,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRM
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI import CreateLeadConstantsUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.EditLeadConstantsUI import EditLeadConstantsUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.leads_module_ui.LeadsModulePageUI import LeadsModulePageUI
 from src.main.python.ui.crm.model.pages.leads_module_ui.CreateLeadPageUI import CreateLeadPageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
@@ -14,6 +14,7 @@ from src.main.python.ui.crm.model.pages.leads_module_ui.ConvertLeadPageUI import
 from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
@@ -69,12 +70,12 @@ class EditLeadPreconditionUI(object):
             field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=CreateLeadConstantsUI.DESCRIPTION)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok()
 
         """ Search lead """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_LEADS) \
             .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    data=CreateLeadConstantsUI.EMAIL2)
@@ -83,7 +84,7 @@ class EditLeadPreconditionUI(object):
         LeadsModulePageUI(self.driver) \
             .open_lead()
 
-        details = LeadsDetailsPageUI(self.driver)
+        details = GlobalDetailsPageUI(self.driver)
 
         first_name = details \
             .get_text_from_field(LeadsDetailsConstantsUI.FIELD_FNAME)
@@ -173,79 +174,118 @@ class EditLeadPreconditionUI(object):
         """ Edit Lead """
         EditLeadPageUI(self.driver) \
             .edit_lead(
-            field1=ConvertLeadConstantsUI.FIELD_FNAME, first_name=ConvertLeadConstantsUI.FNAME,
-            field2=ConvertLeadConstantsUI.FIELD_LNAME, last_name=ConvertLeadConstantsUI.LNAME,
-            field4=ConvertLeadConstantsUI.FIELD_PHONE, phone=ConvertLeadConstantsUI.PHONE,
-            day=ConvertLeadConstantsUI.DAY, month=ConvertLeadConstantsUI.MONTH, year=ConvertLeadConstantsUI.YEAR,
-            list1=ConvertLeadConstantsUI.LIST_CITIZENSHIP, citizenship=ConvertLeadConstantsUI.CITIZENSHIP,
-            list2=ConvertLeadConstantsUI.LIST_UI_LANGUAGE, ui_language=ConvertLeadConstantsUI.UI_LANGUAGE,
-            field5=ConvertLeadConstantsUI.FIELD_ADDRESS, address=ConvertLeadConstantsUI.ADDRESS,
-            field6=ConvertLeadConstantsUI.FIELD_POSTAL_CODE, postal_code=ConvertLeadConstantsUI.POSTAL_CODE,
-            field7=ConvertLeadConstantsUI.FIELD_CITY, city=ConvertLeadConstantsUI.CITY,
-            list3=ConvertLeadConstantsUI.LIST_COUNTRY, country=ConvertLeadConstantsUI.COUNTRY,
-            field9=ConvertLeadConstantsUI.FIELD_PASSWORD, password=ConvertLeadConstantsUI.PASSWORD,
-            list4=ConvertLeadConstantsUI.LIST_CURRENCY, currency=var.get_var(self.__class__.__name__)
-            ["convert_lead_currency"],
-            field10=ConvertLeadConstantsUI.FIELD_REFERRAL, referral=ConvertLeadConstantsUI.REFERRAL,
-            list5=ConvertLeadConstantsUI.LIST_BRAND, brand=ConvertLeadConstantsUI.BRAND,
-            field11=ConvertLeadConstantsUI.FIELD_SOURCE_NAME, source_name=ConvertLeadConstantsUI.SOURCE_NAME)
+            field1=CreateLeadConstantsUI.FIELD_FNAME, fname=EditLeadConstantsUI.FNAME,
+            field2=CreateLeadConstantsUI.FIELD_LNAME, lname=EditLeadConstantsUI.LNAME,
+            field3=CreateLeadConstantsUI.FIELD_MOBILE, mobile=EditLeadConstantsUI.MOBILE,
+            field4=CreateLeadConstantsUI.FIELD_PHONE, phone=EditLeadConstantsUI.PHONE,
+            field5=CreateLeadConstantsUI.FIELD_EMAIL, email=EditLeadConstantsUI.EMAIL,
+            field6=CreateLeadConstantsUI.FIELD_S_EMAIL, s_mail=EditLeadConstantsUI.S_EMAIL,
+            field7=CreateLeadConstantsUI.FIELD_TITLE, title=EditLeadConstantsUI.TITLE,
+            list1=CreateLeadConstantsUI.LIST_LEAD_SOURCE, l_source=EditLeadConstantsUI.L_SOURCE,
+            list2=CreateLeadConstantsUI.LIST_LEAD_STATUS, l_status=EditLeadConstantsUI.L_STATUS,
+            list3=CreateLeadConstantsUI.LIST_ASSIGNED_TO, assigned_to=EditLeadConstantsUI.ASSIGNED_TO,
+            field8=CreateLeadConstantsUI.FIELD_LANGUAGE, language=EditLeadConstantsUI.LANGUAGE,
+            field9=CreateLeadConstantsUI.FIELD_SOURCE_NAME, source_name=EditLeadConstantsUI.SOURCE_NAME,
+            field10=CreateLeadConstantsUI.FIELD_FAX, fax=EditLeadConstantsUI.FAX,
+            field11=CreateLeadConstantsUI.FIELD_REFERRAL, referral=EditLeadConstantsUI.REFERRAL,
+            field12=CreateLeadConstantsUI.FIELD_ADDRESS, address=EditLeadConstantsUI.ADDRESS,
+            field13=CreateLeadConstantsUI.FIELD_POSTAL_CODE, p_code=EditLeadConstantsUI.POSTAL_CODE,
+            field14=CreateLeadConstantsUI.FIELD_CITY, city=EditLeadConstantsUI.CITY,
+            list4=CreateLeadConstantsUI.LIST_COUNTRY, country=EditLeadConstantsUI.COUNTRY,
+            field15=CreateLeadConstantsUI.FIELD_STATE, state=EditLeadConstantsUI.STATE,
+            field16=CreateLeadConstantsUI.FIELD_PO_BOX, po_box=EditLeadConstantsUI.PO_BOX,
+            field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=EditLeadConstantsUI.DESCRIPTION)
 
-        """ Get client's data """
-        details = ClientDetailsPageUI(self.driver)
+        """ Verify successful message """
+        GlobalModulePageUI(self.driver) \
+            .verify_success_message() \
+            .click_ok() \
+            .refresh_page()
+
+        """ Get lead's data """
+        details = GlobalDetailsPageUI(self.driver)
 
         first_name = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_FNAME)
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_FNAME)
         last_name = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_LNAME)
-        email = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_EMAIL)
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_LNAME)
+        mobile = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_MOBILE)
         phone = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_PHONE)
-        birthday = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_BIRTHDAY)
-        citizenship = details \
-            .get_text_from_field(var.get_var(self.__class__.__name__)["field_citizenship"])
-        ui_language = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_UI_LANGUAGE)
-        address = details \
-            .open_tab(ClientDetailsConstantsUI.TAB_ADDRESS_INFORMATION) \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_ADDRESS)
-        postal_code = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_CODE)
-        city = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_CITY)
-        country = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_COUNTRY)
-        currency = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_BASE_CURRENCY)
-        referral = details \
-            .open_tab(ClientDetailsConstantsUI.TAB_CUSTOM_INFORMATION) \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_REFERRAL)
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_PHONE)
+        email = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_EMAIL)
+        s_email = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_S_EMAIL)
+        title = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_TITLE)
+        l_source = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_LEAD_SOURCE)
+        l_status = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_LEAD_STATUS)
+        assigned_to = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_ASSIGNED_TO)
+        language = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_LANGUAGE)
         source_name = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_CLIENT_SOURCE)
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_SOURCE_NAME)
+        fax = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_FAX)
+        referral = details \
+            .open_tab(LeadsDetailsConstantsUI.TAB_CUSTOM_INFORMATION) \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_REFERRAL)
+        address = details \
+            .open_tab(LeadsDetailsConstantsUI.TAB_ADDRESS_INFORMATION) \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_STREET)
+        postal_code = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_POSTAL_CODE)
+        city = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_CITY)
+        country = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_COUNTRY)
+        state = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_STATE)
+        po_box = details \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_PO_BOX)
+        description = details \
+            .open_tab(LeadsDetailsConstantsUI.TAB_DESCRIPTION_INFORMATION) \
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_DESCRIPTION)
 
-        """ Verify client's data """
+        """ Verify lead's data """
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(first_name, ConvertLeadConstantsUI.FNAME) \
-            .comparator_string(last_name, ConvertLeadConstantsUI.LNAME) \
-            .comparator_string(birthday, ConvertLeadConstantsUI.BIRTHDAY) \
-            .comparator_string(citizenship, ConvertLeadConstantsUI.CITIZENSHIP) \
-            .comparator_string(currency, var.get_var(self.__class__.__name__)["convert_lead_currency"]) \
-            .comparator_string(ui_language, ConvertLeadConstantsUI.UI_LANGUAGE) \
-            .comparator_string(source_name, ConvertLeadConstantsUI.SOURCE_NAME) \
-            .comparator_string(referral, ConvertLeadConstantsUI.REFERRAL) \
-            .comparator_string(address, ConvertLeadConstantsUI.ADDRESS) \
-            .comparator_string(postal_code, ConvertLeadConstantsUI.POSTAL_CODE) \
-            .comparator_string(city, ConvertLeadConstantsUI.CITY) \
-            .comparator_string(country, ConvertLeadConstantsUI.COUNTRY)
+            .comparator_string(first_name, CreateLeadConstantsUI.FNAME2) \
+            .comparator_string(last_name, CreateLeadConstantsUI.LNAME) \
+            .comparator_string(title, CreateLeadConstantsUI.TITLE) \
+            .comparator_string(l_source, CreateLeadConstantsUI.L_SOURCE) \
+            .comparator_string(l_status, CreateLeadConstantsUI.L_STATUS) \
+            .comparator_string(assigned_to, CreateLeadConstantsUI.ASSIGNED_TO) \
+            .comparator_string(language, CreateLeadConstantsUI.LANGUAGE) \
+            .comparator_string(source_name, CreateLeadConstantsUI.SOURCE_NAME) \
+            .comparator_string(referral, CreateLeadConstantsUI.REFERRAL) \
+            .comparator_string(address, CreateLeadConstantsUI.ADDRESS) \
+            .comparator_string(postal_code, CreateLeadConstantsUI.POSTAL_CODE) \
+            .comparator_string(city, CreateLeadConstantsUI.CITY) \
+            .comparator_string(country, CreateLeadConstantsUI.COUNTRY) \
+            .comparator_string(state, CreateLeadConstantsUI.STATE) \
+            .comparator_string(po_box, CreateLeadConstantsUI.PO_BOX) \
+            .comparator_string(description, CreateLeadConstantsUI.DESCRIPTION)
 
-        if "*" not in email and "..." not in email:
+        if "*" not in email:
             CRMBaseMethodsPage(self.driver) \
-                .comparator_string(email, ConvertLeadConstantsUI.EMAIL)
-        elif "*" not in email:
-            email = email.replace('...', '')
-            assert email in ConvertLeadConstantsUI.EMAIL
+                .comparator_string(email, CreateLeadConstantsUI.EMAIL2)
 
-        if phone and "*" not in phone:
+        if "*" not in s_email:
             CRMBaseMethodsPage(self.driver) \
-                .comparator_string(phone, ConvertLeadConstantsUI.PHONE)
+                .comparator_string(s_email, CreateLeadConstantsUI.S_EMAIL2)
+
+        if "*" not in phone:
+            CRMBaseMethodsPage(self.driver) \
+                .comparator_string(phone, CreateLeadConstantsUI.PHONE2)
+
+        if "*" not in mobile:
+            CRMBaseMethodsPage(self.driver) \
+                .comparator_string(mobile, CreateLeadConstantsUI.MOBILE2)
+
+        if "*" not in fax:
+            CRMBaseMethodsPage(self.driver) \
+                .comparator_string(fax, CreateLeadConstantsUI.FAX)
