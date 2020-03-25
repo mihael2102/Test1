@@ -8,7 +8,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.mt4_ui.MT4DepositPageUI import MT4DepositPageUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -44,7 +44,7 @@ class MT4DepositPreconditionUI(object):
         """ Open clients module. Find created client by email and open his profile """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    CreateLeadConstantsUI.EMAIL)
@@ -61,14 +61,14 @@ class MT4DepositPreconditionUI(object):
             list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok()
 
         """ Get account number to make deposit in future """
         ClientDetailsPageUI(self.driver) \
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-        account_number = GlobalTablePageUI(self.driver)\
+        account_number = GlobalModulePageUI(self.driver)\
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_LOGIN,
                 row=ClientDetailsConstantsUI.ROW_2)
@@ -89,7 +89,7 @@ class MT4DepositPreconditionUI(object):
                 list4=MT4DepositConstantsUI.LIST_CLEARED_BY, cleared_by=MT4DepositConstantsUI.CLEARED_BY)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
             .refresh_page()
@@ -97,7 +97,7 @@ class MT4DepositPreconditionUI(object):
         """ Check balance was updated """
         ClientDetailsPageUI(self.driver) \
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-        balance = GlobalTablePageUI(self.driver) \
+        balance = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_BALANCE,
                 row=ClientDetailsConstantsUI.ROW_2)
