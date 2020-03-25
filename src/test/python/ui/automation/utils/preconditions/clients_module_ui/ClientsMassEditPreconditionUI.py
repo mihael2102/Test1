@@ -5,7 +5,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.MassActionsConstantsUI import MassActionsConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.MassEditPageUI import MassEditPageUI
@@ -35,7 +35,7 @@ class ClientsMassEditPreconditionUI(object):
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
 
         """ Select records for Mass Edit """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
@@ -53,7 +53,7 @@ class ClientsMassEditPreconditionUI(object):
             .click_save_changes_btn()
 
         """ Check confirmation message and updated data in table """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,

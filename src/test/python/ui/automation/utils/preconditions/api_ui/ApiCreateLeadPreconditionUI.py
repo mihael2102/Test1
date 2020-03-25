@@ -6,7 +6,7 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
 from src.main.python.ui.crm.model.constants_ui.api_ui.ApiLeadConstantsUI import ApiLeadConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.pages.leads_module_ui.LeadsDetailsPageUI import LeadsDetailsPageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsDetailsConstantsUI import LeadsDetailsConstantsUI
@@ -54,7 +54,7 @@ class ApiCreateLeadPreconditionUI(object):
             .switch_first_tab_page()
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_LEADS)
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_LEADS) \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    ApiLeadConstantsUI.EMAIL)

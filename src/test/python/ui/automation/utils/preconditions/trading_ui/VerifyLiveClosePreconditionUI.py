@@ -1,5 +1,5 @@
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
@@ -45,7 +45,7 @@ class VerifyLiveClosePreconditionUI(object):
         """ Open Clients module and find created client by email """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    self.config.get_value('email_live_acc'))
@@ -67,7 +67,7 @@ class VerifyLiveClosePreconditionUI(object):
         TradingModulePageUI(self.driver) \
             .click_on_ta_number(self.config.get_value('number_live_acc'))
         GlobalDetailsPageUI(self.driver) \
-            .open_tab_ui(TradingDetailsConstantsUI.TAB_CLOSED_TRANSACTIONS)
+            .open_tab(TradingDetailsConstantsUI.TAB_CLOSED_TRANSACTIONS)
 
         close_orders_data = TradingDetailsPageUI(self.driver) \
             .get_closed_orders_data_ui()
