@@ -14,8 +14,8 @@ brands:
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
 
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: brokerz
+  config_file: brokerz.yml
 
 #- name: coin-bits
 #  config_file: coin-bits.yml
@@ -56,8 +56,8 @@ brands:
 #- name: libramarkets
 #  config_file: libramarkets.yml
 
-- name: marketrip
-  config_file: marketrip.yml
+#- name: marketrip
+#  config_file: marketrip.yml
 
 #- name: metadoro
 #  config_file: metadoro.yml

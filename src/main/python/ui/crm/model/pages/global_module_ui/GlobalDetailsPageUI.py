@@ -36,11 +36,11 @@ class GlobalDetailsPageUI(CRMBasePage):
         return GlobalDetailsPageUI(self.driver)
 
     def get_text_from_field(self, field):
-        sleep(0.1)
+        sleep(0.5)
         try:
             data = super().wait_load_element(
                 "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field,
-                timeout=5).text
+                timeout=15).text
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Field " + field + " is not editable")
             data = super().wait_load_element(

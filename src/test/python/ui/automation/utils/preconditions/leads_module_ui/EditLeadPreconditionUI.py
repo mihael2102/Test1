@@ -104,8 +104,6 @@ class EditLeadPreconditionUI(object):
             .get_text_from_field(LeadsDetailsConstantsUI.FIELD_LEAD_SOURCE)
         l_status = details \
             .get_text_from_field(LeadsDetailsConstantsUI.FIELD_LEAD_STATUS)
-        assigned_to = details \
-            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_ASSIGNED_TO)
         language = details \
             .get_text_from_field(LeadsDetailsConstantsUI.FIELD_LANGUAGE)
         source_name = details \
@@ -139,7 +137,6 @@ class EditLeadPreconditionUI(object):
             .comparator_string(title, CreateLeadConstantsUI.TITLE) \
             .comparator_string(l_source, CreateLeadConstantsUI.L_SOURCE) \
             .comparator_string(l_status, CreateLeadConstantsUI.L_STATUS) \
-            .comparator_string(assigned_to, CreateLeadConstantsUI.ASSIGNED_TO) \
             .comparator_string(language, CreateLeadConstantsUI.LANGUAGE) \
             .comparator_string(source_name, CreateLeadConstantsUI.SOURCE_NAME) \
             .comparator_string(referral, CreateLeadConstantsUI.REFERRAL) \
@@ -253,39 +250,39 @@ class EditLeadPreconditionUI(object):
 
         """ Verify lead's data """
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(first_name, CreateLeadConstantsUI.FNAME2) \
-            .comparator_string(last_name, CreateLeadConstantsUI.LNAME) \
-            .comparator_string(title, CreateLeadConstantsUI.TITLE) \
-            .comparator_string(l_source, CreateLeadConstantsUI.L_SOURCE) \
-            .comparator_string(l_status, CreateLeadConstantsUI.L_STATUS) \
-            .comparator_string(assigned_to, CreateLeadConstantsUI.ASSIGNED_TO) \
-            .comparator_string(language, CreateLeadConstantsUI.LANGUAGE) \
-            .comparator_string(source_name, CreateLeadConstantsUI.SOURCE_NAME) \
-            .comparator_string(referral, CreateLeadConstantsUI.REFERRAL) \
-            .comparator_string(address, CreateLeadConstantsUI.ADDRESS) \
-            .comparator_string(postal_code, CreateLeadConstantsUI.POSTAL_CODE) \
-            .comparator_string(city, CreateLeadConstantsUI.CITY) \
-            .comparator_string(country, CreateLeadConstantsUI.COUNTRY) \
-            .comparator_string(state, CreateLeadConstantsUI.STATE) \
-            .comparator_string(po_box, CreateLeadConstantsUI.PO_BOX) \
-            .comparator_string(description, CreateLeadConstantsUI.DESCRIPTION)
+            .comparator_string(first_name, EditLeadConstantsUI.FNAME) \
+            .comparator_string(last_name, EditLeadConstantsUI.LNAME) \
+            .comparator_string(title, EditLeadConstantsUI.TITLE) \
+            .comparator_string(l_source, EditLeadConstantsUI.L_SOURCE) \
+            .comparator_string(l_status, EditLeadConstantsUI.L_STATUS) \
+            .comparator_string(assigned_to, EditLeadConstantsUI.ASSIGNED_TO) \
+            .comparator_string(language, EditLeadConstantsUI.LANGUAGE) \
+            .comparator_string(source_name, EditLeadConstantsUI.SOURCE_NAME) \
+            .comparator_string(referral, EditLeadConstantsUI.REFERRAL) \
+            .comparator_string(address, EditLeadConstantsUI.ADDRESS) \
+            .comparator_string(postal_code, EditLeadConstantsUI.POSTAL_CODE) \
+            .comparator_string(city, EditLeadConstantsUI.CITY) \
+            .comparator_string(country, EditLeadConstantsUI.COUNTRY) \
+            .comparator_string(state, EditLeadConstantsUI.STATE) \
+            .comparator_string(po_box, EditLeadConstantsUI.PO_BOX) \
+            .comparator_string(description, EditLeadConstantsUI.DESCRIPTION)
 
         if "*" not in email:
             CRMBaseMethodsPage(self.driver) \
-                .comparator_string(email, CreateLeadConstantsUI.EMAIL2)
+                .comparator_string(email, EditLeadConstantsUI.EMAIL)
 
         if "*" not in s_email:
             CRMBaseMethodsPage(self.driver) \
-                .comparator_string(s_email, CreateLeadConstantsUI.S_EMAIL2)
+                .comparator_string(s_email, EditLeadConstantsUI.S_EMAIL)
 
         if "*" not in phone:
             CRMBaseMethodsPage(self.driver) \
-                .comparator_string(phone, CreateLeadConstantsUI.PHONE2)
+                .comparator_string(phone, EditLeadConstantsUI.PHONE)
 
         if "*" not in mobile:
             CRMBaseMethodsPage(self.driver) \
-                .comparator_string(mobile, CreateLeadConstantsUI.MOBILE2)
+                .comparator_string(mobile, EditLeadConstantsUI.MOBILE)
 
         if "*" not in fax:
             CRMBaseMethodsPage(self.driver) \
-                .comparator_string(fax, CreateLeadConstantsUI.FAX)
+                .comparator_string(fax, EditLeadConstantsUI.FAX)

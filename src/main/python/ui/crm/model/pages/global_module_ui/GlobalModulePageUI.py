@@ -161,8 +161,9 @@ class GlobalModulePageUI(CRMBasePage):
     """
 
     def verify_success_message(self):
-        sleep(0.1)
-        message = super().wait_load_element("//div[contains(@class,'dialog-content-success mat-dialog-content')]").text
+        sleep(0.5)
+        message = super().wait_load_element("//div[contains(@class,'dialog-content-success mat-dialog-content')]",
+                                            timeout=35).text
         Logging().reportDebugStep(self, "Get message: " + message)
         assert "success" in message.lower()
         return GlobalModulePageUI(self.driver)
