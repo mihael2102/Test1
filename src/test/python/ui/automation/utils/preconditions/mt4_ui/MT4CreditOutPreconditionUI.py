@@ -9,7 +9,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.mt4_ui.MT4WithdrawPageUI import MT4WithdrawPageUI
 from src.main.python.ui.crm.model.pages.mt4_ui.MT4CreditOutPageUI import MT4CreditOutPageUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -45,7 +45,7 @@ class MT4CreditOutPreconditionUI(object):
         """ Open Clients module and find created client by email """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    CreateLeadConstantsUI.EMAIL)
@@ -63,7 +63,7 @@ class MT4CreditOutPreconditionUI(object):
                 field3=MT4CreditOutConstantsUI.FIELD_COMMENT, comment=MT4CreditOutConstantsUI.COMMENT)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
             .refresh_page()
@@ -71,7 +71,7 @@ class MT4CreditOutPreconditionUI(object):
         """ Check credit was updated """
         ClientDetailsPageUI(self.driver) \
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-        credit = GlobalTablePageUI(self.driver) \
+        credit = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_CREDIT,
                 row=ClientDetailsConstantsUI.ROW_3)
@@ -82,7 +82,7 @@ class MT4CreditOutPreconditionUI(object):
                 .refresh_page()
             ClientDetailsPageUI(self.driver) \
                 .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-            credit = GlobalTablePageUI(self.driver) \
+            credit = GlobalModulePageUI(self.driver) \
                 .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_CREDIT,
                 row=ClientDetailsConstantsUI.ROW_3)

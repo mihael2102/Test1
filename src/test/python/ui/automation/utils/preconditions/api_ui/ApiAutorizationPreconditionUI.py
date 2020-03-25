@@ -4,7 +4,7 @@ from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
 from src.main.python.ui.crm.model.constants.APIConstants import APIConstants
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.affiliates_ui.AffiliatesModuleConstantsUI import \
     AffiliatesModuleConstantsUI
 from src.main.python.ui.crm.model.pages.affiliates_module_ui.AffiliatesModulePageUI import AffiliatesModulePageUI
@@ -38,7 +38,7 @@ class ApiAutorizationPreconditionUI(object):
             .open_module_ui(TestDataConstants.MODULE_AFFILIATES)
 
         """ Search by Partner ID: get secret key and api link """
-        secret_key = GlobalTablePageUI(self.driver)\
+        secret_key = GlobalModulePageUI(self.driver)\
             .set_data_column_field(column=AffiliatesModuleConstantsUI.COLUMN_PARTNER_ID,
                                    data=var.get_var("ApiPrecondition")["partner_id"]) \
             .get_data_from_list_view_ui(column=AffiliatesModuleConstantsUI.COLUMN_SECRET_KEY,
