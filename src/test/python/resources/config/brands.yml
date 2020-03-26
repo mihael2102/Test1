@@ -1,5 +1,8 @@
 brands:
 
+- name: dualix
+  config_file: dualix.yml
+
 #- name: fairbit
 #  config_file: fair-bit.yml
 
@@ -114,8 +117,8 @@ brands:
 #- name: uft
 #  config_file: uft.yml
 #
-- name: uprofx
-  config_file: uprofx.yml
+#- name: uprofx
+#  config_file: uprofx.yml
 #
 #- name: xtraderfx
 #  config_file: xtraderfx.yml
