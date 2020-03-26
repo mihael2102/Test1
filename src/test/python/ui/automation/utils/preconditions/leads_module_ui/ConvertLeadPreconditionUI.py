@@ -2,7 +2,7 @@ import pytest
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI import CreateLeadConstantsUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.leads_module_ui.LeadsModulePageUI import LeadsModulePageUI
 from src.main.python.ui.crm.model.pages.leads_module_ui.CreateLeadPageUI import CreateLeadPageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
@@ -71,12 +71,12 @@ class ConvertLeadPreconditionUI(object):
                 field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=CreateLeadConstantsUI.DESCRIPTION)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok()
 
         """ Search lead """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_LEADS) \
             .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    data=CreateLeadConstantsUI.EMAIL)

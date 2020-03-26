@@ -1,7 +1,7 @@
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HelpDeskModuleConstantsUI import HelpDeskModuleConstantsUI
 
 
@@ -34,18 +34,18 @@ class HelpDeskSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(HelpDeskModuleConstantsUI.TAB_ALL)
 
         """ Get ticket's data from the first row of list view """
-        ticket_no = GlobalTablePageUI(self.driver) \
+        ticket_no = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=HelpDeskModuleConstantsUI.COLUMN_TICKET_NO,
                                         row=HelpDeskModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        status = GlobalTablePageUI(self.driver) \
+        status = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=HelpDeskModuleConstantsUI.COLUMN_STATUS,
                                         row=HelpDeskModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        assigned_to = GlobalTablePageUI(self.driver) \
+        assigned_to = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=HelpDeskModuleConstantsUI.COLUMN_ASSIGNED_TO,
                                         row=HelpDeskModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
         """ Search by table """
-        search = GlobalTablePageUI(self.driver)
+        search = GlobalModulePageUI(self.driver)
         if status:
             search\
                 .select_data_column_field(column=HelpDeskModuleConstantsUI.COLUMN_STATUS,
@@ -60,7 +60,7 @@ class HelpDeskSearchingColumnsPreconditionUI(object):
                                        data=ticket_no)
 
         """ Verify correct data found """
-        result = GlobalTablePageUI(self.driver)
+        result = GlobalModulePageUI(self.driver)
         if ticket_no:
             result\
                 .global_data_checker_new_ui(ticket_no)

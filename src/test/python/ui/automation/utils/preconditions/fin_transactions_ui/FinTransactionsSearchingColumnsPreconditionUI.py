@@ -3,7 +3,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.constants_ui.fin_transactions_ui.FinTransactionsModuleConstantsUI import \
     FinTransactionsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 
 
 class FinTransactionsSearchingColumnsPreconditionUI(object):
@@ -35,24 +35,24 @@ class FinTransactionsSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(FinTransactionsModuleConstantsUI.TAB_ALL)
 
         """ Get data from the first row of list view """
-        transaction_no = GlobalTablePageUI(self.driver) \
+        transaction_no = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_TRANSACTION_NO,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        login = GlobalTablePageUI(self.driver) \
+        login = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_LOGIN,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        client = GlobalTablePageUI(self.driver) \
+        client = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_CLIENT,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        transaction_type = GlobalTablePageUI(self.driver) \
+        transaction_type = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_T_TYPE,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        payment_type = GlobalTablePageUI(self.driver) \
+        payment_type = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=FinTransactionsModuleConstantsUI.COLUMN_P_TYPE,
                                         row=FinTransactionsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
         """ Search by table """
-        search = GlobalTablePageUI(self.driver)
+        search = GlobalModulePageUI(self.driver)
         if transaction_no:
             search\
                 .set_data_column_field(column=FinTransactionsModuleConstantsUI.COLUMN_TRANSACTION_NO,
@@ -75,7 +75,7 @@ class FinTransactionsSearchingColumnsPreconditionUI(object):
                                           data=payment_type)
 
         """ Verify correct data found """
-        result = GlobalTablePageUI(self.driver)
+        result = GlobalModulePageUI(self.driver)
         if transaction_no:
             result\
                 .global_data_checker_new_ui(transaction_no)

@@ -2,7 +2,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.tasks_ui.TasksModuleConstantsUI import TasksModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.tasks_ui.AddDeleteEventPageUI import AddDeleteEventPageUI
 from src.main.python.ui.crm.model.constants_ui.tasks_ui.AddDeleteEventConstantsUI import AddDeleteEventConstantsUI
 
@@ -56,17 +56,17 @@ class TasksAddDeleteEventPreconditionUI(object):
             .click_save()
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok()
 
         """ Search for event """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .set_data_column_field(column=TasksModuleConstantsUI.COLUMN_SUBJECT,
                                    data=AddDeleteEventConstantsUI.SUBJECT)
 
         """ Verify correct data found """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .global_data_checker_new_ui(AddDeleteEventConstantsUI.EVENT_STATUS) \
             .global_data_checker_new_ui(AddDeleteEventConstantsUI.EVENT_TYPE) \
             .global_data_checker_new_ui(AddDeleteEventConstantsUI.ASSIGN_TO) \
@@ -79,7 +79,7 @@ class TasksAddDeleteEventPreconditionUI(object):
         assert number_records == 1
 
         """ Delete Event from table """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .open_actions_list() \
             .click_delete_icon_list_view(TasksModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
             .approve_deleting() \
@@ -87,7 +87,7 @@ class TasksAddDeleteEventPreconditionUI(object):
             .click_ok()
 
         """ Search for event and Verify data not found """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .set_data_column_field(column=TasksModuleConstantsUI.COLUMN_SUBJECT,
                                    data=AddDeleteEventConstantsUI.SUBJECT) \
             .verify_data_not_found()

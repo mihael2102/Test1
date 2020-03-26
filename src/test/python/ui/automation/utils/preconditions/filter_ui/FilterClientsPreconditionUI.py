@@ -3,7 +3,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.FilterPageUI import FilterPageUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 
@@ -46,7 +46,7 @@ class FilterClientsPreconditionUI(object):
                                current_filter)
 
         """ Get titles of new filter columns """
-        title = GlobalTablePageUI(self.driver)
+        title = GlobalModulePageUI(self.driver)
 
         title1 = title\
             .get_column_title("1").strip()
@@ -86,7 +86,7 @@ class FilterClientsPreconditionUI(object):
             .comparator_string(ClientsFilterConstantsUI.COLUMN11, title11)
 
         """ Delete Filter """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_ALL)
         FilterPageUI(self.driver) \
             .delete_filter(ClientsFilterConstantsUI.CLIENTS_FILTER_NAME) \
