@@ -41,13 +41,11 @@ class WorkflowsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click delete workflow")
         return WorkflowsPage(self.driver)
 
-
     def check_name_workflow(self, name):
         sleep(3)
         name_workflow = self.driver.find_element_by_xpath("//span[text()='%s']" % name)
         Logging().reportDebugStep(self, "Check name workflow in table")
         return name_workflow.text
-
 
     def click_add_new_workflow(self):
         sleep(2)
@@ -340,12 +338,8 @@ class WorkflowsPage(CRMBasePage):
 
     def search_workflow_by_name(self, name):
         sleep(2)
-        try:
-            name_field = super().wait_element_to_be_clickable(
-                "//div[@class='mat-form-field-infix']/input[@placeholder='Search' and @id='mat-input-4']")
-        except:
-            name_field = super().wait_element_to_be_clickable(
-                "//div[@class='mat-form-field-infix']/input[@id='mat-input-3']")
+        name_field = super().wait_element_to_be_clickable(
+                "//th[@role='columnheader' and contains(text(),'Name')]//input")
         name_field.clear()
         name_field.send_keys(name)
         sleep(2)
