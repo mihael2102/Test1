@@ -42,8 +42,8 @@ brands:
 #- name: goldenmarkets
 #  config_file: goldenmarkets.yml
 
-- name: grandefex
-  config_file: grandefex.yml
+#- name: grandefex
+#  config_file: grandefex.yml
 
 #- name: gxfx
 #  config_file: gxfx.yml
@@ -57,8 +57,8 @@ brands:
 #- name: jonesmutual
 #  config_file: jonesmutual.yml
 #
-#- name: kontofx
-#  config_file: kontofx.yml
+- name: kontofx
+  config_file: kontofx.yml
 #
 #- name: libramarkets
 #  config_file: libramarkets.yml
