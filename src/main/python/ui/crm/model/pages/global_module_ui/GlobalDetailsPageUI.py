@@ -39,8 +39,7 @@ class GlobalDetailsPageUI(CRMBasePage):
         sleep(0.5)
         try:
             data = super().wait_load_element(
-                "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field,
-                timeout=15).text
+                "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field).text
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Field " + field + " is not editable")
             data = super().wait_load_element(
