@@ -104,14 +104,14 @@ brands:
 #- name: trade99
 #  config_file: trade99.yml
 
-- name: tradixa
-  config_file: tradixa.yml
+#- name: tradixa
+#  config_file: tradixa.yml
 
 #- name: uprofx
 #  config_file: uprofx.yml
 
-#- name: wdcmarkets
-#  config_file: wdcmarkets.yml
+- name: wdcmarkets
+  config_file: wdcmarkets.yml
 
 #- name: 4ex7
 #  config_file: 4ex7.yml

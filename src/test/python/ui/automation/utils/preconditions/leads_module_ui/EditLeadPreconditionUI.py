@@ -167,6 +167,14 @@ class EditLeadPreconditionUI(object):
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(fax, CreateLeadConstantsUI.FAX)
 
+        """ Edit Lead: verify lead can't be saved with empty Last Name field """
+        # is_update_btn_active = EditLeadPageUI(self.driver) \
+        #     .click_edit_lead_btn() \
+        #     .set_text(field=CreateLeadConstantsUI.FIELD_LNAME, text=" ") \
+        #     .is_button_update_lead_active()
+
+        # assert not is_update_btn_active
+
         """ Edit Lead """
         EditLeadPageUI(self.driver) \
             .edit_lead(
