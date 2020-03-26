@@ -14,8 +14,8 @@ brands:
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
 
-- name: brokerz
-  config_file: brokerz.yml
+#- name: brokerz
+#  config_file: brokerz.yml
 
 #- name: coin-bits
 #  config_file: coin-bits.yml
@@ -37,9 +37,6 @@ brands:
 
 #- name: fbrokers
 #  config_file: fbrokers.yml
-
-#- name: financix
-#  config_file: financix.yml
 
 #- name: globalix
 #  config_file: globalix.yml
@@ -113,8 +110,8 @@ brands:
 #- name: uprofx
 #  config_file: uprofx.yml
 
-#- name: wdcmarkets
-#  config_file: wdcmarkets.yml
+- name: wdcmarkets
+  config_file: wdcmarkets.yml
 
 #- name: 4ex7
 #  config_file: 4ex7.yml

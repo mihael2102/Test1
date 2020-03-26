@@ -77,9 +77,18 @@ class EditLeadPageUI(CRMBasePage):
             .set_text_field(field, text)
         return EditLeadPageUI(self.driver)
 
+    def is_button_update_lead_active(self):
+        sleep(0.1)
+        flag = super().wait_element_to_be_clickable("//button[span=' Update lead ']").get_property("disabled")
+        return not flag
+
     def click_update_lead_btn(self):
         sleep(0.1)
-        Logging().reportDebugStep(self, "Click 'Update lead' button")
-        save_button = super().wait_element_to_be_clickable("//button/span[text()=' Update lead ']")
-        self.driver.execute_script("arguments[0].click();", save_button)
+        flag = self.is_button_update_lead_active()
+        if flag:
+            Logging().reportDebugStep(self, "Click 'Update lead' button")
+            save_button = super().wait_element_to_be_clickable("//button/span[text()=' Update lead ']")
+            self.driver.execute_script("arguments[0].click();", save_button)
+        else:
+            Logging().reportDebugStep(self, "'Update lead' button is inactive")
         return EditLeadPageUI(self.driver)
