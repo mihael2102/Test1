@@ -78,8 +78,8 @@ brands:
 #- name: optionstars
 #  config_file: optionstars.yml
 #
-- name: olympiamarkets
-  config_file: olympiamarkets.yml
+#- name: olympiamarkets
+#  config_file: olympiamarkets.yml
 #
 #- name: privat-trade
 #  config_file: privat-trade.yml
@@ -114,8 +114,8 @@ brands:
 #- name: uft
 #  config_file: uft.yml
 #
-#- name: uprofx
-#  config_file: uprofx.yml
+- name: uprofx
+  config_file: uprofx.yml
 #
 #- name: xtraderfx
 #  config_file: xtraderfx.yml
