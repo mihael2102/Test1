@@ -60,8 +60,8 @@ brands:
 #- name: kontofx
 #  config_file: kontofx.yml
 #
-- name: libramarkets
-  config_file: libramarkets.yml
+#- name: libramarkets
+#  config_file: libramarkets.yml
 #
 #- name: marketsplus
 #  config_file: marketsplus.yml
@@ -78,8 +78,8 @@ brands:
 #- name: optionstars
 #  config_file: optionstars.yml
 #
-#- name: olympusmarkets
-#  config_file: olympusmarkets.yml
+- name: olympiamarkets
+  config_file: olympiamarkets.yml
 #
 #- name: privat-trade
 #  config_file: privat-trade.yml
