@@ -8,3 +8,4 @@ tests_config:
     - test_filter_leads_ui
     - test_filter_documents_ui
     - test_filter_help_desk_ui
+    - test_filter_ta_ui
