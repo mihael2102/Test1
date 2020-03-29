@@ -48,6 +48,9 @@ class CADepositPage(CRMBasePage):
         except(NoSuchFrameException, NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "DEPOSIT iframe is not exist in current brand")
         ''' Check any deposit button in iframe is available '''
+        if global_var.current_brand_name == "alferatrade" or \
+                global_var.current_brand_name == "fairbit":
+            Logging().reportDebugStep(self, "There is no payment provider")
         super().wait_load_element(global_var.get_xpath_for_current_brand_element(
                                                     self.__class__.__name__)["deposit_page"])
         Logging().reportDebugStep(self, "DEPOSIT button in iframe is available")

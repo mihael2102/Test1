@@ -18,10 +18,12 @@ CALoginPage:
   login_btn: "//button[contains(text(), 'Login')]"
   client_title_name: "//span[contains(text(), '%s')]"
   citizenship: "//custom-select[@name='citizenship']//span[text()='%s']"
-  submit_btn: "//button[contains (text(), 'Submit')]"
+  campaign_close_btn: "(//button[@title='Close'])[2]"
+  close_payment_btn: "//div[@class='close-pandats cmicon-close4 ng-star-inserted']"
+  submit_btn: "//button[span=' Submit ']"
   login_email_input: "//input[@name='login']"
   login_password_input: "//input[@id='forex-password']"
-  login_btn_2: "//button[@class = 'forex-button-pandats login-button-pandats'][contains(text(), 'Login')]"
+  login_btn_2: "//button[@class = 'forex-button-pandats login-button-pandats font-15-pandats'][contains(text(), 'Login')]"
   input_first_name: "//input[@name = 'firstName']"
   input_last_name: "//input[@name = 'lastName']"
   input_confirm_password: "//input[@name = 'passwordConfirm']"
@@ -37,6 +39,8 @@ CAPage:
   edit_first_name: "//input[@name='firstName']"
   get_first_name: "//input[@name='firstName']"
   click_close: "//panda-forex-client-area/div/div/client-area-popup/div/div[2]/div[1]/a/i"
+CAWithdrawHistoryPage:
+  submit_cancel_button: "//button[text()='Yes']"
 ClientsPage:
   client_status_button: "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']"
   client_status_field: "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']"
@@ -56,6 +60,7 @@ ClientProfilePage:
   link_trading_account: "//div[@class='link_field']/a[@class='before_nw' and contains(text(),'%s')]"
   balance_in_trading_account: "//*[@id='dtlview_Balance']"
   account_number: "(//tr[@class='lvtColData'])[1]//td[1]"
+  withdraw_status: "//*[@id='tbl_Accounts_FinancialTransactions']//tbody/tr[2]/td[10]"
 CRMClientDeposit:
   i_confirm_checkbox: "//*[@name='confirm']"
 ConvertLeadModule:
@@ -115,6 +120,8 @@ LeadsModule:
   create_lead_module: "//td[@class='moduleName']//button[1]"
   email_field: "//tr[@name='customAdvanceSearch']//input[@name='tks_email']"
   lead_no: "//a[contains(text(),'LEA')]"
+  l_status_table: "//tbody[@id = 'listBody']/tr[%s]/td[7]"
+  l_assign_table: "//tbody[@id = 'listBody']/tr[%s]/td[14]"
 LeadViewInfo:
   convert_lead_btn: "//a[contains(@onclick,'ConvertLead')]"
 MT4DepositModule:
@@ -157,3 +164,5 @@ WebTraderPage:
   enter_stop_loss: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[4]/div[1]/custom-input/div/input"
   pips_bottom_panel_test: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[6]/div[1]/div/div"
   open_trade_open_price: "//open-trade/td[7]"
+  price: "//div[text()='%s']//following-sibling::div[contains(@class,'price-pandats')]"
+  asset_group: "//li[not(contains(@class,'active'))]//div[contains(text(),'%s')]"

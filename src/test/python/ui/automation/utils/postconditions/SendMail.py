@@ -5,6 +5,7 @@ from email.mime.base import MIMEBase
 from email.mime.image import MIMEImage
 from email import encoders
 from src.test.python.ui.automation.BaseTest import *
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
 def Send_Email_XML(filepath, content):
@@ -46,9 +47,11 @@ def Send_Email_XML(filepath, content):
     msg.attach(MIMEText(body, 'plain'))
 
     # attach the screenshot:
-    # img_data = open(Config.screenshot_path, "rb").read()
-    # screenshot = MIMEImage(img_data, name=os.path.basename(Config.screenshot_path))
-    # msg.attach(screenshot)
+    # screenshot_path = "C:/screenshots/" + Config.test + "/" + global_var.current_brand_name + "/scr.png"
+    # if os.path.exists(screenshot_path):
+    #     img_data = open(screenshot_path, "rb").read()
+    #     screenshot = MIMEImage(img_data, name=os.path.basename(screenshot_path))
+    #     msg.attach(screenshot)
 
     # open the file to be sent
     filepath = filepath.replace("\\","/")
@@ -94,7 +97,6 @@ def Send_Email_XLS(filepath):
 
     fromaddr = Config.email_address
     to = "michael.oryshchenko@pandats.com"
-    # to = "yarin.b@pandats.com"
     cc = ""
     bcc = ""
     # instance of MIMEMultipart

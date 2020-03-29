@@ -2,7 +2,7 @@ import pytest
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI import CreateLeadConstantsUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.leads_module_ui.LeadsModulePageUI import LeadsModulePageUI
 from src.main.python.ui.crm.model.pages.leads_module_ui.CreateLeadPageUI import CreateLeadPageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
@@ -14,6 +14,7 @@ from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI i
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 @pytest.mark.run(order=31)
@@ -37,7 +38,6 @@ class ConvertLeadPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Leads module """
@@ -70,12 +70,12 @@ class ConvertLeadPreconditionUI(object):
                 field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=CreateLeadConstantsUI.DESCRIPTION)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok()
 
         """ Search lead """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_LEADS) \
             .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    data=CreateLeadConstantsUI.EMAIL)
@@ -185,7 +185,8 @@ class ConvertLeadPreconditionUI(object):
                 field7=ConvertLeadConstantsUI.FIELD_CITY, city=ConvertLeadConstantsUI.CITY,
                 list3=ConvertLeadConstantsUI.LIST_COUNTRY, country=ConvertLeadConstantsUI.COUNTRY,
                 field9=ConvertLeadConstantsUI.FIELD_PASSWORD, password=ConvertLeadConstantsUI.PASSWORD,
-                list4=ConvertLeadConstantsUI.LIST_CURRENCY, currency=ConvertLeadConstantsUI.CURRENCY,
+                list4=ConvertLeadConstantsUI.LIST_CURRENCY, currency=var.get_var(self.__class__.__name__)
+                                                                                ["convert_lead_currency"],
                 field10=ConvertLeadConstantsUI.FIELD_REFERRAL, referral=ConvertLeadConstantsUI.REFERRAL,
                 list5=ConvertLeadConstantsUI.LIST_BRAND, brand=ConvertLeadConstantsUI.BRAND,
                 field11=ConvertLeadConstantsUI.FIELD_SOURCE_NAME, source_name=ConvertLeadConstantsUI.SOURCE_NAME)
@@ -204,7 +205,7 @@ class ConvertLeadPreconditionUI(object):
         birthday = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_BIRTHDAY)
         citizenship = details \
-            .get_text_from_field(ClientDetailsConstantsUI.FIELD_CITIZENSHIP)
+            .get_text_from_field(var.get_var(self.__class__.__name__)["field_citizenship"])
         ui_language = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_UI_LANGUAGE)
         address = details \
@@ -230,7 +231,7 @@ class ConvertLeadPreconditionUI(object):
             .comparator_string(last_name, ConvertLeadConstantsUI.LNAME) \
             .comparator_string(birthday, ConvertLeadConstantsUI.BIRTHDAY) \
             .comparator_string(citizenship, ConvertLeadConstantsUI.CITIZENSHIP) \
-            .comparator_string(currency, ConvertLeadConstantsUI.CURRENCY) \
+            .comparator_string(currency, var.get_var(self.__class__.__name__)["convert_lead_currency"]) \
             .comparator_string(ui_language, ConvertLeadConstantsUI.UI_LANGUAGE) \
             .comparator_string(source_name, ConvertLeadConstantsUI.SOURCE_NAME) \
             .comparator_string(referral, ConvertLeadConstantsUI.REFERRAL) \
@@ -241,11 +242,11 @@ class ConvertLeadPreconditionUI(object):
 
         if "*" not in email and "..." not in email:
             CRMBaseMethodsPage(self.driver) \
-                .comparator_string(email, ConvertLeadConstantsUI.EMAIL)
+                .comparator_string(email, CreateLeadConstantsUI.EMAIL)
         elif "*" not in email:
             email = email.replace('...', '')
-            assert email in ConvertLeadConstantsUI.EMAIL
+            assert email in CreateLeadConstantsUI.EMAIL
 
-        if "*" not in phone:
+        if phone and "*" not in phone:
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(phone, ConvertLeadConstantsUI.PHONE)
