@@ -47,8 +47,8 @@ brands:
 #- name: gtstox
 #  config_file: gtstox.yml
 
-- name: kontofx
-  config_file: kontofx.yml
+#- name: kontofx
+#  config_file: kontofx.yml
 
 #- name: libramarkets
 #  config_file: libramarkets.yml
@@ -101,8 +101,8 @@ brands:
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
 
-#- name: trade99
-#  config_file: trade99.yml
+- name: trade99
+  config_file: trade99.yml
 
 #- name: tradixa
 #  config_file: tradixa.yml

@@ -272,10 +272,8 @@ class LeadsModule(CRMBasePage):
             mass_edit_leads.click()
         except:
             self.driver.execute_script("arguments[0].click();", mass_edit_leads)
-        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "stoxmarket":
-            mass_edit_leads.click()
         Logging().reportDebugStep(self, "Click Mass Edit Leads")
-        sleep(20)
+        sleep(25)
         return LeadsModule(self.driver)
 
     def check_country_leads(self, i):
