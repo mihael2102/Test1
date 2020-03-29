@@ -50,8 +50,8 @@ brands:
 #- name: kontofx
 #  config_file: kontofx.yml
 
-#- name: libramarkets
-#  config_file: libramarkets.yml
+- name: libramarkets
+  config_file: libramarkets.yml
 
 #- name: marketrip
 #  config_file: marketrip.yml
@@ -65,8 +65,8 @@ brands:
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
