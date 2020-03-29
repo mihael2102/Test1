@@ -3,7 +3,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.FilterPageUI import FilterPageUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 
@@ -21,11 +21,10 @@ class FilterClientsPreconditionUI(object):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
-            url=self.config.get_value('url'),
-            user_name=self.config.get_value(TestDataConstants.USER_NAME),
-            password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-            new_design=0,
-            otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Create Filter """
         FilterPageUI(self.driver) \
@@ -46,7 +45,7 @@ class FilterClientsPreconditionUI(object):
                                current_filter)
 
         """ Get titles of new filter columns """
-        title = GlobalTablePageUI(self.driver)
+        title = GlobalModulePageUI(self.driver)
 
         title1 = title\
             .get_column_title("1").strip()
@@ -86,7 +85,7 @@ class FilterClientsPreconditionUI(object):
             .comparator_string(ClientsFilterConstantsUI.COLUMN11, title11)
 
         """ Delete Filter """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_ALL)
         FilterPageUI(self.driver) \
             .delete_filter(ClientsFilterConstantsUI.CLIENTS_FILTER_NAME) \

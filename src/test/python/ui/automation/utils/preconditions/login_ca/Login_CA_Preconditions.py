@@ -20,11 +20,12 @@ from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import Cl
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.ca.model.constants.questionnaire.QuesDualixConstants import QuesDualixConstants
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 class LoginCAPrecondition(object):
@@ -396,13 +397,12 @@ class LoginCAPrecondition(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Clients module and find created client by email """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    CAConstants.EMAIL_CA)
@@ -452,69 +452,24 @@ class LoginCAPrecondition(object):
 
     def login_ca(self):
         try:
-
-            if global_var.current_brand_name == "q8":
-                CALoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url_ca')) \
-                    .close_campaign_banner() \
-                    .click_sign_in_btn()\
-                    .enter_email(self.config.get_value('email_live_acc')) \
-                    .enter_password(self.config.get_value('password_live_acc')) \
-                    .click_login() \
-                    .verify() \
-                    .verify_client("my account")
-            elif global_var.current_brand_name == "24option":
-                CALoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url_ca')) \
-                    .close_campaign_banner() \
-                    .close_notifications_banner()\
-                    .click_sign_in_btn() \
-                    .enter_email(self.config.get_value('email_live_acc')) \
-                    .enter_password(self.config.get_value('password_live_acc')) \
-                    .click_login() \
-                    .verify() \
-                    .verify_client("Welcome")
-            else:
-                CALoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url_ca')) \
-                    .close_campaign_banner() \
-                    .click_sign_in_btn() \
-                    .enter_email(self.config.get_value('email_live_acc')) \
-                    .enter_password(self.config.get_value('password_live_acc')) \
-                    .click_login() \
-                    .verify() \
-                    .verify_client("Test")
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .close_campaign_banner() \
+                .close_notifications_banner() \
+                .click_sign_in_btn() \
+                .enter_email(self.config.get_value('email_live_acc')) \
+                .enter_password(self.config.get_value('password_live_acc')) \
+                .click_login() \
+                .verify() \
+                .verify_client(var.get_var(self.__class__.__name__)["client_name"])
         except:
-            CALoginPage(self.driver)\
-                .refresh_page()
-            if global_var.current_brand_name == "q8":
-                CALoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url_ca')) \
-                    .close_campaign_banner() \
-                    .click_sign_in_btn()\
-                    .enter_email(self.config.get_value('email_live_acc')) \
-                    .enter_password(self.config.get_value('password_live_acc')) \
-                    .click_login() \
-                    .verify() \
-                    .verify_client("my account")
-            elif global_var.current_brand_name == "24option":
-                CALoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url_ca')) \
-                    .close_campaign_banner() \
-                    .close_notifications_banner()\
-                    .click_sign_in_btn() \
-                    .enter_email(self.config.get_value('email_live_acc')) \
-                    .enter_password(self.config.get_value('password_live_acc')) \
-                    .click_login() \
-                    .verify() \
-                    .verify_client("Welcome")
-            else:
-                CALoginPage(self.driver) \
-                    .open_first_tab_page(self.config.get_value('url_ca')) \
-                    .close_campaign_banner() \
-                    .click_sign_in_btn() \
-                    .enter_email(self.config.get_value('email_live_acc')) \
-                    .enter_password(self.config.get_value('password_live_acc')) \
-                    .click_login() \
-                    .verify() \
-                    .verify_client("Test")
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .close_campaign_banner() \
+                .close_notifications_banner() \
+                .click_sign_in_btn() \
+                .enter_email(self.config.get_value('email_live_acc')) \
+                .enter_password(self.config.get_value('password_live_acc')) \
+                .click_login() \
+                .verify() \
+                .verify_client(var.get_var(self.__class__.__name__)["client_name"])
