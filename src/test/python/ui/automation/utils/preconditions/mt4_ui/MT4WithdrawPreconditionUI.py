@@ -8,7 +8,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.mt4_ui.MT4WithdrawPageUI import MT4WithdrawPageUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -36,13 +36,12 @@ class MT4WithdrawPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Clients module and find created client by email """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    CreateLeadConstantsUI.EMAIL)
@@ -62,7 +61,7 @@ class MT4WithdrawPreconditionUI(object):
                 list4=MT4WithdrawConstantsUI.LIST_CLEARED_BY, cleared_by=MT4WithdrawConstantsUI.CLEARED_BY)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
             .refresh_page()
@@ -70,19 +69,19 @@ class MT4WithdrawPreconditionUI(object):
         """ Check balance was updated """
         ClientDetailsPageUI(self.driver) \
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-        actual_balance = GlobalTablePageUI(self.driver) \
+        actual_balance = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_BALANCE,
                 row=ClientDetailsConstantsUI.ROW_2)
 
         count = 0
         while actual_balance != MT4WithdrawConstantsUI.BALANCE:
-            GlobalTablePageUI(self.driver)\
+            GlobalModulePageUI(self.driver)\
                 .refresh_page()
             sleep(2)
             ClientDetailsPageUI(self.driver) \
                 .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-            actual_balance = GlobalTablePageUI(self.driver) \
+            actual_balance = GlobalModulePageUI(self.driver) \
                 .get_data_from_list_view_ui(
                     column=ClientDetailsConstantsUI.COLUMN_BALANCE,
                     row=ClientDetailsConstantsUI.ROW_2)

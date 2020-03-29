@@ -42,7 +42,7 @@ class EmailPageUI(CRMBasePage):
         return EmailPageUI(self.driver)
 
     def check_email(self, subject):
-        sleep(1)
+        sleep(10)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
         pop_conn.user(Config.email_address)
         pop_conn.pass_(Config.email_password)
