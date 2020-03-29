@@ -49,10 +49,12 @@ class CRMBaseMethodsPage(CRMBasePage):
         return CRMBaseMethodsPage(self.driver)
 
     def open_tab_list_view_ui(self, tab_title):
+        sleep(0.2)
         tab = super().wait_element_to_be_clickable("//button/span[contains(text(),'%s')]" % tab_title)
         tab.click()
         sleep(1)
         self.wait_loading_to_finish_new_ui(35)
+        sleep(1)
         Logging().reportDebugStep(self, "Tab " + tab_title + " was opened")
         return CRMBaseMethodsPage(self.driver)
 
