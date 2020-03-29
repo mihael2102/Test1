@@ -77,8 +77,8 @@ brands:
 #- name: newcrmui
 #  config_file: newcrmui.yml
 
-- name: olympiamarkets
-  config_file: olympiamarkets.yml
+#- name: olympiamarkets
+#  config_file: olympiamarkets.yml
 
 #- name: olympiusglobal
 #  config_file: olympiusglobal.yml
@@ -104,8 +104,8 @@ brands:
 #- name: trade99
 #  config_file: trade99.yml
 
-#- name: tradixa
-#  config_file: tradixa.yml
+- name: tradixa
+  config_file: tradixa.yml
 
 #- name: uprofx
 #  config_file: uprofx.yml
