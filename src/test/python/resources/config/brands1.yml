@@ -41,8 +41,8 @@ brands:
 #- name: globalix
 #  config_file: globalix.yml
 
-#- name: grandefex
-#  config_file: grandefex.yml
+- name: grandefex
+  config_file: grandefex.yml
 
 #- name: gtstox
 #  config_file: gtstox.yml
@@ -65,8 +65,8 @@ brands:
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
@@ -104,8 +104,8 @@ brands:
 #- name: trade99
 #  config_file: trade99.yml
 
-- name: tradixa
-  config_file: tradixa.yml
+#- name: tradixa
+#  config_file: tradixa.yml
 
 #- name: uprofx
 #  config_file: uprofx.yml
