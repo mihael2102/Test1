@@ -1,0 +1,8 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+DepositTestCRM:
+  live_acc_currency: "EUR"
+  live_acc_group: "EUR"
+  live_acc_leverage: "30"
+TradingAccountPrecondition:
+  demo_acc_leverage: "1:30"
+  live_acc_leverage: "1:30"

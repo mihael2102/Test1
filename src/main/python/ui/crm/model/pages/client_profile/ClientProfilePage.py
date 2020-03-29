@@ -311,7 +311,7 @@ class ClientProfilePage(CRMBasePage):
     '''
 
     def get_client_account(self):
-        sleep(1)
+        sleep(2)
         account_number = super().wait_load_element(global_var.get_xpath_for_current_brand_element
                                                    (self.__class__.__name__)["account_number"], timeout=35)
         super().scroll_into_view(account_number)
@@ -888,11 +888,10 @@ class ClientProfilePage(CRMBasePage):
 
     def enter_date_birth(self, date):
         sleep(2)
-        if global_var.current_brand_name != "q8":
-            btn_save = self.driver.find_element_by_xpath("//*[@id='birthday']")
-            btn_save.send_keys(Keys.CONTROL, "a")
-            btn_save.send_keys(Keys.DELETE)
-            btn_save.send_keys(date)
+        btn_save = self.driver.find_element_by_xpath("//*[@id='birthday']")
+        btn_save.send_keys(Keys.CONTROL, "a")
+        btn_save.send_keys(Keys.DELETE)
+        btn_save.send_keys(date)
         Logging().reportDebugStep(self, "Enter birthday")
         return ClientProfilePage(self.driver)
 
@@ -1086,11 +1085,11 @@ class ClientProfilePage(CRMBasePage):
 
     def check_create_mt_user_btn(self):
         try:
-            super().wait_load_element("//*[@id='mt4_act_box']/a[contains(@onclick, 'Create MT')]", timeout=5)
+            super().wait_load_element("//*[@id='mt4_act_box']/a[contains(@onclick, 'Create ')]", timeout=5)
             Logging().reportDebugStep(self, "Create MT User button is available")
             return ClientProfilePage()
         except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "There is no Create MT User button available")
+            Logging().reportDebugStep(self, "There is no Create MT User button available (NOT RUNNED)")
             return ClientProfilePage(self.driver)
 
     def get_withdraw_status(self):

@@ -18,15 +18,19 @@ class ClientDetailsPageUI(CRMBasePage):
     def get_text_from_field(self, field):
         sleep(0.1)
         try:
-            data = super().wait_load_element(
-                "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field,
-                timeout=5).text
-        except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "Field " + field + " is not editable")
-            data = super().wait_load_element(
-                "//div[label='%s']//following-sibling::div//div[@class='ng-star-inserted']" % field).text
-        Logging().reportDebugStep(self, "Get data from field " + field + ": " + data)
-        return data
+            try:
+                data = super().wait_load_element(
+                    "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field,
+                    timeout=8).text
+            except(NoSuchElementException, TimeoutException):
+                Logging().reportDebugStep(self, "Field " + field + " is not editable")
+                data = super().wait_load_element(
+                    "//div[label='%s']//following-sibling::div//div[@class]" % field).text
+            Logging().reportDebugStep(self, "Get data from field " + field + ": " + data)
+            return data
+        except:
+            Logging().reportDebugStep(self, "Field " + field + " does not exist")
+            return False
 
     def open_tab(self, title):
         try:
@@ -55,4 +59,4 @@ class ClientDetailsPageUI(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", module_item)
             Logging().reportDebugStep(self, module + " module is opened")
         except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "Module does not exist")
+            Logging().reportDebugStep(self, "Module does not exist (NOT RUNNED)")

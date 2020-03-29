@@ -497,8 +497,8 @@ class ClientsPage(CRMBasePage):
 
     def came_back_on_previous_page(self):
         sleep(5)
-        super().came_back_on_previous_page()
-        # self.driver.execute_script('window.history.go(-1)')
+        # super().came_back_on_previous_page()
+        self.driver.execute_script('window.history.go(-1)')
         # self.driver.execute_script("history.back();")
         Logging().reportDebugStep(self, "Come back on previous page was successfully")
         return ClientsPage(self.driver)
@@ -726,7 +726,7 @@ class ClientsPage(CRMBasePage):
             Logging().reportDebugStep(self, "Get Phone: " + phone)
             return phone
         except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "There is no Phone field")
+            Logging().reportDebugStep(self, "There is no Phone field (NOT RUNNED)")
 
     def get_client_address_new_ui(self):
         sleep(0.1)

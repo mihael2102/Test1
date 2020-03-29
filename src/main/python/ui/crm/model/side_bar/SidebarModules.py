@@ -6,6 +6,7 @@ from src.main.python.ui.crm.model.side_bar.create_event.CreateEvent import Creat
 from src.main.python.utils.logs.Loging import Logging
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from src.main.python.ui.crm.model.pages.questionnaire.QuestionnaireCRMPage import QuestionnaireCRMPage
 from time import sleep
 
 
@@ -42,6 +43,11 @@ class SidebarModules(CRMBasePage):
         self.open_sidebar_module(CRMConstants.CHANGE_CLIENT_PASSWORD)
         Logging().reportDebugStep(self, "The check client module was opened")
         return ChangeClientPassword(self.driver)
+
+    def open_view_edit_questionnaire(self):
+        self.open_sidebar_module(CRMConstants.VIEW_EDIT_QUESTIONNAIRE)
+        Logging().reportDebugStep(self, "View/Edit Questionnaire module was opened")
+        return QuestionnaireCRMPage(self.driver)
 
     def open_sidebar_module(self, module):
         self.open_sidebar_if_exists()
