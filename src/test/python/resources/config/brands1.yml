@@ -41,14 +41,14 @@ brands:
 #- name: globalix
 #  config_file: globalix.yml
 
-- name: grandefex
-  config_file: grandefex.yml
+#- name: grandefex
+#  config_file: grandefex.yml
 
 #- name: gtstox
 #  config_file: gtstox.yml
 
-#- name: kontofx
-#  config_file: kontofx.yml
+- name: kontofx
+  config_file: kontofx.yml
 
 #- name: libramarkets
 #  config_file: libramarkets.yml
