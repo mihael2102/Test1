@@ -29,6 +29,9 @@ brands:
 #
 #- name: coinstec
 #  config_file: coinstec.yml
+
+- name: coin-bits
+  config_file: coin-bits.yml
 #
 #- name: eafx
 #  config_file: eafx.yml
@@ -72,8 +75,8 @@ brands:
 #- name: newforexqa2
 #  config_file: newforexqa2.yml
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 
 #- name: optionstars
 #  config_file: optionstars.yml
