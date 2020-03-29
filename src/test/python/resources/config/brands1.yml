@@ -47,8 +47,8 @@ brands:
 #- name: gtstox
 #  config_file: gtstox.yml
 
-#- name: kontofx
-#  config_file: kontofx.yml
+- name: kontofx
+  config_file: kontofx.yml
 
 #- name: libramarkets
 #  config_file: libramarkets.yml
@@ -83,8 +83,8 @@ brands:
 #- name: olympiusglobal
 #  config_file: olympiusglobal.yml
 
-- name: pmt247
-  config_file: pmt247.yml
+#- name: pmt247
+#  config_file: pmt247.yml
 
 #- name: proconsultinginvest
 #  config_file: proconsultinginvest.yml
