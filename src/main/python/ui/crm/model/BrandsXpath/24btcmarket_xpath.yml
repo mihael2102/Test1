@@ -24,3 +24,5 @@ LeadsModule:
   check_first_line_leads_no2: "//tbody[@id = 'listBody']/tr[2]/td[2]"
   edit_status: "//*[@id='leadstatus_mass_edit_check']/div[1]/div"
   mass_edit_leads: "//*[@id='list_action_buttons']/input[2]"
+  l_status_table: "//tbody[@id = 'listBody']/tr[%s]/td[6]"
+  l_assign_table: "//tbody[@id = 'listBody']/tr[%s]/td[13]"

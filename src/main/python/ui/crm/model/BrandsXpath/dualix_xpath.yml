@@ -1,0 +1,3 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CALoginPage:
+  check_box_accept: "//span[contains (text(), 'over 18 years')]"

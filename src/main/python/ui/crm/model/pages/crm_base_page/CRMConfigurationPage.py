@@ -115,7 +115,7 @@ class CRMConfigurationPage(CRMBasePage):
             Logging().reportDebugStep(self, "Workflows is loaded")
             return CRMConfigurationPage(self.driver)
         except (TimeoutException, NoSuchElementException):
-            Logging().reportDebugStep(self, "Workflows module does not exist")
+            Logging().reportDebugStep(self, "Workflows module does not exist (NOT RUNNED)")
             self.driver.find_element_by_xpath("//div[contains(text(),'Workflows')]")
             return CRMConfigurationPage(self.driver)
 
