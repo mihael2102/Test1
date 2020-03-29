@@ -9,7 +9,7 @@ from time import sleep
 class LeadsDetailsPageUI(CRMBasePage):
 
     def get_text_from_field(self, field):
-        sleep(0.1)
+        sleep(1)
         data = super().wait_load_element(
             "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field).text
         Logging().reportDebugStep(self, "Get data from field " + field + ": " + data)

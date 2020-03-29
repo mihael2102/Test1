@@ -2,7 +2,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.tasks_ui.TasksModuleConstantsUI import TasksModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 
 
 class TasksSearchingColumnsPreconditionUI(object):
@@ -25,7 +25,6 @@ class TasksSearchingColumnsPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Tasks module """
@@ -34,18 +33,18 @@ class TasksSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(TasksModuleConstantsUI.TAB_ALL)
 
         """ Get task data from the first row of list view """
-        event_type = GlobalTablePageUI(self.driver) \
+        event_type = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TasksModuleConstantsUI.COLUMN_EVENT_TYPE,
                                         row=TasksModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        status = GlobalTablePageUI(self.driver) \
+        status = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TasksModuleConstantsUI.COLUMN_STATUS,
                                         row=TasksModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        account_name = GlobalTablePageUI(self.driver) \
+        account_name = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=TasksModuleConstantsUI.COLUMN_ACCOUNT_NAME,
                                         row=TasksModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
         """ Search by table """
-        search = GlobalTablePageUI(self.driver)
+        search = GlobalModulePageUI(self.driver)
         if event_type:
             search\
                 .select_data_column_field(column=TasksModuleConstantsUI.COLUMN_EVENT_TYPE,
@@ -60,7 +59,7 @@ class TasksSearchingColumnsPreconditionUI(object):
                                        data=account_name)
 
         """ Verify correct data found """
-        result = GlobalTablePageUI(self.driver)
+        result = GlobalModulePageUI(self.driver)
         if event_type:
             result\
                 .global_data_checker_new_ui(event_type)
