@@ -77,8 +77,8 @@ brands:
 #- name: newcrmui
 #  config_file: newcrmui.yml
 
-- name: olympiamarkets
-  config_file: olympiamarkets.yml
+#- name: olympiamarkets
+#  config_file: olympiamarkets.yml
 
 #- name: olympiusglobal
 #  config_file: olympiusglobal.yml
@@ -101,8 +101,8 @@ brands:
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
 
-#- name: trade99
-#  config_file: trade99.yml
+- name: trade99
+  config_file: trade99.yml
 
 #- name: tradixa
 #  config_file: tradixa.yml
