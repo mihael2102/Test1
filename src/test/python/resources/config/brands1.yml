@@ -50,8 +50,8 @@ brands:
 #- name: kontofx
 #  config_file: kontofx.yml
 
-- name: libramarkets
-  config_file: libramarkets.yml
+#- name: libramarkets
+#  config_file: libramarkets.yml
 
 #- name: marketrip
 #  config_file: marketrip.yml
@@ -77,8 +77,8 @@ brands:
 #- name: newcrmui
 #  config_file: newcrmui.yml
 
-#- name: olympiamarkets
-#  config_file: olympiamarkets.yml
+- name: olympiamarkets
+  config_file: olympiamarkets.yml
 
 #- name: olympiusglobal
 #  config_file: olympiusglobal.yml
