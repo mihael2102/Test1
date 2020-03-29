@@ -27,6 +27,7 @@ class ConfigProvider:
 
     eval_prefix = "EVAL_"
     dir_with_xpath = "../../../ui/crm/model/BrandsXpath/"
+    dir_with_vars = "../../../ui/crm/model/BrandsVariables/"
 
     config_dir = "../../../../../test/python/resources/config/"
     default_config_file = "default.yml"
@@ -52,6 +53,10 @@ class ConfigProvider:
         if "Jenkins" in fileDir:
             self.path_to_data_provider = "C:/Program Files (x86)/Jenkins/workspace/%s/src/test/python/resources/test-data/" % Config.test
             # # If tests are run locally, set local DataProvider path
+
+        elif ("C:/Users/pandaTemp/PycharmProjects/automation-newforexqa" in fileDir) or (
+                "C:\\Users\\pandaTemp\\PycharmProjects\\automation-newforexqa" in fileDir):
+            self.path_to_data_provider = "C:/Users/pandaTemp/PycharmProjects/automation-newforexqa/src/test/python/resources/test-data/"
 
         elif ("C:/Users/Panda102/automation-newforexqa" in fileDir) or (
                 "C:\\Users\\Panda102\\automation-newforexqa" in fileDir):
@@ -237,10 +242,27 @@ class ConfigProvider:
             except yaml.YAMLError as e:
                 print(e)
 
+    def get_vars_for_brand_pages(self):
+        current_brand = global_var.current_brand_name
+        # Read relevant vars from file for current brand
+        with open(os.path.join(self.script_dir, self.dir_with_vars, (current_brand + "_vars.yml")), 'r') as stream:
+            try:
+                return yaml.load(stream)
+            except yaml.YAMLError as e:
+                print(e)
+
     def get_default_xpath_dictionary(self):
         current_brand = global_var.current_brand_name
         # Read relevant XPaths from file for current brand
         with open(os.path.join(self.script_dir, self.dir_with_xpath, "default.yml"), 'r') as stream:
+            try:
+                return yaml.load(stream)
+            except yaml.YAMLError as e:
+                print(e)
+
+    def get_default_var_dictionary(self):
+        # Read relevant variables from file for current brand
+        with open(os.path.join(self.script_dir, self.dir_with_vars, "default_vars.yml"), 'r') as stream:
             try:
                 return yaml.load(stream)
             except yaml.YAMLError as e:

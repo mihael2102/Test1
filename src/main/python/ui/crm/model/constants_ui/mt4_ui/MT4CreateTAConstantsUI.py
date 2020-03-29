@@ -18,12 +18,6 @@ class MT4CreateTAConstantsUI(object):
     SERVER_DEMO = "Demo"
     SERVER_LIVE = "Live"
     GROUP_DEMO = "demo"
-    if brand == "fairbit":
-        GROUP_LIVE = "UST1"
-    else:
-        GROUP_LIVE = "live"
+    GROUP_LIVE = "live"
     LEVERAGE = "100"
-    if brand == "fairbit":
-        CURRENCY = "UST"
-    else:
-        CURRENCY = "USD"
+    CURRENCY = "USD"

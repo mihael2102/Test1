@@ -155,7 +155,7 @@ class UserManagementPage(CRMBasePage):
             Logging().reportDebugStep(self, "The Login As button was clicked")
             return UserManagementPage(self.driver)
         except (NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "The Login As button does not exist")
+            Logging().reportDebugStep(self, "The Login As button does not exist (NOT RUNNED)")
 
     def click_logout_login_as_session(self, user):
         sleep(0.1)
@@ -167,7 +167,7 @@ class UserManagementPage(CRMBasePage):
             Logging().reportDebugStep(self, "The Logout button was clicked")
             return UserManagementPage(self.driver)
         except (NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "The Logout button does not exist")
+            Logging().reportDebugStep(self, "The Logout button does not exist (NOT RUNNED)")
 
     def verify_current_user_name(self, username):
         sleep(0.1)
@@ -183,7 +183,7 @@ class UserManagementPage(CRMBasePage):
             Logging().reportDebugStep(self, "The Delete User button was clicked")
             return UserManagementPage(self.driver)
         except (NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "The Delete User button does not exist")
+            Logging().reportDebugStep(self, "The Delete User button does not exist (NOT RUNNED)")
 
     def click_delete_btn(self):
         sleep(1)
@@ -202,7 +202,7 @@ class UserManagementPage(CRMBasePage):
             Logging().reportDebugStep(self, "The Delete User button is displayed")
             return UserManagementPage(self.driver)
         except (NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "The Delete User button does not exist")
+            Logging().reportDebugStep(self, "The Delete User button does not exist (NOT RUNNED)")
 
     def check_data_not_found(self):
         sleep(1)
