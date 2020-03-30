@@ -41,8 +41,8 @@ brands:
 - name: newrichmarkets
   config_file: newrichmarkets.yml
 
-- name: pmt247
-  config_file: pmt247.yml
+#- name: pmt247
+#  config_file: pmt247.yml
 
 #- name: ptbanc
 #  config_file: ptbanc.yml
