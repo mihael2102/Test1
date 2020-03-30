@@ -116,7 +116,6 @@ class CRMConfigurationPage(CRMBasePage):
             return CRMConfigurationPage(self.driver)
         except (TimeoutException, NoSuchElementException):
             Logging().reportDebugStep(self, "Workflows module does not exist (NOT RUNNED)")
-            self.driver.find_element_by_xpath("//div[contains(text(),'Workflows')]")
             return CRMConfigurationPage(self.driver)
 
     def check_sharing_access_loaded(self):
