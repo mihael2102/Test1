@@ -1,10 +1,10 @@
 import pytest
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.ui.automation.utils.preconditions.clients_module_ui.Clients_Searching_Columns_Precondition_UI \
+from src.test.python.ui.automation.utils.preconditions.clients_module_ui.ClientsSearchingColumnsPreconditionUI \
     import ClientsSearchingColumnsPreconditionUI
-from src.test.python.ui.automation.utils.preconditions.clients_module_ui.Clients_Mass_Assign_Precondition_UI import \
+from src.test.python.ui.automation.utils.preconditions.clients_module_ui.ClientsMassAssignPreconditionUI import \
     ClientsMassAssignPreconditionUI
-from src.test.python.ui.automation.utils.preconditions.clients_module_ui.Clients_Mass_Edit_Precondition_UI import \
+from src.test.python.ui.automation.utils.preconditions.clients_module_ui.ClientsMassEditPreconditionUI import \
     ClientsMassEditPreconditionUI
 
 

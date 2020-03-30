@@ -3,7 +3,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.constants_ui.audit_logs_ui.AuditLogsModuleConstantsUI import \
     AuditLogsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 
 
 class AuditLogsSearchingColumnsPreconditionUI(object):
@@ -26,7 +26,6 @@ class AuditLogsSearchingColumnsPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Audit Logs module """
@@ -34,7 +33,7 @@ class AuditLogsSearchingColumnsPreconditionUI(object):
             .open_module_ui(TestDataConstants.MODULE_AUDIT_LOGS)
 
         """ Searching by columns """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_MODULE,
                                       data=AuditLogsModuleConstantsUI.MODULE_USERS) \
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_ACTION,
@@ -43,7 +42,7 @@ class AuditLogsSearchingColumnsPreconditionUI(object):
             .global_data_checker_new_ui(AuditLogsModuleConstantsUI.DATA_OTP_LOGIN) \
             .refresh_page()
 
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_MODULE,
                                       data=AuditLogsModuleConstantsUI.MODULE_TRANSACTIONS) \
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_ACTION,
@@ -52,7 +51,7 @@ class AuditLogsSearchingColumnsPreconditionUI(object):
             .global_data_checker_new_ui(AuditLogsModuleConstantsUI.ACTION_EXPORT) \
             .refresh_page()
 
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_MODULE,
                                       data=AuditLogsModuleConstantsUI.MODULE_LEADS) \
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_ACTION,
@@ -61,7 +60,7 @@ class AuditLogsSearchingColumnsPreconditionUI(object):
             .global_data_checker_new_ui(AuditLogsModuleConstantsUI.ACTION_SAVE) \
             .refresh_page()
 
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_MODULE,
                                       data=AuditLogsModuleConstantsUI.MODULE_LEADS) \
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_ACTION,
@@ -70,7 +69,7 @@ class AuditLogsSearchingColumnsPreconditionUI(object):
             .global_data_checker_new_ui(AuditLogsModuleConstantsUI.DATA_DETAIL_VIEW) \
             .refresh_page()
 
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_MODULE,
                                       data=AuditLogsModuleConstantsUI.MODULE_LEADS) \
             .select_data_column_field(column=AuditLogsModuleConstantsUI.COLUMN_ACTION,

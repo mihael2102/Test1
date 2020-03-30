@@ -888,11 +888,10 @@ class ClientProfilePage(CRMBasePage):
 
     def enter_date_birth(self, date):
         sleep(2)
-        if global_var.current_brand_name != "q8":
-            btn_save = self.driver.find_element_by_xpath("//*[@id='birthday']")
-            btn_save.send_keys(Keys.CONTROL, "a")
-            btn_save.send_keys(Keys.DELETE)
-            btn_save.send_keys(date)
+        btn_save = self.driver.find_element_by_xpath("//*[@id='birthday']")
+        btn_save.send_keys(Keys.CONTROL, "a")
+        btn_save.send_keys(Keys.DELETE)
+        btn_save.send_keys(date)
         Logging().reportDebugStep(self, "Enter birthday")
         return ClientProfilePage(self.driver)
 

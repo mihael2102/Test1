@@ -3,6 +3,9 @@ ApiPrecondition:
   partner_id: "3898"
 AssetPricePreconditionCA:
   asset: "EURUSD"
+ClientsMassEditPreconditionUI:
+  client_status: "B - Test"
+  field_citizenship: "Citizenship"
 ConvertLeadPreconditionUI:
   convert_lead_currency: "EUR"
   field_citizenship: "Citizenship"
