@@ -3,7 +3,7 @@ from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4DepositConstantsUI impo
 from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -37,13 +37,12 @@ class MT4CreditInPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open clients module. Find created client by email and open his profile """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    CreateLeadConstantsUI.EMAIL)
@@ -60,14 +59,14 @@ class MT4CreditInPreconditionUI(object):
             list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok()
 
         """ Get account number to make Credit in """
         ClientDetailsPageUI(self.driver) \
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-        account_number = GlobalTablePageUI(self.driver)\
+        account_number = GlobalModulePageUI(self.driver)\
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_LOGIN,
                 row=ClientDetailsConstantsUI.ROW_3)
@@ -87,7 +86,7 @@ class MT4CreditInPreconditionUI(object):
                 field3=MT4CreditInConstantsUI.FIELD_COMMENT, comment=MT4CreditInConstantsUI.COMMENT)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
             .refresh_page()
@@ -95,7 +94,7 @@ class MT4CreditInPreconditionUI(object):
         """ Check credit was updated """
         ClientDetailsPageUI(self.driver) \
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-        credit = GlobalTablePageUI(self.driver) \
+        credit = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_CREDIT,
                 row=ClientDetailsConstantsUI.ROW_3)
@@ -106,7 +105,7 @@ class MT4CreditInPreconditionUI(object):
                 .refresh_page()
             ClientDetailsPageUI(self.driver) \
                 .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-            credit = GlobalTablePageUI(self.driver) \
+            credit = GlobalModulePageUI(self.driver) \
                 .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_CREDIT,
                 row=ClientDetailsConstantsUI.ROW_3)

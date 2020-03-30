@@ -117,13 +117,10 @@ class DocumentPrecondition(object):
             .select_module_more_list(DocumentModuleConstants.DOCUMENT)
         # open tabs and check data
         document = DocumentsPage(self.driver)
-        document\
-            .open_tab(DocumentModuleConstants.TAB_APPROVED) \
-            .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_APPROVED) \
-            .open_tab(DocumentModuleConstants.TAB_NOT_APPROVED) \
-            .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_NOT_APPROVED) \
-            .open_tab(DocumentModuleConstants.TAB_PENDING) \
-            .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_PENDING)
+        document \
+            .open_tab(DocumentModuleConstants.TAB_APPROVED)\
+            .open_tab(DocumentModuleConstants.TAB_NOT_APPROVED)\
+            .open_tab(DocumentModuleConstants.TAB_PENDING)
 
     def check_sorting(self):
         # crm login, open Documents module
