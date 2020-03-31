@@ -38,4 +38,5 @@ class AssetPricePreconditionCA(object):
 
         WebTraderPage(self.driver) \
             .open_trading_page() \
+            .open_asset_group(TradingConstants.ASSET_GROUP_FOREX) \
             .verify_asset_price_change(var.get_var(self.__class__.__name__)["asset"])

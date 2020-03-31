@@ -131,7 +131,8 @@ class DepositTestCRM(BaseTest):
                 .click_ok()
         else:
             MT4CreateAccountModule(self.driver) \
-                .create_account(
+                .create_account_with_platform(
+                    var.get_var(self.__class__.__name__)["live_acc_platform"],
                     var.get_var(self.__class__.__name__)["live_acc_server"],
                     var.get_var(self.__class__.__name__)["live_acc_currency"],
                     var.get_var(self.__class__.__name__)["live_acc_group"],
