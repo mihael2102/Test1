@@ -182,10 +182,10 @@ tests_config:
 #    - test_check_leaderboard
 #    - test_check_user_management
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
-  class: CRMConfigurationsTest
-  tests:
-    - test_crm_configurations_pages_loading
+#- module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
+#  class: CRMConfigurationsTest
+#  tests:
+#    - test_crm_configurations_pages_loading
 #
 ######################################### WORKFLOWS MODULE #############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
@@ -220,15 +220,15 @@ tests_config:
 #    - test_dragon_clients
 
 ############################################## HELP DESK #################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
-#  class: HelpDeskModuleTest
-#  tests:
-#    - test_create_ticket
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
+  class: HelpDeskModuleTest
+  tests:
+    - test_create_ticket
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk
-#  class: TabHelpDeskTest
-#  tests:
-#    - test_searching_help_desk
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk
+  class: TabHelpDeskTest
+  tests:
+    - test_searching_help_desk
 #    - test_check_tab_help_desk
 
 ############################################# AUDIT LOGS ################################################
