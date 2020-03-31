@@ -1,7 +1,7 @@
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.tasks_ui.TasksModuleConstantsUI import TasksModuleConstantsUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.MassActionsConstantsUI import MassActionsConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.MassEditPageUI import MassEditPageUI
@@ -22,7 +22,6 @@ class TasksMassEditPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Tasks module """
@@ -31,7 +30,7 @@ class TasksMassEditPreconditionUI(object):
             .open_tab_list_view_ui(TasksModuleConstantsUI.TAB_ALL)
 
         """ Select records for Mass Edit """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .set_data_column_field(TasksModuleConstantsUI.COLUMN_ACCOUNT_NAME,
                                    TasksModuleConstantsUI.ACCOUNT_NAME) \
             .select_all_records_checkbox() \
@@ -48,7 +47,7 @@ class TasksMassEditPreconditionUI(object):
             .click_save_changes_btn()
 
         """ Check confirmation message and updated data in table """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
             .refresh_page_ui() \
