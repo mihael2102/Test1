@@ -1,0 +1,6 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CALoginPage:
+  check_box_accept: "//span[contains(text(),'By checking this box I accept')]"
+FinancialTransactionsPage:
+  client_name_element:  "(//*[@id='listBody']//tr/td[4])[%s]"
+  modified_time_element: "(//*[contains(@id,'row_')]/td[12])[%s]"
