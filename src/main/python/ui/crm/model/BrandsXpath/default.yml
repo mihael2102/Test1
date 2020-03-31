@@ -165,4 +165,4 @@ WebTraderPage:
   pips_bottom_panel_test: "//panda-forex-trading-platform/div/div/div/div[2]/div[2]/sltp-popup/div/div[2]/div[2]/div[6]/div[1]/div/div"
   open_trade_open_price: "//open-trade/td[7]"
   price: "//div[text()='%s']//following-sibling::div[contains(@class,'price-pandats')]"
-  asset_group: "//div[contains(text(),'%s')]"
+  asset_group: "//li[not(contains(@class,'active'))]//div[contains(text(),'%s')]"

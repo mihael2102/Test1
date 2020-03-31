@@ -5,7 +5,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.pages.help_desk_ui.HelpDeskCreateTicketPageUI import HelpDeskCreateTicketPageUI
 from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDCreateTicketConstantsUI import HDCreateTicketConstantsUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HelpDeskModuleConstantsUI import HelpDeskModuleConstantsUI
 from src.main.python.ui.crm.model.pages.help_desk_ui.HelpDeskModulePageUI import HelpDeskModulePageUI
 from src.main.python.ui.crm.model.pages.help_desk_ui.HelpDeskDetailsPageUI import HelpDeskDetailsPageUI
@@ -33,7 +33,6 @@ class HelpDeskCreateTicketPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Help Desk module """
@@ -59,7 +58,7 @@ class HelpDeskCreateTicketPreconditionUI(object):
         #     .click_ok()
 
         """ Search ticket """
-        GlobalTablePageUI(self.driver)\
+        GlobalModulePageUI(self.driver)\
             .set_data_column_field(column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
                                    data=HDCreateTicketConstantsUI.TITLE)
 
@@ -97,7 +96,7 @@ class HelpDeskCreateTicketPreconditionUI(object):
             .came_back_on_previous_page()
 
         """ Delete ticket """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .set_data_column_field(column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
                                    data=HDCreateTicketConstantsUI.TITLE) \
             .open_actions_list() \

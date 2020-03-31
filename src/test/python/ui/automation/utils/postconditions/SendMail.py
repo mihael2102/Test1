@@ -48,9 +48,10 @@ def Send_Email_XML(filepath, content):
 
     # attach the screenshot:
     # screenshot_path = "C:/screenshots/" + Config.test + "/" + global_var.current_brand_name + "/scr.png"
-    # img_data = open(screenshot_path, "rb").read()
-    # screenshot = MIMEImage(img_data, name=os.path.basename(screenshot_path))
-    # msg.attach(screenshot)
+    # if os.path.exists(screenshot_path):
+    #     img_data = open(screenshot_path, "rb").read()
+    #     screenshot = MIMEImage(img_data, name=os.path.basename(screenshot_path))
+    #     msg.attach(screenshot)
 
     # open the file to be sent
     filepath = filepath.replace("\\","/")
