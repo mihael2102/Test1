@@ -68,12 +68,12 @@ tests_config:
 #    - test_clients_mass_assign
 #
 ###################################### TASKS ##################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-  class: AddEventTaskModule
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+#  class: AddEventTaskModule
+#  tests:
 #    - test_email_icon
 #    - test_sms_icon
-    - test_mass_edit_tasks
+#    - test_mass_edit_tasks
 #    - test_searching_by_columns
 #    - test_sorting_columns
 
@@ -224,12 +224,12 @@ tests_config:
 #  class: HelpDeskModuleTest
 #  tests:
 #    - test_create_ticket
-#
-#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk
-#  class: TabHelpDeskTest
-#  tests:
+
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk
+  class: TabHelpDeskTest
+  tests:
 #    - test_searching_help_desk
-#    - test_check_tab_help_desk
+    - test_check_tab_help_desk
 
 ############################################# AUDIT LOGS ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs
