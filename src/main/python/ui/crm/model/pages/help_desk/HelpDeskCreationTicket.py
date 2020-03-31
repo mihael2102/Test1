@@ -96,5 +96,6 @@ class HelpDeskCreationTicket(CRMBasePage):
     def click_save_button(self):
         save_button = self.driver.find_element(By.XPATH, "//input[@title='Save [Alt+S]']")
         save_button.click()
+        self.wait_crm_loading_to_finish()
         Logging().reportDebugStep(self, "Save button was clicked")
         return HelpDeskCreationTicket(self.driver)
