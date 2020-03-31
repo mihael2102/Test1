@@ -15,5 +15,8 @@ brands:
 #- name: brokerxp
 #  config_file: brokerxp.yml
 
-- name: forex_staging
-  config_file: forex_staging.yml
+#- name: forex_staging
+#  config_file: forex_staging.yml
+
+- name: forex-qa
+  config_file: forex-qa.yml

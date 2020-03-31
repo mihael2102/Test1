@@ -1,7 +1,7 @@
 brands:
 
-- name: forex_staging
-  config_file: forex_staging.yml
+- name: forex-qa
+  config_file: forex-qa.yml
 
 #- name: kayafx
 #  config_file: kaya_fx.yml

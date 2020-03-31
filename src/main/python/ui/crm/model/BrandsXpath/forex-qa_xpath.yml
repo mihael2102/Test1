@@ -1,0 +1,13 @@
+ClientsPage:
+  country: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/button"
+  country_input: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/ul/li[1]/div/input"
+  mass_assign_btn: "//input[@value='Mass Assign']"
+ClientProfilePage:
+  choose_account_drop_down: "//*[@id='ClientDepositConfirmation']//button[@title='Nothing selected']"
+DocumentsPage:
+  apply_btn: "/html/body/div[20]/div[3]/div/button[1]"
+FinancialTransactionsPage:
+  modified_time_element: "(//*[@id='listBody']//tr/td[14])[%s]"
+TasksPage:
+  sms_icon: "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[1]"
+
