@@ -65,8 +65,8 @@ brands:
 #- name: newrichmarkets
 #  config_file: newrichmarkets.yml
 
-#- name: newforexstage2
-#  config_file: newforexstage2.yml
+- name: newforexstage2
+  config_file: newforexstage2.yml
 
 #- name: newforexdev3
 #  config_file: newforexdev3.yml
@@ -110,8 +110,8 @@ brands:
 #- name: uprofx
 #  config_file: uprofx.yml
 
-- name: wdcmarkets
-  config_file: wdcmarkets.yml
+#- name: wdcmarkets
+#  config_file: wdcmarkets.yml
 
 #- name: 4ex7
 #  config_file: 4ex7.yml
