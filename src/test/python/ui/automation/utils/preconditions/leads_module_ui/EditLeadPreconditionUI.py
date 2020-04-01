@@ -278,9 +278,9 @@ class EditLeadPreconditionUI(object):
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(email, EditLeadConstantsUI.EMAIL)
 
-        if "*" not in s_email:
-            CRMBaseMethodsPage(self.driver) \
-                .comparator_string(s_email, EditLeadConstantsUI.S_EMAIL)
+        # if "*" not in s_email:
+        #     CRMBaseMethodsPage(self.driver) \
+        #         .comparator_string(s_email, EditLeadConstantsUI.S_EMAIL)
 
         if "*" not in phone:
             CRMBaseMethodsPage(self.driver) \
