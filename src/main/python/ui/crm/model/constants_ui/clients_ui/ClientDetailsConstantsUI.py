@@ -43,3 +43,5 @@ class ClientDetailsConstantsUI(object):
     COLUMN_LOGIN = "Login"
     COLUMN_BALANCE = "Balance"
     COLUMN_CREDIT = "Credit"
+    COLUMN_LEVERAGE = "Leverage"
+    COLUMN_READ_ONLY = "Read Only"
