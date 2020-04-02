@@ -1,10 +1,10 @@
 import pytest
-from src.test.python.ui.automation.utils.preconditions.leads_module_ui.Leads_Searching_Columns_Precondition_UI import \
+from src.test.python.ui.automation.utils.preconditions.leads_module_ui.LeadsSearchingColumnsPreconditionUI import \
     LeadsSearchingColumnsPreconditionUI
 from src.test.python.ui.automation.BaseTest import *
-from src.test.python.ui.automation.utils.preconditions.leads_module_ui.Leads_Mass_Assign_Precondition_UI import \
+from src.test.python.ui.automation.utils.preconditions.leads_module_ui.LeadsMassAssignPreconditionUI import \
     LeadsMassAssignPreconditionUI
-from src.test.python.ui.automation.utils.preconditions.leads_module_ui.Leads_Mass_Edit_Precondition_UI import \
+from src.test.python.ui.automation.utils.preconditions.leads_module_ui.LeadsMassEditPreconditionUI import \
     LeadsMassEditPreconditionUI
 from src.test.python.ui.automation.utils.preconditions.leads_module_ui.ConvertLeadPreconditionUI import \
     ConvertLeadPreconditionUI
