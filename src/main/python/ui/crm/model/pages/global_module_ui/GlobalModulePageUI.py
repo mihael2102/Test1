@@ -20,7 +20,7 @@ class GlobalModulePageUI(CRMBasePage):
         return GlobalModulePageUI(self.driver)
 
     def set_data_column_field(self, column, data):
-        sleep(0.1)
+        sleep(0.5)
         btn = super().wait_load_element("(//span[@class='placeholder']/span[text()='%s'])[1]" % column)
         self.driver.execute_script("arguments[0].click();", btn)
         field = super().wait_load_element(
@@ -34,8 +34,9 @@ class GlobalModulePageUI(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", done)
         except:
             pass
-        sleep(1)
-        self.wait_loading_to_finish_new_ui(25)
+        sleep(2)
+        self.wait_loading_to_finish_new_ui(55)
+        sleep(2)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
         return GlobalModulePageUI(self.driver)
 
@@ -54,6 +55,7 @@ class GlobalModulePageUI(CRMBasePage):
             pass
         sleep(1)
         self.wait_loading_to_finish_new_ui(25)
+        sleep(3)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
         return GlobalModulePageUI(self.driver)
 
@@ -76,7 +78,7 @@ class GlobalModulePageUI(CRMBasePage):
             Logging().reportDebugStep(self, "Number of column " + title + " is: " + index)
             return index
         except(NoSuchElementException, TimeoutException, AssertionError, AttributeError):
-            Logging().reportDebugStep(self, "Column '" + title + "' does not exist (NOT RUNNED)")
+            Logging().reportDebugStep(self, "Column '" + title + "' does not exist")
             return False
 
     """
@@ -101,7 +103,7 @@ class GlobalModulePageUI(CRMBasePage):
     """
 
     def global_data_checker_new_ui(self, data):
-        self.wait_loading_to_finish_new_ui(10)
+        self.wait_loading_to_finish_new_ui(25)
         try:
             table = self.driver.find_element_by_xpath("//tbody[@role='rowgroup']")
             row_count = 0
@@ -181,14 +183,16 @@ class GlobalModulePageUI(CRMBasePage):
         return GlobalModulePageUI(self.driver)
 
     def select_filter_new_ui(self, test_filter):
-        sleep(0.1)
+        sleep(2)
         Logging().reportDebugStep(self, "Select filter: " + test_filter)
         filter_item = super().wait_load_element(
             "//nice-select[@searchplaceholder='Search filter']//div[@class='select-wrap']//following-sibling::"
             "ul//span[contains(text(),'%s')]" % test_filter)
+        sleep(0.5)
         self.driver.execute_script("arguments[0].click();", filter_item)
         sleep(1)
-        self.wait_crm_loading_to_finish()
+        self.wait_loading_to_finish_new_ui(25)
+        sleep(1)
         return GlobalModulePageUI(self.driver)
 
     def approve_deleting(self):
