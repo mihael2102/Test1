@@ -83,9 +83,6 @@ brands:
 #- name: olympiusglobal
 #  config_file: olympiusglobal.yml
 
-#- name: pmt247
-#  config_file: pmt247.yml
-
 #- name: proconsultinginvest
 #  config_file: proconsultinginvest.yml
 
@@ -110,8 +107,8 @@ brands:
 #- name: uprofx
 #  config_file: uprofx.yml
 
-- name: wdcmarkets
-  config_file: wdcmarkets.yml
+#- name: wdcmarkets
+#  config_file: wdcmarkets.yml
 
 #- name: 4ex7
 #  config_file: 4ex7.yml

@@ -28,8 +28,8 @@ tests_config:
 #    - test_leads_searching_columns_ui
 #    - test_mass_assign_leads_ui
 #    - test_mass_edit_leads_ui
-    - test_edit_lead_ui
-#    - test_convert_lead_ui   # Creates a lead and converts it to a client
+#    - test_edit_lead_ui
+    - test_convert_lead_ui   # Creates a lead and converts it to a client
 
 ############################################## CLIENTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_Clients_Module_UI
@@ -40,11 +40,12 @@ tests_config:
 #    - test_mass_edit_clients_ui
 
 ######################################### MT4 ACTIONS ###########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
-#  directive: reload_configuration
-#  class: TestMT4UI
-#  tests:
-#    - test_create_demo_ta_ui
+- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
+  directive: reload_configuration
+  class: TestMT4UI
+  tests:
+    - test_create_demo_ta_ui
+    - test_update_mt_user_ui
 #    - test_deposit_crm_ui  # create live mt account and make deposit
 #    - test_withdraw_crm_ui
 #    - test_credit_in_crm_ui
@@ -61,7 +62,7 @@ tests_config:
 #- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
 #  class: TestHelpDeskModuleUI
 #  tests:
-#    - test_create_delete_ticket_ui
+#    - test_create_delete_ticket_ui   # not run: no option to select test client in 'related to' field
 #    - test_help_desk_searching_columns_ui
 
 ############################################ DOCUMENTS ##############################################
@@ -93,6 +94,7 @@ tests_config:
 #  class: TestTasksModuleUI
 #  tests:
 #    - test_tasks_searching_columns_ui
-#    - test_add_delete_event_ui
+#    - test_add_event_ui
+#    - test_delete_event_ui
 #    - test_tasks_mass_edit
 #    - test_tasks_email_ui
