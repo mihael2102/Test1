@@ -10,7 +10,7 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
   class: TestHelpDeskModuleUI
   tests:
-    - test_create_delete_ticket_ui
+#    - test_create_delete_ticket_ui
     - test_help_desk_searching_columns_ui
 
 ########################################### DOCUMENTS ##############################################

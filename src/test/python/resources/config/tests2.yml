@@ -11,6 +11,7 @@ tests_config:
   class: TestMT4UI
   tests:
     - test_create_demo_ta_ui
+    - test_update_mt_user_ui
     - test_deposit_crm_ui  # create live mt account and make deposit
     - test_withdraw_crm_ui
     - test_credit_in_crm_ui
