@@ -35,6 +35,6 @@ class MassEditPageUI(CRMBasePage):
         save_btn = super().wait_element_to_be_clickable("//button/span[text()=' Save changes ']")
         self.driver.execute_script("arguments[0].click();", save_btn)
         sleep(0.5)
-        self.wait_loading_to_finish_new_ui(120)
+        self.wait_loading_to_finish_new_ui(150)
         sleep(0.5)
         return MassEditPageUI(self.driver)
