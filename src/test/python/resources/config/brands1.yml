@@ -38,9 +38,6 @@ brands:
 #- name: fbrokers
 #  config_file: fbrokers.yml
 
-#- name: financix
-#  config_file: financix.yml
-
 #- name: globalix
 #  config_file: globalix.yml
 
@@ -85,9 +82,6 @@ brands:
 
 #- name: olympiusglobal
 #  config_file: olympiusglobal.yml
-
-#- name: pmt247
-#  config_file: pmt247.yml
 
 #- name: proconsultinginvest
 #  config_file: proconsultinginvest.yml

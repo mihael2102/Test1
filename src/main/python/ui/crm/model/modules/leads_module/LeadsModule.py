@@ -272,10 +272,8 @@ class LeadsModule(CRMBasePage):
             mass_edit_leads.click()
         except:
             self.driver.execute_script("arguments[0].click();", mass_edit_leads)
-        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "stoxmarket":
-            mass_edit_leads.click()
         Logging().reportDebugStep(self, "Click Mass Edit Leads")
-        sleep(20)
+        sleep(25)
         return LeadsModule(self.driver)
 
     def check_country_leads(self, i):
@@ -316,7 +314,7 @@ class LeadsModule(CRMBasePage):
     def mass_assign_result(self, user):
         sleep(1)
         Logging().reportDebugStep(self, "Close successful result pop ups")
-        super().wait_load_element("//div[contains(text(),'assigned to %s')]" % user)
+        # super().wait_load_element("//div[contains(text(),'assigned to %s')]" % user)
         btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
         btn_ok.click()
         self.wait_vtiger_loading_to_finish_custom(35)

@@ -5,6 +5,7 @@ import poplib
 from email import parser
 from src.main.python.utils.config import Config
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from selenium.webdriver.common.by import By
 
 
 class EmailPageUI(CRMBasePage):
@@ -28,10 +29,12 @@ class EmailPageUI(CRMBasePage):
 
     def set_body_mail(self, text):
         sleep(1)
-        body_mail = super().wait_load_element("//p[@data-placeholder='Enter your message']")
+        Logging().reportDebugStep(self, "Enter body mail: " + text)
+        self.driver.switch_to_frame(super().wait_load_element("//*[@id='cke_1_contents']/iframe"))
+        body_mail = super().wait_load_element("/html/body/p")
         body_mail.click()
         self.driver.execute_script("arguments[0].textContent = arguments[1];", body_mail, text)
-        Logging().reportDebugStep(self, "Enter body mail: " + text)
+        self.driver.switch_to.default_content()
         return EmailPageUI(self.driver)
 
     def click_send_btn(self):
@@ -42,7 +45,7 @@ class EmailPageUI(CRMBasePage):
         return EmailPageUI(self.driver)
 
     def check_email(self, subject):
-        sleep(1)
+        sleep(10)
         pop_conn = poplib.POP3_SSL('pop.gmail.com')
         pop_conn.user(Config.email_address)
         pop_conn.pass_(Config.email_password)

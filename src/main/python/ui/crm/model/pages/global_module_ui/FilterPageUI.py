@@ -2,7 +2,7 @@ from time import sleep
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 
 
 class FilterPageUI(CRMBasePage):
@@ -96,7 +96,7 @@ class FilterPageUI(CRMBasePage):
             "//button[@title='Delete']" % title)
         self.driver.execute_script("arguments[0].click();", delete_btn)
         Logging().reportDebugStep(self, "Delete filter button was clicked")
-        return GlobalTablePageUI(self.driver)
+        return GlobalModulePageUI(self.driver)
 
     def verify_filter_in_list(self, title):
         sleep(0.1)
