@@ -32,12 +32,13 @@ tests_config:
 #    - test_convert_lead_ui   # Creates a lead and converts it to a client
 
 ############################################## CLIENTS ###############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_Clients_Module_UI
-#  class: TestClientsModuleUI
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_Clients_Module_UI
+  class: TestClientsModuleUI
+  tests:
 #    - test_clients_searching_columns_ui
 #    - test_mass_assign_clients_ui
 #    - test_mass_edit_clients_ui
+    - test_edit_client_ui
 
 ######################################### MT4 ACTIONS ###########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
