@@ -21,7 +21,7 @@ class ClientDetailsPageUI(CRMBasePage):
             try:
                 data = super().wait_load_element(
                     "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field,
-                    timeout=8).text
+                    timeout=10).text
             except(NoSuchElementException, TimeoutException):
                 Logging().reportDebugStep(self, "Field " + field + " is not editable")
                 data = super().wait_load_element(

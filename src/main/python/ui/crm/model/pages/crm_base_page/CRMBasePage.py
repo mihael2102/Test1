@@ -77,6 +77,7 @@ class CRMBasePage(object):
         self.wait_vtiger_loading_to_finish_custom(55)
         self.wait_crm_loading_to_finish_tasks(95)
         self.wait_loading_to_finish_new_ui(95)
+        sleep(0.5)
         Logging().reportDebugStep(self, "The page is refreshed")
 
     def perform_scroll_down(self):

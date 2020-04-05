@@ -247,6 +247,6 @@ class ConvertLeadPreconditionUI(object):
             email = email.replace('...', '')
             assert email in CreateLeadConstantsUI.EMAIL
 
-        if phone and "*" not in phone:
+        if phone and phone.isdecimal():
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(phone, ConvertLeadConstantsUI.PHONE)
