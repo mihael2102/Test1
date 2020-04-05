@@ -86,9 +86,6 @@ brands:
 #- name: olympiusglobal
 #  config_file: olympiusglobal.yml
 
-#- name: pmt247
-#  config_file: pmt247.yml
-
 #- name: proconsultinginvest
 #  config_file: proconsultinginvest.yml
 
