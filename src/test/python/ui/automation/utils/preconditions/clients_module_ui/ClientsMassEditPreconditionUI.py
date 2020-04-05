@@ -27,7 +27,6 @@ class ClientsMassEditPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Clients module """
@@ -37,6 +36,7 @@ class ClientsMassEditPreconditionUI(object):
         """ Select records for Mass Edit """
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
+            .refresh_page_ui() \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
             .select_all_records_checkbox() \
@@ -59,4 +59,4 @@ class ClientsMassEditPreconditionUI(object):
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
             .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME_1) \
-            .global_data_checker_new_ui(var.get_var(self.__class__.__name__)["field_citizenship"])
+            .global_data_checker_new_ui(var.get_var(self.__class__.__name__)["client_status"])

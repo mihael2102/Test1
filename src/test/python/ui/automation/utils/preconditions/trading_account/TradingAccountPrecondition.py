@@ -39,7 +39,8 @@ class TradingAccountPrecondition(object):
 
     def add_live_account(self):
         """ Log in CA """
-        if global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8" or \
+           global_var.current_brand_name == "strattonmarkets-eu":
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .not_runned_test()
@@ -69,7 +70,8 @@ class TradingAccountPrecondition(object):
 
     def add_demo_account(self):
         """ Log in CA """
-        if global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8" or \
+           global_var.current_brand_name == "strattonmarkets-eu":
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .not_runned_test()
@@ -144,7 +146,6 @@ class TradingAccountPrecondition(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Clients module and find created client by email """

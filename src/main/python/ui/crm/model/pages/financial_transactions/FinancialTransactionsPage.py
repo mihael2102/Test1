@@ -11,6 +11,7 @@ import datetime
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 import autoit
 
+
 class FinancialTransactionsPage(CRMBasePage):
 
     # def __init__(self):
@@ -132,11 +133,14 @@ class FinancialTransactionsPage(CRMBasePage):
             % position_in_list)
         return trading_account_element.text
 
-    def perform_searching_trading_account_via_filters(self, transaction_number, client_name, transaction_type_text,
-                                                      modified_time):
-        self.enter_transaction_number(transaction_number)
-        self.enter_client_name(client_name)
-        self.enter_transaction_type_text(transaction_type_text)
+    def perform_searching_trading_account_via_filters(self, transaction_number=None, client_name=None,
+                                                      transaction_type_text=None, modified_time=None):
+        if transaction_number:
+            self.enter_transaction_number(transaction_number)
+        if client_name:
+            self.enter_client_name(client_name)
+        if transaction_type_text:
+            self.enter_transaction_type_text(transaction_type_text)
         if modified_time:
             self.enter_modified_time(modified_time)
         # if trading_account == None:
@@ -193,6 +197,9 @@ class FinancialTransactionsPage(CRMBasePage):
     def click_search_button(self):
         search_button = super().wait_element_to_be_clickable("//td[@class='txt_al_c']/input")
         search_button.click()
+        sleep(0.5)
+        self.wait_crm_loading_to_finish()
+        sleep(1)
         Logging().reportDebugStep(self, "The search button was clicked ")
         return FinancialTransactionsPage(self.driver)
 

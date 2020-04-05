@@ -26,7 +26,6 @@ class ClientsMassAssignPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Clients module """
@@ -35,7 +34,8 @@ class ClientsMassAssignPreconditionUI(object):
 
         """ Select records for Mass Assign """
         GlobalModulePageUI(self.driver) \
-            .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS)\
+            .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
+            .refresh_page_ui() \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL)\
             .select_all_records_checkbox()\

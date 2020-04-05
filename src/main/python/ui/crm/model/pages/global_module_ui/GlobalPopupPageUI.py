@@ -26,7 +26,7 @@ class GlobalPopupPageUI(CRMBasePage):
         sleep(0.1)
         Logging().reportDebugStep(self, "Select " + pick_list + ": " + item)
         title = super().wait_load_element(
-            "//span[text()=' %s ']//following-sibling::ul//span[text()='%s']" % (pick_list, item))
+            "//span[text()=' %s ']//following-sibling::ul//span[contains(text(),'%s')]" % (pick_list, item))
         self.driver.execute_script("arguments[0].click();", title)
         return GlobalPopupPageUI(self.driver)
 
@@ -37,4 +37,24 @@ class GlobalPopupPageUI(CRMBasePage):
             "//div[contains(label,'%s')]//following-sibling::mat-form-field//input" % field)
         input_field.clear()
         input_field.send_keys(text)
+        return GlobalPopupPageUI(self.driver)
+
+    def select_check_box(self, title):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Mark check-box: " + title)
+        try:
+            check_box = super().wait_load_element(
+                "//mat-sidenav//span[text()=' %s ']//preceding-sibling::mat-checkbox[not(contains(@class,'checked'))]"
+                % title)
+            check_box.click()
+        except:
+            Logging().reportDebugStep(self, "Check-box: " + title + " already checked")
+        return GlobalPopupPageUI(self.driver)
+
+    def click_button(self, button):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click button: " + button)
+        btn = super().wait_load_element(
+            "//mat-sidenav//button[span=' %s ']" % button)
+        btn.click()
         return GlobalPopupPageUI(self.driver)

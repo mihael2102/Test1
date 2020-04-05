@@ -38,7 +38,6 @@ class ConvertLeadPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Leads module """
@@ -243,11 +242,11 @@ class ConvertLeadPreconditionUI(object):
 
         if "*" not in email and "..." not in email:
             CRMBaseMethodsPage(self.driver) \
-                .comparator_string(email, ConvertLeadConstantsUI.EMAIL)
+                .comparator_string(email, CreateLeadConstantsUI.EMAIL)
         elif "*" not in email:
             email = email.replace('...', '')
-            assert email in ConvertLeadConstantsUI.EMAIL
+            assert email in CreateLeadConstantsUI.EMAIL
 
-        if phone and "*" not in phone:
+        if phone and phone.isdecimal():
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(phone, ConvertLeadConstantsUI.PHONE)

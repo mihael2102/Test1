@@ -37,7 +37,6 @@ class EditLeadPreconditionUI(object):
             url=self.config.get_value('url'),
             user_name=self.config.get_value(TestDataConstants.USER_NAME),
             password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-            new_design=0,
             otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Leads module """
@@ -168,6 +167,14 @@ class EditLeadPreconditionUI(object):
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(fax, CreateLeadConstantsUI.FAX)
 
+        """ Edit Lead: verify lead can't be saved with empty Last Name field """
+        # is_update_btn_active = EditLeadPageUI(self.driver) \
+        #     .click_edit_lead_btn() \
+        #     .set_text(field=CreateLeadConstantsUI.FIELD_LNAME, text=" ") \
+        #     .is_button_update_lead_active()
+
+        # assert not is_update_btn_active
+
         """ Edit Lead """
         EditLeadPageUI(self.driver) \
             .edit_lead(
@@ -271,9 +278,9 @@ class EditLeadPreconditionUI(object):
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(email, EditLeadConstantsUI.EMAIL)
 
-        if "*" not in s_email:
-            CRMBaseMethodsPage(self.driver) \
-                .comparator_string(s_email, EditLeadConstantsUI.S_EMAIL)
+        # if "*" not in s_email:
+        #     CRMBaseMethodsPage(self.driver) \
+        #         .comparator_string(s_email, EditLeadConstantsUI.S_EMAIL)
 
         if "*" not in phone:
             CRMBaseMethodsPage(self.driver) \

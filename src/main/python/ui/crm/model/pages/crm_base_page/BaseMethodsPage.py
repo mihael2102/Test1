@@ -72,11 +72,12 @@ class CRMBaseMethodsPage(CRMBasePage):
 
     def open_module_ui(self, module_title):
         try:
+            Logging().reportDebugStep(self, "Wait for module " + module_title)
             module = super().wait_load_element("//div[@class='nav-menu']//span[contains(text(), '%s')]" % module_title)
             self.driver.execute_script("arguments[0].click();", module)
-            self.wait_vtiger_loading_to_finish_custom(35)
-            self.wait_crm_loading_to_finish_tasks(35)
-            self.wait_loading_to_finish_new_ui(35)
+            sleep(1)
+            self.wait_loading_to_finish_new_ui(45)
+            sleep(1)
             Logging().reportDebugStep(self, "Module " + module_title + " was opened")
             return CRMBaseMethodsPage(self.driver)
         except(NoSuchElementException, TimeoutException):
