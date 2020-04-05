@@ -76,12 +76,12 @@ class LoginCAPrecondition(object):
         if global_var.current_brand_name == "q8":
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
-                .sign_up_q8(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
-                            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
-                                                      [LeadsModuleConstants.FIRST_LAST_NAME],
-                            CAConstants.EMAIL_CA,
-                            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE],
-                            CAConstants.PASSWORD)
+                .sign_up_q8(
+                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
+                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME],
+                    CAConstants.EMAIL_CA,
+                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE],
+                    CAConstants.PASSWORD)
         else:
             CALoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url_ca'))\
