@@ -12,7 +12,9 @@ from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI impo
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4ActionsConstantsUI import MT4ActionsConstantsUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientEditPageUI import ClientEditPageUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientEditConstantsUI import ClientEditConstantsUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
 import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
@@ -43,8 +45,9 @@ class ClientEditPreconditionUI(object):
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    ClientEditConstantsUI.SHORT_EMAIL)
         ClientsModulePageUI(self.driver) \
-            .click_crm_id_ui(ClientEditConstantsUI.ROW_1) \
-            .open_mt4_module_newui(var.get_var(self.__class__.__name__)["create_mt_user"])
+            .click_crm_id_ui(ClientEditConstantsUI.ROW_1)
+
+        ClientEditPageUI(self.driver).edit_client()
 
         """ Create DEMO account for client using MT4 Actions """
         MT4CreateTAPageUI(self.driver) \

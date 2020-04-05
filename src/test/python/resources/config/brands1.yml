@@ -14,8 +14,8 @@ brands:
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
 
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: brokerz
+  config_file: brokerz.yml
 
 #- name: coin-bits
 #  config_file: coin-bits.yml
@@ -98,8 +98,8 @@ brands:
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
 
-- name: trade99
-  config_file: trade99.yml
+#- name: trade99
+#  config_file: trade99.yml
 
 #- name: tradixa
 #  config_file: tradixa.yml
