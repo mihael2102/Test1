@@ -53,4 +53,16 @@ class GlobalDetailsPageUI(CRMBasePage):
         edit_btn = super().wait_load_element(
             "//div[@class='wrap-navigation d-flex align-items-center']//button[span[i[contains(@class,'pencil')]]]")
         edit_btn.click()
+        self.wait_loading_to_finish_new_ui(25)
+        return GlobalDetailsPageUI(self.driver)
+
+    """
+        Action bar: Add Interaction, Click 2 Call, Send Mail, Send Sms
+    """
+    def click_action_bar_btn(self, button):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click '" + button + "' button")
+        btn = super().wait_load_element("//div[@class='actions-bar d-flex']/button[@title='%s']" % button)
+        btn.click()
+        self.wait_loading_to_finish_new_ui(25)
         return GlobalDetailsPageUI(self.driver)

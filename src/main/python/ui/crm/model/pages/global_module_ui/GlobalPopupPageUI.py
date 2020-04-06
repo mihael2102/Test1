@@ -51,10 +51,42 @@ class GlobalPopupPageUI(CRMBasePage):
             Logging().reportDebugStep(self, "Check-box: " + title + " already checked")
         return GlobalPopupPageUI(self.driver)
 
-    def click_button(self, button):
+    def set_date(self, day, month, year):
         sleep(0.1)
-        Logging().reportDebugStep(self, "Click button: " + button)
-        btn = super().wait_load_element(
-            "//mat-sidenav//button[span=' %s ']" % button)
-        btn.click()
+        date_field = super().wait_load_element(
+            "//input[@placeholder='Choose date of birth']")
+        self.driver.execute_script("arguments[0].click();", date_field)
+        current_date_btn = super().wait_load_element(
+            "(//span[@class='mat-button-wrapper' and contains(text(),'2020')])[1]")
+        current_date_btn.click()
+        prev_btn = super().wait_load_element(
+            "(//button[@class='mat-calendar-previous-button mat-icon-button mat-button-base'])[1]")
+        prev_btn.click()
+        sleep(0.5)
+        prev_btn.click()
+        select_year = super().wait_load_element("//div[contains(text(),'%s')]" % year)
+        select_year.click()
+        select_month = super().wait_load_element("//div[contains(text(),'%s')]" % month)
+        select_month.click()
+        select_day = super().wait_load_element("(//div[contains(text(),'%s')])[1]" % day)
+        select_day.click()
+        set_btn = super().wait_load_element("(//span[text()='Set'])[1]")
+        set_btn.click()
+        Logging().reportDebugStep(self, "The birthday was set")
+        return GlobalPopupPageUI(self.driver)
+
+    def is_button_active(self, button):
+        sleep(0.1)
+        flag = super().wait_element_to_be_clickable("//button[span=' %s ']" % button).get_property("disabled")
+        return not flag
+
+    def click_final_btn(self, button):
+        sleep(0.1)
+        flag = self.is_button_active(button)
+        if flag:
+            Logging().reportDebugStep(self, "Click '" + button + "' button")
+            btn = super().wait_element_to_be_clickable("//mat-sidenav//button[span=' %s ']" % button)
+            self.driver.execute_script("arguments[0].click();", btn)
+        else:
+            Logging().reportDebugStep(self, button + " button is inactive")
         return GlobalPopupPageUI(self.driver)

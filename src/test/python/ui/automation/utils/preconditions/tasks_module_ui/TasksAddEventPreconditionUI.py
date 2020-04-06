@@ -37,18 +37,18 @@ class TasksAddEventPreconditionUI(object):
         """ Create Event """
         AddDeleteEventPageUI(self.driver)\
             .click_add_event_btn() \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_EVENT_STATUS,
+            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.LIST_EVENT_STATUS,
                                    item=AddDeleteEventConstantsUI.EVENT_STATUS) \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_EVENT_TYPE,
+            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.LIST_EVENT_TYPE,
                                    item=AddDeleteEventConstantsUI.EVENT_TYPE) \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_DURATION,
+            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.LIST_DURATION,
                                    item=AddDeleteEventConstantsUI.DURATION) \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_ASSIGN_TO,
+            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.LIST_ASSIGN_TO,
                                    item=AddDeleteEventConstantsUI.ASSIGN_TO) \
             .set_attached_to(AddDeleteEventConstantsUI.ATTACHED_TO) \
             .set_text_field(field=AddDeleteEventConstantsUI.FIELD_SUBJECT,
                             text=AddDeleteEventConstantsUI.SUBJECT) \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_PRIORITY,
+            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.LIST_PRIORITY,
                                    item=AddDeleteEventConstantsUI.PRIORITY) \
             .set_text_field(field=AddDeleteEventConstantsUI.FIELD_COMMENTS,
                             text=AddDeleteEventConstantsUI.COMMENTS) \
