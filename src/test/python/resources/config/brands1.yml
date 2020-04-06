@@ -14,8 +14,8 @@ brands:
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
 
-- name: brokerz
-  config_file: brokerz.yml
+#- name: brokerz
+#  config_file: brokerz.yml
 
 #- name: coin-bits
 #  config_file: coin-bits.yml
@@ -83,8 +83,8 @@ brands:
 #- name: olympiusglobal
 #  config_file: olympiusglobal.yml
 
-#- name: proconsultinginvest
-#  config_file: proconsultinginvest.yml
+- name: proconsultinginvest
+  config_file: proconsultinginvest.yml
 
 #- name: ptbanc
 #  config_file: ptbanc.yml
