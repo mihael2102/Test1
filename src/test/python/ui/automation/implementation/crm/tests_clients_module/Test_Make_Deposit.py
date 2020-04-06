@@ -194,13 +194,20 @@ class DepositTestCRM(BaseTest):
                              "Wrong deposit sum is displayed")
 
     def test_make_deposit_for_client_crm(self):
+        lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
+        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
         crm_client_profile = CRMLoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url'))\
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))\
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if ConvertLeadConstantsUI.EMAIL_EDITABLE:
+            ClientsPage(self.driver) \
+                .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(lead1[LeadsModuleConstants.EMAIL])
 
         # Get account number to make deposit in future. And get initial amount
         account_number = ClientProfilePage(self.driver) \

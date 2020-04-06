@@ -13,6 +13,3 @@ class TransferBetweenTa(BaseTest):
 
     def test_transfer_between_ta(self):
         TransferBetweenPrecondition(self.driver, self.config).transfer_between_accounts()
-
-    def test_transfer_between_ta_new_ui(self):
-        TransferBetweenPrecondition(self.driver, self.config).transfer_between_accounts_new_ui()
