@@ -5,6 +5,9 @@ brands:
 #- name: alferatrade
 #  config_file: alferatrade.yml
 
+- name: analystq
+  config_file: analystq.yml
+
 #- name: any1profit
 #  config_file: any1profit.yml
 
@@ -38,8 +41,8 @@ brands:
 #- name: fbrokers
 #  config_file: fbrokers.yml
 
-- name: globalix
-  config_file: globalix.yml
+#- name: globalix
+#  config_file: globalix.yml
 
 #- name: grandefex
 #  config_file: grandefex.yml
@@ -76,6 +79,9 @@ brands:
 
 #- name: newcrmui
 #  config_file: newcrmui.yml
+
+- name: octagontrade
+  config_file: octagontrade.yml
 
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
