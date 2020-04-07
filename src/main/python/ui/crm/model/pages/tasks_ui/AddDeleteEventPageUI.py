@@ -7,6 +7,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.config import Config
 from selenium.webdriver.common.keys import Keys
@@ -15,14 +16,16 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 class AddDeleteEventPageUI(CRMBasePage):
 
-    def add_event(self, btn_interaction=None, btn_event=None, list1=None, e_status=None, list2=None, e_type=None,
-                  list3=None, duration=None, day=None, month=None, year=None, list4=None, assign_to=None,
-                  attached_to=None, field1=None, subject=None, list5=None, priority=None, comments=None,
-                  final_btn=None):
+    def add_edit_event(self, btn_interaction=None, btn_event=None, row=None, list1=None, e_status=None, list2=None,
+                       e_type=None, list3=None, duration=None, day=None, month=None, year=None, list4=None,
+                       assign_to=None, attached_to=None, field1=None, subject=None, list5=None, priority=None,
+                       comments=None, final_btn=None):
         if btn_interaction:
             self.click_add_interaction_btn(btn_interaction)
         if btn_event:
             self.click_add_event_btn()
+        if row:
+            self.edit_record(row)
         if list1 and e_status:
             self.select_from_list(list1, e_status)
         if list2 and e_type:
@@ -95,4 +98,16 @@ class AddDeleteEventPageUI(CRMBasePage):
     def click_save_btn(self, button):
         GlobalPopupPageUI(self.driver) \
             .click_final_btn(button)
+        return AddDeleteEventPageUI(self.driver)
+
+    def click_cancel_btn(self):
+        GlobalPopupPageUI(self.driver) \
+            .click_cancel_btn()
+        return AddDeleteEventPageUI(self.driver)
+
+    """ Click Edit icon in table by row """
+    def edit_record(self, row):
+        GlobalModulePageUI(self.driver) \
+            .open_actions_list(row) \
+            .click_edit_icon_list_view(row)
         return AddDeleteEventPageUI(self.driver)

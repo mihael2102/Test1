@@ -23,6 +23,7 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 class GlobalDetailsPageUI(CRMBasePage):
 
     def open_tab(self, title):
+        sleep(0.5)
         try:
             Logging().reportDebugStep(self, "Open tab: " + title)
             tab = super().wait_load_element(

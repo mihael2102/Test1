@@ -90,3 +90,10 @@ class GlobalPopupPageUI(CRMBasePage):
         else:
             Logging().reportDebugStep(self, button + " button is inactive")
         return GlobalPopupPageUI(self.driver)
+
+    def click_cancel_btn(self):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click 'Cancel' button")
+        btn = super().wait_element_to_be_clickable("//mat-sidenav//button[span=' Cancel ']")
+        self.driver.execute_script("arguments[0].click();", btn)
+        return GlobalPopupPageUI(self.driver)

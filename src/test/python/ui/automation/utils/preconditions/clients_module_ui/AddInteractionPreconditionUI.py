@@ -14,6 +14,9 @@ from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import Cl
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4ActionsConstantsUI import MT4ActionsConstantsUI
 from src.main.python.ui.crm.model.constants_ui.tasks_ui.AddDeleteEventConstantsUI import AddDeleteEventConstantsUI
 from src.main.python.ui.crm.model.pages.tasks_ui.AddDeleteEventPageUI import AddDeleteEventPageUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
+from src.main.python.ui.crm.model.constants_ui.tasks_ui.TasksModuleConstantsUI import TasksModuleConstantsUI
 import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
@@ -46,9 +49,9 @@ class AddInteractionPreconditionUI(object):
         ClientsModulePageUI(self.driver) \
             .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
-        """ Add Interaction """
+        """ Add Interaction: set Assign To, Subject, Comments -> Save&New """
         AddDeleteEventPageUI(self.driver)\
-            .add_event(
+            .add_edit_event(
             btn_interaction=AddDeleteEventConstantsUI.BTN_ADD_INT,
             list4=AddDeleteEventConstantsUI.LIST_ASSIGN_TO, assign_to=AddDeleteEventConstantsUI.ASSIGN_TO,
             field1=AddDeleteEventConstantsUI.FIELD_SUBJECT, subject=AddDeleteEventConstantsUI.INT_SUBJ_1,
@@ -59,3 +62,29 @@ class AddInteractionPreconditionUI(object):
         GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok()
+        AddDeleteEventPageUI(self.driver) \
+            .click_cancel_btn()
+
+        """ Get data of created event """
+        record_num = ClientDetailsPageUI(self.driver)\
+            .open_tab(ClientDetailsConstantsUI.TAB_ACTIVITIES) \
+            .get_last_record_number()
+        subject = ClientDetailsPageUI(self.driver)\
+            .get_data_cell_table(TasksModuleConstantsUI.COLUMN_SUBJECT,
+                                 record_num)
+        assign_to = ClientDetailsPageUI(self.driver) \
+            .get_data_cell_table(TasksModuleConstantsUI.COLUMN_ASSIGNED_TO,
+                                 record_num)
+        comment = ClientDetailsPageUI(self.driver) \
+            .get_data_cell_table(TasksModuleConstantsUI.COLUMN_COMMENT,
+                                 record_num)
+
+        """ Verify event data """
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(subject, AddDeleteEventConstantsUI.INT_SUBJ_1) \
+            .comparator_string(assign_to, AddDeleteEventConstantsUI.ASSIGN_TO) \
+            .comparator_string(comment, AddDeleteEventConstantsUI.COMMENTS)
+
+        """ Edit Event """
+        AddDeleteEventPageUI(self.driver) \
+            .edit_record(record_num) \
