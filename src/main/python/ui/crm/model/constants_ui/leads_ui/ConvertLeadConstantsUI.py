@@ -43,6 +43,7 @@ class ConvertLeadConstantsUI(object):
     COUNTRY = "Germany"
     PASSWORD = "Abcd1234"
     CURRENCY = "EUR"
+    GET_CURRENCY = ""
     REFERRAL = "TEST REFERRAL 2"
     BRAND = ""
     SOURCE_NAME = "source test 2"

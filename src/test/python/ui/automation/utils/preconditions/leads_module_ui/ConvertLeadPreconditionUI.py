@@ -185,8 +185,8 @@ class ConvertLeadPreconditionUI(object):
                 field7=ConvertLeadConstantsUI.FIELD_CITY, city=ConvertLeadConstantsUI.CITY,
                 list3=ConvertLeadConstantsUI.LIST_COUNTRY, country=ConvertLeadConstantsUI.COUNTRY,
                 field9=ConvertLeadConstantsUI.FIELD_PASSWORD, password=ConvertLeadConstantsUI.PASSWORD,
-                list4=ConvertLeadConstantsUI.LIST_CURRENCY, currency=var.get_var(self.__class__.__name__)
-                                                                                ["convert_lead_currency"],
+                list4=ConvertLeadConstantsUI.LIST_CURRENCY,
+                # currency=var.get_var(self.__class__.__name__)["convert_lead_currency"],
                 field10=ConvertLeadConstantsUI.FIELD_REFERRAL, referral=ConvertLeadConstantsUI.REFERRAL,
                 list5=ConvertLeadConstantsUI.LIST_BRAND, brand=ConvertLeadConstantsUI.BRAND,
                 field11=ConvertLeadConstantsUI.FIELD_SOURCE_NAME, source_name=ConvertLeadConstantsUI.SOURCE_NAME)
@@ -217,7 +217,7 @@ class ConvertLeadPreconditionUI(object):
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_CITY)
         country = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_COUNTRY)
-        currency = details \
+        ConvertLeadConstantsUI.GET_CURRENCY = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_BASE_CURRENCY)
         referral = details \
             .open_tab(ClientDetailsConstantsUI.TAB_CUSTOM_INFORMATION) \
@@ -231,7 +231,6 @@ class ConvertLeadPreconditionUI(object):
             .comparator_string(last_name, ConvertLeadConstantsUI.LNAME) \
             .comparator_string(birthday, ConvertLeadConstantsUI.BIRTHDAY) \
             .comparator_string(citizenship, ConvertLeadConstantsUI.CITIZENSHIP) \
-            .comparator_string(currency, var.get_var(self.__class__.__name__)["convert_lead_currency"]) \
             .comparator_string(ui_language, ConvertLeadConstantsUI.UI_LANGUAGE) \
             .comparator_string(source_name, ConvertLeadConstantsUI.SOURCE_NAME) \
             .comparator_string(referral, ConvertLeadConstantsUI.REFERRAL) \

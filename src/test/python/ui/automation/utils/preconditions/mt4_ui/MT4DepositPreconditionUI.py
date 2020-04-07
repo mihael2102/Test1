@@ -55,7 +55,8 @@ class MT4DepositPreconditionUI(object):
         MT4CreateTAPageUI(self.driver) \
             .mt4_create_ta_ui(
             list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
-            list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=var.get_var(self.__class__.__name__)["l_acc_currency"],
+            list2=MT4CreateTAConstantsUI.LIST_CURRENCY,
+            # currency=var.get_var(self.__class__.__name__)["l_acc_currency"],
             list3=MT4CreateTAConstantsUI.LIST_GROUP, group_number="1",
             list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
 
@@ -65,12 +66,13 @@ class MT4DepositPreconditionUI(object):
             .click_ok()
 
         """ Get account number to make deposit in future """
-        ClientDetailsPageUI(self.driver) \
-            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
+        record_num = ClientDetailsPageUI(self.driver) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
+            .get_last_record_number()
         account_number = GlobalModulePageUI(self.driver)\
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_LOGIN,
-                row=ClientDetailsConstantsUI.ROW_2)
+                row=record_num)
 
         MT4DepositConstantsUI.TA = account_number
 
@@ -99,7 +101,7 @@ class MT4DepositPreconditionUI(object):
         balance = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_BALANCE,
-                row=ClientDetailsConstantsUI.ROW_2)
+                row=record_num)
         CRMBaseMethodsPage(self.driver)\
             .comparator_string(
                 balance,

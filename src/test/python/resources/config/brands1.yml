@@ -80,8 +80,8 @@ brands:
 #- name: newcrmui
 #  config_file: newcrmui.yml
 
-- name: octagontrade
-  config_file: octagontrade.yml
+#- name: octagontrade
+#  config_file: octagontrade.yml
 
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml

@@ -91,6 +91,12 @@ class GlobalPopupPageUI(CRMBasePage):
             Logging().reportDebugStep(self, button + " button is inactive")
         return GlobalPopupPageUI(self.driver)
 
+    def get_data_from_list(self, title):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Get data from list " + title)
+        data = super().wait_load_element("//span[text()=' %s ']//following-sibling::div/span/span" % title)
+        return data
+
     def click_cancel_btn(self):
         sleep(0.1)
         Logging().reportDebugStep(self, "Click 'Cancel' button")
