@@ -189,7 +189,8 @@ class ConvertLeadPreconditionUI(object):
                 # currency=var.get_var(self.__class__.__name__)["convert_lead_currency"],
                 field10=ConvertLeadConstantsUI.FIELD_REFERRAL, referral=ConvertLeadConstantsUI.REFERRAL,
                 list5=ConvertLeadConstantsUI.LIST_BRAND, brand=ConvertLeadConstantsUI.BRAND,
-                field11=ConvertLeadConstantsUI.FIELD_SOURCE_NAME, source_name=ConvertLeadConstantsUI.SOURCE_NAME)
+                field11=ConvertLeadConstantsUI.FIELD_SOURCE_NAME, source_name=ConvertLeadConstantsUI.SOURCE_NAME,
+                final_btn=ConvertLeadConstantsUI.BTN_FINAL)
 
         """ Get client's data """
         details = ClientDetailsPageUI(self.driver)
