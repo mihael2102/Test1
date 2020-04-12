@@ -35,8 +35,11 @@ class GlobalPopupPageUI(CRMBasePage):
         Logging().reportDebugStep(self, "Set " + field + ": " + text)
         input_field = super().wait_load_element(
             "//div[contains(label,'%s')]//following-sibling::mat-form-field//input" % field)
-        input_field.clear()
-        input_field.send_keys(text)
+        try:
+            input_field.clear()
+            input_field.send_keys(text)
+        except:
+            Logging().reportDebugStep(self, "The " + field + " field is read only")
         return GlobalPopupPageUI(self.driver)
 
     def select_check_box(self, title):
@@ -87,9 +90,17 @@ class GlobalPopupPageUI(CRMBasePage):
             Logging().reportDebugStep(self, "Click '" + button + "' button")
             btn = super().wait_element_to_be_clickable("//mat-sidenav//button[span=' %s ']" % button)
             self.driver.execute_script("arguments[0].click();", btn)
+            sleep(0.5)
+            self.wait_loading_to_finish_new_ui(25)
         else:
             Logging().reportDebugStep(self, button + " button is inactive")
         return GlobalPopupPageUI(self.driver)
+
+    def get_data_from_list(self, title):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Get data from list " + title)
+        data = super().wait_load_element("//span[text()=' %s ']//following-sibling::div/span/span" % title)
+        return data
 
     def click_cancel_btn(self):
         sleep(0.1)
