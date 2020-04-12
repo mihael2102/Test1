@@ -107,7 +107,7 @@ if __name__ == "__main__":
 
 
         all_brands_yml = "brands.yml"
-        path_to_brands_suite_1 = "brands1.yml"
+        path_to_brands_suite_1 = "C:/Users/Administrator/Desktop/brands1.yml"
         path_to_brands_suite_2 = "brands2.yml"
         path_to_brands_suite_3 = "brands3.yml"
         path_to_brands_suite_4 = "brands4.yml"
@@ -128,11 +128,11 @@ if __name__ == "__main__":
         #               path_to_brands_suite_5, path_to_brands_suite_6, path_to_brands_suite_7, path_to_brands_suite_8,
         #               path_to_brands_suite_9, path_to_brands_suite_10, path_to_brands_suite_11, path_to_brands_suite_12,
         #               path_to_brands_suite_13]
-        input_list = [path_to_brands_suite_1, path_to_brands_suite_2]
+        input_list = [path_to_brands_suite_1]
         # input_list = [path_to_brands_suite_1, path_to_brands_suite_2, path_to_brands_suite_3, path_to_brands_suite_4,
         #               path_to_brands_suite_5, path_to_brands_suite_6]
         # Init multiprocess
-        pool = multiprocessing.Pool(processes=2)
+        pool = multiprocessing.Pool(processes=1)
 
         # Run Test Suites as separate processes
         pool.map(__simple_run, input_list)
