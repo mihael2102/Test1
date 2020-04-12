@@ -51,11 +51,11 @@ class MT4CreditInPreconditionUI(object):
             .open_mt4_module_newui(var.get_var(self.__class__.__name__)["create_mt_user"])
 
         """ Create LIVE account for client using MT4 Actions """
+        currency = ConvertLeadConstantsUI.GET_CURRENCY
         MT4CreateTAPageUI(self.driver) \
             .mt4_create_ta_ui(
             list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
-            list2=MT4CreateTAConstantsUI.LIST_CURRENCY,
-            # currency=var.get_var(self.__class__.__name__)["l_acc_currency"],
+            list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=currency,
             list3=MT4CreateTAConstantsUI.LIST_GROUP, group_number="1",
             list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
 

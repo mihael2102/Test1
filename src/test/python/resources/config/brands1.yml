@@ -5,8 +5,8 @@ brands:
 #- name: alferatrade
 #  config_file: alferatrade.yml
 
-- name: analystq
-  config_file: analystq.yml
+#- name: analystq
+#  config_file: analystq.yml
 
 #- name: any1profit
 #  config_file: any1profit.yml
@@ -104,8 +104,8 @@ brands:
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
 
-#- name: trade99
-#  config_file: trade99.yml
+- name: trade99
+  config_file: trade99.yml
 
 #- name: tradixa
 #  config_file: tradixa.yml

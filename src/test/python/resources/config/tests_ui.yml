@@ -46,13 +46,13 @@ tests_config:
   directive: reload_configuration
   class: TestMT4UI
   tests:
-#    - test_create_demo_ta_ui
-#    - test_update_mt_user_ui
+    - test_create_demo_ta_ui
+    - test_update_mt_user_ui
     - test_deposit_crm_ui  # create live mt account and make deposit
-#    - test_withdraw_crm_ui
-#    - test_credit_in_crm_ui
-#    - test_credit_out_crm_ui
-#    - test_transfer_crm_ui
+    - test_withdraw_crm_ui
+    - test_credit_in_crm_ui
+    - test_credit_out_crm_ui
+    - test_transfer_crm_ui
 
 ######################################## AFFILIATES MODULE ##########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module_ui.Test_Affiliates_Module_UI
