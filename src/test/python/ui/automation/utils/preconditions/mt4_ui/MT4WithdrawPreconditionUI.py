@@ -128,7 +128,7 @@ class MT4WithdrawPreconditionUI(object):
             assert str(expected_balance) in net_deposit_tag
         else:
             expected_balance = int((MT4DepositConstantsUI.AMOUNT.split('.'))[0]) \
-                               - int(MT4WithdrawConstantsUI.AMOUNT)
+                               - int((MT4WithdrawConstantsUI.AMOUNT.split('.'))[0])
             assert str(expected_balance) in balance_tag
             assert str(expected_balance) in equity_tag
             assert str(expected_balance) in free_margin_tag
