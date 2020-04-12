@@ -44,7 +44,8 @@ class UserManagementPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
-        CRMHomePage(self.driver).select_user_management()
+        CRMHomePage(self.driver)\
+            .select_user_management()
         UserManagementPage(self.driver)\
             .open_crm_users_tab()\
             .click_more_icon()\

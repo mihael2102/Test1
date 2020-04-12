@@ -18,6 +18,7 @@ class AddDeleteEventConstantsUI(object):
     FIELD_COMMENTS = "Comments"
     BTN_ADD_INT = "Add Interaction"
     BTN_SAVE_NEW = "Save & New"
+    BTN_SAVE = "Save"
 
     EVENT_STATUS = "Not Started"
     EVENT_TYPE = "Call"

@@ -1,23 +1,17 @@
 import pytest
-from src.main.python.ui.crm.model.pages.mt4_ui.MT4CreateTAPageUI import MT4CreateTAPageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
-from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
-from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI import CreateLeadConstantsUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.test.python.ui.automation.BaseTest import *
-from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4CreateTAConstantsUI import MT4CreateTAConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
-from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4ActionsConstantsUI import MT4ActionsConstantsUI
 from src.main.python.ui.crm.model.constants_ui.tasks_ui.AddDeleteEventConstantsUI import AddDeleteEventConstantsUI
 from src.main.python.ui.crm.model.pages.tasks_ui.AddDeleteEventPageUI import AddDeleteEventPageUI
 from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.constants_ui.tasks_ui.TasksModuleConstantsUI import TasksModuleConstantsUI
-import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 @pytest.mark.run(order=13)
@@ -52,17 +46,11 @@ class AddInteractionPreconditionUI(object):
         """ Add Interaction: set Assign To, Subject, Comments -> Save&New """
         AddDeleteEventPageUI(self.driver)\
             .add_edit_event(
-            btn_interaction=AddDeleteEventConstantsUI.BTN_ADD_INT,
-            list4=AddDeleteEventConstantsUI.LIST_ASSIGN_TO, assign_to=AddDeleteEventConstantsUI.ASSIGN_TO,
-            field1=AddDeleteEventConstantsUI.FIELD_SUBJECT, subject=AddDeleteEventConstantsUI.INT_SUBJ_1,
-            comments=AddDeleteEventConstantsUI.COMMENTS,
-            final_btn=AddDeleteEventConstantsUI.BTN_SAVE_NEW)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
-        AddDeleteEventPageUI(self.driver) \
+                btn_interaction=AddDeleteEventConstantsUI.BTN_ADD_INT,
+                list4=AddDeleteEventConstantsUI.LIST_ASSIGN_TO, assign_to=AddDeleteEventConstantsUI.ASSIGN_TO,
+                field1=AddDeleteEventConstantsUI.FIELD_SUBJECT, subject=AddDeleteEventConstantsUI.INT_SUBJ_1,
+                comments=AddDeleteEventConstantsUI.COMMENTS,
+                final_btn=AddDeleteEventConstantsUI.BTN_SAVE_NEW)\
             .click_cancel_btn()
 
         """ Get data of created event """
@@ -87,4 +75,21 @@ class AddInteractionPreconditionUI(object):
 
         """ Edit Event """
         AddDeleteEventPageUI(self.driver) \
-            .edit_record(record_num) \
+            .add_edit_event(
+            row=record_num,
+            field1=AddDeleteEventConstantsUI.FIELD_SUBJECT, subject=AddDeleteEventConstantsUI.INT_SUBJ_2,
+            final_btn=AddDeleteEventConstantsUI.BTN_SAVE)
+
+        """ Get data of edited event """
+        subject = ClientDetailsPageUI(self.driver) \
+            .open_tab(ClientDetailsConstantsUI.TAB_ACTIVITIES) \
+            .get_data_cell_table(TasksModuleConstantsUI.COLUMN_SUBJECT,
+                                 record_num)
+
+        """ Verify event data was edited """
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(subject, AddDeleteEventConstantsUI.INT_SUBJ_2)
+
+        """ Delete event """
+        AddDeleteEventPageUI(self.driver)\
+            .delete_record(record_num)

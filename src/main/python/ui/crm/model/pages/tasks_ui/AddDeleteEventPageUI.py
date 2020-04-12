@@ -46,6 +46,7 @@ class AddDeleteEventPageUI(CRMBasePage):
             self.set_comments(comments)
         if final_btn:
             self.click_save_btn(final_btn)
+        return AddDeleteEventPageUI(self.driver)
 
     def click_add_interaction_btn(self, act_btn):
         GlobalDetailsPageUI(self.driver) \
@@ -98,6 +99,9 @@ class AddDeleteEventPageUI(CRMBasePage):
     def click_save_btn(self, button):
         GlobalPopupPageUI(self.driver) \
             .click_final_btn(button)
+        GlobalModulePageUI(self.driver) \
+            .verify_success_message() \
+            .click_ok()
         return AddDeleteEventPageUI(self.driver)
 
     def click_cancel_btn(self):
@@ -110,4 +114,14 @@ class AddDeleteEventPageUI(CRMBasePage):
         GlobalModulePageUI(self.driver) \
             .open_actions_list(row) \
             .click_edit_icon_list_view(row)
+        return AddDeleteEventPageUI(self.driver)
+
+    """ Click Delete icon in table by row """
+    def delete_record(self, row):
+        GlobalModulePageUI(self.driver) \
+            .open_actions_list(row) \
+            .click_delete_icon_list_view(row) \
+            .approve_deleting() \
+            .verify_success_message() \
+            .click_ok()
         return AddDeleteEventPageUI(self.driver)
