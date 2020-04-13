@@ -107,7 +107,7 @@ if __name__ == "__main__":
 
 
         all_brands_yml = "brands.yml"
-        path_to_brands_suite_1 = "C:/Users/Administrator/Desktop/brands1.yml"
+        path_to_brands_suite_1 = "brands1.yml"
         path_to_brands_suite_2 = "brands2.yml"
         path_to_brands_suite_3 = "brands3.yml"
         path_to_brands_suite_4 = "brands4.yml"
