@@ -21,15 +21,15 @@ tests_config:
 #    - test_filter_ta_ui
 
 ########################################## LEADS ###################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module_ui.TestLeadsModuleUI
-  directive: reload_configuration
-  class: TestLeadsModuleUI
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module_ui.TestLeadsModuleUI
+#  directive: reload_configuration
+#  class: TestLeadsModuleUI
+#  tests:
 #    - test_leads_searching_columns_ui
 #    - test_mass_assign_leads_ui
 #    - test_mass_edit_leads_ui
 #    - test_edit_lead_ui
-    - test_convert_lead_ui   # Creates a lead and converts it to a client
+#    - test_convert_lead_ui   # Creates a lead and converts it to a client
 
 ############################################## CLIENTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.TestClientsModuleUI
@@ -46,13 +46,13 @@ tests_config:
 #    - test_add_interaction_ui
 
 ######################################### MT4 ACTIONS ###########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
-  directive: reload_configuration
-  class: TestMT4UI
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
+#  directive: reload_configuration
+#  class: TestMT4UI
+#  tests:
 #    - test_create_demo_ta_ui
 #    - test_update_mt_user_ui
-    - test_deposit_crm_ui  # create live mt account and make deposit
+#    - test_deposit_crm_ui  # create live mt account and make deposit
 #    - test_withdraw_crm_ui
 #    - test_credit_in_crm_ui
 #    - test_credit_out_crm_ui
@@ -106,7 +106,7 @@ tests_config:
 #    - test_tasks_email_ui
 
 ########################################### USER MANAGEMENT ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_user_management_ui.TestUserManagementUI
-#  class: TestUserManagementUI
-#  tests:
-#    - test_create_user_ui
+- module: src.test.python.ui.automation.implementation.crm.tests_user_management_ui.TestUserManagementUI
+  class: TestUserManagementUI
+  tests:
+    - test_create_user_ui
