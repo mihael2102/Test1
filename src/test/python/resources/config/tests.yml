@@ -38,11 +38,11 @@ tests_config:
 #    - test_check_email_popup
 #
 #################################### CONVERT LEAD ##########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_perform_convert_lead   # Creates a lead and converts it to a client
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+#  directive: reload_configuration
+#  class: LeadModuleTest
+#  tests:
+#    - test_perform_convert_lead   # Creates a lead and converts it to a client
 
 #################################### CLIENTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
@@ -100,10 +100,10 @@ tests_config:
 #    - test_change_client_password_from_crm  # change a client account password from the crm
 #    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
-  class: DepositTestCRM
-  tests:
-    - test_make_deposit_crm  # create live mt account and make deposit in crm
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+#  class: DepositTestCRM
+#  tests:
+#    - test_make_deposit_crm  # create live mt account and make deposit in crm
 #    - test_make_deposit_for_client_crm
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
@@ -192,10 +192,10 @@ tests_config:
 #    - test_delete_workflow
 
 ########################################### USER_MANAGEMENT ############################################
-#- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
-#  class: UserManagementTest
-#  tests:
-#    - test_create_user
+- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
+  class: UserManagementTest
+  tests:
+    - test_create_user
 #    - test_delete_user
 #    - test_login_as
 #

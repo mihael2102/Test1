@@ -1,5 +1,3 @@
-from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
-from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config

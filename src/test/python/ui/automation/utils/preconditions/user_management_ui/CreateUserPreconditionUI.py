@@ -1,17 +1,11 @@
 import pytest
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
-from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
-from src.test.python.ui.automation.BaseTest import *
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
-from src.main.python.ui.crm.model.constants_ui.tasks_ui.AddDeleteEventConstantsUI import AddDeleteEventConstantsUI
-from src.main.python.ui.crm.model.pages.tasks_ui.AddDeleteEventPageUI import AddDeleteEventPageUI
-from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
-from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
-from src.main.python.ui.crm.model.constants_ui.tasks_ui.TasksModuleConstantsUI import TasksModuleConstantsUI
+from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
+from src.main.python.ui.crm.model.constants.UserInformation import UserInformation
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 @pytest.mark.run(order=13)
@@ -33,6 +27,26 @@ class CreateUserPreconditionUI(object):
             password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
             otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        """ Open Clients module. Find client by 'pandaqa' email """
+        """ Open User Management module """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_UM)
+
+        """ Create user """
+        self.driver.switch_to_frame(self.driver.find_element_by_xpath(
+            "//iframe[contains(@src,'UserManagement')]"))
+        UserManagementPage(self.driver) \
+            .open_crm_users_tab() \
+            .click_more_icon() \
+            .check_delete_btn_exist() \
+            .click_new_user_module() \
+            .set_user_name(UserInformation.FIRST_USER_NAME) \
+            .set_email(UserInformation.FIRST_EMAIL) \
+            .set_first_name(UserInformation.FIRST_NAME) \
+            .set_role(var.get_var(self.__class__.__name__)["role"]) \
+            .set_password(UserInformation.PASSWORD) \
+            .set_confirm_password(UserInformation.PASSWORD) \
+            .set_last_name(UserInformation.LAST_NAME) \
+            .click_save_button_user_module() \
+            .click_remove_filter_btn() \
+            .search_by_username(UserInformation.FIRST_USER_NAME) \
+            .check_user_found(UserInformation.FIRST_USER_NAME)
