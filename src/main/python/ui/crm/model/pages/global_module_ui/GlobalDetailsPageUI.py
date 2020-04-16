@@ -44,7 +44,7 @@ class GlobalDetailsPageUI(CRMBasePage):
             Logging().reportDebugStep(self, "Click to view in field: " + field)
             btn.click()
         except:
-            Logging().reportDebugStep(self, "Click to view button is not" + field)
+            Logging().reportDebugStep(self, "Click to view button is not available in field " + field)
         return GlobalDetailsPageUI(self.driver)
 
     def get_text_from_field(self, field):

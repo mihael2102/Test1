@@ -62,6 +62,9 @@ class EditPencilLeadPreconditionUI(object):
             .comparator_string(mobile, LeadsDetailsConstantsUI.MOBILE_EDIT) \
             .refresh_page()
 
+        """ Verify field will not change after page reload """
         mobile = LeadsDetailsPageUI(self.driver) \
-            .
-            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_MOBILE)
+            .get_data_from_field_click_to_view(LeadsDetailsConstantsUI.FIELD_MOBILE)
+
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(mobile, LeadsDetailsConstantsUI.MOBILE_EDIT)
