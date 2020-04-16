@@ -72,15 +72,18 @@ brands:
 #- name: newforexqa2
 #  config_file: newforexqa2.yml
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 
 #- name: optionstars
 #  config_file: optionstars.yml
 #
 #- name: olympusmarkets
 #  config_file: olympusmarkets.yml
-#
+
+- name: ofcmarkets
+  config_file: ofcmarkets.yml
+
 #- name: privat-trade
 #  config_file: privat-trade.yml
 #
