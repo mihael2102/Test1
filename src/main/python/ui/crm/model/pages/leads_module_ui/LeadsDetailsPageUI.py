@@ -25,3 +25,9 @@ class LeadsDetailsPageUI(CRMBasePage):
             .set_text_pencil_field(field, text) \
             .click_confirm_btn_pencil_field(field)
         return LeadsDetailsPageUI(self.driver)
+
+    def get_data_from_field_click_to_view(self, field):
+        data = GlobalDetailsPageUI(self.driver) \
+            .click_to_view_btn(field) \
+            .get_text_from_field(field)
+        return data

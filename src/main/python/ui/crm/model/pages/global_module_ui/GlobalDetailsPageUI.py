@@ -38,11 +38,13 @@ class GlobalDetailsPageUI(CRMBasePage):
 
     def click_to_view_btn(self, field):
         sleep(0.1)
-        Logging().reportDebugStep(self, "Click Edit button")
-        edit_btn = super().wait_load_element(
-            "//div[@class='wrap-navigation d-flex align-items-center']//button[span[i[contains(@class,'pencil')]]]")
-        edit_btn.click()
-        self.wait_loading_to_finish_new_ui(25)
+        try:
+            btn = super().wait_load_element(
+                "//div[label='%s']//following-sibling::button/div[contains(@class,'click-to-view')]" % field)
+            Logging().reportDebugStep(self, "Click to view in field: " + field)
+            btn.click()
+        except:
+            Logging().reportDebugStep(self, "Click to view button is not" + field)
         return GlobalDetailsPageUI(self.driver)
 
     def get_text_from_field(self, field):
