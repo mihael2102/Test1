@@ -5,6 +5,6 @@ tests_config:
   class: TestLeadsModuleUI
   tests:
     - test_leads_searching_columns_ui
+    - test_edit_lead_ui
     - test_mass_assign_leads_ui
     - test_mass_edit_leads_ui
-    - test_edit_lead_ui
