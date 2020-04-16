@@ -30,6 +30,7 @@ class CALoginPage(CRMBasePage):
         self.fill_email(email)
         self.fill_phone(phone)
         self.fill_password(password)
+        self.check_box_accept()
         self.click_submit()
 
     def close_campaign_banner(self):
