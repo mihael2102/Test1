@@ -37,6 +37,7 @@ class GlobalModulePageUI(CRMBasePage):
         sleep(2)
         self.wait_loading_to_finish_new_ui(55)
         sleep(2)
+        self.wait_loading_to_finish_new_ui(25)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
         return GlobalModulePageUI(self.driver)
 
