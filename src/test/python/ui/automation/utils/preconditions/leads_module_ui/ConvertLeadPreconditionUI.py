@@ -82,7 +82,7 @@ class ConvertLeadPreconditionUI(object):
 
         """ Open lead and get data """
         LeadsModulePageUI(self.driver) \
-            .open_lead()
+            .open_lead('1')
 
         details = LeadsDetailsPageUI(self.driver)
 

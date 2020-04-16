@@ -81,7 +81,7 @@ class EditLeadPreconditionUI(object):
 
         """ Open lead and get data """
         LeadsModulePageUI(self.driver) \
-            .open_lead()
+            .open_lead('1')
 
         details = GlobalDetailsPageUI(self.driver)
 

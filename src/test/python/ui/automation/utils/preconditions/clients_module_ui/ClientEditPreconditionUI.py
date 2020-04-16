@@ -59,7 +59,7 @@ class ClientEditPreconditionUI(object):
             .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    data=ClientEditConstantsUI.EMAIL)
         LeadsModulePageUI(self.driver) \
-            .open_lead()
+            .open_lead('1')
 
         """ Convert Lead """
         ConvertLeadPageUI(self.driver) \
