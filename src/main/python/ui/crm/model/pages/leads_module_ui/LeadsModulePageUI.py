@@ -14,6 +14,7 @@ class LeadsModulePageUI(CRMBasePage):
             "(//span[@class='td-link' and contains(text(),'LEA')])[%s]" % row)
         lead_no.click()
         sleep(1)
-        self.wait_loading_to_finish_new_ui(15)
+        self.wait_loading_to_finish_new_ui(35)
+        sleep(0.5)
         Logging().reportDebugStep(self, "Click on Lead No")
         return LeadsDetailsPageUI(self.driver)

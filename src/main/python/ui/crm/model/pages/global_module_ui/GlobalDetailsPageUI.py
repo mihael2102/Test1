@@ -31,7 +31,7 @@ class GlobalDetailsPageUI(CRMBasePage):
                 % title)
             self.driver.execute_script("arguments[0].click();", tab)
             sleep(1)
-            self.wait_loading_to_finish_new_ui(5)
+            self.wait_loading_to_finish_new_ui(15)
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Tab " + title + " already opened")
         return GlobalDetailsPageUI(self.driver)
@@ -73,11 +73,12 @@ class GlobalDetailsPageUI(CRMBasePage):
     """
 
     def click_pencil_icon_in_field(self, field):
-        sleep(0.1)
+        sleep(1)
         Logging().reportDebugStep(self, "Click Pencil icon in field " + field)
         try:
             pencil_btn = super().wait_load_element(
                 "//div[label='%s']//following-sibling::button//i[contains(@class,'pencil')]" % field)
+            sleep(0.5)
             pencil_btn.click()
             self.wait_loading_to_finish_new_ui(25)
         except:
