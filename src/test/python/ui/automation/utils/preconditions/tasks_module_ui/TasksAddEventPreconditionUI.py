@@ -36,23 +36,16 @@ class TasksAddEventPreconditionUI(object):
 
         """ Create Event """
         AddDeleteEventPageUI(self.driver)\
-            .click_add_event_btn() \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_EVENT_STATUS,
-                                   item=AddDeleteEventConstantsUI.EVENT_STATUS) \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_EVENT_TYPE,
-                                   item=AddDeleteEventConstantsUI.EVENT_TYPE) \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_DURATION,
-                                   item=AddDeleteEventConstantsUI.DURATION) \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_ASSIGN_TO,
-                                   item=AddDeleteEventConstantsUI.ASSIGN_TO) \
-            .set_attached_to(AddDeleteEventConstantsUI.ATTACHED_TO) \
-            .set_text_field(field=AddDeleteEventConstantsUI.FIELD_SUBJECT,
-                            text=AddDeleteEventConstantsUI.SUBJECT) \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_PRIORITY,
-                                   item=AddDeleteEventConstantsUI.PRIORITY) \
-            .set_text_field(field=AddDeleteEventConstantsUI.FIELD_COMMENTS,
-                            text=AddDeleteEventConstantsUI.COMMENTS) \
-            .click_save()
+            .add_edit_event(
+                btn_event=1,
+                list1=AddDeleteEventConstantsUI.LIST_EVENT_STATUS, e_status=AddDeleteEventConstantsUI.EVENT_STATUS,
+                list2=AddDeleteEventConstantsUI.LIST_EVENT_TYPE, e_type=AddDeleteEventConstantsUI.EVENT_TYPE,
+                list3=AddDeleteEventConstantsUI.LIST_DURATION, duration=AddDeleteEventConstantsUI.DURATION,
+                list4=AddDeleteEventConstantsUI.LIST_ASSIGN_TO, assign_to=AddDeleteEventConstantsUI.ASSIGN_TO,
+                attached_to=AddDeleteEventConstantsUI.ATTACHED_TO,
+                field1=AddDeleteEventConstantsUI.FIELD_SUBJECT, subject=AddDeleteEventConstantsUI.SUBJECT,
+                list5=AddDeleteEventConstantsUI.LIST_PRIORITY, priority=AddDeleteEventConstantsUI.PRIORITY,
+                comments=AddDeleteEventConstantsUI.COMMENTS, final_btn=AddDeleteEventConstantsUI.BTN_SAVE_NEW)
 
         """ Verify successful message """
         GlobalModulePageUI(self.driver) \

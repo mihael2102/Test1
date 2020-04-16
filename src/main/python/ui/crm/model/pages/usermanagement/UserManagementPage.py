@@ -212,6 +212,7 @@ class UserManagementPage(CRMBasePage):
         return UserManagementPage(self.driver)
 
     def open_crm_users_tab(self):
+        sleep(0.1)
         crm_users_tab = super().wait_element_to_be_clickable("//a[contains(text(),'CRM Users')]")
         crm_users_tab.click()
         Logging().reportDebugStep(self, "Open CRM Users tab")

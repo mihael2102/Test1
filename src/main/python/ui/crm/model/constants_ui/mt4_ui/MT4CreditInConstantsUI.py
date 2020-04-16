@@ -18,6 +18,7 @@ class MT4CreditInConstantsUI(object):
 
     TA_CREDIT = ""
     AMOUNT = "2.00"
+    AMOUNT_CRYPTO = "0.00002"
     DAY = "1"
     MONTH = "JAN"
     YEAR = "2025"
