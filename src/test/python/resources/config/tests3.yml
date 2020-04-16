@@ -1,7 +1,7 @@
 tests_config:
 
 ############################################## CLIENTS ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_Clients_Module_UI
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.TestClientsModuleUI
   class: TestClientsModuleUI
   tests:
     - test_clients_searching_columns_ui
