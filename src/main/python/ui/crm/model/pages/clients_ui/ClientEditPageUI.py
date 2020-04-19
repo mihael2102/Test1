@@ -10,59 +10,39 @@ from time import sleep
 class ClientEditPageUI(CRMBasePage):
 
     def edit_client(self, field1=None, fname=None, field2=None, lname=None, day=None, month=None, year=None,
-                    field3=None, c_source=None, field4=None,
-                  phone=None, field5=None, email=None, field6=None, s_mail=None, field7=None, title=None, list1=None,
-                  l_source=None, list2=None, l_status=None, list3=None, assigned_to=None, field8=None, language=None,
-                  field9=None, source_name=None, field10=None, fax=None, field11=None, referral=None, field12=None,
-                  address=None, field13=None, p_code=None, field14=None, city=None, list4=None, country=None,
-                  field15=None, state=None, field16=None, po_box=None, field17=None, description=None):
+                    field3=None, c_source=None, list1=None, citizenship=None, list2=None, country=None, field4=None,
+                    city=None, field5=None, address=None, field6=None, p_code=None, field7=None, phone=None, list3=None,
+                    language=None, list4=None, currency=None, field8=None, referral=None, button=None):
         self.click_edit_client_btn()
         if field1 and fname:
             self.set_text(field1, fname)
         if field2 and lname:
             self.set_text(field2, lname)
-        if field3 and mobile:
-            self.set_text(field3, mobile)
-        if field4 and phone:
-            self.set_text(field4, phone)
-        if field5 and email:
-            self.set_text(field5, email)
-        if field6 and s_mail:
-            self.set_text(field6, s_mail)
-        if field7 and title:
-            self.set_text(field7, title)
-        if list1 and l_source:
-            self.select_from_list(list1, l_source)
-        if list2 and l_status:
-            self.select_from_list(list2, l_status)
-        if list3 and assigned_to:
-            self.select_from_list(list3, assigned_to)
-        if field8 and language:
-            self.set_text(field8, language)
-        if field9 and source_name:
-            self.set_text(field9, source_name)
-        if field10 and fax:
-            self.set_text(field10, fax)
-        if field11 and referral:
-            self.set_text(field11, referral)
-        if field12 and address:
-            self.set_text(field12, address)
-        if field13 and p_code:
-            self.set_text(field13, p_code)
-        if field14 and city:
-            self.set_text(field14, city)
-        if list4 and country:
-            self.select_from_list(list4, country)
-        if field15 and state:
-            self.set_text(field15, state)
-        if field16 and po_box:
-            self.set_text(field16, po_box)
-        if field17 and description:
-            self.set_text(field17, description)
-        self.click_update_lead_btn()
+        if day and month and year:
+            self.set_birth_day(day, month, year)
+        if field3 and c_source:
+            self.set_text(field3, c_source)
+        if list1 and citizenship:
+            self.select_from_list(list1, citizenship)
+        if list2 and country:
+            self.select_from_list(list2, country)
+        if field4 and city:
+            self.set_text(field4, city)
+        if field5 and address:
+            self.set_text(field5, address)
+        if field6 and p_code:
+            self.set_text(field6, p_code)
+        if field7 and phone:
+            self.set_text(field7, phone)
+        if list3 and language:
+            self.select_from_list(list3, language)
+        if list4 and currency:
+            self.select_from_list(list4, currency)
+        if field8 and referral:
+            self.set_text(field8, referral)
+        self.click_save_client_btn(button)
 
     def click_edit_client_btn(self):
-        sleep(0.1)
         GlobalDetailsPageUI(self.driver) \
             .click_edit_btn()
         Logging().reportDebugStep(self, "'Edit Client' button was clicked")
@@ -78,18 +58,12 @@ class ClientEditPageUI(CRMBasePage):
             .set_text_field(field, text)
         return ClientEditPageUI(self.driver)
 
-    def is_button_update_lead_active(self):
-        sleep(0.1)
-        flag = super().wait_element_to_be_clickable("//button[span=' Update lead ']").get_property("disabled")
-        return not flag
+    def set_birth_day(self, day, month, year):
+        GlobalPopupPageUI(self.driver) \
+            .set_date(day, month, year)
+        return ClientEditPageUI(self.driver)
 
-    def click_update_lead_btn(self):
-        sleep(0.1)
-        flag = self.is_button_update_lead_active()
-        if flag:
-            Logging().reportDebugStep(self, "Click 'Update lead' button")
-            save_button = super().wait_element_to_be_clickable("//button/span[text()=' Update lead ']")
-            self.driver.execute_script("arguments[0].click();", save_button)
-        else:
-            Logging().reportDebugStep(self, "'Update lead' button is inactive")
+    def click_save_client_btn(self, button):
+        GlobalPopupPageUI(self.driver) \
+            .click_final_btn(button)
         return ClientEditPageUI(self.driver)

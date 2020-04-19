@@ -37,6 +37,7 @@ class GlobalModulePageUI(CRMBasePage):
         sleep(2)
         self.wait_loading_to_finish_new_ui(55)
         sleep(2)
+        self.wait_loading_to_finish_new_ui(25)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
         return GlobalModulePageUI(self.driver)
 
@@ -212,13 +213,15 @@ class GlobalModulePageUI(CRMBasePage):
         return GlobalModulePageUI(self.driver)
 
     """
-        ACTIONS METHODS
+        ACTIONS METHODS: delete, edit, email, sms
     """
 
-    def open_actions_list(self):
+    def open_actions_list(self, row='1'):
+        sleep(0.5)
         hover_mouse = ActionChains(self.driver)
         more_list_element = super().wait_element_to_be_clickable(
-            "//tr[not(contains(@style,'hidden'))][1]/td/button/span/mat-icon[text()='more_vert']")
+            "//tr[not(contains(@style,'hidden'))][%s]/td/button/span/mat-icon[text()='more_vert']" % row)
+        self.driver.execute_script("arguments[0].scrollIntoView();", more_list_element)
         hover_mouse.move_to_element(more_list_element)
         hover_mouse.perform()
         return GlobalModulePageUI(self.driver)
@@ -243,6 +246,7 @@ class GlobalModulePageUI(CRMBasePage):
         edit_icon = super().wait_element_to_be_clickable(
             "//tr[not(contains(@style,'hidden'))][%s]//button[@title='edit']" % row)
         self.driver.execute_script("arguments[0].click();", edit_icon)
+        self.wait_loading_to_finish_new_ui(25)
         return GlobalModulePageUI(self.driver)
 
     def click_email_icon_list_view(self, row):
@@ -252,3 +256,12 @@ class GlobalModulePageUI(CRMBasePage):
             "//tr[not(contains(@style,'hidden'))][%s]//button[@title='email']" % row)
         self.driver.execute_script("arguments[0].click();", edit_icon)
         return EmailPageUI(self.driver)
+
+    """ Get number(string) of last record in list """
+    def get_last_record_number(self):
+        sleep(0.1)
+        records = self.driver.find_elements_by_xpath(
+            "//tbody[@role='rowgroup']/tr[@role='row' and not (contains(@style,'hidden'))]")
+        counter = str(len(records))
+        Logging().reportDebugStep(self, "Number of records: " + counter)
+        return counter

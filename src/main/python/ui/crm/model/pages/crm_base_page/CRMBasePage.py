@@ -99,6 +99,8 @@ class CRMBasePage(object):
         except:
             button = self.wait_load_element("//span[contains(text(),'OK')]")
             button.click()
+        sleep(1)
+        self.wait_crm_loading_to_finish()
         Logging().reportDebugStep(self, "The Ok button was clicked")
 
     def wait_crm_loading_to_finish(self):
