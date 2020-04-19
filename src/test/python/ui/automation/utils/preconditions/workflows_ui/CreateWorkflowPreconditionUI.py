@@ -31,6 +31,9 @@ class CreateWorkflowPreconditionUI(object):
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_CRM_Config)
 
+        self.driver.switch_to_frame(self.driver.find_element_by_xpath(
+            "//iframe[@name='tradeChartFrame']"))
+
         CRMConfigurationPage(self.driver) \
             .check_workflows_loaded()
 

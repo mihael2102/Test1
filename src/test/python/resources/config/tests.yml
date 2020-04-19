@@ -21,10 +21,10 @@ tests_config:
 #    - test_create_filter_trading_account_module
 #
 ########################################## LEADS ###################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
-#  class: TabLeadsModuleCRM
-#  tests:
-#    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
+  class: TabLeadsModuleCRM
+  tests:
+    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
 #    - sorting_lead_module
 #    - test_mass_assign_leads
 #    - test_mass_edit_leads
@@ -38,11 +38,11 @@ tests_config:
 #    - test_check_email_popup
 #
 #################################### CONVERT LEAD ##########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-  directive: reload_configuration
-  class: LeadModuleTest
-  tests:
-    - test_perform_convert_lead   # Creates a lead and converts it to a client
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+#  directive: reload_configuration
+#  class: LeadModuleTest
+#  tests:
+#    - test_perform_convert_lead   # Creates a lead and converts it to a client
 
 #################################### CLIENTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
@@ -51,10 +51,10 @@ tests_config:
 #    - test_make_searching_client_module   # Searches for a client
 #    - test_search_client_magnifying_glass
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
-  class: MassEditTestCRM
-  tests:
-    - test_update_client_details
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
+#  class: MassEditTestCRM
+#  tests:
+#    - test_update_client_details
 #    - test_clients_mass_edit
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign
