@@ -38,6 +38,8 @@ class CheckWorkflowStatusPreconditionUI(object):
         CRMConfigurationPage(self.driver) \
             .check_workflows_loaded()
 
+        self.driver.switch_to_default_content()
+
         """ Create new workflow """
         name_workflow = WorkflowsPage(self.driver) \
             .click_add_new_workflow() \
