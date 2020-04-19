@@ -83,8 +83,8 @@ brands:
 #- name: octagontrade
 #  config_file: octagontrade.yml
 
-- name: ofcmarkets
-  config_file: ofcmarkets.yml
+#- name: ofcmarkets
+#  config_file: ofcmarkets.yml
 
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
