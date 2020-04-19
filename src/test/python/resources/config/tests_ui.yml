@@ -21,31 +21,38 @@ tests_config:
 #    - test_filter_ta_ui
 
 ########################################## LEADS ###################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_leads_module_ui.TestLeadsModuleUI
-  directive: reload_configuration
-  class: TestLeadsModuleUI
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module_ui.TestLeadsModuleUI
+#  directive: reload_configuration
+#  class: TestLeadsModuleUI
+#  tests:
 #    - test_leads_searching_columns_ui
 #    - test_mass_assign_leads_ui
 #    - test_mass_edit_leads_ui
 #    - test_edit_lead_ui
-    - test_convert_lead_ui   # Creates a lead and converts it to a client
+#    - test_edit_pencil_lead_ui
+#    - test_convert_lead_ui   # Creates a lead and converts it to a client
 
 ############################################## CLIENTS ###############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.Test_Clients_Module_UI
-#  class: TestClientsModuleUI
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.TestClientsModuleUI
+  class: TestClientsModuleUI
+  tests:
 #    - test_clients_searching_columns_ui
-#    - test_mass_assign_clients_ui
+    - test_mass_assign_clients_ui
 #    - test_mass_edit_clients_ui
 
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.TestClientDetailsUI
+#  class: TestClientDetailsUI
+#  tests:
+#    - test_edit_client_ui
+#    - test_add_interaction_ui
+
 ######################################### MT4 ACTIONS ###########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
-  directive: reload_configuration
-  class: TestMT4UI
-  tests:
-    - test_create_demo_ta_ui
-    - test_update_mt_user_ui
+#- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
+#  directive: reload_configuration
+#  class: TestMT4UI
+#  tests:
+#    - test_create_demo_ta_ui
+#    - test_update_mt_user_ui
 #    - test_deposit_crm_ui  # create live mt account and make deposit
 #    - test_withdraw_crm_ui
 #    - test_credit_in_crm_ui
@@ -53,7 +60,7 @@ tests_config:
 #    - test_transfer_crm_ui
 
 ######################################## AFFILIATES MODULE ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module_ui.Test_Affiliates_Module_UI
+#- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module_ui.TestAffiliatesModuleUI
 #  class: TestAffiliateModuleUI
 #  tests:
 #     - test_create_delete_affiliate_ui
@@ -98,3 +105,17 @@ tests_config:
 #    - test_delete_event_ui
 #    - test_tasks_mass_edit
 #    - test_tasks_email_ui
+
+########################################### USER MANAGEMENT ##########################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_user_management_ui.TestUserManagementUI
+#  class: TestUserManagementUI
+#  tests:
+#    - test_create_user_ui
+#    - test_delete_user_ui
+
+############################################## WORKFLOWS #############################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_workflows_ui.TestWorkflowsUI
+#  class: TestWorkflowsUI
+#  tests:
+#    - test_create_workflow_ui
+#    - test_delete_user_ui

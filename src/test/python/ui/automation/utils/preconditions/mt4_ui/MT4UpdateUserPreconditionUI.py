@@ -60,7 +60,7 @@ class MT4UpdateUserPreconditionUI(object):
             .select_pick_list_item(MT4UpdateTAConstantsUI.LIST_LEVERAGE,
                                    MT4UpdateTAConstantsUI.LEVERAGE) \
             .select_check_box(MT4UpdateTAConstantsUI.BOX_READONLY) \
-            .click_button(MT4UpdateTAConstantsUI.BTN_UPDATE)
+            .click_final_btn(MT4UpdateTAConstantsUI.BTN_UPDATE)
 
         """ Verify successful message """
         GlobalModulePageUI(self.driver) \

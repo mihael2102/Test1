@@ -225,6 +225,8 @@ class ClientProfileUpdate(CRMBasePage):
         save_button = self.driver.find_element(By.XPATH, "//input[@value='Save']")
         self.perform_scroll_up()
         save_button.click()
+        sleep(0.5)
+        self.wait_crm_loading_to_finish()
         Logging().reportDebugStep(self, "The save button was clicked: ")
         return ClientProfileUpdate(self.driver)
 
