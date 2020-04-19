@@ -10,7 +10,7 @@ import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider 
 
 
 @pytest.mark.run(order=13)
-class CreateWorkflowPreconditionUI(object):
+class CheckWorkflowStatusPreconditionUI(object):
 
     driver = None
     config = None
@@ -19,7 +19,7 @@ class CreateWorkflowPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def create_workflow_ui(self):
+    def check_workflow_by_status_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(

@@ -33,11 +33,11 @@ tests_config:
 #    - test_convert_lead_ui   # Creates a lead and converts it to a client
 
 ############################################## CLIENTS ###############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.TestClientsModuleUI
-  class: TestClientsModuleUI
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.TestClientsModuleUI
+#  class: TestClientsModuleUI
+#  tests:
 #    - test_clients_searching_columns_ui
-    - test_mass_assign_clients_ui
+#    - test_mass_assign_clients_ui
 #    - test_mass_edit_clients_ui
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.TestClientDetailsUI
@@ -114,8 +114,8 @@ tests_config:
 #    - test_delete_user_ui
 
 ############################################## WORKFLOWS #############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_workflows_ui.TestWorkflowsUI
-#  class: TestWorkflowsUI
-#  tests:
-#    - test_create_workflow_ui
-#    - test_delete_user_ui
+- module: src.test.python.ui.automation.implementation.crm.tests_workflows_ui.TestWorkflowsUI
+  class: TestWorkflowsUI
+  tests:
+    - test_create_workflow_ui
+    - test_check_workflow_by_status_ui
