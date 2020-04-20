@@ -91,8 +91,10 @@ class BaseCRMPrecondition(object):
             .get_created_time_search_page_vtiger()
 
         """ Verify data from results """
-        CRMBaseMethodsPage(self.driver)\
-            .comparator_string(lead_email, lead_email_res)\
+        if '*' not in lead_email_res and 'Send' not in lead_email:
+            CRMBaseMethodsPage(self.driver)\
+                .comparator_string(lead_email, lead_email_res)
+        CRMBaseMethodsPage(self.driver) \
             .comparator_string(created_time.split(" ")[0], created_time_res)
 
     def global_search_tasks(self):

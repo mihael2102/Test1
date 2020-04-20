@@ -74,10 +74,10 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionInformationPage()
 
     def get_transaction_id_by_position_from_list(self, position_in_list=3):
-        if position_in_list != 3:
-            sleep(2)    # Waiting until page reloading will be finished
-        transaction_number_element = self.driver.find_element(By.XPATH,
-                                                        "(//a[contains(text(), 'MTT')])[%s]" % position_in_list).text
+        sleep(1)
+        transaction_number_element = super().wait_load_element("(//a[contains(text(), 'MTT')])[%s]" % position_in_list)
+        self.driver.execute_script("arguments[0].scrollIntoView();", transaction_number_element)
+        transaction_number_element = transaction_number_element.text
         Logging().reportDebugStep(self, "Get existing Transaction No: " + transaction_number_element)
         return transaction_number_element
 
@@ -216,7 +216,10 @@ class FinancialTransactionsPage(CRMBasePage):
 
     def open_search_form(self):
         search_form_element = self.driver.find_element(By.XPATH, "//tr/td[1]/div/button[1]")
-        search_form_element.click()
+        try:
+            search_form_element.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", search_form_element)
         Logging().reportDebugStep(self, "Search form was opened")
         return FinancialTransactionsPage(self.driver)
 

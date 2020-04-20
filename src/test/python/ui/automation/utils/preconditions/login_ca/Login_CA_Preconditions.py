@@ -446,9 +446,7 @@ class LoginCAPrecondition(object):
             .comparator_string(country, CAConstants.COUNTRY_DEFAULT)
 
         if "*" not in phone:
-            CRMBaseMethodsPage(self.driver) \
-                .comparator_string(phone,
-                                   self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])
+            assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE] in phone
 
     def login_ca(self):
         try:

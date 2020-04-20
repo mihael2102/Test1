@@ -27,3 +27,4 @@ class WorkflowsConstants(object):
     TEST_ADDRESS = "Test_address"
     COUNTRY = "Country"
     COUNTRY_ALBANIA = "Albania"
+    WORKFLOW_EXIST = ""

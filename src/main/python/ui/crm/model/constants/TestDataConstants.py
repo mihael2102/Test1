@@ -16,6 +16,8 @@ class TestDataConstants(object):
     MODULE_TRADING_ACCOUNTS = "Trading Accounts"
     MODULE_FIN_TRANSACTIONS = "Financial Transactions"
     MODULE_MY_DASHBOARD = "My Dashboard"
+    MODULE_UM = "User Management"
+    MODULE_CRM_Config = "CRM Configuration"
     SERVICE_DESK = "Service Desk"
     INITIAL_DEPOSIT_FIRST = "initial_deposit1"
     INITIAL_DEPOSIT_SECOND = "initial_deposit2"
