@@ -315,8 +315,11 @@ class LeadsModule(CRMBasePage):
         sleep(1)
         Logging().reportDebugStep(self, "Close successful result pop ups")
         # super().wait_load_element("//div[contains(text(),'assigned to %s')]" % user)
-        btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
-        btn_ok.click()
+        try:
+            btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
+            btn_ok.click()
+        except:
+            pass
         self.wait_vtiger_loading_to_finish_custom(35)
         return LeadsModule(self.driver)
 
