@@ -31,6 +31,7 @@ class CreateLeadConstantsUI(object):
     LIST_LEAD_STATUS = "Lead status"
     LIST_ASSIGNED_TO = "Assigned to"
     LIST_COUNTRY = "Country"
+
     FNAME = "testqa%s" % random_character
     FNAME2 = "testqa2%s" % random_character
     LNAME = "test"

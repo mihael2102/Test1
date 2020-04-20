@@ -1,16 +1,11 @@
 import re
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from _decimal import Decimal
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
-from selenium.webdriver.common.by import By
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from selenium.webdriver.support.select import Select
 from src.main.python.utils.logs.Loging import Logging
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support.select import Select
-from selenium.webdriver.common.keys import Keys
 
 
 class ClientDetailsPageUI(CRMBasePage):
@@ -21,7 +16,7 @@ class ClientDetailsPageUI(CRMBasePage):
             try:
                 data = super().wait_load_element(
                     "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field,
-                    timeout=8).text
+                    timeout=10).text
             except(NoSuchElementException, TimeoutException):
                 Logging().reportDebugStep(self, "Field " + field + " is not editable")
                 data = super().wait_load_element(
@@ -32,18 +27,23 @@ class ClientDetailsPageUI(CRMBasePage):
             Logging().reportDebugStep(self, "Field " + field + " does not exist")
             return False
 
+    """ TAB functionality """
     def open_tab(self, title):
-        try:
-            Logging().reportDebugStep(self, "Open tab: " + title)
-            tab = super().wait_load_element(
-                "//mat-expansion-panel-header[@aria-expanded='false']//mat-panel-title/div[contains(text(),'%s')]"
-                % title)
-            self.driver.execute_script("arguments[0].click();", tab)
-            sleep(1)
-            self.wait_loading_to_finish_new_ui(5)
-        except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "Tab " + title + " already opened")
+        GlobalDetailsPageUI(self.driver)\
+            .open_tab(title)
         return ClientDetailsPageUI(self.driver)
+
+    """ Get last record number from table (string) """
+    def get_last_record_number(self):
+        records = GlobalModulePageUI(self.driver)\
+            .get_last_record_number()
+        return records
+
+    """ Get data from table by column and row """
+    def get_data_cell_table(self, column, row):
+        data = GlobalModulePageUI(self.driver)\
+            .get_data_from_list_view_ui(column, row)
+        return data
 
     def get_data_from_info_tag(self, tag_title):
         sleep(0.1)

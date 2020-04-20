@@ -81,7 +81,7 @@ class EditLeadPreconditionUI(object):
 
         """ Open lead and get data """
         LeadsModulePageUI(self.driver) \
-            .open_lead()
+            .open_lead('1')
 
         details = GlobalDetailsPageUI(self.driver)
 
@@ -278,9 +278,9 @@ class EditLeadPreconditionUI(object):
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(email, EditLeadConstantsUI.EMAIL)
 
-        if "*" not in s_email:
-            CRMBaseMethodsPage(self.driver) \
-                .comparator_string(s_email, EditLeadConstantsUI.S_EMAIL)
+        # if "*" not in s_email:
+        #     CRMBaseMethodsPage(self.driver) \
+        #         .comparator_string(s_email, EditLeadConstantsUI.S_EMAIL)
 
         if "*" not in phone:
             CRMBaseMethodsPage(self.driver) \
