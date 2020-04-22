@@ -10,7 +10,7 @@ from src.test.python.ui.automation.BaseTest import *
 def Send_Email_XML(filepath, content):
 
     fromaddr = Config.email_address
-    to = Config.email_address
+    to = "michael.oryshchenko@pandats.com"
     cc = ""
     bcc = ""
     # instance of MIMEMultipart
