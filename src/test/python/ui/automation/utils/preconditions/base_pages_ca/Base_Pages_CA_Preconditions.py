@@ -23,7 +23,8 @@ class BasePagesCAPrecondition(object):
         return lead
 
     def main_menu_pages_loading(self):
-        if global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8" or \
+           global_var.current_brand_name == "strattonmarkets-eu":
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .not_runned_test()
