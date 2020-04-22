@@ -3,7 +3,7 @@ from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4DepositConstantsUI impo
 from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -37,13 +37,12 @@ class MT4CreditInPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open clients module. Find created client by email and open his profile """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    CreateLeadConstantsUI.EMAIL)
@@ -52,25 +51,27 @@ class MT4CreditInPreconditionUI(object):
             .open_mt4_module_newui(var.get_var(self.__class__.__name__)["create_mt_user"])
 
         """ Create LIVE account for client using MT4 Actions """
+        currency = ConvertLeadConstantsUI.GET_CURRENCY
         MT4CreateTAPageUI(self.driver) \
             .mt4_create_ta_ui(
             list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
-            list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=var.get_var(self.__class__.__name__)["l_acc_currency"],
+            list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=currency,
             list3=MT4CreateTAConstantsUI.LIST_GROUP, group_number="1",
             list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok()
 
         """ Get account number to make Credit in """
-        ClientDetailsPageUI(self.driver) \
-            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-        account_number = GlobalTablePageUI(self.driver)\
+        record_num = ClientDetailsPageUI(self.driver) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
+            .get_last_record_number()
+        account_number = GlobalModulePageUI(self.driver)\
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_LOGIN,
-                row=ClientDetailsConstantsUI.ROW_3)
+                row=record_num)
 
         MT4CreditInConstantsUI.TA_CREDIT = account_number
 
@@ -78,16 +79,21 @@ class MT4CreditInPreconditionUI(object):
         ClientDetailsPageUI(self.driver) \
             .open_mt4_module_newui(MT4ActionsConstantsUI.CREDIT_IN)
 
+        if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
+            amount = MT4DepositConstantsUI.AMOUNT_CRYPTO
+        else:
+            amount = MT4CreditInConstantsUI.AMOUNT
+
         MT4CreditInPageUI(self.driver)\
             .mt4_credit_in_ui(
                 list1=MT4CreditInConstantsUI.LIST_TA, t_account=MT4CreditInConstantsUI.TA_CREDIT,
-                field1=MT4CreditInConstantsUI.FIELD_AMOUNT, amount=MT4CreditInConstantsUI.AMOUNT,
+                field1=MT4CreditInConstantsUI.FIELD_AMOUNT, amount=amount,
                 day=MT4CreditInConstantsUI.DAY, month=MT4CreditInConstantsUI.MONTH, year=MT4CreditInConstantsUI.YEAR,
                 field2=MT4CreditInConstantsUI.FIELD_GRANTED_BY, granted_by=MT4CreditInConstantsUI.GRANTED_BY,
                 field3=MT4CreditInConstantsUI.FIELD_COMMENT, comment=MT4CreditInConstantsUI.COMMENT)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
             .refresh_page()
@@ -95,21 +101,21 @@ class MT4CreditInPreconditionUI(object):
         """ Check credit was updated """
         ClientDetailsPageUI(self.driver) \
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-        credit = GlobalTablePageUI(self.driver) \
+        credit = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_CREDIT,
-                row=ClientDetailsConstantsUI.ROW_3)
+                row=record_num)
 
         counter = 0
-        while MT4CreditInConstantsUI.AMOUNT != credit:
+        while amount != credit:
             ClientDetailsPageUI(self.driver)\
                 .refresh_page()
             ClientDetailsPageUI(self.driver) \
                 .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-            credit = GlobalTablePageUI(self.driver) \
+            credit = GlobalModulePageUI(self.driver) \
                 .get_data_from_list_view_ui(
-                column=ClientDetailsConstantsUI.COLUMN_CREDIT,
-                row=ClientDetailsConstantsUI.ROW_3)
+                    column=ClientDetailsConstantsUI.COLUMN_CREDIT,
+                    row=record_num)
             counter += 1
             if counter == 7:
                 break
@@ -117,7 +123,7 @@ class MT4CreditInPreconditionUI(object):
         CRMBaseMethodsPage(self.driver) \
             .comparator_string(
                 credit,
-                MT4CreditInConstantsUI.AMOUNT)
+                amount)
 
         """ Verify data in info tag Credit was updated """
         credit_tag = ClientDetailsPageUI(self.driver) \

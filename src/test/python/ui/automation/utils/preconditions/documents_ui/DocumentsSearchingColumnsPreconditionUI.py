@@ -2,7 +2,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants_ui.documents_ui.DocumentsModuleConstantsUI import DocumentsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 
 
 class DocumentsSearchingColumnsPreconditionUI(object):
@@ -25,7 +25,6 @@ class DocumentsSearchingColumnsPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Documents module """
@@ -34,24 +33,24 @@ class DocumentsSearchingColumnsPreconditionUI(object):
             .open_tab_list_view_ui(DocumentsModuleConstantsUI.TAB_ALL)
 
         """ Get data from the first row of list view """
-        document_no = GlobalTablePageUI(self.driver) \
+        document_no = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=DocumentsModuleConstantsUI.COLUMN_DOCUMENT_NO,
                                         row=DocumentsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        status = GlobalTablePageUI(self.driver) \
+        status = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=DocumentsModuleConstantsUI.COLUMN_STATUS,
                                         row=DocumentsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        document_type = GlobalTablePageUI(self.driver) \
+        document_type = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=DocumentsModuleConstantsUI.COLUMN_DOCUMENT_TYPE,
                                         row=DocumentsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        attached_to = GlobalTablePageUI(self.driver) \
+        attached_to = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=DocumentsModuleConstantsUI.COLUMN_ATTACHED_TO,
                                         row=DocumentsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
-        assigned_to = GlobalTablePageUI(self.driver) \
+        assigned_to = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=DocumentsModuleConstantsUI.COLUMN_ASSIGNED_TO,
                                         row=DocumentsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
         """ Search by table """
-        search = GlobalTablePageUI(self.driver)
+        search = GlobalModulePageUI(self.driver)
         if status:
             search\
                 .select_data_column_field(column=DocumentsModuleConstantsUI.COLUMN_STATUS,
@@ -74,7 +73,7 @@ class DocumentsSearchingColumnsPreconditionUI(object):
                                        data=attached_to)
 
         """ Verify correct data found """
-        result = GlobalTablePageUI(self.driver)
+        result = GlobalModulePageUI(self.driver)
         if document_no:
             result\
                 .global_data_checker_new_ui(document_no)
