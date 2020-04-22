@@ -16,6 +16,7 @@ class ClientDetailsConstantsUI(object):
     TAB_FINANCIAL_TRANSACTIONS = "Financial Transactions"
     TAB_CUSTOM_INFORMATION = "Custom Information"
     TAB_ADDRESS_INFORMATION = "Address Information"
+    TAB_ACTIVITIES = "Activities"
 
     TAG_BALANCE = "Balance"
     TAG_WITHDRAWALS = "Withdrawals"
@@ -43,3 +44,5 @@ class ClientDetailsConstantsUI(object):
     COLUMN_LOGIN = "Login"
     COLUMN_BALANCE = "Balance"
     COLUMN_CREDIT = "Credit"
+    COLUMN_LEVERAGE = "Leverage"
+    COLUMN_READ_ONLY = "Read Only"

@@ -22,23 +22,93 @@ from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 class GlobalDetailsPageUI(CRMBasePage):
 
-    def open_tab_ui(self, tab):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Open " + tab + " tab")
-        tab_name = super().wait_load_element("//mat-panel-title/div[contains(text(),'%s')]" % tab)
-        self.driver.execute_script("arguments[0].click();", tab_name)
-        self.wait_loading_to_finish_new_ui(8)
-        return ClientProfilePage(self.driver)
+    def open_tab(self, title):
+        sleep(0.5)
+        try:
+            Logging().reportDebugStep(self, "Open tab: " + title)
+            tab = super().wait_load_element(
+                "//mat-expansion-panel-header[@aria-expanded='false']//mat-panel-title/div[contains(text(),'%s')]"
+                % title)
+            self.driver.execute_script("arguments[0].click();", tab)
+            sleep(1)
+            self.wait_loading_to_finish_new_ui(15)
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Tab " + title + " already opened")
+        return GlobalDetailsPageUI(self.driver)
 
-    def get_text_from_field(self, field):
+    def click_to_view_btn(self, field):
         sleep(0.1)
         try:
+            btn = super().wait_load_element(
+                "//div[label='%s']//following-sibling::button/div[contains(@class,'click-to-view')]" % field)
+            Logging().reportDebugStep(self, "Click to view in field: " + field)
+            btn.click()
+        except:
+            Logging().reportDebugStep(self, "Click to view button is not available in field " + field)
+        return GlobalDetailsPageUI(self.driver)
+
+    def get_text_from_field(self, field):
+        sleep(0.5)
+        try:
             data = super().wait_load_element(
-                "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field,
-                timeout=5).text
+                "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field).text
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Field " + field + " is not editable")
             data = super().wait_load_element(
                 "//div[label='%s']//following-sibling::div//div[@class='ng-star-inserted']" % field).text
         Logging().reportDebugStep(self, "Get data from field " + field + ": " + data)
         return data
+
+    def click_edit_btn(self):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click Edit button")
+        edit_btn = super().wait_load_element(
+            "//div[@class='wrap-navigation d-flex align-items-center']//button[span[i[contains(@class,'pencil')]]]")
+        edit_btn.click()
+        self.wait_loading_to_finish_new_ui(25)
+        return GlobalDetailsPageUI(self.driver)
+
+    """
+        Edit field via pencil icon
+    """
+
+    def click_pencil_icon_in_field(self, field):
+        sleep(1)
+        Logging().reportDebugStep(self, "Click Pencil icon in field " + field)
+        try:
+            pencil_btn = super().wait_load_element(
+                "//div[label='%s']//following-sibling::button//i[contains(@class,'pencil')]" % field)
+            sleep(0.5)
+            pencil_btn.click()
+            self.wait_loading_to_finish_new_ui(25)
+        except:
+            Logging().reportDebugStep(self, "Field is not editable")
+        return GlobalDetailsPageUI(self.driver)
+
+    def set_text_pencil_field(self, field, text):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Edit field '" + field + "' by pencil (set text): " + text)
+        edit_fld = super().wait_load_element(
+            "//div[label='%s']//following-sibling::mat-form-field//input" % field)
+        edit_fld.clear()
+        edit_fld.send_keys(text)
+        return GlobalDetailsPageUI(self.driver)
+
+    def click_confirm_btn_pencil_field(self, field):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click 'Confirm' button in field: " + field)
+        conf_btn = super().wait_load_element(
+            "//div[label='%s']//following-sibling::div/field-confirm//div[@class='button-confirm']" % field)
+        conf_btn.click()
+        return GlobalDetailsPageUI(self.driver)
+
+    """
+        Action bar: Add Interaction, Click 2 Call, Send Mail, Send Sms
+    """
+    def click_action_bar_btn(self, button):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click '" + button + "' button")
+        btn = super().wait_load_element("//div[@class='actions-bar d-flex']/button[@title='%s']" % button)
+        btn.click()
+        self.wait_loading_to_finish_new_ui(25)
+        return GlobalDetailsPageUI(self.driver)

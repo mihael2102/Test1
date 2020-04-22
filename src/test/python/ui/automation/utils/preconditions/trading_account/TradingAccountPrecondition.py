@@ -18,10 +18,11 @@ from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
+from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
 
 
 class TradingAccountPrecondition(object):
@@ -39,7 +40,8 @@ class TradingAccountPrecondition(object):
 
     def add_live_account(self):
         """ Log in CA """
-        if global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8" or \
+           global_var.current_brand_name == "strattonmarkets-eu":
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .not_runned_test()
@@ -69,7 +71,8 @@ class TradingAccountPrecondition(object):
 
     def add_demo_account(self):
         """ Log in CA """
-        if global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8" or \
+           global_var.current_brand_name == "strattonmarkets-eu":
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .not_runned_test()
@@ -144,13 +147,12 @@ class TradingAccountPrecondition(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Clients module and find created client by email """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    CAConstants.EMAIL_CA)
@@ -164,6 +166,8 @@ class TradingAccountPrecondition(object):
             .trading_account_exist_ui(CAConstants.LIVE_ACCOUNT_NUMBER)
 
     def add_demo_account_from_crm(self):
+        lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
+        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -171,8 +175,13 @@ class TradingAccountPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
         ClientsPage(self.driver)\
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if ConvertLeadConstantsUI.EMAIL_EDITABLE:
+            ClientsPage(self.driver) \
+                .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(lead1[LeadsModuleConstants.EMAIL])
 
         ClientProfilePage(self.driver) \
             .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
