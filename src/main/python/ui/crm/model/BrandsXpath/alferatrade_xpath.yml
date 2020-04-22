@@ -1,0 +1,6 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CADepositPage:
+  deposit_page: "//button[@type='submit' and text()=' Deposit ']"
+CALoginPage:
+  sign_up: "//a[text()='Sign Up']"
+  submit_btn: "//button[span=' Submit ']"

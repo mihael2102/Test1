@@ -1,0 +1,12 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+FinancialTransactionsPage:
+  client_name_element:  "(//*[@id='listBody']//tr/td[4])[%s]"
+  modified_time_element: "(//*[contains(@id,'row_')]/td[12])[%s]"
+LeadsModule:
+  check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[8]"
+  check_first_line_email_2: "//tbody[@id = 'listBody']/tr[2]/td[8]"
+  check_first_line_exist: "//tbody[@id = 'listBody']/tr[1]/td[10]"
+  check_first_line_leads_no1: "//tbody[@id = 'listBody']/tr[1]/td[2]"
+  check_first_line_leads_no2: "//tbody[@id = 'listBody']/tr[2]/td[2]"
+  edit_status: "//*[@id='leadstatus_mass_edit_check']/div[1]/div"
+  mass_edit_leads: "//*[@id='list_action_buttons']/input[2]"

@@ -3,11 +3,13 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from src.main.python.ui.brand.model.ca_base_page.BrandBasePage import BrandBasePage
 from src.main.python.utils.logs.Loging import Logging
+from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 
 
-class CaServiceDesk(BrandBasePage):
-    def __init__(self):
-        super().__init__()
+
+class CaServiceDesk(CRMBasePage):
+
+
 
     '''
        Open the ticket tabs 

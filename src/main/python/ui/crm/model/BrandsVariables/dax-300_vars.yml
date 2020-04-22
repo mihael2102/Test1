@@ -1,0 +1,7 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CreateUserPreconditionUI:
+  role: "Vice President"
+DepositTestCRM:
+  live_acc_currency: "EUR"
+  live_acc_group: "EUR"
+  live_acc_leverage: "200"

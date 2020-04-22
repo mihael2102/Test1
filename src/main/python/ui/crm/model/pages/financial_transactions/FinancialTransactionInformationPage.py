@@ -1,5 +1,7 @@
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 
 
 class FinancialTransactionInformationPage(CRMBasePage):
@@ -44,10 +46,17 @@ class FinancialTransactionInformationPage(CRMBasePage):
         return transaction_type.text
 
     def get_transaction_number_text(self):
-        transaction_number = super().wait_element_to_be_clickable(
-            "//td[contains(text(),'Transaction No')]//following-sibling::td[1]")
-        Logging().reportDebugStep(self, "Returns the transaction number " + transaction_number.text)
-        return transaction_number.text
+        try:
+            transaction_number = super().wait_element_to_be_clickable(
+                "//td[contains(text(),'Transaction No')]//following-sibling::td[1]")
+            Logging().reportDebugStep(self, "Returns the transaction number " + transaction_number.text)
+            return transaction_number.text
+        except(TimeoutException, NoSuchElementException):
+            super().wait_load_element\
+                ("//div[@class='wrn_message textcenter']/span[contains(text(),'not have sufficient priveleges')] ")
+            Logging().reportDebugStep(self, "There is no sufficient priveleges to access this page")
+            Logging().reportDebugStep(self, "NOT RUNNED")
+            return FinancialTransactionInformationPage(self.driver)
 
     def get_assigned_to_text(self):
         assigned_to = super().wait_element_to_be_clickable(

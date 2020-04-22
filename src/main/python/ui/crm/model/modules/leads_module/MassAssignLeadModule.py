@@ -5,24 +5,24 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 
 class MassAssignLeadModule(CRMBasePage):
 
-    def __init__(self):
-        super().__init__()
+    # def __init__(self):
+    #     super().__init__()
 
     def search_user(self, user_name):
         user_field = super().wait_element_to_be_clickable("//input[@id='searchstring']")
         user_field.clear()
         user_field.send_keys(user_name)
-        return MassAssignLeadModule()
+        return MassAssignLeadModule(self.driver)
 
     def enter_check_box(self):
         check_box = self.driver.find_element(By.XPATH,
-                                             "//li[@userid='122']//div[1]")
+                                             "//div[contains(text(), 'Panda Auto')]")
         check_box.click()
 
-        return MassAssignLeadModule()
+        return MassAssignLeadModule(self.driver)
 
     def click_save(self):
         save_button = self.driver.find_element(By.XPATH,
                                                "//button[contains(text(),'Assign')]")
         save_button.click()
-        return MassAssignLeadModule()
+        return MassAssignLeadModule(self.driver)

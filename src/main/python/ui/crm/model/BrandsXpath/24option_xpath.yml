@@ -1,0 +1,13 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CADepositPage:
+  deposit_page: "//li[@data-groups='Creditcard Mostused']"
+CALoginPage:
+  close_payment_btn: "//*[@id='modal-close' and @class='close']"
+  campaign_close_btn: "//button[@id='close-demo']"
+  login_btn: "//span[contains(text(), 'Log In')]"
+  login_email_input: "//*[@id='Username']"
+  login_password_input: "//*[@id='Password']"
+  login_btn_2: "//input[@value='Log in']"
+WebTraderPage:
+  price: "//td[contains(text(),'%s')]//following-sibling::td[contains(@data-bind,'markupBid')]"
+  asset_group: "//label[contains(text(),'%s')]"

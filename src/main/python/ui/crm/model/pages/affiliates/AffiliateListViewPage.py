@@ -263,10 +263,11 @@ class AffiliateListViewPage(CRMBasePage):
             return False
 
     def click_delete_icon_and_confirm_deletion(self):
+        sleep(1)
         delete_button = self.driver.find_element(By.XPATH, "//tr[@class='tableRow']//td[12]")
         delete_button.click()
 
-        sleep(1)
+        sleep(3)
         confirm_button = self.driver.find_element(By.XPATH, "//div/bs-modal-footer/div/button[2]")
         confirm_button.click()
         sleep(1)

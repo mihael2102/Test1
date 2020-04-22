@@ -1,0 +1,73 @@
+# ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+ApiPrecondition:
+  partner_id: "3898"
+AssetPricePreconditionCA:
+  asset: "EURUSD"
+ClientsMassEditPreconditionUI:
+  client_status: "B - Test"
+  field_citizenship: "Citizenship"
+ConvertLeadPreconditionUI:
+  convert_lead_currency: "EUR"
+  field_citizenship: "Citizenship"
+CreateUserPreconditionUI:
+  role: "Support Rep"
+CryptoQuotesPreconditionCA:
+  asset: "BTCEUR"
+DepositCAPrecondition:
+  client_name: "Test"
+DepositTestCRM:
+  live_acc_platform: ""
+  live_acc_server: "Live"
+  live_acc_currency: "USD"
+  live_acc_group: "USD"
+  live_acc_leverage: "100"
+LeadModuleTest:
+  EVAL_first_name: "'testqa' + (''.join(random.sample(string.ascii_uppercase*6, 6)))"
+  last_name: "Doe"
+  EVAL_email: "'pandaqa+' + (datetime.utcnow().strftime('%Y%m%d%H%M%S%f')) + '@pandats.com'"
+  EVAL_email1: "'pandaqa+' + (datetime.utcnow().strftime('%Y%m%d%H%M%S%f')) + 'c@pandats.com'"
+  phone: "7777777"
+  phone_area_code: 111
+  birthday: "1971-01-01"
+  day: "1"
+  month: "JAN"
+  year: "1971"
+  country: "Germany"
+  citizenship: "German"
+  street: "My street"
+  city: "Berlin"
+  postal_code: "11111"
+  first_password: "Abcd1234"
+  new_password: "Panda123456"
+  first_currency: "EUR"
+  first_referral:
+  brand:
+  first_source_name: "source 1"
+LeadPrecondition:
+  m_assign_lead_status: "R - New"
+  m_edit_lead_status: "B - Test"
+LoginCAPrecondition:
+  client_name: "Test"
+MT4CreateTAPreconditionUI:
+  create_mt_user: "Create MT User"
+  d_acc_currency: "USD"
+MT4CreditInPreconditionUI:
+  create_mt_user: "Create MT User"
+  l_acc_currency: "EUR"
+  live_acc_group: "live"
+MT4DepositPreconditionUI:
+  create_mt_user: "Create MT User"
+  live_acc_group: "live"
+  l_acc_currency: "EUR"
+TradingAccountPrecondition:
+  demo_acc_currency: "EUR"
+  demo_acc_currency_usd: "USD"
+  demo_acc_leverage: "1:100"
+  live_acc_leverage: "1:100"
+  initial_deposit_amount: "50000"
+  demo_acc_server: "Demo"
+  live_acc_server: "Live"
+TradingPreconditionLive:
+  asset: "XRPUSD"
+WorkflowsPrecondition:
+  client_status: "B - Test"

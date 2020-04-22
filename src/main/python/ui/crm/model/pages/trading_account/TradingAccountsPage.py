@@ -1,8 +1,8 @@
 from time import sleep
 
 from datetime import *
-import allure
-from allure.constants import AttachmentType
+#import allure
+#from allure.constants import AttachmentType
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
@@ -15,9 +15,6 @@ from src.main.python.utils.logs.Loging import Logging
 
 class TradingAccountsPage(CRMBasePage):
     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
-
-    # def __init__(self):
-    #     super().__init__()
 
     def open_create_filter_pop_up(self):
         element = super().wait_element_to_be_clickable("//a[contains(text(),'Create Filter')]")
@@ -105,8 +102,8 @@ class TradingAccountsPage(CRMBasePage):
         return tab_text.text
 
     def perform_screen_shot_trading_account(self, tab):
-        allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
-                                    type=AttachmentType.PNG)
+        #allure.MASTER_HELPER.attach('screenshot', self.driver.get_screenshot_as_png(),
+         #                           type=AttachmentType.PNG)
         Logging().reportDebugStep(self, "Screenshot was performed for " + tab)
         return TradingAccountsPage()
 

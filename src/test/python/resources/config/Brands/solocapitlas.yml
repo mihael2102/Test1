@@ -1,2 +1,7 @@
 pretty_name: "Solocapitals"
 url: "https://solocapitals.ptscrm.com/"
+url_ca: "https://www.solocapitals.net/#/"
+otp_secret: TYP45DNKQL6JGIJX
+email_live_acc: "QATest@pandats.com"
+password_live_acc: "testingQA12"
+number_live_acc: "32342"

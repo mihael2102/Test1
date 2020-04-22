@@ -1,0 +1,8 @@
+brands:
+
+- name: royal_cfds
+  config_file: royal_cfds.yml
+- name: uprofx
+  config_file: uprofx.yml
+- name: swisscci
+  config_file: swisscci.yml

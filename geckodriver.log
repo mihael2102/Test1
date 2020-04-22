@@ -1,0 +1,1218 @@
+1542706414247	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.ErSbXvwRBvym"
+*** You are running in headless mode.
+1542706418941	Marionette	INFO	Listening on port 57861
+1542706419217	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+1542706561894	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.qapshP4R836O"
+1542706566620	Marionette	INFO	Listening on port 62392
+1542706566843	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 2700, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+[Parent 2700, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 2700, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 1324, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 1324, Chrome_ChildT[Child 8100, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542706600571	Marionette	INFO	Stopped listening on port 62392
+[
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1542706689373	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.604FrEDugmJu"
+*** You are running in headless mode.
+1542706693433	Marionette	INFO	Listening on port 62498
+1542706693724	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542706731043	Marionette	INFO	Stopped listening on port 62498
+[Parent 61896, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 61896, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 42232, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542706738138	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.L9DrfFr7dj2c"
+*** You are running in headless mode.
+1542706742128	Marionette	INFO	Listening on port 62583
+1542706742491	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542707171146	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.w0dRZWLrd4UL"
+*** You are running in headless mode.
+1542707175298	Marionette	INFO	Listening on port 61119
+1542707175561	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542707213023	Marionette	INFO	Stopped listening on port 61119
+[Parent 27884, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 27884, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 63380, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542707219989	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.NmpZrlAZxuNo"
+*** You are running in headless mode.
+1542707224060	Marionette	INFO	Listening on port 61206
+1542707224396	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542707247588	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.md9COa6ppDj1"
+*** You are running in headless mode.
+1542707253380	Marionette	INFO	Listening on port 61269
+1542707253411	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://fxpmarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+JavaScript warning: https://fxpmarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://fxpmarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://fxpmarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+1542707289160	Marionette	INFO	Stopped listening on port 61269
+[Child 21360, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 21360, Chrome_Ch[Parent 20280, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 40560, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Child 16480, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Chi
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542707291295	Marionette	INFO	Stopped listening on port 61266
+[Child 53232, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542707298439	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.ds2x4kMw5Z46"
+*** You are running in headless mode.
+1542707304119	Marionette	INFO	Listening on port 61430
+1542707304561	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statementJavaScript warning: https://fxpmarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+line 27: unreachable code after return statement
+1542707953336	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.ic8M6BfTtypR"
+1542707967715	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.YwzmnP1uH6l7"
+*** You are running in headless mode.
+1542707973555	Marionette	INFO	Listening on port 49385
+1542707973842	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statementconsole.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/rconsole.error: BroadcastServJavaScript warning: https://fxpmarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://fxpmarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://fxpmarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+1542708010471	Marionette	INFO	Stopped listening on port 49386
+[Parent 33452, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 17624, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 33452, Gecko_IOThread] WARNIJavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+ING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 12256, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 33452, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 48044, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542708017001	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.u9fbOJ9ZM6fN"
+*** You are running in headless mode.
+1542708020997	Marionette	INFO	Listening on port 49518
+1542708021355	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542716205890	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.ojXxmj9TJacb"
+*** You are running in headless mode.
+1542716211801	Marionette	INFO	Listening on port 54362
+1542716211992	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+[Parent 56480, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+1542716234504	Marionette	INFO	Stopped listening on port 54362
+[Parent 56480, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 46740, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Parent 56480, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 16160, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542716238137	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.57O0ol5Fbvfh"
+1542716241677	mozrunner::runner	INFO	Ru1542716243157	Marionette	INFO	Listening on port 54493
+1542716243660	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 30464, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromJavaScript warning: https://royalcfds.ptscrm.com:300JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=JavaScript warning: https://royalcfds.ptscrm.com/jscalenJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_r1542716266711	Marionette	INFO	Stopped listening on port 54508
+[Child 53468, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/[iParent 39720p,c G/ecchromium/skrc/chrome/common/io_IOThre1542716266950	Marionette	INFO	Stopped listening on port 54493
+[Parent 30464, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 61044, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Parent 30464, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 11032, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 11032, Chrome_ChildThread[Parent 30464, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 56652, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542716274526	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.U2V2UuW0DlGa"
+*** You are running in headless mode.
+1542716281173	Marionette	INFO	Listening on port 54650
+1542716281407	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716303554	Marionette	INFO	Stopped listening on port 54650
+[Child 47624, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 47624, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 56404, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 56404, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 53756, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc[Parent 56404, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 25260, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[1542716311488	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.Z2Xp2uWkZrWi"
+*** You are running in headless mode.
+1542716319048	Marionette	INFO	Listening on port 54783
+1542716319385	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 42560, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716345568	Marionette	INFO	Stopped listening on port 54783
+[Parent 42560, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript error: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 269: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+[Parent 17052, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716377943	Marionette	INFO	Stopped listening on port 54896
+[Child 22668, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 17052, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.ccJavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb1542716388365	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marione1542716391351	Marionette	INFO	Stopped listening on port 55049
+[Parent 34204, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, li1542716397201	Marionette	INFO	Listening on port 55219
+1542716397443	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 2744, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 2744, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://royaJavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreaJavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716430959	Marionette	INFO	Stopped listening on port 55222
+[Parent 2744, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 43864, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341542716434874	Marionette	INFO	Stopped listening on port 55219
+[Parent 21904, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 19744, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Child 57656, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chroJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27JavaScript warning: https://royalcfds.ptscr1542716442761	Marionette	INFO	Stopped listening on port 55298
+[Child 63564, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/[cChild 39520, Chrome_hChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/c1542716444200	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.DQMTw0vp3zcX"
+*** You are running in headless mode.
+1542716449348	Marionette	INFO	Listening on port 55529
+1542716449668	Marionette	WARN	TLS certificate errors will be ignored for this session
+/chrome/common/ipc_channel_win.cc, line 346
+[C1542716453525	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.ZW5UwhYuBdBW"
+1542716457220	mozrunner::runner	INFO	Ru1542716459297	Marionette	INFO	Listening on port 55588
+1542716459316	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after retu1542716465420	JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after retJavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 50712, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 50712, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+1542716488273	Marionette	INFO	Stopped listening on port 55603
+[Parent 50712, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 50712, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 50712, Gecko_IOThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513
+[Parent 50712, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 62836, Chrome_ChildThread] WARNIN*** You are running in headless mode.
+1542716493465	Marionette	INFO	Listening on port 55714
+15427164939071542716496877	mozrunner::runner	INFO	Running command: "C:\\Program Files\\JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d1542716505338	Marionette	INFO	Listening on port 55752
+[Child 33748, Chrome_ChildThrJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceJavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716528618	Marionette	INFO	Stopped listening on port 55752
+[Child 10452, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child [Child 5360, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 11920, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 9104, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542716528255	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.pNcUJwgZs1ST"
+*** You are running in headless mode.
+1542716534193	Marionette	INFO	Listening on port 55871
+1542716534408	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return s1542716545[Parent 16476, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, JavaScriptconsole.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  [Parent 59868, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716564980	Marionette	INFO	Stopped listening on port 55912
+JavaScript error: resource://gre/modules/WebProgressChild.jsm, line 58: TypeError: this.mm.content is null
+[Child 12620, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1542716574161	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.UFQEQ0FOLj8g"
+*** You are running in headless mode.
+1542716582918	Marionette	INFO	Listening on port 56001
+1542716583036	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716607550	Marionette	INFO	Stopped listening on port 56001
+[[Parent 9996, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[Parent 9996, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 14192, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Cline 346
+[C[Parent 8548, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1542716611435	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.uM2nC4lXPPWp"
+*** You are running in headless mode.
+1542716617432	Marionette	INFO	Listening on port 56101
+1542716617567	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716650150	Marionette	INFO	Stopped listening on port 56101
+[[Parent 13624, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 240, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Cn/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716659933	Marionette	INFO	Stopped listening on port 56121
+[Parent 30536, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 47992, Chrome_ChildThread] WARNING: pipe error: 109: file z*** You are running in headless mode.
+1542716666422	Marionette	INFO	Listening on port 56224
+1542716666498	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 61316, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716699464	Marionette	INFO	Stopped listening on port 56224
+[Child 49616, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 61316, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 61316, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 59616, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Parent 61316, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 63228,1542716709196	Marionette	INFO	Stopped listening on port 56263
+[Child 26940, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 41756, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 41756, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromiu1542716712203	Marionette	INFO	Listening on port 56366
+1542716712395	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716733623	Marionette	INFO	Stopped listening on port 56366
+[Parent 49120, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 5396, Chrome_ChildThread] WARNING: pipe er[Parent 63464, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716741321	Marionette	INFO	Stopped listening on port 56407
+[Parent 6341542716741839	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.uI9PyGBIQysG"
+*** You are running in headless mode.
+1542716747076	Marionette	INFO	Listening on port 56495
+1542716747328	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716768369	Marionette	INFO	Stopped listening on port 56495
+[Parent 50364, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 64744, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[C[Parent 50364, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 31364, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716776956	Marionette	INFO	Stopped listening on port 56532
+[Child 45716, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 25372, Gecko_IOThread] WARNING: pipe error: 109: file*** You are running in headless mode.
+1542716782481	Marionette	INFO	Listening on port 56633
+1542716782776	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 8252, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+1542716809633	Marionette	INFO	Stopped listening on port 56633
+[Child 27104, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/com[mPon/ipc_channela_rwent 8252, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chironm.ec/comcm,on/ipc_channel_w ilni.ncc, linee 346
+ 346
+[Child 27104, Chrome_ChildThread] WARNI[Parent 8252, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 21204, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716818070	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.xvTqAl1S2Chk"
+*** You are running in headless mode.
+1542716822958	Marionette	INFO	Listening on port 56769
+1542716823105	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716840969	Marionette	INFO	Stopped listening on port 56769
+[Child 26012, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 58796, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 58796, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 58796, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 1440, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 3461542716858278	Marionette	INFO	Stopped listening on port 56794
+[Child 36784, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 20724, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 20724, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chromJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716872744	Marionette	INFO	Stopped listening on port 56872
+[Child 5428, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.A4fwPZv0vyS6"
+*** You are running in headless mode.
+1542716873543	Marionette	INFO	Listening on port 56925
+1542716873683	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542716881006	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--windoJavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement1542716887719	Marionette	INFO	Listening on port 56969
+1542716888200	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716916507	Marionette	INFO	Stopped listening on port 56969
+[Parent 56332, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 62236, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542716895109	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.3ZAyv580LwRg"
+*** You are running in headless mode.
+1542716901552	Marionette	INFO	Listening on port 57022
+1542716901739	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+[Parent 25736, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542716927501	Marionette	INFO	Stopped listening on port 57022
+[Parent 25736, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 19952, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chro1542716929948	Marionette	INFO	Listening on port 57084
+1542716930284	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+[Parent 47260, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542717056244	Marionette	INFO	Stopped listening on port 57084
+[Parent 47260, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 55892, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[Parent 47260, Gecko_IOThread] 
+WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 61636, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 47260, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542717081351	Marionette	INFO	Stopped listening on port 57132
+[Child 42788, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 13896, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 49828, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 13896, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 8296, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cJavaScript warni1542717089233	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-fo1542717098779	Marionette	INFO	Stopped listening on port 57280
+[Parent 42044, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 54628, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipJavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+[Parent 34964, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542717120108	Marionette	INFO	Stopped listening on port 57337
+[Parent 34964, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 18392, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Child 21744, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 3JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 11560, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542717267002	Marionette	INFO	Stopped listening on port 57386
+[Parent 11560, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 51740, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Child 23356, Chrome_C
+###!!! [Child][MessageChannel] Error: (msgtype=0x980002,name=PWebSocket::Msg_Close) Channel closing: too late to send/recv, messages will be lost
+
+hildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Parent 11560, Gecko_IOThread] WARNING: pipe error: 109: 1542717280706	Marionette	INFO	Stopped listening on port 57443
+[Child 13416, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 10108, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 10108, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 37684, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 10108, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 13696, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channeJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 41284, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 41284, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 41284, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542717436026	Marionette	INFO	Stopped listening on port 57793
+[Child 21812, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 21812, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 41284, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 33944, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+1542717415265	Marionette	INFO	Stopped listening on port 51021
+[Child 66460, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 45364, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 45364, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 6960, Chrome_ChildThread] WARNING: pipe error: 109: file 
+###!!! [Child][MessageChannel] Error: (msgtype=0x580027,name=PNecko::Msg_RemoveRequestContext) Channel closing: too late to send/recv, messages will be lost
+
+z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Chil[Parent 45364, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 66536, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Cline 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+[Parent 34452, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after returJavaScript waJavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning:JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 2400, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScrJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return JavaScript JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after retJavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+console.error: Broadcasconsole.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote1542717549878	MarionettJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542717604964	Marionette	INFO	Stopped listening on port 51661
+[Child 11568, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line [Parent 50344, Gecko_IOThread] WARNING: pipe error: 109: file z:/build3/46b
+uild/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 50344, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 57632, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Parent 50344, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 58784, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Cttings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542717521632	Marionette	INFO	Stopped listening on port 51798
+[Parent 61532, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 47916, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch1542717529107	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.XcbaowCMqZwa"
+*** You are running in headless mode.
+1542717533855	Marionette	INFO	Listening on port 52054
+1542717534107	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return state1542717568381	Marionette	INFO	Listening on port 52122
+[Parent 39112, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 51436, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542717568625	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 39112, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 39112, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 39112, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542717729744	Marionette	INFO	Stopped listening on port 52122
+[Child 14980, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[Parent 39112, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 39112, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 41776, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Parent 39112, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 66104, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[source=true, line 27: unreachable code after return statementJaJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return state154271JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542717778033	Marionette	INFO	Stopped listening on port 52314
+[Parent 65692, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 65692, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 62616, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Parent 65692, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 59020, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Cmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return stateJavaScJavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return sJavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 34048, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warniJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 18744, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542717918071	Marionette	INFO	Stopped listening on port 52894
+[Child 16516, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 18744, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 18744, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 33124, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Parent 18744, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 12928, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 7392, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 7392, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.p[Parent 14024, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, liJavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 7392, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542718049314	Marionette	INFO	Stopped listening on port 53270
+[Child 9164, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 7392, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 7392, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 54968, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Curn statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542718081470	Marionette	INFO	Stopped listening on port 53329
+[Child 14760, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 14760, Chrome_ChildThread] WARNING: pipe error: 109: [Parent 14024, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 14024, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 57604, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Parent 14024, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 24400, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Chr/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 60692, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: http[Parent 60692, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 60692, GeckJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable c1542718210122	Marionette	INFO	Stopped listening on port 58893
+[Parent 60692, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+1542718230302	Marionette	INFO	Stopped listening on port 58941
+[Parent 10296, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 10296, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 10296, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 51284, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Chi[Parent 10296, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 59600, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[CmoteSettingsFunction/remoteSettings.pollChanges@resource://services-set1542718222759	Marionette	INFO	Listening on port 59396
+1542718223001	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+[Parent 50484, Gecko_IOThread] WARNING: pipe error: 109: file z:/buildJavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542718264608	Marionette	INFO	Stopped listening on port 58996
+[Child 44936, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 14968, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 38220, Chrome_ChildThread] WARNING: pipe error: 109: fJavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 50484, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 50484, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542718388026	Marionette	INFO	Stopped listening on port 59396
+[Child 61312, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Parent 50484, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 39400, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[CJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542718411119	Marionette	INFO	Stopped listening on port 59532
+[Parent 61256, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 36836, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 61256, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 63624, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ccalendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542718449470	Marionette	INFO	Stopped listening on port 55801
+[Child 12920, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 12920, Chrome_ChildThread] WARNING: pipe er[Parent 22236, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 22236, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 22JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://royalcfds.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542718512934	MarionettJavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com/jscalendar/calendar.js?v=3.68.0.14.5, line 1695: unreachable code after return statement
+JavaScript warning: https://goldenmarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+console.error: BroadcastService: 
+  receivedBroadcastMessage: handler for
+  remote-settings/monitor_changes
+  threw error:
+  Message: Error: Polling for changes failed: NetworkError when attempting to fetch resource..
+  Stack:
+    remoteSettingsFunction/remoteSettings.pollChanges@resource://services-settings/remote-settings.js:721:13
+
+1542718573359	Marionette	INFO	Stopped listening on port 56189
+[Child 46860, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 21916, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 21916, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 21916, Gecko_IOThread] WARNING: pipe error: 232: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 513
+[Child 47528, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Parent 21916, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 15196, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 15196, Chrome_ChildThread] WARNING: pipChanges@resource://services-settings/remote-settings.js:721:13
+
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542718568191	Marionette	INFO	Stopped listening on port 63148
+[Parent 13704, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 40492, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Child 36624, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 13704, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 62256, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[CWARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542718551915	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.ecoma6u0rSLk"
+*** You are running in headless mode.
+1542718556242	Marionette	INFO	Listening on port 63302
+1542718556328	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718559403	Marionette	INFO	Stopped listening on port 63302
+[Parent 16308, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[CChild 55840, Chrhome_ChildThirld 66184, Chrome_ChildThreeaad] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_chadn] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346n
+el_win.cc, line 346
+[C[Parent 16308, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 51720, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542718565403	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.fsU0qHaYyG82"
+*** You are running in headless mode.
+1542718570221	Marionette	INFO	Listening on port 63345
+1542718570487	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718576639	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.3W2mEelbrZ8N"
+*** You are running in headless mode.
+1542718581863	Marionette	INFO	Listening on port 63377
+1542718582245	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542718706334	Marionette	INFO	Stopped listening on port 63377
+[Parent 65808, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 5184, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 5184, Chrome_C[Child 27616, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Parent 65808, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 14024, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 14024, Chle z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[CING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[CJavaScript error: jar:file:///C:/Program%20Files/Mozilla%20Firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 597: TypeError: this.tablesData[table] is undefined
+1542718596705	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.U9m497DyzP0S"
+1542718600170	mozrunner::runner	INFO	Ru1542718602090	Marionette	INFO	Listening on port 63496
+1542718602264	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718605340	Marionette	INFO	Stopped listening on port 63496
+[Parent 10708, Gecko_IOThread] WARNING: pipe error: 109: file z:/b1542718606613	Marionette	INFO	Listening on port 63510
+1542718606839	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718609929	Marionette	INFO	Stopped listening on port 63510
+[[CPharent 54452, Gecko_IOThread] WARNING: pipe error: 109: file z:/buildi/lbdu i3l1d/src/ipc/chromium/src/chrome/common/ipc_c5han3n6e,l _Cwin.cc, line 346h
+rome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Child 52004, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[
+Parent 54452, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 23972, Ch1542718611456	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.2U6n2TFeKBTU"
+*** You are running in headless mode.
+1542718617475	Marionette	INFO	Listening on port 63556
+1542718617638	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718620716	Marionette	INFO	Stopped listening on port 63556
+[[CChild 53hild 28432, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chrom2i01542718622634	Marionette	INFO	Listening on port 63574
+1542718622764	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718625861	Marionette	INFO	Stopped listening on port 63574
+[[Child 41832, Chrome_ChilCdhild 18664, Thread] WARNICNhrome_ChildThread] WARNING: Gp:ipe  perror: 109: file z:/build/build/src/ipc/chromium/siprc/chrome/common/ipc_channel_win.cc, line 346e
+ [Cherror: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_chan1542718627852	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.vUDdyG0uhR9p"
+*** You are running in headless mode.
+1542718633138	Marionette	INFO	Listening on port 63625
+1542718633389	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718636456	Marionette	INFO	Stopped listening on port 63625
+[Parent 8960, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[Parent 8960, CGechko_IOThread] iWlAdR NI3N4G: pipe error: 10536, Chro9m:e_Chil dfTileh zr:e/builda/dbuild/src/ipc/chromium/src]/ cWhArRome/com1542718637657	Marionette	INFO	Listening on port 63640
+1542718637872	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718640958	Marionette	INFO	Stopped listening on port 63640
+[Parent 43668, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 43668, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 54460, Chro[Child 54696, Chrome_ChildThread] WARNING: pipe error: 109: file z:/bu1542718642763	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.3mRU7vyXExc5"
+*** You are running in headless mode.
+1542718648904	Marionette	INFO	Listening on port 63697
+1542718648945	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718652042	Marionette	INFO	Stopped listening on port 63697
+[[Child 27172, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C"-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.RwpQwE3UBYg8"
+*** You are running in headless mode.
+1542718654676	Marionette	INFO	Listening on port 63715
+1542718654724	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718659322	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.vJcj76IlBSqQ"
+*** You are running in headless mode.
+1542718664103	Marionette	INFO	Listening on port 63770
+1542718664350	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718667470	Marionette	INFO	Stopped listening on port 63770
+[[CChild 7028, Chrome_ChilhdThread] WARNING: pipe error: 109: fiilld 41104, Chrome_ChildThread] WAReN IzN:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346G
+: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[Parent 48996, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+g command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.piiyGgJYs1YV"
+*** You are running in headless mode.
+1542718669019	Marionette	INFO	Listening on port 63794
+1542718669423	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718673736	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.O4mcE5eladLg"
+*** You are running in headless mode.
+1542718679686	Marionette	INFO	Listening on port 63839
+1542718679931	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718683040	Marionette	INFO	Stopped listening on port 63839
+[Parent 3308, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[ChCihlidl d11300, C h1r7o4m6e8_,C hCihlrdThread] WARoNmIeN_GC:h iplidpe error: 109: file z:/build/build/src/iTpc/chromium/src/chrome/common/ipc_channel_hwrienad] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel._cwin.ccc,, l ilnien e3 4364
+6[C
+[CJavaScript error: jar:file:///C:/Program%20Files/Mozilla%20Firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 597: TypeError: this.t1542718685228	Marionette	INFO	Listening on port 63856
+1542718685409	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718688492	Marionette	INFO	1542718690389	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.h9zBLy1uORHE"
+*** You are running in headless mode.
+1542718695879	Marionette	INFO	Listening on port 63908
+1542718695939	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718699076	Marionette	INFO	Stopped listening on port 63908
+[Parent 16520, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 29212, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Cl_win.cc, line 346u
+ild/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[1542718694097	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.E4SOOJ5khGW9"
+*** You are running in headless mode.
+1542718701466	Marionette	INFO	Listening on port 63924
+1542718701802	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718706144	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.LEl20P5ThO6X"
+*** You are running in headless mode.
+1542718711782	Marionette	INFO	Listening on port 63971
+1542718711793	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718714914	Marionette	INFO	Stopped listening on port 63971
+[Parent 20020, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 20020, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[C[ChPhiailrlded n 58492, Chrome_ChildThr5tead] WARNING: pipe error: 109: file z:/bui 5l20020, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+0d4/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.c0[c, line 346,C
+ hildChrome_ChildThread] WARNI1542718716845	Marionette	INFO	Listening on port 63986
+1542718717063	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718720153	Marionette	INFO	Stopped listening on port 63986
+[Parent 44816, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/1542718721857	Marionette	INFO	Listening on port 64026
+1542718722113	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 49964, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 49964, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542718910394	Marionette	INFO	Stopped listening on port 64026
+[Child 52432, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chr[oParent 49964, Gecko_mIiOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/usmr/csrc//chrome/common/ipc_channel_win.cc, line 346
+chrome/common/ipc_channel_win.cc, line 346
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+
+[C[Parent 49964, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 57452, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Crogram Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.0dU54wRKwz4A"
+*** You are running in headless mode.
+1542718759443	Marionette	INFO	Listening on port 64212
+1542718759766	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718762838	Marionette	INFO	Stopped listening on port 64212
+[[Child 43880, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[CJavaScript error: jar:file:///C:/Program%20Files/Mozilla%20Firefox/omni.ja!/components/nsUrlClassifierListManage[Child 50140, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch1542718766037	Marionette	INFO	Listening on port 64229
+1542718766558	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718771557	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.11B5nnyRtgBG"
+*** You are running in headless mode.
+1542718777281	Marionette	INFO	Listening on port 64291
+1542718777733	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718780810	Marionette	INFO	Stopped listening on port 64291
+[Parent 47184, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 47184, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[CChild 59612, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, lin[heParent 47184, Gecko_IOThread] WARNING: pipe error: 109: file z:/buil id346ld 54608, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/sr/
+cb/uilcdh/src/ipc/chromium/src/chr1542718783383	Marionette	INFO	Listening on port 64314
+1542718783428	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718786496	Marionette	INFO	Stopped listening on port 64314
+[Child 17588, Chro[mChild 1542718787961	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.qFBuW0bi9ldZ"
+*** You are running in headless mode.
+1542718796530	Marionette	INFO	Listening on port 64374
+1542718796883	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718800015	Marionette	INFO	Stopped listening on port 64374
+[Parent 47636, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 47636, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 42232, Chrome_ChildThread] WARNING: pipe error: 109: file z:/buil1542718802817	Marionette	INFO	Listening on port 64426
+1542718803387	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718806484	Marionette	INFO	Stopped listening on port 64426
+[[CChhild 21712, iClhd 8824, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 3461542718807751	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.hkZqHVsfTHcY"
+*** You are running in headless mode.
+1542718813212	Marionette	INFO	Listening on port 64527
+1542718813252	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718816355	Marionette	INFO	Stopped listening on port 64527
+[Parent 22724, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 22724, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[CChhiilldd  12102688, Chrome_ChildThread] WARNING: pipe error: 1094:8 ,f iClhe z:/build/builrome_Child/src/ip1542718819305	Marionette	INFO	Listening on port 64550
+1542718819653	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718822730	Marionette	INFO	Stopped listening on port 64550
+[Parent 37540, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 33276, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_chan1542718823390	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.KjwGmcurLwD4"
+*** You are running in headless mode.
+1542718828920	Marionette	INFO	Listening on port 64589
+1542718829003	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718832084	Marionette	INFO	Stopped listening on port 64589
+[Parent 42304, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 42304, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[C[ChPhild 21180, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipcia/lrent 42304, Gecko_IOTh1542718834458	Marionette	INFO	Listening on port 64615
+1542718834615	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718837685	Marionette	INFO	Stopped listening on port 64615
+[[CChild 43904, Chrome_ChildThread] WARNING: pipe error:h ild 94601,09: file  zC:h/rome_ChildbTuhirld/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346e
+ad] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/commo1542718838835	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.lCig3mnOw21a"
+*** You are running in headless mode.
+1542718844126	Marionette	INFO	Listening on port 64650
+1542718844374	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718847442	Marionette	INFO	Stopped listening on port 64650
+[Child 11428, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chro1542718850959	Marionette	INFO	Listening on port 64672
+1542718851058	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718854233	Marionette	INFO	Stopped listening on port 64672
+[Parent 37072, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_w1542718855733	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.XDERYFFoDdkF"
+*** You are running in headless mode.
+1542718862190	Marionette	INFO	Listening on port 64728
+1542718862354	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718865466	Marionette	INFO	Stopped listening on port 64728
+[Parent 21140, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[CChhiilldd  211692, Chrome_ChildThread] WARNING: pip3e2 2e0r,r oCrh:r o1me_Ch0i9l:d Tfhile z:/brueialdd]/ bWuAiRlNdI/NsGr:c /piippce error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346/
+chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 21692, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/JavaScript error: jar:file:///C:/Program%20Files/Mozilla%20Firefox/omni.ja!/components/nsUrlClassifierListManager.j1542718869661	Marionette	INFO	Listening on port 64756
+1542718870014	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718873148	Marionette	INFO	Stopped listening on port 64756
+[Parent 51796, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[C1542718873551	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.W4jAms44rPUf"
+*** You are running in headless mode.
+1542718879954	Marionette	INFO	Listening on port 64838
+1542718880177	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718883314	Marionette	INFO	Stopped listening on port 64838
+[Parent 57076, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript error: jar:file:///C:/Program%20Files/Mozilla%20Firefox/omni.ja!/components/nsUrlClassifierListManager.js, line 597: TypeError: this.tablesData[table] is undefined
+[Parent 57076, Gecko_IOThread] WARNING: pipe error: 1091542718885726	Marionette	INFO	Listening on port 64861
+1542718885772	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718890144	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.xGdWcfBrRLxW"
+*** You are running in headless mode.
+1542718894873	Marionette	INFO	Listening on port 64898
+1542718895187	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718898265	Marionette	INFO	Stopped listening on port 64898
+[Parent 27620, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 27620, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 40896, Chrome_ChildThread] WAR[Parent N2I7NG: 620, Gecko_IOThread] WpAiRpNeI NerrorG: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346:
+ 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_chan[nCel_win.hcc, line 346ild 18891542718900186	Marionette	INFO	Listening on port 64923
+1542718900699	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718904823	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.8iAzw0DIlEgq"
+*** You are running in headless mode.
+1542718909460	Marionette	INFO	Listening on port 64957
+1542718909818	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718912886	Marionette	INFO	Stopped listening on port 64957
+[Parent 24336, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[CChild 663h2i4l, Chrome_ChildThread] WARNING: pipe error: 109: file z:/budi 39872, Chrome_ChildlTdh/rbeuaild/src/ipc/chromium/src/chrome/common/ipc_chadn]nel WARNING:_ win.cc, line 346p
+ipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 24336, Gecko_IOThread] WARNING: file z:/build/build/src/ipc/chromium/src/base/process_util_win.cc, line 188
+[Parent 24336, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 4988, Chrome_ChildThread] WARNING: pipe error: 109: file z:1542718916238	Marionette	INFO	Listening on port 64982
+1542718916588	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718920646	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.FmLQ2YyfMKvb"
+*** You are running in headless mode.
+1542718930940	Marionette	INFO	Listening on port 65030
+1542718931107	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 41916, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+1542719118901	Marionette	INFO	Stopped listening on port 65026
+[Parent 41916, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 4296, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 41916, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542718948405	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.I6hzvwf2e3XT"
+*** You are running in headless mode.
+1542718955380	Marionette	INFO	Listening on port 65159
+1542718955655	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718959994	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.cGtMWtrOQAj5"
+*** You are running in headless mode.
+1542718965587	Marionette	INFO	Listening on port 65207
+1542718965644	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718968761	Marionette	INFO	Stopped listening on port 65207
+[Parent 4324, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 4324, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[CChhiilldd  42611368, Chr2om8, Chrome_ChildThreade_ChildTh]r eWaAdR]N IWNAG: pipe error: 109: file z:/build/buRiNlING: pipd/es 1542718970762	Marionette	INFO	Listening on port 65229
+1542718971263	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718974316	Marionette	INFO	Stopped listening on port 65229
+[Parent 64556, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 64556, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome1542718975331	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.wEmwNmyNXt9w"
+*** You are running in headless mode.
+1542718980468	Marionette	INFO	Listening on port 65267
+1542718980827	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718983905	Marionette	INFO	Stopped listening on port 65267
+[Parent 26808, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[C[ChPhiailrlded n 7596, Chrome_ChildThread] WARNING: pipe error: 109: 3tfile z 7:2416, Chrome_ChildThread] WARNING: 6/build/build/src/ipc/ch8promium/src/chrome/common/ipc_channeli0_p8, Gecko_IOThreweai dn.cc, line 346] WARNING: pipe error: 109: file z:/build/build/src1542718985686	Marionette	INFO	Listening on port 65293
+1542718985968	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718989044	Marionette	INFO	Stopped listening on port 65293
+[Parent 1472, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome1542718990402	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.kC4G9zJ6y4L9"
+*** You are running in headless mode.
+1542718995715	Marionette	INFO	Listening on port 65328
+1542718995877	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542718999008	Marionette	INFO	Stopped listening on port 65328
+[Parent 22460, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 22460, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[Child 31288, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[C
+Pha[irent l2d2 460, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_c1542719003197	Marionette	INFO	Listening on port 65350
+1542719003660	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719006747	Marionet1542719007014	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.m9PUrGgcjyzZ"
+*** You are running in headless mode.
+1542719013498	Marionette	INFO	Listening on port 65423
+1542719013582	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719016698	Marionette	INFO	Stopped listening on port 65423
+[Parent 54632, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 54632, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 37964, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346[
+C[hild 47252, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[CJavaScript error: jar:file:///C:/Program%20Files/Mozilla%20Firefox/omni.ja!/components/nsUrlClassifi1542719019574	Marionette	INFO	Listening on port 65478
+1542719019824	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719022936	Marionette	INFO	Stopped listening on port 65478
+[Parent 185801542719023812	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.GSyPfjJ9h1Lj"
+*** You are running in headless mode.
+1542719029340	Marionette	INFO	Listening on port 65522
+1542719029456	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719032524	Marionette	INFO	Stopped listening on port 65522
+[Parent 19280, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[Child 43000, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346C
+hild 9240, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 19280, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 62824, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[CNNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.5D9688dwmbaQ"
+*** You are running in headless mode.
+1542719034585	Marionette	INFO	Listening on port 49165
+1542719034850	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719038971	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.IhPkIPd1FjSx"
+*** You are running in headless mode.
+1542719043598	Marionette	INFO	Listening on port 49199
+1542719043977	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719047084	Marionette	INFO	Stopped listening on port 49199
+[Parent 27932, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 27932, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[CChhiilld1542719049083	Marionette	INFO	Listening on port 49224
+1542719049407	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719052485	Marionette	INFO	Stopped listening on port 49224
+[[Child 63948, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346Child
+ 42576, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 12988, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/b1542719053736	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.eBLRvtbuvpS7"
+*** You are running in headless mode.
+1542719058809	Marionette	INFO	Listening on port 49260
+1542719059241	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719062358	Marionette	INFO	Stopped listening on port 49260
+[Parent 51132, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/1542719065560	Marionette	INFO	Listening on port 49290
+1542719065583	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719068813	Marionette	INFO	Stopped listening on port 49290
+[[Child 45452, Chrome_ChildCThread] WARNING: pipe error: 109: file z:/build/buildh/src/ipc/chromium/src/chrome/ciommon/ipc_channel_winld 16108, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346.cc, line 346
+
+[C[[Parent 55712, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 45540, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Chi09: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 10612, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542719070412	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.p4OY2RXcXXXM"
+*** You are running in headless mode.
+1542719076650	Marionette	INFO	Listening on port 49349
+1542719077005	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719080098	Marionette	INFO	Stopped listening on port 49349
+[Parent 63388, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/1542719081673	Marionette	INFO	Listening on port 49393
+1542719082165	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719085243	Marionette	INFO	Stopped listening on port 49393
+[Parent 10840, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 10840, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[CChild 8860, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346hJavaScript error: jar:file:///C:/Program%20Files/Mozilla%
+i2ld 53856, Chrom0eFirefox/omni.ja!/components/nsUrlClassifierListManager.j1542719086702	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.1LH5nG3fVV9F"
+*** You are running in headless mode.
+1542719092392	Marionette	INFO	Listening on port 49447
+1542719092829	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719095893	Marionette	INFO	Stopped listening on port 49447
+[Parent 18340, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 18340, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc1542719098093	Marionette	INFO	Listening on port 49470
+1542719098127	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719101251	Marionette	INFO	Stopped listening on port 49470
+[Parent 19224, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[CChild 50772, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346hild 25780, Chr
+o[me_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch[Child 54040, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Chirc/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C1542719102961	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.JcOg0s39RsLP"
+*** You are running in headless mode.
+1542719107586	Marionette	INFO	Listening on port 49508
+1542719107991	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719111074	Marionette	INFO	Stopped listening on port 49508
+[Parent 46904, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/1542719112845	Marionette	INFO	Listening on port 49528
+1542719113340	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719116408	Marionette	INFO	Stopped listening on port 49528
+[Child 24596, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C[Parent 21428, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 52108, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch1542719117579	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.nJy6OOfWJ1OD"
+*** You are running in headless mode.
+1542719123087	Marionette	INFO	Listening on port 49568
+1542719123114	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719126253	Marionette	INFO	Stopped listening on port 49568
+[Parent 49796, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/1542719128687	Marionette	INFO	Listening on port 49588
+1542719128746	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719131829	Marionette	INFO	Stopped listening on port 49588
+[Parent 65944, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/1542719134643	Marionette	INFO	Listening on port 49625
+1542719135139	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+[Parent 46332, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com/jscalendar/calendar.js?v=2.144.0.5.4, line 1695: unreachable code after return statement
+JavaScript warning: https://triomarkets.ptscrm.com:3001/b4ceeb40dd29a35e44b79b18a94a3959d3d5f99e.js?meteor_js_resource=true, line 27: unreachable code after return statement
+ette	INFO	Stopped listening on port 49699
+[Child 22264, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_chan1542719152587	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.EDv9yFsaeI6d"
+*** You are running in headless mode.
+1542719157913	Marionette	INFO	Listening on port 49757
+1542719158175	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719161246	Marionette	INFO	Stopped listening on port 49757
+[[CChild 64188, Chrome_Chhiild 43928, lCdhTrhormeead] WA_RCNhIiNlGd:T hread] WARNING: pipe error: 109: file z:/build/build/src/ipcp/icphe1542719163588	Marionette	INFO	Listening on port 49779
+1542719163934	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719167027	Marionette	INFO	Stopped listening on port 49779
+[Parent 34936, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[CChild 55520, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, lineh 346i
+ld 11542719168574	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.IldthresiBFO"
+*** You are running in headless mode.
+1542719174172	Marionette	INFO	Listening on port 49822
+1542719174672	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719177759	Marionette	INFO	Stopped listening on port 49822
+[[C[ChPhild 64516, Chrome_ChildThread]ia lred 66nW1tA3 R24N,7I CN296, Gecko_IOThhGrr:eo ad] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/srcpm/ipe error: 109: file z:/buceih_lrCdoh/mibuild/src/leid/common/ipc_channel_win.cc, line 346
+pTc/chromium/src/chrhread] o[WmCARNING: pipe errheor: 109: fii/common/ipc_channel_win.cc, line 346ll
+de z: /build/build/src/ipc/chromium/src/chrome/co1542719178912	Marionette	INFO	Listening on port 49837
+1542719179281	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719182376	Marionette	INFO	Stoppe1542719184044	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.gbMcUtXtTqFf"
+*** You are running in headless mode.
+1542719188949	Marionette	INFO	Listening on port 49883
+1542719189079	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719192235	Marionette	INFO	Stopped listening on port 49883
+[Child 58260, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[Parent 64060, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 40452, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.UEq5l0HMNAoH"
+*** You are running in headless mode.
+1542719195418	Marionette	INFO	Listening on port 49899
+1542719195466	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719200512	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.Sm0N6pmOWiZV"
+*** You are running in headless mode.
+1542719207376	Marionette	INFO	Listening on port 49957
+1542719207759	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719210862	Marionette	INFO	Stopped listening on port 49957
+[Child 48900, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 48900, Chrome_ChildTh[Parent 36572, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 38968, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[C "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.wsikYpIWuXsP"
+*** You are running in headless mode.
+1542719213652	Marionette	INFO	Listening on port 49977
+1542719213910	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719218936	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.NlCiZRkQ9fxI"
+*** You are running in headless mode.
+1542719225157	Marionette	INFO	Listening on port 50073
+1542719225622	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719228727	Marionette	INFO	Stopped listening on port 50073
+[Parent 59764, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 59764, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[CChild 1952h8i,ld 1716 0, Chrome_ChildThread] WARNINCGh: pripe error: 109: file z:/build/build/src/ipc/chroommium/e_ChildThread] sWARNING: pipe rerror: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, licne 346/
+chrome/common/[Child 19528, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 34ipc_channel_win.cc, line 346
+[CJava1542719232033	Marionette	INFO	Listening on port 50088
+1542719232352	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719235415	Marionette	INFO	1542719236182	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.4n49rZFe8R88"
+*** You are running in headless mode.
+1542719241423	Marionette	INFO	Listening on port 50138
+1542719241753	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719244813	Marionette	INFO	Stopped listening on port 50138
+[Parent 13068, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[[CChildh ild 55460, Chrom5e696, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/b_uCihildThread] WARNING: lpdi/pser error: 109: filec/ipc/chromi uz:/bumi/ld/build/src/ipc/chsrc/chrome/common/ipc_channel_win.cc, line 346r
+omium/src/chrome/common/ipc_channel_win.cc, line 346
+[[Parent 13068, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 59801542719247420	Marionette	INFO	Listening on port 50164
+1542719247439	Marionette	WARN	TLS certificate errors will be ignored for this session
+1542719251598	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "--headless" "--window-size=1920x1080" "-foreground" "-no-remote" "-profile" "C:\\Users\\ANNA~1.POI\\AppData\\Local\\Temp\\rust_mozprofile.g7XaUP3l3tuO"
+*** You are running in headless mode.
+me/common/ipc_channel_win.cc, line 346
+[C[Child 45196, Chrome_ChildThread] WARNING: pipe error: 109: file z[Parent 52136, Gecko_IOThread] WAR:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346NI
+NG: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 52216, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Ch

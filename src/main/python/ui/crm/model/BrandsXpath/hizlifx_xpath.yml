@@ -1,0 +1,15 @@
+FinancialTransactionsPage:
+  client_name_element:  "(//td[4]/div/a)[%s]"
+  transaction_type_element : "(//*[@id='listBody']//tr/td[5])[%s]"
+  transaction_type_field: "(//div/div[1]/ul/li[1]/div/input)[1]"
+  transaction_type_drop_down: "//td[5]/div/div[1]/button"
+  trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
+  modified_time_element: "(//*[@id='listBody']//tr/td[12])[%s]"
+AffiliatePage:
+  countrys: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[contains(text(),'%s')]"
+  methods: "//span[@class = 'hovered-option ng-star-inserted'][contains(text(),'%s')]"
+  button_plus: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[3]/button"
+  methods_drop_down: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]"
+  input_methods: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[5]/div[2]/filter-multi-select/div/div[2]/span[1]/input"
+  blocked_country_drop_down: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[6]/div[2]"
+  input_country: "/html/body/bs-modal[3]/div/div/form/bs-modal-body/div/div[6]/div[2]/filter-multi-select/div/div[2]/span[1]/input"
