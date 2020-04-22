@@ -65,17 +65,18 @@ class ClientDetailsPageUI(CRMBasePage):
         Edit field via pencil icon
     """
 
-    def click_pencil_icon_in_field(self, field):
+    def edit_list_via_pencil(self, field, item):
         GlobalDetailsPageUI(self.driver)\
-            .click_pencil_icon_in_field(field)
-        return ClientDetailsPageUI(self.driver)
-
-    def set_text_pencil_field(self, field, text):
-        GlobalDetailsPageUI(self.driver) \
-            .set_text_pencil_field(field, text)
-        return ClientDetailsPageUI(self.driver)
-
-    def click_confirm_btn_pencil_field(self, field):
-        GlobalDetailsPageUI(self.driver) \
+            .click_pencil_icon_in_field(field) \
+            .select_item_list_pencil_field(field, item) \
             .click_confirm_btn_pencil_field(field)
+        return ClientDetailsPageUI(self.driver)
+
+    def refresh_client_page(self):
+        self.refresh_page()
+        return ClientDetailsPageUI(self.driver)
+
+    def click_edit_btn(self):
+        GlobalDetailsPageUI(self.driver)\
+            .click_edit_btn()
         return ClientDetailsPageUI(self.driver)
