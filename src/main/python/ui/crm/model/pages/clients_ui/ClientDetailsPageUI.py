@@ -60,3 +60,22 @@ class ClientDetailsPageUI(CRMBasePage):
             Logging().reportDebugStep(self, module + " module is opened")
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Module does not exist (NOT RUNNED)")
+
+    """
+        Edit field via pencil icon
+    """
+
+    def click_pencil_icon_in_field(self, field):
+        GlobalDetailsPageUI(self.driver)\
+            .click_pencil_icon_in_field(field)
+        return ClientDetailsPageUI(self.driver)
+
+    def set_text_pencil_field(self, field, text):
+        GlobalDetailsPageUI(self.driver) \
+            .set_text_pencil_field(field, text)
+        return ClientDetailsPageUI(self.driver)
+
+    def click_confirm_btn_pencil_field(self, field):
+        GlobalDetailsPageUI(self.driver) \
+            .click_confirm_btn_pencil_field(field)
+        return ClientDetailsPageUI(self.driver)
