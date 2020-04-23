@@ -115,8 +115,9 @@ class GlobalModulePageUI(CRMBasePage):
             Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             sleep(0.1)
-            super().wait_element_to_be_disappear("//tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][1]",
-                                                 timeout=5)
+            super().wait_element_to_be_disappear(
+                "//tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))]//span[text()='No results']",
+                timeout=5)
             Logging().reportDebugStep(self, "Data was not found")
         return GlobalModulePageUI(self.driver)
 
@@ -207,7 +208,7 @@ class GlobalModulePageUI(CRMBasePage):
     def verify_data_not_found(self):
         sleep(0.1)
         super().wait_element_to_be_disappear(
-            "//tbody[@role='rowgroup']/tr[@role='row' and not(contains(@style,'hidden'))][1]",
+            "//tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))]//span[text()='No results']",
             timeout=5)
         Logging().reportDebugStep(self, "Data was not found")
         return GlobalModulePageUI(self.driver)

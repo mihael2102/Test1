@@ -13,7 +13,7 @@ from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDDetailsConstantsUI
 
 
 @pytest.mark.run(order=31)
-class HelpDeskCreateTicketPreconditionUI(object):
+class HelpDeskEditTicketPreconditionUI(object):
 
     driver = None
     config = None
@@ -22,14 +22,14 @@ class HelpDeskCreateTicketPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def create_ticket_ui(self):
+    def edit_ticket_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
-                url=self.config.get_value('url'),
-                user_name=self.config.get_value(TestDataConstants.USER_NAME),
-                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
+            url=self.config.get_value('url'),
+            user_name=self.config.get_value(TestDataConstants.USER_NAME),
+            password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+            otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Help Desk module """
         CRMBaseMethodsPage(self.driver) \
@@ -37,22 +37,26 @@ class HelpDeskCreateTicketPreconditionUI(object):
 
         """ Create New Ticket """
         HelpDeskCreateTicketPageUI(self.driver) \
-            .create_edit_ticket(
-                create_btn=1, field1=HDCreateTicketConstantsUI.FIELD_TITLE, title=HDCreateTicketConstantsUI.TITLE,
-                list1=HDCreateTicketConstantsUI.LIST_ASSIGNED, assigned_to=HDCreateTicketConstantsUI.ASSIGNED_TO,
-                list2=HDCreateTicketConstantsUI.LIST_PRIORITY, priority=HDCreateTicketConstantsUI.PRIORITY,
-                list3=HDCreateTicketConstantsUI.LIST_STATUS, status=HDCreateTicketConstantsUI.STATUS,
-                list4=HDCreateTicketConstantsUI.LIST_CATEGORY, category=HDCreateTicketConstantsUI.CATEGORY,
-                related_to=HDCreateTicketConstantsUI.RELATED_TO,
-                list5=HDCreateTicketConstantsUI.LIST_SOURCE, source=HDCreateTicketConstantsUI.SOURCE,
-                field2=HDCreateTicketConstantsUI.FIELD_DESCRIPTION, description=HDCreateTicketConstantsUI.DESCRIPTION,
-                final_btn=HDCreateTicketConstantsUI.BTN_FINAL)
+            .click_create_ticket_btn() \
+            .set_title(HDCreateTicketConstantsUI.TITLE) \
+            .select_assigned_to(HDCreateTicketConstantsUI.ASSIGNED_TO) \
+            .select_priority(HDCreateTicketConstantsUI.PRIORITY) \
+            .select_status(HDCreateTicketConstantsUI.STATUS) \
+            .select_category(HDCreateTicketConstantsUI.CATEGORY) \
+            .select_related_to(HDCreateTicketConstantsUI.RELATED_TO) \
+            .select_ticket_source(HDCreateTicketConstantsUI.SOURCE) \
+            .set_description(HDCreateTicketConstantsUI.DESCRIPTION) \
+            .click_save_button()
+
+        """ Verify successful message """
+        # GlobalTablePageUI(self.driver) \
+        #     .verify_success_message() \
+        #     .click_ok()
 
         """ Search ticket """
-        GlobalModulePageUI(self.driver)\
-            .set_data_column_field(
-                column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
-                data=HDCreateTicketConstantsUI.TITLE)
+        GlobalModulePageUI(self.driver) \
+            .set_data_column_field(column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
+                                   data=HDCreateTicketConstantsUI.TITLE)
 
         """ Open ticket and get data """
         HelpDeskModulePageUI(self.driver) \
@@ -61,20 +65,20 @@ class HelpDeskCreateTicketPreconditionUI(object):
         details = HelpDeskDetailsPageUI(self.driver)
 
         title = details \
-            .get_text_from_field(HDDetailsConstantsUI.FIELD_TITLE)
+            .get_title()
         status = details \
-            .get_text_from_field(HDDetailsConstantsUI.FIELD_STATUS)
+            .get_status()
         assigned_to = details \
-            .get_text_from_field(HDDetailsConstantsUI.FIELD_ASSIGNED_TO)
+            .get_assigned_to()
         priority = details \
-            .get_text_from_field(HDDetailsConstantsUI.FIELD_PRIORITY)
+            .get_priority()
         category = details \
-            .get_text_from_field(HDDetailsConstantsUI.FIELD_CATEGORY)
+            .get_category()
         source = details \
-            .get_text_from_field(HDDetailsConstantsUI.FIELD_SOURCE)
+            .get_source()
         description = details \
             .open_tab(HDDetailsConstantsUI.TAB_DESCRIPTION) \
-            .get_text_from_field(HDDetailsConstantsUI.FIELD_DESCRIPTION)
+            .get_description()
 
         """ Verify ticket's data """
         CRMBaseMethodsPage(self.driver) \

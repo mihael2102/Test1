@@ -66,10 +66,12 @@ tests_config:
 #     - test_create_delete_affiliate_ui
 
 ############################################ HELP DESK ##############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
-#  class: TestHelpDeskModuleUI
-#  tests:
-#    - test_create_delete_ticket_ui   # not run: no option to select test client in 'related to' field
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
+  class: TestHelpDeskModuleUI
+  tests:
+    - test_create_ticket_ui   # not run: no option to select test client in 'related to' field
+#    - test_edit_ticket_ui   # not run: no option to select test client in 'related to' field
+#    - test_delete_ticket_ui   # not run: no option to select test client in 'related to' field
 #    - test_help_desk_searching_columns_ui
 
 ############################################ DOCUMENTS ##############################################
@@ -102,6 +104,7 @@ tests_config:
 #  tests:
 #    - test_tasks_searching_columns_ui
 #    - test_add_event_ui
+#    - test_edit_event_ui
 #    - test_delete_event_ui
 #    - test_tasks_mass_edit
 #    - test_tasks_email_ui
@@ -114,10 +117,10 @@ tests_config:
 #    - test_delete_user_ui
 
 ############################################## WORKFLOWS #############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_workflows_ui.TestWorkflowsUI
-  class: TestWorkflowsUI
-  tests:
-    - test_create_workflow_ui
-    - test_check_workflow_by_status_ui
-    - test_check_workflow_by_country_ui
-    - test_delete_workflow_ui
+#- module: src.test.python.ui.automation.implementation.crm.tests_workflows_ui.TestWorkflowsUI
+#  class: TestWorkflowsUI
+#  tests:
+#    - test_create_workflow_ui
+#    - test_check_workflow_by_status_ui
+#    - test_check_workflow_by_country_ui
+#    - test_delete_workflow_ui
