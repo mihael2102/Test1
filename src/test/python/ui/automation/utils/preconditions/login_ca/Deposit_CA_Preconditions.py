@@ -22,6 +22,7 @@ class DepositCAPrecondition(object):
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .close_campaign_banner() \
             .close_notifications_banner() \
+            .select_english() \
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc')) \
             .enter_password(self.config.get_value('password_live_acc')) \

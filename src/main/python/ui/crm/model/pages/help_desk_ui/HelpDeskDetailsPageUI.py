@@ -1,67 +1,40 @@
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
+from src.main.python.ui.crm.model.pages.help_desk_ui.HelpDeskCreateTicketPageUI import HelpDeskCreateTicketPageUI
 from src.main.python.utils.logs.Loging import Logging
 
 
 class HelpDeskDetailsPageUI(CRMBasePage):
 
-    def get_title(self):
-        sleep(0.1)
-        title = super().wait_load_element(
-            "//div[label='Title']//following-sibling::button/span[@class='btn-txt-wrapper']").text
-        Logging().reportDebugStep(self, "Get Ticket title: " + title)
-        return title
-
-    def get_status(self):
-        sleep(0.1)
-        status = super().wait_load_element(
-            "//div[label='Status']//following-sibling::button/span[@class='text-left btn-txt-wrapper']").text
-        Logging().reportDebugStep(self, "Get Status: " + status)
-        return status
-
-    def get_source(self):
-        sleep(0.1)
-        source = super().wait_load_element(
-            "//div[label='Ticket Source']//following-sibling::button/span[@class='text-left btn-txt-wrapper']").text
-        Logging().reportDebugStep(self, "Get Source: " + source)
-        return source
-
-    def get_assigned_to(self):
-        sleep(0.1)
-        assigned_to = super().wait_load_element(
-            "//div[label='Assigned To']//following-sibling::button/span[@class='text-left btn-txt-wrapper']").text
-        Logging().reportDebugStep(self, "Get Assigned To: " + assigned_to)
-        return assigned_to
-
-    def get_category(self):
-        sleep(0.1)
-        category = super().wait_load_element(
-            "//div[label='Category']//following-sibling::button/span[@class='text-left btn-txt-wrapper']").text
-        Logging().reportDebugStep(self, "Get Category: " + category)
-        return category
-
-    def get_priority(self):
-        sleep(0.1)
-        priority = super().wait_load_element(
-            "//div[label='Priority']//following-sibling::button/span[@class='text-left btn-txt-wrapper']").text
-        Logging().reportDebugStep(self, "Get Priority: " + priority)
-        return priority
-
-    def get_description(self):
-        sleep(0.1)
-        description = super().wait_load_element(
-            "//div[label='Description']//following-sibling::button/span[@class='text-left btn-txt-wrapper']").text
-        Logging().reportDebugStep(self, "Get Description: " + description)
-        return description
+    def get_text_from_field(self, field):
+        data = GlobalDetailsPageUI(self.driver)\
+            .get_text_from_field(field)
+        return data
 
     def open_tab(self, title):
-        try:
-            tab = super().wait_load_element(
-                "//mat-expansion-panel-header[@aria-expanded='false']//mat-panel-title/div[contains(text(),'%s')]"
-                % title)
-            self.driver.execute_script("arguments[0].click();", tab)
-            Logging().reportDebugStep(self, "Open tab: " + title)
-        except(NoSuchElementException, TimeoutException):
-            Logging().reportDebugStep(self, "Tab " + title + " already opened")
+        GlobalDetailsPageUI(self.driver)\
+            .open_tab(title)
+        return HelpDeskDetailsPageUI(self.driver)
+
+    def click_edit_btn(self):
+        GlobalDetailsPageUI(self.driver)\
+            .click_edit_btn()
+        return HelpDeskCreateTicketPageUI(self.driver)
+
+    def edit_text_field_via_pencil(self, field, text):
+        GlobalDetailsPageUI(self.driver)\
+            .click_pencil_icon_in_field(field) \
+            .set_text_pencil_field(field, text) \
+            .click_confirm_btn_pencil_field(field)
+        return HelpDeskDetailsPageUI(self.driver)
+
+    def edit_list_field_via_pencil(self, field, item):
+        GlobalDetailsPageUI(self.driver) \
+            .click_pencil_icon_in_field(field) \
+            .select_item_list_pencil_field(field, item) \
+            .click_confirm_btn_pencil_field(field)
         return HelpDeskDetailsPageUI(self.driver)

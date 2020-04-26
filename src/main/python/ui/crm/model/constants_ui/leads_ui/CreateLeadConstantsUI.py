@@ -31,12 +31,18 @@ class CreateLeadConstantsUI(object):
     LIST_LEAD_STATUS = "Lead status"
     LIST_ASSIGNED_TO = "Assigned to"
     LIST_COUNTRY = "Country"
+
     FNAME = "testqa%s" % random_character
+    FNAME2 = "testqa2%s" % random_character
     LNAME = "test"
     MOBILE = "8888888"
+    MOBILE2 = "1111111"
     PHONE = "222222"
+    PHONE2 = "333333"
     EMAIL = "pandaqa+" + now + "@pandats.com"
+    EMAIL2 = "pandaqa+2" + now + "@pandats.com"
     S_EMAIL = "secondarytestqa+1@pandats.com"
+    S_EMAIL2 = "secondarytestqa+2@pandats.com"
     TITLE = "Title_%s" % random_numbers
     L_SOURCE = "Other"
     L_STATUS = "R - New"

@@ -9,7 +9,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.mt4_ui.MT4WithdrawPageUI import MT4WithdrawPageUI
 from src.main.python.ui.crm.model.pages.mt4_ui.MT4CreditOutPageUI import MT4CreditOutPageUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -39,13 +39,12 @@ class MT4CreditOutPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Clients module and find created client by email """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    CreateLeadConstantsUI.EMAIL)
@@ -55,37 +54,47 @@ class MT4CreditOutPreconditionUI(object):
             .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
             .open_mt4_module_newui(MT4ActionsConstantsUI.CREDIT_OUT)
 
+        if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
+            amount = MT4CreditOutConstantsUI.AMOUNT_CRYPTO
+        else:
+            amount = MT4CreditOutConstantsUI.AMOUNT
+
         MT4CreditOutPageUI(self.driver)\
             .mt4_credit_out_ui(
                 list1=MT4CreditOutConstantsUI.LIST_TA, t_account=MT4CreditInConstantsUI.TA_CREDIT,
-                field1=MT4CreditOutConstantsUI.FIELD_AMOUNT, amount=MT4CreditOutConstantsUI.AMOUNT,
+                field1=MT4CreditOutConstantsUI.FIELD_AMOUNT, amount=amount,
                 field2=MT4CreditOutConstantsUI.FIELD_GRANTED_BY, granted_by=MT4CreditOutConstantsUI.GRANTED_BY,
                 field3=MT4CreditOutConstantsUI.FIELD_COMMENT, comment=MT4CreditOutConstantsUI.COMMENT)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
             .refresh_page()
 
         """ Check credit was updated """
-        ClientDetailsPageUI(self.driver) \
-            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-        credit = GlobalTablePageUI(self.driver) \
+        record_num = ClientDetailsPageUI(self.driver) \
+            .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS) \
+            .get_last_record_number()
+        credit = GlobalModulePageUI(self.driver) \
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_CREDIT,
-                row=ClientDetailsConstantsUI.ROW_3)
+                row=record_num)
 
+        if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
+            expected_credit = MT4CreditOutConstantsUI.EXPECTED_CREDIT_CR
+        else:
+            expected_credit = MT4CreditOutConstantsUI.EXPECTED_CREDIT
         counter = 0
-        while MT4CreditOutConstantsUI.EXPECTED_CREDIT != credit:
+        while expected_credit != credit:
             ClientDetailsPageUI(self.driver)\
                 .refresh_page()
             ClientDetailsPageUI(self.driver) \
                 .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
-            credit = GlobalTablePageUI(self.driver) \
+            credit = GlobalModulePageUI(self.driver) \
                 .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_CREDIT,
-                row=ClientDetailsConstantsUI.ROW_3)
+                row=record_num)
             counter += 1
             if counter == 7:
                 break
@@ -93,10 +102,13 @@ class MT4CreditOutPreconditionUI(object):
         CRMBaseMethodsPage(self.driver) \
             .comparator_string(
                 credit,
-                MT4CreditOutConstantsUI.EXPECTED_CREDIT)
+                expected_credit)
 
         """ Verify data in info tag Credit was updated """
         credit_tag = ClientDetailsPageUI(self.driver) \
             .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_CREDIT)
-        expected_credit = MT4CreditOutConstantsUI.EXPECTED_CREDIT.split('.')[0]
-        assert expected_credit in credit_tag
+        if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
+            assert expected_credit in credit_tag
+        else:
+            expected_credit = expected_credit.split('.')[0]
+            assert expected_credit in credit_tag

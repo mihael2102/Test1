@@ -16,15 +16,14 @@ class CRMLoginPageUI(CRMBasePage):
         return Home Page instance    
     '''
 
-    def crm_login(self, url=None, user_name=None, password=None, new_design=None, otp_secret=None):
+    def crm_login(self, url=None, user_name=None, password=None, otp_secret=None):
         if url:
             self.open_first_tab_page(url)
         if user_name:
             self.set_user_name(user_name)
         if password:
             self.set_password(password)
-        if new_design:
-            self.check_new_design()
+        self.check_new_design()
         self.click_login_btn()
         sleep(1)
         if otp_secret:
@@ -51,8 +50,12 @@ class CRMLoginPageUI(CRMBasePage):
     def check_new_design(self):
         sleep(0.1)
         check_box = self.driver.find_element(By.XPATH, "//label[@class='pure-material-checkbox']")
-        check_box.click()
-        Logging().reportDebugStep(self, "Check 'LOGIN TO NEW CRM DESIGN' box")
+        flag = self.driver.find_element(By.XPATH, "//input[@id='new-ui-selected']").get_property("checked")
+        if flag:
+            Logging().reportDebugStep(self, "'LOGIN TO NEW CRM DESIGN' is already checked")
+        else:
+            check_box.click()
+            Logging().reportDebugStep(self, "Check 'LOGIN TO NEW CRM DESIGN'")
         return CRMLoginPageUI(self.driver)
 
     def click_login_btn(self):

@@ -17,6 +17,8 @@ class MT4CreditOutConstantsUI(object):
     FIELD_COMMENT = "Comment"
 
     AMOUNT = "1.00"
+    AMOUNT_CRYPTO = "0.00001"
     GRANTED_BY = "Test credit out"
     COMMENT = "Test Credit out"
     EXPECTED_CREDIT = "1.00"
+    EXPECTED_CREDIT_CR = "0.00001"

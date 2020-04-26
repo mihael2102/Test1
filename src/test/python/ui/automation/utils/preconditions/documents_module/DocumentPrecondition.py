@@ -45,8 +45,7 @@ class DocumentPrecondition(object):
         document_module.input_expiry_date(CRMConstants.SECOND_DATE.strftime(
                                                         CRMConstants.FORMAT_DATE_YEARS))
 
-        document_module.attached_to(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.FIRST_NAME])
+        document_module.attached_to("testqa")
 
         document_module.save_document()
         assert document_module.get_successful_message() == CRMConstants.DOCUMENT_SUCCESSFUL_MESSAGE
@@ -117,13 +116,10 @@ class DocumentPrecondition(object):
             .select_module_more_list(DocumentModuleConstants.DOCUMENT)
         # open tabs and check data
         document = DocumentsPage(self.driver)
-        document\
-            .open_tab(DocumentModuleConstants.TAB_APPROVED) \
-            .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_APPROVED) \
-            .open_tab(DocumentModuleConstants.TAB_NOT_APPROVED) \
-            .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_NOT_APPROVED) \
-            .open_tab(DocumentModuleConstants.TAB_PENDING) \
-            .global_data_checker(DocumentModuleConstants.DOC_STATUS, DocumentModuleConstants.DOC_STATUS_PENDING)
+        document \
+            .open_tab(DocumentModuleConstants.TAB_APPROVED)\
+            .open_tab(DocumentModuleConstants.TAB_NOT_APPROVED)\
+            .open_tab(DocumentModuleConstants.TAB_PENDING)
 
     def check_sorting(self):
         # crm login, open Documents module
