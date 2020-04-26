@@ -98,8 +98,8 @@ brands:
 #- name: ptbanc
 #  config_file: ptbanc.yml
 
-#- name: q8
-#  config_file: q8.yml
+- name: q8
+  config_file: q8.yml
 
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
@@ -107,8 +107,8 @@ brands:
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
 
-- name: trade99
-  config_file: trade99.yml
+#- name: trade99
+#  config_file: trade99.yml
 
 #- name: tradixa
 #  config_file: tradixa.yml
