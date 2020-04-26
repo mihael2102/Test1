@@ -71,7 +71,7 @@ tests_config:
   tests:
     - test_create_ticket_ui   # not run: no option to select test client in 'related to' field
     - test_edit_ticket_ui   # not run: no option to select test client in 'related to' field
-    - test_edit_pencil_ticket_ui   # not run: no option to select test client in 'related to' field
+    - test_pencil_ticket_ui   # not run: no option to select test client in 'related to' field
     - test_delete_ticket_ui   # not run: no option to select test client in 'related to' field
 #    - test_help_desk_searching_columns_ui
 

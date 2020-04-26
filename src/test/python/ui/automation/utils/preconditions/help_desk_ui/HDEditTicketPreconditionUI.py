@@ -3,14 +3,14 @@ from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRM
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDCreateTicketConstantsUI import HDCreateTicketConstantsUI
-from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HelpDeskModuleConstantsUI import HelpDeskModuleConstantsUI
+from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDModuleConstantsUI import HDModuleConstantsUI
 from src.main.python.ui.crm.model.pages.help_desk_ui.HelpDeskModulePageUI import HelpDeskModulePageUI
 from src.main.python.ui.crm.model.pages.help_desk_ui.HelpDeskDetailsPageUI import HelpDeskDetailsPageUI
 from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDDetailsConstantsUI import HDDetailsConstantsUI
 
 
 @pytest.mark.run(order=31)
-class HelpDeskEditTicketPreconditionUI(object):
+class HDEditTicketPreconditionUI(object):
 
     driver = None
     config = None
@@ -35,7 +35,7 @@ class HelpDeskEditTicketPreconditionUI(object):
         """ Edit ticket """
         HelpDeskModulePageUI(self.driver) \
             .set_data_column_field(
-                column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
+                column=HDModuleConstantsUI.COLUMN_TITLE,
                 data=HDCreateTicketConstantsUI.TITLE) \
             .open_ticket() \
             .click_edit_btn() \

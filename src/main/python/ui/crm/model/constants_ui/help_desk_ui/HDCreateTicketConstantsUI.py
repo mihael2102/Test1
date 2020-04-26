@@ -20,11 +20,13 @@ class HDCreateTicketConstantsUI(object):
     BTN_FNL_EDIT = "Edit ticket"
 
     TITLE = "Test_ticket_%s" % random_numbers
+    TITLE_EDIT = "Edit_ticket_%s" % random_numbers
     ASSIGNED_TO = "Panda Auto"
     PRIORITY = "Normal"
     PRIORITY_EDIT = "Low"
     STATUS = "Open"
     STATUS_EDIT = "Closed"
+    STATUS_EDIT2 = "Ticket Source"
     CATEGORY = "General Question"
     RELATED_TO = "testqa"
     SOURCE = "Email"

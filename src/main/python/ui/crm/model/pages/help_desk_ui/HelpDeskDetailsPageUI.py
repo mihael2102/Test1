@@ -24,3 +24,17 @@ class HelpDeskDetailsPageUI(CRMBasePage):
         GlobalDetailsPageUI(self.driver)\
             .click_edit_btn()
         return HelpDeskCreateTicketPageUI(self.driver)
+
+    def edit_text_field_via_pencil(self, field, text):
+        GlobalDetailsPageUI(self.driver)\
+            .click_pencil_icon_in_field(field) \
+            .set_text_pencil_field(field, text) \
+            .click_confirm_btn_pencil_field(field)
+        return HelpDeskDetailsPageUI(self.driver)
+
+    def edit_list_field_via_pencil(self, field, item):
+        GlobalDetailsPageUI(self.driver) \
+            .click_pencil_icon_in_field(field) \
+            .select_item_list_pencil_field(field, item) \
+            .click_confirm_btn_pencil_field(field)
+        return HelpDeskDetailsPageUI(self.driver)
