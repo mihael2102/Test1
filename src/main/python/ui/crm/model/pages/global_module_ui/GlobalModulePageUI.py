@@ -206,10 +206,10 @@ class GlobalModulePageUI(CRMBasePage):
         return GlobalModulePageUI(self.driver)
 
     def verify_data_not_found(self):
-        sleep(0.1)
-        super().wait_element_to_be_disappear(
+        sleep(0.5)
+        super().wait_load_element(
             "//tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))]//span[text()='No results']",
-            timeout=5)
+            timeout=10)
         Logging().reportDebugStep(self, "Data was not found")
         return GlobalModulePageUI(self.driver)
 

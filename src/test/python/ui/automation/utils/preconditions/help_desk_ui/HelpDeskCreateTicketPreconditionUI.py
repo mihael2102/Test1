@@ -2,7 +2,6 @@ import pytest
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
-from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.pages.help_desk_ui.HelpDeskCreateTicketPageUI import HelpDeskCreateTicketPageUI
 from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDCreateTicketConstantsUI import HDCreateTicketConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
@@ -48,14 +47,11 @@ class HelpDeskCreateTicketPreconditionUI(object):
                 field2=HDCreateTicketConstantsUI.FIELD_DESCRIPTION, description=HDCreateTicketConstantsUI.DESCRIPTION,
                 final_btn=HDCreateTicketConstantsUI.BTN_FINAL)
 
-        """ Search ticket """
-        GlobalModulePageUI(self.driver)\
+        """ Open ticket and get data """
+        HelpDeskModulePageUI(self.driver)\
             .set_data_column_field(
                 column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
-                data=HDCreateTicketConstantsUI.TITLE)
-
-        """ Open ticket and get data """
-        HelpDeskModulePageUI(self.driver) \
+                data=HDCreateTicketConstantsUI.TITLE) \
             .open_ticket()
 
         details = HelpDeskDetailsPageUI(self.driver)
@@ -64,8 +60,6 @@ class HelpDeskCreateTicketPreconditionUI(object):
             .get_text_from_field(HDDetailsConstantsUI.FIELD_TITLE)
         status = details \
             .get_text_from_field(HDDetailsConstantsUI.FIELD_STATUS)
-        assigned_to = details \
-            .get_text_from_field(HDDetailsConstantsUI.FIELD_ASSIGNED_TO)
         priority = details \
             .get_text_from_field(HDDetailsConstantsUI.FIELD_PRIORITY)
         category = details \
@@ -81,7 +75,6 @@ class HelpDeskCreateTicketPreconditionUI(object):
             .comparator_string(title, HDCreateTicketConstantsUI.TITLE) \
             .comparator_string(status, HDCreateTicketConstantsUI.STATUS) \
             .comparator_string(category, HDCreateTicketConstantsUI.CATEGORY) \
-            .comparator_string(description, HDCreateTicketConstantsUI.DESCRIPTION) \
-            .comparator_string(assigned_to, HDCreateTicketConstantsUI.ASSIGNED_TO) \
-            .comparator_string(priority, HDCreateTicketConstantsUI.PRIORITY) \
-            .comparator_string(source, HDCreateTicketConstantsUI.SOURCE)
+            .comparator_string(description, HDCreateTicketConstantsUI.DESCRIPTION)
+            # .comparator_string(priority, HDCreateTicketConstantsUI.PRIORITY) \
+            # .comparator_string(source, HDCreateTicketConstantsUI.SOURCE)

@@ -4,6 +4,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
+from src.main.python.ui.crm.model.pages.help_desk_ui.HelpDeskCreateTicketPageUI import HelpDeskCreateTicketPageUI
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -18,3 +19,8 @@ class HelpDeskDetailsPageUI(CRMBasePage):
         GlobalDetailsPageUI(self.driver)\
             .open_tab(title)
         return HelpDeskDetailsPageUI(self.driver)
+
+    def click_edit_btn(self):
+        GlobalDetailsPageUI(self.driver)\
+            .click_edit_btn()
+        return HelpDeskCreateTicketPageUI(self.driver)

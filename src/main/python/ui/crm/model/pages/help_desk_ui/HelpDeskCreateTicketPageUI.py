@@ -35,7 +35,7 @@ class HelpDeskCreateTicketPageUI(CRMBasePage):
             self.select_from_list(list5, source)
         if field2 and description:
             self.set_text(field2, description)
-        self.click_save_btn()
+        self.click_save_btn(final_btn)
 
     def click_create_ticket_btn(self):
         sleep(0.1)
@@ -130,11 +130,14 @@ class HelpDeskCreateTicketPageUI(CRMBasePage):
         Logging().reportDebugStep(self, "Description was set: " + description)
         return HelpDeskCreateTicketPageUI(self.driver)
 
-    def click_save_btn(self):
+    def click_save_btn(self, button):
         sleep(0.1)
-        btn = super().wait_load_element("//mat-sidenav//span[text()='Create ticket']")
+        btn = super().wait_load_element("//mat-sidenav//span[text()='%s']" % button)
         btn.click()
-        Logging().reportDebugStep(self, "Click 'Create ticket' button")
+        Logging().reportDebugStep(self, "Click '" + button + "' button")
+        GlobalModulePageUI(self.driver) \
+            .verify_success_message() \
+            .click_ok()
         return HelpDeskCreateTicketPageUI(self.driver)
 
     def click_final_btn(self, button):
