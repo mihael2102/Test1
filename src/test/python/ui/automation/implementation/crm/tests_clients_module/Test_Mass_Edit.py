@@ -38,8 +38,11 @@ class MassEditTestCRM(BaseTest):
         first_client = crm_clients_module_page\
             .open_client_id()\
             .get_crm_id_client_details()
-        crm_clients_module_page\
-            .came_back_on_previous_page()\
+        CRMLoginPage(self.driver) \
+            .open_first_tab_page(self.config.get_value('url'))
+        crm_clients_module_page \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
+            .perform_searching_by_email(CRMConstants.SHORT_EMAIL) \
             .click_search_button()
         crm_clients_module_page\
             .select_three_records_clients_module() \

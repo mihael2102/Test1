@@ -22,7 +22,9 @@ class MT4WithdrawConstantsUI(object):
     STATUS = "Approved"
     TA = ""
     AMOUNT = "1.00"
+    AMOUNT_CRYPTO = "0.00001"
     COMMENT = "Test deposit"
     CLEARED_BY = "PRAXIS"
 
     BALANCE = "1.00"
+    BALANCE_CRYPTO = "0.00001"

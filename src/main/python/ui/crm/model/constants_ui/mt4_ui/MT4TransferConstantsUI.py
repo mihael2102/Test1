@@ -16,5 +16,8 @@ class MT4TransferConstantsUI(object):
     FIELD_AMOUNT = "Amount"
 
     AMOUNT = "1.00"
-    EXPECTED_BALANCE_1 = "0.00"
-    EXPECTED_BALANCE_2 = "1.00"
+    AMOUNT_CRYPTO = "0.00001"
+    EXP_BAL_1 = "0.00"
+    EXP_BAL_CR1 = "0.00000"
+    EXP_BAL_2 = "1.00"
+    EXP_BAL_CR2 = "0.00001"
