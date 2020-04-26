@@ -91,7 +91,7 @@ class DocumentsPage(CRMBasePage):
         button_click_search = self.driver.find_element(By.XPATH, "//input[@name='search']")
         button_click_search.click()
         sleep(3)
-        select_client = self.driver.find_element(By.XPATH, "//a[contains(text(),'testqa')]")
+        select_client = self.driver.find_element(By.XPATH, "(//a[contains(text(),'testqa')])[1]")
         select_client.click()
         Logging().reportDebugStep(self, "Click attached To")
         return DocumentsPage()
@@ -107,7 +107,8 @@ class DocumentsPage(CRMBasePage):
         return DocumentsPage()
 
     def get_successful_message(self):
-        message = super().wait_load_element("//div[@class='bootstrap-dialog-message']")
+        sleep(1)
+        message = super().wait_load_element("//div[@class='bootstrap-dialog-message']", timeout=35)
         Logging().reportDebugStep(self, "The message is : " + message.text)
         return message.text
 

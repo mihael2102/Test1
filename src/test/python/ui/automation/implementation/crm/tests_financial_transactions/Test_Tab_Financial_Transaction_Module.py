@@ -74,7 +74,9 @@ class TabFinancialTransaction(BaseTest):
 
         financial_transaction_list_page = CRMHomePage(self.driver)\
             .select_financial_transactions_module_more_list(
-                FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
+                FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE) \
+            .perform_searching_trading_account_via_filters(
+                client_name=FinancialTransactionsModuleConstants.CLIENT_TEST)
 
         # Get data of 3rd transaction (transaction's info will be changed when registration via CA starts to work):
         transaction_number = financial_transaction_list_page\
@@ -112,7 +114,9 @@ class TabFinancialTransaction(BaseTest):
         financial_transaction_list_page = CRMHomePage(self.driver) \
             .open_more_list_modules() \
             .select_financial_transactions_module_more_list(
-                FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
+                FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE) \
+            .perform_searching_trading_account_via_filters(
+                client_name=FinancialTransactionsModuleConstants.CLIENT_TEST)
 
         # Collect data for searching
         transaction_number = financial_transaction_list_page\

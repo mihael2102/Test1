@@ -10,7 +10,7 @@ from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.MT4ModuleConstants import MT4ModuleConstants
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.mt4_ui.MT4DepositPageUI import MT4DepositPageUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalTablePageUI import GlobalTablePageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -46,13 +46,12 @@ class MT4TransferPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open clients module. Find created client by email and open his profile """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    CreateLeadConstantsUI.EMAIL)
@@ -61,14 +60,18 @@ class MT4TransferPreconditionUI(object):
             .open_mt4_module_newui(MT4ActionsConstantsUI.TRANSFER)
 
         """ Make Transfer """
+        if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
+            amount = MT4TransferConstantsUI.AMOUNT_CRYPTO
+        else:
+            amount = MT4TransferConstantsUI.AMOUNT
         MT4TransferPageUI(self.driver)\
             .mt4_transfer_ui(
                 list1=MT4TransferConstantsUI.LIST_SOURCE, source=MT4DepositConstantsUI.TA,
                 list2=MT4TransferConstantsUI.LIST_DESTINATION, destination=MT4CreditInConstantsUI.TA_CREDIT,
-                field1=MT4TransferConstantsUI.FIELD_AMOUNT, amount=MT4TransferConstantsUI.AMOUNT)
+                field1=MT4TransferConstantsUI.FIELD_AMOUNT, amount=amount)
 
         """ Verify successful message """
-        GlobalTablePageUI(self.driver) \
+        GlobalModulePageUI(self.driver) \
             .verify_success_message() \
             .click_ok() \
             .refresh_page()
@@ -79,7 +82,10 @@ class MT4TransferPreconditionUI(object):
         balance1 = TradingModulePageUI(self.driver) \
             .click_on_ta_number(MT4DepositConstantsUI.TA) \
             .get_text_from_field(TradingDetailsConstantsUI.FIELD_BALANCE)
-        expected_balance1 = MT4TransferConstantsUI.EXPECTED_BALANCE_1
+        if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
+            expected_balance1 = MT4TransferConstantsUI.EXP_BAL_CR1
+        else:
+            expected_balance1 = MT4TransferConstantsUI.EXP_BAL_1
 
         count = 0
         while balance1 != expected_balance1:
@@ -102,7 +108,10 @@ class MT4TransferPreconditionUI(object):
         balance2 = TradingModulePageUI(self.driver) \
             .click_on_ta_number(MT4CreditInConstantsUI.TA_CREDIT) \
             .get_text_from_field(TradingDetailsConstantsUI.FIELD_BALANCE)
-        expected_balance2 = MT4TransferConstantsUI.EXPECTED_BALANCE_2
+        if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
+            expected_balance2 = MT4TransferConstantsUI.EXP_BAL_CR2
+        else:
+            expected_balance2 = MT4TransferConstantsUI.EXP_BAL_2
 
         count = 0
         while balance2 != expected_balance2:
