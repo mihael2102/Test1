@@ -9,10 +9,24 @@ class HDCreateTicketConstantsUI(object):
     random_numbers = str(random.randrange(1, 9999))
     random_character = ''.join(random.choice(string.ascii_uppercase) for _ in range(5))
 
+    FIELD_TITLE = "Title"
+    FIELD_DESCRIPTION = "Description information"
+    LIST_ASSIGNED = "Assigned to"
+    LIST_PRIORITY = "Priority"
+    LIST_STATUS = "Status"
+    LIST_CATEGORY = "Category"
+    LIST_SOURCE = "Ticket source"
+    BTN_FINAL = "Create ticket"
+    BTN_FNL_EDIT = "Edit ticket"
+
     TITLE = "Test_ticket_%s" % random_numbers
+    TITLE_EDIT = "Edit_ticket_%s" % random_numbers
     ASSIGNED_TO = "Panda Auto"
-    PRIORITY = "Low"
+    PRIORITY = "Normal"
+    PRIORITY_EDIT = "Low"
     STATUS = "Open"
+    STATUS_EDIT = "Closed"
+    STATUS_EDIT2 = "Ticket Source"
     CATEGORY = "General Question"
     RELATED_TO = "testqa"
     SOURCE = "Email"

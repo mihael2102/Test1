@@ -82,11 +82,6 @@ class ClientEditPreconditionUI(object):
                          list2=ClientEditConstantsUI.LIST_COUNTRY, country=ClientEditConstantsUI.COUNTRY,
                          button=ClientEditConstantsUI.BTN_SAVE)
 
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
-
         """ Get client's data """
         details = ClientDetailsPageUI(self.driver)
 

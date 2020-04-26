@@ -10,6 +10,8 @@ from src.test.python.ui.automation.utils.preconditions.tasks_module_ui.TasksMass
     TasksMassEditPreconditionUI
 from src.test.python.ui.automation.utils.preconditions.tasks_module_ui.TasksEmailPreconditionUI import \
     TasksEmailPreconditionUI
+from src.test.python.ui.automation.utils.preconditions.tasks_module_ui.TasksEditEventPreconditionUI import \
+    TasksEditEventPreconditionUI
 
 
 @pytest.mark.run(order=26)
@@ -20,6 +22,9 @@ class TestTasksModuleUI(BaseTest):
 
     def test_add_event_ui(self):
         TasksAddEventPreconditionUI(self.driver, self.config).add_event_ui()
+
+    def test_edit_event_ui(self):
+        TasksEditEventPreconditionUI(self.driver, self.config).edit_event_ui()
 
     def test_delete_event_ui(self):
         TasksDeleteEventPreconditionUI(self.driver, self.config).delete_event_ui()
