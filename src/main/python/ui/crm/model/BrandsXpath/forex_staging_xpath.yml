@@ -8,6 +8,3 @@ DocumentsPage:
   apply_btn: "/html/body/div[20]/div[3]/div/button[1]"
 FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[14])[%s]"
-TasksPage:
-  sms_icon: "//tr[@class='tableRow ng-star-inserted'][1]/td[@class='grid-actions-cell ng-star-inserted last-col col-pinned-right']/div[1]"
-

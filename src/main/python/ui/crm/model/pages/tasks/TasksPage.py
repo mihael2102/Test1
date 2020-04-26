@@ -147,7 +147,7 @@ class TasksPage(CRMBasePage):
     def open_sms_actions_section(self):
         sleep(1)
         sms_icon = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element
-                                                            (self.__class__.__name__)["sms_icon"])
+                                                        (self.__class__.__name__)["sms_icon"])
         try:
             sms_icon.click()
         except:
