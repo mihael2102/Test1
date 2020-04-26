@@ -32,7 +32,7 @@ class HDPencilTicketPreconditionUI(object):
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_HELP_DESK)
 
-        """ Edit ticket """
+        """ Edit ticket via pencil """
         HelpDeskModulePageUI(self.driver) \
             .set_data_column_field(
                 column=HDModuleConstantsUI.COLUMN_TITLE,
@@ -43,23 +43,17 @@ class HDPencilTicketPreconditionUI(object):
                 text=HDCreateTicketConstantsUI.TITLE_EDIT) \
             .edit_list_field_via_pencil(
                 field=HDDetailsConstantsUI.FIELD_SOURCE,
-                item=HDCreateTicketConstantsUI.STATUS_EDIT2) \
+                item=HDCreateTicketConstantsUI.SOURCE_EDIT)
 
-            # .click_edit_btn() \
-        #     .create_edit_ticket(
-        #     list2=HDCreateTicketConstantsUI.LIST_PRIORITY, priority=HDCreateTicketConstantsUI.PRIORITY_EDIT,
-        #     list3=HDCreateTicketConstantsUI.LIST_STATUS, status=HDCreateTicketConstantsUI.STATUS_EDIT,
-        #     final_btn=HDCreateTicketConstantsUI.BTN_FNL_EDIT)
-        #
-        # """ Verify data was updated """
-        # details = HelpDeskDetailsPageUI(self.driver)
-        #
-        # status = details \
-        #     .get_text_from_field(HDDetailsConstantsUI.FIELD_STATUS)
-        # priority = details \
-        #     .get_text_from_field(HDDetailsConstantsUI.FIELD_PRIORITY)
-        #
-        # """ Verify ticket's data """
-        # CRMBaseMethodsPage(self.driver) \
-        #     .comparator_string(status, HDCreateTicketConstantsUI.STATUS_EDIT) \
-        #     .comparator_string(priority, HDCreateTicketConstantsUI.PRIORITY_EDIT)
+        """ Get ticket data """
+        details = HelpDeskDetailsPageUI(self.driver)
+
+        title = details \
+            .get_text_from_field(HDDetailsConstantsUI.FIELD_TITLE)
+        source = details \
+            .get_text_from_field(HDDetailsConstantsUI.FIELD_SOURCE)
+
+        """ Verify ticket's data """
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(title, HDCreateTicketConstantsUI.TITLE_EDIT) \
+            .comparator_string(source, HDCreateTicketConstantsUI.SOURCE_EDIT)

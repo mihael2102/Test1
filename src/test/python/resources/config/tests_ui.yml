@@ -66,13 +66,13 @@ tests_config:
 #     - test_create_delete_affiliate_ui
 
 ############################################ HELP DESK ##############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
-  class: TestHelpDeskModuleUI
-  tests:
-    - test_create_ticket_ui   # not run: no option to select test client in 'related to' field
-    - test_edit_ticket_ui   # not run: no option to select test client in 'related to' field
-    - test_pencil_ticket_ui   # not run: no option to select test client in 'related to' field
-    - test_delete_ticket_ui   # not run: no option to select test client in 'related to' field
+#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
+#  class: TestHelpDeskModuleUI
+#  tests:
+#    - test_create_ticket_ui   # not run: no option to select test client in 'related to' field
+#    - test_edit_ticket_ui   # not run: no option to select test client in 'related to' field
+#    - test_pencil_ticket_ui   # not run: no option to select test client in 'related to' field
+#    - test_delete_ticket_ui   # not run: no option to select test client in 'related to' field
 #    - test_help_desk_searching_columns_ui
 
 ############################################ DOCUMENTS ##############################################
@@ -111,11 +111,12 @@ tests_config:
 #    - test_tasks_email_ui
 
 ########################################### USER MANAGEMENT ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_user_management_ui.TestUserManagementUI
-#  class: TestUserManagementUI
-#  tests:
-#    - test_create_user_ui
-#    - test_delete_user_ui
+- module: src.test.python.ui.automation.implementation.crm.tests_user_management_ui.TestUserManagementUI
+  class: TestUserManagementUI
+  tests:
+    - test_create_user_ui
+    - test_login_as_ui
+    - test_delete_user_ui
 
 ############################################## WORKFLOWS #############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_workflows_ui.TestWorkflowsUI

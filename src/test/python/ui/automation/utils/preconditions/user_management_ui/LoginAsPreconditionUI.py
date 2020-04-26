@@ -4,10 +4,12 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
 from src.main.python.ui.crm.model.constants.UserInformation import UserInformation
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 @pytest.mark.run(order=13)
-class DeleteUserPreconditionUI(object):
+class LoginAsPreconditionUI(object):
 
     driver = None
     config = None
@@ -16,7 +18,7 @@ class DeleteUserPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def delete_user_ui(self):
+    def login_as_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
@@ -29,17 +31,19 @@ class DeleteUserPreconditionUI(object):
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_UM)
 
-        """ Delete user """
+        """ Login as """
         self.driver.switch_to_frame(self.driver.find_element_by_xpath(
             "//iframe[contains(@src,'UserManagement')]"))
         UserManagementPage(self.driver) \
             .open_crm_users_tab() \
-            .click_more_icon() \
-            .check_delete_btn_exist() \
             .click_remove_filter_btn() \
             .search_by_username(UserInformation.FIRST_USER_NAME) \
             .check_user_found(UserInformation.FIRST_USER_NAME) \
             .click_more_icon() \
-            .click_delete_icon() \
-            .click_delete_btn() \
-            .check_data_not_found()
+            .click_login_as_icon()
+
+        self.driver.switch_to_default_content()
+
+        UserManagementPage(self.driver) \
+            .click_logout_login_as_session(UserInformation.FIRST_USER_NAME) \
+            .verify_current_user_name(UserInformation.PANDA_AUTO_NAME)
