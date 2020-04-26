@@ -21,6 +21,7 @@ class AddDeleteEventConstantsUI(object):
     BTN_SAVE = "Save"
 
     EVENT_STATUS = "Not Started"
+    EVENT_STATUS_2 = "In Progress"
     EVENT_TYPE = "Call"
     DURATION = "15M"
     ASSIGN_TO = "Panda Auto"
