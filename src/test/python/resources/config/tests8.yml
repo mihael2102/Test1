@@ -33,4 +33,4 @@ tests_config:
   class: LeadModuleTest
   tests:
     - test_edit_lead_pencil_icon
-    - test_check_email_popup
+#    - test_check_email_popup
