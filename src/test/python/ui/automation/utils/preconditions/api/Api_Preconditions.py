@@ -213,7 +213,8 @@ class ApiPrecondition(object):
         assert client_first_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                         LeadsModuleConstants.FIRST_NAME]
         assert client_last_name == APIConstants.LASTNAME
-        assert client_phone == APIConstants.PHONE_CRM
+        if '*' not in client_phone:
+            assert client_phone == APIConstants.PHONE_CRM
         if global_var.current_brand_name != "itrader" and global_var.current_brand_name != "oinvestsa" and \
                 global_var.current_brand_name != "gmo":
             assert APIConstants.REFFERAL in refferal
@@ -352,13 +353,11 @@ class ApiPrecondition(object):
         if global_var.current_brand_name != "stoxmarket":
             phone = lead_module.get_lead_phone()
         actual_phone = re.sub('[+," "]', '', phone)
-        try:
+        if "*" not in email:
             assert email == self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[LeadsModuleConstants.EMAIL]
-        except:
-            assert "*" in email
         assert fname == APIConstants.LEAD_FNAME
         assert lname == APIConstants.LEAD_LNAME
-        if global_var.current_brand_name != "stoxmarket":
+        if '*' not in actual_phone:
             if actual_phone == APIConstants.LEAD_PHONE:
                 assert actual_phone == expected_phone
             else:
