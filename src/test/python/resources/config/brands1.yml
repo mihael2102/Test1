@@ -17,8 +17,8 @@ brands:
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
 
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: brokerz
+  config_file: brokerz.yml
 
 #- name: coin-bits
 #  config_file: coin-bits.yml
@@ -98,8 +98,8 @@ brands:
 #- name: ptbanc
 #  config_file: ptbanc.yml
 
-- name: q8
-  config_file: q8.yml
+#- name: q8
+#  config_file: q8.yml
 
 #- name: solocapitlas
 #  config_file: solocapitlas.yml

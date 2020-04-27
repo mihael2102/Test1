@@ -4,8 +4,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
 from src.main.python.ui.crm.model.constants.UserInformation import UserInformation
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
+from src.main.python.ui.crm.model.pages.user_management_ui.UMModulePageUI import UMModulePageUI
 
 
 @pytest.mark.run(order=13)
@@ -44,6 +43,12 @@ class LoginAsPreconditionUI(object):
 
         self.driver.switch_to_default_content()
 
-        UserManagementPage(self.driver) \
-            .click_logout_login_as_session(UserInformation.FIRST_USER_NAME) \
-            .verify_current_user_name(UserInformation.PANDA_AUTO_NAME)
+        user = UMModulePageUI(self.driver) \
+            .get_login_user_name()
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(user, UserInformation.NAME)
+        user = UMModulePageUI(self.driver) \
+            .click_login_as_sign_out() \
+            .get_login_user_name()
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(user, UserInformation.PANDA_AUTO_NAME)
