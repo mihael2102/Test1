@@ -14,7 +14,9 @@ class ClientEditConstantsUI(object):
     FIELD_FNAME = "First name"
     FIELD_LNAME = "Last name"
     FIELD_CITY = "City"
+    FIELD_P_CODE = "Postal code"
     LIST_COUNTRY = "Country"
+    LIST_CITIZENSHIP = "Citizenship"
     BTN_SAVE = "Save"
 
     ROW_1 = "1"

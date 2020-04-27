@@ -6,7 +6,7 @@ import string
 
 
 class LeadsDetailsConstantsUI(object):
-    random_numbers = str(random.randrange(1, 9999))
+    random_numbers = str(random.randrange(1, 999999))
     random_character = ''.join(random.choice(string.ascii_uppercase) for _ in range(5))
     now = datetime.now().strftime('%Y-%m-%d_%H-%M-%S-%f')
 
@@ -34,3 +34,5 @@ class LeadsDetailsConstantsUI(object):
     TAB_CUSTOM_INFORMATION = "Custom Information"
     TAB_ADDRESS_INFORMATION = "Address Information"
     TAB_DESCRIPTION_INFORMATION = "Description Information"
+
+    MOBILE_EDIT = random_numbers

@@ -90,7 +90,7 @@ class GlobalPopupPageUI(CRMBasePage):
             Logging().reportDebugStep(self, "Click '" + button + "' button")
             btn = super().wait_element_to_be_clickable("//mat-sidenav//button[span=' %s ']" % button)
             self.driver.execute_script("arguments[0].click();", btn)
-            sleep(0.5)
+            sleep(1)
             self.wait_loading_to_finish_new_ui(25)
         else:
             Logging().reportDebugStep(self, button + " button is inactive")

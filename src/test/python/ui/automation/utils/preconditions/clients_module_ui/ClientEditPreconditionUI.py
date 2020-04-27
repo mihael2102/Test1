@@ -59,7 +59,7 @@ class ClientEditPreconditionUI(object):
             .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    data=ClientEditConstantsUI.EMAIL)
         LeadsModulePageUI(self.driver) \
-            .open_lead()
+            .open_lead('1')
 
         """ Convert Lead """
         ConvertLeadPageUI(self.driver) \
@@ -81,11 +81,6 @@ class ClientEditPreconditionUI(object):
                          field4=ClientEditConstantsUI.FIELD_CITY, city=ClientEditConstantsUI.CITY,
                          list2=ClientEditConstantsUI.LIST_COUNTRY, country=ClientEditConstantsUI.COUNTRY,
                          button=ClientEditConstantsUI.BTN_SAVE)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
 
         """ Get client's data """
         details = ClientDetailsPageUI(self.driver)
