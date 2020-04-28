@@ -59,12 +59,8 @@ class MT4DepositPreconditionUI(object):
             list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
             list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=currency,
             list3=MT4CreateTAConstantsUI.LIST_GROUP, group_number="1",
-            list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
+            list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE,
+            final_btn=MT4CreateTAConstantsUI.BTN_FINAL)
 
         """ Get account number to make deposit in future """
         record_num = ClientDetailsPageUI(self.driver) \

@@ -57,12 +57,8 @@ class MT4CreditInPreconditionUI(object):
             list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
             list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=currency,
             list3=MT4CreateTAConstantsUI.LIST_GROUP, group_number="1",
-            list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
+            list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE,
+            final_btn=MT4CreateTAConstantsUI.BTN_FINAL)
 
         """ Get account number to make Credit in """
         record_num = ClientDetailsPageUI(self.driver) \
@@ -90,12 +86,8 @@ class MT4CreditInPreconditionUI(object):
                 field1=MT4CreditInConstantsUI.FIELD_AMOUNT, amount=amount,
                 day=MT4CreditInConstantsUI.DAY, month=MT4CreditInConstantsUI.MONTH, year=MT4CreditInConstantsUI.YEAR,
                 field2=MT4CreditInConstantsUI.FIELD_GRANTED_BY, granted_by=MT4CreditInConstantsUI.GRANTED_BY,
-                field3=MT4CreditInConstantsUI.FIELD_COMMENT, comment=MT4CreditInConstantsUI.COMMENT)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok() \
+                field3=MT4CreditInConstantsUI.FIELD_COMMENT, comment=MT4CreditInConstantsUI.COMMENT,
+                final_btn=MT4CreditInConstantsUI.BTN_FINAL) \
             .refresh_page()
 
         """ Check credit was updated """
