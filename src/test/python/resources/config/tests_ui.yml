@@ -26,12 +26,12 @@ tests_config:
   class: TestLeadsModuleUI
   tests:
 #    - test_leads_searching_columns_ui
-    - test_leads_sorting_columns_ui
+#    - test_leads_sorting_columns_ui
 #    - test_mass_assign_leads_ui
 #    - test_mass_edit_leads_ui
 #    - test_edit_lead_ui
 #    - test_edit_pencil_lead_ui
-#    - test_convert_lead_ui   # Creates a lead and converts it to a client
+    - test_convert_lead_ui   # Creates a lead and converts it to a client
 
 ########################################### CLIENTS ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.TestClientsModuleUI

@@ -67,12 +67,8 @@ class ConvertLeadPreconditionUI(object):
                 list4=CreateLeadConstantsUI.LIST_COUNTRY, country=CreateLeadConstantsUI.COUNTRY,
                 field15=CreateLeadConstantsUI.FIELD_STATE, state=CreateLeadConstantsUI.STATE,
                 field16=CreateLeadConstantsUI.FIELD_PO_BOX, po_box=CreateLeadConstantsUI.PO_BOX,
-                field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=CreateLeadConstantsUI.DESCRIPTION)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
+                field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=CreateLeadConstantsUI.DESCRIPTION,
+                final_btn=CreateLeadConstantsUI.BTN_FINAL)
 
         """ Search lead """
         GlobalModulePageUI(self.driver) \
@@ -185,8 +181,7 @@ class ConvertLeadPreconditionUI(object):
                 field7=ConvertLeadConstantsUI.FIELD_CITY, city=ConvertLeadConstantsUI.CITY,
                 list3=ConvertLeadConstantsUI.LIST_COUNTRY, country=ConvertLeadConstantsUI.COUNTRY,
                 field9=ConvertLeadConstantsUI.FIELD_PASSWORD, password=ConvertLeadConstantsUI.PASSWORD,
-                list4=ConvertLeadConstantsUI.LIST_CURRENCY,
-                # currency=var.get_var(self.__class__.__name__)["convert_lead_currency"],
+                list4=ConvertLeadConstantsUI.LIST_CURRENCY, currency='1',
                 field10=ConvertLeadConstantsUI.FIELD_REFERRAL, referral=ConvertLeadConstantsUI.REFERRAL,
                 list5=ConvertLeadConstantsUI.LIST_BRAND, brand=ConvertLeadConstantsUI.BRAND,
                 field11=ConvertLeadConstantsUI.FIELD_SOURCE_NAME, source_name=ConvertLeadConstantsUI.SOURCE_NAME,

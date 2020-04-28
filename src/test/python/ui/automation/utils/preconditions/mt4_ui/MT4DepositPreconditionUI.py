@@ -88,12 +88,7 @@ class MT4DepositPreconditionUI(object):
                 field1=MT4DepositConstantsUI.FIELD_AMOUNT, amount=amount,
                 field2=MT4DepositConstantsUI.FIELD_COMMENT, comment=MT4DepositConstantsUI.COMMENT,
                 list4=MT4DepositConstantsUI.LIST_CLEARED_BY, cleared_by=MT4DepositConstantsUI.CLEARED_BY,
-                final_btn=MT4DepositConstantsUI.BTN_FINAL)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok() \
+                final_btn=MT4DepositConstantsUI.BTN_FINAL) \
             .refresh_page()
 
         """ Check balance was updated """
