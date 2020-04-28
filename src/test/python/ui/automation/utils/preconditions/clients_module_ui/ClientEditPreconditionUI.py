@@ -73,7 +73,8 @@ class ClientEditPreconditionUI(object):
             field7=ConvertLeadConstantsUI.FIELD_CITY, city=ConvertLeadConstantsUI.CITY,
             list3=ConvertLeadConstantsUI.LIST_COUNTRY, country=ConvertLeadConstantsUI.COUNTRY,
             field9=ConvertLeadConstantsUI.FIELD_PASSWORD, password=ConvertLeadConstantsUI.PASSWORD,
-            list5=ConvertLeadConstantsUI.LIST_BRAND, brand=ConvertLeadConstantsUI.BRAND)
+            list5=ConvertLeadConstantsUI.LIST_BRAND, brand=ConvertLeadConstantsUI.BRAND,
+            final_btn=ConvertLeadConstantsUI.BTN_FINAL)
 
         """ Edit Client """
         ClientEditPageUI(self.driver)\
