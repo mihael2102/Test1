@@ -12,6 +12,8 @@ from src.test.python.ui.automation.utils.preconditions.leads_module_ui.EditLeadP
     EditLeadPreconditionUI
 from src.test.python.ui.automation.utils.preconditions.leads_module_ui.EditPencilLeadPreconditionUI import \
     EditPencilLeadPreconditionUI
+from src.test.python.ui.automation.utils.preconditions.leads_module_ui.LeadsSortingColumnsPreconditionUI import \
+    LeadsSortingColumnsPreconditionUI
 
 
 @pytest.mark.run(order=26)
@@ -19,6 +21,9 @@ class TestLeadsModuleUI(BaseTest):
 
     def test_leads_searching_columns_ui(self):
         LeadsSearchingColumnsPreconditionUI(self.driver, self.config).leads_searching_columns_ui()
+
+    def test_leads_sorting_columns_ui(self):
+        LeadsSortingColumnsPreconditionUI(self.driver, self.config).leads_sorting_columns_ui()
 
     def test_mass_assign_leads_ui(self):
         LeadsMassAssignPreconditionUI(self.driver, self.config).mass_assign_leads_ui()

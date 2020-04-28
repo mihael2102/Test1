@@ -64,12 +64,8 @@ class MT4CreditOutPreconditionUI(object):
                 list1=MT4CreditOutConstantsUI.LIST_TA, t_account=MT4CreditInConstantsUI.TA_CREDIT,
                 field1=MT4CreditOutConstantsUI.FIELD_AMOUNT, amount=amount,
                 field2=MT4CreditOutConstantsUI.FIELD_GRANTED_BY, granted_by=MT4CreditOutConstantsUI.GRANTED_BY,
-                field3=MT4CreditOutConstantsUI.FIELD_COMMENT, comment=MT4CreditOutConstantsUI.COMMENT)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok() \
+                field3=MT4CreditOutConstantsUI.FIELD_COMMENT, comment=MT4CreditOutConstantsUI.COMMENT,
+                final_btn=MT4CreditOutConstantsUI.BTN_FINAL) \
             .refresh_page()
 
         """ Check credit was updated """

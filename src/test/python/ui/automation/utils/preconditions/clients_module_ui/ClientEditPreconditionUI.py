@@ -46,7 +46,8 @@ class ClientEditPreconditionUI(object):
             field1=CreateLeadConstantsUI.FIELD_FNAME, fname=ClientEditConstantsUI.FNAME,
             field5=CreateLeadConstantsUI.FIELD_EMAIL, email=ClientEditConstantsUI.EMAIL,
             field2=CreateLeadConstantsUI.FIELD_LNAME, lname=ClientEditConstantsUI.LNAME,
-            list3=CreateLeadConstantsUI.LIST_ASSIGNED_TO, assigned_to=CreateLeadConstantsUI.ASSIGNED_TO)
+            list3=CreateLeadConstantsUI.LIST_ASSIGNED_TO, assigned_to=CreateLeadConstantsUI.ASSIGNED_TO,
+            final_btn=CreateLeadConstantsUI.BTN_FINAL)
 
         """ Verify successful message """
         GlobalModulePageUI(self.driver) \

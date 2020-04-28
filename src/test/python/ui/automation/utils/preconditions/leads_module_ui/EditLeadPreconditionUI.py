@@ -66,7 +66,8 @@ class EditLeadPreconditionUI(object):
             list4=CreateLeadConstantsUI.LIST_COUNTRY, country=CreateLeadConstantsUI.COUNTRY,
             field15=CreateLeadConstantsUI.FIELD_STATE, state=CreateLeadConstantsUI.STATE,
             field16=CreateLeadConstantsUI.FIELD_PO_BOX, po_box=CreateLeadConstantsUI.PO_BOX,
-            field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=CreateLeadConstantsUI.DESCRIPTION)
+            field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=CreateLeadConstantsUI.DESCRIPTION,
+            final_btn=CreateLeadConstantsUI.BTN_FINAL)
 
         """ Verify successful message """
         GlobalModulePageUI(self.driver) \
