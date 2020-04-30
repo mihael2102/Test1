@@ -235,10 +235,10 @@ class ConvertLeadPreconditionUI(object):
             .comparator_string(city, ConvertLeadConstantsUI.CITY) \
             .comparator_string(country, ConvertLeadConstantsUI.COUNTRY)
 
-        if "*" not in email and "..." not in email:
+        if "*" not in email and "..." not in email and "+" in email:
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(email, CreateLeadConstantsUI.EMAIL)
-        elif "*" not in email:
+        elif "*" not in email and "+" in email:
             email = email.replace('...', '')
             assert email in CreateLeadConstantsUI.EMAIL
 

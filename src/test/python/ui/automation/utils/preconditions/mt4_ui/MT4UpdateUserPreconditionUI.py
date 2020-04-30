@@ -47,7 +47,7 @@ class MT4UpdateUserPreconditionUI(object):
         """ Update MT User """
         MT4UpdateUserPageUI(self.driver)\
             .mt_update_ta_ui(
-                list2=MT4UpdateTAConstantsUI.LIST_LEVERAGE, leverage=MT4UpdateTAConstantsUI.LEVERAGE,
+                list5=MT4UpdateTAConstantsUI.LIST_LEVERAGE, leverage=MT4UpdateTAConstantsUI.LEVERAGE,
                 box1=MT4UpdateTAConstantsUI.BOX_READONLY,
                 final_btn=MT4UpdateTAConstantsUI.BTN_UPDATE) \
             .refresh_page()

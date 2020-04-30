@@ -103,32 +103,32 @@ class MT4DepositPreconditionUI(object):
                 balance,
                 amount)
 
-        """ Verify data in info tag Balance was updated """
-        balance_tag = ClientDetailsPageUI(self.driver)\
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_BALANCE)
-        if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in balance_tag
-
-        """ Verify data in info tag Deposit was updated """
-        deposit_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_DEPOSIT)
-        if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in deposit_tag
-
-        """ Verify data in info tag Equity was updated """
-        equity_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_EQUITY)
-        if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in equity_tag
-
-        """ Verify data in info tag Free Margin was updated """
-        free_margin_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_FREE_MARGIN)
-        if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in free_margin_tag
-
-        """ Verify data in info tag Net Deposit was updated """
-        net_deposit_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_NET_DEPOSIT)
-        if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in net_deposit_tag
+        # """ Verify data in info tag Balance was updated """
+        # balance_tag = ClientDetailsPageUI(self.driver)\
+        #     .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_BALANCE)
+        # if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
+        #     assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in balance_tag
+        #
+        # """ Verify data in info tag Deposit was updated """
+        # deposit_tag = ClientDetailsPageUI(self.driver) \
+        #     .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_DEPOSIT)
+        # if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
+        #     assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in deposit_tag
+        #
+        # """ Verify data in info tag Equity was updated """
+        # equity_tag = ClientDetailsPageUI(self.driver) \
+        #     .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_EQUITY)
+        # if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
+        #     assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in equity_tag
+        #
+        # """ Verify data in info tag Free Margin was updated """
+        # free_margin_tag = ClientDetailsPageUI(self.driver) \
+        #     .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_FREE_MARGIN)
+        # if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
+        #     assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in free_margin_tag
+        #
+        # """ Verify data in info tag Net Deposit was updated """
+        # net_deposit_tag = ClientDetailsPageUI(self.driver) \
+        #     .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_NET_DEPOSIT)
+        # if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
+        #     assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in net_deposit_tag

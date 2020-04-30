@@ -69,11 +69,6 @@ class EditLeadPreconditionUI(object):
             field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=CreateLeadConstantsUI.DESCRIPTION,
             final_btn=CreateLeadConstantsUI.BTN_FINAL)
 
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
-
         """ Search lead """
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_LEADS) \
@@ -167,14 +162,6 @@ class EditLeadPreconditionUI(object):
         if "*" not in fax:
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(fax, CreateLeadConstantsUI.FAX)
-
-        """ Edit Lead: verify lead can't be saved with empty Last Name field """
-        # is_update_btn_active = EditLeadPageUI(self.driver) \
-        #     .click_edit_lead_btn() \
-        #     .set_text(field=CreateLeadConstantsUI.FIELD_LNAME, text=" ") \
-        #     .is_button_update_lead_active()
-
-        # assert not is_update_btn_active
 
         """ Edit Lead """
         EditLeadPageUI(self.driver) \
@@ -278,10 +265,6 @@ class EditLeadPreconditionUI(object):
         if "*" not in email:
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(email, EditLeadConstantsUI.EMAIL)
-
-        # if "*" not in s_email:
-        #     CRMBaseMethodsPage(self.driver) \
-        #         .comparator_string(s_email, EditLeadConstantsUI.S_EMAIL)
 
         if "*" not in phone:
             CRMBaseMethodsPage(self.driver) \

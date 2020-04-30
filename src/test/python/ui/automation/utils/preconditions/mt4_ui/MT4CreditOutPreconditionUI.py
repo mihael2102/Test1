@@ -100,11 +100,11 @@ class MT4CreditOutPreconditionUI(object):
                 credit,
                 expected_credit)
 
-        """ Verify data in info tag Credit was updated """
-        credit_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_CREDIT)
-        if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
-            assert expected_credit in credit_tag
-        else:
-            expected_credit = expected_credit.split('.')[0]
-            assert expected_credit in credit_tag
+        # """ Verify data in info tag Credit was updated """
+        # credit_tag = ClientDetailsPageUI(self.driver) \
+        #     .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_CREDIT)
+        # if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
+        #     assert expected_credit in credit_tag
+        # else:
+        #     expected_credit = expected_credit.split('.')[0]
+        #     assert expected_credit in credit_tag

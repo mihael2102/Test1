@@ -25,6 +25,7 @@ class MT4DepositPageUI(CRMBasePage):
             self.select_pick_list_item(list4, cleared_by)
         sleep(1)
         self.click_deposit(final_btn)
+        return MT4DepositPageUI(self.driver)
 
     def select_pick_list_item(self, pick_list, item):
         GlobalPopupPageUI(self.driver)\
