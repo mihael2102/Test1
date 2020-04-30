@@ -59,6 +59,7 @@ class CreateLeadPageUI(CRMBasePage):
         if field17 and description:
             self.set_text_field(field17, description)
         self.click_create_lead_btn(final_btn)
+        return CreateLeadPageUI(self.driver)
 
     def click_create_new_btn(self):
         sleep(0.1)

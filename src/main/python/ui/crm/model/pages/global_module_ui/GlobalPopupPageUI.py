@@ -32,7 +32,7 @@ class GlobalPopupPageUI(CRMBasePage):
 
     def select_pick_list_item_by_number(self, pick_list, number):
         sleep(0.1)
-        Logging().reportDebugStep(self, "Select " + pick_list + ": " + number)
+        Logging().reportDebugStep(self, "Select " + pick_list + " by index: " + number)
         title = super().wait_load_element(
             "(//span[text()=' %s ']//following-sibling::ul//span)[%s]" % (pick_list, number))
         self.driver.execute_script("arguments[0].click();", title)
@@ -44,6 +44,7 @@ class GlobalPopupPageUI(CRMBasePage):
         input_field = super().wait_load_element(
             "//div[contains(label,'%s')]//following-sibling::mat-form-field//input" % field)
         try:
+            sleep(0.1)
             input_field.clear()
             input_field.send_keys(text)
         except:

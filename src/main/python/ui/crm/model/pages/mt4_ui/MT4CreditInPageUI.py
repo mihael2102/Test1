@@ -26,6 +26,7 @@ class MT4CreditInPageUI(CRMBasePage):
             self.set_text_field(field3, comment)
         sleep(1)
         self.click_credit_in(final_btn)
+        return MT4CreditInPageUI(self.driver)
 
     def select_pick_list_item(self, pick_list, item):
         GlobalPopupPageUI(self.driver)\
