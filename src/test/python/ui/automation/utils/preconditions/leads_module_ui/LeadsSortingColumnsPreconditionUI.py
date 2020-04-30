@@ -120,7 +120,7 @@ class LeadsSortingColumnsPreconditionUI(object):
                     row='2')
             created_time_2 = created_time_2.split(' ')[0]
             created_time_2 = created_time_2.replace('-', '')
-            assert created_time_1 < created_time_2
+            assert created_time_1 <= created_time_2
         else:
             GlobalModulePageUI(self.driver) \
                 .click_arrow_down(
@@ -137,4 +137,4 @@ class LeadsSortingColumnsPreconditionUI(object):
                     row='2')
             created_time_2 = created_time_2.split(' ')[0]
             created_time_2 = created_time_2.replace('-', '')
-            assert created_time_1 > created_time_2
+            assert created_time_1 >= created_time_2
