@@ -1,11 +1,11 @@
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 
 
-class LeadsSortingColumnsPreconditionUI(object):
+class ClientsSortingColumnsPreconditionUI(object):
 
     driver = None
     config = None
@@ -14,7 +14,7 @@ class LeadsSortingColumnsPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def leads_sorting_columns_ui(self):
+    def clients_sorting_columns_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
@@ -23,82 +23,82 @@ class LeadsSortingColumnsPreconditionUI(object):
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        """ Open Leads module """
+        """ Open Clients module """
         CRMBaseMethodsPage(self.driver) \
-            .open_module_ui(TestDataConstants.MODULE_LEADS) \
-            .open_tab_list_view_ui(LeadsModuleConstantsUI.TAB_ALL)
+            .open_module_ui(TestDataConstants.MODULE_CLIENTS) \
+            .open_tab_list_view_ui(ClientsModuleConstantsUI.TAB_ALL)
 
-        """ Get 'Lead No' from 1st and 2nd row of list view """
+        """ Get 'CRM Id' from 1st and 2nd row of list view """
         get_data = GlobalModulePageUI(self.driver)
-        lead_no_1 = get_data \
+        crm_id_1 = get_data \
             .get_data_from_list_view_ui(
-                column=LeadsModuleConstantsUI.COLUMN_LEAD_NO,
+                column=ClientsModuleConstantsUI.COLUMN_CRM_ID,
                 row='1')
-        lead_no_1 = lead_no_1.replace('LEA', '')
-        lead_no_2 = get_data \
+        crm_id_1 = crm_id_1.replace('ACC', '')
+        crm_id_2 = get_data \
             .get_data_from_list_view_ui(
-                column=LeadsModuleConstantsUI.COLUMN_LEAD_NO,
+                column=ClientsModuleConstantsUI.COLUMN_CRM_ID,
                 row='2')
-        lead_no_2 = lead_no_2.replace('LEA', '')
+        crm_id_2 = crm_id_2.replace('ACC', '')
 
-        """ Sorting by 'Lead No' column """
-        if lead_no_1 > lead_no_2:
-            GlobalModulePageUI(self.driver)\
+        """ Sorting by 'CRM Id' column """
+        if crm_id_1 > crm_id_2:
+            GlobalModulePageUI(self.driver) \
                 .click_arrow_up(
-                    column=LeadsModuleConstantsUI.COLUMN_LEAD_NO)
-            lead_no_1 = get_data \
+                    column=ClientsModuleConstantsUI.COLUMN_CRM_ID)
+            crm_id_1 = get_data \
                 .get_data_from_list_view_ui(
-                    column=LeadsModuleConstantsUI.COLUMN_LEAD_NO,
+                    column=ClientsModuleConstantsUI.COLUMN_CRM_ID,
                     row='1')
-            lead_no_1 = lead_no_1.replace('LEA', '')
-            lead_no_2 = get_data \
+            crm_id_1 = crm_id_1.replace('ACC', '')
+            crm_id_2 = get_data \
                 .get_data_from_list_view_ui(
-                    column=LeadsModuleConstantsUI.COLUMN_LEAD_NO,
+                    column=ClientsModuleConstantsUI.COLUMN_CRM_ID,
                     row='2')
-            lead_no_2 = lead_no_2.replace('LEA', '')
-            assert lead_no_1 < lead_no_2
+            crm_id_2 = crm_id_2.replace('ACC', '')
+            assert crm_id_1 < crm_id_2
         else:
             GlobalModulePageUI(self.driver) \
                 .click_arrow_down(
-                    column=LeadsModuleConstantsUI.COLUMN_LEAD_NO)
-            lead_no_1 = get_data \
+                    column=ClientsModuleConstantsUI.COLUMN_CRM_ID)
+            crm_id_1 = get_data \
                 .get_data_from_list_view_ui(
-                    column=LeadsModuleConstantsUI.COLUMN_LEAD_NO,
+                    column=ClientsModuleConstantsUI.COLUMN_CRM_ID,
                     row='1')
-            lead_no_1 = lead_no_1.replace('LEA', '')
-            lead_no_2 = get_data \
+            crm_id_1 = crm_id_1.replace('ACC', '')
+            crm_id_2 = get_data \
                 .get_data_from_list_view_ui(
-                    column=LeadsModuleConstantsUI.COLUMN_LEAD_NO,
+                    column=ClientsModuleConstantsUI.COLUMN_CRM_ID,
                     row='2')
-            lead_no_2 = lead_no_2.replace('LEA', '')
-            assert lead_no_1 > lead_no_2
+            crm_id_2 = crm_id_2.replace('ACC', '')
+            assert crm_id_1 > crm_id_2
 
-        """ Get 'Last Name' from 1st row of list view """
-        l_name_1 = get_data \
+        """ Get 'Client Name' from 1st row of list view """
+        client_name_1 = get_data \
             .get_data_from_list_view_ui(
-                column=LeadsModuleConstantsUI.COLUMN_LNAME,
+                column=ClientsModuleConstantsUI.COLUMN_CLIENT_NAME,
                 row='1')
 
-        """ Sorting by 'First Name' column """
+        """ Sorting by 'Client Name' column """
         GlobalModulePageUI(self.driver) \
             .click_arrow_up(
-                column=LeadsModuleConstantsUI.COLUMN_FNAME)
-        l_name_2 = get_data \
+                column=ClientsModuleConstantsUI.COLUMN_CLIENT_NAME)
+        client_name_2 = get_data \
             .get_data_from_list_view_ui(
-                column=LeadsModuleConstantsUI.COLUMN_LNAME,
+                column=ClientsModuleConstantsUI.COLUMN_CLIENT_NAME,
                 row='1')
-        assert l_name_1 != l_name_2
+        assert client_name_1 != client_name_2
 
         """ Get 'Created Time' from 1st and 2nd row of list view """
         created_time_1 = get_data \
             .get_data_from_list_view_ui(
-                column=LeadsModuleConstantsUI.COLUMN_CREATED_TIME,
+                column=ClientsModuleConstantsUI.COLUMN_CREATED_TIME,
                 row='1')
         created_time_1 = created_time_1.split(' ')[0]
         created_time_1 = created_time_1.replace('-', '')
         created_time_2 = get_data \
             .get_data_from_list_view_ui(
-                column=LeadsModuleConstantsUI.COLUMN_CREATED_TIME,
+                column=ClientsModuleConstantsUI.COLUMN_CREATED_TIME,
                 row='2')
         created_time_2 = created_time_2.split(' ')[0]
         created_time_2 = created_time_2.replace('-', '')
@@ -107,34 +107,34 @@ class LeadsSortingColumnsPreconditionUI(object):
         if created_time_1 > created_time_2:
             GlobalModulePageUI(self.driver) \
                 .click_arrow_up(
-                    column=LeadsModuleConstantsUI.COLUMN_CREATED_TIME)
+                    column=ClientsModuleConstantsUI.COLUMN_CREATED_TIME)
             created_time_1 = get_data \
                 .get_data_from_list_view_ui(
-                    column=LeadsModuleConstantsUI.COLUMN_CREATED_TIME,
+                    column=ClientsModuleConstantsUI.COLUMN_CREATED_TIME,
                     row='1')
             created_time_1 = created_time_1.split(' ')[0]
             created_time_1 = created_time_1.replace('-', '')
             created_time_2 = get_data \
                 .get_data_from_list_view_ui(
-                    column=LeadsModuleConstantsUI.COLUMN_CREATED_TIME,
+                    column=ClientsModuleConstantsUI.COLUMN_CREATED_TIME,
                     row='2')
             created_time_2 = created_time_2.split(' ')[0]
             created_time_2 = created_time_2.replace('-', '')
-            assert created_time_1 < created_time_2
+            assert created_time_1 <= created_time_2
         else:
             GlobalModulePageUI(self.driver) \
                 .click_arrow_down(
-                    column=LeadsModuleConstantsUI.COLUMN_CREATED_TIME)
+                    column=ClientsModuleConstantsUI.COLUMN_CREATED_TIME)
             created_time_1 = get_data \
                 .get_data_from_list_view_ui(
-                    column=LeadsModuleConstantsUI.COLUMN_CREATED_TIME,
+                    column=ClientsModuleConstantsUI.COLUMN_CREATED_TIME,
                     row='1')
             created_time_1 = created_time_1.split(' ')[0]
             created_time_1 = created_time_1.replace('-', '')
             created_time_2 = get_data \
                 .get_data_from_list_view_ui(
-                    column=LeadsModuleConstantsUI.COLUMN_CREATED_TIME,
+                    column=ClientsModuleConstantsUI.COLUMN_CREATED_TIME,
                     row='2')
             created_time_2 = created_time_2.split(' ')[0]
             created_time_2 = created_time_2.replace('-', '')
-            assert created_time_1 > created_time_2
+            assert created_time_1 >= created_time_2
