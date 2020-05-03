@@ -54,7 +54,7 @@ class EditLeadPreconditionUI(object):
             field6=CreateLeadConstantsUI.FIELD_S_EMAIL, s_mail=CreateLeadConstantsUI.S_EMAIL2,
             field7=CreateLeadConstantsUI.FIELD_TITLE, title=CreateLeadConstantsUI.TITLE,
             list1=CreateLeadConstantsUI.LIST_LEAD_SOURCE, l_source=CreateLeadConstantsUI.L_SOURCE,
-            list2=CreateLeadConstantsUI.LIST_LEAD_STATUS, l_status=CreateLeadConstantsUI.L_STATUS,
+            list2=CreateLeadConstantsUI.LIST_LEAD_STATUS, l_status='2',
             list3=CreateLeadConstantsUI.LIST_ASSIGNED_TO, assigned_to=CreateLeadConstantsUI.ASSIGNED_TO,
             field8=CreateLeadConstantsUI.FIELD_LANGUAGE, language=CreateLeadConstantsUI.LANGUAGE,
             field9=CreateLeadConstantsUI.FIELD_SOURCE_NAME, source_name=CreateLeadConstantsUI.SOURCE_NAME,

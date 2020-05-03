@@ -160,12 +160,12 @@ tests_config:
 #    - test_campaign_searching_by_columns
 #
 ########################################## AUTOASSIGN MODULE #############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
-#  class: AutoAssignModuleTest
-#  tests:
-#    - test_add_auto_assign_rule_lead
-#    - test_add_auto_assign_rule_client
-#    - test_perform_delete_rule
+- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
+  class: AutoAssignModuleTest
+  tests:
+    - test_add_auto_assign_rule_lead
+    - test_add_auto_assign_rule_client
+    - test_perform_delete_rule
 
 ########################################### CHECK MODULES ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
@@ -192,10 +192,10 @@ tests_config:
 #    - test_delete_workflow
 
 ########################################### USER_MANAGEMENT ############################################
-- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
-  class: UserManagementTest
-  tests:
-    - test_create_user
+#- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
+#  class: UserManagementTest
+#  tests:
+#    - test_create_user
 #    - test_delete_user
 #    - test_login_as
 #

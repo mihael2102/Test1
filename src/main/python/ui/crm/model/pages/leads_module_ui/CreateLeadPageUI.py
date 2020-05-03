@@ -33,7 +33,7 @@ class CreateLeadPageUI(CRMBasePage):
         if list1 and l_source:
             self.select_pick_list_item(list1, l_source)
         if list2 and l_status:
-            self.select_pick_list_item(list2, l_status)
+            self.select_pick_list_item_by_number(list2, l_status)
         if list3 and assigned_to:
             self.select_pick_list_item(list3, assigned_to)
         if field8 and language:
@@ -71,6 +71,11 @@ class CreateLeadPageUI(CRMBasePage):
     def select_pick_list_item(self, pick_list, item):
         GlobalPopupPageUI(self.driver) \
             .select_pick_list_item(pick_list, item)
+        return CreateLeadPageUI(self.driver)
+
+    def select_pick_list_item_by_number(self, pick_list, number):
+        GlobalPopupPageUI(self.driver) \
+            .select_pick_list_item_by_number(pick_list, number)
         return CreateLeadPageUI(self.driver)
 
     def set_text_field(self, field, text):
