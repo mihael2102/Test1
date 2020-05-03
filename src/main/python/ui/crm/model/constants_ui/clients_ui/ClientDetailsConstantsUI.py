@@ -40,6 +40,7 @@ class ClientDetailsConstantsUI(object):
     FIELD_REFERRAL = "Referral"
     FIELD_CLIENT_SOURCE = "Client Source"
     FIELD_BIRTHDAY = "Date Of Birth"
+    FIELD_CLIENT_STATUS = "Client Status"
 
     COLUMN_LOGIN = "Login"
     COLUMN_BALANCE = "Balance"

@@ -2,10 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import NoSuchElementException
-from src.main.python.utils.logs.Loging import Logging
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from time import sleep
 
 
@@ -28,6 +25,7 @@ class MT4DepositPageUI(CRMBasePage):
             self.select_pick_list_item(list4, cleared_by)
         sleep(1)
         self.click_deposit(final_btn)
+        return MT4DepositPageUI(self.driver)
 
     def select_pick_list_item(self, pick_list, item):
         GlobalPopupPageUI(self.driver)\
@@ -42,4 +40,7 @@ class MT4DepositPageUI(CRMBasePage):
     def click_deposit(self, final_btn):
         GlobalPopupPageUI(self.driver)\
             .click_final_btn(final_btn)
+        GlobalModulePageUI(self.driver) \
+            .verify_success_message() \
+            .click_ok()
         return MT4DepositPageUI(self.driver)

@@ -1,11 +1,14 @@
 import pytest
-from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
-from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMConfigurationPage import CRMConfigurationPage
-from src.test.python.ui.automation.utils.preconditions.workflows.WorkflowsPrecondition import WorkflowsPrecondition
-from src.main.python.ui.crm.model.pages.workflows.WorkflowsPage import WorkflowsPage
+from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
+from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
+from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
+from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.crm.model.constants.WorkflowsConstants import WorkflowsConstants
+from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
+from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
@@ -40,42 +43,27 @@ class CheckWorkflowStatusPreconditionUI(object):
 
         self.driver.switch_to_default_content()
 
-        """ Create new workflow """
-        name_workflow = WorkflowsPage(self.driver) \
-            .click_add_new_workflow() \
-            .enter_workflow_name(WorkflowsConstants.NAME_WORKFLOW) \
-            .enter_workflow_priority(WorkflowsConstants.PRIORITY_WORKFLOW) \
-            .click_radio_btn_modified() \
-            .click_next() \
-            .select_module(WorkflowsConstants.CLIENTS_MODULE) \
-            .click_add_condition() \
-            .select_accept_promotions(WorkflowsConstants.CLIENT_STATUS) \
-            .select_condition(WorkflowsConstants.CONDITION_IS) \
-            .select_status(var.get_var('WorkflowsPrecondition')["client_status"]) \
-            .click_add_condition() \
-            .select_second_accept_promotions(WorkflowsConstants.COUNTRY) \
-            .select_second_condition(WorkflowsConstants.CONDITION_IS) \
-            .select_second_country(WorkflowsConstants.COUNTRY_GUAM) \
-            .select_condition_between(WorkflowsConstants.CONDITION_OR) \
-            .click_add_condition() \
-            .select_third_accept_promotions(WorkflowsConstants.EMAIl) \
-            .select_third_conditions(WorkflowsConstants.CONDITION_CONTAINS) \
-            .click_enter_email() \
-            .enter_email(WorkflowsConstants.PANDATS_EMAIL) \
-            .click_save_value() \
-            .select_second_condition_between(WorkflowsConstants.CONDITION_AND) \
-            .click_next() \
-            .select_add_task(WorkflowsConstants.UPDATE_FIELD) \
-            .enter_task_title(WorkflowsConstants.TASK_TITLE) \
-            .click_add_field() \
-            .select_field(WorkflowsConstants.ADDRESS) \
-            .click_enter_value() \
-            .enter_value(WorkflowsConstants.TEST_ADDRESS) \
-            .click_save_value_task() \
-            .click_add_field() \
-            .select_second_field(WorkflowsConstants.COUNTRY) \
-            .select_country(WorkflowsConstants.COUNTRY_ALBANIA) \
-            .click_save_task() \
-            .click_save_workflow() \
-            .check_name_workflow(WorkflowsConstants.NAME_WORKFLOW)
-        assert name_workflow == WorkflowsConstants.NAME_WORKFLOW
+        """ Check workflow by status """
+        CRMBaseMethodsPage(self.driver)\
+            .open_module_ui(TestDataConstants.MODULE_CLIENTS)
+
+        ClientsModulePageUI(self.driver) \
+            .select_filter_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
+            .set_data_column_field(
+                column=ClientsModuleConstantsUI.COLUMN_EMAIL,
+                data=ClientsModuleConstantsUI.SHORT_EMAIL) \
+            .click_crm_id_ui(row=5) \
+            .edit_list_via_pencil(
+                field=ClientDetailsConstantsUI.FIELD_CLIENT_STATUS,
+                item=var.get_var('WorkflowsPrecondition')["client_status"]) \
+            .refresh_client_page()
+        country = ClientDetailsPageUI(self.driver)\
+            .open_tab(ClientDetailsConstantsUI.TAB_ADDRESS_INFORMATION) \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_COUNTRY)
+        address = ClientDetailsPageUI(self.driver) \
+            .get_text_from_field(ClientDetailsConstantsUI.FIELD_ADDRESS)
+
+        """ Verify data """
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(country, WorkflowsConstants.COUNTRY_ALBANIA) \
+            .comparator_string(address, WorkflowsConstants.TEST_ADDRESS)

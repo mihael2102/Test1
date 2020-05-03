@@ -45,8 +45,7 @@ class DocumentPrecondition(object):
         document_module.input_expiry_date(CRMConstants.SECOND_DATE.strftime(
                                                         CRMConstants.FORMAT_DATE_YEARS))
 
-        document_module.attached_to(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.FIRST_NAME])
+        document_module.attached_to("testqa")
 
         document_module.save_document()
         assert document_module.get_successful_message() == CRMConstants.DOCUMENT_SUCCESSFUL_MESSAGE

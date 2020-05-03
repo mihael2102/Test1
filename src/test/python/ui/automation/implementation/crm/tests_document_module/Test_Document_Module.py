@@ -20,8 +20,11 @@ class DocumentModuleTest(BaseTest):
     def test_sorting(self):
         DocumentPrecondition(self.driver, self.config).check_sorting()
 
+    def test_add_document(self):
+        DocumentPrecondition(self.driver, self.config).create_document()
+
     def test_create_document(self):
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+        CRMLoginPage().open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
