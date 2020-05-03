@@ -79,6 +79,8 @@ class TasksSortingColumnsPreconditionUI(object):
         if start_date_1 > start_date_2:
             GlobalModulePageUI(self.driver) \
                 .click_arrow_up(
+                    column=TasksModuleConstantsUI.COLUMN_START_DATE) \
+                .click_arrow_up(
                     column=TasksModuleConstantsUI.COLUMN_START_DATE)
             start_date_1 = get_data \
                 .get_data_from_list_view_ui(
@@ -95,6 +97,8 @@ class TasksSortingColumnsPreconditionUI(object):
             assert start_date_1 <= start_date_2
         else:
             GlobalModulePageUI(self.driver) \
+                .click_arrow_down(
+                    column=TasksModuleConstantsUI.COLUMN_START_DATE) \
                 .click_arrow_down(
                     column=TasksModuleConstantsUI.COLUMN_START_DATE)
             start_date_1 = get_data \

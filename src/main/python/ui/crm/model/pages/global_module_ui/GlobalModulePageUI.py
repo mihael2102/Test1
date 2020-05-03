@@ -276,7 +276,7 @@ class GlobalModulePageUI(CRMBasePage):
         arrow = super().wait_load_element("//th[contains(text(),'%s')]//mat-icon[contains(text(),'arrow_up')]" % column)
         self.driver.execute_script("arguments[0].click();", arrow)
         sleep(1)
-        self.wait_loading_to_finish_new_ui(35)
+        self.wait_loading_to_finish_new_ui(55)
         return GlobalModulePageUI(self.driver)
 
     def click_arrow_down(self, column):
