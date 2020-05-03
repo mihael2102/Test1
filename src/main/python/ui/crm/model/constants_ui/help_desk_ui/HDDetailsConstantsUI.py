@@ -11,3 +11,11 @@ class HDDetailsConstantsUI(object):
 
     TAB_DESCRIPTION = "Description Information"
     TAB_ACTIVITIES = "Activities"
+
+    FIELD_TITLE = "Title"
+    FIELD_STATUS = "Status"
+    FIELD_ASSIGNED_TO = "Assigned To"
+    FIELD_PRIORITY = "Priority"
+    FIELD_CATEGORY = "Category"
+    FIELD_SOURCE = "Ticket Source"
+    FIELD_DESCRIPTION = "Description"

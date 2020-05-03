@@ -5,6 +5,9 @@ brands:
 #- name: alferatrade
 #  config_file: alferatrade.yml
 
+#- name: analystq
+#  config_file: analystq.yml
+
 #- name: any1profit
 #  config_file: any1profit.yml
 
@@ -14,8 +17,8 @@ brands:
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
 
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: brokerz
+  config_file: brokerz.yml
 
 #- name: coin-bits
 #  config_file: coin-bits.yml
@@ -77,6 +80,12 @@ brands:
 #- name: newcrmui
 #  config_file: newcrmui.yml
 
+#- name: octagontrade
+#  config_file: octagontrade.yml
+
+#- name: ofcmarkets
+#  config_file: ofcmarkets.yml
+
 #- name: olympiamarkets
 #  config_file: olympiamarkets.yml
 
@@ -101,8 +110,8 @@ brands:
 #- name: trade99
 #  config_file: trade99.yml
 
-- name: tradixa
-  config_file: tradixa.yml
+#- name: tradixa
+#  config_file: tradixa.yml
 
 #- name: uprofx
 #  config_file: uprofx.yml
