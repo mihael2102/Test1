@@ -107,8 +107,8 @@ brands:
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
 
-- name: trade99
-  config_file: trade99.yml
+#- name: trade99
+#  config_file: trade99.yml
 
 #- name: tradixa
 #  config_file: tradixa.yml
@@ -119,8 +119,8 @@ brands:
 #- name: wdcmarkets
 #  config_file: wdcmarkets.yml
 
-#- name: 4ex7
-#  config_file: 4ex7.yml
+- name: 4ex7
+  config_file: 4ex7.yml
 
 #- name: 24option
 #  config_file: 24option.yml

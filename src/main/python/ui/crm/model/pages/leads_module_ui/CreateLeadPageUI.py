@@ -73,6 +73,11 @@ class CreateLeadPageUI(CRMBasePage):
             .select_pick_list_item(pick_list, item)
         return CreateLeadPageUI(self.driver)
 
+    def select_pick_list_item_by_number(self, pick_list, number):
+        GlobalPopupPageUI(self.driver) \
+            .select_pick_list_item_by_number(pick_list, number)
+        return CreateLeadPageUI(self.driver)
+
     def set_text_field(self, field, text):
         GlobalPopupPageUI(self.driver) \
             .set_text_field(field, text)
