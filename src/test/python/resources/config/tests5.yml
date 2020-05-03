@@ -6,6 +6,7 @@ tests_config:
   tests:
     - test_tasks_searching_columns_ui
     - test_add_event_ui
+    - test_edit_event_ui
     - test_delete_event_ui
     - test_tasks_mass_edit
     - test_tasks_email_ui
