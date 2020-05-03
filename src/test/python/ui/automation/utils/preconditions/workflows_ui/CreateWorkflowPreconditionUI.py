@@ -3,6 +3,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMConfigurationPage import CRMConfigurationPage
+from src.test.python.ui.automation.utils.preconditions.workflows.WorkflowsPrecondition import WorkflowsPrecondition
 from src.main.python.ui.crm.model.pages.workflows.WorkflowsPage import WorkflowsPage
 from src.main.python.ui.crm.model.constants.WorkflowsConstants import WorkflowsConstants
 import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
@@ -48,7 +49,7 @@ class CreateWorkflowPreconditionUI(object):
             .click_add_condition() \
             .select_accept_promotions(WorkflowsConstants.CLIENT_STATUS) \
             .select_condition(WorkflowsConstants.CONDITION_IS) \
-            .select_status(var.get_var(self.__class__.__name__)["client_status"]) \
+            .select_status(var.get_var('WorkflowsPrecondition')["client_status"]) \
             .click_add_condition() \
             .select_second_accept_promotions(WorkflowsConstants.COUNTRY) \
             .select_second_condition(WorkflowsConstants.CONDITION_IS) \

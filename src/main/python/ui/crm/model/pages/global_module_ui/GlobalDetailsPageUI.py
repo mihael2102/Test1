@@ -79,7 +79,7 @@ class GlobalDetailsPageUI(CRMBasePage):
             pencil_btn = super().wait_load_element(
                 "//div[label='%s']//following-sibling::button//i[contains(@class,'pencil')]" % field)
             sleep(0.5)
-            pencil_btn.click()
+            self.driver.execute_script("arguments[0].click();", pencil_btn)
             self.wait_loading_to_finish_new_ui(25)
         except:
             Logging().reportDebugStep(self, "Field is not editable")
@@ -94,11 +94,23 @@ class GlobalDetailsPageUI(CRMBasePage):
         edit_fld.send_keys(text)
         return GlobalDetailsPageUI(self.driver)
 
+    def select_item_list_pencil_field(self, field, item):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Edit field '" + field + "' by pencil (select item): " + item)
+        first_item = super().wait_load_element(
+            "(//div[label='%s']//following-sibling::div[@class='picklist-select']//span[text()])[2]" % field)
+        self.driver.execute_script("arguments[0].click();", first_item)
+        edit_fld = super().wait_load_element(
+            "//div[label='%s']//following-sibling::div[@class='picklist-select']//span[text()='%s']"
+            % (field, item))
+        self.driver.execute_script("arguments[0].click();", edit_fld)
+        return GlobalDetailsPageUI(self.driver)
+
     def click_confirm_btn_pencil_field(self, field):
         sleep(0.1)
         Logging().reportDebugStep(self, "Click 'Confirm' button in field: " + field)
         conf_btn = super().wait_load_element(
-            "//div[label='%s']//following-sibling::div/field-confirm//div[@class='button-confirm']" % field)
+            "//div[label='%s']//following-sibling::div//field-confirm//div[@class='button-confirm']" % field)
         conf_btn.click()
         return GlobalDetailsPageUI(self.driver)
 

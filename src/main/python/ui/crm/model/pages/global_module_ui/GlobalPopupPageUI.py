@@ -30,12 +30,21 @@ class GlobalPopupPageUI(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", title)
         return GlobalPopupPageUI(self.driver)
 
+    def select_pick_list_item_by_number(self, pick_list, number):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Select " + pick_list + " by index: " + number)
+        title = super().wait_load_element(
+            "(//span[text()=' %s ']//following-sibling::ul//span)[%s]" % (pick_list, number))
+        self.driver.execute_script("arguments[0].click();", title)
+        return GlobalPopupPageUI(self.driver)
+
     def set_text_field(self, field, text):
         sleep(0.1)
         Logging().reportDebugStep(self, "Set " + field + ": " + text)
         input_field = super().wait_load_element(
             "//div[contains(label,'%s')]//following-sibling::mat-form-field//input" % field)
         try:
+            sleep(0.1)
             input_field.clear()
             input_field.send_keys(text)
         except:
