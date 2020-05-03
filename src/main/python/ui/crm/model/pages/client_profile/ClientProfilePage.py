@@ -645,9 +645,13 @@ class ClientProfilePage(CRMBasePage):
         return customer_classification
 
     def open_deposit_for_client_in_menu(self):
-        deposit_for_client_element = self.driver.find_element(By.XPATH, "//*[@id='sidebar']/table[1]/tbody/tr[4]/td/a")
-        self.driver.execute_script("arguments[0].click();", deposit_for_client_element)
-        Logging().reportDebugStep(self, "Deposit for client popup was opened")
+        try:
+            deposit_for_client_element = self.driver.find_element(By.XPATH,
+                                                            "//*[@id='sidebar']//a[contains(@href,'Client Deposit')]")
+            self.driver.execute_script("arguments[0].click();", deposit_for_client_element)
+            Logging().reportDebugStep(self, "Deposit for client popup was opened")
+        except:
+            Logging().reportDebugStep(self, "Client Deposit button does not exist(NOT RUNNED)")
         return ClientProfilePage(self.driver)
 
     def fill_client_deposit_pop(self, account_number):

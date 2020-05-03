@@ -37,6 +37,7 @@ class GlobalModulePageUI(CRMBasePage):
         sleep(2)
         self.wait_loading_to_finish_new_ui(55)
         sleep(2)
+        self.wait_loading_to_finish_new_ui(25)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
         return GlobalModulePageUI(self.driver)
 
@@ -114,8 +115,9 @@ class GlobalModulePageUI(CRMBasePage):
             Logging().reportDebugStep(self, data + " is verified in " + str(row_count) + " rows")
         except(ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             sleep(0.1)
-            super().wait_element_to_be_disappear("//tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))][1]",
-                                                 timeout=5)
+            super().wait_element_to_be_disappear(
+                "//tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))]//span[text()='No results']",
+                timeout=5)
             Logging().reportDebugStep(self, "Data was not found")
         return GlobalModulePageUI(self.driver)
 
@@ -163,7 +165,7 @@ class GlobalModulePageUI(CRMBasePage):
     """
 
     def verify_success_message(self):
-        sleep(0.5)
+        sleep(1)
         message = super().wait_load_element("//div[contains(@class,'dialog-content-success mat-dialog-content')]",
                                             timeout=35).text
         Logging().reportDebugStep(self, "Get message: " + message)
@@ -204,21 +206,23 @@ class GlobalModulePageUI(CRMBasePage):
         return GlobalModulePageUI(self.driver)
 
     def verify_data_not_found(self):
-        sleep(0.1)
-        super().wait_element_to_be_disappear(
-            "//tbody[@role='rowgroup']/tr[@role='row' and not(contains(@style,'hidden'))][1]",
-            timeout=5)
+        sleep(0.5)
+        super().wait_load_element(
+            "//tbody[@role='rowgroup']/tr[not(contains(@style,'hidden'))]//span[text()='No results']",
+            timeout=10)
         Logging().reportDebugStep(self, "Data was not found")
         return GlobalModulePageUI(self.driver)
 
     """
-        ACTIONS METHODS
+        ACTIONS METHODS: delete, edit, email, sms
     """
 
-    def open_actions_list(self):
+    def open_actions_list(self, row='1'):
+        sleep(0.5)
         hover_mouse = ActionChains(self.driver)
         more_list_element = super().wait_element_to_be_clickable(
-            "//tr[not(contains(@style,'hidden'))][1]/td/button/span/mat-icon[text()='more_vert']")
+            "//tr[not(contains(@style,'hidden'))][%s]/td/button/span/mat-icon[text()='more_vert']" % row)
+        self.driver.execute_script("arguments[0].scrollIntoView();", more_list_element)
         hover_mouse.move_to_element(more_list_element)
         hover_mouse.perform()
         return GlobalModulePageUI(self.driver)
@@ -243,6 +247,7 @@ class GlobalModulePageUI(CRMBasePage):
         edit_icon = super().wait_element_to_be_clickable(
             "//tr[not(contains(@style,'hidden'))][%s]//button[@title='edit']" % row)
         self.driver.execute_script("arguments[0].click();", edit_icon)
+        self.wait_loading_to_finish_new_ui(25)
         return GlobalModulePageUI(self.driver)
 
     def click_email_icon_list_view(self, row):
@@ -252,3 +257,34 @@ class GlobalModulePageUI(CRMBasePage):
             "//tr[not(contains(@style,'hidden'))][%s]//button[@title='email']" % row)
         self.driver.execute_script("arguments[0].click();", edit_icon)
         return EmailPageUI(self.driver)
+
+    """ Get number(string) of last record in list """
+    def get_last_record_number(self):
+        sleep(0.1)
+        records = self.driver.find_elements_by_xpath(
+            "//tbody[@role='rowgroup']/tr[@role='row' and not (contains(@style,'hidden'))]")
+        counter = str(len(records))
+        Logging().reportDebugStep(self, "Number of records: " + counter)
+        return counter
+
+    """
+        Methods of sorting
+    """
+    def click_arrow_up(self, column):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click 'Arrow Up' icon in column: " + column)
+        arrow = super().wait_load_element("//th[contains(text(),'%s')]//mat-icon[contains(text(),'arrow_up')]" % column)
+        self.driver.execute_script("arguments[0].click();", arrow)
+        sleep(1)
+        self.wait_loading_to_finish_new_ui(55)
+        return GlobalModulePageUI(self.driver)
+
+    def click_arrow_down(self, column):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click 'Arrow Down' icon in column: " + column)
+        arrow = super().wait_load_element("//th[contains(text(),'%s')]//mat-icon[contains(text(),'arrow_down')]"
+                                          % column)
+        self.driver.execute_script("arguments[0].click();", arrow)
+        sleep(1)
+        self.wait_loading_to_finish_new_ui(35)
+        return GlobalModulePageUI(self.driver)

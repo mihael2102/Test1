@@ -1,4 +1,6 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CreateUserPreconditionUI:
+  role: "IT Manager"
 DepositTestCRM:
   live_acc_currency: "BTC"
   live_acc_group: "real"

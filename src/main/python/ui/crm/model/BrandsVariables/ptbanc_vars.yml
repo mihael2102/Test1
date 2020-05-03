@@ -1,3 +1,5 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CreateUserPreconditionUI:
+  role: "Vice President"
 TradingAccountPrecondition:
   initial_deposit_amount: "250"
