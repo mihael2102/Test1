@@ -60,16 +60,16 @@ class MT4TransferPreconditionUI(object):
             .open_mt4_module_newui(MT4ActionsConstantsUI.TRANSFER)
 
         """ Make Transfer """
+        if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
+            amount = MT4TransferConstantsUI.AMOUNT_CRYPTO
+        else:
+            amount = MT4TransferConstantsUI.AMOUNT
         MT4TransferPageUI(self.driver)\
             .mt4_transfer_ui(
                 list1=MT4TransferConstantsUI.LIST_SOURCE, source=MT4DepositConstantsUI.TA,
                 list2=MT4TransferConstantsUI.LIST_DESTINATION, destination=MT4CreditInConstantsUI.TA_CREDIT,
-                field1=MT4TransferConstantsUI.FIELD_AMOUNT, amount=MT4TransferConstantsUI.AMOUNT)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok() \
+                field1=MT4TransferConstantsUI.FIELD_AMOUNT, amount=amount,
+                final_btn=MT4TransferConstantsUI.BTN_FINAL) \
             .refresh_page()
 
         """ Check balance of both ta was updated """
@@ -78,7 +78,10 @@ class MT4TransferPreconditionUI(object):
         balance1 = TradingModulePageUI(self.driver) \
             .click_on_ta_number(MT4DepositConstantsUI.TA) \
             .get_text_from_field(TradingDetailsConstantsUI.FIELD_BALANCE)
-        expected_balance1 = MT4TransferConstantsUI.EXPECTED_BALANCE_1
+        if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
+            expected_balance1 = MT4TransferConstantsUI.EXP_BAL_CR1
+        else:
+            expected_balance1 = MT4TransferConstantsUI.EXP_BAL_1
 
         count = 0
         while balance1 != expected_balance1:
@@ -101,7 +104,10 @@ class MT4TransferPreconditionUI(object):
         balance2 = TradingModulePageUI(self.driver) \
             .click_on_ta_number(MT4CreditInConstantsUI.TA_CREDIT) \
             .get_text_from_field(TradingDetailsConstantsUI.FIELD_BALANCE)
-        expected_balance2 = MT4TransferConstantsUI.EXPECTED_BALANCE_2
+        if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
+            expected_balance2 = MT4TransferConstantsUI.EXP_BAL_CR2
+        else:
+            expected_balance2 = MT4TransferConstantsUI.EXP_BAL_2
 
         count = 0
         while balance2 != expected_balance2:
@@ -114,6 +120,4 @@ class MT4TransferPreconditionUI(object):
                 break
 
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(
-            balance2,
-            expected_balance2)
+            .comparator_string(balance2, expected_balance2)

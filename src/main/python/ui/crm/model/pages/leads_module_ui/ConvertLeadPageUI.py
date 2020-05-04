@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
@@ -13,7 +14,7 @@ class ConvertLeadPageUI(CRMBasePage):
                         list2=None, ui_language=None, field5=None, address=None, field6=None, postal_code=None,
                         field7=None, city=None, list3=None, country=None, field9=None, password=None, list4=None,
                         currency=None, field10=None, referral=None, list5=None, brand=None, field11=None,
-                        source_name=None):
+                        source_name=None, final_btn=None):
         self.click_convert_lead_btn()
         if first_name:
             self.set_text_field(field1, first_name)
@@ -40,7 +41,7 @@ class ConvertLeadPageUI(CRMBasePage):
         if password:
             self.set_text_field(field9, password)
         if currency:
-            self.select_pick_list_item(list4, currency)
+            self.select_pick_list_item_by_number(list4, currency)
         if referral:
             self.set_text_field(field10, referral)
         if brand:
@@ -48,7 +49,7 @@ class ConvertLeadPageUI(CRMBasePage):
         if source_name:
             self.set_text_field(field11, source_name)
         sleep(1)
-        self.click_submit()
+        self.click_submit(final_btn)
 
     def click_convert_lead_btn(self):
         sleep(0.1)
@@ -60,23 +61,18 @@ class ConvertLeadPageUI(CRMBasePage):
         return ConvertLeadPageUI(self.driver)
 
     def select_pick_list_item(self, pick_list, item):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Select " + pick_list + ": " + item)
-        title = super().wait_load_element(
-            "//span[text()=' %s ']//following-sibling::ul//span[text()='%s']" % (pick_list, item))
-        self.driver.execute_script("arguments[0].click();", title)
+        GlobalPopupPageUI(self.driver)\
+            .select_pick_list_item(pick_list, item)
+        return ConvertLeadPageUI(self.driver)
+
+    def select_pick_list_item_by_number(self, pick_list, number):
+        GlobalPopupPageUI(self.driver)\
+            .select_pick_list_item_by_number(pick_list, number)
         return ConvertLeadPageUI(self.driver)
 
     def set_text_field(self, field, text):
-        sleep(0.1)
-        input_field = super().wait_load_element(
-            "//div[contains(label,'%s')]//following-sibling::mat-form-field//input" % field)
-        try:
-            input_field.clear()
-            input_field.send_keys(text)
-            Logging().reportDebugStep(self, "Set " + field + ": " + text)
-        except:
-            Logging().reportDebugStep(self, "The " + field + " field is read only")
+        GlobalPopupPageUI(self.driver)\
+            .set_text_field(field, text)
         return ConvertLeadPageUI(self.driver)
 
     def set_birth_day(self, day, month, year):
@@ -87,7 +83,7 @@ class ConvertLeadPageUI(CRMBasePage):
             "(//span[@class='mat-button-wrapper' and contains(text(),'2020')])[1]")
         current_date_btn.click()
         prev_btn = super().wait_load_element(
-                                "(//button[@class='mat-calendar-previous-button mat-icon-button mat-button-base'])[1]")
+            "(//button[@class='mat-calendar-previous-button mat-icon-button mat-button-base'])[1]")
         prev_btn.click()
         sleep(0.5)
         prev_btn.click()
@@ -102,11 +98,7 @@ class ConvertLeadPageUI(CRMBasePage):
         Logging().reportDebugStep(self, "The birthday was set")
         return ConvertLeadPageUI(self.driver)
 
-    def click_submit(self):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Click 'Convert lead' button")
-        convert_lead_btn = super().wait_load_element("//button[span=' Convert lead ']")
-        self.driver.execute_script("arguments[0].click();", convert_lead_btn)
-        sleep(1)
-        self.wait_loading_to_finish_new_ui(35)
+    def click_submit(self, button):
+        GlobalPopupPageUI(self.driver)\
+            .click_final_btn(button)
         return ConvertLeadPageUI(self.driver)

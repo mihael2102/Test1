@@ -54,7 +54,7 @@ class EditLeadPreconditionUI(object):
             field6=CreateLeadConstantsUI.FIELD_S_EMAIL, s_mail=CreateLeadConstantsUI.S_EMAIL2,
             field7=CreateLeadConstantsUI.FIELD_TITLE, title=CreateLeadConstantsUI.TITLE,
             list1=CreateLeadConstantsUI.LIST_LEAD_SOURCE, l_source=CreateLeadConstantsUI.L_SOURCE,
-            list2=CreateLeadConstantsUI.LIST_LEAD_STATUS, l_status=CreateLeadConstantsUI.L_STATUS,
+            list2=CreateLeadConstantsUI.LIST_LEAD_STATUS, l_status='2',
             list3=CreateLeadConstantsUI.LIST_ASSIGNED_TO, assigned_to=CreateLeadConstantsUI.ASSIGNED_TO,
             field8=CreateLeadConstantsUI.FIELD_LANGUAGE, language=CreateLeadConstantsUI.LANGUAGE,
             field9=CreateLeadConstantsUI.FIELD_SOURCE_NAME, source_name=CreateLeadConstantsUI.SOURCE_NAME,
@@ -66,12 +66,8 @@ class EditLeadPreconditionUI(object):
             list4=CreateLeadConstantsUI.LIST_COUNTRY, country=CreateLeadConstantsUI.COUNTRY,
             field15=CreateLeadConstantsUI.FIELD_STATE, state=CreateLeadConstantsUI.STATE,
             field16=CreateLeadConstantsUI.FIELD_PO_BOX, po_box=CreateLeadConstantsUI.PO_BOX,
-            field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=CreateLeadConstantsUI.DESCRIPTION)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
+            field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=CreateLeadConstantsUI.DESCRIPTION,
+            final_btn=CreateLeadConstantsUI.BTN_FINAL)
 
         """ Search lead """
         GlobalModulePageUI(self.driver) \
@@ -81,7 +77,7 @@ class EditLeadPreconditionUI(object):
 
         """ Open lead and get data """
         LeadsModulePageUI(self.driver) \
-            .open_lead()
+            .open_lead('1')
 
         details = GlobalDetailsPageUI(self.driver)
 
@@ -166,14 +162,6 @@ class EditLeadPreconditionUI(object):
         if "*" not in fax:
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(fax, CreateLeadConstantsUI.FAX)
-
-        """ Edit Lead: verify lead can't be saved with empty Last Name field """
-        # is_update_btn_active = EditLeadPageUI(self.driver) \
-        #     .click_edit_lead_btn() \
-        #     .set_text(field=CreateLeadConstantsUI.FIELD_LNAME, text=" ") \
-        #     .is_button_update_lead_active()
-
-        # assert not is_update_btn_active
 
         """ Edit Lead """
         EditLeadPageUI(self.driver) \
@@ -277,10 +265,6 @@ class EditLeadPreconditionUI(object):
         if "*" not in email:
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(email, EditLeadConstantsUI.EMAIL)
-
-        # if "*" not in s_email:
-        #     CRMBaseMethodsPage(self.driver) \
-        #         .comparator_string(s_email, EditLeadConstantsUI.S_EMAIL)
 
         if "*" not in phone:
             CRMBaseMethodsPage(self.driver) \

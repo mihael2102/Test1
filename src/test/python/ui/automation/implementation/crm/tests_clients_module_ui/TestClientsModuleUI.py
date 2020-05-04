@@ -6,6 +6,8 @@ from src.test.python.ui.automation.utils.preconditions.clients_module_ui.Clients
     ClientsMassAssignPreconditionUI
 from src.test.python.ui.automation.utils.preconditions.clients_module_ui.ClientsMassEditPreconditionUI import \
     ClientsMassEditPreconditionUI
+from src.test.python.ui.automation.utils.preconditions.clients_module_ui.ClientsSortingColumnsPreconditionUI import \
+    ClientsSortingColumnsPreconditionUI
 
 
 @pytest.mark.run(order=3)
@@ -13,6 +15,9 @@ class TestClientsModuleUI(BaseTest):
 
     def test_clients_searching_columns_ui(self):
         ClientsSearchingColumnsPreconditionUI(self.driver, self.config).clients_searching_columns_ui()
+
+    def test_clients_sorting_columns_ui(self):
+        ClientsSortingColumnsPreconditionUI(self.driver, self.config).clients_sorting_columns_ui()
 
     def test_mass_assign_clients_ui(self):
         ClientsMassAssignPreconditionUI(self.driver, self.config).mass_assign_clients_ui()
