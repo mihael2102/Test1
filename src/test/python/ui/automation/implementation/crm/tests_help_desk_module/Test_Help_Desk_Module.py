@@ -48,8 +48,8 @@ class HelpDeskModuleTest(BaseTest):
         assert description == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
                                                              HelpDeskConstants.FIRST_DESCRIPTION)
 
-        assert assigned_to == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
-                                                             HelpDeskConstants.FIRST_ASSIGNED_TO)
+        # assert assigned_to == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
+        #                                                      HelpDeskConstants.FIRST_ASSIGNED_TO)
 
         # assert ticket_source == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
         #                                                        HelpDeskConstants.FIRST_TICKET_SOURCE)
