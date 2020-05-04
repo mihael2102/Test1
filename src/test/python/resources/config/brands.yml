@@ -1,5 +1,8 @@
 brands:
 
+- name: trade99
+  config_file: trade99.yml
+
 #- name: fairbit
 #  config_file: fair-bit.yml
 
@@ -72,8 +75,8 @@ brands:
 #- name: newforexqa2
 #  config_file: newforexqa2.yml
 
-- name: newforexstage2
-  config_file: newforexstage2.yml
+#- name: newforexstage2
+#  config_file: newforexstage2.yml
 
 #- name: optionstars
 #  config_file: optionstars.yml
