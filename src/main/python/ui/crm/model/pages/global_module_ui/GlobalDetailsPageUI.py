@@ -47,11 +47,12 @@ class GlobalDetailsPageUI(CRMBasePage):
             Logging().reportDebugStep(self, "Click to view button is not available in field " + field)
         return GlobalDetailsPageUI(self.driver)
 
-    def get_text_from_field(self, field):
+    def get_text_from_field(self, field, timeout=25):
         sleep(0.5)
         try:
             data = super().wait_load_element(
-                "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field).text
+                "//div[label='%s']//following-sibling::button/span[contains(@class,'btn-txt-wrapper')]" % field,
+                timeout).text
         except(NoSuchElementException, TimeoutException):
             Logging().reportDebugStep(self, "Field " + field + " is not editable")
             data = super().wait_load_element(

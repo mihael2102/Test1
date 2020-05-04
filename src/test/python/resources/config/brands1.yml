@@ -41,8 +41,8 @@ brands:
 #- name: fbrokers
 #  config_file: fbrokers.yml
 
-#- name: globalix
-#  config_file: globalix.yml
+- name: globalix
+  config_file: globalix.yml
 
 #- name: grandefex
 #  config_file: grandefex.yml
@@ -98,8 +98,8 @@ brands:
 #- name: ptbanc
 #  config_file: ptbanc.yml
 
-- name: q8
-  config_file: q8.yml
+#- name: q8
+#  config_file: q8.yml
 
 #- name: solocapitlas
 #  config_file: solocapitlas.yml

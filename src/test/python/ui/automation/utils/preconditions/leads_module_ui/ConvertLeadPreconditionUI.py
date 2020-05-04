@@ -134,7 +134,6 @@ class ConvertLeadPreconditionUI(object):
             .comparator_string(last_name, CreateLeadConstantsUI.LNAME) \
             .comparator_string(title, CreateLeadConstantsUI.TITLE) \
             .comparator_string(l_source, CreateLeadConstantsUI.L_SOURCE) \
-            .comparator_string(l_status, CreateLeadConstantsUI.L_STATUS) \
             .comparator_string(language, CreateLeadConstantsUI.LANGUAGE) \
             .comparator_string(source_name, CreateLeadConstantsUI.SOURCE_NAME) \
             .comparator_string(referral, CreateLeadConstantsUI.REFERRAL) \
