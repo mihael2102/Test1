@@ -41,8 +41,8 @@ brands:
 #- name: fbrokers
 #  config_file: fbrokers.yml
 
-- name: globalix
-  config_file: globalix.yml
+#- name: globalix
+#  config_file: globalix.yml
 
 #- name: grandefex
 #  config_file: grandefex.yml
@@ -107,8 +107,8 @@ brands:
 #- name: strattonmarkets-eu
 #  config_file: strattonmarkets-eu.yml
 
-#- name: trade99
-#  config_file: trade99.yml
+- name: trade99
+  config_file: trade99.yml
 
 #- name: tradixa
 #  config_file: tradixa.yml
