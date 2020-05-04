@@ -4,12 +4,11 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.usermanagement.UserManagementPage import UserManagementPage
 from src.main.python.ui.crm.model.constants.UserInformation import UserInformation
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
+from src.main.python.ui.crm.model.pages.user_management_ui.UMModulePageUI import UMModulePageUI
 
 
 @pytest.mark.run(order=13)
-class CreateUserPreconditionUI(object):
+class LoginAsPreconditionUI(object):
 
     driver = None
     config = None
@@ -18,7 +17,7 @@ class CreateUserPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def create_user_ui(self):
+    def login_as_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
@@ -31,23 +30,25 @@ class CreateUserPreconditionUI(object):
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_UM)
 
-        """ Create user """
+        """ Login as """
         self.driver.switch_to_frame(self.driver.find_element_by_xpath(
             "//iframe[contains(@src,'UserManagement')]"))
         UserManagementPage(self.driver) \
             .open_crm_users_tab() \
-            .click_new_user_module() \
-            .set_user_name(UserInformation.FIRST_USER_NAME) \
-            .set_email(UserInformation.FIRST_EMAIL) \
-            .set_first_name(UserInformation.FIRST_NAME) \
-            .set_role(var.get_var(self.__class__.__name__)["role"])
-        self.driver.switch_to_frame(self.driver.find_element_by_xpath(
-            "//iframe[contains(@src,'UserManagement')]"))
-        UserManagementPage(self.driver) \
-            .set_password(UserInformation.PASSWORD) \
-            .set_confirm_password(UserInformation.PASSWORD) \
-            .set_last_name(UserInformation.LAST_NAME) \
-            .click_save_button_user_module() \
             .click_remove_filter_btn() \
             .search_by_username(UserInformation.FIRST_USER_NAME) \
-            .check_user_found(UserInformation.FIRST_USER_NAME)
+            .check_user_found(UserInformation.FIRST_USER_NAME) \
+            .click_more_icon() \
+            .click_login_as_icon()
+
+        self.driver.switch_to_default_content()
+
+        user = UMModulePageUI(self.driver) \
+            .get_login_user_name()
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(user, UserInformation.NAME)
+        user = UMModulePageUI(self.driver) \
+            .click_login_as_sign_out() \
+            .get_login_user_name()
+        CRMBaseMethodsPage(self.driver) \
+            .comparator_string(user, UserInformation.PANDA_AUTO_NAME)

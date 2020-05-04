@@ -15,5 +15,6 @@ class ClientsModuleConstantsUI(object):
     COLUMN_ASSIGNED_TO = "Assigned To"
     COLUMN_COUNTRY = "Country"
     COLUMN_CRM_ID = "CRM Id"
+    COLUMN_CREATED_TIME = "Created Time"
 
     SHORT_EMAIL = "pandaqa"

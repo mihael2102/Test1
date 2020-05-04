@@ -100,16 +100,14 @@ class HelpDeskCreateTicketPageUI(CRMBasePage):
 
     def select_related_to(self, related_to):
         sleep(0.1)
-        related_to_field = super().wait_load_element("//input[@id='parentName']")
+        related_to_field = super().wait_load_element("//span[text()='Related to']")
         related_to_field.click()
         sleep(1)
-        self.wait_loading_to_finish_new_ui(25)
-        GlobalModulePageUI(self.driver)\
-            .set_data_column_field(column=ClientsModuleConstantsUI.COLUMN_CLIENT_NAME,
-                                   data=related_to)
-        self.wait_loading_to_finish_new_ui(25)
-        client = super().wait_load_element(
-            "(//help-desk-edit//span[@class='td-link' and contains(text(),'%s')])[1]" % related_to)
+        field = super().wait_load_element("//span[contains(text(),' Relates To ')]//following-sibling::div//input")
+        field.clear()
+        field.send_keys(related_to)
+        sleep(0.5)
+        client = super().wait_load_element("(//help-desk-edit//span[contains(text(),'%s')])[1]" % related_to)
         self.driver.execute_script("arguments[0].click();", client)
         Logging().reportDebugStep(self, "Related to set: " + related_to)
         return HelpDeskCreateTicketPageUI(self.driver)

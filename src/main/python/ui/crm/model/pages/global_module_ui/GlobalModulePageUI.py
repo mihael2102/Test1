@@ -165,7 +165,7 @@ class GlobalModulePageUI(CRMBasePage):
     """
 
     def verify_success_message(self):
-        sleep(0.5)
+        sleep(1)
         message = super().wait_load_element("//div[contains(@class,'dialog-content-success mat-dialog-content')]",
                                             timeout=35).text
         Logging().reportDebugStep(self, "Get message: " + message)
@@ -266,3 +266,25 @@ class GlobalModulePageUI(CRMBasePage):
         counter = str(len(records))
         Logging().reportDebugStep(self, "Number of records: " + counter)
         return counter
+
+    """
+        Methods of sorting
+    """
+    def click_arrow_up(self, column):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click 'Arrow Up' icon in column: " + column)
+        arrow = super().wait_load_element("//th[contains(text(),'%s')]//mat-icon[contains(text(),'arrow_up')]" % column)
+        self.driver.execute_script("arguments[0].click();", arrow)
+        sleep(1)
+        self.wait_loading_to_finish_new_ui(55)
+        return GlobalModulePageUI(self.driver)
+
+    def click_arrow_down(self, column):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Click 'Arrow Down' icon in column: " + column)
+        arrow = super().wait_load_element("//th[contains(text(),'%s')]//mat-icon[contains(text(),'arrow_down')]"
+                                          % column)
+        self.driver.execute_script("arguments[0].click();", arrow)
+        sleep(1)
+        self.wait_loading_to_finish_new_ui(35)
+        return GlobalModulePageUI(self.driver)

@@ -25,7 +25,7 @@ ClientsPage:
   client_country: "//*[@id='tblAddressInformation']/table/tbody/tr[2]/td[4]"
   client_currency: "//td[@class='dvtCellInfo'][contains(text(),'USD')]"
 DocumentsPage:
-  document_type: "(//*[contains(@id,'row_')]/td[9])[%s]"
+  document_type: "(//*[contains(@id,'row_')]/td[10])[%s]"
   apply_btn: "(//button[text()='Apply'])[5]"
 TasksPage:
   pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"

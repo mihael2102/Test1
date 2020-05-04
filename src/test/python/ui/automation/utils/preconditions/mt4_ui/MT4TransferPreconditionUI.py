@@ -68,12 +68,8 @@ class MT4TransferPreconditionUI(object):
             .mt4_transfer_ui(
                 list1=MT4TransferConstantsUI.LIST_SOURCE, source=MT4DepositConstantsUI.TA,
                 list2=MT4TransferConstantsUI.LIST_DESTINATION, destination=MT4CreditInConstantsUI.TA_CREDIT,
-                field1=MT4TransferConstantsUI.FIELD_AMOUNT, amount=amount)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok() \
+                field1=MT4TransferConstantsUI.FIELD_AMOUNT, amount=amount,
+                final_btn=MT4TransferConstantsUI.BTN_FINAL) \
             .refresh_page()
 
         """ Check balance of both ta was updated """
@@ -124,6 +120,4 @@ class MT4TransferPreconditionUI(object):
                 break
 
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(
-            balance2,
-            expected_balance2)
+            .comparator_string(balance2, expected_balance2)
