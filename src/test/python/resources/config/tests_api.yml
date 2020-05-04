@@ -4,7 +4,7 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.api.Test_API
   class: TestAPI
   tests:
-    - test_autorization_process
+#    - test_autorization_process
     - test_create_new_customer
     - test_create_duplicate_customer
     - test_read_customer_details
