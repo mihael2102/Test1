@@ -14,6 +14,7 @@ class MT4CreateTAConstantsUI(object):
     LIST_CURRENCY = "Currency"
     LIST_GROUP = "Group"
     LIST_LEVERAGE = "Leverage"
+    BTN_FINAL = "Create"
 
     SERVER_DEMO = "Demo"
     SERVER_LIVE = "Live"

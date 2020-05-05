@@ -17,10 +17,12 @@ class MT4DepositConstantsUI(object):
     LIST_CLEARED_BY = "Cleared by"
     FIELD_AMOUNT = "Amount in account currency"
     FIELD_COMMENT = "Comment"
+    BTN_FINAL = "Deposit"
 
     P_METHOD = "Credit card"
     STATUS = "Approved"
     TA = ""
     AMOUNT = "2.00"
+    AMOUNT_CRYPTO = "0.00002"
     COMMENT = "Test deposit"
     CLEARED_BY = "PRAXIS"

@@ -1,10 +1,20 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
+CreateUserPreconditionUI:
+  role: "IT Manager"
 DepositTestCRM:
   live_acc_currency: "BTC"
   live_acc_group: "real"
 LeadPrecondition:
   m_assign_lead_status: "New"
   m_edit_lead_status: "New"
+MT4CreateTAPreconditionUI:
+  create_mt_user: "Create Trading Account"
+MT4CreditInPreconditionUI:
+  create_mt_user: "Create Trading Account"
+MT4DepositPreconditionUI:
+  create_mt_user: "Create Trading Account"
+MT4UpdateUserPreconditionUI:
+  update_mt_user: "Update Trading Account"
 TradingAccountPrecondition:
   demo_acc_currency: "BTC"
   initial_deposit_amount: "10"

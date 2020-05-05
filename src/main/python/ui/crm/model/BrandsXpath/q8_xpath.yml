@@ -3,6 +3,20 @@ CADepositPage:
   deposit_btn: "//span[text()='deposit']"
   deposit_page: "//a[@id='learnmore_CreditCard']//following-sibling::a[@title='Click to Deposit' and contains(@href,'')]"
   deposit_iframe: "//app-deposit/app-deposit-praxis-form/div[@class='praxis']/iframe[@class='praxis__iframe']"
+CALoginPage:
+  campaign_close_btn: "//button[@title='Close']"
+  check_box_accept: "//span[contains (text(), 'over 18 years')]"
+  sign_up: "//a[contains(text(), 'Sign Up')]"
+  submit_btn: "//button[contains (text(), 'Sign Up')][not(@disabled)]"
+  login_email_input: "//input[@name='email']"
+  login_password_input: "//input[@name='password']"
+  login_btn_2: "//button[text()='Login']"
+  login_btn: "//span[contains(text(), 'Login')]"
+  input_first_name: "//input[@id='firstName']"
+  input_last_name: "//input[@id='lastName']"
+CAPage:
+  edit_first_name: "//input[@name='firstName']"
+  get_first_name: "//input[@name='firstName']"
 ClientsPage:
   client_status_button: "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']"
   client_status_field: "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']"
@@ -11,7 +25,7 @@ ClientsPage:
   client_country: "//*[@id='tblAddressInformation']/table/tbody/tr[2]/td[4]"
   client_currency: "//td[@class='dvtCellInfo'][contains(text(),'USD')]"
 DocumentsPage:
-  document_type: "(//*[contains(@id,'row_')]/td[9])[%s]"
+  document_type: "(//*[contains(@id,'row_')]/td[10])[%s]"
   apply_btn: "(//button[text()='Apply'])[5]"
 TasksPage:
   pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
@@ -26,16 +40,3 @@ FinancialTransactionsPage:
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
   account_number: "//tr[@class='lvtColData']//td[1]"
-CALoginPage:
-  campaign_close_btn: "//button[@title='Close']"
-  sign_up: "//a[contains(text(), 'Sign Up')]"
-  submit_btn: "//button[contains (text(), 'Sign Up')][not(@disabled)]"
-  login_email_input: "//input[@name='email']"
-  login_password_input: "//input[@name='password']"
-  login_btn_2: "//button[text()='Login']"
-  login_btn: "//span[contains(text(), 'Login')]"
-  input_first_name: "//input[@id='firstName']"
-  input_last_name: "//input[@id='lastName']"
-CAPage:
-  edit_first_name: "//input[@name='firstName']"
-  get_first_name: "//input[@name='firstName']"

@@ -2,10 +2,10 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
-from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HelpDeskModuleConstantsUI import HelpDeskModuleConstantsUI
+from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDModuleConstantsUI import HDModuleConstantsUI
 
 
-class HelpDeskSearchingColumnsPreconditionUI(object):
+class HDSearchingColumnsPreconditionUI(object):
 
     driver = None
     config = None
@@ -25,38 +25,37 @@ class HelpDeskSearchingColumnsPreconditionUI(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Help Desk module """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_HELP_DESK) \
-            .open_tab_list_view_ui(HelpDeskModuleConstantsUI.TAB_ALL)
+            .open_tab_list_view_ui(HDModuleConstantsUI.TAB_ALL)
 
         """ Get ticket's data from the first row of list view """
         ticket_no = GlobalModulePageUI(self.driver) \
-            .get_data_from_list_view_ui(column=HelpDeskModuleConstantsUI.COLUMN_TICKET_NO,
-                                        row=HelpDeskModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
+            .get_data_from_list_view_ui(column=HDModuleConstantsUI.COLUMN_TICKET_NO,
+                                        row=HDModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
         status = GlobalModulePageUI(self.driver) \
-            .get_data_from_list_view_ui(column=HelpDeskModuleConstantsUI.COLUMN_STATUS,
-                                        row=HelpDeskModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
+            .get_data_from_list_view_ui(column=HDModuleConstantsUI.COLUMN_STATUS,
+                                        row=HDModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
         assigned_to = GlobalModulePageUI(self.driver) \
-            .get_data_from_list_view_ui(column=HelpDeskModuleConstantsUI.COLUMN_ASSIGNED_TO,
-                                        row=HelpDeskModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
+            .get_data_from_list_view_ui(column=HDModuleConstantsUI.COLUMN_ASSIGNED_TO,
+                                        row=HDModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
         """ Search by table """
         search = GlobalModulePageUI(self.driver)
         if status:
             search\
-                .select_data_column_field(column=HelpDeskModuleConstantsUI.COLUMN_STATUS,
+                .select_data_column_field(column=HDModuleConstantsUI.COLUMN_STATUS,
                                           data=status)
         if assigned_to:
             search\
-                .select_data_column_field(column=HelpDeskModuleConstantsUI.COLUMN_ASSIGNED_TO,
+                .select_data_column_field(column=HDModuleConstantsUI.COLUMN_ASSIGNED_TO,
                                           data=assigned_to)
         if ticket_no:
             search\
-                .set_data_column_field(column=HelpDeskModuleConstantsUI.COLUMN_TICKET_NO,
+                .set_data_column_field(column=HDModuleConstantsUI.COLUMN_TICKET_NO,
                                        data=ticket_no)
 
         """ Verify correct data found """
