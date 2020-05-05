@@ -59,6 +59,8 @@ MT4DepositPreconditionUI:
   create_mt_user: "Create MT User"
   live_acc_group: "live"
   l_acc_currency: "EUR"
+MT4UpdateUserPreconditionUI:
+  update_mt_user: "Update MT User"
 TradingAccountPrecondition:
   demo_acc_currency: "EUR"
   demo_acc_currency_usd: "USD"
