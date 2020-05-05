@@ -41,6 +41,10 @@ class LeadsMassEditPreconditionUI(object):
             .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT)
 
         """ Mass Edit """
+        status = MassEditPageUI(self.driver) \
+            .get_item_from_list_by_number(
+                pick_list=MassActionsConstantsUI.LIST_LEADS_STATUS,
+                number='2')
         MassEditPageUI(self.driver) \
             .select_field_to_edit(MassActionsConstantsUI.FIELD_LEAD_STATUS) \
             .select_from_list(MassActionsConstantsUI.LIST_LEAD_STATUS, MassActionsConstantsUI.STATUS_R_NEW) \

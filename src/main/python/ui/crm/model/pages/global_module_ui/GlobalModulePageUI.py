@@ -157,6 +157,8 @@ class GlobalModulePageUI(CRMBasePage):
         btn = super().wait_element_to_be_clickable(
             "//div[contains(@class,'mass-actions')]/button/span[contains(text(),'%s')]" % btn_title)
         self.driver.execute_script("arguments[0].click();", btn)
+        sleep(1)
+        self.wait_loading_to_finish_new_ui(95)
         Logging().reportDebugStep(self, "Click '" + btn_title + "' button")
         return GlobalModulePageUI(self.driver)
 
@@ -177,11 +179,12 @@ class GlobalModulePageUI(CRMBasePage):
     """
 
     def click_ok(self):
-        sleep(0.1)
+        sleep(0.5)
+        Logging().reportDebugStep(self, "Click OK button")
         button = super().wait_element_to_be_clickable("//*[text()=' OK ']")
         self.driver.execute_script("arguments[0].click();", button)
-        Logging().reportDebugStep(self, "OK button was clicked")
         sleep(1)
+        self.wait_loading_to_finish_new_ui(35)
         return GlobalModulePageUI(self.driver)
 
     def select_filter_new_ui(self, test_filter):

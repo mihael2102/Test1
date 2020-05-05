@@ -1,6 +1,8 @@
 from time import sleep
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 
 
 class MassEditPageUI(CRMBasePage):
@@ -28,6 +30,11 @@ class MassEditPageUI(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", item)
         Logging().reportDebugStep(self, "Select '" + item_title + "' from pick list " + pick_list)
         return MassEditPageUI(self.driver)
+
+    def get_item_from_list_by_number(self, pick_list, number):
+        item = GlobalPopupPageUI(self.driver)\
+            .get_item_from_list_by_number(pick_list, number)
+        return item
 
     def click_save_changes_btn(self):
         sleep(0.1)

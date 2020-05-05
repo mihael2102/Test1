@@ -19,9 +19,11 @@ class MassActionsConstantsUI(object):
     FIELD_LANGUAGE = "Language"
     FIELD_ASSIGNED_TO = "Assigned To"
     LIST_LEAD_STATUS = "Lead Status"
+    LIST_LEADS_STATUS = "Leads status"
     LIST_EVENT_TYPE = "Event Type"
     LIST_EVENT_DURATION = "Event Duration"
     LIST_PRIORITY = "Priority"
+    BTN_FINAL = "Assign"
 
     SOURCE_OTHER = "Other"
     COUNTRY_ALBANIA = "Albania"
