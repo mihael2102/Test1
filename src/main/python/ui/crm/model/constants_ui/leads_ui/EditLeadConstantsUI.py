@@ -19,7 +19,7 @@ class EditLeadConstantsUI(object):
     TITLE = "Edit_Title_%s" % random_numbers
     L_SOURCE = "Web Site"
     L_STATUS = "B - Test"
-    ASSIGNED_TO = "Natalie Lerner"
+    ASSIGNED_TO = "Anastasiia V"
     LANGUAGE = "Ukrainian"
     SOURCE_NAME = "edit source name test"
     FAX = "0909"

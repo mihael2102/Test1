@@ -76,12 +76,12 @@ class LoginCAPrecondition(object):
         if global_var.current_brand_name == "q8":
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
-                .sign_up_q8(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
-                            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
-                                                      [LeadsModuleConstants.FIRST_LAST_NAME],
-                            CAConstants.EMAIL_CA,
-                            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE],
-                            CAConstants.PASSWORD)
+                .sign_up_q8(
+                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
+                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME],
+                    CAConstants.EMAIL_CA,
+                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE],
+                    CAConstants.PASSWORD)
         else:
             CALoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url_ca'))\
@@ -397,7 +397,6 @@ class LoginCAPrecondition(object):
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                new_design=0,
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Clients module and find created client by email """
@@ -447,9 +446,7 @@ class LoginCAPrecondition(object):
             .comparator_string(country, CAConstants.COUNTRY_DEFAULT)
 
         if "*" not in phone:
-            CRMBaseMethodsPage(self.driver) \
-                .comparator_string(phone,
-                                   self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])
+            assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE] in phone
 
     def login_ca(self):
         try:
@@ -457,6 +454,7 @@ class LoginCAPrecondition(object):
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .close_campaign_banner() \
                 .close_notifications_banner() \
+                .select_english() \
                 .click_sign_in_btn() \
                 .enter_email(self.config.get_value('email_live_acc')) \
                 .enter_password(self.config.get_value('password_live_acc')) \
@@ -468,6 +466,7 @@ class LoginCAPrecondition(object):
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .close_campaign_banner() \
                 .close_notifications_banner() \
+                .select_english() \
                 .click_sign_in_btn() \
                 .enter_email(self.config.get_value('email_live_acc')) \
                 .enter_password(self.config.get_value('password_live_acc')) \

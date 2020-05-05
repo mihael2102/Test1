@@ -27,7 +27,7 @@ class MassActionsConstantsUI(object):
     COUNTRY_ALBANIA = "Albania"
     LANGUAGE_GERMAN = "German"
     USER_NAME = "Panda Auto"
-    USER_NAME_1 = "Michael O"
+    USER_NAME_1 = "Anastasiia V"
     STATUS_R_NEW = "R - New"
     STATUS_B_TEST = "B - Test"
     EVENT_TYPE = "Meeting"

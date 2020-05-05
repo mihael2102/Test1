@@ -30,7 +30,19 @@ class CALoginPage(CRMBasePage):
         self.fill_email(email)
         self.fill_phone(phone)
         self.fill_password(password)
+        self.check_box_accept()
         self.click_submit()
+
+    def select_english(self):
+        sleep(0.1)
+        if global_var.current_brand_name == "24option":
+            flag = super().wait_load_element("//div/a[@href='/eu/']")
+            self.driver.execute_script("arguments[0].click();", flag)
+            Logging().reportDebugStep(self, "Select English")
+        else:
+            pass
+            Logging().reportDebugStep(self, "English already selected")
+        return CALoginPage(self.driver)
 
     def close_campaign_banner(self):
         sleep(3)
