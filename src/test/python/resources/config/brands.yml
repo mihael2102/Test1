@@ -1,7 +1,10 @@
 brands:
 
-- name: trade99
-  config_file: trade99.yml
+- name: analystq
+  config_file: analystq.yml
+
+#- name: trade99
+#  config_file: trade99.yml
 
 #- name: fairbit
 #  config_file: fair-bit.yml
