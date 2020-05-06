@@ -24,6 +24,7 @@ class MassActionsConstantsUI(object):
     LIST_EVENT_DURATION = "Event Duration"
     LIST_PRIORITY = "Priority"
     BTN_FINAL = "Assign"
+    BTN_FINAL2 = "Save changes"
 
     SOURCE_OTHER = "Other"
     COUNTRY_ALBANIA = "Albania"
@@ -32,6 +33,7 @@ class MassActionsConstantsUI(object):
     USER_NAME_1 = "Anastasiia V"
     STATUS_R_NEW = "R - New"
     STATUS_B_TEST = "B - Test"
+    LEAD_STATUS = ""
     EVENT_TYPE = "Meeting"
     EVENT_DURATION = "15M"
     PRIORITY = "Low"

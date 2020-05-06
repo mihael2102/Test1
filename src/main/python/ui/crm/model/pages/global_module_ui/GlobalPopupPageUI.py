@@ -42,7 +42,8 @@ class GlobalPopupPageUI(CRMBasePage):
         sleep(0.1)
         Logging().reportDebugStep(self, "Get data from pick-list: " + pick_list)
         item = super().wait_load_element(
-            "(//span[text()=' %s ']//following-sibling::ul//span)[%s]" % (pick_list, number)).get_attribute("innerText")
+            "(//span[text()=' %s ']//following-sibling::ul//span)[%s]" % (pick_list, number), timeout=35)\
+            .get_attribute("innerText")
         Logging().reportDebugStep(self, "Get data from pick-list(" + pick_list + ") by index(" + number + "): " + item)
         return item
 

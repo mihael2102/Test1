@@ -29,6 +29,7 @@ class GlobalModulePageUI(CRMBasePage):
         field.clear()
         field.send_keys(data)
         sleep(1)
+        self.wait_loading_to_finish_new_ui(55)
         try:
             done = super().wait_element_to_be_clickable("//button[contains(span,'Apply')]")
             self.driver.execute_script("arguments[0].click();", done)
@@ -37,7 +38,7 @@ class GlobalModulePageUI(CRMBasePage):
         sleep(2)
         self.wait_loading_to_finish_new_ui(55)
         sleep(2)
-        self.wait_loading_to_finish_new_ui(25)
+        self.wait_loading_to_finish_new_ui(55)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
         return GlobalModulePageUI(self.driver)
 
@@ -196,7 +197,7 @@ class GlobalModulePageUI(CRMBasePage):
         sleep(0.5)
         self.driver.execute_script("arguments[0].click();", filter_item)
         sleep(1)
-        self.wait_loading_to_finish_new_ui(25)
+        self.wait_loading_to_finish_new_ui(55)
         sleep(1)
         return GlobalModulePageUI(self.driver)
 
