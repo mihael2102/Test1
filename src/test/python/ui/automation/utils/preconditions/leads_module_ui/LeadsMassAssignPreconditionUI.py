@@ -43,18 +43,20 @@ class LeadsMassAssignPreconditionUI(object):
             .click_mass_action_btn(MassActionsConstantsUI.MASS_ASSIGN)
 
         """ Mass Assign """
+        status = MassAssignPageUI(self.driver)\
+            .get_item_from_list_by_number(
+                pick_list=MassActionsConstantsUI.LIST_LEADS_STATUS,
+                number='2')
         MassAssignPageUI(self.driver)\
-            .select_department(MassActionsConstantsUI.DEPARTMENT_ALL)\
-            .set_users_field(MassActionsConstantsUI.USER_NAME)\
-            .select_user_by_title(MassActionsConstantsUI.USER_NAME)\
-            .select_status(MassActionsConstantsUI.STATUS_R_NEW)\
-            .click_assign_btn()
+            .mass_assign(
+                department=MassActionsConstantsUI.DEPARTMENT_ALL,
+                user=MassActionsConstantsUI.USER_NAME,
+                status=status,
+                final_btn=MassActionsConstantsUI.BTN_FINAL)
 
-        """ Check confirmation message and updated data in table """
+        """ Check updated data in table """
         GlobalModulePageUI(self.driver) \
-            .verify_success_message()\
-            .click_ok() \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
             .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME)\
-            .global_data_checker_new_ui(MassActionsConstantsUI.STATUS_R_NEW)
+            .global_data_checker_new_ui(status)

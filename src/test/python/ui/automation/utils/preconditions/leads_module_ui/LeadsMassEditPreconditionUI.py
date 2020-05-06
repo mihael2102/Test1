@@ -1,9 +1,6 @@
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
-from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
@@ -42,20 +39,19 @@ class LeadsMassEditPreconditionUI(object):
 
         """ Mass Edit """
         MassEditPageUI(self.driver) \
-            .select_field_to_edit(MassActionsConstantsUI.FIELD_LEAD_STATUS) \
-            .select_from_list(MassActionsConstantsUI.LIST_LEAD_STATUS, MassActionsConstantsUI.STATUS_R_NEW) \
-            .select_field_to_edit(MassActionsConstantsUI.FIELD_LANGUAGE) \
-            .set_text_field(MassActionsConstantsUI.FIELD_LANGUAGE, MassActionsConstantsUI.LANGUAGE_GERMAN) \
-            .select_field_to_edit(MassActionsConstantsUI.FIELD_COUNTRY) \
-            .select_from_list(MassActionsConstantsUI.FIELD_COUNTRY, MassActionsConstantsUI.COUNTRY_ALBANIA) \
-            .click_save_changes_btn()
+            .mass_edit(
+                field_to_edit1=MassActionsConstantsUI.FIELD_LEAD_STATUS,
+                list1=MassActionsConstantsUI.LIST_LEAD_STATUS,
+                field_to_edit2=MassActionsConstantsUI.FIELD_LANGUAGE,
+                field1=MassActionsConstantsUI.FIELD_LANGUAGE, language=MassActionsConstantsUI.LANGUAGE_GERMAN,
+                field_to_edit3=MassActionsConstantsUI.FIELD_COUNTRY,
+                field2=MassActionsConstantsUI.FIELD_COUNTRY, country=MassActionsConstantsUI.COUNTRY_ALBANIA,
+                final_btn=MassActionsConstantsUI.BTN_FINAL2)
 
-        """ Check confirmation message and updated data in table """
+        """ Check updated data in list view """
         GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok() \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
             .global_data_checker_new_ui(MassActionsConstantsUI.LANGUAGE_GERMAN) \
-            .global_data_checker_new_ui(MassActionsConstantsUI.STATUS_R_NEW) \
+            .global_data_checker_new_ui(MassActionsConstantsUI.LEAD_STATUS) \
             .global_data_checker_new_ui(MassActionsConstantsUI.COUNTRY_ALBANIA)
