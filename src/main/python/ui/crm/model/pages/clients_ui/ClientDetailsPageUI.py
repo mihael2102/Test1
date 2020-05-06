@@ -20,7 +20,7 @@ class ClientDetailsPageUI(CRMBasePage):
             except(NoSuchElementException, TimeoutException):
                 Logging().reportDebugStep(self, "Field " + field + " is not editable")
                 data = super().wait_load_element(
-                    "//div[label='%s']//following-sibling::div//div[@class]" % field).text
+                    "//div[label='%s']//following-sibling::div//div[@class and text()]" % field).text
             Logging().reportDebugStep(self, "Get data from field " + field + ": " + data)
             return data
         except:
