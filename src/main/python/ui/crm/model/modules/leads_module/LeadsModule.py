@@ -343,7 +343,9 @@ class LeadsModule(CRMBasePage):
 
     def check_status_leads(self, i):
         sleep(4)
-        status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]").text
+        status = self.driver.find_element(By.XPATH, "//tbody[@id = 'listBody']/tr[" + str(i) + "]/td[6]")
+        self.scroll_into_view(status)
+        status = status.text
         if i == 10:
             Logging().reportDebugStep(self, "Verify status: " + status)
         return status
@@ -778,6 +780,8 @@ class LeadsModule(CRMBasePage):
 
     def click_search_button_leads_module(self):
         search_button = super().wait_element_to_be_clickable("//td[@class='txt_al_c']")
+        self.perform_scroll_up()
+        self.perform_scroll_right()
         try:
             search_button.click()
         except:
@@ -789,7 +793,7 @@ class LeadsModule(CRMBasePage):
 
     def get_results_count(self):
         refresh_icon = self.driver.find_elements(By.XPATH, "//span[@class='fa fa-refresh']")[0]
-        refresh_icon.click()
+        self.driver.execute_script("arguments[0].click();", refresh_icon)
         result_count_xpath = "//*[contains(text(), 'Showing Records')]"
         self.wait_visible_of_element(result_count_xpath)
         results_count_text = self.driver.find_elements(By.XPATH, result_count_xpath)[0].text
