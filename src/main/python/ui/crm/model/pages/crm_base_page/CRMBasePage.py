@@ -66,7 +66,7 @@ class CRMBasePage(object):
         self.driver.execute_script("scroll(0, '%s');" % parameter)
         Logging().reportDebugStep(self, "Scroll was performed ")
 
-    def perform_scroll_right(self, parameter):
+    def perform_scroll_right(self, parameter=0):
         self.driver.execute_script("scroll('%s', 0);" % parameter)
         Logging().reportDebugStep(self, "Scroll was performed ")
 
