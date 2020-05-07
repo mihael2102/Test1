@@ -277,6 +277,7 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def click_login(self):
+        sleep(0.5)
         login_button = super().wait_load_element("//*[@id='dnn_ctr517_Login_Login_DNN_cmdLogin']")
         login_button.click()
         Logging().reportDebugStep(self, "Click Login in pop up")

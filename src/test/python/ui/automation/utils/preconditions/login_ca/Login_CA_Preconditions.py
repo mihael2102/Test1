@@ -9,10 +9,10 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from time import sleep
 import poplib
 from email import parser
-from src.main.python.utils.logs.Loging import Logging
 from src.test.python.ui.automation.BaseTest import *
 
 
@@ -39,6 +39,8 @@ class Login_CA_Precondition(object):
             subject = "kaya"
         elif global_var.current_brand_name == "capitalmarketsbanc":
             subject = "cmb"
+        elif global_var.current_brand_name == "gmo":
+            subject = "roinvesting"
         else:
             subject = global_var.current_brand_name
         mail_subject = ""
@@ -76,8 +78,7 @@ class Login_CA_Precondition(object):
         assert ClientsPage(self.driver).get_client_last_name() == \
                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                    LeadsModuleConstants.FIRST_LAST_NAME]
-        # if global_var.current_brand_name != "stoxmarket":
-        #     assert "245" in ClientsPage(self.driver).get_client_phone()
+        assert CAConstants.PHONE in ClientsPage(self.driver).get_client_phone()
         # assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS
         # assert ClientsPage(self.driver).get_client_city() == CAConstants.CITY
         # assert ClientsPage(self.driver).get_client_code() == CAConstants.ZIP_CODE
@@ -157,9 +158,16 @@ class Login_CA_Precondition(object):
                                                     LeadsModuleConstants.FIRST_NAME].upper() + " DOE"
 
     def login_ca(self):
-        CALoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url_ca'))\
-            .enter_email(self.config.get_value('email_live_acc')) \
-            .enter_password(self.config.get_value('password_live_acc')) \
-            .click_login()\
-            .get_client_name("Test")
+        try:
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca'))\
+                .enter_email(self.config.get_value('email_live_acc')) \
+                .enter_password(self.config.get_value('password_live_acc')) \
+                .click_login()\
+                .get_client_name("Test")
+        except(NoSuchElementException, TimeoutException):
+            CALoginPage(self.driver) \
+                .refresh_page()
+            CALoginPage(self.driver) \
+                .open_first_tab_page(self.config.get_value('url_ca')) \
+                .get_client_name("Test")

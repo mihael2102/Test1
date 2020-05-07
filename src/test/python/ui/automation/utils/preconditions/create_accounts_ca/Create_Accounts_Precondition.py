@@ -70,7 +70,6 @@ class Create_Accounts_Precondition(object):
         sleep(5)
 
     def open_ticket_ca(self):
-
         # Create new ticket
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca')) \
@@ -322,7 +321,7 @@ class Create_Accounts_Precondition(object):
             elif global_var.current_brand_name == "capitalmarketsbanc":
                 assert data == CAConstants.LEVERAGE_CMB
                 assert currency == CAConstants.CURRENCY
-            elif global_var.current_brand_name == "kbcapitals":
+            elif global_var.current_brand_name == "kbcapitals" or global_var.current_brand_name == "forex_staging":
                 assert data == CAConstants.LEVERAGE_KB
                 assert currency == CAConstants.CURRENCY
             elif global_var.current_brand_name == "finmarket":
