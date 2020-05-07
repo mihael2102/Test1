@@ -78,7 +78,10 @@ class Login_CA_Precondition(object):
         assert ClientsPage(self.driver).get_client_last_name() == \
                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                    LeadsModuleConstants.FIRST_LAST_NAME]
-        assert CAConstants.PHONE in ClientsPage(self.driver).get_client_phone()
+        expected_phone = CAConstants.PHONE
+        actual_phone = ClientsPage(self.driver).get_client_phone()
+        actual_phone = actual_phone.replace(" ", "")
+        assert expected_phone in actual_phone
         # assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS
         # assert ClientsPage(self.driver).get_client_city() == CAConstants.CITY
         # assert ClientsPage(self.driver).get_client_code() == CAConstants.ZIP_CODE
