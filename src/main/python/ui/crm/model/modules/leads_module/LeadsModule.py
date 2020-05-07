@@ -697,6 +697,7 @@ class LeadsModule(CRMBasePage):
     def enter_email(self, email):
         first_name_field = self.driver.find_element(By.XPATH,
                                                     "//tr[@name='customAdvanceSearch']//input[@name='tks_email']")
+        self.scroll_into_view(first_name_field)
         first_name_field.clear()
         first_name_field.send_keys(email)
         Logging().reportDebugStep(self, "The email was entered: " + email)

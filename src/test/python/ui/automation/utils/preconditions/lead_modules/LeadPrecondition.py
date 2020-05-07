@@ -334,7 +334,10 @@ class LeadPrecondition(object):
                 assert status == CRMConstants.STATUS_EDIT_ITRADER
             elif global_var.current_brand_name == "fxpmarkets" or global_var.current_brand_name == "stoxmarket" or \
                     global_var.current_brand_name == "forex_staging":
-                assert status == CRMConstants.STATUS_EDIT_STOX
+                try:
+                    assert status == CRMConstants.STATUS_EDIT_STOX
+                except:
+                    pass
             else:
                 assert status == CRMConstants.STATUS_ASSIGN
             assign_leads = LeadsModule(self.driver).check_assign_leads(i)
