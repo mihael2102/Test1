@@ -41,11 +41,10 @@ class LeadsMassEditPreconditionUI(object):
         MassEditPageUI(self.driver) \
             .mass_edit(
                 field_to_edit1=MassActionsConstantsUI.FIELD_LEAD_STATUS,
-                list1=MassActionsConstantsUI.LIST_LEAD_STATUS,
                 field_to_edit2=MassActionsConstantsUI.FIELD_LANGUAGE,
-                field1=MassActionsConstantsUI.FIELD_LANGUAGE, language=MassActionsConstantsUI.LANGUAGE_GERMAN,
+                language=MassActionsConstantsUI.LANGUAGE_GERMAN,
                 field_to_edit3=MassActionsConstantsUI.FIELD_COUNTRY,
-                field2=MassActionsConstantsUI.FIELD_COUNTRY, country=MassActionsConstantsUI.COUNTRY_ALBANIA,
+                country=MassActionsConstantsUI.COUNTRY_ALBANIA,
                 final_btn=MassActionsConstantsUI.BTN_FINAL2)
 
         """ Check updated data in list view """
@@ -53,5 +52,5 @@ class LeadsMassEditPreconditionUI(object):
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
             .global_data_checker_new_ui(MassActionsConstantsUI.LANGUAGE_GERMAN) \
-            .global_data_checker_new_ui(MassActionsConstantsUI.LEAD_STATUS) \
+            .global_data_checker_new_ui(MassActionsConstantsUI.STATUS) \
             .global_data_checker_new_ui(MassActionsConstantsUI.COUNTRY_ALBANIA)

@@ -34,7 +34,7 @@ class MassActionsConstantsUI(object):
     USER_NAME_1 = "Anastasiia V"
     STATUS_R_NEW = "R - New"
     STATUS_B_TEST = "B - Test"
-    LEAD_STATUS = ""
+    STATUS = ""
     EVENT_TYPE = "Meeting"
     EVENT_DURATION = "15M"
     PRIORITY = "Low"
