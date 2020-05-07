@@ -20,6 +20,7 @@ class MassActionsConstantsUI(object):
     FIELD_ASSIGNED_TO = "Assigned To"
     LIST_LEAD_STATUS = "Lead Status"
     LIST_LEADS_STATUS = "Leads status"
+    LIST_CLIENTS_STATUS = "Clients status"
     LIST_EVENT_TYPE = "Event Type"
     LIST_EVENT_DURATION = "Event Duration"
     LIST_PRIORITY = "Priority"

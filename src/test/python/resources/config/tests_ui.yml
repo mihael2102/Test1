@@ -37,10 +37,10 @@ tests_config:
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.TestClientsModuleUI
   class: TestClientsModuleUI
   tests:
-    - test_clients_searching_columns_ui
-    - test_clients_sorting_columns_ui
+#    - test_clients_searching_columns_ui
+#    - test_clients_sorting_columns_ui
     - test_mass_assign_clients_ui
-    - test_mass_edit_clients_ui
+#    - test_mass_edit_clients_ui
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.TestClientDetailsUI
 #  class: TestClientDetailsUI
