@@ -113,7 +113,8 @@ class TradingAccountPrecondition(object):
             """ Verify Currency """
             actual_currency = CAPage(self.driver).get_currency()
             expected_currency = var.get_var(self.__class__.__name__)["demo_acc_currency"]
-            if global_var.current_brand_name == "trade99":
+            if global_var.current_brand_name == "trade99" or \
+                    global_var.current_brand_name == "analystq":
                 actual_currency = actual_currency.split(':')[0]
             assert actual_currency == expected_currency
 
