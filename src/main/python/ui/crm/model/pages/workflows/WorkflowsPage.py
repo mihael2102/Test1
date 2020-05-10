@@ -337,7 +337,8 @@ class WorkflowsPage(CRMBasePage):
 
     def select_country(self, name):
         sleep(2)
-        select = Select(self.driver.find_element(By.XPATH, "(//select)[4]"))
+        select = Select(self.driver.find_element(By.XPATH,
+                                                 "//workflow-task/div/div[2]/div[3]/field-value[2]/div/div[2]/select"))
         select.select_by_visible_text(name)
         Logging().reportDebugStep(self, "Select condition: " + name)
         return WorkflowsPage(self.driver)
