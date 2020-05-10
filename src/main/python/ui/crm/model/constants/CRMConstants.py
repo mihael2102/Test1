@@ -155,7 +155,6 @@ class CRMConstants(object):
     ADD_INTERACTION = "6"
     ADD_INTERACTION_TEXT = "Add Interaction"
     CHECK_CLIENT_PASSWORD = "Check Client Password"
-    CHECK_CLIENT_PASSWORD = "Check Client Password"
     CHECK_CLIENT_PASSWORD_OLD_FOREX = "Check MT4 Password"
     CHANGE_CLIENT_PASSWORD = "Change Client Area Password"
     INTERACTION_SUCCESSFULLY = "Interaction successfully created"
