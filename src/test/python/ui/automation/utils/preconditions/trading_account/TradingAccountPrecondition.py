@@ -61,7 +61,7 @@ class TradingAccountPrecondition(object):
                 .open_manage_accounts() \
                 .open_new_account_btn() \
                 .select_account_type(CAConstants.ACCOUNT_LIVE) \
-                .select_currency(CAConstants.CURRENCY) \
+                .select_currency(var.get_var(self.__class__.__name__)["live_acc_currency"]) \
                 .select_leverage_level(var.get_var(self.__class__.__name__)["live_acc_leverage"]) \
                 .click_create_account()\
                 .get_create_account_message()\

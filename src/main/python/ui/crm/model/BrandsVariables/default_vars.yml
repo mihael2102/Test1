@@ -48,6 +48,7 @@ LeadPrecondition:
   m_edit_lead_status: "B - Test"
 LoginCAPrecondition:
   client_name: "Test"
+  signup_currency: "EUR"
 MT4CreateTAPreconditionUI:
   create_mt_user: "Create MT User"
   d_acc_currency: "USD"
@@ -64,6 +65,7 @@ MT4UpdateUserPreconditionUI:
 TradingAccountPrecondition:
   demo_acc_currency: "EUR"
   demo_acc_currency_usd: "USD"
+  live_acc_currency: "EUR"
   demo_acc_leverage: "1:100"
   live_acc_leverage: "1:100"
   initial_deposit_amount: "50000"

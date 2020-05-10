@@ -19,6 +19,7 @@ MT4DepositPreconditionUI:
 MT4UpdateUserPreconditionUI:
   update_mt_user: "Update Trading Account"
 TradingAccountPrecondition:
+  live_acc_currency: "BTC"
   demo_acc_currency: "BTC"
   initial_deposit_amount: "10"
 WorkflowsPrecondition:
