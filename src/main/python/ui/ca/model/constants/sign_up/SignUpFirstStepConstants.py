@@ -8,3 +8,4 @@ import string
 class SignUpFirstStepConstants(object):
     FIELD_FNAME = "First Name"
     FIELD_LNAME = "Last Name"
+    FIELD_EMAIL = "Email"
