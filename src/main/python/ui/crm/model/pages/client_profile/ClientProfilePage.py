@@ -388,7 +388,8 @@ class ClientProfilePage(CRMBasePage):
 
     def click_fill_questionnaire_btn(self):
         sleep(3)
-        fill_questionnaire_btn = super().wait_load_element("//*[@id='sidebar']/table[1]/tbody/tr[5]/td/a")
+        fill_questionnaire_btn = super().wait_load_element(
+            "//*[@id='sidebar']//a[contains(@href,'Client Questionnaire')]")
         fill_questionnaire_btn.click()
         Logging().reportDebugStep(self, "Click fill questionnaire btn")
         return ClientProfilePage(self.driver)
