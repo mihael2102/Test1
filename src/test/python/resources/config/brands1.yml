@@ -5,8 +5,8 @@ brands:
 #- name: alferatrade
 #  config_file: alferatrade.yml
 
-- name: analystq
-  config_file: analystq.yml
+#- name: analystq
+#  config_file: analystq.yml
 
 #- name: any1profit
 #  config_file: any1profit.yml
@@ -98,8 +98,8 @@ brands:
 #- name: ptbanc
 #  config_file: ptbanc.yml
 
-#- name: q8
-#  config_file: q8.yml
+- name: q8
+  config_file: q8.yml
 
 #- name: solocapitlas
 #  config_file: solocapitlas.yml

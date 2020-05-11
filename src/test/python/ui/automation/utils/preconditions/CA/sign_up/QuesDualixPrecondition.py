@@ -28,7 +28,7 @@ from src.main.python.ui.ca.model.constants.questionnaire.QuesDualixConstants imp
 import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
-class SignUpDualixPrecondition(object):
+class QuesDualixPrecondition(object):
 
     driver = None
     config = None
@@ -37,49 +37,9 @@ class SignUpDualixPrecondition(object):
         self.driver = driver
         self.config = config
 
-    def load_lead_from_config(self, lead_key):
-        lead = self.config.get_value(lead_key)
-        return lead
-
-    def sign_up_dualix(self):
-        """ Registration form """
-        CALoginPage(self.driver) \
-            .open_first_tab_page(self.config.get_value('url_ca')) \
-            .close_campaign_banner() \
-            .click_sign_up() \
-            .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
-                             [LeadsModuleConstants.FIRST_NAME]) \
-            .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
-                            [LeadsModuleConstants.FIRST_LAST_NAME]) \
-            .fill_email(CAConstants.EMAIL_CA) \
-            .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE]) \
-            .fill_password(CAConstants.PASSWORD) \
-            .fill_confirm_password(CAConstants.PASSWORD) \
-            .check_box_accept() \
-            .risk_check_box_accept() \
-            .select_country_first_step(CAConstants.COUNTRY1) \
-            .click_submit() \
-            .close_payment_popup()
-
-        """ Check graphs """
-        WebTraderPage(self.driver) \
-            .open_trading_page() \
-            .check_chart_loaded()
-
+    def questionnaire_dualix(self):
         """ Personal details form """
         CALoginPage(self.driver) \
-            .verify() \
-            .click_hi_guest() \
-            .click_transactions_history() \
-            .select_data_birth_day(CAConstants.DAY_BIRTH) \
-            .select_data_birth_month(CAConstants.MONTH_BIRTH) \
-            .select_data_birth_year(CAConstants.YEAR_BIRTH) \
-            .choose_currency(CAConstants.CURRENCY) \
-            .choose_citizenship(CAConstants.CITIZENSHIP3) \
-            .fill_city(CAConstants.CITY) \
-            .fill_zip_code(CAConstants.ZIP_CODE) \
-            .fill_address(CAConstants.ADDRESS) \
-            .click_next() \
             .enter_ssn_tin(QuesStrattonConstants.SSN_TIN) \
             .enter_id(QuesStrattonConstants.NAT_ID) \
             .select_country_tax(QuesStrattonConstants.COUNTRY_TAX) \
@@ -113,10 +73,3 @@ class SignUpDualixPrecondition(object):
             .select_item_pick_list(QuesDualixConstants.LIST_23, QuesDualixConstants.ITEM_23) \
             .click_next_btn() \
             .close_questionnaire_message()
-
-        sleep(2)
-        existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(
-                                                    TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])
-        expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
-
-        assert existing_client.lower() == expected_client.lower()

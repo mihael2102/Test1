@@ -1,37 +1,9 @@
-from src.main.python.ui.ca.model.pages.ca.QuestionnairePage import QuestionnairePage
-from src.main.python.ui.ca.model.constants.questionnaire.QuesStrattonConstants import QuesStrattonConstants
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.main.python.utils.config import Config
-from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
-from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
-from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
-from time import sleep
-import poplib
-from email import parser
 from src.main.python.utils.logs.Loging import Logging
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
-from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
-from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
-from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
-from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
-from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
-from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
-from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
-from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
-from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
-from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
-from src.main.python.ui.ca.model.constants.questionnaire.QuesDualixConstants import QuesDualixConstants
-import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from time import sleep
 
 
@@ -39,7 +11,7 @@ class SignUpFirstStepPage(CRMBasePage):
 
     def first_step_sign_up(self, url=None, field1=None, first_name=None, field2=None, last_name=None, field3=None,
                            email=None, field4=None, phone=None, field5=None, password=None, field6=None, password2=None,
-                           field7=None, promo_code=None):
+                           field7=None, promo_code=None, country=None):
         self.open_first_tab_page(url)
         self.close_campaign_banner()
         if global_var.current_brand_name == "trade99":
@@ -59,6 +31,10 @@ class SignUpFirstStepPage(CRMBasePage):
             self.set_text_field(field6, password2)
         if field7 and promo_code:
             self.set_text_field(field7, promo_code)
+        if country:
+            self.select_country_first_step(country)
+        self.check_box_accept()
+        self.risk_check_box_accept()
         self.click_submit()
         self.close_payment_popup()
         return SignUpFirstStepPage(self.driver)
@@ -82,6 +58,7 @@ class SignUpFirstStepPage(CRMBasePage):
 
     def click_sign_up(self):
         sleep(1)
+        Logging().reportDebugStep(self, "Click Sign Up")
         try:
             sign_up_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(
                 self.__class__.__name__)["sign_up"])
@@ -90,7 +67,6 @@ class SignUpFirstStepPage(CRMBasePage):
                 sign_up_button.click()
             except:
                 self.driver.execute_script("arguments[0].click();", sign_up_button)
-            Logging().reportDebugStep(self, "Click Sign Up")
         except:
             Logging().reportDebugStep(self, "There is no panda plugin")
             Logging().reportDebugStep(self, "NOT RUNNED")
@@ -123,6 +99,38 @@ class SignUpFirstStepPage(CRMBasePage):
         except:
             Logging().reportDebugStep(self, "The " + field + " field doesn't exist or read only")
         return SignUpFirstStepPage(self.driver)
+
+    def select_country_first_step(self, country):
+        try:
+            country_list = super().wait_element_to_be_clickable("//select[@id='country']", timeout=5)
+            select_status = Select(country_list)
+            select_status.select_by_visible_text(country)
+            Logging().reportDebugStep(self, "Select Country(first step): " + country)
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "There are no 'Select Country' field on first registration step")
+        return CALoginPage(self.driver)
+
+    def check_box_accept(self):
+        check_box = super().wait_load_element(global_var.get_xpath_for_current_brand_element(
+            self.__class__.__name__)["check_box_accept"])
+        try:
+            check_box.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", check_box)
+        Logging().reportDebugStep(self,
+            "Check 'By checking this box I accept the Terms and Conditions and confirm that I am over 18 year of age'")
+        return CALoginPage(self.driver)
+
+    def risk_check_box_accept(self):
+        try:
+            check_box = super().wait_load_element(
+                "//span[contains(text(),'CFD and Forex trading involves substantial risk')]", timeout=5)
+            check_box.click()
+            Logging().reportDebugStep(self,
+             "Check 'CFD and Forex trading involves substantial risk and may result in the loss of the invested capital'")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Risk check box doesn't exist")
+        return CALoginPage(self.driver)
 
     def click_submit(self):
         submit_button = super().wait_element_to_be_clickable(global_var.get_xpath_for_current_brand_element(

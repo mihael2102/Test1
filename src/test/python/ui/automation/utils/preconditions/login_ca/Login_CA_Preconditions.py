@@ -174,7 +174,8 @@ class LoginCAPrecondition(object):
                 global_var.current_brand_name == "uprofx" or \
                 global_var.current_brand_name == "kontofx" or \
                 global_var.current_brand_name == "olympiamarkets" or \
-                global_var.current_brand_name == "grandefex":
+                global_var.current_brand_name == "grandefex" or \
+                global_var.current_brand_name == "analystq":
 
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca'))
