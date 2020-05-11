@@ -145,6 +145,7 @@ MT4CreditOutModule:
   comment_filed: "//input[@id='transaction_comment']"
   create_button: "//button[contains(text(),'Create')]"
 SignUpFirstStepPage:
+  login_btn: "//button[contains(text(), 'Login')]"
   sign_up: "//button[contains(text(), 'Sign Up')]"
   check_box_accept: "//span[contains (text(), 'Terms and Conditions')]"
   client_title_name: "//span[contains(text(), '%s')]"

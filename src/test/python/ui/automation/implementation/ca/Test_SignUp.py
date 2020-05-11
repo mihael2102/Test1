@@ -18,11 +18,7 @@ from src.test.python.ui.automation.utils.preconditions.CA.sign_up.SignUpPrecondi
 class SignUpTest(BaseTest):
 
     def test_check_sign_up(self):
-        if global_var.current_brand_name == "strattonmarkets-eu":
-            SignUpStrattonPrecondition(self.driver, self.config).sign_up_stratton()
-        elif global_var.current_brand_name == "dualix":
-            QuesDualixPrecondition(self.driver, self.config).questionnaire_dualix()
-        elif global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8":
             SignUpQ8Precondition(self.driver, self.config).sign_up_q8()
         else:
             SignUpPrecondition(self.driver, self.config).sign_up_ca()
