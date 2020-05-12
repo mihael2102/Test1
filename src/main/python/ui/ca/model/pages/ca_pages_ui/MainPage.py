@@ -1,14 +1,22 @@
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
 
 
 class MainPage(CRMBasePage):
 
-    def open_first_tab_page(self, url):
-        super().open_first_tab_page(url)
+    def open_first_tab(self, url):
+        self.open_first_tab_page(url)
         Logging().reportDebugStep(self, "Open first tabs page: " + url)
+        return MainPage(self.driver)
+
+    def switch_second_tab(self):
+        self.switch_second_tab_page()
+        Logging().reportDebugStep(self, "Switch to second page")
+        return MainPage(self.driver)
+
+    def refresh_page_ca(self):
+        self.refresh_page()
         return MainPage(self.driver)
 
     def click_hi_user(self):

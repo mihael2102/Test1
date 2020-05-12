@@ -1,21 +1,4 @@
-from src.main.python.ui.ca.model.pages.ca.QuestionnairePage import QuestionnairePage
-from src.main.python.ui.ca.model.constants.questionnaire.QuesStrattonConstants import QuesStrattonConstants
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
-from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
-from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
-from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
-from time import sleep
-import poplib
-from email import parser
-from src.main.python.utils.logs.Loging import Logging
-from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
-from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
-from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
@@ -24,8 +7,8 @@ from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI impo
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
-from src.main.python.ui.ca.model.constants.questionnaire.QuesDualixConstants import QuesDualixConstants
-import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
+from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
+from src.main.python.ui.ca.model.constants.main_page.PersonalDetailsConstants import PersonalDetailsConstants
 
 
 class CRMClientVerificationPreconditionUI(object):
@@ -37,11 +20,7 @@ class CRMClientVerificationPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def load_lead_from_config(self, lead_key):
-        lead = self.config.get_value(lead_key)
-        return lead
-
-    def client_exist_in_crm_new_ui(self):
+    def client_exist_in_crm_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
@@ -56,9 +35,9 @@ class CRMClientVerificationPreconditionUI(object):
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   CAConstants.EMAIL_CA)
+                                   SignUpFirstStepConstants.EMAIL)
         ClientsModulePageUI(self.driver) \
-            .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
+            .click_crm_id_ui('1')
 
         """ Get client's data """
         details = ClientDetailsPageUI(self.driver)
@@ -86,17 +65,14 @@ class CRMClientVerificationPreconditionUI(object):
         """ Verify client's data """
         CRMBaseMethodsPage(self.driver) \
             .comparator_string(
-                first_name,
-                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]) \
+                first_name, SignUpFirstStepConstants.F_NAME) \
             .comparator_string(
-                last_name,
-                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]) \
-            .comparator_string(birthday, CAConstants.BIRTHDAY_CRM) \
-            .comparator_string(currency, var.get_var(self.__class__.__name__)["signup_currency"]) \
-            .comparator_string(address, CAConstants.ADDRESS) \
-            .comparator_string(postal_code, CAConstants.ZIP_CODE) \
-            .comparator_string(city, CAConstants.CITY) \
-            .comparator_string(country, CAConstants.COUNTRY_DEFAULT)
+                last_name, SignUpFirstStepConstants.L_NAME) \
+            .comparator_string(birthday, PersonalDetailsConstants.BIRTHDAY_CRM) \
+            .comparator_string(address, PersonalDetailsConstants.ADDRESS) \
+            .comparator_string(postal_code, PersonalDetailsConstants.ZIP_CODE) \
+            .comparator_string(city, PersonalDetailsConstants.CITY) \
+            .comparator_string(country, SignUpFirstStepConstants.COUNTRY)
 
         if "*" not in phone:
-            assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE] in phone
+            assert SignUpFirstStepConstants.PHONE in phone

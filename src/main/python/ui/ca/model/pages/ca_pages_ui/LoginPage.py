@@ -14,6 +14,11 @@ class LoginPage(CRMBasePage):
         self.click_login()
         return MainPage(self.driver)
 
+    def open_second_tab_page(self, url):
+        super().open_second_tab_page(url)
+        Logging().reportDebugStep(self, "Open second tab page: " + url)
+        return LoginPage(self.driver)
+
     def click_login_btn(self):
         try:
             sleep(1)

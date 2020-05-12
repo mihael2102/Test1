@@ -29,8 +29,8 @@ brands:
 #- name: ctxprime
 #  config_file: ctxprime.yml
 
-- name: dualix
-  config_file: dualix.yml
+#- name: dualix
+#  config_file: dualix.yml
 
 #- name: etfinance
 #  config_file: etfinance.yml
@@ -41,8 +41,8 @@ brands:
 #- name: fbrokers
 #  config_file: fbrokers.yml
 
-#- name: globalix
-#  config_file: globalix.yml
+- name: globalix
+  config_file: globalix.yml
 
 #- name: grandefex
 #  config_file: grandefex.yml

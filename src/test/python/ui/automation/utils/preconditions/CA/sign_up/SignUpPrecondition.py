@@ -54,7 +54,8 @@ class SignUpPrecondition(object):
                 list1=PersonalDetailsConstants.LIST_DAY, day=PersonalDetailsConstants.DAY_BIRTH,
                 list2=PersonalDetailsConstants.LIST_MONTH, month=PersonalDetailsConstants.MONTH_BIRTH,
                 list3=PersonalDetailsConstants.LIST_YEAR, year=PersonalDetailsConstants.YEAR_BIRTH,
-                list4=PersonalDetailsConstants.LIST_CITIZENSHIP, country=PersonalDetailsConstants.CITIZENSHIP,
+                list4=PersonalDetailsConstants.LIST_COUNTRY, country=PersonalDetailsConstants.COUNTRY,
+                list5=PersonalDetailsConstants.LIST_CITIZENSHIP, citizenship=PersonalDetailsConstants.CITIZENSHIP,
                 field1=PersonalDetailsConstants.FIELD_CITY, city=PersonalDetailsConstants.CITY,
                 field2=PersonalDetailsConstants.FIELD_ZIP, zip_code=PersonalDetailsConstants.ZIP_CODE,
                 field3=PersonalDetailsConstants.FIELD_ADDRESS, address=PersonalDetailsConstants.ADDRESS)
