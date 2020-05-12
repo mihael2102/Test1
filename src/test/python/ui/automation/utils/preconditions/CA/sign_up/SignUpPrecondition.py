@@ -25,7 +25,7 @@ class SignUpPrecondition(object):
         lead = self.config.get_value(lead_key)
         return lead
 
-    def sign_up_ca(self):
+    def sign_up_ca_ui(self):
         """ Registration 1st step """
         SignUpFirstStepPage(self.driver) \
             .first_step_sign_up(

@@ -21,7 +21,13 @@ class SignUpTest(BaseTest):
         if global_var.current_brand_name == "q8":
             SignUpQ8Precondition(self.driver, self.config).sign_up_q8()
         else:
-            SignUpPrecondition(self.driver, self.config).sign_up_ca()
+            LoginCAPrecondition(self.driver, self.config).sign_up_ca()
+
+    def test_sign_up_ui(self):
+        if global_var.current_brand_name == "q8":
+            SignUpQ8Precondition(self.driver, self.config).sign_up_q8()
+        else:
+            SignUpPrecondition(self.driver, self.config).sign_up_ca_ui()
 
     def test_check_login(self):
         LoginCAPrecondition(self.driver, self.config).login_ca()
