@@ -3,15 +3,8 @@ from src.test.python.ui.automation.BaseTest import *
 from src.test.python.ui.automation.utils.preconditions.login_ca.Deposit_CA_Preconditions import DepositCAPrecondition
 from src.test.python.ui.automation.utils.preconditions.login_ca.Login_CA_Preconditions import LoginCAPrecondition
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.test.python.ui.automation.utils.preconditions.CA.sign_up.SignUpStrattonPrecondition import \
-    SignUpStrattonPrecondition
-from src.test.python.ui.automation.utils.preconditions.CA.sign_up.QuesDualixPrecondition import \
-    QuesDualixPrecondition
 from src.test.python.ui.automation.utils.preconditions.CA.sign_up.SignUpQ8Precondition import \
     SignUpQ8Precondition
-from src.test.python.ui.automation.utils.preconditions.CA.sign_up.CRMClientVerificationPreconditionUI import \
-    CRMClientVerificationPreconditionUI
-from src.test.python.ui.automation.utils.preconditions.CA.sign_up.SignUpPrecondition import SignUpPrecondition
 
 
 @pytest.mark.run(order=2)

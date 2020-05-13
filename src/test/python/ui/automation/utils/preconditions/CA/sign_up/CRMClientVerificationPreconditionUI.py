@@ -8,7 +8,7 @@ from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI im
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
-from src.main.python.ui.ca.model.constants.main_page.PersonalDetailsConstants import PersonalDetailsConstants
+from src.main.python.ui.ca.model.constants.client_area.PersonalDetailsConstants import PersonalDetailsConstants
 
 
 class CRMClientVerificationPreconditionUI(object):

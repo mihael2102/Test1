@@ -10,6 +10,8 @@ from src.test.python.ui.automation.utils.preconditions.CA.sign_up.SignUpQ8Precon
 from src.test.python.ui.automation.utils.preconditions.CA.sign_up.CRMClientVerificationPreconditionUI import \
     CRMClientVerificationPreconditionUI
 from src.test.python.ui.automation.utils.preconditions.CA.sign_up.SignUpPrecondition import SignUpPrecondition
+from src.test.python.ui.automation.utils.preconditions.CA.help_desk.CaSupportTicketPrecondition import \
+    CaSupportTicketPrecondition
 
 
 @pytest.mark.run(order=2)
@@ -23,6 +25,9 @@ class TestSignUpUI(BaseTest):
 
     def test_update_client_ui(self):
         CaUpdateClientPrecondition(self.driver, self.config).update_client_ca()
+
+    def test_support_tickets_ui(self):
+        CaSupportTicketPrecondition(self.driver, self.config).create_ticket_ca()
 
     def test_check_login(self):
         LoginCAPrecondition(self.driver, self.config).login_ca()

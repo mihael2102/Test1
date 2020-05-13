@@ -13,7 +13,7 @@ from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientEditConstantsUI 
 from src.main.python.ui.ca.model.constants.sign_up.CaUpdateClientConstants import CaUpdateClientConstants
 from src.main.python.ui.ca.model.pages.ca_pages_ui.PersonalDetailsPage import PersonalDetailsPage
 from src.main.python.ui.ca.model.constants.main_page.MainPageConstants import MainPageConstants
-from src.main.python.ui.ca.model.constants.main_page.PersonalDetailsConstants import PersonalDetailsConstants
+from src.main.python.ui.ca.model.constants.client_area.PersonalDetailsConstants import PersonalDetailsConstants
 from src.main.python.ui.ca.model.pages.ca_pages_ui.MainPage import MainPage
 from src.main.python.ui.ca.model.pages.ca_pages_ui.LoginPage import LoginPage
 

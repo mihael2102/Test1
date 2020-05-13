@@ -14,6 +14,14 @@ class ClientDetailsPageUI(CRMBasePage):
         super().switch_first_tab_page()
         return ClientDetailsPageUI(self.driver)
 
+    def switch_second_tab_page(self):
+        super().switch_second_tab_page()
+        return ClientDetailsPageUI(self.driver)
+
+    def refresh_client_page(self):
+        super().refresh_page()
+        return ClientDetailsPageUI(self.driver)
+
     def get_text_from_field(self, field):
         sleep(0.1)
         try:
@@ -81,10 +89,6 @@ class ClientDetailsPageUI(CRMBasePage):
             .click_pencil_icon_in_field(field) \
             .set_text_pencil_field(field, text) \
             .click_confirm_btn_pencil_field(field)
-        return ClientDetailsPageUI(self.driver)
-
-    def refresh_client_page(self):
-        self.refresh_page()
         return ClientDetailsPageUI(self.driver)
 
     def click_edit_btn(self):

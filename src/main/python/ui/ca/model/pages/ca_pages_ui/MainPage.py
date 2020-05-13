@@ -12,7 +12,10 @@ class MainPage(CRMBasePage):
 
     def switch_second_tab(self):
         self.switch_second_tab_page()
-        Logging().reportDebugStep(self, "Switch to second page")
+        return MainPage(self.driver)
+
+    def switch_first_tab(self):
+        self.switch_first_tab_page()
         return MainPage(self.driver)
 
     def refresh_page_ca(self):
