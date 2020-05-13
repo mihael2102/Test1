@@ -74,7 +74,7 @@ class GlobalPopupPageUI(CRMBasePage):
 
     def set_date(self, day, month, year):
         sleep(0.1)
-        Logging().reportDebugStep(self, "Set birthday (day: " + day + ", month: " + month + ", year: " + year)
+        Logging().reportDebugStep(self, "Set birthday (day: " + day + ", month: " + month + ", year: " + year + ")")
         date_field = super().wait_load_element(
             "//input[@placeholder='Choose date of birth']")
         self.driver.execute_script("arguments[0].click();", date_field)

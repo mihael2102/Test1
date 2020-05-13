@@ -84,6 +84,7 @@ class CaUpdateClientPrecondition(object):
 
         """ Edit client via pencil in CRM """
         ClientDetailsPageUI(self.driver)\
+            .switch_first_tab_page() \
             .open_tab(ClientDetailsConstantsUI.TAB_ADDRESS_INFORMATION) \
             .edit_text_field_via_pencil_icon(field=ClientDetailsConstantsUI.FIELD_CITY,
                                              text=CaUpdateClientConstants.CITY) \
@@ -94,7 +95,7 @@ class CaUpdateClientPrecondition(object):
 
         """ Get data from CA """
         MainPage(self.driver) \
-            .switch_second_tab_page() \
+            .switch_second_tab() \
             .refresh_page_ca() \
             .click_hi_user() \
             .click_main_menu_item(item=MainPageConstants.ITEM_PER_DETAILS)
@@ -122,11 +123,13 @@ class CaUpdateClientPrecondition(object):
 
         """ Verify client's data was updated in CRM """
         first_name = ClientDetailsPageUI(self.driver)\
+            .switch_first_tab_page() \
             .refresh_client_page() \
             .get_text_from_field(field=ClientDetailsConstantsUI.FIELD_FNAME)
         last_name = ClientDetailsPageUI(self.driver) \
             .get_text_from_field(field=ClientDetailsConstantsUI.FIELD_LNAME)
         city = ClientDetailsPageUI(self.driver) \
+            .open_tab(ClientDetailsConstantsUI.TAB_ADDRESS_INFORMATION) \
             .get_text_from_field(field=ClientDetailsConstantsUI.FIELD_CITY)
         code = ClientDetailsPageUI(self.driver) \
             .get_text_from_field(field=ClientDetailsConstantsUI.FIELD_CODE)

@@ -58,14 +58,10 @@ class PersonalDetailsPage(CRMBasePage):
     def click_final_btn(self):
         sleep(0.1)
         Logging().reportDebugStep(self, "Click final button")
-        try:
-            btn = super().wait_load_element("//button[contains(text(), 'Next')]")
-            btn.click()
-            Logging().reportDebugStep(self, "Click 'Next' button")
-        except:
-            btn = super().wait_load_element("//button[contains(text(), 'Save Changes')]")
-            btn.click()
-            Logging().reportDebugStep(self, "Click 'Save Changes' button")
+        btn = super().wait_load_element(
+            "//button[contains(text(),'Next')]|//button[contains(text(), 'Save Changes')]")
+        btn.click()
+        Logging().reportDebugStep(self, "Click 'Next/Save Changes' button")
         return PersonalDetailsPage(self.driver)
 
     def close_client_area(self):
