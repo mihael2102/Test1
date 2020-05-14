@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
+from time import sleep
 
 
 class HelpDeskCreationTicket(CRMBasePage):
@@ -96,6 +97,7 @@ class HelpDeskCreationTicket(CRMBasePage):
     def click_save_button(self):
         save_button = self.driver.find_element(By.XPATH, "//input[@title='Save [Alt+S]']")
         save_button.click()
-        self.wait_crm_loading_to_finish()
+        sleep(1)
+        self.wait_loading_to_finish(55)
         Logging().reportDebugStep(self, "Save button was clicked")
         return HelpDeskCreationTicket(self.driver)

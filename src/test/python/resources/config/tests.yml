@@ -110,7 +110,7 @@ tests_config:
 #  class: WithdrawTest
 #  tests:
 #    - test_withdraw_crm   #preconditions: convert lead, make deposit
-#
+
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
 #  class: CreditInTestCRM
 #  tests:
@@ -160,12 +160,12 @@ tests_config:
 #    - test_campaign_searching_by_columns
 #
 ########################################## AUTOASSIGN MODULE #############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
-  class: AutoAssignModuleTest
-  tests:
-    - test_add_auto_assign_rule_lead
-    - test_add_auto_assign_rule_client
-    - test_perform_delete_rule
+#- module: src.test.python.ui.automation.implementation.crm.tests_auto_assign_module.Test_Auto_Assign
+#  class: AutoAssignModuleTest
+#  tests:
+#    - test_add_auto_assign_rule_lead
+#    - test_add_auto_assign_rule_client
+#    - test_perform_delete_rule
 
 ########################################### CHECK MODULES ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Check_Modules
@@ -216,10 +216,10 @@ tests_config:
 #    - test_dragon_clients
 
 ############################################## HELP DESK #################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
-#  class: HelpDeskModuleTest
-#  tests:
-#    - test_create_ticket
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
+  class: HelpDeskModuleTest
+  tests:
+    - test_create_ticket
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk
 #  class: TabHelpDeskTest
