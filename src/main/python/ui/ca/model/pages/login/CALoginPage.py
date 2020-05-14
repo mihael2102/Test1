@@ -111,7 +111,9 @@ class CALoginPage(CRMBasePage):
         return CALoginPage(self.driver)
 
     def fill_password(self, password):
+        sleep(0.1)
         input_password = super().wait_load_element("//input[@name = 'password']")
+        input_password.clear()
         input_password.send_keys(password)
         Logging().reportDebugStep(self, "Fill password: " + password)
         return CALoginPage(self.driver)
