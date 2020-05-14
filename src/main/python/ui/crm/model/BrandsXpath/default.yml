@@ -55,7 +55,7 @@ ClientsPage:
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
   i_confirm_checkbox: "//*[@name='confirm']"
-  email: "//td[contains(text(),'Email')]//following-sibling::td[1]"
+  email: "//td[text()='Email']//following-sibling::td[1]"
   mt4_button: "//div[@class='mt4_act_box']"
   link_trading_account: "//div[@class='link_field']/a[@class='before_nw' and contains(text(),'%s')]"
   balance_in_trading_account: "//*[@id='dtlview_Balance']"
