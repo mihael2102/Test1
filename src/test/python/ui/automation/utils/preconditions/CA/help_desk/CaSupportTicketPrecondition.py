@@ -35,7 +35,7 @@ class CaSupportTicketPrecondition(object):
     def create_ticket_ca(self):
         """ Log in CA """
         LoginPage(self.driver) \
-            .open_second_tab_page(url=self.config.get_value('url_ca')) \
+            .open_first_tab_page(url=self.config.get_value('url_ca')) \
             .login(email=SignUpFirstStepConstants.EMAIL,
                    password=SignUpFirstStepConstants.PASSWORD) \
             .click_hi_user() \
@@ -52,7 +52,7 @@ class CaSupportTicketPrecondition(object):
 
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
-            .crm_login(
+            .crm_login_second_tab(
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
@@ -72,6 +72,7 @@ class CaSupportTicketPrecondition(object):
         crm_ticket_id = ClientsModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=HDModuleConstantsUI.COLUMN_TICKET_NO,
                                         row='1')
+        crm_ticket_id = crm_ticket_id.replace('TT', '')
         title = ClientsModulePageUI(self.driver) \
             .get_data_from_list_view_ui(column=HDModuleConstantsUI.COLUMN_TITLE,
                                         row='1')
