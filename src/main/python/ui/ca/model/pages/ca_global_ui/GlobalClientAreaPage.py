@@ -19,7 +19,8 @@ class GlobalClientAreaPage(CRMBasePage):
     def set_text_field(self, field, text):
         sleep(0.1)
         Logging().reportDebugStep(self, "Set " + field + ": " + text)
-        input_field = super().wait_load_element("//label[text()='%s']//following-sibling::input" % field)
+        input_field = super().wait_load_element("//label[text()='%s']//following-sibling::input|"
+                                                "//label[text()='%s']//following-sibling::textarea" % (field, field))
         try:
             sleep(0.1)
             input_field.clear()

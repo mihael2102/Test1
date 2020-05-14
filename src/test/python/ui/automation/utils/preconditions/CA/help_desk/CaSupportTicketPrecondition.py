@@ -52,7 +52,7 @@ class CaSupportTicketPrecondition(object):
 
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
-            .crm_login_second_tab(
+            .crm_login(
                 url=self.config.get_value('url'),
                 user_name=self.config.get_value(TestDataConstants.USER_NAME),
                 password=self.config.get_value(TestDataConstants.CRM_PASSWORD),

@@ -31,21 +31,6 @@ class CRMLoginPageUI(CRMBasePage):
         sleep(1)
         self.close_news_popup()
 
-    def crm_login_second_tab(self, url=None, user_name=None, password=None, otp_secret=None):
-        if url:
-            self.open_second_tab_page(url)
-        if user_name:
-            self.set_user_name(user_name)
-        if password:
-            self.set_password(password)
-        self.check_new_design()
-        self.click_login_btn()
-        sleep(1)
-        if otp_secret:
-            self.set_otp(otp_secret)
-        sleep(1)
-        self.close_news_popup()
-
     def set_user_name(self, user_name):
         sleep(0.1)
         user_name_field = self.driver.find_element(By.XPATH, "//input[@id='user_name']")
