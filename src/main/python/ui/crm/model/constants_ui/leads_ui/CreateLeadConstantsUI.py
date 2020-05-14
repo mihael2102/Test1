@@ -47,6 +47,7 @@ class CreateLeadConstantsUI(object):
     TITLE = "Title_%s" % random_numbers
     L_SOURCE = "Other"
     L_STATUS = "R - New"
+    STATUS = ""
     ASSIGNED_TO = "Panda Auto"
     LANGUAGE = "English"
     SOURCE_NAME = "source name test"

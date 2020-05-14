@@ -38,6 +38,15 @@ class GlobalPopupPageUI(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", title)
         return GlobalPopupPageUI(self.driver)
 
+    def get_item_from_list_by_number(self, pick_list, number):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Get data from pick-list: " + pick_list)
+        item = super().wait_load_element(
+            "(//span[text()=' %s ']//following-sibling::ul//span)[%s]" % (pick_list, number), timeout=35)\
+            .get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get data from pick-list(" + pick_list + ") by index(" + number + "): " + item)
+        return item
+
     def set_text_field(self, field, text):
         sleep(0.1)
         Logging().reportDebugStep(self, "Set " + field + ": " + text)
@@ -65,6 +74,7 @@ class GlobalPopupPageUI(CRMBasePage):
 
     def set_date(self, day, month, year):
         sleep(0.1)
+        Logging().reportDebugStep(self, "Set birthday (day: " + day + ", month: " + month + ", year: " + year + ")")
         date_field = super().wait_load_element(
             "//input[@placeholder='Choose date of birth']")
         self.driver.execute_script("arguments[0].click();", date_field)
@@ -84,7 +94,6 @@ class GlobalPopupPageUI(CRMBasePage):
         select_day.click()
         set_btn = super().wait_load_element("(//span[text()='Set'])[1]")
         set_btn.click()
-        Logging().reportDebugStep(self, "The birthday was set")
         return GlobalPopupPageUI(self.driver)
 
     def is_button_active(self, button):
@@ -104,12 +113,6 @@ class GlobalPopupPageUI(CRMBasePage):
         else:
             Logging().reportDebugStep(self, button + " button is inactive")
         return GlobalPopupPageUI(self.driver)
-
-    def get_data_from_list(self, title):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Get data from list " + title)
-        data = super().wait_load_element("//span[text()=' %s ']//following-sibling::div/span/span" % title)
-        return data
 
     def click_cancel_btn(self):
         sleep(0.1)
