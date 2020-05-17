@@ -487,6 +487,12 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Verified the phone: " + client_email.text)
         return client_email.text
 
+    def get_client_name(self):
+        sleep(0.1)
+        client_name = super().wait_load_element("//li[@class='md_name']/h1").get_attribute("innerText")
+        Logging().reportDebugStep(self, "Get client name: " + client_name)
+        return client_name
+
     def click_custom_information(self):
         sleep(2)
         button = super().wait_element_to_be_clickable("//span[@class = 'glyphicons CustomInformation']")

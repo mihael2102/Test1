@@ -29,9 +29,10 @@ class AddInteraction(BaseTest):
         sleep(2)
         ClientsPage(self.driver).find_first_client_by_client_name(CRMConstants.PANDATS_FNAME)
         CRMConstants.EMAIL_FOR_EVENT = ClientsPage(self.driver).get_first_client_email()
-        fname = ClientsPage(self.driver).get_client_first_name()
-        lname = ClientsPage(self.driver).get_client_last_name()
-        CRMConstants.CLIENT_NAME_FOR_EVENT = fname + " " + lname
+        # fname = ClientsPage(self.driver).get_client_first_name()
+        # lname = ClientsPage(self.driver).get_client_last_name()
+        # CRMConstants.CLIENT_NAME_FOR_EVENT = fname + " " + lname
+        CRMConstants.CLIENT_NAME_FOR_EVENT = ClientsPage(self.driver).get_client_name()
         # ClientsPage(self.driver).find_client_by_email(
         #     self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
         SidebarModules(self.driver)\
