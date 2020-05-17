@@ -9,6 +9,7 @@ from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import 
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.mt4.MT4DropDown import MT4DropDown
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
 
@@ -41,8 +42,13 @@ class TradingAccountPrecondition(object):
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME))
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
         crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 

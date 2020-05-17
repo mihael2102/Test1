@@ -20,7 +20,7 @@ class TradingAccountCrmTest(BaseTest):
     def fill_questioner_new_client(self):
         if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
             client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
-            LeadPrecondition(self.driver, self.config).fill_questioner_new_client(client1[LeadsModuleConstants.EMAIL])
+            LeadPrecondition(self.driver, self.config).fill_questioner_new_client(client1[LeadsModuleConstants.FIRST_NAME])
         else:
             Logging().reportDebugStep(self, "Brand doesnt contains questioner")
             return self
