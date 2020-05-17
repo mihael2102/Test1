@@ -149,7 +149,7 @@ class ApiPage(CRMBasePage):
         sleep(15)
         check_token = super().wait_load_element(
             "//*[@id='api-Leads-Leads-0.0.0']/form/fieldset/div[5]/pre/code", timeout=35).text
-        Logging().reportDebugStep(self, "Check token read customers details: " + check_token)
+        Logging().reportDebugStep(self, "Check token create lead: " + check_token)
         return check_token
 
     def send_create_lead(self):
