@@ -100,8 +100,9 @@ class LeadPrecondition(object):
         CRMHomePage(self.driver)\
             .open_client_module()\
             .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-            .enter_first_name(client) \
-            .click_search_button()
+            .enter_client_name(client) \
+            .click_search_button() \
+            .open_client_id()
 
         ClientProfilePage(self.driver)\
             .click_fill_questionnaire_btn()\
