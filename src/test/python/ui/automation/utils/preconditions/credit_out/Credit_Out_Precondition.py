@@ -11,9 +11,9 @@ from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from time import sleep
 from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
+import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.mt4.credit_out.MT4CreditOutModule import MT4CreditOutModule
 from src.main.python.utils.config import Config
-
 
 
 class CreditOutPrecondition(object):
@@ -31,9 +31,13 @@ class CreditOutPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                       TestDataConstants.FILTER)) \
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                              TestDataConstants.E_MAIL))
+                                                       TestDataConstants.FILTER))
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME))
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
         sleep(2)
         ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CREDIT_OUT)
         MT4CreditOutModule(self.driver).make_credit_out(CRMConstants.CREDIT_ACCOUNT, CRMConstants.AMOUNT_CREDIT_OUT,
