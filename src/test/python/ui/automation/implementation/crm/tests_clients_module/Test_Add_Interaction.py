@@ -27,7 +27,7 @@ class AddInteraction(BaseTest):
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
         sleep(2)
-        ClientsPage(self.driver).find_first_client_by_email(CRMConstants.PANDATS_EMAIL)
+        ClientsPage(self.driver).find_first_client_by_client_name(CRMConstants.PANDATS_FNAME)
         CRMConstants.EMAIL_FOR_EVENT = ClientsPage(self.driver).get_first_client_email()
         fname = ClientsPage(self.driver).get_client_first_name()
         lname = ClientsPage(self.driver).get_client_last_name()

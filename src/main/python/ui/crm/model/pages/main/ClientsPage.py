@@ -58,6 +58,24 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click user email: " + email)
         return ClientProfilePage(self.driver)
 
+    def find_first_client_by_client_name(self, email):
+        sleep(2)
+        email_field = super().wait_load_element("//input[@id='tks_accountname']")
+        email_field.send_keys(email)
+        Logging().reportDebugStep(self, "Setting  the user name: " + email)
+        search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
+        search_button.click()
+        Logging().reportDebugStep(self, "Click the search button")
+        sleep(2)
+        self.wait_crm_loading_to_finish_tasks(55)
+        self.wait_loading_to_finish(55)
+        client_id = super().wait_load_element("//tr[1]//a[contains(text(), 'ACC')]", timeout=95)
+        sleep(1)
+        self.driver.execute_script("arguments[0].click();", client_id)
+        sleep(1)
+        Logging().reportDebugStep(self, "Click user: " + email)
+        return ClientProfilePage(self.driver)
+
     def perform_searching(self, client_status, email, country):
         if client_status:
             self.select_client_status(client_status)
@@ -421,7 +439,7 @@ class ClientsPage(CRMBasePage):
 
     def get_first_client_email(self):
         client_email = WebDriverWait(self.driver, 50).until(
-            EC.visibility_of_element_located((By.XPATH, "//td[contains(text(),'Email')]//following-sibling::td[1]")))
+            EC.visibility_of_element_located((By.XPATH, "//td[text()='Email']//following-sibling::td[1]")))
         Logging().reportDebugStep(self, "Returns the first client: " + client_email.text)
         return client_email.text
 
