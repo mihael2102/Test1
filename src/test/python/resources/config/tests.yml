@@ -5,11 +5,11 @@ tests_config:
 #  tests:
 #    - test_autorization_process
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Create_New_Customer
-#  class: CreateNewCustomer
-#  tests:
-#    - test_create_new_customer
-
+- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Create_New_Customer
+  class: CreateNewCustomer
+  tests:
+    - test_create_new_customer
+#
 #- module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Read_Customer_Details
 #  class: ReadCustomerDetails
 #  tests:
@@ -19,7 +19,7 @@ tests_config:
 #  class: UpdateCustomer
 #  tests:
 #    - test_update_customer
-#
+
 - module: src.test.python.ui.automation.implementation.crm.tests_api.Test_Create_Lead
   class: CreateLead
   tests:

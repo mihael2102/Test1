@@ -6,6 +6,7 @@ from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
+from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.affiliates.AffiliatePage import AffiliatePage
 from src.main.python.ui.crm.model.pages.api_page.ApiPage import ApiPage
@@ -183,9 +184,13 @@ class ApiPrecondition(object):
 
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
-            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
+            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME))
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
         client_email = ClientsPage(self.driver).get_first_client_email()
         client_country = ClientsPage(self.driver).get_client_country()
         client_first_name = ClientsPage(self.driver).get_client_first_name()
@@ -280,9 +285,13 @@ class ApiPrecondition(object):
 
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url'))
         ClientsPage(self.driver).select_filter(self.config.get_data_client(
-            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.EMAIL])
+            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME))
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
         client_email = ClientsPage(self.driver).get_first_client_email()
         client_first_name = ClientsPage(self.driver).get_client_first_name()
         # client_phone = ClientsPage(self.driver).get_client_phone()
@@ -341,8 +350,7 @@ class ApiPrecondition(object):
         lead_module.select_filter(
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
 
-        lead_module.perform_searching_lead_by_mail(self.load_lead_from_config(LeadsModuleConstants.FIRST_LEAD_INFO)[
-                                                      LeadsModuleConstants.EMAIL])
+        lead_module.perform_searching_lead_by_fname(APIConstants.LEAD_FNAME)
         lead_module.open_personal_details_lead()
         email = lead_module.get_lead_email()
         fname = lead_module.get_lead_fname()

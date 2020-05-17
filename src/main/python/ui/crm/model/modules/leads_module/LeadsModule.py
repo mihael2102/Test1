@@ -17,6 +17,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
+
 class LeadsModule(CRMBasePage):
 
     def get_lead_email(self):
@@ -71,6 +72,13 @@ class LeadsModule(CRMBasePage):
     def perform_searching_lead_by_mail(self, email):
         self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
         self.enter_email(email)
+        self.click_search_button_leads_module()
+        self.wait_vtiger_loading_to_finish(85)
+        return LeadsModule()
+
+    def perform_searching_lead_by_fname(self, fname):
+        self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
+        self.enter_first_name(fname)
         self.click_search_button_leads_module()
         self.wait_vtiger_loading_to_finish(85)
         return LeadsModule()

@@ -1,9 +1,11 @@
 import random
 from datetime import *
 from dateutil.relativedelta import relativedelta
+import string
 
 
 class APIConstants(object):
+    random_character = ''.join(random.choice(string.ascii_uppercase) for _ in range(5))
     COUNTRY_MX_CRM = "Mexico"
     COUNTRY_MX = "mx"
     COUNTRY_CRM_SA = "South Africa"
@@ -30,7 +32,7 @@ class APIConstants(object):
     CHANGE_PHONE = "3523233"
     CHANGE_PHONE_CRM = "+352 3233"
     CHANGE_POSTAL_CODE = "777"
-    LEAD_FNAME = "LeadFName"
+    LEAD_FNAME = "LeadFName" + random_character
     LEAD_LNAME = "LeadLName"
     LEAD_PHONE = str(random.randrange(1, 99999999))
     LEAD_PHONE2 = str(random.randrange(1, 99999999))
