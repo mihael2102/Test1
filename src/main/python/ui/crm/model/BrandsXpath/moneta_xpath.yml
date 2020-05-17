@@ -1,3 +1,5 @@
 # ATTENTION! KEEP NAMES OF PAGES IN ALPHABETICAL ORDER
 CALoginPage:
   login_btn_2: "//div[@class='layout-row']/button[contains(text(), 'Login')]"
+LoginPage:
+  login_btn_2: "//div[@class='layout-row']/button[contains(text(), 'Login')]"

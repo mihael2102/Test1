@@ -446,7 +446,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_first_name(self):
         sleep(1)
-        first_name = self.driver.find_element(By.XPATH, "//td[contains(text(),'First Name')]//following-sibling::td[1]")
+        first_name = super().wait_load_element("//td[contains(text(),'First Name')]//following-sibling::td[1]")
         Logging().reportDebugStep(self, "Returns the first name: " + first_name.text)
         return first_name.text
 

@@ -7,17 +7,11 @@ from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI impo
 from src.main.python.ui.crm.model.pages.leads_module_ui.LeadsModulePageUI import LeadsModulePageUI
 from src.main.python.ui.crm.model.pages.leads_module_ui.CreateLeadPageUI import CreateLeadPageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
-from src.main.python.ui.crm.model.pages.leads_module_ui.LeadsDetailsPageUI import LeadsDetailsPageUI
 from src.main.python.ui.crm.model.pages.leads_module_ui.EditLeadPageUI import EditLeadPageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsDetailsConstantsUI import LeadsDetailsConstantsUI
-from src.main.python.ui.crm.model.pages.leads_module_ui.ConvertLeadPageUI import ConvertLeadPageUI
-from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
-from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
-from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
-import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 @pytest.mark.run(order=31)
@@ -34,10 +28,10 @@ class EditLeadPreconditionUI(object):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
-            url=self.config.get_value('url'),
-            user_name=self.config.get_value(TestDataConstants.USER_NAME),
-            password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-            otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Leads module """
         CRMBaseMethodsPage(self.driver) \
@@ -54,7 +48,7 @@ class EditLeadPreconditionUI(object):
             field6=CreateLeadConstantsUI.FIELD_S_EMAIL, s_mail=CreateLeadConstantsUI.S_EMAIL2,
             field7=CreateLeadConstantsUI.FIELD_TITLE, title=CreateLeadConstantsUI.TITLE,
             list1=CreateLeadConstantsUI.LIST_LEAD_SOURCE, l_source=CreateLeadConstantsUI.L_SOURCE,
-            list2=CreateLeadConstantsUI.LIST_LEAD_STATUS, l_status=CreateLeadConstantsUI.L_STATUS,
+            list2=CreateLeadConstantsUI.LIST_LEAD_STATUS, l_status='2',
             list3=CreateLeadConstantsUI.LIST_ASSIGNED_TO, assigned_to=CreateLeadConstantsUI.ASSIGNED_TO,
             field8=CreateLeadConstantsUI.FIELD_LANGUAGE, language=CreateLeadConstantsUI.LANGUAGE,
             field9=CreateLeadConstantsUI.FIELD_SOURCE_NAME, source_name=CreateLeadConstantsUI.SOURCE_NAME,
@@ -82,7 +76,7 @@ class EditLeadPreconditionUI(object):
         details = GlobalDetailsPageUI(self.driver)
 
         first_name = details \
-            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_FNAME)
+            .get_text_from_field(LeadsDetailsConstantsUI.FIELD_FNAME, timeout=55)
         last_name = details \
             .get_text_from_field(LeadsDetailsConstantsUI.FIELD_LNAME)
         mobile = details \
@@ -131,7 +125,7 @@ class EditLeadPreconditionUI(object):
             .comparator_string(last_name, CreateLeadConstantsUI.LNAME) \
             .comparator_string(title, CreateLeadConstantsUI.TITLE) \
             .comparator_string(l_source, CreateLeadConstantsUI.L_SOURCE) \
-            .comparator_string(l_status, CreateLeadConstantsUI.L_STATUS) \
+            .comparator_string(l_status, CreateLeadConstantsUI.STATUS) \
             .comparator_string(language, CreateLeadConstantsUI.LANGUAGE) \
             .comparator_string(source_name, CreateLeadConstantsUI.SOURCE_NAME) \
             .comparator_string(referral, CreateLeadConstantsUI.REFERRAL) \
@@ -174,7 +168,7 @@ class EditLeadPreconditionUI(object):
             field6=CreateLeadConstantsUI.FIELD_S_EMAIL, s_mail=EditLeadConstantsUI.S_EMAIL,
             field7=CreateLeadConstantsUI.FIELD_TITLE, title=EditLeadConstantsUI.TITLE,
             list1=CreateLeadConstantsUI.LIST_LEAD_SOURCE, l_source=EditLeadConstantsUI.L_SOURCE,
-            list2=CreateLeadConstantsUI.LIST_LEAD_STATUS, l_status=EditLeadConstantsUI.L_STATUS,
+            list2=CreateLeadConstantsUI.LIST_LEAD_STATUS, l_status='3',
             list3=CreateLeadConstantsUI.LIST_ASSIGNED_TO, assigned_to=EditLeadConstantsUI.ASSIGNED_TO,
             field8=CreateLeadConstantsUI.FIELD_LANGUAGE, language=EditLeadConstantsUI.LANGUAGE,
             field9=CreateLeadConstantsUI.FIELD_SOURCE_NAME, source_name=EditLeadConstantsUI.SOURCE_NAME,
@@ -186,12 +180,8 @@ class EditLeadPreconditionUI(object):
             list4=CreateLeadConstantsUI.LIST_COUNTRY, country=EditLeadConstantsUI.COUNTRY,
             field15=CreateLeadConstantsUI.FIELD_STATE, state=EditLeadConstantsUI.STATE,
             field16=CreateLeadConstantsUI.FIELD_PO_BOX, po_box=EditLeadConstantsUI.PO_BOX,
-            field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=EditLeadConstantsUI.DESCRIPTION)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok() \
+            field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=EditLeadConstantsUI.DESCRIPTION,
+            final_btn=EditLeadConstantsUI.BTN_FINAL) \
             .refresh_page()
 
         """ Get lead's data """
@@ -249,8 +239,7 @@ class EditLeadPreconditionUI(object):
             .comparator_string(last_name, EditLeadConstantsUI.LNAME) \
             .comparator_string(title, EditLeadConstantsUI.TITLE) \
             .comparator_string(l_source, EditLeadConstantsUI.L_SOURCE) \
-            .comparator_string(l_status, EditLeadConstantsUI.L_STATUS) \
-            .comparator_string(assigned_to, EditLeadConstantsUI.ASSIGNED_TO) \
+            .comparator_string(l_status, EditLeadConstantsUI.STATUS) \
             .comparator_string(language, EditLeadConstantsUI.LANGUAGE) \
             .comparator_string(source_name, EditLeadConstantsUI.SOURCE_NAME) \
             .comparator_string(referral, EditLeadConstantsUI.REFERRAL) \

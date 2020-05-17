@@ -789,6 +789,7 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def get_results_count(self):
+        sleep(0.1)
         refresh_icon = self.driver.find_elements(By.XPATH, "//span[@class='fa fa-refresh']")[0]
         refresh_icon.click()
         results_count_text = super().wait_load_element("//*[contains(text(), 'Showing Records')]", timeout=55).text
