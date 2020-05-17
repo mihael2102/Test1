@@ -142,6 +142,23 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Open client email: " + email)
         return ClientProfilePage(self.driver)
 
+    def find_client_by_fname(self, fname):
+        sleep(2)
+        email_field = super().wait_load_element("//input[@name='tks_accountname']")
+        email_field.send_keys(fname)
+        Logging().reportDebugStep(self, "Setting the user's first name in the field: " + fname)
+        search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
+        search_button.click()
+        Logging().reportDebugStep(self, "Click the Search button")
+        self.wait_loading_to_finish(35)
+        client_id = super().wait_load_element("//a[contains(text(), 'ACC')]")
+        sleep(1)
+        self.driver.execute_script("arguments[0].scrollIntoView();", client_id)
+        self.driver.execute_script("arguments[0].click();", client_id)
+        sleep(1)
+        Logging().reportDebugStep(self, "Open client by first name: " + fname)
+        return ClientProfilePage(self.driver)
+
     '''
          Select the crm page again
          return  Home Page instance 

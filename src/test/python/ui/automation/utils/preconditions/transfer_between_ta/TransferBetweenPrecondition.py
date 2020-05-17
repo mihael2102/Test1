@@ -32,8 +32,14 @@ class TransferBetweenPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD))
 
         CRMHomePage(self.driver).open_client_module() \
-            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME))
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
         crm_client_profile = ClientProfilePage(self.driver)
         sleep(2)

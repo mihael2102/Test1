@@ -30,12 +30,14 @@ class WithdrawPreconditionCRM(object):
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                       TestDataConstants.FILTER))
-
-        sleep(2)
-        ClientsPage(self.driver)\
-            .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        sleep(1)
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME))
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
         sleep(2)
         ClientProfilePage(self.driver)\
             .scroll_to_financial_transactions_section() \
