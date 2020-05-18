@@ -251,7 +251,8 @@ class FinancialTransactionsPage(CRMBasePage):
         search_now_button.click()
 
     def __change_search_criteria_by_visible_text(self, criteria_from_drop_down_list):
-        select = Select(self.driver.find_element(By.XPATH, "//select[@id='fcol0']"))
+        sleep(0.1)
+        select = Select(super().wait_load_element("//select[@id='fcol0']"))
         select.select_by_visible_text(criteria_from_drop_down_list)
 
     def __select_search_condition_by_visible_text(self, criteria_from_drop_down_list):

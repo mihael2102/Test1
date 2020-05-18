@@ -108,7 +108,7 @@ FinancialTransactionsPage:
   transaction_type_field: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/ul/li[1]/div/input"
   transaction_type_drop_down: "//td[5]/div/div[1]/button"
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
-  modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
+  modified_time_element: "(//*[@id='listBody']//tr/td[9])[%s]"
 LeadsModule:
   check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[9]"
   check_first_line_email_2: "//tbody[@id = 'listBody']/tr[2]/td[9]"
