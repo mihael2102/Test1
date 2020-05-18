@@ -7,18 +7,28 @@ from time import sleep
 
 class HelpDeskCreationTicket(CRMBasePage):
 
-    def perform_create_new_ticket(self, tittle, related_to, assigned_to, status, priority, category, ticket_source,
+    def perform_create_new_ticket(self, title, related_to, assigned_to, status, priority, category, ticket_source,
                                   description, notes):
-        self.set_title(tittle)
-        self.select_related_to(related_to)
-        self.click_exist_client_name(related_to)
-        self.set_assigned_to(assigned_to)
-        self.select_status(status)
-        self.set_priority(priority)
-        self.set_category(category)
-        self.set_ticket_source(ticket_source)
-        self.set_description(description)
-        self.set_notes(notes)
+        if title:
+            self.set_title(title)
+        if related_to:
+            self.select_related_to(related_to)
+        if related_to:
+            self.click_exist_client_name(related_to)
+        if assigned_to:
+            self.set_assigned_to(assigned_to)
+        if status:
+            self.select_status(status)
+        if priority:
+            self.set_priority(priority)
+        if category:
+            self.set_category(category)
+        if ticket_source:
+            self.set_ticket_source(ticket_source)
+        if description:
+            self.set_description(description)
+        if notes:
+            self.set_notes(notes)
         self.click_save_button()
 
     def set_title(self, tittle):
@@ -43,7 +53,8 @@ class HelpDeskCreationTicket(CRMBasePage):
         return HelpDeskCreationTicket(self.driver)
 
     def click_exist_client_name(self, client_name):
-        client_name_link = super().wait_visible_of_element("//a[contains(text(),'%s')]" % client_name)
+        sleep(0.1)
+        client_name_link = super().wait_load_element("//a[contains(text(),'%s')]" % client_name, timeout=55)
         client_name_link.click()
         Logging().reportDebugStep(self, "Client name was set: " + client_name)
         return HelpDeskCreationTicket(self.driver)
