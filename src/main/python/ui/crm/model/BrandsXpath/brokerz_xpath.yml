@@ -22,7 +22,7 @@ FinancialTransactionsPage:
   transaction_type_element : "(//*[@id='listBody']//tr/td[4])[%s]"
   transaction_type_field: "(//div/div[1]/ul/li[1]/div/input)[1]"
   transaction_type_drop_down: "//*[@id='customAdvanceSearch']/td[4]/div/div[1]/button"
-  modified_time_element: "(//*[@id='listBody']//tr/td[9])[%s]"
+  modified_time_element: "(//*[@id='listBody']//tr/td[8])[%s]"
 LeadsModule:
   check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[8]"
   check_first_line_email_2: "//tbody[@id = 'listBody']/tr[2]/td[8]"

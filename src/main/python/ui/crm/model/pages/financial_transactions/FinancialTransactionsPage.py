@@ -242,7 +242,8 @@ class FinancialTransactionsPage(CRMBasePage):
         search_input.send_keys(search_value)
 
     def __select_search_list_in_advanced_search(self, search_value):
-        select = Select(self.driver.find_element(By.XPATH, "//select[@id='fval0']"))
+        sleep(0.1)
+        select = Select(super().wait_load_element("//select[@id='fval0']"))
         select.select_by_visible_text(search_value)
 
     def __click_search_now_button(self):
