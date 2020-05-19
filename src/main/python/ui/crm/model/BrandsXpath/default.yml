@@ -100,7 +100,7 @@ DragonPage:
   number_text: "//div[@title='Click to Call']"
   number_color_red: "//div[@title='Click to Call' and contains(@style,'color: red')]"
 DocumentsPage:
-  document_type: "(//*[contains(@id,'row_')]/td[3])[%s]"
+  document_type: "(//*[contains(@id,'row_')]/td[4])[%s]"
   apply_btn: "(//button[text()='Apply'])[3]"
 FinancialTransactionsPage:
   client_name_element:  "(//td[3]/div/a)[%s]"
@@ -108,7 +108,7 @@ FinancialTransactionsPage:
   transaction_type_field: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/ul/li[1]/div/input"
   transaction_type_drop_down: "//td[5]/div/div[1]/button"
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
-  modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
+  modified_time_element: "(//*[@id='listBody']//tr/td[9])[%s]"
 LeadsModule:
   check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[9]"
   check_first_line_email_2: "//tbody[@id = 'listBody']/tr[2]/td[9]"

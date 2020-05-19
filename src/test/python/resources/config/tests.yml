@@ -38,11 +38,11 @@ tests_config:
 #    - test_check_email_popup
 #
 #################################### CONVERT LEAD ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 
 #################################### CLIENTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
@@ -63,12 +63,12 @@ tests_config:
 #    - test_clients_mass_assign
 #
 ###################################### TASKS ##################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-  class: AddEventTaskModule
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+#  class: AddEventTaskModule
+#  tests:
 #    - test_email_icon
 #    - test_sms_icon
-    - test_mass_edit_tasks
+#    - test_mass_edit_tasks
 #    - test_searching_by_columns
 #    - test_sorting_columns
 
@@ -81,24 +81,24 @@ tests_config:
 #     - test_check_week_tab
 
 ###################################### MT4 ACTIONS ###########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-#  class: TradingAccountCrmTest
-#  tests:
-#    - test_crm_open_trading_account  # open a new trading account
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - test_crm_open_trading_account  # open a new trading account
 #    - test_crm_open_live_mt5
 #    - test_crm_open_demo_mt5
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
-#  class: CheckPasswordTestCRM
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
+  class: CheckPasswordTestCRM
+  tests:
 #    - test_check_client_password_crm  # check the client account password
-#    - test_check_mt4_password_crm   # check the MT4 account password
+    - test_check_mt4_password_crm   # check the MT4 account password
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
-#  class: ChangePasswordTestCRM
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
+  class: ChangePasswordTestCRM
+  tests:
 #    - test_change_client_password_from_crm  # change a client account password from the crm
-#    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
+    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
 #  class: DepositTestCRM
@@ -110,7 +110,7 @@ tests_config:
 #  class: WithdrawTest
 #  tests:
 #    - test_withdraw_crm   #preconditions: convert lead, make deposit
-
+#
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
 #  class: CreditInTestCRM
 #  tests:
@@ -120,7 +120,7 @@ tests_config:
 #  class: CreditOutTestCRM
 #  tests:
 #    - test_make_credit_out_crm # preconditions: convert lead, make credit in
-#
+
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
 #  class: SendEmailTestCRM
 #  tests:
