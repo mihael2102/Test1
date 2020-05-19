@@ -54,7 +54,7 @@ class HelpDeskCreationTicket(CRMBasePage):
 
     def click_exist_client_name(self, client_name):
         sleep(0.1)
-        client_name_link = super().wait_load_element("//a[contains(text(),'%s')]" % client_name, timeout=55)
+        client_name_link = super().wait_load_element("//a[contains(text(),'%s')]" % client_name, timeout=75)
         client_name_link.click()
         Logging().reportDebugStep(self, "Client name was set: " + client_name)
         return HelpDeskCreationTicket(self.driver)

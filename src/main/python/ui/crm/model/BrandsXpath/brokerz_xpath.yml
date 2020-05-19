@@ -11,6 +11,8 @@ ClientsPage:
   country_field: "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']"
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
+DocumentsPage:
+  document_type: "(//*[contains(@id,'row_')]/td[4])[%s]"
 LoginPage:
   login_btn_2: "//button[@class = 'forex-button-pandats login-button-pandats font-15-pandats'][contains(text(), 'Login')]"
 TasksPage:

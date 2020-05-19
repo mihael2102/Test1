@@ -19,19 +19,19 @@ class HelpDeskPrecondition(object):
             .perform_create_new_ticket(
                 title=HelpDeskConstants.FIRST_TITTLE,
                 related_to=self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
-                                               HelpDeskConstants.FIRST_RELATED_TO),
+                                                          HelpDeskConstants.FIRST_RELATED_TO),
                 assigned_to=self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
-                                               HelpDeskConstants.FIRST_ASSIGNED_TO),
+                                                           HelpDeskConstants.FIRST_ASSIGNED_TO),
                 status=self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
-                                               HelpDeskConstants.FIRST_STATUS),
+                                                      HelpDeskConstants.FIRST_STATUS),
                 priority=self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
-                                               HelpDeskConstants.FIRST_PRIORITY),
+                                                        HelpDeskConstants.FIRST_PRIORITY),
                 category=self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
-                                               HelpDeskConstants.FIRST_CATEGORY),
+                                                        HelpDeskConstants.FIRST_CATEGORY),
                 ticket_source=self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
-                                               HelpDeskConstants.FIRST_TICKET_SOURCE),
+                                                             HelpDeskConstants.FIRST_TICKET_SOURCE),
                 description=self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
-                                               HelpDeskConstants.FIRST_DESCRIPTION),
+                                                           HelpDeskConstants.FIRST_DESCRIPTION),
                 notes=self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
-                                               HelpDeskConstants.FIRST_NOTES))
+                                                     HelpDeskConstants.FIRST_NOTES))
         return HelpDeskPrecondition(self.driver, self.config)

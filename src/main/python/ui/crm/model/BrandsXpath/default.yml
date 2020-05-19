@@ -100,7 +100,7 @@ DragonPage:
   number_text: "//div[@title='Click to Call']"
   number_color_red: "//div[@title='Click to Call' and contains(@style,'color: red')]"
 DocumentsPage:
-  document_type: "(//*[contains(@id,'row_')]/td[3])[%s]"
+  document_type: "(//*[contains(@id,'row_')]/td[4])[%s]"
   apply_btn: "(//button[text()='Apply'])[3]"
 FinancialTransactionsPage:
   client_name_element:  "(//td[3]/div/a)[%s]"
