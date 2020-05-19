@@ -10,7 +10,8 @@ class HelpDeskModulePageUI(CRMBasePage):
 
     def open_ticket(self, row=1):
         sleep(0.1)
-        ticket_no = super().wait_element_to_be_clickable("(//span[contains(text(),'TT')])[%s]" % row)
+        ticket_no = super().wait_element_to_be_clickable(
+            "(//span[@class='td-link' and contains(text(),'TT')])[%s]" % row)
         ticket_no.click()
         sleep(1)
         self.wait_loading_to_finish_new_ui(15)

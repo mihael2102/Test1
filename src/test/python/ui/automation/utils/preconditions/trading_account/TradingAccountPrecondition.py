@@ -61,7 +61,7 @@ class TradingAccountPrecondition(object):
                 .open_manage_accounts() \
                 .open_new_account_btn() \
                 .select_account_type(CAConstants.ACCOUNT_LIVE) \
-                .select_currency(CAConstants.CURRENCY) \
+                .select_currency(var.get_var(self.__class__.__name__)["live_acc_currency"]) \
                 .select_leverage_level(var.get_var(self.__class__.__name__)["live_acc_leverage"]) \
                 .click_create_account()\
                 .get_create_account_message()\
@@ -113,7 +113,8 @@ class TradingAccountPrecondition(object):
             """ Verify Currency """
             actual_currency = CAPage(self.driver).get_currency()
             expected_currency = var.get_var(self.__class__.__name__)["demo_acc_currency"]
-            if global_var.current_brand_name == "trade99":
+            if global_var.current_brand_name == "trade99" or \
+                    global_var.current_brand_name == "analystq":
                 actual_currency = actual_currency.split(':')[0]
             assert actual_currency == expected_currency
 
@@ -189,7 +190,7 @@ class TradingAccountPrecondition(object):
         if global_var.current_brand_name == "q8":
             MT4CreateAccountModule(self.driver) \
                 .create_account_with_platform(
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT4),
+                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT5),
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
@@ -217,7 +218,8 @@ class TradingAccountPrecondition(object):
         elif (global_var.current_brand_name == "dax-300") \
                 or (global_var.current_brand_name == "gxfx") \
                 or (global_var.current_brand_name == "kontofx") \
-                or (global_var.current_brand_name == "uprofx"):
+                or (global_var.current_brand_name == "uprofx") \
+                or (global_var.current_brand_name == "4ex7"):
             MT4CreateAccountModule(self.driver) \
                 .create_account(
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),

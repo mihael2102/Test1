@@ -11,7 +11,7 @@ class LeadsDetailsPageUI(CRMBasePage):
 
     def get_text_from_field(self, field):
         data = GlobalDetailsPageUI(self.driver)\
-            .get_text_from_field(field)
+            .get_text_from_field(field, timeout=55)
         return data
 
     def open_tab(self, title):
