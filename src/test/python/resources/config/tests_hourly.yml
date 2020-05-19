@@ -1,16 +1,16 @@
 tests_config:
 
 ######################################### CA TESTS ##############################################
-- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
-  class: SignUpTest
-  tests:
-    - test_check_login
+#- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
+#  class: SignUpTest
+#  tests:
+#    - test_check_login
 #    - test_client_deposit_page_loading
 
-#- module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
-#  class: TestPagesCA
-#  tests:
-#    - test_graph_ca
+- module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
+  class: TestPagesCA
+  tests:
+    - test_graph_ca
 #    - test_asset_price_ca
 
 #- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process

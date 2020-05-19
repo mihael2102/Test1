@@ -56,9 +56,5 @@ class MT4CreateTAPreconditionUI(object):
                 list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_DEMO,
                 list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=currency,
                 list3=MT4CreateTAConstantsUI.LIST_GROUP, group_number="1",
-                list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
+                list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE,
+                final_btn=MT4CreateTAConstantsUI.BTN_FINAL)

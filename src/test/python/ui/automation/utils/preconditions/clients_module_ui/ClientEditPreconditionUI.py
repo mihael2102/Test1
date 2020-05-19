@@ -46,12 +46,8 @@ class ClientEditPreconditionUI(object):
             field1=CreateLeadConstantsUI.FIELD_FNAME, fname=ClientEditConstantsUI.FNAME,
             field5=CreateLeadConstantsUI.FIELD_EMAIL, email=ClientEditConstantsUI.EMAIL,
             field2=CreateLeadConstantsUI.FIELD_LNAME, lname=ClientEditConstantsUI.LNAME,
-            list3=CreateLeadConstantsUI.LIST_ASSIGNED_TO, assigned_to=CreateLeadConstantsUI.ASSIGNED_TO)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
+            list3=CreateLeadConstantsUI.LIST_ASSIGNED_TO, assigned_to=CreateLeadConstantsUI.ASSIGNED_TO,
+            final_btn=CreateLeadConstantsUI.BTN_FINAL)
 
         """ Search lead """
         GlobalModulePageUI(self.driver) \
@@ -73,7 +69,9 @@ class ClientEditPreconditionUI(object):
             field7=ConvertLeadConstantsUI.FIELD_CITY, city=ConvertLeadConstantsUI.CITY,
             list3=ConvertLeadConstantsUI.LIST_COUNTRY, country=ConvertLeadConstantsUI.COUNTRY,
             field9=ConvertLeadConstantsUI.FIELD_PASSWORD, password=ConvertLeadConstantsUI.PASSWORD,
-            list5=ConvertLeadConstantsUI.LIST_BRAND, brand=ConvertLeadConstantsUI.BRAND)
+            list4=ConvertLeadConstantsUI.LIST_CURRENCY, currency='1',
+            list5=ConvertLeadConstantsUI.LIST_BRAND, brand=ConvertLeadConstantsUI.BRAND,
+            final_btn=ConvertLeadConstantsUI.BTN_FINAL)
 
         """ Edit Client """
         ClientEditPageUI(self.driver)\
@@ -117,13 +115,6 @@ class ClientEditPreconditionUI(object):
             .comparator_string(postal_code, ConvertLeadConstantsUI.POSTAL_CODE) \
             .comparator_string(city, ClientEditConstantsUI.CITY) \
             .comparator_string(country, ClientEditConstantsUI.COUNTRY)
-
-        if "*" not in email and "..." not in email:
-            CRMBaseMethodsPage(self.driver) \
-                .comparator_string(email, ClientEditConstantsUI.EMAIL)
-        elif "*" not in email:
-            email = email.replace('...', '')
-            assert email in ClientEditConstantsUI.EMAIL
 
         if phone and phone.isdecimal():
             CRMBaseMethodsPage(self.driver) \

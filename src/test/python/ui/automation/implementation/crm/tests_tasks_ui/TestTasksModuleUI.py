@@ -12,6 +12,8 @@ from src.test.python.ui.automation.utils.preconditions.tasks_module_ui.TasksEmai
     TasksEmailPreconditionUI
 from src.test.python.ui.automation.utils.preconditions.tasks_module_ui.TasksEditEventPreconditionUI import \
     TasksEditEventPreconditionUI
+from src.test.python.ui.automation.utils.preconditions.tasks_module_ui.TasksSortingColumnsPreconditionUI import \
+    TasksSortingColumnsPreconditionUI
 
 
 @pytest.mark.run(order=26)
@@ -19,6 +21,9 @@ class TestTasksModuleUI(BaseTest):
 
     def test_tasks_searching_columns_ui(self):
         TasksSearchingColumnsPreconditionUI(self.driver, self.config).tasks_searching_columns_ui()
+
+    def test_tasks_sorting_columns_ui(self):
+        TasksSortingColumnsPreconditionUI(self.driver, self.config).tasks_sorting_columns_ui()
 
     def test_add_event_ui(self):
         TasksAddEventPreconditionUI(self.driver, self.config).add_event_ui()
