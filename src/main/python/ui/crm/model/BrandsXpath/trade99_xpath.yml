@@ -13,6 +13,11 @@ ClientsPage:
 FinancialTransactionsPage:
   client_name_element:  "(//*[@id='listBody']//tr/td[4])[%s]"
   modified_time_element: "(//*[contains(@id,'row_')]/td[12])[%s]"
+LoginPage:
+  login_btn_2: "//button[@class = 'forex-button-pandats login-button-pandats font-15-pandats'][contains(text(), 'Login')]"
+SignUpFirstStepPage:
+  sign_up: " //button[text()=' Join Us ']"
+  submit_btn: "//button[span=' Submit ']"
 WebTraderPage:
   open_trade_open_price: "//open-trade/td[6]"
   price: "//div[contains(text(),'%s')]//following-sibling::div[contains(@class,'price-pandats')][1]"
