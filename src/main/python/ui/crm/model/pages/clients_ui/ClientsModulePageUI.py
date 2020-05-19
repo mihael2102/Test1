@@ -36,3 +36,8 @@ class ClientsModulePageUI(CRMBasePage):
         GlobalModulePageUI(self.driver) \
             .set_data_column_field(column, data)
         return ClientsModulePageUI(self.driver)
+
+    def get_data_from_list_view_ui(self, column, row):
+        GlobalModulePageUI(self.driver)\
+            .get_data_from_list_view_ui(column, row)
+        return ClientsModulePageUI(self.driver)

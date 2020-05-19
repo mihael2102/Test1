@@ -15,6 +15,7 @@ class MT4CreditInConstantsUI(object):
     FIELD_AMOUNT = "Amount in account currency"
     FIELD_GRANTED_BY = "Granted by"
     FIELD_COMMENT = "Comment"
+    BTN_FINAL = "Credit in"
 
     TA_CREDIT = ""
     AMOUNT = "2.00"

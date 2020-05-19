@@ -3,14 +3,14 @@ from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRM
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDCreateTicketConstantsUI import HDCreateTicketConstantsUI
-from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HelpDeskModuleConstantsUI import HelpDeskModuleConstantsUI
+from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDModuleConstantsUI import HDModuleConstantsUI
 from src.main.python.ui.crm.model.pages.help_desk_ui.HelpDeskModulePageUI import HelpDeskModulePageUI
 from src.main.python.ui.crm.model.pages.help_desk_ui.HelpDeskDetailsPageUI import HelpDeskDetailsPageUI
 from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDDetailsConstantsUI import HDDetailsConstantsUI
 
 
 @pytest.mark.run(order=31)
-class HelpDeskEditTicketPreconditionUI(object):
+class HDPencilTicketPreconditionUI(object):
 
     driver = None
     config = None
@@ -19,7 +19,7 @@ class HelpDeskEditTicketPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def edit_ticket_ui(self):
+    def pencil_ticket_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
@@ -32,27 +32,28 @@ class HelpDeskEditTicketPreconditionUI(object):
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_HELP_DESK)
 
-        """ Edit ticket """
+        """ Edit ticket via pencil """
         HelpDeskModulePageUI(self.driver) \
             .set_data_column_field(
-                column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
+                column=HDModuleConstantsUI.COLUMN_TITLE,
                 data=HDCreateTicketConstantsUI.TITLE) \
             .open_ticket() \
-            .click_edit_btn() \
-            .create_edit_ticket(
-                list2=HDCreateTicketConstantsUI.LIST_PRIORITY, priority=HDCreateTicketConstantsUI.PRIORITY_EDIT,
-                list3=HDCreateTicketConstantsUI.LIST_STATUS, status=HDCreateTicketConstantsUI.STATUS_EDIT,
-                final_btn=HDCreateTicketConstantsUI.BTN_FNL_EDIT)
+            .edit_text_field_via_pencil(
+                field=HDDetailsConstantsUI.FIELD_TITLE,
+                text=HDCreateTicketConstantsUI.TITLE_EDIT) \
+            .edit_list_field_via_pencil(
+                field=HDDetailsConstantsUI.FIELD_SOURCE,
+                item=HDCreateTicketConstantsUI.SOURCE_EDIT)
 
-        """ Verify data was updated """
+        """ Get ticket data """
         details = HelpDeskDetailsPageUI(self.driver)
 
-        status = details \
-            .get_text_from_field(HDDetailsConstantsUI.FIELD_STATUS)
-        priority = details \
-            .get_text_from_field(HDDetailsConstantsUI.FIELD_PRIORITY)
+        title = details \
+            .get_text_from_field(HDDetailsConstantsUI.FIELD_TITLE)
+        source = details \
+            .get_text_from_field(HDDetailsConstantsUI.FIELD_SOURCE)
 
         """ Verify ticket's data """
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(status, HDCreateTicketConstantsUI.STATUS_EDIT) \
-            .comparator_string(priority, HDCreateTicketConstantsUI.PRIORITY_EDIT)
+            .comparator_string(title, HDCreateTicketConstantsUI.TITLE_EDIT) \
+            .comparator_string(source, HDCreateTicketConstantsUI.SOURCE_EDIT)

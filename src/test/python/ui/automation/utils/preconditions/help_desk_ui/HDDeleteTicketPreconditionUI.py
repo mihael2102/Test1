@@ -3,12 +3,12 @@ from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRM
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDCreateTicketConstantsUI import HDCreateTicketConstantsUI
-from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HelpDeskModuleConstantsUI import HelpDeskModuleConstantsUI
+from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDModuleConstantsUI import HDModuleConstantsUI
 from src.main.python.ui.crm.model.pages.help_desk_ui.HelpDeskModulePageUI import HelpDeskModulePageUI
 
 
 @pytest.mark.run(order=31)
-class HelpDeskDeleteTicketPreconditionUI(object):
+class HDDeleteTicketPreconditionUI(object):
 
     driver = None
     config = None
@@ -33,10 +33,10 @@ class HelpDeskDeleteTicketPreconditionUI(object):
         """ Delete ticket """
         HelpDeskModulePageUI(self.driver) \
             .set_data_column_field(
-                column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
-                data=HDCreateTicketConstantsUI.TITLE) \
+                column=HDModuleConstantsUI.COLUMN_TITLE,
+                data=HDCreateTicketConstantsUI.TITLE_EDIT) \
             .delete_ticket_list_view() \
             .set_data_column_field(
-                column=HelpDeskModuleConstantsUI.COLUMN_TITLE,
+                column=HDModuleConstantsUI.COLUMN_TITLE,
                 data=HDCreateTicketConstantsUI.TITLE) \
             .verify_data_not_found()

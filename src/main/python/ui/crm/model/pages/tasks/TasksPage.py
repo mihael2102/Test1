@@ -74,7 +74,7 @@ class TasksPage(CRMBasePage):
         task_module = super().wait_load_element("//a[contains(text(), 'Status')]")
         task_module.click()
         sleep(1)
-        self.wait_crm_loading_to_finish_tasks(55)
+        self.wait_crm_loading_to_finish_tasks(75)
         Logging().reportDebugStep(self, "Click Status")
         return TasksPage(self.driver)
 
