@@ -12,4 +12,4 @@ tests_config:
   class: TestGlobalSearch
   tests:
     - test_global_search_leads
-    - test_global_search_tasks
+#    - test_global_search_tasks
