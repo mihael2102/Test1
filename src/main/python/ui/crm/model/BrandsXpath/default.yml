@@ -55,7 +55,7 @@ ClientsPage:
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
   i_confirm_checkbox: "//*[@name='confirm']"
-  email: "//td[contains(text(),'Email')]//following-sibling::td[1]"
+  email: "//td[text()='Email']//following-sibling::td[1]"
   mt4_button: "//div[@class='mt4_act_box']"
   link_trading_account: "//div[@class='link_field']/a[@class='before_nw' and contains(text(),'%s')]"
   balance_in_trading_account: "//*[@id='dtlview_Balance']"
@@ -100,7 +100,7 @@ DragonPage:
   number_text: "//div[@title='Click to Call']"
   number_color_red: "//div[@title='Click to Call' and contains(@style,'color: red')]"
 DocumentsPage:
-  document_type: "(//*[contains(@id,'row_')]/td[3])[%s]"
+  document_type: "(//*[contains(@id,'row_')]/td[4])[%s]"
   apply_btn: "(//button[text()='Apply'])[3]"
 FinancialTransactionsPage:
   client_name_element:  "(//td[3]/div/a)[%s]"
@@ -108,7 +108,7 @@ FinancialTransactionsPage:
   transaction_type_field: "//*[@id='customAdvanceSearch']/td[5]/div/div[1]/ul/li[1]/div/input"
   transaction_type_drop_down: "//td[5]/div/div[1]/button"
   trading_account_element: "(//*[@id='listBody']//tr/td[3])[%s]//a"
-  modified_time_element: "(//*[@id='listBody']//tr/td[10])[%s]"
+  modified_time_element: "(//*[@id='listBody']//tr/td[9])[%s]"
 LeadsModule:
   check_first_line_email_1: "//tbody[@id = 'listBody']/tr[1]/td[9]"
   check_first_line_email_2: "//tbody[@id = 'listBody']/tr[2]/td[9]"
@@ -124,6 +124,11 @@ LeadsModule:
   l_assign_table: "//tbody[@id = 'listBody']/tr[%s]/td[14]"
 LeadViewInfo:
   convert_lead_btn: "//a[contains(@onclick,'ConvertLead')]"
+LoginPage:
+  login_btn: "//button[contains(text(), 'Login')]"
+  login_btn_2: "//button[@class = 'forex-button-pandats login-button-pandats font-15-pandats'][contains(text(), 'Login')]"
+  login_email_input: "//input[@name='login']"
+  login_password_input: "//input[@id='forex-password']"
 MT4DepositModule:
   description_filed: "//input[@id='transaction_comment']"
   create_deposit_button: "//button[contains(text(),'Create')]"
@@ -139,6 +144,24 @@ MT4CreditOutModule:
   granted_by_filed: "//input[@id='transaction_grantedBy']"
   comment_filed: "//input[@id='transaction_comment']"
   create_button: "//button[contains(text(),'Create')]"
+SignUpFirstStepPage:
+  login_btn: "//button[contains(text(), 'Login')]"
+  sign_up: "//button[contains(text(), 'Sign Up')]"
+  check_box_accept: "//span[contains (text(), 'Terms and Conditions')]"
+  client_title_name: "//span[contains(text(), '%s')]"
+  citizenship: "//custom-select[@name='citizenship']//span[text()='%s']"
+  campaign_close_btn: "(//button[@title='Close'])[2]"
+  close_payment_btn: "//div[@class='close-pandats cmicon-close4 ng-star-inserted']"
+  submit_btn: "//button[span=' Submit ']"
+  login_email_input: "//input[@name='login']"
+  login_password_input: "//input[@id='forex-password']"
+  input_first_name: "//input[@name = 'firstName']"
+  input_last_name: "//input[@name = 'lastName']"
+  input_confirm_password: "//input[@name = 'passwordConfirm']"
+  city: "//input[@name = 'city']"
+  address: "//input[@name = 'address']"
+  zip_code: "//input[@name = 'postCode']"
+  next_btn: "//button[contains (text(), 'Next')]"
 TasksPage:
   pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
   subject_input: "//tr[@class='tableFilters']//td[15]//input"

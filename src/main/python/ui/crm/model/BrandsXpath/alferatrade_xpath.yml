@@ -4,3 +4,6 @@ CADepositPage:
 CALoginPage:
   sign_up: "//a[text()='Sign Up']"
   submit_btn: "//button[span=' Submit ']"
+SignUpFirstStepPage:
+  sign_up: "//a[text()='Sign Up']"
+  submit_btn: "//button[span=' Submit ']"

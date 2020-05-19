@@ -11,7 +11,7 @@ from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstants
 from src.main.python.ui.crm.model.pages.mt4_ui.MT4UpdateUserPageUI import MT4UpdateUserPageUI
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4ActionsConstantsUI import MT4ActionsConstantsUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI import CreateLeadConstantsUI
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
+import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4UpdateTAConstantsUI import MT4UpdateTAConstantsUI
 
 
@@ -42,7 +42,7 @@ class MT4UpdateUserPreconditionUI(object):
             .set_data_column_field(column=ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    data=CreateLeadConstantsUI.EMAIL) \
             .click_crm_id_ui(row='1') \
-            .open_mt4_module_newui(MT4ActionsConstantsUI.UPDATE_MT_USER)
+            .open_mt4_module_newui(var.get_var(self.__class__.__name__)["update_mt_user"])
 
         """ Update MT User """
         MT4UpdateUserPageUI(self.driver)\

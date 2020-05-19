@@ -1,7 +1,7 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
+from src.main.python.ui.crm.model.constants_ui.leads_ui.EditLeadConstantsUI import EditLeadConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
@@ -14,7 +14,7 @@ class EditLeadPageUI(CRMBasePage):
                   l_source=None, list2=None, l_status=None, list3=None, assigned_to=None, field8=None, language=None,
                   field9=None, source_name=None, field10=None, fax=None, field11=None, referral=None, field12=None,
                   address=None, field13=None, p_code=None, field14=None, city=None, list4=None, country=None,
-                  field15=None, state=None, field16=None, po_box=None, field17=None, description=None):
+                  field15=None, state=None, field16=None, po_box=None, field17=None, description=None, final_btn=None):
         self.click_edit_lead_btn()
         if field1 and fname:
             self.set_text(field1, fname)
@@ -33,7 +33,8 @@ class EditLeadPageUI(CRMBasePage):
         if list1 and l_source:
             self.select_from_list(list1, l_source)
         if list2 and l_status:
-            self.select_from_list(list2, l_status)
+            self.get_item_from_list_by_number(list2, l_status)
+            self.select_pick_list_item_by_number(list2, l_status)
         if list3 and assigned_to:
             self.select_from_list(list3, assigned_to)
         if field8 and language:
@@ -58,7 +59,8 @@ class EditLeadPageUI(CRMBasePage):
             self.set_text(field16, po_box)
         if field17 and description:
             self.set_text(field17, description)
-        self.click_update_lead_btn()
+        self.click_update_lead_btn(final_btn)
+        return EditLeadPageUI(self.driver)
 
     def click_edit_lead_btn(self):
         sleep(0.1)
@@ -72,6 +74,17 @@ class EditLeadPageUI(CRMBasePage):
             .select_pick_list_item(pick_list, item)
         return EditLeadPageUI(self.driver)
 
+    def select_pick_list_item_by_number(self, pick_list, number):
+        GlobalPopupPageUI(self.driver) \
+            .select_pick_list_item_by_number(pick_list, number)
+        return EditLeadPageUI(self.driver)
+
+    def get_item_from_list_by_number(self, pick_list, number):
+        item = GlobalPopupPageUI(self.driver) \
+            .get_item_from_list_by_number(pick_list, number)
+        EditLeadConstantsUI.STATUS = item
+        return item
+
     def set_text(self, field, text):
         GlobalPopupPageUI(self.driver)\
             .set_text_field(field, text)
@@ -82,13 +95,10 @@ class EditLeadPageUI(CRMBasePage):
         flag = super().wait_element_to_be_clickable("//button[span=' Update lead ']").get_property("disabled")
         return not flag
 
-    def click_update_lead_btn(self):
-        sleep(0.1)
-        flag = self.is_button_update_lead_active()
-        if flag:
-            Logging().reportDebugStep(self, "Click 'Update lead' button")
-            save_button = super().wait_element_to_be_clickable("//button/span[text()=' Update lead ']")
-            self.driver.execute_script("arguments[0].click();", save_button)
-        else:
-            Logging().reportDebugStep(self, "'Update lead' button is inactive")
+    def click_update_lead_btn(self, final_btn):
+        GlobalPopupPageUI(self.driver) \
+            .click_final_btn(final_btn)
+        GlobalModulePageUI(self.driver) \
+            .verify_success_message() \
+            .click_ok()
         return EditLeadPageUI(self.driver)
