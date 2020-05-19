@@ -9,6 +9,7 @@ class UserInformation(object):
     FIRST_EMAIL = "pandaqa+%s@pandats.com" % random_number
     FIRST_NAME = "first_name"
     LAST_NAME = "last_name"
+    NAME = "first_name last_name"
     ROLE = "Support Rep"
     ROLE2 = "Vice President"
     ROLE3 = "IT Manager"

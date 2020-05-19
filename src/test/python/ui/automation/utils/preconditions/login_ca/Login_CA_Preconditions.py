@@ -76,12 +76,12 @@ class LoginCAPrecondition(object):
         if global_var.current_brand_name == "q8":
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
-                .sign_up_q8(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
-                            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
-                                                      [LeadsModuleConstants.FIRST_LAST_NAME],
-                            CAConstants.EMAIL_CA,
-                            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE],
-                            CAConstants.PASSWORD)
+                .sign_up_q8(
+                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
+                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME],
+                    CAConstants.EMAIL_CA,
+                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE],
+                    CAConstants.PASSWORD)
         else:
             CALoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url_ca'))\
@@ -174,7 +174,8 @@ class LoginCAPrecondition(object):
                 global_var.current_brand_name == "uprofx" or \
                 global_var.current_brand_name == "kontofx" or \
                 global_var.current_brand_name == "olympiamarkets" or \
-                global_var.current_brand_name == "grandefex":
+                global_var.current_brand_name == "grandefex" or \
+                global_var.current_brand_name == "analystq":
 
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca'))
@@ -371,11 +372,8 @@ class LoginCAPrecondition(object):
                 and (global_var.current_brand_name != "gigafx") \
                 and (global_var.current_brand_name != "trade99") \
                 and (global_var.current_brand_name != "tradenero"):
-            try:
+            if '*' not in actual_phone:
                 assert expected_phone in actual_phone
-            except:
-                assert actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN4 or \
-                       actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN3
 
         if global_var.current_brand_name != "q8":
             assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS
@@ -434,10 +432,12 @@ class LoginCAPrecondition(object):
 
         """ Verify client's data """
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(first_name,
-                               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]) \
-            .comparator_string(last_name,
-                               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]) \
+            .comparator_string(
+                first_name,
+                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]) \
+            .comparator_string(
+                last_name,
+                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]) \
             .comparator_string(birthday, CAConstants.BIRTHDAY_CRM) \
             .comparator_string(currency, CAConstants.CURRENCY) \
             .comparator_string(address, CAConstants.ADDRESS) \
@@ -446,9 +446,7 @@ class LoginCAPrecondition(object):
             .comparator_string(country, CAConstants.COUNTRY_DEFAULT)
 
         if "*" not in phone:
-            CRMBaseMethodsPage(self.driver) \
-                .comparator_string(phone,
-                                   self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])
+            assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE] in phone
 
     def login_ca(self):
         try:
@@ -456,6 +454,7 @@ class LoginCAPrecondition(object):
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .close_campaign_banner() \
                 .close_notifications_banner() \
+                .select_english() \
                 .click_sign_in_btn() \
                 .enter_email(self.config.get_value('email_live_acc')) \
                 .enter_password(self.config.get_value('password_live_acc')) \
@@ -467,6 +466,7 @@ class LoginCAPrecondition(object):
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .close_campaign_banner() \
                 .close_notifications_banner() \
+                .select_english() \
                 .click_sign_in_btn() \
                 .enter_email(self.config.get_value('email_live_acc')) \
                 .enter_password(self.config.get_value('password_live_acc')) \

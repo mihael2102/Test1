@@ -22,6 +22,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI impo
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
+from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
 
 
 class TradingAccountPrecondition(object):
@@ -39,7 +40,8 @@ class TradingAccountPrecondition(object):
 
     def add_live_account(self):
         """ Log in CA """
-        if global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8" or \
+           global_var.current_brand_name == "strattonmarkets-eu":
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .not_runned_test()
@@ -59,7 +61,7 @@ class TradingAccountPrecondition(object):
                 .open_manage_accounts() \
                 .open_new_account_btn() \
                 .select_account_type(CAConstants.ACCOUNT_LIVE) \
-                .select_currency(CAConstants.CURRENCY) \
+                .select_currency(var.get_var(self.__class__.__name__)["live_acc_currency"]) \
                 .select_leverage_level(var.get_var(self.__class__.__name__)["live_acc_leverage"]) \
                 .click_create_account()\
                 .get_create_account_message()\
@@ -69,7 +71,8 @@ class TradingAccountPrecondition(object):
 
     def add_demo_account(self):
         """ Log in CA """
-        if global_var.current_brand_name == "q8":
+        if global_var.current_brand_name == "q8" or \
+           global_var.current_brand_name == "strattonmarkets-eu":
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .not_runned_test()
@@ -110,7 +113,8 @@ class TradingAccountPrecondition(object):
             """ Verify Currency """
             actual_currency = CAPage(self.driver).get_currency()
             expected_currency = var.get_var(self.__class__.__name__)["demo_acc_currency"]
-            if global_var.current_brand_name == "trade99":
+            if global_var.current_brand_name == "trade99" or \
+                    global_var.current_brand_name == "analystq":
                 actual_currency = actual_currency.split(':')[0]
             assert actual_currency == expected_currency
 
@@ -163,6 +167,8 @@ class TradingAccountPrecondition(object):
             .trading_account_exist_ui(CAConstants.LIVE_ACCOUNT_NUMBER)
 
     def add_demo_account_from_crm(self):
+        lead1 = self.config.get_value(LeadsModuleConstants.FIRST_LEAD_INFO)
+        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
@@ -170,8 +176,13 @@ class TradingAccountPrecondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
         ClientsPage(self.driver)\
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if ConvertLeadConstantsUI.EMAIL_EDITABLE:
+            ClientsPage(self.driver) \
+                .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(lead1[LeadsModuleConstants.EMAIL])
 
         ClientProfilePage(self.driver) \
             .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
@@ -179,7 +190,7 @@ class TradingAccountPrecondition(object):
         if global_var.current_brand_name == "q8":
             MT4CreateAccountModule(self.driver) \
                 .create_account_with_platform(
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT4),
+                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT5),
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
@@ -207,7 +218,8 @@ class TradingAccountPrecondition(object):
         elif (global_var.current_brand_name == "dax-300") \
                 or (global_var.current_brand_name == "gxfx") \
                 or (global_var.current_brand_name == "kontofx") \
-                or (global_var.current_brand_name == "uprofx"):
+                or (global_var.current_brand_name == "uprofx") \
+                or (global_var.current_brand_name == "4ex7"):
             MT4CreateAccountModule(self.driver) \
                 .create_account(
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),

@@ -36,26 +36,23 @@ class ClientsMassEditPreconditionUI(object):
         """ Select records for Mass Edit """
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
+            .refresh_page_ui() \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
-            .select_all_records_checkbox() \
-            .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT)
+            .select_all_records_checkbox()
 
         """ Mass Edit """
         MassEditPageUI(self.driver) \
-            .select_field_to_edit(MassActionsConstantsUI.FIELD_CLIENT_STATUS) \
-            .select_from_list(MassActionsConstantsUI.FIELD_CLIENT_STATUS,
-                              var.get_var(self.__class__.__name__)["client_status"]) \
-            .select_field_to_edit(MassActionsConstantsUI.FIELD_ASSIGNED_TO) \
-            .select_from_list(MassActionsConstantsUI.FIELD_ASSIGNED_TO,
-                              MassActionsConstantsUI.USER_NAME_1) \
-            .click_save_changes_btn()
+            .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT) \
+            .mass_edit(
+                field_to_edit1=MassActionsConstantsUI.FIELD_CLIENT_STATUS,
+                field_to_edit4=MassActionsConstantsUI.FIELD_ASSIGNED_TO,
+                assign_to=MassActionsConstantsUI.USER_NAME_1,
+                final_btn=MassActionsConstantsUI.BTN_FINAL2)
 
         """ Check confirmation message and updated data in table """
         GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok() \
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    LeadsModuleConstantsUI.SHORT_EMAIL) \
             .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME_1) \
-            .global_data_checker_new_ui(var.get_var(self.__class__.__name__)["field_citizenship"])
+            .global_data_checker_new_ui(MassActionsConstantsUI.STATUS)

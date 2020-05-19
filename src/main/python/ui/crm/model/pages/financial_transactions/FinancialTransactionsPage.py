@@ -74,10 +74,10 @@ class FinancialTransactionsPage(CRMBasePage):
         return FinancialTransactionInformationPage()
 
     def get_transaction_id_by_position_from_list(self, position_in_list=3):
-        if position_in_list != 3:
-            sleep(2)    # Waiting until page reloading will be finished
-        transaction_number_element = self.driver.find_element(By.XPATH,
-                                                        "(//a[contains(text(), 'MTT')])[%s]" % position_in_list).text
+        sleep(1)
+        transaction_number_element = super().wait_load_element("(//a[contains(text(), 'MTT')])[%s]" % position_in_list)
+        self.driver.execute_script("arguments[0].scrollIntoView();", transaction_number_element)
+        transaction_number_element = transaction_number_element.text
         Logging().reportDebugStep(self, "Get existing Transaction No: " + transaction_number_element)
         return transaction_number_element
 
@@ -216,8 +216,18 @@ class FinancialTransactionsPage(CRMBasePage):
 
     def open_search_form(self):
         search_form_element = self.driver.find_element(By.XPATH, "//tr/td[1]/div/button[1]")
-        search_form_element.click()
+        try:
+            search_form_element.click()
+        except:
+            self.driver.execute_script("arguments[0].click();", search_form_element)
         Logging().reportDebugStep(self, "Search form was opened")
+        return FinancialTransactionsPage(self.driver)
+
+    def open_advanced_search(self):
+        sleep(0.1)
+        Logging().reportDebugStep(self, "Open an Advanced Search")
+        advanced_search = super().wait_load_element("//a[text()='Go to Advanced Search']")
+        self.driver.execute_script("arguments[0].click();", advanced_search)
         return FinancialTransactionsPage(self.driver)
 
     def __fill_search_field_with_value(self, search_value):
@@ -225,17 +235,34 @@ class FinancialTransactionsPage(CRMBasePage):
         search_input.clear()
         search_input.send_keys(search_value)
 
+    def __fill_search_field_in_advanced_search(self, search_value):
+        sleep(0.1)
+        search_input = super().wait_load_element("//input[@id='fval0']")
+        search_input.clear()
+        search_input.send_keys(search_value)
+
+    def __select_search_list_in_advanced_search(self, search_value):
+        sleep(0.1)
+        select = Select(super().wait_load_element("//select[@id='fval0']"))
+        select.select_by_visible_text(search_value)
+
     def __click_search_now_button(self):
-        search_now_button = self.driver.find_element(By.XPATH, "//input[@value=' Search Now ']")
+        search_now_button = self.driver.find_element(By.XPATH, "//input[@id='searchNow']")
         search_now_button.click()
 
     def __change_search_criteria_by_visible_text(self, criteria_from_drop_down_list):
-        select = Select(self.driver.find_element(By.XPATH, "//select[@name='search_field']"))
+        sleep(0.1)
+        select = Select(super().wait_load_element("//select[@id='fcol0']"))
+        select.select_by_visible_text(criteria_from_drop_down_list)
+
+    def __select_search_condition_by_visible_text(self, criteria_from_drop_down_list):
+        select = Select(self.driver.find_element(By.XPATH, "//select[@id='fop0']"))
         select.select_by_visible_text(criteria_from_drop_down_list)
 
     def search_for_transaction_id(self, transaction_id):
         self.__change_search_criteria_by_visible_text("Transaction No")
-        self.__fill_search_field_with_value(transaction_id)
+        self.__select_search_condition_by_visible_text("equals")
+        self.__fill_search_field_in_advanced_search(transaction_id)
         self.__click_search_now_button()
         sleep(2)
         self.wait_vtiger_loading_to_finish_custom(35)
@@ -244,7 +271,8 @@ class FinancialTransactionsPage(CRMBasePage):
 
     def search_for_client_name(self, client_name):
         self.__change_search_criteria_by_visible_text("Client")
-        self.__fill_search_field_with_value(client_name)
+        self.__select_search_condition_by_visible_text("equals")
+        self.__fill_search_field_in_advanced_search(client_name)
         self.__click_search_now_button()
         sleep(1)
         self.wait_vtiger_loading_to_finish_custom(35)
@@ -253,7 +281,8 @@ class FinancialTransactionsPage(CRMBasePage):
 
     def search_for_transaction_type(self, transaction_type):
         self.__change_search_criteria_by_visible_text("Transaction Type")
-        self.__fill_search_field_with_value(transaction_type)
+        self.__select_search_condition_by_visible_text("equals")
+        self.__select_search_list_in_advanced_search(transaction_type)
         self.__click_search_now_button()
         sleep(1)
         self.wait_vtiger_loading_to_finish_custom(35)
@@ -262,7 +291,8 @@ class FinancialTransactionsPage(CRMBasePage):
 
     def search_for_modified_time(self, modified_time):
         self.__change_search_criteria_by_visible_text("Created Time")
-        self.__fill_search_field_with_value(modified_time)
+        self.__select_search_condition_by_visible_text("equals")
+        self.__fill_search_field_in_advanced_search(modified_time)
         self.__click_search_now_button()
         sleep(1)
         self.wait_vtiger_loading_to_finish_custom(35)
