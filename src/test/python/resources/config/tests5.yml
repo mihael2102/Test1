@@ -20,4 +20,4 @@ tests_config:
   class: TabHelpDeskTest
   tests:
     - test_searching_help_desk
-    - test_check_tab_help_desk
+#    - test_check_tab_help_desk
