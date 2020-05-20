@@ -81,18 +81,18 @@ tests_config:
 #     - test_check_week_tab
 
 ###################################### MT4 ACTIONS ###########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_open_trading_account  # open a new trading account
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+#  class: TradingAccountCrmTest
+#  tests:
+#    - test_crm_open_trading_account  # open a new trading account
 #    - test_crm_open_live_mt5
 #    - test_crm_open_demo_mt5
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
-  class: CheckPasswordTestCRM
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
+#  class: CheckPasswordTestCRM
+#  tests:
 #    - test_check_client_password_crm  # check the client account password
-    - test_check_mt4_password_crm   # check the MT4 account password
+#    - test_check_mt4_password_crm   # check the MT4 account password
 #
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
   class: ChangePasswordTestCRM

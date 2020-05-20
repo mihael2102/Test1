@@ -47,8 +47,11 @@ class GlobalModulePageUI(CRMBasePage):
         field = super().wait_element_to_be_clickable("//span[@class='placeholder']/span[text()='%s']" % column)
         self.driver.execute_script("arguments[0].click();", field)
         sleep(0.5)
-        item = super().wait_load_element("//span[contains(text(),'%s')]//following-sibling::ul//span[text()='%s']"
-                                         % (column, data))
+        data = data.lower()
+        item = super().wait_load_element(
+            "//span[contains(text(),'%s')]//following-sibling::ul//span[contains"
+            "(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'%s')]"
+            % (column, data))
         self.driver.execute_script("arguments[0].click();", item)
         try:
             done = super().wait_element_to_be_clickable("//button/span[text()='Apply']")
