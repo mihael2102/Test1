@@ -9,6 +9,8 @@ ClientsMassEditPreconditionUI:
 ConvertLeadPreconditionUI:
   convert_lead_currency: "EUR"
   field_citizenship: "Citizenship"
+CreateUserPreconditionUI:
+  role: "Support Rep"
 CryptoQuotesPreconditionCA:
   asset: "BTCEUR"
 DepositCAPrecondition:
@@ -46,6 +48,7 @@ LeadPrecondition:
   m_edit_lead_status: "B - Test"
 LoginCAPrecondition:
   client_name: "Test"
+  signup_currency: "EUR"
 MT4CreateTAPreconditionUI:
   create_mt_user: "Create MT User"
   d_acc_currency: "USD"
@@ -57,9 +60,12 @@ MT4DepositPreconditionUI:
   create_mt_user: "Create MT User"
   live_acc_group: "live"
   l_acc_currency: "EUR"
+MT4UpdateUserPreconditionUI:
+  update_mt_user: "Update MT User"
 TradingAccountPrecondition:
   demo_acc_currency: "EUR"
   demo_acc_currency_usd: "USD"
+  live_acc_currency: "EUR"
   demo_acc_leverage: "1:100"
   live_acc_leverage: "1:100"
   initial_deposit_amount: "50000"

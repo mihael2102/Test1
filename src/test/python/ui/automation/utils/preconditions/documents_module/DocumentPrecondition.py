@@ -45,8 +45,7 @@ class DocumentPrecondition(object):
         document_module.input_expiry_date(CRMConstants.SECOND_DATE.strftime(
                                                         CRMConstants.FORMAT_DATE_YEARS))
 
-        document_module.attached_to(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                        LeadsModuleConstants.FIRST_NAME])
+        document_module.attached_to("testqa")
 
         document_module.save_document()
         assert document_module.get_successful_message() == CRMConstants.DOCUMENT_SUCCESSFUL_MESSAGE
@@ -81,7 +80,7 @@ class DocumentPrecondition(object):
         #get document's params
         document_number = document.get_document_no_from_listview(DocumentModuleConstants.ROW_NUMBER3)
         document_type = document.get_document_type_from_listview(DocumentModuleConstants.ROW_NUMBER2)
-        modified_time = document.get_modified_time_from_listview(DocumentModuleConstants.ROW_NUMBER3)
+        # modified_time = document.get_modified_time_from_listview(DocumentModuleConstants.ROW_NUMBER3)
 
         #search by Document's list view
         actual_doc_no = document\
@@ -98,11 +97,11 @@ class DocumentPrecondition(object):
             .global_data_checker(DocumentModuleConstants.DATA_TYPE_DOC_TYPE, document_type)
         # document.compare_data(DocumentModuleConstants.DATA_TYPE_DOC_TYPE, document_type, actual_document_type)
 
-        document\
-            .clear_filter() \
-            .select_doc_modified_time(modified_time) \
-            .search_document_module() \
-            .global_data_checker(DocumentModuleConstants.DATA_TYPE_MODIFIED_TIME, modified_time)
+        # document\
+        #     .clear_filter() \
+        #     .select_doc_modified_time(modified_time) \
+        #     .search_document_module() \
+        #     .global_data_checker(DocumentModuleConstants.DATA_TYPE_MODIFIED_TIME, modified_time)
 
     def check_tabs(self):
         # crm login, open Documents module
@@ -143,14 +142,14 @@ class DocumentPrecondition(object):
         document.check_doc_number_is_greater(first_row_doc_number, second_row_doc_number)
 
         # sorting and verifying data in 'Modified Time' column
-        document.sort_by_column(DocumentModuleConstants.DATA_TYPE_MODIFIED_TIME)
-        first_row_modified_time = document.get_row_mod_time(row_number=1)
-        second_row_modified_time = document.get_row_mod_time(row_number=2)
-        document.check_mod_time_is_greater_or_equal(first_row_modified_time, second_row_modified_time)
+        # document.sort_by_column(DocumentModuleConstants.DATA_TYPE_MODIFIED_TIME)
+        # first_row_modified_time = document.get_row_mod_time(row_number=1)
+        # second_row_modified_time = document.get_row_mod_time(row_number=2)
+        # document.check_mod_time_is_greater_or_equal(first_row_modified_time, second_row_modified_time)
 
         # sorting and verifying data in 'Document Type' column
         document.sort_by_column(DocumentModuleConstants.DATA_TYPE_DOCUMENT_TYPE)
-        first_row_document_type1 = document.get_row_doc_type(row_number=1)
+        first_row_document_type1 = document.get_document_type_from_listview(row=1)
         document.sort_by_column(DocumentModuleConstants.DATA_TYPE_DOCUMENT_TYPE)
-        first_row_document_type2 = document.get_row_doc_type(row_number=1)
+        first_row_document_type2 = document.get_document_type_from_listview(row=1)
         assert first_row_document_type1 != first_row_document_type2

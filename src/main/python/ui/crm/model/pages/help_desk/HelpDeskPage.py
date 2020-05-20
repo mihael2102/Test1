@@ -133,6 +133,7 @@ class HelpDeskPage(CRMBasePage):
         return HelpDeskPage(self.driver)
 
     def find_ticket_by_title(self, tittle):
+        sleep(0.5)
         tittle_field = super().wait_element_to_be_clickable("//input[@name='tks_subject']")
         tittle_field.clear()
         tittle_field.send_keys(tittle)

@@ -1,19 +1,18 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import NoSuchElementException
-from src.main.python.utils.logs.Loging import Logging
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from time import sleep
 
 
 class MT4DepositPageUI(CRMBasePage):
 
     def mt4_deposit_ui(self, list1=None, p_method=None, list2=None, status=None, list3=None, t_account=None,
-                       field1=None, amount=None, field2=None, comment=None, list4=None, cleared_by=None):
+                       field1=None, amount=None, field2=None, comment=None, list4=None, cleared_by=None,
+                       final_btn=None):
         if p_method:
-            self.select_pick_list_item(list1, p_method)
+            self.select_pick_list_item_by_number(list1, p_method)
         if status:
             self.select_pick_list_item(list2, status)
         if t_account:
@@ -23,32 +22,30 @@ class MT4DepositPageUI(CRMBasePage):
         if comment:
             self.set_text_field(field2, comment)
         if cleared_by:
-            self.select_pick_list_item(list4, cleared_by)
+            self.select_pick_list_item_by_number(list4, cleared_by)
         sleep(1)
-        self.click_deposit()
+        self.click_deposit(final_btn)
+        return MT4DepositPageUI(self.driver)
 
     def select_pick_list_item(self, pick_list, item):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Select " + pick_list + ": " + item)
-        title = super().wait_load_element(
-            "//span[text()=' %s ']//following-sibling::ul//span[contains(text(),'%s')]" % (pick_list, item))
-        self.driver.execute_script("arguments[0].click();", title)
+        GlobalPopupPageUI(self.driver)\
+            .select_pick_list_item(pick_list, item)
+        return MT4DepositPageUI(self.driver)
+
+    def select_pick_list_item_by_number(self, pick_list, number):
+        GlobalPopupPageUI(self.driver)\
+            .select_pick_list_item_by_number(pick_list, number)
         return MT4DepositPageUI(self.driver)
 
     def set_text_field(self, field, text):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Set " + field + ": " + text)
-        input_field = super().wait_load_element(
-            "//div[contains(label,'%s')]//following-sibling::mat-form-field//input" % field)
-        input_field.clear()
-        input_field.send_keys(text)
+        GlobalPopupPageUI(self.driver)\
+            .set_text_field(field, text)
         return MT4DepositPageUI(self.driver)
 
-    def click_deposit(self):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Click 'Deposit' button")
-        deposit_btn = super().wait_element_to_be_clickable("//button[span=' Deposit ']")
-        self.driver.execute_script("arguments[0].click();", deposit_btn)
-        sleep(1)
-        self.wait_loading_to_finish_new_ui(8)
+    def click_deposit(self, final_btn):
+        GlobalPopupPageUI(self.driver)\
+            .click_final_btn(final_btn)
+        GlobalModulePageUI(self.driver) \
+            .verify_success_message() \
+            .click_ok()
         return MT4DepositPageUI(self.driver)
