@@ -150,7 +150,8 @@ class DepositTestCRM(BaseTest):
         # amount_initial = crm_client_profile.get_initial_amount()
 
         crm_client_profile \
-            .perform_scroll_up() \
+            .perform_scroll_up()
+        ClientProfilePage(self.driver) \
             .open_deposit_for_client_in_menu()\
             .fill_client_deposit_pop(account_number)
 

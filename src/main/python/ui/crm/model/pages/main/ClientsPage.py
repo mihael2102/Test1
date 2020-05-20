@@ -99,6 +99,18 @@ class ClientsPage(CRMBasePage):
         Logging().reportDebugStep(self, "Click the Search button")
         return ClientsPage(self.driver)
 
+    def perform_searching_by_fname(self, fname):
+        sleep(2)
+        email_field = super().wait_load_element("//input[@name='tks_accountname']")
+        email_field.send_keys(fname)
+        Logging().reportDebugStep(self, "Setting the user's first name in the field: " + fname)
+        search_button = self.driver.find_element(By.XPATH, "//input[@value='Search']")
+        search_button.click()
+        Logging().reportDebugStep(self, "Click the Search button")
+        self.wait_loading_to_finish(55)
+        Logging().reportDebugStep(self, "Click the Search button")
+        return ClientsPage(self.driver)
+
     ''' 
         Select the filter in drop-down   
        :parameter test_filter the filter that is created in the filters drop down
