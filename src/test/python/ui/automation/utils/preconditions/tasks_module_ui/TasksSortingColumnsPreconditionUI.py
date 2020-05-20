@@ -54,6 +54,8 @@ class TasksSortingColumnsPreconditionUI(object):
         """ Sorting by 'Client Name' column """
         GlobalModulePageUI(self.driver) \
             .click_arrow_up(
+                column=TasksModuleConstantsUI.COLUMN_STATUS) \
+            .click_arrow_up(
                 column=TasksModuleConstantsUI.COLUMN_STATUS)
         status_2 = get_data \
             .get_data_from_list_view_ui(
