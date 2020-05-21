@@ -65,7 +65,7 @@ class LeadDetailViewInfo(CRMBasePage):
     '''
 
     def get_email_text(self):
-        fax_name = self.driver.find_element(By.XPATH, "//td[contains(text(),'Email')]//following-sibling::td[1]")
+        fax_name = self.driver.find_element(By.XPATH, "//td[text()='Email']//following-sibling::td[1]")
         Logging().reportDebugStep(self, "Returns the email text: " + fax_name.text)
         return fax_name.text
 

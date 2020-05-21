@@ -17,6 +17,7 @@ class MT4WithdrawConstantsUI(object):
     LIST_CLEARED_BY = "Cleared by"
     FIELD_AMOUNT = "Amount in account currency"
     FIELD_COMMENT = "Comment"
+    BTN_FINAL = "Withdraw"
 
     P_METHOD = "Credit card"
     STATUS = "Approved"

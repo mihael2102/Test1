@@ -1,8 +1,7 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
 
@@ -14,6 +13,7 @@ class ClientEditPageUI(CRMBasePage):
                     city=None, field5=None, address=None, field6=None, p_code=None, field7=None, phone=None, list3=None,
                     language=None, list4=None, currency=None, field8=None, referral=None, button=None):
         self.click_edit_client_btn()
+        sleep(1)
         if field1 and fname:
             self.set_text(field1, fname)
         if field2 and lname:
@@ -66,4 +66,7 @@ class ClientEditPageUI(CRMBasePage):
     def click_save_client_btn(self, button):
         GlobalPopupPageUI(self.driver) \
             .click_final_btn(button)
+        GlobalModulePageUI(self.driver) \
+            .verify_success_message() \
+            .click_ok()
         return ClientEditPageUI(self.driver)
