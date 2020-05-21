@@ -63,9 +63,14 @@ class FilterPrecondition(object):
             .open_help_desk_page() \
             .open_create_filter_pop_up()
 
-        if (global_var.current_brand_name == "fm-fx") or (global_var.current_brand_name == "gmo") or (global_var.current_brand_name == "gmo-dev") or \
-            (global_var.current_brand_name == "oinvestsa") or (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "otcapital") or \
-                (global_var.current_brand_name == "urf") or (global_var.current_brand_name == "itrader_global"):
+        if global_var.current_brand_name == "fm-fx" or \
+           global_var.current_brand_name == "gmo" or \
+           global_var.current_brand_name == "gmo-dev" or \
+           global_var.current_brand_name == "oinvestsa" or \
+           global_var.current_brand_name == "itrader" or \
+           global_var.current_brand_name == "otcapital" or \
+           global_var.current_brand_name == "urf" or \
+           global_var.current_brand_name == "itrader_global":
             FilterPage(self.driver).perform_create_filter_help_desk_module(
                 TestDataConstants.FILTER_NAME_HELP_DESK,
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.FIRST_COLUMN),
@@ -77,9 +82,8 @@ class FilterPrecondition(object):
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SEVENTH_COLUMN),
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.EIGHTH_COLUMN),
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.TENTH_COLUMN),
-                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.ELEVENTH_COLUMN)) \
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.ELEVENTH_COLUMN))\
                 .click_save_button()
-
         else:
             FilterPage(self.driver).perform_create_filter_help_desk_module(
                 TestDataConstants.FILTER_NAME_HELP_DESK,
@@ -92,7 +96,7 @@ class FilterPrecondition(object):
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.SEVENTH_COLUMN),
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.EIGHTH_COLUMN),
                 self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.TENTH_COLUMN),
-                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.ELEVENTH_COLUMN)) \
+                self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_COLUMNS, HelpDeskConstants.ELEVENTH_COLUMN))\
                 .click_save_button()
         return FilterPrecondition(self.driver, self.config)
 
@@ -120,21 +124,8 @@ class FilterPrecondition(object):
             .select_documents_module_more_list(DocumentModuleConstants.DOCUMENT) \
             .open_create_filter_pop_up()
 
-        if (global_var.current_brand_name == "ogtrade"):
-            FilterPage(self.driver).perform_create_filter_documents_module(
-                        TestDataConstants.FILTER_NAME_DOCUMENTS,
-                       self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
-                                                 DocumentModuleConstants.FIRST_COLUMN),
-                       self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
-                                                 DocumentModuleConstants.SECOND_COLUMN_DOC_ST),
-                       self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
-                                                 DocumentModuleConstants.THIRD_COLUMN),
-                       self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
-                                                 DocumentModuleConstants.FOURTH_COLUMN))\
-                                    .click_save_button()
-
-        else:
-            FilterPage(self.driver).perform_create_filter_documents_module(
+        FilterPage(self.driver)\
+            .perform_create_filter_documents_module(
                 TestDataConstants.FILTER_NAME_DOCUMENTS,
                 self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                      DocumentModuleConstants.FIRST_COLUMN),
@@ -144,7 +135,7 @@ class FilterPrecondition(object):
                                                      DocumentModuleConstants.THIRD_COLUMN),
                 self.config.get_data_document_module(DocumentModuleConstants.DOCUMENTS_MODULE_COLUMNS,
                                                      DocumentModuleConstants.FOURTH_COLUMN)) \
-                                    .click_save_button()
+            .click_save_button()
 
         return FilterPrecondition(self.driver, self.config)
 
@@ -152,15 +143,15 @@ class FilterPrecondition(object):
         CRMHomePage(self.driver).open_trading_account_module() \
             .open_create_filter_pop_up() \
             .perform_create_filter_trading_accounts_module(
-            TestDataConstants.FILTER_NAME_TRADING_ACCOUNT,
-            self.config.get_data_columns_trading_module(TradingAccountConstants.FIRST_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.SECOND_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.THIRD_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.FOURTH_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.FIFTH_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.SIXTH_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.SEVENTH_COLUMN),
-            self.config.get_data_columns_trading_module(TradingAccountConstants.EIGHTH_COLUMN)) \
+                TestDataConstants.FILTER_NAME_TRADING_ACCOUNT,
+                self.config.get_data_columns_trading_module(TradingAccountConstants.FIRST_COLUMN),
+                self.config.get_data_columns_trading_module(TradingAccountConstants.SECOND_COLUMN),
+                self.config.get_data_columns_trading_module(TradingAccountConstants.THIRD_COLUMN),
+                self.config.get_data_columns_trading_module(TradingAccountConstants.FOURTH_COLUMN),
+                self.config.get_data_columns_trading_module(TradingAccountConstants.FIFTH_COLUMN),
+                self.config.get_data_columns_trading_module(TradingAccountConstants.SIXTH_COLUMN),
+                self.config.get_data_columns_trading_module(TradingAccountConstants.SEVENTH_COLUMN),
+                self.config.get_data_columns_trading_module(TradingAccountConstants.EIGHTH_COLUMN)) \
             .click_save_button()
         return FilterPrecondition(self.driver, self.config)
 
@@ -178,5 +169,3 @@ class FilterPrecondition(object):
 
     def delete_trading_account_module_filter(self):
         FilterPage(self.driver).delete_trading_account_filter()
-
-
