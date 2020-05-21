@@ -21,10 +21,10 @@ tests_config:
 #    - test_audit_logs_loading
 #
 ###################################### CRM CONFIGURATIONS #########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
-  class: CRMConfigurationsTest
-  tests:
-    - test_crm_configurations_pages_loading
+#- module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
+#  class: CRMConfigurationsTest
+#  tests:
+#    - test_crm_configurations_pages_loading
 #
 ######################################### FILTERS TESTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_create_filters.Test_Create_Filter
@@ -60,11 +60,11 @@ tests_config:
 #    - test_check_email_popup
 #
 ############################################ CONVERT LEAD ############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 
 ############################################# CLIENTS ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
@@ -110,15 +110,15 @@ tests_config:
 #    - test_check_week_tab
 #
 ############################################### CLIENT'S DETAILS ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-#  class: TradingAccountCrmTest
-#  tests:
-#    - fill_questioner_new_client
-#    - test_crm_open_trading_account  # open a new trading account
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
-#  class: ChangePasswordTestCRM
-#  tests:
-#    - test_change_client_password_from_crm  # change a client account password from the crm
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - fill_questioner_new_client
+    - test_crm_open_trading_account  # open a new trading account
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Change_Password
+  class: ChangePasswordTestCRM
+  tests:
+    - test_change_client_password_from_crm  # change a client account password from the crm
 #    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
