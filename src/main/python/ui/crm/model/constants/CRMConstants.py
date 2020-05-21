@@ -75,7 +75,7 @@ class CRMConstants(object):
     SECOND_COLUMN = "second_column"
     THIRD_COLUMN = "third_column"
     FOURTH_COLUMN = "fourth_column"
-    FOURTH_COLUMN_OTHER_TYPE = "Email"
+    FOURTH_COLUMN_OTHER_TYPE = "Gender"
     FIFTH_COLUMN = "fifth_column"
     SIXTH_COLUMN = "sixth_column"
     SIXTH_COLUMN_OTHER_TYPE = "Assigned To"

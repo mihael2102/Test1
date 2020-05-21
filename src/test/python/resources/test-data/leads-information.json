@@ -84,7 +84,7 @@
     "filter_name": "TestFilterLeadModule",
     "first_column": "First Name",
     "second_column": "Last Name *",
-    "third_column": "Email",
+    "third_column": "Lead No",
     "fourth_column": "Assigned To *",
     "fifth_column": "Title",
     "sixth_column": "Lead Source",

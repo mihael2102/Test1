@@ -505,12 +505,15 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Click sorting by Exist")
         return LeadsModule(self.driver)
 
-    def perform_searching_lead_module(self, first_name, last_name, email, assigned_to, tittle, lead_source, lead_status,
-                                         language):
+    def perform_searching_lead_module(self, first_name=None, last_name=None, email=None, assigned_to=None, tittle=None,
+                                      lead_source=None, lead_status=None, language=None):
         self.wait_element_to_be_clickable("//td[@class='txt_al_c']")
-        self.enter_first_name(first_name)
-        self.enter_last_name(last_name)
-        self.enter_email(email)
+        if first_name:
+            self.enter_first_name(first_name)
+        if last_name:
+            self.enter_last_name(last_name)
+        if email:
+            self.enter_email(email)
         # self.enter_assigned_to(assigned_to)
         # self.enter_tittle(tittle)
         # self.enter_lead_source(lead_source)

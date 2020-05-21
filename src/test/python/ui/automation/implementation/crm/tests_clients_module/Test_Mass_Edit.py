@@ -32,29 +32,47 @@ class MassEditTestCRM(BaseTest):
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .perform_searching_by_email(CRMConstants.SHORT_EMAIL)
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
-        first_client = crm_clients_module_page.open_client_id().get_email_text()
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(CRMConstants.TESTQA)
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(CRMConstants.SHORT_EMAIL)
+
+        first_client = ClientProfilePage(self.driver).get_email_text()
+        first_client_name = ClientProfilePage(self.driver).get_first_name()
         crm_clients_module_page.came_back_on_previous_page()
         CRMLoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url'))
         ClientsPage(self.driver) \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .perform_searching_by_email(CRMConstants.SHORT_EMAIL)
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .perform_searching_by_fname(CRMConstants.TESTQA)
+        else:
+            ClientsPage(self.driver) \
+                .perform_searching_by_email(CRMConstants.SHORT_EMAIL)
         crm_clients_module_page\
             .select_three_records_clients_module() \
             .open_mass_edit_module() \
             .perform_mass_edit(self.config.get_data_mass_edit(MassEditConstants.ASSIGNED_TO_PANDA),
                                self.config.get_data_mass_edit(MassEditConstants.CLIENT_SOURCE)) \
 
-        crm_client_profile = crm_clients_module_page.refresh() \
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(first_client)
+        crm_clients_module_page\
+            .refresh() \
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(first_client_name)
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(first_client)
 
-        assert crm_client_profile.get_assigned_to_text() == self.config.get_data_mass_edit(
+        assert ClientProfilePage(self.driver).get_assigned_to_text() == self.config.get_data_mass_edit(
             MassEditConstants.ASSIGNED_TO_PANDA)
-        assert crm_client_profile.get_client_source_text() == self.config.get_data_mass_edit(
+        assert ClientProfilePage(self.driver).get_client_source_text() == self.config.get_data_mass_edit(
             MassEditConstants.CLIENT_SOURCE)
 
     def test_update_client_details(self):
