@@ -10,7 +10,7 @@ tests_config:
 #    - test_sorting_columns
 #    - test_searching_by_columns
 
-######################################## FILTERS TESTS ###############################################
+######################################## FILTERS TESTS ###########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_global_crm_ui.TestFiltersUI
 #  class: TestFiltersUI
 #  tests:
@@ -20,23 +20,25 @@ tests_config:
 #    - test_filter_help_desk_ui
 #    - test_filter_ta_ui
 
-########################################## LEADS ###################################################
+############################################ LEADS ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_leads_module_ui.TestLeadsModuleUI
 #  directive: reload_configuration
 #  class: TestLeadsModuleUI
 #  tests:
 #    - test_leads_searching_columns_ui
+#    - test_leads_sorting_columns_ui
 #    - test_mass_assign_leads_ui
 #    - test_mass_edit_leads_ui
 #    - test_edit_lead_ui
 #    - test_edit_pencil_lead_ui
 #    - test_convert_lead_ui   # Creates a lead and converts it to a client
 
-############################################## CLIENTS ###############################################
+########################################### CLIENTS ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module_ui.TestClientsModuleUI
 #  class: TestClientsModuleUI
 #  tests:
 #    - test_clients_searching_columns_ui
+#    - test_clients_sorting_columns_ui
 #    - test_mass_assign_clients_ui
 #    - test_mass_edit_clients_ui
 
@@ -46,37 +48,40 @@ tests_config:
 #    - test_edit_client_ui
 #    - test_add_interaction_ui
 
-######################################### MT4 ACTIONS ###########################################
+######################################### MT4 ACTIONS #############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
 #  directive: reload_configuration
 #  class: TestMT4UI
 #  tests:
 #    - test_create_demo_ta_ui
-#    - test_update_mt_user_ui
 #    - test_deposit_crm_ui  # create live mt account and make deposit
 #    - test_withdraw_crm_ui
 #    - test_credit_in_crm_ui
 #    - test_credit_out_crm_ui
 #    - test_transfer_crm_ui
+#    - test_update_mt_user_ui
 
-######################################## AFFILIATES MODULE ##########################################
+######################################## AFFILIATES MODULE #########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module_ui.TestAffiliatesModuleUI
 #  class: TestAffiliateModuleUI
 #  tests:
 #     - test_create_delete_affiliate_ui
 
-############################################ HELP DESK ##############################################
+############################################ HELP DESK #############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
 #  class: TestHelpDeskModuleUI
 #  tests:
-#    - test_create_delete_ticket_ui   # not run: no option to select test client in 'related to' field
+#    - test_create_ticket_ui   # not run: no option to select test client in 'related to' field
+#    - test_edit_ticket_ui   # not run: no option to select test client in 'related to' field
+#    - test_pencil_ticket_ui   # not run: no option to select test client in 'related to' field
+#    - test_delete_ticket_ui   # not run: no option to select test client in 'related to' field
 #    - test_help_desk_searching_columns_ui
 
 ############################################ DOCUMENTS ##############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_documents_ui.TestDocumentsModuleUI
-#  class: TestDocumentsModuleUI
-#  tests:
-#    - test_documents_searching_columns_ui
+- module: src.test.python.ui.automation.implementation.crm.tests_documents_ui.TestDocumentsModuleUI
+  class: TestDocumentsModuleUI
+  tests:
+    - test_documents_searching_columns_ui
 
 ######################################### TRADING ACCOUNTS ##########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_trading_ui.TestTradingModuleUI
@@ -84,38 +89,49 @@ tests_config:
 #  tests:
 #    - test_trading_searching_columns_ui
 
-####################################### FINANCIAL TRANSACTIONS ##########################################
+####################################### FINANCIAL TRANSACTIONS ######################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_fin_transactions_ui.TestFinTransactionsModuleUI
 #  class: TestFinTransactionsModuleUI
 #  tests:
 #    - test_fin_transactions_searching_columns_ui
 
-############################################## AUDIT LOGS ################################################
+############################################## AUDIT LOGS ###########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_audit_logs_ui.TestAuditLogsModuleUI
 #  class: TestAuditLogsModuleUI
 #  tests:
 #    - test_audit_logs_searching_columns_ui
 
-############################################## TASKS ################################################
+################################################# TASKS #############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_ui.TestTasksModuleUI
 #  class: TestTasksModuleUI
 #  tests:
 #    - test_tasks_searching_columns_ui
+#    - test_tasks_sorting_columns_ui
 #    - test_add_event_ui
+#    - test_edit_event_ui
 #    - test_delete_event_ui
 #    - test_tasks_mass_edit
 #    - test_tasks_email_ui
 
-########################################### USER MANAGEMENT ##########################################
+############################################# USER MANAGEMENT #######################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_user_management_ui.TestUserManagementUI
 #  class: TestUserManagementUI
 #  tests:
 #    - test_create_user_ui
+#    - test_login_as_ui
 #    - test_delete_user_ui
 
-############################################## WORKFLOWS #############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_workflows_ui.TestWorkflowsUI
-  class: TestWorkflowsUI
-  tests:
-    - test_create_workflow_ui
-    - test_check_workflow_by_status_ui
+############################################ CRM CONFIGURATION #######################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_crm_config_ui.TestCrmConfigurationUI
+#  class: TestCrmConfigurationUI
+#  tests:
+#    - test_crm_config_pages_ui
+
+################################################ WORKFLOWS ###########################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_workflows_ui.TestWorkflowsUI
+#  class: TestWorkflowsUI
+#  tests:
+#    - test_create_workflow_ui
+#    - test_check_workflow_by_status_ui
+#    - test_check_workflow_by_country_ui
+#    - test_delete_workflow_ui

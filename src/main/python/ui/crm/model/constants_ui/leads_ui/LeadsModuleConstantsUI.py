@@ -32,7 +32,9 @@ class LeadsModuleConstantsUI(object):
     COLUMN_ASSIGNED_TO = "Assigned To"
     COLUMN_COUNTRY = "Country"
     COLUMN_LEAD_NO = "Lead No"
+    COLUMN_CREATED_TIME = "Created Time"
     ROW_NUMBER_FOR_DATA_SEARCHING_5 = "5"
     ROW_NUMBER_FOR_DATA_SEARCHING_1 = "1"
     TAB_ALL = "All"
+
     SHORT_EMAIL = "pandaqa"

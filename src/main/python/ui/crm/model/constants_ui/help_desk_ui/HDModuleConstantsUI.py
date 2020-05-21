@@ -5,7 +5,8 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 import string
 
 
-class HelpDeskModuleConstantsUI(object):
+class HDModuleConstantsUI(object):
+
     ROW_NUMBER_FOR_DATA_SEARCHING_5 = "5"
     ROW_NUMBER_FOR_DATA_SEARCHING_1 = "1"
     TAB_ALL = "All"

@@ -446,7 +446,7 @@ class ClientProfilePage(CRMBasePage):
 
     def get_first_name(self):
         sleep(1)
-        first_name = self.driver.find_element(By.XPATH, "//td[contains(text(),'First Name')]//following-sibling::td[1]")
+        first_name = super().wait_load_element("//td[contains(text(),'First Name')]//following-sibling::td[1]")
         Logging().reportDebugStep(self, "Returns the first name: " + first_name.text)
         return first_name.text
 
@@ -645,9 +645,13 @@ class ClientProfilePage(CRMBasePage):
         return customer_classification
 
     def open_deposit_for_client_in_menu(self):
-        deposit_for_client_element = self.driver.find_element(By.XPATH, "//*[@id='sidebar']/table[1]/tbody/tr[4]/td/a")
-        self.driver.execute_script("arguments[0].click();", deposit_for_client_element)
-        Logging().reportDebugStep(self, "Deposit for client popup was opened")
+        try:
+            deposit_for_client_element = self.driver.find_element(By.XPATH,
+                                                            "//*[@id='sidebar']//a[contains(@href,'Client Deposit')]")
+            self.driver.execute_script("arguments[0].click();", deposit_for_client_element)
+            Logging().reportDebugStep(self, "Deposit for client popup was opened")
+        except:
+            Logging().reportDebugStep(self, "Client Deposit button does not exist(NOT RUNNED)")
         return ClientProfilePage(self.driver)
 
     def fill_client_deposit_pop(self, account_number):
@@ -847,12 +851,12 @@ class ClientProfilePage(CRMBasePage):
         edit_personal_details = super().wait_load_element("//*[@id='mouseArea_Client Status']")
         edit_personal_details.click()
         sleep(1)
-        pencil = super().wait_load_element("//*[@id='crmspanid']/a/span")
+        pencil = super().wait_load_element("//*[contains(@onclick,'Client Status')]//span[contains(@class,'pencil')]")
         try:
             pencil.click()
         except:
             self.driver.execute_script("arguments[0].click();", pencil)
-        sleep(1)
+        sleep(3)
         select = Select(self.driver.find_element(By.XPATH, "//select[@id='txtbox_Client Status']"))
         select.select_by_visible_text(status)
         sleep(1)
@@ -861,7 +865,7 @@ class ClientProfilePage(CRMBasePage):
             save_personal_details.click()
         except:
             self.driver.execute_script("arguments[0].click();", save_personal_details)
-        Logging().reportDebugStep(self, "Click Edit")
+        Logging().reportDebugStep(self, "Edit status: " + status)
         return ClientProfilePage(self.driver)
 
     def click_edit_personal_detail(self):
@@ -893,6 +897,33 @@ class ClientProfilePage(CRMBasePage):
         btn_save.send_keys(Keys.DELETE)
         btn_save.send_keys(date)
         Logging().reportDebugStep(self, "Enter birthday")
+        return ClientProfilePage(self.driver)
+
+    def set_city_edit_page(self, data):
+        sleep(0.1)
+        btn_save = super().wait_load_element("//*[@id='city']")
+        btn_save.send_keys(Keys.CONTROL, "a")
+        btn_save.send_keys(Keys.DELETE)
+        btn_save.send_keys(data)
+        Logging().reportDebugStep(self, "Set city: " + data)
+        return ClientProfilePage(self.driver)
+
+    def set_address_edit_page(self, data):
+        sleep(0.1)
+        btn_save = super().wait_load_element("//*[@id='address']")
+        btn_save.send_keys(Keys.CONTROL, "a")
+        btn_save.send_keys(Keys.DELETE)
+        btn_save.send_keys(data)
+        Logging().reportDebugStep(self, "Set address: " + data)
+        return ClientProfilePage(self.driver)
+
+    def set_postcode_edit_page(self, data):
+        sleep(0.1)
+        btn_save = super().wait_load_element("//*[@id='postcode']")
+        btn_save.send_keys(Keys.CONTROL, "a")
+        btn_save.send_keys(Keys.DELETE)
+        btn_save.send_keys(data)
+        Logging().reportDebugStep(self, "Set postcode: " + data)
         return ClientProfilePage(self.driver)
 
     def get_trading_account_info(self):

@@ -15,5 +15,6 @@ class TasksModuleConstantsUI(object):
     COLUMN_EVENT_TYPE = "Event type"
     COLUMN_SUBJECT = "Subject"
     COLUMN_COMMENT = "Comment"
+    COLUMN_START_DATE = "Start date"
 
     ACCOUNT_NAME = "testqa"
