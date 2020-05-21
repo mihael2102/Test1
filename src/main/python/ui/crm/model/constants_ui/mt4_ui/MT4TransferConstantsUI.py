@@ -14,6 +14,7 @@ class MT4TransferConstantsUI(object):
     LIST_SOURCE = "Source"
     LIST_DESTINATION = "Destination"
     FIELD_AMOUNT = "Amount"
+    BTN_FINAL = "Transfer"
 
     AMOUNT = "1.00"
     AMOUNT_CRYPTO = "0.00001"

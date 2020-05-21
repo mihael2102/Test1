@@ -174,7 +174,8 @@ class LoginCAPrecondition(object):
                 global_var.current_brand_name == "uprofx" or \
                 global_var.current_brand_name == "kontofx" or \
                 global_var.current_brand_name == "olympiamarkets" or \
-                global_var.current_brand_name == "grandefex":
+                global_var.current_brand_name == "grandefex" or \
+                global_var.current_brand_name == "analystq":
 
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca'))
@@ -371,11 +372,8 @@ class LoginCAPrecondition(object):
                 and (global_var.current_brand_name != "gigafx") \
                 and (global_var.current_brand_name != "trade99") \
                 and (global_var.current_brand_name != "tradenero"):
-            try:
+            if '*' not in actual_phone:
                 assert expected_phone in actual_phone
-            except:
-                assert actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN4 or \
-                       actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN3
 
         if global_var.current_brand_name != "q8":
             assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS
@@ -434,10 +432,12 @@ class LoginCAPrecondition(object):
 
         """ Verify client's data """
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(first_name,
-                               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]) \
-            .comparator_string(last_name,
-                               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]) \
+            .comparator_string(
+                first_name,
+                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]) \
+            .comparator_string(
+                last_name,
+                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]) \
             .comparator_string(birthday, CAConstants.BIRTHDAY_CRM) \
             .comparator_string(currency, CAConstants.CURRENCY) \
             .comparator_string(address, CAConstants.ADDRESS) \

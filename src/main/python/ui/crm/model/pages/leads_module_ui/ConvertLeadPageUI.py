@@ -41,7 +41,7 @@ class ConvertLeadPageUI(CRMBasePage):
         if password:
             self.set_text_field(field9, password)
         if currency:
-            self.select_pick_list_item(list4, currency)
+            self.select_pick_list_item_by_number(list4, currency)
         if referral:
             self.set_text_field(field10, referral)
         if brand:
@@ -63,6 +63,11 @@ class ConvertLeadPageUI(CRMBasePage):
     def select_pick_list_item(self, pick_list, item):
         GlobalPopupPageUI(self.driver)\
             .select_pick_list_item(pick_list, item)
+        return ConvertLeadPageUI(self.driver)
+
+    def select_pick_list_item_by_number(self, pick_list, number):
+        GlobalPopupPageUI(self.driver)\
+            .select_pick_list_item_by_number(pick_list, number)
         return ConvertLeadPageUI(self.driver)
 
     def set_text_field(self, field, text):

@@ -64,12 +64,8 @@ class MT4CreditOutPreconditionUI(object):
                 list1=MT4CreditOutConstantsUI.LIST_TA, t_account=MT4CreditInConstantsUI.TA_CREDIT,
                 field1=MT4CreditOutConstantsUI.FIELD_AMOUNT, amount=amount,
                 field2=MT4CreditOutConstantsUI.FIELD_GRANTED_BY, granted_by=MT4CreditOutConstantsUI.GRANTED_BY,
-                field3=MT4CreditOutConstantsUI.FIELD_COMMENT, comment=MT4CreditOutConstantsUI.COMMENT)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok() \
+                field3=MT4CreditOutConstantsUI.FIELD_COMMENT, comment=MT4CreditOutConstantsUI.COMMENT,
+                final_btn=MT4CreditOutConstantsUI.BTN_FINAL) \
             .refresh_page()
 
         """ Check credit was updated """
@@ -104,11 +100,11 @@ class MT4CreditOutPreconditionUI(object):
                 credit,
                 expected_credit)
 
-        """ Verify data in info tag Credit was updated """
-        credit_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_CREDIT)
-        if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
-            assert expected_credit in credit_tag
-        else:
-            expected_credit = expected_credit.split('.')[0]
-            assert expected_credit in credit_tag
+        # """ Verify data in info tag Credit was updated """
+        # credit_tag = ClientDetailsPageUI(self.driver) \
+        #     .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_CREDIT)
+        # if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
+        #     assert expected_credit in credit_tag
+        # else:
+        #     expected_credit = expected_credit.split('.')[0]
+        #     assert expected_credit in credit_tag

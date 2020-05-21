@@ -41,11 +41,14 @@ class CRMBaseMethodsPage(CRMBasePage):
         return CRMBaseMethodsPage(self.driver)
 
     def open_tab_list_view(self, tab_title):
-        tab = super().wait_element_to_be_clickable("//li[contains(text(),'%s')]" % tab_title)
-        tab.click()
-        self.wait_vtiger_loading_to_finish_custom(35)
-        self.wait_crm_loading_to_finish_tasks(35)
-        Logging().reportDebugStep(self, "Tab " + tab_title + " was opened")
+        try:
+            tab = super().wait_element_to_be_clickable("//li[contains(text(),'%s')]" % tab_title)
+            tab.click()
+            self.wait_vtiger_loading_to_finish_custom(35)
+            self.wait_crm_loading_to_finish_tasks(35)
+            Logging().reportDebugStep(self, "Tab " + tab_title + " was opened")
+        except(NoSuchElementException, TimeoutException):
+            Logging().reportDebugStep(self, "Tab " + tab_title + " does not exist")
         return CRMBaseMethodsPage(self.driver)
 
     def open_tab_list_view_ui(self, tab_title):
@@ -73,11 +76,11 @@ class CRMBaseMethodsPage(CRMBasePage):
     def open_module_ui(self, module_title):
         try:
             Logging().reportDebugStep(self, "Wait for module " + module_title)
-            module = super().wait_load_element("//div[@class='nav-menu']//span[contains(text(), '%s')]" % module_title)
+            module = super().wait_load_element("//div[@class='nav-menu']//a[contains(text(), '%s')]" % module_title)
             self.driver.execute_script("arguments[0].click();", module)
             sleep(1)
-            self.wait_loading_to_finish_new_ui(45)
-            sleep(1)
+            self.wait_loading_to_finish_new_ui(55)
+            sleep(2)
             Logging().reportDebugStep(self, "Module " + module_title + " was opened")
             return CRMBaseMethodsPage(self.driver)
         except(NoSuchElementException, TimeoutException):

@@ -33,23 +33,22 @@ class TasksMassEditPreconditionUI(object):
         GlobalModulePageUI(self.driver) \
             .set_data_column_field(TasksModuleConstantsUI.COLUMN_ACCOUNT_NAME,
                                    TasksModuleConstantsUI.ACCOUNT_NAME) \
-            .select_all_records_checkbox() \
-            .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT)
+            .select_all_records_checkbox()
 
         """ Mass Edit """
         MassEditPageUI(self.driver) \
-            .select_field_to_edit(MassActionsConstantsUI.LIST_EVENT_TYPE) \
-            .select_from_list(MassActionsConstantsUI.LIST_EVENT_TYPE, MassActionsConstantsUI.EVENT_TYPE) \
-            .select_field_to_edit(MassActionsConstantsUI.FIELD_ASSIGNED_TO) \
-            .select_from_list(MassActionsConstantsUI.FIELD_ASSIGNED_TO, MassActionsConstantsUI.USER_NAME) \
-            .select_field_to_edit(MassActionsConstantsUI.LIST_PRIORITY) \
-            .select_from_list(MassActionsConstantsUI.LIST_PRIORITY, MassActionsConstantsUI.PRIORITY) \
-            .click_save_changes_btn()
+            .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT) \
+            .mass_edit(
+                field_to_edit5=MassActionsConstantsUI.LIST_EVENT_TYPE,
+                event_type=MassActionsConstantsUI.EVENT_TYPE,
+                field_to_edit4=MassActionsConstantsUI.FIELD_ASSIGNED_TO,
+                assign_to=MassActionsConstantsUI.USER_NAME,
+                field_to_edit6=MassActionsConstantsUI.LIST_PRIORITY,
+                priority=MassActionsConstantsUI.PRIORITY,
+                final_btn=MassActionsConstantsUI.BTN_FINAL2)
 
         """ Check confirmation message and updated data in table """
         GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok() \
             .refresh_page_ui() \
             .set_data_column_field(TasksModuleConstantsUI.COLUMN_ACCOUNT_NAME,
                                    TasksModuleConstantsUI.ACCOUNT_NAME) \

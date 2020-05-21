@@ -59,12 +59,8 @@ class MT4DepositPreconditionUI(object):
             list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
             list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=currency,
             list3=MT4CreateTAConstantsUI.LIST_GROUP, group_number="1",
-            list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
+            list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE,
+            final_btn=MT4CreateTAConstantsUI.BTN_FINAL)
 
         """ Get account number to make deposit in future """
         record_num = ClientDetailsPageUI(self.driver) \
@@ -86,18 +82,13 @@ class MT4DepositPreconditionUI(object):
             amount = MT4DepositConstantsUI.AMOUNT
         MT4DepositPageUI(self.driver)\
             .mt4_deposit_ui(
-                list1=MT4DepositConstantsUI.LIST_P_METHOD, p_method=MT4DepositConstantsUI.P_METHOD,
+                list1=MT4DepositConstantsUI.LIST_P_METHOD, p_method='2',
                 list2=MT4DepositConstantsUI.LIST_STATUS, status=MT4DepositConstantsUI.STATUS,
                 list3=MT4DepositConstantsUI.LIST_TA, t_account=account_number,
                 field1=MT4DepositConstantsUI.FIELD_AMOUNT, amount=amount,
                 field2=MT4DepositConstantsUI.FIELD_COMMENT, comment=MT4DepositConstantsUI.COMMENT,
-                list4=MT4DepositConstantsUI.LIST_CLEARED_BY, cleared_by=MT4DepositConstantsUI.CLEARED_BY,
-                final_btn=MT4DepositConstantsUI.BTN_FINAL)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok() \
+                list4=MT4DepositConstantsUI.LIST_CLEARED_BY, cleared_by='2',
+                final_btn=MT4DepositConstantsUI.BTN_FINAL) \
             .refresh_page()
 
         """ Check balance was updated """
@@ -112,32 +103,32 @@ class MT4DepositPreconditionUI(object):
                 balance,
                 amount)
 
-        """ Verify data in info tag Balance was updated """
-        balance_tag = ClientDetailsPageUI(self.driver)\
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_BALANCE)
-        if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in balance_tag
-
-        """ Verify data in info tag Deposit was updated """
-        deposit_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_DEPOSIT)
-        if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in deposit_tag
-
-        """ Verify data in info tag Equity was updated """
-        equity_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_EQUITY)
-        if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in equity_tag
-
-        """ Verify data in info tag Free Margin was updated """
-        free_margin_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_FREE_MARGIN)
-        if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in free_margin_tag
-
-        """ Verify data in info tag Net Deposit was updated """
-        net_deposit_tag = ClientDetailsPageUI(self.driver) \
-            .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_NET_DEPOSIT)
-        if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
-            assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in net_deposit_tag
+        # """ Verify data in info tag Balance was updated """
+        # balance_tag = ClientDetailsPageUI(self.driver)\
+        #     .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_BALANCE)
+        # if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
+        #     assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in balance_tag
+        #
+        # """ Verify data in info tag Deposit was updated """
+        # deposit_tag = ClientDetailsPageUI(self.driver) \
+        #     .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_DEPOSIT)
+        # if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
+        #     assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in deposit_tag
+        #
+        # """ Verify data in info tag Equity was updated """
+        # equity_tag = ClientDetailsPageUI(self.driver) \
+        #     .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_EQUITY)
+        # if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
+        #     assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in equity_tag
+        #
+        # """ Verify data in info tag Free Margin was updated """
+        # free_margin_tag = ClientDetailsPageUI(self.driver) \
+        #     .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_FREE_MARGIN)
+        # if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
+        #     assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in free_margin_tag
+        #
+        # """ Verify data in info tag Net Deposit was updated """
+        # net_deposit_tag = ClientDetailsPageUI(self.driver) \
+        #     .get_data_from_info_tag(ClientDetailsConstantsUI.TAG_NET_DEPOSIT)
+        # if ConvertLeadConstantsUI.GET_CURRENCY != "BTC":
+        #     assert CRMConstants.AMOUNT_DEPOSIT_FOR_CREDIT_OUT.split(".")[0] in net_deposit_tag
