@@ -43,7 +43,7 @@ class ChangePasswordTestCRM(BaseTest):
         message_confirm = crm_client_profile.get_confirm_message()
         crm_client_profile.click_ok()
 
-        self.assertEqual(message_confirm, CRMConstants.CRM_CLIENT_AREA_PASSWORD_CHANGE)
+        assert 'changed' in message_confirm
 
     def test_change_mt4_password_from_crm(self):
         crm_client_profile = CRMLoginPage(self.driver) \
@@ -60,47 +60,53 @@ class ChangePasswordTestCRM(BaseTest):
             ClientsPage(self.driver) \
                 .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
-        account_number = crm_client_profile \
+        account_number = ClientProfilePage(self.driver) \
             .perform_scroll_down() \
             .open_trading_accounts_tab() \
             .get_client_account()
 
         # Change the password to a new password
-        crm_client_profile.perform_scroll_up().open_mt4_actions(CRMConstants.CHANGE_PASSWORD)
+        ClientProfilePage(self.driver)\
+            .perform_scroll_up()\
+            .open_mt4_actions(CRMConstants.CHANGE_PASSWORD)
 
         MT4UpdatePasswordModule(self.driver).select_account(account_number) \
             .enter_password(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.NEW_PASSWORD)) \
             .click_check_button()
 
-        message_confirm = crm_client_profile.get_confirm_message_body()
+        message_confirm = ClientProfilePage(self.driver)\
+            .get_confirm_message_body()
         crm_client_profile.click_ok()
 
         self.assertEqual(message_confirm, CRMConstants.PASSWORD_CHANGE)
 
         # check the new password
-        crm_client_profile.refresh_page().open_mt4_actions(CRMConstants.CHECK_PASSWORD_OLD_FOREX)
+        crm_client_profile.refresh_page()
+        ClientProfilePage(self.driver).open_mt4_actions(CRMConstants.CHECK_PASSWORD_OLD_FOREX)
 
         MT4CheckPasswordModule(self.driver)\
             .select_account(account_number) \
             .enter_password(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.NEW_PASSWORD))\
             .click_check_button()
 
-        message_confirm = crm_client_profile.get_confirm_message_body()
+        message_confirm = ClientProfilePage(self.driver).get_confirm_message_body()
         crm_client_profile.click_ok()
 
         if message_confirm:
             self.assertEqual(message_confirm, CRMConstants.CUSTOMER_PASSWORD_VALID_MESSAGE)
 
         # change the password back to the original password
-        crm_client_profile.refresh_page().open_mt4_actions(CRMConstants.CHANGE_PASSWORD)
+        crm_client_profile.refresh_page()
+        ClientProfilePage(self.driver)\
+            .open_mt4_actions(CRMConstants.CHANGE_PASSWORD)
 
         MT4UpdatePasswordModule(self.driver)\
             .select_account(account_number) \
             .enter_password(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                        LeadsModuleConstants.FIRST_PASSWORD_LEAD)) \
+                            LeadsModuleConstants.FIRST_PASSWORD_LEAD)) \
             .click_check_button()
 
-        message_confirm = crm_client_profile.get_confirm_message_body()
+        message_confirm = ClientProfilePage(self.driver).get_confirm_message_body()
         crm_client_profile.click_ok()
-        if message_confirm != "":
+        if message_confirm:
             self.assertEqual(message_confirm, CRMConstants.PASSWORD_CHANGE)

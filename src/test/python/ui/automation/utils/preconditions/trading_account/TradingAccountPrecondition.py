@@ -50,7 +50,8 @@ class TradingAccountPrecondition(object):
             ClientsPage(self.driver) \
                 .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
-        crm_client_profile.open_mt4_actions(CRMConstants.CREATE_MT4_USER)
+        ClientProfilePage(self.driver)\
+            .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
 
         if (global_var.current_brand_name == "rimarkets-staging") or (global_var.current_brand_name == "rimarkets"):
             MT4CreateAccountModule(self.driver)\

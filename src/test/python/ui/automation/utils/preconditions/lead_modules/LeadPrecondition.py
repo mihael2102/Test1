@@ -81,8 +81,12 @@ class LeadPrecondition(object):
         CRMHomePage(self.driver)\
             .open_lead_module()\
             .select_filter(
-                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))\
-            .enter_email(CRMConstants.SHORT_EMAIL)\
+                self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            LeadsModule(self.driver).enter_first_name(CRMConstants.TESTQA)
+        else:
+            LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
+        LeadsModule(self.driver)\
             .click_search_button_leads_module()\
             .open_first_lead()\
             .change_personal_info_pencil_icon(CRMConstants.CHANGE_PHONE_LEAD)
@@ -267,12 +271,18 @@ class LeadPrecondition(object):
         CRMHomePage(self.driver).open_lead_module()
         LeadsModule(self.driver).select_filter(
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
-        LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            LeadsModule(self.driver).enter_first_name(CRMConstants.TESTQA)
+        else:
+            LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
         LeadsModule(self.driver).click_search_button_leads_module()
         sleep(1)
         LeadsModule(self.driver).click_check_box_all_leads()
         LeadsModule(self.driver).click_mass_edit_leads()
-        if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "fm-fx":
+        if global_var.current_brand_name == "itrader" or \
+                global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or \
+                global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "itrader_global" or \
+                global_var.current_brand_name == "fm-fx":
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_ITRADER)
         elif global_var.current_brand_name == "stoxmarket":
             LeadsModule(self.driver).edit_status(CRMConstants.STATUS_EDIT_STOX)
@@ -282,7 +292,10 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).edit_country(CRMConstants.COUNTRY_EDIT)
         LeadsModule(self.driver).click_save_mass_edit()
         sleep(1)
-        LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            LeadsModule(self.driver).enter_first_name(CRMConstants.TESTQA)
+        else:
+            LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
         LeadsModule(self.driver).click_search_button_leads_module()
         i = 1
         for i in range(1, 3):
@@ -309,7 +322,10 @@ class LeadPrecondition(object):
         CRMHomePage(self.driver).open_lead_module()
         LeadsModule(self.driver).select_filter(
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
-        LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            LeadsModule(self.driver).enter_first_name(CRMConstants.TESTQA)
+        else:
+            LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
         LeadsModule(self.driver).click_search_button_leads_module()
         LeadsModule(self.driver).click_check_box_all_leads()
         LeadsModule(self.driver).click_mass_assign()
@@ -334,9 +350,12 @@ class LeadPrecondition(object):
         i = 1
         for i in range(1,3):
             status = LeadsModule(self.driver).check_status_leads(i)
-            if global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" or global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx":
+            if global_var.current_brand_name == "otcapital" or global_var.current_brand_name == "gmo" or \
+               global_var.current_brand_name == "itrader" or global_var.current_brand_name == "itrader_global" or \
+               global_var.current_brand_name == "rimarkets" or global_var.current_brand_name == "fm-fx":
                 assert status == CRMConstants.STATUS_EDIT_ITRADER
-            elif global_var.current_brand_name == "fxpmarkets" or global_var.current_brand_name == "stoxmarket" or \
+            elif global_var.current_brand_name == "fxpmarkets" or \
+                    global_var.current_brand_name == "stoxmarket" or \
                     global_var.current_brand_name == "forex_staging":
                 try:
                     assert status == CRMConstants.STATUS_EDIT_STOX
@@ -362,19 +381,22 @@ class LeadPrecondition(object):
         LeadsModule(self.driver).select_filter(
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
         sleep(10)
-        LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            LeadsModule(self.driver).enter_first_name(CRMConstants.TESTQA)
+        else:
+            LeadsModule(self.driver).enter_email(CRMConstants.SHORT_EMAIL)
         sleep(5)
         LeadsModule(self.driver).click_search_button_leads_module()
         sleep(15)
         LeadsModule(self.driver).sorting_lead_by_leads_no()
         lead_no = LeadsModule(self.driver).check_first_line_leads_no()
-        LeadsModule(self.driver).sorting_lead_by_email()
-        email = LeadsModule(self.driver).check_first_line_email()
+        # LeadsModule(self.driver).sorting_lead_by_email()
+        # email = LeadsModule(self.driver).check_first_line_email()
         LeadsModule(self.driver).sorting_lead_by_exist()
         exist = LeadsModule(self.driver).check_first_line_exist()
 
         assert lead_no <= CRMConstants.SORTING_LEAD_NO
-        assert email < CRMConstants.SORTING_EMAIL
+        # assert email < CRMConstants.SORTING_EMAIL
         try:
             assert exist == CRMConstants.SORTING_EXIST_NO
         except:

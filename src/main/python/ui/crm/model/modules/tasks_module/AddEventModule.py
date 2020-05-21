@@ -74,8 +74,10 @@ class AddEventModule(CRMBasePage):
         account_name_element = self.driver.find_element(By.XPATH, "//input[@placeholder='Start typing name']")
         account_name_element.clear()
         account_name_element.send_keys(account_name)
+        account_name = account_name.lower()
         selecting_account_element = super().wait_element_to_be_clickable(
-            "//div[@class='ngui-auto-complete']//ul//li[contains(text(),'%s')]" % account_name)
+            "//div[@class='ngui-auto-complete']//ul//li[contains(translate"
+            "(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'%s')]" % account_name)
         selecting_account_element.click()
         Logging().reportDebugStep(self, "The account was set: " + account_name)
         return AddEventModule()
