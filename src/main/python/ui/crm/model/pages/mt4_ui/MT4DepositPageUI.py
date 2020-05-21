@@ -2,10 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from selenium.common.exceptions import TimeoutException
-from selenium.common.exceptions import NoSuchElementException
-from src.main.python.utils.logs.Loging import Logging
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from time import sleep
 
 
@@ -15,7 +12,7 @@ class MT4DepositPageUI(CRMBasePage):
                        field1=None, amount=None, field2=None, comment=None, list4=None, cleared_by=None,
                        final_btn=None):
         if p_method:
-            self.select_pick_list_item(list1, p_method)
+            self.select_pick_list_item_by_number(list1, p_method)
         if status:
             self.select_pick_list_item(list2, status)
         if t_account:
@@ -25,13 +22,19 @@ class MT4DepositPageUI(CRMBasePage):
         if comment:
             self.set_text_field(field2, comment)
         if cleared_by:
-            self.select_pick_list_item(list4, cleared_by)
+            self.select_pick_list_item_by_number(list4, cleared_by)
         sleep(1)
         self.click_deposit(final_btn)
+        return MT4DepositPageUI(self.driver)
 
     def select_pick_list_item(self, pick_list, item):
         GlobalPopupPageUI(self.driver)\
             .select_pick_list_item(pick_list, item)
+        return MT4DepositPageUI(self.driver)
+
+    def select_pick_list_item_by_number(self, pick_list, number):
+        GlobalPopupPageUI(self.driver)\
+            .select_pick_list_item_by_number(pick_list, number)
         return MT4DepositPageUI(self.driver)
 
     def set_text_field(self, field, text):
@@ -42,4 +45,7 @@ class MT4DepositPageUI(CRMBasePage):
     def click_deposit(self, final_btn):
         GlobalPopupPageUI(self.driver)\
             .click_final_btn(final_btn)
+        GlobalModulePageUI(self.driver) \
+            .verify_success_message() \
+            .click_ok()
         return MT4DepositPageUI(self.driver)

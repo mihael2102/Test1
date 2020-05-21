@@ -10,6 +10,18 @@ from src.main.python.utils.logs.Loging import Logging
 
 class ClientDetailsPageUI(CRMBasePage):
 
+    def switch_first_tab_page(self):
+        super().switch_first_tab_page()
+        return ClientDetailsPageUI(self.driver)
+
+    def switch_second_tab_page(self):
+        super().switch_second_tab_page()
+        return ClientDetailsPageUI(self.driver)
+
+    def refresh_client_page(self):
+        super().refresh_page()
+        return ClientDetailsPageUI(self.driver)
+
     def get_text_from_field(self, field):
         sleep(0.1)
         try:
@@ -20,7 +32,7 @@ class ClientDetailsPageUI(CRMBasePage):
             except(NoSuchElementException, TimeoutException):
                 Logging().reportDebugStep(self, "Field " + field + " is not editable")
                 data = super().wait_load_element(
-                    "//div[label='%s']//following-sibling::div//div[@class]" % field).text
+                    "//div[label='%s']//following-sibling::div//div[@class and text()]" % field).text
             Logging().reportDebugStep(self, "Get data from field " + field + ": " + data)
             return data
         except:
@@ -65,17 +77,21 @@ class ClientDetailsPageUI(CRMBasePage):
         Edit field via pencil icon
     """
 
-    def click_pencil_icon_in_field(self, field):
+    def edit_list_via_pencil(self, field, item):
         GlobalDetailsPageUI(self.driver)\
-            .click_pencil_icon_in_field(field)
-        return ClientDetailsPageUI(self.driver)
-
-    def set_text_pencil_field(self, field, text):
-        GlobalDetailsPageUI(self.driver) \
-            .set_text_pencil_field(field, text)
-        return ClientDetailsPageUI(self.driver)
-
-    def click_confirm_btn_pencil_field(self, field):
-        GlobalDetailsPageUI(self.driver) \
+            .click_pencil_icon_in_field(field) \
+            .select_item_list_pencil_field(field, item) \
             .click_confirm_btn_pencil_field(field)
+        return ClientDetailsPageUI(self.driver)
+
+    def edit_text_field_via_pencil_icon(self, field, text):
+        GlobalDetailsPageUI(self.driver) \
+            .click_pencil_icon_in_field(field) \
+            .set_text_pencil_field(field, text) \
+            .click_confirm_btn_pencil_field(field)
+        return ClientDetailsPageUI(self.driver)
+
+    def click_edit_btn(self):
+        GlobalDetailsPageUI(self.driver)\
+            .click_edit_btn()
         return ClientDetailsPageUI(self.driver)
