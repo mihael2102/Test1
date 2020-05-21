@@ -53,17 +53,20 @@ class TabLeadsModuleCRM(BaseTest):
             self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FILTER_NAME))
         sleep(8)
         lead_module.perform_searching_lead_module(
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_NAME),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_LAST_NAME),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.EMAIL),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
-                                           LeadsModuleConstants.FIRST_ASSIGNED_TO),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_TITTLE),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
-                                           LeadsModuleConstants.FIRST_LEAD_SOURCE),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
-                                           LeadsModuleConstants.FIRST_LEAD_STATUS),
-            self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO, LeadsModuleConstants.FIRST_LANGUAGE))
+            first_name=self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                                      LeadsModuleConstants.FIRST_NAME),
+            last_name=self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                                     LeadsModuleConstants.FIRST_LAST_NAME),
+            assigned_to=self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                                       LeadsModuleConstants.FIRST_ASSIGNED_TO),
+            tittle=self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                                  LeadsModuleConstants.FIRST_TITTLE),
+            lead_source=self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                                       LeadsModuleConstants.FIRST_LEAD_SOURCE),
+            lead_status=self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                                       LeadsModuleConstants.FIRST_LEAD_STATUS),
+            language=self.config.get_data_lead_info(LeadsModuleConstants.FIRST_LEAD_INFO,
+                                                    LeadsModuleConstants.FIRST_LANGUAGE))
 
         result_count = lead_module.get_results_count()
         self.assertEqual(1, result_count, "The number of expected search results does not match")

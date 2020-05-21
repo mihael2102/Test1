@@ -155,7 +155,7 @@ module_clients_filter:
   first_column: "CRM Id"
   second_column: "Client Status"
   third_column: "Lead Exist"
-  fourth_column: "Email *"
+  fourth_column: "Gender"
   fifth_column: "Client Name"
   sixth_column: "Assigned To *"
   seventh_column: "Country *"

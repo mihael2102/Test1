@@ -9,6 +9,7 @@ from src.main.python.utils.config import Config
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.filter.FilterPage import FilterPage
 
+
 class FilterPrecondition(object):
 
     driver = None
@@ -22,22 +23,9 @@ class FilterPrecondition(object):
         CRMHomePage(self.driver).open_client_module() \
             .open_create_filter_pop_up() \
 
-        if (global_var.current_brand_name == "royal_cfds") or (global_var.current_brand_name == "intelligent_capital"):
-            FilterPage(self.driver).perform_create_filter_client_module(
-                       TestDataConstants.FILTER_NAME_CLIENT,
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SECOND_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.THIRD_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FOURTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIFTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SIXTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.SEVENTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.EIGHTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.NINTH_COLUMN),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.TENTH_COLUMN_OTHER_TYPE),
-                       self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.ELEVENTH_COLUMN))
-
-        elif (global_var.current_brand_name == "stoxmarket") or (global_var.current_brand_name == "urf") or (global_var.current_brand_name == "itrader_global"):
+        if global_var.current_brand_name == "stoxmarket" \
+                or global_var.current_brand_name == "urf" \
+                or global_var.current_brand_name == "itrader_global":
             FilterPage(self.driver).perform_create_filter_client_module(
                 TestDataConstants.FILTER_NAME_CLIENT,
                 self.config.get_value(TestDataConstants.MODULE_CLIENTS_FILTER, CRMConstants.FIRST_COLUMN),
@@ -112,21 +100,8 @@ class FilterPrecondition(object):
         CRMHomePage(self.driver).open_lead_module() \
             .open_create_filter_pop_up() \
 
-        if (global_var.current_brand_name == "ogtrade"):
-            FilterPage(self.driver).perform_create_filter_lead_module(
-                    TestDataConstants.FILTER_NAME_LEADS,
-                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIRST_COLUMN),
-                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.SECOND_COLUMN),
-                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.THIRD_COLUMN),
-                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.FOURTH_COLUMN),
-                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIFTH_COLUMN),
-                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.SIXTH_COLUMN),
-                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.SEVENTH_COLUMN),
-                    self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN_STREET)) \
-                    .click_save_button()
-
-        else:
-            FilterPage(self.driver).perform_create_filter_lead_module(
+        FilterPage(self.driver)\
+            .perform_create_filter_lead_module(
                 TestDataConstants.FILTER_NAME_LEADS,
                 self.config.get_data_lead_info_from_json(LeadsModuleConstants.FIRST_COLUMN),
                 self.config.get_data_lead_info_from_json(LeadsModuleConstants.SECOND_COLUMN),
@@ -136,7 +111,7 @@ class FilterPrecondition(object):
                 self.config.get_data_lead_info_from_json(LeadsModuleConstants.SIXTH_COLUMN),
                 self.config.get_data_lead_info_from_json(LeadsModuleConstants.SEVENTH_COLUMN),
                 self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN)) \
-                .click_save_button()
+            .click_save_button()
 
         return FilterPrecondition(self.driver, self.config)
 

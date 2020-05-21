@@ -121,11 +121,7 @@ class FilterModulesTest(BaseTest):
         assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.SIXTH_COLUMN) == sixth_name_column
         assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.SEVENTH_COLUMN) == seventh_name_column
 
-        if global_var.current_brand_name == "ogtrade":
-            assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN_STREET) == eighth_name_column
-
-        else:
-            assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN) == eighth_name_column
+        assert self.config.get_data_lead_info_from_json(LeadsModuleConstants.EIGHT_COLUMN) == eighth_name_column
 
         FilterPrecondition(self.driver, self.config).delete_leads_module_filter()
 
