@@ -13,7 +13,9 @@ from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
+from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
 
 
 class Trading_Precondition(object):
@@ -318,8 +320,8 @@ class Trading_Precondition(object):
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .login()\
-            .enter_email(CAConstants.EMAIL_CA)\
-            .enter_password(CAConstants.PASSWORD)\
+            .enter_email(SignUpFirstStepConstants.EMAIL)\
+            .enter_password(SignUpFirstStepConstants.PASSWORD)\
             .click_login()\
             .verify()
 
@@ -401,8 +403,8 @@ class Trading_Precondition(object):
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .login() \
-            .enter_email(CAConstants.EMAIL_CA) \
-            .enter_password(CAConstants.PASSWORD) \
+            .enter_email(SignUpFirstStepConstants.EMAIL) \
+            .enter_password(SignUpFirstStepConstants.PASSWORD) \
             .click_login() \
             .verify()
 
