@@ -7,7 +7,9 @@ from src.main.python.ui.ca.model.pages.ca_pages_ui.MainPage import MainPage
 from src.main.python.ui.ca.model.constants.main_page.MainPageConstants import MainPageConstants
 from src.main.python.ui.ca.model.pages.ca_pages_ui.PersonalDetailsPage import PersonalDetailsPage
 from src.main.python.ui.ca.model.constants.client_area.PersonalDetailsConstants import PersonalDetailsConstants
-from src.test.python.ui.automation.utils.preconditions.CA.questionnaire.QuesDualixPrecondition import QuesDualixPrecondition
+from src.test.python.ui.automation.utils.preconditions.CA.questionnaire.QuesDualixPrecondition import \
+    QuesDualixPrecondition
+from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.ca.model.pages.ca_pages_ui.LoginPage import LoginPage
 
@@ -32,7 +34,7 @@ class SignUpPrecondition(object):
                 url=self.config.get_value('url_ca'),
                 field1=SignUpFirstStepConstants.FIELD_FNAME, first_name=SignUpFirstStepConstants.F_NAME,
                 field2=SignUpFirstStepConstants.FIELD_LNAME, last_name=SignUpFirstStepConstants.L_NAME,
-                field3=SignUpFirstStepConstants.FIELD_EMAIL, email=SignUpFirstStepConstants.EMAIL,
+                field3=SignUpFirstStepConstants.FIELD_EMAIL, email=CAConstants.EMAIL_CA,
                 field4=SignUpFirstStepConstants.FIELD_PHONE, phone=SignUpFirstStepConstants.PHONE,
                 field5=SignUpFirstStepConstants.FIELD_PASSWORD, password=SignUpFirstStepConstants.PASSWORD,
                 field6=SignUpFirstStepConstants.FIELD_C_PASSWORD, password2=SignUpFirstStepConstants.PASSWORD,

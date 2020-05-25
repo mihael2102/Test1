@@ -9,6 +9,7 @@ from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstants
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
 from src.main.python.ui.ca.model.constants.client_area.PersonalDetailsConstants import PersonalDetailsConstants
+from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 
 
 class CRMClientVerificationPreconditionUI(object):
@@ -35,7 +36,7 @@ class CRMClientVerificationPreconditionUI(object):
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   SignUpFirstStepConstants.EMAIL)
+                                   CAConstants.EMAIL_CA)
         ClientsModulePageUI(self.driver) \
             .click_crm_id_ui('1')
 
