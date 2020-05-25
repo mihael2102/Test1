@@ -1,0 +1,6 @@
+DepositTestCRM:
+  live_acc_platform: ""
+  live_acc_server: "Live"
+  live_acc_currency: "EUR"
+  live_acc_group: "EUR"
+  live_acc_leverage: "100"

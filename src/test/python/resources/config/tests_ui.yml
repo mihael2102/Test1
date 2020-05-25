@@ -78,10 +78,10 @@ tests_config:
 #    - test_help_desk_searching_columns_ui
 
 ############################################ DOCUMENTS ##############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_documents_ui.TestDocumentsModuleUI
-#  class: TestDocumentsModuleUI
-#  tests:
-#    - test_documents_searching_columns_ui
+- module: src.test.python.ui.automation.implementation.crm.tests_documents_ui.TestDocumentsModuleUI
+  class: TestDocumentsModuleUI
+  tests:
+    - test_documents_searching_columns_ui
 
 ######################################### TRADING ACCOUNTS ##########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_trading_ui.TestTradingModuleUI
