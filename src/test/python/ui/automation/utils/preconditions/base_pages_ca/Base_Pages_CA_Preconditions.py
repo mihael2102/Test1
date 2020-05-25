@@ -7,6 +7,7 @@ from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CACons
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.pages.ca.CAMainMenuPage import CAMainMenuPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
+from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
 
 
 class BasePagesCAPrecondition(object):
@@ -32,11 +33,10 @@ class BasePagesCAPrecondition(object):
             CALoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
+                .enter_email(SignUpFirstStepConstants.EMAIL) \
+                .enter_password(SignUpFirstStepConstants.PASSWORD) \
                 .click_login() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                   LeadsModuleConstants.FIRST_NAME]) \
+                .click_hi_user(SignUpFirstStepConstants.F_NAME) \
                 .click_transactions_history()
             CAMainMenuPage(self.driver)\
                 .check_transaction_history_loaded()\
@@ -55,8 +55,8 @@ class BasePagesCAPrecondition(object):
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .login()\
-            .enter_email(CAConstants.EMAIL_CA)\
-            .enter_password(CAConstants.PASSWORD)\
+            .enter_email(SignUpFirstStepConstants.EMAIL)\
+            .enter_password(SignUpFirstStepConstants.PASSWORD)\
             .click_login()\
             .verify()
 

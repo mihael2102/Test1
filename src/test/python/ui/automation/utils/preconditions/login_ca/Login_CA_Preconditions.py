@@ -26,6 +26,7 @@ from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstants
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.ca.model.constants.questionnaire.QuesDualixConstants import QuesDualixConstants
 import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
+from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
 
 
 class LoginCAPrecondition(object):

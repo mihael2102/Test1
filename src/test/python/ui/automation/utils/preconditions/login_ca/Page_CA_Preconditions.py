@@ -15,6 +15,7 @@ from time import sleep
 from src.main.python.utils.logs.Loging import Logging
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
+from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
 
 
 class Page_CA_Precondition(object):
@@ -35,8 +36,8 @@ class Page_CA_Precondition(object):
             CALoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
+                .enter_email(SignUpFirstStepConstants.EMAIL) \
+                .enter_password(SignUpFirstStepConstants.PASSWORD) \
                 .click_login() \
                 .verify()
             CAPage(self.driver)\
@@ -44,25 +45,8 @@ class Page_CA_Precondition(object):
                 .switch_to_account(CAConstants.LIVE_ACCOUNT_NUMBER, CAConstants.ACCOUNT_LIVE) \
                 .open_accounts_list() \
                 .verify_active_account_number(CAConstants.LIVE_ACCOUNT_NUMBER)
-            if global_var.current_brand_name == "mpcrypto":
-                CAPage(self.driver)\
-                    .verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
-            else:
-                CAPage(self.driver)\
-                    .verify_active_account_currency(CAConstants.CURRENCY)
-            if global_var.current_brand_name != "kontofx":
-                CAPage(self.driver)\
-                    .switch_to_account(CAConstants.DEMO_ACCOUNT_NUMBER, CAConstants.ACCOUNT_DEMO) \
-                    .open_accounts_list() \
-                    .verify_active_account_number(CAConstants.DEMO_ACCOUNT_NUMBER)
-                if global_var.current_brand_name == "mpcrypto":
-                    CAPage(self.driver)\
-                        .verify_active_account_currency(CAConstants.CURRENCY_CRYPTO)
-                else:
-                    CAPage(self.driver)\
-                        .verify_active_account_currency(CAConstants.CURRENCY)
-            else:
-                Logging().reportDebugStep(self, "Test is not running")
+            CAPage(self.driver) \
+                .verify_active_account_currency(CAConstants.GET_CURRENCY)
 
         except (ValueError, AssertionError, TimeoutError, TimeoutException, TypeError, NoSuchElementException):
             Logging().reportDebugStep(self, "Module does not exist (NOT RUNNED)")

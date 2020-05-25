@@ -208,7 +208,7 @@ class WebTraderPage(CRMBasePage):
     def select_asset(self, asset):
         try:
             sleep(1)
-            asset_btn = super().wait_load_element("//div[contains(text(),'%s') and not(contains(text(),'.m'))]" % asset)
+            asset_btn = super().wait_load_element("(//div[contains(text(),'%s')])[1]" % asset)
             self.driver.execute_script("arguments[0].click();", asset_btn)
             Logging().reportDebugStep(self, "Select asset: " + asset)
             TradingConstants.IS_ASSET_EXIST = "yes"
