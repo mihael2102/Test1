@@ -316,7 +316,7 @@ class LeadsModule(CRMBasePage):
         Logging().reportDebugStep(self, "Close successful result pop ups")
         # super().wait_load_element("//div[contains(text(),'assigned to %s')]" % user)
         try:
-            btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
+            btn_ok = super().wait_load_element("//button[@class='btn btn-primary'][contains(text(), 'OK')]")
             btn_ok.click()
         except:
             pass
