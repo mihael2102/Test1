@@ -6,12 +6,12 @@ tests_config:
     - test_sign_up_ui
 #    - test_registred_client_in_crm_ui
 #    - test_update_client_ui
-    - test_support_tickets_ui
+#    - test_support_tickets_ui
 #
-#- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
-#  class: AddNewAccountTestCA
-#  tests:
-#    - test_add_live_account_ca
+- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
+  class: AddNewAccountTestCA
+  tests:
+    - test_add_live_account_ca
 #    - test_add_demo_account_ca
 #    - test_verify_accounts_in_crm_ui
 #    - test_switch_between_accounts_ca

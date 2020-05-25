@@ -16,6 +16,7 @@ from src.main.python.ui.ca.model.constants.main_page.MainPageConstants import Ma
 from src.main.python.ui.ca.model.constants.client_area.PersonalDetailsConstants import PersonalDetailsConstants
 from src.main.python.ui.ca.model.pages.ca_pages_ui.MainPage import MainPage
 from src.main.python.ui.ca.model.pages.ca_pages_ui.LoginPage import LoginPage
+from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 
 
 class CaUpdateClientPrecondition(object):
@@ -42,7 +43,7 @@ class CaUpdateClientPrecondition(object):
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   SignUpFirstStepConstants.EMAIL)
+                                   CAConstants.EMAIL_CA)
         ClientsModulePageUI(self.driver) \
             .click_crm_id_ui('1')
 
