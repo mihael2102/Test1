@@ -37,6 +37,11 @@ FinancialTransactionsPage:
   transaction_type_field: "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/ul/li[1]/div/input"
   transaction_type_drop_down: "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/button"
   modified_time_element: "(//*[@id='listBody']//tr/td[11])[%s]"
+LoginPage:
+  login_btn_2: "//button[text()='Login']"
+  login_btn: "//span[contains(text(), 'Login')]"
+  login_email_input: "//*[@id='Username']"
+  login_password_input: "//*[@id='Password']"
 ClientProfilePage:
   deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
   account_number: "//tr[@class='lvtColData']//td[1]"

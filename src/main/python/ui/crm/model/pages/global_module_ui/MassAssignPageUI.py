@@ -18,6 +18,11 @@ class MassAssignPageUI(CRMBasePage):
         self.click_assign_btn(final_btn)
         return MassAssignPageUI(self.driver)
 
+    def click_mass_action_btn(self, btn):
+        GlobalModulePageUI(self.driver) \
+            .click_mass_action_btn(btn)
+        return MassAssignPageUI(self.driver)
+
     def select_department(self, department):
         sleep(0.1)
         Logging().reportDebugStep(self, "Select '" + department + "' check box")

@@ -34,12 +34,14 @@ class CRMBasePage(object):
 
     def switch_first_tab_page(self):
         self.driver.switch_to_window(Config.window_before)
+        Logging().reportDebugStep(self, "Switch to first tab")
 
     def switch_first_window_page(self):
         self.driver.switch_to_window(Config.window_before)
 
     def switch_second_tab_page(self):
         self.driver.switch_to_window(Config.window_after)
+        Logging().reportDebugStep(self, "Switch to second tab")
 
     def came_back_on_previous_page(self):
         self.driver.back()

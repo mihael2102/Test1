@@ -12,7 +12,7 @@ class MT4DepositPageUI(CRMBasePage):
                        field1=None, amount=None, field2=None, comment=None, list4=None, cleared_by=None,
                        final_btn=None):
         if p_method:
-            self.select_pick_list_item(list1, p_method)
+            self.select_pick_list_item_by_number(list1, p_method)
         if status:
             self.select_pick_list_item(list2, status)
         if t_account:
@@ -22,7 +22,7 @@ class MT4DepositPageUI(CRMBasePage):
         if comment:
             self.set_text_field(field2, comment)
         if cleared_by:
-            self.select_pick_list_item(list4, cleared_by)
+            self.select_pick_list_item_by_number(list4, cleared_by)
         sleep(1)
         self.click_deposit(final_btn)
         return MT4DepositPageUI(self.driver)
@@ -30,6 +30,11 @@ class MT4DepositPageUI(CRMBasePage):
     def select_pick_list_item(self, pick_list, item):
         GlobalPopupPageUI(self.driver)\
             .select_pick_list_item(pick_list, item)
+        return MT4DepositPageUI(self.driver)
+
+    def select_pick_list_item_by_number(self, pick_list, number):
+        GlobalPopupPageUI(self.driver)\
+            .select_pick_list_item_by_number(pick_list, number)
         return MT4DepositPageUI(self.driver)
 
     def set_text_field(self, field, text):
