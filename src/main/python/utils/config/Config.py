@@ -1,4 +1,4 @@
-test = "4ex7UI API"
+test = "AnalystqUI API"
 file_path_1 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/result/final_file.xlsx"
 file_path_2 = 'C:/Program Files (x86)/Jenkins/workspace/' + test + '/result/*.xlsx'
 file_path_3 = "C:/Program Files (x86)/Jenkins/workspace/" + test + "/%s"
