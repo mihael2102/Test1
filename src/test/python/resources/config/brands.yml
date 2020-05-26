@@ -1,7 +1,7 @@
 brands:
 
-- name: brokerxp
-  config_file: brokerxp.yml
+#- name: brokerxp
+#  config_file: brokerxp.yml
 
 #- name: kayafx
 #  config_file: kaya_fx.yml
@@ -15,8 +15,8 @@ brands:
 #  config_file: gmo.yml
 #- name: triomarkets
 #  config_file: triomarkets.yml
-#- name: rimarkets
-#  config_file: rimarkets.yml
+- name: rimarkets
+  config_file: rimarkets.yml
 #- name: itrader_global
 #  config_file: itrader_global.yml
 #- name: finmarket
