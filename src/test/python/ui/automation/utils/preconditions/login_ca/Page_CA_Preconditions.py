@@ -57,8 +57,8 @@ class Page_CA_Precondition(object):
             CALoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
+                .enter_email(SignUpFirstStepConstants.EMAIL) \
+                .enter_password(SignUpFirstStepConstants.PASSWORD) \
                 .click_login() \
                 .verify() \
                 .open_ca_menu()
@@ -86,7 +86,7 @@ class Page_CA_Precondition(object):
 
             sleep(2)
             ClientsPage(self.driver)\
-                .find_client_by_email(CAConstants.EMAIL_CA)
+                .find_client_by_email(SignUpFirstStepConstants.EMAIL)
             sleep(2)
             assert ClientsPage(self.driver).get_client_address() == CAConstants.UPDATE_ADDRESS
             assert ClientsPage(self.driver).get_client_city() == CAConstants.UPDATE_CITY
@@ -105,7 +105,7 @@ class Page_CA_Precondition(object):
                                                        TestDataConstants.FILTER))
         sleep(2)
         ClientsPage(self.driver)\
-            .find_client_by_email(CAConstants.EMAIL_CA)
+            .find_client_by_email(SignUpFirstStepConstants.EMAIL)
         ClientsPage(self.driver)\
             .click_edit_btn() \
             .edit_first_name(CRMConstants.EDIT_FIRST_NAME) \
@@ -122,8 +122,8 @@ class Page_CA_Precondition(object):
             CALoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
+                .enter_email(SignUpFirstStepConstants.EMAIL) \
+                .enter_password(SignUpFirstStepConstants.PASSWORD) \
                 .click_login() \
                 .click_my_account() \
                 .account_details()
@@ -137,8 +137,8 @@ class Page_CA_Precondition(object):
                 .open_first_tab_page(self.config.get_value('url_ca'))
             CALoginPage(self.driver)\
                 .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
+                .enter_email(SignUpFirstStepConstants.EMAIL) \
+                .enter_password(SignUpFirstStepConstants.PASSWORD) \
                 .click_login() \
                 .verify() \
                 .click_hi_user(CRMConstants.EDIT_FIRST_NAME)
