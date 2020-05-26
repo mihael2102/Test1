@@ -8,6 +8,8 @@ from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.pages.ca.CAMainMenuPage import CAMainMenuPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
 from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
+from src.main.python.ui.ca.model.pages.ca_pages_ui.MainPage import MainPage
+from src.main.python.ui.ca.model.constants.main_page.MainPageConstants import MainPageConstants
 
 
 class BasePagesCAPrecondition(object):
@@ -35,9 +37,10 @@ class BasePagesCAPrecondition(object):
                 .login() \
                 .enter_email(SignUpFirstStepConstants.EMAIL) \
                 .enter_password(SignUpFirstStepConstants.PASSWORD) \
-                .click_login() \
-                .click_hi_user(SignUpFirstStepConstants.F_NAME) \
-                .click_transactions_history()
+                .click_login()
+            MainPage(self.driver) \
+                .click_hi_user() \
+                .click_main_menu_item(MainPageConstants.ITEM_TRANS_HISTORY)
             CAMainMenuPage(self.driver)\
                 .check_transaction_history_loaded()\
                 .open_account_details_tab()\
