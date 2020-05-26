@@ -7,3 +7,5 @@ FinancialTransactionsPage:
   modified_time_element: "(//*[@id='listBody']//tr/td[12])[%s]"
 CALoginPage:
   check_box_accept: "//span[contains(text(),'By checking this box I accept')]"
+SignUpFirstStepPage:
+  check_box_accept: "//span[contains(text(),'By checking this box I accept')]"

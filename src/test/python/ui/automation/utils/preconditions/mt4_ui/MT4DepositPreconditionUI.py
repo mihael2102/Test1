@@ -44,11 +44,10 @@ class MT4DepositPreconditionUI(object):
         """ Open clients module. Find created client by email and open his profile """
         CRMBaseMethodsPage(self.driver) \
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
-        GlobalModulePageUI(self.driver) \
-            .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
-            .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   CreateLeadConstantsUI.EMAIL)
         ClientsModulePageUI(self.driver) \
+            .select_filter_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
+            .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
+                                   CreateLeadConstantsUI.EMAIL) \
             .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
             .open_mt4_module_newui(var.get_var(self.__class__.__name__)["create_mt_user"])
 
@@ -56,11 +55,11 @@ class MT4DepositPreconditionUI(object):
         currency = ConvertLeadConstantsUI.GET_CURRENCY
         MT4CreateTAPageUI(self.driver) \
             .mt4_create_ta_ui(
-            list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
-            list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=currency,
-            list3=MT4CreateTAConstantsUI.LIST_GROUP, group_number="1",
-            list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE,
-            final_btn=MT4CreateTAConstantsUI.BTN_FINAL)
+                list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_LIVE,
+                list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=currency,
+                list3=MT4CreateTAConstantsUI.LIST_GROUP, group_number="1",
+                list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE,
+                final_btn=MT4CreateTAConstantsUI.BTN_FINAL)
 
         """ Get account number to make deposit in future """
         record_num = ClientDetailsPageUI(self.driver) \
@@ -82,12 +81,12 @@ class MT4DepositPreconditionUI(object):
             amount = MT4DepositConstantsUI.AMOUNT
         MT4DepositPageUI(self.driver)\
             .mt4_deposit_ui(
-                list1=MT4DepositConstantsUI.LIST_P_METHOD, p_method=MT4DepositConstantsUI.P_METHOD,
+                list1=MT4DepositConstantsUI.LIST_P_METHOD, p_method='2',
                 list2=MT4DepositConstantsUI.LIST_STATUS, status=MT4DepositConstantsUI.STATUS,
                 list3=MT4DepositConstantsUI.LIST_TA, t_account=account_number,
                 field1=MT4DepositConstantsUI.FIELD_AMOUNT, amount=amount,
                 field2=MT4DepositConstantsUI.FIELD_COMMENT, comment=MT4DepositConstantsUI.COMMENT,
-                list4=MT4DepositConstantsUI.LIST_CLEARED_BY, cleared_by=MT4DepositConstantsUI.CLEARED_BY,
+                list4=MT4DepositConstantsUI.LIST_CLEARED_BY, cleared_by='2',
                 final_btn=MT4DepositConstantsUI.BTN_FINAL) \
             .refresh_page()
 

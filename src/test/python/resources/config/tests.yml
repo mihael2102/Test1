@@ -110,7 +110,7 @@ tests_config:
   class: WithdrawTest
   tests:
     - test_withdraw_crm   #preconditions: convert lead, make deposit
-
+#
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
 #  class: CreditInTestCRM
 #  tests:
@@ -120,7 +120,7 @@ tests_config:
 #  class: CreditOutTestCRM
 #  tests:
 #    - test_make_credit_out_crm # preconditions: convert lead, make credit in
-#
+
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
 #  class: SendEmailTestCRM
 #  tests:

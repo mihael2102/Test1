@@ -1,6 +1,7 @@
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
+from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI import CreateLeadConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
@@ -33,6 +34,7 @@ class CreateLeadPageUI(CRMBasePage):
         if list1 and l_source:
             self.select_pick_list_item(list1, l_source)
         if list2 and l_status:
+            self.get_item_from_list_by_number(list2, l_status)
             self.select_pick_list_item_by_number(list2, l_status)
         if list3 and assigned_to:
             self.select_pick_list_item(list3, assigned_to)
@@ -77,6 +79,12 @@ class CreateLeadPageUI(CRMBasePage):
         GlobalPopupPageUI(self.driver) \
             .select_pick_list_item_by_number(pick_list, number)
         return CreateLeadPageUI(self.driver)
+
+    def get_item_from_list_by_number(self, pick_list, number):
+        item = GlobalPopupPageUI(self.driver) \
+            .get_item_from_list_by_number(pick_list, number)
+        CreateLeadConstantsUI.STATUS = item
+        return item
 
     def set_text_field(self, field, text):
         GlobalPopupPageUI(self.driver) \

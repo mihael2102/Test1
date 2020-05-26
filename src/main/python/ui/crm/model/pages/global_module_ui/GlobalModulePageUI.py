@@ -29,6 +29,7 @@ class GlobalModulePageUI(CRMBasePage):
         field.clear()
         field.send_keys(data)
         sleep(1)
+        self.wait_loading_to_finish_new_ui(55)
         try:
             done = super().wait_element_to_be_clickable("//button[contains(span,'Apply')]")
             self.driver.execute_script("arguments[0].click();", done)
@@ -37,7 +38,7 @@ class GlobalModulePageUI(CRMBasePage):
         sleep(2)
         self.wait_loading_to_finish_new_ui(55)
         sleep(2)
-        self.wait_loading_to_finish_new_ui(25)
+        self.wait_loading_to_finish_new_ui(55)
         Logging().reportDebugStep(self, "Search by column: " + column + " with data: " + data)
         return GlobalModulePageUI(self.driver)
 
@@ -46,8 +47,11 @@ class GlobalModulePageUI(CRMBasePage):
         field = super().wait_element_to_be_clickable("//span[@class='placeholder']/span[text()='%s']" % column)
         self.driver.execute_script("arguments[0].click();", field)
         sleep(0.5)
-        item = super().wait_load_element("//span[contains(text(),'%s')]//following-sibling::ul//span[text()='%s']"
-                                         % (column, data))
+        data = data.lower()
+        item = super().wait_load_element(
+            "//span[contains(text(),'%s')]//following-sibling::ul//span[contains"
+            "(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'%s')]"
+            % (column, data))
         self.driver.execute_script("arguments[0].click();", item)
         try:
             done = super().wait_element_to_be_clickable("//button/span[text()='Apply']")
@@ -157,6 +161,8 @@ class GlobalModulePageUI(CRMBasePage):
         btn = super().wait_element_to_be_clickable(
             "//div[contains(@class,'mass-actions')]/button/span[contains(text(),'%s')]" % btn_title)
         self.driver.execute_script("arguments[0].click();", btn)
+        sleep(1)
+        self.wait_loading_to_finish_new_ui(95)
         Logging().reportDebugStep(self, "Click '" + btn_title + "' button")
         return GlobalModulePageUI(self.driver)
 
@@ -177,11 +183,12 @@ class GlobalModulePageUI(CRMBasePage):
     """
 
     def click_ok(self):
-        sleep(0.1)
+        sleep(0.5)
+        Logging().reportDebugStep(self, "Click OK button")
         button = super().wait_element_to_be_clickable("//*[text()=' OK ']")
         self.driver.execute_script("arguments[0].click();", button)
-        Logging().reportDebugStep(self, "OK button was clicked")
         sleep(1)
+        self.wait_loading_to_finish_new_ui(35)
         return GlobalModulePageUI(self.driver)
 
     def select_filter_new_ui(self, test_filter):
@@ -193,7 +200,7 @@ class GlobalModulePageUI(CRMBasePage):
         sleep(0.5)
         self.driver.execute_script("arguments[0].click();", filter_item)
         sleep(1)
-        self.wait_loading_to_finish_new_ui(25)
+        self.wait_loading_to_finish_new_ui(55)
         sleep(1)
         return GlobalModulePageUI(self.driver)
 

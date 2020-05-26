@@ -59,14 +59,6 @@ class CreditInPrecondition(object):
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
 
-        elif global_var.current_brand_name == "axa_markets":
-            crm_client_profile = MT4CreateAccountModule(self.driver)\
-                .create_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400))
-
         elif global_var.current_brand_name == "trade99":
             crm_client_profile = MT4CreateAccountModule(self.driver)\
                 .create_account(
@@ -79,7 +71,8 @@ class CreditInPrecondition(object):
                 or (global_var.current_brand_name == "dax-300") \
                 or (global_var.current_brand_name == "kontofx") \
                 or (global_var.current_brand_name == "uprofx") \
-                or (global_var.current_brand_name == "wdcmarkets"):
+                or (global_var.current_brand_name == "wdcmarkets") \
+                or (global_var.current_brand_name == "4ex7"):
             crm_client_profile = MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
