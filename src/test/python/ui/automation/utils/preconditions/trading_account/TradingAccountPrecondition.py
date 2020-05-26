@@ -24,6 +24,8 @@ from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstants
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI import ConvertLeadConstantsUI
 from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
+from src.main.python.ui.ca.model.pages.ca_pages_ui.MainPage import MainPage
+from src.main.python.ui.ca.model.constants.main_page.MainPageConstants import MainPageConstants
 
 
 class TradingAccountPrecondition(object):
@@ -53,8 +55,9 @@ class TradingAccountPrecondition(object):
                 .enter_email(SignUpFirstStepConstants.EMAIL) \
                 .enter_password(SignUpFirstStepConstants.PASSWORD) \
                 .click_login() \
-                .verify() \
-                .click_hi_user(SignUpFirstStepConstants.F_NAME)
+                .verify()
+            MainPage(self.driver) \
+                .click_hi_user()
 
             """ Create LIVE account """
             CAPage(self.driver)\
@@ -83,8 +86,9 @@ class TradingAccountPrecondition(object):
                 .enter_email(SignUpFirstStepConstants.EMAIL)\
                 .enter_password(SignUpFirstStepConstants.PASSWORD)\
                 .click_login()\
-                .verify()\
-                .click_hi_user(SignUpFirstStepConstants.F_NAME)
+                .verify()
+            MainPage(self.driver) \
+                .click_hi_user()
 
             """ Create Demo account """
             CAPage(self.driver)\

@@ -78,18 +78,18 @@ class LoginCAPrecondition(object):
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .sign_up_q8(
-                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
-                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME],
-                    CAConstants.EMAIL_CA,
-                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE],
-                    CAConstants.PASSWORD)
+                    first_name=SignUpFirstStepConstants.F_NAME,
+                    last_name=SignUpFirstStepConstants.L_NAME,
+                    email=SignUpFirstStepConstants.EMAIL,
+                    phone=SignUpFirstStepConstants.PHONE,
+                    password=SignUpFirstStepConstants.PASSWORD)
         else:
             CALoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url_ca'))\
                 .close_campaign_banner()\
                 .click_sign_up()\
                 .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
-                                             [LeadsModuleConstants.FIRST_NAME])\
+                                [LeadsModuleConstants.FIRST_NAME])\
                 .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
                                             [LeadsModuleConstants.FIRST_LAST_NAME])\
                 .fill_email(CAConstants.EMAIL_CA)\
