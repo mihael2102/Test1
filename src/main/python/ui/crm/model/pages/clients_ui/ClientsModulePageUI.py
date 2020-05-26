@@ -12,6 +12,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
 from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 
 
 class ClientsModulePageUI(CRMBasePage):
@@ -25,3 +26,18 @@ class ClientsModulePageUI(CRMBasePage):
         self.wait_loading_to_finish_new_ui(15)
         Logging().reportDebugStep(self, "Open client's details")
         return ClientDetailsPageUI(self.driver)
+
+    def select_filter_ui(self, test_filter):
+        GlobalModulePageUI(self.driver)\
+            .select_filter_new_ui(test_filter)
+        return ClientsModulePageUI(self.driver)
+
+    def set_data_column_field(self, column, data):
+        GlobalModulePageUI(self.driver) \
+            .set_data_column_field(column, data)
+        return ClientsModulePageUI(self.driver)
+
+    def get_data_from_list_view_ui(self, column, row):
+        data = GlobalModulePageUI(self.driver)\
+            .get_data_from_list_view_ui(column, row)
+        return data

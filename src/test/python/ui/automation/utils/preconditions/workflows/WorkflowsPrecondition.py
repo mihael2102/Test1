@@ -99,12 +99,27 @@ class WorkflowsPrecondition(object):
         ClientProfilePage(self.driver)\
             .change_client_status_with_pencil(var.get_var(self.__class__.__name__)["client_status"]) \
             .refresh_page()
-        country = ClientProfilePage(self.driver)\
+        actual_country = ClientProfilePage(self.driver)\
             .open_address_information() \
             .get_country_text()
-        assert country == WorkflowsConstants.COUNTRY_ALBANIA
-        address = ClientProfilePage(self.driver).get_address_text()
-        assert address == WorkflowsConstants.TEST_ADDRESS
+        actual_address = ClientProfilePage(self.driver)\
+            .get_address_text()
+        expected_address = WorkflowsConstants.TEST_ADDRESS
+        expected_country = WorkflowsConstants.COUNTRY_ALBANIA
+
+        """ Check Address and Country fields were updated """
+        count = 0
+        while expected_address != actual_address or expected_country != actual_country:
+            CRMHomePage(self.driver).refresh_page()
+            sleep(1)
+            ClientProfilePage(self.driver).open_address_information()
+            actual_country = ClientProfilePage(self.driver).get_country_text()
+            actual_address = ClientProfilePage(self.driver).get_address_text()
+            count += 1
+            if count == 5:
+                break
+        assert actual_country == WorkflowsConstants.COUNTRY_ALBANIA
+        assert actual_address == WorkflowsConstants.TEST_ADDRESS
 
     def check_workflow_by_country(self):
         """ Login CRM """
@@ -132,6 +147,9 @@ class WorkflowsPrecondition(object):
             .click_edit_personal_detail()\
             .select_country(WorkflowsConstants.COUNTRY_GUAM)\
             .enter_date_birth(CRMConstants.DATE_BIRTH)\
+            .set_address_edit_page('address')\
+            .set_city_edit_page('city')\
+            .set_postcode_edit_page('postcode')\
             .click_save()
         sleep(2)
         CRMHomePage(self.driver)\

@@ -7,3 +7,12 @@ CALoginPage:
   login_password_input: "//input[@name='Password']"
   login_btn_2: "//button[@type='submit']"
   client_title_name: "(//a[contains(text(), '%s')])[2]"
+LoginPage:
+  login_btn: "//button[@href='/en/account/login']"
+  login_btn_2: "//button[@type='submit']"
+  login_email_input: "//*[@id='Username']"
+  login_password_input: "//*[@id='Password']"
+SignUpFirstStepPage:
+  login_email_input: "//input[@name='Email']"
+  login_password_input: "//input[@name='Password']"
+  client_title_name: "(//a[contains(text(), '%s')])[2]"

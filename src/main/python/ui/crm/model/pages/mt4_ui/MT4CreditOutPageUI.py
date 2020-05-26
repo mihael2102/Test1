@@ -1,7 +1,9 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from src.main.python.utils.logs.Loging import Logging
@@ -11,7 +13,7 @@ from time import sleep
 class MT4CreditOutPageUI(CRMBasePage):
 
     def mt4_credit_out_ui(self, list1=None, t_account=None, field1=None, amount=None, field2=None, granted_by=None,
-                          field3=None, comment=None):
+                          field3=None, comment=None, final_btn=None):
         if t_account:
             self.select_pick_list_item(list1, t_account)
         if amount:
@@ -21,30 +23,23 @@ class MT4CreditOutPageUI(CRMBasePage):
         if comment:
             self.set_text_field(field3, comment)
         sleep(1)
-        self.click_credit_out()
+        self.click_credit_out(final_btn)
+        return MT4CreditOutPageUI(self.driver)
 
     def select_pick_list_item(self, pick_list, item):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Select " + pick_list + ": " + item)
-        title = super().wait_load_element(
-            "//span[text()=' %s ']//following-sibling::ul//span[contains(text(),'%s')]" % (pick_list, item))
-        self.driver.execute_script("arguments[0].click();", title)
+        GlobalPopupPageUI(self.driver) \
+            .select_pick_list_item(pick_list, item)
         return MT4CreditOutPageUI(self.driver)
 
     def set_text_field(self, field, text):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Set " + field + ": " + text)
-        input_field = super().wait_load_element(
-            "//div[contains(label,'%s')]//following-sibling::mat-form-field//input" % field)
-        input_field.clear()
-        input_field.send_keys(text)
+        GlobalPopupPageUI(self.driver) \
+            .set_text_field(field, text)
         return MT4CreditOutPageUI(self.driver)
 
-    def click_credit_out(self):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Click 'Deposit' button")
-        deposit_btn = super().wait_element_to_be_clickable("//button[span=' Credit out ']")
-        self.driver.execute_script("arguments[0].click();", deposit_btn)
-        sleep(1)
-        self.wait_loading_to_finish_new_ui(8)
+    def click_credit_out(self, final_btn):
+        GlobalPopupPageUI(self.driver) \
+            .click_final_btn(final_btn)
+        GlobalModulePageUI(self.driver) \
+            .verify_success_message() \
+            .click_ok()
         return MT4CreditOutPageUI(self.driver)

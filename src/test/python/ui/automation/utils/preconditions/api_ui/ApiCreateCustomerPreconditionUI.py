@@ -80,7 +80,7 @@ class ApiCreateCustomerPreconditionUI(object):
             .open_tab(ClientDetailsConstantsUI.TAB_ADDRESS_INFORMATION) \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_COUNTRY)
         referral = details \
-            .open_tab(ClientDetailsConstantsUI.TAB_CUSTOM_INFORMATION) \
+            .open_tab(ClientDetailsConstantsUI.TAB_MARKETING_INFORMATION) \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_REFERRAL)
 
         """ Verify client's data """
