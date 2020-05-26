@@ -2,6 +2,7 @@ from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataCon
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.ca.model.pages.login.CALoginPage import CALoginPage
 from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
+from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
 from time import sleep
 
 
@@ -23,11 +24,11 @@ class SignUpQ8Precondition(object):
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .sign_up_q8(
-            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
-            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME],
-            CAConstants.EMAIL_CA,
-            self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE],
-            CAConstants.PASSWORD)
+                first_name=SignUpFirstStepConstants.F_NAME,
+                last_name=SignUpFirstStepConstants.L_NAME,
+                email=SignUpFirstStepConstants.EMAIL,
+                phone=SignUpFirstStepConstants.PHONE,
+                password=SignUpFirstStepConstants.PASSWORD)
 
         sleep(2)
         CALoginPage(self.driver).verify_client("my account")

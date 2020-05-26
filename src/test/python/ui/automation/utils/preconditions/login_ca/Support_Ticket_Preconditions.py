@@ -15,6 +15,7 @@ from time import sleep
 from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.ui.crm.model.pages.help_desk.HelpDeskEditPage import HelpDeskEditPage
 from src.main.python.ui.crm.model.constants.HelpDeskConstants import HelpDeskConstants
+from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
 from src.main.python.utils.logs.Loging import Logging
 
 
@@ -35,8 +36,8 @@ class Support_Ticket_Preconditions(object):
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
             CALoginPage(self.driver).open_first_tab_page(self.config.get_value('url_ca')) \
                                     .login() \
-                                    .enter_email(CAConstants.EMAIL_CA) \
-                                    .enter_password(CAConstants.PASSWORD) \
+                                    .enter_email(SignUpFirstStepConstants.EMAIL) \
+                                    .enter_password(SignUpFirstStepConstants.PASSWORD) \
                                     .click_login() \
                                     .verify() \
                                     .open_ca_menu()
@@ -62,7 +63,7 @@ class Support_Ticket_Preconditions(object):
                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
             sleep(2)
-            ClientsPage(self.driver).find_client_by_email(CAConstants.EMAIL_CA)
+            ClientsPage(self.driver).find_client_by_email(SignUpFirstStepConstants.EMAIL)
             sleep(2)
             ClientProfilePage(self.driver).scroll_to_help_desk_section() \
                                           .open_help_desk_tab() \
@@ -80,8 +81,8 @@ class Support_Ticket_Preconditions(object):
             CALoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
+                .enter_email(SignUpFirstStepConstants.EMAIL) \
+                .enter_password(SignUpFirstStepConstants.PASSWORD) \
                 .click_login() \
                 .verify() \
                 .open_ca_menu()
