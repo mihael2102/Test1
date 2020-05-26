@@ -134,7 +134,7 @@ class TradingAccountPrecondition(object):
                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
             sleep(2)
-            ClientsPage(self.driver).find_client_by_email(CAConstants.EMAIL_CA)
+            ClientsPage(self.driver).find_client_by_email(SignUpFirstStepConstants.EMAIL)
             sleep(2)
             ClientProfilePage(self.driver).open_trading_accounts_tab()
             ClientsPage(self.driver).trading_account_exist(CAConstants.DEMO_ACCOUNT_NUMBER)
