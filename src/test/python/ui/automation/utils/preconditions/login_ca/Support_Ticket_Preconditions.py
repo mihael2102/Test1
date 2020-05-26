@@ -53,7 +53,7 @@ class Support_Ticket_Preconditions(object):
             return self
 
     def check_and_update_ticket_in_crm(self):
-        # Login to CRM
+        """ Login to CRM """
         if (global_var.current_brand_name != "q8") and (global_var.current_brand_name != "kontofx"):
             CRMLoginPage(self.driver)\
                 .open_first_tab_page(self.config.get_value('url')) \
@@ -63,15 +63,16 @@ class Support_Ticket_Preconditions(object):
                 .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
             sleep(2)
-            ClientsPage(self.driver).find_client_by_email(SignUpFirstStepConstants.EMAIL)
+            ClientsPage(self.driver)\
+                .find_client_by_email(SignUpFirstStepConstants.EMAIL)
             sleep(2)
-            ClientProfilePage(self.driver).scroll_to_help_desk_section() \
-                                          .open_help_desk_tab() \
-                                          .click_edit_help_desk_ticket() \
-                                          .verify_ticket_number(CAConstants.TICKET_NUMBER_CA) \
-                                          .set_help_desk_title(HelpDeskConstants.FIRST_TITTLE) \
-                                          .set_help_desk_status(HelpDeskConstants.EDIT_HT_STATUS) \
-                                          .click_save_button()
+            ClientProfilePage(self.driver)\
+                .scroll_to_help_desk_section() \
+                .open_help_desk_tab() \
+                .click_edit_help_desk_ticket() \
+                .set_help_desk_title(HelpDeskConstants.FIRST_TITTLE) \
+                .set_help_desk_status(HelpDeskConstants.EDIT_HT_STATUS) \
+                .click_save_button()
         else:
             Logging().reportDebugStep(self, "Test is not running")
             return self
