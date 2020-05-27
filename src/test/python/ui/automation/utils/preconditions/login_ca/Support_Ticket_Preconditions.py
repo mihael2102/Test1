@@ -87,11 +87,12 @@ class Support_Ticket_Preconditions(object):
                 .click_login() \
                 .verify() \
                 .open_ca_menu()
-            CAPage(self.driver).open_service_desk() \
-                               .open_closed_tickets_tab() \
-                               .found_closed_ticket(CAConstants.TICKET_NUMBER_CA) \
-                               .verify_closed_ticket_title(HelpDeskConstants.FIRST_TITTLE) \
-                               .check_ticket_status(HelpDeskConstants.EDIT_HT_STATUS)
+            CAPage(self.driver)\
+                .open_service_desk() \
+                .open_closed_tickets_tab() \
+                .found_closed_ticket(CAConstants.TICKET_NUMBER_CA) \
+                .verify_closed_ticket_title(HelpDeskConstants.FIRST_TITTLE) \
+                .check_ticket_status(HelpDeskConstants.EDIT_HT_STATUS)
         else:
             Logging().reportDebugStep(self, "Test is not running")
             return self
