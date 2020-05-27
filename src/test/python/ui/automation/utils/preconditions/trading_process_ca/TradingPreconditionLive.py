@@ -90,6 +90,8 @@ class TradingPreconditionLive(object):
         expected_time = expected_created_time_order[1]
         expected_symbol = TradingConstants.ORDER_SYMBOL
         expected_open_price = TradingConstants.ORDER_OPEN_PRICE
+        while expected_open_price.endswith('0'):
+            expected_open_price = expected_open_price[:-1]
 
         assert expected_order_id in open_orders_data
         assert expected_date in open_orders_data
@@ -186,6 +188,8 @@ class TradingPreconditionLive(object):
         expected_profit = TradingConstants.CLOSED_ORDER_PROFIT.replace('€', '')
         expected_profit = expected_profit.replace('BTC: ', '')
         expected_profit = expected_profit.replace('$', '')
+        while expected_profit.endswith('0'):
+            expected_profit = expected_profit[:-1]
 
         assert expected_order_id in close_orders_data
         assert expected_date in close_orders_data
