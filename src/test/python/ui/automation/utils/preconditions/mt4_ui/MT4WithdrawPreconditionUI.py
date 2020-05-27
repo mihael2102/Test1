@@ -43,12 +43,12 @@ class MT4WithdrawPreconditionUI(object):
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
-            .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   CreateLeadConstantsUI.EMAIL)
+            .set_data_column_field(column=ClientsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=CreateLeadConstantsUI.EMAIL)
 
         """ Make Withdraw for account number using MT4 Actions """
         ClientsModulePageUI(self.driver) \
-            .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
+            .click_crm_id_ui(row='1') \
             .open_mt4_module_newui(MT4ActionsConstantsUI.WITHDRAW)
 
         if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
