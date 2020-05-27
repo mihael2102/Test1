@@ -75,36 +75,26 @@ class LoginCAPrecondition(object):
 
     def sign_up_ca(self):
         """ Registration form """
-        if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca')) \
-                .sign_up_q8(
-                    first_name=SignUpFirstStepConstants.F_NAME,
-                    last_name=SignUpFirstStepConstants.L_NAME,
-                    email=SignUpFirstStepConstants.EMAIL,
-                    phone=SignUpFirstStepConstants.PHONE,
-                    password=SignUpFirstStepConstants.PASSWORD)
-        else:
-            CALoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url_ca'))\
-                .close_campaign_banner()\
-                .click_sign_up()\
-                .fill_first_name(SignUpFirstStepConstants.F_NAME)\
-                .fill_last_name(SignUpFirstStepConstants.L_NAME)\
-                .fill_email(SignUpFirstStepConstants.EMAIL)\
-                .fill_phone(SignUpFirstStepConstants.PHONE)\
-                .fill_password(SignUpFirstStepConstants.PASSWORD)\
-                .fill_confirm_password(SignUpFirstStepConstants.PASSWORD)\
-                .check_box_accept()\
-                .risk_check_box_accept()\
-                .select_country_first_step(SignUpFirstStepConstants.COUNTRY)\
-                .click_submit()\
-                .close_payment_popup()
+        CALoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url_ca'))\
+            .close_campaign_banner()\
+            .click_sign_up()\
+            .fill_first_name(SignUpFirstStepConstants.F_NAME)\
+            .fill_last_name(SignUpFirstStepConstants.L_NAME)\
+            .fill_email(SignUpFirstStepConstants.EMAIL)\
+            .fill_phone(SignUpFirstStepConstants.PHONE)\
+            .fill_password(SignUpFirstStepConstants.PASSWORD)\
+            .fill_confirm_password(SignUpFirstStepConstants.PASSWORD)\
+            .check_box_accept()\
+            .risk_check_box_accept()\
+            .select_country_first_step(SignUpFirstStepConstants.COUNTRY)\
+            .click_submit()\
+            .close_payment_popup()
 
-            """ Check graphs """
-            WebTraderPage(self.driver) \
-                .open_trading_page() \
-                .check_chart_loaded()
+        """ Check graphs """
+        WebTraderPage(self.driver) \
+            .open_trading_page() \
+            .check_chart_loaded()
 
         """ Personal details form """
         if global_var.current_brand_name == "solocapitals":
@@ -302,8 +292,6 @@ class LoginCAPrecondition(object):
                 .select_item_pick_list(QuesDualixConstants.LIST_23, QuesDualixConstants.ITEM_23) \
                 .click_next_btn() \
                 .close_questionnaire_message()
-        elif global_var.current_brand_name == "q8":
-            pass
         else:
             CALoginPage(self.driver)\
                 .verify()\
@@ -327,13 +315,10 @@ class LoginCAPrecondition(object):
                 .click_login()\
                 .verify()
         sleep(2)
-        if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver).verify_client("my account")
-        else:
-            existing_client = CALoginPage(self.driver).verify_client(SignUpFirstStepConstants.F_NAME)
-            expected_client = SignUpFirstStepConstants.F_NAME
+        existing_client = CALoginPage(self.driver).verify_client(SignUpFirstStepConstants.F_NAME)
+        expected_client = SignUpFirstStepConstants.F_NAME
 
-            assert existing_client.lower() == expected_client.lower()
+        assert existing_client.lower() == expected_client.lower()
 
     def client_exist_in_crm(self):
         """ Login to CRM """

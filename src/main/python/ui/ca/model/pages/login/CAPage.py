@@ -445,6 +445,7 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def found_closed_ticket(self, expected_ticket_number):
+        sleep(1)
         ca_id = super().wait_load_element("//td[@class='td-20-pandats']//div[1]")
         actual_ticket_number = re.sub('#', "", ca_id.text)
         assert expected_ticket_number == actual_ticket_number
