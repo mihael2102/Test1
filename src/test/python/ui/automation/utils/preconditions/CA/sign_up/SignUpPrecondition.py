@@ -34,7 +34,7 @@ class SignUpPrecondition(object):
                 url=self.config.get_value('url_ca'),
                 field1=SignUpFirstStepConstants.FIELD_FNAME, first_name=SignUpFirstStepConstants.F_NAME,
                 field2=SignUpFirstStepConstants.FIELD_LNAME, last_name=SignUpFirstStepConstants.L_NAME,
-                field3=SignUpFirstStepConstants.FIELD_EMAIL, email=CAConstants.EMAIL_CA,
+                field3=SignUpFirstStepConstants.FIELD_EMAIL, email=SignUpFirstStepConstants.EMAIL,
                 field4=SignUpFirstStepConstants.FIELD_PHONE, phone=SignUpFirstStepConstants.PHONE,
                 field5=SignUpFirstStepConstants.FIELD_PASSWORD, password=SignUpFirstStepConstants.PASSWORD,
                 field6=SignUpFirstStepConstants.FIELD_C_PASSWORD, password2=SignUpFirstStepConstants.PASSWORD,

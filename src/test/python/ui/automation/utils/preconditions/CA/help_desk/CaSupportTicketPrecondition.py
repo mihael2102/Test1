@@ -36,7 +36,7 @@ class CaSupportTicketPrecondition(object):
         """ Log in CA """
         LoginPage(self.driver) \
             .open_first_tab_page(url=self.config.get_value('url_ca')) \
-            .login(email=CAConstants.EMAIL_CA,
+            .login(email=SignUpFirstStepConstants.EMAIL,
                    password=SignUpFirstStepConstants.PASSWORD) \
             .click_hi_user() \
             .click_main_menu_item(item=MainPageConstants.ITEM_SERV_DESK)
