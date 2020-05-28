@@ -11,11 +11,11 @@ tests_config:
 #    - test_searching_by_columns
 
 ######################################## FILTERS TESTS ###########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_global_crm_ui.TestFiltersUI
-#  class: TestFiltersUI
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_global_crm_ui.TestFiltersUI
+  class: TestFiltersUI
+  tests:
 #    - test_filter_clients_ui
-#    - test_filter_leads_ui
+    - test_filter_leads_ui
 #    - test_filter_documents_ui
 #    - test_filter_help_desk_ui
 #    - test_filter_ta_ui
@@ -68,13 +68,13 @@ tests_config:
 #     - test_create_delete_affiliate_ui
 
 ############################################ HELP DESK #############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
-  class: TestHelpDeskModuleUI
-  tests:
-    - test_create_ticket_ui   # not run: no option to select test client in 'related to' field
-    - test_edit_ticket_ui   # not run: no option to select test client in 'related to' field
-    - test_pencil_ticket_ui   # not run: no option to select test client in 'related to' field
-    - test_delete_ticket_ui   # not run: no option to select test client in 'related to' field
+#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
+#  class: TestHelpDeskModuleUI
+#  tests:
+#    - test_create_ticket_ui   # not run: no option to select test client in 'related to' field
+#    - test_edit_ticket_ui   # not run: no option to select test client in 'related to' field
+#    - test_pencil_ticket_ui   # not run: no option to select test client in 'related to' field
+#    - test_delete_ticket_ui   # not run: no option to select test client in 'related to' field
 #    - test_help_desk_searching_columns_ui
 
 ############################################ DOCUMENTS ##############################################
