@@ -90,16 +90,16 @@ tests_config:
 #    - test_add_interaction  # Adds an interaction for a client
 #    - test_interaction_search   # Searches for an interaction for a client. Validates that only one result is returned.
 
-- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-  class: AddEventTaskModule
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+#  class: AddEventTaskModule
+#  tests:
 #    - test_add_event
 #    - test_edit_event
 #    - test_delete_interaction
 #    - test_email_icon
 #    - test_sms_icon
 #    - test_mass_edit_tasks
-    - test_searching_by_columns
+#    - test_searching_by_columns
 #    - test_sorting_columns
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Calendar_View
@@ -158,10 +158,10 @@ tests_config:
 #    - test_crm_edit_trading_account  # edit trading account
 
 ############################################## AFFILIATES MODULE ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
-#  class: AffiliateModule
-#  tests:
-#    - test_create_delete_affiliate
+- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
+  class: AffiliateModule
+  tests:
+    - test_create_delete_affiliate
 #
 ############################################# FINANCIAL TRANSACTIONS #######################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
