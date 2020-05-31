@@ -19,7 +19,7 @@ class CampaignCreatePage(CRMBasePage):
         if rate:
             self.set_rate(rate)
         self.click_save_button()
-        return CampaignsPage(self.driver)
+        # return CampaignsPage(self.driver)
 
     def set_name(self, name):
         search_button = super().wait_element_to_be_clickable("//input[@name='campaign_name']")
