@@ -63,6 +63,8 @@ class AffiliatePage(CRMBasePage):
         sleep(2)
         input = self.driver.find_element(By.XPATH, "//*[@id='host-element']/input")
         input.send_keys(partner_id)
+        sleep(1)
+        self.wait_crm_loading_to_finish()
         Logging().reportDebugStep(self, "Enter partner ID %s" % partner_id)
         return AffiliatePage(self.driver)
 

@@ -96,6 +96,8 @@ class CRMHomePage(CRMBasePage):
     def select_affiliates_module_more_list(self, module):
         module_element = super().wait_element_to_be_clickable("//*[@name='%s']" % module)
         module_element.click()
+        sleep(1)
+        self.wait_crm_loading_to_finish()
         Logging().reportDebugStep(self, "The Affiliates page was opened")
         # return AffiliateListViewPage(self.driver)
         return AffiliatePage(self.driver)
