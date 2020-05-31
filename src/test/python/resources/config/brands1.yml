@@ -12,8 +12,8 @@ brands:
 #- name: capitalmarketsbanc
 #  config_file: capitalmarketsbanc.yml
 #
-#- name: brokerxp
-#  config_file: brokerxp.yml
+- name: brokerxp
+  config_file: brokerxp.yml
 
-- name: forex_staging
-  config_file: forex_staging.yml
+#- name: forex_staging
+#  config_file: forex_staging.yml
