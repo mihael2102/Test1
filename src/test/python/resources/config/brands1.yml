@@ -6,14 +6,14 @@ brands:
 #- name: itrader
 #  config_file: itrader.yml
 
-#- name: gmo
-#  config_file: gmo.yml
+- name: gmo
+  config_file: gmo.yml
 
 #- name: capitalmarketsbanc
 #  config_file: capitalmarketsbanc.yml
 
-- name: brokerxp
-  config_file: brokerxp.yml
+#- name: brokerxp
+#  config_file: brokerxp.yml
 
 #- name: forex_staging
 #  config_file: forex_staging.yml
