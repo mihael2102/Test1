@@ -132,7 +132,7 @@ class CALoginPage(CRMBasePage):
 
     def select_data_birth_day(self, data_birth_day):
         sleep(1)
-        data = super().wait_load_element("//select[@id='dobday']")
+        data = super().wait_load_element("//select[@id='dobday']", timeout=35)
         data.click()
         datad = self.driver.find_element_by_xpath("//select[@id='dobday']//option[text()='%s']" % data_birth_day)
         datad.click()
