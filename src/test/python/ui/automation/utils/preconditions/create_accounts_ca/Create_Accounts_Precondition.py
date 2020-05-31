@@ -129,8 +129,14 @@ class Create_Accounts_Precondition(object):
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
         sleep(2)
-        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                 LeadsModuleConstants.EMAIL])
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                          LeadsModuleConstants.FIRST_NAME])
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                          LeadsModuleConstants.EMAIL])
         ClientProfilePage(self.driver).open_help_desk_tab()
         ticket_number = ClientProfilePage(self.driver).verify_ticket_number()
         crm_ticket_number = ticket_number.replace("TT", "")
@@ -158,8 +164,14 @@ class Create_Accounts_Precondition(object):
         ClientsPage(self.driver).select_filter(
             self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
         sleep(3)
-        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                 LeadsModuleConstants.EMAIL])
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                          LeadsModuleConstants.FIRST_NAME])
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                          LeadsModuleConstants.EMAIL])
         sleep(3)
         ClientProfilePage(self.driver).click_edit_ticket_pensil()
         sleep(3)
@@ -182,8 +194,14 @@ class Create_Accounts_Precondition(object):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
         sleep(2)
-        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                          LeadsModuleConstants.EMAIL])
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                          LeadsModuleConstants.FIRST_NAME])
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                          LeadsModuleConstants.EMAIL])
         ClientProfilePage(self.driver).open_trading_accounts_tab()
         ClientsPage(self.driver).check_account_exist_in_crm(TestDataConstants.SERVER_DEMO) \
                                 .check_account_exist_in_crm(TestDataConstants.SERVER_REAL)

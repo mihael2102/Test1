@@ -70,7 +70,13 @@ class Login_CA_Precondition(object):
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
         sleep(2)
-        ClientsPage(self.driver).find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
+                                                                 LeadsModuleConstants.FIRST_NAME])
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
                                                           LeadsModuleConstants.EMAIL])
         sleep(2)
         assert ClientsPage(self.driver).get_client_first_name() == self.load_lead_from_config(
