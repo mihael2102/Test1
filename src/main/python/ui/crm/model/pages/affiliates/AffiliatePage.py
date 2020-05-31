@@ -97,6 +97,7 @@ class AffiliatePage(CRMBasePage):
         self.wait_crm_loading_to_finish_tasks(55)
         input_partner_name = super().wait_load_element("//td[3]//input")
         input_partner_name.send_keys(name)
+        self.wait_crm_loading_to_finish_tasks(35)
         Logging().reportDebugStep(self, "Search partner name: " + name)
         return AffiliatePage(self.driver)
 
