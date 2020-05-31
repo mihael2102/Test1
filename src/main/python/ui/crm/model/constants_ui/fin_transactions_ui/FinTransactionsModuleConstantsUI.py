@@ -14,3 +14,4 @@ class FinTransactionsModuleConstantsUI(object):
     COLUMN_CLIENT = "Client"
     COLUMN_T_TYPE = "Transaction Type"
     COLUMN_P_TYPE = "Payment Type"
+    COLUMN_F_APPROVAL = "Transaction Approval"
