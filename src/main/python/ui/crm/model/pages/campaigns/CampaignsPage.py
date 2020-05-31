@@ -2,7 +2,7 @@ from time import sleep
 from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
-from src.main.python.ui.crm.model.modules.campaigns_module.AddCampaignsModule import AddCampaignsModule
+from src.main.python.ui.crm.model.pages.campaign_module_ui.CampaignCreatePage import CampaignCreatePage
 from src.main.python.ui.crm.model.modules.campaigns_module.EditCampaignModule import EditCampaignModule
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
@@ -14,7 +14,7 @@ class CampaignsPage(CRMBasePage):
         add_campaign_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Campaign')]")
         add_campaign_button.click()
         Logging().reportDebugStep(self, "The Add campaign module was opened")
-        return AddCampaignsModule()
+        return CampaignCreatePage()
 
     def perform_searching_campaign_by_name(self, campaign_name):
         add_campaign_button = super().wait_visible_of_element(

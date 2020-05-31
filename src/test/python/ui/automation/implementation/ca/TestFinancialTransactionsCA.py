@@ -9,3 +9,6 @@ class TestFinancialTransactionsCA(BaseTest):
 
     def test_withdraw_request(self):
         WithdrawRequestPreconditionCA(self.driver, self.config).withdraw_request_ca()
+
+    def test_withdraw_request_ui(self):
+        WithdrawRequestPreconditionCA(self.driver, self.config).withdraw_request_ca_ui()
