@@ -49,17 +49,17 @@ tests_config:
 #    - test_add_interaction_ui
 
 ######################################### MT4 ACTIONS #############################################
-- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
-  directive: reload_configuration
-  class: TestMT4UI
-  tests:
-    - test_create_demo_ta_ui
-    - test_deposit_crm_ui  # create live mt account and make deposit
-    - test_withdraw_crm_ui
-    - test_credit_in_crm_ui
-    - test_credit_out_crm_ui
-    - test_transfer_crm_ui
-    - test_update_mt_user_ui
+#- module: src.test.python.ui.automation.implementation.crm.tests_mt4_ui.TestMT4UI
+#  directive: reload_configuration
+#  class: TestMT4UI
+#  tests:
+#    - test_create_demo_ta_ui
+#    - test_deposit_crm_ui  # create live mt account and make deposit
+#    - test_withdraw_crm_ui
+#    - test_credit_in_crm_ui
+#    - test_credit_out_crm_ui
+#    - test_transfer_crm_ui
+#    - test_update_mt_user_ui
 
 ######################################## AFFILIATES MODULE #########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module_ui.TestAffiliatesModuleUI
@@ -135,3 +135,12 @@ tests_config:
 #    - test_check_workflow_by_status_ui
 #    - test_check_workflow_by_country_ui
 #    - test_delete_workflow_ui
+
+############################################## CAMPAIGN MODULE ########################################
+#- module: src.test.python.ui.automation.implementation.crm.tests_campaign_ui.TestCampaignModuleUI
+#  class: TestCampaignModuleUI
+#  tests:
+#    - test_create_campaign_ui
+#    - test_edit_campaign
+#    - test_delete_campaign
+#    - test_campaign_searching_by_columns

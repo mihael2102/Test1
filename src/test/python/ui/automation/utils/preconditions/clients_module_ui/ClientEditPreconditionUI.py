@@ -14,7 +14,6 @@ from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI im
 from src.main.python.ui.crm.model.pages.leads_module_ui.CreateLeadPageUI import CreateLeadPageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.leads_module_ui.ConvertLeadPageUI import ConvertLeadPageUI
-import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 @pytest.mark.run(order=13)
