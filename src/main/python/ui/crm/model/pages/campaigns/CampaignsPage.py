@@ -14,7 +14,7 @@ class CampaignsPage(CRMBasePage):
         add_campaign_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Campaign')]")
         add_campaign_button.click()
         Logging().reportDebugStep(self, "The Add campaign module was opened")
-        return CampaignCreatePage()
+        return CampaignCreatePage(self.driver)
 
     def perform_searching_campaign_by_name(self, campaign_name):
         add_campaign_button = super().wait_visible_of_element(
@@ -43,6 +43,7 @@ class CampaignsPage(CRMBasePage):
             "//a[contains(text(),'%s')]" % campaign_name)
         sleep(2)
         campaign_name_link.click()
+        sleep(2)
         Logging().reportDebugStep(self, "The campaign_name was entered: " + campaign_name)
         return EditCampaignModule()
 
