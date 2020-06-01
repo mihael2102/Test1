@@ -192,9 +192,9 @@ tests_config:
   class: WorkflowsModulesTest
   tests:
     - test_create_workflows
-    - test_check_workflow_by_status
-    - test_check_workflow_by_country
-    - test_delete_workflow
+#    - test_check_workflow_by_status
+#    - test_check_workflow_by_country
+#    - test_delete_workflow
 #
 ############################################ USER MANAGEMENT ############################################
 #- module: src.test.python.ui.automation.implementation.crm.user_management.Test_User_Management
