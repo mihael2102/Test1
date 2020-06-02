@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.select import Select
 from time import sleep
-from src.main.python.ui.crm.model.pages.campaigns.CampaignsPage import CampaignsPage
+# from src.main.python.ui.crm.model.pages.campaigns.CampaignsPage import CampaignsPage
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 
@@ -19,7 +19,7 @@ class CampaignCreatePage(CRMBasePage):
         if rate:
             self.set_rate(rate)
         self.click_save_button()
-        return CampaignsPage(self.driver)
+        # return CampaignsPage(self.driver)
 
     def set_name(self, name):
         search_button = super().wait_element_to_be_clickable("//input[@name='campaign_name']")

@@ -12,7 +12,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from time import sleep
 
 
-class EditCampaignsPreconditionUI(object):
+class CampaignsSearchingColumnsPreconditionUI(object):
     driver = None
     config = None
     camp_name = None
@@ -22,38 +22,52 @@ class EditCampaignsPreconditionUI(object):
         self.config = config
         self.camp_name = CRMConstants.CAMPAIGN_NAME
 
-    def edit_campaign_ui(self):
+    def searching_by_columns_ui(self):
         """ Login to CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
-                url=self.config.get_value('url'),
-                user_name=self.config.get_value(TestDataConstants.USER_NAME),
-                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET)) \
+            url=self.config.get_value('url'),
+            user_name=self.config.get_value(TestDataConstants.USER_NAME),
+            password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+            otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .open_module_ui(TestDataConstants.MODULE_CAMPAIGNS)
 
         """ Edit campaign """
         self.driver.switch_to_frame(self.driver.find_element_by_xpath(
             "//iframe[@name='tradeChartFrame']"))
+
+        """ Get data from list view """
+        campaign_id = CampaignsPage(self.driver).get_campaign_id_list_view()
+        campaign_name = CampaignsPage(self.driver).get_campaign_name_list_view()
+        cpa = CampaignsPage(self.driver).get_cpa_list_view()
+
+        """ Searching by Campaign ID """
         CampaignsPage(self.driver) \
-            .perform_searching_campaign_by_name(self.camp_name)
-        sleep(2)
+            .set_campaign_id(campaign_id) \
+            .campaign_data_checker(campaign_id) \
+            .clear_filter()
+
+        """ Searching by Campaign Name """
         CampaignsPage(self.driver) \
-            .open_campaign_view(self.camp_name)
-        sleep(2)
-        AddCampaignsModule(self.driver) \
-            .set_deal(CRMConstants.SECOND_DEAL)
-        AddCampaignsModule(self.driver) \
-            .set_rate(CRMConstants.RATE1)
-        sleep(2)
-        AddCampaignsModule(self.driver) \
-            .click_save_button()
-        sleep(2)
+            .set_campaign_name(campaign_name) \
+            .campaign_data_checker(campaign_name) \
+            .clear_filter()
+
+        """ Searching by CPA """
         CampaignsPage(self.driver) \
-            .open_campaign_view(self.camp_name)
-        sleep(2)
-        actual_deal = CampaignsPage(self.driver) \
-            .get_deal()
-        assert actual_deal == CRMConstants.SECOND_DEAL
-        sleep(2)
-        assert CampaignsPage(self.driver).get_rate() == CRMConstants.RATE1
+            .set_cpa(cpa) \
+            .campaign_data_checker(cpa) \
+            .clear_filter() \
+            .refresh_page()
+
+        self.driver.switch_to_frame(self.driver.find_element_by_xpath(
+            "//iframe[@name='tradeChartFrame']"))
+        CampaignsPage(self.driver) \
+            .perform_searching_campaign_by_columns(
+                campaign_name,
+                campaign_id,
+                cpa) \
+            .refresh_filter() \
+            .campaign_data_checker(campaign_id) \
+            .campaign_data_checker(campaign_name) \
+            .campaign_data_checker(cpa)
