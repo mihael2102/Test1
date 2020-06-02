@@ -2,8 +2,8 @@
 
 brands:
 
-#- name: analystq
-#  config_file: analystq.yml
+- name: analystq
+  config_file: analystq.yml
 
 #- name: any1profit
 #  config_file: any1profit.yml
@@ -11,8 +11,8 @@ brands:
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
 
-- name: brokerz
-  config_file: brokerz.yml
+#- name: brokerz
+#  config_file: brokerz.yml
 
 #- name: coin-bits
 #  config_file: coin-bits.yml

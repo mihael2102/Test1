@@ -33,14 +33,14 @@ class CreateCampaignsPreconditionUI(object):
             .open_module_ui(TestDataConstants.MODULE_CAMPAIGNS)
 
         """ Add new campaign """
-        campaign = CampaignsPage(self.driver)
-        campaign\
+        CampaignsPage(self.driver) \
             .open_add_campaign_module() \
             .add_campaign(
                 name=self.camp_name,
                 assigned_to=CRMConstants.FIST_ASSIGNED_TO,
                 deal=CRMConstants.FIST_DEAL,
-                rate=CRMConstants.RATE) \
+                rate=CRMConstants.RATE)
+        CampaignsPage(self.driver) \
             .perform_searching_campaign_by_name(self.camp_name)
         sleep(2)
         existing_campaign = CampaignsPage(self.driver) \

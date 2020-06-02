@@ -141,6 +141,6 @@ tests_config:
   class: TestCampaignModuleUI
   tests:
     - test_create_campaign_ui
-    - test_edit_campaign
+#    - test_edit_campaign
 #    - test_delete_campaign
 #    - test_campaign_searching_by_columns

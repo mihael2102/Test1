@@ -11,6 +11,7 @@ from src.main.python.utils.logs.Loging import Logging
 class CampaignsPage(CRMBasePage):
 
     def open_add_campaign_module(self):
+        sleep(0.2)
         add_campaign_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Campaign')]")
         add_campaign_button.click()
         Logging().reportDebugStep(self, "The Add campaign module was opened")
