@@ -15,7 +15,7 @@ class ServiceDeskConstants(object):
     TAB_CLOSED = "Closed Tickets"
     FIELD_SUBJECT = "Subject"
     FIELD_DESCRIPTION = "Description:"
-    LIST_CATEGORY = "Category:"
+    LIST_CATEGORY = "category"
 
     SUBJECT = "Test_subject_%s" % now
     TITLE = "Test_title_%s" % now

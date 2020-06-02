@@ -117,12 +117,30 @@ class CAPage(CRMBasePage):
         Logging().reportDebugStep(self, "Select currency : " + currency)
         return CAPage(self.driver)
 
+    def select_currency_by_index(self, index):
+        data = super().wait_load_element("(//custom-select[@name='currency']//span[@class='itemLabel'])[%s]" % index)
+        self.driver.execute_script("arguments[0].click();", data)
+        currency = super().wait_load_element("//custom-select[@name='currency']//span[contains(@class,'currentvalue')]")\
+            .text
+        CAConstants.GET_CURRENCY = currency
+        Logging().reportDebugStep(self, "Select currency : " + currency)
+        return CAPage(self.driver)
+
     def select_leverage_level(self, leverage_level):
         data = self.driver.find_element_by_xpath("//span[@class='itemLabel'] \
                                                     [contains(text(), '%s')]" % leverage_level)
         sleep(1)
         self.driver.execute_script("arguments[0].click();", data)
         Logging().reportDebugStep(self, "Select leverage level : " + leverage_level)
+        return CAPage(self.driver)
+
+    def select_leverage_by_index(self, index):
+        data = super().wait_load_element("(//custom-select[@name='leverage']//span[@class='itemLabel'])[%s]" % index)
+        self.driver.execute_script("arguments[0].click();", data)
+        leverage = super().wait_load_element(
+            "//custom-select[@name='leverage']//span[contains(@class,'currentvalue')]").text
+        CAConstants.GET_LEVERAGE = leverage
+        Logging().reportDebugStep(self, "Select leverage: " + leverage)
         return CAPage(self.driver)
 
     def click_create_account(self):
@@ -427,6 +445,7 @@ class CAPage(CRMBasePage):
         return CAPage(self.driver)
 
     def found_closed_ticket(self, expected_ticket_number):
+        sleep(1)
         ca_id = super().wait_load_element("//td[@class='td-20-pandats']//div[1]")
         actual_ticket_number = re.sub('#', "", ca_id.text)
         assert expected_ticket_number == actual_ticket_number

@@ -51,16 +51,16 @@ tests_config:
 #    - test_make_searching_client_module   # Searches for a client
 #    - test_search_client_magnifying_glass
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
-#  class: MassEditTestCRM
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
+  class: MassEditTestCRM
+  tests:
 #    - test_update_client_details
-#    - test_clients_mass_edit
+    - test_clients_mass_edit
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign
-#  class: MassAssignTestCRM
-#  tests:
-#    - test_clients_mass_assign
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign
+  class: MassAssignTestCRM
+  tests:
+    - test_clients_mass_assign
 #
 ###################################### TASKS ##################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
@@ -110,7 +110,7 @@ tests_config:
 #  class: WithdrawTest
 #  tests:
 #    - test_withdraw_crm   #preconditions: convert lead, make deposit
-
+#
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
 #  class: CreditInTestCRM
 #  tests:
@@ -120,7 +120,7 @@ tests_config:
 #  class: CreditOutTestCRM
 #  tests:
 #    - test_make_credit_out_crm # preconditions: convert lead, make credit in
-#
+
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
 #  class: SendEmailTestCRM
 #  tests:
@@ -216,10 +216,10 @@ tests_config:
 #    - test_dragon_clients
 
 ############################################## HELP DESK #################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
-  class: HelpDeskModuleTest
-  tests:
-    - test_create_ticket
+#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
+#  class: HelpDeskModuleTest
+#  tests:
+#    - test_create_ticket
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk
 #  class: TabHelpDeskTest

@@ -7,7 +7,9 @@ from src.main.python.ui.ca.model.pages.ca_pages_ui.MainPage import MainPage
 from src.main.python.ui.ca.model.constants.main_page.MainPageConstants import MainPageConstants
 from src.main.python.ui.ca.model.pages.ca_pages_ui.PersonalDetailsPage import PersonalDetailsPage
 from src.main.python.ui.ca.model.constants.client_area.PersonalDetailsConstants import PersonalDetailsConstants
-from src.test.python.ui.automation.utils.preconditions.CA.questionnaire.QuesDualixPrecondition import QuesDualixPrecondition
+from src.test.python.ui.automation.utils.preconditions.CA.questionnaire.QuesDualixPrecondition import \
+    QuesDualixPrecondition
+from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.ca.model.pages.ca_pages_ui.LoginPage import LoginPage
 

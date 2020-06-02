@@ -10,7 +10,7 @@ class TradingConstants(object):
     ASSET_GROUP_FOREX = "Forex"
     ASSET_BTCEUR = "BTCEUR"
     ASSET_XRPUSD = "XRPUSD"
-    VOLUME_IN_LOT_001 = "0.01"
+    VOLUME_IN_LOT_001 = "1"
     ORDER_ID_OPEN = ""
     ORDER_ID_CLOSED = ""
     ORDER_CREATED_TIME = ""

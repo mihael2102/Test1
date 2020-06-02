@@ -3,6 +3,7 @@ from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBase
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.utils.logs.Loging import Logging
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from time import sleep
 import pyotp
 
@@ -30,6 +31,7 @@ class CRMLoginPageUI(CRMBasePage):
             self.set_otp(otp_secret)
         sleep(1)
         self.close_news_popup()
+        return CRMBaseMethodsPage(self.driver)
 
     def crm_login_second_tab(self, url=None, user_name=None, password=None, otp_secret=None):
         if url:
@@ -45,6 +47,7 @@ class CRMLoginPageUI(CRMBasePage):
             self.set_otp(otp_secret)
         sleep(1)
         self.close_news_popup()
+        return CRMBaseMethodsPage(self.driver)
 
     def set_user_name(self, user_name):
         sleep(0.1)
@@ -108,7 +111,7 @@ class CRMLoginPageUI(CRMBasePage):
 
     def open_second_tab_page(self, url):
         super().open_second_tab_page(url)
-        Logging().reportDebugStep(self, "Open second tabs page: " + url + '\n')
+        Logging().reportDebugStep(self, "Open second tabs page: " + url)
         return CRMLoginPageUI(self.driver)
 
     def open_first_tab_page(self, url):
@@ -124,4 +127,8 @@ class CRMLoginPageUI(CRMBasePage):
     def switch_second_tab_page(self):
         super().switch_second_tab_page()
         Logging().reportDebugStep(self, "Switch the second page")
+        return CRMLoginPageUI(self.driver)
+
+    def refresh_page(self):
+        super().refresh_page()
         return CRMLoginPageUI(self.driver)
