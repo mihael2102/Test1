@@ -10,6 +10,18 @@ from src.main.python.utils.logs.Loging import Logging
 
 class ClientDetailsPageUI(CRMBasePage):
 
+    def switch_first_tab_page(self):
+        super().switch_first_tab_page()
+        return ClientDetailsPageUI(self.driver)
+
+    def switch_second_tab_page(self):
+        super().switch_second_tab_page()
+        return ClientDetailsPageUI(self.driver)
+
+    def refresh_client_page(self):
+        super().refresh_page()
+        return ClientDetailsPageUI(self.driver)
+
     def get_text_from_field(self, field):
         sleep(0.1)
         try:
@@ -20,7 +32,7 @@ class ClientDetailsPageUI(CRMBasePage):
             except(NoSuchElementException, TimeoutException):
                 Logging().reportDebugStep(self, "Field " + field + " is not editable")
                 data = super().wait_load_element(
-                    "//div[label='%s']//following-sibling::div//div[@class]" % field).text
+                    "//div[label='%s']//following-sibling::div//div[@class and text()]" % field).text
             Logging().reportDebugStep(self, "Get data from field " + field + ": " + data)
             return data
         except:
@@ -40,7 +52,7 @@ class ClientDetailsPageUI(CRMBasePage):
         return records
 
     """ Get data from table by column and row """
-    def get_data_cell_table(self, column, row):
+    def get_data_cell_table(self, column, row='1'):
         data = GlobalModulePageUI(self.driver)\
             .get_data_from_list_view_ui(column, row)
         return data
@@ -72,8 +84,11 @@ class ClientDetailsPageUI(CRMBasePage):
             .click_confirm_btn_pencil_field(field)
         return ClientDetailsPageUI(self.driver)
 
-    def refresh_client_page(self):
-        self.refresh_page()
+    def edit_text_field_via_pencil_icon(self, field, text):
+        GlobalDetailsPageUI(self.driver) \
+            .click_pencil_icon_in_field(field) \
+            .set_text_pencil_field(field, text) \
+            .click_confirm_btn_pencil_field(field)
         return ClientDetailsPageUI(self.driver)
 
     def click_edit_btn(self):

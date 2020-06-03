@@ -41,10 +41,8 @@ class HelpDeskModuleTest(BaseTest):
                                                           HelpDeskConstants.FIRST_CATEGORY)
         assert ticket_status == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
                                                                HelpDeskConstants.FIRST_STATUS)
-
         assert self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
                                               HelpDeskConstants.FIRST_RELATED_TO) in account_name
-
         assert description == self.config.get_data_help_desk(HelpDeskConstants.HELP_DESK_INFO,
                                                              HelpDeskConstants.FIRST_DESCRIPTION)
 

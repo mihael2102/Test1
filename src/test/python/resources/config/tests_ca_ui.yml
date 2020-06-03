@@ -1,11 +1,13 @@
 tests_config:
 
-- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
-  class: SignUpTest
-  tests:
-    - test_check_sign_up
-    - test_registred_client_in_crm_new_ui
-
+#- module: src.test.python.ui.automation.implementation.ca.TestSignUpUI
+#  class: TestSignUpUI
+#  tests:
+#    - test_sign_up_ui
+#    - test_registred_client_in_crm_ui
+#    - test_update_client_ui
+#    - test_support_tickets_ui
+#
 #- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
 #  class: AddNewAccountTestCA
 #  tests:
@@ -31,3 +33,8 @@ tests_config:
 #    - test_verify_live_open_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
 #    - test_close_position_live      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
 #    - test_verify_live_close_position_crm_ui     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
+
+- module: src.test.python.ui.automation.implementation.ca.TestFinancialTransactionsCA
+  class: TestFinancialTransactionsCA
+  tests:
+    - test_withdraw_request_ui
