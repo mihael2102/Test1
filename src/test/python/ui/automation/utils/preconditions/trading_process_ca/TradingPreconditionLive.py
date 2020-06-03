@@ -31,7 +31,7 @@ class TradingPreconditionLive(object):
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc'))\
             .enter_password(self.config.get_value('password_live_acc'))\
-            .click_login()\
+            .click_login() \
             .verify()
 
         if global_var.current_brand_name == "q8":
