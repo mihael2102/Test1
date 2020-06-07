@@ -8,8 +8,8 @@ brands:
 #- name: any1profit
 #  config_file: any1profit.yml
 
-#- name: bfxinternational
-#  config_file: bfxinternational.yml
+- name: bfxinternational
+  config_file: bfxinternational.yml
 
 #- name: brokerz
 #  config_file: brokerz.yml
@@ -92,8 +92,8 @@ brands:
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
 
-- name: strattonmarkets-eu
-  config_file: strattonmarkets-eu.yml
+#- name: strattonmarkets-eu
+#  config_file: strattonmarkets-eu.yml
 
 #- name: trade99
 #  config_file: trade99.yml
