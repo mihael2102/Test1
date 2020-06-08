@@ -314,7 +314,9 @@ class WebTraderPage(CRMBasePage):
 
     def get_msg_succsessfull_order(self):
         sleep(0.1)
-        succsessfull_order = super().wait_load_element("//h2[text()='Order Successful']").text
+        succsessfull_order = super().wait_load_element("//h2[text()='Order Successful']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", succsessfull_order)
+        succsessfull_order = succsessfull_order.text
         Logging().reportDebugStep(self, "Check message: " + succsessfull_order)
         return WebTraderPage(self.driver)
 
