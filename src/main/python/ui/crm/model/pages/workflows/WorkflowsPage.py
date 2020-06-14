@@ -324,8 +324,10 @@ class WorkflowsPage(CRMBasePage):
         sleep(2)
         select = self.driver.find_element_by_xpath("//field-value[2]//div[@class='select-filter']")
         select.click()
-        clients = self.driver.find_element_by_xpath(
-            "(//input[@placeholder='Search...'])[3]|(//input[@placeholder='Search...'])[2]")
+        try:
+            clients = self.driver.find_element_by_xpath("(//input[@placeholder='Search...'])[3]")
+        except:
+            clients = self.driver.find_element_by_xpath("(//input[@placeholder='Search...'])[2]")
         clients.send_keys(name)
         sleep(3)
         select = self.driver.find_element_by_xpath("(//span[text() =' %s '])[2]" % name)
