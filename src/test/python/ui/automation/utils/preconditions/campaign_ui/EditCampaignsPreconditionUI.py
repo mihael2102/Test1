@@ -12,7 +12,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from time import sleep
 
 
-class CreateCampaignsPreconditionUI(object):
+class EditCampaignsPreconditionUI(object):
     driver = None
     config = None
     camp_name = None
@@ -22,7 +22,7 @@ class CreateCampaignsPreconditionUI(object):
         self.config = config
         self.camp_name = CRMConstants.CAMPAIGN_NAME
 
-    def create_new_campaign_ui(self):
+    def edit_campaign_ui(self):
         """ Login to CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
@@ -32,20 +32,28 @@ class CreateCampaignsPreconditionUI(object):
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .open_module_ui(TestDataConstants.MODULE_CAMPAIGNS)
 
-        """ Add new campaign """
+        """ Edit campaign """
         self.driver.switch_to_frame(self.driver.find_element_by_xpath(
             "//iframe[@name='tradeChartFrame']"))
         CampaignsPage(self.driver) \
-            .open_add_campaign_module() \
-            .add_campaign(
-                name=self.camp_name,
-                assigned_to=CRMConstants.FIST_ASSIGNED_TO,
-                deal=CRMConstants.FIST_DEAL,
-                rate=CRMConstants.RATE)
-        CampaignsPage(self.driver) \
             .perform_searching_campaign_by_name(self.camp_name)
         sleep(2)
-        existing_campaign = CampaignsPage(self.driver) \
-            .campaign_exist()
-
-        assert self.camp_name == existing_campaign
+        CampaignsPage(self.driver) \
+            .open_campaign_view(self.camp_name)
+        sleep(2)
+        AddCampaignsModule(self.driver) \
+            .set_deal(CRMConstants.SECOND_DEAL)
+        AddCampaignsModule(self.driver) \
+            .set_rate(CRMConstants.RATE1)
+        sleep(2)
+        AddCampaignsModule(self.driver) \
+            .click_save_button()
+        sleep(2)
+        CampaignsPage(self.driver) \
+            .open_campaign_view(self.camp_name)
+        sleep(2)
+        actual_deal = CampaignsPage(self.driver) \
+            .get_deal()
+        assert actual_deal == CRMConstants.SECOND_DEAL
+        sleep(2)
+        assert CampaignsPage(self.driver).get_rate() == CRMConstants.RATE1

@@ -42,7 +42,7 @@ class MT4CreateTAPreconditionUI(object):
             .set_data_column_field(column=ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    data=CreateLeadConstantsUI.EMAIL)
         ClientsModulePageUI(self.driver)\
-            .click_crm_id_ui(row='1') \
+            .click_crm_id_ui() \
             .open_mt4_module_newui(var.get_var(self.__class__.__name__)["create_mt_user"])
 
         """ Create DEMO account for client using MT4 Actions """

@@ -28,11 +28,13 @@ class TradingPreconditionLive(object):
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .close_campaign_banner() \
+            .close_stratton_message() \
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc'))\
             .enter_password(self.config.get_value('password_live_acc'))\
-            .click_login()\
-            .verify()
+            .click_login() \
+            .verify() \
+            .close_stratton_message()
 
         if global_var.current_brand_name == "q8":
             self.driver.switch_to_frame(self.driver.find_element_by_xpath(
@@ -104,11 +106,13 @@ class TradingPreconditionLive(object):
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .close_campaign_banner() \
+            .close_stratton_message() \
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc'))\
             .enter_password(self.config.get_value('password_live_acc'))\
             .click_login()\
-            .verify()
+            .verify() \
+            .close_stratton_message()
 
         """ Check if crypto position was opened """
         try:
