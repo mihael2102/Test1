@@ -13,7 +13,7 @@ def Send_Email_XML(filepath, content):
     fromaddr = Config.email_address
     to = "michael.oryshchenko@pandats.com"
     cc = "yarin.b@pandats.com"
-    bcc = "uria@pandats.com"
+    bcc = ""
     # instance of MIMEMultipart
     msg = MIMEMultipart('alternative')
 
