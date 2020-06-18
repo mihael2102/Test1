@@ -81,12 +81,12 @@ tests_config:
 #     - test_check_week_tab
 
 ###################################### MT4 ACTIONS ###########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-  class: TradingAccountCrmTest
-  tests:
-    - test_crm_open_trading_account  # open a new trading account
-    - test_crm_open_live_mt5
-    - test_crm_open_demo_mt5
+#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+#  class: TradingAccountCrmTest
+#  tests:
+#    - test_crm_open_trading_account  # open a new trading account
+#    - test_crm_open_live_mt5
+#    - test_crm_open_demo_mt5
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Check_Password
 #  class: CheckPasswordTestCRM
@@ -131,10 +131,10 @@ tests_config:
   tests:
     - test_transfer_between_ta # preconditions: convert lead, deposit crm
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
-#  class: TradingAccountCrmTest
-#  tests:
-#    - test_crm_edit_trading_account  # edit trading account
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Trading_Account
+  class: TradingAccountCrmTest
+  tests:
+    - test_crm_edit_trading_account  # edit trading account
 #
 ######################################## AFFILIATES MODULE ##########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
