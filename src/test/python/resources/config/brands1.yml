@@ -35,8 +35,8 @@ brands:
 #- name: etfinance
 #  config_file: etfinance.yml
 
-#- name: fairbit
-#  config_file: fair-bit.yml
+- name: fairbit
+  config_file: fair-bit.yml
 
 #- name: financix
 #  config_file: financix.yml
@@ -137,5 +137,5 @@ brands:
 #- name: 24option
 #  config_file: 24option.yml
 
-- name: 4ex7
-  config_file: 4ex7.yml
+#- name: 4ex7
+#  config_file: 4ex7.yml
