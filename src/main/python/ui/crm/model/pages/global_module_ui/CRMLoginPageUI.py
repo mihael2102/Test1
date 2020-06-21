@@ -24,7 +24,10 @@ class CRMLoginPageUI(CRMBasePage):
             self.set_user_name(user_name)
         if password:
             self.set_password(password)
-        self.check_new_design()
+        try:
+            self.check_new_design()
+        except:
+            pass
         self.click_login_btn()
         sleep(1)
         if otp_secret:
@@ -40,7 +43,10 @@ class CRMLoginPageUI(CRMBasePage):
             self.set_user_name(user_name)
         if password:
             self.set_password(password)
-        self.check_new_design()
+        try:
+            self.check_new_design()
+        except:
+            pass
         self.click_login_btn()
         sleep(1)
         if otp_secret:
@@ -51,7 +57,8 @@ class CRMLoginPageUI(CRMBasePage):
 
     def set_user_name(self, user_name):
         sleep(0.1)
-        user_name_field = self.driver.find_element(By.XPATH, "//input[@id='user_name']")
+        user_name_field = super().wait_element_to_be_clickable\
+            ("//input[@id='user_name']|//input[@formcontrolname='userName']")
         user_name_field.clear()
         user_name_field.send_keys(user_name)
         Logging().reportDebugStep(self, "Set User Name: " + user_name)
@@ -59,7 +66,8 @@ class CRMLoginPageUI(CRMBasePage):
 
     def set_password(self, password):
         sleep(0.1)
-        password__field = self.driver.find_element(By.XPATH, "//input[@id='user_password']")
+        password__field = super().wait_element_to_be_clickable\
+            ("//input[@id='user_password']|//input[@formcontrolname='password']")
         password__field.clear()
         password__field.send_keys(password)
         Logging().reportDebugStep(self, "Set Password")
@@ -77,7 +85,7 @@ class CRMLoginPageUI(CRMBasePage):
         return CRMLoginPageUI(self.driver)
 
     def click_login_btn(self):
-        login_button = self.driver.find_element(By.XPATH, "//input[@id='submitButton']")
+        login_button = self.driver.find_element(By.XPATH, "//input[@id='submitButton']|//button[@id='submit-btn']")
         login_button.click()
         Logging().reportDebugStep(self, "Click the Login button")
         return CRMLoginPageUI(self.driver)
