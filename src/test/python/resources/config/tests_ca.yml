@@ -10,11 +10,11 @@ tests_config:
 #    - test_check_email_sign_up
 #    - test_registred_client_exist_in_crm
 #
-#- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
-#  class: AddNewAccountTestCA
-#  tests:
-#    - test_add_live_account_ca
-#    - test_add_demo_account_ca
+- module: src.test.python.ui.automation.implementation.ca.Test_Add_New_Accounts
+  class: AddNewAccountTestCA
+  tests:
+    - test_add_live_account_ca
+    - test_add_demo_account_ca
 #    - test_verify_accounts_in_crm
 #    - test_switch_between_accounts_ca
 
@@ -37,25 +37,25 @@ tests_config:
 #    - test_close_position_live      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
 #    - test_verify_live_close_position_crm     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
 #
-- module: src.test.python.ui.automation.implementation.ca.TestFinancialTransactionsCA
-  class: TestFinancialTransactionsCA
+#- module: src.test.python.ui.automation.implementation.ca.TestFinancialTransactionsCA
+#  class: TestFinancialTransactionsCA
+#  tests:
+#    - test_withdraw_request
+
+- module: src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update
+  class: PersonalDetailsUpdateTestCA
   tests:
-    - test_withdraw_request
+    - test_update_personal_details_in_ca
+    - test_personal_details_were_updated_in_crm
+    - test_update_personal_details_in_crm
+    - test_personal_details_were_updated_in_ca
 
-#- module: src.test.python.ui.automation.implementation.ca.Test_Personal_Details_Update
-#  class: PersonalDetailsUpdateTestCA
-#  tests:
-#    - test_update_personal_details_in_ca
-#    - test_personal_details_were_updated_in_crm
-#    - test_update_personal_details_in_crm
-#    - test_personal_details_were_updated_in_ca
-
-#- module: src.test.python.ui.automation.implementation.ca.Test_Support_Ticket
-#  class: CreateSupportTicketTestCa
-#  tests:
-#    - test_create_ticket
-#    - test_check_and_update_ticket_in_crm
-#    - test_check_updated_ticket_in_ca
+- module: src.test.python.ui.automation.implementation.ca.Test_Support_Ticket
+  class: CreateSupportTicketTestCa
+  tests:
+    - test_create_ticket
+    - test_check_and_update_ticket_in_crm
+    - test_check_updated_ticket_in_ca
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
 #  class: CheckDragonTest

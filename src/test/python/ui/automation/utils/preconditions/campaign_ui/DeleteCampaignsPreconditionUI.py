@@ -12,7 +12,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import C
 from time import sleep
 
 
-class CreateCampaignsPreconditionUI(object):
+class DeleteCampaignsPreconditionUI(object):
     driver = None
     config = None
     camp_name = None
@@ -22,7 +22,7 @@ class CreateCampaignsPreconditionUI(object):
         self.config = config
         self.camp_name = CRMConstants.CAMPAIGN_NAME
 
-    def create_new_campaign_ui(self):
+    def delete_campaign_ui(self):
         """ Login to CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
@@ -32,20 +32,20 @@ class CreateCampaignsPreconditionUI(object):
                 otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .open_module_ui(TestDataConstants.MODULE_CAMPAIGNS)
 
-        """ Add new campaign """
+        """ Delete campaign """
         self.driver.switch_to_frame(self.driver.find_element_by_xpath(
             "//iframe[@name='tradeChartFrame']"))
         CampaignsPage(self.driver) \
-            .open_add_campaign_module() \
-            .add_campaign(
-                name=self.camp_name,
-                assigned_to=CRMConstants.FIST_ASSIGNED_TO,
-                deal=CRMConstants.FIST_DEAL,
-                rate=CRMConstants.RATE)
-        CampaignsPage(self.driver) \
             .perform_searching_campaign_by_name(self.camp_name)
         sleep(2)
-        existing_campaign = CampaignsPage(self.driver) \
-            .campaign_exist()
-
-        assert self.camp_name == existing_campaign
+        CampaignsPage(self.driver) \
+            .click_delete_campaign()
+        sleep(2)
+        CampaignsPage(self.driver) \
+            .deleting_confirmation()
+        sleep(1)
+        CampaignsPage(self.driver) \
+            .perform_searching_campaign_by_name(self.camp_name)
+        sleep(1)
+        CampaignsPage(self.driver) \
+            .check_campaign_deleted()

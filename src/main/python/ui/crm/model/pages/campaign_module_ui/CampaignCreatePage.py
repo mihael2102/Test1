@@ -25,7 +25,7 @@ class CampaignCreatePage(CRMBasePage):
         search_button = super().wait_element_to_be_clickable("//input[@name='campaign_name']")
         search_button.send_keys(name)
         Logging().reportDebugStep(self, "The campaign name was set : "+name)
-        return CampaignCreatePage()
+        return CampaignCreatePage(self.driver)
 
     def set_assigned_to(self, assigned_to):
         assigned_to_drop_down = super().wait_element_to_be_clickable("//span[@dir='ltr']")
@@ -35,7 +35,7 @@ class CampaignCreatePage(CRMBasePage):
         element = super().wait_element_to_be_clickable("//li[contains(text(),'%s')]" % assigned_to)
         element.click()
         Logging().reportDebugStep(self, "The assigned to was set: " + assigned_to)
-        return CampaignCreatePage()
+        return CampaignCreatePage(self.driver)
 
     def set_start_date(self, start_date):
         start_date_button = super().wait_element_to_be_clickable("//input[@name='start_date']")
@@ -49,7 +49,7 @@ class CampaignCreatePage(CRMBasePage):
         sleep(1)
         # start_date_button.click()
         Logging().reportDebugStep(self, "The start date was set: " + start_date)
-        return CampaignCreatePage()
+        return CampaignCreatePage(self.driver)
 
     def set_end_date(self, end_date):
         search_button = super().wait_element_to_be_clickable("//input[@name='end_date']")
@@ -62,14 +62,14 @@ class CampaignCreatePage(CRMBasePage):
         search_button.send_keys(Keys.ENTER)
         # search_button.click()
         Logging().reportDebugStep(self, "The end date was set: " + end_date)
-        return CampaignCreatePage()
+        return CampaignCreatePage(self.driver)
 
     def set_rate(self, rate):
         rate_field = super().wait_element_to_be_clickable("//input[@name='deal_value']")
         rate_field.clear()
         rate_field.send_keys(rate)
         Logging().reportDebugStep(self, "The rate was set: " + rate)
-        return CampaignCreatePage()
+        return CampaignCreatePage(self.driver)
 
     def click_save_button(self):
         save_button = super().wait_element_to_be_clickable("//button[@id='Save']")
@@ -77,7 +77,7 @@ class CampaignCreatePage(CRMBasePage):
         self.driver.execute_script("arguments[0].click();", save_button)
         # save_button.click()
         Logging().reportDebugStep(self, "The save button was clicked ")
-        return CampaignCreatePage()
+        return CampaignCreatePage(self.driver)
 
     def set_deal(self, deal):
         deal_button = Select(self.driver.find_element(By.XPATH, "//select[@name='deal']"))
@@ -86,11 +86,11 @@ class CampaignCreatePage(CRMBasePage):
         # deal_drop_down.click()
         self.driver.execute_script("arguments[0].click();", deal_drop_down)
         Logging().reportDebugStep(self, "The deal was set ")
-        return CampaignCreatePage()
+        return CampaignCreatePage(self.driver)
 
     def set_active_check_box(self):
         activity_button = super().wait_element_to_be_clickable("//input[@type='checkbox']")
         sleep(2)
         activity_button.click()
         Logging().reportDebugStep(self, "The active check box was set ")
-        return CampaignCreatePage()
+        return CampaignCreatePage(self.driver)

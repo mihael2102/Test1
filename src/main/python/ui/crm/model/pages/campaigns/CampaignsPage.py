@@ -11,10 +11,11 @@ from src.main.python.utils.logs.Loging import Logging
 class CampaignsPage(CRMBasePage):
 
     def open_add_campaign_module(self):
+        sleep(0.2)
         add_campaign_button = super().wait_element_to_be_clickable("//button[contains(text(),'Add Campaign')]")
         add_campaign_button.click()
         Logging().reportDebugStep(self, "The Add campaign module was opened")
-        return CampaignCreatePage()
+        return CampaignCreatePage(self.driver)
 
     def perform_searching_campaign_by_name(self, campaign_name):
         add_campaign_button = super().wait_visible_of_element(
@@ -39,10 +40,14 @@ class CampaignsPage(CRMBasePage):
         return CampaignsPage(self.driver)
 
     def open_campaign_view(self, campaign_name):
+        sleep(0.2)
         campaign_name_link = super().wait_element_to_be_clickable(
             "//a[contains(text(),'%s')]" % campaign_name)
         sleep(2)
+        hoverer = ActionChains(self.driver).move_to_element(campaign_name_link).move_by_offset(20, 0)
+        hoverer.perform()
         campaign_name_link.click()
+        sleep(2)
         Logging().reportDebugStep(self, "The campaign_name was entered: " + campaign_name)
         return EditCampaignModule()
 

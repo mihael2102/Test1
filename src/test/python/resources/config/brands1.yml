@@ -86,8 +86,8 @@ brands:
 #- name: proconsultinginvest
 #  config_file: proconsultinginvest.yml
 
-- name: q8
-  config_file: q8.yml
+#- name: q8
+#  config_file: q8.yml
 
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
@@ -107,8 +107,8 @@ brands:
 #- name: wdcmarkets
 #  config_file: wdcmarkets.yml
 
-#- name: 4ex7
-#  config_file: 4ex7.yml
+- name: 4ex7
+  config_file: 4ex7.yml
 
 #- name: 24option
 #  config_file: 24option.yml
