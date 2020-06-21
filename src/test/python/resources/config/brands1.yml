@@ -86,14 +86,14 @@ brands:
 #- name: proconsultinginvest
 #  config_file: proconsultinginvest.yml
 
-#- name: q8
-#  config_file: q8.yml
+- name: q8
+  config_file: q8.yml
 
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
 
-- name: strattonmarkets-eu
-  config_file: strattonmarkets-eu.yml
+#- name: strattonmarkets-eu
+#  config_file: strattonmarkets-eu.yml
 
 #- name: trade99
 #  config_file: trade99.yml
