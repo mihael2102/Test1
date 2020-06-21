@@ -1,10 +1,10 @@
 brands:
 
-- name: 4ex7
-  config_file: 4ex7.yml
+#- name: 4ex7
+#  config_file: 4ex7.yml
 
-#- name: fairbit
-#  config_file: fair-bit.yml
+- name: fairbit
+  config_file: fair-bit.yml
 
 #- name: newforexstage2
 #  config_file: newforexstage2.yml
