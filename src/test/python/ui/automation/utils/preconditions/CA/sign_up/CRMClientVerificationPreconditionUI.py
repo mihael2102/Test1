@@ -36,7 +36,7 @@ class CRMClientVerificationPreconditionUI(object):
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   CAConstants.EMAIL_CA)
+                                   SignUpFirstStepConstants.EMAIL)
         ClientsModulePageUI(self.driver) \
             .click_crm_id_ui('1')
 

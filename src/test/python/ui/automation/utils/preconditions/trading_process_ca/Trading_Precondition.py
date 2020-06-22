@@ -13,7 +13,9 @@ from src.main.python.utils.logs.Loging import Logging
 from src.main.python.ui.ca.model.pages.login.WebTraderPage import WebTraderPage
 from src.main.python.ui.ca.model.pages.login.CAPage import CAPage
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
+from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
+from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
 
 
 class Trading_Precondition(object):
@@ -318,8 +320,8 @@ class Trading_Precondition(object):
         CALoginPage(self.driver)\
             .open_first_tab_page(self.config.get_value('url_ca'))\
             .login()\
-            .enter_email(CAConstants.EMAIL_CA)\
-            .enter_password(CAConstants.PASSWORD)\
+            .enter_email(SignUpFirstStepConstants.EMAIL)\
+            .enter_password(SignUpFirstStepConstants.PASSWORD)\
             .click_login()\
             .verify()
 
@@ -358,7 +360,7 @@ class Trading_Precondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(CAConstants.EMAIL_CA)
+            .find_client_by_email(SignUpFirstStepConstants.EMAIL)
 
         # Check if demo account and crypto position was opened
         try:
@@ -390,6 +392,8 @@ class Trading_Precondition(object):
         expected_time = expected_created_time_order[1]
         expected_symbol = TradingConstants.ORDER_SYMBOL
         expected_open_price = TradingConstants.ORDER_OPEN_PRICE
+        while expected_open_price.endswith('0'):
+            expected_open_price = expected_open_price[:-1]
 
         assert expected_order_id in open_orders_data
         assert expected_date in open_orders_data
@@ -401,8 +405,8 @@ class Trading_Precondition(object):
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .login() \
-            .enter_email(CAConstants.EMAIL_CA) \
-            .enter_password(CAConstants.PASSWORD) \
+            .enter_email(SignUpFirstStepConstants.EMAIL) \
+            .enter_password(SignUpFirstStepConstants.PASSWORD) \
             .click_login() \
             .verify()
 
@@ -446,7 +450,7 @@ class Trading_Precondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET)) \
             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email(CAConstants.EMAIL_CA)
+            .find_client_by_email(SignUpFirstStepConstants.EMAIL)
 
         # Check if demo account and crypto position was opened
         try:
@@ -492,6 +496,8 @@ class Trading_Precondition(object):
         expected_profit = TradingConstants.CLOSED_ORDER_PROFIT.replace('€', '')
         expected_profit = expected_profit.replace('$', '')
         expected_profit = expected_profit.replace('BTC: ', '')
+        while expected_profit.endswith('0'):
+            expected_profit = expected_profit[:-1]
 
         assert expected_order_id in close_orders_data
         assert expected_date in close_orders_data

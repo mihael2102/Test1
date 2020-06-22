@@ -46,9 +46,9 @@ class MT4DepositPreconditionUI(object):
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
         ClientsModulePageUI(self.driver) \
             .select_filter_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
-            .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   CreateLeadConstantsUI.EMAIL) \
-            .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
+            .set_data_column_field(column=ClientsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=CreateLeadConstantsUI.EMAIL) \
+            .click_crm_id_ui(row='1') \
             .open_mt4_module_newui(var.get_var(self.__class__.__name__)["create_mt_user"])
 
         """ Create LIVE account for client using MT4 Actions """

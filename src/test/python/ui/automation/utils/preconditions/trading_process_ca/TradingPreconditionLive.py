@@ -28,11 +28,13 @@ class TradingPreconditionLive(object):
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .close_campaign_banner() \
+            .close_stratton_message() \
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc'))\
             .enter_password(self.config.get_value('password_live_acc'))\
-            .click_login()\
-            .verify()
+            .click_login() \
+            .verify() \
+            .close_stratton_message()
 
         if global_var.current_brand_name == "q8":
             self.driver.switch_to_frame(self.driver.find_element_by_xpath(
@@ -90,6 +92,8 @@ class TradingPreconditionLive(object):
         expected_time = expected_created_time_order[1]
         expected_symbol = TradingConstants.ORDER_SYMBOL
         expected_open_price = TradingConstants.ORDER_OPEN_PRICE
+        while expected_open_price.endswith('0'):
+            expected_open_price = expected_open_price[:-1]
 
         assert expected_order_id in open_orders_data
         assert expected_date in open_orders_data
@@ -102,11 +106,13 @@ class TradingPreconditionLive(object):
         CALoginPage(self.driver) \
             .open_first_tab_page(self.config.get_value('url_ca')) \
             .close_campaign_banner() \
+            .close_stratton_message() \
             .click_sign_in_btn() \
             .enter_email(self.config.get_value('email_live_acc'))\
             .enter_password(self.config.get_value('password_live_acc'))\
             .click_login()\
-            .verify()
+            .verify() \
+            .close_stratton_message()
 
         """ Check if crypto position was opened """
         try:
@@ -186,6 +192,8 @@ class TradingPreconditionLive(object):
         expected_profit = TradingConstants.CLOSED_ORDER_PROFIT.replace('€', '')
         expected_profit = expected_profit.replace('BTC: ', '')
         expected_profit = expected_profit.replace('$', '')
+        while expected_profit.endswith('0'):
+            expected_profit = expected_profit[:-1]
 
         assert expected_order_id in close_orders_data
         assert expected_date in close_orders_data

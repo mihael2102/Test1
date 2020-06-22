@@ -34,8 +34,8 @@ class ClientsMassAssignPreconditionUI(object):
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .refresh_page_ui() \
-            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                   LeadsModuleConstantsUI.SHORT_EMAIL)\
+            .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=LeadsModuleConstantsUI.SHORT_EMAIL)\
             .select_all_records_checkbox()
 
         """ Mass Assign """
@@ -54,8 +54,8 @@ class ClientsMassAssignPreconditionUI(object):
 
         """ Check updated data in list view """
         GlobalModulePageUI(self.driver) \
-            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
+            .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=LeadsModuleConstantsUI.SHORT_EMAIL) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS)\
             .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME)\
             .global_data_checker_new_ui(MassActionsConstantsUI.STATUS_R_NEW)
