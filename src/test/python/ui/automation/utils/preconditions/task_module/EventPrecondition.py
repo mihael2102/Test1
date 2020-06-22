@@ -104,6 +104,7 @@ class EventPrecondition(object):
         task_module.open_mass_edit_task().perform_mass_edit(CRMConstants.STATUS_EVENT, CRMConstants.TYPE_EVENT,
                                                             CRMConstants.DURATION_EVENT)
         task_module.refresh_page()
+        task_module.open_show_all_tab()
         sleep(2)
         task_module.search_account_name(f_account_name)
         sleep(2)
@@ -127,6 +128,7 @@ class EventPrecondition(object):
         status = task_module.get_first_status()
         type = task_module.get_first_type()
         task_module.refresh_page()
+        task_module.open_show_all_tab()
         sleep(1)
         task_module.search_account_name(task)
         task_module.search_by_status(status)

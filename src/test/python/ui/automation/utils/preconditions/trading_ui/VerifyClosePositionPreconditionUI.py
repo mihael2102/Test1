@@ -21,6 +21,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI impo
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
+from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
 
 
 class VerifyClosePositionPreconditionUI(object):
@@ -51,7 +52,7 @@ class VerifyClosePositionPreconditionUI(object):
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   CAConstants.EMAIL_CA)
+                                   SignUpFirstStepConstants.EMAIL)
         ClientsModulePageUI(self.driver) \
             .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
 
@@ -102,6 +103,8 @@ class VerifyClosePositionPreconditionUI(object):
         expected_profit = TradingConstants.CLOSED_ORDER_PROFIT.replace('€', '')
         expected_profit = expected_profit.replace('$', '')
         expected_profit = expected_profit.replace('BTC: ', '')
+        while expected_profit.endswith('0'):
+            expected_profit = expected_profit[:-1]
 
         assert expected_order_id in close_orders_data
         assert expected_date in close_orders_data

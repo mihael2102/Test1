@@ -131,7 +131,8 @@ class TabFinancialTransaction(BaseTest):
 
         # Open search form
         financial_transaction_list_page\
-            .open_search_form()
+            .open_search_form() \
+            .open_advanced_search()
         # Search for transaction Id
         transaction_id_after_searching = financial_transaction_list_page\
             .search_for_transaction_id(transaction_number)\
@@ -161,7 +162,8 @@ class TabFinancialTransaction(BaseTest):
         return lead
 
     def test_export_financial_transactions_csv(self):
-        CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
+        CRMLoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
@@ -170,7 +172,9 @@ class TabFinancialTransaction(BaseTest):
             .select_financial_transactions_module_more_list(
             FinancialTransactionsModuleConstants.FINANCIAL_TRANSACTIONS_MODULE)
 
-        if (global_var.current_brand_name == "4xfx") or (global_var.current_brand_name == "24btcmarket") or (global_var.current_brand_name == "kontofx"):
+        if global_var.current_brand_name == "4xfx" \
+        or global_var.current_brand_name == "24btcmarket" or \
+                (global_var.current_brand_name == "kontofx"):
             financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT_TEST)
         else:
             financial_transaction_module.enter_client_name(CRMConstants.EASY_SEARCH_CLIENT)

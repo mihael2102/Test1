@@ -57,3 +57,5 @@ class CAConstants(object):
     COUNTRY_DEFAULT = "Germany"
     CREATE_LIVE_ACC_MSG_POSITIVE = "Account created successfully"
     CREATE_LIVE_ACC_MSG_NEGATIVE = "Dear customer, please note you are allowed to have only 1 live accounts"
+    GET_LEVERAGE = ""
+    GET_CURRENCY = ""

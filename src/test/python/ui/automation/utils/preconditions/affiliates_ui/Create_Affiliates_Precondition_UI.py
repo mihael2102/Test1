@@ -17,10 +17,6 @@ class CreateAffiliatesPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def load_lead_from_config(self, lead_key):
-        lead = self.config.get_value(lead_key)
-        return lead
-
     def create_delete_affiliate_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
