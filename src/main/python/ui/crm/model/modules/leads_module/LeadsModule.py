@@ -314,9 +314,12 @@ class LeadsModule(CRMBasePage):
     def mass_assign_result(self, user):
         sleep(1)
         Logging().reportDebugStep(self, "Close successful result pop ups")
-        super().wait_load_element("//div[contains(text(),'assigned to %s')]" % user)
-        btn_ok = self.driver.find_element(By.XPATH, "//button[@class='btn btn-primary'][contains(text(), 'OK')]")
-        btn_ok.click()
+        # super().wait_load_element("//div[contains(text(),'assigned to %s')]" % user)
+        try:
+            btn_ok = super().wait_load_element("//button[@class='btn btn-primary'][contains(text(), 'OK')]")
+            btn_ok.click()
+        except:
+            pass
         self.wait_vtiger_loading_to_finish_custom(35)
         return LeadsModule(self.driver)
 
@@ -786,6 +789,7 @@ class LeadsModule(CRMBasePage):
         return LeadsModule(self.driver)
 
     def get_results_count(self):
+        sleep(0.1)
         refresh_icon = self.driver.find_elements(By.XPATH, "//span[@class='fa fa-refresh']")[0]
         refresh_icon.click()
         results_count_text = super().wait_load_element("//*[contains(text(), 'Showing Records')]", timeout=55).text

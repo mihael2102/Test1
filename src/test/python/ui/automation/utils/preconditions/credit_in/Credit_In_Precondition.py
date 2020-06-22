@@ -52,20 +52,11 @@ class CreditInPrecondition(object):
             .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
         if global_var.current_brand_name == "q8":
             crm_client_profile = MT4CreateAccountModule(self.driver) \
-                .create_account_with_platform(
-                self.config.get_value(TestDataConstants.TRADING_PLATFORMS, TestDataConstants.TRADING_PLATFORM_MT5),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
-
-        elif global_var.current_brand_name == "axa_markets":
-            crm_client_profile = MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400))
+                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
 
         elif global_var.current_brand_name == "trade99":
             crm_client_profile = MT4CreateAccountModule(self.driver)\
@@ -79,7 +70,8 @@ class CreditInPrecondition(object):
                 or (global_var.current_brand_name == "dax-300") \
                 or (global_var.current_brand_name == "kontofx") \
                 or (global_var.current_brand_name == "uprofx") \
-                or (global_var.current_brand_name == "wdcmarkets"):
+                or (global_var.current_brand_name == "wdcmarkets") \
+                or (global_var.current_brand_name == "4ex7"):
             crm_client_profile = MT4CreateAccountModule(self.driver)\
                 .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
@@ -90,63 +82,6 @@ class CreditInPrecondition(object):
         else:
             crm_client_profile = MT4CreateAccountModule(self.driver) \
                 .create_account(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE))
-
-        return crm_client_profile
-
-    def add_live_account_in_crm_new_ui(self):
-        # Open clients module. Find created client by email and open his profile
-        CRMHomePage(self.driver) \
-            .open_client_module_new_ui() \
-            .select_filter_new_ui(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_client_by_email_new_ui(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                                     TestDataConstants.E_MAIL))
-        # Create LIVE account
-        MT4DropDown(self.driver) \
-            .open_mt4_module_newui(CRMConstants.CREATE_MT_ACCOUNT)
-
-        if global_var.current_brand_name == "q8":
-            crm_client_profile = MT4CreateAccountModule(self.driver) \
-                .create_account_with_platform(
-                self.config.get_value(TestDataConstants.TRADING_PLATFORMS, TestDataConstants.TRADING_PLATFORM_MT4),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
-
-        elif global_var.current_brand_name == "axa_markets":
-            crm_client_profile = MT4CreateAccountModule(self.driver)\
-                .create_account_new_ui(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_LEVERAGE_400))
-
-        elif global_var.current_brand_name == "trade99":
-            crm_client_profile = MT4CreateAccountModule(self.driver)\
-                .create_account_new_ui(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                MT4ModuleConstants.CURRENCY_BTC,
-                MT4ModuleConstants.GROUP_REAL,
-                MT4ModuleConstants.LEVERAGE_100)
-
-        elif global_var.current_brand_name == "gxfx" \
-                or global_var.current_brand_name == "dax-300" \
-                or global_var.current_brand_name == "kontofx" \
-                or global_var.current_brand_name == "uprofx":
-            crm_client_profile = MT4CreateAccountModule(self.driver)\
-                .create_account_new_ui(
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY_EUR),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_EUR),
-                self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_LEVERAGE_LIVE_1_200))
-
-        else:
-            crm_client_profile = MT4CreateAccountModule(self.driver) \
-                .create_account_new_ui(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP),

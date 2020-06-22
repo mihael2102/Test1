@@ -1,5 +1,3 @@
-from src.main.python.ui.crm.model.constants.AffiliateModuleConstants import AffiliateModuleConstants
-from src.main.python.ui.crm.model.pages.affiliates.AffiliateListViewPage import AffiliateListViewPage
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.utils.config import Config
@@ -44,7 +42,8 @@ class UserManagementPrecondition(object):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
         sleep(3)
-        CRMHomePage(self.driver).select_user_management()
+        CRMHomePage(self.driver)\
+            .select_user_management()
         UserManagementPage(self.driver)\
             .open_crm_users_tab()\
             .click_more_icon()\

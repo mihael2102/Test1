@@ -3,31 +3,9 @@ CADepositPage:
   deposit_btn: "//span[text()='deposit']"
   deposit_page: "//a[@id='learnmore_CreditCard']//following-sibling::a[@title='Click to Deposit' and contains(@href,'')]"
   deposit_iframe: "//app-deposit/app-deposit-praxis-form/div[@class='praxis']/iframe[@class='praxis__iframe']"
-ClientsPage:
-  client_status_button: "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']"
-  client_status_field: "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']"
-  country_button: "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']"
-  country_field: "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']"
-  client_country: "//*[@id='tblAddressInformation']/table/tbody/tr[2]/td[4]"
-  client_currency: "//td[@class='dvtCellInfo'][contains(text(),'USD')]"
-DocumentsPage:
-  document_type: "(//*[contains(@id,'row_')]/td[9])[%s]"
-  apply_btn: "(//button[text()='Apply'])[5]"
-TasksPage:
-  pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
-  subject_input: "//*[@id='host-element']/input"
-  account_name_input: "//*[@id='host-element']/input"
-FinancialTransactionsPage:
-  client_name_element:  "(//*[@id='listBody']//tr/td[4])[%s]"
-  transaction_type_element : "(//*[@id='listBody']//tr/td[6])[%s]"
-  transaction_type_field: "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/ul/li[1]/div/input"
-  transaction_type_drop_down: "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/button"
-  modified_time_element: "(//*[@id='listBody']//tr/td[11])[%s]"
-ClientProfilePage:
-  deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
-  account_number: "//tr[@class='lvtColData']//td[1]"
 CALoginPage:
   campaign_close_btn: "//button[@title='Close']"
+  check_box_accept: "//span[contains (text(), 'over 18 years')]"
   sign_up: "//a[contains(text(), 'Sign Up')]"
   submit_btn: "//button[contains (text(), 'Sign Up')][not(@disabled)]"
   login_email_input: "//input[@name='email']"
@@ -39,3 +17,31 @@ CALoginPage:
 CAPage:
   edit_first_name: "//input[@name='firstName']"
   get_first_name: "//input[@name='firstName']"
+ClientsPage:
+  client_status_button: "//tr[@id='customAdvanceSearch']//td[3]//span[@class='multiselect-selected-text']"
+  client_status_field: "//tr[@id='customAdvanceSearch']//td[3]//input[@class='form-control multiselect-search']"
+  country_button: "//tr[@id='customAdvanceSearch']//td[8]//span[@class='multiselect-selected-text']"
+  country_field: "//tr[@id='customAdvanceSearch']//td[8]//input[@class='form-control multiselect-search']"
+  client_country: "//*[@id='tblAddressInformation']/table/tbody/tr[2]/td[4]"
+  client_currency: "//td[@class='dvtCellInfo'][contains(text(),'USD')]"
+DocumentsPage:
+  document_type: "(//*[contains(@id,'row_')]/td[10])[%s]"
+  apply_btn: "(//button[text()='Apply'])[5]"
+TasksPage:
+  pencil_button: "/html/body/app-root/tasks-list/div/div[2]/div/grid/div[2]/div/div[1]/table/tbody/tr[2]/td[18]/div[5]/div/span"
+  subject_input: "//*[@id='host-element']/input"
+  account_name_input: "//*[@id='host-element']/input"
+FinancialTransactionsPage:
+  client_name_element:  "(//*[@id='listBody']//tr/td[4])[%s]"
+  transaction_type_element : "(//*[@id='listBody']//tr/td[6])[%s]"
+  transaction_type_field: "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/ul/li[1]/div/input"
+  transaction_type_drop_down: "//*[@id='customAdvanceSearch']/td[6]/div/div[1]/button"
+  modified_time_element: "(//*[@id='listBody']//tr/td[11])[%s]"
+LoginPage:
+  login_btn_2: "//button[text()='Login']"
+  login_btn: "//span[contains(text(), 'Login')]"
+  login_email_input: "//*[@id='Username']"
+  login_password_input: "//*[@id='Password']"
+ClientProfilePage:
+  deposit_sum: "//tr[@class='lvtColData'][1]//td[3]"
+  account_number: "//tr[@class='lvtColData']//td[1]"
