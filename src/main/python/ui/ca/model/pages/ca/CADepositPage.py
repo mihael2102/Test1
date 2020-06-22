@@ -4,13 +4,7 @@ from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.utils.logs.Loging import Logging
 from selenium.common.exceptions import NoSuchElementException, NoSuchFrameException, TimeoutException
 from time import sleep
-import pyotp
-from selenium.webdriver.support.select import Select
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
-import re
-import autoit
-from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
 
 
 class CADepositPage(CRMBasePage):

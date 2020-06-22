@@ -8,6 +8,16 @@ CALoginPage:
   login_email_input: "//*[@id='Username']"
   login_password_input: "//*[@id='Password']"
   login_btn_2: "//input[@value='Log in']"
+LoginPage:
+  login_btn: "//span[contains(text(), 'Log In')]"
+  login_btn_2: "//input[@value='Log in']"
+  login_email_input: "//*[@id='Username']"
+  login_password_input: "//*[@id='Password']"
+SignUpFirstStepPage:
+  close_payment_btn: "//*[@id='modal-close' and @class='close']"
+  campaign_close_btn: "//button[@id='close-demo']"
+  login_email_input: "//*[@id='Username']"
+  login_password_input: "//*[@id='Password']"
 WebTraderPage:
   price: "//td[contains(text(),'%s')]//following-sibling::td[contains(@data-bind,'markupBid')]"
   asset_group: "//label[contains(text(),'%s')]"

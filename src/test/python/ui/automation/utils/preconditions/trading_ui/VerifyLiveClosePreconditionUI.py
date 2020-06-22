@@ -49,7 +49,7 @@ class VerifyLiveClosePreconditionUI(object):
             .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    self.config.get_value('email_live_acc'))
         ClientsModulePageUI(self.driver) \
-            .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1)
+            .click_crm_id_ui(row='1')
 
         """ Check if crypto position was opened """
         try:
@@ -93,6 +93,8 @@ class VerifyLiveClosePreconditionUI(object):
         expected_profit = expected_profit.replace('BTC: ', '')
         expected_profit = expected_profit.replace('$', '')
         expected_profit = expected_profit.replace('₮', '')
+        while expected_profit.endswith('0'):
+            expected_profit = expected_profit[:-1]
 
         assert expected_order_id in close_orders_data
         assert expected_date in close_orders_data

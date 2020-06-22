@@ -27,10 +27,6 @@ class ConvertLeadPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def load_lead_from_config(self, lead_key):
-        lead = self.config.get_value(lead_key)
-        return lead
-
     def convert_lead_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
@@ -134,7 +130,6 @@ class ConvertLeadPreconditionUI(object):
             .comparator_string(last_name, CreateLeadConstantsUI.LNAME) \
             .comparator_string(title, CreateLeadConstantsUI.TITLE) \
             .comparator_string(l_source, CreateLeadConstantsUI.L_SOURCE) \
-            .comparator_string(l_status, CreateLeadConstantsUI.L_STATUS) \
             .comparator_string(language, CreateLeadConstantsUI.LANGUAGE) \
             .comparator_string(source_name, CreateLeadConstantsUI.SOURCE_NAME) \
             .comparator_string(referral, CreateLeadConstantsUI.REFERRAL) \
@@ -215,7 +210,7 @@ class ConvertLeadPreconditionUI(object):
         ConvertLeadConstantsUI.GET_CURRENCY = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_BASE_CURRENCY)
         referral = details \
-            .open_tab(ClientDetailsConstantsUI.TAB_CUSTOM_INFORMATION) \
+            .open_tab(ClientDetailsConstantsUI.TAB_MARKETING_INFORMATION) \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_REFERRAL)
         source_name = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_CLIENT_SOURCE)
