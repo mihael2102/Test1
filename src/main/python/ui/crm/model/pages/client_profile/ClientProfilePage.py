@@ -988,7 +988,7 @@ class ClientProfilePage(CRMBasePage):
 
     def click_edit_help_desk_ticket(self):
         edit_help_desk = super().wait_element_to_be_clickable(
-            "//*[@id='rld_table_content']/tbody/tr[2]/td[11]/div/div/a")
+            "//*[@id='tbl_Accounts_HelpDesk']//tbody/tr[2]//a[@title='Edit']")
         self.driver.execute_script("arguments[0].click();", edit_help_desk)
         Logging().reportDebugStep(self, "Click Edit help desk ticket")
         return ClientProfilePage(self.driver)
