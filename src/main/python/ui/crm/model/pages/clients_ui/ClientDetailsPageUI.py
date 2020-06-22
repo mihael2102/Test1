@@ -52,7 +52,7 @@ class ClientDetailsPageUI(CRMBasePage):
         return records
 
     """ Get data from table by column and row """
-    def get_data_cell_table(self, column, row):
+    def get_data_cell_table(self, column, row='1'):
         data = GlobalModulePageUI(self.driver)\
             .get_data_from_list_view_ui(column, row)
         return data

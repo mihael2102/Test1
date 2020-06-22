@@ -37,8 +37,8 @@ class ClientsMassEditPreconditionUI(object):
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .refresh_page_ui() \
-            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
+            .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=LeadsModuleConstantsUI.SHORT_EMAIL) \
             .select_all_records_checkbox()
 
         """ Mass Edit """
@@ -52,7 +52,7 @@ class ClientsMassEditPreconditionUI(object):
 
         """ Check confirmation message and updated data in table """
         GlobalModulePageUI(self.driver) \
-            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
+            .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=LeadsModuleConstantsUI.SHORT_EMAIL) \
             .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME_1) \
             .global_data_checker_new_ui(MassActionsConstantsUI.STATUS)

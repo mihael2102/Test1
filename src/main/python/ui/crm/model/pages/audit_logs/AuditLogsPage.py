@@ -146,7 +146,7 @@ class AuditLogsPage(CRMBasePage):
         return AuditLogsPage()
 
     def enter_email_audit_logs(self, email):
-        search_field = self.driver.find_element_by_xpath("(//input[@placeholder='Search...'])[3]")
+        search_field = self.driver.find_element_by_xpath("(//input[@placeholder='Search...'])[2]")
         search_field.clear()
         search_field.send_keys(email)
         ac = ActionChains(self.driver)

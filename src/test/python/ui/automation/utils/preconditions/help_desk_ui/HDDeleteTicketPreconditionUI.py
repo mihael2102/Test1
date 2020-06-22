@@ -38,5 +38,5 @@ class HDDeleteTicketPreconditionUI(object):
             .delete_ticket_list_view() \
             .set_data_column_field(
                 column=HDModuleConstantsUI.COLUMN_TITLE,
-                data=HDCreateTicketConstantsUI.TITLE) \
+                data=HDCreateTicketConstantsUI.TITLE_EDIT) \
             .verify_data_not_found()

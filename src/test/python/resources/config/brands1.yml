@@ -11,8 +11,8 @@ brands:
 #- name: bfxinternational
 #  config_file: bfxinternational.yml
 
-#- name: brokerz
-#  config_file: brokerz.yml
+- name: brokerz
+  config_file: brokerz.yml
 
 #- name: coin-bits
 #  config_file: coin-bits.yml
@@ -107,8 +107,8 @@ brands:
 #- name: wdcmarkets
 #  config_file: wdcmarkets.yml
 
-- name: 4ex7
-  config_file: 4ex7.yml
+#- name: 4ex7
+#  config_file: 4ex7.yml
 
 #- name: 24option
 #  config_file: 24option.yml
