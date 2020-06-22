@@ -2,8 +2,8 @@
 
 brands:
 
-#- name: analystq
-#  config_file: analystq.yml
+- name: analystq
+  config_file: analystq.yml
 
 #- name: any1profit
 #  config_file: any1profit.yml
@@ -86,8 +86,8 @@ brands:
 #- name: proconsultinginvest
 #  config_file: proconsultinginvest.yml
 
-- name: q8
-  config_file: q8.yml
+#- name: q8
+#  config_file: q8.yml
 
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
