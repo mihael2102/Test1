@@ -8,6 +8,7 @@ class TestDataConstants(object):
     MODULE_HELP_DESK = "Help Desk"
     MODULE_CAMPAIGNS = "Campaigns"
     MODULE_AUDIT_LOGS = "Audit Logs"
+    MODULE_AUTO_ASSIGN = "AutoAssign"
     MODULE_LEADS = "Leads"
     MODULE_CLIENTS = "Clients"
     MODULE_TASKS = "Tasks"

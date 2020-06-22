@@ -210,7 +210,7 @@ class ConvertLeadPreconditionUI(object):
         ConvertLeadConstantsUI.GET_CURRENCY = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_BASE_CURRENCY)
         referral = details \
-            .open_tab(ClientDetailsConstantsUI.TAB_CUSTOM_INFORMATION) \
+            .open_tab(ClientDetailsConstantsUI.TAB_MARKETING_INFORMATION) \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_REFERRAL)
         source_name = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_CLIENT_SOURCE)
