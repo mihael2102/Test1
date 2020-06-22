@@ -27,10 +27,10 @@ class CheckWorkflowCountryPreconditionUI(object):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
-            url=self.config.get_value('url'),
-            user_name=self.config.get_value(TestDataConstants.USER_NAME),
-            password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-            otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Workflow module """
         CRMBaseMethodsPage(self.driver) \
