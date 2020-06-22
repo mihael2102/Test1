@@ -6,3 +6,4 @@ class FinancialTransactionsModuleConstants(object):
     FIFTH_TAB = "fifth_tab"
     SIX_TAB = "six_tab"
     FINANCIAL_TRANSACTIONS_MODULE = "Financial Transactions"
+    CLIENT_TEST = "testqa"

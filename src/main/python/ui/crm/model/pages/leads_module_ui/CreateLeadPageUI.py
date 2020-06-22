@@ -1,5 +1,7 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
+from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
+from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI import CreateLeadConstantsUI
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
@@ -12,7 +14,8 @@ class CreateLeadPageUI(CRMBasePage):
                     l_source=None, list2=None, l_status=None, list3=None, assigned_to=None, field8=None, language=None,
                     field9=None, source_name=None, field10=None, fax=None, field11=None, referral=None, field12=None,
                     address=None, field13=None, p_code=None, field14=None, city=None, list4=None, country=None,
-                    field15=None, state=None, field16=None, po_box=None, field17=None, description=None):
+                    field15=None, state=None, field16=None, po_box=None, field17=None, description=None,
+                    final_btn=None):
         self.click_create_new_btn()
         if field1 and fname:
             self.set_text_field(field1, fname)
@@ -31,7 +34,8 @@ class CreateLeadPageUI(CRMBasePage):
         if list1 and l_source:
             self.select_pick_list_item(list1, l_source)
         if list2 and l_status:
-            self.select_pick_list_item(list2, l_status)
+            self.get_item_from_list_by_number(list2, l_status)
+            self.select_pick_list_item_by_number(list2, l_status)
         if list3 and assigned_to:
             self.select_pick_list_item(list3, assigned_to)
         if field8 and language:
@@ -56,7 +60,8 @@ class CreateLeadPageUI(CRMBasePage):
             self.set_text_field(field16, po_box)
         if field17 and description:
             self.set_text_field(field17, description)
-        self.click_create_lead_btn()
+        self.click_create_lead_btn(final_btn)
+        return CreateLeadPageUI(self.driver)
 
     def click_create_new_btn(self):
         sleep(0.1)
@@ -66,25 +71,30 @@ class CreateLeadPageUI(CRMBasePage):
         return CreateLeadPageUI(self.driver)
 
     def select_pick_list_item(self, pick_list, item):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Select " + pick_list + ": " + item)
-        title = super().wait_load_element(
-            "//span[text()=' %s ']//following-sibling::ul//span[text()='%s']" % (pick_list, item))
-        self.driver.execute_script("arguments[0].click();", title)
+        GlobalPopupPageUI(self.driver) \
+            .select_pick_list_item(pick_list, item)
         return CreateLeadPageUI(self.driver)
+
+    def select_pick_list_item_by_number(self, pick_list, number):
+        GlobalPopupPageUI(self.driver) \
+            .select_pick_list_item_by_number(pick_list, number)
+        return CreateLeadPageUI(self.driver)
+
+    def get_item_from_list_by_number(self, pick_list, number):
+        item = GlobalPopupPageUI(self.driver) \
+            .get_item_from_list_by_number(pick_list, number)
+        CreateLeadConstantsUI.STATUS = item
+        return item
 
     def set_text_field(self, field, text):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Set " + field + ": " + text)
-        input_field = super().wait_load_element(
-            "//div[contains(label,'%s')]//following-sibling::mat-form-field//input" % field)
-        input_field.clear()
-        input_field.send_keys(text)
+        GlobalPopupPageUI(self.driver) \
+            .set_text_field(field, text)
         return CreateLeadPageUI(self.driver)
 
-    def click_create_lead_btn(self):
-        sleep(0.1)
-        Logging().reportDebugStep(self, "Create lead button clicked")
-        save_button = super().wait_element_to_be_clickable("//button/span[text()=' Create lead ']")
-        self.driver.execute_script("arguments[0].click();", save_button)
+    def click_create_lead_btn(self, final_btn):
+        GlobalPopupPageUI(self.driver) \
+            .click_final_btn(final_btn)
+        GlobalModulePageUI(self.driver) \
+            .verify_success_message() \
+            .click_ok()
         return CreateLeadPageUI(self.driver)

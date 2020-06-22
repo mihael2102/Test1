@@ -7,7 +7,7 @@ from src.main.python.ui.crm.model.pages.tasks_ui.AddDeleteEventPageUI import Add
 from src.main.python.ui.crm.model.constants_ui.tasks_ui.AddDeleteEventConstantsUI import AddDeleteEventConstantsUI
 
 
-class TasksAddDeleteEventPreconditionUI(object):
+class TasksAddEventPreconditionUI(object):
 
     driver = None
     config = None
@@ -20,7 +20,7 @@ class TasksAddDeleteEventPreconditionUI(object):
         lead = self.config.get_value(lead_key)
         return lead
 
-    def add_delete_event_ui(self):
+    def add_event_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
@@ -36,28 +36,16 @@ class TasksAddDeleteEventPreconditionUI(object):
 
         """ Create Event """
         AddDeleteEventPageUI(self.driver)\
-            .click_add_event_btn() \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_EVENT_STATUS,
-                                   item=AddDeleteEventConstantsUI.EVENT_STATUS) \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_EVENT_TYPE,
-                                   item=AddDeleteEventConstantsUI.EVENT_TYPE) \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_DURATION,
-                                   item=AddDeleteEventConstantsUI.DURATION) \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_ASSIGN_TO,
-                                   item=AddDeleteEventConstantsUI.ASSIGN_TO) \
-            .set_attached_to(AddDeleteEventConstantsUI.ATTACHED_TO) \
-            .set_text_field(field=AddDeleteEventConstantsUI.FIELD_SUBJECT,
-                            text=AddDeleteEventConstantsUI.SUBJECT) \
-            .select_pick_list_item(pick_list=AddDeleteEventConstantsUI.PICK_LIST_PRIORITY,
-                                   item=AddDeleteEventConstantsUI.PRIORITY) \
-            .set_text_field(field=AddDeleteEventConstantsUI.FIELD_COMMENTS,
-                            text=AddDeleteEventConstantsUI.COMMENTS) \
-            .click_save()
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
+            .add_edit_event(
+                btn_event=1,
+                list1=AddDeleteEventConstantsUI.LIST_EVENT_STATUS, e_status=AddDeleteEventConstantsUI.EVENT_STATUS,
+                list2=AddDeleteEventConstantsUI.LIST_EVENT_TYPE, e_type=AddDeleteEventConstantsUI.EVENT_TYPE,
+                list3=AddDeleteEventConstantsUI.LIST_DURATION, duration=AddDeleteEventConstantsUI.DURATION,
+                list4=AddDeleteEventConstantsUI.LIST_ASSIGN_TO, assign_to=AddDeleteEventConstantsUI.ASSIGN_TO,
+                attached_to=AddDeleteEventConstantsUI.ATTACHED_TO,
+                field1=AddDeleteEventConstantsUI.FIELD_SUBJECT, subject=AddDeleteEventConstantsUI.SUBJECT,
+                list5=AddDeleteEventConstantsUI.LIST_PRIORITY, priority=AddDeleteEventConstantsUI.PRIORITY,
+                comments=AddDeleteEventConstantsUI.COMMENTS, final_btn=AddDeleteEventConstantsUI.BTN_SAVE)
 
         """ Search for event """
         GlobalModulePageUI(self.driver) \
@@ -76,17 +64,3 @@ class TasksAddDeleteEventPreconditionUI(object):
         number_records = CRMBaseMethodsPage(self.driver) \
             .get_number_records()
         assert number_records == 1
-
-        """ Delete Event from table """
-        GlobalModulePageUI(self.driver) \
-            .open_actions_list() \
-            .click_delete_icon_list_view(TasksModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
-            .approve_deleting() \
-            .verify_success_message() \
-            .click_ok()
-
-        """ Search for event and Verify data not found """
-        GlobalModulePageUI(self.driver) \
-            .set_data_column_field(column=TasksModuleConstantsUI.COLUMN_SUBJECT,
-                                   data=AddDeleteEventConstantsUI.SUBJECT) \
-            .verify_data_not_found()

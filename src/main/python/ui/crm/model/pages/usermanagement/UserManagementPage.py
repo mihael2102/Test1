@@ -71,11 +71,12 @@ class UserManagementPage(CRMBasePage):
         search_button = super().wait_element_to_be_clickable("//a[contains(text(),'%s')]" % role)
         search_button.click()
         Logging().reportDebugStep(self, "The role was set: " + role)
+        handle = self.driver.window_handles[0]
+        self.driver.switch_to_window(handle)
         return UserManagementPage(self.driver)
 
     def set_password(self, password):
-        handle = self.driver.window_handles[0]
-        self.driver.switch_to_window(handle)
+        sleep(0.1)
         password_field = self.driver.find_element(By.XPATH, "//input[@name='user_password']")
         password_field.clear()
         password_field.send_keys(password)
@@ -97,10 +98,13 @@ class UserManagementPage(CRMBasePage):
         return UserManagementPage(self.driver)
 
     def click_save_button_user_module(self):
-        save_button = super().wait_element_to_be_clickable("//button[contains(text(),'Save')]")
-        save_button.click()
+        sleep(1)
+        save_button = super().wait_element_to_be_clickable(
+            "//div[@id='userManagementDialog']//button[contains(text(),'Save')]")
+        self.driver.execute_script("arguments[0].click();", save_button)
         sleep(0.5)
         self.wait_loading_to_finish(35)
+        self.wait_loading_to_finish_new_ui(35)
         Logging().reportDebugStep(self, "The Save button was clicked")
         return UserManagementPage(self.driver)
 
@@ -190,7 +194,7 @@ class UserManagementPage(CRMBasePage):
         btn = super().wait_element_to_be_clickable("(//button[contains(text(),'Delete')])[1]")
         btn.click()
         sleep(2)
-        self.wait_load_element("//div[contains(text(),'User was deleted')]", timeout=75)
+        self.wait_load_element("//div[contains(text(),'User was deleted')]", timeout=175)
         sleep(2)
         Logging().reportDebugStep(self, "The Delete Confirmation button was clicked")
         return UserManagementPage(self.driver)
@@ -212,6 +216,7 @@ class UserManagementPage(CRMBasePage):
         return UserManagementPage(self.driver)
 
     def open_crm_users_tab(self):
+        sleep(0.1)
         crm_users_tab = super().wait_element_to_be_clickable("//a[contains(text(),'CRM Users')]")
         crm_users_tab.click()
         Logging().reportDebugStep(self, "Open CRM Users tab")

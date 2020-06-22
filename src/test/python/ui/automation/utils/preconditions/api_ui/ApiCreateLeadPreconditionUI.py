@@ -59,7 +59,7 @@ class ApiCreateLeadPreconditionUI(object):
             .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
                                    ApiLeadConstantsUI.EMAIL)
         LeadsModulePageUI(self.driver) \
-            .open_lead()
+            .open_lead('1')
 
         details = LeadsDetailsPageUI(self.driver)
 

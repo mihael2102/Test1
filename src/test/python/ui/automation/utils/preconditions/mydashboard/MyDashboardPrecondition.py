@@ -152,7 +152,8 @@ class MyDashboardPrecondition(object):
         MyDashboardPage(self.driver)\
             .refresh_page()
 
-        MyDashboardPage(self.driver)\
+        MyDashboardPage(self.driver) \
+            .select_show_all_tab() \
             .enter_account_name(account_name) \
             .enter_event_type(type) \
             .enter_status(status) \
