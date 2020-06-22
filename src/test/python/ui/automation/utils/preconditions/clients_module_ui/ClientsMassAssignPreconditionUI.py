@@ -1,7 +1,5 @@
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
-from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
@@ -36,25 +34,28 @@ class ClientsMassAssignPreconditionUI(object):
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .refresh_page_ui() \
-            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                   LeadsModuleConstantsUI.SHORT_EMAIL)\
-            .select_all_records_checkbox()\
-            .click_mass_action_btn(MassActionsConstantsUI.MASS_ASSIGN)
+            .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=LeadsModuleConstantsUI.SHORT_EMAIL)\
+            .select_all_records_checkbox()
 
         """ Mass Assign """
-        MassAssignPageUI(self.driver)\
-            .select_department(MassActionsConstantsUI.DEPARTMENT_ALL)\
-            .set_users_field(MassActionsConstantsUI.USER_NAME)\
-            .select_user_by_title(MassActionsConstantsUI.USER_NAME)\
-            .select_status(MassActionsConstantsUI.STATUS_R_NEW)\
-            .click_assign_btn()
+        mass_page = MassAssignPageUI(self.driver)
+        status = mass_page\
+            .click_mass_action_btn(MassActionsConstantsUI.MASS_ASSIGN)\
+            .get_item_from_list_by_number(
+                pick_list=MassActionsConstantsUI.LIST_CLIENTS_STATUS,
+                number='3')
+        mass_page \
+            .mass_assign(
+                department=MassActionsConstantsUI.DEPARTMENT_ALL,
+                user=MassActionsConstantsUI.USER_NAME,
+                status=status,
+                final_btn=MassActionsConstantsUI.BTN_FINAL)
 
-        """ Check confirmation message and updated data in table """
+        """ Check updated data in list view """
         GlobalModulePageUI(self.driver) \
-            .verify_success_message()\
-            .click_ok() \
-            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
+            .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=LeadsModuleConstantsUI.SHORT_EMAIL) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS)\
             .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME)\
             .global_data_checker_new_ui(MassActionsConstantsUI.STATUS_R_NEW)

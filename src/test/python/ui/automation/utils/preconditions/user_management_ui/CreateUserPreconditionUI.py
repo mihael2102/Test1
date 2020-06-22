@@ -22,10 +22,10 @@ class CreateUserPreconditionUI(object):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
-            url=self.config.get_value('url'),
-            user_name=self.config.get_value(TestDataConstants.USER_NAME),
-            password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-            otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open User Management module """
         CRMBaseMethodsPage(self.driver) \
@@ -36,13 +36,14 @@ class CreateUserPreconditionUI(object):
             "//iframe[contains(@src,'UserManagement')]"))
         UserManagementPage(self.driver) \
             .open_crm_users_tab() \
-            .click_more_icon() \
-            .check_delete_btn_exist() \
             .click_new_user_module() \
             .set_user_name(UserInformation.FIRST_USER_NAME) \
             .set_email(UserInformation.FIRST_EMAIL) \
             .set_first_name(UserInformation.FIRST_NAME) \
-            .set_role(var.get_var(self.__class__.__name__)["role"]) \
+            .set_role(var.get_var(self.__class__.__name__)["role"])
+        self.driver.switch_to_frame(self.driver.find_element_by_xpath(
+            "//iframe[contains(@src,'UserManagement')]"))
+        UserManagementPage(self.driver) \
             .set_password(UserInformation.PASSWORD) \
             .set_confirm_password(UserInformation.PASSWORD) \
             .set_last_name(UserInformation.LAST_NAME) \

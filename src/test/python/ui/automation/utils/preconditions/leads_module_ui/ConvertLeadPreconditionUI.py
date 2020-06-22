@@ -27,10 +27,6 @@ class ConvertLeadPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def load_lead_from_config(self, lead_key):
-        lead = self.config.get_value(lead_key)
-        return lead
-
     def convert_lead_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
@@ -55,7 +51,7 @@ class ConvertLeadPreconditionUI(object):
                 field6=CreateLeadConstantsUI.FIELD_S_EMAIL, s_mail=CreateLeadConstantsUI.S_EMAIL,
                 field7=CreateLeadConstantsUI.FIELD_TITLE, title=CreateLeadConstantsUI.TITLE,
                 list1=CreateLeadConstantsUI.LIST_LEAD_SOURCE, l_source=CreateLeadConstantsUI.L_SOURCE,
-                list2=CreateLeadConstantsUI.LIST_LEAD_STATUS, l_status=CreateLeadConstantsUI.L_STATUS,
+                list2=CreateLeadConstantsUI.LIST_LEAD_STATUS, l_status='2',
                 list3=CreateLeadConstantsUI.LIST_ASSIGNED_TO, assigned_to=CreateLeadConstantsUI.ASSIGNED_TO,
                 field8=CreateLeadConstantsUI.FIELD_LANGUAGE, language=CreateLeadConstantsUI.LANGUAGE,
                 field9=CreateLeadConstantsUI.FIELD_SOURCE_NAME, source_name=CreateLeadConstantsUI.SOURCE_NAME,
@@ -67,12 +63,8 @@ class ConvertLeadPreconditionUI(object):
                 list4=CreateLeadConstantsUI.LIST_COUNTRY, country=CreateLeadConstantsUI.COUNTRY,
                 field15=CreateLeadConstantsUI.FIELD_STATE, state=CreateLeadConstantsUI.STATE,
                 field16=CreateLeadConstantsUI.FIELD_PO_BOX, po_box=CreateLeadConstantsUI.PO_BOX,
-                field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=CreateLeadConstantsUI.DESCRIPTION)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
+                field17=CreateLeadConstantsUI.FIELD_DESCRIPTION, description=CreateLeadConstantsUI.DESCRIPTION,
+                final_btn=CreateLeadConstantsUI.BTN_FINAL)
 
         """ Search lead """
         GlobalModulePageUI(self.driver) \
@@ -82,7 +74,7 @@ class ConvertLeadPreconditionUI(object):
 
         """ Open lead and get data """
         LeadsModulePageUI(self.driver) \
-            .open_lead()
+            .open_lead('1')
 
         details = LeadsDetailsPageUI(self.driver)
 
@@ -138,8 +130,6 @@ class ConvertLeadPreconditionUI(object):
             .comparator_string(last_name, CreateLeadConstantsUI.LNAME) \
             .comparator_string(title, CreateLeadConstantsUI.TITLE) \
             .comparator_string(l_source, CreateLeadConstantsUI.L_SOURCE) \
-            .comparator_string(l_status, CreateLeadConstantsUI.L_STATUS) \
-            .comparator_string(assigned_to, CreateLeadConstantsUI.ASSIGNED_TO) \
             .comparator_string(language, CreateLeadConstantsUI.LANGUAGE) \
             .comparator_string(source_name, CreateLeadConstantsUI.SOURCE_NAME) \
             .comparator_string(referral, CreateLeadConstantsUI.REFERRAL) \
@@ -185,8 +175,7 @@ class ConvertLeadPreconditionUI(object):
                 field7=ConvertLeadConstantsUI.FIELD_CITY, city=ConvertLeadConstantsUI.CITY,
                 list3=ConvertLeadConstantsUI.LIST_COUNTRY, country=ConvertLeadConstantsUI.COUNTRY,
                 field9=ConvertLeadConstantsUI.FIELD_PASSWORD, password=ConvertLeadConstantsUI.PASSWORD,
-                list4=ConvertLeadConstantsUI.LIST_CURRENCY,
-                # currency=var.get_var(self.__class__.__name__)["convert_lead_currency"],
+                list4=ConvertLeadConstantsUI.LIST_CURRENCY, currency='1',
                 field10=ConvertLeadConstantsUI.FIELD_REFERRAL, referral=ConvertLeadConstantsUI.REFERRAL,
                 list5=ConvertLeadConstantsUI.LIST_BRAND, brand=ConvertLeadConstantsUI.BRAND,
                 field11=ConvertLeadConstantsUI.FIELD_SOURCE_NAME, source_name=ConvertLeadConstantsUI.SOURCE_NAME,
@@ -221,7 +210,7 @@ class ConvertLeadPreconditionUI(object):
         ConvertLeadConstantsUI.GET_CURRENCY = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_BASE_CURRENCY)
         referral = details \
-            .open_tab(ClientDetailsConstantsUI.TAB_CUSTOM_INFORMATION) \
+            .open_tab(ClientDetailsConstantsUI.TAB_MARKETING_INFORMATION) \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_REFERRAL)
         source_name = details \
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_CLIENT_SOURCE)
@@ -240,10 +229,10 @@ class ConvertLeadPreconditionUI(object):
             .comparator_string(city, ConvertLeadConstantsUI.CITY) \
             .comparator_string(country, ConvertLeadConstantsUI.COUNTRY)
 
-        if "*" not in email and "..." not in email:
+        if "*" not in email and "..." not in email and "+" in email:
             CRMBaseMethodsPage(self.driver) \
                 .comparator_string(email, CreateLeadConstantsUI.EMAIL)
-        elif "*" not in email:
+        elif "*" not in email and "+" in email:
             email = email.replace('...', '')
             assert email in CreateLeadConstantsUI.EMAIL
 

@@ -23,3 +23,5 @@ DragonPage:
 FinancialTransactionsPage:
   client_name_element:  "(//td[4]/div/a)[%s]"
   modified_time_element: "(//*[contains(@id,'row')]/td[12])[%s]"
+WebTraderPage:
+  volume_in_lot: "//custom-input[@name='investamount']//input"

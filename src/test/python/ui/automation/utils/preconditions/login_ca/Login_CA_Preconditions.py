@@ -26,6 +26,8 @@ from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstants
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
 from src.main.python.ui.ca.model.constants.questionnaire.QuesDualixConstants import QuesDualixConstants
 import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
+from src.main.python.ui.ca.model.constants.sign_up.SignUpFirstStepConstants import SignUpFirstStepConstants
+from src.main.python.ui.ca.model.constants.client_area.PersonalDetailsConstants import PersonalDetailsConstants
 
 
 class LoginCAPrecondition(object):
@@ -73,38 +75,26 @@ class LoginCAPrecondition(object):
 
     def sign_up_ca(self):
         """ Registration form """
-        if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver) \
-                .open_first_tab_page(self.config.get_value('url_ca')) \
-                .sign_up_q8(
-                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME],
-                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME],
-                    CAConstants.EMAIL_CA,
-                    self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE],
-                    CAConstants.PASSWORD)
-        else:
-            CALoginPage(self.driver)\
-                .open_first_tab_page(self.config.get_value('url_ca'))\
-                .close_campaign_banner()\
-                .click_sign_up()\
-                .fill_first_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
-                                             [LeadsModuleConstants.FIRST_NAME])\
-                .fill_last_name(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)
-                                            [LeadsModuleConstants.FIRST_LAST_NAME])\
-                .fill_email(CAConstants.EMAIL_CA)\
-                .fill_phone(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])\
-                .fill_password(CAConstants.PASSWORD)\
-                .fill_confirm_password(CAConstants.PASSWORD)\
-                .check_box_accept()\
-                .risk_check_box_accept()\
-                .select_country_first_step(CAConstants.COUNTRY1)\
-                .click_submit()\
-                .close_payment_popup()
+        CALoginPage(self.driver)\
+            .open_first_tab_page(self.config.get_value('url_ca'))\
+            .close_campaign_banner()\
+            .click_sign_up()\
+            .fill_first_name(SignUpFirstStepConstants.F_NAME)\
+            .fill_last_name(SignUpFirstStepConstants.L_NAME)\
+            .fill_email(SignUpFirstStepConstants.EMAIL)\
+            .fill_phone(SignUpFirstStepConstants.PHONE)\
+            .fill_password(SignUpFirstStepConstants.PASSWORD)\
+            .fill_confirm_password(SignUpFirstStepConstants.PASSWORD)\
+            .check_box_accept()\
+            .risk_check_box_accept()\
+            .select_country_first_step(SignUpFirstStepConstants.COUNTRY)\
+            .click_submit()\
+            .close_payment_popup()
 
-            """ Check graphs """
-            WebTraderPage(self.driver) \
-                .open_trading_page() \
-                .check_chart_loaded()
+        """ Check graphs """
+        WebTraderPage(self.driver) \
+            .open_trading_page() \
+            .check_chart_loaded()
 
         """ Personal details form """
         if global_var.current_brand_name == "solocapitals":
@@ -122,18 +112,16 @@ class LoginCAPrecondition(object):
                 .fill_address(CAConstants.ADDRESS) \
                 .click_next() \
                 .verify() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                           LeadsModuleConstants.FIRST_NAME]) \
+                .click_hi_user(SignUpFirstStepConstants.F_NAME) \
                 .sign_out() \
                 .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
+                .enter_email(SignUpFirstStepConstants.EMAIL) \
+                .enter_password(SignUpFirstStepConstants.PASSWORD) \
                 .click_login() \
                 .verify()
             sleep(2)
-            existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                                 LeadsModuleConstants.FIRST_NAME])
-            expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+            existing_client = CALoginPage(self.driver).verify_client(SignUpFirstStepConstants.F_NAME)
+            expected_client = SignUpFirstStepConstants.F_NAME
             expected_client.upper()
             print(expected_client, existing_client)
             assert existing_client == expected_client.upper()
@@ -153,18 +141,16 @@ class LoginCAPrecondition(object):
                 .fill_address(CAConstants.ADDRESS) \
                 .click_next() \
                 .verify() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                           LeadsModuleConstants.FIRST_NAME]) \
+                .click_hi_user(SignUpFirstStepConstants.F_NAME) \
                 .sign_out() \
                 .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
+                .enter_email(SignUpFirstStepConstants.EMAIL) \
+                .enter_password(SignUpFirstStepConstants.PASSWORD) \
                 .click_login() \
                 .verify()
             sleep(2)
-            existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                                 LeadsModuleConstants.FIRST_NAME])
-            expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+            existing_client = CALoginPage(self.driver).verify_client(SignUpFirstStepConstants.F_NAME)
+            expected_client = SignUpFirstStepConstants.F_NAME
 
             print(expected_client, existing_client)
             assert existing_client == expected_client
@@ -174,14 +160,14 @@ class LoginCAPrecondition(object):
                 global_var.current_brand_name == "uprofx" or \
                 global_var.current_brand_name == "kontofx" or \
                 global_var.current_brand_name == "olympiamarkets" or \
-                global_var.current_brand_name == "grandefex":
+                global_var.current_brand_name == "grandefex" or \
+                global_var.current_brand_name == "analystq":
 
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca'))
             CALoginPage(self.driver)\
                 .verify() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                                            LeadsModuleConstants.FIRST_NAME]) \
+                .click_hi_user(SignUpFirstStepConstants.F_NAME) \
                 .click_transactions_history() \
                 .open_account_details_tab() \
                 .select_data_birth_day(CAConstants.DAY_BIRTH) \
@@ -194,12 +180,11 @@ class LoginCAPrecondition(object):
                 .click_save_changes() \
                 .verify() \
                 .close_client_area() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                   LeadsModuleConstants.FIRST_NAME]) \
+                .click_hi_user(SignUpFirstStepConstants.F_NAME) \
                 .sign_out() \
                 .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
+                .enter_email(SignUpFirstStepConstants.EMAIL) \
+                .enter_password(SignUpFirstStepConstants.PASSWORD) \
                 .click_login() \
                 .verify()
 
@@ -251,14 +236,13 @@ class LoginCAPrecondition(object):
                 .close_questionnaire_message()
             CALoginPage(self.driver) \
                 .verify() \
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                   LeadsModuleConstants.FIRST_NAME]) \
+                .click_hi_user(SignUpFirstStepConstants.F_NAME) \
                 .sign_out()
             CALoginPage(self.driver) \
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .login() \
-                .enter_email(CAConstants.EMAIL_CA) \
-                .enter_password(CAConstants.PASSWORD) \
+                .enter_email(SignUpFirstStepConstants.EMAIL) \
+                .enter_password(SignUpFirstStepConstants.PASSWORD) \
                 .click_login() \
                 .verify()
         elif global_var.current_brand_name == "dualix":
@@ -308,8 +292,6 @@ class LoginCAPrecondition(object):
                 .select_item_pick_list(QuesDualixConstants.LIST_23, QuesDualixConstants.ITEM_23) \
                 .click_next_btn() \
                 .close_questionnaire_message()
-        elif global_var.current_brand_name == "q8":
-            pass
         else:
             CALoginPage(self.driver)\
                 .verify()\
@@ -325,23 +307,18 @@ class LoginCAPrecondition(object):
                 .fill_address(CAConstants.ADDRESS)\
                 .click_next()\
                 .verify()\
-                .click_hi_user(self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
-                                   LeadsModuleConstants.FIRST_NAME])\
+                .click_hi_user(SignUpFirstStepConstants.F_NAME)\
                 .sign_out()\
                 .login()\
-                .enter_email(CAConstants.EMAIL_CA)\
-                .enter_password(CAConstants.PASSWORD)\
+                .enter_email(SignUpFirstStepConstants.EMAIL)\
+                .enter_password(SignUpFirstStepConstants.PASSWORD)\
                 .click_login()\
                 .verify()
         sleep(2)
-        if global_var.current_brand_name == "q8":
-            CALoginPage(self.driver).verify_client("my account")
-        else:
-            existing_client = CALoginPage(self.driver).verify_client(self.load_lead_from_config(
-                TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME])
-            expected_client = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
+        existing_client = CALoginPage(self.driver).verify_client(SignUpFirstStepConstants.F_NAME)
+        expected_client = SignUpFirstStepConstants.F_NAME
 
-            assert existing_client.lower() == expected_client.lower()
+        assert existing_client.lower() == expected_client.lower()
 
     def client_exist_in_crm(self):
         """ Login to CRM """
@@ -355,33 +332,21 @@ class LoginCAPrecondition(object):
 
         sleep(2)
         ClientsPage(self.driver)\
-            .find_client_by_email(CAConstants.EMAIL_CA)
+            .find_client_by_email(SignUpFirstStepConstants.EMAIL)
         sleep(2)
-        assert ClientsPage(self.driver).get_client_first_name() == self.load_lead_from_config(
-                                                        TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]
-        assert ClientsPage(self.driver).get_client_last_name() == self.load_lead_from_config(
-            TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]
+        assert ClientsPage(self.driver).get_client_first_name() == SignUpFirstStepConstants.F_NAME
+        assert ClientsPage(self.driver).get_client_last_name() == SignUpFirstStepConstants.L_NAME
         actual_phone = ClientsPage(self.driver).get_client_phone()
         actual_phone = actual_phone.replace(' ', '')
-        expected_phone = self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE]
-        if (global_var.current_brand_name != "newrichmarkets") \
-                and (global_var.current_brand_name != "brokerz") \
-                and (global_var.current_brand_name != "kontofx") \
-                and (global_var.current_brand_name != "q8") \
-                and (global_var.current_brand_name != "gigafx") \
-                and (global_var.current_brand_name != "trade99") \
-                and (global_var.current_brand_name != "tradenero"):
-            try:
-                assert expected_phone in actual_phone
-            except:
-                assert actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN4 or \
-                       actual_phone == DragonConstants.PHONE_NUMBER_HIDDEN3
+        expected_phone = SignUpFirstStepConstants.PHONE
+        if actual_phone and '*' not in actual_phone:
+            assert expected_phone in actual_phone
 
         if global_var.current_brand_name != "q8":
             assert ClientsPage(self.driver).get_client_address() == CAConstants.ADDRESS
             assert ClientsPage(self.driver).get_client_city() == CAConstants.CITY
             assert ClientsPage(self.driver).get_client_code() == CAConstants.ZIP_CODE
-            assert ClientsPage(self.driver).get_client_date_of_birth() == '1995-01-10'
+            assert ClientsPage(self.driver).get_client_date_of_birth() == PersonalDetailsConstants.BIRTHDAY_CRM
         if global_var.current_brand_name == "q8":
             ClientsPage(self.driver).open_address_information_tab()
         assert ClientsPage(self.driver).get_client_country() == 'Germany'
@@ -434,10 +399,12 @@ class LoginCAPrecondition(object):
 
         """ Verify client's data """
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(first_name,
-                               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]) \
-            .comparator_string(last_name,
-                               self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]) \
+            .comparator_string(
+                first_name,
+                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_NAME]) \
+            .comparator_string(
+                last_name,
+                self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.FIRST_LAST_NAME]) \
             .comparator_string(birthday, CAConstants.BIRTHDAY_CRM) \
             .comparator_string(currency, CAConstants.CURRENCY) \
             .comparator_string(address, CAConstants.ADDRESS) \
@@ -446,9 +413,7 @@ class LoginCAPrecondition(object):
             .comparator_string(country, CAConstants.COUNTRY_DEFAULT)
 
         if "*" not in phone:
-            CRMBaseMethodsPage(self.driver) \
-                .comparator_string(phone,
-                                   self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE])
+            assert self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[LeadsModuleConstants.PHONE] in phone
 
     def login_ca(self):
         try:
@@ -456,6 +421,7 @@ class LoginCAPrecondition(object):
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .close_campaign_banner() \
                 .close_notifications_banner() \
+                .select_english() \
                 .click_sign_in_btn() \
                 .enter_email(self.config.get_value('email_live_acc')) \
                 .enter_password(self.config.get_value('password_live_acc')) \
@@ -467,6 +433,7 @@ class LoginCAPrecondition(object):
                 .open_first_tab_page(self.config.get_value('url_ca')) \
                 .close_campaign_banner() \
                 .close_notifications_banner() \
+                .select_english() \
                 .click_sign_in_btn() \
                 .enter_email(self.config.get_value('email_live_acc')) \
                 .enter_password(self.config.get_value('password_live_acc')) \

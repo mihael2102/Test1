@@ -122,8 +122,7 @@ class DepositTestCRM(BaseTest):
 
         if global_var.current_brand_name == "q8":
             MT4CreateAccountModule(self.driver)\
-                .create_account_with_platform(
-                self.config.get_value(TestDataConstants.TRADING_PLATFORMS, TestDataConstants.TRADING_PLATFORM_MT5),
+                .create_account(
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_SERVER_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_CURRENCY_LIVE),
                 self.config.get_value(TestDataConstants.TRADING_ACCOUNT1_LIVE, TestDataConstants.TRADING_GROUP_LIVE),
@@ -131,8 +130,7 @@ class DepositTestCRM(BaseTest):
                 .click_ok()
         else:
             MT4CreateAccountModule(self.driver) \
-                .create_account_with_platform(
-                    var.get_var(self.__class__.__name__)["live_acc_platform"],
+                .create_account(
                     var.get_var(self.__class__.__name__)["live_acc_server"],
                     var.get_var(self.__class__.__name__)["live_acc_currency"],
                     var.get_var(self.__class__.__name__)["live_acc_group"],
@@ -219,7 +217,8 @@ class DepositTestCRM(BaseTest):
         # amount_initial = crm_client_profile.get_initial_amount()
 
         crm_client_profile \
-            .perform_scroll_up() \
+            .perform_scroll_up()
+        ClientProfilePage(self.driver) \
             .open_deposit_for_client_in_menu() \
             .fill_client_deposit_pop(account_number)
 

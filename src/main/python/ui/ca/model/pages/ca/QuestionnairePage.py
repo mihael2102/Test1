@@ -185,7 +185,7 @@ class QuestionnairePage(CRMBasePage):
     def select_item_pick_list(self, question, answer):
         sleep(0.1)
         item = super().wait_load_element(
-            "//label[text()='%s']//following-sibling::custom-select//div[@class='wrap-list-pandats ng-star-inserted']/"
+            "//label[text()=' %s ']//following-sibling::custom-select//div[@class='wrap-list-pandats ng-star-inserted']/"
             "span/span[text()='%s']" % (question, answer))
         self.driver.execute_script("arguments[0].click();", item)
         Logging().reportDebugStep(self, question + ": " + answer)

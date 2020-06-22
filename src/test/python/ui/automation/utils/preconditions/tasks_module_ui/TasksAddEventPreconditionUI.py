@@ -45,12 +45,7 @@ class TasksAddEventPreconditionUI(object):
                 attached_to=AddDeleteEventConstantsUI.ATTACHED_TO,
                 field1=AddDeleteEventConstantsUI.FIELD_SUBJECT, subject=AddDeleteEventConstantsUI.SUBJECT,
                 list5=AddDeleteEventConstantsUI.LIST_PRIORITY, priority=AddDeleteEventConstantsUI.PRIORITY,
-                comments=AddDeleteEventConstantsUI.COMMENTS, final_btn=AddDeleteEventConstantsUI.BTN_SAVE_NEW)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
+                comments=AddDeleteEventConstantsUI.COMMENTS, final_btn=AddDeleteEventConstantsUI.BTN_SAVE)
 
         """ Search for event """
         GlobalModulePageUI(self.driver) \

@@ -25,10 +25,6 @@ class MT4CreateTAPreconditionUI(object):
         self.driver = driver
         self.config = config
 
-    def load_lead_from_config(self, lead_key):
-        lead = self.config.get_value(lead_key)
-        return lead
-
     def create_demo_trading_account_ui(self):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
@@ -43,10 +39,10 @@ class MT4CreateTAPreconditionUI(object):
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
-            .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   CreateLeadConstantsUI.EMAIL)
+            .set_data_column_field(column=ClientsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=CreateLeadConstantsUI.EMAIL)
         ClientsModulePageUI(self.driver)\
-            .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
+            .click_crm_id_ui() \
             .open_mt4_module_newui(var.get_var(self.__class__.__name__)["create_mt_user"])
 
         """ Create DEMO account for client using MT4 Actions """
@@ -56,9 +52,5 @@ class MT4CreateTAPreconditionUI(object):
                 list1=MT4CreateTAConstantsUI.LIST_SERVER, server=MT4CreateTAConstantsUI.SERVER_DEMO,
                 list2=MT4CreateTAConstantsUI.LIST_CURRENCY, currency=currency,
                 list3=MT4CreateTAConstantsUI.LIST_GROUP, group_number="1",
-                list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE)
-
-        """ Verify successful message """
-        GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok()
+                list4=MT4CreateTAConstantsUI.LIST_LEVERAGE, leverage=MT4CreateTAConstantsUI.LEVERAGE,
+                final_btn=MT4CreateTAConstantsUI.BTN_FINAL)
