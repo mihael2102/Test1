@@ -5,23 +5,26 @@ from selenium.webdriver.support.select import Select
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
-
+from src.main.python.ui.crm.model.pages.campaigns.CampaignsPage import CampaignsPage
 from selenium.webdriver import ActionChains
 from src.main.python.ui.crm.model.modules.campaigns_module.EditCampaignModule import EditCampaignModule
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
 from src.main.python.utils.logs.Loging import Logging
 
+
 class AddCampaignsModule(CRMBasePage):
 
-    def perform_add_new_campaign(self, name, assigned_to, deal, rate):
-        self.set_name(name)
-        self.set_assigned_to(assigned_to)
-        # self.set_start_date(start_date)
-        # self.set_end_date(end_date)
-        self.set_deal(deal)
-        self.set_rate(rate)
-        # self.set_active_check_box()
+    def perform_add_new_campaign(self, name=None, assigned_to=None, deal=None, rate=None):
+        if name:
+            self.set_name(name)
+        if assigned_to:
+            self.set_assigned_to(assigned_to)
+        if deal:
+            self.set_deal(deal)
+        if rate:
+            self.set_rate(rate)
         self.click_save_button()
+        return CampaignsPage(self.driver)
 
     def set_name(self, name):
         search_button = super().wait_element_to_be_clickable("//input[@name='campaign_name']")

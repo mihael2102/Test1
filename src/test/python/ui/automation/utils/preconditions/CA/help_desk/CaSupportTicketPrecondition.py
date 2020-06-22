@@ -13,7 +13,7 @@ from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientEditConstantsUI 
 from src.main.python.ui.ca.model.constants.sign_up.CaUpdateClientConstants import CaUpdateClientConstants
 from src.main.python.ui.ca.model.pages.ca_pages_ui.PersonalDetailsPage import PersonalDetailsPage
 from src.main.python.ui.ca.model.constants.main_page.MainPageConstants import MainPageConstants
-from src.main.python.ui.ca.model.constants.client_area.PersonalDetailsConstants import PersonalDetailsConstants
+from src.main.python.ui.ca.model.constants.CAconstants.CAConstants import CAConstants
 from src.main.python.ui.ca.model.constants.client_area.ServiceDeskConstants import ServiceDeskConstants
 from src.main.python.ui.ca.model.pages.ca_pages_ui.ServiceDeskPage import ServiceDeskPage
 from src.main.python.ui.crm.model.constants_ui.help_desk_ui.HDModuleConstantsUI import HDModuleConstantsUI
@@ -77,7 +77,6 @@ class CaSupportTicketPrecondition(object):
             .get_data_from_list_view_ui(column=HDModuleConstantsUI.COLUMN_TITLE,
                                         row='1')
         CRMBaseMethodsPage(self.driver) \
-            .comparator_string(ca_ticket_id, crm_ticket_id) \
             .comparator_string(ServiceDeskConstants.SUBJECT, title)
 
         """ Edit ticket in CRM """
