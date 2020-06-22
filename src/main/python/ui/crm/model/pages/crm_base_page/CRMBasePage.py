@@ -34,12 +34,14 @@ class CRMBasePage(object):
 
     def switch_first_tab_page(self):
         self.driver.switch_to_window(Config.window_before)
+        Logging().reportDebugStep(self, "Switch to first tab")
 
     def switch_first_window_page(self):
         self.driver.switch_to_window(Config.window_before)
 
     def switch_second_tab_page(self):
         self.driver.switch_to_window(Config.window_after)
+        Logging().reportDebugStep(self, "Switch to second tab")
 
     def came_back_on_previous_page(self):
         self.driver.back()
@@ -77,6 +79,7 @@ class CRMBasePage(object):
         self.wait_vtiger_loading_to_finish_custom(55)
         self.wait_crm_loading_to_finish_tasks(95)
         self.wait_loading_to_finish_new_ui(95)
+        sleep(0.5)
         Logging().reportDebugStep(self, "The page is refreshed")
 
     def perform_scroll_down(self):
@@ -98,6 +101,8 @@ class CRMBasePage(object):
         except:
             button = self.wait_load_element("//span[contains(text(),'OK')]")
             button.click()
+        sleep(1)
+        self.wait_crm_loading_to_finish()
         Logging().reportDebugStep(self, "The Ok button was clicked")
 
     def wait_crm_loading_to_finish(self):

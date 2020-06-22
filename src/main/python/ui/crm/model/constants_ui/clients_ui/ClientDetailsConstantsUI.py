@@ -15,7 +15,10 @@ class ClientDetailsConstantsUI(object):
     TAB_TRADING_ACCOUNTS = "Trading Accounts"
     TAB_FINANCIAL_TRANSACTIONS = "Financial Transactions"
     TAB_CUSTOM_INFORMATION = "Custom Information"
+    TAB_MARKETING_INFORMATION = "Marketing Information"
     TAB_ADDRESS_INFORMATION = "Address Information"
+    TAB_ACTIVITIES = "Activities"
+    TAB_HELP_DESK = "Help Desk"
 
     TAG_BALANCE = "Balance"
     TAG_WITHDRAWALS = "Withdrawals"
@@ -39,7 +42,10 @@ class ClientDetailsConstantsUI(object):
     FIELD_REFERRAL = "Referral"
     FIELD_CLIENT_SOURCE = "Client Source"
     FIELD_BIRTHDAY = "Date Of Birth"
+    FIELD_CLIENT_STATUS = "Client Status"
 
     COLUMN_LOGIN = "Login"
     COLUMN_BALANCE = "Balance"
     COLUMN_CREDIT = "Credit"
+    COLUMN_LEVERAGE = "Leverage"
+    COLUMN_READ_ONLY = "Read Only"

@@ -1,10 +1,10 @@
 tests_config:
 
 ######################################### CA TESTS ##############################################
-#- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
-#  class: SignUpTest
-#  tests:
-#    - test_check_login
+- module: src.test.python.ui.automation.implementation.ca.Test_SignUp
+  class: SignUpTest
+  tests:
+    - test_check_login
 #    - test_client_deposit_page_loading
 
 #- module: src.test.python.ui.automation.implementation.ca.Test_Pages_CA
@@ -13,14 +13,14 @@ tests_config:
 #    - test_graph_ca
 #    - test_asset_price_ca
 
-- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
-  class: TradingProcess
-  tests:
+#- module: src.test.python.ui.automation.implementation.ca.Test_Trading_Process
+#  class: TradingProcess
+#  tests:
 #    - test_trading_process_open_position_ca    # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
 #    - test_verify_open_position_crm     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
 #    - test_trading_process_close_position_ca      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
 #    - test_verify_close_position_crm     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
-    - test_open_position_live         # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
+#    - test_open_position_live         # open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
 #    - test_verify_live_open_position_crm     # verify in crm open position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME
 #    - test_close_position_live      # close position, get OPEN PRICE, ORDER ID, SYMBOL, CREATED TIME, CLOSE TIME, CLOSE PRICE, PROFIT
 #    - test_verify_live_close_position_crm
