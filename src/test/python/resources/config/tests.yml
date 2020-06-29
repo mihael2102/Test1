@@ -38,11 +38,11 @@ tests_config:
 #    - test_check_email_popup
 #
 #################################### CONVERT LEAD ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
-#  directive: reload_configuration
-#  class: LeadModuleTest
-#  tests:
-#    - test_perform_convert_lead   # Creates a lead and converts it to a client
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
+  directive: reload_configuration
+  class: LeadModuleTest
+  tests:
+    - test_perform_convert_lead   # Creates a lead and converts it to a client
 
 #################################### CLIENTS ###############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Searching_Clients
@@ -100,17 +100,17 @@ tests_config:
 #    - test_change_client_password_from_crm  # change a client account password from the crm
 #    - test_change_mt4_password_from_crm  # change an MT4 account password from the crm
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
-#  class: DepositTestCRM
-#  tests:
-#    - test_make_deposit_crm  # create live mt account and make deposit in crm
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Deposit
+  class: DepositTestCRM
+  tests:
+    - test_make_deposit_crm  # create live mt account and make deposit in crm
 #    - test_make_deposit_for_client_crm
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-#  class: WithdrawTest
-#  tests:
-#    - test_withdraw_crm   #preconditions: convert lead, make deposit
-
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
+  class: WithdrawTest
+  tests:
+    - test_withdraw_crm   #preconditions: convert lead, make deposit
+#
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
 #  class: CreditInTestCRM
 #  tests:
@@ -228,11 +228,11 @@ tests_config:
 #    - test_check_tab_help_desk
 
 ############################################# AUDIT LOGS ################################################
-- module: src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs
-  class: AuditLogsModuleTest
-  tests:
+#- module: src.test.python.ui.automation.implementation.crm.tests_audit_logs_module.Test_Audit_Logs
+#  class: AuditLogsModuleTest
+#  tests:
 #    - test_audit_logs_searching_by_columns
-    - test_new_events_shown_in_audit_logs
+#    - test_new_events_shown_in_audit_logs
 
 ############################################# GLOBAL SEARCH ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Global_Search
