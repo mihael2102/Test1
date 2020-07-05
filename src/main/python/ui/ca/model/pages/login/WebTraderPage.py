@@ -337,6 +337,7 @@ class WebTraderPage(CRMBasePage):
         sleep(3)
         select_volume = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["volume_in_lot"])
+        self.driver.execute_script("arguments[0].scrollIntoView();", select_volume)
         select_volume.clear()
         select_volume.send_keys(volume)
         Logging().reportDebugStep(self, "Select volume in lot: " + volume)
