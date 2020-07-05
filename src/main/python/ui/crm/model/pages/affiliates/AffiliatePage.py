@@ -165,7 +165,7 @@ class AffiliatePage(CRMBasePage):
         Logging().reportDebugStep(self, "Select blocked country %s" % country)
 
     def click_submit(self):
-        button_submit = super().wait_element_to_be_clickable("//button[@class = 'btn btn-success']")
+        button_submit = super().wait_element_to_be_clickable("//button[text()=' Submit ']")
         # button_submit.click()
         sleep(1)
         self.driver.execute_script("arguments[0].click();", button_submit)
