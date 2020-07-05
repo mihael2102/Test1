@@ -26,7 +26,7 @@ class TradingDetailsPageUI(CRMBasePage):
         return TradingDetailsPageUI(self.driver)
 
     def get_open_orders_data(self):
-        sleep(0.2)
+        sleep(1)
         open_orders_data = super().wait_load_element(
             "//mat-expansion-panel[@id='open-trades']//tbody/tr[not (contains(@style,'hidden'))][1]")\
             .get_attribute("innerText")
@@ -34,7 +34,7 @@ class TradingDetailsPageUI(CRMBasePage):
         return open_orders_data
 
     def get_closed_orders_data_ui(self, row):
-        sleep(0.2)
+        sleep(1)
         closed_orders_data = super().wait_load_element(
             "//mat-expansion-panel[@id='closed-trades']//tbody/tr[not (contains(@style,'hidden'))][%s]" % row)\
             .get_attribute("innerText")
