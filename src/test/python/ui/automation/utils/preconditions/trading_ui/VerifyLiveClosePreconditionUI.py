@@ -60,7 +60,7 @@ class VerifyLiveClosePreconditionUI(object):
             Logging().reportDebugStep(self, "NOT RUNNED")
             assert TradingConstants.IS_ASSET_EXIST == "yes"
 
-        """ Open live account details and get closed orders data """
+        """ Open live account details """
         ClientDetailsPageUI(self.driver) \
             .open_tab(ClientDetailsConstantsUI.TAB_TRADING_ACCOUNTS)
         TradingModulePageUI(self.driver) \
@@ -68,8 +68,14 @@ class VerifyLiveClosePreconditionUI(object):
         GlobalDetailsPageUI(self.driver) \
             .open_tab(TradingDetailsConstantsUI.TAB_CLOSED_TRANSACTIONS)
 
+        """ Get last record number from Closed Trades table """
+        record_number = GlobalModulePageUI(self.driver)\
+            .get_last_record_number()
+        record_number = str(int(record_number) - 1)
+
+        """ Get last closed order data """
         close_orders_data = TradingDetailsPageUI(self.driver) \
-            .get_closed_orders_data_ui()
+            .get_closed_orders_data_ui(record_number)
 
         """ Verify data of closed trade: """
         expected_order_id = TradingConstants.ORDER_ID_CLOSED.replace('#', '')
