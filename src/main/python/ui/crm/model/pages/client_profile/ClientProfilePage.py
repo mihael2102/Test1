@@ -827,7 +827,7 @@ class ClientProfilePage(CRMBasePage):
         sleep(0.2)
         try:
             closed_transactions_tab = super().wait_load_element(
-                "//a[@id='show_Tradingaccounts_ClosedTransactions'][not (contains(@style,'none'))]", timeout=15)
+                "//a[@id='show_Tradingaccounts_ClosedTrades'][not (contains(@style,'none'))]", timeout=15)
             self.driver.execute_script("arguments[0].click();", closed_transactions_tab)
             Logging().reportDebugStep(self, "Open the Closed Transactions tab")
         except(NoSuchElementException, TimeoutException):
@@ -837,7 +837,7 @@ class ClientProfilePage(CRMBasePage):
     def get_closed_order_data(self):
         sleep(0.2)
         closed_orders_data = super().wait_load_element(
-            "//div[@id='tbl_Tradingaccounts_ClosedTransactions']//tr[@class='lvtColData' and @style='background:'][1]")\
+            "//div[@id='tbl_Tradingaccounts_ClosedTrades']//tr[@class='lvtColData' and @style='background:'][1]")\
             .get_attribute("innerText")
         if "Loading" in closed_orders_data:
             sleep(1)

@@ -106,11 +106,11 @@ tests_config:
     - test_make_deposit_crm  # create live mt account and make deposit in crm
 #    - test_make_deposit_for_client_crm
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
-#  class: WithdrawTest
-#  tests:
-#    - test_withdraw_crm   #preconditions: convert lead, make deposit
-
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Withdraw_CRM
+  class: WithdrawTest
+  tests:
+    - test_withdraw_crm   #preconditions: convert lead, make deposit
+#
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Make_Credit_In
 #  class: CreditInTestCRM
 #  tests:
@@ -220,7 +220,7 @@ tests_config:
 #  class: HelpDeskModuleTest
 #  tests:
 #    - test_create_ticket
-
+#
 #- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk
 #  class: TabHelpDeskTest
 #  tests:
