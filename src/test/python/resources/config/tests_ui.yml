@@ -67,14 +67,14 @@ tests_config:
 #     - test_create_delete_affiliate_ui
 
 ############################################ HELP DESK #############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
-#  class: TestHelpDeskModuleUI
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
+  class: TestHelpDeskModuleUI
+  tests:
 #    - test_create_ticket_ui   # not run: no option to select test client in 'related to' field
 #    - test_edit_ticket_ui   # not run: no option to select test client in 'related to' field
 #    - test_pencil_ticket_ui   # not run: no option to select test client in 'related to' field
 #    - test_delete_ticket_ui   # not run: no option to select test client in 'related to' field
-#    - test_help_desk_searching_columns_ui
+    - test_help_desk_searching_columns_ui
 
 ############################################ DOCUMENTS ##############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_documents_ui.TestDocumentsModuleUI
@@ -122,10 +122,10 @@ tests_config:
 #    - test_delete_user_ui
 
 ############################################ CRM CONFIGURATION #######################################
-- module: src.test.python.ui.automation.implementation.crm.tests_crm_config_ui.TestCrmConfigurationUI
-  class: TestCrmConfigurationUI
-  tests:
-    - test_crm_config_pages_ui
+#- module: src.test.python.ui.automation.implementation.crm.tests_crm_config_ui.TestCrmConfigurationUI
+#  class: TestCrmConfigurationUI
+#  tests:
+#    - test_crm_config_pages_ui
 
 ################################################ WORKFLOWS ###########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_workflows_ui.TestWorkflowsUI
