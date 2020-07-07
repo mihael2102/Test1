@@ -78,5 +78,6 @@ class CheckWorkflowCountryPreconditionUI(object):
                 .get_text_from_field(ClientDetailsConstantsUI.FIELD_COUNTRY)
             address = ClientDetailsPageUI(self.driver) \
                 .get_text_from_field(ClientDetailsConstantsUI.FIELD_ADDRESS)
+            counter += 1
             if counter == 3:
                 break
