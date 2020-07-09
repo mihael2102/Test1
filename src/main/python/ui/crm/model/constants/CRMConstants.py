@@ -19,6 +19,7 @@ class CRMConstants(object):
     CC_EMAIL = "jonathan.albalak@pandats.com"
     SUBJECT_TASK_MAIL = ": SUBJECT_TASK_MAIL" + str(random.randrange(1, 9999999))
     PANDATS_EMAIL = "pandaqa"
+    PANDATS_FNAME = "testqa"
     EMAIL_FOR_EVENT = ""
     CLIENT_NAME_FOR_EVENT = ""
     TRADING_LEVERAGE_ITRADER = "30"
@@ -74,7 +75,7 @@ class CRMConstants(object):
     SECOND_COLUMN = "second_column"
     THIRD_COLUMN = "third_column"
     FOURTH_COLUMN = "fourth_column"
-    FOURTH_COLUMN_OTHER_TYPE = "Email"
+    FOURTH_COLUMN_OTHER_TYPE = "Gender"
     FIFTH_COLUMN = "fifth_column"
     SIXTH_COLUMN = "sixth_column"
     SIXTH_COLUMN_OTHER_TYPE = "Assigned To"

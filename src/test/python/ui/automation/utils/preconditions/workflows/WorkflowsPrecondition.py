@@ -104,8 +104,13 @@ class WorkflowsPrecondition(object):
         assert workflow_module
         CRMHomePage(self.driver)\
             .open_client_module() \
-            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_first_client_by_email(WorkflowsConstants.PANDATS_EMAIL)
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_first_client_by_client_name(WorkflowsConstants.TEST_NAME)
+        else:
+            ClientsPage(self.driver) \
+                .find_first_client_by_email(WorkflowsConstants.PANDATS_EMAIL)
         if global_var.current_brand_name == "q8" or \
                 global_var.current_brand_name == "itrader" or \
                 global_var.current_brand_name == "gmo":
@@ -139,8 +144,13 @@ class WorkflowsPrecondition(object):
         assert workflow_module
         CRMHomePage(self.driver)\
             .open_client_module() \
-            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-            .find_second_client_by_email(WorkflowsConstants.PANDATS_EMAIL)
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_second_client_by_name(WorkflowsConstants.TEST_NAME)
+        else:
+            ClientsPage(self.driver) \
+                .find_second_client_by_email(WorkflowsConstants.PANDATS_EMAIL)
         ClientProfilePage(self.driver)\
             .click_edit_personal_detail()\
             .select_country(WorkflowsConstants.COUNTRY_AUSTRIA)\

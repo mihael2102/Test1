@@ -1,7 +1,7 @@
 import pytest
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 from selenium.common.exceptions import TimeoutException
-
+from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
 from src.main.python.ui.brand.model.client_area_modules.constats.CaConstants import CaConstants
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
@@ -26,15 +26,17 @@ from selenium.common.exceptions import NoSuchElementException
 class DepositTestCRM(BaseTest):
 
     def test_make_deposit_crm(self):
-        client1 = self.config.get_value(TestDataConstants.CLIENT_ONE)
         CRMLoginPage(self.driver).open_first_tab_page(self.config.get_value('url')) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
-                       self.config.get_value(TestDataConstants.CRM_PASSWORD))
+                       self.config.get_value(TestDataConstants.CRM_PASSWORD)) \
+            .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
 
-        CRMHomePage(self.driver).open_client_module()\
-                                .select_filter(self.config.get_value(
-                                                            TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-                                .find_client_by_email(client1[LeadsModuleConstants.EMAIL])
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME))
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
         # Create LIVE account for client using MT4 Actions
         crm_client_profile = ClientProfilePage(self.driver)
@@ -131,9 +133,13 @@ class DepositTestCRM(BaseTest):
              .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                         self.config.get_value(TestDataConstants.CRM_PASSWORD),
                         self.config.get_value(TestDataConstants.OTP_SECRET)) \
-             .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER)) \
-             .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE,
-                                                               TestDataConstants.E_MAIL))
+             .select_filter(self.config.get_value(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME))
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
 
         # Get account number to make deposit in future. And get initial amount
         account_number = ClientProfilePage(self.driver)\
@@ -144,7 +150,8 @@ class DepositTestCRM(BaseTest):
         # amount_initial = crm_client_profile.get_initial_amount()
 
         crm_client_profile \
-            .perform_scroll_up() \
+            .perform_scroll_up()
+        ClientProfilePage(self.driver) \
             .open_deposit_for_client_in_menu()\
             .fill_client_deposit_pop(account_number)
 

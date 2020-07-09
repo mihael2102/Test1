@@ -186,7 +186,7 @@ class CRMConfigurationPage(CRMBasePage):
         sleep(1)
         try:
             self.driver.find_element_by_xpath("//a[contains(text(),'Email Templates')]")
-            brand_configuration_btn = super().wait_load_element("//a[contains(text(),'Email Templates')]")
+            brand_configuration_btn = super().wait_load_element("//li/a[contains(text(),'Email Templates')]")
             brand_configuration_btn.click()
             sleep(1)
             self.driver.find_element_by_xpath("//table[@id='emailmakerЗ']")

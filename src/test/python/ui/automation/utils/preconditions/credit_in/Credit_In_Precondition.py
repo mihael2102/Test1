@@ -8,6 +8,7 @@ from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.main.ClientsPage import ClientsPage
+from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.config import Config
 import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
 
@@ -36,8 +37,16 @@ class CreditInPrecondition(object):
     def add_live_account_in_crm(self):
         CRMHomePage(self.driver)\
             .open_client_module()\
-            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))\
-            .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))\
+            .select_filter(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FILTER))
+
+        if (global_var.current_brand_name == "itrader") or (global_var.current_brand_name == "gmo"):
+            ClientsPage(self.driver) \
+                .find_client_by_fname(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.FIRST_NAME))
+        else:
+            ClientsPage(self.driver) \
+                .find_client_by_email(self.config.get_data_client(TestDataConstants.CLIENT_ONE, TestDataConstants.E_MAIL))
+
+        ClientProfilePage(self.driver)\
             .open_mt4_actions(CRMConstants.CREATE_MT4_USER)
         if global_var.current_brand_name == "itrader" or global_var.current_brand_name == "gmo":
             MT4CreateAccountModule(self.driver) \
