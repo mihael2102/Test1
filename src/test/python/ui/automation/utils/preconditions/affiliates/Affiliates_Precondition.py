@@ -61,6 +61,7 @@ class AffiliatesPrecondition(object):
                                                           LeadsModuleConstants.FIRST_NAME])
 
         affiliate_name = affiliate_list_view_page.check_name_on_affiliate_details()
+        sleep(1)
         assert affiliate_name == self.load_lead_from_config(TestDataConstants.CLIENT_ONE)[
             LeadsModuleConstants.FIRST_NAME]
 
