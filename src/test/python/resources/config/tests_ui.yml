@@ -61,10 +61,10 @@ tests_config:
 #    - test_update_mt_user_ui
 
 ######################################## AFFILIATES MODULE #########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module_ui.TestAffiliatesModuleUI
-  class: TestAffiliateModuleUI
-  tests:
-     - test_create_delete_affiliate_ui
+#- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module_ui.TestAffiliatesModuleUI
+#  class: TestAffiliateModuleUI
+#  tests:
+#     - test_create_delete_affiliate_ui
 
 ############################################ HELP DESK #############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_ui.TestHelpDeskModuleUI
@@ -102,14 +102,14 @@ tests_config:
 #    - test_new_events_shown_in_audit_logs_ui
 
 ################################################# TASKS #############################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_ui.TestTasksModuleUI
-#  class: TestTasksModuleUI
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_ui.TestTasksModuleUI
+  class: TestTasksModuleUI
+  tests:
 #    - test_tasks_searching_columns_ui
 #    - test_tasks_sorting_columns_ui
-#    - test_add_event_ui
-#    - test_edit_event_ui
-#    - test_delete_event_ui
+    - test_add_event_ui
+    - test_edit_event_ui
+    - test_delete_event_ui
 #    - test_tasks_mass_edit
 #    - test_tasks_email_ui
 
