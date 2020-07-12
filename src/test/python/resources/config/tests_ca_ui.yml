@@ -1,10 +1,10 @@
 tests_config:
 
-#- module: src.test.python.ui.automation.implementation.ca.TestSignUpUI
-#  class: TestSignUpUI
-#  tests:
-#    - test_sign_up_ui
-#    - test_registred_client_in_crm_ui
+- module: src.test.python.ui.automation.implementation.ca.TestSignUpUI
+  class: TestSignUpUI
+  tests:
+    - test_sign_up_ui
+    - test_registred_client_in_crm_ui
 #    - test_update_client_ui
 #    - test_support_tickets_ui
 #
