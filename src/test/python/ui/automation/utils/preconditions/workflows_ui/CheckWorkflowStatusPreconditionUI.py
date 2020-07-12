@@ -64,6 +64,15 @@ class CheckWorkflowStatusPreconditionUI(object):
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_ADDRESS)
 
         """ Verify data """
-        CRMBaseMethodsPage(self.driver) \
-            .comparator_string(country, WorkflowsConstants.COUNTRY_ALBANIA) \
-            .comparator_string(address, WorkflowsConstants.TEST_ADDRESS)
+        counter = 0
+        while country != WorkflowsConstants.COUNTRY_ALBANIA and address != WorkflowsConstants.TEST_ADDRESS:
+            ClientDetailsPageUI(self.driver) \
+                .refresh_client_page()
+            country = ClientDetailsPageUI(self.driver) \
+                .open_tab(ClientDetailsConstantsUI.TAB_ADDRESS_INFORMATION) \
+                .get_text_from_field(ClientDetailsConstantsUI.FIELD_COUNTRY)
+            address = ClientDetailsPageUI(self.driver) \
+                .get_text_from_field(ClientDetailsConstantsUI.FIELD_ADDRESS)
+            counter += 1
+            if counter == 3:
+                break

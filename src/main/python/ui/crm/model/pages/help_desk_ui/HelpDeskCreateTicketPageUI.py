@@ -75,7 +75,7 @@ class HelpDeskCreateTicketPageUI(CRMBasePage):
     def select_priority(self, priority):
         sleep(0.1)
         item = super().wait_load_element(
-            "//help-desk-edit//span[text()=' Priority ']//following-sibling::ul//span[text()='%s']" % priority)
+            "//help-desk-edit//span[contains(text(),'Priority')]//following-sibling::ul//span[text()='%s']" % priority)
         self.driver.execute_script("arguments[0].click();", item)
         Logging().reportDebugStep(self, "Priority was set: " + priority)
         return HelpDeskCreateTicketPageUI(self.driver)
