@@ -102,14 +102,8 @@ brands:
 - name: uprofx
   config_file: uprofx.yml
 
-- name: xtraderfx
-  config_file: xtraderfx.yml
-
 - name: 2mercados
   config_file: 2mercados.yml
 
 - name: 4xfx
   config_file: 4xfx.yml
-
-- name: 24btcmarket
-  config_file: 24btcmarket.yml
