@@ -194,8 +194,12 @@ class GlobalModulePageUI(CRMBasePage):
     def select_filter_new_ui(self, test_filter):
         sleep(2)
         Logging().reportDebugStep(self, "Select filter: " + test_filter)
+        filter_input = super().wait_load_element("//input[@placeholder='Search filter']")
+        self.driver.execute_script("arguments[0].click();", filter_input)
+        filter_input.send_keys(test_filter)
+        sleep(0.5)
         filter_item = super().wait_load_element(
-            "//nice-select[@searchplaceholder='Search filter']//div[@class='select-wrap']//following-sibling::"
+            "//*[@searchplaceholder='Search filter']//div[@class='select-wrap']//following-sibling::"
             "ul//span[contains(text(),'%s')]" % test_filter)
         sleep(0.5)
         self.driver.execute_script("arguments[0].click();", filter_item)

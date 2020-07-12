@@ -45,7 +45,8 @@ class LeadsMassEditPreconditionUI(object):
                 language=MassActionsConstantsUI.LANGUAGE_GERMAN,
                 field_to_edit3=MassActionsConstantsUI.FIELD_COUNTRY,
                 country=MassActionsConstantsUI.COUNTRY_ALBANIA,
-                final_btn=MassActionsConstantsUI.BTN_FINAL2)
+                final_btn=MassActionsConstantsUI.BTN_FINAL2)\
+            .refresh_page()
 
         """ Check updated data in list view """
         GlobalModulePageUI(self.driver) \
