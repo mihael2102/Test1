@@ -21,12 +21,12 @@ tests_config:
 #    - test_create_filter_trading_account_module
 #
 ########################################## LEADS ###################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
-#  class: TabLeadsModuleCRM
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Tab_Leads_Module
+  class: TabLeadsModuleCRM
+  tests:
 #    - test_searching_lead_modules   # Creates a new lead and searches it. Validates that only one result is returned.
 #    - sorting_lead_module
-#    - test_mass_assign_leads
+    - test_mass_assign_leads
 #    - test_mass_edit_leads
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_leads_module.Test_Leads_Module
@@ -51,11 +51,11 @@ tests_config:
 #    - test_make_searching_client_module   # Searches for a client
 #    - test_search_client_magnifying_glass
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
-#  class: MassEditTestCRM
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Edit
+  class: MassEditTestCRM
+  tests:
 #    - test_update_client_details
-#    - test_clients_mass_edit
+    - test_clients_mass_edit
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Mass_Assign
 #  class: MassAssignTestCRM
@@ -63,12 +63,12 @@ tests_config:
 #    - test_clients_mass_assign
 #
 ###################################### TASKS ##################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
-#  class: AddEventTaskModule
-#  tests:
+- module: src.test.python.ui.automation.implementation.crm.tests_tasks_module.Test_Event
+  class: AddEventTaskModule
+  tests:
 #    - test_email_icon
 #    - test_sms_icon
-#    - test_mass_edit_tasks
+    - test_mass_edit_tasks
 #    - test_searching_by_columns
 #    - test_sorting_columns
 
@@ -137,10 +137,10 @@ tests_config:
 #    - test_crm_edit_trading_account  # edit trading account
 #
 ######################################## AFFILIATES MODULE ##########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
-#  class: AffiliateModule
-#  tests:
-#     - test_create_affiliate
+- module: src.test.python.ui.automation.implementation.crm.tests_affiliates_module.Test_Affiliates_Module
+  class: AffiliateModule
+  tests:
+     - test_create_affiliate
 #
 ####################################### FINANCIAL TRANSACTIONS ######################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_financial_transactions.Test_Tab_Financial_Transaction_Module
@@ -177,10 +177,10 @@ tests_config:
 #    - test_check_leaderboard
 #    - test_check_user_management
 #
-- module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
-  class: CRMConfigurationsTest
-  tests:
-    - test_crm_configurations_pages_loading
+#- module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
+#  class: CRMConfigurationsTest
+#  tests:
+#    - test_crm_configurations_pages_loading
 #
 ######################################### WORKFLOWS MODULE #############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
@@ -216,10 +216,10 @@ tests_config:
 #    - test_dragon_clients
 
 ############################################## HELP DESK #################################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
-#  class: HelpDeskModuleTest
-#  tests:
-#    - test_create_ticket
+- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Help_Desk_Module
+  class: HelpDeskModuleTest
+  tests:
+    - test_create_ticket
 #
 #- module: src.test.python.ui.automation.implementation.crm.tests_help_desk_module.Test_Tab_Help_Desk
 #  class: TabHelpDeskTest
