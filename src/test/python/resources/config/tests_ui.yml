@@ -146,9 +146,9 @@ tests_config:
 #    - test_campaign_searching_by_columns_ui
 
 ############################################# AUTOASSIGN MODULE ########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_autoassign_ui.TestAutoAssignModuleUI
-#  class: TestAutoAssignModuleUI
-#  tests:
-#    - test_add_auto_assign_rule_lead_ui
-#    - test_add_auto_assign_rule_client_ui
-#    - test_delete_auto_assign_rule_ui
+- module: src.test.python.ui.automation.implementation.crm.tests_autoassign_ui.TestAutoAssignModuleUI
+  class: TestAutoAssignModuleUI
+  tests:
+    - test_add_auto_assign_rule_lead_ui
+    - test_add_auto_assign_rule_client_ui
+    - test_delete_auto_assign_rule_ui
