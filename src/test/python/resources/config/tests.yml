@@ -177,10 +177,10 @@ tests_config:
 #    - test_check_leaderboard
 #    - test_check_user_management
 #
-#- module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
-#  class: CRMConfigurationsTest
-#  tests:
-#    - test_crm_configurations_pages_loading
+- module: src.test.python.ui.automation.implementation.crm.tests_crm_configuration.Test_CRM_Configurations
+  class: CRMConfigurationsTest
+  tests:
+    - test_crm_configurations_pages_loading
 #
 ######################################### WORKFLOWS MODULE #############################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_workflows.Test_Workflows_Modules
