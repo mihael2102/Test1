@@ -42,7 +42,7 @@ class MT4UpdateUserPreconditionUI(object):
             .set_data_column_field(column=ClientsModuleConstantsUI.COLUMN_EMAIL,
                                    data=CreateLeadConstantsUI.EMAIL) \
             .click_crm_id_ui(row='1') \
-            .open_mt4_module_newui(var.get_var(self.__class__.__name__)["update_mt_user"])
+            .open_mt4_module_newui(MT4ActionsConstantsUI.UPDATE_TA)
 
         """ Update MT User """
         MT4UpdateUserPageUI(self.driver)\

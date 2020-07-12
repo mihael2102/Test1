@@ -79,9 +79,9 @@ class AddDeleteEventPageUI(CRMBasePage):
         sleep(0.1)
         Logging().reportDebugStep(self, "Set Attached To: " + name)
         attached_to_field = super().wait_element_to_be_clickable(
-            "//span[text()=' Attached To ']//following-sibling::div/span")
+            "//span[contains(text(),'Attached To')]//following-sibling::div/span")
         attached_to_field.click()
-        search_field = super().wait_load_element("//span[text()=' Attached To ']//following-sibling::div//input")
+        search_field = super().wait_load_element("//span[contains(text(),'Attached To')]//following-sibling::div//input")
         search_field.clear()
         search_field.send_keys(name)
         item = super().wait_load_element("(//li/a/span[contains(text(),'%s')])[1]" % name)
