@@ -192,8 +192,7 @@ class TradingAccountPrecondition(object):
 
         if global_var.current_brand_name == "q8":
             MT4CreateAccountModule(self.driver) \
-                .create_account_with_platform(
-                    self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_PLATFORM_MT5),
+                .create_account(
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_SERVER),
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_CURRENCY),
                     self.config.get_value(TestDataConstants.TRADING_ACCOUNT1, TestDataConstants.TRADING_GROUP_DEMO),
