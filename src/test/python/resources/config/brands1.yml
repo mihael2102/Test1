@@ -35,8 +35,8 @@ brands:
 #- name: fbrokers
 #  config_file: fbrokers.yml
 
-#- name: globalix
-#  config_file: globalix.yml
+- name: globalix
+  config_file: globalix.yml
 
 #- name: grandefex
 #  config_file: grandefex.yml
@@ -50,8 +50,8 @@ brands:
 #- name: libramarkets
 #  config_file: libramarkets.yml
 
-#- name: marketrip
-#  config_file: marketrip.yml
+- name: marketrip
+  config_file: marketrip.yml
 
 #- name: metadoro
 #  config_file: metadoro.yml
@@ -86,8 +86,8 @@ brands:
 #- name: proconsultinginvest
 #  config_file: proconsultinginvest.yml
 
-- name: q8
-  config_file: q8.yml
+#- name: q8
+#  config_file: q8.yml
 
 #- name: solocapitlas
 #  config_file: solocapitlas.yml
