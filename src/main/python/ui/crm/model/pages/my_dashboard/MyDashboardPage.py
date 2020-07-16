@@ -390,8 +390,7 @@ class MyDashboardPage(CRMBasePage):
 
     def select_show_all_tab(self):
         self.wait_crm_loading_to_finish_tasks(85)
-        select_show_all_tab = self.driver.find_element_by_xpath(
-            "//*[@id='main-tabs']/li[1]")
+        select_show_all_tab = super().wait_load_element("//*[@id='main-tabs']/li[1]")
         self.driver.execute_script("arguments[0].scrollIntoView();", select_show_all_tab)
         try:
             select_show_all_tab.click()
@@ -399,7 +398,7 @@ class MyDashboardPage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", select_show_all_tab)
         sleep(0.2)
         self.wait_crm_loading_to_finish_tasks(75)
-        Logging().reportDebugStep(self, "Select Show All tab")
+        Logging().reportDebugStep(self, "Select 'Show All' tab")
         return MyDashboardPage(self.driver)
 
     def enter_account_name(self, testqa):

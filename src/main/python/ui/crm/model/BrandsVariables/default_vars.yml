@@ -50,14 +50,14 @@ LoginCAPrecondition:
   client_name: "Test"
   signup_currency: "EUR"
 MT4CreateTAPreconditionUI:
-  create_mt_user: "Create MT User"
+  create_mt_user: "Create Trading Account"
   d_acc_currency: "USD"
 MT4CreditInPreconditionUI:
-  create_mt_user: "Create MT User"
+  create_mt_user: "Create Trading Account"
   l_acc_currency: "EUR"
   live_acc_group: "live"
 MT4DepositPreconditionUI:
-  create_mt_user: "Create MT User"
+  create_mt_user: "Create Trading Account"
   live_acc_group: "live"
   l_acc_currency: "EUR"
 MT4UpdateUserPreconditionUI:
