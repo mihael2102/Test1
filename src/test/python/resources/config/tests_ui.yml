@@ -14,10 +14,10 @@ tests_config:
   class: TestFiltersUI
   tests:
     - test_filter_clients_ui
-#    - test_filter_leads_ui
-#    - test_filter_documents_ui
-#    - test_filter_help_desk_ui
-#    - test_filter_ta_ui
+    - test_filter_leads_ui
+    - test_filter_documents_ui
+    - test_filter_help_desk_ui
+    - test_filter_ta_ui
 
 ############################################ LEADS ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_leads_module_ui.TestLeadsModuleUI

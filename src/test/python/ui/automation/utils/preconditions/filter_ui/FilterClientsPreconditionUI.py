@@ -89,6 +89,7 @@ class FilterClientsPreconditionUI(object):
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_ALL)
         self.driver.refresh()
+        self.driver.refresh()
         FilterPageUI(self.driver) \
             .delete_filter(ClientsFilterConstantsUI.CLIENTS_FILTER_NAME) \
             .approve_deleting() \
