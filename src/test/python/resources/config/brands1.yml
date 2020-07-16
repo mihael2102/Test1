@@ -12,11 +12,11 @@ brands:
 #- name: kaya_fx
 #  config_file: kaya_fx.yml
 
-- name: itrader
-  config_file: itrader.yml
-
-- name: itrader_global
-  config_file: itrader_global.yml
+#- name: itrader
+#  config_file: itrader.yml
+#
+#- name: itrader_global
+#  config_file: itrader_global.yml
 
 #- name: etfinance
 #  config_file: etfinance.yml
