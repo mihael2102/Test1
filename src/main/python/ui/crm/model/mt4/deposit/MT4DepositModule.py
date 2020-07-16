@@ -28,12 +28,7 @@ class MT4DepositModule(CRMBasePage):
         self.select_account(account_number)
         self.set_amount(amount)
         self.set_description(description_deposit)
-        if global_var.current_brand_name == "kontofx" or global_var.current_brand_name == "libramarkets" or \
-                global_var.current_brand_name == "olympiamarkets":
-            self.select_cleared_by(MT4ModuleConstants.CLEARED_BY)
-        if global_var.current_brand_name == "dax-300" or global_var.current_brand_name == "stox50" or \
-                global_var.current_brand_name == "aztrades":
-            self.select_cleared_by(MT4ModuleConstants.CLEARED_BY1)
+        self.select_cleared_by()
         self.create_deposit()
         return ClientProfilePage(self.driver)
 
@@ -54,12 +49,12 @@ class MT4DepositModule(CRMBasePage):
         :returns MT4 Deposit instance
     '''
 
-    def select_cleared_by(self, cleared_by):
+    def select_cleared_by(self):
         WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable((By.XPATH, "//select[@name='cleared_by']")))
         select = Select(self.driver.find_element(By.XPATH, "//select[@name='cleared_by']"))
-        select.select_by_visible_text(cleared_by)
-        Logging().reportDebugStep(self, "The cleared_by of deposit module was selected: " + cleared_by)
+        select.select_by_value("2")
+        Logging().reportDebugStep(self, "Select cleared_by")
         return MT4DepositModule()
 
     def select_payment_method(self, payment_method):
@@ -78,10 +73,7 @@ class MT4DepositModule(CRMBasePage):
 
     def select_status(self, deposit_status):
         select = Select(self.driver.find_element(By.XPATH, "//select[@id='transaction_status_id']"))
-        if global_var.current_brand_name == "safemarkets":
-            select.select_by_visible_text("Pending")
-        else:
-            select.select_by_visible_text(deposit_status)
+        select.select_by_visible_text(deposit_status)
         Logging().reportDebugStep(self, "The status of deposit module was selected: " + deposit_status)
         return MT4DepositModule()
 

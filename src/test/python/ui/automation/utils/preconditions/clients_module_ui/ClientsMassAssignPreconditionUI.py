@@ -50,7 +50,8 @@ class ClientsMassAssignPreconditionUI(object):
                 department=MassActionsConstantsUI.DEPARTMENT_ALL,
                 user=MassActionsConstantsUI.USER_NAME,
                 status=status,
-                final_btn=MassActionsConstantsUI.BTN_FINAL)
+                final_btn=MassActionsConstantsUI.BTN_FINAL)\
+            .refresh_page()
 
         """ Check updated data in list view """
         GlobalModulePageUI(self.driver) \

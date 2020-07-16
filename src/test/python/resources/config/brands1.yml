@@ -2,8 +2,8 @@
 
 brands:
 
-- name: analystq
-  config_file: analystq.yml
+#- name: analystq
+#  config_file: analystq.yml
 
 #- name: any1profit
 #  config_file: any1profit.yml
@@ -35,8 +35,8 @@ brands:
 #- name: fbrokers
 #  config_file: fbrokers.yml
 
-#- name: globalix
-#  config_file: globalix.yml
+- name: globalix
+  config_file: globalix.yml
 
 #- name: grandefex
 #  config_file: grandefex.yml
@@ -50,8 +50,8 @@ brands:
 #- name: libramarkets
 #  config_file: libramarkets.yml
 
-#- name: marketrip
-#  config_file: marketrip.yml
+- name: marketrip
+  config_file: marketrip.yml
 
 #- name: metadoro
 #  config_file: metadoro.yml
