@@ -38,11 +38,12 @@ class FilterClientsPreconditionUI(object):
                 column11=ClientsFilterConstantsUI.COLUMN11)
 
         """ Get and verify current filter title """
-        current_filter = FilterPageUI(self.driver) \
-            .get_current_filter()
-        CRMBaseMethodsPage(self.driver) \
-            .comparator_string(ClientsFilterConstantsUI.CLIENTS_FILTER_NAME,
-                               current_filter)
+        self.driver.refresh()
+        # current_filter = FilterPageUI(self.driver) \
+        #     .get_current_filter()
+        # CRMBaseMethodsPage(self.driver) \
+        #     .comparator_string(ClientsFilterConstantsUI.CLIENTS_FILTER_NAME,
+        #                        current_filter)
 
         """ Get titles of new filter columns """
         title = GlobalModulePageUI(self.driver)
@@ -87,6 +88,7 @@ class FilterClientsPreconditionUI(object):
         """ Delete Filter """
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_ALL)
+        self.driver.refresh()
         FilterPageUI(self.driver) \
             .delete_filter(ClientsFilterConstantsUI.CLIENTS_FILTER_NAME) \
             .approve_deleting() \

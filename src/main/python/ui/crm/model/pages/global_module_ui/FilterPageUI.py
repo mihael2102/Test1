@@ -89,11 +89,11 @@ class FilterPageUI(CRMBasePage):
         return current_filter
 
     def delete_filter(self, title):
-        sleep(0.1)
+        sleep(1)
         Logging().reportDebugStep(self, "Click Delete filter button")
         delete_btn = super().wait_load_element(
-            "//a[@title='%s']//following-sibling::div[@class='actions-wrap ng-star-inserted']/ul[@class='actions-menu']"
-            "//button[@title='Delete']" % title)
+            "(//a[@title='%s']//following-sibling::div[@class='actions-wrap ng-star-inserted']"
+            "/ul[@class='actions-menu']//button[@title='Delete'])[1]" % title)
         self.driver.execute_script("arguments[0].click();", delete_btn)
         Logging().reportDebugStep(self, "Delete filter button was clicked")
         return GlobalModulePageUI(self.driver)
