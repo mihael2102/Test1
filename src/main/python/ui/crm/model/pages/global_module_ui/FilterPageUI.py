@@ -89,11 +89,11 @@ class FilterPageUI(CRMBasePage):
         return current_filter
 
     def delete_filter(self, title):
-        sleep(0.1)
+        sleep(1)
         Logging().reportDebugStep(self, "Click Delete filter button")
         delete_btn = super().wait_load_element(
-            "//a[@title='%s']//following-sibling::div[@class='actions-wrap ng-star-inserted']/ul[@class='actions-menu']"
-            "//button[@title='Delete']" % title)
+            "//a[@title='%s']//following-sibling::div[@class='actions-wrap ng-star-inserted']"
+            "/ul[@class='actions-menu']//button[@title='Delete']" % title)
         self.driver.execute_script("arguments[0].click();", delete_btn)
         Logging().reportDebugStep(self, "Delete filter button was clicked")
         return GlobalModulePageUI(self.driver)
@@ -101,8 +101,10 @@ class FilterPageUI(CRMBasePage):
     def verify_filter_in_list(self, title):
         sleep(0.1)
         Logging().reportDebugStep(self, "Check filter " + title + " in filter pick-list")
+        self.driver.refresh()
+        sleep(1)
         pick_list = super().wait_load_element(
-            "//nice-select[@searchplaceholder='Search filter']//div[@class='select-wrap']//following-sibling::ul")\
+            "//*[@searchplaceholder='Search filter']//div[@class='select-wrap']//following-sibling::ul")\
             .get_attribute("innerText")
         try:
             assert title in pick_list
