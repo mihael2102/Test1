@@ -121,10 +121,10 @@ tests_config:
   tests:
     - test_make_credit_out_crm # preconditions: convert lead, make credit in
 
-#- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
-#  class: SendEmailTestCRM
-#  tests:
-#    - test_send_email # preconditions: convert lead
+- module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Send_Email
+  class: SendEmailTestCRM
+  tests:
+    - test_send_email # preconditions: convert lead
 #
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
   class: TransferBetweenTa
