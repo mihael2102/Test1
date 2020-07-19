@@ -40,6 +40,7 @@ class FilterLeadsPreconditionUI(object):
                 column7=LeadsFilterConstantsUI.COLUMN7, column8=LeadsFilterConstantsUI.COLUMN8)
 
         """ Get and verify current filter title """
+        self.driver.refresh()
         current_filter = FilterPageUI(self.driver) \
             .get_current_filter()
         CRMBaseMethodsPage(self.driver) \
@@ -80,6 +81,8 @@ class FilterLeadsPreconditionUI(object):
         """ Delete Filter """
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_ALL)
+        self.driver.refresh()
+        self.driver.refresh()
         FilterPageUI(self.driver) \
             .delete_filter(LeadsFilterConstantsUI.LEADS_FILTER_NAME) \
             .approve_deleting() \

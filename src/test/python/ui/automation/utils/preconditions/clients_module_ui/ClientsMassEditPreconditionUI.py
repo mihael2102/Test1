@@ -48,7 +48,8 @@ class ClientsMassEditPreconditionUI(object):
                 field_to_edit1=MassActionsConstantsUI.FIELD_CLIENT_STATUS,
                 field_to_edit4=MassActionsConstantsUI.FIELD_ASSIGNED_TO,
                 assign_to=MassActionsConstantsUI.USER_NAME_1,
-                final_btn=MassActionsConstantsUI.BTN_FINAL2)
+                final_btn=MassActionsConstantsUI.BTN_FINAL2)\
+            .refresh_page()
 
         """ Check confirmation message and updated data in table """
         GlobalModulePageUI(self.driver) \
