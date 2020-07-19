@@ -125,7 +125,7 @@ tests_config:
   class: SendEmailTestCRM
   tests:
     - test_send_email # preconditions: convert lead
-#
+
 - module: src.test.python.ui.automation.implementation.crm.tests_clients_module.Test_Transfer_Between_Ta
   class: TransferBetweenTa
   tests:
