@@ -359,18 +359,6 @@ class ClientProfilePage(CRMBasePage):
         return document_status.text
 
     '''
-        Open the help deck tabs  
-        :parameter id client account ID 
-        returns Client Profile instance    
-    '''
-
-    def open_help_desk_tab(self):
-        select_country = super().wait_load_element("//a[@id='show_Accounts_HelpDesk']")
-        select_country.click()
-        Logging().reportDebugStep(self, "Click help desc tab")
-        return ClientProfilePage(self.driver)
-
-    '''
          Open the action of the ticket number
          returns Edition Ticket Info instance    
     '''

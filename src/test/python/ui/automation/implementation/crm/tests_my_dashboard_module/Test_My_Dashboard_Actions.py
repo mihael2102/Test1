@@ -1,5 +1,4 @@
 import pytest
-
 from src.main.python.ui.crm.model.constants.EmailConstants import EmailConstants
 from src.main.python.ui.crm.model.constants.FourthClientConstants import FourthClientConstants
 from src.main.python.ui.crm.model.constants.MyDashboardConstants import MyDashboardConstants
@@ -11,7 +10,8 @@ from src.test.python.ui.automation.utils.preconditions.task_module.ActionsTasksP
     ActionsTasksPrecondition
 from src.test.python.ui.automation.utils.preconditions.task_module.MassEmailPrecondition import MassEmailPrecondition
 from src.test.python.ui.automation.utils.preconditions.task_module.MassSmsPrecondition import MassSmSPrecondition
-from src.test.python.ui.automation.utils.preconditions.mydashboard.MyDashboardPrecondition import MyDashboardPrecondition
+from src.test.python.ui.automation.utils.preconditions.mydashboard.MyDashboardPrecondition import \
+    MyDashboardPrecondition
 
 
 @pytest.mark.run(order=28)
