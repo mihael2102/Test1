@@ -1,5 +1,4 @@
 from src.main.python.ui.crm.model.constants_ui.filters_ui.ClientsFilterConstantsUI import ClientsFilterConstantsUI
-from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.FilterPageUI import FilterPageUI

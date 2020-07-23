@@ -10,14 +10,14 @@ tests_config:
 #    - test_sorting_columns_ui
 
 ######################################## FILTERS TESTS ###########################################
-- module: src.test.python.ui.automation.implementation.crm.tests_global_crm_ui.TestFiltersUI
-  class: TestFiltersUI
-  tests:
-    - test_filter_clients_ui
-    - test_filter_leads_ui
-    - test_filter_documents_ui
-    - test_filter_help_desk_ui
-    - test_filter_ta_ui
+#- module: src.test.python.ui.automation.implementation.crm.tests_global_crm_ui.TestFiltersUI
+#  class: TestFiltersUI
+#  tests:
+#    - test_filter_clients_ui
+#    - test_filter_leads_ui
+#    - test_filter_documents_ui
+#    - test_filter_help_desk_ui
+#    - test_filter_ta_ui
 
 ############################################ LEADS ################################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_leads_module_ui.TestLeadsModuleUI
@@ -128,13 +128,13 @@ tests_config:
 #    - test_crm_config_pages_ui
 
 ################################################ WORKFLOWS ###########################################
-#- module: src.test.python.ui.automation.implementation.crm.tests_workflows_ui.TestWorkflowsUI
-#  class: TestWorkflowsUI
-#  tests:
-#    - test_create_workflow_ui
-#    - test_check_workflow_by_status_ui
-#    - test_check_workflow_by_country_ui
-#    - test_delete_workflow_ui
+- module: src.test.python.ui.automation.implementation.crm.tests_workflows_ui.TestWorkflowsUI
+  class: TestWorkflowsUI
+  tests:
+    - test_create_workflow_ui
+    - test_check_workflow_by_status_ui
+    - test_check_workflow_by_country_ui
+    - test_delete_workflow_ui
 
 ############################################## CAMPAIGN MODULE ########################################
 #- module: src.test.python.ui.automation.implementation.crm.tests_campaign_ui.TestCampaignModuleUI
