@@ -27,10 +27,10 @@ class CheckWorkflowCountryPreconditionUI(object):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
-            url=self.config.get_value('url'),
-            user_name=self.config.get_value(TestDataConstants.USER_NAME),
-            password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-            otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Workflow module """
         CRMBaseMethodsPage(self.driver) \
@@ -69,6 +69,15 @@ class CheckWorkflowCountryPreconditionUI(object):
             .get_text_from_field(ClientDetailsConstantsUI.FIELD_ADDRESS)
 
         """ Verify data """
-        CRMBaseMethodsPage(self.driver) \
-            .comparator_string(country, WorkflowsConstants.COUNTRY_ALBANIA) \
-            .comparator_string(address, WorkflowsConstants.TEST_ADDRESS)
+        counter = 0
+        while country != WorkflowsConstants.COUNTRY_ALBANIA and address != WorkflowsConstants.TEST_ADDRESS:
+            ClientDetailsPageUI(self.driver) \
+                .refresh_client_page()
+            country = ClientDetailsPageUI(self.driver) \
+                .open_tab(ClientDetailsConstantsUI.TAB_ADDRESS_INFORMATION) \
+                .get_text_from_field(ClientDetailsConstantsUI.FIELD_COUNTRY)
+            address = ClientDetailsPageUI(self.driver) \
+                .get_text_from_field(ClientDetailsConstantsUI.FIELD_ADDRESS)
+            counter += 1
+            if counter == 3:
+                break

@@ -1,5 +1,4 @@
 import pytest
-
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
 from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
@@ -16,24 +15,25 @@ class ImportLeadTest(BaseTest):
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        import_page = CRMHomePage().open_lead_module() \
+        import_page = CRMHomePage()\
+            .open_lead_module() \
             .open_today_lead_tab() \
             .perform_screen_shot_import_lead_module() \
             .open_import_page() \
             .perform_first_step_upload_lead() \
             .click_next_button() \
             .select_source_lead(
-            Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_IMPORT_LEAD,
-                                           LeadsModuleConstants.THIRD_LEAD_SOURCE)) \
+                Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_IMPORT_LEAD,
+                                               LeadsModuleConstants.THIRD_LEAD_SOURCE)) \
             .set_source_name(
-            Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_IMPORT_LEAD,
-                                           LeadsModuleConstants.THIRD_SOURCE_NAME)) \
+                Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_IMPORT_LEAD,
+                                               LeadsModuleConstants.THIRD_SOURCE_NAME)) \
             .select_status(
-            Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_IMPORT_LEAD,
-                                           LeadsModuleConstants.THIRD_LEAD_STATUS)) \
+                Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_IMPORT_LEAD,
+                                               LeadsModuleConstants.THIRD_LEAD_STATUS)) \
             .select_assigned_to(
-            Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_IMPORT_LEAD,
-                                           LeadsModuleConstants.THIRD_ASSIGNED_TO)) \
+                Config.data.get_data_lead_info(LeadsModuleConstants.FIRST_IMPORT_LEAD,
+                                               LeadsModuleConstants.THIRD_ASSIGNED_TO)) \
             .perform_scroll_down() \
             .click_next_button()
 
@@ -41,7 +41,8 @@ class ImportLeadTest(BaseTest):
 
         assert confirm_import_message == LeadsModuleConstants.CONFIRM_MESSAGE
 
-        CRMHomePage().open_lead_module() \
+        CRMHomePage()\
+            .open_lead_module() \
             .open_today_lead_tab() \
             .get_import_lead(LeadsModuleConstants.LAST_IMPORT_NAME_LEAD) \
             .perform_screen_shot_confirm_import_lead_module() \

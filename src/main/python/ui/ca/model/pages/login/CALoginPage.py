@@ -56,6 +56,17 @@ class CALoginPage(CRMBasePage):
             Logging().reportDebugStep(self, "Campaign banner doesn't appears")
         return CALoginPage(self.driver)
 
+    def close_stratton_message(self):
+        if global_var.current_brand_name == "strattonmarkets-eu":
+            try:
+                sleep(0.1)
+                got_it_btn = super().wait_load_element("//button[text()='Got it']")
+                got_it_btn.click()
+                Logging().reportDebugStep(self, "Stratton banner is closed")
+            except:
+                pass
+        return CALoginPage(self.driver)
+
     def close_notifications_banner(self):
         sleep(1)
         try:

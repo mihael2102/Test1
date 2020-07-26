@@ -32,8 +32,8 @@ class LeadsMassEditPreconditionUI(object):
         """ Select records for Mass Edit """
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_LEADS) \
-            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
+            .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=LeadsModuleConstantsUI.SHORT_EMAIL) \
             .select_all_records_checkbox() \
             .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT)
 
@@ -45,12 +45,13 @@ class LeadsMassEditPreconditionUI(object):
                 language=MassActionsConstantsUI.LANGUAGE_GERMAN,
                 field_to_edit3=MassActionsConstantsUI.FIELD_COUNTRY,
                 country=MassActionsConstantsUI.COUNTRY_ALBANIA,
-                final_btn=MassActionsConstantsUI.BTN_FINAL2)
+                final_btn=MassActionsConstantsUI.BTN_FINAL2)\
+            .refresh_page()
 
         """ Check updated data in list view """
         GlobalModulePageUI(self.driver) \
-            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
+            .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=LeadsModuleConstantsUI.SHORT_EMAIL) \
             .global_data_checker_new_ui(MassActionsConstantsUI.LANGUAGE_GERMAN) \
             .global_data_checker_new_ui(MassActionsConstantsUI.STATUS) \
             .global_data_checker_new_ui(MassActionsConstantsUI.COUNTRY_ALBANIA)

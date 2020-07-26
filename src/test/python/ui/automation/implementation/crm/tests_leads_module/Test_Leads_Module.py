@@ -1,5 +1,4 @@
 import pytest
-
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
 from src.main.python.ui.crm.model.constants.LeadsModuleConstants import LeadsModuleConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
@@ -14,9 +13,6 @@ import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as glo
 from src.main.python.ui.crm.model.modules.leads_module.ConvertLeadModule import ConvertLeadModule
 from selenium.common.exceptions import NoSuchElementException
 from src.main.python.ui.crm.model.constants.DragonConstants import DragonConstants
-from src.main.python.ui.crm.model.pages.leads.CreateLeadsProfilePage import CreateLeadsProfilePage
-from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 
 
 @pytest.mark.run(order=24)
@@ -78,14 +74,17 @@ class LeadModuleTest(BaseTest):
         lead_module.click_ok().perform_screen_shot_lead_module()
 
     def test_mass_assign_lead_module(self):
-        LeadPrecondition(self.driver, self.config).create_three_leads()
-        CRMHomePage().refresh_page() \
+        LeadPrecondition(self.driver, self.config)\
+            .create_three_leads()
+        CRMHomePage()\
+            .refresh_page() \
             .open_client_module()
 
         lead_module = CRMHomePage().open_lead_module()
 
-        lead_module.select_filter(self.config.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
-                                                                 LeadsModuleConstants.FILTER_NAME)) \
+        lead_module\
+            .select_filter(self.config.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
+                                                          LeadsModuleConstants.FILTER_NAME)) \
             .select_three_records_task_module() \
             .open_mass_assign_lead_module() \
             .search_user(MassEditConstants.USER_ONE) \
@@ -245,13 +244,12 @@ class LeadModuleTest(BaseTest):
             assert secondary_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW4 or \
                    secondary_email == DragonConstants.EMAIL_VALID_DETAIL_VIEW3
         # Verify First source name:
-        if global_var.current_brand_name != "marketsplus":
-            self.assertEqual(source_name, lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME])
+        self.assertEqual(source_name, lead_data[LeadsModuleConstants.FIRST_SOURCE_NAME])
         # Verify Panda Partner:
-        if lead_data[LeadsModuleConstants.PANDA_PARTNER] and global_var.current_brand_name != "marketsplus":
+        if lead_data[LeadsModuleConstants.PANDA_PARTNER]:
             self.assertEqual(panda_partner_id, lead_data[LeadsModuleConstants.PANDA_PARTNER])
         # Verify First Referral:
-        if lead_data[LeadsModuleConstants.FIRST_REFERRAL] and global_var.current_brand_name != "marketsplus":
+        if lead_data[LeadsModuleConstants.FIRST_REFERRAL]:
             self.assertEqual(referral, lead_data[LeadsModuleConstants.FIRST_REFERRAL])
         # Verify Street:
         self.assertEqual(street, lead_data[LeadsModuleConstants.STREET])
@@ -264,23 +262,13 @@ class LeadModuleTest(BaseTest):
         # Verify Title:
         self.assertEqual(tittle, lead_data[LeadsModuleConstants.FIRST_TITTLE])
         # Verify Lead Source:
-        if global_var.current_brand_name != "marketsplus":
-            self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])
+        self.assertEqual(lead_source, lead_data[LeadsModuleConstants.FIRST_LEAD_SOURCE])
         # Verify Lead Status:
-        if global_var.current_brand_name == "safemarkets":
-            self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_NEW])
-
-        elif global_var.current_brand_name == "uft" or global_var.current_brand_name == "trade99":
+        if global_var.current_brand_name == "trade99":
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_UFT])
-
-        elif global_var.current_brand_name == "gxfx":
-            self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_B_TEST])
 
         elif global_var.current_brand_name == "solocapitlas":
             self.assertEqual(po_box, lead_data[LeadsModuleConstants.PO_BOX])
-
-        elif global_var.current_brand_name == "gigafx":
-            self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS_GIGA])
 
         else:
             self.assertEqual(lead_status, lead_data[LeadsModuleConstants.FIRST_LEAD_STATUS])

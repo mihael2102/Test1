@@ -21,10 +21,10 @@ class FilterDocumentsPreconditionUI(object):
         """ Login CRM """
         CRMLoginPageUI(self.driver) \
             .crm_login(
-            url=self.config.get_value('url'),
-            user_name=self.config.get_value(TestDataConstants.USER_NAME),
-            password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
-            otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
+                url=self.config.get_value('url'),
+                user_name=self.config.get_value(TestDataConstants.USER_NAME),
+                password=self.config.get_value(TestDataConstants.CRM_PASSWORD),
+                otp_secret=self.config.get_value(TestDataConstants.OTP_SECRET))
 
         """ Open Documents module """
         CRMBaseMethodsPage(self.driver) \
@@ -39,6 +39,7 @@ class FilterDocumentsPreconditionUI(object):
                 column3=DocumentsFilterConstantsUI.COLUMN3, column4=DocumentsFilterConstantsUI.COLUMN4)
 
         """ Get and verify current filter title """
+        self.driver.refresh()
         current_filter = FilterPageUI(self.driver) \
             .get_current_filter()
         CRMBaseMethodsPage(self.driver) \
@@ -67,6 +68,8 @@ class FilterDocumentsPreconditionUI(object):
         """ Delete Filter """
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_ALL)
+        self.driver.refresh()
+        self.driver.refresh()
         FilterPageUI(self.driver) \
             .delete_filter(DocumentsFilterConstantsUI.DOCUMENTS_FILTER_NAME) \
             .approve_deleting() \
