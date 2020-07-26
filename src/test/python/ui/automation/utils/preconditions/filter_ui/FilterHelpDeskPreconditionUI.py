@@ -40,6 +40,7 @@ class FilterHelpDeskPreconditionUI(object):
                 column7=HelpDeskFilterConstantsUI.COLUMN7, column8=HelpDeskFilterConstantsUI.COLUMN8)
 
         """ Get and verify current filter title """
+        self.driver.refresh()
         current_filter = FilterPageUI(self.driver) \
             .get_current_filter()
         CRMBaseMethodsPage(self.driver) \
@@ -80,6 +81,8 @@ class FilterHelpDeskPreconditionUI(object):
         """ Delete Filter """
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_ALL)
+        self.driver.refresh()
+        self.driver.refresh()
         FilterPageUI(self.driver) \
             .delete_filter(HelpDeskFilterConstantsUI.HD_FILTER_NAME) \
             .approve_deleting() \

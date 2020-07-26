@@ -74,14 +74,17 @@ class LeadModuleTest(BaseTest):
         lead_module.click_ok().perform_screen_shot_lead_module()
 
     def test_mass_assign_lead_module(self):
-        LeadPrecondition(self.driver, self.config).create_three_leads()
-        CRMHomePage().refresh_page() \
+        LeadPrecondition(self.driver, self.config)\
+            .create_three_leads()
+        CRMHomePage()\
+            .refresh_page() \
             .open_client_module()
 
         lead_module = CRMHomePage().open_lead_module()
 
-        lead_module.select_filter(self.config.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
-                                                                 LeadsModuleConstants.FILTER_NAME)) \
+        lead_module\
+            .select_filter(self.config.get_data_lead_info(LeadsModuleConstants.LEADS_MODULE_COLUMNS,
+                                                          LeadsModuleConstants.FILTER_NAME)) \
             .select_three_records_task_module() \
             .open_mass_assign_lead_module() \
             .search_user(MassEditConstants.USER_ONE) \
