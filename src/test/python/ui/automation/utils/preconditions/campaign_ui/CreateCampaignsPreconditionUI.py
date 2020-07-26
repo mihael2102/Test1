@@ -1,13 +1,6 @@
-from src.main.python.ui.crm.model.constants.CampaingsConstants import CampaignsConstants
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-from src.main.python.ui.crm.model.pages.home_page.CRMHomePage import CRMHomePage
-from src.main.python.ui.crm.model.pages.login.CRMLoginPage import CRMLoginPage
-from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.CRMConstants import CRMConstants
-from src.main.python.ui.crm.model.modules.campaigns_module.AddCampaignsModule import AddCampaignsModule
 from src.main.python.ui.crm.model.pages.campaigns.CampaignsPage import CampaignsPage
-from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
-from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
 from time import sleep
 

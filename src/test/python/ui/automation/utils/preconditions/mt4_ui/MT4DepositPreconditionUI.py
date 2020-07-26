@@ -97,6 +97,7 @@ class MT4DepositPreconditionUI(object):
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_BALANCE,
                 row=record_num)
+        balance = balance.split(" ")[1]
         CRMBaseMethodsPage(self.driver)\
             .comparator_string(
                 balance,

@@ -2,8 +2,8 @@
 
 brands:
 
-#- name: analystq
-#  config_file: analystq.yml
+- name: analystq
+  config_file: analystq.yml
 
 #- name: any1profit
 #  config_file: any1profit.yml
@@ -107,8 +107,8 @@ brands:
 #- name: wdcmarkets
 #  config_file: wdcmarkets.yml
 
-- name: 4ex7
-  config_file: 4ex7.yml
+#- name: 4ex7
+#  config_file: 4ex7.yml
 
 #- name: 24option
 #  config_file: 24option.yml
