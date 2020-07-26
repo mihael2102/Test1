@@ -17,12 +17,14 @@ class AuditLogsModuleTest(BaseTest):
         AuditLogsPrecondition(self.driver, self.config).new_events_shown_in_audit_logs()
 
     def test_check_tab_audit_logs_module(self):
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+        CRMLoginPage()\
+            .open_first_tab_page(Config.url_crm) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        audit_logs_module = CRMHomePage().open_more_list_modules() \
+        audit_logs_module = CRMHomePage()\
+            .open_more_list_modules() \
             .select_audit_logs_module_more_list(AuditLogsConstants.AUDIT_LOGS_MODULE)
 
         all_tab_name = audit_logs_module.get_all_tab_text()
@@ -46,19 +48,22 @@ class AuditLogsModuleTest(BaseTest):
         audit_logs_module.open_calendar_view().perform_screen_shot()
 
     def test_check_searching_module(self):
-        CRMLoginPage().open_first_tab_page(Config.url_crm) \
+        CRMLoginPage()\
+            .open_first_tab_page(Config.url_crm) \
             .crm_login(self.config.get_value(TestDataConstants.USER_NAME),
                        self.config.get_value(TestDataConstants.CRM_PASSWORD),
                        self.config.get_value(TestDataConstants.OTP_SECRET))
 
-        audit_logs_module = CRMHomePage().open_more_list_modules() \
+        audit_logs_module = CRMHomePage()\
+            .open_more_list_modules() \
             .select_audit_logs_module_more_list(AuditLogsConstants.AUDIT_LOGS_MODULE)
 
-        audit_logs_module.perform_searching(Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_MODULE),
-                                            Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_ACTION),
-                                            Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_USER),
-                                            Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_EMAIL),
-                                            Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_ID_RECORD),
-                                            Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_USER_AGENT))
+        audit_logs_module\
+            .perform_searching(Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_MODULE),
+                               Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_ACTION),
+                               Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_USER),
+                               Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_EMAIL),
+                               Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_ID_RECORD),
+                               Config.data.get_data_audit_logs_info(AuditLogsConstants.FIRST_USER_AGENT))
 
         audit_logs_module.perform_screen_shot()

@@ -2,14 +2,9 @@ from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRM
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
-from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
-from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
-from time import sleep
-from src.main.python.ui.crm.model.pages.client_profile.ClientProfilePage import ClientProfilePage
 from src.main.python.utils.logs.Loging import Logging
-from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientDetailsConstantsUI import ClientDetailsConstantsUI
 from src.main.python.ui.crm.model.pages.trading_ui.TradingDetailsPageUI import TradingDetailsPageUI
 from src.main.python.ui.ca.model.constants.CAconstants.TradingConstants import TradingConstants
 from src.main.python.ui.crm.model.pages.clients_ui.ClientDetailsPageUI import ClientDetailsPageUI
@@ -75,6 +70,8 @@ class VerifyLiveOpenPositionPreconditionUI(object):
         expected_time = expected_created_time_order[1]
         expected_symbol = TradingConstants.ORDER_SYMBOL
         expected_open_price = TradingConstants.ORDER_OPEN_PRICE
+        while expected_open_price.endswith('0'):
+            expected_open_price = expected_open_price[:-1]
 
         assert expected_order_id in open_orders_data
         assert expected_date in open_orders_data

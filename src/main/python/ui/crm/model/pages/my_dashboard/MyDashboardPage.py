@@ -329,13 +329,14 @@ class MyDashboardPage(CRMBasePage):
         return account_status.text
 
     def check_pop_up_send_sms(self):
+        sleep(1)
+        super().wait_load_element("//span[@class='title']/h4[contains(text(),'Send SMS to')]|"
+                                  "(//div/h3[text()='Server Not Configured?'])[2]", timeout=65)
         sleep(0.5)
-        try:
-            title = super().wait_load_element("//span[@class='title']/h4[contains(text(),'Send SMS to')]", timeout=15)
-        except(NoSuchElementException, TimeoutException):
-            title = super().wait_load_element("(//div/h3[text()='Server Not Configured?'])[2]")
-        Logging().reportDebugStep(self, "Get text from sms popup: " + title.text)
-        return title.text
+        title = super().wait_load_element("//span[@class='title']/h4[contains(text(),'Send SMS to')]|"
+                                          "(//div/h3[text()='Server Not Configured?'])[2]", timeout=65).text
+        Logging().reportDebugStep(self, "Get text from sms popup: " + title)
+        return title
 
     def click_sms_icon(self):
         sleep(0.3)
@@ -389,8 +390,7 @@ class MyDashboardPage(CRMBasePage):
 
     def select_show_all_tab(self):
         self.wait_crm_loading_to_finish_tasks(85)
-        select_show_all_tab = self.driver.find_element_by_xpath(
-            "//*[@id='main-tabs']/li[1]")
+        select_show_all_tab = super().wait_load_element("//*[@id='main-tabs']/li[1]")
         self.driver.execute_script("arguments[0].scrollIntoView();", select_show_all_tab)
         try:
             select_show_all_tab.click()
@@ -398,7 +398,7 @@ class MyDashboardPage(CRMBasePage):
             self.driver.execute_script("arguments[0].click();", select_show_all_tab)
         sleep(0.2)
         self.wait_crm_loading_to_finish_tasks(75)
-        Logging().reportDebugStep(self, "Select Show All tab")
+        Logging().reportDebugStep(self, "Select 'Show All' tab")
         return MyDashboardPage(self.driver)
 
     def enter_account_name(self, testqa):
@@ -421,7 +421,7 @@ class MyDashboardPage(CRMBasePage):
 
     def get_account_name(self):
         sleep(1)
-        account_name = self.driver.find_element_by_xpath("(//a[contains(text(),'testqa')])[1]").text
+        account_name = super().wait_load_element("(//a[contains(text(),'testqa')])[1]").text
         Logging().reportDebugStep(self, "Get account name: " + account_name)
         return account_name
 

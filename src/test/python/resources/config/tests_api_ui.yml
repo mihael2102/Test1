@@ -4,13 +4,13 @@ tests_config:
   class: TestApiUI
   tests:
 #    - test_autorization_ui
-#    - test_create_customer_ui
-#    - test_duplicate_customer_ui
-#    - test_read_customer_ui
-#    - test_update_customer_ui
+    - test_create_customer_ui
+    - test_duplicate_customer_ui
+    - test_read_customer_ui
+    - test_update_customer_ui
     - test_create_lead_ui
-#    - test_read_leads_ui
-#    - test_login_token_ui
+    - test_read_leads_ui
+    - test_login_token_ui
 
 #- module: src.test.python.ui.automation.implementation.crm.tests_base_crm.Test_Dragon
 #  class: CheckDragonTest

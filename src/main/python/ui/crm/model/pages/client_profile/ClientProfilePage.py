@@ -359,18 +359,6 @@ class ClientProfilePage(CRMBasePage):
         return document_status.text
 
     '''
-        Open the help deck tabs  
-        :parameter id client account ID 
-        returns Client Profile instance    
-    '''
-
-    def open_help_desk_tab(self):
-        select_country = super().wait_load_element("//a[@id='show_Accounts_HelpDesk']")
-        select_country.click()
-        Logging().reportDebugStep(self, "Click help desc tab")
-        return ClientProfilePage(self.driver)
-
-    '''
          Open the action of the ticket number
          returns Edition Ticket Info instance    
     '''
@@ -827,7 +815,7 @@ class ClientProfilePage(CRMBasePage):
         sleep(0.2)
         try:
             closed_transactions_tab = super().wait_load_element(
-                "//a[@id='show_Tradingaccounts_ClosedTransactions'][not (contains(@style,'none'))]", timeout=15)
+                "//a[@id='show_Tradingaccounts_ClosedTrades'][not (contains(@style,'none'))]", timeout=15)
             self.driver.execute_script("arguments[0].click();", closed_transactions_tab)
             Logging().reportDebugStep(self, "Open the Closed Transactions tab")
         except(NoSuchElementException, TimeoutException):
@@ -837,7 +825,7 @@ class ClientProfilePage(CRMBasePage):
     def get_closed_order_data(self):
         sleep(0.2)
         closed_orders_data = super().wait_load_element(
-            "//div[@id='tbl_Tradingaccounts_ClosedTransactions']//tr[@class='lvtColData' and @style='background:'][1]")\
+            "//div[@id='tbl_Tradingaccounts_ClosedTrades']//tr[@class='lvtColData' and @style='background:'][1]")\
             .get_attribute("innerText")
         if "Loading" in closed_orders_data:
             sleep(1)
@@ -851,12 +839,12 @@ class ClientProfilePage(CRMBasePage):
         edit_personal_details = super().wait_load_element("//*[@id='mouseArea_Client Status']")
         edit_personal_details.click()
         sleep(1)
-        pencil = super().wait_load_element("//*[@id='crmspanid']/a/span")
+        pencil = super().wait_load_element("//*[contains(@onclick,'Client Status')]//span[contains(@class,'pencil')]")
         try:
             pencil.click()
         except:
             self.driver.execute_script("arguments[0].click();", pencil)
-        sleep(1)
+        sleep(3)
         select = Select(self.driver.find_element(By.XPATH, "//select[@id='txtbox_Client Status']"))
         select.select_by_visible_text(status)
         sleep(1)
@@ -865,7 +853,7 @@ class ClientProfilePage(CRMBasePage):
             save_personal_details.click()
         except:
             self.driver.execute_script("arguments[0].click();", save_personal_details)
-        Logging().reportDebugStep(self, "Click Edit")
+        Logging().reportDebugStep(self, "Edit status: " + status)
         return ClientProfilePage(self.driver)
 
     def click_edit_personal_detail(self):
@@ -897,6 +885,33 @@ class ClientProfilePage(CRMBasePage):
         btn_save.send_keys(Keys.DELETE)
         btn_save.send_keys(date)
         Logging().reportDebugStep(self, "Enter birthday")
+        return ClientProfilePage(self.driver)
+
+    def set_city_edit_page(self, data):
+        sleep(0.1)
+        btn_save = super().wait_load_element("//*[@id='city']")
+        btn_save.send_keys(Keys.CONTROL, "a")
+        btn_save.send_keys(Keys.DELETE)
+        btn_save.send_keys(data)
+        Logging().reportDebugStep(self, "Set city: " + data)
+        return ClientProfilePage(self.driver)
+
+    def set_address_edit_page(self, data):
+        sleep(0.1)
+        btn_save = super().wait_load_element("//*[@id='address']")
+        btn_save.send_keys(Keys.CONTROL, "a")
+        btn_save.send_keys(Keys.DELETE)
+        btn_save.send_keys(data)
+        Logging().reportDebugStep(self, "Set address: " + data)
+        return ClientProfilePage(self.driver)
+
+    def set_postcode_edit_page(self, data):
+        sleep(0.1)
+        btn_save = super().wait_load_element("//*[@id='postcode']")
+        btn_save.send_keys(Keys.CONTROL, "a")
+        btn_save.send_keys(Keys.DELETE)
+        btn_save.send_keys(data)
+        Logging().reportDebugStep(self, "Set postcode: " + data)
         return ClientProfilePage(self.driver)
 
     def get_trading_account_info(self):
@@ -961,7 +976,7 @@ class ClientProfilePage(CRMBasePage):
 
     def click_edit_help_desk_ticket(self):
         edit_help_desk = super().wait_element_to_be_clickable(
-            "//*[@id='rld_table_content']/tbody/tr[2]/td[11]/div/div/a")
+            "//*[@id='tbl_Accounts_HelpDesk']//tbody/tr[2]//a[@title='Edit']")
         self.driver.execute_script("arguments[0].click();", edit_help_desk)
         Logging().reportDebugStep(self, "Click Edit help desk ticket")
         return ClientProfilePage(self.driver)

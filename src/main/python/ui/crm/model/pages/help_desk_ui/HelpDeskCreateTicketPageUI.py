@@ -1,10 +1,6 @@
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
-from src.main.python.ui.crm.model.pages.global_module_ui.GlobalDetailsPageUI import GlobalDetailsPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalPopupPageUI import GlobalPopupPageUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.CRMBasePage import CRMBasePage
-from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.utils.logs.Loging import Logging
 from time import sleep
 
@@ -79,7 +75,7 @@ class HelpDeskCreateTicketPageUI(CRMBasePage):
     def select_priority(self, priority):
         sleep(0.1)
         item = super().wait_load_element(
-            "//help-desk-edit//span[text()=' Priority ']//following-sibling::ul//span[text()='%s']" % priority)
+            "//help-desk-edit//span[contains(text(),'Priority')]//following-sibling::ul//span[text()='%s']" % priority)
         self.driver.execute_script("arguments[0].click();", item)
         Logging().reportDebugStep(self, "Priority was set: " + priority)
         return HelpDeskCreateTicketPageUI(self.driver)

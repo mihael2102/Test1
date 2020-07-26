@@ -17,7 +17,7 @@ from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI impo
 
 class ClientsModulePageUI(CRMBasePage):
 
-    def click_crm_id_ui(self, row):
+    def click_crm_id_ui(self, row='1'):
         sleep(0.1)
         crm_id = super().wait_element_to_be_clickable(
             "//tbody/tr[@role='row' and not(contains(@style,'hidden'))][%s]//span[contains(text(),'ACC')]" % row)
@@ -36,3 +36,8 @@ class ClientsModulePageUI(CRMBasePage):
         GlobalModulePageUI(self.driver) \
             .set_data_column_field(column, data)
         return ClientsModulePageUI(self.driver)
+
+    def get_data_from_list_view_ui(self, column, row):
+        data = GlobalModulePageUI(self.driver)\
+            .get_data_from_list_view_ui(column, row)
+        return data

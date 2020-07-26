@@ -6,10 +6,12 @@ from src.main.python.ui.crm.model.constants_ui.leads_ui.ConvertLeadConstantsUI i
 from src.main.python.ui.crm.model.constants_ui.leads_ui.CreateLeadConstantsUI import CreateLeadConstantsUI
 from src.main.python.ui.crm.model.constants_ui.clients_ui.ClientsModuleConstantsUI import ClientsModuleConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
+from src.test.python.ui.automation.BaseTest import *
 from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4CreateTAConstantsUI import MT4CreateTAConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.clients_ui.ClientsModulePageUI import ClientsModulePageUI
+from src.main.python.ui.crm.model.constants_ui.mt4_ui.MT4ActionsConstantsUI import MT4ActionsConstantsUI
 import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
@@ -22,10 +24,6 @@ class MT4CreateTAPreconditionUI(object):
     def __init__(self, driver, config):
         self.driver = driver
         self.config = config
-
-    def load_lead_from_config(self, lead_key):
-        lead = self.config.get_value(lead_key)
-        return lead
 
     def create_demo_trading_account_ui(self):
         """ Login CRM """
@@ -41,10 +39,10 @@ class MT4CreateTAPreconditionUI(object):
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
-            .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   CreateLeadConstantsUI.EMAIL)
+            .set_data_column_field(column=ClientsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=CreateLeadConstantsUI.EMAIL)
         ClientsModulePageUI(self.driver)\
-            .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
+            .click_crm_id_ui() \
             .open_mt4_module_newui(var.get_var(self.__class__.__name__)["create_mt_user"])
 
         """ Create DEMO account for client using MT4 Actions """

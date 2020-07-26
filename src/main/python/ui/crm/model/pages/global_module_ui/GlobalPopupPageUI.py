@@ -26,7 +26,7 @@ class GlobalPopupPageUI(CRMBasePage):
         sleep(0.1)
         Logging().reportDebugStep(self, "Select " + pick_list + ": " + item)
         title = super().wait_load_element(
-            "//span[text()=' %s ']//following-sibling::ul//span[contains(text(),'%s')]" % (pick_list, item))
+            "//span[contains(text(),'%s')]//following-sibling::ul//span[contains(text(),'%s')]" % (pick_list, item))
         self.driver.execute_script("arguments[0].click();", title)
         return GlobalPopupPageUI(self.driver)
 
@@ -34,7 +34,7 @@ class GlobalPopupPageUI(CRMBasePage):
         sleep(0.1)
         Logging().reportDebugStep(self, "Select " + pick_list + " by index: " + number)
         title = super().wait_load_element(
-            "(//span[text()=' %s ']//following-sibling::ul//span)[%s]" % (pick_list, number))
+            "(//span[contains(text(),'%s')]//following-sibling::ul//span)[%s]" % (pick_list, number))
         self.driver.execute_script("arguments[0].click();", title)
         return GlobalPopupPageUI(self.driver)
 
@@ -42,7 +42,7 @@ class GlobalPopupPageUI(CRMBasePage):
         sleep(0.1)
         Logging().reportDebugStep(self, "Get data from pick-list: " + pick_list)
         item = super().wait_load_element(
-            "(//span[text()=' %s ']//following-sibling::ul//span)[%s]" % (pick_list, number), timeout=35)\
+            "(//span[contains(text(),'%s')]//following-sibling::ul//span)[%s]" % (pick_list, number), timeout=35)\
             .get_attribute("innerText")
         Logging().reportDebugStep(self, "Get data from pick-list(" + pick_list + ") by index(" + number + "): " + item)
         return item
@@ -74,6 +74,7 @@ class GlobalPopupPageUI(CRMBasePage):
 
     def set_date(self, day, month, year):
         sleep(0.1)
+        Logging().reportDebugStep(self, "Set birthday (day: " + day + ", month: " + month + ", year: " + year + ")")
         date_field = super().wait_load_element(
             "//input[@placeholder='Choose date of birth']")
         self.driver.execute_script("arguments[0].click();", date_field)
@@ -93,7 +94,6 @@ class GlobalPopupPageUI(CRMBasePage):
         select_day.click()
         set_btn = super().wait_load_element("(//span[text()='Set'])[1]")
         set_btn.click()
-        Logging().reportDebugStep(self, "The birthday was set")
         return GlobalPopupPageUI(self.driver)
 
     def is_button_active(self, button):

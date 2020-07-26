@@ -43,12 +43,12 @@ class MT4WithdrawPreconditionUI(object):
             .open_module_ui(TestDataConstants.MODULE_CLIENTS)
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
-            .set_data_column_field(ClientsModuleConstantsUI.COLUMN_EMAIL,
-                                   CreateLeadConstantsUI.EMAIL)
+            .set_data_column_field(column=ClientsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=CreateLeadConstantsUI.EMAIL)
 
         """ Make Withdraw for account number using MT4 Actions """
         ClientsModulePageUI(self.driver) \
-            .click_crm_id_ui(ClientsModuleConstantsUI.ROW_NUMBER_FOR_DATA_SEARCHING_1) \
+            .click_crm_id_ui(row='1') \
             .open_mt4_module_newui(MT4ActionsConstantsUI.WITHDRAW)
 
         if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
@@ -58,12 +58,12 @@ class MT4WithdrawPreconditionUI(object):
 
         MT4WithdrawPageUI(self.driver)\
             .mt4_withdraw_ui(
-                list1=MT4WithdrawConstantsUI.LIST_P_METHOD, p_method=MT4WithdrawConstantsUI.P_METHOD,
+                list1=MT4WithdrawConstantsUI.LIST_P_METHOD, p_method='2',
                 list2=MT4WithdrawConstantsUI.LIST_STATUS, status=MT4WithdrawConstantsUI.STATUS,
                 list3=MT4WithdrawConstantsUI.LIST_TA, t_account=MT4DepositConstantsUI.TA,
                 field1=MT4WithdrawConstantsUI.FIELD_AMOUNT, amount=amount,
                 field2=MT4WithdrawConstantsUI.FIELD_COMMENT, comment=MT4WithdrawConstantsUI.COMMENT,
-                list4=MT4WithdrawConstantsUI.LIST_CLEARED_BY, cleared_by=MT4WithdrawConstantsUI.CLEARED_BY,
+                list4=MT4WithdrawConstantsUI.LIST_CLEARED_BY, cleared_by='2',
                 final_btn=MT4WithdrawConstantsUI.BTN_FINAL) \
             .refresh_page()
 
@@ -75,6 +75,7 @@ class MT4WithdrawPreconditionUI(object):
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_BALANCE,
                 row=record_num)
+        actual_balance = actual_balance.split(" ")[1]
 
         if ConvertLeadConstantsUI.GET_CURRENCY == "BTC":
             balance = MT4WithdrawConstantsUI.BALANCE_CRYPTO
@@ -91,6 +92,7 @@ class MT4WithdrawPreconditionUI(object):
                 .get_data_from_list_view_ui(
                     column=ClientDetailsConstantsUI.COLUMN_BALANCE,
                     row=record_num)
+            actual_balance = actual_balance.split(" ")[1]
             count += 1
             if count == 10:
                 break

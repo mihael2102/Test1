@@ -16,10 +16,9 @@ class WebTraderPage(CRMBasePage):
 
     def close_pop_up_close_trade(self, condition):
         sleep(0.1)
-        condition1 = condition.capitalize()
-        condition2 = condition.upper()
-        click_close_order = super().wait_element_to_be_clickable("//button[contains(text(), '" + condition + "') or \
-                                    contains(text(), '" + condition1 + "') or contains(text(), '" + condition2 + "')]")
+        click_close_order = super().wait_element_to_be_clickable(
+            "//button[contains(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'),'%s')]"
+            % condition)
         try:
             click_close_order.click()
         except:
@@ -29,7 +28,7 @@ class WebTraderPage(CRMBasePage):
 
     def click_close_order(self):
         sleep(0.5)
-        click_close_order = super().wait_load_element("//tr[1]//span[contains(text(), 'Close')]", timeout=45)
+        click_close_order = super().wait_load_element("//tr[1]//button/span[contains(text(), 'Close')]", timeout=45)
         self.driver.execute_script("arguments[0].click();", click_close_order)
         Logging().reportDebugStep(self, "Click CLOSE order")
         return WebTraderPage(self.driver)
@@ -208,7 +207,7 @@ class WebTraderPage(CRMBasePage):
     def select_asset(self, asset):
         try:
             sleep(1)
-            asset_btn = super().wait_load_element("//div[contains(text(),'%s') and not(contains(text(),'.m'))]" % asset)
+            asset_btn = super().wait_load_element("(//div[contains(text(),'%s')])[1]" % asset)
             self.driver.execute_script("arguments[0].click();", asset_btn)
             Logging().reportDebugStep(self, "Select asset: " + asset)
             TradingConstants.IS_ASSET_EXIST = "yes"
@@ -315,8 +314,9 @@ class WebTraderPage(CRMBasePage):
 
     def get_msg_succsessfull_order(self):
         sleep(0.1)
-        succsessfull_order = super().wait_load_element(
-            "//panda-forex-trading-platform/div/div/div/div[2]/div[1]/div[2]/div/invest/popup/div/div[1]/h2").text
+        succsessfull_order = super().wait_load_element("//h2[text()='Order Successful']")
+        self.driver.execute_script("arguments[0].scrollIntoView();", succsessfull_order)
+        succsessfull_order = succsessfull_order.text
         Logging().reportDebugStep(self, "Check message: " + succsessfull_order)
         return WebTraderPage(self.driver)
 
@@ -337,6 +337,7 @@ class WebTraderPage(CRMBasePage):
         sleep(3)
         select_volume = self.driver.find_element(By.XPATH, global_var.get_xpath_for_current_brand_element(
                                                            self.__class__.__name__)["volume_in_lot"])
+        self.driver.execute_script("arguments[0].scrollIntoView();", select_volume)
         select_volume.clear()
         select_volume.send_keys(volume)
         Logging().reportDebugStep(self, "Select volume in lot: " + volume)

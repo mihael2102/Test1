@@ -107,6 +107,8 @@ class ClientsSortingColumnsPreconditionUI(object):
         if created_time_1 > created_time_2:
             GlobalModulePageUI(self.driver) \
                 .click_arrow_up(
+                    column=ClientsModuleConstantsUI.COLUMN_CREATED_TIME) \
+                .click_arrow_up(
                     column=ClientsModuleConstantsUI.COLUMN_CREATED_TIME)
             created_time_1 = get_data \
                 .get_data_from_list_view_ui(
@@ -123,6 +125,8 @@ class ClientsSortingColumnsPreconditionUI(object):
             assert created_time_1 <= created_time_2
         else:
             GlobalModulePageUI(self.driver) \
+                .click_arrow_down(
+                    column=ClientsModuleConstantsUI.COLUMN_CREATED_TIME) \
                 .click_arrow_down(
                     column=ClientsModuleConstantsUI.COLUMN_CREATED_TIME)
             created_time_1 = get_data \

@@ -47,8 +47,11 @@ class GlobalModulePageUI(CRMBasePage):
         field = super().wait_element_to_be_clickable("//span[@class='placeholder']/span[text()='%s']" % column)
         self.driver.execute_script("arguments[0].click();", field)
         sleep(0.5)
-        item = super().wait_load_element("//span[contains(text(),'%s')]//following-sibling::ul//span[text()='%s']"
-                                         % (column, data))
+        data = data.lower()
+        item = super().wait_load_element(
+            "//span[contains(text(),'%s')]//following-sibling::ul//span[contains"
+            "(translate(.,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'%s')]"
+            % (column, data))
         self.driver.execute_script("arguments[0].click();", item)
         try:
             done = super().wait_element_to_be_clickable("//button/span[text()='Apply']")
@@ -191,8 +194,12 @@ class GlobalModulePageUI(CRMBasePage):
     def select_filter_new_ui(self, test_filter):
         sleep(2)
         Logging().reportDebugStep(self, "Select filter: " + test_filter)
+        filter_input = super().wait_load_element("//input[@placeholder='Search filter']")
+        self.driver.execute_script("arguments[0].click();", filter_input)
+        filter_input.send_keys(test_filter)
+        sleep(0.5)
         filter_item = super().wait_load_element(
-            "//nice-select[@searchplaceholder='Search filter']//div[@class='select-wrap']//following-sibling::"
+            "//*[@searchplaceholder='Search filter']//div[@class='select-wrap']//following-sibling::"
             "ul//span[contains(text(),'%s')]" % test_filter)
         sleep(0.5)
         self.driver.execute_script("arguments[0].click();", filter_item)

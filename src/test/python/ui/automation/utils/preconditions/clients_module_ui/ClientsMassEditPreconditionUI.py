@@ -1,15 +1,11 @@
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.FiltersConstantsUI import FiltersConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.CRMLoginPageUI import CRMLoginPageUI
-from src.main.python.utils.config import Config
 from src.main.python.ui.crm.model.constants.TestDataConstants import TestDataConstants
-import src.main.python.utils.data.globalXpathProvider.GlobalXpathProvider as global_var
-from src.main.python.ui.crm.model.modules.leads_module.LeadsModule import LeadsModule
 from src.main.python.ui.crm.model.pages.crm_base_page.BaseMethodsPage import CRMBaseMethodsPage
 from src.main.python.ui.crm.model.pages.global_module_ui.GlobalModulePageUI import GlobalModulePageUI
 from src.main.python.ui.crm.model.constants_ui.leads_ui.LeadsModuleConstantsUI import LeadsModuleConstantsUI
 from src.main.python.ui.crm.model.constants_ui.base_crm_ui.MassActionsConstantsUI import MassActionsConstantsUI
 from src.main.python.ui.crm.model.pages.global_module_ui.MassEditPageUI import MassEditPageUI
-import src.main.python.utils.data.globalVariableProvider.GlobalVariableProvider as var
 
 
 class ClientsMassEditPreconditionUI(object):
@@ -37,26 +33,23 @@ class ClientsMassEditPreconditionUI(object):
         GlobalModulePageUI(self.driver) \
             .select_filter_new_ui(FiltersConstantsUI.FILTER_TEST_CLIENTS) \
             .refresh_page_ui() \
-            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
-            .select_all_records_checkbox() \
-            .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT)
+            .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=LeadsModuleConstantsUI.SHORT_EMAIL) \
+            .select_all_records_checkbox()
 
         """ Mass Edit """
         MassEditPageUI(self.driver) \
-            .select_field_to_edit(MassActionsConstantsUI.FIELD_CLIENT_STATUS) \
-            .select_from_list(MassActionsConstantsUI.FIELD_CLIENT_STATUS,
-                              var.get_var(self.__class__.__name__)["client_status"]) \
-            .select_field_to_edit(MassActionsConstantsUI.FIELD_ASSIGNED_TO) \
-            .select_from_list(MassActionsConstantsUI.FIELD_ASSIGNED_TO,
-                              MassActionsConstantsUI.USER_NAME_1) \
-            .click_save_changes_btn()
+            .click_mass_action_btn(MassActionsConstantsUI.MASS_EDIT) \
+            .mass_edit(
+                field_to_edit1=MassActionsConstantsUI.FIELD_CLIENT_STATUS,
+                field_to_edit4=MassActionsConstantsUI.FIELD_ASSIGNED_TO,
+                assign_to=MassActionsConstantsUI.USER_NAME_1,
+                final_btn=MassActionsConstantsUI.BTN_FINAL2)\
+            .refresh_page()
 
         """ Check confirmation message and updated data in table """
         GlobalModulePageUI(self.driver) \
-            .verify_success_message() \
-            .click_ok() \
-            .set_data_column_field(LeadsModuleConstantsUI.COLUMN_EMAIL,
-                                   LeadsModuleConstantsUI.SHORT_EMAIL) \
+            .set_data_column_field(column=LeadsModuleConstantsUI.COLUMN_EMAIL,
+                                   data=LeadsModuleConstantsUI.SHORT_EMAIL) \
             .global_data_checker_new_ui(MassActionsConstantsUI.USER_NAME_1) \
-            .global_data_checker_new_ui(var.get_var(self.__class__.__name__)["client_status"])
+            .global_data_checker_new_ui(MassActionsConstantsUI.STATUS)
