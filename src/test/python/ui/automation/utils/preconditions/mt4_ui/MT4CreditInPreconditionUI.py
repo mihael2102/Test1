@@ -97,6 +97,7 @@ class MT4CreditInPreconditionUI(object):
             .get_data_from_list_view_ui(
                 column=ClientDetailsConstantsUI.COLUMN_CREDIT,
                 row=record_num)
+        credit = credit.split(" ")[1]
 
         counter = 0
         while amount != credit:
@@ -108,6 +109,7 @@ class MT4CreditInPreconditionUI(object):
                 .get_data_from_list_view_ui(
                     column=ClientDetailsConstantsUI.COLUMN_CREDIT,
                     row=record_num)
+            credit = credit.split(" ")[1]
             counter += 1
             if counter == 7:
                 break
